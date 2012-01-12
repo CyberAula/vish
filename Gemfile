@@ -19,6 +19,7 @@ end
 gem 'jquery-rails'
 
 gem 'social_stream'
+gem 'mysql2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
