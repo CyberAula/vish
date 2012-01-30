@@ -11,18 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120112144769) do
+ActiveRecord::Schema.define(:version => 20120130131906) do
 
   create_table "activities", :force => true do |t|
-    t.integer  "contact_id"
     t.integer  "activity_verb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"
+    t.integer  "channel_id"
   end
 
   add_index "activities", ["activity_verb_id"], :name => "index_activities_on_activity_verb_id"
-  add_index "activities", ["contact_id"], :name => "index_activities_on_contact_id"
+  add_index "activities", ["channel_id"], :name => "index_activities_on_channel_id"
 
   create_table "activity_object_activities", :force => true do |t|
     t.integer  "activity_id"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20120112144769) do
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
@@ -100,8 +100,8 @@ ActiveRecord::Schema.define(:version => 20120112144769) do
     t.integer  "author_id"
     t.integer  "owner_id"
     t.integer  "user_author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "channels", ["author_id"], :name => "index_channels_on_author_id"
@@ -157,8 +157,8 @@ ActiveRecord::Schema.define(:version => 20120112144769) do
     t.datetime "start_at"
     t.datetime "end_at"
     t.boolean  "all_day"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "room_id"
     t.date     "start_date"
     t.date     "end_date"
@@ -291,8 +291,8 @@ ActiveRecord::Schema.define(:version => 20120112144769) do
   create_table "rooms", :force => true do |t|
     t.integer  "actor_id"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
@@ -336,10 +336,10 @@ ActiveRecord::Schema.define(:version => 20120112144769) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
     t.integer  "actor_id"
-    t.string   "language",                              :default => "en"
+    t.string   "language"
     t.boolean  "connected",                             :default => false
     t.string   "status",                                :default => "chat"
     t.boolean  "chat_enabled",                          :default => true
@@ -349,7 +349,7 @@ ActiveRecord::Schema.define(:version => 20120112144769) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   add_foreign_key "activities", "activity_verbs", :name => "index_activities_on_activity_verb_id"
-  add_foreign_key "activities", "contacts", :name => "index_activities_on_contact_id"
+  add_foreign_key "activities", "channels", :name => "index_activities_on_channel_id"
 
   add_foreign_key "activity_object_activities", "activities", :name => "index_activity_object_activities_on_activity_id"
   add_foreign_key "activity_object_activities", "activity_objects", :name => "activity_object_activities_on_activity_object_id"
