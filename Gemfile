@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '~> 3.2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -18,7 +18,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'social_stream',   '~> 0.19.0'
+gem 'social_stream',   '~> 0.20'
 gem 'mysql2'
 
 # To use ActiveModel has_secure_password
