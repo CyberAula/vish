@@ -1,0 +1,10 @@
+<% content_for :title do%>
+  <%= t('follow.followers')%>
+<%end%>
+
+<% sidebar %>
+
+<% toolbar :option => :contacts %>
+
+<%= render :partial => "follow/followers"%>
+
