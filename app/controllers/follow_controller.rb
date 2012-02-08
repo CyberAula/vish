@@ -50,7 +50,7 @@ class FollowController < ApplicationController
     @follower = current_subject.received_contacts.find params[:id] # These are nil if the contact is not following / being followed
     @following = current_subject.sent_contacts.find params[:id]
 
-    if ( not @follower.nil? and @follower.reflexive? ) or ( not @following.nil? and @following.reflexive? )
+    if ( not @follower.blank? and @follower.reflexive? ) or ( not @following.blank? and @following.reflexive? )
       redirect_to home_path
     end
   end
