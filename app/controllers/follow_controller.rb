@@ -1,18 +1,37 @@
 class FollowController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :exclude_reflexive, :except => :index
-  load_and_authorize_resource :class => Relation::Follow
+  before_filter :exclude_reflexive, :except => [ :index, :followers, :followings ]
 
   respond_to :html, :js
 
+  def new
+    # TODO: Create contact and do some more stuff, maybe at model?
+  end
+
+  def create
+  end
+
   def index
-    @followers = followers.all
-    @following = following.all
+    followers
+  end
+
+  def followers
+    @followers = contacts_followers
 
     respond_to do |format|
-      format.html { @followers = @followers.page(params[:page]).per(10) }
-      format.js { @followers = @followers.page(params[:page]).per(10) }
+      format.html { @followers = @followers.page(params[:page]).per(20) }
+      format.js { @followers = @followers.page(params[:page]).per(20) }
       format.json { render :text => to_json(@followers) }
+    end
+  end
+
+  def followings
+    @followings = contacts_followings
+
+    respond_to do |format|
+      format.html { @followings = @followings.page(params[:page]).per(20) }
+      format.js { @followings = @followings.page(params[:page]).per(20) }
+      format.json { render :text => to_json(@followings) }
     end
   end
 
@@ -23,24 +42,24 @@ class FollowController < ApplicationController
   end
 
   def destroy
-    
   end
 
   private
 
   def exclude_reflexive
-    @contact = current_subject.sent_contacts.find params[:id]
+    @follower = current_subject.received_contacts.find params[:id] # These are nil if the contact is not following / being followed
+    @following = current_subject.sent_contacts.find params[:id]
 
-    if @contact.reflexive?
+    if ( not @follower.nil? and @follower.reflexive? ) or ( not @following.nil? and @following.reflexive? )
       redirect_to home_path
     end
   end
 
-  def followers
+  def contacts_followers
     current_subject.received_contacts
   end
 
-  def following
+  def contacts_following
     current_subject.sent_contacts
   end
 
