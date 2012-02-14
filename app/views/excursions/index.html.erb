@@ -1,0 +1,21 @@
+<h1>Listing excursions</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @excursions.each do |excursion| %>
+  <tr>
+    <td><%= link_to 'Show', excursion %></td>
+    <td><%= link_to 'Edit', edit_excursion_path(excursion) %></td>
+    <td><%= link_to 'Destroy', excursion, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Excursion', new_excursion_path %>

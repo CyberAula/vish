@@ -1,4 +1,8 @@
 Vish::Application.routes.draw do
+  resources :excursions
+
+  resources :slides
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
   resources :follow
 
