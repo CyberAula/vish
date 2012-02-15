@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130131906) do
+ActiveRecord::Schema.define(:version => 20120214153142) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -170,6 +170,13 @@ ActiveRecord::Schema.define(:version => 20120130131906) do
 
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
+  create_table "excursions", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "activity_object_id"
+    t.text     "json"
+  end
+
   create_table "groups", :force => true do |t|
     t.integer  "actor_id"
     t.datetime "created_at"
@@ -296,6 +303,13 @@ ActiveRecord::Schema.define(:version => 20120130131906) do
   end
 
   add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
+
+  create_table "slides", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "activity_object_id"
+    t.text     "json"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
