@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>ViSH log out</title>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <header>
+      <div id="logo"></div>
+        <div id="right">
+          <div id="searcher">
+            <input type="search" name="search" id="search-field" placeholder=search>
+          </div>
+        </div>
+      </header>
+    <section id="principal">
+
+    <%= yield %>
+
+    </section>
+    <%= render :partial => 'layouts/footer' %>
+  </body>
+</html>
