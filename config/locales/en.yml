@@ -2,4 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  site:
+    name: "Virtual Science Hub"
+  profile:
+    tags:
+      default: "VisHub, virtual, excursion"
+  username: "username"
+  password: "password"
+
