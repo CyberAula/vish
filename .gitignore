@@ -24,3 +24,6 @@ Gemfile.lock
 
 # ignore folder from editors
 .idea
+
+# editor backup files
+**~
