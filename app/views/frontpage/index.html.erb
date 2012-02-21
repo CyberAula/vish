@@ -1,0 +1,20 @@
+<% content_for :title do%>
+  <%= t('welcome', :site => t('site.name')) %>
+<%end%>
+
+<div id="wrapper_body">
+  <section id="main">
+    <div id="logo-frontpage"></div>
+    <div class="title-main"><%=t('site.name')%></div>
+    <div class="banner_busqueda">
+        <%= render :partial => 'layouts/search' %>
+    </div>
+    <div id="tags">
+      <div id="tag_repositories"class="size60">repositories</div>
+      <div id="tag_excursion" class="size90">excursions</div>
+      <div id="tag_organizations"class="size50">organizations</div>
+      <div id="tag_users" class="size50">users</div>
+    </div>
+  </section>
+  <div id="espacio_body_bottom"></div>
+</div>
