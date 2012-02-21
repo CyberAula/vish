@@ -1,4 +1,4 @@
-<div class="banner_top">
+<div class="wrapper">
   <% unless params[:controller].eql? 'devise/sessions' and params[:action].eql? 'new' %>
   <div class="login">
     <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>

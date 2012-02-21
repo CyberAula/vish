@@ -33,24 +33,26 @@
     <%= render :partial => "layouts/header_frontpage" %>
   </header>
 
-  <section id="main">
-      <div class="space_double_center"></div>
-      <div id="flash">
-        <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+  <section id="main" class="wrapper">
+    <div class="space_double_center"></div>
+    <div id="flash">
+      <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+    </div>
+    <%= yield %>
+  </section>
+
+  <section id="top" class="white">
+    <div class="wrapper block">
+      <div class="rotate-90 inline-block"><%=t('top10')%></div>
+      <div class="excursions inline-block">
+        <div>excursions-image</div>
+        <div>excursion-name</div>
       </div>
-      <%= yield %>
     </div>
   </section>
 
-  <section id="top">
-    <div id="top10"><%=t('top10')%></div>
-    <div class="excursions">
-      <div >excursions-image</div>
-      <div >excursion-name</div>
-    </div>
-  </section>
-
-  <footer>
+  <div class="space_double_center"></div>
+  <footer class="wrapper block menu">
     <%= render :partial => "layouts/footer" %>
   </footer>
 </body>
