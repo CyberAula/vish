@@ -1,0 +1,2 @@
+module ExcursionsHelper
+end
