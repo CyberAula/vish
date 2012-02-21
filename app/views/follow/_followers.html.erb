@@ -1,0 +1,5 @@
+<% @followers.each do |follower| %>
+  <% follower = follower.sender.subject %>
+  <%= follower.name %>
+<% end %>
+

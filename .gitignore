@@ -17,8 +17,16 @@ config/database.yml
 /log/*.log
 /tmp
 
+
 # Ignore locks
 Gemfile.lock
 
+<<<<<<< HEAD
 .idea
+=======
+
+.idea
+.idea/*
+
+>>>>>>> bfb783647e5c3e8e250286da96450765ed653071
 
