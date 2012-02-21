@@ -8,11 +8,14 @@
 	position: relative; padding: 3px; }
 .banner_top_height{	height:23px;}
 
+/************** LOGO *******/
+#logo{display:inline-block;height: 56px;width: 450px; background: url("vish_logo.png") no-repeat;
+  margin-left: 16px; margin-top: 36px;}
+
 
 
 
 /********** CONTENT ************/
-#logo{  width:218px;  height:50px;  float:left;  vertical-align:top; }
 #logo_txt {color: $text-over-main;	display: inline;	vertical-align: top;	padding-top: 2px; }
 
 

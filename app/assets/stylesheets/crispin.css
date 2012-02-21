@@ -1,33 +1,8 @@
 
-@charset "UTF-8";
-
-*{
-  padding: 0px;
-  margin: 0px;
-}
-
-body{
-  background-color:#F9F9F9;
-  width: 976px;
-  margin-left: auto;
-  margin-top: 0px;
-  margin-right: auto
-}
-
-.font{
-  font-family: Helvetica;
-}
 
 /*******HEADER ********/
 
-#logo{
-  display:inline-block;
-  height: 56px;
-  width: 450px;
-  background: url("vish_logo.png") no-repeat;
-  margin-left: 16px;
-  margin-top: 36px;
-}
+
 
 #right{
   float: right;

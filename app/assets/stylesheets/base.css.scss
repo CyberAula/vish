@@ -1,7 +1,10 @@
 @import "colors";
 
+@charset "UTF-8";
+
+
 /*************Basic SECTION ********************/
-* {	margin: 0;	padding: 0;	font-family: Helvetica, Arial; }
+* {	margin: 0;	padding: 0;	font-family: Helvetica; }
 html, body {height: auto;}
 .p {	margin: 0px;	padding: 0px;	font-size: inherit;	font-family: inherit;	font-weight: inherit;
       text-align: inherit;	color: inherit;	line-height: inherit;	vertical-align: top;}
@@ -19,7 +22,7 @@ h2{padding-left:10px;}
 /******* Main Structure SECTION***************************/
 body{font-size:1.0em;  color: $main-color; background-color:#F9F9F9; overflow-y: scroll;}
 #wrapper { 	background-color: $fill-color;	width: 100%; margin: 0px auto;	  }
-#wrapper_body{min-height: 552px; width: 960px; margin:0px auto;	margin-left: auto; text-align:center;	margin-right: auto;
+#wrapper_body{min-height: 552px; width: 976px; margin:0px auto;	margin-left: auto; text-align:center;	margin-right: auto;
 margin-top: auto; margin-bottom:auto; background-image:none; padding-bottom: 9px;}
 
 

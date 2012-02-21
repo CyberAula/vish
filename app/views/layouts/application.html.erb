@@ -1,65 +1,66 @@
 <!-- HTML5 DOCTYPE -->
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
-  <head>
-    <meta charset="utf-8">
-    <title><%= yield(:title).empty? ? t('site.name') : yield(:title)%></title>
-    <meta name="keywords" content="<%= t('profile.tags.default') %><%= yield(:keywords) %>" >
-    <meta name="description" content= "<%= yield(:description).empty? ? t('frontpage.main_title') : yield(:description) %>" >
-    <meta name="generator" content="SocialStream" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+<head>
+  <meta charset="utf-8">
+  <title><%= yield(:title).empty? ? t('site.name') : yield(:title) %></title>
+  <meta name="keywords" content="<%= yield(:keywords).empty? ? t('profile.tags.default') : yield(:keywords) %>">
+  <meta name="description" content="<%= yield(:description).empty? ? "Home" : yield(:description) %>">
+  <meta name="generator" content="SocialStream" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= favicon_link_tag "icons/favicon.ico" %>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application" %>
+  <% if protect_against_forgery? %>
+    <%= csrf_meta_tag %>
+  <% end %>
 
-    <%= yield :headers %>
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  </script>
 
-    <%= favicon_link_tag "icons/favicon.ico" %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      <%= yield :javascript%>
+    });
+  </script>
+  <%= yield :headers %>
+</head>
+<body>
+  <header id="headerFront">
+    <%= render :partial => "layouts/header" %>
+  </header>
 
-    <% if protect_against_forgery? %>
-      <%= csrf_meta_tag %>
-    <% end %>
-
-    <script type="text/javascript">
-      I18n.defaultLocale = "<%= I18n.default_locale %>";
-      I18n.locale = "<%= I18n.locale %>";
-    </script>
-
-    <script type="text/javascript">
-      $(document).ready(function() {
-        <%= yield :javascript %>
-      })
-    </script>
-  </head>
-  <body>
-    <div id="wrapper">
-      <header><%= render :partial => "layouts/header" %></header>
-      <div id="wrapper_body">
-        <nav id="toolbar">
-          <div id="toolbarContent" class="block">
-            <div class="space_center">
-            </div>
-            <%= yield :toolbar %>
-          </div>
-        </nav>
-        <div id= "center_body">
-          <div id="map_location">
-            <%= yield :location %>
-          </div>
-          <div id="flash">
-            <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
-          </div>
-          <section id="content">
-            <%= yield %>
-          </section>
+  <div id="wrapper_body">
+    <section id="toolbar">
+      <div id="toolbarContent" class="block">
+        <div class="space_center">
         </div>
-        <aside id="sidebar">
-          <div id="sidebarContent">
-            <%= yield :sidebar %>
-          </div>
-        </aside>
+        <%= yield :toolbar %>
       </div>
-      <footer><%= render :partial => "layouts/footer" %></footer>
-    </div>
-  </body>
+    </section>
+    <section id= "center_body">
+      <div id="map_location">
+        <%= yield :location %>
+      </div>
+      <div id="flash">
+        <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+      </div>
+      <section id="content">
+        <%= yield %>
+      </section>
+    </section>
+    <section id="sidebar">
+      <div id="sidebarContent">
+        <%= yield :sidebar %>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <%= render :partial => "layouts/footer" %>
+  </footer>
+</body>
 </html>
