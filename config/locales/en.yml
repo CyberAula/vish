@@ -7,5 +7,5 @@ en:
   username: "username"
   password: "password"
   follow:
-    followers: "Followers"
-    followings: "Following"
+    followers: "followers"
+    followings: "following"

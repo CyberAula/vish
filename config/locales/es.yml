@@ -1,4 +1,11 @@
-en:
+es:
+  site:
+    name: "Virtual Science Hub"
+  profile:
+    tags:
+      default: "VisHub, virtual, excursion"
+  username: "usuario"
+  password: "clave"
   follow:
-    followers: "Seguidores"
-    followings: "Seguidos"
+    followers: "seguidores"
+    followings: "seguidos"
