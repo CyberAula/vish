@@ -206,7 +206,6 @@
 	height: 20px;
 	clear: both;
 	margin-top: 10px;
-	color: #333333;
   margin-left: 117px;
 }
 .footer ul{
@@ -220,7 +219,6 @@
 }
 .footer a{
 	text-decoration: none;
-  color: #333333;
 }
 .footer a:hover{
 	color: #CCCCCC;

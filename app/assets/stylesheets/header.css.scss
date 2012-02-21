@@ -1,16 +1,16 @@
 @import "colors";
 
 /****************** HEADER STRUCTURE ******/
-#headerFront {	width: 100%;	padding: 0px; margin-top:20px;	 }
+#headerFront {	width: 100%;	padding: 0px; margin-top:0px;	 }
 #header_left {	left: 0px;	float: left;	padding-left: 15px; padding-right: 5px; width:155px;}
 #header_right {	right: 0px;	float: right; padding-right: 10px;  }
 .banner_top{	width: 960px;	margin-left: auto;	margin-right: auto;	margin-top: 0px;
-	position: relative; padding: 3px; }
-.banner_top_height{	height:23px;}
+	position: relative; padding: 0px; }
+
 
 /************** LOGO *******/
-#logo{display:inline-block;height: 56px;width: 450px; background: url("vish_logo.png") no-repeat;
-  margin-left: 16px; margin-top: 36px;}
+#logo{display:inline-block; height: 56px;width: 450px; background: url("vish.png") no-repeat;
+  margin-left: 16px; margin-top: 5px;}
 
 
 
