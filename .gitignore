@@ -21,12 +21,6 @@ config/database.yml
 # Ignore locks
 Gemfile.lock
 
-<<<<<<< HEAD
+
+# ignore folder from editors
 .idea
-=======
-
-.idea
-.idea/*
-
->>>>>>> bfb783647e5c3e8e250286da96450765ed653071
-
