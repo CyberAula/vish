@@ -20,5 +20,3 @@ config/database.yml
 # Ignore locks
 Gemfile.lock
 
-/.idea
-
