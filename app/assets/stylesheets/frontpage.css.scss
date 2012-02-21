@@ -1,16 +1,25 @@
 @import "colors";
 
-/********************** BÚSQUEDA *****************/
-.banner_busqueda {	width:960px;	height:61px;	margin-left:auto;	margin-right:auto;	padding:0;
-	position:relative;  padding-top:10px;}
-#espacio_busqueda {	width:652px;  margin-left:20px;	height:45px;	margin-bottom:0px; float:left; display:inline;}
-#form_busqueda{  padding-top:3px;}
-span.find{  padding-right:5px;}
 
 /************** sub structure Frontpage **************/
+#logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
+.title-main {font-size:40px;}
+
+/***************** HEADER FIELD CSS ********/
+.login a{	padding-right: 2px; }
+.login a:hover{text-decoration:underline; }
+.login #login_button{	width:61px;	height:18px; }
+.login #login_data{display: block;}
+.login .login_data_block{ display: inline-block; padding-left: 10px;}
+.login .login_data_block input{ width: 150px;}
+.login .login_data_block input[type=submit]{ width: 70px;}
+.login .a_border{	border-right:thin solid;	padding-right:7px;	text-decoration:underline; }
+.login{ padding-top: 5px;   display: inline-block; float: right; text-align: right; vertical-align: top; width: 65%;  }
+
+
 #devise_links {padding: 20px 0 5px 5px; margin-left: 20%;}
 #devise_links a{font-weight: bold;line-height: 15px; color: $details-color;}
-#login{  padding-top: 5px;}
+
 .instructions{text-align: left; padding-bottom: 5px;}
 #remember{padding-left:22%; text-align: left;}
 #welcome #user_password_confirmation{vertical-align: 30%;}
@@ -25,46 +34,24 @@ span.find{  padding-right:5px;}
 #welcome .form_tag{ width: 98%;}
 #welcome h2{ font-variant: small-caps; text-transform: capitalize; padding: 0; font-size: 20px; 
             text-align: center; }
-#wrapper_left{  vertical-align:top;  width:49%;  display:inline-block;    padding-left: 20px;}
-#wrapper_right{ vertical-align:top;  width:48%;  display:inline-block;}
-
-
-/***************** content Frontpage *****************/
-.espacio{height:10px;}
-#frontpage_title{	font-size: 17px;	font-weight:bold;	color: $main-color;	vertical-align: top;	margin: 0px;
-	text-align: center;	padding: 0px;}
-.icon{  display:inline-block;  width:60px }
-#icon_share{  background: transparent url(frontpage/share.png);  width:56px;  height:57px;}
-#icon_meet{  background: transparent url(frontpage/meet.png);  width:56px;  height:57px;}
-#icon_collaborate{  background: transparent url(frontpage/collaborate.png);  width:56px;  height:57px;}
-.icon_text{  text-align:center;  width:100%;  font-weight:bold;}
-#join_form{  margin: 15px 0px; text-align:center;}
-#join_form input[type="submit"] {font-size: 14px; padding: 6px 10px;}
-.sentences{  width:80%;  display:inline-block;  vertical-align:top;  padding-top:10px;}
-.sentences ul,.sentences li{  list-style-type:none;  font-size:14px;  margin-left:10px;  padding-top:3px;}
-.sentences li.purple{  list-style-image:url("frontpage/purple_sq.png");}
-.sentences li.green{  list-style-image:url("frontpage/green_sq.png");}
-.sentences li.yellow{  list-style-image:url("frontpage/yellow_sq.png");}
-#text_bottom_title{	font-size: 14px;	color: $sentence-color;	font-weight: bold;}
-
-
-/*********** TEXT Frontpage **********/
-#caracteristics{	vertical-align: top;}
-#caracteristics #video {	float:left;	padding-right: 14px;	vertical-align: top;	padding-top: 5px;}
-#caracteristics ul {	list-style: none;	margin: 0px;	float:left;}
-#caracteristics ul li{	font-size:13px;	line-height:18px;	padding:7px 0 8px 30px;}
-#gallery ul li{	font-size:13px;	line-height:18px;	padding:0px 0 0px 2px;}
-li.conferences{background: transparent url("frontpage/right_conference.png") no-repeat left center;}
-li.participants{background: transparent url("frontpage/right_webcam.gif") no-repeat left center;}
-li.organizers{background: transparent url("frontpage/right_organizers.gif") no-repeat left center;}
-li.groups{background: transparent url("frontpage/right_people.gif") no-repeat left center;}
-li.comments{background: transparent url("frontpage/right_comments.gif") no-repeat left center;}
-li.tags{background: transparent url("frontpage/right_tags.gif") no-repeat left center;}
-li.networks{background: transparent url("frontpage/right_social.gif") no-repeat left center;}
 
 
 
 
+/*
+#tags{width:100%; height:150px; margin:0px; }
 
 
 
+*/
+#tags{width:100%; height:200px; margin: 0px auto;	position: relative;}
+#tag_repositories, #tag_excursion, #tag_organizations, #tag_users{position:relative;}
+#tag_repositories{float: right; z-index:1; right:140px;  font-weight: thin; }
+#tag_excursion{width:400px;  left:10px;  top:10px; z-index:2;  }
+#tag_organizations{float: right; font-weight: thin; top:-30px; z-index:3;}
+#tag_users{ width:100px; font-weight: thin; top:0px; left:450px; z-index:4;}
+/*
+
+
+
+*/
