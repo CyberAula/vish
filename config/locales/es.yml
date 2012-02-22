@@ -9,3 +9,5 @@ es:
   follow:
     followers: "seguidores"
     followings: "seguidos"
+  lang:
+    title: "idioma"

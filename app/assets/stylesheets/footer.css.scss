@@ -1,9 +1,0 @@
-@import "colors";
-
-
-.menu ul {list-style-type:none;margin:0 0.5em; }
-.menu ul li {display:inline-block;margin-right:4em;position:relative;}
-.menu ul li#trade_mark,#sponsor ul li#trademark{font-weight:bold;color:$sentence-color;}
-.menu ul li#trade_mark_logo{font-weight:normal;}
-.menu a{color:$details-color;}
-.menu a:hover{color:$sentence-color; text-decoration: underline;}

@@ -1,19 +1,20 @@
 <% content_for :title do%>
   <%= t('welcome', :site => t('site.name')) %>
 <%end%>
-
-
-<section id="main" class="block">
-  <div id="logo-frontpage"></div>
-  <div class="title-main center"><%=t('site.name')%></div>
-  <div class="banner_busqueda center">
-      <%= render :partial => 'layouts/search' %>
+<section name="main">
+  <div class="row span12">
+    <div id="logo-frontpage"></div>
+    <div class="pagination-centered size90"><h1><%=t('site.name')%></h1></div>
+    <div class="pagination-centered">
+        <%= render :partial => 'layouts/search' %>
+    </div>
   </div>
-  <div id="tags">
+  <div class="row span12 space_double_center"></div>
+  <div  id="tags" class="row span12">
     <div id="tag_repositories"class="size60">repositories</div>
     <div id="tag_excursion" class="size90">excursions</div>
     <div id="tag_organizations"class="size50">organizations</div>
     <div id="tag_users" class="size50">users</div>
   </div>
+  <div class="row space_double_center"></div>
 </section>
-<div id="espacio_body_bottom"></div>

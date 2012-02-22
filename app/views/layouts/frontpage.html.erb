@@ -6,11 +6,16 @@
   <title><%= yield(:title).empty? ? t('site.name') : yield(:title) %></title>
   <meta name="keywords" content="<%= yield(:keywords).empty? ? t('profile.tags.default') : yield(:keywords) %>">
   <meta name="description" content="<%= yield(:description).empty? ? "Home" : yield(:description) %>">
-  <meta name="generator" content="SocialStream" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <meta name="generator" content="SocialStream"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+
+
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= favicon_link_tag "icons/favicon.ico" %>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
 
   <% if protect_against_forgery? %>
     <%= csrf_meta_tag %>
@@ -29,31 +34,24 @@
   <%= yield :headers %>
 </head>
 <body>
-  <header id="headerFront">
+<div class="container">
+  <header id="headerFront" class="row span7 offset5">
     <%= render :partial => "layouts/header_frontpage" %>
   </header>
-
-  <section id="main" class="wrapper">
+  <section id="main" class="row span12">
     <div class="space_double_center"></div>
     <div id="flash">
       <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
     </div>
     <%= yield %>
+    <div class="space_double_center"></div>
   </section>
+</div>
 
-  <section id="top" class="white">
-    <div class="wrapper block">
-      <div class="rotate-90 inline-block"><%=t('top10')%></div>
-      <div class="excursions inline-block">
-        <div>excursions-image</div>
-        <div>excursion-name</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="space_double_center"></div>
-  <footer class="wrapper block menu">
+<div class="container">
+  <footer class="row span12">
     <%= render :partial => "layouts/footer" %>
   </footer>
+</div>
 </body>
 </html>

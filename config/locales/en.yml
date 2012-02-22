@@ -9,3 +9,5 @@ en:
   follow:
     followers: "followers"
     followings: "following"
+  lang:
+    title: "language"

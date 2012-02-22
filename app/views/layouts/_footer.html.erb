@@ -1,6 +1,8 @@
-<ul class="center">
-  <li><%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %></li>
-  <li><a href="#">conditions & terms of use</a></li>
-  <li><a href="#">help</a></li>
-  <li><a href="#">languajes</a></li>
-</ul>
+<nav class="menu">
+  <ul class="link_gray pagination-centered">
+    <li><%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %></li>
+    <li><%= link_to t('conditions'), new_user_password_path %></li>
+    <li><%= link_to t('help'), new_user_password_path %></li>
+    <li><%= link_to t('lang.title'), new_user_password_path %></li>
+  </ul>
+</nav>
