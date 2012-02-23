@@ -1,42 +1,60 @@
-<div id="welcome">
-  <div id="login" class="block">
-    <h2><%= t('sign_up').capitalize %></h2>
-    <div class="space_center"></div>
-    <div class="space_center"></div>
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-      <div class="form_row">
-        <div class="form_label"><%= f.label :name %></div>
-        <div class="form_field"><%= f.text_field :name, :class =>"form_tag" %></div>
-      </div>
-      <div class="form_row">
-        <div class="form_label"><%= f.label :email %></div>
-        <div class="form_field"><%= f.text_field :email, :class =>"form_tag" %></div>
-      </div>
-      <div class="form_row">
-        <div class="form_label"><%= f.label :password %></div>
-        <div class="form_field"><%= f.password_field :password, :class =>"form_tag", :id => "password" %></div>
-      </div>
-      <div class="form_row">
-        <div class="form_label" id="user_password_confirmation_label">
-          <%= f.label :password_confirmation %>
+<div class="container ">
+  <div class="row span4 offset1">
+    <h1><%= t('sign_up').capitalize %></h1>
+  </div>
+  <div class="row space_double_center"></div>
+  <div class="row span6 offset3">
+     <p class="size18"><%=t('vish.sentence1')%></p>
+     <p class="size18"><%=t('vish.sentence2')%></p>
+  </div>
+
+  <div class="row span6 offset3 boxy_gray">
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class=>"form-horizontal"}) do |f| %>
+      <fieldset>
+        <div class="control-group">
+          <%= devise_error_messages! %>
         </div>
-        <div class="form_field"><%= f.password_field :password_confirmation, :class =>"form_tag" %></div>
-      </div>
-      <div class="form_row center">
-        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-          <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
-          <br/>
-        <% end -%>
-      </div>
-      <div id="devise_links">
-        <%= render :partial => "devise/shared/links" %>
-      </div>
-      <div class="form_row center">
-        <div class="btn_login"><%= f.submit t('action.accept').capitalize, :class=>"button storePass" %></div>
-      </div>
-    <% end %>
+        <div class="control-group">
+          <label class="control-label" for="name"><%= f.label :name %></label>
+
+          <div class="controls">
+            <%= f.text_field :name, :class => "input-xlarge", :id => "name" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email"><%= f.label :email %></label>
+
+          <div class="controls">
+            <%= f.text_field :email, :class => "input-xlarge", :id => "email" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="password"><%= f.label :password %></label>
+
+          <div class="controls">
+            <%= f.password_field :password, :class => "input-xlarge", :id => "password" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="password_confirmation"><%= f.label :password_confirmation %></label>
+
+          <div class="controls">
+            <%= f.text_field :password, :class => "input-xlarge", :id => "password_confirmation" %>
+          </div>
+        </div>
+        <div class="row">
+          <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+            <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
+          <% end -%>
+        </div>
+
+        <div class="form-actions pagination-right space_right">
+            <%= f.submit t('action.accept').capitalize, :class => "button storePass" %>
+        </div>
+      </fieldset>
+
+  <% end %>
   </div>
 </div>
-
-
+<div class="row space_double_center"></div>
+<div class="row space_double_center"></div>

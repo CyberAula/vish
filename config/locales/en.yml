@@ -23,3 +23,6 @@ en:
     one: "user"
     other: "users"
   username: "username"
+  vish:
+    sentence1: "Create your account with VISH"
+    sentence2: "VISH is a social science platform"

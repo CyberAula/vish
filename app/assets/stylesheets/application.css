@@ -40,9 +40,13 @@
 /******************* BASIC CLASSES ******************/
 .inline-block {display:inline-block}
 .inline {display: inline}
+.boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  border: 0px solid #EFEFEF; }
+
 
 /*************** SIZE CLASSES **************/
 .size12 { font-size: 12px;}
+.size18 { font-size: 18px;}
 .size50 { font-size: 50px;}
 .size60 { font-size: 60px;}
 .size80 { font-size: 80px;}
@@ -55,6 +59,6 @@
 /************* SPACES SECTION *************/
 .space_center {	padding-top: 15px;	padding-right: 4px;	text-align: center;}
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
-
+.space_right{padding-right: 20px;}
 
 

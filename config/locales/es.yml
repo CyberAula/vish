@@ -23,5 +23,7 @@ es:
     one: "usuario"
     other: "usuarios"
   username: "usuario"
-
+  vish:
+    sentence1: "Crea tu cuenta con VISH"
+    sentence2: "VISH Es una plataforma social de ciencia"
 
