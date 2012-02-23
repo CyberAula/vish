@@ -10,10 +10,8 @@
   padding: 0 22px 0 22px;
   background: url('btn/search_icon.png') no-repeat scroll 5px 50% #FFFFFF;
   font-size: 11px;
-  color: $main-color;
 }
 #header_search_input {
-  border: solid 1px $input-border-color;
   height: 30px;
   width: 400px;
 }
@@ -21,9 +19,8 @@
   height: 20px;
 }
 #global_search_input {
-  border: solid 1px $input-border-color;
   height: 25px;
-  width: 350px;
+  width: 200px;
 }
 #header_search_display {
   width: 225px;
