@@ -44,11 +44,22 @@
       <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
     </div>
     <%= yield %>
-    <div class="space_double_center"></div>
+    <div class="space_center"></div>
   </section>
 </div>
-
+<section id="top" class="white">
+  <div class="container">
+    <div class="row span12">
+      <div class="rotate-90 inline-block"><%= t('top10') %></div>
+      <div class="inline-block">
+        <div>excursions-image</div>
+        <div>excursion-name</div>
+      </div>
+    </div>
+  </div>
+</section>
 <div class="container">
+  <div class="space_double_center"></div>
   <footer class="row span12">
     <%= render :partial => "layouts/footer" %>
   </footer>

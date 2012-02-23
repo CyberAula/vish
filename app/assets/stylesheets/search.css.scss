@@ -7,8 +7,8 @@
   z-index: 2001;
 }
 #header_search_input, #global_search_input {
-  padding: 0 3px 0 22px;
-  background: url('btn/search_icon.png') 5px 50% no-repeat white;
+  padding: 0 22px 0 22px;
+  background: url('btn/search_icon.png') no-repeat scroll 5px 50% #FFFFFF;
   font-size: 11px;
   color: $main-color;
 }

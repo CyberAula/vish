@@ -29,6 +29,17 @@
 .menu ul li#trade_mark_logo{font-weight:normal;}
 
 
+#top{height:100px;}
+.white{ background-color:#fff;}
+.rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
+  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
+
+
+
+
+/******************* BASIC CLASSES ******************/
+.inline-block {display:inline-block}
+.inline {display: inline}
 
 /*************** SIZE CLASSES **************/
 .size12 { font-size: 12px;}
@@ -42,7 +53,7 @@
 .link_gray a:hover{color: #000;  text-decoration: underline;}
 
 /************* SPACES SECTION *************/
-.space_center {	padding-top: 10px;	padding-right: 4px;	text-align: center;}
+.space_center {	padding-top: 15px;	padding-right: 4px;	text-align: center;}
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
 
 
