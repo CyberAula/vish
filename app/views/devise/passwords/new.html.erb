@@ -1,27 +1,31 @@
-<% content_for :headers do%>
-  <%= render :partial => 'layouts/devise_style' %>
-<%end%>
-<div id="welcome">
-  <div id="login" class="block">
-    <h2><%= t('devise.passwords.forgot') %></h2>
-    <div class="space_center"></div>
-    <div class="space_center"></div>
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-      <%= devise_error_messages! %>
-      <div class="instructions"><%= t('devise.passwords.instructions') %></div>
-      <div class="form_row">
-        <div class="form_label"<%= f.label :email %></div>
-        <div class="form_field"><%= f.text_field :email, :class => "form_tag" %></div>
-      </div>
+<div class="container ">
+  <div class="row span4 offset1">
+    <h1><span class="dark-gray"><%= t('devise.passwords.forgot') %></span></h1>
+  </div>
+  <div class="row space_double_center"></div>
+  <div class="row span6 offset4">
+    <p class="size18"><%= t('devise.passwords.instructions') %></p>
+  </div>
 
-      <div id="devise_links">
-        <%= render :partial => "devise/shared/links" %>
-      </div>
+  <div class="row span6 offset4 boxy_gray">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class=>"form-horizontal" }) do |f| %>
+      <fieldset>
+        <div class="control-group">
+          <%= devise_error_messages! %>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email"><%= f.label :email %></label>
+          <div class="controls">
+            <%= f.text_field :email, :class => "input-xlarge", :id => "email" %>
+          </div>
+        </div>
+        <div class="form-actions pagination-right space_right">
+          <%= f.submit t('action.send'), :class =>"button" %>
+        </div>
+      </fieldset>
 
-      <div class="space_center"></div>
-      <div class="btn_login">
-        <%= f.submit t('action.send'), :class =>"button" %>
-      </div>
     <% end %>
   </div>
 </div>
+<div class="row space_double_center"></div>
+<div class="row space_double_center"></div>
