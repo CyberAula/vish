@@ -1,13 +1,27 @@
 es:
-  site:
-    name: "Virtual Science Hub"
-  profile:
-    tags:
-      default: "VisHub, virtual, excursion"
-  username: "usuario"
-  password: "clave"
+  excursion:
+    one: "excursión"
+    others: "excursiones"
   follow:
     followers: "seguidores"
     followings: "seguidos"
   lang:
     title: "idioma"
+  password: "clave"
+  profile:
+    tags:
+      default: "VisHub, virtual, excursion"
+  organization:
+    one: "organización"
+    other: "organizaciones"
+  repository:
+    one: "repositorio"
+    other: "repositorios"
+  site:
+    name: "Virtual Science Hub"
+  user:
+    one: "usuario"
+    other: "usuarios"
+  username: "usuario"
+
+

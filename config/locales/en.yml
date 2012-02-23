@@ -1,13 +1,25 @@
 en:
-  site:
-    name: "Virtual Science Hub"
+  excursion:
+    one: "excursión"
+    others: "excursiones"
+  follow:
+    followers: "followers"
+    followings: "followin"
+  lang:
+    title: "language"
+  password: "password"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
+  organization:
+    one: "organization"
+    other: "organizations"
+  repository:
+    one: "repository"
+    other: "repositories"
+  site:
+    name: "Virtual Science Hub"
+  user:
+    one: "user"
+    other: "users"
   username: "username"
-  password: "password"
-  follow:
-    followers: "followers"
-    followings: "following"
-  lang:
-    title: "language"

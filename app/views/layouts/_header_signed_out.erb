@@ -1,8 +1,18 @@
-<div class="banner_top">
-  <div id="logo"></div>
-  <div id="right">
-      <div id="header_search">
-          <input type="search" class="header_search_input" name="search" id="search-field" placeholder=search>
-      </div>
+<div class="row">
+  <div class="span6">
+    <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand inline-block"); %>
+    <span class="inline-block link_gray"><h2><%= link_to(t('site.name'), '/', :class => "brand"); %></h2></span>
+  </div>
+  <div class="login span6">
+    <div id="menu_home">
+    </div>
+    <div id="header_search">
+      <input type="search" class="header_search_input" name="search" id="search-field" placeholder=search>
+    </div>
   </div>
 </div>
+
+
+
+
+

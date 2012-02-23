@@ -3,31 +3,33 @@
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
 <body>
-  <header id="headerFront">
-    <%= render :partial => "layouts/header" %>
-  </header>
-
-  <div id="wrapper_body">
-    <section id= "center_body">
-      <div id="map_location">
-        <%= yield :location %>
-      </div>
-      <div id="flash">
-        <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
-      </div>
-      <section id="content">
-        <%= yield %>
-      </section>
-    </section>
-    <section id="sidebar">
-      <div id="sidebarContent">
-        <%= yield :sidebar %>
-      </div>
-    </section>
+<div class="container">
+<header id="headerFront row span12">
+  <%= render :partial => "layouts/header" %>
+</header>
+<section id="main" class="row span12">
+  <div class="space_double_center"></div>
+  <div id="flash">
+    <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
   </div>
+  <section id="content">
+    <%= yield %>
+  </section>
+</section>
+<section id="sidebar">
+  <div id="sidebarContent">
+    <%= yield :sidebar %>
+  </div>
+</section>
 
-  <footer>
+  <div class="space_double_center"></div>
+  <footer class="row span12">
     <%= render :partial => "layouts/footer" %>
   </footer>
+
+</div>
+
 </body>
 </html>
+
+

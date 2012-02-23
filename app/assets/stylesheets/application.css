@@ -34,8 +34,8 @@
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
 
-
-
+/******************* HEADER *******************/
+#menu_home{ height: 35px;}
 
 /******************* BASIC CLASSES ******************/
 .inline-block {display:inline-block}
