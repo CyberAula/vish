@@ -1,33 +1,7 @@
 <!-- HTML5 DOCTYPE -->
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
-<head>
-  <meta charset="utf-8">
-  <title><%= yield(:title).empty? ? t('site.name') : yield(:title) %></title>
-  <meta name="keywords" content="<%= yield(:keywords).empty? ? t('profile.tags.default') : yield(:keywords) %>">
-  <meta name="description" content="<%= yield(:description).empty? ? "Home" : yield(:description) %>">
-  <meta name="generator" content="SocialStream" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= favicon_link_tag "icons/favicon.ico" %>
-
-  <% if protect_against_forgery? %>
-    <%= csrf_meta_tag %>
-  <% end %>
-
-  <script type="text/javascript">
-    I18n.defaultLocale = "<%= I18n.default_locale %>";
-    I18n.locale = "<%= I18n.locale %>";
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      <%= yield :javascript%>
-    });
-  </script>
-  <%= yield :headers %>
-</head>
+<%= render :partial => 'layouts/head' %>
 <body>
   <header id="headerFront">
     <%= render :partial => "layouts/header" %>
