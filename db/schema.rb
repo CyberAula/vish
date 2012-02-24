@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
     t.string   "object_type", :limit => 45
     t.integer  "like_count",                :default => 0
     t.integer  "channel_id"
+    t.string   "title",                     :default => ""
+    t.text     "description"
   end
 
   add_index "activity_objects", ["channel_id"], :name => "index_activity_objects_on_channel_id"
@@ -110,7 +112,6 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
 
   create_table "comments", :force => true do |t|
     t.integer  "activity_object_id"
-    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,8 +146,6 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
     t.string   "file_content_type"
     t.string   "file_file_size"
     t.boolean  "file_processing"
-    t.string   "title"
-    t.text     "description"
   end
 
   add_index "documents", ["activity_object_id"], :name => "index_documents_on_activity_object_id"
@@ -228,7 +227,6 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
     t.integer  "activity_object_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "text"
   end
 
   add_index "posts", ["activity_object_id"], :name => "index_posts_on_activity_object_id"
@@ -393,6 +391,8 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
   add_foreign_key "events", "rooms", :name => "index_events_on_room_id"
 
   add_foreign_key "groups", "actors", :name => "groups_on_actor_id"
+
+  add_foreign_key "links", "activity_objects", :name => "links_on_activity_object_id"
 
   add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
 
