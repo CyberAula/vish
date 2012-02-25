@@ -1,0 +1,9 @@
+<% content_for :title do %>
+<%= t('search.name')%> <%= params[:search_query].present? ? ": #{params[:search_query]}" : ""%>
+<% end %>
+
+<% sidebar %>
+
+<% toolbar if user_signed_in? %>
+
+<%= render :partial => 'index' %>

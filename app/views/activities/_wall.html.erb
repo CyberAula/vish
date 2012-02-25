@@ -1,0 +1,11 @@
+<div id="wall">
+  <%= render activities  %>
+  <%= paginate activities %>
+</div>
+
+<%= javascript_tag do %>
+  $(function(){  
+    SocialStream.Timeline.setup();  
+  });
+<% end %>
+
