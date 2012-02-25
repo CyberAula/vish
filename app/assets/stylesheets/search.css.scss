@@ -139,6 +139,8 @@
   word-wrap: break-word;
   height: 50px;
   overflow: hidden;
+  display: inline-block;
+  text-align: left;
 }
 #search_results {
   text-align: center;
