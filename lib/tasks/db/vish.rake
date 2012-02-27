@@ -1,3 +1,8 @@
+#
+# You've got to love rake here:
+# to patch social_stream's populate.rake, you can name this file anything but populate.rake
+#
+
 namespace :db do
   namespace :populate do
     # Clear existing tasks
