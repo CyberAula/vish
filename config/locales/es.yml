@@ -2,21 +2,23 @@ es:
   excursion:
     one: "excursión"
     others: "excursiones"
+    upcomming: "upcomming"
   follow:
     followers: "seguidores"
     followings: "seguidos"
   lang:
     title: "idioma"
+  more: "more"
   password: "clave"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
   organization:
     one: "organización"
-    other: "organizaciones"
+    others: "organizaciones"
   repository:
     one: "repositorio"
-    other: "repositorios"
+    others: "repositorios"
   site:
     name: "Virtual Science Hub"
   user:
