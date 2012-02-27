@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SlidesController do
+  pending do
 
   # This should return the minimal set of attributes required to create a valid
   # Slide. As you add validations to Slide, be sure to
@@ -152,6 +153,7 @@ describe SlidesController do
       delete :destroy, :id => slide.id.to_s
       response.should redirect_to(slides_url)
     end
+  end
   end
 
 end
