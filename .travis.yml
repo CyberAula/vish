@@ -3,4 +3,4 @@ rvm:
   - 1.9.3
 before_script:
   - "cp ./config/database.yml.example ./config/database.yml"
-  - "mysql -e 'create database myapp_test;'"
+  - "mysql -e 'create database vish_test;'"
