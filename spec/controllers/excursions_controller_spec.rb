@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ExcursionsController do
+  pending do
 
   # This should return the minimal set of attributes required to create a valid
   # Excursion. As you add validations to Excursion, be sure to
@@ -154,4 +155,5 @@ describe ExcursionsController do
     end
   end
 
+  end
 end
