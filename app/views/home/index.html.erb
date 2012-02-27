@@ -1,19 +1,20 @@
-<% sidebar %>
+<div class="space_center"></div>
+<section id="left" class="span6">
+  <div class="excursions">
 
-<%= location(link_to(t('home')+": "+ truncate_name(sanitize current_subject.name)))%>
-                      
-<% toolbar %>
+  </div>
+  <div class="repository">
 
-<br class="clearfloat" />
-<div class="space_center">
-</div>
+  </div>
+  <div class="groups">
 
-<% if current_subject.respond_to?(:recent_groups) %>
-<div id="my_groups">
-  <%= render :partial => "groups" %>
-</div>
-<% end %>
+  </div>
+</section>
+<section name="wall" id="right" class="span6 offset6">
+  <%= render :partial => "activities/index",
+             :locals => { :activities => current_subject.wall(:home).page(params[:page]),
+                          :owner => current_subject } %>
+</section>
+<div class="space_double_center"></div>
 
-<%= render :partial => "activities/index",
-           :locals => { :activities => current_subject.wall(:home).page(params[:page]),
-                        :owner => current_subject } %>
+
