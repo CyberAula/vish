@@ -11,7 +11,7 @@
     <section id="left" class="span3">
       <%= yield :sidebar %>
     </section>
-    <section id="main" class="span6 offset3">
+    <section id="main" class="span9 offset3">
       <div class="space_double_center"></div>
       <div id="flash">
         <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
@@ -19,9 +19,6 @@
       <section id="content">
         <%= yield %>
       </section>
-    </section>
-    <section id="right" class="span3 offset9">
-      <%= yield :sidebar %>
     </section>
     <div class="space_double_center"></div>
   </div>
