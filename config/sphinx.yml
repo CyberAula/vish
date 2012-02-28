@@ -1,9 +1,19 @@
 development:
-  enable_star: 1
-  min_infix_len: 1
+ bin-path: '/usr/bin'
+ searchd_binary_name: 'sphinx-searchd'
+ indexer_binary_name: 'sphinx-indexer'
+ enable_star: 1
+ min_infix_len: 1
 test:
-  enable_star: 1
-  min_infix_len: 1
+ bin-path: '/usr/bin'
+ searchd_binary_name: 'sphinx-searchd'
+ indexer_binary_name: 'sphinx-indexer'
+ enable_star: 1
+ min_infix_len: 1
 production:
-  enable_star: 1
-  min_infix_len: 1
+ bin-path: '/usr/bin'
+ searchd_binary_name: 'sphinx-searchd'
+ indexer_binary_name: 'sphinx-indexer'
+ enable_star: 1
+ min_infix_len: 1
+

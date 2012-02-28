@@ -12,7 +12,7 @@ namespace :db do
     task(:create_ties).clear
 
     desc "Create populate data for ViSH"
-    task :create => [ :read_environment, :create_users, :create_ties, :create_avatars ]
+    task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_avatars ]
 
     desc "Create Ties as follows and rejects only"
     task :create_ties do
