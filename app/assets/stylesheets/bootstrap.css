@@ -121,7 +121,7 @@ a:hover {
   text-decoration: underline;
 }
 .row {
-  margin-left: -20px;
+  margin-left: -5px;
   *zoom: 1;
 }
 .row:before, .row:after {
@@ -133,76 +133,76 @@ a:hover {
 }
 [class*="span"] {
   float: left;
-  margin-left: 20px;
+  margin-left: 5px;
 }
 .span1 {
-  width: 60px;
+  width: 75px;
 }
 .span2 {
-  width: 140px;
+  width: 150px;
 }
 .span3 {
-  width: 220px;
+  width: 225px;
 }
 .span4 {
   width: 300px;
 }
 .span5 {
-  width: 380px;
+  width: 375px;
 }
 .span6 {
-  width: 460px;
+  width: 450px;
 }
 .span7 {
-  width: 540px;
+  width: 525px;
 }
 .span8 {
-  width: 620px;
+  width: 600px;
 }
 .span9 {
-  width: 700px;
+  width: 675px;
 }
 .span10 {
-  width: 780px;
+  width: 750px;
 }
 .span11 {
-  width: 860px;
+  width: 825px;
 }
 .span12, .container {
-  width: 940px;
+  width: 900px;
 }
 .offset1 {
-  margin-left: 100px;
+  margin-left: 85px;
 }
 .offset2 {
-  margin-left: 180px;
+  margin-left: 165px;
 }
 .offset3 {
-  margin-left: 260px;
+  margin-left: 245px;
 }
 .offset4 {
-  margin-left: 340px;
+  margin-left: 325px;
 }
 .offset5 {
-  margin-left: 420px;
+  margin-left: 405px;
 }
 .offset6 {
-  margin-left: 500px;
+  margin-left: 485px;
 }
 .offset7 {
-  margin-left: 580px;
+  margin-left: 565px;
 }
 .offset8 {
-  margin-left: 660px;
+  margin-left: 645px;
 }
 .offset9 {
-  margin-left: 740px;
+  margin-left: 725px;
 }
 .offset10 {
-  margin-left: 820px;
+  margin-left: 805px;
 }
 .offset11 {
-  margin-left: 900px;
+  margin-left: 885px;
 }
 .row-fluid {
   width: 100%;
@@ -259,7 +259,7 @@ a:hover {
   width: 99.99999998999999%;
 }
 .container {
-  width: 940px;
+  width: 960px;
   margin-left: auto;
   margin-right: auto;
   *zoom: 1;
@@ -563,7 +563,7 @@ select,
   display: inline-block;
   width: 210px;
   height: 18px;
-  padding: 4px;
+  padding: 3px;
   margin-bottom: 9px;
   font-size: 13px;
   line-height: 18px;
@@ -616,8 +616,9 @@ input[type="button"], input[type="reset"], input[type="submit"] {
   height: auto;
   background-color: #FF005D;
   color:#fff;
-  padding: 5px;
+  padding: 4px;
   padding-left:10px; padding-right:10px;
+  border: solid 1px #FF005D;
 }
 select, input[type="file"] {
   height: 28px;

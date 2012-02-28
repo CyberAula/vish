@@ -1,4 +1,4 @@
-<section id="left" class="span6">
+<section id="left" class="span5">
   <div class="excursions tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.other')%></a></li>
@@ -41,7 +41,7 @@
   </div>
 </section>
 
-<section name="wall" id="right" class="span6">
+<section name="wall" id="right" class="span6 offset1">
   <%= render :partial => "activities/index",
              :locals => { :activities => current_subject.wall(:home).page(params[:page]),
                           :owner => current_subject } %>
