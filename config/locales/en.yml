@@ -1,7 +1,7 @@
 en:
   excursion:
     one: "excursión"
-    others: "excursiones"
+    other: "excursiones"
     upcomming: "upcomming"
   follow:
     followers: "followers"
@@ -15,10 +15,10 @@ en:
       default: "VisHub, virtual, excursion"
   organization:
     one: "organization"
-    others: "organizations"
+    other: "organizations"
   repository:
     one: "repository"
-    others: "repositories"
+    other: "repositories"
   site:
     name: "Virtual Science Hub"
   user:

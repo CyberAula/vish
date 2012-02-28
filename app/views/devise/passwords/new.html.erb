@@ -6,7 +6,6 @@
   <div class="row span6 offset4">
     <p class="size18"><%= t('devise.passwords.instructions') %></p>
   </div>
-
   <div class="row span6 offset4 boxy_gray">
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class=>"form-horizontal" }) do |f| %>
       <fieldset>
@@ -23,8 +22,10 @@
           <%= f.submit t('action.send'), :class =>"button" %>
         </div>
       </fieldset>
-
     <% end %>
+  </div>
+  <div class="row span6 offset4 link_gray" id="devise_links">
+    <%= render :partial => "devise/shared/links" %>
   </div>
 </div>
 <div class="row space_double_center"></div>
