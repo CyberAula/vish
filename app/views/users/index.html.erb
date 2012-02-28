@@ -2,16 +2,6 @@
   <%= t('user.other') %>
 <%end%>
 
-<% toolbar if user_signed_in? %>
-
-<% sidebar %>
-
-<%= location(t('browse') +": "+
-             content_tag(:b ,content_tag(:span, t('user.other'), :id=>'name_group')) + ", "+ 
-             link_to(t('group.by'),groups_path))%>
-
-<div class="space_center"></div>
-
 <div id="my_conferences">
   <div id="contacts" class="block">
     <div class="search_field_wrapper">

@@ -17,9 +17,7 @@
       </div>
     </div>
   </div>
-
   <div class="row space_center"></div>
-
   <div class="repository tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#repo-1"><%=t('repository.others')%></a></li>
@@ -30,11 +28,7 @@
       </div>
     </div>
   </div>
-
-
   <div class="row space_center"></div>
-
-
   <div class="organizations tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#org-1"><%=t('organization.others')%></a></li>
@@ -45,8 +39,8 @@
       </div>
     </div>
   </div>
-
 </section>
+
 <section name="wall" id="right" class="span6">
   <%= render :partial => "activities/index",
              :locals => { :activities => current_subject.wall(:home).page(params[:page]),
