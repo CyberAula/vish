@@ -27,3 +27,6 @@ Gemfile.lock
 
 # editor backup files
 **~
+
+# ignore folder of avatars
+/documents/pictures/*
