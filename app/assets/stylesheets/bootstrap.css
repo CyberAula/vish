@@ -1590,7 +1590,7 @@ table .span12 {
   padding: 4px 0;
   margin: 0;
   list-style: none;
-  background-color: #ffffff;
+  background-color: #a1a1a1;
   border-color: #ccc;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
@@ -1627,13 +1627,13 @@ table .span12 {
   clear: both;
   font-weight: normal;
   line-height: 18px;
-  color: #555555;
+  color: #ffffff;
   white-space: nowrap;
 }
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
-  color: #ffffff;
+  color: #0D7AFC;
   text-decoration: none;
-  background-color: #0066FF;
+  background-color: #E1E1E1;
 }
 .dropdown.open {
   *z-index: 1000;
@@ -1716,11 +1716,12 @@ table .span12 {
   padding: 4px 10px 4px;
   margin-bottom: 0;
   font-size: 13px;
-  line-height: 18px;
-  color: #333333;
+  line-height: 24px;
+  color: #0066FF;
   text-align: center;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   vertical-align: middle;
+  /*
   background-color: #f5f5f5;
   background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
   background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
@@ -1740,7 +1741,7 @@ table .span12 {
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); */
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   *margin-left: .3em;
@@ -1759,7 +1760,7 @@ table .span12 {
   *margin-left: 0;
 }
 .btn:hover {
-  color: #333333;
+  color: #0066FF;
   text-decoration: none;
   background-color: #e6e6e6;
   background-position: 0 -15px;
@@ -1770,7 +1771,7 @@ table .span12 {
   transition: background-position 0.1s linear;
 }
 .btn:focus {
-  outline: thin dotted #333;
+  outline: thin dotted #0066FF;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -1841,13 +1842,13 @@ table .span12 {
   color: rgba(255, 255, 255, 0.75);
 }
 .btn-primary {
-  background-color: #006dcc;
+  /* background-color: #006dcc;
   background-image: -moz-linear-gradient(top, #0066FF, #0044cc);
   background-image: -ms-linear-gradient(top, #0066FF, #0044cc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0066FF), to(#0044cc));
   background-image: -webkit-linear-gradient(top, #0066FF, #0044cc);
   background-image: -o-linear-gradient(top, #0066FF, #0044cc);
-  background-image: linear-gradient(top, #0066FF, #0044cc);
+  background-image: linear-gradient(top, #0066FF, #0044cc);*/
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0066FF', endColorstr='#0044cc', GradientType=0);
   border-color: #0044cc #0044cc #002a80;
@@ -2083,9 +2084,11 @@ button.btn.small, input[type="submit"].btn.small {
 .btn-group .dropdown-toggle {
   padding-left: 8px;
   padding-right: 8px;
+  /*
   -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.125), inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  */
   *padding-top: 5px;
   *padding-bottom: 5px;
 }
@@ -2101,9 +2104,11 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .btn-group.open .dropdown-toggle {
   background-image: none;
+  /*
   -webkit-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  */
 }
 .btn .caret {
   margin-top: 7px;
@@ -2188,7 +2193,9 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .nav > li > a:hover {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color: #ffffff;
+  border: 1px solid #FF005D;
+  border-bottom-color: transparent;
 }
 .nav .nav-header {
   display: block;
@@ -2219,7 +2226,7 @@ button.btn.small, input[type="submit"].btn.small {
 .nav-list .active > a, .nav-list .active > a:hover {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-  background-color: #0066FF;
+  /*background-color: #0066FF;*/
 }
 .nav-list [class^="icon-"] {
   margin-right: 2px;
@@ -2254,22 +2261,22 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .nav-tabs > li > a {
   padding-top: 9px;
-  padding-bottom: 9px;
+  padding-bottom: 2px;
   border: 1px solid transparent;
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
+  color: #ff005d;
 }
 .nav-tabs > li > a:hover {
   /*border-color: #eeeeee #eeeeee #dddddd; */
+  font-size: 20px;
 }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
   color: #FF005D;
   background-color: #F9F9F9;
-  border: 1px solid #FF005D;
-  border-bottom-color: transparent;
   cursor: default;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: lighter;
 }
 .nav-pills > li > a {
@@ -2283,7 +2290,7 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .nav-pills .active > a, .nav-pills .active > a:hover {
   color: #ffffff;
-  background-color: #0066FF;
+  /*background-color: #0066FF; */
 }
 .nav-stacked > li {
   float: none;
@@ -2330,11 +2337,11 @@ button.btn.small, input[type="submit"].btn.small {
   border-radius: 4px;
 }
 .nav-tabs .dropdown-toggle .caret, .nav-pills .dropdown-toggle .caret {
-  border-top-color: #0066FF;
+  /*border-top-color: #0066FF; */
   margin-top: 6px;
 }
 .nav-tabs .dropdown-toggle:hover .caret, .nav-pills .dropdown-toggle:hover .caret {
-  border-top-color: #005580;
+  /*border-top-color: #005580;  */
 }
 .nav-tabs .active .dropdown-toggle .caret, .nav-pills .active .dropdown-toggle .caret {
   border-top-color: #333333;
