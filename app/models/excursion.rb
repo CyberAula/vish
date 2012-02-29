@@ -4,6 +4,12 @@ class Excursion < ActiveRecord::Base
   validates_presence_of :json
   before_save :parse_for_meta
 
+  define_index do
+    indexes activity_object.title
+    indexes activity_object.description
+    has created_at
+  end
+
   def to_json
     json
   end
