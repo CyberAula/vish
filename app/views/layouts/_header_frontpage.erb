@@ -18,7 +18,7 @@
 
 <%= javascript_tag do %>
   $(function() {
-    $("#username").Watermark("<%= I18n.t('username') %>","#666");
-    $("#password").Watermark("<%= I18n.t('password') %>","#666");
+    $("#username").Watermark("<%= I18n.t('activerecord.attributes.user.email') %>","#666");
+    $("#password").Watermark("<%= I18n.t('activerecord.attributes.user.password') %>","#666");
   });
 <% end %>

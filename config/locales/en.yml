@@ -1,11 +1,11 @@
 en:
   excursion:
-    one: "excursión"
-    other: "excursiones"
+    one: "excursion"
+    other: "excursions"
     upcomming: "upcomming"
   follow:
     followers: "followers"
-    followings: "followin"
+    followings: "following"
   lang:
     title: "language"
   more: "more"
@@ -24,7 +24,6 @@ en:
   user:
     one: "user"
     other: "users"
-  username: "username"
   vish:
     sentence1: "Create your account with VISH"
     sentence2: "VISH is a social science platform"
