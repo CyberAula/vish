@@ -1050,7 +1050,7 @@ table {
   line-height: 18px;
   text-align: left;
   vertical-align: top;
-  border-top: 1px solid #ddd;
+  /*border-top: 1px solid #ddd;*/
 }
 .table th {
   font-weight: bold;
@@ -1068,7 +1068,7 @@ table {
   padding: 4px 5px;
 }
 .table-bordered {
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;*/
   border-collapse: separate;
   *border-collapse: collapsed;
   -webkit-border-radius: 4px;

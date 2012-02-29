@@ -1,3 +1,4 @@
+
 <% content_for :title do %>
   <%= current_subject.name %>
 <% end %>
@@ -8,6 +9,6 @@
     link_to(t('notification.other'), notifications_path,:remote => true) +' ('+@mailbox.notifications.not_trashed.unread.count.to_s+')'
 ) %>
 
-<% toolbar  %>
+<%# toolbar  %>
 
 <%= render :partial => 'index' %>

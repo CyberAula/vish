@@ -48,5 +48,8 @@ module Vish
     config.to_prepare do
       HomeController.layout "home"
     end
+    config.to_prepare do
+      NotificationsController.layout "9x3"
+    end
   end
 end
