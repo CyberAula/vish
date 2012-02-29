@@ -38,10 +38,22 @@ namespace :db do
     task :create_excursions do
       puts 'Excursion population'
       excursions_start = Time.now
+      @slide_id=0
+
+      # Some sample science images in the public domain
+      @sample_images = %w{
+        http://s0.geograph.org.uk/geophotos/01/74/36/1743675_513c1a7a.jpg
+        http://i.images.cdn.fotopedia.com/flickr-119671566-hd/Endangered_Species/Least_Concern/Gray_Wolf/Gray_Wolf_Canis_lupus.jpg
+        http://lucaskrech.com/blog/wp-content/uploads/2010/07/Screen-shot-2010-07-15-at-9.05.45-PM.png
+        http://images.cdn.fotopedia.com/flickr-3417427945-hd.jpg
+        http://2.bp.blogspot.com/_QEWhOURarSU/SMesG6Wt0iI/AAAAAAAACZY/3LBoehU1SpQ/s320/lhc.jpg
+        http://images.cdn.fotopedia.com/flickr-3507973704-hd.jpg
+      }
 
       def generate_slide
+        img_right = rand() > 0.5
 	{ # Slide N
-	  :id => "vish#{}",
+	  :id => "vish#{@slide_id+=1}",
           :template => 't1',
           :elements => [
 	    { # Element 1
@@ -50,14 +62,16 @@ namespace :db do
 	      :body => Forgery::LoremIpsum.words(1+rand(4),:random => true)
             },
 	    { # Element 2
-	      :type => 'text',
+	      :type => img_right ? 'image' : 'text',
 	      :areaid => 'right',
-	      :body => Forgery::LoremIpsum.paragraph(:random => true)
+	      :body => img_right ? @sample_images[rand(@sample_images.size)]
+	                         : Forgery::LoremIpsum.paragraph(:random => true)
             },
 	    { # Element 3
-	      :type => 'text',
+	      :type => img_right ? 'text' : 'image',
 	      :areaid => 'left',
-	      :body => Forgery::LoremIpsum.paragraph(:random => true)
+	      :body => img_right ? Forgery::LoremIpsum.paragraph(:random => true)
+	                         : @sample_images[rand(@sample_images.size)]
             }
 	  ]
 	}
@@ -69,8 +83,8 @@ namespace :db do
 	owner  = author
 	user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
-        Excursion.create! :title => 'Title: ' + Forgery::LoremIpsum.words(1+rand(4),:random => true),
-	                  :description => 'Description: ' + Forgery::LoremIpsum.paragraph(:random => true),
+        Excursion.create! :title => "Title: #{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
+	                  :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
 	                  :json => Array.new(1+rand(9)).map{ generate_slide }.to_json,
 	                  :created_at => Time.at(rand(updated.to_i)),
 			  :updated_at => updated,
