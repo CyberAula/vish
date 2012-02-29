@@ -17,7 +17,7 @@ class Excursion < ActiveRecord::Base
   private
 
   def parse_for_meta
-    parsed_json = ActiveSupport::JSON.decode(json)
+    parsed_json = JSON(json)
     activity_object.title = parsed_json["name"]
     activity_object.description = parsed_json["description"]
     activity_object.save!
