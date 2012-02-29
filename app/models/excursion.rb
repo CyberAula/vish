@@ -14,6 +14,10 @@ class Excursion < ActiveRecord::Base
     json
   end
 
+  def thumb(size)
+    "missing.png"
+  end
+
   private
 
   def parse_for_meta
