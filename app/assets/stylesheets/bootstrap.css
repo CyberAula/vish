@@ -306,7 +306,7 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-weight: bold;
+  font-weight: lighter;
   /*color: #333333; */
   text-rendering: optimizelegibility;
 }
@@ -2247,7 +2247,7 @@ button.btn.small, input[type="submit"].btn.small {
   line-height: 14px;
 }
 .nav-tabs {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #FF005D;
 }
 .nav-tabs > li {
   margin-bottom: -1px;
@@ -2261,14 +2261,16 @@ button.btn.small, input[type="submit"].btn.small {
   border-radius: 4px 4px 0 0;
 }
 .nav-tabs > li > a:hover {
-  border-color: #eeeeee #eeeeee #dddddd;
+  /*border-color: #eeeeee #eeeeee #dddddd; */
 }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
-  color: #555555;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+  color: #FF005D;
+  background-color: #F9F9F9;
+  border: 1px solid #FF005D;
   border-bottom-color: transparent;
   cursor: default;
+  font-size: 16px;
+  font-weight: lighter;
 }
 .nav-pills > li > a {
   padding-top: 8px;
@@ -2415,7 +2417,7 @@ button.btn.small, input[type="submit"].btn.small {
   border-radius: 4px 0 0 4px;
 }
 .tabs-left .nav-tabs > li > a:hover {
-  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+  /*border-color: #eeeeee #FF005D #eeeeee #eeeeee; */
 }
 .tabs-left .nav-tabs .active > a, .tabs-left .nav-tabs .active > a:hover {
   border-color: #ddd transparent #ddd #ddd;
@@ -2433,7 +2435,7 @@ button.btn.small, input[type="submit"].btn.small {
   border-radius: 0 4px 4px 0;
 }
 .tabs-right .nav-tabs > li > a:hover {
-  border-color: #eeeeee #eeeeee #eeeeee #dddddd;
+ /* border-color: #eeeeee #eeeeee #eeeeee #dddddd; */
 }
 .tabs-right .nav-tabs .active > a, .tabs-right .nav-tabs .active > a:hover {
   border-color: #ddd #ddd #ddd transparent;
