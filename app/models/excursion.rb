@@ -2,7 +2,7 @@ class Excursion < ActiveRecord::Base
   include SocialStream::Models::Object
 
   validates_presence_of :json
-  before_save :parse_for_meta
+  # before_save :parse_for_meta ## TODO: Wait until we define the excursion JSON schema
 
   define_index do
     indexes activity_object.title
