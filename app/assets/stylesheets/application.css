@@ -13,7 +13,6 @@
 
 
 /************* FRONTPAGE *******/
-.login{text-align:right;display: block;}
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 
 /****************** FRONTPAGE BOTTOM *****/
@@ -62,6 +61,7 @@
 .space_center {	padding-top: 15px;	padding-right: 4px;	text-align: center;}
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
 .space_right{padding-right: 20px;}
+
 
 
 
