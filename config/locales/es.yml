@@ -4,6 +4,7 @@ es:
     other: "excursiones"
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"
+    msg: "Publicó una excursión: "
   follow:
     followers: "seguidores"
     followings: "seguidos"
