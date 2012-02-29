@@ -3,6 +3,7 @@ es:
     one: "excursión"
     other: "excursiones"
     upcomming: "upcomming"
+    confirm_delete: "¿Borrar excursión?"
   follow:
     followers: "seguidores"
     followings: "seguidos"
