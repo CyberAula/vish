@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<section style="position:relative;width:800px;height:600px" class="slides layout-regular template-default">
+</section>
 
+<script>
+VISH.SlideManager.init(<%= raw @excursion.json %>);
+</script>
 <%= link_to 'Edit', edit_excursion_path(@excursion) %> |
 <%= link_to 'Back', excursions_path %>
