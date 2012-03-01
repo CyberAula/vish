@@ -10,7 +10,7 @@
 
 <div id="activity_form_select">
   <% SocialStream.activity_forms.each do |element| %>
-    <div id="select_<%= element %>" class="activity_form_selector">
+    <div id="select_<%= element %>" class="activity_form_selector  inline-block">
       <%= t("#{ element }.form.title") %>
     </div>
   <% end %> 	
