@@ -11,7 +11,7 @@
           <%= link_to(image_tag('home.png'), root_path, :class => "btn") %>
           <%= link_to(image_tag('message.png') +
                         raw(" (<span id='header_inbox_count'>") + current_subject.unread_messages_count.to_s +
-                        raw("</span>)"), root_path, :class => "btn") %>
+                        raw("</span>)"), messages_path, :class => "btn") %>
           <%= link_to(image_tag('followers.png'), root_path, :class => "btn") %>
           <%= link_to(image_tag('notification.png') + "(" +
                         current_subject.mailbox.notifications.not_trashed.unread.count.to_s + ")",
