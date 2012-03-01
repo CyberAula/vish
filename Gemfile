@@ -18,7 +18,11 @@ end
 
 gem 'jquery-rails'
 
-gem 'social_stream',   '~> 0.22.0'
+# gem 'social_stream',   '~> 0.22.0'
+gem 'social_stream-base'
+gem 'social_stream-documents'
+gem 'social_stream-linkser'
+
 gem 'mysql2'
 
 gem 'vish_editor'
