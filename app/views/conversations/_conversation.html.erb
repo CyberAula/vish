@@ -1,14 +1,48 @@
 <%= div_for(conversation, :class => read_class) do %>
 <div class="notification">
 </div>
+<div class="row">
+<div class="span3">
+  <div class="left">
+    <ul class="thumbnails">
+      <li class="span1">
+        <%= link_to image_tag(conversation.last_sender.logo.url(:actor),
+                              :title => conversation.last_sender.name, :alt => conversation.last_sender.name),
+                    conversation.last_sender.subject %>
+      </li>
+      <li class="span2">
+        <div class="caption">
+          <h4><%= link_to truncate_name(conversation.last_sender.name), conversation.last_sender.subject %></h4>
+          <h5>Virtual Meeting</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+</div>
+    <div class="span4">jhgfjh</div>
+    <div class="span1">jhvjh</div>
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
 <div class="sender_photo">
-	<%= link_to image_tag(conversation.last_sender.logo.url(:actor),
-	:title => conversation.last_sender.name, :alt => conversation.last_sender.name),
-	conversation.last_sender.subject %>
+
 </div>
 <div class="content_left">
 	<div class="sender_name">
-		<%= link_to truncate_name(conversation.last_sender.name), conversation.last_sender.subject %>
+
 	</div>
 	<div class="date">
 		<%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
