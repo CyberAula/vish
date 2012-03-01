@@ -15,7 +15,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def thumb(size)
-    "missing.png"
+    "excursion.png"
   end
 
   private
