@@ -3148,15 +3148,15 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .thumbnail {
   display: block;
-  padding: 4px;
+  /*padding: 4px;*/
   line-height: 1;
-  border: 1px solid #ddd;
+  /*border: 1px solid #ddd;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);*/
 }
 a.thumbnail:hover {
   border-color: #0066FF;

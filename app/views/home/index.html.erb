@@ -10,7 +10,7 @@
 
         <div class="row btn-toolbar">
         <div class="pull-right">
-          <input type="text" class="input-medium inline-block ontop" placeholder="filter" id="filter" autofocus="" name="filter">
+          <input type="text" class="input-medium inline-block ontop" placeholder="filter" autofocus="" name="filter">
           <div class="btn-group">
             <a href="#" data-toggle="dropdown" class="btn link_gray dropdown-toggle">add <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -21,27 +21,34 @@
         </div>
         </div>
 
-        <div class=" row box_excursions">
+        <div id="excursions">
           <div class="excursion">
-            <div class="logo">
-              <div class="number_pages">8</div>
-            </div>
-            <div class="excursion_info">
-              <div class="title_excursion"><a href="#">title excursion</a></div>
-              <div class="type_excursion">type excursion</div>
-              <div class="followers_excursion">followers:</div>
-              <div class="number_followers">99</div>
-              <div class="calification"><img width="80" height="11" src="calification.png">
-              </div>
-            </div>
+            <ul class="thumbnails">
+              <li class="span1">
+                <a class="thumbnail thumb_logo_big" href="#">
+                  <div class="number_pages">8</div>
+                </a>
+              </li>
+              <li class="span2">
+                <div class="caption">
+                  <h4><%= link_to('Virtual Doñana','#')%></h4>
+                  <h5>Virtual Meeting</h5>
+                  <h5>followers: 10</h5>
+                  <p><%= image_tag('star.png') %></p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
+
       </div>
       <div id="ex-2" class="tab-pane">
         <p><%=t('excursion.upcomming')%>....</p>
       </div>
       <div id="ex-3" class="tab-pane">
-        <p><%=t('more')%>...</p>
+
+
+
       </div>
     </div>
   </div>
@@ -55,28 +62,45 @@
 
         <div class="row btn-toolbar">
           <div class="pull-right">
-            <input type="text" class="input-medium inline-block ontop" placeholder="filter" id="filter" autofocus="" name="filter">
+            <input type="text" class="input-medium inline-block ontop" placeholder="filter"  autofocus="" name="filter">
+          </div>
+        </div>
+
+        <div id="repository">
+          <div class="repositories">
+            <ul class="thumbnails">
+              <li class="span2">
+                <a class="thumbnail thumb_logo_medium" href="#"></a>
+                <div class="caption link_gray">
+                  <h4><%= link_to('Birds','#')%></h4>
+                  <h5><span class="green size16">340</span> views</h5>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
       </div>
     </div>
   </div>
+  <!--
   <div class="row space_center"></div>
   <div class="organizations tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#org-1"><%=t('organization.other')%></a></li>
+      <li class="active"><a data-toggle="tab" href="#org-1"><%#=t('organization.other')%></a></li>
     </ul>
     <div class="tab-content">
       <div id="org-1" class="tab-pane active">
         <div class="row btn-toolbar">
           <div class="pull-right">
-            <input type="text" class="input-medium inline-block ontop" placeholder="filter" id="filter" autofocus="" name="filter">
+            <input type="text" class="input-medium inline-block ontop" placeholder="filter"  autofocus="" name="filter">
           </div>
         </div>
       </div>
     </div>
   </div>
+  -->
+
 </section>
 
 <section name="wall" id="right" class="span6 offset1">
