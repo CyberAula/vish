@@ -1,5 +1,8 @@
-<h2><%=t('notification.other') %></h2>
-
+<ul class="nav nav-tabs">
+<li class="active">
+  <a href="" data-toggle="tab"><%=t('notification.other') %></a>
+</li>
+</ul>
 <div class="read_all">
   <%= link_to(t('notification.read_all'), update_all_notifications_path(:page => params[:page]),
               :confirm => t('sure'),:method => :put, :remote => true) %>
