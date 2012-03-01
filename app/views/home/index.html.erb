@@ -7,7 +7,35 @@
     </ul>
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
-        <p><%=t('excursion.other')%>....</p>
+
+        <div class="row btn-toolbar">
+        <div class="pull-right">
+          <input type="text" class="input-medium inline-block ontop" placeholder="filter" id="filter" autofocus="" name="filter">
+          <div class="btn-group">
+            <a href="#" data-toggle="dropdown" class="btn link_gray dropdown-toggle">add <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Virtual meeting</a></li>
+              <li><a href="#">presentation</a></li>
+            </ul>
+         </div>
+        </div>
+        </div>
+
+        <div class=" row box_excursions">
+          <div class="excursion">
+            <div class="logo">
+              <div class="number_pages">8</div>
+            </div>
+            <div class="excursion_info">
+              <div class="title_excursion"><a href="#">title excursion</a></div>
+              <div class="type_excursion">type excursion</div>
+              <div class="followers_excursion">followers:</div>
+              <div class="number_followers">99</div>
+              <div class="calification"><img width="80" height="11" src="calification.png">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div id="ex-2" class="tab-pane">
         <p><%=t('excursion.upcomming')%>....</p>
@@ -24,7 +52,13 @@
     </ul>
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
-        <p><%=t('repository.other')%>....</p>
+
+        <div class="row btn-toolbar">
+          <div class="pull-right">
+            <input type="text" class="input-medium inline-block ontop" placeholder="filter" id="filter" autofocus="" name="filter">
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -35,7 +69,11 @@
     </ul>
     <div class="tab-content">
       <div id="org-1" class="tab-pane active">
-        <p><%=t('organization.other')%>....</p>
+        <div class="row btn-toolbar">
+          <div class="pull-right">
+            <input type="text" class="input-medium inline-block ontop" placeholder="filter" id="filter" autofocus="" name="filter">
+          </div>
+        </div>
       </div>
     </div>
   </div>

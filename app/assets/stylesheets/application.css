@@ -42,6 +42,7 @@
 .inline {display: inline}
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
+.ontop{vertical-align: top;}
 
 
 /*************** SIZE CLASSES **************/
@@ -62,7 +63,8 @@
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
 .space_right{padding-right: 20px;}
 
-
+/***********excursion BOX ******/
+.calification {  display: inline-block;  float: left;  height: 11px;   width: 80px;  margin-top: 3px;}
 
 
 /****************** WALL - ACTIVITIES *********************/
@@ -75,10 +77,10 @@
 
 /******************* WALL - ACTIVITY ***************/
 .super_activity{width: 95%;}
-.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 10px 0px 5px 0px;
-  display: inline-block;	color: $sentence-color; font-size: 13px;  color: $main-color;border-bottom:1px solid #E9E9E9;}
-.actor_logo {	width: 38px;	padding: 0px 0px 5px 5px;	display: inline-block;	vertical-align: top;}
-.activity_content {	padding: 0px;	display: inline-block;	color: $sentence-color;	width: 89%; word-wrap: break-word; }
+.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 15px 0px 10px 0px;
+  display: inline-block;	color: $sentence-color; font-size: 13px; }
+.actor_logo {	width: 75px;	padding: 0px 0px 5px 5px;	display: inline-block;	vertical-align: top;}
+.activity_content {	padding: 0px;	display: inline-block;	color: $sentence-color;	width: 79%; word-wrap: break-word; }
 .actor_name {font-size: 13px;}
 .post a {	color: $main-color;}
 
