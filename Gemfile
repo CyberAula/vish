@@ -23,8 +23,6 @@ gem 'social_stream-base'
 gem 'social_stream-documents'
 gem 'social_stream-linkser'
 
-gem 'mysql2'
-
 gem 'vish_editor'
 
 # To use ActiveModel has_secure_password
@@ -34,7 +32,7 @@ gem 'vish_editor'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -43,9 +41,16 @@ group :test do
   # Pretty printed test output
   gem 'rspec-rails'
   gem 'factory_girl'
+  gem 'mysql2'
 end
 
 group :development do
   gem 'rspec-rails'
   gem 'forgery'
+  gem 'mysql2'
 end
+
+group :production do
+  gem 'pg'
+end
+
