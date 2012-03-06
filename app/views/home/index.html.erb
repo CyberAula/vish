@@ -1,5 +1,6 @@
-<% self.class.send :include, HomeHelper  %>
+<%# self.class.send :include, HomeHelper  %>
 <section id="left" class="span5">
+
   <div class="excursions tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.other')%></a></li>
@@ -8,7 +9,6 @@
     </ul>
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
-
         <div class="row btn-toolbar">
         <div class="pull-right">
           <input type="text" class="input-medium inline-block ontop" placeholder="filter" name="filter">
@@ -21,45 +21,40 @@
          </div>
         </div>
         </div>
-
-        <% for excursion in current_actor_excursions %>
-          <%= render :partial => "excursions/excursion_home",
+        <%# for excursion in current_actor_excursions %>
+          <%#= render :partial => "excursions/home",
 	             :locals => { :excursion => excursion} %>
-        <% end %>
-
+        <%# end %>
       </div>
       <div id="ex-2" class="tab-pane">
         <p><%=t('excursion.upcomming')%>....</p>
       </div>
       <div id="ex-3" class="tab-pane">
-
-
-
       </div>
     </div>
   </div>
+
   <div class="row space_center"></div>
+
   <div class="repository tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#repo-1"><%=t('repository.other')%></a></li>
     </ul>
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
-
         <div class="row btn-toolbar">
           <div class="pull-right">
             <input type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter">
           </div>
         </div>
-
-
-
         <div id="repository">
           <div class="repositories">
-            <%#= render :partial => "common_documents/home" %>
+            <%# for document in current_actor_documents %>
+              <%#= render :partial => "common_documents/home",
+                         :locals => { :document => document} %>
+            <%# end %>
           </div>
         </div>
-
       </div>
     </div>
   </div>
