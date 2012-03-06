@@ -21,7 +21,7 @@
         </div>
         </div>
 
-        <%#= render :partial => "excursions/excursion_home" %>
+        <%#= render :partial => "excursions/home" %>
 
       </div>
       <div id="ex-2" class="tab-pane">
@@ -44,21 +44,15 @@
 
         <div class="row btn-toolbar">
           <div class="pull-right">
-            <input type="text" class="input-medium inline-block ontop" placeholder="filter"  autofocus="" name="filter">
+            <input type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter">
           </div>
         </div>
 
+
+
         <div id="repository">
           <div class="repositories">
-            <ul class="thumbnails">
-              <li class="span2">
-                <a class="thumbnail thumb_logo_medium" href="#"></a>
-                <div class="caption link_gray">
-                  <h4><%= link_to('Birds','#')%></h4>
-                  <h5><span class="green size16">340</span> views</h5>
-                </div>
-              </li>
-            </ul>
+            <%#= render :partial => "common_documents/home" %>
           </div>
         </div>
 
