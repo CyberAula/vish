@@ -281,8 +281,6 @@ GEM
       multi_json (>= 1.0.2)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    vish_editor (0.0.6)
-      railties (>= 3.1.3)
     warden (1.1.1)
       rack (>= 1.0)
 
@@ -305,4 +303,3 @@ DEPENDENCIES
   social_stream-linkser
   sqlite3
   uglifier (>= 1.2.3)
-  vish_editor

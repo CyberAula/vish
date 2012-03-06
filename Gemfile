@@ -23,7 +23,7 @@ gem 'social_stream-base'
 gem 'social_stream-documents'
 gem 'social_stream-linkser'
 
-gem 'vish_editor'
+#gem 'vish_editor'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
