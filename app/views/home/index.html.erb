@@ -1,3 +1,4 @@
+<% self.class.send :include, HomeHelper  %>
 <section id="left" class="span5">
   <div class="excursions tabbable">
     <ul class="nav nav-tabs">
@@ -21,7 +22,10 @@
         </div>
         </div>
 
-        <%#= render :partial => "excursions/excursion_home" %>
+        <% for excursion in current_actor_excursions %>
+          <%= render :partial => "excursions/excursion_home",
+	             :locals => { :excursion => excursion} %>
+        <% end %>
 
       </div>
       <div id="ex-2" class="tab-pane">
