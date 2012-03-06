@@ -6,7 +6,7 @@
     <div id="logo-frontpage"></div>
     <div class="pagination-centered size90"><h1><%=t('site.name')%></h1></div>
     <div class="pagination-centered">
-        <%= render :partial => 'layouts/search' %>
+        <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "input-xxlarge" } %>
     </div>
   </div>
   <div class="row span12 space_double_center"></div>

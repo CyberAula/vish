@@ -7,17 +7,14 @@
   z-index: 2001;
 }
 #header_search_input, #global_search_input {
-  padding: 0 22px 0 22px;
+  /*padding: 0 22px 0 22px; */
   background: url('btn/search_icon.png') no-repeat scroll 5px 50% #FFFFFF;
   background-position: center-right;
-  font-size: 11px;
+  /*font-size: 11px; */
 }
-#header_search_input {
-  height: 24px;
-  width: 200px;
-}
+
 .banner_busqueda #header_search_input {
-  height: 20px;
+  /*height: 20px; */
 }
 #global_search_input {
   height: 25px;
