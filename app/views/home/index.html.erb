@@ -21,10 +21,10 @@
          </div>
         </div>
         </div>
-        <%# for excursion in current_actor_excursions %>
-          <%#= render :partial => "excursions/home",
+        <% for excursion in current_actor_excursions %>
+          <%= render :partial => "excursions/home",
 	             :locals => { :excursion => excursion} %>
-        <%# end %>
+        <% end %>
       </div>
       <div id="ex-2" class="tab-pane">
         <p><%=t('excursion.upcomming')%>....</p>
