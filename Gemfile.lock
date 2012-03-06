@@ -74,7 +74,7 @@ GEM
       addressable (~> 2.2)
       multipart-post (~> 1.1)
       rack (~> 1.1)
-    foreigner (1.1.2)
+    foreigner (1.1.4)
       activerecord (>= 3.0.0)
     forgery (0.5.0)
     formtastic (1.2.4)
@@ -106,7 +106,7 @@ GEM
       rake
       rmagick (~> 2.13.1)
       ruby-imagespec (~> 0.2.0)
-    mail (2.4.1)
+    mail (2.4.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -131,7 +131,7 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
-    omniauth (1.0.2)
+    omniauth (1.0.3)
       hashie (~> 1.2)
       rack
     omniauth-facebook (1.2.0)
@@ -281,6 +281,8 @@ GEM
       multi_json (>= 1.0.2)
     vegas (0.1.11)
       rack (>= 1.0.0)
+    vish_editor (0.0.6)
+      railties (>= 3.1.3)
     warden (1.1.1)
       rack (>= 1.0)
 
@@ -303,3 +305,4 @@ DEPENDENCIES
   social_stream-linkser
   sqlite3
   uglifier (>= 1.2.3)
+  vish_editor
