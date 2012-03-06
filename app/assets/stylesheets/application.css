@@ -75,6 +75,8 @@
 /****************** WALL - ACTIVITIES *********************/
 
 #wall{	text-align:center;}
+#wall-input {background-color: #E6E6E6; padding: 10px; }
+.row-fluid-90 { width: 90%; *zoom: 1;}
 
 
 /****************** WALL - HEADER *********************/
