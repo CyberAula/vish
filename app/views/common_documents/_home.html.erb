@@ -1,0 +1,27 @@
+<% @activities.each do |a| %>
+  <% document = a.activity_objects.first.document %>
+  <ul class="thumbnails" id="<%= dom_id(document) %>">
+    <li class="span2">
+      <%= link_to thumb_for(document, 48),
+                  document_path(document),
+                  :type => document.type,
+                  :title => document.file_file_name,
+                  :path => document_path(document),
+                  :class => "thumbnail thumb_logo_medium" %>
+      <div class="caption link_gray">
+        <h4><%= link_to truncate_name(document.file_file_name, :length => 15),
+                        document_path(document),
+                        :alt => document.file_file_name,
+                        :type => document.type,
+                        :path => document_path(document) %>
+        </h4>
+        <h5><span class="green size16">340</span> views</h5>
+      </div>
+    </li>
+  </ul>
+<% end %>
+
+
+
+
+

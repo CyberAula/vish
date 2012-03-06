@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row span12">
+    <div class="rotate-90 inline-block"><%= t('top10') %></div>
+    <%= div_for excursion, :class => 'inline-block' do %>
+      <div class="attachment_thumb">
+        <%= link_to thumb_for(excursion, 130), excursion, :class => "" %>
+      </div>
+      <div class="attachment_text">
+        <%= link_to "\""+excursion.title+"\"", excursion, :class => "attachment_text_link" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
