@@ -1,10 +1,17 @@
 <%= div_for excursion, :class => 'content_size' do %>
-  <div class="attachment_thumb">
-    <%= link_to thumb_for(excursion, 130), excursion, :class => "" %>
-  </div>
+  <ul class="thumbnails span">
+    <li class="span1">
+      <%= link_to( raw("<div class='number_pages'>8</div>"), excursion, :class => "thumbnail thumb_logo_big") %>
 
-  <div class="attachment_text">
-    <%= t('excursion.msg') %><%= link_to "\""+excursion.title+"\"", excursion, :class => "attachment_text_link" %>
-  </div>
+      </a>
+    </li>
+    <li class="span">
+      <div class="caption">
+        <h4><%= link_to "excursion.title", excursion %></h4>
+        <h5>Virtual Meeting</h5>
+        <h5>followers: 10</h5>
+        <p><%= image_tag('star.png') %></p>
+      </div>
+    </li>
+  </ul>
 <% end %>
-
