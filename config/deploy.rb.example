@@ -16,7 +16,7 @@ require "bundler/capistrano"
 
 # Where we get the app from and all...
 set :scm, :git
-set :repository,  "git@github.com:ging/vish.git"
+set :repository,  "git://github.com/ging/vish.git"
 
 # Some options
 default_run_options[:pty] = true
@@ -36,8 +36,8 @@ after 'deploy:update_code', 'deploy:fix_file_permissions'
 after 'deploy:update_code', 'deploy:link_files'
 before 'deploy:restart', 'deploy:start_sphinx'
 after  'deploy:start_sphinx', 'deploy:fix_sphinx_file_permissions'
-after 'deploy:restart', 'deploy:stop_workers'
-after 'deploy', 'rvm:trust_rvmrc'
+#after 'deploy:restart', 'deploy:stop_workers'
+after 'deploy:update_code', 'rvm:trust_rvmrc'
 
 namespace(:deploy) do
   # Tasks for passenger mod_rails
@@ -84,7 +84,7 @@ end
 
 namespace :rvm do
   task :trust_rvmrc do
-    run "rvm rvmrc trust #{release_path}"
+    run "rvm rvmrc trust #{release_path} < /dev/null"
   end
 end
 
