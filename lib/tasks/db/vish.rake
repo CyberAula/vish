@@ -77,20 +77,21 @@ namespace :db do
 	}
       end
 
-      10.times do
+      50.times do
         updated = Time.at(rand(Time.now.to_i))
 	author = @available_actors[rand(@available_actors.size)]
 	owner  = author
 	user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
-        Excursion.create! :title => "Title: #{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
-	                  :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
-	                  :json => Array.new(1+rand(9)).map{ generate_slide }.to_json,
-	                  :created_at => Time.at(rand(updated.to_i)),
-			  :updated_at => updated,
-			  :author_id  => author.id,
-			  :owner_id   => owner.id,
-			  :user_author_id => user_author.id
+        e = Excursion.create! :title => "Title: #{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
+	                      :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
+	                      :json => Array.new(1+rand(9)).map{ generate_slide }.to_json,
+	                      :created_at => Time.at(rand(updated.to_i)),
+   			      :updated_at => updated,
+			      :author_id  => author.id,
+			      :owner_id   => owner.id,
+			      :user_author_id => user_author.id
+	e.update_slide_count
       end
 
       excursions_end = Time.now

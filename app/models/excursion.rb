@@ -2,6 +2,7 @@ class Excursion < ActiveRecord::Base
   include SocialStream::Models::Object
 
   validates_presence_of :json
+  before_save :update_slide_count
   # before_save :parse_for_meta ## TODO: Wait until we define the excursion JSON schema
 
   define_index do
@@ -16,6 +17,11 @@ class Excursion < ActiveRecord::Base
 
   def thumb(size, helper)
     "excursion.png"
+  end
+
+  def update_slide_count
+    parsed_json = JSON(json)
+    self.slide_count = parsed_json.size
   end
 
   private
