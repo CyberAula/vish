@@ -17,7 +17,22 @@
   </section>
 </div>
 <section id="top" class="white">
-  <%#= render :partial => "excursions/top10" %>
+  <div class="container">
+    <div class="row span12">
+      <div class="rotate-90 inline-block">
+        <ul class="thumbnails span">
+          <li class="span">
+            <%=t('top10')%>
+          </li>
+        </ul>
+      </div>
+        <% self.class.send :include, FrontpageHelper  %>
+        <% for excursion in current_top_actor_excursions %>
+          <%= render :partial => "excursions/top10",
+                     :locals => { :excursion => excursion} %>
+        <% end %>
+    </div>
+  </div>
 </section>
 <div class="container">
   <div class="space_double_center"></div>
