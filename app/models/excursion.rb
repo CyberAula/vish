@@ -14,7 +14,7 @@ class Excursion < ActiveRecord::Base
     json
   end
 
-  def thumb(size)
+  def thumb(size, helper)
     "excursion.png"
   end
 
