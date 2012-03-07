@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120214153142) do
+ActiveRecord::Schema.define(:version => 20120302215722) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
 
   add_index "activity_object_activities", ["activity_id"], :name => "index_activity_object_activities_on_activity_id"
   add_index "activity_object_activities", ["activity_object_id"], :name => "index_activity_object_activities_on_activity_object_id"
+
+  create_table "activity_object_properties", :force => true do |t|
+    t.integer "activity_object_id"
+    t.integer "property_id"
+    t.string  "type"
+  end
+
+  add_index "activity_object_properties", ["activity_object_id"], :name => "index_activity_object_properties_on_activity_object_id"
+  add_index "activity_object_properties", ["property_id"], :name => "index_activity_object_properties_on_property_id"
 
   create_table "activity_objects", :force => true do |t|
     t.datetime "created_at"
@@ -212,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
     t.integer  "notified_object_id"
     t.string   "notified_object_type"
     t.string   "notification_code"
+    t.string   "attachment"
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
@@ -365,6 +375,9 @@ ActiveRecord::Schema.define(:version => 20120214153142) do
 
   add_foreign_key "activity_object_activities", "activities", :name => "index_activity_object_activities_on_activity_id"
   add_foreign_key "activity_object_activities", "activity_objects", :name => "activity_object_activities_on_activity_object_id"
+
+  add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_activity_object_id"
+  add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_property_id", :column => "property_id"
 
   add_foreign_key "activity_objects", "channels", :name => "index_activity_objects_on_channel_id"
 
