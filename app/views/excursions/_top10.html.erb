@@ -1,7 +1,7 @@
 <%= div_for excursion, :class => 'inline-block' do %>
   <ul class="thumbnails span">
     <li class="span">
-      <%= link_to( raw("<div class='number_pages'>") + excursion.slide_count + raw("</div>"), excursion, :class => "thumbnail thumb_logo_big") %>
+      <%= link_to( raw("<div class='number_pages'>") + excursion.slide_count.to_s + raw("</div>"), excursion, :class => "thumbnail thumb_logo_big") %>
       <div class="caption">
         <h4><%= link_to "excursion.title", excursion %></h4>
       </div>
