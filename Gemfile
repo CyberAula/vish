@@ -34,6 +34,9 @@ gem 'vish_editor'
 # Deploy with Capistrano
 gem 'capistrano'
 
+gem 'pg'
+gem 'mysql2'
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
@@ -41,16 +44,10 @@ group :test do
   # Pretty printed test output
   gem 'rspec-rails'
   gem 'factory_girl'
-  gem 'mysql2'
 end
 
 group :development do
   gem 'rspec-rails'
   gem 'forgery'
-  gem 'mysql2'
-end
-
-group :production do
-  gem 'pg'
 end
 
