@@ -2,7 +2,7 @@
 
   <div class="actor_logo">
     <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
-                          :alt => activity.sender_subject.name),
+                          :alt => activity.sender_subject.name, :widht => 50, :height => 50),
                  activity.sender_subject %>
   </div>
 
