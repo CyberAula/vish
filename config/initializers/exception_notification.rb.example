@@ -1,0 +1,5 @@
+Vish::Application.config.middleware.use ExceptionNotifier,
+    :email_prefix => "[ViSH] ",
+    :sender_address => %{"Error Notifier" <FROM_ADDRESS@HOST>},
+    :exception_recipients => %w{RECIPIENT1@HOST RECIPIENT2@HOST}
+
