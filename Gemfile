@@ -45,6 +45,7 @@ group :test do
   # Pretty printed test output
   gem 'rspec-rails'
   gem 'factory_girl'
+  gem 'capybara'
 end
 
 group :development do
