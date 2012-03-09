@@ -4,7 +4,6 @@ module ExcursionsHelper
   end
 
   def num_slides(excursion)
-    return 0 if excursion.nil?
     excursion.slide_count.to_s
   end
 end
