@@ -3,10 +3,32 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require "rspec/rails"
+
+ActionMailer::Base.delivery_method = :test
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.default_url_options[:host] = "test.com"
+
+Rails.backtrace_cleaner.remove_silencers!
+
+# Configure capybara for integration testing
+require "capybara/rails"
+Capybara.default_driver   = :rack_test
+Capybara.default_selector = :css
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+#Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+## Gem magic at work here
+base_spec_path = File.join(Gem::GemPathSearcher.new.find('social_stream-base').full_gem_path, 'spec/')
+# ...in social_stream-base/spec/factories.
+Dir[File.join(base_spec_path, 'factories/*.rb')].each {|f| require f}
+# ...in social_stream-base/spec/support.
+#Dir[File.join(base_spec_path, 'support/**/*.rb')].each {|f| require f}
+require File.join(base_spec_path, 'support/cancan.rb')
+require File.join(base_spec_path, 'support/devise.rb')
+require File.join(base_spec_path, 'support/mock.rb')
 
 RSpec.configure do |config|
   # ## Mock Framework
