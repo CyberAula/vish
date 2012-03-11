@@ -6,7 +6,8 @@ gem 'rails', '~> 3.2.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'pg'
+gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,8 +35,8 @@ gem 'vish_editor'
 # Deploy with Capistrano
 gem 'capistrano'
 
-gem 'pg'
-gem 'mysql2'
+# Use exception notification
+gem 'exception_notification'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
@@ -44,6 +45,7 @@ group :test do
   # Pretty printed test output
   gem 'rspec-rails'
   gem 'factory_girl'
+  gem 'capybara'
 end
 
 group :development do

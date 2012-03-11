@@ -10,9 +10,10 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
-# Ignore MySQL db config.
+# Ignore config files with sensible information.
 config/database.yml
 config/deploy.rb
+config/initializers/exception_notification.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
