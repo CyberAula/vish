@@ -10,6 +10,10 @@ es:
     followings: "seguidos"
   lang:
     title: "idioma"
+    changed: "Se cambia el idioma a %{lang}"
+    error: "El idioma \"%{lang}\" no está disponible"
+  translate:
+    change: "Cambiar idioma"
   more: "more"
   password: "clave"
   profile:
