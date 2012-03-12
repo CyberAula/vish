@@ -16,7 +16,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def thumb(size, helper)
-    "excursion.png"
+    "logos/original/excursion-#{sprintf '%.2i', thumbnail_index}.png"
   end
 
   def update_slide_count

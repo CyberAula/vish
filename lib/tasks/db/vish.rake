@@ -86,6 +86,7 @@ namespace :db do
         e = Excursion.create! :title => "Title: #{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
 	                      :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
 	                      :json => Array.new(1+rand(9)).map{ generate_slide }.to_json,
+			      :thumbnail_index => 1+rand(80),
 	                      :created_at => Time.at(rand(updated.to_i)),
    			      :updated_at => updated,
 			      :author_id  => author.id,
