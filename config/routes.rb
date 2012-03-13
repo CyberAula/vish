@@ -4,7 +4,7 @@ Vish::Application.routes.draw do
   resources :slides
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
-  resources :follow
+
   resource :session_locale
 
   # The priority is based upon order of creation:

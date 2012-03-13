@@ -3,7 +3,9 @@
   <ul class="dropdown-menu">
     <%#= render :partial => 'layouts/header_dropdown_menu_sessions'%>
     <li><%=link_to( raw("<i class='icon-asterisk'></i> ") + t('settings.main'), settings_path, :id => "btn_menu_settings") %></li>
+    <% if SocialStream.relation_model == :custom %>
     <li><%=link_to( raw("<i class='icon-lock'></i> ") + t('account.privacy'), relation_customs_path )%></li>
+    <% end %>
     <li><%=link_to( raw("<i class='icon-off'></i> ") + t('sign_out'), destroy_user_session_path, :method => :delete) %></li>
   </ul>
 </div>

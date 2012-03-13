@@ -19,10 +19,16 @@ end
 
 gem 'jquery-rails'
 
-# gem 'social_stream',   '~> 0.22.0'
-gem 'social_stream-base'
-gem 'social_stream-documents'
-gem 'social_stream-linkser'
+# Developing Social Stream
+git 'git://github.com/ging/social_stream.git' do
+  gem 'social_stream-base'
+  gem 'social_stream-documents'
+  gem 'social_stream-linkser'
+end
+
+#gem 'social_stream-base'
+#gem 'social_stream-documents'
+#gem 'social_stream-linkser'
 
 gem 'vish_editor'
 
@@ -41,9 +47,6 @@ gem 'exception_notification'
 # Be able to pass tests
 gem 'rspec-rails'
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
 group :test do
   # Pretty printed test output
   gem 'factory_girl'
@@ -52,5 +55,9 @@ end
 
 group :development do
   gem 'forgery'
+
+  if RUBY_VERSION > '1.9'
+    gem 'ruby-debug19', :require => 'ruby-debug'
+  end
 end
 
