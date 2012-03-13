@@ -15,7 +15,12 @@ class Excursion < ActiveRecord::Base
   end
 
   def thumb(size, helper)
-    "logos/original/excursion-#{sprintf '%.2i', thumbnail_index}.png"
+    case size
+      when 25
+        "logos/actor/excursion-#{sprintf '%.2i', thumbnail_index}.png"
+      else
+        "logos/original/excursion-#{sprintf '%.2i', thumbnail_index}.png"
+    end
   end
 
   private

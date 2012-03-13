@@ -4,11 +4,13 @@ class FollowController < ApplicationController
 
   respond_to :html, :js
 
-  def new
-    # TODO: Create contact and do some more stuff, maybe at model?
-  end
-
   def create
+    # TODO: Create contact and do some more stuff, maybe at model?
+    if @following.blank?
+      @following = nil
+    else
+      # Render something saying you already followed her
+    end
   end
 
   def index
@@ -33,12 +35,6 @@ class FollowController < ApplicationController
       format.js { @followings = @followings.page(params[:page]).per(20) }
       format.json { render :text => to_json(@followings) }
     end
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def destroy
