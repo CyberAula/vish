@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/ging/social_stream.git
   revision: 07e67ce27fea4e9acf5b111c4234191759d3b750
+  branch: vish
   specs:
     social_stream-base (0.17.3)
       acts-as-taggable-on (~> 2.2.2)

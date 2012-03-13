@@ -20,7 +20,7 @@ end
 gem 'jquery-rails'
 
 # Developing Social Stream
-git 'git://github.com/ging/social_stream.git' do
+git 'git://github.com/ging/social_stream.git', :branch => 'vish' do
   gem 'social_stream-base'
   gem 'social_stream-documents'
   gem 'social_stream-linkser'
