@@ -10,6 +10,10 @@ en:
     followings: "following"
   lang:
     title: "language"
+    changed: "Changed language to %{lang}"
+    error: "Language \"%{lang}\" not available"
+  translate:
+    change: "Change language"
   more: "more"
   password: "password"
   profile:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307153214) do
+ActiveRecord::Schema.define(:version => 20120312121231) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20120307153214) do
     t.integer  "activity_object_id"
     t.text     "json"
     t.integer  "slide_count",        :default => 1
+    t.integer  "thumbnail_index",    :default => 0
   end
 
   create_table "groups", :force => true do |t|
