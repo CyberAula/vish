@@ -3,9 +3,6 @@ class AddExcursionSlideCount < ActiveRecord::Migration
     change_table :excursions do |t|
       t.integer "slide_count", :default => 1
     end
-    Excursion.all.each do |e|
-      e.update_slide_count
-    end
   end
 
   def down

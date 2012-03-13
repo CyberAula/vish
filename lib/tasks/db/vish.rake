@@ -83,16 +83,18 @@ namespace :db do
 	owner  = author
 	user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
-        e = Excursion.create! :title => "Title: #{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
-	                      :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
-	                      :json => Array.new(1+rand(9)).map{ generate_slide }.to_json,
+        e = Excursion.create! :json => {  :title => "#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
+			                  :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
+					  :author => author.name,
+			                  :slides => Array.new(1+rand(9)).map{ generate_slide }
+		                       }.to_json,
 			      :thumbnail_index => 1+rand(80),
 	                      :created_at => Time.at(rand(updated.to_i)),
    			      :updated_at => updated,
 			      :author_id  => author.id,
 			      :owner_id   => owner.id,
 			      :user_author_id => user_author.id
-	e.update_slide_count
+	e.save!
       end
 
       excursions_end = Time.now
