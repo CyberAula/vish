@@ -20,7 +20,7 @@
 
 <%= javascript_tag do %>
   $(function() {
-    $("#username").Watermark("<%= I18n.t('activerecord.attributes.user.email') %>","#666");
-    $("#password").Watermark("<%= I18n.t('activerecord.attributes.user.password') %>","#666");
+    $("#username").watermark("<%= I18n.t('activerecord.attributes.user.email') %>","#666");
+    $("#password").watermark("<%= I18n.t('activerecord.attributes.user.password') %>","#666");
   });
 <% end %>
