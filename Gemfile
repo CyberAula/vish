@@ -38,18 +38,19 @@ gem 'capistrano'
 # Use exception notification
 gem 'exception_notification'
 
+# Be able to pass tests
+gem 'rspec-rails'
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
   # Pretty printed test output
-  gem 'rspec-rails'
   gem 'factory_girl'
   gem 'capybara'
 end
 
 group :development do
-  gem 'rspec-rails'
   gem 'forgery'
 end
 
