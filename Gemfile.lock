@@ -72,7 +72,6 @@ GEM
     addressable (2.2.7)
     ancestry (1.2.4)
       activerecord (>= 2.2.2)
-    archive-tar-minitar (0.5.2)
     arel (3.0.2)
     avatars_for_rails (0.2.4)
       foreigner (>= 0.9.1)
@@ -107,7 +106,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
-    columnize (0.3.6)
     delayed_paperclip (2.4.5.1)
       paperclip (>= 2.4.5)
     devise (1.5.3)
@@ -153,8 +151,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    linecache19 (0.5.12)
-      ruby_core_source (>= 0.1.4)
     linkser (0.0.11)
       nokogiri (>= 1.4.0)
       opengraph (~> 0.0.4)
@@ -269,17 +265,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.8.0)
-    ruby-debug-base19 (0.11.25)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby_core_source (>= 0.1.4)
-    ruby-debug19 (0.11.6)
-      columnize (>= 0.3.1)
-      linecache19 (>= 0.5.11)
-      ruby-debug-base19 (>= 0.11.19)
     ruby-imagespec (0.2.0)
-    ruby_core_source (0.1.5)
-      archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.6.1)
     sass (3.1.15)
     sass-rails (3.2.4)
@@ -342,7 +328,6 @@ DEPENDENCIES
   pg
   rails (~> 3.2.0)
   rspec-rails
-  ruby-debug19
   sass-rails (~> 3.2.4)
   social_stream-base!
   social_stream-documents!
