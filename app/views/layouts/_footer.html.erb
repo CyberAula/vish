@@ -1,18 +1,24 @@
 <nav class="menu">
-  <ul class="link_gray pagination-centered">
+  <ul class="link_gray pagination-centered btn-group dropup">
     <li><%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %></li>
     <li><%= link_to t('conditions'), new_user_password_path %></li>
     <li><%= link_to t('help'), new_user_password_path %></li>
     <li>
-      <div id="language_select">
-        <%= link_to_function (I18n.locale ? image_tag("flags/" + I18n.locale.to_s + ".png", :title=>I18n.locale.to_s) + " " + t(:language_name, :locale => I18n.locale.to_s) : t('lang.title')),
-		  '$(\'#language_select ul#language_menu\').toggle()' %>
-	<ul id="language_menu" style="display:none"> 
-	  <% for locale in (I18n.available_locales) -%>
-	    <li><%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s) + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %> </li>
-	  <% end -%>
-	</ul>
-      </div>
+
     </li>
   </ul>
 </nav>
+<div class="btn-toolbar">
+  <div class="btn-group dropup open">
+    <button class="btn primary"><%=t('lang.title')%></button>
+    <button data-toggle="dropdown" class="btn primary dropdown-toggle"><span class="caret"></span></button>
+    <ul class="dropdown-menu pull-right">
+      <% for locale in (I18n.available_locales) -%>
+        <li>
+          <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s) + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+</div>
+
