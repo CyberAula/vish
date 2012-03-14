@@ -3509,7 +3509,7 @@ a.thumbnail:hover {
   margin-right: auto;
 }
 .thumbnail .caption {
-  padding: 9px;
+  padding: 9px 2px 2px 9px;
 }
 .label {
   padding: 2px 4px 3px;

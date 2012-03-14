@@ -30,7 +30,8 @@
 .menu ul li#trade_mark_logo{font-weight:normal;}
 
 
-#top{height:100px;}
+#top{height:110px;}
+#top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;}
 .white{ background-color:#fff;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
@@ -73,7 +74,7 @@
   text-align: center; background-color: #FFF; border-radius: 15px;   color: #333; font-size: 12pt;  line-height:150%;}
 .thumb_logo_big {background-image: url("excursion.png"); display: inline-block;  float: left;  height: 79px; width: 79px; }
 .thumb_logo_medium {background-image: url("doc.png"); display: inline-block;  float: left;  height: 34px; width: 34px; margin-right:10px; }
-.width-top { width: 90px; vertical-align: top;}
+.width-top { width: 80px; vertical-align: top;}
 
 
 /****************** WALL - ACTIVITIES *********************/
