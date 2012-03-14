@@ -68,7 +68,8 @@
 .space_right{padding-right: 20px;}
 
 /***********excursion BOX ******/
-.number_pages  { float: right;  height: 25px;  width: 25px;  margin-top: 50px;  margin-right: 5px;
+.container {position:relative;}
+.number_pages  { position:relative;   height: 25px;  width: 25px;  margin-top: -35px;  margin-left: 45px;
   text-align: center; background-color: #FFF; border-radius: 15px;   color: #333; font-size: 12pt;  line-height:150%;}
 .thumb_logo_big {background-image: url("excursion.png"); display: inline-block;  float: left;  height: 79px; width: 79px; }
 .thumb_logo_medium {background-image: url("doc.png"); display: inline-block;  float: left;  height: 34px; width: 34px; margin-right:10px; }
@@ -79,6 +80,8 @@
 #wall-input {background-color: #E6E6E6; padding: 10px; }
 .row-fluid-100 { width: 100%; *zoom: 1;}
 .row-fluid-90 { width: 90%; *zoom: 1;}
+.margin-excursion{ margin:0 0 18px 5px !important; }
+.margin-thumbnail { margin-right:20px  !important; }
 
 
 /****************** WALL - HEADER *********************/

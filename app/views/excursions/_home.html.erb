@@ -1,11 +1,13 @@
 <%= div_for excursion, :class => 'content_size' do %>
-  <ul class="thumbnails span">
+  <ul class="thumbnails span margin-thumbnail">
     <li class="span1">
-      <%= link_to(excursion, :class => "thumbnail thumb_logo_big") do %>
+      <%= div_for excursion, :class => 'home' do %>
+      <%= link_to image_tag(excursion.thumb(130, self)), excursion, :class => "container" %>
+      <%#= link_to(excursion, :class => "thumbnail thumb_logo_big") do %>
         <div class='number_pages'><%= excursion.slide_count %></div>
       <% end %>
     </li>
-    <li class="span">
+    <li class="span margin-excursion">
       <div class="caption">
         <h4><%= link_to "excursion.title", excursion %></h4>
         <h5>Virtual Meeting</h5>
