@@ -1,16 +1,18 @@
 <%= div_for excursion, :class => 'content_size' do %>
   <ul class="thumbnails span margin-thumbnail">
-    <li class="span1">
-      <%= link_to  thumb_for(excursion, 130), excursion, :class => "container" %>
-        <div class='number_pages'><%= excursion.slide_count %></div>
-    </li>
-    <li class="span margin-excursion">
-      <div class="caption">
-        <h4><%= link_to excursion.title, excursion %></h4>
-        <h5>Virtual Meeting</h5>
-        <h5>followers: 10</h5>
-        <p><%= image_tag('star.png') %></p>
-      </div>
-    </li>
+    <div class="width-excursion">
+      <li class="span1">
+        <%= link_to  thumb_for(excursion, 130), excursion, :class => "container" %>
+          <div class='number_pages'><%= excursion.slide_count %></div>
+      </li>
+      <li class="span margin-excursion">
+        <div class="caption">
+          <h4><%= link_to truncate_name(excursion.title, :length => 27), excursion %></h4>
+          <h5>Virtual Meeting</h5>
+          <h5>followers: 10</h5>
+          <p><%= image_tag('star.png') %></p>
+        </div>
+      </li>
+    </div>
   </ul>
 <% end %>
