@@ -1915,26 +1915,28 @@ table .span12 {
   text-align: center;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   vertical-align: middle;
-  /*background-color: #f5f5f5;
-  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
-  background-image: linear-gradient(top, #ffffff, #e6e6e6);
+  background-color: #F9F9F9;
+  background-image: -moz-linear-gradient(top, #F9F9F9, #F9F9F9);
+  background-image: -ms-linear-gradient(top, #F9F9F9, #F9F9F9);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#F9F9F9), to(#F9F9F9));
+  background-image: -webkit-linear-gradient(top, #F9F9F9, #F9F9F9);
+  background-image: -o-linear-gradient(top, #F9F9F9, #F9F9F9);
+  background-image: linear-gradient(top, #F9F9F9, #F9F9F9);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
-  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#F9F9F9', GradientType=0);
+  border-color: #F9F9F9 #F9F9F9 #F9F9F9;
+  /*border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); */
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
-  border: 1px solid #ccc;
-  border-bottom-color: #bbb;
+  border: 1px solid #F9F9F9;
+  border-bottom-color: #F9F9F9;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  /*
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  */
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   *margin-left: .3em;
@@ -1944,10 +1946,10 @@ table .span12 {
 .btn.active,
 .btn.disabled,
 .btn[disabled] {
-  background-color: #e6e6e6;
+  background-color: #F9F9F9;
 }
 .btn:active, .btn.active {
-  background-color: #cccccc \9;
+  background-color: #F9F9F9 \9;
 }
 .btn:first-child {
   *margin-left: 0;
@@ -1955,8 +1957,8 @@ table .span12 {
 .btn:hover {
   color: #0066FF;
   text-decoration: none;
-  background-color: #e6e6e6;
-  background-position: 0 -15px;
+  background-color: #EBEBEB;
+  background-position: 0 -30px;
   -webkit-transition: background-position 0.1s linear;
   -moz-transition: background-position 0.1s linear;
   -ms-transition: background-position 0.1s linear;
@@ -1982,7 +1984,7 @@ table .span12 {
 .btn[disabled] {
   cursor: default;
   background-image: none;
-  background-color: #e6e6e6;
+  background-color: #F9F9F9;
   opacity: 0.65;
   filter: alpha(opacity=65);
   -webkit-box-shadow: none;
@@ -2427,6 +2429,8 @@ input[type="submit"].btn.btn-mini {
 .nav > li > a:hover {
   text-decoration: none;
   background-color: #ffffff;
+  border: 1px solid #FF005D;
+  border-bottom-color: transparent;
 }
 .nav .nav-header {
   display: block;
@@ -2523,7 +2527,7 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs > .active > a:hover {
   color: #FF005D;
   background-color: #F9F9F9;
-  border: 1px solid #ddd;
+  border: 1px solid #FF005D;
   border-bottom-color: transparent;
   cursor: default;
   font-size: 20px;
