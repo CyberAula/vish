@@ -9,6 +9,6 @@
 //= require social_stream-base
 //= require social_stream-documents
 //= require social_stream-linkser
-// require vish_editor
+//= require vish_editor
 //= require_tree .
 

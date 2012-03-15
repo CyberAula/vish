@@ -1,5 +1,147 @@
 <h1>New excursion</h1>
 
-<%= render 'form' %>
+<section style="position:relative;width:900px;height:750px" class="slides layout-regular template-default">
+
+	<div id='menubar'>
+	    <div class='barbutton'>
+		<a id="addslide" href="#thumbcontent">
+		    <img class="image_barbutton" src="/assets/new.png"/>
+		</a>
+	    </div>
+	    <div class='barbutton'>
+		<a id="save">
+		    <img class="image_barbutton" src="/assets/save.png"/>
+		</a>
+	    </div>
+	    
+	</div>
+    </section>
+  
+  <div style='display:none'>
+    <div id='thumbcontent'>
+      <div class='templatethumb' template='1'>
+	  <img src='/assets/templatesthumbs/t1.png' />
+      </div>
+      <div class='templatethumb' template='2'>
+	  <img src='/assets/templatesthumbs/t2.png' />
+      </div>
+    </div>
+  </div>
+  
+  <div style='display:none'>
+    <div id='menuselect'>
+		<div class='menuicon textthumb'>
+		    <img src='/assets/text-editor.png' />
+		</div>
+		<div class='menuicon picthumb'>
+		    <a class="addpicture" href="#picture_fancybox">
+				<img src='/assets/picture-editor.png' />
+		    </a>
+		</div>
+		<div class='menuicon flashthumb'>
+		    <a class="addflash" href="#flash_fancybox">
+				<img src='/assets/flash-editor.png' />
+		    </a>
+		</div>
+		<div class='menuicon'>
+		    <a class="addvideo" href="#video_fancybox">
+				<img src='/assets/video-editor.png' />
+		    </a>
+		</div>
+    </div>
+  </div>
+  
+  <div style='display:none'>
+    <div id="picture_fancybox" class="outer_box">
+	<div class="fancy_tabs">	   
+	    <ul>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab">URL</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab">UPLOAD</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">VISH</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab">FLIKR</a></li>
+	    </ul>
+	</div>
+	<div id='tab_pic_from_url_content' class="fancy_tab_content">
+	    Paste image url
+	    <input id="picture_url" type="text" size="25" value="">
+	    <button type="button" onclick="VISH.Editor.getValueFromFancybox('picture_url')">Done</button>
+	</div>
+	<div id='tab_pic_upload_content' class="fancy_tab_content">
+	    Select picture to upload
+	    <input id="upload_input" type="text" size="25" value="">
+	    <button type="button" onclick="alert('Uploaded!')">Upload</button>
+	</div>
+	<div id='tab_pic_repo_content' class="fancy_tab_content">
+	    Vish repository	    
+	</div>
+	<div id='tab_pic_flikr_content' class="fancy_tab_content">
+	    Search in flikr
+	    <input id="flikr_input" type="text" size="25" value="">
+	    <button type="button" onclick="alert('search!')">Search</button>
+	</div>
+    </div>
+  </div>
+  
+  <div style='display:none'>
+    <div id="flash_fancybox" class="outer_box">
+	<div class="fancy_tabs">	   
+	    <ul>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">EMBED</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">UPLOAD</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">VISH</a></li>
+	    </ul>
+	</div>
+	<div id='tab_flash_from_url_content' class="fancy_tab_content">
+	    Paste flash embed code
+	    <input id="flash_embed_code" type="text" size="25" value="">
+	    <button type="button" onclick="VISH.Editor.getValueFromFancybox('flash_embed_code')">Done</button>
+	</div>
+	<div id='tab_flash_upload_content' class="fancy_tab_content">
+	    Select flash to upload
+	    <input id="upload_flash_input" type="text" size="25" value="">
+	    <button type="button" onclick="alert('Uploaded!')">Upload</button>
+	</div>
+	<div id='tab_flash_repo_content' class="fancy_tab_content">
+	    Vish repository	    
+	</div>
+    </div>
+  </div>
+  
+  <div style='display:none'>
+    <div id="video_fancybox" class="outer_box">
+	<div class="fancy_tabs">	   
+	    <ul>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab">URL</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_upload')" id="tab_video_upload" class="fancy_tab">UPLOAD</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">VISH</a></li>
+	      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab">YOUTUBE</a></li>
+	    </ul>
+	</div>
+	<div id='tab_video_from_url_content' class="fancy_tab_content">
+	    Paste html5 video URL
+	    <input id="video_url" type="text" size="25" value="">
+	    <button type="button" onclick="VISH.Editor.getValueFromFancybox('video_url')">Done</button>
+	</div>
+	<div id='tab_video_upload_content' class="fancy_tab_content">
+	    Select video to upload
+	    <input id="upload_video_input" type="text" size="25" value="">
+	    <button type="button" onclick="alert('Uploaded!')">Upload</button>
+	</div>
+	<div id='tab_video_repo_content' class="fancy_tab_content">
+	    Vish repository	    
+	</div>
+	<div id='tab_video_youtube_content' class="fancy_tab_content">
+	    Search in youtube
+	    <input id="youtube_input_text" type="text" size="25" value="" autofocus placeholder="write text to search"/>
+	    <button id="youtube_search_button" type="button" ">Search</button>
+	</div>
+    </div>
+  </div>
+
+<br/>
+<script>
+	
+	VISH.Editor.init({"token":"<%=form_authenticity_token%>", "postPath": "<%=excursions_path(:format => :js)%>" });
+</script>
 
 <%= link_to 'Back', excursions_path %>
