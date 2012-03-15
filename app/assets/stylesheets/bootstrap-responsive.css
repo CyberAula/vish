@@ -573,9 +573,9 @@
     width: 1160px;
   }
   .thumbnails {
-    margin-left: -30px;
+    margin-left: -5px;
   }
   .thumbnails > li {
-    margin-left: 30px;
+    margin-left: 5px;
   }
 }

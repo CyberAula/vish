@@ -79,10 +79,10 @@
 .thumb_logo_big {background-image: url("excursion.png"); display: inline-block;  float: left;  height: 79px; width: 79px; }
 .thumb_logo_medium {background-image: url("doc.png"); display: inline-block;  float: left;  height: 34px; width: 34px; margin-right:10px; }
 .width-top { width: 80px; vertical-align: top;}
-.width-excursion { width: 225px;}
 .vertical-top {vertical-align: top;}
-#excursions{width: 440px;margin-left: 20px;}
-.thumbls {list-style: none;}
+#excursions{margin-left: 5px;}
+
+.elipsis{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap;}
 
 /****************** WALL - ACTIVITIES *********************/
 
