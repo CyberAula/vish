@@ -25,7 +25,7 @@
 #tag_users{ width:100px; font-weight: 100px; top:80px; left:450px; z-index:4;}
 
 .menu ul {list-style-type:none;margin:0 0.5em; }
-.menu ul li {display:inline-block;margin-right:4em;position:relative;}
+.menu ul li {display:inline-block;margin-right:4em;position:relative; vertical-align: middle;}
 .menu ul li#trade_mark,#sponsor ul li#trademark{font-weight:bold;}
 .menu ul li#trade_mark_logo{font-weight:normal;}
 
@@ -62,6 +62,8 @@
 .link_gray a:hover{color: #000;  text-decoration: underline;}
 
 .green{ color:#40CC7F;}
+.gray{ color:#A0A0A0;}
+
 
 /************* SPACES SECTION *************/
 .space_center {	padding-top: 15px;	padding-right: 4px;	text-align: center;}
@@ -76,6 +78,7 @@
 .thumb_logo_medium {background-image: url("doc.png"); display: inline-block;  float: left;  height: 34px; width: 34px; margin-right:10px; }
 .width-top { width: 80px; vertical-align: top;}
 .width-excursion { width: 225px;}
+.vertical-top {vertical-align: top;}
 
 /****************** WALL - ACTIVITIES *********************/
 

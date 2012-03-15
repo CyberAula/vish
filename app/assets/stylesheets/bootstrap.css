@@ -2508,6 +2508,7 @@ input[type="submit"].btn.btn-mini {
 }
 .nav-tabs > li {
   margin-bottom: -1px;
+  font-size: 18px;
 }
 .nav-tabs > li > a {
   padding-top: 9px;
@@ -2521,7 +2522,7 @@ input[type="submit"].btn.btn-mini {
 }
 .nav-tabs > li > a:hover {
   /*border-color: #eeeeee #eeeeee #dddddd; */
-  font-size: 20px;
+  font-size: 18px;
 }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
@@ -2530,7 +2531,7 @@ input[type="submit"].btn.btn-mini {
   border: 1px solid #FF005D;
   border-bottom-color: transparent;
   cursor: default;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: lighter;
 }
 .nav-pills > li > a {
