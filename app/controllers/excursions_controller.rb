@@ -1,2 +1,3 @@
-class ExcursionsController < InheritedResources::Base
+class ExcursionsController < ApplicationController
+  include SocialStream::Controllers::Objects
 end

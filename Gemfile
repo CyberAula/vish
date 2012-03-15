@@ -30,7 +30,9 @@ end
 #gem 'social_stream-documents'
 #gem 'social_stream-linkser'
 
-gem 'vish_editor'
+gem 'vish_editor', :path => '../vish_editor/rails'
+
+gem 'therubyracer'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
