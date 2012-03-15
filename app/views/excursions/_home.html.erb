@@ -6,9 +6,9 @@
       </li>
       <li class="span">
         <div class="caption elipsis">
-          <h4><%= link_to truncate_name(excursion.title, :length => 25), excursion %></h4>
-          <h5>Virtual Meeting</h5>
-          <h5>followers: 10</h5>
+          <h4><%= link_to truncate_name(excursion.title, :length => 20), excursion %></h4>
+          <h5 class="blue_pastel"><%=type_excursion%></h5>
+          <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=num_followers%></span></h5>
           <p><%= image_tag('star.png') %></p>
         </div>
       </li>
