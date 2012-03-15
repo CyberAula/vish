@@ -670,11 +670,11 @@ input[type="reset"],
 input[type="submit"] {
   width: auto;
   height: auto;
-  /*background-color: #FF005D;
+  background-color: #FF005D;
   color:#fff;
   padding: 4px;
   padding-left:10px; padding-right:10px;
-  border: solid 1px #FF005D;*/
+  border: solid 1px #FF005D;
 }
 select,
 input[type="file"] {
