@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 8e49f4ff06bd573554ceeb22003043dfb5370927
+  revision: 7c96d4f66965c5cd48b00a929addc7dd4524e5ba
   branch: vish
   specs:
     social_stream-base (0.17.3)
@@ -77,10 +77,10 @@ GEM
     acts-as-taggable-on (2.2.2)
       rails (~> 3.0)
     addressable (2.2.7)
-    ancestry (1.2.4)
+    ancestry (1.2.5)
       activerecord (>= 2.2.2)
     arel (3.0.2)
-    avatars_for_rails (0.2.4)
+    avatars_for_rails (0.2.5)
       foreigner (>= 0.9.1)
       jquery-rails (>= 1.0.9)
       paperclip (>= 2.3.4)
