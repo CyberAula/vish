@@ -27,6 +27,7 @@ es:
     other: "repositorios"
   site:
     name: "Virtual Science Hub"
+  top10: "Mejores 10"
   user:
     one: "usuario"
     other: "usuarios"

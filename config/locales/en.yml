@@ -27,9 +27,11 @@ en:
     other: "repositories"
   site:
     name: "Virtual Science Hub"
+  top10: "Top 10"
   user:
     one: "user"
     other: "users"
+  username: "username"
   vish:
     sentence1: "Create your account with VISH"
     sentence2: "VISH is a social science platform"

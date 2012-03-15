@@ -1,3 +1,7 @@
+# encoding: utf-8
+
+namespace :license do
+  LICENSE_HEADER = <<-EOS
 # Copyright 2011-2012 Universidad Politécnica de Madrid and Agora Systems S.A.
 #
 # This file is part of ViSH (Virtual Science Hub).
@@ -15,5 +19,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
-class SlidesController < InheritedResources::Base
+  EOS
+  LICENSE_DIRS = %w( app/controllers app/models )
+
+  desc "Add license file in all controllers and models"
+  task :add do
+    LICENSE_DIRS.each do |dir|
+      Dir[File.join(Rails.root, dir, '*')].each do |file|
+        content = File.new(file, 'r').read
+        next if content.include?(LICENSE_HEADER)
+        File.new(file, 'w').write(LICENSE_HEADER + content)
+      end
+    end
+  end
+
+  task :remove do
+    LICENSE_DIRS.each do |dir|
+      Dir[File.join(Rails.root, dir, '*')].each do |file|
+        content = File.new(file, 'r').read
+        File.new(file, 'w').write(content.gsub(LICENSE_HEADER, ""))
+      end
+    end
+  end
 end

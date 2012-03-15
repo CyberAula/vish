@@ -1,5 +1,5 @@
 <% self.class.send :include, HomeHelper  %>
-<section id="left" class="span5">
+<section id="left" class="span6">
 
   <div class="excursions tabbable">
     <ul class="nav nav-tabs">
@@ -80,7 +80,7 @@
 
 </section>
 
-<section name="wall" id="right" class="span6 offset1">
+<section name="wall" id="right" class="span5 offset1">
   <%= render :partial => "activities/index",
              :locals => { :activities => current_subject.wall(:home).page(params[:page]),
                           :owner => current_subject } %>
