@@ -11,6 +11,9 @@ namespace :db do
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
 
+    # User 12 logos
+    ENV['LOGOS_TOTAL'] = 12.to_s
+
     desc "Create populate data for ViSH"
     task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_avatars ]
 
