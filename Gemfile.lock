@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 8e49f4ff06bd573554ceeb22003043dfb5370927
+  revision: 7c96d4f66965c5cd48b00a929addc7dd4524e5ba
   branch: vish
   specs:
     social_stream-base (0.17.3)
@@ -36,6 +36,14 @@ GIT
       linkser (~> 0.0.10)
       social_stream-base (~> 0.17.1)
 
+GIT
+  remote: git://github.com/ging/vish_editor.git
+  revision: a6f725c60288ef167be147c03a4101152082cdc0
+  branch: stable
+  specs:
+    vish_editor (0.0.7)
+      railties (>= 3.1.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -69,10 +77,10 @@ GEM
     acts-as-taggable-on (2.2.2)
       rails (~> 3.0)
     addressable (2.2.7)
-    ancestry (1.2.4)
+    ancestry (1.2.5)
       activerecord (>= 2.2.2)
     arel (3.0.2)
-    avatars_for_rails (0.2.4)
+    avatars_for_rails (0.2.5)
       foreigner (>= 0.9.1)
       jquery-rails (>= 1.0.9)
       paperclip (>= 2.3.4)
@@ -303,8 +311,6 @@ GEM
       multi_json (>= 1.0.2)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    vish_editor (0.0.6)
-      railties (>= 3.1.3)
     warden (1.1.1)
       rack (>= 1.0)
     xpath (0.1.4)
@@ -331,4 +337,4 @@ DEPENDENCIES
   social_stream-linkser!
   sqlite3
   uglifier (>= 1.2.3)
-  vish_editor
+  vish_editor!

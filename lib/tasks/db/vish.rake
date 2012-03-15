@@ -65,16 +65,16 @@ namespace :db do
 	      :body => Forgery::LoremIpsum.words(1+rand(4),:random => true)
             },
 	    { # Element 2
-	      :type => img_right ? 'image' : 'text',
+	      :type => ( img_right ? 'image' : 'text' ),
 	      :areaid => 'right',
-	      :body => img_right ? @sample_images[rand(@sample_images.size)]
-	                         : Forgery::LoremIpsum.paragraph(:random => true)
+	      :body => ( img_right ? @sample_images[rand(@sample_images.size)]
+	                           : Forgery::LoremIpsum.paragraph(:random => true) )
             },
 	    { # Element 3
-	      :type => img_right ? 'text' : 'image',
+	      :type => ( img_right ? 'text' : 'image' ),
 	      :areaid => 'left',
-	      :body => img_right ? Forgery::LoremIpsum.paragraph(:random => true)
-	                         : @sample_images[rand(@sample_images.size)]
+	      :body => ( img_right ? Forgery::LoremIpsum.paragraph(:random => true)
+	                           : @sample_images[rand(@sample_images.size)] )
             }
 	  ]
 	}
