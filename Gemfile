@@ -30,7 +30,11 @@ end
 #gem 'social_stream-documents'
 #gem 'social_stream-linkser'
 
-gem 'vish_editor'
+git 'git://github.com/ging/vish_editor.git', :branch => 'stable' do
+  gem 'vish_editor'
+end
+
+#gem 'vish_editor', :path => '../vish_editor/rails'
 
 # We do not know the reasons for this gem:
 #gem 'therubyracer'
