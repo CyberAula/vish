@@ -837,7 +837,7 @@ textarea[disabled],
 input[readonly],
 select[readonly],
 textarea[readonly] {
-  background-color: #f5f5f5;
+  /*background-color: #FD005C;*/
   border-color: #ddd;
   cursor: not-allowed;
 }

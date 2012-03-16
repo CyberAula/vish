@@ -1,5 +1,5 @@
 <% if user_signed_in? && current_subject.can_comment?(activity) %>
-  <div class="activity_new_comment">
+  <div class="activity_new_comment boxy_gray">
     <div class="actor_logo_new_comment">
       <%= image_tag(current_subject.logo.url(:actor),
                             :alt => current_subject.name)%>
@@ -19,7 +19,7 @@
         <%= f.hidden_field :_activity_parent_id %>
         
         <div class="input_new_comments_container">
-          <%= f.text_area :text, :class =>"input_new_comments", :id => "comment_text_"+dom_id(activity), :rows => 1 %>
+          <%= f.text_area :text, :class =>"input_new_comments input-xlarge ", :id => "comment_text_"+dom_id(activity), :rows => 1 %>
           <div class="copy_new_comment" id="copy_comment_text_<%= dom_id(activity) %>"></div>
         </div>
         
