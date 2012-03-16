@@ -21,7 +21,7 @@ Capybara.default_selector = :css
 #Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 ## Gem magic at work here
-base_spec_path = File.join(Gem::GemPathSearcher.new.find('social_stream-base').full_gem_path, 'spec/')
+base_spec_path = File.join(Gem::Specification.find_by_name('social_stream-base').full_gem_path, 'spec/')
 # ...in social_stream-base/spec/factories.
 Dir[File.join(base_spec_path, 'factories/*.rb')].each {|f| require f}
 # ...in social_stream-base/spec/support.
