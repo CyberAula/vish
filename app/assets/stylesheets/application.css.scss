@@ -46,7 +46,8 @@
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
-
+.boxy_white{background-color: #FFFFFF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  border: 0px solid #FFFFFF; }
 
 /*************** SIZE CLASSES **************/
 .size11{font-size: 11px;}
@@ -120,26 +121,15 @@
 /****************** SUB-ACTIVITY by ACTIVITY ********/
 
 
-.activity_new_comment{  font-size: 11px;  padding-left: 5px;	background: $secondary-color;
-  border: thin solid $separation-color; padding-top: 3px;  padding-bottom: 3px;display:none;}
-.actor_logo_subactivity, .actor_logo_new_comment{	width: 40px;	padding: 5px 3px 5px 2px;	display: inline-block;
-  vertical-align: top;}
-.input_new_comments{	border:1px solid $input-border-color;	width:98%;	padding: 2px; color:$main-color;
-  resize: none; position: absolute; height: 100%; overflow: hidden; font-size:inherit;}
-.subactivity{  font-size: 11px;  padding: 0px 5px 0px 5px;  background: $secondary-color;
-  border: thin solid $separation-color; display:block; }
+.activity_new_comment{  font-size: 11px;  padding-left: 5px; padding-top: 3px;  padding-bottom: 3px;display:none;}
+.input_new_comments{width:98%;	padding: 2px; resize: none;  }
 .space_comments {	padding-top: 1px;	padding-bottom: 1px;}
 #activities_share_btn {	text-align: right;	padding: 5px 16px 0px 10px;	vertical-align: middle;}
 .activities_comment_btn{ text-align: right; padding: 5px 5px 2px 10px; vertical-align: middle;}
 
-.hide_show_comments{font-size: 11px;  padding: 3px 10px;	background: $secondary-color;
-  border: thin solid $separation-color;}
-.new_comment{ width: 465px;}
-.new_comment_shown{ width: 410px;}
+.hide_show_comments{font-size: 11px;  padding: 3px 10px;	background: $secondary-color; border: thin solid $separation-color;}
+.copy_new_comment{visibility: hidden;  padding-bottom: 1.5em; margin-bottom:7px;}
 
-.copy_new_comment{visibility: hidden; padding:6px; padding-bottom: 1.5em;font-size:inherit; line-height: 1.15em;
-  margin-bottom:7px;}
-.input_new_comments_container{min-height: 30px; position: relative;  }
 
 
 .icono-home{ background-image: url('home.png');}
