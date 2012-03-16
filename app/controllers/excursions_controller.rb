@@ -24,7 +24,7 @@ class ExcursionsController < ApplicationController
 
   def hack_auth
     params["excursion"] ||= {}
-    params["excursion"]["_relation_ids"] = Relation::Public.instance.id
+    params["excursion"]["_relation_ids"] = [Relation::Public.instance.id]
     params["excursion"]["owner_id"] = current_subject.actor_id
   end
 end
