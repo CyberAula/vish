@@ -2,9 +2,8 @@
   <div class="attachment_thumb">
     <%#= link_to thumb_for(excursion, 130), excursion, :class => "" %>
   </div>
-
   <div class="attachment_text">
-    <%= t('excursion.msg') %><%= link_to "\""+excursion.title+"\"", excursion, :class => "attachment_text_link" %>
+    <%= t('excursion.msg') %><%= link_to excursion.title, excursion, :class => "attachment_text_link" %>
   </div>
 <% end %>
 

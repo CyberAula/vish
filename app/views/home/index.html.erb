@@ -46,11 +46,7 @@
     </ul>
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
-        <div class="row btn-toolbar">
-          <div class="pull-right">
-            <input type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter">
-          </div>
-        </div>
+        <%= render :partial => "common_documents/filter"%>
         <div id="repository">
           <div class="repositories">
             <% for document in current_actor_documents %>

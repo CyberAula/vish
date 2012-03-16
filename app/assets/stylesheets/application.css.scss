@@ -49,6 +49,7 @@
 
 
 /*************** SIZE CLASSES **************/
+.size11{font-size: 11px;}
 .size12{font-size: 12px;}
 .size16{font-size: 16px;}
 .size18{font-size: 18px;}
@@ -100,22 +101,15 @@
 
 
 /******************* WALL - ACTIVITY ***************/
-.super_activity{width: 95%;}
-.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 15px 0px 10px 0px;
-  display: inline-block;}
-.actor_logo {	width: 60px;	padding: 0px 0px 5px 5px;	display: inline-block;	vertical-align: top;}
-.activity_content {	padding: 0px;	display: inline-block;	width: 79%; word-wrap: break-word; }
-.actor_name {font-size: 13px;}
+.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 10px 0px 8px 0px;}
+
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {font-size: 12px;  display: inline-block;}
 .actor_name-activity_objects, .actor_name_new_comment{ font-size:12px; margin: 5px 0px;}
 .activity_objects{padding-bottom:5px;}
 
-
-
 .security, .post_time_ago, .verb_comment, .verb_like, .verb_delete{ display: inline-block;}
-
 .verb_comment a{color:#FF80B4;}
 
 
