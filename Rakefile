@@ -7,7 +7,7 @@ require File.expand_path('../config/application', __FILE__)
 
 # Include social_stream-base spec
 def bsp(str)
-  base_spec_path = File.join(Gem::GemPathSearcher.new.find('social_stream-base').full_gem_path, 'spec/')
+  base_spec_path = File.join(Gem::Specification.find_by_name('social_stream-base').full_gem_path, 'spec/')
   File.join(base_spec_path, str)
 end
 RSpec::Core::RakeTask.new(:spec) do |s|
