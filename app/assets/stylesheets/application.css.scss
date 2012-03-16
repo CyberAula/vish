@@ -61,7 +61,7 @@
 
 
 /*************** LINKS *********/
-.link_gray a{color: #A0A0A0;text-decoration: none;}
+.link_gray a{color: #919191;text-decoration: none;}
 .link_gray a:hover{color: #000;  text-decoration: underline;}
 
 /***********COLORS ***********/
@@ -108,8 +108,9 @@
 .actor_name-activity_objects, .actor_name_new_comment{margin: 5px 0px;}
 .activity_objects{padding-bottom:5px;}
 
-.security, .post_time_ago, .verb_comment, .verb_like, .verb_delete{ display: inline-block;}
+.security, .post_time_ago, .verb_comment, .verb_like, .verb_delete{ display: inline-block; padding-right: 5px;}
 .verb_comment a{color:#FF80B4;}
+.verb_comment a:hover {color:#FF80B4; text-decoration: underline;}
 
 
 /************* ACTIVITY - FOOTER *********/
