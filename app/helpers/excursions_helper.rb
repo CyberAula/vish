@@ -14,8 +14,8 @@ module ExcursionsHelper
 
   def type_excursion
     # TODO: really take the top 10 excursions
-    value=0
-    value=rand(2)
+    value=1
+
     if (value==1)
       "virtual meeting"
     else
