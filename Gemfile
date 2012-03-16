@@ -20,6 +20,7 @@ end
 gem 'jquery-rails'
 
 # Developing Social Stream
+#path '../social_stream-vish' do
 git 'git://github.com/ging/social_stream.git', :branch => 'vish' do
   gem 'social_stream-base'
   gem 'social_stream-documents'
@@ -62,5 +63,8 @@ end
 
 group :development do
   gem 'forgery'
+
+  # Debug with Ruby 1.9.2
+  # gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
