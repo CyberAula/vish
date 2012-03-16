@@ -17,9 +17,9 @@ module ExcursionsHelper
     value=1
 
     if (value==1)
-      "virtual meeting"
-    else
       "presentation"
+    else
+      "virtual meeting"
     end
   end
 
