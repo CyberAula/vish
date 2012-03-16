@@ -3,18 +3,74 @@
 <section style="position:relative;width:900px;height:750px" class="slides layout-regular template-default" id="slides_panel">
 
 	<div id='menubar'>
-	    <div class='barbutton'>
-		<a id="addslide" href="#thumbcontent">
-		    <img class="image_barbutton" src="/assets/new.png"/>
-		</a>
-	    </div>
-	    <div class='barbutton'>
-		<a id="save">
-		    <img class="image_barbutton" src="/assets/save.png"/>
-		</a>
-	    </div>
-	    
-	</div>
+	        <a id="addslide" href="#thumbcontent">
+			    <div id="addslide_div" class='barbuttonaddsave'>
+			    </div>
+            </a>
+
+		    <div class='barbutton'>
+				<a onclick="javascript:prevSlide()">
+				    <img class="image_barbutton" src="/assets/arrow_left.png"/>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_1" onclick="javascript:goToSlide(0)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">1</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_2" onclick="javascript:goToSlide(1)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">2</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_3" onclick="javascript:goToSlide(2)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">3</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_4" onclick="javascript:goToSlide(3)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">4</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_5" onclick="javascript:goToSlide(4)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">5</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_6" onclick="javascript:goToSlide(5)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">6</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_7" onclick="javascript:goToSlide(6)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">7</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a id="slide_thumb_8" onclick="javascript:goToSlide(7)">
+				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <span class="slide_number">8</span>
+				</a>
+		    </div>
+		    <div class='barbutton'>
+				<a onclick="javascript:nextSlide()">
+				    <img class="image_barbutton" src="/assets/arrow_right.png"/>
+				</a>
+		    </div>		    
+            <a id="save" href="#thumbcontent">
+			    <div id="save_div" class='barbuttonaddsave'>
+			    </div>
+            </a>
+		</div>
     </section>
   
   <div style='display:none'>
