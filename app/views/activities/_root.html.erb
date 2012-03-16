@@ -1,37 +1,31 @@
-<%= div_for activity, :class => 'super_activity' do %>
+<%= div_for activity, :class => 'row' do %>
+  <ul class="thumbnails span5">
+    <li class="span">
+      <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
+                            :alt => activity.sender_subject.name, :widht => 50, :height => 50),
+                  activity.sender_subject, :class=> "container" %>
+    </li>
+    <li class="span4">
+      <div class="caption">
+        <h4><%= activity.title(self)%></h4>
+        <h4><%= render activity.activity_objects %></h4>
+        <div class="row size11">
+          <%= render :partial => 'activities/options',
+                           :locals => { :activity => activity } %>
+          <%= render :partial => 'activities/comments',
+                     :locals => { :activity => activity } %>
+          <%= render :partial => 'comments/new',
+                     :locals => { :activity => activity } %>
+        </div>
 
-  <div class="actor_logo">
-    <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
-                          :alt => activity.sender_subject.name, :widht => 50, :height => 50),
-                 activity.sender_subject %>
-  </div>
-
-  <div class="activity_content">
-  	
-    <div>
-      <%= activity.title(self) %>
-    </div>
-
-    <div class="activity_objects">
-      <%= render activity.activity_objects %>
-    </div>
-
-    <%= render :partial => 'activities/options',
-               :locals => { :activity => activity } %>
-
-    <%= render :partial => 'activities/comments',
-               :locals => { :activity => activity } %>
-
-    <%= render :partial => 'comments/new',
-               :locals => { :activity => activity } %>
-
-  </div>
-
-  <div class="space_activities">
-    <% if activity.activity_objects.count > 1 %>
-      <div class="space_sub"></div>
-    <%else %>
-      <div class="#"></div>
-    <%end%>
-  </div>
+      </div>
+	  <div class="space_activities">
+		<% if activity.activity_objects.count > 1 %>
+		  <div class="space_sub"></div>
+		<%else %>
+		  <div class="#"></div>
+		<%end%>
+	  </div>
+    </li>
+  </ul>
 <% end %>
