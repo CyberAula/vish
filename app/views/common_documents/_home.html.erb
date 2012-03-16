@@ -1,15 +1,13 @@
 <%= div_for document, :class => 'content_size' do %>
-  <div class="attachment_thumb">
-    <%= link_to thumb_for(document, 130), document, :class => "" %>
-  </div>
-
-  <div class="attachment_text">
-    <%= t('document.msg') %><%= link_to "\""+document.title+"\"", document, :class => "attachment_text_link" %>
-  </div>
+  <ul class="thumbnails span3">
+    <li class="span">
+      <%= link_to thumb_for(document, 25), document, :class => "" %>
+    </li>
+    <li class="span2">
+      <div class="caption elipsis">
+        <h4><%= t('document.msg') %><%= link_to document.title, document, :class => "" %></h4>
+        <h5><span class="green"><%=num_followers%></span> <%=t('follow.views')%> </h5>
+      </div>
+    </li>
+  </ul>
 <% end %>
-
-
-
-
-
-

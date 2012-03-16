@@ -8,6 +8,7 @@ en:
   follow:
     followers: "followers"
     followings: "following"
+    views: "views"
   lang:
     title: "language"
     changed: "Changed language to %{lang}"
