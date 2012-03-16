@@ -1,18 +1,23 @@
-<%= div_for activity, :class => "subactivity boxy_white" do %>
-  <div class="actor_logo_subactivity">
-    <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
-                          :alt => activity.sender_subject.name),
-                 activity.sender_subject %>
-  </div>
-  <div class="activity_content">
-    <div class="actor_name-activity_objects">
-      <%= link_to(activity.sender_subject.name, activity.sender_subject) %>
-      <span class="subactivity_objects">
-        <%= render activity.activity_objects %>
-      </span>
-    </div>
-    <%= render :partial => 'activities/options',
-               :locals => { :activity => activity } %>
-  </div>
+<%= div_for activity, :class => "subactivity" do %>
+  <ul class="thumbnails span">
+    <li class="span space_left">
+      <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
+                            :alt => activity.sender_subject.name),
+                  activity.sender_subject %>
+    </li>
+    <li class="span activity_content">
+      <div class="caption elipsis">
+        <h5><%= link_to(activity.sender_subject.name, activity.sender_subject) %> <%= render activity.activity_objects %></h5>
+        <h5>
+          <%= render :partial => 'activities/options',
+                       :locals => { :activity => activity } %>
+        </h5>
+      </div>
+    </li>
+  </ul>
 <% end %>
 <div class="space_comments"></div>
+
+
+
+
