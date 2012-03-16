@@ -15,5 +15,16 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
-class ExcursionsController < InheritedResources::Base
+class ExcursionsController < ApplicationController
+  # Quick hack for bypassing social stream's auth
+  before_filter :hack_auth, :only => [ :new, :create]
+  include SocialStream::Controllers::Objects
+
+  private
+
+  def hack_auth
+    params["excursion"] ||= {}
+    params["excursion"]["_relation_ids"] = Relation::Public.instance
+    params["excursion"]["owner_id"] = current_subject.actor_id
+  end
 end

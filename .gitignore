@@ -27,3 +27,7 @@ config/initializers/exception_notification.rb
 
 # ignore documents folder
 documents
+
+# avatar temporal files
+public/images/tmp
+public/system/tmp

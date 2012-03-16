@@ -1,12 +1,12 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 7c96d4f66965c5cd48b00a929addc7dd4524e5ba
+  revision: c3cdbb0adc7258829527f823758e995869b44713
   branch: vish
   specs:
     social_stream-base (0.17.3)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
-      avatars_for_rails (~> 0.2.2)
+      avatars_for_rails (~> 0.2.5)
       cancan (~> 1.6.4)
       devise (~> 1.5.3)
       foreigner (~> 1.1.1)

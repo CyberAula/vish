@@ -141,7 +141,7 @@
 <br/>
 <script>
 	
-	VISH.Editor.init({"token":"<%=form_authenticity_token%>", "postPath": "<%=excursions_path(:format => :js)%>" });
+	VISH.Editor.init({"token":"<%= form_authenticity_token %>", "postPath": "<%= excursions_path %>" });
 </script>
 
 <%= link_to 'Back', excursions_path %>
