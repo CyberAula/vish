@@ -96,7 +96,8 @@ namespace :db do
    			      :updated_at => updated,
 			      :author_id  => author.id,
 			      :owner_id   => owner.id,
-			      :user_author_id => user_author.id
+			      :user_author_id => user_author.id,
+			      :_relation_ids => [Relation::Public.instance.id]
 	e.save!
       end
 
