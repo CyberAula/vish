@@ -42,6 +42,7 @@ a:focus {
 a:hover,
 a:active {
   outline: 0;
+
 }
 sub,
 sup {
@@ -140,7 +141,7 @@ body {
 }
 a {
   color: #0066FF;
-  text-decoration: none;
+  text-decoration: underline;
 }
 a:hover {
   color: #0066FF;
@@ -378,6 +379,7 @@ h6 {
 }
 h4 {
   font-size: 14px;
+
 }
 h4 small {
   font-size: 12px;
@@ -385,15 +387,18 @@ h4 small {
 h5 {
   font-size: 12px;
 }
+
 h6 {
   font-size: 11px;
   color: #999999;
   text-transform: uppercase;
 }
+
 .page-header {
   padding-bottom: 17px;
   margin: 18px 0;
   border-bottom: 1px solid #eeeeee;
+
 }
 .page-header h1 {
   line-height: 1;
@@ -1889,7 +1894,7 @@ table .span12 {
   font-size: 20px;
   font-weight: bold;
   line-height: 18px;
-  color: #000000;
+  color: #FF005D;
   text-shadow: 0 1px 0 #ffffff;
   opacity: 0.2;
   filter: alpha(opacity=20);

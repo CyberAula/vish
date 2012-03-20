@@ -1,13 +1,12 @@
 <ul class="nav nav-tabs">
-<li class="active">
-  <a href="" data-toggle="tab"><%=t('notification.other') %></a>
-</li>
+  <li class="active">
+    <a href="" data-toggle="tab"><%= t('notification.other') %></a>
+  </li>
 </ul>
 <div class="read_all">
   <%= link_to(t('notification.read_all'), update_all_notifications_path(:page => params[:page]),
-              :confirm => t('sure'),:method => :put, :remote => true) %>
+              :confirm => t('sure'), :method => :put, :remote => true) %>
 </div>
-
 <table class="conversations table table-bordered table-striped">
   <thead>
   <tr>
@@ -15,15 +14,15 @@
   </tr>
   </thead>
   <tbody>
-  <% @notifications.each do |notification|%>
-      <% @notification = notification %>
-      <%= render :partial => 'notification', :object => notification %>
+  <% @notifications.each do |notification| %>
+    <% @notification = notification %>
+    <%= render :partial => 'notification', :object => notification %>
   <% end %>
   </tbody>
 </table>
 
 <div class="pagination">
-<%= paginate @notifications %>
+  <%= paginate @notifications %>
 </div>
 
 
