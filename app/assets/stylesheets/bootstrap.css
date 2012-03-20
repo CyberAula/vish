@@ -141,7 +141,7 @@ body {
 }
 a {
   color: #0066FF;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: #0066FF;
