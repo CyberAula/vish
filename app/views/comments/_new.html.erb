@@ -11,11 +11,11 @@
             <fieldset class="space_top">
               <%= f.hidden_field :owner_id %>
               <%= f.hidden_field :_activity_parent_id %>
-              <div class="input_new_comments_container control-group">
+              <div class="input_new_comments_container">
                 <%= f.text_area :text, :class =>"input_new_comments input-xlarge focused", :id => "comment_text_"+dom_id(activity), :rows=>"1" %>
                 <div class="copy_new_comment" id="copy_comment_text_<%= dom_id(activity) %>"></div>
               </div>
-              <div class="form-actions">
+              <div class="pagination-right">
                 <div class="activities_security"></div>
                 <%= f.submit t('activity.to_comment'), :class =>"myButtonBlue submitActivity", :id => "comment_submit_"+dom_id(activity) %>
               </div>
