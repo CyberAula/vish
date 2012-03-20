@@ -1,0 +1,8 @@
+<% sidebar %>
+<% toolbar :home, :option => :contacts %>
+
+<% if params[:following] %>
+  <%= render @contacts %>
+<% else %>
+  <%= render @contacts.map(&:inverse!) %>
+<% end %>
