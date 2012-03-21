@@ -677,8 +677,7 @@ input[type="submit"] {
   height: auto;
   background-color: #FF005D;
   color:#fff;
-  padding: 4px;
-  padding-left:10px; padding-right:10px;
+  padding: 0px 5px 2px 4px;
   border: solid 1px #FF005D;
 }
 select,
