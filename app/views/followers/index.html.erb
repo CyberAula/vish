@@ -1,8 +1,7 @@
 <% sidebar %>
 <% toolbar :home, :option => :contacts %>
 
-<% if params[:following] %>
-  <%= render @contacts %>
-<% else %>
-  <%= render @contacts.map(&:inverse!) %>
-<% end %>
+<%= link_to t('follower.following.title'), followings_path %>
+<%= link_to t('follower.follower.title'), followers_path %>
+
+<%= render @followers.map{ |f| current_subject.contact_to!(f) } %>
