@@ -49,6 +49,9 @@ end
 # Deploy with Capistrano
 gem 'capistrano'
 
+# Use god for its own purpose
+gem 'god'
+
 # Use exception notification
 gem 'exception_notification'
 
