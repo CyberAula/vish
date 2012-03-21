@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312121231) do
+ActiveRecord::Schema.define(:version => 20120321151346) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20120312121231) do
 
   add_index "activities", ["activity_verb_id"], :name => "index_activities_on_activity_verb_id"
   add_index "activities", ["channel_id"], :name => "index_activities_on_channel_id"
+
+  create_table "activity_actions", :force => true do |t|
+    t.integer  "actor_id"
+    t.integer  "activity_object_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.boolean  "follow",             :default => false
+  end
+
+  add_index "activity_actions", ["activity_object_id"], :name => "index_activity_actions_on_activity_object_id"
+  add_index "activity_actions", ["actor_id"], :name => "index_activity_actions_on_actor_id"
 
   create_table "activity_object_activities", :force => true do |t|
     t.integer  "activity_id"
@@ -47,11 +58,12 @@ ActiveRecord::Schema.define(:version => 20120312121231) do
   create_table "activity_objects", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "object_type", :limit => 45
-    t.integer  "like_count",                :default => 0
+    t.string   "object_type",    :limit => 45
+    t.integer  "like_count",                   :default => 0
     t.integer  "channel_id"
-    t.string   "title",                     :default => ""
+    t.string   "title",                        :default => ""
     t.text     "description"
+    t.integer  "follower_count",               :default => 0
   end
 
   add_index "activity_objects", ["channel_id"], :name => "index_activity_objects_on_channel_id"
@@ -71,7 +83,6 @@ ActiveRecord::Schema.define(:version => 20120312121231) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "activity_object_id"
-    t.integer  "follower_count",     :default => 0
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -201,9 +212,7 @@ ActiveRecord::Schema.define(:version => 20120312121231) do
     t.datetime "updated_at"
     t.string   "url"
     t.string   "callback_url"
-    t.string   "title"
     t.string   "image"
-    t.text     "description"
     t.integer  "width",              :default => 470
     t.integer  "height",             :default => 353
   end
@@ -374,6 +383,9 @@ ActiveRecord::Schema.define(:version => 20120312121231) do
 
   add_foreign_key "activities", "activity_verbs", :name => "index_activities_on_activity_verb_id"
   add_foreign_key "activities", "channels", :name => "index_activities_on_channel_id"
+
+  add_foreign_key "activity_actions", "activity_objects", :name => "index_activity_actions_on_activity_object_id"
+  add_foreign_key "activity_actions", "actors", :name => "index_activity_actions_on_actor_id"
 
   add_foreign_key "activity_object_activities", "activities", :name => "index_activity_object_activities_on_activity_id"
   add_foreign_key "activity_object_activities", "activity_objects", :name => "activity_object_activities_on_activity_object_id"
