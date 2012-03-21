@@ -140,7 +140,7 @@
 .icono-home{ background-image: url('home.png');}
 
 
-
+//**************suggestions css *************/
 
 .suggestions input[type="submit"]  {
   width: auto;
@@ -180,7 +180,6 @@
 
 }
 
-
 .header_text {
   font-size: 18px;
   color:#FF005D;
@@ -191,3 +190,71 @@
   display: inline-block;
 
 }
+
+//**************REPOSITORIES css *************/
+
+
+
+[class^="iconx-"],   [class*=" iconx-"] {
+  display: inline-block;
+  width: 28px;
+  height: 32px;
+  line-height: 28px;
+  vertical-align: text-top;
+  background-image: url("iconrepository.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+  *margin-right: .3em;
+}
+[class^="iconx-"]:last-child,   [class*=" iconx-"]:last-child {
+  *margin-left: 0;
+}
+.iconx-gray {
+  background-image: url("iconrepository-gray.png");
+}
+.iconx-default {
+  background-position: 0  0;
+}
+.iconx-pdf {
+  background-position: -24px 0;
+}
+.iconx-excel {
+  background-position: -24px 0;
+}
+.iconx-audio {
+  background-position: -48px 0;
+}
+.iconx-video {
+  background-position: -48px 0;
+}
+.iconx-photo {
+  background-position: -48px 0;
+}
+.iconx-video-flash {
+  background-position: -48px 0;
+}
+.iconx-quiz {
+  background-position: -48px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

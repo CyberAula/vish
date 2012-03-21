@@ -1,7 +1,12 @@
 <%= div_for document, :class => 'content_size' do %>
   <ul class="thumbnails span3">
     <li class="span">
-      <%= link_to thumb_for(document, 25), document, :class => "" %>
+      <div class="">
+        <%#= link_to thumb_for(document, 25), document, :class => "" %>
+        <%=  link_to(document) do %>
+          <i class="<%=icon_class_for(document)%>"></i>
+        <%end%>
+      </div>
     </li>
     <li class="span2">
       <div class="caption elipsis">
