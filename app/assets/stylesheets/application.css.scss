@@ -197,12 +197,12 @@
 
 [class^="iconx-"],   [class*=" iconx-"] {
   display: inline-block;
-  width: 30px;
+  width: 32px;
   height: 32px;
   line-height: 32px;
   vertical-align: text-top;
   background-image: url("iconrepository.png");
-  background-position: 30px 32px;
+  background-position: 32px 32px;
   background-repeat: no-repeat;
   *margin-right: .3em;
 }
@@ -216,25 +216,32 @@
   background-position: 0  0;
 }
 .iconx-pdf {
-  background-position: 0px 28;
+  background-position: -126px 0;
+}
+.iconx-word {
+  background-position: -168px 0;
+}
+.iconx-ppt {
+  background-position: -210px 0;
 }
 .iconx-excel {
-  background-position: -24px 0;
+  background-position: -252px 0;
 }
 .iconx-audio {
-  background-position: -48px 0;
-}
-.iconx-video {
-  background-position: -48px 0;
+  background-position: -294px 0;
 }
 .iconx-photo {
-  background-position: -48px 0;
+  background-position: 0px -84px;
 }
-.iconx-video-flash {
-  background-position: -48px 0;
+.iconx-video {
+  background-position: 0px -168px;
+}
+
+.iconx-flash {
+  background-position: -168px -168px;
 }
 .iconx-quiz {
-  background-position: -48px 0;
+  background-position: -210px -168px;
 }
 
 
