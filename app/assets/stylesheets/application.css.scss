@@ -41,7 +41,9 @@
 #menu_home{ height: 35px;}
 
 /******************* BASIC CLASSES ******************/
-.inline-block {display:inline-block}
+.inline {display:inline; margin-left: 32px;}
+.inline-block {display:inline-block;}
+.link_gray {display:inline-block;}
 .inline {display: inline}
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
@@ -103,8 +105,10 @@
 
 /******************* WALL - ACTIVITY ***************/
 .activity {	text-align:left;	display: block;	vertical-align: top;	padding: 5px 0px 5px 0px;}
-#main {margin-left: -34px;}
-#right {margin-left: 62px;}
+#main {margin-left: 30px;}
+#right {margin-left: 60px;}
+#left {margin-left: 75px;}
+
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {display: inline-block;}
