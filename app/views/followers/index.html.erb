@@ -2,18 +2,32 @@
 <% toolbar :home, :option => :contacts %>
 <div class="followers tabbable">
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#follower"><%= t('follow.followers') %></a></li>
-    <li class=""><a data-toggle="tab" href="#following"><%= t('follow.followings') %></a></li>
+    <li class="active">
+      <a data-toggle="tab" href="#follower"><%= link_to t('follower.follower.title'), followers_path %></a></li>
+    <li class="">
+      <a data-toggle="tab" href="#following"><%= link_to t('follower.following.title'), followings_path %></a></li>
   </ul>
-  <div class="tab-content">
-    <div id="follower" class="tab-pane active">
-      <%= render :partial => "followers/filter" %>
-      <%= link_to t('follower.follower.title'), followers_path %>
-    </div>
-    <div id="following" class="tab-pane">
-      <%= render :partial => "followers/filter" %>
-      <%= link_to t('follower.following.title'), followings_path %>
-    </div>
-  </div>
+  <%= render :partial => "followers/filter" %>
 </div>
+<div class="users_btn_follow">
 <%= render @followers.map { |f| current_subject.contact_to!(f) } %>
+</div>
+<!--
+  <div class="followers tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#follower"><%= t('follow.followers') %></a></li>
+      <li class=""><a data-toggle="tab" href="#following"><%= t('follow.followings') %></a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="follower" class="tab-pane active">
+        <%= render :partial => "followers/filter" %>
+<%= link_to t('follower.follower.title'), followers_path %>
+      </div>
+      <div id="following" class="tab-pane">
+        <%= render :partial => "followers/filter" %>
+<%= link_to t('follower.following.title'), followings_path %>
+      </div>
+    </div>
+
+     -->
