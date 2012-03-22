@@ -48,11 +48,19 @@ module SocialStream::Views::Toolbar
         subject = options[:subject]
         raise "Need a subject options for profile toolbar" if subject.blank?
 
+        #logo
         items << {
           :key => :logo,
           :html => render(:partial => 'toolbar/logo', :locals => { :subject => subject })
         }
 
+        #Information button
+        items << {
+          :key => :subject_info,
+          :html => link_to(t('menu.information'), [subject, :profile])
+        }
+
+        #Resources brief
         items << {
           :key => :resources,
           :html => render(:partial => 'toolbar/resources', :locals => { :subject => subject })
