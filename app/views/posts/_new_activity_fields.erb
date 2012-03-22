@@ -1,1 +1,2 @@
 <%= f.text_field :text, :id => "input_activities",  :class => "row-fluid-90" %>
+<%= f.hidden_field :_relation_ids, {:multiple => true, :value => Relation::Public.instance.id } %>
