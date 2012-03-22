@@ -8,7 +8,6 @@
  * require social_stream-events
  * require social_stream-linkser
  * require social_stream-presence
- *= require vish_editor
  *= require_tree .
 */
 
@@ -41,7 +40,7 @@
 #menu_home{ height: 35px;}
 
 /******************* BASIC CLASSES ******************/
-.inline {display:inline; margin-left: 32px;}
+.inline {display:inline;}
 .inline-block {display:inline-block;}
 .link_gray {display:inline-block;}
 .inline {display: inline}
@@ -52,8 +51,10 @@
   border: 0px solid #FFFFFF; }
 
 /*************** SIZE CLASSES **************/
+.size10{font-size: 10px;}
 .size11{font-size: 11px;}
 .size12{font-size: 12px;}
+.size12{font-size: 14px;}
 .size16{font-size: 16px;}
 .size18{font-size: 18px;}
 .size50{font-size: 50px;}
@@ -71,6 +72,7 @@
 .gray{ color:#A0A0A0;}
 .blue_pastel{color: #85A3FF;}
 .dark-gray {color: #666666;}
+
 
 
 /************* SPACES SECTION *************/
@@ -106,8 +108,8 @@
 /******************* WALL - ACTIVITY ***************/
 .activity {	text-align:left;	display: block;	vertical-align: top;	padding: 5px 0px 5px 0px;}
 #main {margin-left: 30px;}
-#right {margin-left: 60px;}
-#left {margin-left: 75px;}
+#right {margin-left: 50px;}
+#left {margin-left: 32px;}
 
 
 /***************** ACTIVITY OPTIONS ***/
@@ -179,7 +181,7 @@
    }
 
 .header_text {
-  font-size: 18px;
+  font-size: 16px;
   color:#FF005D;
   margin-bottom: 10px;
 }
