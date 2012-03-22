@@ -27,7 +27,7 @@ config/development.sphinx.conf
 **~
 
 # ignore documents folder
-documents
+/documents
 
 # avatar temporal files
 public/images/tmp
