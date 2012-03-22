@@ -1,6 +1,13 @@
 <% sidebar %>
 <% toolbar :home, :option => :contacts %>
 
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#"><%=t('follow.followers')%></a></li>
+  <li class=""><a data-toggle="tab" href="#"><%=t('follow.followings')%></a></li>
+</ul>
+
+<%= render :partial => "followers/filter"%>
+
 <%= link_to t('follower.following.title'), followings_path %>
 <%= link_to t('follower.follower.title'), followers_path %>
 
