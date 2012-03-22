@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		
+    <title>ViSH Excursion</title>
+	
+    <style>  
+       .slides > article:not(.fill)::before {
+         content: '';
+         display: block;
+         width: 100px;
+         height: 100px;
+         position: absolute;
+         left: 0;
+         bottom: 0;
+       }
+    </style> 
+
+  	  <meta name="viewport" content="width=900,height=740">
+  	  <meta name="apple-mobile-web-app-capable" content="yes">
+
+	  <%=javascript_include_tag "vishEditor" %>
+	  <%= stylesheet_link_tag "editor" %>
+	  <%= stylesheet_link_tag "styles" %>
+	  <%= stylesheet_link_tag "templates/pack1" %>
+	  <%= stylesheet_link_tag "jquery.fancybox-1.3.4" %>
+	  <%= stylesheet_link_tag "jslider" %>
+	  <%= stylesheet_link_tag "jslider.blue" %>
+	  <%= stylesheet_link_tag "nicEditor" %>
+	  <%= stylesheet_link_tag "easymultiple.slider" %>
+	  
+	  
+	<!--[if gte IE 8]>
+		<%= stylesheet_link_tag "pack1explorer9" %>
+	<![endif]-->
+	
+  </head>
+ 
+   <body onload="start()" style="display: none" class="loaded">
+ 	 <%= yield %>
+   </body>
+   
+</html>

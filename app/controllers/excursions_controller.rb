@@ -20,6 +20,20 @@ class ExcursionsController < ApplicationController
   before_filter :hack_auth, :only => [ :new, :create]
   include SocialStream::Controllers::Objects
 
+  def new
+    new! do |format|
+      format.full { render :layout => 'iframe' }
+    end
+  end
+
+
+  def show
+    show! do |format|
+      format.full { render :layout => 'iframe' }
+    end
+  end
+
+
   private
 
   def hack_auth

@@ -1,10 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<section style="position:relative;width:900px;height:700px" class="slides layout-regular template-default">
-</section>
+<iframe src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="750"></iframe>
 
-<script>
-VISH.SlideManager.init(<%= raw @excursion.json %>);
-</script>
 <%= link_to 'Edit', edit_excursion_path(@excursion) %> |
 <%= link_to 'Back', excursions_path %>

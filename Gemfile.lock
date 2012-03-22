@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 24338b527d9e44534386e093476f02b2bb06ed9d
+  revision: 0194a6154a210e6ab0d6b707aa6255b3a5f713d0
   branch: stable
   specs:
     vish_editor (0.0.7)
@@ -169,7 +169,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mailboxer (0.6.4)
+    mailboxer (0.6.5)
       carrierwave (>= 0.5.8)
       foreigner (>= 0.9.1)
       rails (> 3.0.0)
