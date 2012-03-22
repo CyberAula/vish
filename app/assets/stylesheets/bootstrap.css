@@ -58,10 +58,12 @@ sub {
   bottom: -0.25em;
 }
 img {
+  border-radius: 10px;
   max-width: 100%;
   /*height: auto;*/
   border: 0;
   -ms-interpolation-mode: bicubic;
+
 }
 button,
 input,
@@ -2535,7 +2537,6 @@ input[type="submit"].btn.btn-mini {
   border: 1px solid #FF005D;
   border-bottom-color: transparent;
   cursor: default;
-  font-size: 20px;
   font-weight: lighter;
 }
 .nav-pills > li > a {
