@@ -12,11 +12,17 @@
   <div class="tab-content">
     <div id="following" class="tab-pane active offset1">
       <%= render :partial => "followers/filter" %>
-      <%= render @followers.map { |f| current_subject.contact_to!(f) } %>
+      <%= render @followings.
+                   page(params[:page]).
+                   per(20).
+                   map { |f| current_subject.contact_to!(f) } %>
     </div>
     <div id="follower" class="tab-pane offset1 ">
       <%= render :partial => "followers/filter" %>
-      <%= render @followers.map { |f| current_subject.contact_to!(f) } %>
+      <%= render @followers.
+                   page(params[:page]).
+                   per(20).
+                   map { |f| current_subject.contact_to!(f) } %>
     </div>
   </div>
 </div>

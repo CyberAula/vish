@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 789c0a79486dfde1151b94a78c10ad9e49577c70
+  revision: 99388af7434555aa32f74651ee7950c7eb74bbe2
   branch: vish
   specs:
     social_stream-base (0.18.0)
@@ -15,7 +15,7 @@ GIT
       inherited_resources (~> 1.3.0)
       jquery-rails (>= 1.0.9)
       kaminari (~> 0.13.0)
-      mailboxer (~> 0.6.0)
+      mailboxer (~> 0.6.5)
       modernizr-rails (~> 2.0.6)
       omniauth (~> 1.0.2)
       omniauth-facebook (~> 1.2.0)
