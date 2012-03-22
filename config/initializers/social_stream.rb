@@ -37,3 +37,29 @@ SocialStream.setup do |config|
   # Cleditor controls. It is used in new message editor, for example
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"
 end
+
+module SocialStream::Views::Toolbar
+  def toolbar_items type, options = {}
+    case type
+    when :home
+      []
+    when :profile
+      SocialStream::Views::List.new.tap do |items|
+        subject = options[:subject]
+        raise "Need a subject options for profile toolbar" if subject.blank?
+
+        items << {
+          :key => :logo,
+          :html => render(:partial => 'toolbar/logo', :locals => { :subject => subject })
+        }
+
+        items << {
+          :key => :resources,
+          :html => render(:partial => 'toolbar/resources', :locals => { :subject => subject })
+        }
+      end
+    when :messages
+      super
+    end
+  end
+end

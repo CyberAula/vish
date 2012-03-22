@@ -50,7 +50,8 @@
           <div class="repositories">
             <% for document in current_actor_documents %>
               <%= render :partial => "common_documents/home",
-                         :locals => { :document => document} %>
+                         :locals => { :document => document, 
+                                      :div_class => 'content_size' } %>
             <% end %>
           </div>
         </div>

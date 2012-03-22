@@ -3,6 +3,10 @@ module HomeHelper
     Excursion.authored_by(current_subject).order('updated_at DESC').first(limit)
   end
   def current_actor_documents(limit=4)
-    Document.authored_by(current_subject).order('updated_at DESC').first(limit)
+    actor_documents
+  end
+
+  def actor_documents(actor = current_subject, limit = 4)
+    Document.authored_by(actor).order('updated_at DESC').first(limit)
   end
 end
