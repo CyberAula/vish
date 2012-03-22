@@ -1,5 +1,31 @@
+<div class="search tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#"><%= t('search') %></a></li>
+    <li class=""><a data-toggle="tab" href="#"><%= t('all') %></a></li>
+    <li class=""><a data-toggle="tab" href="#"><%= t('iexcursions') %></a></li>
+    <li class=""><a data-toggle="tab" href="#"><%= t('organization.one') %></a></li>
+    <li class=""><a data-toggle="tab" href="#"><%= t('user.one') %></a></li>
+    <li class=""><a data-toggle="tab" href="#"><%= t('resources') %></a></li>
+    <li class=""><a data-toggle="tab" href="#"><%= t('tags') %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="search" class="tab-pane active">
+    </div>
+    <div id="all" class="tab-pane">
+    </div>
+    <div id="iexcursions" class="tab-pane">
+    </div>
+    <div id="users" class="tab-pane">
+    </div>
+    <div id="resources" class="tab-pane">
+    </div>
+    <div id="tags" class="tab-pane">
+    </div>
+  </div>
+</div>
+
 <% content_for :title do %>
-<%#= t('search.name')%> <%= params[:search_query].present? ? ": #{params[:search_query]}" : ""%>
+<%#= t('search.name')%> <%= params[:search_query].present? ? ": #{params[:search_query]}" : "" %>
 <% end %>
 
 <% sidebar %>

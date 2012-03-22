@@ -1,14 +1,19 @@
 <% sidebar %>
 <% toolbar :home, :option => :contacts %>
-
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#"><%=t('follow.followers')%></a></li>
-  <li class=""><a data-toggle="tab" href="#"><%=t('follow.followings')%></a></li>
-</ul>
-
-<%= render :partial => "followers/filter"%>
-
-<%= link_to t('follower.following.title'), followings_path %>
-<%= link_to t('follower.follower.title'), followers_path %>
-
-<%= render @followers.map{ |f| current_subject.contact_to!(f) } %>
+<div class="followers tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#follower"><%= t('follow.followers') %></a></li>
+    <li class=""><a data-toggle="tab" href="#following"><%= t('follow.followings') %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="follower" class="tab-pane active">
+      <%= render :partial => "followers/filter" %>
+      <%= link_to t('follower.follower.title'), followers_path %>
+    </div>
+    <div id="following" class="tab-pane">
+      <%= render :partial => "followers/filter" %>
+      <%= link_to t('follower.following.title'), followings_path %>
+    </div>
+  </div>
+</div>
+<%= render @followers.map { |f| current_subject.contact_to!(f) } %>
