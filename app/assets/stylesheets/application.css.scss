@@ -13,6 +13,19 @@
 
 @import "colors";
 
+@font-face{
+  font-family:'DsignesBold';
+  src: url(fonts/DsignesBold.otf);
+}
+@font-face{
+  font-family:'DsignesLight';
+  src: url(fonts/DsignesLight.otf);
+}
+@font-face{
+  font-family:'DsignesRegular';
+  src: url(fonts/DsignesRegular.otf);
+}
+
 /************* FRONTPAGE *******/
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 15px; letter-spacing: 3pt; }
