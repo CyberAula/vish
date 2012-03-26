@@ -15,7 +15,7 @@
 
 /************* FRONTPAGE *******/
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
-
+.name{padding-left:10px; padding-bottom: 18px; padding-top: 15px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
 #tags{width:100%; margin: 0px auto;	position: relative; height:150px;}
 #tag_repositories, #tag_excursion, #tag_organizations, #tag_users{position:relative;}
@@ -32,10 +32,9 @@
 
 #top{height:110px;}
 #top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;}
-.white{ background-color:#fff;}
+.white{ background-color:#fff;padding-top: 10px; padding-bottom: 5px;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
-
 /******************* HEADER *******************/
 #menu_home{ height: 35px;}
 
@@ -57,10 +56,10 @@
 .size12{font-size: 14px;}
 .size16{font-size: 16px;}
 .size18{font-size: 18px;}
-.size50{font-size: 50px;}
+.size30{font-size: 30px;}
+.size45{font-size: 45px;}
 .size60{font-size: 60px;}
 .size80{font-size: 80px;}
-.size90{font-size: 90px;}
 
 
 /*************** LINKS *********/
