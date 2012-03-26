@@ -3,7 +3,7 @@
   <div class="excursions tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.other')%></a></li>
-      <li class=""><a data-toggle="tab" href="#ex-2"><%=t('excursion.upcomming')%></a></li>
+      <!--<li class=""><a data-toggle="tab" href="#ex-2"><%#=t('excursion.upcomming')%></a></li> -->
       <li class=""><a data-toggle="tab" href="#ex-3"><%=t('more')%></a></li>
     </ul>
     <div class="tab-content">
@@ -16,15 +16,17 @@
           <% end %>
         </div>
       </div>
+      <!--
       <div id="ex-2" class="tab-pane">
-        <%= render :partial => "excursions/filter"%>
+        <%#= render :partial => "excursions/filter"%>
         <div id="upcomming" >
-          <% for excursion in current_actor_excursions %>
-            <%= render :partial => "excursions/home",
+          <%# for excursion in current_actor_excursions %>
+            <%#= render :partial => "excursions/home",
                        :locals => { :excursion => excursion} %>
-          <% end %>
+          <%# end %>
         </div>
       </div>
+      -->
       <div id="ex-3" class="tab-pane">
         <%= render :partial => "excursions/filter"%>
         <div id="more" >
