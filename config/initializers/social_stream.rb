@@ -70,4 +70,6 @@ module SocialStream::Views::Toolbar
       super
     end
   end
+
+
 end
