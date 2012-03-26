@@ -24,7 +24,7 @@
 #tag_organizations{float: right; font-weight: thin; top:30px; z-index:3;}
 #tag_users{ width:100px; font-weight: 100px; top:80px; left:450px; z-index:4;}
 
-.menu ul {list-style-type:none;margin:0 0.5em; }
+.menu ul {list-style-type:none;margin-left:4em; }
 .menu ul li {display:inline-block;margin-right:4em;position:relative; vertical-align: middle;}
 .menu ul li#trade_mark,#sponsor ul li#trademark{font-weight:bold;}
 .menu ul li#trade_mark_logo{font-weight:normal;}
@@ -127,6 +127,7 @@
 .space_activities {	text-align:center;	padding: 0px 0px 0px 1px;	width:100%;}
 .space_sub{	display: inline;	padding: 1px 200px 1px 200px;	border-bottom: thin solid;
   font-size: 2px;	text-align:center;}
+.final {margin-left: 4em;}
 
 
 /****************** SUB-ACTIVITY by ACTIVITY ********/
