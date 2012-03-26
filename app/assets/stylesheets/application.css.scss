@@ -30,7 +30,7 @@
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 15px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
-#tags{width:100%; margin: 0px auto;	position: relative; height:150px;}
+#tags{font-family: DsignesLight; width:100%; margin: 0px auto;	position: relative; height:150px;}
 #tag_repositories, #tag_excursion, #tag_organizations, #tag_users{position:relative;}
 #tag_repositories{float: right; z-index:1; right:100px; top:-20px; font-weight: thin; }
 #tag_excursion{width:400px;  left:10px;  top:10px; z-index:2;  }
