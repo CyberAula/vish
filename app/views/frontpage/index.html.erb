@@ -4,17 +4,17 @@
 <section name="main">
   <div class="row span12">
     <div id="logo-frontpage"></div>
-    <div class="pagination-centered name size30"><%=t('site.name')%></div>
+    <div class="pagination-centered name size40" id="tags"><%=t('site.name')%></div>
     <div class="pagination-centered">
         <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "input-xxlarge" } %>
     </div>
   </div>
   <div class="row span12 space_double_center"></div>
-  <div  id="tags" class="row span12">
-    <div id="tag_repositories"class="size60"><%=t('repository.other')%></div>
-    <div id="tag_excursion" class="size80"><%=t('excursion.other')%></div>
-    <div id="tag_organizations"class="size45"><%=t('organization.other')%></div>
-    <div id="tag_users" class="size30"><%=t('user.other')%></div>
+  <div class="row span12">
+    <div id="repositories"class="size60 link_gray span5 offset9"><a href="#"><%=t('repository.other')%></a></div>
+    <div id="excursion" class="size80 link_gray span6"><a href="#"><%=t('excursion.other')%></a></div>
+    <div id="organizations"class="size40 link_gray span4 offset10"><a href="#"><%=t('organization.other')%></a></div>
+    <div id="users" class="size30 link_gray span2 offset6"><a href="#"><%=t('user.other')%></a></div>
   </div>
   <div class="row space_double_center"></div>
 </section>
