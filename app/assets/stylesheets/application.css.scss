@@ -87,6 +87,8 @@
 
 
 
+
+
 /************* SPACES SECTION *************/
 .space_center {	padding-top: 15px;	padding-right: 4px;	text-align: center;}
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
@@ -258,11 +260,85 @@
   background-position: -210px -210px;
 }
 
+.title_sentences {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.input-xlarge {
+  height: 18px
+}
+.devise_title{
+  text-align:right;
+  font-size: 45px;
+  line-height: 115%;
+  font-family:'DsignesLight';
+  src: url(fonts/DsignesLight.otf);
+}
 
 
 
 
+//**************info devise *************/
 
+.form-horizontal2 input,
+.form-horizontal2 textarea,
+.form-horizontal2 select,
+.form-horizontal2 .help-inline,
+.form-horizontal2 .uneditable-input,
+.form-horizontal2 .input-prepend,
+.form-horizontal2 .input-append {
+  display: inline-block;
+  margin-bottom: 0;
+}
+.form-search .hide,
+.form-inline .hide,
+.form-horizontal2 .hide {
+  display: none;
+}
+
+.form-horizontal2 .control-group {
+  margin-bottom:none;
+  *zoom: 1;
+}
+.form-horizontal2 .control-group:before,
+.form-horizontal2 .control-group:after {
+  display: table;
+  content: "";
+}
+.form-horizontal2 .control-group:after {
+  clear: none;
+}
+.form-horizontal2 .control-label {
+  float: left;
+  width: 140px;
+  padding-top: 5px;
+  text-align: right;
+}
+.form-horizontal2 .controls {
+  margin-left: 160px;
+/* Super jank IE7 fix to ensure the inputs in .input-append and input-prepend don't inherit the margin of the parent, in this case .controls */
+
+  *display: inline-block;
+  *margin-left: 0;
+  *padding-left: 20px;
+}
+.form-horizontal2 .help-block {
+  margin-top: 9px;
+  margin-bottom: 0;
+}
+.form-horizontal2 .form-actions {
+  padding-left: 160px;
+}
+.btn_devise{
+float:right;
+margin-right: 20px}
+
+#devise_links{
+  text-align:right;
+  padding-left: 57px
+}
 
 
 

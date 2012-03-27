@@ -1,16 +1,18 @@
-<div class="container ">
-  <div class="row span4 offset1">
-    <h1><span class="dark-gray"><%= t('sign_up').capitalize %></span></h1>
+<div class="container " xmlns="http://www.w3.org/1999/html">
+  <div class="row span4">
+    <p class="devise_title"><span class="dark-gray"><%= t('sign_up').capitalize %></span></p>
   </div>
-  <div class="row space_double_center"></div>
   <div class="row span6 offset4">
-     <p class="size18"><%=t('vish.sentence1')%></p>
-     <p class="size18"><%=t('vish.sentence2')%></p>
+    <div class="title_sentences">
+      <%= t('vish.sentence1') %>
+      <p class="size18"><%= t('vish.sentence2') %></p>
+    </div>
   </div>
 
   <div class="row span6 offset4 boxy_gray">
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class=>"form-horizontal"}) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal2"}) do |f| %>
       <fieldset>
+        <div class="row space_center"></div>
         <div class="control-group">
           <%= devise_error_messages! %>
         </div>
@@ -37,26 +39,31 @@
         </div>
         <div class="control-group">
           <label class="control-label" for="password_confirmation"><%= f.label :password_confirmation %></label>
+
           <div class="controls">
             <%= f.password_field :password, :class => "input-xlarge", :id => "password_confirmation" %>
           </div>
         </div>
+
         <div class="row">
           <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
             <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
           <% end -%>
         </div>
-
-        <div class="form-actions pagination-right space_right">
+        <div class="btn_devise">
+          <div class="form-actions pagination-right space_right">
             <%= f.submit t('action.accept').capitalize %>
+          </div>
         </div>
+      </div>
       </fieldset>
+    <% end %>
 
-  <% end %>
-  </div>
-  <div class="row span4 offset6 link_gray" id="devise_links">
-    <%= render :partial => "devise/shared/links" %>
-  </div>
-</div>
-<div class="row space_double_center"></div>
-<div class="row space_double_center"></div>
+
+    <div class="row span4 offset5 link_gray" id="devise_links">
+      <div class="row space_center"></div>
+     <%= render :partial => "devise/shared/links" %>
+    </div>
+
+    <div class="row space_double_center"></div>
+    <div class="row space_double_center"></div>
