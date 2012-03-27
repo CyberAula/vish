@@ -1,14 +1,15 @@
 <div class="container ">
-  <div class="row span4 offset1">
-    <h1><span class="dark-gray"><%= t('sign_in') %></span></h1>
+  <div class="row span4">
+    <p class="devise_title"><span class="dark-gray"><%= t('sign_in') %></span></p>
   </div>
-  <div class="row space_double_center"></div>
   <div class="row span6 offset4">
-    <p class="size18"><%= t('devise.passwords.instructions') %></p>
+    <div class="title_sentences">
+      <%= t('devise.passwords.instructions') %></p>
+      </div>
   </div>
 
   <div class="row span6 offset4 boxy_gray">
-    <%= form_for(resource, :as => resource_name, :url => user_session_path,  :html => { :method => :post, :class=>"form-horizontal" }) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => user_session_path,  :html => { :method => :post, :class=>"form-horizontal2" }) do |f| %>
       <fieldset>
         <div class="control-group">
           <%= devise_error_messages! %>
@@ -33,16 +34,20 @@
           </div>
         </div>
         <% end -%>
-
+        <div class="btn_devise">
         <div class="form-actions pagination-right space_right">
           <%= f.submit t('action.send'), :class =>"button" %>
         </div>
+          </div>
       </fieldset>
     <% end %>
   </div>
-  <div class="row span5 offset5 link_gray" id="devise_links">
+  <div class="row span4 offset5 link_gray" id="devise_links">
+    <div class="row space_center"></div>
     <%= render :partial => "devise/shared/links" %>
   </div>
 </div>
+<div class="row space_double_center"></div>
+<div class="row space_double_center"></div>
 <div class="row space_double_center"></div>
 <div class="row space_double_center"></div>
