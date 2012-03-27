@@ -2378,7 +2378,10 @@ input[type="submit"].btn.btn-mini {
   filter: alpha(opacity=75);
 }
 .alert {
-  padding: 8px 35px 8px 14px;
+  font-size: 15pt;
+  font-family:'DsignesLight';
+  src: url(fonts/DsignesLight.otf);
+  /*padding: 8px 35px 8px 14px;*/
   margin-bottom: 18px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   /*background-color: #fcf8e3;
@@ -2400,18 +2403,18 @@ input[type="submit"].btn.btn-mini {
 .alert-success {
   /*background-color: #dff0d8;
 border-color: #d6e9c6; */
- color: #468847;
+ color: #56ad58;
 }
 .alert-danger,
 .alert-error {
   /*background-color: #f2dede;
 border-color: #eed3d7;  */
- color: #b94a48;
+ color: #cc514f;
 }
 .alert-info {
   /*background-color: #d9edf7;
 border-color: #bce8f1;  */
- color: #3a87ad; */
+ color: #48a3d1; */
 }
 .alert-block {
  padding-top: 14px;
