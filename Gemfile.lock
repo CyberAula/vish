@@ -38,7 +38,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 5c22b1d78cbcbf7fbe936778f8a975eed885038b
+  revision: ee4ee2c1a397cb6b472b19392ea36d876b2245d4
   branch: stable
   specs:
     vish_editor (0.0.7)
