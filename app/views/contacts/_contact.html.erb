@@ -10,17 +10,17 @@
         <h4><%= link_to(truncate_name(contact.receiver_subject.name), contact.receiver_subject, :class => "contact_link") %></h4>
       </div>
       <a class="close_suggestion"> <%= link_to '×', contact, :method => :delete, :remote => true %></a>
-      <div class="size12 blue-2">user</div>
-      <h5><%= contact_brief(contact.receiver_subject) %></h5>
-      <h5><%= contact_brief(contact.receiver_subject) %></h5>
-      <div class="send_messag size10 red-2">send new message</div>
+      <div class="size12 blue-2 upfoll">user</div>
+      <div class="follwrs-ing">
+        <div class="follwrs upfoll">followers: <%= link_to 12, "#" %></div>
+        <div class="folling upfoll">followings: <%= link_to 15, "#" %></div>
+      </div>
+      <div class="send_messag size10 red-2 upfoll">send new message</div>
       </div>
     </li>
   </ul>
   <div class="space_center">
   </div>
 <% end %>
-
-
 
 
