@@ -79,11 +79,14 @@
 .link_gray a:hover{color: #000;  text-decoration: underline;}
 
 /***********COLORS ***********/
+.background{color: #F9F9F9;}
 .green{ color:#40CC7F;}
 .gray{ color:#A0A0A0;}
-.blue_pastel{color: #85A3FF;}
 .dark-gray {color: #666666;}
-
+.blue-1{color: #3366FF;}
+.blue-2{color: #3366FF; opacity: 0.6;}
+.red-1{color: #FF005D;}
+.red-2{color: #FF005D; opacity: 0.6;}
 
 
 
@@ -202,6 +205,7 @@
 .title_suggestion{
   width: 120px;
   display: inline-block;
+  letter-spacing: 0.5pt;
 }
 
 
@@ -273,9 +277,6 @@
   font-family:'DsignesLight';
   src: url(fonts/DsignesLight.otf);
 }
-
-
-
 
 
 /*************** MESSAGES ICONS **********/
