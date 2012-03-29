@@ -1,20 +1,21 @@
 <%= div_for(conversation, :class => read_class) do %>
 <div class="notification">
 </div>
-<div class="sender_photo">
+    <div class="content_left inline span2">
+      <div class="sender_photo inline">
 	<%= link_to image_tag(conversation.last_sender.logo.url(:actor),
 	:title => conversation.last_sender.name, :alt => conversation.last_sender.name),
 	conversation.last_sender.subject %>
 </div>
-<div class="content_left">
-	<div class="sender_name">
+
+	<div class="sender_name inline-block">
 		<%= link_to truncate_name(conversation.last_sender.name), conversation.last_sender.subject %>
 	</div>
-	<div class="date">
+	<div class="date inline-block">
 		<%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
 	</div>
 </div>
-<div class="content_right">
+<div class="content_right span6">
 	<div class="subject">
 		<%= link_to(truncate(conversation.subject, :length => 55), conversation_path(conversation.id,:box => @box,:page => params[:page])) %>
 	</div>
