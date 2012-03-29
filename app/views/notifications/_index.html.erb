@@ -3,14 +3,14 @@
     <a href="" data-toggle="tab"><%= t('notification.other') %></a>
   </li>
 </ul>
-<div class="read_all">
+<div class="read_all offset5">
   <%= link_to(t('notification.read_all'), update_all_notifications_path(:page => params[:page]),
               :confirm => t('sure'), :method => :put, :remote => true) %>
 </div>
 <table class="conversations table table-bordered table-striped">
   <thead>
   <tr>
-    <th></th>
+    <div class="size14 red-1 day_notify">Today</div>
   </tr>
   </thead>
   <tbody>
