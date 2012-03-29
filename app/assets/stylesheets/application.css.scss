@@ -171,7 +171,11 @@
 .upfoll{maring-bottom: -3px;}
 #following{margin-left: 40px;}
 
+//**************CONVERSATIONS *************/
 
+.messages{ margin-left: 15px; }
+.message{ background-color: #F2DEDE; margin-top: 15px; border-radius: 10px; width: 675px;}
+.sender_photo {width: auto;}
 //**************suggestions css *************/
 
 .users_btn_follow input[type="submit"]  {
