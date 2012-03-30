@@ -366,18 +366,310 @@ margin-right: 20px}
   padding-left: 57px
 }
 
+/*..................icon navigation 22x22....................... */
+
+li{
+  list-style-type:none}
+
+[class^="iconnav-"], [class*=" iconnav-"] {
+  background-image: url("icon_nav.png");
+  background-position:22px 22px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:22px;
+  width:22px;
+  line-height:22px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+}
+[class^="iconnav-"]:last-child, [class*="iconnav-"]:last-child {
+}
+.iconnav-white {
+  background-image: url("icon_nav.png");
+}
+/* normal*/
+.iconnav-home { background-position:0 0;}
+.iconnav-message {background-position:-32px 0;}
+.iconnav-followers {background-position:-64px 0;}
+.iconnav-notification {background-position:-96px 0;}
+.iconnav-tools {background-position:-128px 0;}
+/* alarm*/
+.iconnav-notification_message {background-position:-32px -26px;}
+.iconnav-notification_followers {background-position:-64px -26px;}
+.iconnav-notification_notification {background-position:-96px -26px;}
+/* hover*/
+.iconnav-message:hover {background-position:-32px -52px;}
+.iconnav-followers:hover {background-position:-64px -52px;}
+.iconnav-notification:hover {background-position:-96px -52px;}
+.iconnav-tools:hover {background-position:-128px -52px;}
+
+/*..................icon file 16x16....................... */
+
+li{
+  list-style-type:none}
+
+[class^="iconfile16-"], [class*=" iconfile16-"] {
+  background-image: url("iconfile16.png");
+  background-position:32px 32px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:16px;
+  width:16px;
+  line-height:16px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+}
+[class^="iconfile16-"]:last-child, [class*="iconfile16-"]:last-child {
+}
+.iconfile16-white {
+  background-image: url("iconfile16.png");}
+
+.iconfile16-file16_file { background-position: 0 0;}
+.iconfile16-file16_add { background-position: -26px 0;}
+.iconfile16-file16_remove { background-position: -52px 0;}
+.iconfile16-file16_delete { background-position: -78px 0;}
+.iconfile16-file16_ok { background-position: -104px 0;}
+.iconfile16-file16_upload { background-position: -130px 0;}
+.iconfile16-file16_donwload { background-position: -156px 0;}
+.iconfile16-file16_send { background-position: -182px 0;}
+.iconfile16-file16_edit { background-position: -208px 0;}
 
 
+/*hover*/
 
 
+.iconfile16-file16_file:hover { background-position: 0 -26px;}
+.iconfile16-file16_add:hover { background-position: -26px -26px;}
+.iconfile16-file16_remove:hover { background-position: -52px -26px;}
+.iconfile16-file16_delete:hover { background-position: -78px -26px;}
+.iconfile16-file16_ok:hover { background-position: -104px -26px;}
+.iconfile16-file16_ upload:hover { background-position: -130px -26px;}
+.iconfile16-file16_donwload:hover { background-position: -156px -26px;}
+.iconfile16-file16_send:hover { background-position: -182px -26px;}
+.iconfile16-file16_edit:hover { background-position: -208px -26px;}
+
+/*..................icon file 32x32....................... */
+
+li{
+  list-style-type:none}
+
+[class^="iconfile32-"], [class*=" iconfile32-"] {
+  background-image: url("iconfile32.png");
+  background-position:32px 32px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:32px;
+  width:32px;
+  line-height:32px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+}
+[class^="iconfile32-"]:last-child, [class*="iconfile32-"]:last-child {
+}
+.iconfile32-white {
+  background-image: url("iconfile32.png");}
 
 
+.iconfile32-file32_file { background-position: 0 0;}
+.iconfile32-file32_add { background-position: -42px 0;}
+.iconfile32-file32_remove { background-position: -84px 0;}
+.iconfile32-file32_delete { background-position: -126px 0;}
+.iconfile32-file32_ok { background-position: -168px 0;}
+.iconfile32-file32_upload { background-position: -210px 0;}
+.iconfile32-file32_donwload { background-position: -252px 0;}
+.iconfile32-file32_send { background-position: -294px 0;}
+.iconfile32-file32_edit { background-position: -336px 0;}
 
 
+/*hover*/
 
 
+.iconfile32-32_file:hover { background-position: 0 -42px;}
+.iconfile32-file32_add:hover { background-position: -42px -42px;}
+.iconfile32-file32_remove:hover { background-position: -84px -42px;}
+.iconfile32-file32_delete:hover { background-position: -126px -42px;}
+.iconfile32-file32_ok:hover { background-position: -168px -42px;}
+.iconfile32-file32_upload:hover { background-position: -210px -42px;}
+.iconfile32-file32_donwload:hover { background-position: -252px -42px;}
+.iconfile32-file32_send:hover { background-position: -294px -42px;}
+.iconfile32-file32_edit:hover { background-position: -336px -42px;}
 
 
+/*..................icon file 80x80....................... */
+
+li{
+  list-style-type:none}
+
+[class^="iconfile80-"], [class*=" iconfile80-"] {
+  background-image: url("iconfile80.png");
+  background-position:80px 80px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:80px;
+  width:80px;
+  line-height:80px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+}
+[class^="iconfile80-"]:last-child, [class*="iconfile80-"]:last-child {
+}
+.iconfile80-white {
+  background-image: url("iconfile80.png");}
 
 
+.iconfile80-file80_file { background-position: 0 0;}
+.iconfile80-file80_add { background-position: -90px 0;}
+.iconfile80-file80_remove { background-position: -180px 0;}
+.iconfile80-file80_delete { background-position: -227px 0;}
+.iconfile80-file80_ok { background-position: -360px 0;}
+.iconfile80-file80_upload { background-position: -450px 0;}
+.iconfile80-file80_donwload { background-position: -540px 0;}
+.iconfile80-file80_send { background-position: -630px 0;}
+.iconfile80-file80_edit { background-position: -720px 0;}
 
+
+/*hover*/
+
+
+.iconfile80-file80_file:hover { background-position: 0 -90px;}
+.iconfile80-file80_add:hover { background-position: -90px -90px;}
+.iconfile80-file80_remove:hover { background-position: -180px -90px;}
+.iconfile80-file80_delete:hover { background-position: -227px -90px;}
+.iconfile80-file80_ok:hover { background-position: -360px -90px;}
+.iconfile80-file80_upload:hover { background-position: -450px -90px;}
+.iconfile80-file80_donwload:hover { background-position: -540px -90px;}
+.iconfile80-file80_send:hover { background-position: -630px -90px;}
+.iconfile80-file80_edit:hover { background-position: -720px -90px;}
+
+/*.................. icon repository 32 x 32 px......................*/
+
+li{
+  list-style-type:none}
+
+[class^="icon_repository32-"], [class*=" icon_repository32-"] {
+  background-image: url("iconrepository.png");
+  background-position:32px 32px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:32px;
+  width:32px;
+  line-height:32px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+}
+[class^="icon_repository32-"]:last-child, [class*="icon_repository32-"]:last-child {
+}
+.iconrepository-white {
+  background-image: url("iconrepository.png");
+}
+
+/*................................................... */
+
+
+.icon_repository32-32_file { background-position: 0 -42px;}
+.icon_repository32-32_mathml { background-position: -42px -42px;}
+.icon_repository32-32_txt { background-position: -84px -42px;}
+.icon_repository32-32_pdf { background-position: -126px -42px;}
+.icon_repository32-32_word { background-position: -168px -42px;}
+.icon_repository32-32_ppt { background-position: -210px -42px;}
+.icon_repository32-32_excel { background-position: -252px -42px;}
+.icon_repository32-32_audio { background-position: -294px -42px;}
+.icon_repository32-32_mp3 { background-position: -336px -42px;}
+.icon_repository32-32_wav { background-position: -378px -42px;}
+.icon_repository32-32_picture { background-position: 0 -126px ;}
+.icon_repository32-32_tiff { background-position: -42px -126px ;}
+.icon_repository32-32_jpg { background-position: -84px -126px ;}
+.icon_repository32-32_gif{ background-position: -126px -126px ;}
+.icon_repository32-32_png { background-position: -168px -126px ;}
+.icon_repository32-32_svg { background-position: -210px -126px ;}
+.icon_repository32-32_rar { background-position: -252px -126px ;}
+.icon_repository32-32_zip { background-position: -294px -126px ;}
+.icon_repository32-32_presentation { background-position: -336px -126px;}
+.icon_repository32-32_videoconference{ background-position: -378px -126px;}
+.icon_repository32-32_video { background-position: 0 -210px ;}
+.icon_repository32-32_avi { background-position: -42px -210px ;}
+.icon_repository32-32_mp4 { background-position: -84px -210px ;}
+.icon_repository32-32_mov { background-position: -126px -210px ;}
+.icon_repository32-32_flash { background-position: -168px -210px ;}
+.icon_repository32-32_quiz { background-position: -210px -210px ;}
+
+/*........................hover........................... */
+
+
+.icon_repository32-32_file:hover { background-position: 0 0;}
+.icon_repository32-32_mathml:hover { background-position: -42px 0;}
+.icon_repository32-32_txt:hover { background-position: -84px 0;}
+.icon_repository32-32_pdf:hover { background-position: -126px 0;}
+.icon_repository32-32_word:hover { background-position: -168px 0;}
+.icon_repository32-32_ppt:hover { background-position: -210px 0;}
+.icon_repository32-32_excel:hover { background-position: -252px 0;}
+.icon_repository32-32_audio:hover { background-position: -294px 0;}
+.icon_repository32-32_mp3:hover { background-position: -336px 0;}
+.icon_repository32-32_wav:hover { background-position: -378px 0;}
+.icon_repository32-32_picture:hover { background-position: 0 -84px ;}
+.icon_repository32-32_tiff:hover { background-position: -42px -84px ;}
+.icon_repository32-32_jpg:hover { background-position: -84px -84px ;}
+.icon_repository32-32_gif:hover { background-position: -126px -84px ;}
+.icon_repository32-32_png:hover { background-position: -168px -84px ;}
+.icon_repository32-32_svg:hover { background-position: -210px -84px ;}
+.icon_repository32-32_rar:hover { background-position: -252px -84px ;}
+.icon_repository32-32_zip:hover { background-position: -294px -84px ;}
+.icon_repository32-32_presentation:hover { background-position: -336px -84px;}
+.icon_repository32-32_videoconference:hover { background-position: -378px -84px;}
+.icon_repository32-32_video:hover { background-position: 0 -168px ;}
+.icon_repository32-32_avi:hover { background-position: -42px -168px ;}
+.icon_repository32-32_mp4:hover { background-position: -84px -168px ;}
+.icon_repository32-32_mov:hover { background-position: -126px -168px ;}
+.icon_repository32-32_flash:hover { background-position: -168px -168px ;}
+.icon_repository32-32_quiz:hover { background-position: -210px -168px ;}
+
+/*.................. icon message 22 x 22 px......................*/
+
+li{
+  list-style-type:none}
+
+[class^=".iconmessage22-"], [class*=" .iconmessage22-"] {
+  background-image: url("icon_message22.png");
+  background-position:22px 22px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:22px;
+  width:22px;
+  line-height:22px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+}
+[class^=".iconmessage22-"]:last-child, [class*=".iconmessage22-"]:last-child {
+}
+.iconmessage22-white {
+  background-image: url("icon_message22.png");}
+
+
+.iconmessage22-message22_message { background-position: 0 0;}
+.iconmessage22-message22_new { background-position: -32px 0;}
+.iconmessage22-message22_remove { background-position: -64px 0;}
+.iconmessage22-message22_trash { background-position: -96px 0;}
+.iconmessage22-message22_ok { background-position: -128px 0;}
+.iconmessage22-message22_sendbox { background-position: -160px 0;}
+.iconmessage22-message22_inbox { background-position: -192px 0;}
+.iconmessage22-message22_mail { background-position: -224px 0;}
+.iconmessage22-message22_edit { background-position: -256px 0;}
+
+
+/*hover*/
+
+
+.iconmessage22-message22_message:hover { background-position: 0 -32px;}
+.iconmessage22-message22_new:hover { background-position: -32px -32px;}
+.iconmessage22-message22_remove:hover { background-position: -64px -32px;}
+.iconmessage22-message22_trash:hover { background-position: -96px -32px;}
+.iconmessage22-message22_ok:hover { background-position: -128px -32px;}
+.iconmessage22-message22_sendbox:hover { background-position: -160px -32px;}
+.iconmessage22-message22_inbox:hover { background-position: -192px -32px;}
+.iconmessage22-message22_mail:hover { background-position: -224px -32px;}
+.iconmessage22-message22_edit:hover {background-position: -256px -32px;}
