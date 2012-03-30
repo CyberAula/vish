@@ -1,81 +1,84 @@
-<div class="space_center"></div>
-  <div class="block" id="contact_info">
-    <div class="header">
-      <div class="header_text">
-        <%=t('profile.contact')%>
-      </div>
+<div class="block" id="contact_info">
+  <div class="header">
+    <div class="header_text2">
+      <%= t('profile.contact') %>
       <% if is_owner? %>
         <div class="header_icon_right">
-          <%= link_to (image_tag('btn/edit.png')), :controller => :profiles , :action => :edit, :section => "contact_info"%>
+          <%= link_to (image_tag('btn/edit.png')), :controller => :profiles, :action => :edit, :section => "contact_info" %>
         </div>
-      <%end%>
+      <% end %>
     </div>
+  </div>
+  <div class="row span6 boxy_white">
+    <div class="space_center"></div>
     <div class="content">
-      <% if !is_contact_empty?%>
-        <div class="sub-block"  >
+      <% if !is_contact_empty? %>
+        <div class="sub-block">
           <% if @profile.phone? %>
             <div class="row">
-              <div class="label">
-                <%=t('profile.phone')%>
+              <div class="title_sub_profile">
+                <%= t('profile.phone') %>
               </div>
-              <div class="field">
-                <%=h @profile.phone %>
+              <div class="field_profile">
+                <%= h @profile.phone %>
               </div>
             </div>
-          <%end%>
+          <% end %>
           <% if @profile.mobile? %>
             <div class="row">
-              <div class="label">
-                <%=t('profile.mobile')%>
+              <div class="title_sub_profile">
+                <%= t('profile.mobile') %>
               </div>
-              <div class="field">
-                <%=h @profile.mobile %>
+              <div class="field_profile">
+                <%= h @profile.mobile %>
               </div>
             </div>
-          <%end%>
+          <% end %>
           <% if @profile.fax? %>
             <div class="row">
-              <div class="label">
-                <%=t('profile.fax')%>
+              <div class="title_sub_profile">
+                <%= t('profile.fax') %>
               </div>
-              <div class="field">
-                <%=h @profile.fax %>
+              <div class="field_profile">
+                <%= h @profile.fax %>
               </div>
             </div>
-          <%end%>
+          <% end %>
           <% if @profile.address? %>
             <div class="row">
-              <div class="label">
-                <%=t('profile.address')%>
+              <div class="title_sub_profile">
+                <%= t('profile.address') %>
               </div>
-              <div class="field">
-                <%=h @profile.address %>
+              <div class="field_profile">
+                <%= h @profile.address %>
               </div>
             </div>
-          <%end%>
+          <% end %>
           <% if @profile.website? %>
             <div class="row">
-              <div class="label">
-                <%=t('profile.website')%>
+              <div class="title_sub_profile">
+                <%= t('profile.website') %>
               </div>
-              <div class="field">
-                <a href="<%=h @profile.website %>"><%=h @profile.website %></a>
+              <div class="field_profile">
+                <a href="<%= h @profile.website %>"><%= h @profile.website %></a>
               </div>
             </div>
-          <%end%>
-          <% if @profile.subject.email? && user_signed_in? %>  
+          <% end %>
+          <% if @profile.subject.email? && user_signed_in? %>
             <div class="row">
-              <div class="label">
-                <%=t('profile.email')%>:
+              <div class="title_sub_profile">
+                <%= t('profile.email') %>:
               </div>
-              <div class="field">
+              <div class="field_profile">
                 <%= show_if_signed_in(h(@profile.subject.email)) %>
               </div>
             </div>
-          <%end%>
+          <% end %>
         </div>
-      <%elsif is_owner?%>
-        <%=t('profile.empty')%>
-      <%end%>
+      <% elsif is_owner? %>
+        <%= t('profile.empty') %>
+      <% end %>
+      <div class="space_center"></div>
     </div>
   </div>
+</div>

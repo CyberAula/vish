@@ -215,6 +215,13 @@
   color:#FF005D;
   margin-bottom: 10px;
 }
+.header_text2 {
+  font-size: 20px;
+  margin-left: 20px;
+  color:#FF005D;
+  margin-bottom: 10px;
+  margin_top:20px;
+}
 .title_suggestion{
   width: 120px;
   display: inline-block;
@@ -285,6 +292,13 @@
 }
 .devise_title{
   text-align:right;
+  font-size: 45px;
+  line-height: 115%;
+  font-family:'DsignesLight';
+  src: url(fonts/DsignesLight.otf);
+}
+.devise_title2{
+  text-align:left;
   font-size: 45px;
   line-height: 115%;
   font-family:'DsignesLight';
@@ -673,3 +687,26 @@ li{
 .iconmessage22-message22_inbox:hover { background-position: -192px -32px;}
 .iconmessage22-message22_mail:hover { background-position: -224px -32px;}
 .iconmessage22-message22_edit:hover {background-position: -256px -32px;}
+
+
+.margin_profile{
+margin-left: 20px;
+}
+.header_icon_right{
+ display: inline-block;
+ float:right;
+ margin-right: 20px;
+ }
+.title_sub_profile{
+  font-family:'DsignesBold';
+  src: url(fonts/DsignesBold.otf);
+  font-size: 16pt;
+  margin-top: 10px;
+  margin-left: 25px;
+  color: #c7c7c7;
+  display: block;
+}
+.field_profile{
+  margin-left: 50px;
+  color: #787878;
+}
