@@ -1,6 +1,7 @@
 <%= div_for(conversation, :class => read_class) do %>
-<div class="notification">
+<div class="notification ">
 </div>
+    <div class="message">
     <div class="content_left inline span2">
       <div class="sender_photo inline">
 	<%= link_to image_tag(conversation.last_sender.logo.url(:actor),
@@ -11,7 +12,7 @@
 	<div class="sender_name inline-block">
 		<%= link_to truncate_name(conversation.last_sender.name), conversation.last_sender.subject %>
 	</div>
-	<div class="date inline-block">
+	<div class="date">
 		<%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
 	</div>
 </div>
@@ -25,6 +26,7 @@
 	<div class="clearfloat">
 	</div>
 </div>
+      </message>
 <% unless @box.eql?'trash' %>
 <div class="action">
   <% link_to(image_tag('btn/btn_read.png', :alt => t('mailboxer.mark_as_read'), :title => t('mailboxer.mark_as_read'))) %>
