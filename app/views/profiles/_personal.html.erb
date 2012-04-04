@@ -1,0 +1,80 @@
+<div class="space_center"></div>
+<div class="block" id="personal_info">
+  <div class="header">
+    <div class="header_text2">
+      <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
+      <div class="header_icon_right">
+        <%= link_to (image_tag('btn/edit.png')), :controller => :profiles, :action => :edit, :section => "about_me" %>
+      </div>
+    </div>
+    <% if is_owner? %>
+    <% end %>
+  </div>
+  <div class="row span6 boxy_white">
+    <div class="space_center"></div>
+    <div class="content">
+      <% if !is_personal_empty? %>
+        <div class="sub-block">
+          <% if @profile.organization? %>
+            <div class="row">
+              <div class="title_sub_profile">
+                <%= t('profile.organization') %>:
+              </div>
+              <div class="field_profile">
+                <%= h @profile.organization %>
+              </div>
+            </div>
+          <% end %>
+          <% if @profile.birthday? %>
+            <div class="row">
+              <div class="title_sub_profile">
+                <%= t('profile.' + @profile.subject.class.to_s.downcase + '.birthday') %>:
+              </div>
+              <div class="field_profile">
+                <%= h I18n.l @profile.birthday, :format => :long %>
+              </div>
+            </div>
+            <% if @profile.subject.class.eql?(User) %>
+              <div class="row">
+                <div class="title_sub_profile">
+                  <%= t('profile.age') %>:
+                </div>
+                <div class="field_profile">
+                  <%= h @profile.age %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+          <% if @profile.city? %>
+            <div class="row">
+              <div class="title_sub_profile">
+                <%= t('profile.actualcity') %>:
+              </div>
+              <div class="field_profile">
+                <%= h @profile.city %>
+                <% if @profile.country? %>
+                  , <%= @profile.country %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          <% if @profile.description? %>
+            <div class="row">
+              <div class="title_sub_profile">
+                <%= t('profile.' + @profile.subject.class.to_s.downcase + '.about') %>:
+              </div>
+              <div class="field_profile">
+                <%= h @profile.description %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% elsif is_owner? %>
+        <%= t('profile.empty') %>
+      <% end %>
+      <div class="space_center"></div>
+    </div>
+  </div>
+  <div class="space_center"></div>
+</div>
+

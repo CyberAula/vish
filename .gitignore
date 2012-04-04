@@ -31,4 +31,4 @@ config/development.sphinx.conf
 
 # avatar temporal files
 public/images/tmp
-public/system/tmp
+public/system

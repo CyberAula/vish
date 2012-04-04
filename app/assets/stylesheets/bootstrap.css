@@ -135,7 +135,7 @@ textarea {
 }
 body {
   margin:10px 0px 0px 0px;
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica", Helvetica Neue, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
   color: #999999;
@@ -2414,7 +2414,7 @@ border-color: #eed3d7;  */
 .alert-info {
   /*background-color: #d9edf7;
 border-color: #bce8f1;  */
- color: #48a3d1; */
+ color: #48a3d1;
 }
 .alert-block {
  padding-top: 14px;

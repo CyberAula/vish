@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120321151346) do
+ActiveRecord::Schema.define(:version => 20120402100905) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(:version => 20120321151346) do
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
     t.boolean  "follow",             :default => false
+    t.boolean  "author",             :default => false
+    t.boolean  "user_author",        :default => false
+    t.boolean  "owner",              :default => false
   end
 
   add_index "activity_actions", ["activity_object_id"], :name => "index_activity_actions_on_activity_object_id"
@@ -60,13 +63,10 @@ ActiveRecord::Schema.define(:version => 20120321151346) do
     t.datetime "updated_at"
     t.string   "object_type",    :limit => 45
     t.integer  "like_count",                   :default => 0
-    t.integer  "channel_id"
     t.string   "title",                        :default => ""
     t.text     "description"
     t.integer  "follower_count",               :default => 0
   end
-
-  add_index "activity_objects", ["channel_id"], :name => "index_activity_objects_on_channel_id"
 
   create_table "activity_verbs", :force => true do |t|
     t.string   "name",       :limit => 45
@@ -392,8 +392,6 @@ ActiveRecord::Schema.define(:version => 20120321151346) do
 
   add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_activity_object_id"
   add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_property_id", :column => "property_id"
-
-  add_foreign_key "activity_objects", "channels", :name => "index_activity_objects_on_channel_id"
 
   add_foreign_key "actors", "activity_objects", :name => "actors_on_activity_object_id"
 
