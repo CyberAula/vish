@@ -44,6 +44,9 @@
             <%= f.password_field :password, :class => "input-xlarge", :id => "password_confirmation" %>
           </div>
         </div>
+        <input class="textborder acept" type="checkbox">
+        Accept the conditions &amp; terms of the service
+        <div class="space_center"></div>
 
         <div class="row">
           <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -60,10 +63,11 @@
     <% end %>
 
 
-    <div class="row span4 offset5 link_gray" id="devise_links">
+    <div class="row span6 offset3 link_gray" id="devise_links">
       <div class="row space_center"></div>
      <%= render :partial => "devise/shared/links" %>
     </div>
 
+    <div class="row space_double_center"></div>
     <div class="row space_double_center"></div>
     <div class="row space_double_center"></div>
