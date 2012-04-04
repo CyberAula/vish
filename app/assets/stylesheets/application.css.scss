@@ -290,9 +290,9 @@
 
 }
 .icon-msg-trash{
+}
 
-
-//**************info devise *************/
+/**************info devise *************/
 
 .form-horizontal2 input,
 .form-horizontal2 textarea,
@@ -330,8 +330,6 @@
 }
 .form-horizontal2 .controls {
   margin-left: 160px;
-/* Super jank IE7 fix to ensure the inputs in .input-append and input-prepend don't inherit the margin of the parent, in this case .controls */
-
   *display: inline-block;
   *margin-left: 0;
   *padding-left: 20px;
@@ -345,7 +343,8 @@
 }
 .btn_devise{
 float:right;
-margin-right: 20px}
+margin-right: 20px
+}
 
 #devise_links{
   text-align:right;
