@@ -1,15 +1,15 @@
-<%= div_for activity, :class => 'span5' do %>
-  <ul class="thumbnails span5">
+<%= div_for activity, :class => 'span6' do %>
+  <ul class="thumbnails span">
     <li class="span">
       <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
                             :alt => activity.sender_subject.name, :widht => 50, :height => 50),
                   activity.sender_subject, :class=> "container" %>
     </li>
-    <li class="span activity_content">
-      <div class="caption span4">
-        <h4 class="span4"><%= activity.title(self)%></h4>
-        <h4 class="span4"><%= render activity.activity_objects %></h4>
-        <h4 class="span4 size11">
+    <li class="span5 activity_content">
+      <div class="caption span">
+        <h4 class="span"><%= activity.title(self)%></h4>
+        <h4 class="span"><%= render activity.activity_objects %></h4>
+        <h4 class="span size11">
           <%= render :partial => 'activities/options',
                            :locals => { :activity => activity } %>
           <%= render :partial => 'activities/comments',
