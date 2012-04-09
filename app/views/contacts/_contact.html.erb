@@ -1,7 +1,7 @@
 <%= div_for contact, :class => 'row' do %>
   <ul class="thumbnails span3">
     <li class="span1">
-      <%= link_to(image_tag(contact.receiver.logo.url(:actor), :height => "50", :widht => "50"),
+      <%= link_to(image_tag(contact.receiver.logo.url(:contact)),
                   contact.receiver_subject, :class => "container") %>
     </li>
     <li class="span">
