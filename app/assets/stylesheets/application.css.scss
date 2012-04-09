@@ -80,13 +80,16 @@
 
 /***********COLORS ***********/
 .background{color: #F9F9F9;}
+.white{color: #FFFFFF;}
 .green{ color:#40CC7F;}
+.ligth-gray{color: #E6E6E6}
 .gray{ color:#A0A0A0;}
 .dark-gray {color: #666666;}
 .blue-1{color: #3366FF;}
 .blue-2{color: #3366FF; opacity: 0.6;}
 .red-1{color: #FF005D;}
 .red-2{color: #FF005D; opacity: 0.6;}
+
 
 /************* SEARCH_BAR *************/
 
@@ -470,17 +473,6 @@
 
 /*************** MESSAGES ICONS **********/
 
-.icon-msg-inbox{
-
-}
-.icon-msg-new{
-
-}
-.icon-msg-sent{
-
-}
-.icon-msg-trash{
-}
 
 /*************** MESSAGE EDITOR **********/
 
@@ -509,6 +501,7 @@
 .cleditorPrompt textarea {font:8.5pt Arial,Verdana;}
 .cleditorMsg {background-color:#FDFCEE; width:150px; padding:4px; font-size:8.5pt}
 .send {margin-top: 10px;}
+
 
 /**************info devise *************/
 
@@ -548,8 +541,6 @@
 }
 .form-horizontal2 .controls {
   margin-left: 160px;
-/* Super jank IE7 fix to ensure the inputs in .input-append and input-prepend don't inherit the margin of the parent, in this case .controls */
-
   *display: inline-block;
   *margin-left: 0;
   *padding-left: 20px;
@@ -563,7 +554,8 @@
 }
 .btn_devise{
 float:right;
-margin-right: 20px}
+margin-right: 20px
+}
 
 #devise_links{
   text-align:right;
@@ -610,9 +602,6 @@ li{
 
 /*..................icon file 16x16....................... */
 
-li{
-  list-style-type:none}
-
 [class^="iconfile16-"], [class*=" iconfile16-"] {
   background-image: url("iconfile16.png");
   background-position:32px 32px;
@@ -626,7 +615,7 @@ li{
 }
 [class^="iconfile16-"]:last-child, [class*="iconfile16-"]:last-child {
 }
-.iconfile16-white {
+.iconfile16-file16_white {
   background-image: url("iconfile16.png");}
 
 .iconfile16-file16_file { background-position: 0 0;}
@@ -639,9 +628,7 @@ li{
 .iconfile16-file16_send { background-position: -182px 0;}
 .iconfile16-file16_edit { background-position: -208px 0;}
 
-
 /*hover*/
-
 
 .iconfile16-file16_file:hover { background-position: 0 -26px;}
 .iconfile16-file16_add:hover { background-position: -26px -26px;}
@@ -655,9 +642,6 @@ li{
 
 /*..................icon file 32x32....................... */
 
-li{
-  list-style-type:none}
-
 [class^="iconfile32-"], [class*=" iconfile32-"] {
   background-image: url("iconfile32.png");
   background-position:32px 32px;
@@ -667,14 +651,11 @@ li{
   width:32px;
   line-height:32px;
   vertical-align:text-top;
-  *margin-right: .3em;
+  *margin-right: .3em;}
 
-}
 [class^="iconfile32-"]:last-child, [class*="iconfile32-"]:last-child {
 }
-.iconfile32-white {
-  background-image: url("iconfile32.png");}
-
+.iconfile32-file32_white {background-image: url("iconfile32.png");}
 
 .iconfile32-file32_file { background-position: 0 0;}
 .iconfile32-file32_add { background-position: -42px 0;}
@@ -686,9 +667,7 @@ li{
 .iconfile32-file32_send { background-position: -294px 0;}
 .iconfile32-file32_edit { background-position: -336px 0;}
 
-
 /*hover*/
-
 
 .iconfile32-32_file:hover { background-position: 0 -42px;}
 .iconfile32-file32_add:hover { background-position: -42px -42px;}
@@ -700,61 +679,50 @@ li{
 .iconfile32-file32_send:hover { background-position: -294px -42px;}
 .iconfile32-file32_edit:hover { background-position: -336px -42px;}
 
+/*..................icon file 75x75....................... */
 
-/*..................icon file 80x80....................... */
-
-li{
-  list-style-type:none}
-
-[class^="iconfile80-"], [class*=" iconfile80-"] {
-  background-image: url("iconfile80.png");
-  background-position:80px 80px;
+[class^="iconfile75-"], [class*=" iconfile75-"] {
+  background-image: url("iconfile75.png");
+  background-position:75px 75px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
-  height:80px;
-  width:80px;
-  line-height:80px;
+  height:75px;
+  width:75px;
+  line-height:75px;
   vertical-align:text-top;
-  *margin-right: .3em;
+  *margin-right: .3em;}
 
+[class^="iconfile75-"]:last-child, [class*="iconfile75-"]:last-child {
 }
-[class^="iconfile80-"]:last-child, [class*="iconfile80-"]:last-child {
-}
-.iconfile80-white {
-  background-image: url("iconfile80.png");}
+.iconfile75-file75_white {
+  background-image: url("iconfile75.png");}
 
-
-.iconfile80-file80_file { background-position: 0 0;}
-.iconfile80-file80_add { background-position: -90px 0;}
-.iconfile80-file80_remove { background-position: -180px 0;}
-.iconfile80-file80_delete { background-position: -227px 0;}
-.iconfile80-file80_ok { background-position: -360px 0;}
-.iconfile80-file80_upload { background-position: -450px 0;}
-.iconfile80-file80_donwload { background-position: -540px 0;}
-.iconfile80-file80_send { background-position: -630px 0;}
-.iconfile80-file80_edit { background-position: -720px 0;}
-
+.iconfile75-file75_file { background-position: 0 0;}
+.iconfile75-file75_add { background-position: -85px 0;}
+.iconfile75-file75_remove { background-position: -170px 0;}
+.iconfile75-file75_delete { background-position: -255px 0;}
+.iconfile75-file75_ok { background-position: -340px 0;}
+.iconfile75-file75_upload { background-position: -425px 0;}
+.iconfile75-file75_donwload { background-position: -510px 0;}
+.iconfile75-file75_send { background-position: -595px 0;}
+.iconfile75-file75_edit { background-position: -680px 0;}
 
 /*hover*/
 
-
-.iconfile80-file80_file:hover { background-position: 0 -90px;}
-.iconfile80-file80_add:hover { background-position: -90px -90px;}
-.iconfile80-file80_remove:hover { background-position: -180px -90px;}
-.iconfile80-file80_delete:hover { background-position: -227px -90px;}
-.iconfile80-file80_ok:hover { background-position: -360px -90px;}
-.iconfile80-file80_upload:hover { background-position: -450px -90px;}
-.iconfile80-file80_donwload:hover { background-position: -540px -90px;}
-.iconfile80-file80_send:hover { background-position: -630px -90px;}
-.iconfile80-file80_edit:hover { background-position: -720px -90px;}
+.iconfile75-file75_file:hover { background-position: 0 -85px;}
+.iconfile75-file75_add:hover { background-position: -85px -85px;}
+.iconfile75-file75_remove:hover { background-position: -170px -85px;}
+.iconfile75-file75_delete:hover { background-position: -255px -85px;}
+.iconfile75-file75_ok:hover { background-position: -340px -85px;}
+.iconfile75-file75_upload:hover { background-position: -425px -85px;}
+.iconfile75-file75_donwload:hover { background-position: -510px -85px;}
+.iconfile75-file75_send:hover { background-position: -595px -85px;}
+.iconfile75-file75_edit:hover { background-position: -680px -85px;}
 
 /*.................. icon repository 32 x 32 px......................*/
 
-li{
-  list-style-type:none}
-
 [class^="icon_repository32-"], [class*=" icon_repository32-"] {
-  background-image: url("iconrepository.png");
+  background-image: url("iconrepository32.png");
   background-position:32px 32px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -767,12 +735,10 @@ li{
 }
 [class^="icon_repository32-"]:last-child, [class*="icon_repository32-"]:last-child {
 }
-.iconrepository-white {
-  background-image: url("iconrepository.png");
-}
+.icon_repository32-white {
+  background-image: url("iconrepository32.png");}
 
 /*................................................... */
-
 
 .icon_repository32-32_file { background-position: 0 -42px;}
 .icon_repository32-32_mathml { background-position: -42px -42px;}
@@ -803,7 +769,6 @@ li{
 
 /*........................hover........................... */
 
-
 .icon_repository32-32_file:hover { background-position: 0 0;}
 .icon_repository32-32_mathml:hover { background-position: -42px 0;}
 .icon_repository32-32_txt:hover { background-position: -84px 0;}
@@ -831,10 +796,83 @@ li{
 .icon_repository32-32_flash:hover { background-position: -168px -168px ;}
 .icon_repository32-32_quiz:hover { background-position: -210px -168px ;}
 
-/*.................. icon message 22 x 22 px......................*/
+/*.................. icon repository 75 x 75 px......................*/
 
-li{
-  list-style-type:none}
+[class^="icon_repository75-"], [class*=" icon_repository75-"] {
+  background-image: url("iconrepository75.png");
+  background-position:75px 75px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:75px;
+  width:75px;
+  line-height:75px;
+  vertical-align:text-top;
+  *margin-right: .3em;}
+
+[class^="icon_repository75-"]:last-child, [class*="icon_repository75-"]:last-child {
+}
+.icon_repository75-75_repository_white {
+  background-image: url("iconrepository75.png");}
+
+/*................................................... */
+
+.icon_repository75-75_file { background-position: 0 -85px;}
+.icon_repository75-75_mathml { background-position: -85px -85px;}
+.icon_repository75-75_txt { background-position: -170px -85px;}
+.icon_repository75-75_pdf { background-position: -255px -85px;}
+.icon_repository75-75_word { background-position: -340px -85px;}
+.icon_repository75-75_ppt { background-position: -425px -85px;}
+.icon_repository75-75_excel { background-position: -510px -85px;}
+.icon_repository75-75_audio { background-position: -595px -85px;}
+.icon_repository75-75_mp3 { background-position: -680px -85px;}
+.icon_repository75-75_wav { background-position: -756px -85px;}
+.icon_repository75-75_picture { background-position: 0 -225px ;}
+.icon_repository75-75_tiff { background-position: -85px -225px ;}
+.icon_repository75-75_jpg { background-position: -170px -225px ;}
+.icon_repository75-75_gif{ background-position: -255px -225px ;}
+.icon_repository75-75_png { background-position: -340px -225px ;}
+.icon_repository75-75_svg { background-position: -425px -225px ;}
+.icon_repository75-75_rar { background-position: -510px -225px ;}
+.icon_repository75-75_zip { background-position: -595px -225px ;}
+.icon_repository75-75_presentation { background-position: -680px -225px;}
+.icon_repository75-75_videoconference{ background-position: -756px -225px;}
+.icon_repository75-75_video { background-position: 0 -425px ;}
+.icon_repository75-75_avi { background-position: -85px -425px ;}
+.icon_repository75-75_mp4 { background-position: -170px -425px ;}
+.icon_repository75-75_mov { background-position: -255px -425px ;}
+.icon_repository75-75_flash { background-position: -340px -425px ;}
+.icon_repository75-75_quiz { background-position: -425px -425px ;}
+
+/*........................hover........................... */
+
+.icon_repository75-75_file:hover { background-position: 0 0;}
+.icon_repository75-75_mathml:hover { background-position: -85px 0;}
+.icon_repository75-75_txt:hover { background-position: -170px 0;}
+.icon_repository75-75_pdf:hover { background-position: -255px 0;}
+.icon_repository75-75_word:hover { background-position: -340px 0;}
+.icon_repository75-75_ppt:hover { background-position: -425px 0;}
+.icon_repository75-75_excel:hover { background-position: -510px -0;}
+.icon_repository75-75_audio:hover { background-position: -595px 0;}
+.icon_repository75-75_mp3:hover { background-position: -680px 0;}
+.icon_repository75-75_wav:hover { background-position: -756px 0x;}
+.icon_repository75-75_picture:hover { background-position: 0 -170px ;}
+.icon_repository75-75_tiff:hover { background-position: -85px -170px ;}
+.icon_repository75-75_jpg:hover { background-position: -170px -170px ;}
+.icon_repository75-75_gif:hover { background-position: -255px -170px ;}
+.icon_repository75-75_png:hover { background-position: -340px -170px ;}
+.icon_repository75-75_svg:hover { background-position: -425px -170px ;}
+.icon_repository75-75_rar:hover { background-position: -510px -170px ;}
+.icon_repository75-75_zip:hover { background-position: -595px -170px ;}
+.icon_repository75-75_presentation:hover { background-position: -680px -170px;}
+.icon_repository75-75_videoconference:hover { background-position: -756px -170px;}
+.icon_repository75-75_video:hover { background-position: 0 -340px ;}
+.icon_repository75-75_avi:hover{ background-position: -85px -340px ;}
+.icon_repository75-75_mp4:hover { background-position: -170px -340px ;}
+.icon_repository75-75_mov:hover { background-position: -255px -340px ;}
+.icon_repository75-75_flash:hover { background-position: -340px -340px ;}
+.icon_repository75-75_quiz:hover { background-position: -425px -340px ;}
+
+/*.................. icon message 22 x 22 px......................*/
 
 [class^=".iconmessage22-"], [class*=" .iconmessage22-"] {
   background-image: url("icon_message22.png");
@@ -845,14 +883,12 @@ li{
   width:22px;
   line-height:22px;
   vertical-align:text-top;
-  *margin-right: .3em;
+  *margin-right: .3em;}
 
-}
 [class^=".iconmessage22-"]:last-child, [class*=".iconmessage22-"]:last-child {
 }
-.iconmessage22-white {
+.iconmessage22-message22_white {
   background-image: url("icon_message22.png");}
-
 
 .iconmessage22-message22_message { background-position: 0 0;}
 .iconmessage22-message22_new { background-position: -32px 0;}
@@ -864,9 +900,7 @@ li{
 .iconmessage22-message22_mail { background-position: -224px 0;}
 .iconmessage22-message22_edit { background-position: -256px 0;}
 
-
 /*hover*/
-
 
 .iconmessage22-message22_message:hover { background-position: 0 -32px;}
 .iconmessage22-message22_new:hover { background-position: -32px -32px;}
@@ -878,6 +912,11 @@ li{
 .iconmessage22-message22_mail:hover { background-position: -224px -32px;}
 .iconmessage22-message22_edit:hover {background-position: -256px -32px;}
 
+
+
+
+
+/*edit profile*/
 
 .margin_profile{
 margin-left: 20px;
