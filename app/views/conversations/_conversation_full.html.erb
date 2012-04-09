@@ -14,7 +14,7 @@
   <%= link_to image_tag(recp.logo.url(:contact), :title=>recp.name, :alt => recp.name), recp.subject %>
   <% end %>
 </div>
-<div class="messages">
+<div class="messages span9">
   <% @receipts.each do |receipt| %>
   <% message = receipt.message %>
   <% read_class = message.is_unread?(@actor) ? 'unread' : '' %>
