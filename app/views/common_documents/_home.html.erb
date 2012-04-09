@@ -1,11 +1,11 @@
-<%= div_for actor_documents, :class => 'repository' do %>
+<%= div_for document, :class => 'repository' do %>
     <ul class="thumbnails span3">
       <li class="span1">
-        <%#= link_to  thumb_for(repository, 60), repository, :class => "container" %>
+        <%= link_to  thumb_for(document, 60), document, :class => "container" %>
       </li>
       <li class="span2">
         <div class="caption elipsis">
-          <h4 class="link_gray size16"><%#= link_to truncate_name(resource.title, :length => 20), resource %></h4>
+          <h4 class="link_gray size16"><%= link_to truncate_name(document.title, :length => 20), document %></h4>
           <h5><span class="green"><%=t('follow.followers')%>:</span> <span class="ligth-gray"><%#=num_views%></span> views</h5>
         </div>
       </li>
