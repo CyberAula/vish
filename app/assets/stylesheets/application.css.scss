@@ -51,6 +51,8 @@
 /******************* HEADER *******************/
 #menu_home{ height: 35px;}
 
+
+
 /******************* BASIC CLASSES ******************/
 .inline {display:inline;}
 .inline-block {display:inline-block;}
@@ -290,7 +292,13 @@
 #main {margin-left: 30px;}
 #right {margin-left: 50px;}
 #left {margin-left: 32px;}
+.activity_form_selector{cursor: pointer; margin-right: 10px;}
+.selected{background-color: #ffffff; border-radius: 5px; padding: 5px;}
 
+
+#document_file{
+
+}
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {display: inline-block;}

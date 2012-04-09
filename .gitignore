@@ -9,6 +9,8 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+# Ignore sphinx
+/db/sphinx
 
 # Ignore config files with sensible information.
 config/database.yml
@@ -17,7 +19,7 @@ config/initializers/exception_notification.rb
 config/development.sphinx.conf
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log
 /tmp
 
 # ignore folder from editors
