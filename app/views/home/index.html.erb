@@ -10,7 +10,7 @@
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter"%>
         <div id="excursions" >
-          <% for excursion in current_actor_excursions %>
+          <% for excursion in current_subject_excursions %>
             <%= render :partial => "excursions/home",
                  :locals => { :excursion => excursion} %>
           <% end %>
@@ -30,7 +30,7 @@
       <div id="ex-3" class="tab-pane">
         <%= render :partial => "excursions/filter"%>
         <div id="more" >
-          <% for excursion in current_actor_excursions %>
+          <% for excursion in current_subject_excursions(:scope => :more) %>
             <%= render :partial => "excursions/home",
                        :locals => { :excursion => excursion} %>
           <% end %>
@@ -50,7 +50,7 @@
         <%= render :partial => "common_documents/filter"%>
         <div id="repository">
           <div class="repositories">
-            <% for document in current_actor_documents %>
+            <% for document in current_subject_documents %>
               <%= render :partial => "common_documents/home",
                          :locals => { :document => document, 
                                       :div_class => 'content_size' } %>
