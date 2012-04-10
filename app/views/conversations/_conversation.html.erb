@@ -2,13 +2,13 @@
 <div class="notification ">
 </div>
     <div class="message">
-    <div class="inline span3">
-      <div class="sender_photo span1">
+    <div class="inline span">
+      <div class="sender_photo span">
 	<%= link_to image_tag(conversation.last_sender.logo.url(:actor),
 	:title => conversation.last_sender.name, :alt => conversation.last_sender.name),
 	conversation.last_sender.subject %>
 </div>
-    <div class="dat inline-block offset1">
+    <div class="dat inline-block offset">
 	<div class="sender_name inline-block">
 		<%= link_to truncate_name(conversation.last_sender.name), conversation.last_sender.subject %>
 	</div>
@@ -17,7 +17,7 @@
 	</div>
 </div>
     </div>
-<div class="content_right span6 offset3">
+<div class="content_right span5 offset dat">
 	<div class="subject tittle_mens size14">
 		<%= link_to(truncate(conversation.subject, :length => 70), conversation_path(conversation.id,:box => @box,:page => params[:page])) %>
 	</div>
@@ -29,7 +29,7 @@
 </div>
       </message>
 <% unless @box.eql?'trash' %>
-<div class="action span1 offset8">
+<div class="action to-r offset">
   <% link_to(image_tag('btn/btn_read.png', :alt => t('mailboxer.mark_as_read'), :title => t('mailboxer.mark_as_read'))) %>
 	<%= link_to(image_tag('delete.png', :alt => t('mailboxer.delete'), :title => t('mailboxer.delete')),
 	conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]),

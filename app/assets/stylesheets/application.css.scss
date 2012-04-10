@@ -49,7 +49,7 @@
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
 /******************* HEADER *******************/
 #menu_home{ height: 35px;}
-
+.menu_header {margin-top: -5px;}
 
 
 /******************* BASIC CLASSES ******************/
@@ -295,8 +295,8 @@
 .activity_form_selector{cursor: pointer; margin-right: 10px;}
 .selected{background-color: #ffffff; border-radius: 5px; padding: 5px;}
 
-
-#document_file{
+#new_document {}
+#form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;
 
 }
 
@@ -349,6 +349,8 @@
 .message{ background-color: #FFFFFF; padding: 10px 0px 5px 5px;  margin-top: 15px; border-radius: 10px;}
 .sender_photo {width: auto;}
 .tittle_mens {margin-bottom:4px;}
+.dat {margin-left: 15px !important}
+.to-r {float: right; width: 15px; height: 15px;}
 /**************suggestions css *************/
 
 .users_btn_follow input[type="submit"]  {
