@@ -35,6 +35,9 @@ git 'git://github.com/ging/vish_editor.git', :branch => 'stable' do
   gem 'vish_editor'
 end
 
+# Force the first version of avatars_for_rails that does not collide with bootstrap
+gem 'avatars_for_rails', '~> 0.2.6'
+
 #gem 'vish_editor', :path => '../vish_editor/rails'
 
 # We do not know the reasons for this gem:
