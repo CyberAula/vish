@@ -30,18 +30,17 @@
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
-#tags{font-family: DsignesLight;}
-#repositories, #excursion, #organizations, #users{position:relative; font-weight: lighter;}
-#repositories{left:9px;float: right; top:-30px; z-index:1;}
-#excursion{left:10px;  top:10px; z-index:2;}
-#organizations{left:19px; float: right; top:25px; ; z-index:3;}
-#users{top:45px; left:-39px; z-index:4;}
+#tags{color: #cccccc; font-family: DsignesLight; }
+#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter; font-family: DsignesLight;}
+#repositories a{float: right; top:-30px; z-index:1;}
+#excursion a{left:10px;  top:10px; z-index:2;}
+#organizations a{left:19px; float: right; top:15px; ; z-index:3;}
+#users a{top:45px; left:-39px; z-index:4;}
 
 .menu ul {list-style-type:none;margin-left:4em; }
 .menu ul li {display:inline-block;margin-right:4em;position:relative; vertical-align: middle;}
 .menu ul li#trade_mark,#sponsor ul li#trademark{font-weight:bold;}
 .menu ul li#trade_mark_logo{font-weight:normal;}
-
 
 #top{height:120px;}
 #top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;}
@@ -50,6 +49,8 @@
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
 /******************* HEADER *******************/
 #menu_home{ height: 35px;}
+.menu_header {margin-top: -5px;}
+
 
 /******************* BASIC CLASSES ******************/
 .inline {display:inline;}
@@ -66,13 +67,14 @@
 .size10{font-size: 10px;}
 .size11{font-size: 11px;}
 .size12{font-size: 12px;}
-.size12{font-size: 14px;}
+.size14{font-size: 14px;}
 .size16{font-size: 16px;}
 .size18{font-size: 18px;}
 .size30{font-size: 30px;}
 .size40{font-size: 40px;}
 .size60{font-size: 60px;}
 .size80{font-size: 80px;}
+.size100{font-size: 100px;}
 
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
@@ -265,7 +267,7 @@
 
 /***********excursion BOX ******/
 .container {position:relative;}
-.number_pages  { position:relative;   height: 20px;  width: 20px;  margin-top: -26px;  margin-left: 51px;
+.number_pages  { position:relative;   height: 20px;  width: 20px;  margin-top: -26px;  margin-left: 48px;
   text-align: center; background-color: #FFF; border-radius: 15px;   color: #333; font-size: 10pt;  line-height:150%;}
 .thumb_logo_big {background-image: url("excursion.png"); display: inline-block;  float: left;  height: 79px; width: 79px; }
 .thumb_logo_medium {background-image: url("doc.png"); display: inline-block;  float: left;  height: 34px; width: 34px; margin-right:10px; }
@@ -290,7 +292,13 @@
 #main {margin-left: 30px;}
 #right {margin-left: 50px;}
 #left {margin-left: 32px;}
+.activity_form_selector{cursor: pointer; margin-right: 10px;}
+.selected{background-color: #ffffff; border-radius: 5px; padding: 5px;}
 
+#new_document {}
+#form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;
+
+}
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {display: inline-block;}
@@ -338,8 +346,11 @@
 /**************CONVERSATIONS *************/
 
 .messages{ margin-left: 15px; }
-.message{ background-color: #FFFFFF; padding: 10px 0px 5px 5px;  margin-top: 15px; border-radius: 10px; width: 675px;}
+.message{ background-color: #FFFFFF; padding: 10px 0px 5px 5px;  margin-top: 15px; border-radius: 10px;}
 .sender_photo {width: auto;}
+.tittle_mens {margin-bottom:4px;}
+.dat {margin-left: 15px !important}
+.to-r {float: right; width: 15px; height: 15px;}
 /**************suggestions css *************/
 
 .users_btn_follow input[type="submit"]  {

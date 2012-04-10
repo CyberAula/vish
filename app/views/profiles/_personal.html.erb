@@ -1,5 +1,4 @@
-<div class="space_center"></div>
-<div class="block" id="personal_info">
+<div class="row" id="personal_info">
   <div class="header">
     <div class="header_text2">
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
@@ -17,9 +16,7 @@
         <div class="sub-block">
           <% if @profile.organization? %>
             <div class="row">
-              <div class="title_sub_profile">
                 <%= t('profile.organization') %>:
-              </div>
               <div class="field_profile">
                 <%= h @profile.organization %>
               </div>

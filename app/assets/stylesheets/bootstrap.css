@@ -2239,7 +2239,7 @@ input[type="submit"].btn.btn-mini {
 }
 .btn-toolbar {
   margin-top: 9px;
-  margin-bottom: 9px;
+   //* margin-bottom: 9px;*/
 }
 .btn-toolbar .btn-group {
   display: inline-block;

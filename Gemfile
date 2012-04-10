@@ -60,7 +60,7 @@ gem 'rspec-rails'
 
 group :test do
   # Pretty printed test output
-  gem 'factory_girl'
+  gem 'factory_girl', '~> 2.6'
   gem 'capybara'
 end
 
