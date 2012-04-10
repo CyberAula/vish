@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 94d21466293fb4ec5c7d238a0bac5168eccfb4ef
+  revision: 6b50b320c5aae45b902e88c86a866a7113d7b1b1
   branch: vish
   specs:
     social_stream-base (0.19.0)
@@ -80,7 +80,7 @@ GEM
     ancestry (1.2.5)
       activerecord (>= 2.2.2)
     arel (3.0.2)
-    avatars_for_rails (0.2.5)
+    avatars_for_rails (0.2.6)
       foreigner (>= 0.9.1)
       jquery-rails (>= 1.0.9)
       paperclip (>= 2.3.4)
@@ -322,6 +322,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  avatars_for_rails (~> 0.2.6)
   capistrano
   capybara
   coffee-rails (~> 3.2.2)
