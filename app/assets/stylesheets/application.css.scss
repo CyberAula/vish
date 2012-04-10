@@ -467,7 +467,7 @@
   height: 18px
 }
 .devise_title{
-  text-align:right;
+  text-align:left;
   font-size: 45px;
   line-height: 115%;
   font-family:'DsignesLight';
@@ -885,18 +885,21 @@ li{
 
 /*.................. icon message 22 x 22 px......................*/
 
-[class^=".iconmessage22-"], [class*=" .iconmessage22-"] {
-  background-image: url("icon_message22.png");
-  background-position:22px 22px;
-  background-repeat:no-repeat no-repeat;
+
+
+[class^="iconmessage22-"], [class*="iconmessage22-"] {
   display:inline-block;
   height:22px;
   width:22px;
-  line-height:22px;
   vertical-align:text-top;
+  background-image: url("icon_message22.png");
+  background-position:22px 22px;
+  background-repeat:no-repeat;
+  line-height:22px;
   *margin-right: .3em;}
 
-[class^=".iconmessage22-"]:last-child, [class*=".iconmessage22-"]:last-child {
+[class^="iconmessage22-"]:last-child, [class*="iconmessage22-"]:last-child {
+  *margin-left: 0;
 }
 .iconmessage22-message22_white {
   background-image: url("icon_message22.png");}
@@ -955,9 +958,11 @@ margin-left: 20px;
   color: #FF005D; opacity: 0.6;
 }
 #avatar_info{
-  margin-top: 80px;
+  margin-top: 40px;
   margin-left: 25px;
   src: url(fonts/DsignesBold.otf);
   color: #3366FF;
   font-size: 14pt;
 }
+.block .form_tag{color: $main-color; padding: 5px 5px 5px 5px;  border:1px solid $input-border-color; width:90%;}
+.block .form_tag_long{color: $main-color;	padding: 5px 5px 5px 5px;  border:1px solid $input-border-color; width:91%;}

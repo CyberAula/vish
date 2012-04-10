@@ -51,20 +51,26 @@ end %>
   	
     <div class="row">
       <div class="form_row">
-        <h2><%=t('profile.tags.other')%></h2>
+        <p class="devise_title"><%=t('profile.tags.other')%></p>
+
       </div>
+      <div class="row span6 boxy_white">
+        <div class="space_center"></div>
       <%= f.fields_for :actor do |actor_form| %>
         <div class="form_row">
+
   			 <%= actor_form.select :tag_list, [], :class => "form_tag" %>
         </div>
       <%end%>
-  	</div>
+        <div class="space_center"></div>
+      </div>
+    </div>
   <% end %>
   
   <% if !params[:section].present? or params[:section].eql?("about_me") %>
     <div class="row">
 	    <div class="form_row">
-	        <h2><%=t('profile.' + current_subject.class.to_s.downcase + '.info')%></h2>
+        <p class="devise_title"><%=t('profile.' + current_subject.class.to_s.downcase + '.info')%></p>
 	    </div>
 	
 		  <%= f.fields_for :actor do |actor_form| %>
