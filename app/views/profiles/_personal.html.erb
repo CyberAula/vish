@@ -3,7 +3,7 @@
     <div class="header_text2">
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
       <div class="header_icon_right">
-        <%= link_to (image_tag('btn/edit.png')), :controller => :profiles, :action => :edit, :section => "about_me" %>
+        <%= link_to (image_tag('icons/edit_icon.png')), :controller => :profiles, :action => :edit, :section => "about_me" %>
       </div>
     </div>
     <% if is_owner? %>
@@ -16,7 +16,7 @@
         <div class="sub-block">
           <% if @profile.organization? %>
             <div class="row">
-                <%= t('profile.organization') %>:
+              <%= t('profile.organization') %>:
               <div class="field_profile">
                 <%= h @profile.organization %>
               </div>
@@ -67,7 +67,9 @@
           <% end %>
         </div>
       <% elsif is_owner? %>
-        <%= t('profile.empty') %>
+        <div id="field_profile_field_empty">
+          <%= t('profile.empty') %>
+        </div>
       <% end %>
       <div class="space_center"></div>
     </div>

@@ -5,7 +5,7 @@
       <%= t('profile.contact') %>
       <% if is_owner? %>
         <div class="header_icon_right">
-          <%= link_to (image_tag('btn/edit.png')), :controller => :profiles, :action => :edit, :section => "contact_info" %>
+          <%= link_to (image_tag('icons/edit_icon.png')), :controller => :profiles, :action => :edit, :section => "contact_info" %>
         </div>
       <% end %>
     </div>
@@ -77,10 +77,11 @@
           <% end %>
         </div>
       <% elsif is_owner? %>
+        <div id="field_profile_field_empty">
         <%= t('profile.empty') %>
+        </div>
       <% end %>
       <div class="space_center"></div>
     </div>
   </div>
-  <div class="space_center"></div>
 </div>
