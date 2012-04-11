@@ -79,7 +79,7 @@
 
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
-.link_gray a:hover{color: #000;  text-decoration: underline;}
+.link_gray a:hover{color: #000;  text-decoration: none;}
 
 /***********COLORS ***********/
 .background{color: #F9F9F9;}
@@ -92,6 +92,10 @@
 .blue-2{color: #3366FF; opacity: 0.6;}
 .red-1{color: #FF005D;}
 .red-2{color: #FF005D; opacity: 0.6;}
+
+.span_profile{
+ width:90px;
+}
 
 
 /************* SEARCH_BAR *************/

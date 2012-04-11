@@ -58,7 +58,7 @@ sub {
   bottom: -0.25em;
 }
 img {
-  /*border-radius: 10px;*/
+  border-radius: 10px;
   max-width: 100%;
   /*!height: auto; *////
   border: 0;
