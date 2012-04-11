@@ -16,7 +16,9 @@
         <div class="sub-block">
           <% if @profile.organization? %>
             <div class="row">
-              <%= t('profile.organization') %>:
+              <div class="title_sub_profile">
+              <%= t('profile.organization') %>
+                </div>
               <div class="field_profile">
                 <%= h @profile.organization %>
               </div>

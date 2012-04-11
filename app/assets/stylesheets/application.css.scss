@@ -382,8 +382,9 @@
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
 }
-      .users_btn_followt:focus{
-  border-color: rgba(255, 100, 100, 0.8);
+
+.users_btn_followt:focus{
+  border-color: rgb(255, 2, 94);
   -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
@@ -935,7 +936,15 @@ li{
 
 
 
-/*edit profile*/
+/*......................................................................edit profile*/
+.btn_info_profile{
+  float:right;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+.padding_left{
+padding-left: 30px
+}
 
 .margin_profile{
 margin-left: 20px;
