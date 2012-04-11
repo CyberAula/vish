@@ -1,0 +1,13 @@
+<% subject.following_actor_objects.includes(:actor).limit(4).each do |object|  %>
+
+<%= div_for object.actor, :class => 'row' do %>
+  <ul class="thumbnails span">
+    <li class="span1">
+      <%= link_to(image_tag(object.actor.logo.url(:profile)),
+                  object.actor.subject, :class => "container") %>
+    </li>
+  </ul>
+<% end %>
+
+<% end %>
+

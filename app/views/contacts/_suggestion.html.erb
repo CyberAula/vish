@@ -1,0 +1,23 @@
+<%= div_for suggestion, :class => 'row' do %>
+  <ul class="thumbnails span3">
+    <li class="span1">
+      <%= link_to(image_tag(suggestion.receiver.logo.url(:profile)),
+                  suggestion.receiver_subject, :class => "container") %>
+    </li>
+    <li class="span">
+      <div class="caption elipsis">
+        <div class="title_suggestion">
+          <h4><%= link_to(truncate_name(suggestion.receiver_subject.name), suggestion.receiver_subject, :class => "contact_link") %></h4>
+        </div>
+        <a class="close_suggestion"> <%= link_to '×', suggestion, :method => :delete, :remote => true %></a>
+        <div class="size12 blue-cake blue-opacity upfoll">user</div>
+        <div class="follwrs-ing">
+          <div class="follwrs upfoll">followers: <%= link_to 12, "#" %></div>
+        </div>
+        <div class="send_messag size10 red-2 upfoll"><%=contact_to(suggestion.receiver) %></div>
+      </div>
+    </li>
+  </ul>
+  <div class="space_center">
+  </div>
+<% end %>

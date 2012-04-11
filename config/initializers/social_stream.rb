@@ -65,6 +65,12 @@ module SocialStream::Views::Toolbar
           :key => :resources,
           :html => render(:partial => 'toolbar/resources', :locals => { :subject => subject })
         }
+
+        #Contacts brief
+        items << {
+          :key => :contacts,
+          :html => render(:partial => 'toolbar/contacts', :locals => { :subject => subject })
+        }
       end
     when :messages
       super

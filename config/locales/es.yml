@@ -1,4 +1,7 @@
 es:
+  activity_action:
+    follow: "+ Seguir"
+    unfollow: "Dejar de seguir"
   excursion:
     one: "excursión"
     other: "excursiones"
@@ -7,7 +10,7 @@ es:
     msg: "Publicó una excursión: "
   follow:
     followers: "seguidores"
-    followings: "seguidos"
+    followings: "siguiendo"
     views: "vistos"
   lang:
     title: "idioma"
