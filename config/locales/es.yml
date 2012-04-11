@@ -42,4 +42,6 @@ es:
   views:
     pagination:
       truncate: "..."
+      previous: "«"
+      next: "»"
 
