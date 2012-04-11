@@ -36,3 +36,6 @@ en:
   vish:
     sentence1: "Create your account with VISH"
     sentence2: "VISH is a social science platform"
+  views:
+    pagination:
+      truncate: "..."
