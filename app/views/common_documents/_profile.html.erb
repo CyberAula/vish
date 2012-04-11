@@ -1,0 +1,13 @@
+<%= div_for document, :class => 'row' do %>
+    <ul class="thumbnails span2">
+      <li class="span">
+        <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
+      </li>
+      <li class="span_profile">
+        <div class="caption elipsis">
+          <h4 class="link_gray"><%= link_to truncate_name(document.title, :length => 15), document, :class => "size14" %></h4>
+          <h5></span> <span class="green"><%=35%></span> views</h5>
+        </div>
+      </li>
+    </ul>
+<% end %>
