@@ -1,4 +1,4 @@
-<section id="wrapper_activities" class="tabbable span5">
+<section id="wrapper_activities" class="tabbable span<%=spanX%>">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#wall-input"><%= t('activity.title').downcase %></a></li>
   </ul>
@@ -8,5 +8,6 @@
     </div>
   </div>
   <%= render :partial => 'activities/wall',
-             :locals  => { :activities => activities } %>
+             :locals  => { :activities => activities, :spanX => spanX } %>
 </section>
+

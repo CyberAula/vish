@@ -27,5 +27,5 @@
 <%= render :partial => "activities/index",
            :locals  => { :activities => @user.wall(:profile, :for => current_subject).
                                               page(params[:page]),
-                         :owner => @user } %>
+                         :owner => @user, :spanX => 6 } %>
 

@@ -1,5 +1,5 @@
-<div id="wall">
-  <%= render activities  %>
+<div id="wall" class='span<%=spanX%>'>
+  <%= render :partial => "activities/activity", :collection => activities, :locals => { :spanX => spanX}  %>
   <%= paginate activities %>
 </div>
 
@@ -8,4 +8,5 @@
     SocialStream.Timeline.init();  
   });
 <% end %>
+
 

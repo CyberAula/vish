@@ -1,11 +1,11 @@
-<%= div_for activity, :class => 'span6' do %>
+<%= div_for activity, :class => "span"+spanX.to_s do %>
   <ul class="thumbnails span">
     <li class="span">
       <%= link_to image_tag(activity.sender_subject.logo.url(:contact),
                             :alt => activity.sender_subject.name),
                   activity.sender_subject, :class=> "container" %>
     </li>
-    <li class="span5 activity_content">
+    <li class="span<%=spanX-1%> activity_content">
       <div class="caption span">
         <h4 class="span"><%= activity.title(self)%></h4>
         <h4 class="span"><%= render activity.activity_objects %></h4>
