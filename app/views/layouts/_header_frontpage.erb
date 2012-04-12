@@ -20,7 +20,11 @@
 
 <%= javascript_tag do %>
   $(function() {
-    $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+    if ("placeholder" in document.createElement("input")) {
+      $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+    } else {
+      $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+    }
     $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
   });
 <% end %>

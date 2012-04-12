@@ -45,7 +45,7 @@
       <% end %>
       <div class="row">
         <div class="form_row">
-          <p class="devise_title"><%= t('profile.tags.other') %></p>
+          <p class="devise_title2"><%= t('profile.tags.other') %></p>
         </div>
         <div class="row span6 boxy_gray">
           <div class="space_center"></div>
@@ -61,7 +61,7 @@
     <% if !params[:section].present? or params[:section].eql?("about_me") %>
       <div class="row">
         <div class="form_row">
-          <p class="devise_title"><%= t('profile.' + current_subject.class.to_s.downcase + '.info') %></p>
+          <p class="devise_title2"><%= t('profile.' + current_subject.class.to_s.downcase + '.info') %></p>
         </div>
         <div class="row span6 boxy_gray padding_left">
           <div class="space_center"></div>
@@ -124,7 +124,7 @@
     <% end %>
     <% if !params[:section].present? or params[:section].eql?("contact_info") %>
       <div class="form_row">
-        <div class="devise_title"><%= t('profile.contact') %></p>
+        <div class="devise_title2"><%= t('profile.contact') %></p>
         </div>
         <div class="form_row">
           <div class="row span6 boxy_gray padding_left">
@@ -183,7 +183,7 @@
     <% end %>
     <% if !params[:section].present? or params[:section].eql?("my_experience") %>
       <div class="form_row">
-        <p class="devise_title"><%= t('profile.' + current_subject.class.to_s.downcase + '.experience') %></p>
+        <p class="devise_title2"><%= t('profile.' + current_subject.class.to_s.downcase + '.experience') %></p>
       </div>
       <div class="row center">
         <%= f.text_area :experience, :maxlength => 500, :rows => 10, :class => "form_tag_long" %>

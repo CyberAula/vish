@@ -32,7 +32,7 @@
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
 #tags{color: #cccccc; font-family: DsignesLight; }
-#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter; font-family: DsignesLight;}
+#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter; font-family: 'DsignesLight';}
 #repositories a{float: right; top:-30px; z-index:1;}
 #excursion a{left:10px;  top:10px; z-index:2;}
 #organizations a{left:19px; float: right; top:15px; ; z-index:3;}
@@ -44,7 +44,7 @@
 .menu ul li#trade_mark_logo{font-weight:normal;}
 
 #top{height:120px;}
-#top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;}
+#top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;font-family:'DsignesBold';font-size: 12 pt;}
 .white{ background-color:#fff;margin-top: 65px; padding-top: 10px; padding-bottom: 5px;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
@@ -481,7 +481,7 @@
   height: 18px
 }
 .devise_title{
-  text-align:left;
+  text-align:right;
   font-size: 45px;
   line-height: 115%;
   font-family:'DsignesLight';
@@ -494,6 +494,7 @@
   font-family:'DsignesLight';
   src: url(fonts/DsignesLight.otf);
 }
+
 
 
 /*************** MESSAGES ICONS **********/
