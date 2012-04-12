@@ -99,6 +99,7 @@
 
 .attachment_thumb{visibility:hidden; width: 0px; height: 0px;}
 .unborder{border-radius: 0px;}
+.miniborder{border-radius: 5px;}
 
 /************* SEARCH_BAR *************/
 
@@ -269,6 +270,7 @@
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
 .space_right{padding-right: 20px;}
 .space_left{padding-left: 20px;}
+.space_both{padding-left: 15px; padding-right: 10px;}
 .space_top{padding-top: 20px;}
 
 
@@ -307,12 +309,13 @@
 #form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;}
 
 #home_wall div.root_activity {width: 100%}
-#home_wall li.activity_content {width:85%}
+#home_wall li.activity_content {width:83%}
 #home wall li.subactivity {width:100%}
 .subactivity{width: 100%;}
 
-#profile_wall li.activity_content {width: 345px}
-#profile_wall div.root_activity {width: 455px}
+#profile_wall div.root_activity {width: 100%}
+#profile_wall li.activity_content {width: 83%}
+
 
 
 /***************** ACTIVITY OPTIONS ***/
@@ -366,6 +369,7 @@
 .tittle_mens {margin-bottom:4px;}
 .dat {margin-left: 15px !important}
 .to-r {float: right; width: 15px; height: 15px;}
+
 /**************suggestions css *************/
 
 .users_btn_follow input[type="submit"]  {
@@ -381,7 +385,8 @@
   -moz-opacity: .60;
   filter:alpha(opacity=60);
 }
-     .users_btn_follow input {
+
+.users_btn_follow input {
   -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
@@ -398,7 +403,7 @@
   -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   outline: thin dotted ;
-   }
+}
 
 .header_text {
   font-size: 16px;
@@ -479,6 +484,10 @@
 
 .input-xlarge {
   height: 18px
+}
+.input-fluid {
+  height: 18px;
+  width: 98%;
 }
 .devise_title{
   text-align:right;
