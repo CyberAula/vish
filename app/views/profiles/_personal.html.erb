@@ -3,7 +3,7 @@
     <div class="header_text2">
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
       <div class="header_icon_right unborder">
-        <%= link_to (image_tag('icons/edit_icon.png')), :controller => :profiles, :action => :edit, :section => "about_me" %>
+        <%= link_to (image_tag('icons/edit_icon.png', :class=>"unborder")), :controller => :profiles, :action => :edit, :section => "about_me" %>
       </div>
     </div>
     <% if is_owner? %>
