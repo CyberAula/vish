@@ -26,17 +26,13 @@
   font-family:'DsignesRegular';
   src: url(fonts/DsignesRegular.otf);
 }
-@font-face{
-  font-family:'HelveticaNeueThin';
-  src: url(fonts/HelveticaNeueThin.ttf);
-}
 
 /************* FRONTPAGE *******/
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
 #tags{color: #cccccc; }
-#repositories a, #excursion a, #organizations a, #users a{position:relative; font-family:'HelveticaNeueThin'; font-weight: lighter;}
+#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter;}
 #repositories a{float: right; left: -18px; top:-30px; z-index:1;}
 #excursion a{left:10px;  top:10px; z-index:2;}
 #organizations a{left:19px; float: right; top:15px; ; z-index:3;}
