@@ -31,12 +31,12 @@
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
-#tags{color: #cccccc; }
-#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter;}
-#repositories a{float: right; left: -18px; top:-30px; z-index:1;}
+#tags{color: #cccccc; font-family: DsignesLight; }
+#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter; font-family: DsignesLight;}
+#repositories a{float: right; top:-30px; z-index:1;}
 #excursion a{left:10px;  top:10px; z-index:2;}
 #organizations a{left:19px; float: right; top:15px; ; z-index:3;}
-#users a{top:55px; left:-39px; z-index:4;}
+#users a{top:45px; left:-39px; z-index:4;}
 
 .menu ul {list-style-type:none;margin-left:4em; }
 .menu ul li {display:inline-block;margin-right:4em;position:relative; vertical-align: middle;}
@@ -73,9 +73,9 @@
 .size18{font-size: 18px;}
 .size30{font-size: 30px;}
 .size40{font-size: 40px;}
-.size50{font-size: 50px;}
 .size60{font-size: 60px;}
 .size80{font-size: 80px;}
+.size100{font-size: 100px;}
 
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
