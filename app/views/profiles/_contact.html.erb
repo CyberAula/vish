@@ -5,7 +5,7 @@
       <%= t('profile.contact') %>
       <% if is_owner? %>
         <div class="header_icon_right">
-          <%= link_to (image_tag('icons/edit_icon.png')), :controller => :profiles, :action => :edit, :section => "contact_info" %>
+          <%= link_to (image_tag('icons/edit_icon.png', :class=>"unborder")), :controller => :profiles, :action => :edit, :section => "contact_info" %>
         </div>
       <% end %>
     </div>
