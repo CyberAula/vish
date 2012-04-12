@@ -1,3 +1,5 @@
+<div class="space_center"></div>
+<div class="header_text"> <% %> <%= t('follow.followers') %> </div>
 <% subject.following_actor_objects.includes(:actor).limit(4).each do |object|  %>
 
 <%= div_for object.actor, :class => 'row' do %>

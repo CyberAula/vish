@@ -82,3 +82,7 @@
     border: 1px solid #E0EEF5;
 }
 
+.form.file_upload {
+  background-color: none repeat scroll 0 0 #D7E8FF;
+  border: 1px solid #0066FF;
+}

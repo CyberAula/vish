@@ -1,5 +1,5 @@
-<div id="wall" class='span<%=spanX%>'>
-  <%= render :partial => "activities/activity", :collection => activities, :locals => { :spanX => spanX}  %>
+<div id="wall">
+  <%= render activities  %>
   <%= paginate activities %>
 </div>
 

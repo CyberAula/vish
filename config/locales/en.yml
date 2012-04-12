@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      user:
+        email: "Username"
   excursion:
     one: "excursion"
     other: "excursions"
@@ -16,13 +20,13 @@ en:
   translate:
     change: "Change language"
   more: "more"
+  organization:
+    one: "organization"
+    other: "organizations"
   password: "password"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
-  organization:
-    one: "organization"
-    other: "organizations"
   repository:
     one: "repository"
     other: "repositories"

@@ -1,5 +1,5 @@
 <%= div_for activity, :class => "subactivity row boxy_white" do %>
-  <ul class="thumbnails span">
+  <ul class="thumbnails">
     <li class="span space_left">
       <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
                             :alt => activity.sender_subject.name),
@@ -7,11 +7,11 @@
     </li>
     <li class="span activity_content">
       <div class="caption elipsis">
-        <h5><%= link_to(activity.sender_subject.name, activity.sender_subject) %> <%= render activity.activity_objects %></h5>
-        <h5>
+        <span><%= link_to(activity.sender_subject.name, activity.sender_subject) %> <%= render activity.activity_objects %></span>
+        <span>
           <%= render :partial => 'activities/options',
                        :locals => { :activity => activity } %>
-        </h5>
+        </span>
       </div>
     </li>
   </ul>

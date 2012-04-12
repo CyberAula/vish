@@ -1,4 +1,8 @@
 es:
+  activerecord:
+    attributes:
+      user:
+        email: "Username"
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
@@ -20,12 +24,12 @@ es:
     change: "Cambiar idioma"
   more: "more"
   password: "clave"
-  profile:
-    tags:
-      default: "VisHub, virtual, excursion"
   organization:
     one: "organización"
     other: "organizaciones"
+  profile:
+    tags:
+      default: "VisHub, virtual, excursion"
   repository:
     one: "repositorio"
     other: "repositorios"

@@ -297,15 +297,23 @@
 /******************* WALL - ACTIVITY ***************/
 .activity {	text-align:left;	display: block;	vertical-align: top;	padding: 5px 0px 5px 0px;}
 #main {margin-left: 30px;}
-#right {margin-left: 50px;}
+#home_wall {margin-left: 30px; width: 425px;}
 #left {margin-left: 32px;}
+.right { margin-left: 30px !important; }
 .activity_form_selector{cursor: pointer; margin-right: 10px;}
 .selected{background-color: #ffffff; border-radius: 5px; padding: 5px;}
 
 #new_document {}
-#form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;
+#form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;}
 
-}
+#home_wall div.root_activity {width: 100%}
+#home_wall li.activity_content {width:85%}
+#home wall li.subactivity {width:100%}
+.subactivity{width: 100%;}
+
+#profile_wall li.activity_content {width: 345px}
+#profile_wall div.root_activity {width: 455px}
+
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {display: inline-block;}
@@ -325,9 +333,9 @@
 .final {margin-left: 4em;}
 
 
+
+
 /****************** SUB-ACTIVITY by ACTIVITY ********/
-
-
 .activity_new_comment{  font-size: 11px;  padding-left: 5px; padding-top: 3px;  padding-bottom: 3px;display:none;}
 .input_new_comments{width:98%;	padding: 2px; resize: none;  }
 .space_comments{padding-top: 1px;	padding-bottom: 1px;}
@@ -389,8 +397,7 @@
   -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
-  outline: 0;
-  outline: thin dotted \9;
+  outline: thin dotted ;
    }
 
 .header_text {
