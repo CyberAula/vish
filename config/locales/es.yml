@@ -14,6 +14,7 @@ es:
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"
     msg: "Publicó una excursión: "
+    created: "creadas"
   follow:
     followers: "seguidores"
     followings: "siguiendo"

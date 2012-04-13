@@ -19,8 +19,10 @@
 
 <% toolbar :profile, :subject => @user %>
 
-<%= render :partial => "users/groups",
+<%#= render :partial => "users/groups",
            :locals  => { :user => @user } %>
+
+<%= render :partial => "excursions/user" %>
 
 <section name="wall" id="profile_wall">
 <%= render :partial => "activities/index",
