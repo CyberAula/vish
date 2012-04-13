@@ -8,10 +8,10 @@
     <%= render :partial => "layouts/header" %>
   </header>
   <div class="row">
-    <section id="left" class="span3">
+    <section id="left" class="span2">
       <%= yield :toolbar %>
     </section>
-    <section id="main" class="span9">
+    <section id="main" class="span10">
       <div class="space_center"></div>
       <div id="flash">
         <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
