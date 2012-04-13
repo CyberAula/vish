@@ -1889,19 +1889,20 @@ table .span12 {
 }
 .close {
   float: right;
-  font-size: 20px;
-  font-weight: bold;
+  vertical-align: top;
+  font-size: 16px;
+  /*font-weight: bold;*/
   line-height: 18px;
   color: #FF005D;
   text-shadow: 0 1px 0 #ffffff;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
+  opacity: 0.6;
+  filter: alpha(opacity=60);
 }
 .close:hover {
   color: #000000;
   text-decoration: none;
-  opacity: 0.4;
-  filter: alpha(opacity=40);
+  opacity: 0.8;
+  filter: alpha(opacity=80);
   cursor: pointer;
 }
 .btn {

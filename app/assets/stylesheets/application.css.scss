@@ -80,6 +80,8 @@
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
 .link_gray a:hover{color: #000;  text-decoration: none;}
+.link_pink a{color: #FF005D; text-decoration:none;}
+.link_pink a:hover {color: #000; text-decoration:none;}
 
 /***********COLORS ***********/
 .background{color: #F9F9F9;}
@@ -424,7 +426,7 @@
 .title_suggestion{
   width: 120px;
   display: inline-block;
-  letter-spacing: 0.5pt;
+  /*letter-spacing: 0.5pt;*/
 }
 .acept{margin-left: 160px !important;}
 
