@@ -3,6 +3,11 @@ en:
     attributes:
       user:
         email: "Username"
+  activity:
+    timeline: "timeline"
+  activity_action:
+    follow: "+ Follow"
+    unfollow: "UnFollow"
   excursion:
     one: "excursion"
     other: "excursions"

@@ -3,6 +3,8 @@ es:
     attributes:
       user:
         email: "Username"
+  activity:
+    timeline: "timeline"
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
@@ -23,10 +25,10 @@ es:
   translate:
     change: "Cambiar idioma"
   more: "more"
-  password: "clave"
   organization:
     one: "organización"
     other: "organizaciones"
+  password: "clave"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
