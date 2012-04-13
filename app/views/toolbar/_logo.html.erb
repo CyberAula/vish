@@ -11,6 +11,7 @@
     <div class="title_bold dark-gray size14" ><%= subject.name %></div>
   <% else %>
     <%= link_to image_tag(subject.logo.url, :alt => subject.name , :size => "119x119"), subject %>
+    <%=contact_to(subject) %>
     <div class="center"><span class="title_bold" ><%= subject.name %></span></div>
   <% end %>
 </div>
