@@ -8,7 +8,7 @@
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter"%>
         <div id="excursions" >
-          <% for excursion in current_subject_excursions %>
+          <% for excursion in subject_excursions(@user, {:scope => :me}) %>
             <%= render :partial => "excursions/home",
                        :locals => { :excursion => excursion} %>
           <% end %>

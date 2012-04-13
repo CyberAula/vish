@@ -22,7 +22,8 @@
 <%#= render :partial => "users/groups",
            :locals  => { :user => @user } %>
 
-<%= render :partial => "excursions/user" %>
+<%= render :partial => "excursions/user",
+           :locals => { :user => @user } %>
 
 <section name="wall" id="profile_wall">
 <%= render :partial => "activities/index",
