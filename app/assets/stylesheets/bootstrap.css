@@ -2236,8 +2236,8 @@ input[type="submit"].btn.btn-mini {
   margin-left: 5px;
 }
 .btn-toolbar {
-  margin-top: 9px;
-   //* margin-bottom: 9px;*/
+  /*margin-top: px;*/
+   /* margin-bottom: 9px;*/
 }
 .btn-toolbar .btn-group {
   display: inline-block;
@@ -2427,7 +2427,7 @@ border-color: #bce8f1;  */
 }
 .nav {
  margin-left: 0;
- margin-bottom: 15px;
+ margin-bottom: 10px;
  list-style: none;
 }
 .nav > li > a {
@@ -3495,7 +3495,7 @@ border-color: #bce8f1;  */
 }
 .thumbnails > li {
   float: left;
-  margin: 0 0 9px 5px;
+  margin: 0 0 3px 5px;
 }
 .thumbnail {
   display: block;

@@ -50,7 +50,7 @@
         <%= render :partial => "common_documents/filter"%>
         <div id="repository">
           <div class="repositories">
-            <% for document in current_subject_documents %>
+            <% for document in current_subject_documents(:limit => 8) %>
               <%= render :partial => "common_documents/home",
                          :locals => { :document => document, 
                                       :div_class => 'content_size' } %>
