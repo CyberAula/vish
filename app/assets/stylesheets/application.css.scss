@@ -959,6 +959,27 @@ li{
 .iconmessage22-message22_edit:hover {background-position: -256px -32px;}
 
 
+.title_resources{
+  font-size: 20px;
+  text-decoration: underline;
+  color:#FF005D;
+ }
+
+#description_resources{
+  font-size: 16px;
+
+  }
+
+.picture.content_size .picture_show img{
+  max-width: 475px;
+  max-height: 475px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
 
 
 
