@@ -2,7 +2,7 @@ es:
   activerecord:
     attributes:
       user:
-        email: "Username"
+        email: "Email"
   activity:
     timeline: "timeline"
   activity_action:
