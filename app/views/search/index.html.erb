@@ -36,8 +36,7 @@
     </div>
   </section>
 </div>
-
-   -->
+ -->
 
 
 <div class="row">
@@ -47,17 +46,27 @@
     <div class="search tabbable">
       <div  class="search tabbable">
         <ul class="nav nav-tabs">
-          <li class=""><%= link_to content_tag(:span,
+          <li class="active">
+            <%= link_to t('search.show_all'),"#all", :data => {:toggle=>"tab"}%>
+            <%#= link_to content_tag(:span,
                                       t('search.show_all'),
-                                      :class => "global #{ params[:focus].blank? && 'selected' }"),
+                                      :class => "global #{ params[:focus].blank? && 'active' }"),
                           search_path(:search_query => params[:search_query]),
-                          :remote => true %></li>
+                          :remote => true %>
+          </li>
           <% SocialStream.extended_search_models.each do |model_sym| %>
-            <li>
               <%= search_tab(model_sym) %>
-            </li>
           <% end %>
         </ul>
+        <div class="tab-content">
+          <div id="all" class="tab-pane active">
+            <%#= render :partial => 'index' %>
+          </div>
+          <div id="excursion" class="tab-pane"></div>
+          <div id="users" class="tab-pane"></div>
+          <div id="resources" class="tab-pane"></div>
+          <div id="tags" class="tab-pane"></div>
+        </div>
       </div>
     </div>
   </section>

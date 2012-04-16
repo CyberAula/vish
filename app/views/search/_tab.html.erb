@@ -1,0 +1,16 @@
+<%=content_tag :li, li_options do %>
+  <%= if results
+        link_to t("#{ model_sym }.title.other"),
+                  search_path(:focus => model_sym,
+                              :search_query => params[:search_query]),
+                  :remote => true,
+                  :data => {:toggle=>"tab"}
+      else
+        link_to t("#{ model_sym }.title.other"),
+                search_path(:focus => model_sym,
+                            :search_query => params[:search_query]),
+                :remote => true,
+                :data => {:toggle=>"tab disable"}
+
+    end%>
+<%end%>
