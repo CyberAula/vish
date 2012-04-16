@@ -1,4 +1,6 @@
 en:
+  today: "Today"
+  yesterday: "Yesterday"
   activerecord:
     attributes:
       user:
