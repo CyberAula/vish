@@ -6,7 +6,7 @@
 /******************** Common ***********************/
 
 #avatars_for_rails img { max-width: none !important; }
-.clearfloat { clear: both; height: 0px;}
+.clearfloat { clear: both; /**height: 0px;**/}
 
 /******************** Avatars ***********************/
 .avatars { padding-left: 10px;  }
