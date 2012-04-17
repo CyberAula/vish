@@ -302,6 +302,58 @@
 .margin-thumbnail { margin-right:20px  !important; }
 .padding-margin-clear{margin:0px; padding: 9px 0px 1px 0px !important;}
 
+/*******************INPUT FILE***********************/
+
+form.example div.fakefile {
+  left: 0;
+  line-height: 90%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 350px;
+  z-index: 1;
+}
+form.example input {
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+form.example div.fakefile input {
+  background-color:#FFF;
+  border:#666;
+  border-style:solid;
+  border-radius:10px;
+  border-width:thin;
+  height: 20px;
+  width: 195px;
+  float:left;
+  padding-left:5px;
+}
+form.example div.fakefile {
+  line-height: 90%;
+}
+form.example input.file {
+  margin: 0;
+  width: 253px;
+}
+form.example input.file.hidden {
+  opacity: 0;
+  position: relative;
+  text-align: right;
+  z-index: 2;
+}
+.btn_br {
+  background-color:#FFF;
+  border:#666;
+  border-style:solid;
+  border-radius:10px;
+  border-width:thin;
+  height: 16px;
+  width: 50px;
+  margin-left:206px;
+  padding-top:6px;
+  text-align:center;
+}
 
 /******************* WALL - ACTIVITY ***************/
 .activity {	text-align:left;	display: block;	vertical-align: top;	padding: 5px 0px 5px 0px;}
