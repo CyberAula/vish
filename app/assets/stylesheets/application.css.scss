@@ -344,15 +344,26 @@ form.example input.file.hidden {
 }
 .btn_br {
   background-color:#FFF;
-  border:#666;
+  border:#555555;
   border-style:solid;
   border-radius:10px;
-  border-width:thin;
-  height: 16px;
+  border:1px;
   width: 50px;
-  margin-left:206px;
+  display: inline-block;
   padding-top:6px;
   text-align:center;
+}
+#input_file{
+  border: 1px solid #CCCCCC;
+  border-radius: 15px 15px 15px 15px;
+  color: #555555;
+  display: inline-block;
+  font-size: 13px;
+  height: 20px;
+  line-height: 18px;
+  margin-bottom: 9px;
+  padding: 3px;
+  width: 78%;
 }
 
 /******************* WALL - ACTIVITY ***************/
