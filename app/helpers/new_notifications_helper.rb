@@ -1,4 +1,4 @@
-module NotificationsHelper
+module NewNotificationsHelper
   def today_or_else(day)
     if day == Date.today
       t('today')
