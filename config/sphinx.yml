@@ -1,7 +1,7 @@
 development:
  bin-path: '/usr/bin'
- searchd_binary_name: 'sphinx-searchd'
- indexer_binary_name: 'sphinx-indexer'
+ searchd_binary_name: 'searchd'
+ indexer_binary_name: 'indexer'
  enable_star: 1
  min_infix_len: 1
 test:
