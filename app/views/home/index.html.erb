@@ -10,10 +10,8 @@
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter"%>
         <div id="excursions" >
-          <% for excursion in current_subject_excursions %>
-            <%= render :partial => "excursions/home",
-                 :locals => { :excursion => excursion} %>
-          <% end %>
+          <%= render :partial => "excursions/filter_results",
+                     :locals => { :excursions => current_subject_excursions } %>
         </div>
       </div>
       <!--
