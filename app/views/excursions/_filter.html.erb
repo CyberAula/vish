@@ -1,6 +1,6 @@
 <div class="row btn-toolbar">
   <div class="pull-right">
-    <input type="text" class="input-medium inline-block ontop" placeholder="filter" name="filter">
+    <input id="excursion-filter" type="text" class="input-medium inline-block ontop" placeholder="filter" name="filter">
     <div class="btn-group">
       <a href="#" data-toggle="dropdown" class="btn link_gray dropdown-toggle">add <span class="caret"></span></a>
       <ul class="dropdown-menu">
@@ -10,3 +10,15 @@
     </div>
   </div>
 </div>
+<%= javascript_tag do %>
+$('#excursion-filter').on("keyup", function() {
+  $.ajax({
+    url: "/excursions/filter",
+    data: { q: $('#excursion-filter')[0].value, scope: "net" },
+    success: function(data) {
+      $('#excursions').empty();
+      $('#excursions').html(data);
+    }
+  });
+});
+<% end %>

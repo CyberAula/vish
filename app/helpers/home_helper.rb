@@ -28,6 +28,23 @@ module HomeHelper
 
     query = klass
 
+
+    # This is really inefficient. The alternative is using a facet for author:
+    # http://freelancing-god.github.com/ts/en/facets.html
+    unless options[:query].blank?
+      query = query.search(options[:query])
+      case options[:scope]
+      when :me
+        query = query.select{|e| e.author.id == subject.actor_id }
+      when :net
+        query = query.select{|e| following_ids.include? e.author.id }
+      when :more
+        query = query.select{|e| not following_ids.include? e.author.id }
+      end
+      return query.sort_by!{|e| e.created_at}.reverse.first(options[:limit])
+    end
+
+
     case options[:scope]
     when :me
       query = query.authored_by(subject.actor_id)
