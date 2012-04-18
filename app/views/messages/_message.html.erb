@@ -1,31 +1,29 @@
 <%= div_for(message, :class => read_class) do%>
-<div class="sender_photo inline">
+<div class="inline span3">
+  <div class="sender_photo span">
 	<%= link_to image_tag(message.sender.logo.url(:actor),
 	:title => message.sender.name, :alt => message.sender.name),
 	message.sender.subject %>
+  </div>
+  <div class="dat inline-block offset1">
+     <div class="sender_name inline">
+		<%= link_to truncate_name(message.sender.name), message.sender.subject %>
+	 </div>
+	<div class="date">
+		<%= t('time.ago', :time => time_ago_in_words(message.updated_at)) %>
+	</div>
+  </div>
 </div>
-<div class="container">
-	<div class="header inline-block">
-		<div class="content_left inline-block">
-			<div class="sender_name inline">
-				<%= link_to truncate_name(message.sender.name), message.sender.subject %>
-			</div>
-			<div class="date inline-block">
-				<%= t('time.ago', :time => time_ago_in_words(message.updated_at)) %>
-			</div>
-		</div>
-		<div class="content_right inline-block">
-			<div class="subject">
-				<%= truncate(message.subject, :length => 70) %>
-			</div>
-		</div>
-		<div class="clearfloat">
+  <div class="content_right span dat">
+    <div class="subject tittle_mens size14 blue-cake">
+	  <%= truncate(message.subject, :length => 70) %>
+	</div>
+    <div class="briefing">
+      <%= raw(message.body) %>
+    </div>
+    <div class="clearfloat">
 		</div>
 	</div>
-	<div class="body span8">
-		<%= raw(message.body) %>
-	</div>
-</div>
-<div class="clearfloat">
+  <div class="clearfloat">
 </div>
 <% end %>

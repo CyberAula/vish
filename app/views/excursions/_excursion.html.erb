@@ -3,7 +3,13 @@
     <%#= link_to thumb_for(excursion, 130), excursion, :class => "" %>
   </div>
   <div class="attachment_text">
-    <%= t('excursion.msg') %><%= link_to excursion.title, excursion, :class => "attachment_text_link" %>
+    <div class="title">
+      <%= excursion.title %>
+    </div>
+
+    <%= simple_format auto_link(excursion.description) %>
+
+    <%= link_to t('details.msg'), excursion, :class => "attachment_text_link" %>
   </div>
 <% end %>
 
