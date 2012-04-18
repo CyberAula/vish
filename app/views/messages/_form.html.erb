@@ -1,4 +1,4 @@
-<legend> <div class= "red-1">Write your message tittle</div></legend>
+<legend> <div class= "red-1"><%= t('message.new')%></div></legend>
 <%= form_tag messages_path, :method => :post , :class => "new_message" do %>
 <% if @receipt and @receipt.errors.any? %>
 <div class="error">
@@ -16,7 +16,7 @@
 	  <div class="form_row">
       <%= label_tag t('mailboxer.form.recipients') %>
 		</div>
-	  <div class="form_row">
+	  <div class="form_row margin-negative">
       <%= select_tag :_recipients, "", :class => "required form_tag" %>
 
   </div>

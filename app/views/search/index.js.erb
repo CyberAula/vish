@@ -1,22 +1,19 @@
-  $('#search_results').html("<%= escape_javascript render :partial => 'extended_search' %>");
-  $('#search_form_div').html("<%= escape_javascript render :partial => 'form' %>");
-  
-  $('#focus_options ul li a span').removeClass('selected');
-  
-  <% if params[:focus].present? %>
-  $('#focus_options ul li a span.<%= params[:focus].pluralize.downcase %>').addClass('selected');
-  <% else %>
-  $('#focus_options ul li a span.global').addClass('selected');
-  <% end %>
-  
-  $('title').text('<%#= t('search.name')%> <%= escape_javascript(params[:q].present? ? ": #{params[:q]}" : "")%>');
-  
-  <% if too_short_query? %>
-  $('#too_short_error').show();
-  <% else %>
-  $('#too_short_error').hide();
-  <% end %> 
-  
-  $('#global_search_input').removeClass("searching");
+$('#search_results').html("<%= escape_javascript render :partial => 'extended_search' %>");
 
-  setActivityPrivacyTooltips();
+$('#focus_options ul li a span').removeClass('selected');
+
+<% if params[:focus].present? %>
+  $('#focus_options ul li a span.<%= params[:focus].pluralize.downcase %>').addClass('selected');
+<% else %>
+  $('#focus_options ul li a span.global').addClass('selected');
+<% end %>
+
+$('title').text('<%#= t('search.name')%> <%= escape_javascript(params[:q].present? ? ": #{params[:q]}" : "")%>');
+
+<% if too_short_query? %>
+  $('#too_short_error').show();
+<% else %>
+  $('#too_short_error').hide();
+<% end %> 
+
+$('#global_search_input').removeClass("searching");
