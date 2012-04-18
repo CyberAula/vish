@@ -1,7 +1,6 @@
-<%= div_for(conversation, :class => read_class) do %>
+<%= div_for(conversation, :class => read_class+' message') do %>
 <div class="notification">
 </div>
-    <div class="message">
     <div class="inline span3">
       <div class="sender_photo span">
 	<%= link_to image_tag(conversation.last_sender.logo.url(:actor),

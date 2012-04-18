@@ -14,16 +14,17 @@
 	</div>
   </div>
 </div>
-  <div class="content_right span dat">
-    <div class="subject tittle_mens size14 blue-cake">
-	  <%= truncate(message.subject, :length => 70) %>
-	</div>
-    <div class="briefing">
-      <%= raw(message.body) %>
-    </div>
-    <div class="clearfloat">
-		</div>
-	</div>
-  <div class="clearfloat">
+<div class="content_right span5 dat">
+<div class="subject tittle_mens size14 blue-cake">
+  <%= truncate(message.subject, :length => 70) %>
 </div>
+<div class="briefing">
+  <%= raw(message.body) %>
+</div>
+<div class="clearfloat">
+    </div>
+</div>
+<div class="clearfloat">
+</div>
+
 <% end %>
