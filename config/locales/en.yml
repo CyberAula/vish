@@ -28,6 +28,8 @@ en:
     error: "Language \"%{lang}\" not available"
   translate:
     change: "Change language"
+  message:
+    new: "Write a new message"
   more: "more"
   organization:
     one: "organization"
