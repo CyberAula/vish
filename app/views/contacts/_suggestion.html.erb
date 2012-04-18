@@ -11,7 +11,7 @@
         </div>
         <div class="close link_pink"><%= link_to '×', suggestion, :method => :delete, :remote => true, :class =>"" %></div>
         <div class="follwrs-ing">
-          <div class="follwrs upfoll">12 followers</div>
+          <div class="follwrs upfoll"><%=suggestion.receiver_subject.followers.count  %>  <%= t('follow.followers') %></div>
         </div>
         <div class="send_messag size10 red-2 upfoll"><%=contact_to(suggestion.receiver) %></div>
       </div>
