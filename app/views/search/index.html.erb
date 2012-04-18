@@ -1,35 +1,80 @@
-<div class="search tabbable">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#"><%= t('search') %></a></li>
-    <li class=""><a data-toggle="tab" href="#"><%= t('all') %></a></li>
-    <li class=""><a data-toggle="tab" href="#"><%= t('iexcursions') %></a></li>
-    <li class=""><a data-toggle="tab" href="#"><%= t('organization.one') %></a></li>
-    <li class=""><a data-toggle="tab" href="#"><%= t('user.one') %></a></li>
-    <li class=""><a data-toggle="tab" href="#"><%= t('resources') %></a></li>
-    <li class=""><a data-toggle="tab" href="#"><%= t('tags') %></a></li>
-  </ul>
-  <div class="tab-content">
-    <div id="search" class="tab-pane active">
-    </div>
-    <div id="all" class="tab-pane">
-    </div>
-    <div id="iexcursions" class="tab-pane">
-    </div>
-    <div id="users" class="tab-pane">
-    </div>
-    <div id="resources" class="tab-pane">
-    </div>
-    <div id="tags" class="tab-pane">
-    </div>
-  </div>
-</div>
 
 <% content_for :title do %>
-<%#= t('search.name')%> <%= params[:q].present? ? ": #{params[:q]}" : "" %>
+<%= t('search.name')%> <%= params[:q].present? ? ": #{params[:q]}" : "" %>
 <% end %>
 
-<% sidebar %>
+<%# sidebar %>
 
 <% toolbar if user_signed_in? %>
 
-<%= render :partial => 'index' %>
+<div class="row"><span class="size40"><%=t('search.name') %></span></div>
+<div class="row space_center"></div>
+
+<!--
+<div class="row">
+  <section name="Search" class="span12">
+    <div class="search tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#all"><%#= t('all') %></a></li>
+        <li class=""><a data-toggle="tab" href="#excursion"><%#= t('excursions') %></a></li>
+        <!--<li class=""><a data-toggle="tab" href="#organization"><%#= t('organization.one') %></a></li>
+        <li class=""><a data-toggle="tab" href="#users"><%#= t('user.one') %></a></li>
+        <li class=""><a data-toggle="tab" href="#resources"><%#= t('resources') %></a></li>
+        <li class=""><a data-toggle="tab" href="#tags"><%#= t('tags') %></a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="all" class="tab-pane active">
+          <%#= render :partial => 'index' %>
+        </div>
+        <div id="excursion" class="tab-pane">
+        </div>
+        <!--<div id="organization" class="tab-pane"></div>
+        <div id="users" class="tab-pane"></div>
+        <div id="resources" class="tab-pane"></div>
+        <div id="tags" class="tab-pane"></div>
+      </div>
+    </div>
+  </section>
+</div>
+ -->
+
+
+<div class="row">
+  <section name="Search" class="span12">
+    <div class="error" id="too_short_error" <%= 'style=display:block;' if too_short_query? %>><%= t('search.at_least') %></div>
+
+    <div class="search tabbable">
+      <div  class="search tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <%= link_to t('search.show_all'),"#all", :data => {:toggle=>"tab"}%>
+            <%#= link_to content_tag(:span,
+                                      t('search.show_all'),
+                                      :class => "global #{ params[:focus].blank? && 'active' }"),
+                          search_path(:search_query => params[:search_query]),
+                          :remote => true %>
+          </li>
+          <% SocialStream.extended_search_models.each do |model_sym| %>
+              <%= search_tab(model_sym) %>
+          <% end %>
+        </ul>
+        <div class="tab-content">
+          <div id="all" class="tab-pane active">
+            <%#= render :partial => 'index' %>
+          </div>
+          <div id="excursion" class="tab-pane"></div>
+          <div id="users" class="tab-pane"></div>
+          <div id="resources" class="tab-pane"></div>
+          <div id="tags" class="tab-pane"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<%= javascript_tag do %>
+  $(function() {
+  SocialStream.Search.init();
+  });
+<% end %>

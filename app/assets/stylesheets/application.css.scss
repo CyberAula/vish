@@ -32,7 +32,7 @@
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
 #tags{color: #cccccc; font-family: DsignesLight; }
-#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter; font-family: DsignesLight;}
+#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter; font-family: 'DsignesLight';}
 #repositories a{float: right; top:-30px; z-index:1;}
 #excursion a{left:10px;  top:10px; z-index:2;}
 #organizations a{left:19px; float: right; top:15px; ; z-index:3;}
@@ -44,7 +44,7 @@
 .menu ul li#trade_mark_logo{font-weight:normal;}
 
 #top{height:120px;}
-#top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;}
+#top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;font-family:'DsignesBold';font-size: 12 pt;}
 .white{ background-color:#fff;margin-top: 65px; padding-top: 10px; padding-bottom: 5px;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
@@ -56,7 +56,6 @@
 /******************* BASIC CLASSES ******************/
 .inline {display:inline;}
 .inline-block {display:inline-block;}
-.link_gray {display:inline-block;}
 .inline {display: inline}
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
@@ -80,6 +79,8 @@
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
 .link_gray a:hover{color: #000;  text-decoration: none;}
+.link_pink a{color: #FF005D; text-decoration:none;}
+.link_pink a:hover {color: #000; text-decoration:none;}
 
 /***********COLORS ***********/
 .background{color: #F9F9F9;}
@@ -99,6 +100,9 @@
 
 .attachment_thumb{visibility:hidden; width: 0px; height: 0px;}
 .unborder{border-radius: 0px;}
+.miniborder{border-radius: 5px;}
+
+.following-button{color: #FF005D; opacity:0.6; margin:4px 10px; border: 0 none; height: auto; width: auto; font-size: 13px;}
 
 /************* SEARCH_BAR *************/
 
@@ -269,7 +273,12 @@
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
 .space_right{padding-right: 20px;}
 .space_left{padding-left: 20px;}
+.space_both{padding-left: 15px; padding-right: 10px;}
 .space_top{padding-top: 20px;}
+.space_null{padding:0px !important; margin:0px !important;}
+.space_bottom{padding-bottom: 10px;}
+
+
 
 
 /***********excursion BOX ******/
@@ -293,19 +302,91 @@
 .margin-thumbnail { margin-right:20px  !important; }
 .padding-margin-clear{margin:0px; padding: 9px 0px 1px 0px !important;}
 
+/*******************INPUT FILE***********************/
+
+form.example div.fakefile {
+  left: 0;
+  line-height: 90%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 350px;
+  z-index: 1;
+}
+form.example input {
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+form.example div.fakefile input {
+  background-color:#FFF;
+  border:#666;
+  border-style:solid;
+  border-radius:10px;
+  border-width:thin;
+  height: 20px;
+  width: 195px;
+  float:left;
+  padding-left:5px;
+}
+form.example div.fakefile {
+  line-height: 90%;
+}
+form.example input.file {
+  margin: 0;
+  width: 253px;
+}
+form.example input.file.hidden {
+  opacity: 0;
+  position: relative;
+  text-align: right;
+  z-index: 2;
+}
+.btn_br {
+  background-color:#FFF;
+  border:#555555;
+  border-style:solid;
+  border-radius:10px;
+  border:1px;
+  width: 50px;
+  display: inline-block;
+  padding-top:6px;
+  text-align:center;
+}
+#input_file{
+  border: 1px solid #CCCCCC;
+  border-radius: 15px 15px 15px 15px;
+  color: #555555;
+  display: inline-block;
+  font-size: 13px;
+  height: 20px;
+  line-height: 18px;
+  margin-bottom: 9px;
+  padding: 3px;
+  width: 78%;
+}
 
 /******************* WALL - ACTIVITY ***************/
 .activity {	text-align:left;	display: block;	vertical-align: top;	padding: 5px 0px 5px 0px;}
 #main {margin-left: 30px;}
-#right {margin-left: 50px;}
+#home_wall {margin-left: 30px; width: 425px;}
 #left {margin-left: 32px;}
+.right { margin-left: 60px !important; }
 .activity_form_selector{cursor: pointer; margin-right: 10px;}
 .selected{background-color: #ffffff; border-radius: 5px; padding: 5px;}
 
 #new_document {}
-#form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;
+#form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;}
 
-}
+#home_wall div.root_activity {width: 100%}
+#home_wall li.activity_content {width:83%}
+#home wall li.subactivity {width:100%}
+.subactivity{width: 100%;}
+
+#profile_wall div.root_activity {width: 100%}
+#profile_wall li.activity_content {width: 83%}
+
+
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {display: inline-block;}
@@ -325,9 +406,9 @@
 .final {margin-left: 4em;}
 
 
+
+
 /****************** SUB-ACTIVITY by ACTIVITY ********/
-
-
 .activity_new_comment{  font-size: 11px;  padding-left: 5px; padding-top: 3px;  padding-bottom: 3px;display:none;}
 .input_new_comments{width:98%;	padding: 2px; resize: none;  }
 .space_comments{padding-top: 1px;	padding-bottom: 1px;}
@@ -358,6 +439,7 @@
 .tittle_mens {margin-bottom:4px;}
 .dat {margin-left: 15px !important}
 .to-r {float: right; width: 15px; height: 15px;}
+
 /**************suggestions css *************/
 
 .users_btn_follow input[type="submit"]  {
@@ -373,7 +455,8 @@
   -moz-opacity: .60;
   filter:alpha(opacity=60);
 }
-     .users_btn_follow input {
+
+.users_btn_follow input {
   -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075);
@@ -389,9 +472,8 @@
   -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
-  outline: 0;
-  outline: thin dotted \9;
-   }
+  outline: thin dotted ;
+}
 
 .header_text {
   font-size: 16px;
@@ -408,7 +490,7 @@
 .title_suggestion{
   width: 120px;
   display: inline-block;
-  letter-spacing: 0.5pt;
+  /*letter-spacing: 0.5pt;*/
 }
 .acept{margin-left: 160px !important;}
 
@@ -473,8 +555,12 @@
 .input-xlarge {
   height: 18px
 }
+.input-fluid {
+  height: 18px;
+  width: 98%;
+}
 .devise_title{
-  text-align:left;
+  text-align:right;
   font-size: 45px;
   line-height: 115%;
   font-family:'DsignesLight';
@@ -489,6 +575,7 @@
 }
 
 
+
 /*************** MESSAGES ICONS **********/
 
 
@@ -496,7 +583,7 @@
 
 .cleditorMain {border-radius: 10px; border:1px solid #CCCCCC; background-color:white}
 .cleditorMain iframe {border:none; margin:0; padding:0}
-.cleditorMain textarea {border:none; margin:0; padding:0; overflow-y:scroll; font:10pt; resize:none; outline:none /* webkit grip focus */}
+.cleditorMain textarea {border:none; margin:0; padding:0; overflow-y:scroll; font:10pt; resize:none; outline:none; /* webkit grip focus */}
 .cleditorToolbar {background-color: #cccccc; border-bottom: 1px; border-radius: 9px 9px 0px 0px;}
 .cleditorGroup {float:left; height:26px}
 .cleditorButton {float:left; width:24px; height:24px; margin:1px 0 1px 0; background: url('cleditor/buttons.gif')}
@@ -613,6 +700,7 @@ li{
 .iconnav-notification_followers {background-position:-64px -26px;}
 .iconnav-notification_notification {background-position:-96px -26px;}
 /* hover*/
+.iconnav-home:hover {background-position:0 px -52px;}
 .iconnav-message:hover {background-position:-32px -52px;}
 .iconnav-followers:hover {background-position:-64px -52px;}
 .iconnav-notification:hover {background-position:-96px -52px;}
@@ -622,7 +710,7 @@ li{
 
 [class^="iconfile16-"], [class*=" iconfile16-"] {
   background-image: url("iconfile16.png");
-  background-position:32px 32px;
+  background-position:16px 16px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
   height:16px;
@@ -934,6 +1022,157 @@ li{
 .iconmessage22-message22_edit:hover {background-position: -256px -32px;}
 
 
+.title_resources{
+  font-size: 20px;
+  text-decoration: underline;
+  color:#FF005D;
+ }
+
+#description_resources{
+  font-size: 16px;
+
+  }
+
+.picture.content_size .picture_show img{
+  max-width: 475px;
+  max-height: 475px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/*......................................................................tool 16x16*/
+
+li{list-style-type:none}
+
+[class^="icontool16-"], [class*=" icontool16-"] {
+
+  background-image: url("tools16.png");
+  background-position:16px 16px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:16px;
+  width:16px;
+  line-height:16px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+}
+[class^="icontool16-"]:last-child, [class*="icontool16-"]:last-child {
+}
+.icontool16-tool16_white {
+  background-image: url("tools16.png");}
+
+
+.icontool16-tool16ok{background-position: 0 0;}
+.icontool16-tool16_delete {background-position: -26px 0;}
+.icontool16-tool16_more { background-position: -52px 0;}
+.icontool16-tool16_less {background-position: -78px 0;}
+.icontool16-tool16_play { background-position: -104px 0;}
+.icontool16-tool16_revert_play {  background-position: -130px 0;}
+.icontool16-tool16_pause {  background-position:-156px 0;}
+.icontool16-tool16_advance{ background-position: -182px 0;}
+.icontool16-tool16_rewind { background-position: -208px 0;}
+.icontool16-tool16_volume_up { background-position: -234px 0;}
+.icontool16-tool16_volume_down { background-position: -260px 0;}
+.icontool16-tool16_quit_volumen { background-position: -286px 0;}
+.icontool16-tool16_edit { background-position: -312px 0;}
+.icontool16-tool16_tools { background-position: -338px 0;}
+.icontool16-tool16_recharge { background-position: -364px 0;}
+.icontool16-tool16_save { background-position: -390px 0;}
+.icontool16-tool16_out_site { background-position: -416px 0;}
+.icontool16-tool16_tags{ background-position: 0 -26px;}
+.icontool16-tool16_add { background-position: -26px -26px;}
+.icontool16-tool16_phone { background-position: -52px -26px;}
+.icontool16-tool16_trash { background-position: -78px -26px;}
+.icontool16-tool16_close { background-position: -104px -26px;}
+.icontool16-tool16_open { background-position: -130px -26px;}
+.icontool16-tool16_searcher { background-position: -156px -26px;}
+.icontool16-tool16_amplify { background-position: -182px -26px;}
+.icontool16-tool16_reduce { background-position: -208px -26px;}
+.icontool16-tool16_close { background-position: -234px -26px;}
+.icontool16-tool16_arrow_1 { background-position: -260px -26px;}
+.icontool16-tool16_arrow_2 { background-position: -286px -26px;}
+.icontool16-tool16_arrow_3{ background-position: -312px -26px;}
+.icontool16-tool16_arrow_4 { background-position: -338px -26px;}
+.icontool16-tool16_arrow_5{ background-position: -364px -26px;}
+.icontool16-tool16_arrow_6 { background-position: -390px -26px;}
+.icontool16-tool16_arrow_7 { background-position:-416px -26px;}
+.icontool16-tool16_arrow_8 { background-position: 0 -52px;}
+.icontool16-tool16_close_2{ background-position: -26px -52px;}
+.icontool16-tool16_prohibited { background-position: -52px -52px;}
+.icontool16-tool16_symbol_question { background-position: -78px -52px;}
+.icontool16-tool16_symbol_alert { background-position: -104px -52px;}
+.icontool16-tool16_symbol_exclamation { background-position: -130px -52px;}
+.icontool16-tool16_symbol_ok { background-position: -156px -52px;}
+.icontool16-tool16_symbol_delete { background-position: -182px -52px;}
+.icontool16-tool16_question { background-position: -208px -52px;}
+.icontool16-tool16_print { background-position: -234px -52px;}
+.icontool16-tool16_send_movile { background-position: -260px -52px;}
+.icontool16-tool16_qrcode { background-position: -286px -52px;}
+.icontool16-tool16_spam { background-position: -312px -52px;}
+.icontool16-tool16_embed { background-position: -338px -52px;}
+.icontool16-tool16_ramification { background-position: -364px -52px;}
+.icontool16-tool16_html { background-position: -390px -52px;}
+.icontool16-tool16_rss { background-position: -316px -52px;}
+
+
+/*hover*/
+
+.icontool16-tool16_ok:hover{background-position: 0 -78px;}
+.icontool16-tool16_delete:hover {background-position: -26px -78px;}
+.icontool16-tool16_more:hover { background-position: -52px -78px;}
+.icontool16-tool16_less:hover {background-position: -78px -78px;}
+.icontool16-tool16_play:hover { background-position: -104px -78px;}
+.icontool16-tool16_revert_play:hover {  background-position: -130px -78px;}
+.icontool16-tool16_pause:hover {  background-position:-156px -78px;}
+.icontool16-tool16_advance:hover{ background-position: -182px -78px;}
+.icontool16-tool16_rewind:hover { background-position: -208px -78px;}
+.icontool16-tool16_volume_up:hover { background-position: -234px -78px;}
+.icontool16-tool16_volume_down:hover { background-position: -260px -78px;}
+.icontool16-tool16_quit_volumen:hover { background-position: -286px -78px;}
+.icontool16-tool16_edit:hover { background-position: -312px -78px;}
+.icontool16-tool16_tools:hover { background-position: -338px -78px;}
+.icontool16-tool16_recharge:hover { background-position: -364px -78px;}
+.icontool16-tool16_save:hover { background-position: -390px -78px;}
+.icontool16-tool16_out_site:hover { background-position: -416px -78px;}
+.icontool16-tool16_tags:hover{ background-position: 0 -104px;}
+.icontool16-tool16_add:hover { background-position: -26px -104px;}
+.icontool16-tool16_phone:hover { background-position: -52px -104px;}
+.icontool16-tool16_trash:hover { background-position: -78px -104px;}
+.icontool16-tool16_close:hover { background-position: -104px -26px;}
+.icontool16-tool16_open { background-position: -130px -104px;}
+.icontool16-tool16_searche:hoverr { background-position: -156px -104px;}
+.icontool16-tool16_amplify:hover { background-position: -182px -104px;}
+.icontool16-tool16_reduce:hover { background-position: -208px -104px;}
+.icontool16-tool16_close:hover { background-position: -234px -104px;}
+.icontool16-tool16_arrow_1:hover { background-position: -260px -104px;}
+.icontool16-tool16_arrow_2:hover { background-position: -286px -104px;}
+.icontool16-tool16_arrow_3:hover{ background-position: -312px -104px;}
+.icontool16-tool16_arrow_4:hover { background-position: -338px -104px;}
+.icontool16-tool16_arrow_5:hover{ background-position: -364px -104px;}
+.icontool16-tool16_arrow_6:hover { background-position: -390px -104px;}
+.icontool16-tool16_arrow_7:hover { background-position:-416px -104px;}
+.icontool16-tool16_arrow_8:hover { background-position: 0 -130px;}
+.icontool16-tool16_close_2:hover{ background-position: -26px -130px;}
+.icontool16-tool16_prohibited:hover { background-position: -52px -130px;}
+.icontool16-tool16_symbol_question:hover { background-position: -78px -130px;}
+.icontool16-tool16_symbol_alert:hover { background-position: -104px -52px;}
+.icontool16-tool16_symbol_exclamation:hover { background-position: -130px -130px;}
+.icontool16-tool16_symbol_ok:hover { background-position: -156px -130px;}
+.icontool16-tool16_symbol_delete:hover { background-position: -182px -130px;}
+.icontool16-tool16_question:hover { background-position: -208px -130px;}
+.icontool16-tool16_print:hover { background-position: -234px -130px;}
+.icontool16-tool16_send_movile:hover { background-position: -260px -130px;}
+.icontool16-tool16_qrcode:hover { background-position: -286px -130px;}
+.icontool16-tool16_spam:hover { background-position: -312px -130px;}
+.icontool16-tool16_embed:hover { background-position: -338px -130px;}
+.icontool16-tool16_ramification:hover { background-position: -364px -130px;}
+.icontool16-tool16_html:hover { background-position: -390px -130px;}
+.icontool16-tool16_rss:hover { background-position: -316px -130px;}
 
 
 

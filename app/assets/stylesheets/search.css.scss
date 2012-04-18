@@ -25,16 +25,16 @@
   width: 200px;
 }
 #header_search_display {
-  width: 225px;
+  /*width: 225px;*/
   display: none;
-  float: right;
+  /*float: right*/;
   margin-right: 35px;
-  border: solid 1px $auxiliar-color;
+  border: solid 1px #fff;
   border-top: none;
   overflow: hidden;
   position: absolute;
   z-index: 2000;
-  background: $fill-color;
+  background: #A1A1A1;
   text-align: left;
 }
 #header_search_display a {

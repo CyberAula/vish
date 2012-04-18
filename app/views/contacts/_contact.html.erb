@@ -12,8 +12,8 @@
       <a class="close_suggestion"> <%= link_to '×', contact, :method => :delete, :remote => true %></a>
       <div class="size12 blue-cake blue-opacity upfoll">user</div>
       <div class="follwrs-ing">
-        <div class="follwrs upfoll">followers: <%= link_to 12, "#" %></div>
-        <div class="folling upfoll">followings: <%= link_to 15, "#" %></div>
+        <div class="follwrs upfoll">followers: <%= link_to contact.receiver_subject.followers.count, "#" %></div>
+        <div class="folling upfoll">followings: <%= link_to contact.receiver.following_actor_objects.includes(:actor).count, "#" %></div>
       </div>
       <div class="send_messag size10 red-2 upfoll">send new message</div>
       </div>

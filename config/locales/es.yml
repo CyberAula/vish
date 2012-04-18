@@ -1,4 +1,12 @@
 es:
+  today: "Hoy"
+  yesterday: "Ayer"
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+  activity:
+    timeline: "timeline"
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
@@ -8,6 +16,7 @@ es:
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"
     msg: "Publicó una excursión: "
+    created: "creadas"
   follow:
     followers: "seguidores"
     followings: "siguiendo"
@@ -19,13 +28,13 @@ es:
   translate:
     change: "Cambiar idioma"
   more: "more"
+  organization:
+    one: "organización"
+    other: "organizaciones"
   password: "clave"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
-  organization:
-    one: "organización"
-    other: "organizaciones"
   repository:
     one: "repositorio"
     other: "repositorios"

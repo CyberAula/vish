@@ -4,7 +4,8 @@ module HomeHelper
   end
 
   # Excursions can be search in several scopes:
-  # * :net subject and followings
+  # * :me   just the subject
+  # * :net  subject and followings
   # * :more everybody except subject and followings
   def subject_excursions(subject, options = {})
     subject_content subject, Excursion, options
@@ -28,6 +29,8 @@ module HomeHelper
     query = klass
 
     case options[:scope]
+    when :me
+      query = query.authored_by(subject.actor_id)
     when :net
       query = query.authored_by(following_ids)
     when :more

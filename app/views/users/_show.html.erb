@@ -19,13 +19,16 @@
 
 <% toolbar :profile, :subject => @user %>
 
-
-
-<%= render :partial => "users/groups",
+<%#= render :partial => "users/groups",
            :locals  => { :user => @user } %>
 
+<%= render :partial => "excursions/user",
+           :locals => { :user => @user } %>
+
+<section name="wall" id="profile_wall">
 <%= render :partial => "activities/index",
            :locals  => { :activities => @user.wall(:profile, :for => current_subject).
                                               page(params[:page]),
                          :owner => @user } %>
+</section>
 

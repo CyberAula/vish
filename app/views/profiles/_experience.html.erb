@@ -5,7 +5,7 @@
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.experience') %>
       <% if is_owner? %>
         <div class="header_icon_right">
-          <%= link_to (image_tag('icons/edit_icon.png')), :controller => :profiles, :action => :edit, :section => "my_experience" %>
+          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), :controller => :profiles, :action => :edit, :section => "my_experience" %>
         </div>
       <% end %>
     </div>

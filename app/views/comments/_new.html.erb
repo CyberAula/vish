@@ -1,8 +1,8 @@
 <% if user_signed_in? && current_subject.can_comment?(activity) %>
-  <ul class="activity_new_comment boxy_gray thumbnails span4">
-    <li class="span activity_content">
-      <div class="caption span4">
-        <h4 class="span size11">
+  <ul class="activity_new_comment boxy_gray thumbnails">
+    <li class="span subactivity">
+      <div class="caption input-fluid">
+        <h4 class="span size11 row-fluid-90">
           <%= form_for Comment.new(:text => t('comment.input'),
                                    :owner_id => Actor.normalize_id(activity.receiver),
                                    :_activity_parent_id => activity.id),
@@ -12,10 +12,10 @@
               <%= f.hidden_field :owner_id %>
               <%= f.hidden_field :_activity_parent_id %>
               <div class="input_new_comments_container">
-                <%= f.text_area :text, :class =>"input_new_comments input-xlarge focused", :id => "comment_text_"+dom_id(activity), :rows=>"1" %>
+                <%= f.text_area :text, :class =>"input_new_comments input-fluid focused", :id => "comment_text_"+dom_id(activity), :rows=>"1" %>
                 <div class="copy_new_comment" id="copy_comment_text_<%= dom_id(activity) %>"></div>
               </div>
-              <div class="pagination-right">
+              <div class="pagination-right input-fluid">
                 <div class="activities_security"></div>
                 <%= f.submit t('activity.to_comment'), :class =>"myButtonBlue submitActivity", :id => "comment_submit_"+dom_id(activity) %>
               </div>

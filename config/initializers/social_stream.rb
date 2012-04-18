@@ -31,14 +31,14 @@ SocialStream.setup do |config|
   # Quick search (header) and Extended search models and its order. Remember to create
   # the indexes with thinking-sphinx if you are using customized models.
   # 
-  # config.quick_search_models = [:user, :group]
-  # config.extended_search_models = [:user, :group]
+  config.quick_search_models = [:user, :group, :excursion, :post, :picture, :video, :audio, :document]
+  config.extended_search_models = [:user, :group, :excursion, :post, :comment, :picture, :video, :audio, :document]
 
   # Cleditor controls. It is used in new message editor, for example
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"
 end
 
-module SocialStream::Views::Toolbar
+SocialStream::Views::Toolbar.module_eval do
   def toolbar_items type, options = {}
     case type
     when :home
@@ -76,6 +76,10 @@ module SocialStream::Views::Toolbar
       super
     end
   end
+end
 
-
+SocialStream::Views::Location.module_eval do
+  def location(*args)
+    ""
+  end
 end

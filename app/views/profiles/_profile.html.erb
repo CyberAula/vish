@@ -1,4 +1,4 @@
-<p class="devise_title"><%= t('menu.information') %></p>
+<p class="devise_title2"><%= t('menu.information') %></p>
 <div class="space_center"></div>
 
 <% if (!is_personal_empty?) or(is_owner?) %>
@@ -16,7 +16,6 @@
   <%= render :partial => "experience" %>
 <% end %>
 <% if is_owner? %>
-  <div class="space_center"></div>
 
 <% end %>
 <% if (@profile.subject.tag_list.count > 0) or (is_owner?) %>
@@ -26,7 +25,7 @@
   <div class="header">
     <i class="icon-user"></i><%= t('avatar.profile_change') %>
     <div class="header_icon_right">
-      <%= link_to (image_tag('icons/edit_icon.png', :class=>"unborder")), :controller => "avatars", :action => "index" %>
+      <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), :controller => "avatars", :action => "index" %>
     </div>
   </div>
   <div class="space_center"></div>

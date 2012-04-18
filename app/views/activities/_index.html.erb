@@ -1,12 +1,12 @@
-<section id="wrapper_activities" class="tabbable span5">
+<section id="wrapper_activities" class="tabbable" >
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#wall-input"><%= t('activity.title').downcase %></a></li>
+    <li class="active"><a data-toggle="tab" href="#wall-input"><%= t('activity.timeline').downcase %></a></li>
   </ul>
   <div class="tab-content" id="wrapper_activities_header">
-    <div id="wall-input" class="tab-pane active boxy_gray pagination-right">
-      <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
-    </div>
+    <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
   </div>
+  <div class="row space_center"></div>
   <%= render :partial => 'activities/wall',
              :locals  => { :activities => activities } %>
 </section>
+

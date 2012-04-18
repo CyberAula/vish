@@ -1,3 +1,4 @@
+<% self.class.send :include, NewNotificationsHelper %>
 <ul class="nav nav-tabs">
   <li class="active">
     <a href="" data-toggle="tab"><%= t('notification.other') %></a>
@@ -8,15 +9,13 @@
               :confirm => t('sure'), :method => :put, :remote => true) %>
 </div>
 <table class="conversations table table-bordered table-striped">
-  <thead>
-  <tr>
-    <div class="size14 red-1 day_notify">Today</div>
-  </tr>
-  </thead>
   <tbody>
-  <% @notifications.each do |notification| %>
-    <% @notification = notification %>
-    <%= render :partial => 'notification', :object => notification %>
+  <% @notifications.group_by { |n| n.created_at.to_date }.each do |day, notifs|  %>
+    <tr><th><div class="size14 red-1 day_notify"><%= today_or_else(day) %></div></th></tr>
+    <% notifs.each do |notification| %>
+      <% @notification = notification %>
+      <%= render :partial => 'notification', :object => notification %>
+    <% end %>
   <% end %>
   </tbody>
 </table>

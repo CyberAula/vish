@@ -1,22 +1,22 @@
-<%= div_for activity, :class => 'span6' do %>
-  <ul class="thumbnails span">
+<%= div_for activity, :class => "root_activity" do %>
+  <ul class="thumbnails">
     <li class="span">
       <%= link_to image_tag(activity.sender_subject.logo.url(:contact),
                             :alt => activity.sender_subject.name),
                   activity.sender_subject, :class=> "container" %>
     </li>
-    <li class="span5 activity_content">
-      <div class="caption span">
-        <h4 class="span"><%= activity.title(self)%></h4>
-        <h4 class="span"><%= render activity.activity_objects %></h4>
-        <h4 class="span size11">
+    <li class="activity_content">
+      <div class="caption subactivity ">
+        <span class=""><%= activity.title(self)%></span>
+        <span class=""><%= render activity.activity_objects %></span>
+        <span class="size11 subactivity">
           <%= render :partial => 'activities/options',
                            :locals => { :activity => activity } %>
           <%= render :partial => 'activities/comments',
                      :locals => { :activity => activity } %>
           <%= render :partial => 'comments/new',
                      :locals => { :activity => activity } %>
-        </h4>
+        </span>
       </div>
 	  <div class="space_activities">
 		<% if activity.activity_objects.count > 1 %>
