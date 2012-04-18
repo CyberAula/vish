@@ -5,7 +5,7 @@
 <% else %>
 <% @search_result.each do |model|%>
 <% if @search_class_sym.nil? %>
-<div id="all" class="tab-pane ">
+<div id="all" class="tab-pane active ">
   <%= render_global_search_for model %>
 </div>
 <% else %>
