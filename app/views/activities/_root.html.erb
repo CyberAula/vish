@@ -8,6 +8,14 @@
     <li class="activity_content">
       <div class="caption subactivity ">
         <span class=""><%= activity.title(self)%></span>
+        <% if activity.delete_object_by?(current_subject) %>
+          <div class="icon_close">
+
+            <%= link_to(image_tag('close.png'), activity.direct_object , :confirm => t('confirm_delete',
+                                                                                       :scope => activity.direct_object.class.to_s.underscore), :method => :delete,
+                        :remote => true) %>
+          </div>
+        <% end %>
         <span class=""><%= render activity.activity_objects %></span>
         <span class="size11 subactivity">
           <%= render :partial => 'activities/options',

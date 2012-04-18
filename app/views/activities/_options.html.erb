@@ -4,14 +4,6 @@
     <div class="verb_comment"> <%= link_to t('activity.to_comment'), "#", :class => "to_comment" %> </div>
   <% end %>
 
-  <div class="verb_like" id="like_<%= dom_id(activity) %>"> <%= link_to(image_tag('like-on.png'))%></div>
+  <div class="verb_like" id="like_<%= dom_id(activity) %>"> <%= link_like(activity)%></div>
 
-  <% if activity.delete_object_by?(current_subject) %>
-    <div class="verb_delete">
-
-      <%= link_to(image_tag('close.png'), activity.direct_object , :confirm => t('confirm_delete',
-                    :scope => activity.direct_object.class.to_s.underscore), :method => :delete,
-                    :remote => true) %>
-    </div>
-  <% end %>
 </div>
