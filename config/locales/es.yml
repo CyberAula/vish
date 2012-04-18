@@ -29,7 +29,7 @@ es:
   translate:
     change: "Cambiar idioma"
   message:
-    new: "Escribe un mensaje nuevo"
+    new: "Mensaje nuevo"
   more: "more"
   organization:
     one: "organización"
