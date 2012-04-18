@@ -1,0 +1,19 @@
+<div class="model_with_details">
+  <ul class="thumbnails span3">
+    <li class="span1">
+      <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
+    </li>
+    <li class="span">
+      <div class="caption">
+        <h4 class="link_gray"><%= link_to truncate_name(document.title, :length => 15), document, :class => "size14" %></h4>
+        <h5></span> <span class="green"><%=document.visit_count.to_s%></span> views</h5>
+        <div class="brief">
+          <%= t 'like.n',     :count => document.like_count %>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="space_center">
+  </div>
+</div>
+

@@ -10,7 +10,7 @@
           <%= link_to(truncate_name(subject.name), subject, :class => "") %>
         </div>
         <div class="follwrs-ing">
-          <div class="follwrs upfoll">12 followers</div>
+          <div class="follwrs upfoll"><%=subject.followers.count  %>  <%= t('follow.followers') %></div>
         </div>
         <div class="send_messag size10 red-2 upfoll"><%=contact_to(subject) %></div>
       </div>
