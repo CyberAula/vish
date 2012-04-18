@@ -1,12 +1,12 @@
 /* TextboxList sample CSS */
-ul.holder { margin: 0; border: none; overflow: hidden; height: auto !important; height: 1%; padding: 5px; }
+ul.holder { margin: 0; border: none; overflow: hidden; height: auto !important; height: 1%; /*padding: 5px;*/ }
 *:first-child+html ul.holder { padding-bottom: 2px; } * html ul.holder { padding-bottom: 2px; } /* ie7 and below */
 ul.holder li { float: left; list-style-type: none; /*margin: 0 5px 4px 0;*/ white-space:nowrap;}
 ul.holder li.bit-box, ul.holder li.bit-input input { font-family:'DsignesLight';
 src: url(fonts/DsignesLight.otf);color: #666666; }
 ul.holder li.bit-box { -moz-border-radius: 15px; -webkit-border-radius: 15px; border-radius: 15px; border:none; background:#FFFFFF; padding: 4px 4px 4px;margin-left: 10px; }
 ul.holder li.bit-box-focus { border-color: #598BEC; background: #598BEC; color: #fff; }
-ul.holder li.bit-input input { width: auto; overflow:visible; margin-left: 10px; border: 0px; outline: 0; padding: 3px 0px 3px; } /* no left/right padding here please */
+ul.holder li.bit-input input { width: auto; overflow:visible; /*margin-left: 10px; border: 0px;*/ outline: 0; padding: 3px 10px; } /* no left/right padding here please */
 ul.holder li.bit-input input.smallinput { width: 20px; }
 
 /* Facebook demo CSS */      
