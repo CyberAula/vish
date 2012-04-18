@@ -10,17 +10,17 @@ SocialStream.setup do |config|
   # config.devise_modules = :database_authenticatable, :registerable,
   #                         :recoverable, :rememberable, :trackable,
   #                         :omniauthable, :token_authenticatable
-  
+
   # Type of activities managed by actors
   # Remember you must add an "activity_object_id" foreign key column to your migration!
   #
   config.objects = [ :post, :comment, :document, :link, :excursion, :slide ]
-  
+
   # Form for activity objects to be loaded 
   # You can write your own activity objects
   #
   # config.activity_forms = [ :post, :document, :foo, :bar ]
-  
+
   # Config the relation model of your network
   #
   # :custom - users define their own relation types, and post with privacy, like Google+
@@ -40,11 +40,9 @@ end
 
 SocialStream::Views::Toolbar.module_eval do
   def toolbar_items type, options = {}
-    case type
-    when :home
-      []
-    when :profile
-      SocialStream::Views::List.new.tap do |items|
+    SocialStream::Views::List.new.tap do |items|
+      case type
+      when :profile
         subject = options[:subject]
         raise "Need a subject options for profile toolbar" if subject.blank?
 
@@ -71,9 +69,35 @@ SocialStream::Views::Toolbar.module_eval do
           :key => :contacts,
           :html => render(:partial => 'toolbar/contacts', :locals => { :subject => subject })
         }
+      when :messages
+        # Messages
+        items << {
+          :key => :message_new,
+          :html => link_to(raw("<i class='iconmessage22-message22_new'></i> ")+ t('message.new'),
+                           new_message_path,
+                           :remote=> false)
+        }
+
+        items << {
+          :key => :message_inbox,
+          :html => link_to(raw("<i class='iconmessage22-message22_inbox'></i> ")+t('message.inbox')+' (' + current_subject.unread_messages_count.to_s + ')',
+                           conversations_path,
+                           :remote=> false)
+        }
+
+        items << {
+          :key => :message_sentbox,
+          :html => link_to(raw("<i class='iconmessage22-message22_sendbox'></i> ")+t('message.sentbox'),
+                           conversations_path(:box => :sentbox),
+                           :remote=> false)
+        }
+
+        items << {
+          :key => :message_trash,
+          :html => link_to(raw("<i class='iconmessage22-message22_trash'></i> ")+t('message.trash'),
+                           conversations_path(:box => :trash))
+        }
       end
-    when :messages
-      super
     end
   end
 end
