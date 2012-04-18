@@ -38,7 +38,7 @@ SocialStream.setup do |config|
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"
 end
 
-module SocialStream::Views::Toolbar
+SocialStream::Views::Toolbar.module_eval do
   def toolbar_items type, options = {}
     case type
     when :home
@@ -76,6 +76,10 @@ module SocialStream::Views::Toolbar
       super
     end
   end
+end
 
-
+SocialStream::Views::Location.module_eval do
+  def location(*args)
+    ""
+  end
 end
