@@ -28,6 +28,8 @@ es:
     error: "El idioma \"%{lang}\" no está disponible"
   translate:
     change: "Cambiar idioma"
+  message:
+    new: "Escribe un mensaje nuevo"
   more: "more"
   organization:
     one: "organización"
