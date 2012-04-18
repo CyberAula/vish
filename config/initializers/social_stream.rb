@@ -40,9 +40,11 @@ end
 
 SocialStream::Views::Toolbar.module_eval do
   def toolbar_items type, options = {}
-    SocialStream::Views::List.new.tap do |items|
-      case type
-      when :profile
+    case type
+    when :home
+      []
+    when :profile
+      SocialStream::Views::List.new.tap do |items|
         subject = options[:subject]
         raise "Need a subject options for profile toolbar" if subject.blank?
 
@@ -69,7 +71,18 @@ SocialStream::Views::Toolbar.module_eval do
           :key => :contacts,
           :html => render(:partial => 'toolbar/contacts', :locals => { :subject => subject })
         }
-      when :messages
+      end
+    when :messages
+      super
+    end
+  end
+
+  def toolbar_menu_items type, options = {}
+    case type
+    when :home, :profile
+      super
+    when :messages
+      SocialStream::Views::List.new.tap do |items|
         # Messages
         items << {
           :key => :message_new,
