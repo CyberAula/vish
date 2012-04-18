@@ -32,7 +32,7 @@ SocialStream.setup do |config|
   # the indexes with thinking-sphinx if you are using customized models.
   # 
   config.quick_search_models = [:excursion, :user, :group, :post, :picture, :video, :audio, :document]
-  config.extended_search_models = [:excursion, :user, :group, :excursion, :post, :comment, :picture, :video, :audio, :document]
+  config.extended_search_models = [:excursion, :user, :group, :post, :comment, :picture, :video, :audio, :document]
 
   # Cleditor controls. It is used in new message editor, for example
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"
