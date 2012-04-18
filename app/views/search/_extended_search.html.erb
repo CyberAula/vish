@@ -5,15 +5,17 @@
 <% else %>
 <% @search_result.each do |model|%>
 <% if @search_class_sym.nil? %>
-<div class="subject_search_results block left">
+<div id="all" class="tab-pane ">
   <%= render_global_search_for model %>
 </div>
 <% else %>
-<div class="subject_search_results block left <%= model.class.name.downcase %>">
+<div class="tab-pane <%= model.class.name.downcase %>">
   <%= render_focus_search_for model %>
 </div>
 <% end %>
 <% end %>
 <br class="clearfloat">
 <%= paginate @search_result %>
-<% end %> 
+<% end %>
+
+
