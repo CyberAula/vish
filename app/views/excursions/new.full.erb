@@ -7,35 +7,35 @@
             <div id='arrow_left_div' class='barbutton with_pointer'>
             </div>
 		    <div class='barbutton' id="slide_thumb_1">
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton' id="slide_thumb_2" >
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton' id="slide_thumb_3">
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton' id="slide_thumb_4">
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton' id="slide_thumb_5">
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton' id="slide_thumb_6">
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton' id="slide_thumb_7">
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton' id="slide_thumb_8">
-				    <img class="image_barbutton" src="/assets/slide_thumb.png"/>
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
 				    <span class="slide_number"></span>
 		    </div>
 		    <div class='barbutton with_pointer' id='arrow_right_div'>
@@ -46,22 +46,44 @@
             </a>
 		</div>
     </section>
+
+      
+	  <div style='display:none'>
+	    <div id='thumbcontent'>
+	      <div class='templatethumb' template='1'>
+		      <img src='/assets/templatesthumbs/t1.png' />
+	      </div>
+	      <div class='templatethumb' template='2'>
+		      <img src='/assets/templatesthumbs/t2.png' />
+	      </div>
+          <div class='templatethumb' template='3'>
+		      <img src='/assets/templatesthumbs/t3.png' />
+	      </div>
+          <div class='templatethumb' template='4'>
+		      <img src='/assets/templatesthumbs/t4.png' />
+	      </div>
+          <div class='templatethumb' template='5'>
+		      <img src='/assets/templatesthumbs/t5.png' />
+	      </div>
+          <div class='templatethumb' template='6'>
+		      <img src='/assets/templatesthumbs/t6.png' />
+	      </div>
+          <div class='templatethumb' template='7'>
+		      <img src='/assets/templatesthumbs/t7.png' />
+	      </div>
+          <div class='templatethumb' template='8'>
+		      <img src='/assets/templatesthumbs/t8.png' />
+	      </div>
+          <div class='templatethumb' template='9'>
+		      <img src='/assets/templatesthumbs/t9.png' />
+	      </div>
+	    </div>
+	  </div>
+
   
-  <div style='display:none'>
-    <div id='thumbcontent'>
-      <div class='templatethumb' template='1'>
-	  <img src='/assets/templatesthumbs/t1.png' />
-      </div>
-      <div class='templatethumb' template='2'>
-	  <img src='/assets/templatesthumbs/t2.png' />
-      </div>
-    </div>
-  </div>
-  
-  
- <div style='display:none'>
+	  <div style='display:none'>
 	  	
-	    <div id='menuselect'>
+	    <div id='menuselect' class="menuselect_hide">
 			  <div class='menuicon textthumb'></div>
 	      <a class="addpicture" href="#picture_fancybox">
 	        <div class='menuicon picthumb'></div>
@@ -74,25 +96,37 @@
 	      </a>
 	    </div>
 	    
-	    <div id='menuselect_for_header'>
-			  <div class='menuicon_small textthumb'></div>
+	    <div id='menuselect_for_header' class="menuselect_hide">
+			  <div class='menuicon_small textthumb textthumb_small'></div>
 	      <a class="addpicture" href="#picture_fancybox">
-	        <div class='menuicon_small picthumb'></div>
+	        <div class='menuicon_small picthumb_small'></div>
 	      </a>	      
 	    </div>
 	    
 	  </div>
+	  
+	  
+	  <!-- PROMPT USER IF SHE IS SURE -->
+	  <div style='display:none'>
+	  	<input type="hidden" id="prompt_answer" value="false"></input>
+	  	<div id='prompt_form'>	  		
+	  		<img id="image_template_prompt" class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+	  		This action will delete this item, are you sure?
+	  		<a href="#" onclick="$('#prompt_answer').val('true'); $.fancybox.close();" class="prompt_button">Yes</a>
+	  		<a href="#" onclick="$('#prompt_answer').val('false'); $.fancybox.close();" class="prompt_button">No</a>
+	  	</div>
+	  </div>
   
   
-  <!-- IMAGE -->
+  	  <!-- IMAGE -->
 	  <div style='display:none'>
 	    <div id="picture_fancybox" class="outer_box">
 				<div class="fancy_tabs">	   
 				  <ul>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab">URL</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab">UPLOAD</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">VISH</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab">FLIKR</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab">url</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab">upload</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab_flickr"><img src='/assets/flickr.png'/></a></li>
 				  </ul>
 				</div>
 				<div id='tab_pic_from_url_content' class="fancy_tab_content">
@@ -105,14 +139,29 @@
 				  <input id="upload_input" type="text" size="25" value="">
 				  <button type="button" onclick="alert('Uploaded!')">Upload</button>
 				</div>
-				<div id='tab_pic_repo_content' class="fancy_tab_content">
-				  Vish repository	
+				<div id='tab_pic_repo_content' class="fancy_tab_content">				  		  
+					<div class="search_container">
+					  <input type="search" class="rounded vishtab" > </input>
+					</div>
+					
+					<div id="tab_pic_repo_content_carrousel"></div>
+					<div id="tab_pic_repo_content_preview">
+						<div id="tab_pic_repo_content_preview_image">
+							
+						</div>
+						<div id="tab_pic_repo_content_preview_metadata"></div>
+						<div id="tab_pic_repo_content_preview_foot">
+							<button type="button" class="okButton" onclick="VISH.Editor.Image.Repository.addSelectedImage()">Add</button>
+						</div>
+					</div>				
 				</div>
 				<div id='tab_pic_flikr_content' class="fancy_tab_content">
-				  Search in flikr
-				  <input id="flikr_input" type="text" size="25" value="">
-				  <button type="button" onclick="alert('search!')">Search</button>
-			  </div>
+				      <div class="search_container">
+				  	   <input type="search" class="rounded vishtab" > </input>
+    				      </div>	
+
+				      <div id="tab_flikr_content_carrousel"></div>
+			        </div>
 	    </div>
 	  </div>
   
@@ -122,24 +171,35 @@
 	    <div id="flash_fancybox" class="outer_box">
 				<div class="fancy_tabs">	   
 				  <ul>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">EMBED</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">UPLOAD</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">VISH</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">embed</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
 				  </ul>
 				</div>
 				<div id='tab_flash_from_url_content' class="fancy_tab_content">
-				  Paste flash embed code
-				  <input id="flash_embed_code" type="text" size="25" value="">
-				  <button type="button" onclick="VISH.Editor.getValueFromFancybox('flash_embed_code')">Done</button>
+				  <input id="flash_embed_code" type="text" class="rounded vishtab url">
+					<button type="button" class="okButton" onclick="VISH.Editor.getValueFromFancybox('flash_embed_code')"> Add</button>
 				</div>
 				<div id='tab_flash_upload_content' class="fancy_tab_content">
-				  Select flash to upload
-				  <input id="upload_flash_input" type="text" size="25" value="">
-				  <button type="button" onclick="alert('Uploaded!')">Upload</button>
+					<input id="upload_flash_input" type="text" class="rounded vishtab upload">
+                    <button type="button" class="okButton" onclick="alert('Uploaded!')"> Upload</button>
 				</div>
-				<div id='tab_flash_repo_content' class="fancy_tab_content">
-				  Vish repository	    
-				</div>
+				<div id='tab_flash_repo_content' class="fancy_tab_content">				  
+					<div class="search_container">
+					  <input type="search" class="rounded vishtab" > </input>
+					</div>
+					
+					<div id="tab_flash_repo_content_carrousel"></div>
+					<div id="tab_flash_repo_content_preview">
+						<div id="tab_flash_repo_content_preview_flash">
+							
+						</div>
+						<div id="tab_flash_repo_content_preview_metadata"></div>
+						<div id="tab_flash_repo_content_preview_foot">
+							<button type="button" class="okButton" onclick="VISH.Editor.Flash.Repository.addSelectedFlash()">Add</button>
+						</div>
+					</div>
+				</div>	 
 	    </div>
 	  </div>
   
@@ -149,10 +209,10 @@
 	    <div id="video_fancybox" class="outer_box">
 				<div class="fancy_tabs">	   
 				    <ul>
-				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab">URL</a></li>
-				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_upload')" id="tab_video_upload" class="fancy_tab">UPLOAD</a></li>
-				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">VISH</a></li>
-				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab">YOUTUBE</a></li>
+				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab">url</a></li>
+				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_upload')" id="tab_video_upload" class="fancy_tab">upload</a></li>
+				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
+				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/youtube.png'/></a></li>
 				    </ul>
 				</div>
 				<div id='tab_video_from_url_content' class="fancy_tab_content">
@@ -163,10 +223,9 @@
 					<input id="upload_video_input" type="text" class="rounded vishtab upload">
           <button type="button" class="okButton" onclick="alert('Uploaded!')"> Upload</button>
 				</div>
-				<div id='tab_video_repo_content' class="fancy_tab_content">
-				  
+				<div id='tab_video_repo_content' class="fancy_tab_content">				  
 					<div class="search_container">
-					  <input type="search" class="rounded vishtab"> </input>
+					  <input type="search" class="rounded vishtab" > </input>
 					</div>
 					
 					<div id="tab_video_repo_content_carrousel"></div>
@@ -182,10 +241,15 @@
 				</div>  
 				
 				<div id='tab_video_youtube_content' class="fancy_tab_content">
-				  <input id="youtube_input_text" type="text" size="25" value="" autofocus placeholder="write text to search"/>
-				  <button id="youtube_search_button" type="button" class="okButton" onclick="VISH.Editor.Video.Youtube.listVideo('youtube_input_text')">Search</button>
-					<!-- Add carrousel -->
+					
+					  <div class="search_container">
+					<input type="search" class="rounded vishtab" id="youtube_text_to_search"> </input>
+					</div>
+				 
+				
 					<div id="tab_video_youtube_content_carrousel"></div>
+					
+				 	
 				</div>
 	    </div>
 	  </div>
