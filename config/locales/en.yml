@@ -15,8 +15,9 @@ en:
     other: "excursions"
     upcomming: "upcomming"
     confirm_delete: "Delete excursion?"
-    msg: "Published a excursion: "
     created: "created"
+    title:
+      other: "Excursions"
   follow:
     followers: "followers"
     followings: "following"
