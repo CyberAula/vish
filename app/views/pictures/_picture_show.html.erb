@@ -1,0 +1,25 @@
+<%= div_for picture, :class => 'content_size' do %>
+  <div class="picture_show">
+    <%= link_to thumb_for(picture, 500),
+        download_document_path(picture),
+        :id => dom_id(picture) + "_a",
+        :type => picture.type, 
+		    :title => picture.file_file_name,
+		    :path => document_path(picture) %>
+  </div>
+<% end %>
+
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $("#<%= dom_id picture %> #<%= dom_id picture %>_a").lightBox({ 
+      maxHeight: 920,
+      maxWidth: 920,
+      imageLoading: '../assets/lightbox-ico-loading.gif',
+      imageBtnClose: '../assets/lightbox-btn-close.gif',
+      imageBtnPrev: '../assets/lightbox-btn-prev.gif',
+      imageBtnNext: '../assets/lightbox-btn-next.gif',
+      imageBlank: '../assets/lightbox-blank.gif'});    
+      
+  })  
+<% end %>

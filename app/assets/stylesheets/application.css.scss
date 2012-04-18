@@ -60,7 +60,7 @@
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
-.boxy_white{background-color: #FFFFFF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+.boxy_white{background-color: #FFFFFF;
   border: 0px solid #FFFFFF; }
 .clearfloat{clear: both;display: block}
 /*************** SIZE CLASSES **************/
@@ -1036,13 +1036,15 @@ li{
 .picture.content_size .picture_show img{
   max-width: 475px;
   max-height: 475px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid black;
+  margin-left: 0;
+  border: 1px solid gray;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  display: inline-block;
+
 }
+
 
 /*......................................................................tool 16x16*/
 
@@ -1067,7 +1069,7 @@ li{list-style-type:none}
   background-image: url("tools16.png");}
 
 
-.icontool16-tool16ok{background-position: 0 0;}
+.icontool16-tool16_ok{background-position: 0 0;}
 .icontool16-tool16_delete {background-position: -26px 0;}
 .icontool16-tool16_more { background-position: -52px 0;}
 .icontool16-tool16_less {background-position: -78px 0;}
@@ -1096,7 +1098,7 @@ li{list-style-type:none}
 .icontool16-tool16_close { background-position: -234px -26px;}
 .icontool16-tool16_arrow_1 { background-position: -260px -26px;}
 .icontool16-tool16_arrow_2 { background-position: -286px -26px;}
-.icontool16-tool16_arrow_3{ background-position: -312px -26px;}
+.icontool16-tool16_arrow_3 { background-position: -312px -26px;}
 .icontool16-tool16_arrow_4 { background-position: -338px -26px;}
 .icontool16-tool16_arrow_5{ background-position: -364px -26px;}
 .icontool16-tool16_arrow_6 { background-position: -390px -26px;}
@@ -1174,7 +1176,12 @@ li{list-style-type:none}
 .icontool16-tool16_html:hover { background-position: -390px -130px;}
 .icontool16-tool16_rss:hover { background-position: -316px -130px;}
 
-
+.icon_close{
+  display:inline-block;
+  float:right;
+  width: 10px;
+  height: 10px;
+}
 
 /*......................................................................edit profile*/
 .btn_info_profile{
@@ -1221,11 +1228,28 @@ margin-left: 20px;
 .block .form_tag{color: $main-color; padding: 5px 5px 5px 5px;  border:1px solid $input-border-color; width:90%;}
 .block .form_tag_long{color: $main-color;	padding: 5px 5px 5px 5px;  border:1px solid $input-border-color; width:91%;}
 
-.icon_close{
-  display:inline-block;
-  float:right;
-  width: 10px;
-  height: 10px;
+.menu_resources{
+  background-color: #f7f7f7;
+  display: inline-block;
+  width:auto;
+  height: 16px;
+  border:1px solid  ;
+  border-color: #e6e6e6;
+  padding: 5px 5px 5px 5px;
+  border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+  margin-right: 15px;
+}
+
+.menu_resources:hover{
+  background-color: #ffffff;
+  display: inline-block;
+  width:auto;
+  height: 16px;
+  border:1px solid  ;
+  border-color: #e6e6e6;
+  padding: 5px 5px 5px 5px;
+  border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+  margin-right: 15px;
+}
 
 
-  }
