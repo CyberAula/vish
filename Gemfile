@@ -19,17 +19,18 @@ end
 
 gem 'jquery-rails'
 
-# Developing Social Stream
-#path '../social_stream-vish' do
-git 'git://github.com/ging/social_stream.git', :branch => 'vish' do
+social_stream_gems = lambda {
   gem 'social_stream-base'
   gem 'social_stream-documents'
   gem 'social_stream-linkser'
-end
+}
 
-#gem 'social_stream-base'
-#gem 'social_stream-documents'
-#gem 'social_stream-linkser'
+# Developing Social Stream
+if ENV['VISH_DEV']
+  path '../social_stream-vish', &social_stream_gems
+else
+  git 'git://github.com/ging/social_stream.git', :branch => 'vish', &social_stream_gems
+end
 
 git 'git://github.com/ging/vish_editor.git', :branch => 'stable' do
   gem 'vish_editor'
@@ -71,6 +72,8 @@ group :development do
   gem 'forgery'
 
   # Debug with Ruby 1.9.2
-  # gem 'ruby-debug19', :require => 'ruby-debug'
+  if ENV['VISH_DEV']
+    gem 'ruby-debug19', :require => 'ruby-debug'
+  end
 end
 
