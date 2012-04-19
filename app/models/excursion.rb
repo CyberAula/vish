@@ -22,9 +22,7 @@ class Excursion < ActiveRecord::Base
   before_save :parse_for_meta
 
   define_index do
-    indexes activity_object.title
-    indexes activity_object.description
-    has created_at
+    activity_object_index
   end
 
   def to_json
