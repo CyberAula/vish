@@ -1,17 +1,15 @@
-<div class="model_with_details">
+<div class="model_with_details span4 inline-block">
   <ul class="thumbnails span4">
     <li class="span1">
       <%= link_to(image_tag(subject.logo.url(:profile)), subject, :class => "container") %>
     </li>
     <li class="span">
-      <div class="caption  elipsis">
-        <h4><%= link_to truncate_name(subject.name, :length => 20), subject %></h4>
-        <h5 class="blue-opacity"><%=t subject.class.name  %></h5>
+      <div class="left caption  elipsis">
+        <h4><span class="size16"><%= link_to truncate_name(subject.name, :length => 40), subject %></span></h4>
+        <h5 class="blue-opacity"><span class="size13"><%=t "#{subject.class.name.underscore}.other"  %></span></h5>
         <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=num_followers%></span></h5>
-        <div class="size10 red-2 upfoll"><%=contact_to(subject) %></div>
+        <div class="size12 link_pink"><%=contact_to(subject) %></div>
       </div>
     </li>
   </ul>
-  <div class="space_center">
-  </div>
 </div>

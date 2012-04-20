@@ -1,4 +1,4 @@
-<div id="all" class="tab-pane <%= "active" if @search_class_sym.blank? %>">
+<div id="all" class="tab-pane <%= "active" if @search_class_sym.blank? %> row">
   <% if @search_result.empty? %>
     <%= I18n.t('search.nothing') %>
   <% elsif @search_class_sym.nil? %>
@@ -18,7 +18,7 @@
   </div>
 <% end %>
 
-<br class="clearfloat">
+
 
 <%= paginate @search_result if @search_result.present? %>
 
