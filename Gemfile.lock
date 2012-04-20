@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 33c502486bb0a12fe0683a4ba2665853b99c0bf9
+  revision: f5e703d7f32e0bb06d8461bdd55eff11893f7f45
   branch: vish
   specs:
     social_stream-base (0.19.1)
@@ -104,7 +104,7 @@ GEM
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    childprocess (0.3.1)
+    childprocess (0.3.2)
       ffi (~> 1.0.6)
     cocaine (0.2.1)
     coffee-rails (3.2.2)

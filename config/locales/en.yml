@@ -41,6 +41,10 @@ en:
   repository:
     one: "repository"
     other: "repositories"
+  resource:
+    title:
+      one: "Resource"
+      other: "Resources"
   site:
     name: "Virtual Science Hub"
   today: "Today"

@@ -30,36 +30,8 @@ module SearchHelper
     return bare_query.strip.split
   end
 
-  def search_class(type, model_sym)
-    case type
-    when :active
-     params[:focus].present? &&
-      params[:focus].eql?(model_sym.to_s) &&
-      'active' || ''
-    when :disabled
-      search_results?(model_sym) &&
-        '' || 'disabled'
-    else
-      raise "Unknown select search class type"
-   end
-  end
-
-  def search_results?(model_sym)
+  def search_results?(key)
     ThinkingSphinx.count(get_search_query,
-                         :classes => [model_sym.to_s.classify.constantize]) > 0
-  end
-
-  def search_tab(model_sym)
-    li_options ={}
-    li_options[:class] = "#{ search_class(:active, model_sym) } #{ search_class(:disabled, model_sym) }"
-
-    results = search_results?(model_sym)
-
-    unless results
-      li_options[:title] = t('search.no_subject_found', :subject => model_sym.to_s)
-    end
-
-    render :partial => 'search/tab', :locals => { :model_sym => model_sym, :results => results, :li_options => li_options  }
-
+                         :classes => SocialStream::Search.models(:extended, key)) > 0
   end
 end

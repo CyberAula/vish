@@ -1,4 +1,3 @@
-
 <% content_for :title do %>
 <%= t('search.name')%> <%= params[:q].present? ? ": #{params[:q]}" : "" %>
 <% end %>
@@ -18,15 +17,15 @@
     <div class="search tabbable">
       <div  class="search tabbable">
         <ul class="nav nav-tabs" id="tab">
-          <li class="active">
+          <li <%= 'class="active"' if params[:type].blank? %>>
             <%= link_to t('search.show_all'),"#all", :data => {:toggle=>"tab"}%>
           </li>
-          <% SocialStream.extended_search_models.each do |model_sym| %>
-              <%= search_tab(model_sym) %>
+          <% SocialStream::Search.keys(:extended).each do |key| %>
+            <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
           <% end %>
         </ul>
         <div class="tab-content span12">
-          <%= render :partial => 'extended_search' %>
+          <%= render :partial => 'extended_content' %>
         </div>
       </div>
     </div>

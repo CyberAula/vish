@@ -30,9 +30,11 @@ SocialStream.setup do |config|
 
   # Quick search (header) and Extended search models and its order. Remember to create
   # the indexes with thinking-sphinx if you are using customized models.
+  #
+  # See SocialStream::Search for syntax
   # 
   config.quick_search_models = [:excursion, :user, :post, :picture, :video, :audio, :document]
-  config.extended_search_models = [:excursion, :user, :post, :comment, :picture, :video, :audio, :document]
+  config.extended_search_models = [:excursion, :user, { :resource => [ :post, :comment, :picture, :video, :audio, :document ] } ]
 
   # Cleditor controls. It is used in new message editor, for example
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"
