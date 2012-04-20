@@ -10,15 +10,6 @@
     </div>
   </div>
 </div>
-<%= javascript_tag do %>
-$('#excursion-filter').on("keyup", function() {
-  $.ajax({
-    url: "/excursions/filter",
-    data: { q: $('#excursion-filter')[0].value, scope: "net" },
-    success: function(data) {
-      $('#excursions').empty();
-      $('#excursions').html(data);
-    }
-  });
-});
+<% content_for :javascript do %>
+  Vish.Filter.init();
 <% end %>
