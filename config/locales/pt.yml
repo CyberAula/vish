@@ -1,0 +1,36 @@
+pt:
+  activity_action:
+    follow: "+Seguir"
+    unfollow: "DeixarDeSeguir"
+  conditions: "condições"
+  excursion:
+    one: "excursão"
+    other: "excursões"
+    upcomming: "upcomming"
+    confirm_delete: "Delete excursion?"
+    created: "created"
+    title:
+      other: "Excursões"
+  follow:
+    followers: "seguidores"
+    followings: "seguindo"
+    views: "views"
+  help: "ajuda"
+  lang:
+    title: "idioma"
+    changed: "idioma:  %{lang}"
+    error: "%{lang}"
+  organization:
+    one: "organização"
+    other: "organizações"
+  profile:
+    tags:
+      default: "VisHub, virtual, excursão"
+  repository:
+    one: "repositório"
+    other: "repositórios"
+  site:
+    name: "Virtual Science Hub"
+  user:
+    one: "usuário"
+    other: "usuários"
