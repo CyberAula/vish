@@ -1,0 +1,21 @@
+<div class="model_with_details">
+  <ul class="thumbnails span3">
+    <li class="span1">
+      <%= link_to(image_tag(subject.logo.url(:profile)),
+                  suggestion.receiver_subject, :class => "container") %>
+    </li>
+    <li class="span">
+      <div class="caption">
+        <div class="title_suggestion size13 link_gray">
+          <%= link_to(truncate_name(subject.name), subject, :class => "") %>
+        </div>
+        <div class="follwrs-ing">
+          <div class="follwrs upfoll"><%=subject.followers.count  %>  <%= t('follow.followers') %></div>
+        </div>
+        <div class="send_messag size10 red-2 upfoll"><%=contact_to(subject) %></div>
+      </div>
+    </li>
+  </ul>
+  <div class="space_center">
+  </div>
+</div>

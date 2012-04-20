@@ -3,7 +3,7 @@ class CreateMailboxer < ActiveRecord::Migration
   #Tables
   	#Conversations
     create_table :conversations do |t|
-      t.column :subjects, :string, :default => ""
+      t.column :subject, :string, :default => ""
       t.column :created_at, :datetime, :null => false
       t.column :updated_at, :datetime, :null => false
     end    
@@ -22,7 +22,7 @@ class CreateMailboxer < ActiveRecord::Migration
     create_table :notifications do |t|
       t.column :type, :string
       t.column :body, :text
-      t.column :subjects, :string, :default => ""
+      t.column :subject, :string, :default => ""
       t.references :sender, :polymorphic => true
       t.references :object, :polymorphic => true
       t.column :conversation_id, :integer

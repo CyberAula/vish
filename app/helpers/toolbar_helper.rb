@@ -9,8 +9,8 @@ module ToolbarHelper
   #
   # The {type} argument chooses diffent configurations. There are three build-in cases:
   # * :home, render the home menu
-  # * :profile, render the profile menu for the {SocialStream::Models::Subject subjects}
-  #   this {type} needs a :subjects {option} with the subjects in the sidebar
+  # * :profile, render the profile menu for the {SocialStream::Models::Subject subject}
+  #   this {type} needs a :subject {option} with the subject in the sidebar
   # * :messages, render the messages menu
   #
   # Autoexpand a menu section on your view:
@@ -33,7 +33,7 @@ module ToolbarHelper
   #
   # Render the profile toolbar for a user:
   #
-  #   <% toolbar :profile, :subjects => @user %>
+  #   <% toolbar :profile, :subject => @user %>
   #
   # Render the messages menu:
   #
@@ -41,7 +41,7 @@ module ToolbarHelper
   #
   # Render the profile toolbar for group changing the contacts menu option:
   #
-  #   <% toolbar :profile, :subjects => @group, :option => :contacts %>
+  #   <% toolbar :profile, :subject => @group, :option => :contacts %>
   #
   def toolbar(type = :home, options = {})
     content = toolbar_items(type, options).inject(ActiveSupport::SafeBuffer.new){ |result, item|
