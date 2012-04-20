@@ -1,6 +1,4 @@
 en:
-  today: "Today"
-  yesterday: "Yesterday"
   activerecord:
     attributes:
       user:
@@ -10,6 +8,7 @@ en:
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
+  conditions: "conditions"
   excursion:
     one: "excursion"
     other: "excursions"
@@ -22,6 +21,7 @@ en:
     followers: "followers"
     followings: "following"
     views: "views"
+  help: "help"
   lang:
     title: "language"
     changed: "Changed language to %{lang}"
@@ -43,6 +43,7 @@ en:
     other: "repositories"
   site:
     name: "Virtual Science Hub"
+  today: "Today"
   top10: "Top 10"
   user:
     one: "user"
@@ -56,3 +57,4 @@ en:
       truncate: "..."
       previous: "«"
       next: "»"
+  yesterday: "Yesterday"
