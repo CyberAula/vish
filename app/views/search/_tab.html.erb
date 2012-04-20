@@ -1,5 +1,5 @@
 <%= content_tag :li, li_options do %>
         <%= link_to t("#{ model_sym }.title.other"),
                 "##{ model_sym.to_s.pluralize }",
-                :data => {:toggle=>"tab#{ ' disable' unless results }"} %>
+                :data => {:toggle=>"tab#{ ' disabled' unless results }"} %>
 <% end %>
