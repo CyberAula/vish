@@ -4,9 +4,9 @@ module HomeHelper
   end
 
   # Excursions can be search in several scopes:
-  # * :me   just the subject
-  # * :net  subject and followings
-  # * :more everybody except subject and followings
+  # * :me   just the subjects
+  # * :net  subjects and followings
+  # * :more everybody except subjects and followings
   def subject_excursions(subject, options = {})
     subject_content subject, Excursion, options
   end

@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(:version => 20120411140551) do
   add_index "contacts", ["sender_id"], :name => "index_contacts_on_sender_id"
 
   create_table "conversations", :force => true do |t|
-    t.string   "subject",    :default => ""
+    t.string   "subjects",    :default => ""
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(:version => 20120411140551) do
   create_table "notifications", :force => true do |t|
     t.string   "type"
     t.text     "body"
-    t.string   "subject",              :default => ""
+    t.string   "subjects",              :default => ""
     t.integer  "sender_id"
     t.string   "sender_type"
     t.integer  "conversation_id"

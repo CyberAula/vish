@@ -10,39 +10,11 @@
 <div class="row"><span class="size40"><%=t('search.name') %></span></div>
 <div class="row space_center"></div>
 
-<!--
-<div class="row">
-  <section name="Search" class="span12">
-    <div class="search tabbable">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#all"><%#= t('all') %></a></li>
-        <li class=""><a data-toggle="tab" href="#excursion"><%#= t('excursions') %></a></li>
-        <!--<li class=""><a data-toggle="tab" href="#organization"><%#= t('organization.one') %></a></li>
-        <li class=""><a data-toggle="tab" href="#users"><%#= t('user.one') %></a></li>
-        <li class=""><a data-toggle="tab" href="#resources"><%#= t('resources') %></a></li>
-        <li class=""><a data-toggle="tab" href="#tags"><%#= t('tags') %></a></li>
-      </ul>
-      <div class="tab-content">
-        <div id="all" class="tab-pane active">
-          <%#= render :partial => 'index' %>
-        </div>
-        <div id="excursion" class="tab-pane">
-        </div>
-        <!--<div id="organization" class="tab-pane"></div>
-        <div id="users" class="tab-pane"></div>
-        <div id="resources" class="tab-pane"></div>
-        <div id="tags" class="tab-pane"></div>
-      </div>
-    </div>
-  </section>
-</div>
- -->
-
 
 
 <div class="row">
   <section name="Search" class="span12">
-    <div class="error" id="too_short_error" <%#= 'style=display:block;' if too_short_query? %>><%#= t('search.at_least') %></div>
+    <div class="error" id="too_short_error" <%= 'style=display:block;' if too_short_query? %>><%#= t('search.at_least') %></div>
 
     <div class="search tabbable">
       <div  class="search tabbable">

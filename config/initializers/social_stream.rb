@@ -45,8 +45,8 @@ SocialStream::Views::Toolbar.module_eval do
       []
     when :profile
       SocialStream::Views::List.new.tap do |items|
-        subject = options[:subject]
-        raise "Need a subject options for profile toolbar" if subject.blank?
+        subject = options[:subjects]
+        raise "Need a subjects options for profile toolbar" if subject.blank?
 
         #logo
         items << {
