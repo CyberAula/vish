@@ -1,10 +1,10 @@
-<div class="model_with_details span4 inline-block">
+<div class="model_with_details span4 inline-block box-result">
   <ul class="thumbnails span4">
     <li class="span1">
       <%= link_to(image_tag(subject.logo.url(:profile)), subject, :class => "container") %>
     </li>
     <li class="span">
-      <div class="left caption  elipsis">
+      <div class="caption">
         <h4><span class="size16"><%= link_to truncate_name(subject.name, :length => 40), subject %></span></h4>
         <h5 class="blue-opacity"><span class="size13"><%=t "#{subject.class.name.underscore}.other"  %></span></h5>
         <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=num_followers%></span></h5>
