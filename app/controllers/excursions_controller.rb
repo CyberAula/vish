@@ -18,7 +18,6 @@
 class ExcursionsController < ApplicationController
   # Quick hack for bypassing social stream's auth
   before_filter :hack_auth, :only => [ :new, :create]
-  include HomeHelper
   skip_authorize_resource :only => :filter
   include SocialStream::Controllers::Objects
 
@@ -37,13 +36,33 @@ class ExcursionsController < ApplicationController
 
 
   def filter
-    params[:scope] ||= 'me'
-    render :partial => "excursions/filter_results",
-           :locals  => { :excursions => current_subject_excursions({ :scope => params[:scope], :query => params[:q] }) }
+    params[:scope] ||= :net
+    render :layout => false, :locals  => { :excursions => do_filter(current_subject, params[:q], params[:scope]) }
   end
 
 
   private
+
+  def do_filter subject, query_str, scope, limit=4
+    # This is similar to some code at the Home Helper, but painfully and fundamentally different
+    # For one, this does need Sphinx running in your machine to render any results at all.
+    # Also, it's slightly less efficient, since it fetches the results, the reorders them rather
+    #       than doing a simple SQL query.
+
+    following_ids = subject.following_actor_ids
+    following_ids |= [ subject.actor_id ]
+
+    case scope.to_sym
+    when :me
+      ids = [ subject.actor_id ]
+    when :net
+      ids = following_ids
+    when :more
+      ids = Actor.all - following_ids
+    end
+    Excursion.search(query_str, :with => { :author_id => ids }).sort_by!{|e| e.created_at}.reverse.first(limit)
+  end
+
 
   def hack_auth
     params["excursion"] ||= {}
