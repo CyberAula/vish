@@ -9,7 +9,7 @@
         <div class="title_suggestion size13 link_gray">
           <%= link_to(truncate_name(suggestion.receiver_subject.name), suggestion.receiver_subject, :class => "") %>
         </div>
-        <div class="close link_pink"><%= link_to '×', suggestion, :method => :delete, :remote => true, :class =>"" %></div>
+        <div class="close link_pink"><%= link_to(image_tag('close.png'), suggestion, :method => :delete, :remote => true, :class =>"" )%></div>
         <div class="follwrs-ing">
           <div class="follwrs upfoll"><%=suggestion.receiver_subject.followers.count  %>  <%= t('follow.followers') %></div>
         </div>

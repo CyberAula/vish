@@ -6,7 +6,7 @@
     <li class="span">
       <div class="caption">
         <h4 class="link_gray"><%= link_to truncate_name(document.title, :length => 15), document, :class => "size14" %></h4>
-        <h5></span> <span class="green"><%=document.visit_count.to_s%></span> views</h5>
+        <h5><span class="green"><%=document.visit_count.to_s%></span> views</h5>
         <div class="brief">
           <%= t 'like.n',     :count => document.like_count %>
         </div>
