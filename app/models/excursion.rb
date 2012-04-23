@@ -46,6 +46,10 @@ class Excursion < ActiveRecord::Base
     activity_object.description = parsed_json["description"]
     activity_object.save!
 
+    parsed_json["id"] = activity_object.id
+    parsed_json["author"] = author.name
+    self.json = parsed_json.to_json
+
     self.slide_count = parsed_json["slides"].size
   end
 
