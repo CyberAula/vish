@@ -2,26 +2,31 @@
   <div class="menu_resources">
     <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_amplify'></i> ") + t('document.actions.details'), :class => :action, :id => :document_details_action), "javascript:SocialStream.Repository.toggleDocumentMenu('details');" %>
   </div>
+
   <div class="menu_resources">
     <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-    <% if document.post_activity.edit_object_by?(current_subject) %>
   </div>
-  <div class="menu_resources">
-    <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), "javascript:SocialStream.Repository.toggleDocumentMenu('edit');" %>
-    <% end %>
-  </div>
-  <div class="menu_resources">
-    <% if document.post_activity.delete_object_by?(current_subject) %>
-    <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
-                                                                                                                                                                                                       :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-      <% end %>
+
+
+  <% if document.post_activity.edit_object_by?(current_subject) %>
+    <div class="menu_resources">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), "javascript:SocialStream.Repository.toggleDocumentMenu('edit');" %>
     </div>
+  <% end %>
+
+  <% if document.post_activity.delete_object_by?(current_subject) %>
+    <div class="menu_resources">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
+                                                                                                                                                                                                     :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
     </div>
+  <% end %>
+
+</div>
 
 <div id="document_details" class="boxy_white" style="display:none;">
   <div class="info_resources">
-  <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
-    </div>
+    <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+  </div>
   <div class="info_resources">
     <div class="details_resources">
       <%= t('document.info.date.created_at') %>
