@@ -36,10 +36,8 @@ GIT
       linkser (~> 0.0.10)
       social_stream-base (~> 0.19.0)
 
-GIT
-  remote: git://github.com/ging/vish_editor.git
-  revision: 3f06838b49792ae81ca0cd218d7ed12baa57eade
-  branch: stable
+PATH
+  remote: ../vish_editor/rails
   specs:
     vish_editor (0.1.1)
       railties (>= 3.1.3)
