@@ -1,1 +1,18 @@
-Find me in app/views/excursions/_excursion_global_search.html.erb
+<div class="model_with_details span4 inline-block box-result">
+  <ul class="thumbnails span4">
+    <li class="span1">
+      <%= link_to  thumb_for(excursion, 130), excursion, :class => "container" %>
+      <div class='number_pages'><%= excursion.slide_count %></div>
+    </li>
+    <li class="span">
+      <div class="caption ">
+        <h4><%= link_to truncate_name(excursion.title, :length => 40), excursion %></h4>
+        <h5 class="blue-opacity"><%=type_excursion%></h5>
+        <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=num_followers%></span></h5>
+        <p><%= image_tag('star.png') %></p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+

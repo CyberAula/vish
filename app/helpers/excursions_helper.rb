@@ -12,16 +12,6 @@ module ExcursionsHelper
     rand(500)
   end
 
-  def type_excursion
-    # TODO: really take the top 10 excursions
-    value=1
-
-    if (value==1)
-      "presentation"
-    else
-      "virtual meeting"
-    end
-  end
 
   def starts
     # TODO: really take the top 10 excursions
