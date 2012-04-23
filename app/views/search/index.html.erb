@@ -32,9 +32,10 @@
   </section>
 </div>
 
-
 <%= javascript_tag do %>
   $(function() {
-  SocialStream.Search.init();
+    Vish.Search.index({
+      indexPath: '<%= j request.fullpath %>'
+    });
   });
 <% end %>

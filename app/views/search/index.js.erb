@@ -1,19 +1,7 @@
-$('#search_results').html("<%= escape_javascript render :partial => 'extended_search' %>");
-
-$('#focus_options ul li a span').removeClass('selected');
-
-<% if params[:focus].present? %>
-  $('#focus_options ul li a span.<%= params[:focus].pluralize.downcase %>').addClass('selected');
-<% else %>
-  $('#focus_options ul li a span.global').addClass('selected');
+<% results = capture do %>
+  <% @search_result.each do |res| %>
+    <%= render_focus_search_for res %>
+  <% end %>
 <% end %>
 
-$('title').text('<%#= t('search.name')%> <%= escape_javascript(params[:q].present? ? ": #{params[:q]}" : "")%>');
-
-<% if too_short_query? %>
-  $('#too_short_error').show();
-<% else %>
-  $('#too_short_error').hide();
-<% end %> 
-
-$('#global_search_input').removeClass("searching");
+$('#<%= j params[:type] %>').html('<%= j results %>');
