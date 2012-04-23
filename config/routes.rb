@@ -10,6 +10,8 @@ Vish::Application.routes.draw do
 
   resource :session_locale
 
+  match 'legal_notice' => 'legal_notice#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
