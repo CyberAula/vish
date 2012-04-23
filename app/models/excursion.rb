@@ -25,7 +25,7 @@ class Excursion < ActiveRecord::Base
     activity_object_index
   end
 
-  def to_json
+  def to_json(options=nil)
     json
   end
 
