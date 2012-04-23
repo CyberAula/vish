@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411140551) do
+ActiveRecord::Schema.define(:version => 20120423151759) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(:version => 20120411140551) do
 
   add_index "activity_object_activities", ["activity_id"], :name => "index_activity_object_activities_on_activity_id"
   add_index "activity_object_activities", ["activity_object_id"], :name => "index_activity_object_activities_on_activity_object_id"
+
+  create_table "activity_object_audiences", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.integer  "relation_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "activity_object_audiences", ["activity_object_id"], :name => "activity_object_audiences_on_activity_object_id"
+  add_index "activity_object_audiences", ["relation_id"], :name => "activity_object_audiences_on_relation_id"
 
   create_table "activity_object_properties", :force => true do |t|
     t.integer "activity_object_id"
@@ -390,6 +400,9 @@ ActiveRecord::Schema.define(:version => 20120411140551) do
 
   add_foreign_key "activity_object_activities", "activities", :name => "index_activity_object_activities_on_activity_id"
   add_foreign_key "activity_object_activities", "activity_objects", :name => "activity_object_activities_on_activity_object_id"
+
+  add_foreign_key "activity_object_audiences", "activity_objects", :name => "activity_object_audiences_on_activity_object_id"
+  add_foreign_key "activity_object_audiences", "relations", :name => "activity_object_audiences_on_relation_id"
 
   add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_activity_object_id"
   add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_property_id", :column => "property_id"
