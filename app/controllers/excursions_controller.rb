@@ -29,7 +29,9 @@ class ExcursionsController < ApplicationController
 
 
   def create
-    render :json => resource
+    super do |format|
+      format.all { render :json => resource }
+    end
   end
 
 
