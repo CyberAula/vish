@@ -1299,10 +1299,50 @@ margin-left: 20px;
   margin-top: 10px;
   padding: 10px 10px 10px 10px;
   border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
+/*......................................................................edit profile*/
+.filter_options{
+  color: #FF005D; opacity: 0.6;
+  display: inline-block;
+  float: right;
+  margin-left: 20px;
 
+}
+
+#filter_options{
+  display: inline-block;
+  float: right;
+  font-size: 14pt;
+  color: #c7c7c7;
 
 
 }
+.grid_resources{
+ height:300px;
+ width:300px;
+ display:block;
+
+}
+.box_resource{
+  width: 90px;
+  height: 90px;
+  display: inline-block;
+
+  margin-right:10px;
+}
+.attachment_tile_resource {
+  margin-top: 5px;
+  width:89px;
+  height: auto;
+  border-bottom: 2px solid transparent;
+  float: none;
+  text-align: center;
+  overflow: hidden;
+
+}
+.attachment_tile_thumb_resource{}
+
+
 
 /******************************** search tabs ************/
 
