@@ -1,6 +1,6 @@
 Vish::Application.routes.draw do
   # Match the filter before the individual resources
-  match 'excursions/filter' => 'excursions#filter'
+  match 'excursions/search' => 'excursions#search'
 
   resources :excursions
 
