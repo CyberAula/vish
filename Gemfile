@@ -72,7 +72,10 @@ group :development do
   gem 'forgery'
 
   # Debug with Ruby 1.9.2
-  if ENV['VISH_DEV']
+  # use with:
+  # $ export VISH_DEBUG=true
+
+  if ENV['VISH_DEV'] || ENV['VISH_DEBUG']
     gem "debugger", "~> 1.1.1"
     #gem 'ruby-debug19', :require => 'ruby-debug'
   end
