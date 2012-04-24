@@ -133,7 +133,7 @@
 	  	<input type="hidden" id="prompt_answer" value="false"></input>
 	  	<div id='prompt_form'>	  		
 	  		<img id="image_template_prompt" class="delete_img" src="/assets/templatesthumbs/default.png"/>
-	  		<img id="delimg" class="delimg"src="/assets/delete_border.png"><a class="deltext"> are you sure? </a>
+	  		<img id="delimg" class="delimg" src="assets/delete_border.png"><a class="deltext"> are you sure? </a>
 	  		<a href="#" onclick="$('#prompt_answer').val('true'); $.fancybox.close();" class="prompt_button button button1">delete</a>
 	  		<a href="#" onclick="$('#prompt_answer').val('false'); $.fancybox.close();" class="prompt_button button button2">no</a>
 	  	</div>
@@ -146,7 +146,7 @@
 				<div class="fancy_tabs">	   
 				  <ul>
 				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable">url</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab">upload</a></li>
+				    <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab">upload</a></li>
 				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
 				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/flickr.png'/></a></li>
 				  </ul>
@@ -219,8 +219,8 @@
 				<div class="fancy_tabs">	   
 				  <ul>
 				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">embed</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
-				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
+				    <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
+				    <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
 				  </ul>
 				</div>
 				<div id='tab_flash_from_url_content' class="fancy_tab_content">
@@ -279,7 +279,7 @@
 				<div class="fancy_tabs">	   
 				    <ul>
 				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab">url</a></li>
-				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_upload')" id="tab_video_upload" class="fancy_tab">upload</a></li>
+				      <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_video_upload')" id="tab_video_upload" class="fancy_tab">upload</a></li>
 				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
 				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/youtube.png'/></a></li>
 				    </ul>
