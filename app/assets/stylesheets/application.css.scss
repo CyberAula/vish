@@ -1234,6 +1234,11 @@ margin-left: 20px;
 .block .form_tag{color: $main-color; padding: 5px 5px 5px 5px;  border:1px solid $input-border-color; width:90%;}
 .block .form_tag_long{color: $main-color;	padding: 5px 5px 5px 5px;  border:1px solid $input-border-color; width:91%;}
 
+
+/*......................................................................edit profile*/
+
+
+/******************************** repository ************/
 .menu_resources{
   background-color: #f7f7f7;
   display: inline-block;
@@ -1276,17 +1281,28 @@ margin-left: 20px;
   display: block;
   width: auto ;
 
+}
+.info_visits{
+  display:inline-block;
+  margin-left:190px;
+  font-size: 14pt;
+
   }
 
+.picture_icon{
+display: inline-block;
+
+}
+
 .details_resources{
- float:left;
- display: inline-block;
- width: 225px;
- color: #FF005D; opacity: 0.6;
+  float:left;
+  display: inline-block;
+  width: 225px;
+  color: #FF005D; opacity: 0.6;
 }
 .like_count{
- display:inline-block;
- width: 225px
+  display:inline-block;
+  width: 225px
 }
 
 #details_numbers{
@@ -1300,7 +1316,7 @@ margin-left: 20px;
   padding: 10px 10px 10px 10px;
   border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
 }
-/*......................................................................edit profile*/
+
 .filter_options{
   color: #FF005D; opacity: 0.6;
   display: inline-block;
@@ -1314,35 +1330,171 @@ margin-left: 20px;
   float: right;
   font-size: 14pt;
   color: #c7c7c7;
-
-
 }
-.grid_resources{
- height:300px;
- width:300px;
- display:block;
-
+.attachment
+{
+  padding-top: 10px;
 }
-.box_resource{
-  width: 90px;
-  height: 90px;
-  display: inline-block;
 
-  margin-right:10px;
-}
-.attachment_tile_resource {
-  margin-top: 5px;
-  width:89px;
+.attachment_content
+{
+  position: relative;
+  width: 90%;
+  vertical-align: middle;
+  line-height: 20px;
   height: auto;
+  float:left;
+  font-size:13px;
+}
+
+.attachment_text
+{
+  float: left;
+  font-size:11px;
+  margin-bottom: 3px;
+  text-align: left;
+  width: 310px;
+}
+
+
+.attachment_text audio
+{
+  position:relative;
+}
+
+.attachment_text video
+{
+  position:relative;
+  height: 180px;
+}
+
+.attachment_thumb
+{
+  position: relative;
+/*width: 10%;*/
+  float: left;
+/*height: 50px;*/
+  padding-right:5px;
+  vertical-align: middle;
+}
+
+#new_document{
+  margin-left: 10px;
+  clear: both;
+  padding-top: 5px;
+  text-align: left;
+}
+
+#new_document_title_wrapper {
+  margin-top: 5px;
+}
+
+#new_document_title_wrapper input[type="text"] {
+  display: inline;
+  width: 30%;
+}
+
+.attachment_tile{
+  margin: 5px;
+  width: 90px;
+  height: 70px;
   border-bottom: 2px solid transparent;
-  float: none;
+  float: left;
   text-align: center;
   overflow: hidden;
-
+  border: 1px solid transparent;
+  padding: 5px;
+  position: relative;
 }
-.attachment_tile_thumb_resource{}
 
+.attachment_tile_thumb img{
+  width: 48px;
+  height: 48px;
+}
 
+.attachment_tile_tipsy{
+  position: absolute;
+  top: 0px;
+  right: 9px;
+}
+
+.attachment_tile:hover{
+  border: 1px solid ;
+  color:#e0edf2;
+}
+
+.attachment_tile.selected{
+  background-color: #e0edf2;
+  border-bottom: 2px solid green;
+}
+
+.attachment_section_header{
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  position: relative;
+  width:90%;
+  border-left: 3px solid #2A3890;
+  background-color: #e0edf2;
+}
+
+.attachment_tile_tipsy_menu.tipsy {
+  padding-top: 0px;
+  display: none;
+}
+.attachment_tile_tipsy_menu.tipsy .tipsy-arrow {
+  display: none;
+}
+.attachment_tile_tipsy_menu.tipsy .tipsy-inner {
+  background-color: $text-over-main;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  padding:0px;
+}
+.attachment_tile_tipsy_menu.tipsy .actions {
+  border-bottom: 1px solid $main-color;
+  text-align: left;
+}
+.attachment_tile_tipsy_menu.tipsy .actions .action {
+  border: 1px solid $main-color;
+  border-bottom: 0px;
+  padding:5px;
+  width: 80px;
+}
+.attachment_tile_tipsy_menu.tipsy .actions .action:hover {
+  background-color: $secondary-color;
+}
+.attachment_tile_tipsy_menu.tipsy .actions a:hover {
+  text-decoration: none;
+}
+.attachment_tile_tipsy_menu.tipsy .actions .action img {
+  vertical-align: middle;
+  padding-bottom: 3px;
+  padding-right: 3px;
+  padding-left: 3px;
+  display: inline-block;
+}
+
+.picture_thumbnail_show, .picture_thumbnail_show img {
+  position: relative;
+  float: left;
+  max-height: 100px;
+  width: 130px;
+}
+
+.attachment_thumb {
+  position: relative;
+  float: left;
+}
+.new_resource{
+ font-size: 14pt;
+ color: #c7c7c7;
+ font-variant: bold;
+ display:block;
+ float:left;
+ clear:right;
+}
 
 /******************************** search tabs ************/
 

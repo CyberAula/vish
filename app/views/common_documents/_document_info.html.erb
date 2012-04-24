@@ -24,9 +24,13 @@
 </div>
 
 <div id="document_details" class="boxy_white" style="display:none;">
-  <div class="info_resources">
+  <div class="">
+    <div class="picture_icon">
     <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
-  </div>
+      </div>
+    <div class="info_visits">
+    <span class="green"><%=document.visit_count.to_s%></span> views </div>
+</div>
   <div class="info_resources">
     <div class="details_resources">
       <%= t('document.info.date.created_at') %>
@@ -39,6 +43,7 @@
     <div class="details_resources">
       <%= t('document.info.date.updated_at') %>
     </div>
+
     <div class="date_resources">
       <%= I18n.localize document.updated_at, :format => :long %>
     </div>
@@ -46,10 +51,12 @@
   <div class="info_resources">
     <div class="details_resources">likes</div>
     <div class="date_resources">  <%= document.like_count %></div>
+
     <div id="file_size">
       <div class="details_resources">Size</div>
       <div class="date_resources"><%= number_to_human_size document.file_file_size %>
       </div>
+
     </div>
     <br class="clearfloat"/>
   </div>

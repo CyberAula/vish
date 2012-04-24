@@ -5,83 +5,78 @@
   </ul>
 </div>
 
+
+
 <% unless params[:no_layout].present? %>
   <%= render :partial => "common_documents/headers" %>
+  <div id="documents_grid">
 <% end %>
-<div class="space_center"></div>
-<div class="grid_resources">
-  <div class="box_resource">
-    <% @activities.each do |a| %>
-      <% document = a.activity_objects.first.document %>
-      <div class="attachment_tile_resource" id="<%= dom_id(document) %>">
-        <div class="attachment_tile_thumb_resource">
-          <%= link_to thumb_for(document, 48),
-                      document_path(document),
-                      :type => document.type,
-                      :title => document.file_file_name,
-                      :path => document_path(document) %>
 
+<div class="new_resource"><%= t('+ new resource') %>  </div>
+<div class="row space_center"></div>
+<div class="row space_center"></div>
 
-        </div>
-        <div class="attachment_tile_tipsy">
-          <%= link_to image_tag("btn/btn_down.png"),
-                      "javascript:;" %>
-          <div class="tipsy_content" style="display:none;">
-            <div class="actions">
-              <%= link_to content_tag(:div, image_tag("btn/download.png") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-              <% if document.post_activity.edit_object_by?(current_subject) %>
-                <%= link_to content_tag(:div, image_tag("edit.png") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
-              <% end %>
-              <% if document.post_activity.delete_object_by?(current_subject) %>
-                <%= link_to content_tag(:div, image_tag("btn/error.png") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
-                                                                                                                                                                                 :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        <div class="attachment_tile_text">
-          <%= link_to truncate_name(document.file_file_name, :length => 15),
-                      document_path(document),
-                      :alt => document.file_file_name,
-                      :type => document.type,
-                      :path => document_path(document) %>
+<% @activities.each do |a| %>
+  <% document = a.activity_objects.first.document %>
+  <div class="attachment_tile" id="<%= dom_id(document) %>">
+    <div class="attachment_tile_thumb">
+      <%= link_to thumb_for(document, 48),
+                  document_path(document),
+                  :type => document.type,
+                  :title => document.file_file_name,
+                  :path => document_path(document) %>
+    </div>
+    <div class="attachment_tile_tipsy">
+      <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
+                  "javascript:;" %>
+      <div class="tipsy_content" style="display:none;">
+        <div class="actions">
+          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+          <% if document.post_activity.edit_object_by?(current_subject) %>
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
+          <% end %>
+          <% if document.post_activity.delete_object_by?(current_subject) %>
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
+                                                                                                                                                                                                           :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+          <% end %>
         </div>
       </div>
-      <%= javascript_tag do %>
-        $(document).ready(function(){
-
-        SocialStream.Repository.init();
-
-        $('#<%= dom_id(document) %> .attachment_tile_tipsy a').tipsy({
-        delayIn: 0,
-        delayOut: 1000,
-        gravity: 'nw',
-        className: 'attachment_tile_tipsy_menu',
-        html: true,
-        hoverable: true,
-        title: function(){
-        return $('#<%= dom_id(document) %> .attachment_tile_tipsy .tipsy_content').html();
-        }
-        });
-        });
-      <% end %>
-    <% end %>
+    </div>
+    <div class="attachment_tile_text">
+      <%= link_to truncate_name(document.file_file_name, :length => 15),
+                  document_path(document),
+                  :alt => document.file_file_name,
+                  :type => document.type,
+                  :path => document_path(document) %>
+    </div>
   </div>
-</div>
-    <% if @activities.size == DocumentsController::PER_PAGE %>
-      <% next_url = url_for(:no_layout => true,
-                            :page => params[:page].present? ? params[:page].to_i + 1 : 2,
-                            :query => params[:query].present? ? params[:query] : "") %>
-      <%= content_tag(:span, "", :class => "screw screw-after", :rel => next_url) %>
-    <% end %>
+  <%= javascript_tag do %>
+    $(document).ready(function(){
 
-    <% unless params[:no_layout].present? %>
+    SocialStream.Repository.init();
 
+    $('#<%= dom_id(document) %> .attachment_tile_tipsy a').tipsy({
+    delayIn: 0,
+    delayOut: 1000,
+    gravity: 'nw',
+    className: 'attachment_tile_tipsy_menu',
+    html: true,
+    hoverable: true,
+    title: function(){
+    return $('#<%= dom_id(document) %> .attachment_tile_tipsy .tipsy_content').html();
+    }
+    });
+    });
+  <% end %>
+<% end %>
 
+<% if @activities.size == DocumentsController::PER_PAGE %>
+  <% next_url = url_for(:no_layout => true,
+                        :page => params[:page].present? ? params[:page].to_i + 1 : 2,
+                        :query => params[:query].present? ? params[:query] : "") %>
+  <%= content_tag(:span, "", :class => "screw screw-after", :rel => next_url) %>
+<% end %>
 
-
-    <% end %>
-
-
-
-
+<% unless params[:no_layout].present? %>
+  </div>
+<% end %>
