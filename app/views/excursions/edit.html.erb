@@ -1,6 +1,11 @@
-<h1>Editing excursion</h1>
+<p id="notice"><%= notice %></p>
 
-<%= render 'form' %>
+<iframe id="excursion_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
+
 
 <%= link_to 'Show', @excursion %> |
 <%= link_to 'Back', excursions_path %>
+
+<% content_for :javascript do %>
+		location.href = "#excursion_iframe";
+<%end%>

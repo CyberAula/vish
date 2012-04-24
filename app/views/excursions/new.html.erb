@@ -1,3 +1,8 @@
-<iframe id="new_excursion_iframe" src="<%=new_excursion_path(:format => :full)%>" width="900" height="750" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
+<iframe id="excursion_iframe" src="<%=new_excursion_path(:format => :full)%>" width="900" height="750" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
 
 <%= link_to 'Back', excursions_path %>
+
+
+<% content_for :javascript do %>
+		location.href = "#excursion_iframe";
+<%end%>

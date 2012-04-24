@@ -1,0 +1,358 @@
+<section class="slides layout-regular template-default" id="slides_panel">
+		<div id='menubar'>
+		    <a id="edit_excursion_details" href="#excursiondetails">
+				  <div id="config_div" class='barbuttonaddsave' title="Edit details"></div>
+	        </a>
+            <div class='barbutton with_pointer' id=''>
+            </div>
+		    <div class='barbutton' id="slide_thumb_1">				
+					<img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+			</div>
+		    <div class='barbutton' id="slide_thumb_2" >
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+		    </div>
+		    <div class='barbutton' id="slide_thumb_3">
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+		    </div>
+		    <div class='barbutton' id="slide_thumb_4">
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+		    </div>
+		    <div class='barbutton' id="slide_thumb_5">
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+		    </div>
+		    <div class='barbutton' id="slide_thumb_6">
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+		    </div>
+		    <div class='barbutton' id="slide_thumb_7">
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+		    </div>
+		    <div class='barbutton' id="slide_thumb_8">
+				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
+				    <span class="slide_number"></span>
+		    </div>
+		    <div class='barbutton with_pointer' id=''>
+		    </div>		    
+            <a id="save" href="#thumbcontent">
+			    <div id="save_div" class='barbuttonaddsave' title="Save slides">
+			    </div>
+            </a>
+		</div>
+    </section>
+
+    <!-- Hidden link to open fancybox when adding a slide -->
+    <a id="addSlideFancybox" href="#thumbcontent" style="display: none;"></a>
+    
+    <!-- Hidden link to open fancybox when creating a new excursion -->
+    <a id="launch_excursion_details" href="#excursiondetails" style="display: none;"></a>
+
+      <!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
+      <div style='display:none'> 
+		<form id='excursiondetails'>
+        	<img src="/assets/intro.png"/>
+      		<label for="excursion_title">
+      			<div class="textintro1 textintromargin1">Title</div>
+      		</label>
+      		<input id='excursion_title' class="input_text_fancy title1 formsizefancy3" type="text" name="excursion_title" placeholder="Excursion title">	
+			<label for="excursion_description">
+				<div class="textintro1 textintromargin2">Description</div>
+			</label>
+			<textarea id='excursion_description' class="input_text_fancy description1 formsizefancy4" name="excursion_description" placeholder="Describe the excursion in a few words..."></textarea>
+			<input id='save_excursion_details' submit='disable' class='button buttonintro' value="Save">
+	   		<p id="excursion_details_error" class="error_intro" style='display:none'>Please, enter a title</p>
+	   	</form>
+      </div>
+      
+      
+	  <div style='display:none'>
+	    <div id='thumbcontent'>
+	      <div class='templatethumb' template='1'>
+		      <img src='/assets/templatesthumbs/t1.png' />
+	      </div>
+	      <div class='templatethumb' template='2'>
+		      <img src='/assets/templatesthumbs/t2.png' />
+	      </div>
+          <div class='templatethumb' template='3'>
+		      <img src='/assets/templatesthumbs/t3.png' />
+	      </div>
+          <div class='templatethumb' template='4'>
+		      <img src='/assets/templatesthumbs/t4.png' />
+	      </div>
+          <div class='templatethumb' template='5'>
+		      <img src='/assets/templatesthumbs/t5.png' />
+	      </div>
+          <div class='templatethumb' template='6'>
+		      <img src='/assets/templatesthumbs/t6.png' />
+	      </div>
+          <div class='templatethumb' template='7'>
+		      <img src='/assets/templatesthumbs/t7.png' />
+	      </div>
+          <div class='templatethumb' template='8'>
+		      <img src='/assets/templatesthumbs/t8.png' />
+	      </div>
+          <div class='templatethumb' template='9'>
+		      <img src='/assets/templatesthumbs/t9.png' />
+	      </div>
+	    </div>
+	  </div>
+
+  
+	  <div style='display:none'>
+	  	
+	    <div id='menuselect' class="menuselect_hide">
+			  <div class='menuicon textthumb' title="Text"></div>
+	      <a class="addpicture" href="#picture_fancybox">
+	        <div class='menuicon picthumb' title="Image"></div>
+	      </a>
+	      <a class="addflash" href="#flash_fancybox">
+	        <div class='menuicon flashthumb' title="Flash"></div>
+	      </a>
+	      <a class="addvideo" href="#video_fancybox">
+	        <div class='menuicon videothumb' title="Video"></div>
+	      </a>
+	    </div>
+	    
+	    <div id='menuselect_for_header' class="menuselect_hide">
+			  <div class='menuicon_small textthumb textthumb_small' title="Text"></div>
+	      <a class="addpicture" href="#picture_fancybox">
+	        <div class='menuicon_small picthumb_small' title="Image"></div>
+	      </a>	      
+	    </div>
+	    
+	  </div>
+	  
+	  
+	  <!-- PROMPT USER IF SHE IS SURE -->
+	  <div style='display:none'>
+	  	<input type="hidden" id="prompt_answer" value="false"></input>
+	  	<div id='prompt_form'>	  		
+	  		<img id="image_template_prompt" class="delete_img" src="/assets/templatesthumbs/default.png"/>
+	  		<img id="delimg" class="delimg" src="/assets/delete_border.png"><a class="deltext"> are you sure? </a>
+	  		<a href="#" onclick="$('#prompt_answer').val('true'); $.fancybox.close();" class="prompt_button button button1">delete</a>
+	  		<a href="#" onclick="$('#prompt_answer').val('false'); $.fancybox.close();" class="prompt_button button button2">no</a>
+	  	</div>
+	  </div>
+  
+  
+  	  <!-- IMAGE -->
+	  <div style='display:none'>
+	    <div id="picture_fancybox" class="outer_box">
+				<div class="fancy_tabs">	   
+				  <ul>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable">url</a></li>
+				    <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab">upload</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/flickr.png'/></a></li>
+				  </ul>
+				</div>
+						<div id='tab_pic_from_url_content' class="fancy_tab_content">
+                			<div class="box1 box1fancy1">
+				    			<p class="textfancy"> add image url </p><br>
+                    			<img class="image_add_url" src="/assets/url_img.png"/>
+				    			<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
+				    			<button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('picture_url')">Upload</button>
+                  			</div>
+                			<div class="box2">
+                				<div class="previewimgbox">
+                    				<img class="documentblank" src="/assets/document_black.png"/>
+                    				<button type="button" class="button buttonaddfancy">Add Content</button>
+                    			</div>
+                			</div>
+						</div>      
+				<div id='tab_pic_upload_content' class="fancy_tab_content">
+                			<div class="box1 box1fancy1">
+				  				<p class="textfancy">Select picture to upload</p><br>
+                  				<img class="image_add_url" src="/assets/url_upl.png"/>
+				  				<input class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
+				  				<button type="button" class="button buttonfancy" onclick="alert('Uploaded!')">Upload</button>
+							</div>
+                    		<div class="box2">
+                				<div class="previewimgbox">
+                    				<img class="documentblank" src="/assets/document_black.png"/>
+                    				<button type="button" class="button buttonaddfancy">Add Content</button>
+                                </div>
+                    		</div>
+                </div>            
+				<div id='tab_pic_repo_content' class="fancy_tab_content">
+                	<div class="box1 box1fancy2">
+                    				  		  
+					<div class="search_container">
+					  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>
+					
+					<div id="tab_pic_repo_content_carrousel"></div>
+					
+                    <div id="tab_pic_repo_content_preview">
+						<div id="tab_pic_repo_content_preview_image">
+							
+						</div>
+                        
+						<div id="tab_pic_repo_content_preview_metadata"></div>
+                        
+						<div id="tab_pic_repo_content_preview_foot">
+							<button type="button" class="okButton" onclick="VISH.Editor.Image.Repository.addSelectedImage()">Add</button>
+						</div>
+					</div>
+                    </div>	
+				</div>
+				<div id='tab_pic_flikr_content' class="fancy_tab_content">
+                	  <div class="box1 box1fancy2">
+				      	<div class="search_container">
+				  	   		<input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+    				     </div>	
+				<div id="tab_flikr_content_carrousel"></div>
+                </div>
+			    </div>
+	    </div>
+	  </div>
+  
+  
+  	  <!-- FLASH -->
+	  <div style='display:none'>
+	    <div id="flash_fancybox" class="outer_box">
+				<div class="fancy_tabs">	   
+				  <ul>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">embed</a></li>
+				    <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
+				    <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
+				  </ul>
+				</div>
+				<div id='tab_flash_from_url_content' class="fancy_tab_content">
+                <div class="box1 box1fancy1">
+                	<p class="textfancy"> embed flash </p><br>
+                    <img class="image_add_url" src="/assets/url_img.png"/>
+				  	<input id="flash_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+					<button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('flash_embed_code')"> Upload</button>
+                </div>
+                <div class="box2">
+                				<div class="previewimgbox">
+                    				<img class="documentblank" src="/assets/document_black.png"/>
+                    				<button type="button" class="button buttonaddfancy">Add Content</button>
+                    			</div>
+                			</div>
+				</div>
+				<div id='tab_flash_upload_content' class="fancy_tab_content">
+                <div class="box1 box1fancy1">
+                	<p class="textfancy"> upload flash </p><br>
+                    <img class="image_add_url" src="/assets/url_img.png"/>
+					<input id="upload_flash_input" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+                    <button type="button" class="button buttonfancy" onclick="alert('Uploaded!')"> Upload</button>
+                </div>
+                <div class="box2">
+                				<div class="previewimgbox">
+                    				<img class="documentblank" src="/assets/document_black.png"/>
+                    				<button type="button" class="button buttonaddfancy">Add Content</button>
+                    			</div>
+                </div>
+				</div>
+				<div id='tab_flash_repo_content' class="fancy_tab_content">	
+                	<div class="box1 box1fancy2">			  
+					<div class="search_container">
+					  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>
+					
+					<div id="tab_flash_repo_content_carrousel"></div>
+					<div id="tab_flash_repo_content_preview">
+						<div id="tab_flash_repo_content_preview_flash">
+							
+						</div>
+						<div id="tab_flash_repo_content_preview_metadata"></div>
+						<div id="tab_flash_repo_content_preview_foot">
+							<button type="button" class="okButton" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
+						</div>
+					</div>
+				</div>
+                </div>	 
+	    </div>
+	  </div>
+  
+  
+  	  <!-- VIDEO -->
+	  <div style='display:none'>
+	    <div id="video_fancybox" class="outer_box">
+				<div class="fancy_tabs">	   
+				    <ul>
+				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab">url</a></li>
+				      <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_video_upload')" id="tab_video_upload" class="fancy_tab">upload</a></li>
+				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
+				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/youtube.png'/></a></li>
+				    </ul>
+				</div>
+				<div id='tab_video_from_url_content' class="fancy_tab_content">
+                	<div id="box1" class="box1 box1fancy1">
+                    	<p class="textfancy"> add video url </p><br>
+                    	<img id="image_add_url" class="image_add_url" src="/assets/url_img.png"/>
+				    	<input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
+						<button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('video_url')"> Upload</button>
+                  	</div>
+                    <div id="box2" class="box2">
+                		<div id="previewimgbox" class="previewimgbox">
+                    	<img id="documentblank" class="documentblank" src="/assets/document_black.png"/>
+                    	<button type="button" class="button buttonaddfancy">Add Content</button>
+                        </div>
+                    </div>
+                </div>
+                    <div id='tab_video_upload_content' class="fancy_tab_content">
+                    	<div id="box1" class="box1 box1fancy1">
+                    		<p class="textfancy"> Select video to upload </p><br>
+                            <img id="image_add_url" class="image_add_url" src="/assets/url_upl.png"/>
+							<input id="upload_video_input" class="input_text_fancy formsizefancy1 marginsfancy1" type="upload_video_input">
+                    		<button type="button" class="button buttonfancy" onclick="alert('Uploaded!')"> Upload</button>
+                   	    </div>
+                        <div id="box2" class="box2">
+                			<div id="previewimgbox" class="previewimgbox">
+                    			<img id="documentblank" class="documentblank" src="/assets/document_black.png"/>
+                    			<button type="button" class="button buttonaddfancy">Add Content</button>
+                   	    	</div>
+                        </div>
+				   </div>
+				<div id='tab_video_repo_content' class="fancy_tab_content">		
+                    <div class="box1 box1fancy2">		  
+						<div class="search_container">
+						  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+						</div>
+						
+						<div id="tab_video_repo_content_carrousel"></div>
+						<div id="tab_video_repo_content_preview" class="content_preview">
+							<div id="tab_video_repo_content_preview_video" class="content_preview_video">
+								
+							</div>
+							<div id="tab_video_repo_content_preview_metadata" class="content_preview_metadata"></div>
+							<div id="tab_video_repo_content_preview_foot" class="content_preview_foot">
+								<button type="button" class="okButton" onclick="VISH.Editor.Video.Repository.addSelectedVideo()">Add</button>
+							</div>
+						</div>
+                    </div>
+				</div>  
+				
+				<div id='tab_video_youtube_content' class="fancy_tab_content">
+                  <div class="box1 box1fancy2">
+					
+					<div class="search_container" id="youtube_search_container">
+					  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="youtube_text_to_search"> </input>
+					</div>
+				 
+				
+					<div id="tab_video_youtube_content_carrousel"></div>
+					<div id="tab_video_youtube_content_preview" class="content_preview">
+						<div id="tab_video_youtube_content_preview_video" class="content_preview_video">
+							
+						</div>
+						<div id="tab_video_youtube_content_preview_metadata" class="content_preview_metadata"></div>
+						<div id="tab_video_youtube_content_preview_foot" class="content_preview_foot">
+							<button type="button" class="okButton" onclick="VISH.Editor.Video.Youtube.addSelectedVideo()">Add</button>
+						</div>
+					</div>
+					
+				  </div>
+                </div>
+          </div>
+	    </div>
+	  </div>
+
