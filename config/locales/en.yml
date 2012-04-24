@@ -31,6 +31,9 @@ en:
   message:
     new: "New message"
   more: "more"
+  options:
+    new: "new"
+    add: "add"
   organization:
     one: "organization"
     other: "organizations"

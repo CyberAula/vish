@@ -31,6 +31,9 @@ es:
   message:
     new: "Mensaje nuevo"
   more: "more"
+  options:
+    new: "nuevo"
+    add: "añadir"
   organization:
     one: "organización"
     other: "organizaciones"
