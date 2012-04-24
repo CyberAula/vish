@@ -4,4 +4,5 @@ rvm:
 before_script:
   - "cp ./config/database.yml.example ./config/database.yml"
   - "mysql -e 'create database vish_test;'"
+  - "mysql -e 'create database vish_production;'"
   - "bundle exec rake db:schema:load"
