@@ -33,6 +33,6 @@ RSpec::Core::RakeTask.new(:spec) do |s|
 	      ]
 end
 
-task :default => :spec
+task :default => [ :spec, 'assets:precompile' ]
 
 Vish::Application.load_tasks
