@@ -40,6 +40,11 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def update
+    super do |format|
+      format.all { render :json => resource }
+    end
+  end
 
   def show
     show! do |format|
