@@ -3,6 +3,6 @@
 <script>	
 	//first function called when page loads
 	function start(){
-		VISH.Editor.init({"token":"<%= form_authenticity_token %>", "postPath": "<%= excursions_path :format=> "json"%>" }, '<%=@excursion.as_json%>');		
+		VISH.Editor.init({"token":"<%= form_authenticity_token %>", "postPath": "<%= excursion_path @excursion%>" }, <%= raw @excursion.to_json%>);		
 	}	
 </script>
