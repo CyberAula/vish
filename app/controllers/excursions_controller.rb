@@ -46,6 +46,12 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def destroy
+    destroy! do |format|
+      format.all { redirect_to home_path }
+    end
+  end
+
   def show
     show! do |format|
       format.full { render :layout => 'iframe' }
