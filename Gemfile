@@ -32,14 +32,16 @@ else
   git 'git://github.com/ging/social_stream.git', :branch => 'vish', &social_stream_gems
 end
 
-git 'git://github.com/ging/vish_editor.git', :branch => 'stable' do
-  gem 'vish_editor'
-end
-
 # Force the first version of avatars_for_rails that does not collide with bootstrap
 gem 'avatars_for_rails', '~> 0.2.6'
 
-#gem 'vish_editor', :path => '../vish_editor/rails'
+if ENV['VISH_EDITOR_DEV']
+  gem 'vish_editor', :path => '../vish_editor/rails'
+else
+  git 'git://github.com/ging/vish_editor.git', :branch => 'stable' do
+    gem 'vish_editor'
+  end
+end
 
 # We do not know the reasons for this gem:
 #gem 'therubyracer'
