@@ -9,7 +9,7 @@
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter"%>
-        <div id="excursions" >
+        <div id="excursions" class="row">
           <%= render :partial => "excursions/filter_results",
                      :locals => { :excursions => current_subject_excursions } %>
         </div>
