@@ -2,9 +2,12 @@
 
 <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
 
-<%= link_to 'Edit', edit_excursion_path(@excursion) %> |
-<%= link_to 'Back', excursions_path %>
+<% if @excursion.post_activity.edit_object_by?(current_subject) %><%= link_to 'Edit', edit_excursion_path(@excursion) %><%end%> | 
 
+<% if @excursion.post_activity.delete_object_by?(current_subject) %>
+   <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',
+     :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+   <% end %>
 
 <% content_for :javascript do %>
 		location.href = "#excursion_iframe";
