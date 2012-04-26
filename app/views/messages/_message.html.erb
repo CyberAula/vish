@@ -1,12 +1,13 @@
 <%= div_for(message, :class => read_class) do%>
 <div class="inline span3">
   <div class="sender_photo span">
-	<%= link_to image_tag(message.sender.logo.url(:actor),
+	<%= link_to image_tag(message.sender.logo.url(:contact),
 	:title => message.sender.name, :alt => message.sender.name),
 	message.sender.subject %>
+
   </div>
   <div class="dat inline-block offset1">
-     <div class="sender_name inline">
+     <div class="link_gray inline-block message_name">
 		<%= link_to truncate_name(message.sender.name), message.sender.subject %>
 	 </div>
 	<div class="date">
@@ -18,7 +19,7 @@
 <div class="subject tittle_mens size14 blue-cake">
   <%= truncate(message.subject, :length => 70) %>
 </div>
-<div class="briefing">
+<div class="pre-message">
   <%= raw(message.body) %>
 </div>
 <div class="clearfloat">

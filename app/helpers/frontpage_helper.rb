@@ -1,6 +1,6 @@
 module FrontpageHelper
   def current_top_actor_excursions
-    # TODO: really take the top 10 excursions
-    Excursion.all[0..9]
+    # We take visits for now...
+    Excursion.order{ e.visit_count }.first(10)
   end
 end
