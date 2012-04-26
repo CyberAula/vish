@@ -75,7 +75,12 @@ SocialStream::Views::Toolbar.module_eval do
         }
       end
     when :messages
-      super
+      SocialStream::Views::List.new.tap do |items|
+        items << {
+          :key => :menu,
+          :html => toolbar_menu(type, options)
+        }
+      end
     end
   end
 
