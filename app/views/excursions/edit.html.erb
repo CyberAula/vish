@@ -4,7 +4,11 @@
 
 
 <%= link_to 'Show', @excursion %> |
-<%= link_to 'Back', excursions_path %>
+
+<% if @excursion.post_activity.delete_object_by?(current_subject) %>
+   <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',
+     :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+   <% end %>
 
 <% content_for :javascript do %>
 		location.href = "#excursion_iframe";

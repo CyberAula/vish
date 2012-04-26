@@ -85,7 +85,7 @@ class ExcursionsController < ApplicationController
     when :more
       ids = Actor.all - following_ids
     end
-    Excursion.search(query_str, :with => { :author_id => ids }).sort_by!{|e| e.created_at}.reverse.first(limit)
+    Excursion.search(query_str, :with => { :author_id => ids }, :order => :created_at, :sort_mode => :desc, :per_page => limit)
   end
 
 
