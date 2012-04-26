@@ -6,8 +6,8 @@
       </li>
       <li class="span">
         <div class="caption elipsis">
-          <h4><%= link_to truncate_name(excursion.title, :length => 20), excursion %></h4>
-          <h5 class="blue-opacity">by <%=link_to( truncate_name(excursion.author.name, :length => 18), excursion.author.subject)%></h5>
+          <h4><%= link_to truncate_name(excursion.title, :length => 18), excursion %></h4>
+          <h5 class="blue-opacity">by <%=link_to( truncate_name(excursion.author.name, :length => 17), excursion.author.subject)%></h5>
           <h5><span class="dark-gray"><%=excursion.visit_count.to_s%></span> views </h5>
           <p><%= image_tag('star.png') %></p>
         </div>
