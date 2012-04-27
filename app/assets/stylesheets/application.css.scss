@@ -79,6 +79,7 @@
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
 .link_gray a:hover{color: #000;  text-decoration: none;}
+.link_gray a:hover{color: #000;  text-decoration: none;}
 .link_pink a{color: #FF005D; text-decoration:none;}
 .link_pink a:hover {color: #000; text-decoration:none;}
 
@@ -438,13 +439,15 @@ form.example input.file.hidden {
 #following{margin-left: 40px;}
 
 /**************CONVERSATIONS *************/
-
+.date{color:#FF005D;opacity: 0.4;}
 .messages{ margin-left: 15px; }
-.message{ background-color: #FFFFFF; padding: 10px 0px 5px 5px;  margin-top: 15px; border-radius: 10px;}
+.message{; padding: 10px 0px 5px 5px;  margin-top: 15px;}
 .sender_photo {width: auto;}
-.tittle_mens {margin-bottom:4px;}
+.message_name {font-size: 12pt;margin-top: 6px;}
+.tittle_mens {margin-bottom:4px;margin-left: 30px}
 .dat {margin-left: 15px !important}
 .to-r {float: right; width: 15px; height: 15px;}
+.pre-message {margin-left: 40px}
 
 /**************suggestions css *************/
 
@@ -1347,13 +1350,13 @@ display: inline-block;
   font-size:13px;
 }
 
-.attachment_text
+._attachment_text
 {
   float: left;
   font-size:11px;
   margin-bottom: 3px;
   text-align: left;
-  width: 310px;
+  /*width: 310px;*/
 }
 
 
@@ -1528,7 +1531,14 @@ display: inline-block;
   cursor: default;
 }
 
+/******************************** search tabs ************/
+.delete_menssage{
+display: inline-block;
+float:right;
+}
+.inline.span1.checkbox{
 
+margin-left: 20px;}
 
 
 

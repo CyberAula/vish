@@ -1,10 +1,10 @@
-<%= div_for document, :class => 'repository' do %>
-    <ul class="thumbnails span3">
-      <li class="span">
+<%= div_for document, :class => 'span3' do %>
+    <ul class="thumbnails">
+      <li class="span1">
         <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
       </li>
       <li class="span2">
-        <div class="caption elipsis">
+        <div class="caption">
           <h4 class="link_gray size16"><%= link_to truncate_name(document.title, :length => 20), document %></h4>
           <h5 class="link_gray">by <%=link_to( truncate_name(document.author.name, :length => 18), document.author.subject)%></h5>
           <h5><span class="green"><%=document.visit_count.to_s%></span> views</h5>
