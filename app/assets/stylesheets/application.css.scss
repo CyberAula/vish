@@ -27,6 +27,8 @@
   src: url(fonts/DsignesRegular.otf);
 }
 
+.body-height{ min-height:  450px;}
+
 /************* FRONTPAGE *******/
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
@@ -45,7 +47,7 @@
 
 #top{height:120px;}
 #top-10{ height: 10px; margin:40px 0px 0px -10px !important; padding: 0px !important;font-family:'DsignesBold';font-size: 12 pt;}
-.white{ background-color:#fff;margin-top: 65px; padding-top: 10px; padding-bottom: 5px;}
+.white{ background-color:#fff;margin-top: 40px; padding-top: 10px; padding-bottom: 5px;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
 /******************* HEADER *******************/
