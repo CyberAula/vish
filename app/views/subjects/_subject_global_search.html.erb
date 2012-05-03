@@ -6,6 +6,7 @@
     <li class="span">
       <div class="caption">
         <h4><span class="size16"><%= link_to truncate_name(subject.name, :length => 40), subject %></span></h4>
+        <h5 class="blue-opacity"><span class="size13"><%=t "#{subject.class.name.underscore}.one"  %></span></h5>
         <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=num_followers%></span></h5>
         <div class="size12 link_pink"><%=contact_to(subject) %></div>
       </div>
