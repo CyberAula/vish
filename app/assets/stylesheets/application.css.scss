@@ -1036,6 +1036,7 @@ li{
 .iconmessage22-message22_mail:hover { background-position: -224px -32px;}
 .iconmessage22-message22_edit:hover {background-position: -256px -32px;}
 
+#margin-resources{margin-right: 5px;}
 
 .title_resources{
   font-size: 20px;
@@ -1671,5 +1672,5 @@ margin-left: 20px;}
   .rw-sentence { font-size: 18px; }
 }
 @media screen and (max-width: 320px){
-  .rw-sentence { font-size: 9px; }
+  .rw-sentence { font-size: 9px;  }
 }
