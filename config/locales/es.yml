@@ -9,6 +9,8 @@ es:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
   conditions: "condiciones"
+  document:
+    new: "Añadir recurso"
   excursion:
     one: "excursión"
     other: "excursiones"

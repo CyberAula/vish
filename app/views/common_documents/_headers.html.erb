@@ -20,6 +20,11 @@
 
 
 <br class="clearfloat" />
+<%if profile_subject_is_current?%>
+  <button class="btn btn-danger" data-toggle="collapse" data-target="#home_wall">
+    <%= t('document.new') %>
+  </button>
+<% end %>
 <div class="space_center"></div>
 <div id="repository_filter">
   <%= render :partial => "common_documents/filter" %>
