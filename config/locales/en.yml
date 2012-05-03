@@ -8,7 +8,10 @@ en:
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
-  conditions: "conditions"
+  conditions:
+    other: "conditions"
+    check_message: "I have read and accept the "
+    check_message_1: "conditions of use"
   document:
     new: "Add resource"
   excursion:
