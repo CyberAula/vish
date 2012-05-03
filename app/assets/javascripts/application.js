@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tipsy
 //= require social_stream-base
 //= require social_stream-documents
 //= require social_stream-linkser
