@@ -17,6 +17,7 @@
 
 class ExcursionsController < ApplicationController
   # Quick hack for bypassing social stream's auth
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update]
   before_filter :hack_auth, :only => [ :new, :create]
   skip_authorize_resource :only => :search
   include SocialStream::Controllers::Objects
