@@ -3,6 +3,8 @@ pt:
     follow: "+Seguir"
     unfollow: "DeixarDeSeguir"
   conditions: "condições"
+  document:
+    new: "Adicione recurso"
   excursion:
     one: "excursão"
     other: "excursões"
