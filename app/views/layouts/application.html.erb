@@ -7,7 +7,7 @@
   <header id="headerFront row span12">
     <%= render :partial => "layouts/header" %>
   </header>
-  <div class="row">
+  <div class="row body-height">
     <section id="left" class="span2">
       <%= yield :toolbar %>
     </section>
@@ -22,7 +22,7 @@
     <section  class="span2 right">
       <%= yield :sidebar %>
     </section>
-    <div class="space_double_center"></div>
+    <div class="space_center"></div>
   </div>
   <footer class="row span12">
     <%= render :partial => "layouts/footer" %>

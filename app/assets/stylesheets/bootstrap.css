@@ -59,7 +59,7 @@ sub {
 img {
   border-radius: 10px;
   max-width: 100%;
-  /*!height: auto; *////
+  /*!height: auto; */
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
