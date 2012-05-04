@@ -22,6 +22,10 @@ en:
     created: "created"
     title:
       other: "Excursions"
+    actions:
+      edit: "Edit"
+      show: "Show"
+      delete: "Delete"
   follow:
     followers: "followers"
     followings: "following"
@@ -36,6 +40,8 @@ en:
   message:
     new: "New message"
   more: "more"
+  navigation:
+    home: "Home"
   options:
     new: "new"
     add: "add"
