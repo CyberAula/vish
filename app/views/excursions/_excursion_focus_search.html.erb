@@ -1,12 +1,14 @@
-<div class="excursion span4">
-  <ul class="thumbnails">
+<div class="model_with_details span4 inline-block box-result">
+  <ul class="thumbnails span4">
     <li class="span1">
       <%= link_to  thumb_for(excursion, 130), excursion, :class => "container" %>
       <div class='number_pages'><%= excursion.slide_count %></div>
     </li>
     <li class="span">
-      <div class="caption">
-        <h4><%= link_to truncate_name(excursion.title, :length => 22), excursion %></h4>
+      <div class="caption ">
+        <h4><%= link_to truncate_name(excursion.title, :length => 40), excursion %></h4>
+        <h5 class="blue-opacity">by <%=link_to( truncate_name(excursion.author.name, :length => 20), excursion.author.subject)%></h5>
+        <h5><span class="dark-gray"><%=excursion.visit_count.to_s%></span> views </h5>
         <p><%= image_tag('star.png') %></p>
       </div>
     </li>

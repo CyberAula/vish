@@ -35,11 +35,11 @@
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
 #tags{color: #cccccc; font-family: DsignesLight; }
-#repositories a, #excursion a, #organizations a, #users a{position:relative; font-weight: lighter; font-family: 'DsignesLight';}
-#repositories a{float: right; top:-30px; z-index:1;}
-#excursion a{left:10px;  top:10px; z-index:2;}
-#organizations a{left:19px; float: right; top:15px; ; z-index:3;}
-#users a{top:45px; left:-39px; z-index:4;}
+#repositories>a, #excursion >a, #organizations > a, #users> a{position:relative; font-weight: lighter; font-family: 'DsignesLight';}
+#repositories>a{float: right; top:-30px; z-index:1;}
+#excursion>a{left:10px;  top:10px; z-index:2;}
+#organizations>a{left:19px; float: right; top:15px; ; z-index:3;}
+#users>a{top:45px; left:-39px; z-index:4;}
 
 .textonleft{text-align: left !important;}
 

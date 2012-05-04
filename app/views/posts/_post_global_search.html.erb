@@ -1,15 +1,21 @@
+<% author = post.author_subject %>
 <div class="model_with_details span4 inline-block box-result">
   <ul class="thumbnails span4">
     <li class="span1">
-      <%#= link_to(image_tag(subject.logo.url(:profile)), subject, :class => "container") %>
+      <%= link_to (image_tag(author.logo.url ,  :alt => author.name )), author  %>
     </li>
     <li class="span">
       <div class="caption">
-        <h4><span class="size16"><%#= link_to truncate_name(subject.name, :length => 40), subject %></span></h4>
-        <h5 class="blue-opacity"><span class="size13"><%#=t "#{subject.class.name.underscore}.one"  %></span></h5>
-        <div class="size12 link_pink"><%#=contact_to(subject) %></div>
+        <div class="size12 link_gray">
+          <%= link_to post do%>
+            <% text = excerpt(h(post.text),get_search_query_words.first,:radius => 25) || "" %>
+            <% if text.length < 60 %>
+              <% text = excerpt(h(post.text),get_search_query_words.first,:radius => 30 + (60 - text.length)) || "" %>
+            <% end %>
+            <%= highlight(text,get_search_query_words) %>
+          <% end %>
+        </div>
       </div>
     </li>
   </ul>
 </div>
-
