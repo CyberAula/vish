@@ -1,7 +1,7 @@
 module SearchHelper  
   def too_short_query?
-    return true if params[:search_query].blank?
-    bare_query = strip_tags(params[:search_query]) unless bare_query.html_safe?
+    return true if params[:q].blank?
+    bare_query = strip_tags(params[:q]) unless bare_query.html_safe?
     return bare_query.strip.size < SearchController::MIN_QUERY
   end
   
@@ -26,7 +26,7 @@ module SearchHelper
   
   def get_search_query_words
     search_query = ""
-    bare_query = strip_tags(params[:search_query]) unless bare_query.html_safe?
+    bare_query = strip_tags(params[:q]) unless bare_query.html_safe?
     return bare_query.strip.split
   end
 

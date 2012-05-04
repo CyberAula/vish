@@ -6,7 +6,7 @@
     </ul>
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
-        <%= render :partial => "excursions/filter"%>
+        <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me", :user_id => @user.id } %>
         <div id="excursions" >
           <% for excursion in subject_excursions(@user, {:scope => :me}) %>
             <%= render :partial => "excursions/home",

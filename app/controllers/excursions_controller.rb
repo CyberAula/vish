@@ -63,7 +63,8 @@ class ExcursionsController < ApplicationController
 
   def search
     params[:scope] ||= :net
-    render :layout => false, :locals  => { :excursions => do_search(current_subject, params[:q], params[:scope]) }
+    params[:user_id] ||= current_user.id
+    render :layout => false, :locals  => { :excursions => do_search(User.find(params[:user_id]), params[:q], params[:scope]) }
   end
 
 
@@ -84,7 +85,7 @@ class ExcursionsController < ApplicationController
     when :net
       ids = following_ids
     when :more
-      ids = Actor.all - following_ids
+      return Excursion.search(query_str, :without => { :author_id => following_ids }, :order => :created_at, :sort_mode => :desc, :per_page => limit)
     end
     Excursion.search(query_str, :with => { :author_id => ids }, :order => :created_at, :sort_mode => :desc, :per_page => limit)
   end
