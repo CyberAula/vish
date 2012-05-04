@@ -22,6 +22,10 @@ es:
     created: "creadas"
     title:
       other: "Excursiones"
+    actions:
+      edit: "Editar"
+      show: "Visualizar"
+      delete: "Borrar"
   follow:
     followers: "seguidores"
     followings: "siguiendo"
@@ -36,6 +40,8 @@ es:
   message:
     new: "Mensaje nuevo"
   more: "more"
+  navigation:
+    home: "Inicio"
   options:
     new: "nuevo"
     add: "añadir"

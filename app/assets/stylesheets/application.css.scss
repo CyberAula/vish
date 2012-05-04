@@ -1451,6 +1451,7 @@ display: inline-block;
   width:90%;
   border-left: 3px solid #2A3890;
   background-color: #e0edf2;
+  border-radius: 5px;
 }
 
 .attachment_tile_tipsy_menu.tipsy {
@@ -1463,22 +1464,22 @@ display: inline-block;
 .attachment_tile_tipsy_menu.tipsy .tipsy-inner {
   background-color: $text-over-main;
   border-radius: 0px;
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 0px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   padding:0px;
 }
 .attachment_tile_tipsy_menu.tipsy .actions {
-  border-bottom: 1px solid $main-color;
+
   text-align: left;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action {
-  border: 1px solid $main-color;
+  float:left;
   border-bottom: 0px;
   padding:5px;
   width: 80px;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action:hover {
-  background-color: $secondary-color;
+
 }
 .attachment_tile_tipsy_menu.tipsy .actions a:hover {
   text-decoration: none;
