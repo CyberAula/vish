@@ -40,7 +40,7 @@
 #organizations a{left:19px; float: right; top:15px; ; z-index:3;}
 #users a{top:45px; left:-39px; z-index:4;}
 
-.menu ul {list-style-type:none;margin-left:4em; }
+.menu ul {list-style-type:none; margin-left:4em; }
 .menu ul li {display:inline-block;margin-right:4em;position:relative; vertical-align: middle;}
 .menu ul li#trade_mark,#sponsor ul li#trademark{font-weight:bold;}
 .menu ul li#trade_mark_logo{font-weight:normal;}
@@ -107,7 +107,8 @@
 }
 
 .attachment_thumb{visibility:hidden; width: 0px; height: 0px;}
-.unborder{border-radius: 0px;}
+.unborder{border-radius: 0px !important;}
+.unmargin{margin-right:0em !important;}
 .miniborder{border-radius: 5px;}
 
 .following-button{color: #FF005D; opacity:0.6; margin:4px 10px; border: 0 none; height: auto; width: auto; font-size: 13px;}
