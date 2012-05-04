@@ -1,4 +1,4 @@
-<div class="container " xmlns="http://www.w3.org/1999/html">
+<div class="container body-height">
   <div class="row span4  right">
     <p class="devise_title"><span class="dark-gray"><%= t('sign_up').capitalize %></span></p>
   </div>
@@ -44,9 +44,13 @@
             <%= f.password_field :password, :class => "input-xlarge", :id => "password_confirmation" %>
           </div>
         </div>
-        <input class="textborder acept link_gray" type="checkbox">
-        <div class="link_gray"> Accept the <a href="#" >conditions &amp; terms of the service</a></div>
-        <div class="space_center"></div>
+        <div class="control-group">
+          <label class="control-label" for="conditions"></label>
+          <div class="controls">
+            <%= check_box :conditions , :id => "conditions" %>
+            <%= t('conditions.check_message') %> <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+          </div>
+        </div>
 
         <div class="row">
           <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
@@ -58,17 +62,13 @@
             <%= f.submit t('action.accept').capitalize %>
           </div>
         </div>
-      </div>
       </fieldset>
     <% end %>
-
+  </div>
 
     <div class="row span6 offset3 link_gray" id="devise_links">
       <div class="row space_center"></div>
      <%= render :partial => "devise/shared/links" %>
     </div>
 
-    <div class="row space_double_center"></div>
-    <div class="row space_double_center"></div>
-    <div class="row space_double_center"></div>
 </div>

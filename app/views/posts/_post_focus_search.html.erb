@@ -1,0 +1,27 @@
+<% activity = post.post_activity %>
+<%= div_for activity, :class => 'model_with_details span4 inline-block box-result' do %>
+  <ul class="thumbnails span4">
+    <li class="span1">
+    <%= link_to image_tag(activity.sender_subject.logo.url(:profile),
+                          :alt => activity.sender_subject.name),
+                activity.sender_subject %>
+    </li>
+    <li class="span">
+      <div class="caption">
+        <h4><span class="size16"><%= activity.title(self) %></span></h4>
+        <div class="size12 link_gray">
+          <%#= link_to post do%>
+            <%# text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 180) || "" %>
+            <%# if text.length < 400 %>
+              <%# text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 540 - text.length) || "" %>
+            <%# end %>
+            <%#= highlight(text,get_search_query_words) %>
+          <%# end %>
+        </div>
+      </div>
+    </li>
+  </ul>
+<% end %>
+
+
+

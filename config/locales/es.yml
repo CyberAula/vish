@@ -8,11 +8,14 @@ es:
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
-  conditions: "condiciones"
+  conditions:
+    other: "condiciones"
+    check_message: "He leido y acepto las "
+    check_message_1: "condiciones de uso"
   document:
     new: "Añadir recurso"
   excursion:
-    one: "excursión"
+    one: "excurcsión"
     other: "excursiones"
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"

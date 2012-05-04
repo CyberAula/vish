@@ -1,11 +1,14 @@
 <%= div_for document, :class => 'span3' do %>
     <ul class="thumbnails">
-      <li class="span1">
+
+      <li class="span3">
+      <li class="span">
+        <div id="margin-resources">
         <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
+        </div>
       </li>
-      <li class="span2">
         <div class="caption">
-          <h4 class="link_gray size16"><%= link_to truncate_name(document.title, :length => 20), document %></h4>
+          <h4 class="link_gray size16 "><%= link_to truncate_name(document.title, :length => 20), document %></h4>
             <div class="rw-words rw-words-1">
 
               <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(document.author.name, :length => 18), document.author.subject)%></h5></span>
