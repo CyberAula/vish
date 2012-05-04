@@ -26,7 +26,7 @@
       </div>
       -->
       <div id="ex-3" class="tab-pane">
-        <%= render :partial => "excursions/filter"%>
+        <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-more" } %>
         <div id="more" >
           <% for excursion in current_subject_excursions(:scope => :more) %>
             <%= render :partial => "excursions/home",
