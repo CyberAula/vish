@@ -9,6 +9,7 @@
  * require social_stream-linkser
  * require social_stream-presence
  * require avatars_for_rails
+ *= require tipsy
  *= require_tree .
 */
 
@@ -1676,5 +1677,5 @@ margin-left: 20px;}
   .rw-sentence { font-size: 18px; }
 }
 @media screen and (max-width: 320px){
-  .rw-sentence { font-size: 9px;  }
+  .rw-sentence { font-size: 9px; }
 }

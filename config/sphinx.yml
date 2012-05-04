@@ -2,18 +2,18 @@ development:
  bin-path: '/usr/bin'
  searchd_binary_name: 'searchd'
  indexer_binary_name: 'indexer'
- enable_star: 1
+ enable_star: 0
  min_infix_len: 1
 test:
  bin-path: '/usr/bin'
  searchd_binary_name: 'searchd'
  indexer_binary_name: 'indexer'
- enable_star: 1
+ enable_star: 0
  min_infix_len: 1
 production:
  bin-path: '/usr/bin'
  searchd_binary_name: 'searchd'
  indexer_binary_name: 'indexer'
- enable_star: 1
+ enable_star: 0
  min_infix_len: 1
 
