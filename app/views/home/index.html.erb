@@ -47,7 +47,7 @@
       <div id="repo-1" class="tab-pane active">
         <%= render :partial => "common_documents/filter"%>
         <div id="repository">
-          <div class="repositories">
+          <div class="repositories row">
             <% for document in current_subject_documents(:limit => 8) %>
               <%= render :partial => "common_documents/home",
                          :locals => { :document => document, 

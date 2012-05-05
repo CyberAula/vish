@@ -1,10 +1,10 @@
 <%= div_for excursion, :class => 'span3' do %>
   <ul class="thumbnails">
-      <li class="span1 inline-block">
+      <li class="span1 margin-clear">
         <%= link_to  thumb_for(excursion, 130), excursion, :class => "container" %>
           <div class='number_pages'><%= excursion.slide_count %></div>
       </li>
-      <li class="span">
+      <li class="span2">
         <div class="caption inline-block">
           <h4><%= link_to truncate_name(excursion.title, :length => 22), excursion %></h4>
           <h5 class="blue-opacity">by <%=link_to( truncate_name(excursion.author.name, :length => 20), excursion.author.subject)%></h5>
