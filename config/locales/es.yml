@@ -52,7 +52,7 @@ es:
   profile:
     tags:
       default: "VisHub, virtual, excursion"
-  recommended: "recomendadas"
+  recommended: "recomendados"
   repository:
     one: "repositorio"
     other: "repositorios"
