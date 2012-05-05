@@ -1,10 +1,10 @@
-<div id="header_search">      
-  <form action="<%=search_path%>" method="get" id="header_search_form">
+<div id="header_search">
+  <form action="<%=search_path%>" method="get" id="header_search_form" >
     <%= text_field_tag :q, nil,:autocomplete => :off, :id => :header_search_input,
                        :class => sizeFieldSearch %>
   </form>
-  <div id="header_search_display">
-    <ul><li class="loading"><%= image_tag('loading.gif', :class => :loading) %></li></ul>
+  <div id="header_search_display" >
+      <ul><li class="loading"><%= image_tag('loading.gif', :class => :loading) %></li></ul>
   </div>
 </div>
 <%= javascript_tag do %>
@@ -38,7 +38,7 @@ $(document).ready(function() {
     }
     else if(searchstring.length < 2) {
       if (last_search!=searchstring){last_search=searchstring;}
-      $("#header_search_display").html("<ul><li><%= escape_javascript(content_tag(:span,I18n.t('search.at_least'), :class => :warning)) %></li></ul>").show();
+      $("#header_search_display").html("<ul><li class='warning'><%= escape_javascript(content_tag(:span,I18n.t('search.at_least'))) %></li></ul>").show();
     } else {
       if (last_search!=searchstring){
         last_search=searchstring;
@@ -52,7 +52,7 @@ $(document).ready(function() {
             }          
           },
           error: function(){
-            $("#header_search_display").html("<ul><li><%= escape_javascript(content_tag(:span,I18n.t('search.wrong'), :class => :warning)) %></li></ul>");
+            $("#header_search_display").html("<ul><li class='warning'><%= escape_javascript(content_tag(:span,I18n.t('search.wrong'))) %></li></ul>");
          }
         });
       }
