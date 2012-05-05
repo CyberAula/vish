@@ -3,12 +3,5 @@
     <li class="span1 margin-clear">
       <%= link_to(image_tag(subject.logo.url(:profile)), subject, :class => "container") %>
     </li>
-    <li class="span2">
-      <div class="caption">
-        <h4><span class="size16"><%= link_to truncate_name(subject.name, :length => 40), subject %></span></h4>
-        <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=num_followers%></span></h5>
-        <div class="size12 link_pink"><%=contact_to(subject) %></div>
-      </div>
-    </li>
-  </ul>
+    </ul>
 </div>
