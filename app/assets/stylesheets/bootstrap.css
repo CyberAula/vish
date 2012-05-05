@@ -178,6 +178,12 @@ a:hover {
   *zoom: 1;
 }
 
+.margin-clear{
+  margin-left: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+
 .row:before,
 .row:after {
   display: table;
@@ -196,45 +202,55 @@ a:hover {
 .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 960px;
 }
 
-.span12, .container {
-  width: 900px;
+.span12 {
+  width: 955px;
 }
 
 .span11 {
-  width: 825px;
+  width: 875px;
 }
+
 .span10 {
-  width: 750px;
+  width: 795px;
 }
+
 .span9 {
-  width: 675px;
+  width: 715px;
 }
+
 .span8 {
-  width: 600px;
+  width: 635px;
 }
+
 .span7 {
-  width: 525px;
+  width: 555px;
 }
+
 .span6 {
   width: 475px;
 }
+
 .span5 {
-  width: 375px;
+  width: 395px;
 }
+
 .span4 {
-  width: 285px;
+  width: 315px;
 }
+
 .span3 {
-  width: 225px;
+  width: 235px;
 }
+
 .span2 {
-  width: 140px;
+  width: 155px;
 }
+
 .span1 {
-  width: 70px;
+  width: 75px;
 }
 
 .offset12 {
@@ -383,8 +399,8 @@ a:hover {
 }
 
 .container-fluid {
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 5px;
+  padding-left: 5px;
   *zoom: 1;
 }
 
