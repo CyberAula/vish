@@ -17,66 +17,6 @@
 
 <% toolbar :profile, :subject => profile_subject %>
 
-
-
-<br class="clearfloat" />
-<%if profile_subject_is_current?%>
-
-  <button class="btn btn-danger" data-toggle="collapse" data-target="#home_wall">
-    <%= t('document.new') %>
-  </button>
-<% end %>
-<div class="space_center"></div>
 <div id="repository_filter">
   <%= render :partial => "common_documents/filter" %>
 </div>
-
-<div class="space_center"></div>
-<br class="clearfloat" />
-
-<%= javascript_tag do %>
-$(document).ready(function() {
-  var last_search = "";
-  
-  
-  $("#repository_filter_input").watermark("<%= escape_javascript(I18n.t('search.name')) %>");
-
-  $("#repository_filter_input").keyup(function() {
-    var searchstring = $(this).val();
-    if((searchstring=="")){
-      if (last_search!=searchstring){last_search=searchstring;}
-      $("#documents_grid").html("<center><%= escape_javascript(image_tag('loading.gif', :class => :loading)) %></center>");
-        $.ajax({
-          type : "GET",
-          url : "<%= polymorphic_url([current_subject, Document.new]) %>?no_layout=true",
-          success : function(html) {      
-            if ($("#repository_filter_input").val()==searchstring){ //Only show if input value is still the same
-              $("#documents_grid").html(html);
-            }          
-          },
-          error: function(){
-            $("#header_search_display").html("<center><%= escape_javascript(content_tag(:span,I18n.t('search.wrong'), :class => :warning)) %></center>");
-         }
-        });
-    } else {
-      if (last_search!=searchstring){
-        last_search=searchstring;
-        $("#documents_grid").html("<center><%= escape_javascript(image_tag('loading.gif', :class => :loading)) %></center>");
-        $.ajax({
-          type : "GET",
-          url : "<%= polymorphic_url([current_subject, Document.new]) %>?query=" + searchstring + "&no_layout=true",
-          success : function(html) {      
-            if ($("#repository_filter_input").val()==searchstring){ //Only show if input value is still the same
-              $("#documents_grid").html(html);
-            }          
-          },
-          error: function(){
-            $("#header_search_display").html("<center><%= escape_javascript(content_tag(:span,I18n.t('search.wrong'), :class => :warning)) %></center>");
-         }
-        });
-      }
-    }
-    return false;
-  });  
-})
-<% end %>

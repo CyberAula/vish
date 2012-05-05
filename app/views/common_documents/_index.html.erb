@@ -1,7 +1,7 @@
 <div class="repository tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#"><%= t('repository.other') %></a></li>
-    <li class=""><a data-toggle="tab" href="#"><%= t('more') %></a></li>
+    <li class=""><a data-toggle="tab" href="#"><%= t('recommended') %></a></li>
   </ul>
 </div>
 
@@ -13,23 +13,19 @@
                :locals => { :activities => current_subject.wall(:home).page(params[:page]),
                             :owner => current_subject} %>
   </section>
+  </div>
 <% end %>
 
-<div class="row space_center"></div>
 <div class="row space_center"></div>
 
 <% @activities.each do |a| %>
   <% document = a.activity_objects.first.document %>
   <%#=  render :partial => 'layouts/dropdown_menu_resource' %>
 
-
-
-
   <div class="attachment_tile" id="<%= dom_id(document) %>">
     <div class="attachment_tile_thumb">
       <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
     </div>
-
 
     <div class="attachment_tile_tipsy">
       <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
@@ -53,11 +49,6 @@
         </div>
       </div>
     </div>
-
-
-
-
-
 
     <div class="attachment_tile_text">
       <%= link_to truncate_name(document.file_file_name, :length => 15),
