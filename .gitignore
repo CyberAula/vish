@@ -35,3 +35,7 @@ config/development.sphinx.conf
 public/images/tmp
 public/system
 public/assets
+
+#temporal files
+app/views/layouts/_grid.html.erb
+
