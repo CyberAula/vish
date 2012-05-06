@@ -1,19 +1,25 @@
 <div class="row btn-toolbar">
   <div class="pull-right">
     <input id="document-filter" type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter">
-    <div class="btn-group">
-      <%if profile_subject_is_current?%>
-        <button class="btn" data-toggle="collapse" data-target="#home_wall">
+    <div id="resource-filter-btn" class="btn-group">
+        <button class="btn" >
           <%= '+'+t('options.add') %>
         </button>
-      <% end %>
     </div>
   </div>
 </div>
 <%= javascript_tag do %>
-  $(document).ready(function() {
-  var last_search = "";
 
+  $('#resource-filter-btn').click(function(){
+    $('.activity_form_selector').removeClass('selected');
+    $('#select_document').addClass('selected');
+    $('#wrapper_activities_header form').hide();
+    $('#new_document').show();
+  });
+
+  $(document).ready(function() {
+
+  var last_search = "";
 
   $("#repository_filter_input").watermark("<%= escape_javascript(I18n.t('search.name')) %>");
 

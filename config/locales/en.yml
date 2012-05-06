@@ -52,6 +52,7 @@ en:
   profile:
     tags:
       default: "VisHub, virtual, excursion"
+  recommended: "recommended"
   repository:
     one: "repository"
     other: "repositories"

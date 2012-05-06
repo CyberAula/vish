@@ -7,11 +7,11 @@
   <header id="headerFront row span12">
     <%= render :partial => "layouts/header" %>
   </header>
-  <div class="row">
-    <section id="left" class="span2">
+  <div id="main" class="row">
+    <section id="left" class="span2 margin-clear">
       <%= yield :toolbar %>
     </section>
-    <section id="main" class="span10">
+    <section id="right" class="span9">
       <div class="space_center"></div>
       <div id="flash">
         <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>

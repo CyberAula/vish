@@ -4,7 +4,7 @@
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.other')%></a></li>
       <!--<li class=""><a data-toggle="tab" href="#ex-2"><%#=t('excursion.upcomming')%></a></li> -->
-      <li class=""><a data-toggle="tab" href="#ex-3"><%=t('more')%></a></li>
+      <li class=""><a data-toggle="tab" href="#ex-3"><%=t('recommended')%></a></li>
     </ul>
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
@@ -27,7 +27,7 @@
       -->
       <div id="ex-3" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-more" } %>
-        <div id="more" >
+        <div id="more"  class="row">
           <% for excursion in current_subject_excursions(:scope => :more) %>
             <%= render :partial => "excursions/home",
                        :locals => { :excursion => excursion} %>
@@ -45,9 +45,9 @@
     </ul>
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
-        <%= render :partial => "common_documents/filter"%>
+        <%= render :partial => "common_documents/home_filter"%>
         <div id="repository">
-          <div class="repositories">
+          <div class="repositories row">
             <% for document in current_subject_documents(:limit => 8) %>
               <%= render :partial => "common_documents/home",
                          :locals => { :document => document, 
