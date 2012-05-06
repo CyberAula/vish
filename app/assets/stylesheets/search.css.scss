@@ -6,7 +6,7 @@
   float: left;
 
   /*padding: 0px auto;*/
-  z-index: 2001;
+  z-index: 501;
 
 }
 #espacio_busqueda {
@@ -34,7 +34,7 @@
 }
 #global_search_input {
   /*height: 25px;*/
-  width: 200px;
+ /* width: 200px;*/
 }
 #header_search_display {
   /*width: 225px;*/
@@ -42,11 +42,10 @@
   position: absolute;
   clear:both;
   margin: auto;
-  width: 540px;
   display: none;
   border-top: none;
   overflow: hidden;
-  z-index: 2000;
+  z-index: 500;
   /*text-align: left;*/
 }
 #header_search_display a {
@@ -119,7 +118,7 @@
 
 }
 #header_search_display  .warning {
-  width: 100%;
+
 }
 /********************************* Global ******************/
 #global_search_input.searching {
