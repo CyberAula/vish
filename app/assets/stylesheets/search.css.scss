@@ -52,8 +52,8 @@
   /*color: #fff;*/
   text-decoration: none;
 }
+
 #header_search_display a:hover {
-  /*color: #A1A1A1;*/
   text-decoration: none;
   font-weight: bold;
 }
@@ -70,11 +70,9 @@
   padding: 10px 10px 10px 10px;
   border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 1px solid #fff;
-  background: #A1A1A1;                            color: #fff;
+  background: #A1A1A1;
+  color: #fff;
 }
-
-
-
 
 #header_search_display  li:hover {
   background: #E6E6E6;
