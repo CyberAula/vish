@@ -1,14 +1,11 @@
-<div class="model_with_details span4 inline-block box-result">
-  <ul class="thumbnails span4">
-    <li class="span1">
-      <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
-    </li>
-    <li class="span">
-      <div class="caption">
-        <h4><span class="size16"><%= link_to truncate_name(document.title, :length => 40), document, :class => "size14" %></span></h4>
-        <h5><span class="green"><%=document.visit_count.to_s%></span> views</h5>
-      </div>
-    </li>
-  </ul>
+<div class="row-fluid">
+  <div class="span2 pagination-centered link_white">
+    <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
+  </div>
+  <div class=" link_white">
+    <h4><%= link_to truncate_name(document.title, :length => 40), document %></h4>
+    <h5 class="blue-white"><span class="size13"><%=t "#{subject.class.name.underscore}.one"  %></span></h5>
+    <h5><%=document.visit_count.to_s%> views</h5>
+  </div>
 </div>
 

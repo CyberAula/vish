@@ -37,7 +37,7 @@
 /****************** FRONTPAGE BOTTOM *****/
 #tags{color: #cccccc; font-family: DsignesLight; }
 #repositories>a, #excursion >a, #organizations > a, #users> a{position:relative; font-weight: lighter; font-family: 'DsignesLight';}
-#repositories>a{float: right; top:-30px; z-index:1;}
+#repositories>a{float: right; top:-20px; z-index:1;}
 #excursion>a{left:10px;  top:10px; z-index:2;}
 #organizations>a{left:19px; float: right; top:15px; ; z-index:3;}
 #users>a{top:45px; left:-39px; z-index:4;}
@@ -86,10 +86,10 @@
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
 .link_gray a:hover{color: #000;  text-decoration: none;}
-.link_gray a:hover{color: #000;  text-decoration: none;}
 .link_pink a{color: #FF005D; text-decoration:none;}
 .link_pink a:hover {color: #000; text-decoration:none;}
-
+.link_white a{color: #ffffff; text-decoration:none;}
+.link_white a:hover {color: #919191; text-decoration:none;}
 
 /*************** MARGINS DEFAULT *********/
 .margin-negative{margin-left: -4px;}
@@ -103,6 +103,7 @@
 .dark-gray {color: #666666;}
 .blue-cake{color: #3366FF;}
 .blue-opacity{color: #3366FF; opacity: 0.6;}
+.blue-white{color:#C2C9E0;}
 .red-1{color: #FF005D;}
 .red-2{color: #FF005D; opacity: 0.6;}
 
