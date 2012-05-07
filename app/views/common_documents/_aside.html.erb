@@ -2,6 +2,6 @@
 <div class="header_text">
   <%= t('repository.other') %>
 </div>
-<%= render :partial => "common_documents/profile", :collection => subject_documents(subject), :locals => { :div_class => 'row' }, :as => :document %>
+<%= render :partial => "common_documents/profile", :collection => subject_documents(subject, :scope => :me), :locals => { :div_class => 'row' }, :as => :document %>
 <div class="link_gray pagination-centered"><%=link_to(t('more'),[subject, Document.new])%></div>
 <div class="space_center"></div>
