@@ -15,7 +15,7 @@ es:
   document:
     new: "Añadir recurso"
   excursion:
-    one: "excurcsión"
+    one: "excursión"
     other: "excursiones"
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"
