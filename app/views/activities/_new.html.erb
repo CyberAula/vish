@@ -12,7 +12,7 @@
     <div id="activity_form_select" class="inline-block type_share">
       <% SocialStream.activity_forms.each do |element| %>
         <div id="select_<%= element %>" class="activity_form_selector inline-block">
-          <%= t("#{ element }.form.title") %>
+          <%=t('options.add') + ' '+ t("#{ element }.form.title").downcase %>
         </div>
       <% end %>
     </div>
