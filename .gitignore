@@ -39,3 +39,8 @@ public/assets
 #temporal files
 app/views/layouts/_grid.html.erb
 
+#Eclipse configuration
+.project
+
+#Test gems
+carrierwave/
