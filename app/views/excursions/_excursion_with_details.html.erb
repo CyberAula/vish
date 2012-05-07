@@ -1,13 +1,15 @@
 <div class="row-fluid">
-  <div class="span2 pagination-centered link_white">
+  <div class="thumbnails">
+  <div class="span2 pagination-centered link_white inline-block">
     <%= link_to  thumb_for(excursion, 50), excursion, :class => "container" %>
   </div>
-  <div class=" link_white">
+  <div class="span10 link_white caption">
     <h4><%= link_to truncate_name(excursion.title, :length => 40), excursion %></h4>
-    <h5 class="blue-white"><span class="size13"><%=t "#{excursion.class.name.underscore}.one"  %></span></h5>
-    <h5 class="blue-white"><%=t('follow.followers')%>: <%=num_followers%></h5>
-    <p><%= image_tag('star.png') %></p>
+    <h5 class="blue-white"><span class="size13"><%=t "#{excursion.class.name.underscore}.one" %></span>, <%=excursion.visit_count.to_s%> views </h5>
+    <h5><span class="size11">by <%=link_to( truncate_name(excursion.author.name, :length => 20), excursion.author.subject)%></span></h5>
+  </div>
   </div>
 </div>
+
 
 

@@ -70,8 +70,7 @@
   padding: 10px 10px 10px 10px;
   border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 1px solid #fff;
-  background: #A1A1A1;
-  color: #fff;
+  background: #A1A1A1;                            color: #fff;
 }
 
 
@@ -80,6 +79,9 @@
 #header_search_display  li:hover {
   background: #E6E6E6;
   color: #A1A1A1;
+}
+#header_search_display  li:hover a {
+  color: #A1A1A1 !important;
 }
 #header_search_display  li .logo {
   float: left;
@@ -105,7 +107,7 @@
   text-align: left;
   padding: 10px 10px 10px 10px;
   border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
-  color: #fff;
+
 }
 #header_search_display  li.loading, #header_search_display  li.more, #header_search_display  li.none {
   text-align: center;

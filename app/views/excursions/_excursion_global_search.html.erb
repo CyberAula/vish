@@ -9,7 +9,7 @@
         <h5><span class="size14"><%= link_to truncate_name(excursion.title, :length => 30), excursion %></span></h5>
         <h5 class="blue-opacity"><span class="size12"><%=t "#{excursion.class.name.underscore}.one"  %></span></h5>
         <h5 class="blue-opacity"><span class="size11">by <%=link_to( truncate_name(excursion.author.name, :length => 20), excursion.author.subject)%></span></h5>
-        <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=num_followers%></span></h5>
+        <h5><%=excursion.visit_count.to_s%> views </h5>
         <p><%= image_tag('star.png') %></p>
       </div>
     </li>
