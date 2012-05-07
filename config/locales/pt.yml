@@ -2,7 +2,8 @@ pt:
   activity_action:
     follow: "+Seguir"
     unfollow: "DeixarDeSeguir"
-  conditions: "condições"
+  conditions:
+    other: "condições"
   document:
     new: "Adicione recurso"
   excursion:
