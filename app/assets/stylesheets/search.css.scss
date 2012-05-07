@@ -49,11 +49,11 @@
   /*text-align: left;*/
 }
 #header_search_display a {
-  /*color: $main-color;*/
+  /*color: #fff;*/
   text-decoration: none;
 }
 #header_search_display a:hover {
-  /*color: $main-color;*/
+  /*color: #A1A1A1;*/
   text-decoration: none;
   font-weight: bold;
 }
@@ -133,8 +133,12 @@
   height: 81px;
   overflow: hidden;
   text-align: center;
-
 }
+
+.subject_search_results a:hover{
+  color: #a1a1a1;
+}
+
 .subject_search_results.post {
   width: 560px;
   height: 100%;
