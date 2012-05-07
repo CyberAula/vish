@@ -31,6 +31,10 @@ pt:
   repository:
     one: "repositório"
     other: "repositórios"
+  resource:
+    title:
+      one: "recurso"
+      other: "recursos"
   site:
     name: "Virtual Science Hub"
   user:

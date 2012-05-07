@@ -58,8 +58,8 @@ es:
     other: "repositorios"
   resource:
     title:
-      one: "Recursos"
-      other: "Recursos"
+      one: "recursos"
+      other: "recursos"
   site:
     name: "Virtual Science Hub"
   today: "Hoy"
