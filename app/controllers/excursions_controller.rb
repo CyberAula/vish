@@ -73,8 +73,6 @@ class ExcursionsController < ApplicationController
   def do_search subject, query_str, scope, limit=4
     # This is similar to some code at the Home Helper, but painfully and fundamentally different
     # For one, this does need Sphinx running in your machine to render any results at all.
-    # Also, it's slightly less efficient, since it fetches the results, the reorders them rather
-    #       than doing a simple SQL query.
 
     following_ids = subject.following_actor_ids
     following_ids |= [ subject.actor_id ]
