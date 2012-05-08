@@ -1503,6 +1503,14 @@ display: inline-block;
   display: inline-block;
 }
 
+.excursion_thumbnail_show, .excursion_thumbnail_show img {
+  visibility: visible;
+  position: relative;
+  float: left;
+  max-height: 75px;
+  width: 75px;
+}
+
 .picture_thumbnail_show, .picture_thumbnail_show img {
   position: relative;
   float: left;
