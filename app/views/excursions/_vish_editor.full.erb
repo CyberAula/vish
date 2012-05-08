@@ -54,8 +54,7 @@
 
       <!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
       <div style='display:none'>		
-		<form id='excursiondetails'>			
-        	<img src="/assets/intro.png"/> 
+		<form id='excursiondetails'>
         	<div id="start_tutorial"></div>       	
       		<div id="excursion_details_fields">
 	      		<label for="excursion_title">
@@ -66,7 +65,13 @@
 					<div class="textintro1 textintromargin2">Description</div>
 				</label>
 				<textarea id='excursion_description' class="input_text_fancy description1 formsizefancy4" name="excursion_description" placeholder="Describe the excursion in a few words..."></textarea>
-				<input id='save_excursion_details' submit='disable' class='button buttonintro' value="Save">
+				<div id="thumbnails_in_excursion_details">
+					<label for="excursion_avatar">
+						<div class="textintro1 textintromargin3">Thumbnail</div>
+					</label>
+					<div id="avatars_carrousel"></div>
+				</div>
+				<input id='save_excursion_details' submit='disable' class='button buttonintro' value="Continue">
 		   		<p id="excursion_details_error" class="error_intro" style='display:none'>Please, enter a title</p>
 	   		</div>
 	   	</form>
