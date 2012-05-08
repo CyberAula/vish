@@ -30,7 +30,15 @@ Vish.Filter = function(V, $, undefined){
                         $.ajax({
                                 url: "/documents/search",
                                 data: { q: $('#document-filter')[0].value, scope: "net" },
-                                success: function(data) { $('#repositories').html(data); }
+                                success: function(data) { $('#repository').html(data); }
+                        });
+                });
+
+                $('#document-filter-more').on("keyup", function() {
+                        $.ajax({
+                                url: "/documents/search",
+                                data: { q: $('#document-filter-more')[0].value, scope: "more" },
+                                success: function(data) { $('#repository-more').html(data); }
                         });
                 });
         }

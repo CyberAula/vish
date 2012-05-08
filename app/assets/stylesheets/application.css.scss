@@ -1503,6 +1503,14 @@ display: inline-block;
   display: inline-block;
 }
 
+.excursion_thumbnail_show, .excursion_thumbnail_show img {
+  visibility: visible;
+  position: relative;
+  float: left;
+  max-height: 75px;
+  width: 75px;
+}
+
 .picture_thumbnail_show, .picture_thumbnail_show img {
   position: relative;
   float: left;
@@ -1521,6 +1529,41 @@ display: inline-block;
  display:block;
  float:left;
  clear:right;
+}
+
+/********** Current logo change **********/
+.logo_grid {
+  width: 142px;
+  height: 119px;
+  overflow: hidden;
+  position: relative;
+}
+.logo_grid img {
+  position: absolute;
+  top: 0;
+  left: 23px;
+  border: 0;
+}
+
+.logo_caption {
+  top: 119px;
+  left: 23px;
+  float: left;
+  position: absolute;
+  background: $secondary-color;
+  opacity: 0.8;
+  width: 119px;
+  height: 18px;
+  /* For IE 5-7 */
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  /* For IE 8 */
+  -MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+}
+
+.logo_full .logo_caption {
+  top: 119px;
+  left: 23px;
+ padding: 0px;
 }
 
 /******************************** search tabs ************/
