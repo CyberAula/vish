@@ -79,10 +79,7 @@ group :development do
 
   if ENV['VISH_DEV'] || ENV['VISH_DEBUG']
     gem "debugger", "~> 1.1.1"
-    gem 'ruby-debug19', :require => 'ruby-debug'
+    #gem 'ruby-debug19', :require => 'ruby-debug'
   end
 end
-
-
-
 

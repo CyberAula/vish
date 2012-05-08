@@ -42,18 +42,27 @@
   <div class="repository tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#repo-1"><%=t('resource.title.other')%></a></li>
+      <li class=""><a data-toggle="tab" href="#repo-3"><%=t('recommended')%></a></li>
     </ul>
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
         <%= render :partial => "common_documents/home_filter"%>
-        <div id="repository">
-          <div class="repositories row">
-            <% for document in current_subject_documents(:limit => 8) %>
-              <%= render :partial => "common_documents/home",
-                         :locals => { :document => document, 
-                                      :div_class => 'content_size' } %>
-            <% end %>
-          </div>
+        <div id="repository" class="repositories row">
+          <% for document in current_subject_documents(:limit => 8) %>
+            <%= render :partial => "common_documents/home",
+                       :locals => { :document => document, 
+                                    :div_class => 'content_size' } %>
+          <% end %>
+        </div>
+      </div>
+      <div id="repo-3" class="tab-pane">
+        <%= render :partial => "common_documents/home_filter", :locals => { :filter_id => "document-filter-more" } %>
+        <div id="repository-more" class="repositories row">
+          <% for document in current_subject_documents({:scope => :more, :limit => 8}) %>
+            <%= render :partial => "common_documents/home",
+                       :locals => { :document => document,
+                                    :div_class => 'content_size' } %>
+          <% end %>
         </div>
       </div>
     </div>
