@@ -1,7 +1,10 @@
 //= require vish
 
 Vish.Filter = function(V, $, undefined){
+        var loaded = false;
         var init = function(){
+	        Vish.Filter.loaded=true;
+
                 $('#excursion-filter').on("keyup", function() {
                         $.ajax({
                                 url: "/excursions/search",
@@ -44,6 +47,7 @@ Vish.Filter = function(V, $, undefined){
         }
 
         return {
+	        loaded: loaded,
 	        init: init
 	};
 }(Vish, jQuery);

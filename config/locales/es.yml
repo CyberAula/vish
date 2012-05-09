@@ -26,6 +26,7 @@ es:
       edit: "Editar"
       show: "Visualizar"
       delete: "Borrar"
+  filter: "filtrar"
   follow:
     followers: "seguidores"
     followings: "siguiendo"
