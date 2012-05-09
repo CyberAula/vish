@@ -14,6 +14,7 @@ pt:
     created: "created"
     title:
       other: "Excursões"
+  filter: "filtrar"
   follow:
     followers: "seguidores"
     followings: "seguindo"
