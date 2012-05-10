@@ -5,6 +5,6 @@
   <div class="span10 link_white">
     <h4><%= link_to truncate_name(subject.name, :length => 40), subject %></h4>
     <h5 class="blue-white"><span class="size13"><%=t "#{subject.class.name.underscore}.one"  %></span></h5>
-    <h5><%=t('follow.followers')%>: <%=num_followers%></h5>
+    <h5><%=t('follow.followers')%>: <%=subject.follower_count%></h5>
   </div>
 </div>

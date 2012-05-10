@@ -7,12 +7,6 @@ module ExcursionsHelper
     excursion.slide_count.to_s
   end
 
-  def num_followers
-    # TODO: really take the top 10 excursions
-    rand(500)
-  end
-
-
   def starts
     # TODO: really take the top 10 excursions
     value=1 + (10)
