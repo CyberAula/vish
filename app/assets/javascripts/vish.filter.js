@@ -24,7 +24,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#excursion-filter-me').on("keyup", function() {
                         $.ajax({
                                 url: "/excursions/search",
-                                data: { q: $('#excursion-filter-me')[0].value, scope: "me", user_id: $('#excursion-filter-me-user').val() },
+                                data: { q: $('#excursion-filter-me')[0].value, scope: "me" },
                                 success: function(data) { $('#excursions').html(data); }
                         });
                 });
