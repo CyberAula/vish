@@ -24,7 +24,7 @@
   $("#documents_grid").html("<center><%= escape_javascript(image_tag('loading.gif', :class => :loading)) %></center>");
   $.ajax({
   type : "GET",
-  url : "<%= polymorphic_url([current_subject, Document.new]) %>?no_layout=true",
+  url : "<%= search_documents_path %>",
   success : function(html) {
   if ($("#repository_filter_input").val()==searchstring){ //Only show if input value is still the same
   $("#documents_grid").html(html);
@@ -40,7 +40,7 @@
   $("#documents_grid").html("<center><%= escape_javascript(image_tag('loading.gif', :class => :loading)) %></center>");
   $.ajax({
   type : "GET",
-  url : "<%= polymorphic_url([current_subject, Document.new]) %>?query=" + searchstring + "&no_layout=true",
+  url : "<%= search_documents_path %>?q=" + searchstring,
   success : function(html) {
   if ($("#repository_filter_input").val()==searchstring){ //Only show if input value is still the same
   $("#documents_grid").html(html);
