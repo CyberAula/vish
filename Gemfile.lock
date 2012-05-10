@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 154f297a7177fefea027f32271150571803d004e
+  revision: 90ebcb7f83695cb053539be92693a877b0ab42b8
   branch: vish
   specs:
     social_stream-base (0.20.0)
@@ -8,6 +8,7 @@ GIT
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 0.2.5)
       cancan (~> 1.6.4)
+      deep_merge
       devise (~> 1.5.3)
       foreigner (~> 1.1.1)
       formtastic (~> 1.2.3)
@@ -114,6 +115,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.1)
+    deep_merge (1.0.0)
     delayed_paperclip (2.4.5.1)
       paperclip (>= 2.4.5)
     devise (1.5.3)

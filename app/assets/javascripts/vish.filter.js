@@ -16,7 +16,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#excursion-filter-more').on("keyup", function() {
                         $.ajax({
                                 url: "/excursions/search",
-                                data: { q: $('#excursion-filter-more')[0].value, scope: "more" },
+                                data: { q: $('#excursion-filter-more')[0].value, scope: "other" },
                                 success: function(data) { $('#more').html(data); }
                         });
                 });
@@ -40,7 +40,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#document-filter-more').on("keyup", function() {
                         $.ajax({
                                 url: "/documents/search",
-                                data: { q: $('#document-filter-more')[0].value, scope: "more" },
+                                data: { q: $('#document-filter-more')[0].value, scope: "other" },
                                 success: function(data) { $('#repository-more').html(data); }
                         });
                 });

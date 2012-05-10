@@ -30,7 +30,8 @@ module SearchHelper
   end
 
   def search_results?(key)
-    ThinkingSphinx.count(get_search_query,
+    bare_query = strip_tags(params[:q]) || ""
+    ThinkingSphinx.count(bare_query.strip,
                          :classes => SocialStream::Search.models(:extended, key)) > 0
   end
 end
