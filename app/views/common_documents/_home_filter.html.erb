@@ -1,6 +1,7 @@
 <div class="row btn-toolbar">
   <div class="pull-right">
-    <input id="document-filter" type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter">
+    <% filter_id ||= "document-filter" %>
+    <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter">
     <div id="resource-filter-btn" class="btn-group">
         <button class="btn" >
           <%= '+'+t('options.add') %>
@@ -8,58 +9,6 @@
     </div>
   </div>
 </div>
-<%= javascript_tag do %>
-
-  $('#resource-filter-btn').click(function(){
-    $('.activity_form_selector').removeClass('selected');
-    $('#select_document').addClass('selected');
-    $('#wrapper_activities_header form').hide();
-    $('#new_document').show();
-    $('#wall-input').effect("highlight", {}, 3000);
-  });
-
-  $(document).ready(function() {
-
-  var last_search = "";
-
-  $("#repository_filter_input").watermark("<%= escape_javascript(I18n.t('search.name')) %>");
-
-  $("#repository_filter_input").keyup(function() {
-  var searchstring = $(this).val();
-  if((searchstring=="")){
-  if (last_search!=searchstring){last_search=searchstring;}
-  $("#documents_grid").html("<center><%= escape_javascript(image_tag('loading.gif', :class => :loading)) %></center>");
-  $.ajax({
-  type : "GET",
-  url : "<%= polymorphic_url([current_subject, Document.new]) %>?no_layout=true",
-  success : function(html) {
-  if ($("#repository_filter_input").val()==searchstring){ //Only show if input value is still the same
-  $("#documents_grid").html(html);
-  }
-  },
-  error: function(){
-  $("#header_search_display").html("<center><%= escape_javascript(content_tag(:span,I18n.t('search.wrong'), :class => :warning)) %></center>");
-  }
-  });
-  } else {
-  if (last_search!=searchstring){
-  last_search=searchstring;
-  $("#documents_grid").html("<center><%= escape_javascript(image_tag('loading.gif', :class => :loading)) %></center>");
-  $.ajax({
-  type : "GET",
-  url : "<%= polymorphic_url([current_subject, Document.new]) %>?query=" + searchstring + "&no_layout=true",
-  success : function(html) {
-  if ($("#repository_filter_input").val()==searchstring){ //Only show if input value is still the same
-  $("#documents_grid").html(html);
-  }
-  },
-  error: function(){
-  $("#header_search_display").html("<center><%= escape_javascript(content_tag(:span,I18n.t('search.wrong'), :class => :warning)) %></center>");
-  }
-  });
-  }
-  }
-  return false;
-  });
-  })
+<%= content_for :javascript do %>
+  if(!Vish.Filter.loaded) Vish.Filter.init();
 <% end %>

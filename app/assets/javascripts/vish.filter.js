@@ -44,6 +44,15 @@ Vish.Filter = function(V, $, undefined){
                                 success: function(data) { $('#repository-more').html(data); }
                         });
                 });
+
+                $('#document-filter-me').on("keyup", function() {
+                        $.ajax({
+                                url: "/documents/search",
+                                data: { q: $('#document-filter-me')[0].value, scope: "me" },
+                                success: function(data) { $('#repository').html(data); }
+                        });
+                });
+
         }
 
         return {
