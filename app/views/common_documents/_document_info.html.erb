@@ -1,26 +1,27 @@
 <div class="">
-  <div class="menu_resources">
-    <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_amplify'></i> ") + t('document.actions.details'), :class => :action, :id => :document_details_action), "javascript:SocialStream.Repository.toggleDocumentMenu('details');" %>
-  </div>
+	<ul class="nav nav-tabs">	
+		<li class="active">
+    		<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_amplify'></i> ") + t('document.actions.details'), :class => :action, :id => :document_details_action), "javascript:SocialStream.Repository.toggleDocumentMenu('details');" %>
+  		</li>
+  		<% if document.post_activity.edit_object_by?(current_subject) %>
+  	    	<li>
+      			<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), "javascript:SocialStream.Repository.toggleDocumentMenu('edit');" %>
+			</li>
+	  	<% end %>
 
-  <div class="menu_resources">
-    <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-  </div>
 
-
-  <% if document.post_activity.edit_object_by?(current_subject) %>
-    <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), "javascript:SocialStream.Repository.toggleDocumentMenu('edit');" %>
-    </div>
-  <% end %>
-
-  <% if document.post_activity.delete_object_by?(current_subject) %>
-    <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
-                                                                                                                                                                                                     :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-    </div>
-  <% end %>
-
+	<div align="right">
+		<div class="menu_resources">
+		<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>    	
+  		</div>
+		<% if document.post_activity.delete_object_by?(current_subject) %>
+   			<div class="menu_resources">
+   				<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
+                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+			</div>
+		<% end %>
+	</div>		
+	</ul>	
 </div>
 
 <div id="document_details" class="boxy_white" style="display:none;">
