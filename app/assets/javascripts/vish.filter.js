@@ -8,7 +8,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#excursion-filter').on("keyup", function() {
                         $.ajax({
                                 url: "/excursions/search",
-                                data: { q: $('#excursion-filter')[0].value, scope: "net" },
+                                data: { q: $('#excursion-filter')[0].value, scope: "net", per_page: 4 },
                                 success: function(data) { $('#excursions').html(data); }
                         });
                 });
@@ -16,7 +16,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#excursion-filter-more').on("keyup", function() {
                         $.ajax({
                                 url: "/excursions/search",
-                                data: { q: $('#excursion-filter-more')[0].value, scope: "other" },
+                                data: { q: $('#excursion-filter-more')[0].value, scope: "other", per_page: 4 },
                                 success: function(data) { $('#more').html(data); }
                         });
                 });
@@ -24,7 +24,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#excursion-filter-me').on("keyup", function() {
                         $.ajax({
                                 url: "/excursions/search",
-                                data: { q: $('#excursion-filter-me')[0].value, scope: "me" },
+                                data: { q: $('#excursion-filter-me')[0].value, scope: "me", per_page: 4 },
                                 success: function(data) { $('#excursions').html(data); }
                         });
                 });
@@ -32,7 +32,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#document-filter').on("keyup", function() {
                         $.ajax({
                                 url: "/documents/search",
-                                data: { q: $('#document-filter')[0].value, scope: "net" },
+                                data: { q: $('#document-filter')[0].value, scope: "net", per_page: 8 },
                                 success: function(data) { $('#repository').html(data); }
                         });
                 });
@@ -40,7 +40,7 @@ Vish.Filter = function(V, $, undefined){
                 $('#document-filter-more').on("keyup", function() {
                         $.ajax({
                                 url: "/documents/search",
-                                data: { q: $('#document-filter-more')[0].value, scope: "other" },
+                                data: { q: $('#document-filter-more')[0].value, scope: "other", per_page: 8 },
                                 success: function(data) { $('#repository-more').html(data); }
                         });
                 });
