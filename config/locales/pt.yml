@@ -2,6 +2,7 @@ pt:
   activity_action:
     follow: "+Seguir"
     unfollow: "DeixarDeSeguir"
+  all: "todo"
   conditions:
     other: "condições"
   document:

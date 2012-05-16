@@ -8,6 +8,7 @@ en:
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
+  all: "all"
   conditions:
     other: "conditions"
     check_message: "I have read and accept the "

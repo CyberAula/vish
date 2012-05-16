@@ -8,6 +8,7 @@ es:
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
+  all: "todos"
   conditions:
     other: "condiciones"
     check_message: "He leido y acepto las "
