@@ -720,6 +720,7 @@ li{
   vertical-align:text-top;
   *margin-right: .3em;
 
+
 }
 [class^="iconnav-"]:last-child, [class*="iconnav-"]:last-child {
 }
@@ -1739,4 +1740,17 @@ margin-left: 20px;}
 }
 @media screen and (max-width: 320px){
   .rw-sentence { font-size: 9px; }
+}
+
+
+.name-menu{
+margin-top:13px;
+display: inline;
+float:left;
+margin-right: 20px;
+text-decoration: none;
+}
+.more{
+float: right;
+margin-right: 15px;
 }

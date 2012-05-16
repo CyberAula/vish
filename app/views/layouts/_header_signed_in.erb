@@ -7,7 +7,7 @@
     <% if user_signed_in? %>
       <div class="btn-toolbar pull-right">
         <div class="btn-group">
-          <%= link_to(raw("<i class='icon-user'></i> ") +  truncate_name(current_subject.name, :length => 15), current_subject, :class => "btn") %>
+          <%= link_to(raw("<i class='icon-user'></i> ") +  truncate_name(current_subject.name, :length => 15), current_subject, :class => "name-menu") %>
           <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-message'></i> ") +
                         raw(" (<span id='header_inbox_count'>") + current_subject.unread_messages_count.to_s +
