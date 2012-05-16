@@ -1,0 +1,11 @@
+<%= div_for video, :class => 'content_size' do %>
+
+  <% if video.file_processing %>
+    <%= render :partial => 'videos/video_processing', :locals => {:video => video}%>
+  <% else %>
+    <%= render :partial => 'videos/video_processed', :locals => {:video => video}%>  
+  <% end %>
+
+<% end %>
+
+<div class="clearfloat"></div>

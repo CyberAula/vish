@@ -1,0 +1,41 @@
+<%= div_for picture, :class => 'content_size' do %>
+
+  <div class="span3">
+    <%= link_to thumb_for(picture, 130),
+                download_document_path(picture),
+        :type => picture.type,
+                :title => picture.title,
+                :path => document_path(picture) %>
+  </div>
+
+  <div class="span9">
+        <div class="title"> 
+  	  <%= picture.title %>
+        </div>
+
+	<%= simple_format auto_link(picture.description) %>
+
+        <%= link_to t('details.msg'),
+              picture_path(picture),
+              :alt => t('details.msg'),
+              :type => picture.type,
+              :path => document_path(picture),
+              :class => "attachment_text_link picture_link" %>
+  </div>
+<% end %>
+
+
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $('.picture_thumbnail_show a').lightBox({ 
+      maxHeight: 920,
+      maxWidth: 920,
+      imageLoading: 'assets/lightbox-ico-loading.gif',
+      imageBtnClose: 'assets/lightbox-btn-close.gif',
+      imageBtnPrev: 'assets/lightbox-btn-prev.gif',
+      imageBtnNext: 'assets/lightbox-btn-next.gif',
+      imageBlank: 'assets/lightbox-blank.gif'});    
+  })
+<% end %>
+
+<div class="clearfloat"></div>

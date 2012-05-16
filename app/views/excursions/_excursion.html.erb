@@ -1,15 +1,13 @@
 <%= div_for excursion, :class => 'content_size' do %>
   <ul class="thumbnails">
-    <li class="span1">
+    <li class="span3">
       <%= link_to thumb_for(excursion, 130), excursion, :class => "container" %>
       <div class='number_pages'><%= excursion.slide_count %></div>
     </li>
-    <li class="row-fluid-100">
-      <div class="caption inline-block">
+    <li class="span9">
         <h4><%= excursion.title %></h4>
         <p><%= simple_format auto_link(excursion.description) %></p>
         <p><%= link_to t('details.msg'), excursion, :class => "attachment_text_link" %></p>
-      </div>
     </li>
   </ul>
 <% end %>

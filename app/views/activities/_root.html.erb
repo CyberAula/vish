@@ -1,13 +1,13 @@
 <%= div_for activity, :class => "root_activity" do %>
   <ul class="thumbnails">
-    <li class="span">
+    <li class="span2">
       <%= link_to image_tag(activity.sender_subject.logo.url(:contact),
                             :alt => activity.sender_subject.name),
                   activity.sender_subject, :class=> "container" %>
     </li>
-    <li class="activity_content">
-      <div class="caption subactivity ">
-        <span class=""><%= activity.title(self)%></span>
+    <li class="span10">
+      <div class="row-fluid">
+        <span class="span11"><%= activity.title(self)%></span>
         <% if activity.delete_object_by?(current_subject) %>
           <div class="icon_close">
 
@@ -17,7 +17,7 @@
           </div>
         <% end %>
         <span class=""><%= render activity.activity_objects %></span>
-        <span class="size11 subactivity">
+        <span class="row-fluid-100">
           <%= render :partial => 'activities/options',
                            :locals => { :activity => activity } %>
           <%= render :partial => 'activities/comments',
