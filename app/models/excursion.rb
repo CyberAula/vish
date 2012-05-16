@@ -29,15 +29,6 @@ class Excursion < ActiveRecord::Base
     json
   end
 
-  def thumb(size, helper)
-    case size
-      when 50 
-        "logos/actor/excursion-#{sprintf '%.2i', thumbnail_index}.png"
-      else
-        "logos/original/excursion-#{sprintf '%.2i', thumbnail_index}.png"
-    end
-  end
-
   private
 
   def parse_for_meta
@@ -51,6 +42,7 @@ class Excursion < ActiveRecord::Base
     self.json = parsed_json.to_json
 
     self.slide_count = parsed_json["slides"].size
+    self.thumbnail_url = parsed_json["avatar"]
   end
 
 end
