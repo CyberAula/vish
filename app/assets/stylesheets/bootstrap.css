@@ -2552,6 +2552,31 @@ button.close {
   border: 0;
   -webkit-appearance: none;
 }
+.blue-btn {
+  display: inline-block;
+  *display: inline;
+  padding: 4px 10px 4px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 13px;
+  *line-height: 24px;
+  color: #FFFFFF;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #3366FF;
+  border: none;
+  *border: 0;
+  /*border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); */
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+}
+.blue-btn:hover {
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.6;}
 
 .btn {
   display: inline-block;
