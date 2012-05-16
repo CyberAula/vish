@@ -7,8 +7,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.tipsy
+//= require jquery.jplayer
+//= require jquery.ae.image.resize
 //= require social_stream-base
 //= require social_stream-documents
+//= require social_stream.audio
+//= require social_stream.repository
+//= require social_stream.video
 //= require social_stream-linkser
 //= require_tree .
 
