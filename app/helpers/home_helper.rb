@@ -19,6 +19,14 @@ module HomeHelper
     subject_content subject, Document, options
   end
 
+  def current_subject_resources(options = {})
+    subject_documents current_subject, options
+  end
+
+  def subject_resources(subject, options = {})
+    subject_content subject, [Document, Link], options
+  end
+
   def subject_content(subject, klass, options = {})
     options[:limit] ||= 4
     options[:scope] ||= :net
@@ -27,6 +35,7 @@ module HomeHelper
     following_ids |= [ subject.actor_id ]
 
     query = klass
+    query = ActivityObject.where(:object_type => klass.map{|t| t.to_s}) if klass.is_a?(Array)
 
     case options[:scope]
     when :me
@@ -37,6 +46,9 @@ module HomeHelper
       query = query.not_authored_by(following_ids)
     end
 
-    query.order('updated_at DESC').first(options[:limit])
+    query = query.order('updated_at DESC').first(options[:limit])
+
+    return query.map{|ao| ao.object} if klass.is_a?(Array)
+    query
   end
 end
