@@ -10,5 +10,13 @@
   </div>
 </div>
 <%= content_for :javascript do %>
+  $('#resource-filter-btn').click(function(){
+    $('.activity_form_selector').removeClass('selected');
+    $('#select_document').addClass('selected');
+    $('#wrapper_activities_header form').hide();
+    $('#new_document').show();
+    $('#wall-input').effect("highlight", {}, 3000);
+  });
+
   if(!Vish.Filter.loaded) Vish.Filter.init();
 <% end %>
