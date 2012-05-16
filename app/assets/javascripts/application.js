@@ -15,5 +15,6 @@
 //= require social_stream.repository
 //= require social_stream.video
 //= require social_stream-linkser
+//= require linkser
 //= require_tree .
 
