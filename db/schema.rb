@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423151759) do
+ActiveRecord::Schema.define(:version => 20120516155111) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -201,12 +201,12 @@ ActiveRecord::Schema.define(:version => 20120423151759) do
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "excursions", :force => true do |t|
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                                                                :null => false
+    t.datetime "updated_at",                                                                :null => false
     t.integer  "activity_object_id"
     t.text     "json"
     t.integer  "slide_count",        :default => 1
-    t.integer  "thumbnail_index",    :default => 0
+    t.string   "thumbnail_url",      :default => "/assets/logos/original/excursion-00.png"
   end
 
   create_table "groups", :force => true do |t|
