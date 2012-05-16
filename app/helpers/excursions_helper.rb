@@ -1,6 +1,10 @@
 module ExcursionsHelper
   def thumb_for(excursion, size)
-    image_tag excursion.thumb(size, self)
+    if excursion.is_a? Excursion
+      image_tag excursion.thumbnail_url
+    else
+      image_tag excursion.thumb(size, self)
+    end
   end
 
   def num_slides(excursion)
