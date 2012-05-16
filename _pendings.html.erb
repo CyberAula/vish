@@ -1,0 +1,15 @@
+<% if current_subject.pending_contacts? %>
+<div class="block">
+  <div class="header">
+    <%= image_tag('btn/btn_notifications.png', :class => "header_icon") %>
+    <div class="header_text">
+      <%= t 'contact.pending.other' %>
+    </div>
+  </div>
+  <div class="content">
+    <%= render :partial => 'contacts/contact', :collection => current_subject.pending_contacts.shuffle.first(2) %>
+    <div class="space_center">
+    </div>
+  </div>
+</div>
+<% end -%>
