@@ -11,6 +11,9 @@
         <%= render :partial => "contacts/suggestion", :collection => sgs %>
       </div>
     </div>
+    <div class="pull-right">
+      <%=link_to( t('view_all'), search_path(:type => "user") ) %>
+    </div>
   </div>
 <% end %>
 
