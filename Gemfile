@@ -62,7 +62,7 @@ gem 'god'
 gem 'exception_notification'
 
 # Be able to pass tests
-gem 'rspec-rails', '=2.9.0'
+gem 'rspec-rails', '=2.10.0'
 
 group :test do
   # Pretty printed test output
