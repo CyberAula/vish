@@ -1,6 +1,6 @@
 <div id="wall" class="row-fluid">
   <% if activities.size == 0 %>
-    <!-- WRITE ZERO SCREEN CONTENT HERE -->
+    <%= render :partial => "activities/zero_screen" %>
   <% else %>
     <%= render activities  %>
     <%= paginate activities %>

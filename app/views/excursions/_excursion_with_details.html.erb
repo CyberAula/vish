@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <div class="thumbnails">
   <div class="span2 pagination-centered link_white inline-block">
-    <%= link_to  thumb_for(excursion, 50), excursion, :class => "container" %>
+    <%= link_to  excursion_thumb_for(excursion, 50), excursion, :class => "container" %>
   </div>
   <div class="span10 link_white caption">
     <h4><%= link_to truncate_name(excursion.title, :length => 40), excursion %></h4>

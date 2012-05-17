@@ -89,7 +89,6 @@ namespace :db do
                                           :author => author.name,
                                           :slides => Array.new(1+rand(9)).map{ generate_slide }
                                        }.to_json,
-                              :thumbnail_url => "/assets/logos/original/excursion-%{sprintf '%.2i', 1+rand(80)}.png",
                               :created_at => Time.at(rand(updated.to_i)),
                               :updated_at => updated,
                               :author_id  => author.id,
