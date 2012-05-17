@@ -190,20 +190,20 @@
 				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/flickr.png'/></a></li>
 				  </ul>
 				</div>
-						<div id='tab_pic_from_url_content' class="fancy_tab_content">
-                			<div class="box1 box1fancy1">
-				    			<p class="textfancy"> add image url </p><br>
-                    			<img class="image_add_url" src="/assets/url_img.png"/>
-				    			<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
-				    			<button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('picture_url')">Upload</button>
-                  			</div>
-                			<div class="box2">
-                				<div class="previewimgbox">
-                    				<img class="documentblank" src="/assets/document_black.png"/>
-                    				<button type="button" class="button buttonaddfancy">Add Content</button>
-                    			</div>
-                			</div>
-						</div>      
+				<div id='tab_pic_from_url_content' class="fancy_tab_content">
+            	<div class="box1 box1fancy1">
+			    			<p class="textfancy"> add image url </p><br>
+                <img class="image_add_url" src="/assets/url_img.png"/>
+			    			<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
+			    			<button type="button" class="button buttonfancy previewButton">Preview</button>
+              </div>
+        			<div class="box2">
+        				<div class="previewimgbox">
+            				<img class="documentblank" src="/assets/document_black.png"/>
+            				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement('tab_pic_from_url_content')">Add Content</button>
+            			</div>
+        			</div>
+				</div>      
 				<div id='tab_pic_upload_content' class="fancy_tab_content">
 							<div class="box1 box1fancy1">
                 <p class="textfancy">Select picture to upload</p><br>
@@ -224,7 +224,7 @@
               <div class="box2">
           				<div class="previewimgbox">
               				<img class="documentblank" src="/assets/document_black.png"/>
-              				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawUploadedElement()">Add Content</button>
+              				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement('tab_pic_upload_content')">Add Content</button>
                   </div>
               </div>
         </div>            
