@@ -27,6 +27,10 @@ en:
       edit: "Edit"
       show: "Show"
       delete: "Delete"
+    network: "network excursions"
+    my: "my excursion"
+    favorites: "favorites excursions"
+    others: "others excursions"
   filter: "filter"
   follow:
     followers: "followers"

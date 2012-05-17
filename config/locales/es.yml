@@ -27,6 +27,10 @@ es:
       edit: "Editar"
       show: "Visualizar"
       delete: "Borrar"
+    network: "excursiones de mi red"
+    my: "mis excursiones"
+    favorites: "excursiones favoritas"
+    others: "otras excursiones "
   filter: "filtrar"
   follow:
     followers: "seguidores"

@@ -1,7 +1,18 @@
-<div class="row btn-toolbar">
-  <div class="pull-right">
+<div class=" btn-toolbar row">
+  <div class="span3">
     <% filter_id ||= "excursion-filter" %>
     <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>" name="filter">
+    <div class="btn-group ">
+      <a href="#" data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><%=link_to(  t('excursion.network'), '/' ) %></li>
+        <li><%=link_to(  t('excursion.my'), '/' ) %></li>
+        <li><%=link_to(  t('excursion.favorites'), '/' ) %></li>
+        <li><%=link_to(  t('excursion.others'), '/' ) %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="pull-right">
     <div class="btn-group">
       <%= link_to( '+'+t('options.add'), new_excursion_path, :class => 'blue-btn', :alt =>  t('options.add'), :title => t('options.add'))  %>
       <!--
