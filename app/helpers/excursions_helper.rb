@@ -1,7 +1,7 @@
 module ExcursionsHelper
   def thumb_for(excursion, size)
     if excursion.is_a? Excursion
-      image_tag excursion.thumbnail_url
+      image_tag (excursion.thumbnail_url || "/assets/logos/original/excursion-00.png")
     else
       image_tag excursion.thumb(size, self)
     end
