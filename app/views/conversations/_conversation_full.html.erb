@@ -1,10 +1,13 @@
-<div class="repository tabbable">
-  <ul class="nav nav-tabs">
+<div class="repository tabbable row-fluid-90 leftinline">
+  <ul class="nav nav-tabs  ">
     <li class="active"><a data-toggle="tab" href="#"><%= conversation.subject %></a></li>
   </ul>
 </div>
 
-<div class="action">
+<div class="rightinline"><%= link_to(raw("<i class='icontool16-tool16_close'></i> "), :class => "") %> </div>
+
+
+<div class="action inline">
   <% unless @box.eql?'trash' %><%= link_to(image_tag('close.png', :atl => t('mailboxer.delete'), :title => t('mailboxer.delete')),
   conversation_path(conversation, :location => 'conversation', :box => @box),
   :confirm => t('mailboxer.delete_confirm', :object => conversation.subject),
