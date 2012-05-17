@@ -66,6 +66,7 @@ en:
     title:
       one: "resource"
       other: "resources"
+    upload: "upload"
   site:
     name: "Virtual Science Hub"
   today: "Today"
