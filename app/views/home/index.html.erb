@@ -11,8 +11,13 @@
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter"%>
         <div id="excursions" class="row">
-          <%= render :partial => "excursions/filter_results",
-                     :locals => { :excursions => current_subject_excursions } %>
+          <% my_network_excursions = current_subject_excursions %>
+          <% if my_network_excursions.size == 0 %>
+            <!-- WRITE ZERO SCREEN CONTENT HERE -->
+          <% else %>
+            <%= render :partial => "excursions/filter_results",
+                       :locals => { :excursions => my_network_excursions } %>
+          <% end %>
         </div>
       </div>
       <!--
@@ -52,10 +57,15 @@
       <div id="repo-1" class="tab-pane active">
         <%= render :partial => "common_documents/home_filter"%>
         <div id="repository" class="repositories row">
-          <% for document in current_subject_documents(:limit => 8) %>
-            <%= render :partial => "common_documents/home",
-                       :locals => { :document => document, 
-                                    :div_class => 'content_size' } %>
+          <% my_network_documents = current_subject_documents(:limit => 8) %>
+          <% if my_network_documents.size == 0 %>
+            <!-- WRITE ZERO SCREEN CONTENT HERE -->
+          <% else %>
+            <% for document in my_network_documents %>
+              <%= render :partial => "common_documents/home",
+                         :locals => { :document => document, 
+                                      :div_class => 'content_size' } %>
+            <% end %>
           <% end %>
         </div>
       </div>
