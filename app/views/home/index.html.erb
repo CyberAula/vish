@@ -13,7 +13,7 @@
         <div id="excursions" class="row height-tabs-home">
           <% my_network_excursions = current_subject_excursions %>
           <% if my_network_excursions.size == 0 %>
-            <!-- WRITE ZERO SCREEN CONTENT HERE -->
+            <%= render :partial => "excursions/zero_screen" %>
           <% else %>
             <%= render :partial => "excursions/filter_results",
                        :locals => {:excursions => my_network_excursions} %>
@@ -59,7 +59,7 @@
         <div id="repository" class="repositories row height-tabs-home">
           <% my_network_documents = current_subject_documents(:limit => 8) %>
           <% if my_network_documents.size == 0 %>
-            <!-- WRITE ZERO SCREEN CONTENT HERE -->
+            <%= render :partial => "common_documents/zero_screen" %>
           <% else %>
             <% for document in my_network_documents %>
               <%= render :partial => "common_documents/home",
