@@ -1,6 +1,10 @@
 <div id="wall" class="row-fluid">
-  <%= render activities  %>
-  <%= paginate activities %>
+  <% if activities.size == 0 %>
+    <!-- WRITE ZERO SCREEN CONTENT HERE -->
+  <% else %>
+    <%= render activities  %>
+    <%= paginate activities %>
+  <% end %>
 </div>
 
 <%= javascript_tag do %>
