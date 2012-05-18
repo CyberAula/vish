@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: c54bf4ae6695e3fcc6e7f5be284d806384e42093
+  revision: b0486f1a2fa2c0c7d88f3ae1e6bb06feecd7a9c9
   branch: vish
   specs:
-    social_stream-base (0.20.1)
+    social_stream-base (0.20.2)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 0.2.5)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 3dd7bee556d8fe566a62d31a215eae726a6efee0
+  revision: dde1beb34af443b4dfc9beb5b6911aab8946e5ce
   branch: stable
   specs:
     vish_editor (0.1.1)
