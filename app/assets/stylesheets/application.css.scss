@@ -99,8 +99,6 @@
 .link_white a{color: #ffffff; text-decoration:none;}
 .link_white a:hover {color: #919191; text-decoration:none;}
 
-/*************** MARGINS DEFAULT *********/
-.margin-negative{margin-left: -4px;}
 
 /***********COLORS ***********/
 .background{color: #F9F9F9;}
@@ -306,12 +304,16 @@ form.file_upload {
 .space_center {	padding-top: 15px;	padding-right: 4px;	text-align: center;}
 .space_double_center {	padding-top: 50px;	padding-right: 4px;	text-align: center;}
 .space_right{padding-right: 20px;}
+.space_double_right{padding-right: 40px;}
 .space_left{padding-left: 20px;}
 .space_both{padding-left: 15px; padding-right: 10px;}
 .space_top{padding-top: 20px;}
 .space_null{padding:0px !important; margin:0px !important;}
 .space_bottom{padding-bottom: 10px;}
 
+
+/*************** MARGINS DEFAULT *********/
+.margin-negative{margin-left: -4px;}
 
 
 

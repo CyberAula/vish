@@ -9,6 +9,7 @@ en:
     follow: "+ Follow"
     unfollow: "UnFollow"
   all: "all"
+  author: "author"
   conditions:
     other: "conditions"
     check_message: "I have read and accept the "
@@ -54,6 +55,9 @@ en:
   organization:
     one: "organization"
     other: "organizations"
+  organizer:
+    one: "organizer"
+    other: "organizers"
   password: "password"
   profile:
     tags:

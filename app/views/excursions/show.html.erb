@@ -1,16 +1,70 @@
-<p id="notice"><%= notice %></p>
+<div class="excursions tabbable span12">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#ex-1"><%= @excursion.title %></a></li>
+  </ul>
+  <div class="tab-content">
+    <div id="ex-1" class="tab-pane active">
+      <p id="notice"><%= notice %></p>
+      <h4><%= @excursion.description %></h4>
+      <div class="pull-right space_right">
+        <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
+      </div>
+      <div class="space_center"></div>
+      <div class="space_center"></div>
+      <div class="pagination-centered">
+        <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
+      </div>
+      <% if user_signed_in? and @excursion.post_activity.edit_object_by?(current_subject) %>
+        <%= link_to 'Edit', edit_excursion_path(@excursion) %>
+      <%end%>
+      <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
+        <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',                                                                                                                                                 :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+      <% end %>
+      <% content_for :javascript do %>
+        location.href = "#excursion_iframe";
+      <%end%>
+      </div>
+    </div>
+</div>
 
-<iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
 
-<%= link_to t('navigation.home'), home_path %> |
 
-<% if user_signed_in? and @excursion.post_activity.edit_object_by?(current_subject) %><%= link_to 'Edit', edit_excursion_path(@excursion) %><%end%> | 
 
-<% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
-   <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',
-     :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-   <% end %>
+<div class="row">
+  <div class="span12">
+    <div class="space_center"></div>
+    <div id="left" class="tabbable span8 ">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
+      </ul>
+      <div class="tab-content">
+        <div id="comment-1" class="tab-pane active">
 
-<% content_for :javascript do %>
-		location.href = "#excursion_iframe";
-<%end%>
+
+            <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity } %>
+            <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="span3 space_left">
+      <!--
+      <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#organizer-1"><%#= t('organizer.other') %></a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="organizer-1" class="tab-pane active">
+
+          </div>
+        </div>
+      </div>
+      -->
+      <%= render :partial => "contacts/suggestions" %>
+    </div>
+
+  </div>
+</div>

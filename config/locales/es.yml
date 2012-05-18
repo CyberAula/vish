@@ -9,6 +9,7 @@ es:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
   all: "todos"
+  author: "autor"
   conditions:
     other: "condiciones"
     check_message: "He leido y acepto las "
@@ -54,6 +55,9 @@ es:
   organization:
     one: "organización"
     other: "organizaciones"
+  organizer:
+    one: "organizador"
+    other: "organizadores"
   password: "clave"
   profile:
     tags:
