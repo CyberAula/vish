@@ -5,6 +5,7 @@
     <% @search_result.each do |res| %>
       <%= render_global_search_for res  %>
     <% end %>
+    <%= paginate @search_result if @search_result.present? %>
   <% end %>
 </div>
 
@@ -14,8 +15,8 @@
       <% @search_result.each do |res| %>
         <%= render_focus_search_for res  %>
       <% end %>
+      <%= paginate @search_result if @search_result.present? %>
     <% end %>
   </div>
 <% end %>
 
-<%= paginate @search_result if @search_result.present? %>
