@@ -6,4 +6,10 @@ module RepositoryHelper
     "iconx-#{document.type.downcase}"
   end
 
+  def icon75_class_for(document)
+    return 'icon75-default' unless document.respond_to? :type
+    return 'icon75-default' if document.type.nil?
+    "icon75-#{document.type.downcase}"
+  end
+
 end

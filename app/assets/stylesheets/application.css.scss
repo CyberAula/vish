@@ -555,9 +555,6 @@ form.example input.file.hidden {
 [class^="iconx-"]:last-child,   [class*=" iconx-"]:last-child {
   *margin-left: 0;
 }
-.iconx-gray {
-  background-image: url("iconrepository-gray.png");
-}
 .iconx-default {
   background-position: 0  -42px;
 }
@@ -832,43 +829,51 @@ li{
 
 /*..................icon file 75x75....................... */
 
-[class^="iconfile75-"], [class*=" iconfile75-"] {
-  background-image: url("iconfile75.png");
-  background-position:75px 75px;
-  background-repeat:no-repeat no-repeat;
-  display:inline-block;
-  height:75px;
-  width:75px;
-  line-height:75px;
-  vertical-align:text-top;
-  *margin-right: .3em;}
-
-[class^="iconfile75-"]:last-child, [class*="iconfile75-"]:last-child {
+[class^="icon75-"], [class*=" icon75-"] {
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  vertical-align: text-top;
+  background-image: url("iconrepository75.png");
+  background-position: 75px 75px;
+  background-repeat: no-repeat;
+  *margin-right: .3em;
 }
-.iconfile75-file75_white {
-  background-image: url("iconfile75.png");}
 
-.iconfile75-file75_file { background-position: 0 0;}
-.iconfile75-file75_add { background-position: -85px 0;}
-.iconfile75-file75_remove { background-position: -170px 0;}
-.iconfile75-file75_delete { background-position: -255px 0;}
-.iconfile75-file75_ok { background-position: -340px 0;}
-.iconfile75-file75_upload { background-position: -425px 0;}
-.iconfile75-file75_donwload { background-position: -510px 0;}
-.iconfile75-file75_send { background-position: -595px 0;}
-.iconfile75-file75_edit { background-position: -680px 0;}
+[class^="icon75-"]:last-child,   [class*=" icon75-"]:last-child {
+  *margin-left: 0;
+}
 
-/*hover*/
+.icon75-default { background-position: 0  -90px; }
+.icon75-text    { background-position: -170px -90px; }
+.icon75-pdf     { background-position: -255px -90px; }
+.icon75-word    { background-position: -340px -90px; }
+.icon75-ppt     { background-position: -425px -90px; }
+.icon75-excel   { background-position: -510px -90px; }
+.icon75-audio   { background-position: -595px -90px; }
+.icon75-picture { background-position: 0px -260px;   }
+.icon75-video   { background-position: 0px -260px; }
+.icon75-flash   { background-position: -340px -430px;}
+.icon75-quiz    { background-position: -425px -430px;}
 
-.iconfile75-file75_file:hover { background-position: 0 -85px;}
-.iconfile75-file75_add:hover { background-position: -85px -85px;}
-.iconfile75-file75_remove:hover { background-position: -170px -85px;}
-.iconfile75-file75_delete:hover { background-position: -255px -85px;}
-.iconfile75-file75_ok:hover { background-position: -340px -85px;}
-.iconfile75-file75_upload:hover { background-position: -425px -85px;}
-.iconfile75-file75_donwload:hover { background-position: -510px -85px;}
-.iconfile75-file75_send:hover { background-position: -595px -85px;}
-.iconfile75-file75_edit:hover { background-position: -680px -85px;}
+
+.icon75-default:hover { background-position: 0  0px; }
+.icon75-text:hover    { background-position: -170px 0px; }
+.icon75-pdf:hover     { background-position: -255px 0px; }
+.icon75-word:hover    { background-position: -340px 0px; }
+.icon75-ppt:hover     { background-position: -425px 0px; }
+.icon75-excel:hover   { background-position: -510px 0px; }
+.icon75-audio:hover   { background-position: -595px 0px; }
+.icon75-picture:hover { background-position: 0px -180px;   }
+.icon75-video:hover   { background-position: 0px -180px; }
+.icon75-flash:hover   { background-position: -340px -340px;}
+.icon75-quiz:hover    { background-position: -425px -340px;}
+
+
+
+
+
 
 /*.................. icon repository 32 x 32 px......................*/
 
