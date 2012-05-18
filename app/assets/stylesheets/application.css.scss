@@ -555,37 +555,27 @@ form.example input.file.hidden {
 [class^="iconx-"]:last-child,   [class*=" iconx-"]:last-child {
   *margin-left: 0;
 }
-.iconx-default {
-  background-position: 0  -42px;
-}
-.iconx-pdf {
-  background-position: -126px 0;
-}
-.iconx-word {
-  background-position: -168px 0;
-}
-.iconx-ppt {
-  background-position: -210px 0;
-}
-.iconx-excel {
-  background-position: -252px 0;
-}
-.iconx-audio {
-  background-position: -294px -42px;
-}
-.iconx-picture {
-  background-position: 0px -126px;
-}
-.iconx-video {
-  background-position: -42px -210px;
-}
+.iconx-default { background-position: 0  -42px;  }
+.iconx-pdf     { background-position: -126px -42px;  }
+.iconx-word    { background-position: -168px -42px;  }
+.iconx-ppt     { background-position: -210px -42px;  }
+.iconx-excel   { background-position: -252px -42px; }
+.iconx-audio   { background-position: -294px -42px; }
+.iconx-picture { background-position: 0px -126px; }
+.iconx-video   { background-position: 0px -210px; }
+.iconx-flash   { background-position: -168px -210px; }
+.iconx-quiz    { background-position: -210px -210px; }
 
-.iconx-flash {
-  background-position: -168px -210px;
-}
-.iconx-quiz {
-  background-position: -210px -210px;
-}
+.iconx-default:hover { background-position: 0  0px;  }
+.iconx-pdf:hover     { background-position: -126px 0;  }
+.iconx-word:hover    { background-position: -168px 0;  }
+.iconx-ppt:hover     { background-position: -210px 0;  }
+.iconx-excel:hover   { background-position: -252px 0; }
+.iconx-audio:hover   { background-position: -294px 0px; }
+.iconx-picture:hover { background-position: 0px -84px; }
+.iconx-video:hover   { background-position: 0px -168px; }
+.iconx-flash:hover   { background-position: -168px -168px; }
+.iconx-quiz:hover    { background-position: -210px -168px; }
 
 .title_sentences {
   margin-top: 5px;
