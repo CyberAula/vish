@@ -18,7 +18,7 @@ es:
     new: "Añadir recurso"
     screencast: "Screencast de VISH"    
   excursion:
-    one: "excurcsión"
+    one: "excursión"
     other: "excursiones"
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"
