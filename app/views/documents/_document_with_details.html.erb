@@ -2,7 +2,7 @@
   <div class="span2 pagination-centered link_white">
     <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
   </div>
-  <div class=" link_white">
+  <div class="span10 link_white">
     <h4><%= link_to truncate_name(document.title, :length => 40), document %></h4>
     <h5><%=document.visit_count.to_s%> views</h5>
   </div>
