@@ -14,7 +14,8 @@ en:
     check_message: "I have read and accept the "
     check_message_1: "conditions of use"
   document:
-    new: "Add resource"
+    new: "Add resource" 
+    screencast: "VISH's screencast"    
   excursion:
     one: "excursion"
     other: "excursions"

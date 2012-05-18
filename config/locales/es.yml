@@ -15,6 +15,7 @@ es:
     check_message_1: "condiciones de uso"
   document:
     new: "Añadir recurso"
+    screencast: "Screencast de VISH"    
   excursion:
     one: "excurcsión"
     other: "excursiones"
