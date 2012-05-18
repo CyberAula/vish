@@ -14,18 +14,16 @@
     <div class="error" id="too_short_error" <%#= 'style=display:block;' if too_short_query? %>><%#= t('search.at_least') %></div>
 
     <div class="search tabbable">
-      <div  class="search tabbable">
-        <ul class="nav nav-tabs" id="tab">
-          <li class="<%= 'active' if params[:type].blank? %>">
-            <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
-          </li>
-          <% SocialStream::Search.keys(:extended).each do |key| %>
-            <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
-          <% end %>
-        </ul>
-        <div class="tab-content row">
-          <%= render :partial => 'extended_content' %>
-        </div>
+      <ul class="nav nav-tabs" id="tab">
+        <li class="<%= 'active' if params[:type].blank? %>">
+          <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
+        </li>
+        <% SocialStream::Search.keys(:extended).each do |key| %>
+          <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
+        <% end %>
+      </ul>
+      <div class="tab-content row">
+        <%= render :partial => 'extended_content' %>
       </div>
     </div>
 
