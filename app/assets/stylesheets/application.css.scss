@@ -333,13 +333,10 @@ form.file_upload {
 
 /****************** WALL - ACTIVITIES *********************/
 
-.leftinline{float:left; display:inline;margin-left: 10px;}
-.rightinline{float:right; display:inline;margin-right: 10px;}
 #wall{	text-align:center;}
 #wall-input {background-color: #E6E6E6; padding: 10px 0px 0px 0px; }
 .row-fluid-100 { width: 100%; *zoom: 1;}
 .row-fluid-90 { width: 90%; *zoom: 1;}
-.row-fluid-80 { width: 80%; *zoom: 1;}
 .margin-excursion{ margin:0 0 18px 5px !important; }
 .margin-thumbnail { margin-right:20px  !important; }
 .padding-margin-clear{margin:0px; padding: 9px 0px 1px 0px !important;}
@@ -809,7 +806,7 @@ li{
 .iconfile32-file32_white {background-image: url("iconfile32.png");}
 
 .iconfile32-file32_file { background-position: 0 0;}
-.iconfile32-file32_add:hover { background-position: -42px 0;}
+.iconfile32-file32_add { background-position: -42px 0;}
 .iconfile32-file32_remove { background-position: -84px 0;}
 .iconfile32-file32_delete { background-position: -126px 0;}
 .iconfile32-file32_ok { background-position: -168px 0;}
@@ -821,7 +818,7 @@ li{
 /*hover*/
 
 .iconfile32-32_file:hover { background-position: 0 -42px;}
-.iconfile32-file32_add { background-position: -42px -42px;}
+.iconfile32-file32_add:hover { background-position: -42px -42px;}
 .iconfile32-file32_remove:hover { background-position: -84px -42px;}
 .iconfile32-file32_delete:hover { background-position: -126px -42px;}
 .iconfile32-file32_ok:hover { background-position: -168px -42px;}
