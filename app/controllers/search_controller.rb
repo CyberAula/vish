@@ -45,7 +45,7 @@ class SearchController < ApplicationController
                                          :key  => params[:type])
 
     if mode.to_s.eql? "quick"
-      result = Kaminari.paginate_array(result).page(1).per(7)
+      result = Kaminari.paginate_array(result).page(1).per(4)
     else
       result = Kaminari.paginate_array(result).page(params[:page]).per(RESULTS_SEARCH_PER_PAGE)
     end
