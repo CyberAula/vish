@@ -7,10 +7,7 @@
       <div class="caption">
         <h4><span class="size16"><%= link_to truncate_name(subject.name, :length => 40), subject %></span></h4>
         <h5 class="blue-opacity"><span class="size13"><%=t "#{subject.class.name.underscore}.one"  %></span></h5>
-        <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=subject.follower_count%></span></h5>
-        <div class="follwrs-ing">
-          <div class="follwrs upfoll"><%=subject.followers.count  %>  <%= t('follow.followers') %></div>
-        </div>
+        <div class="send_messag size10 red-2 upfoll"><%=contact_to(subject) %></div>
       </div>
     </li>
   </ul>
