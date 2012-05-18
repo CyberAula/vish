@@ -63,7 +63,10 @@
         </div>
       </div>
       -->
-      <%= render :partial => "contacts/suggestions" %>
+
+      <% if user_signed_in? %>
+        <%= render :partial => "contacts/suggestions" %>
+      <% end %>
     </div>
 
   </div>
