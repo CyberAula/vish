@@ -6,8 +6,7 @@ class MakeExcursionThumbnailAString < ActiveRecord::Migration
     add_column :excursions, :thumbnail_url, :string, :default => '/assets/logos/original/excursion-00.png'
 
     Excursion.all.each do |e|
-      e.thumbnail_url!="/assets/logos/original/excursion-%{sprintf '%.2i', e.read_attribute(:thumbnail_index)}.png"
-      e.save
+      e.update_column(:thumbnail_url, "/assets/logos/original/excursion-%{sprintf '%.2i', e.read_attribute(:thumbnail_index)}.png")
     end
 
     ActivityObject.record_timestamps = true
