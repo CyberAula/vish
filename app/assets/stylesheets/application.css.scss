@@ -38,6 +38,7 @@
 #search-frontpage{margin-left:200px;}
 
 /************* FRONTPAGE *******/
+
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
@@ -73,8 +74,13 @@
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
-.boxy_white{background-color: #FFFFFF;
-  border: 0px solid #FFFFFF; }
+.boxy_white{
+  background-color: #FFFFFF;
+  border: 0px solid #FFFFFF;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
 .clearfloat{clear: both;display: block}
 .bold{font-weight: bold; }
 /*************** SIZE CLASSES **************/
@@ -128,13 +134,44 @@
 .following-button{color: #FF005D; opacity:0.6; margin:4px 10px; border: 0 none; height: auto; width: auto; font-size: 13px;}
 
 /*************** menu messages ***************/
-
+#menuv {
+  margin-right: 10px;
+  margin-left: 0px  !important;
+  border: none;
+  border-width: 1px 1px 0 1px;
+  width: auto;
+  margin-left: none;
+  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  background: #FFFFFF;
+}
+#menuv ul, li {
+  list-style-type: none;
+}
+ #menuv ul {
+ padding: 0;
+}
+ #menuv li {
+   margin-left: 0px  !important;
+}
+#menuv a {
+  margin-left: 0px  !important;
+  margin-top: 8px;
+  text-decoration: none;
+  color: #3366FF;
+  display: block;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+#menuv a:hover {
+  background: #F9F9F9;
+  color: #919191;
+  font-size: 13px;
+ }
 /*************** AVATARS ***************/
 form.file_upload {
   background: none repeat scroll 0 0 #e6e6e6 !important; ;
   border: 1px solid #FF005D !important;
 }
-
 /************* SEARCH_BAR *************/
 
 .box-result{ padding-top: 10px; width: 300px; height: 105px; margin-right: 30px !important; margin-left: 30px !important;}
@@ -315,6 +352,8 @@ form.file_upload {
 
 /*************** MARGINS DEFAULT *********/
 .margin-negative{margin-left: -4px;}
+.leftinline{float:left; display:inline;margin-left: 10px;}
+.rightinline{float:right; display:inline;margin-right: 10px;}
 
 
 
@@ -340,8 +379,7 @@ form.file_upload {
 .margin-excursion{ margin:0 0 18px 5px !important; }
 .margin-thumbnail { margin-right:20px  !important; }
 .padding-margin-clear{margin:0px; padding: 9px 0px 1px 0px !important;}
-.subactivity{margin-left: 20px;  font-size: 12px;  padding: 0px 5px 0px 5px;  background: none;
-  display:block;float:left; }
+.subactivity{ /*margin-left: 5px;  font-size: 12px;  padding: 0px 5px 0px 5px;  display:block;float:left; */}
 
 
 /*******************INPUT FILE***********************/
@@ -420,6 +458,7 @@ form.example input.file.hidden {
 #new_document {}
 #form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;}
 
+/*
 #home_wall div.root_activity {width: 100%}
 #home_wall li.activity_content {width:83%}
 #home wall li.subactivity {width:100%}
@@ -427,8 +466,7 @@ form.example input.file.hidden {
 
 #profile_wall div.root_activity {width: 100%}
 #profile_wall li.activity_content {width: 83%}
-
-
+*/
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {display: inline-block;}
@@ -474,6 +512,26 @@ form.example input.file.hidden {
 #following{margin-left: 40px;}
 
 /**************CONVERSATIONS *************/
+
+.block .form_tag_message{
+  border: 1px solid #BDC7D8;
+  color: #1F4A75;
+  padding: 5px;
+  width: 98%;
+}
+.messages_margin{margin-top: 10px ;margin-right: 10px; width: 50px;
+}
+.boxy_white_message {
+  background-color: #f5f5f5;
+  margin-top: 18px;
+  height: auto;
+  width: auto;
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  }
+.margin-message{
+ margin-left: 0px !important;
+}
 .date{color:#FF005D;opacity: 0.4;}
 .messages{ margin-left: 15px; }
 .message{; padding: 10px 0px 5px 5px;  margin-top: 15px;}
@@ -732,7 +790,7 @@ li{
 .iconnav-notification_followers {background-position:-64px -26px;}
 .iconnav-notification_notification {background-position:-96px -26px;}
 /* hover*/
-.iconnav-home:hover {background-position:0 px -52px;}
+.iconnav-home:hover {background-position:0px -52px;}
 .iconnav-message:hover {background-position:-32px -52px;}
 .iconnav-followers:hover {background-position:-64px -52px;}
 .iconnav-notification:hover {background-position:-96px -52px;}
@@ -1349,7 +1407,9 @@ display: inline-block;
   background-color: #FFFFFF;
   margin-top: 10px;
   padding: 10px 10px 10px 10px;
-  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
 }
 
 .filter_options{

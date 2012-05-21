@@ -9,7 +9,7 @@
     </ul>
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
-        <%= render :partial => "excursions/filter"%>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true} %>
         <div id="excursions" class="row height-tabs-home">
           <% my_network_excursions = current_subject_excursions %>
           <% if my_network_excursions.size == 0 %>
@@ -32,7 +32,7 @@
       </div>
       -->
       <div id="ex-3" class="tab-pane">
-        <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-more" } %>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => false, :filter_id => "excursion-filter-more" } %>
         <div id="more"  class="row height-tabs-home">
           <% for excursion in current_subject_excursions(:scope => :more) %>
             <%= render :partial => "excursions/home",
@@ -55,7 +55,7 @@
     </ul>
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
-        <%= render :partial => "common_documents/home_filter"%>
+        <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => true } %>
         <div id="repository" class="repositories row height-tabs-home">
           <% my_network_documents = current_subject_documents(:limit => 8) %>
           <% if my_network_documents.size == 0 %>
@@ -70,7 +70,7 @@
         </div>
       </div>
       <div id="repo-3" class="tab-pane">
-        <%= render :partial => "common_documents/home_filter", :locals => { :filter_id => "document-filter-more" } %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => false, :filter_id => "document-filter-more" } %>
         <div id="repository-more" class="repositories row height-tabs-home">
           <% for document in current_subject_documents({:scope => :more, :limit => 8}) %>
             <%= render :partial => "common_documents/home",
