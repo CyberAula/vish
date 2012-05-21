@@ -6,9 +6,11 @@
     <div id="ex-1" class="tab-pane active">
       <p id="notice"><%= notice %></p>
       <h4><%= @excursion.description %></h4>
-      <div class="pull-right space_right">
-        <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
-      </div>
+      <% unless @excursion.author.blank? %>
+        <div class="pull-right space_right">
+          <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
+        </div>
+      <% end %>
       <div class="space_center"></div>
       <div class="space_center"></div>
       <div class="pagination-centered">
