@@ -1610,7 +1610,7 @@ display: inline-block;
 
 /********** Current logo change **********/
 .logo_grid {
-  width: 142px;
+  /*width: 142px;*/
   height: 119px;
   overflow: hidden;
   position: relative;
@@ -1618,13 +1618,13 @@ display: inline-block;
 .logo_grid img {
   position: absolute;
   top: 0;
-  left: 23px;
+  /*left: 23px;*/
   border: 0;
 }
 
 .logo_caption {
   top: 119px;
-  left: 23px;
+  /*left: 23px;*/
   float: left;
   position: absolute;
   background: $secondary-color;
@@ -1639,8 +1639,9 @@ display: inline-block;
 
 .logo_full .logo_caption {
   top: 119px;
-  left: 23px;
- padding: 0px;
+  /*left: 123px; */
+  padding: 0px;
+  text-align: center;
 }
 
 /******************************** search tabs ************/
