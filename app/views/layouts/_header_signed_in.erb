@@ -9,11 +9,13 @@
         <div class="btn-group">
           <%= link_to(raw("<i class='icon-user'></i> ") +  truncate_name(current_subject.name, :length => 15), current_subject, :class => "name-menu") %>
           <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
-          <%= link_to(raw("<i class='iconnav-message'></i> ") +
+          <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> ") +
+
+
                         raw(" (<span id='header_inbox_count'>") + current_subject.unread_messages_count.to_s +
                         raw("</span>)"), messages_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-followers'></i> "), followings_path, :class => "btn") %>
-          <%= link_to(raw("<i class='iconnav-notification'></i> ") + "(" +
+          <%= link_to(raw("<i class='iconnav-notification" + (current_subject.mailbox.notifications.not_trashed.unread.count > 0 ? " iconnav-notification_notification" : "") + "'></i> ") + "(" +
                         current_subject.mailbox.notifications.not_trashed.unread.count.to_s + ")",
                       notifications_path, :class => "btn") %>
         </div>
