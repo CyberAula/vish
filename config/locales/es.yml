@@ -4,6 +4,8 @@ es:
       user:
         email: "Email"
   activity:
+    empty: "Tu timeline está vacío"
+    new_user: "Eres un nuevo usuario de VISH. Desde aquí podrás compartir y enviar mensajes, enlaces y archivos como imágenes, fotos, videos, etc"    
     timeline: "timeline"
   activity_action:
     follow: "+ Seguir"
@@ -23,6 +25,7 @@ es:
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"
     created: "creadas"
+    how: "Como hacer una excursión"    
     title:
       other: "Excursiones"
     actions:
