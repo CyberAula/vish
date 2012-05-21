@@ -25,7 +25,7 @@ es:
     upcomming: "upcomming"
     confirm_delete: "¿Borrar excursión?"
     created: "creadas"
-    how: "Como hacer una excursión"    
+    how: "Como crear una excursión"    
     title:
       other: "Excursiones"
     actions:
