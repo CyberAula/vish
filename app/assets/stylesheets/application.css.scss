@@ -159,7 +159,7 @@
   text-decoration: none;
   color: #3366FF;
   display: block;
-  padding: 3px 6px;
+  padding: 3px 6px ;
   font-size: 12px;
 }
 #menuv a:hover {
@@ -521,7 +521,7 @@ form.example input.file.hidden {
 }
 .messages_margin{margin-top: 10px ;margin-right: 10px; width: 50px;
 }
-.boxy_white_message {
+.boxy_gray_message {
   background-color: #f5f5f5;
   margin-top: 18px;
   height: auto;
@@ -529,6 +529,14 @@ form.example input.file.hidden {
   padding: 10px 10px 10px 10px;
   border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   }
+.boxy_white_message {
+  background-color: #f5f5f5;
+
+  height: auto;
+  width: auto;
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+}
 .margin-message{
  margin-left: 0px !important;
 }
