@@ -7,7 +7,7 @@
       <p id="notice"><%= notice %></p>
       <h4><%= @excursion.description %></h4>
       <div class="pull-right space_right">
-        <h4><%#=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
+        <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
       </div>
       <div class="space_center"></div>
       <div class="space_center"></div>
@@ -39,13 +39,8 @@
       </ul>
       <div class="tab-content">
         <div id="comment-1" class="tab-pane active">
-
-
-            <%#= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity } %>
-            <%#= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
-
-
-
+          <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity } %>
+          <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
         </div>
       </div>
     </div>
