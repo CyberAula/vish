@@ -73,8 +73,13 @@
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
-.boxy_white{background-color: #FFFFFF;
-  border: 0px solid #FFFFFF; }
+.boxy_white{
+  background-color: #FFFFFF;
+  border: 0px solid #FFFFFF;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
 .clearfloat{clear: both;display: block}
 .bold{font-weight: bold; }
 /*************** SIZE CLASSES **************/
@@ -128,13 +133,43 @@
 .following-button{color: #FF005D; opacity:0.6; margin:4px 10px; border: 0 none; height: auto; width: auto; font-size: 13px;}
 
 /*************** menu messages ***************/
-
+#menuv {
+  margin-left: 0px  !important;
+  border: none;
+  border-width: 1px 1px 0 1px;
+  width: auto;
+  margin-left: none;
+  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  background: #FFFFFF;
+}
+#menuv ul, li {
+  list-style-type: none;
+}
+ #menuv ul {
+ padding: 0;
+}
+ #menuv li {
+   margin-left: 0px  !important;
+}
+#menuv a {
+  margin-left: 0px  !important;
+  margin-top: 8px;
+  text-decoration: none;
+  color: #3366FF;
+  display: block;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+#menuv a:hover {
+  background: #F9F9F9;
+  color: #919191;
+  font-size: 13px;
+ }
 /*************** AVATARS ***************/
 form.file_upload {
   background: none repeat scroll 0 0 #e6e6e6 !important; ;
   border: 1px solid #FF005D !important;
 }
-
 /************* SEARCH_BAR *************/
 
 .box-result{ padding-top: 10px; width: 300px; height: 105px; margin-right: 30px !important; margin-left: 30px !important;}
@@ -340,8 +375,7 @@ form.file_upload {
 .margin-excursion{ margin:0 0 18px 5px !important; }
 .margin-thumbnail { margin-right:20px  !important; }
 .padding-margin-clear{margin:0px; padding: 9px 0px 1px 0px !important;}
-.subactivity{margin-left: 20px;  font-size: 12px;  padding: 0px 5px 0px 5px;  background: none;
-  display:block;float:left; }
+.subactivity{ /*margin-left: 5px;  font-size: 12px;  padding: 0px 5px 0px 5px;  display:block;float:left; */}
 
 
 /*******************INPUT FILE***********************/
@@ -420,6 +454,7 @@ form.example input.file.hidden {
 #new_document {}
 #form #document_file{  opacity: 0; -moz-transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s; width: 200px;}
 
+/*
 #home_wall div.root_activity {width: 100%}
 #home_wall li.activity_content {width:83%}
 #home wall li.subactivity {width:100%}
@@ -427,8 +462,7 @@ form.example input.file.hidden {
 
 #profile_wall div.root_activity {width: 100%}
 #profile_wall li.activity_content {width: 83%}
-
-
+*/
 
 /***************** ACTIVITY OPTIONS ***/
 .activity_options {display: inline-block;}
@@ -1349,7 +1383,9 @@ display: inline-block;
   background-color: #FFFFFF;
   margin-top: 10px;
   padding: 10px 10px 10px 10px;
-  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
 }
 
 .filter_options{
