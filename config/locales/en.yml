@@ -66,6 +66,7 @@ en:
   profile:
     tags:
       default: "VisHub, virtual, excursion"
+  project: "Global Excursion"      
   recommended: "recommended"
   repository:
     one: "repository"
@@ -84,6 +85,7 @@ en:
     other: "users"
   username: "username"
   vish:
+    about: "About VISH"    
     sentence1: "Create your account with VISH"
     sentence2: "VISH is a social science platform"
   views:
