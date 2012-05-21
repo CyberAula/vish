@@ -4,8 +4,8 @@
     <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>"  name="filter">
     <div class="btn-group">
       <%if profile_subject_is_current?%>
-        <button class="btn" data-toggle="collapse" data-target="#home_wall">
-          <%= '+'+t('options.add') %>
+        <button class="blue-btn" data-toggle="collapse" data-target="#home_wall">
+          <%= t('resource.upload') %>
         </button>
       <% end %>
     </div>

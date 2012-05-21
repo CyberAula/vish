@@ -11,8 +11,7 @@
   <% if user_signed_in? %>
     <section name="wall" id="home_wall" class="span6 collapse">
       <%= render :partial => "activities/addresource",
-                 :locals => { :activities => current_subject.wall(:home).page(params[:page]),
-                              :owner => current_subject} %>
+                 :locals => { :owner => current_subject} %>
     </section>
   <% end %>
   </div>
