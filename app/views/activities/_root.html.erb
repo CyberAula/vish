@@ -5,7 +5,7 @@
                             :alt => activity.sender_subject.name),
                   activity.sender_subject, :class=> "container" %>
     </li>
-    <li class="span10">
+    <li class="span10 activity_content">
       <div class="row-fluid">
         <span class="span11"><%= activity.title(self)%></span>
         <% if activity.delete_object_by?(current_subject) %>
