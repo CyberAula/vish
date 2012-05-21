@@ -128,13 +128,43 @@
 .following-button{color: #FF005D; opacity:0.6; margin:4px 10px; border: 0 none; height: auto; width: auto; font-size: 13px;}
 
 /*************** menu messages ***************/
-
+#menuv {
+  margin-left: 0px  !important;
+  border: none;
+  border-width: 1px 1px 0 1px;
+  width: auto;
+  margin-left: none;
+  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  background: #FFFFFF;
+}
+#menuv ul, li {
+  list-style-type: none;
+}
+ #menuv ul {
+ padding: 0;
+}
+ #menuv li {
+   margin-left: 0px  !important;
+}
+#menuv a {
+  margin-left: 0px  !important;
+  margin-top: 8px;
+  text-decoration: none;
+  color: #3366FF;
+  display: block;
+  padding: 3px 6px;
+  font-size: 12px;
+}
+#menuv a:hover {
+  background: #F9F9F9;
+  color: #919191;
+  font-size: 13px;
+ }
 /*************** AVATARS ***************/
 form.file_upload {
   background: none repeat scroll 0 0 #e6e6e6 !important; ;
   border: 1px solid #FF005D !important;
 }
-
 /************* SEARCH_BAR *************/
 
 .box-result{ padding-top: 10px; width: 300px; height: 105px; margin-right: 30px !important; margin-left: 30px !important;}
