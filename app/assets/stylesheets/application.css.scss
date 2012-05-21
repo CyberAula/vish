@@ -38,6 +38,7 @@
 #search-frontpage{margin-left:200px;}
 
 /************* FRONTPAGE *******/
+
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
@@ -129,6 +130,7 @@
 
 /*************** menu messages ***************/
 #menuv {
+  margin-right: 10px;
   margin-left: 0px  !important;
   border: none;
   border-width: 1px 1px 0 1px;
@@ -345,6 +347,8 @@ form.file_upload {
 
 /*************** MARGINS DEFAULT *********/
 .margin-negative{margin-left: -4px;}
+.leftinline{float:left; display:inline;margin-left: 10px;}
+.rightinline{float:right; display:inline;margin-right: 10px;}
 
 
 
@@ -504,6 +508,26 @@ form.example input.file.hidden {
 #following{margin-left: 40px;}
 
 /**************CONVERSATIONS *************/
+
+.block .form_tag_message{
+  border: 1px solid #BDC7D8;
+  color: #1F4A75;
+  padding: 5px;
+  width: 98%;
+}
+.messages_margin{margin-top: 10px ;margin-right: 10px; width: 50px;
+}
+.boxy_white_message {
+  background-color: #f5f5f5;
+  margin-top: 18px;
+  height: auto;
+  width: auto;
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  }
+.margin-message{
+ margin-left: 0px !important;
+}
 .date{color:#FF005D;opacity: 0.4;}
 .messages{ margin-left: 15px; }
 .message{; padding: 10px 0px 5px 5px;  margin-top: 15px;}
