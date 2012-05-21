@@ -14,13 +14,15 @@
     </div>
     -->
   </div>
-  <div class="pull-right">
-    <div id="resource-filter-btn" class="btn-group">
-        <button class="blue-btn" >
-          <%= t('resource.upload') %>
-        </button>
+  <% if show_upload %>
+    <div class="pull-right">
+      <div id="resource-filter-btn" class="btn-group">
+          <button class="blue-btn" >
+            <%= t('resource.upload') %>
+          </button>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 <%= content_for :javascript do %>
   $('#resource-filter-btn').click(function(){
