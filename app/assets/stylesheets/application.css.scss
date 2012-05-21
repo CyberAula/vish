@@ -74,8 +74,13 @@
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
-.boxy_white{background-color: #FFFFFF;
-  border: 0px solid #FFFFFF; }
+.boxy_white{
+  background-color: #FFFFFF;
+  border: 0px solid #FFFFFF;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
 .clearfloat{clear: both;display: block}
 .bold{font-weight: bold; }
 /*************** SIZE CLASSES **************/
@@ -374,8 +379,7 @@ form.file_upload {
 .margin-excursion{ margin:0 0 18px 5px !important; }
 .margin-thumbnail { margin-right:20px  !important; }
 .padding-margin-clear{margin:0px; padding: 9px 0px 1px 0px !important;}
-.subactivity{margin-left: 20px;  font-size: 12px;  padding: 0px 5px 0px 5px;  background: none;
-  display:block;float:left; }
+.subactivity{ /*margin-left: 5px;  font-size: 12px;  padding: 0px 5px 0px 5px;  display:block;float:left; */}
 
 
 /*******************INPUT FILE***********************/
@@ -786,7 +790,7 @@ li{
 .iconnav-notification_followers {background-position:-64px -26px;}
 .iconnav-notification_notification {background-position:-96px -26px;}
 /* hover*/
-.iconnav-home:hover {background-position:0 px -52px;}
+.iconnav-home:hover {background-position:0px -52px;}
 .iconnav-message:hover {background-position:-32px -52px;}
 .iconnav-followers:hover {background-position:-64px -52px;}
 .iconnav-notification:hover {background-position:-96px -52px;}
@@ -1403,7 +1407,9 @@ display: inline-block;
   background-color: #FFFFFF;
   margin-top: 10px;
   padding: 10px 10px 10px 10px;
-  border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
 }
 
 .filter_options{
