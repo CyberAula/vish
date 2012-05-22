@@ -9,12 +9,17 @@
       <% end %>
     </div>
 
+    <!--
     <div id="activity_form_select" class="inline-block type_share">
-      <% SocialStream.activity_forms.each do |element| %>
-        <div id="select_<%= element %>" class="activity_form_selector inline-block">
-          <%=t('options.add') + ' '+ t("#{ element }.form.title").downcase %>
+      <%# SocialStream.activity_forms.each do |element| %>
+        <div id="select_<%#= element %>" class="activity_form_selector inline-block">
+          <%#=t('options.add') + ' '+ t("#{ element }.form.title").downcase %>
         </div>
-      <% end %>
+      <%# end %>
+    </div>
+    -->
+    <div id="activity_form_select" class="inline-block type_share">
+      <button id="attachFileButton" class="btn"><i class='icontool16-tool16_add'></i></button>
     </div>
 
     <div id="activities_share_btn" class="inline">
@@ -26,5 +31,6 @@
 <%= javascript_tag do %>
   $(function(){
   SocialStream.Wall.init();
+  Vish.Wall.init();
   });
 <% end %>

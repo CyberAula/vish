@@ -6,6 +6,7 @@ pt:
   conditions:
     other: "condições"
   document:
+    input: "Descrição do recurso"
     new: "Adicione recurso"
   excursion:
     one: "excursão"

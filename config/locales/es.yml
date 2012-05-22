@@ -17,6 +17,7 @@ es:
     check_message: "He leido y acepto las "
     check_message_1: "condiciones de uso"
   document:
+    input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"    
   excursion:

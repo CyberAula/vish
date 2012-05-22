@@ -1,0 +1,17 @@
+<%= f.text_field :description, :id => "input_activities_document", :size => 85, :class => "row-fluid-90" %>
+
+<%= f.file_field :file %>
+
+<div id="new_document_title_wrapper">
+<%= f.label :title %> <%= f.text_field :title %>
+</div>
+
+<%= javascript_tag do %>
+  $(function() {
+    $('#new_document_title_wrapper').hide();
+    $('#document_file').change(function(){
+      $('#new_document_title_wrapper').show();
+      $("#document_title").val($(this).val().replace(/C:\\fakepath\\/i, ''));
+    });
+  });
+<% end %>
