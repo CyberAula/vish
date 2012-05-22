@@ -40,10 +40,12 @@
         <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
       </ul>
       <div class="tab-content">
-        <div id="comment-1" class="tab-pane active">
-          <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity } %>
-          <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
-        </div>
+        <% unless @excursion.post_activity.blank? %>
+          <div id="comment-1" class="tab-pane active">
+            <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity } %>
+            <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
+          </div>
+        <% end %>
       </div>
     </div>
 
