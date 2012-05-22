@@ -8,10 +8,7 @@
   <%= render :partial => "common_documents/headers" %>
   <div id="documents_grid">
   <% if user_signed_in? %>
-    <section name="wall" id="home_wall" class="span6 collapse">
-      <%= render :partial => "activities/addresource",
-                 :locals => { :owner => current_subject} %>
-    </section>
+    <%= render :partial => "common_documents/new_file_only_form" %>
   <% end %>
   </div>
 <% end %>

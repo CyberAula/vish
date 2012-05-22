@@ -3,8 +3,8 @@
     <% filter_id ||= "document-filter" %>
     <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>"  name="filter">
     <%if show_upload and profile_subject_is_current?%>
-      <div class="btn-group">
-        <button class="blue-btn" data-toggle="collapse" data-target="#home_wall">
+      <div id="resource-filter-btn" class="btn-group">
+        <button class="blue-btn" >
           <%= t('resource.upload') %>
         </button>
       </div>
