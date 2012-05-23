@@ -381,6 +381,7 @@ form.file_upload {
   min-height: 40px;
   vertical-align: top;
   width: 55%;
+  padding-left: 10px;
 }
 .excursion_tools > .quiz{
   width: 10%;
@@ -1382,17 +1383,21 @@ margin-left: 20px;
 
 
 /******************************** repository ************/
+.margin-up{
+ margin-top:-5px;
+}
+
 .menu_resources{
   background-color: #f7f7f7;
   display: inline-block;
   width:auto;
-  height: 16px;
   border:1px solid  ;
   border-color: #e6e6e6;
-  padding: 3px 3px 3px 3px;
-  border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+  padding: 4px 6px 4px 6px;
+  border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
   margin-right: 15px;
 }
+
 
 .menu_resources:hover{
   background-color: #ffffff;
@@ -1401,9 +1406,6 @@ margin-left: 20px;
   height: 16px;
   border:1px solid  ;
   border-color: #e6e6e6;
-  padding: 4px 4px 4px 4px;
-  border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
-  margin-right: 15px;
 }
 
 
