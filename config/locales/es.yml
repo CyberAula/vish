@@ -12,10 +12,14 @@ es:
     unfollow: "Dejar de seguir"
   all: "todos"
   author: "autor"
+  comment:
+    msg: "para publicar un comentario"
   conditions:
     other: "condiciones"
     check_message: "He leido y acepto las "
     check_message_1: "condiciones de uso"
+  disyuntion:
+    or: "or"
   document:
     input: "Descripción del recurso"
     new: "Añadir recurso"
@@ -37,6 +41,7 @@ es:
     my: "mis excursiones"
     favorites: "excursiones favoritas"
     others: "otras excursiones "
+    session_start: "inicia session"
   filter: "filtrar"
   follow:
     followers: "seguidores"

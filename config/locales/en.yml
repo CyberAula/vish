@@ -12,6 +12,8 @@ en:
     unfollow: "UnFollow"
   all: "all"
   author: "author"
+  comment:
+    msg:"to pubish a comment"
   conditions:
     other: "conditions"
     check_message: "I have read and accept the "
@@ -19,7 +21,9 @@ en:
   document:
     input: "Add a file description here"
     new: "Add resource" 
-    screencast: "VISH's screencast"    
+    screencast: "VISH's screencast"
+  disyuntion:
+    or: "or"
   excursion:
     one: "excursion"
     other: "excursions"
@@ -37,6 +41,7 @@ en:
     my: "my excursion"
     favorites: "favorites excursions"
     others: "others excursions"
+    session_start: "start session"
   filter: "filter"
   follow:
     followers: "followers"

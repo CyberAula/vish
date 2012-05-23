@@ -3142,15 +3142,14 @@ input[type="submit"].btn.btn-mini {
   font-size: 15pt;
   font-family:'DsignesLight';
   src: url(fonts/DsignesLight.otf);
-  /*padding: 8px 35px 8px 14px;*/
-  margin-bottom: 18px;
+  padding: 8px 5px 8px 5px;
   /* color: #c09853;*/  
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   /*background-color: #fcf8e3;
   border: 1px solid #fbeed5;  */
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
 }
 
 .alert-heading {

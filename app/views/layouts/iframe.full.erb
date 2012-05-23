@@ -3,8 +3,8 @@
     <head>
 
     <title>ViSH Excursion</title>
-	
-    <style>  
+
+    <style>
        .slides > article:not(.fill)::before {
          content: '';
          display: block;
@@ -14,24 +14,24 @@
          left: 0;
          bottom: 0;
        }
-    </style> 
+    </style>
 
   	  <meta name="viewport" content="width=900,height=740">
   	  <meta name="apple-mobile-web-app-capable" content="yes">
 
 	  <%=javascript_include_tag "vishEditor" %>
 	  <%= stylesheet_link_tag "vish_editor" %>
-	 	  
+
 	<!--[if gte IE 8]>
 		<%= stylesheet_link_tag "pack1explorer9" %>
 	<![endif]-->
-	
+
 	<script>var walkme_load_in_iframe = true;</script>
-  	<script language='javascript' type='text/javascript' src='http://cdn.walkme.com/users/2161/walkme_2161.js'></script>	
+  	<script language='javascript' type='text/javascript' src='http://cdn.walkme.com/users/2161/walkme_2161.js'></script>
   </head>
- 
+
    <body onload="start()" style="display: none" class="loaded">
  	 <%= yield %>
    </body>
-   
+
 </html>
