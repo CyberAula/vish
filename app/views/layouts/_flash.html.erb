@@ -1,5 +1,12 @@
 <% flash.each do |name, msg| %>
-  <div class="<%= name %> alert alert-success pagination-right">
+	<% case name %>
+	<% when :notice %>
+  		<div class="<%= name %> alert alert-success offset8 span4 pagination-centered">
+  	<% when :alert %>
+  		<div class="<%= name %> alert alert-error offset8 span4 pagination-centered">
+ 	<% else :info %>
+  		<div class="<%= name %> alert alert-info offset8 span4 pagination-centered">
+ 	<% end %>
     <%= msg %>
   </div>
 <% end %>
