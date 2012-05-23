@@ -44,8 +44,7 @@
           <% if user_signed_in? %>
             <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
           <%else%>
-            <%= link_to(t'session.session_start',new_user_registration_path) + " " + t('disyuntion.or') + " "
-                + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.msg') %>
+            <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disyuntion.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.msg') %>
           <%end%>
          <%end%>
         </div>
