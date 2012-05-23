@@ -8,7 +8,7 @@
       <h4><%= @excursion.description %></h4>
       <% unless @excursion.author.blank? %>
         <div class="pull-right space_right">
-          <h4><%#=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
+          <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
         </div>
       <% end %>
       <div class="space_center"></div>
