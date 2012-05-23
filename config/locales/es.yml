@@ -21,6 +21,7 @@ es:
   disyuntion:
     or: "or"
   document:
+    how: "Cómo compartir un archivo"    
     input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"    
