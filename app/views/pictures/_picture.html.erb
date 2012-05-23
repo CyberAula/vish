@@ -10,7 +10,7 @@
 
   <div class="span9">
         <div class="title"> 
-  	  <%= picture.title %>
+  	  <%= truncate_name(picture.title, :length => 35) %>
         </div>
 
 	<%= simple_format auto_link(picture.description) %>
