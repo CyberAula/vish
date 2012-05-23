@@ -1361,7 +1361,7 @@ margin-left: 20px;
   height: 16px;
   border:1px solid  ;
   border-color: #e6e6e6;
-  padding: 5px 5px 5px 5px;
+  padding: 3px 3px 3px 3px;
   border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
   margin-right: 15px;
 }
@@ -1373,7 +1373,7 @@ margin-left: 20px;
   height: 16px;
   border:1px solid  ;
   border-color: #e6e6e6;
-  padding: 5px 5px 5px 5px;
+  padding: 4px 4px 4px 4px;
   border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
   margin-right: 15px;
 }
@@ -1564,11 +1564,14 @@ display: inline-block;
   display: none;
 }
 .attachment_tile_tipsy_menu.tipsy .tipsy-inner {
-  background-color: $text-over-main;
+  background-color: #e0e0e0;
   border-radius: 0px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  padding:0px;
+  padding:5px;
+  width: 100px;
+  height: auto;
+
 }
 .attachment_tile_tipsy_menu.tipsy .actions {
 
@@ -1576,9 +1579,8 @@ display: inline-block;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action {
   float:left;
-  border-bottom: 0px;
-  padding:5px;
-  width: 80px;
+
+  width: 90px;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action:hover {
 
@@ -1588,7 +1590,7 @@ display: inline-block;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action img {
   vertical-align: middle;
-  padding-bottom: 3px;
+
   padding-right: 3px;
   padding-left: 3px;
   display: inline-block;
