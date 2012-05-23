@@ -9,11 +9,10 @@
       <h4 class="link_gray size15 "><%= link_to truncate_name(document.title, :length => 20), document %></h4>
         <div class="rw-words rw-words-1">
           <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(document.author.name, :length => 18), document.author.subject)%></h5></span>
-          <span><h5 class="green inline"><%=document.visit_count.to_s%> </h5><h5 class="gray inline">views</h5>   </span>
-          <span><h5 class="green inline">tags</h5></span>
-          <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(document.author.name, :length => 18), document.author.subject)%></h5></span>
-          <span><h5 class="green inline"><%=document.visit_count.to_s%> </h5><h5 class="gray inline">views</h5>   </span>
-          <span><h5 class="green inline">tags</h5></span>
+          <div class="clearfloat"></div>
+
+          <span><h5 class="green inline margin-home-resource-view"><%=document.visit_count.to_s%> </h5><h5 class="gray inline">views</h5>   </span>
+
         </div>
     </div>
   </ul>
