@@ -22,36 +22,8 @@
         location.href = "#excursion_iframe";
       <%end%>
 
-      <% if user_signed_in? %>
+      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion } %>
 
-         <div class="excursion_tools">
-          <div class="span7 options ">
-            <div> clone </div>
-            <div> mail </div>
-            <div> embebed </div>
-            <div> span </div>
-            <div> share </div>
-            <% if user_signed_in? and @excursion.post_activity.edit_object_by?(current_subject) %>
-              <%= link_to 'Edit', edit_excursion_path(@excursion) %>
-            <%end%>
-            <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
-              <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',                                                                                                                                                 :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-            <% end %>
-
-          </div>
-          <div class="span1 quiz ">
-              quiz icon
-          </div>
-           <div class="span2 quiz ">
-             <h5><span class="green"><%=@excursion.visit_count.to_s%></span> <%=t('follow.views')%></h5>
-           </div>
-
-          <div class="span1 stairs_excursion  pagination-right">
-            <%= image_tag('rate-excursion.png', :width => '100') %>
-          </div>
-         </div>
-
-      <%end%>
       </div>
     </div>
 </div>

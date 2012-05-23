@@ -93,6 +93,7 @@
 .size15{font-size: 15px;}
 .size16{font-size: 16px;}
 .size18{font-size: 18px;}
+.size24{font-size: 24px;}
 .size30{font-size: 30px;}
 .size40{font-size: 40px;}
 .size60{font-size: 60px;}
@@ -366,12 +367,36 @@ form.file_upload {
 }
 
 .excursion_tools{
+  padding: 10px 0px 0px 10px;
   background-color: #EDEDED !important;
   border-top: 1px solid #D8D8D9;
   border-radius: 0px 0px 20px 20px !important;
   margin: auto;
   width: 900px;
+  min-height: 40px;
+  vertical-align: middle;
  }
+
+.excursion_tools > .options{
+  min-height: 40px;
+  vertical-align: top;
+  width: 55%;
+}
+.excursion_tools > .quiz{
+  width: 10%;
+  min-height: 40px;
+  vertical-align: top;
+}
+.excursion_tools > .views{
+  width: 15%;
+  min-height: 40px;
+  vertical-align: bottom;
+}
+.excursion_tools > .stairs_excursion{
+  width: 15%;
+  min-height: 40px;
+  vertical-align: bottom;
+}
 
 
 /***********excursion BOX ******/
