@@ -3166,21 +3166,21 @@ input[type="submit"].btn.btn-mini {
 
 .alert-success {
   color: #56ad58;
-  /*background-color: #dff0d8;
-  border-color: #d6e9c6; */
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
 }
 
 .alert-danger,
 .alert-error {
   color: #cc514f;
-  /*background-color: #f2dede;
-  border-color: #eed3d7;  */
+  background-color: #f2dede;
+  border-color: #eed3d7;
 }
 
 .alert-info {
   color: #48a3d1;
-  /*background-color: #d9edf7;
-  border-color: #bce8f1;  */
+  background-color: #d9edf7;
+  border-color: #bce8f1;
 }
 
 .alert-block {
