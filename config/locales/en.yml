@@ -19,7 +19,7 @@ en:
     check_message: "I have read and accept the "
     check_message_1: "conditions of use"
   document:
-    how: "How to share a file"    
+    how: "How to share a resource"    
     input: "Add a file description here"
     new: "Add resource" 
     screencast: "VISH's screencast"
