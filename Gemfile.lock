@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 39c089393771b82b2b5de623df5ae148856b1fed
+  revision: 9465c5b400b00bdbe7e15fd895d971c14a1cee82
   branch: stable
   specs:
     vish_editor (0.1.1)
@@ -191,7 +191,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.5.0)
+    net-ssh (2.4.0)
       jruby-pageant (>= 1.0.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
@@ -339,6 +339,7 @@ DEPENDENCIES
   god
   jquery-rails
   mysql2
+  net-ssh (= 2.4.0)
   pg
   rails (~> 3.2.0)
   rspec-rails (= 2.9.0)
