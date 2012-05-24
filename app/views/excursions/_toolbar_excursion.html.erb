@@ -11,11 +11,13 @@
     <div class="menu_resources">
       <%= link_to  t('excursion.actions.share'),edit_excursion_path(excursion), :class => :action  %>
     </div>
-    <!--
+
     <div class="menu_resources">
       <%#= link_to  raw("<i class='icontool16-tool16_arrow_3'></i> "), edit_excursion_path(excursion) , :class => :action  %>
+      <button class="mashme-button mini" url="http://www.example.com/" title="Example room" target="iframe">
+      </button>
     </div>
-    -->
+
 
     <% if user_signed_in? and excursion.post_activity.edit_object_by?(current_subject) %>
       <%= link_to raw("<i class='icontool16-tool16_edit'></i> ") + t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
