@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: f6c529f875fe6096960f5e04fda1e55ec008b42c
+  revision: d41a87b3b114f87717e4e248fce96b95bfe55c0e
   branch: vish
   specs:
     social_stream-base (0.20.2)
@@ -191,7 +191,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.4.0)
+    net-ssh (2.5.0)
       jruby-pageant (>= 1.0.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
