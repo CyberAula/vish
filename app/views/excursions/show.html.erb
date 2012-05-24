@@ -20,11 +20,6 @@
         <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
       </div>
 
-
-      <% content_for :javascript do %>
-        location.href = "#excursion_iframe";
-      <%end%>
-
       <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion } %>
 
       </div>
