@@ -59,7 +59,6 @@
       <div id="repo-1" class="tab-pane active">
         <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => true } %>
         <div class="space_center"></div>
-        <%= render :partial => "common_documents/new_file_only_form" %>
         <div id="repository" class="repositories row height-tabs-home">
           <% my_network_documents = current_subject_documents(:limit => 8) %>
           <% if my_network_documents.size == 0 %>

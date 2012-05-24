@@ -7,9 +7,6 @@
 <% unless params[:no_layout].present? %>
   <%= render :partial => "common_documents/headers" %>
   <div id="documents_grid">
-  <% if user_signed_in? %>
-    <%= render :partial => "common_documents/new_file_only_form" %>
-  <% end %>
   </div>
 <% end %>
 

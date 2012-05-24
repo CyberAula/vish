@@ -18,19 +18,14 @@
     <%= javascript_tag do %>
       $(function() {
         $('#new_file_only_info_wrapper').hide();
-        $('#new_file_only').hide();
         $("#new_file_only_document_description").watermark(I18n.t('document.input'), "#666");
-
-        $('#resource-filter-btn').click(function(){
-          $(this).hide();
-          $('#new_file_only').show();
-          $('#new_file_only_document_file').trigger('click');
-        });
 
         $('#new_file_only_document_file').change(function(){
           $('#new_file_only_info_wrapper').show();
           $("#new_file_only_document_title").val($(this).val().replace(/C:\\fakepath\\/i, ''));
         });
+
+        $('#new_file_only_document_file').trigger('click');
       });
     <% end %>
   <% end %>
