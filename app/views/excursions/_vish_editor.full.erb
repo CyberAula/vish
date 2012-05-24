@@ -195,7 +195,7 @@
         			<div class="box2">
         				<div class="previewimgbox">
             				<img class="documentblank" src="/assets/document_black.png"/>
-            				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement('tab_pic_from_url_content')">Add Content</button>
+            				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement()">Add Content</button>
             			</div>
         			</div>
 				</div>      
@@ -219,7 +219,7 @@
               <div class="box2">
           				<div class="previewimgbox">
               				<img class="documentblank" src="/assets/document_black.png"/>
-              				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement('tab_pic_upload_content')">Add Content</button>
+              				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement()">Add Content</button>
                   </div>
               </div>
         </div>            
@@ -272,12 +272,12 @@
                 	<p class="textfancy"> embed flash </p><br>
                     <img class="image_add_url" src="/assets/url_img.png"/>
 				  	<input id="flash_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('flash_embed_code')"> Upload</button>
+					<button type="button" class="button buttonfancy previewButton">Preview</button>
                 </div>
                 <div class="box2">
                 				<div class="previewimgbox">
                     				<img class="documentblank" src="/assets/document_black.png"/>
-                    				<button type="button" class="button buttonaddfancy">Add Content</button>
+                    				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
                     			</div>
                 			</div>
 				</div>
@@ -328,18 +328,19 @@
 				    </ul>
 				</div>
 				<div id='tab_video_from_url_content' class="fancy_tab_content">
-	        	<div id="box1" class="box1 box1fancy1">
-	             <p class="textfancy">add video url</p><br>
-	             <img id="image_add_url" class="image_add_url" src="/assets/url_img.png"/>
-	    	       <input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
-			        <button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('video_url')">Upload</button>
-	          </div>
-	          <div id="box2" class="box2">
-	        		<div id="previewimgbox" class="previewimgbox">
-	            	<button type="button" class="button buttonaddfancy">Add Content</button>
-	            </div>
-	          </div>
-       </div>
+                	<div id="box1" class="box1 box1fancy1">
+                    	<p class="textfancy"> add video url </p><br>
+                    	<img id="image_add_url" class="image_add_url" src="/assets/url_img.png"/>
+				    	<input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
+						<button type="button" class="button buttonfancy previewButton">Preview</button>
+                  	</div>
+                    <div id="box2" class="box2">
+                		<div id="previewimgbox" class="previewimgbox">
+                    	<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Video.drawPreviewElement()">Add Content</button>
+                        </div>
+                    </div>
+                </div>
+
 				<div id='tab_video_repo_content' class="fancy_tab_content">		
             <div class="box1 box1fancy2">	
 	            <img src="/assets/repositoryimg.png" class="imagelogotab">	  
