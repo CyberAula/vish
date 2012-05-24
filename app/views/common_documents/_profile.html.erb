@@ -6,7 +6,7 @@
       <li class="span_profile">
         <div class="caption elipsis">
           <h4 class="link_gray"><%= link_to truncate_name(document.title, :length => 15), document, :class => "size14" %></h4>
-          <h5> <span class="green"><%=document.visit_count.to_s%></span> views</h5>
+          <h5> <span class="green"><%=document.visit_count.to_s%></span> <%=t('follow.views')%></h5>
         </div>
       </li>
     </ul>

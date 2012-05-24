@@ -37,6 +37,8 @@ es:
       edit: "Editar"
       show: "Visualizar"
       delete: "Borrar"
+      download: "descargar"
+      share: "compartir"
     network: "excursiones de mi red"
     my: "mis excursiones"
     favorites: "excursiones favoritas"

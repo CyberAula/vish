@@ -16,15 +16,14 @@
       <div class="pagination-centered">
         <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
       </div>
-      <% if user_signed_in? and @excursion.post_activity.edit_object_by?(current_subject) %>
-        <%= link_to 'Edit', edit_excursion_path(@excursion) %>
-      <%end%>
-      <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
-        <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',                                                                                                                                                 :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-      <% end %>
+
+
       <% content_for :javascript do %>
         location.href = "#excursion_iframe";
       <%end%>
+
+      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion } %>
+
       </div>
     </div>
 </div>
@@ -45,8 +44,7 @@
           <% if user_signed_in? %>
             <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
           <%else%>
-            <%= link_to(t'session.session_start',new_user_registration_path) + " " + t('disyuntion.or') + " "
-                + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.msg') %>
+            <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disyuntion.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.msg') %>
           <%end%>
          <%end%>
         </div>

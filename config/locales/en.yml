@@ -32,11 +32,13 @@ en:
     created: "created"
     how: "How to create an excursion"    
     title:
-      other: "Excursions"
+      other: "excursions"
     actions:
-      edit: "Edit"
-      show: "Show"
-      delete: "Delete"
+      edit: "edit"
+      show: "show"
+      delete: "delete"
+      download: "download"
+      share: "share"
     network: "network excursions"
     my: "my excursion"
     favorites: "favorites excursions"

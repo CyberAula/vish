@@ -1,0 +1,38 @@
+<div class="excursion_tools">
+  <div class="options inline-block">
+    <div class="menu_resources">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ")+'clone', :class => :action), edit_excursion_path(excursion)  %>
+    </div>                                                                                                                                         <div class="menu_resources">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> "), :class => :action), edit_excursion_path(excursion) %>
+    </div>
+    <div class="menu_resources">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_spam'></i> "), :class => :action), edit_excursion_path(excursion) %>
+    </div>
+    <div class="menu_resources">
+      <%= link_to  t('excursion.actions.share'),edit_excursion_path(excursion), :class => :action  %>
+    </div>
+    <!--
+    <div class="menu_resources">
+      <%#= link_to  raw("<i class='icontool16-tool16_arrow_3'></i> "), edit_excursion_path(excursion) , :class => :action  %>
+    </div>
+    -->
+
+    <% if user_signed_in? and excursion.post_activity.edit_object_by?(current_subject) %>
+      <%= link_to raw("<i class='icontool16-tool16_edit'></i> ") + t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
+    <%end%>
+    <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
+      <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), excursion.post_activity.direct_object , :confirm => t('confirm_delete',                                                                                                                                                 :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+    <% end %>
+
+  </div>
+  <div class="quiz inline-block pagination-centered">
+    <div class="iconx-quiz"></div>
+  </div>
+  <div class="views size24 inline-block pagination-centered">
+    <span class="green"><%=excursion.visit_count.to_s%></span> <%=t('follow.views')%>
+  </div>
+
+  <div class="stairs_excursion  pagination-right inline-block ">
+    <%= image_tag('rate-excursion.png', :width => '100px') %>
+  </div>
+</div>

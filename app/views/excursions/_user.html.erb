@@ -7,7 +7,7 @@
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-me" } %>
-        <div id="excursions" class="row" >
+        <div id="excursions" class="row height-tabs-home" >
           <% for excursion in subject_excursions(@user, {:scope => :me}) %>
             <%= render :partial => "excursions/home",
                        :locals => { :excursion => excursion} %>
