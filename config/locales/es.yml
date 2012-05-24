@@ -73,7 +73,7 @@ es:
     one: "organizador"
     other: "organizadores"
   password: "clave"
-  post: "Enviar"
+  post:
     confirm_delete: "¿Borrar texto?"
     form:
       title: "Texto"
