@@ -39,7 +39,7 @@ en:
       delete: "delete"
       download: "download"
       share: "share"
-    network: "network excursions"
+    network: "my network excursions"
     my: "my excursion"
     favorites: "favorites excursions"
     others: "others excursions"
@@ -84,6 +84,7 @@ en:
       one: "resource"
       other: "resources"
     upload: "upload"
+    network: "my network resources"
   site:
     name: "Virtual Science Hub"
   today: "Today"

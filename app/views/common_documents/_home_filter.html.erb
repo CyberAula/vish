@@ -1,29 +1,37 @@
 <div class="row btn-toolbar">
   <div class="span3">
     <% filter_id ||= "document-filter" %>
-    <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter">
+    <div class="inline-block"><input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="filter"  name="filter"></div>
+
     <!--
     <div class="btn-group ">
       <a href="#" data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><%=link_to(  t('excursion.network'), '/' ) %></li>
-        <li><%=link_to(  t('excursion.my'), '/' ) %></li>
-        <li><%=link_to(  t('excursion.favorites'), '/' ) %></li>
-        <li><%=link_to(  t('excursion.others'), '/' ) %></li>
+        <li><%#=link_to(  t('excursion.network'), '/' ) %></li>
+        <li><%#=link_to(  t('excursion.my'), '/' ) %></li>
+        <li><%#=link_to(  t('excursion.favorites'), '/' ) %></li>
+        <li><%#=link_to(  t('excursion.others'), '/' ) %></li>
       </ul>
     </div>
     -->
   </div>
   <% if show_upload %>
+
     <div class="pull-right">
+      <div class="menu_resources">
+        <%= link_to  raw("<i class='icontool16-tool16_arrow_7'></i> ") + t('resource.upload'),new_document_path, :class => :action  %>
+      </div>
+      <!--
       <div id="resource-filter-btn" class="btn-group">
           <button class="blue-btn" >
-            <%= t('resource.upload') %>
+            <%#= t('resource.upload') %>
           </button>
       </div>
+      -->
     </div>
+
   <% end %>
 </div>
-<%= content_for :javascript do %>
-  if(!Vish.Filter.loaded) Vish.Filter.init();
-<% end %>
+<%#= content_for :javascript do %>
+ <!-- if(!Vish.Filter.loaded) Vish.Filter.init();-->
+<%# end %>

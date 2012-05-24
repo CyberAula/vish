@@ -74,6 +74,8 @@
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
+.moveup{margin-top:-5px; }
+.onbottom{vertical-align: bottom; min-height: 30px;}
 .boxy_white{
   background-color: #FFFFFF;
   border: 0px solid #FFFFFF;
@@ -102,9 +104,9 @@
 
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
-.link_gray a:hover{color: #000;  text-decoration: none;}
+.link_gray a:hover{color: #3366FF;  text-decoration: none;}
 .link_pink a{color: #FF005D; text-decoration:none;}
-.link_pink a:hover {color: #000; text-decoration:none;}
+.link_pink a:hover {color: #3366FF; text-decoration:none;}
 .link_white a{color: #ffffff; text-decoration:none;}
 .link_white a:hover {color: #919191; text-decoration:none;}
 

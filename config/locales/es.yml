@@ -84,6 +84,7 @@ es:
       one: "recursos"
       other: "recursos"
     upload: "subir"
+    network: "recursos de mi red"
   site:
     name: "Virtual Science Hub"
   today: "Hoy"

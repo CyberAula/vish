@@ -2560,13 +2560,14 @@ button.close {
   *margin-left: .3em;
   font-size: 13px;
   *line-height: 24px;
-  color: #FFFFFF;
+  color: #3366FF;
+  background-color: #fff;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background-color: #3366FF;
-  border: none;
-  *border: 0;
+  background-color: #fff;
+  border: 1px solid #3366FF;
+
   /*border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); */
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
