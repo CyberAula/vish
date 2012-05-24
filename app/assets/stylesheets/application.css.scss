@@ -554,6 +554,9 @@ form.example input.file.hidden {
 .pre-message {margin-left: 40px}
 
 
+.conversations .unread .notification {
+  background-color: $main-color;
+}
 /**************suggestions css *************/
 
 .users_btn_follow input[type="submit"]  {
