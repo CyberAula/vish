@@ -20,7 +20,7 @@ n:
     check_message_1: "conditions of use"
   document:
     input: "Add a file description here"
-    new: "Add resource" 
+    new: "Add resource"
     screencast: "VISH's screencast"
   disyuntion:
     or: "or"
@@ -30,7 +30,7 @@ n:
     upcomming: "upcomming"
     confirm_delete: "Delete excursion?"
     created: "created"
-    how: "How to create an excursion"    
+    how: "How to create an excursion"
     title:
       other: "excursions"
     actions:
@@ -42,7 +42,7 @@ n:
       bookmark: "bookmark"
     network: "my network excursions"
     my: "my excursion"
-    favorites: "favorites excursions"
+    favorites: "favorites"
     others: "others excursions"
     session_start: "start session"
   filter: "filter"
