@@ -73,6 +73,15 @@ es:
     other: "organizadores"
   password: "clave"
   post: "Enviar"
+    confirm_delete: "¿Borrar texto?"
+    form:
+      title: "Texto"
+    input: "¿Qué quieres compartir?"
+    name: "publicación"
+    one: "una publicación"
+    title:
+      one: "Texto"
+      other: "Textos"
   profile:
     tags:
       default: "VisHub, virtual, excursion"

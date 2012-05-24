@@ -73,6 +73,15 @@ en:
     other: "organizers"
   password: "password"
   post: "Post"
+    confirm_delete: "Delete post?"
+    form:
+      title: "Post"
+    input: "What are you doing?"
+    name: "post"
+    one: "a post"
+    title:
+      one: "Post"
+      other: "Posts"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
