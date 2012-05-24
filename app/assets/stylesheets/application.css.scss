@@ -677,8 +677,8 @@ form.example input.file.hidden {
 .iconx-picture { background-position: 0px -126px; }
 .iconx-video   { background-position: 0px -210px; }
 .iconx-flash   { background-position: -168px -210px; }
-.iconx-quiz    { background-position: -210px -210px; }
-.iconx-vc { background-position: -378px -126px; }
+.iconx-quiz    { background-position: -210px -168px; }
+.iconx-vc      { background-position: -378px -84px;  }
 
 .iconx-default:hover { background-position: 0  0px;  }
 .iconx-pdf:hover     { background-position: -126px 0;  }
@@ -689,8 +689,8 @@ form.example input.file.hidden {
 .iconx-picture:hover { background-position: 0px -84px; }
 .iconx-video:hover   { background-position: 0px -168px; }
 .iconx-flash:hover   { background-position: -168px -168px; }
-.iconx-quiz:hover    { background-position: -210px -168px; }
-.iconx-vc:hover { background-position: -378px -84px; }
+.iconx-quiz:hover    { background-position: -210px -210px;  }
+.iconx-vc:hover      { background-position: -378px -126px; }
 
 .title_sentences {
   margin-top: 5px;

@@ -49,7 +49,7 @@ es:
   follow:
     followers: "seguidores"
     followings: "siguiendo"
-    views: "vistos"
+    views: "visitas"
   help: "ayuda"
   lang:
     title: "idioma"
