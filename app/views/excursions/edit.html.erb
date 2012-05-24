@@ -8,5 +8,11 @@
    <% end %>
 
 <% content_for :javascript do %>
-		location.href = "#excursion_iframe";
+        function setFavicon() {
+		  var link = $('link[type="image/vnd.microsoft.icon"]').remove().attr("href");
+		  $('<link href="'+ link +'" rel="shortcut icon" type="image/x-icon" />').appendTo('head');
+		}
+        
+        location.href = "#excursion_iframe";
+        setFavicon();
 <%end%>
