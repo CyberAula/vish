@@ -1,4 +1,4 @@
-en:
+n:
   activerecord:
     attributes:
       user:
@@ -72,6 +72,7 @@ en:
     one: "organizer"
     other: "organizers"
   password: "password"
+  post: "Post"
   profile:
     tags:
       default: "VisHub, virtual, excursion"

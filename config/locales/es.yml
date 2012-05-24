@@ -72,6 +72,7 @@ es:
     one: "organizador"
     other: "organizadores"
   password: "clave"
+  post: "Enviar"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
