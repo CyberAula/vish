@@ -21,7 +21,7 @@ en:
   document:
     how: "How to share a resource"    
     input: "Add a file description here"
-    new: "Add resource" 
+    new: "Add resource"
     screencast: "VISH's screencast"
   disyuntion:
     or: "or"
@@ -31,16 +31,19 @@ en:
     upcomming: "upcomming"
     confirm_delete: "Delete excursion?"
     created: "created"
-    how: "How to create an excursion"    
+    how: "How to create an excursion"
     title:
-      other: "Excursions"
+      other: "excursions"
     actions:
-      edit: "Edit"
-      show: "Show"
-      delete: "Delete"
-    network: "network excursions"
+      edit: "edit"
+      show: "show"
+      delete: "delete"
+      download: "download"
+      share: "share"
+      bookmark: "bookmark"
+    network: "my network excursions"
     my: "my excursion"
-    favorites: "favorites excursions"
+    favorites: "favorites"
     others: "others excursions"
     session_start: "start session"
   filter: "filter"
@@ -70,6 +73,16 @@ en:
     one: "organizer"
     other: "organizers"
   password: "password"
+  post: "Post"
+    confirm_delete: "Delete post?"
+    form:
+      title: "Post"
+    input: "What are you doing?"
+    name: "post"
+    one: "a post"
+    title:
+      one: "Post"
+      other: "Posts"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
@@ -83,8 +96,11 @@ en:
       one: "resource"
       other: "resources"
     upload: "upload"
+    network: "my network resources"
   site:
     name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "Delete SWF?"
   today: "Today"
   top10: "Top 10"
   user:

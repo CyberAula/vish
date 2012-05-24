@@ -1,3 +1,5 @@
+<% javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
+
 <div class="excursions tabbable span12">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#ex-1"><%= @excursion.title %></a></li>
@@ -5,26 +7,26 @@
   <div class="tab-content">
     <div id="ex-1" class="tab-pane active">
       <p id="notice"><%= notice %></p>
+      <% unless @excursion.author.blank? %>
+        <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
+      <% else %>
+        <h4><%=t('anonymous')%></h4>
+      <% end%>
+      <div class="space_center"></div>
       <h4><%= @excursion.description %></h4>
+      <div class="space_center"></div>
       <% unless @excursion.author.blank? %>
         <div class="pull-right space_right">
-          <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
+
         </div>
       <% end %>
-      <div class="space_center"></div>
       <div class="space_center"></div>
       <div class="pagination-centered">
         <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
       </div>
-      <% if user_signed_in? and @excursion.post_activity.edit_object_by?(current_subject) %>
-        <%= link_to 'Edit', edit_excursion_path(@excursion) %>
-      <%end%>
-      <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
-        <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',                                                                                                                                                 :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-      <% end %>
-      <% content_for :javascript do %>
-        location.href = "#excursion_iframe";
-      <%end%>
+
+      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion } %>
+
       </div>
     </div>
 </div>
@@ -45,8 +47,7 @@
           <% if user_signed_in? %>
             <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity } %>
           <%else%>
-            <%= link_to(t'session.session_start',new_user_registration_path) + " " + t('disyuntion.or') + " "
-                + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.msg') %>
+            <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disyuntion.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.msg') %>
           <%end%>
          <%end%>
         </div>

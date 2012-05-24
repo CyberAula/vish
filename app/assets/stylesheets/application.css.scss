@@ -74,6 +74,8 @@
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
+.moveup{margin-top:-5px; }
+.onbottom{vertical-align: bottom; min-height: 30px;}
 .boxy_white{
   background-color: #FFFFFF;
   border: 0px solid #FFFFFF;
@@ -93,6 +95,7 @@
 .size15{font-size: 15px;}
 .size16{font-size: 16px;}
 .size18{font-size: 18px;}
+.size24{font-size: 24px;}
 .size30{font-size: 30px;}
 .size40{font-size: 40px;}
 .size60{font-size: 60px;}
@@ -101,9 +104,9 @@
 
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
-.link_gray a:hover{color: #000;  text-decoration: none;}
+.link_gray a:hover{color: #3366FF;  text-decoration: none;}
 .link_pink a{color: #FF005D; text-decoration:none;}
-.link_pink a:hover {color: #000; text-decoration:none;}
+.link_pink a:hover {color: #3366FF; text-decoration:none;}
 .link_white a{color: #ffffff; text-decoration:none;}
 .link_white a:hover {color: #919191; text-decoration:none;}
 
@@ -359,6 +362,43 @@ form.file_upload {
 .margin-home-resource-view{margin-left: 42px}
 
 
+/********************excursion page ************/
+.slides {
+  background-color: #EDEDED !important;
+  border-radius: 20px 0px 0px 20px !important;
+}
+
+.excursion_tools{
+  padding: 10px 0px 0px 10px;
+  background-color: #EDEDED !important;
+  border-top: 1px solid #D8D8D9;
+  border-radius: 0px 0px 20px 20px !important;
+  margin: auto;
+  width: 900px;
+  min-height: 40px;
+  vertical-align: middle;
+ }
+
+.excursion_tools > .options{
+  min-height: 40px;
+  vertical-align: top;
+  width: 60%;
+  padding-left: 10px;
+}
+
+.excursion_tools > .views{
+  width: 35%;
+  min-height: 40px;
+  vertical-align: bottom;
+}
+/*
+.excursion_tools > .stairs_excursion{
+  width: 15%;
+  min-height: 40px;
+  vertical-align: bottom;
+}
+*/
+
 
 /***********excursion BOX ******/
 .container {position:relative;}
@@ -545,7 +585,7 @@ form.example input.file.hidden {
 }
 .date{color:#FF005D;opacity: 0.4;}
 .messages{ margin-left: 15px; }
-.message{; padding: 10px 0px 5px 5px;  margin-top: 15px;}
+.message{; padding: 10px 0px 5px 5px;}
 .sender_photo {width: auto;}
 .message_name {font-size: 12pt;margin-top: 6px;}
 .tittle_mens {margin-bottom:4px;margin-left: 30px}
@@ -553,6 +593,10 @@ form.example input.file.hidden {
 .to-r {float: right; width: 15px; height: 15px;}
 .pre-message {margin-left: 40px}
 
+
+.conversations .unread .notification {
+  background-color: $main-color;
+}
 /**************suggestions css *************/
 
 .users_btn_follow input[type="submit"]  {
@@ -632,8 +676,9 @@ form.example input.file.hidden {
 .iconx-audio   { background-position: -294px -42px; }
 .iconx-picture { background-position: 0px -126px; }
 .iconx-video   { background-position: 0px -210px; }
-.iconx-flash   { background-position: -168px -210px; }
-.iconx-quiz    { background-position: -210px -210px; }
+.iconx-swf     { background-position: -168px -210px; }
+.iconx-quiz    { background-position: -210px -168px; }
+.iconx-vc      { background-position: -378px -84px;  }
 
 .iconx-default:hover { background-position: 0  0px;  }
 .iconx-pdf:hover     { background-position: -126px 0;  }
@@ -643,8 +688,9 @@ form.example input.file.hidden {
 .iconx-audio:hover   { background-position: -294px 0px; }
 .iconx-picture:hover { background-position: 0px -84px; }
 .iconx-video:hover   { background-position: 0px -168px; }
-.iconx-flash:hover   { background-position: -168px -168px; }
-.iconx-quiz:hover    { background-position: -210px -168px; }
+.iconx-swf:hover     { background-position: -168px -168px; }
+.iconx-quiz:hover    { background-position: -210px -210px;  }
+.iconx-vc:hover      { background-position: -378px -126px; }
 
 .title_sentences {
   margin-top: 5px;
@@ -913,7 +959,7 @@ li{
 .icon75-audio   { background-position: -595px -90px; }
 .icon75-picture { background-position: 0px -260px;   }
 .icon75-video   { background-position: 0px -430px; }
-.icon75-flash   { background-position: -340px -425px;}
+.icon75-swf     { background-position: -340px -425px;}
 .icon75-quiz    { background-position: -425px -425px;}
 
 
@@ -926,7 +972,7 @@ li{
 .icon75-audio:hover   { background-position: -595px -5px; }
 .icon75-picture:hover { background-position: 0px -175px;   }
 .icon75-video:hover   { background-position: 0px -345px; }
-.icon75-flash:hover   { background-position: -340px -340px;}
+.icon75-swf:hover     { background-position: -340px -340px;}
 .icon75-quiz:hover    { background-position: -425px -340px;}
 
 
@@ -1343,17 +1389,21 @@ margin-left: 20px;
 
 
 /******************************** repository ************/
+.margin-up{
+ margin-top:-5px;
+}
+
 .menu_resources{
   background-color: #f7f7f7;
   display: inline-block;
   width:auto;
-  height: 16px;
   border:1px solid  ;
   border-color: #e6e6e6;
-  padding: 5px 5px 5px 5px;
-  border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
+  padding: 4px 6px 4px 6px;
+  border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
   margin-right: 15px;
 }
+
 
 .menu_resources:hover{
   background-color: #ffffff;
@@ -1362,9 +1412,6 @@ margin-left: 20px;
   height: 16px;
   border:1px solid  ;
   border-color: #e6e6e6;
-  padding: 5px 5px 5px 5px;
-  border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px;
-  margin-right: 15px;
 }
 
 
@@ -1553,11 +1600,14 @@ display: inline-block;
   display: none;
 }
 .attachment_tile_tipsy_menu.tipsy .tipsy-inner {
-  background-color: $text-over-main;
+  background-color: #e0e0e0;
   border-radius: 0px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  padding:0px;
+  padding:5px;
+  width: 100px;
+  height: auto;
+
 }
 .attachment_tile_tipsy_menu.tipsy .actions {
 
@@ -1565,9 +1615,8 @@ display: inline-block;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action {
   float:left;
-  border-bottom: 0px;
-  padding:5px;
-  width: 80px;
+
+  width: 90px;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action:hover {
 
@@ -1577,7 +1626,7 @@ display: inline-block;
 }
 .attachment_tile_tipsy_menu.tipsy .actions .action img {
   vertical-align: middle;
-  padding-bottom: 3px;
+
   padding-right: 3px;
   padding-left: 3px;
   display: inline-block;
@@ -1701,4 +1750,107 @@ text-decoration: none;
 .more{
 float: right;
 margin-right: 15px;
+}
+
+
+
+.mashme-button {
+  background: none repeat scroll 0 0 transparent;
+  border: medium none;
+  cursor: pointer;
+  font-family: Helvetica,Arial,sans-serif;
+  font-weight: bold;
+  margin: 0;
+  outline: 0 none;
+  overflow: visible;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+.mashme-button span {
+  background: url("mashme_button.png") repeat scroll left center transparent;
+  float: left;
+  font-size: 13px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 0 0 40px;
+}
+.mashme-button div {
+  background: url("mashme_button.png") repeat scroll right center transparent;
+  float: left;
+  height: 30px;
+  width: 10px;
+}
+.mashme-button div {
+  background-position: right 0;
+}
+.mashme-button:hover div {
+  background-position: right -32px;
+}
+.mashme-button:active div {
+  background-position: right -64px;
+}
+.mashme-button span {
+  background-position: 0 0;
+  color: #DDDDDD;
+}
+.mashme-button:hover span {
+  background-position: 0 -32px;
+  color: #FFFFFF;
+}
+.mashme-button:active span {
+  background-position: 0 -64px;
+  color: #FFFFFF;
+}
+.mashme-button.mini span {
+  background: url("mashme_button_mini.png") repeat scroll left center transparent;
+  float: left;
+  font-size: 13px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  width: 32px;
+}
+.mashme-button.mini span {
+  background-position: 0 0;
+  color: #DDDDDD;
+}
+.mashme-button.mini:hover span {
+  background-position: 0 -32px;
+  color: #FFFFFF;
+}
+.mashme-button.mini:active span {
+  background-position: 0 -64px;
+  color: #FFFFFF;
+}
+.mashme-darkener {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 3000;
+}
+.mashme-darkener iframe {
+  background: url("ani_logo.gif") no-repeat scroll center center rgba(0, 0, 0, 0.7);
+  border: 3px solid #000000;
+  border-radius: 3px 3px 3px 3px;
+  height: 100%;
+  width: 100%;
+}
+.mashme-darkener div {
+  padding: 19px 22px;
+}
+.mashme-darkener .close-iframe {
+  background: url("http://www.mashme.tv/static/images/icons/close.png") repeat scroll 0 0 transparent;
+  cursor: pointer;
+  height: 32px;
+  padding: 0;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 32px;
 }

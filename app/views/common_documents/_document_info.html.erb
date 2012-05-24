@@ -1,66 +1,69 @@
-<div class="">
-	<ul class="nav nav-tabs">	
-		<li class="active">
-    		<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_amplify'></i> ") + t('document.actions.details'), :class => :action, :id => :document_details_action), "javascript:SocialStream.Repository.toggleDocumentMenu('details');" %>
-  		</li>
-  		<% if document.post_activity.edit_object_by?(current_subject) %>
-  	    	<li>
-      			<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), "javascript:SocialStream.Repository.toggleDocumentMenu('edit');" %>
-			</li>
-	  	<% end %>
+<div class="documents tabbable">
+	<ul class="nav nav-tabs">
+    <li class="active">
+      <a data-toggle="tab" href="#details"><%=t('document.actions.details')%></a>
+    </li>
 
+  	<% if document.post_activity.edit_object_by?(current_subject) %>
+      <li class=""><a data-toggle="tab" href="#edit"><%=t('document.actions.edit')%></a></li>
+	  <% end %>
 
-	<div align="right">
+	<div class="pagination-right margin-up">
 		<div class="menu_resources">
-		<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>    	
-  		</div>
+		  <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+  	</div>
 		<% if document.post_activity.delete_object_by?(current_subject) %>
    			<div class="menu_resources">
-   				<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
-                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+   				<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
 			</div>
 		<% end %>
-	</div>		
-	</ul>	
-</div>
-
-<div id="document_details" class="boxy_white" style="display:none;">
-  <div class="">
-    <div class="picture_icon">
-    <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+	</div>
+	</ul>
+  <div class="tab-content">
+    <div id="details" class="tab-pane active">
+      <div class="">
+        <div class="picture_icon">
+          <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+        </div>
+        <div class="info_visits">
+          <span class="green"><%=document.visit_count.to_s%></span> <%= t('follow.views') %></div>
       </div>
-    <div class="info_visits">
-    <span class="green"><%=document.visit_count.to_s%></span> views </div>
-</div>
-  <div class="info_resources">
-    <div class="details_resources">
-      <%= t('document.info.date.created_at') %>
-    </div>
-    <div class="date_resources">
-      <%= I18n.localize document.created_at, :format => :long %>
-    </div>
-  </div>
-  <div class="info_resources">
-    <div class="details_resources">
-      <%= t('document.info.date.updated_at') %>
-    </div>
-
-    <div class="date_resources">
-      <%= I18n.localize document.updated_at, :format => :long %>
-    </div>
-  </div>
-  <div class="info_resources">
-    <div class="details_resources">likes</div>
-    <div class="date_resources">  <%= document.like_count %></div>
-
-    <div id="file_size">
-      <div class="details_resources">Size</div>
-      <div class="date_resources"><%= number_to_human_size document.file_file_size %>
+      <div class="info_resources">
+        <div class="details_resources">
+          <%= t('document.info.date.created_at') %>
+        </div>
+        <div class="date_resources">
+          <%= I18n.localize document.created_at, :format => :long %>
+        </div>
       </div>
+      <div class="info_resources">
+        <div class="details_resources">
+          <%= t('document.info.date.updated_at') %>
+        </div>
 
+        <div class="date_resources">
+          <%= I18n.localize document.updated_at, :format => :long %>
+        </div>
+      </div>
+      <div class="info_resources">
+        <div class="details_resources">likes</div>
+        <div class="date_resources">  <%= document.like_count %></div>
+
+        <div id="file_size">
+          <div class="details_resources">Size</div>
+          <div class="date_resources"><%= number_to_human_size document.file_file_size %>
+          </div>
+
+        </div>
+        <br class="clearfloat"/>
+      </div>
     </div>
-    <br class="clearfloat"/>
-  </div>
-</div>
+    <% if document.post_activity.edit_object_by?(current_subject) %>
+      <div id="edit" class="tab-pane">
+        <%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
 
-<%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -7,13 +7,10 @@
 <% unless params[:no_layout].present? %>
   <%= render :partial => "common_documents/headers" %>
   <div id="documents_grid">
-  <% if user_signed_in? %>
-    <%= render :partial => "common_documents/new_file_only_form" %>
-  <% end %>
   </div>
 <% end %>
 
-<div class="row space_center"></div>
+<div class="block row space_center"></div>
 
 <% documents.each do |document| %>
   <%#=  render :partial => 'layouts/dropdown_menu_resource' %>
@@ -47,9 +44,9 @@
     </div>
 
     <div class="attachment_tile_text">
-      <%= link_to truncate_name(document.file_file_name, :length => 15),
+      <%= link_to truncate_name(document.title, :length => 15),
                   document_path(document),
-                  :alt => document.file_file_name,
+                  :alt => document.title,
                   :type => document.type,
                   :path => document_path(document) %>
     </div>
@@ -82,5 +79,5 @@
 <% end %>
 
 <% unless params[:no_layout].present? %>
-  </div>
+
 <% end %>

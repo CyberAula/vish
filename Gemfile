@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.2.0'
 
 # Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
 gem 'pg'
@@ -12,7 +12,7 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.4'
+  gem 'sass-rails', '~> 3.2.4'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.2.3'
 end
@@ -63,6 +63,7 @@ gem 'exception_notification'
 
 # Be able to pass tests
 gem 'rspec-rails', '=2.9.0'
+gem 'net-ssh', '=2.4.0'
 
 group :test do
   # Pretty printed test output
@@ -82,4 +83,3 @@ group :development do
     #gem 'ruby-debug19', :require => 'ruby-debug'
   end
 end
-

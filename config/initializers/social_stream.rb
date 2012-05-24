@@ -33,8 +33,8 @@ SocialStream.setup do |config|
   #
   # See SocialStream::Search for syntax
   # 
-  config.quick_search_models = [:excursion, :user, :post, :picture, :video, :audio, :document]
-  config.extended_search_models = [:excursion, :user, { :resource => [ :post, :comment, :picture, :video, :audio, :document ] } ]
+  config.quick_search_models = [:excursion, :user, :post, :picture, :video, :audio, :swf, :document]
+  config.extended_search_models = [:excursion, :user, { :resource => [ :post, :comment, :picture, :video, :audio, :swf, :document ] } ]
 
   # Cleditor controls. It is used in new message editor, for example
   # config.cleditor_controls = "bold italic underline strikethrough subscript superscript | size style | bullets | image link unlink"

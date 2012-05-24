@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: f6c529f875fe6096960f5e04fda1e55ec008b42c
+  revision: 630a3b3d1fe7f77c985eb1fca5189bcee71480a7
   branch: vish
   specs:
     social_stream-base (0.20.2)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 39c089393771b82b2b5de623df5ae148856b1fed
+  revision: 12cad2bef8e9a8fc5ee7f3fe26adc131755f33b8
   branch: stable
   specs:
     vish_editor (0.1.1)
@@ -339,6 +339,7 @@ DEPENDENCIES
   god
   jquery-rails
   mysql2
+  net-ssh (= 2.4.0)
   pg
   rails (~> 3.2.0)
   rspec-rails (= 2.9.0)
