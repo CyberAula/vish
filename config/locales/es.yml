@@ -73,16 +73,6 @@ es:
     one: "organizador"
     other: "organizadores"
   password: "clave"
-  post:
-    confirm_delete: "¿Borrar texto?"
-    form:
-      title: "Texto"
-    input: "¿Qué quieres compartir?"
-    name: "publicación"
-    one: "una publicación"
-    title:
-      one: "Texto"
-      other: "Textos"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
@@ -97,6 +87,7 @@ es:
       other: "recursos"
     upload: "subir"
     network: "recursos de mi red"
+  share: "Enviar"
   site:
     name: "Virtual Science Hub"
   swf:

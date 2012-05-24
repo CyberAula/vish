@@ -73,16 +73,6 @@ en:
     one: "organizer"
     other: "organizers"
   password: "password"
-  post:
-    confirm_delete: "Delete post?"
-    form:
-      title: "Post"
-    input: "What are you doing?"
-    name: "post"
-    one: "a post"
-    title:
-      one: "Post"
-      other: "Posts"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
@@ -97,6 +87,7 @@ en:
       other: "resources"
     upload: "upload"
     network: "my network resources"
+  share: "Post"
   site:
     name: "Virtual Science Hub"
   swf:
