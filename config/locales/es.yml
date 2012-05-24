@@ -39,6 +39,7 @@ es:
       delete: "Borrar"
       download: "descargar"
       share: "compartir"
+      bookmark: "marcardor"
     network: "excursiones de mi red"
     my: "mis excursiones"
     favorites: "excursiones favoritas"

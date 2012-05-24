@@ -39,6 +39,7 @@ en:
       delete: "delete"
       download: "download"
       share: "share"
+      bookmark: "bookmark"
     network: "my network excursions"
     my: "my excursion"
     favorites: "favorites excursions"

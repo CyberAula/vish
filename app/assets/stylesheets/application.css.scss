@@ -382,24 +382,22 @@ form.file_upload {
 .excursion_tools > .options{
   min-height: 40px;
   vertical-align: top;
-  width: 55%;
+  width: 60%;
   padding-left: 10px;
 }
-.excursion_tools > .quiz{
-  width: 10%;
-  min-height: 40px;
-  vertical-align: top;
-}
+
 .excursion_tools > .views{
-  width: 15%;
+  width: 35%;
   min-height: 40px;
   vertical-align: bottom;
 }
+/*
 .excursion_tools > .stairs_excursion{
   width: 15%;
   min-height: 40px;
   vertical-align: bottom;
 }
+*/
 
 
 /***********excursion BOX ******/
@@ -680,6 +678,7 @@ form.example input.file.hidden {
 .iconx-video   { background-position: 0px -210px; }
 .iconx-flash   { background-position: -168px -210px; }
 .iconx-quiz    { background-position: -210px -210px; }
+.iconx-vc { background-position: -378px -126px; }
 
 .iconx-default:hover { background-position: 0  0px;  }
 .iconx-pdf:hover     { background-position: -126px 0;  }
@@ -691,6 +690,7 @@ form.example input.file.hidden {
 .iconx-video:hover   { background-position: 0px -168px; }
 .iconx-flash:hover   { background-position: -168px -168px; }
 .iconx-quiz:hover    { background-position: -210px -168px; }
+.iconx-vc:hover { background-position: -378px -84px; }
 
 .title_sentences {
   margin-top: 5px;
