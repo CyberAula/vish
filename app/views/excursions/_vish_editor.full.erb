@@ -323,61 +323,46 @@
 				<div class="fancy_tabs">	   
 				    <ul>
 				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab">url</a></li>
-				      <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_video_upload')" id="tab_video_upload" class="fancy_tab">upload</a></li>
 				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
 				      <li><a href="#" onclick="VISH.Editor.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/youtube.png'/></a></li>
 				    </ul>
 				</div>
 				<div id='tab_video_from_url_content' class="fancy_tab_content">
-                	<div id="box1" class="box1 box1fancy1">
-                    	<p class="textfancy"> add video url </p><br>
-                    	<img id="image_add_url" class="image_add_url" src="/assets/url_img.png"/>
-				    	<input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
-						<button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('video_url')"> Upload</button>
-                  	</div>
-                    <div id="box2" class="box2">
-                		<div id="previewimgbox" class="previewimgbox">
-                    	<img id="documentblank" class="documentblank" src="/assets/document_black.png"/>
-                    	<button type="button" class="button buttonaddfancy">Add Content</button>
-                        </div>
-                    </div>
-                </div>
-                    <div id='tab_video_upload_content' class="fancy_tab_content">
-                    	<div id="box1" class="box1 box1fancy1">
-                    		<p class="textfancy"> Select video to upload </p><br>
-                            <img id="image_add_url" class="image_add_url" src="/assets/url_upl.png"/>
-							<input id="upload_video_input" class="input_text_fancy formsizefancy1 marginsfancy1" type="upload_video_input">
-                    		<button type="button" class="button buttonfancy" onclick="alert('Uploaded!')"> Upload</button>
-                   	    </div>
-                        <div id="box2" class="box2">
-                			<div id="previewimgbox" class="previewimgbox">
-                    			<img id="documentblank" class="documentblank" src="/assets/document_black.png"/>
-                    			<button type="button" class="button buttonaddfancy">Add Content</button>
-                   	    	</div>
-                        </div>
-				   </div>
+	        	<div id="box1" class="box1 box1fancy1">
+	             <p class="textfancy">add video url</p><br>
+	             <img id="image_add_url" class="image_add_url" src="/assets/url_img.png"/>
+	    	       <input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
+			        <button type="button" class="button buttonfancy" onclick="VISH.Editor.getValueFromFancybox('video_url')">Upload</button>
+	          </div>
+	          <div id="box2" class="box2">
+	        		<div id="previewimgbox" class="previewimgbox">
+	            	<button type="button" class="button buttonaddfancy">Add Content</button>
+	            </div>
+	          </div>
+       </div>
 				<div id='tab_video_repo_content' class="fancy_tab_content">		
-                    <div class="box1 box1fancy2">		  
-						<div class="search_container">
-						  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-						</div>
-						
-						<div id="tab_video_repo_content_carrousel"></div>
-						<div id="tab_video_repo_content_preview" class="content_preview">
-							<div id="tab_video_repo_content_preview_video" class="content_preview_video">
-								
+            <div class="box1 box1fancy2">	
+	            <img src="/assets/repositoryimg.png" class="imagelogotab">	  
+							<div class="search_container">
+							  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
 							</div>
-							<div id="tab_video_repo_content_preview_metadata" class="content_preview_metadata"></div>
-							<div id="tab_video_repo_content_preview_foot" class="content_preview_foot">
-								<button type="button" class="okButton" onclick="VISH.Editor.Video.Repository.addSelectedVideo()">Add</button>
+							
+							<div id="tab_video_repo_content_carrousel"></div>
+							<div id="tab_video_repo_content_preview" class="content_preview">
+								<div id="tab_video_repo_content_preview_video" class="content_preview_data">
+									
+								</div>
+								<div id="tab_video_repo_content_preview_metadata" class="content_preview_metadata"></div>
+								<div id="tab_video_repo_content_preview_foot" class="content_preview_foot">
+									<button type="button" class="okButton" onclick="VISH.Editor.Video.Repository.addSelectedVideo()">Add</button>
+								</div>
 							</div>
-						</div>
-                    </div>
+            </div>
 				</div>  
 				
 				<div id='tab_video_youtube_content' class="fancy_tab_content">
                   <div class="box1 box1fancy2">
-					
+					<img src="/assets/youtubelogo.png" class="imagelogotab">
 					<div class="search_container" id="youtube_search_container">
 					  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="youtube_text_to_search"> </input>
 					</div>
@@ -385,7 +370,7 @@
 				
 					<div id="tab_video_youtube_content_carrousel"></div>
 					<div id="tab_video_youtube_content_preview" class="content_preview">
-						<div id="tab_video_youtube_content_preview_video" class="content_preview_video">
+						<div id="tab_video_youtube_content_preview_video" class="content_preview_data">
 							
 						</div>
 						<div id="tab_video_youtube_content_preview_metadata" class="content_preview_metadata"></div>

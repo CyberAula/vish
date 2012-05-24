@@ -42,14 +42,14 @@ es:
       bookmark: "marcardor"
     network: "excursiones de mi red"
     my: "mis excursiones"
-    favorites: "excursiones favoritas"
+    favorites: "favoritas"
     others: "otras excursiones "
     session_start: "inicia session"
   filter: "filtrar"
   follow:
     followers: "seguidores"
     followings: "siguiendo"
-    views: "vistos"
+    views: "visitas"
   help: "ayuda"
   lang:
     title: "idioma"
@@ -72,6 +72,7 @@ es:
     one: "organizador"
     other: "organizadores"
   password: "clave"
+  post: "Enviar"
   profile:
     tags:
       default: "VisHub, virtual, excursion"

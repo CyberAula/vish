@@ -4,20 +4,23 @@
     <div class="menu_resources">
       <%#= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ")+'clone', :class => :action), edit_excursion_path(excursion)  %>
     </div>
-    -->
+
     <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> "), :class => :action), edit_excursion_path(excursion) %>
+      <%#= link_to content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> "), :class => :action), edit_excursion_path(excursion) %>
     </div>
+     -->
+    <!--
     <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_spam'></i> "), :class => :action), edit_excursion_path(excursion) %>
-    </div>
-    <div class="menu_resources">
-      <%= link_to  t('excursion.actions.share'),edit_excursion_path(excursion), :class => :action  %>
-    </div>
-    <div class="menu_resources">
-      <%= link_to  t('excursion.actions.bookmark').downcase ,edit_excursion_path(excursion), :class => :action  %>
+      <%#= link_to content_tag(:span, raw("<i class='icontool16-tool16_spam'></i> "), :class => :action), edit_excursion_path(excursion) %>
     </div>
 
+    <div class="menu_resources">
+      <%#= link_to  t('excursion.actions.share'),edit_excursion_path(excursion), :class => :action  %>
+    </div>
+    <div class="menu_resources">
+      <%#= link_to  t('excursion.actions.bookmark').downcase ,edit_excursion_path(excursion), :class => :action  %>
+    </div>
+       -->
 
 
 
@@ -28,7 +31,9 @@
     <%end%>
     <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
       <div class="menu_resources">
-        <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), excursion.post_activity.direct_object , :confirm => t('confirm_delete',                                                                                                                                                 :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+          <%= link_to raw("<i class='icontool16-tool16_symbol_delete'></i> ") +  t('excursion.actions.delete'),  excursion.post_activity.direct_object,
+                      :confirm => t('confirm_delete', :scope => @excursion.post_activity.direct_object.class.to_s.underscore),
+                      :method => :delete, :class => :action %>
       </div>
     <% end %>
 
@@ -38,7 +43,7 @@
   </div>
   <div class="views size24 inline-block pagination-right inline-block ">
     <span class="green"><%=excursion.visit_count.to_s%></span> <%=t('follow.views')%>
-    <div class="iconx-quiz"></div>
+    <!--<div class="iconx-quiz"></div>-->
     <div class="iconx-vc"></div>
   </div>
 
