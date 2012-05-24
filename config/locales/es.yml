@@ -89,6 +89,8 @@ es:
     network: "recursos de mi red"
   site:
     name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "¿Borrar SWF?"
   today: "Hoy"
   top10: "Mejores 10"
   user:

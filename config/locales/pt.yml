@@ -41,6 +41,8 @@ pt:
       other: "recursos"
   site:
     name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "Deleta SWF?"
   user:
     one: "usuário"
     other: "usuários"

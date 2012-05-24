@@ -89,6 +89,8 @@ en:
     network: "my network resources"
   site:
     name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "Delete SWF?"
   today: "Today"
   top10: "Top 10"
   user:

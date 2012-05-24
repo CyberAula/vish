@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: d41a87b3b114f87717e4e248fce96b95bfe55c0e
+  revision: 630a3b3d1fe7f77c985eb1fca5189bcee71480a7
   branch: vish
   specs:
     social_stream-base (0.20.2)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 9465c5b400b00bdbe7e15fd895d971c14a1cee82
+  revision: 12cad2bef8e9a8fc5ee7f3fe26adc131755f33b8
   branch: stable
   specs:
     vish_editor (0.1.1)
