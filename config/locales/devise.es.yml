@@ -18,6 +18,7 @@ es:
       timeout: 'Tu sesión ha caducado. Por favor, vuelve a ingresar.'
       inactive: 'Tu cuenta todavia no ha sido activada.'
     passwords:
+      invalid: "Has ingresado un email o contraseña incorrecta. Por favir ingresa un email o contraseña válida para continuar."
       link: '¿Olvidaste tu contraseña?'
       send_instructions: 'En unos minutos recibirás un email con las instrucciones de como redefinir tu contraseña.'
       updated: 'Has cambiado correctamente tu contraseña. Automaticamente se ha iniciado tu sesión.'
