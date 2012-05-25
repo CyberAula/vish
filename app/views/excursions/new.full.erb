@@ -9,6 +9,6 @@
 <script>	
 	//first function called when page loads
 	function start(){
-		VISH.Editor.init({"token":"<%= form_authenticity_token %>", "ownerId":"<%= current_user.id %>", "ownerName":"<%= current_user.name %>", "postPath": "<%= excursions_path :format=> "json"%>", "documentsPath": "<%= documents_path :format=> "json"%>", "lang": "en" });		
+		VISH.Editor.init({"token":"<%= form_authenticity_token %>", "ownerId":"<%= current_user.id %>", "ownerName":"<%= current_user.name %>", "postPath": "<%= excursions_path :format=> "json"%>", "documentsPath": "<%= documents_path :format=> "json"%>", "lang": "<%= I18n.locale.to_s%>" });		
 	}	
 </script>
