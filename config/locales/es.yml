@@ -18,6 +18,8 @@ es:
     other: "condiciones"
     check_message: "He leido y acepto las "
     check_message_1: "condiciones de uso"
+  devise:
+    invalid_login: "Por favor ingresa tu email y contraseña para continuar"
   disyuntion:
     or: "or"
   document:

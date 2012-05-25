@@ -18,6 +18,8 @@ en:
     other: "conditions"
     check_message: "I have read and accept the "
     check_message_1: "conditions of use"
+  devise:
+    invalid_login: "Please enter your email and password to continue."
   document:
     how: "How to share a resource"    
     input: "Add a file description here"
