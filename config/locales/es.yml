@@ -12,13 +12,11 @@ es:
     unfollow: "Dejar de seguir"
   all: "todos"
   author: "autor"
-  comment:
-    msg: "para publicar un comentario"
   conditions:
     other: "condiciones"
     check_message: "He leido y acepto las "
     check_message_1: "condiciones de uso"
-  disyuntion:
+  disjunction:
     or: "or"
   document:
     how: "Cómo compartir un recurso"    
@@ -109,4 +107,3 @@ es:
       next: "»"
   view_all: "ver todos"
   yesterday: "Ayer"
-

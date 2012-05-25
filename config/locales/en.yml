@@ -12,19 +12,17 @@ en:
     unfollow: "UnFollow"
   all: "all"
   author: "author"
-  comment:
-    msg:"to pubish a comment"
   conditions:
     other: "conditions"
     check_message: "I have read and accept the "
     check_message_1: "conditions of use"
+  disjunction:
+    or: "or"
   document:
     how: "How to share a resource"    
     input: "Add a file description here"
     new: "Add resource"
     screencast: "VISH's screencast"
-  disyuntion:
-    or: "or"
   excursion:
     one: "excursion"
     other: "excursions"

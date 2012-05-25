@@ -1,13 +1,28 @@
 pt:
+  activerecord:
+    attributes:
+      user:
+        email: ""
+  activity:
+    empty: ""
+    new_user: ""
+    timeline: ""
   activity_action:
-    follow: "+Seguir"
+    follow: "+ Seguir"
     unfollow: "DeixarDeSeguir"
   all: "todo"
+  author: "autor"
   conditions:
     other: "condições"
+    check_message: ""
+    check_message_1: ""
+  disjunction: 
+    or: ""
   document:
+    how: ""
     input: "Descrição do recurso"
     new: "Adicione recurso"
+    screencast: ""
   excursion:
     one: "excursão"
     other: "excursões"
@@ -16,22 +31,50 @@ pt:
     created: "created"
     title:
       other: "Excursões"
+    actions:
+      edit: ""
+      show: ""
+      delete: ""
+      download: ""
+      share: ""
+      bookmark: ""
+    network: ""
+    my: ""
+    favorites: ""
+    others: ""
+    session_start: ""
   filter: "filtrar"
   follow:
     followers: "seguidores"
     followings: "seguindo"
-    views: "views"
+    views: ""
   help: "ajuda"
   lang:
     title: "idioma"
     changed: "idioma:  %{lang}"
     error: "%{lang}"
+  translate:
+    change: ""
+  message:
+    new: ""
+  more: "mais"
+  navigation:
+    home: ""
+  options:
+    new: ""
+    add: ""
   organization:
     one: "organização"
     other: "organizações"
+  organizer:
+    one: ""
+    other: ""
+  password: ""
   profile:
     tags:
       default: "VisHub, virtual, excursão"
+  project: "Global Excursion"
+  recommended: ""
   repository:
     one: "repositório"
     other: "repositórios"
@@ -39,10 +82,27 @@ pt:
     title:
       one: "recurso"
       other: "recursos"
+    upload: ""
+    network: ""
+  share: ""
   site:
     name: "Virtual Science Hub"
   swf:
-    confirm_delete: "Deleta SWF?"
+    confirm_delete: ""
+  today: "Hoje"
+  top10: "Top 10"
   user:
     one: "usuário"
     other: "usuários"
+  username: ""
+  vish:
+    about: ""
+    sentence1: ""
+    sentence2: ""
+  views:
+    pagination:
+      truncate: "..."
+      previous: "«"
+      next: "»"
+  view_all: ""
+  yesterday: "Ontem"
