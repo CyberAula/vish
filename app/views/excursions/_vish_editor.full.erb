@@ -264,7 +264,7 @@
 				<div class="fancy_tabs">	   
 				  <ul>
 				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">embed</a></li>
-				    <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
+				    <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
 				    <li ><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
 				  </ul>
 				</div>
@@ -283,19 +283,31 @@
                 			</div>
 				</div>
 				<div id='tab_flash_upload_content' class="fancy_tab_content">
-                <div class="box1 box1fancy1">
-                	<p class="textfancy"> upload flash </p><br>
-                    <img class="image_add_url" src="/assets/url_img.png"/>
-					<input id="upload_flash_input" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-                    <button type="button" class="button buttonfancy" onclick="alert('Uploaded!')"> Upload</button>
-                </div>
-                <div class="box2">
-                				<div class="previewimgbox">
-                    				<img class="documentblank" src="/assets/document_black.png"/>
-                    				<button type="button" class="button buttonaddfancy">Add Content</button>
-                    			</div>
-                </div>
-				</div>
+              <div class="box1 box1fancy1">
+                <p class="textfancy">Select SWF file to upload</p><br>
+                <img class="image_add_url" src="/assets/url_upl.png"/>
+                
+                  <form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+                      <input type="file" name="document[file]" class="upload_file_input">
+                      <input type="hidden" name="document[title]">
+                      <input type="hidden" name="document[description]">
+                      <input type="hidden" name="document[owner_id]">
+                      <input type="hidden" name="authenticity_token">
+                      <input id="upload_document_submit" type="submit" class="button" value="Upload">
+                  </form>
+                  
+                  <div class="upload_progress_bar_wrapper">
+                      <div class="upload_progress_bar"></div >
+                      <div class="upload_progress_bar_percent">0%</div >
+                  </div>
+                  
+              </div>
+              <div class="box2">
+                      <div class="previewimgbox">
+                          <button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
+                      </div>
+              </div>
+        </div> 
 				<div id='tab_flash_repo_content' class="fancy_tab_content">	
                 	<div class="box1 box1fancy2">			  
 					<div class="search_container">
