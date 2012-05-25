@@ -22,7 +22,7 @@
       <% end %>
       <div class="space_center"></div>
       <div class="pagination-centered">
-        <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
+        <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
       </div>
 
       <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion } %>
