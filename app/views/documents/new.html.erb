@@ -23,6 +23,7 @@
   <% toolbar %>
 <% end %>
 
+
 <div class="boxy_gray" id="new_file_only">
   <% d = Document.new %>
   <% d.owner_id = Actor.normalize_id(current_user) %>
@@ -30,27 +31,61 @@
     <%= f.hidden_field :owner_id %>
     <%= f.file_field :file %>
 
-    <div id="new_file_only_info_wrapper">
-      <%= f.label :title %> <%= f.text_field :title %>
-      <%= f.text_field :description, :size => 85, :class => "row-fluid-90" %>
+    <div id="new_file_only_wrapper">
+      <div class="form_row">
+        <div class="form_label">
+          <%= f.label t('document.info.title.title') %>
+        </div>
+        <div class="form_field">
+          <%= f.text_field :title, :class => "form_tag" %>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_label">
+          <%= f.label t('document.info.description.title') %>
+        </div>
+        <div class="form_field">
+          <%= f.text_area :description, :class => "form_tag" %>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="form_label">
+          <%= f.label t('document.info.tags.title') %>
+        </div>
+        <div class="form_field">
+          <%= f.select :tag_list, [], :class => "form_tag" %>
+        </div>
+      </div>
+      <div class="form_row">
+        <div class="actions center">
+          <%= f.submit t('button.save'), :class => "button" %>
+        </div>
+      </div>
     </div>
   
-    <div id="new_file_only_share_btn" class="inline">
-        <%= f.submit(t('share'), :class => "button submitActivity") %>
-    </div>
-
-    <%= javascript_tag do %>
+    <%= content_for :javascript do %>
       $(function() {
-        $('#new_file_only_info_wrapper').hide();
+        $('#new_file_only_wrapper').hide();
         $("#new_file_only_document_description").watermark(I18n.t('document.input'), "#666");
 
         $('#new_file_only_document_file').change(function(){
-          $('#new_file_only_info_wrapper').show();
+          $('#new_file_only_wrapper').show();
           $("#new_file_only_document_title").val($(this).val().replace(/C:\\fakepath\\/i, ''));
         });
 
         $('#new_file_only_document_file').trigger('click');
+      });  
+      $("#new_file_only_document_tag_list").fcbkcomplete({
+        json_url: "<%= tags_path(:format => :json) %>",
+        cache: false,
+        filter_case: true,
+        filter_hide: true,
+        newel: false,
+        height: 6
       });
+      <% d.tag_list.each do |tag| %> $("#new_file_only_document_tag_list").trigger("addItem",{"title":"<%=
+      tag %>","value":"<%= tag %>"});
+      <% end %>
     <% end %>
   <% end %>
 </div>

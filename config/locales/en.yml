@@ -20,6 +20,9 @@ en:
     or: "or"
   document:
     how: "How to share a resource"    
+    info:
+      tags:
+        title: "Tags"
     input: "Add a file description here"
     new: "Add resource"
     screencast: "VISH's screencast"

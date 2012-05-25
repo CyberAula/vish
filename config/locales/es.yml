@@ -20,6 +20,9 @@ es:
     or: "or"
   document:
     how: "Cómo compartir un recurso"    
+    info:
+      tags:
+        title: "Tags"
     input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"    
