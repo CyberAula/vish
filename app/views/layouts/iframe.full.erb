@@ -22,9 +22,11 @@
 	  <%=javascript_include_tag "vishEditor" %>
 	  <%= stylesheet_link_tag "vish_editor" %>
 
-	<!--[if gte IE 8]>
-		<%= stylesheet_link_tag "pack1explorer9" %>
-	<![endif]-->
+	  <%= yield :headers %>
+	  <!--[if gte IE 7]>
+		<%= stylesheet_link_tag "ie/pack1explorer9" %>
+	  <![endif]-->
+
 
 	<script>var walkme_load_in_iframe = true;</script>
   	<script language='javascript' type='text/javascript' src='http://cdn.walkme.com/users/2161/walkme_2161.js'></script>

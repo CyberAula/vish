@@ -1,3 +1,9 @@
+<% content_for :headers do%>
+  <!--[if gte IE 7]>
+	<%= stylesheet_link_tag "ie/editorexplorer9" %>
+  <![endif]-->
+<%end%>
+
 <%= render :partial => 'vish_editor' %>
 
 <script>	
