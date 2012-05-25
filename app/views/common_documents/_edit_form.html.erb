@@ -57,7 +57,8 @@
 </div>
 
 <%= content_for :javascript do %>
-  $("#document_tag_list").fcbkcomplete({
+  <% doc_type = if document.type.nil?; "document"; else document.type.downcase; end%>
+  $("#<%= doc_type %>_tag_list").fcbkcomplete({
     json_url: "<%= tags_path(:format => :json) %>",
     cache: false,
     filter_case: true,
