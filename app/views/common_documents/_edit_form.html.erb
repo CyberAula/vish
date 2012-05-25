@@ -32,6 +32,14 @@
       <%= f.text_area :description, :class => "form_tag" %>
     </div>
   </div>
+  <div class="form_row">
+    <div class="form_label">
+      <%= f.label t('document.info.tags.title') %>
+    </div>
+    <div class="form_field">
+      <%= f.select :tag_list, [], :class => "form_tag" %>
+    </div>
+  </div>
   <!-- 
   <div class="form_row">
     <div class="form_label">
@@ -43,10 +51,23 @@
   </div>  
   -->
   <div class="actions center">
-    <%= f.submit t('document.actions.edit'), :class => "button" %>
+    <%= f.submit t('button.save'), :class => "button" %>
   </div>
   <% end %>
 </div>
+
+<%= content_for :javascript do %>
+  $("#document_tag_list").fcbkcomplete({
+    json_url: "<%= tags_path(:format => :json) %>",
+    cache: false,
+    filter_case: true,
+    filter_hide: true,
+    newel: false,
+    height: 6 
+  });
+  <% document.tag_list.each do |tag| %> $("#document_tag_list").trigger("addItem",{"title":"<%= tag %>","value":"<%= tag %>"});
+  <% end %>
+<% end %>
 
 <% if params[:editing].present? and params[:editing].eql?"true" and document.post_activity.edit_object_by?(current_subject) %>
   <%= javascript_tag do %>
