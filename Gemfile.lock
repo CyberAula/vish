@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 12cad2bef8e9a8fc5ee7f3fe26adc131755f33b8
+  revision: 8e960bff6faa0c6f775d71a5be85ee4f4e0e27a8
   branch: stable
   specs:
     vish_editor (0.1.1)
@@ -241,7 +241,7 @@ GEM
       activesupport (= 3.2.3)
       bundler (~> 1.0)
       railties (= 3.2.3)
-    rails_autolink (1.0.7)
+    rails_autolink (1.0.8)
       rails (~> 3.1)
     railties (3.2.3)
       actionpack (= 3.2.3)
