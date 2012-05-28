@@ -6,6 +6,8 @@ Vish::Application.routes.draw do
 
   resources :slides
 
+  resources :embeds
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   resource :session_locale
