@@ -7,6 +7,13 @@
   <div class="tab-content">
     <div id="ex-1" class="tab-pane active">
       <p id="notice"><%= notice %></p>
+      <% unless @excursion.tag_list.blank? %>
+        <ul>
+        <% @excursion.tag_list.each do |tag| %>
+          <li><%= tag %></li>
+        <% end %>
+        </ul>
+      <% end %>
       <% unless @excursion.author.blank? %>
         <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
       <% else %>
