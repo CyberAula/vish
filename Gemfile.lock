@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 630a3b3d1fe7f77c985eb1fca5189bcee71480a7
+  revision: 299a910900a8b5914701146295134f1b84c0b526
   branch: vish
   specs:
     social_stream-base (0.20.2)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: a2ec1e82d7fe3e11e5f30bac1e8c56e35a257a1a
+  revision: cee8550b422cb72a1ffffd71b595a90ce2a2e71b
   branch: stable
   specs:
     vish_editor (0.1.1)
@@ -241,7 +241,7 @@ GEM
       activesupport (= 3.2.3)
       bundler (~> 1.0)
       railties (= 3.2.3)
-    rails_autolink (1.0.8)
+    rails_autolink (1.0.9)
       rails (~> 3.1)
     railties (3.2.3)
       actionpack (= 3.2.3)
@@ -282,7 +282,7 @@ GEM
       rspec (~> 2.9.0)
     ruby-imagespec (0.2.0)
     rubyzip (0.9.8)
-    sass (3.1.18)
+    sass (3.1.19)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
