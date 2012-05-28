@@ -134,7 +134,7 @@
 	  </div>
 	  
 	  
-	  <!-- PROMPT USER IF SHE IS SURE -->
+	  <!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
 	  <div style='display:none'>
 	  	<input type="hidden" id="prompt_answer" value="false"></input>
 	  	<div id='prompt_form'>	  		
@@ -145,7 +145,37 @@
 	  	</div>
 	  </div>
 	  
-	  
+	  <!-- PROMPT USER WHEN NOT MET MINIMUM REQUIREMENTS -->
+    <div style='display:none'>
+      <div id='requirements_form_wrapper'>
+        <div id='requirements_form'>      
+          <img id="image_template_prompt" class="warning_requirements" src="/assets/warning.png"/>
+          <span class="deltext requirementsText">Your browser does not meet the minimum requirements to init Vish Editor, please update your browser.</span> 
+          <div id="recomended_browsers">
+            <div class="recomended_browser">
+              <span class="browserTitle">Google Chrome</span>
+              <a href="https://www.google.com/chrome"><img class="browser_img" src="/assets/browsers/google_chrome.png"/></a>
+            </div>
+            <div class="recomended_browser">
+              <span class="browserTitle">Mozilla Firefox</span>
+              <a href="http://www.mozilla.org/en-US/firefox/new"><img class="browser_img" src="/assets/browsers/firefox.png"/></a>
+            </div>
+            <div class="recomended_browser">
+              <span class="browserTitle">Internet Explorer 9</span>
+              <a href="http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie-9/worldwide-languages"><img class="browser_img" src="/assets/browsers/internetexplorer.png"/></a>
+            </div>
+            <div class="recomended_browser">
+              <span class="browserTitle">Opera</span>
+              <a href="http://www.opera.com/download"><img class="browser_img" src="/assets/browsers/opera.png"/></a>
+            </div>
+          </div>
+          <div class="buttons_requirements_wrapper">
+            <a href="#" onclick="$.fancybox.close();" class="prompt_button button buttons_requirements">OK</a>
+          </div>
+        </div>
+      </div>
+    </div>
+		
 	  <!-- PROMPT USER IF SHE IS SURE TO SAVE THE SLIDE -->
 	  <div style='display:none'>
 	  	<input type="hidden" id="save_answer" value="false"></input>
