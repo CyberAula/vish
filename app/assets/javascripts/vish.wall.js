@@ -3,7 +3,7 @@
 Vish.Wall = (function(V, $, undefined){
   var regexp = /^(<(embed|object|iframe).*<\/\2>).*$/i
 
-  var hidden_embed_form = "This embedded object will be added to your repository<input type='hidden' name='embed[title]' value='Check out this embed!' />";
+  var hidden_embed_form = "This embedded object will be added to your repository<br/>Title: <input type='text' name='embed[title]' value='Check out this embed!' /><br/>Description:<input type='textarea' name='embed[description]'>";
 
   var urlDetect = function() {
     this.currentValue = $("#input_activities").val();
