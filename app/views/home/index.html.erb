@@ -62,6 +62,7 @@
   <div class="repository tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a data-toggle="tab" href="#repo-1"><%=t('resource.title.other')%></a></li>
+      <li class=""><a data-toggle="tab" href="#repo-2"><%=t('links')%></a></li>
       <li class=""><a data-toggle="tab" href="#repo-3"><%=t('recommended')%></a></li>
       <!--<li class=""><a href="/search?type=resource"><%#=t('all')%></a></li> -->
     </ul>
@@ -79,6 +80,17 @@
                          :locals => {:document => document,
                                      :div_class => 'content_size'} %>
             <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="repo-2" class="tab-pane">
+        <%= render :partial => "links/home_filter" %>
+        <div class="space_center"></div>
+        <div id="repository-links" class="repositories row height-tabs-home">
+          <% for link in current_subject_links(:limit => 8) %>
+            <%= render :partial => "links/home",
+                       :locals => {:link => link,
+                                   :div_class => 'content_size'} %>
           <% end %>
         </div>
       </div>

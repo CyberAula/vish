@@ -1352,6 +1352,42 @@ li{list-style-type:none}
   height: 10px;
 }
 
+/*.....................................................................link icons */
+/* TODO: integrate in repository icon set */
+.icon_x-link {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  vertical-align: text-top;
+  background-image: url("icons/link_small_gray.png");
+  background-repeat: no-repeat;
+  *margin-right: .3em;
+}
+.icon_x-link:hover {
+  background-image: url("icons/link_small_blue.png");
+}
+.icon_x-link:last-child {
+  *margin-left: 0;
+}
+.icon_75-link {
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  vertical-align: text-top;
+  background-image: url("icons/link_big_gray.png");
+  background-repeat: no-repeat;
+  *margin-right: .3em;
+}
+.icon_75-link:hover {
+  background-image: url("icons/link_big_blue.png");
+}
+.icon_75-link:last-child {
+  *margin-left: 0;
+}
+
+
 /*......................................................................edit profile*/
 .btn_info_profile{
   float:right;

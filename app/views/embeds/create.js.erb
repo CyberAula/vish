@@ -1,0 +1,11 @@
+//Display the new post
+$("#wall").prepend("<%= escape_javascript(render @embed.post_activity) %>");
+
+SocialStream.Timeline.create("<%= escape_javascript dom_id(@embed.post_activity) %>");
+
+$("#embed_preview").hide();
+$("#embed_preview").html("");          
+$("#embed_fulltext").val("");
+
+
+

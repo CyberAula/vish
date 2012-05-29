@@ -1,6 +1,7 @@
 <div class="repository tabbable">
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#"><%= t('repository.other') %></a></li>
+    <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('repository.other') %></a></li>
+    <li><a data-toggle="tab" href="#repo-2"><%= t('links') %></a></li>
   </ul>
 </div>
 
@@ -10,74 +11,140 @@
   </div>
 <% end %>
 
-<div class="block row space_center"></div>
+<div class="tab-content">
+  <div id="repo-1" class="tab-pane active">
 
-<% documents.each do |document| %>
-  <%#=  render :partial => 'layouts/dropdown_menu_resource' %>
-
-  <div class="attachment_tile" id="<%= dom_id(document) %>">
-    <div class="attachment_tile_thumb">
-      <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+    <div id="repository_filter">
+      <%= render :partial => "common_documents/filter", :locals => {:show_upload => true} %>
     </div>
 
-    <div class="attachment_tile_tipsy">
-      <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
-                  "javascript:;" %>
-      <div class="tipsy_content" style="display:none;">
-        <div class="actions">
-          <div class="block menu_resources">
-          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-         </div>
-          <div class="block menu_resources">
-          <% if document.post_activity.edit_object_by?(current_subject) %>
-            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
-          <% end %>
-          </div>
-            <div class="block menu_resources">
-          <% if document.post_activity.delete_object_by?(current_subject) %>
-            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
-                                                                                                                                                                                                           :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-          <% end %>
+    <div class="block row space_center"></div>
+
+    <% documents.each do |document| %>
+      <%#=  render :partial => 'layouts/dropdown_menu_resource' %>
+
+      <div class="attachment_tile" id="<%= dom_id(document) %>">
+        <div class="attachment_tile_thumb">
+          <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+        </div>
+
+        <div class="attachment_tile_tipsy">
+          <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
+                      "javascript:;" %>
+          <div class="tipsy_content" style="display:none;">
+            <div class="actions">
+              <div class="block menu_resources">
+              <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+             </div>
+              <div class="block menu_resources">
+              <% if document.post_activity.edit_object_by?(current_subject) %>
+                <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
+              <% end %>
+              </div>
+                <div class="block menu_resources">
+              <% if document.post_activity.delete_object_by?(current_subject) %>
+                <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
+                                                                                                                                                                                                               :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+              <% end %>
+                </div>
             </div>
+          </div>
+        </div>
+
+        <div class="attachment_tile_text">
+          <%= link_to truncate_name(document.title, :length => 15),
+                      document_path(document),
+                      :alt => document.title,
+                      :type => document.type,
+                      :path => document_path(document) %>
         </div>
       </div>
-    </div>
+      <%= javascript_tag do %>
+        $(document).ready(function(){
 
-    <div class="attachment_tile_text">
-      <%= link_to truncate_name(document.title, :length => 15),
-                  document_path(document),
-                  :alt => document.title,
-                  :type => document.type,
-                  :path => document_path(document) %>
-    </div>
+        SocialStream.Repository.init();
+
+        $('#<%= dom_id(document) %> .attachment_tile_tipsy a').tipsy({
+        delayIn: 0,
+        delayOut: 1000,
+        gravity: 'nw',
+        className: 'attachment_tile_tipsy_menu',
+        html: true,
+        hoverable: true,
+        title: function(){
+        return $('#<%= dom_id(document) %> .attachment_tile_tipsy .tipsy_content').html();
+        }
+        });
+        });
+      <% end %>
+    <% end %>
+
+    <% unless documents.last_page? %>
+      <% next_url = url_for(:no_layout => true,
+                            :page => params[:page].present? ? params[:page].to_i + 1 : 2,
+                            :query => params[:query].present? ? params[:query] : "") %>
+      <%= content_tag(:span, "", :class => "screw screw-after", :rel => next_url) %>
+    <% end %>
   </div>
-  <%= javascript_tag do %>
-    $(document).ready(function(){
+  <div id="repo-2" class="tab-pane">
+    <div id="repository_filter">
+      <%= render :partial => "links/filter" %>
+    </div>
 
-    SocialStream.Repository.init();
+    <div class="block row space_center"></div>
 
-    $('#<%= dom_id(document) %> .attachment_tile_tipsy a').tipsy({
-    delayIn: 0,
-    delayOut: 1000,
-    gravity: 'nw',
-    className: 'attachment_tile_tipsy_menu',
-    html: true,
-    hoverable: true,
-    title: function(){
-    return $('#<%= dom_id(document) %> .attachment_tile_tipsy .tipsy_content').html();
-    }
-    });
-    });
-  <% end %>
-<% end %>
+    <% links = subject_links profile_subject, {:limit => 16, :scope => :me } %>
+    <% links.each do |link| %>
+      <% link_title = link.title %>
+      <% link_title = link.url if link_title.blank? %>
 
-<% unless documents.last_page? %>
-  <% next_url = url_for(:no_layout => true,
-                        :page => params[:page].present? ? params[:page].to_i + 1 : 2,
-                        :query => params[:query].present? ? params[:query] : "") %>
-  <%= content_tag(:span, "", :class => "screw screw-after", :rel => next_url) %>
-<% end %>
+      <div class="attachment_tile" id="<%= dom_id(link) %>">
+        <div class="attachment_tile_thumb">
+          <%= link_to "", link.url, :class => icon_class_for(link), :alt => link_title %>
+        </div>
 
-<% unless params[:no_layout].present? %>
+        <div class="attachment_tile_tipsy">
+          <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
+                      "javascript:;" %>
+          <div class="tipsy_content" style="display:none;">
+            <div class="actions">
+                <div class="block menu_resources">
+              <% if link.post_activity.delete_object_by?(current_subject) %>
+                <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), link.post_activity.direct_object, :confirm => t('confirm_delete',
+                                                                                                                                                                                                               :scope => link.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+              <% end %>
+                </div>
+            </div>
+          </div>
+        </div>
 
-<% end %>
+        <div class="attachment_tile_text">
+          <%= link_to truncate_name(link_title, :length => 15),
+                      link.url,
+                      :alt => link_title,
+                      :target => "_blank" %>
+        </div>
+      </div>
+      <%= javascript_tag do %>
+        $(document).ready(function(){
+
+        SocialStream.Repository.init();
+
+        $('#<%= dom_id(link) %> .attachment_tile_tipsy a').tipsy({
+        delayIn: 0,
+        delayOut: 1000,
+        gravity: 'nw',
+        className: 'attachment_tile_tipsy_menu',
+        html: true,
+        hoverable: true,
+        title: function(){
+        return $('#<%= dom_id(link) %> .attachment_tile_tipsy .tipsy_content').html();
+        }
+        });
+        });
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+
