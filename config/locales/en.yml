@@ -37,6 +37,7 @@ en:
     how: "How to create an excursion"
     title:
       other: "excursions"
+    network2: "my network"
     actions:
       edit: "edit"
       show: "show"
@@ -45,7 +46,7 @@ en:
       share: "share"
       bookmark: "bookmark"
     network: "my network excursions"
-    my: "my excursion"
+    my: "me"
     favorites: "favorites"
     others: "others excursions"
     session_start: "start session"

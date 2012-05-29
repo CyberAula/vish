@@ -1,8 +1,18 @@
 <% self.class.send :include, HomeHelper  %>
 <section id="left" class="span6">
+
+
   <div class="excursions tabbable">
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.other')%></a></li>
+
+      <%= render :partial => 'layouts/dropdown_menu_excursion', class:"leftinline" %>
+
+      <li class="active leftinline"><a data-toggle="tab" href="#ex-1">
+
+
+
+        <%=t('excursion.other')%></a></li>
+
       <!--<li class=""><a data-toggle="tab" href="#ex-2"><%#=t('excursion.upcomming')%></a></li> -->
       <li class=""><a data-toggle="tab" href="#ex-3"><%=t('recommended')%></a></li>
       <!--<li class=""><a href="/search?type=excursion"><%#=t('all')%></a></li>  -->

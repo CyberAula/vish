@@ -1275,7 +1275,7 @@ li{list-style-type:none}
 .icontool16-tool16_embed { background-position: -338px -52px;}
 .icontool16-tool16_ramification { background-position: -364px -52px;}
 .icontool16-tool16_html { background-position: -390px -52px;}
-.icontool16-tool16_rss { background-position: -316px -52px;}
+.icontool16-tool16_rss { background-position: -416px -52px;}
 
 
 /*hover*/
@@ -1330,7 +1330,20 @@ li{list-style-type:none}
 .icontool16-tool16_embed:hover { background-position: -338px -130px;}
 .icontool16-tool16_ramification:hover { background-position: -364px -130px;}
 .icontool16-tool16_html:hover { background-position: -390px -130px;}
-.icontool16-tool16_rss:hover { background-position: -316px -130px;}
+.icontool16-tool16_rss:hover { background-position: -416px -130px;}
+
+.icontool16-tool16_followers { background-position: 0px -156px;}
+.icontool16-tool16_followers:hover { background-position: -52px -156px;}
+.icontool16-tool16_my {background-position: -26px -156px;}
+.icontool16-tool16_my:hover { background-position: -78px -156px;}
+.icontool16-tool16_star {background-position: -104px -156px;}
+.icontool16-tool16_star2 {background-position: -130px -156px;}
+.icontool16-tool16_star:hover { background-position: -260px -156px;}
+.icontool16-tool16_star2:hover { background-position: -286px -156px;}
+.icontool16-tool16_mashme {background-position: -156px -156px;}
+.icontool16-tool16_mashme:hover { background-position: -182px -156px;}
+.icontool16-tool16_mashmered {background-position: -208px -156px;}
+.icontool16-tool16_mashmewhite {background-position: -234px -156px;}
 
 .icon_close{
   display:inline-block;
@@ -1853,4 +1866,8 @@ margin-right: 15px;
   right: 10px;
   top: 10px;
   width: 32px;
+}
+#dropdown-menu2{
+
+background-color: #ff3bfd   !important;
 }

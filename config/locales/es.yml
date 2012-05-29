@@ -49,6 +49,7 @@ es:
     favorites: "favoritas"
     others: "otras excursiones "
     session_start: "inicia session"
+    my: "mi"
   filter: "filtrar"
   follow:
     followers: "seguidores"
@@ -112,3 +113,4 @@ es:
       next: "»"
   view_all: "ver todos"
   yesterday: "Ayer"
+
