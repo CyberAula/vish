@@ -93,7 +93,7 @@
 
     <div class="block row space_center"></div>
 
-    <% links = subject_links profile_subject, {:limit => 16 } %>
+    <% links = subject_links profile_subject, {:limit => 16, :scope => :me } %>
     <% links.each do |link| %>
       <% link_title = link.title %>
       <% link_title = link.url if link_title.blank? %>
