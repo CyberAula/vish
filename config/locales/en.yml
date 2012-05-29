@@ -28,6 +28,8 @@ en:
     input: "Add a file description here"
     new: "Add resource"
     screencast: "VISH's screencast"
+  embed:
+    confirm_delete: "Delete embed?"
   excursion:
     one: "excursion"
     other: "excursions"

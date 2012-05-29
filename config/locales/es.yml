@@ -28,6 +28,8 @@ es:
     input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"    
+  embed:
+    confirm_delete: "¿Borrar recurso empotrado?"
   excursion:
     one: "excursión"
     other: "excursiones"

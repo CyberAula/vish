@@ -1,0 +1,31 @@
+<%= div_for embed, :class => 'content_size' do %>
+  <div class="thumbnail">
+    <%= link_to image_tag("icons/link_big_gray.png"),"javascript:void(0)" %>
+    <%= link_to image_tag("btn/btn_play.png", :class => "play_button"),"javascript:void(0)" %>
+    <%= javascript_tag do %>
+      $("#embed_<%= embed.id.to_s %> img").each(function(){
+        $(this).click(function(){
+          // TODO: Open callback
+        });
+      });
+      
+    <% end %>
+  </div>
+  <div class="info">
+    <% if embed.title %>
+      <div class="title">
+        <%= embed.title %>
+      </div>
+    <% end %>
+    <div class="fulltext">
+      <%= truncate(embed.fulltext, :length => 120) %>
+    </div>
+    <% if embed.description %>
+      <div class="description">
+        <%= auto_link(embed.description) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<br class="clearfloat">
