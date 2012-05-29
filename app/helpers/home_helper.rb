@@ -19,6 +19,14 @@ module HomeHelper
     subject_content subject, Document, options
   end
 
+  def current_subject_links(options = {})
+    subject_links current_subject, options
+  end
+
+  def subject_links(subject, options = {})
+    subject_content subject, Link, options
+  end
+
   def current_subject_resources(options = {})
     subject_documents current_subject, options
   end

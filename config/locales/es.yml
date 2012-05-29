@@ -55,6 +55,7 @@ es:
     followings: "siguiendo"
     views: "visitas"
   help: "ayuda"
+  links: "enlaces"
   lang:
     title: "idioma"
     changed: "Se cambia el idioma a %{lang}"

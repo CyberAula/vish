@@ -55,6 +55,7 @@ en:
     followings: "following"
     views: "views"
   help: "help"
+  links: "links"
   lang:
     title: "language"
     changed: "Changed language to %{lang}"
