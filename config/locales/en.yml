@@ -14,8 +14,8 @@ en:
   author: "author"
   conditions:
     other: "conditions"
-    check_message: "I have read and accept the "
-    check_message_1: "conditions of use"
+    check_message: "By clicking Accept, you agree to our "  
+    check_message_1: "Terms and Conditions."
   devise:
     invalid_login: "Please enter your email and password to continue."
   disjunction:
