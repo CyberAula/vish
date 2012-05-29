@@ -28,6 +28,9 @@ en:
     input: "Add a file description here"
     new: "Add resource"
     screencast: "VISH's screencast"
+  email:
+    welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
+    regards: "King regards,<br/>"              
   embed:
     confirm_delete: "Delete embed?"
   excursion:
@@ -108,6 +111,7 @@ en:
     about: "About VISH"    
     sentence1: "Create your account with VISH"
     sentence2: "VISH is a social science platform"
+    team: "The VISH Team"    
   views:
     pagination:
       truncate: "..."

@@ -27,7 +27,10 @@ es:
         title: "Tags"
     input: "Descripción del recurso"
     new: "Añadir recurso"
-    screencast: "Screencast de VISH"    
+    screencast: "Screencast de VISH"
+  email:
+    welcome: "Bienvenido y gracias por registrarse en Virtual Science Hub.<br/>Le invitamos a <a href=\"%{{profile}}\"> configurar su perfil</a> para disfrutar de un mejor servicio.<br/>"
+    regards: "Un cordial saludo,<br/>"              
   embed:
     confirm_delete: "¿Borrar recurso empotrado?"
   excursion:
@@ -108,6 +111,7 @@ es:
     about: "Acerca de VISH"    
     sentence1: "Crea tu cuenta con VISH"
     sentence2: "VISH es una plataforma social de ciencia"
+    team: "El equipo de VISH"    
   views:
     pagination:
       truncate: "..."
