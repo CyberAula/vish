@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 299a910900a8b5914701146295134f1b84c0b526
+  revision: b8c22920e20717b80f3d9f6d7239b65b95b12edc
   branch: vish
   specs:
     social_stream-base (0.20.2)
@@ -37,10 +37,12 @@ GIT
       linkser (~> 0.0.12)
       social_stream-base (~> 0.20.1)
 
-PATH
-  remote: ../vish_editor/rails
+GIT
+  remote: git://github.com/ging/vish_editor.git
+  revision: cee8550b422cb72a1ffffd71b595a90ce2a2e71b
+  branch: stable
   specs:
-    vish_editor (0.0.7)
+    vish_editor (0.1.1)
       railties (>= 3.1.3)
 
 GEM
@@ -128,7 +130,7 @@ GEM
       multi_json (~> 1.0)
     factory_girl (2.6.4)
       activesupport (>= 2.3.9)
-    faraday (0.8.0)
+    faraday (0.8.1)
       multipart-post (~> 1.1)
     ffi (1.0.11)
     foreigner (1.1.6)
@@ -182,7 +184,7 @@ GEM
       rails (> 3.0.0)
     mime-types (1.18)
     modernizr-rails (2.0.6)
-    multi_json (1.3.5)
+    multi_json (1.3.6)
     multipart-post (1.1.5)
     mysql2 (0.3.11)
     net-scp (1.0.4)
@@ -265,19 +267,19 @@ GEM
       mime-types (>= 1.16)
     riddle (1.5.2)
     rmagick (2.13.1)
-    rspec (2.9.0)
-      rspec-core (~> 2.9.0)
-      rspec-expectations (~> 2.9.0)
-      rspec-mocks (~> 2.9.0)
-    rspec-core (2.9.0)
-    rspec-expectations (2.9.1)
+    rspec (2.10.0)
+      rspec-core (~> 2.10.0)
+      rspec-expectations (~> 2.10.0)
+      rspec-mocks (~> 2.10.0)
+    rspec-core (2.10.0)
+    rspec-expectations (2.10.0)
       diff-lcs (~> 1.1.3)
-    rspec-mocks (2.9.0)
-    rspec-rails (2.9.0)
+    rspec-mocks (2.10.1)
+    rspec-rails (2.10.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec (~> 2.9.0)
+      rspec (~> 2.10.0)
     ruby-imagespec (0.2.0)
     rubyzip (0.9.8)
     sass (3.1.19)
@@ -285,7 +287,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.21.2)
+    selenium-webdriver (2.22.0)
       childprocess (>= 0.2.5)
       ffi (~> 1.0)
       libwebsocket (~> 0.1.3)
@@ -340,7 +342,7 @@ DEPENDENCIES
   net-ssh (= 2.4.0)
   pg
   rails (~> 3.2.0)
-  rspec-rails (= 2.9.0)
+  rspec-rails (= 2.10.0)
   sass-rails (~> 3.2.4)
   social_stream-base!
   social_stream-documents!

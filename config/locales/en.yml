@@ -7,6 +7,8 @@ en:
     empty: "Your timeline is empty"
     new_user: "You are a new user in VISH. You can share and send messages, links and files such as images, pictures, videos, etc."
     timeline: "timeline"
+    title:
+      other: "activity"
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
@@ -91,6 +93,7 @@ en:
   repository:
     one: "repository"
     other: "repositories"
+    title: "Resources"
   resource:
     title:
       one: "resource"

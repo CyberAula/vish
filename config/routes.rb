@@ -8,6 +8,8 @@ Vish::Application.routes.draw do
 
   resources :embeds
 
+  match 'resources/search' => 'resources#search'
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   resource :session_locale
