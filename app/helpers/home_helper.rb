@@ -54,7 +54,8 @@ module HomeHelper
       query = query.not_authored_by(following_ids)
     end
 
-    query = query.order('updated_at DESC').first(options[:limit])
+    query = query.order('updated_at DESC')
+    query = query.first(options[:limit]) if options[:limit] > 0
 
     return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
