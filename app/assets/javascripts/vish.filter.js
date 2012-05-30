@@ -31,7 +31,7 @@ Vish.Filter = function(V, $, undefined){
 
                 $('#document-filter').on("keyup", function() {
                         $.ajax({
-                                url: "/documents/search",
+                                url: "/resources/search",
                                 data: { q: $('#document-filter')[0].value, scope: "net", per_page: 8 },
                                 success: function(data) { $('#repository').html(data); }
                         });
@@ -39,7 +39,7 @@ Vish.Filter = function(V, $, undefined){
 
                 $('#document-filter-more').on("keyup", function() {
                         $.ajax({
-                                url: "/documents/search",
+                                url: "/resources/search",
                                 data: { q: $('#document-filter-more')[0].value, scope: "other", per_page: 8 },
                                 success: function(data) { $('#repository-more').html(data); }
                         });
@@ -47,7 +47,7 @@ Vish.Filter = function(V, $, undefined){
 
                 $('#document-filter-me').on("keyup", function() {
                         $.ajax({
-                                url: "/documents/search",
+                                url: "/resources/search",
                                 data: { q: $('#document-filter-me')[0].value, scope: "me" },
                                 success: function(data) { $('#repository').html(data); }
                         });

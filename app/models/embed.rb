@@ -17,4 +17,8 @@
 
 class Embed < ActiveRecord::Base
   include SocialStream::Models::Object
+
+  define_index do
+    activity_object_index
+  end
 end
