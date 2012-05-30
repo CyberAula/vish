@@ -91,6 +91,7 @@ en:
   repository:
     one: "repository"
     other: "repositories"
+    title: "Resources"
   resource:
     title:
       one: "resource"
