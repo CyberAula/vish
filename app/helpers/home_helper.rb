@@ -28,11 +28,11 @@ module HomeHelper
   end
 
   def current_subject_resources(options = {})
-    subject_documents current_subject, options
+    subject_resources current_subject, options
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, [Document, Link], options
+    subject_content subject, [Document, Embed], options
   end
 
   def subject_content(subject, klass, options = {})

@@ -1,0 +1,18 @@
+<%= div_for embed, :class => 'span3' do %>
+  <ul class="thumbnails">
+    <li class="span">
+      <div id="margin-resources">
+      <%= link_to  "", embed, :class => icon_class_for(embed), :alt => embed.title %>
+      </div>
+    </li>
+    <div class="row-fluid-100">
+      <h4 class="link_gray size15 "><%= link_to truncate_name(embed.title, :length => 20), embed %></h4>
+        <div class="rw-words rw-words-1">
+          <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(embed.author.name, :length => 18), embed.author.subject)%></h5></span>
+          <div class="clearfloat"></div>
+          <span><h5 class="green inline margin-home-resource-view"><%=embed.visit_count.to_s%> </h5><h5 class="gray inline"><%= t('follow.views') %></h5>   </span>
+
+        </div>
+    </div>
+  </ul>
+<% end %>

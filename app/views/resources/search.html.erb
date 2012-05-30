@@ -1,0 +1,9 @@
+<% params[:no_layout] = true %>
+<% for r in @found_resources %>
+  <% if r.is_a? Embed %>
+    <%= render :partial => 'embeds/home', :locals => { :embed => r} %>
+  <% else %>
+    <%= render :partial => 'common_documents/home', :locals => { :document => r} %>
+  <% end %>
+<% end %>
+
