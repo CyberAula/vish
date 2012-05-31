@@ -106,6 +106,7 @@
 .link_gray a{color: #919191;text-decoration: none;}
 .link_gray a:hover{color: #3366FF;  text-decoration: none;}
 .link_pink a{color: #FF005D; text-decoration:none;}
+.link_pink a{color: #FF005D; text-decoration:none;}
 .link_pink a:hover {color: #3366FF; text-decoration:none;}
 .link_white a{color: #ffffff; text-decoration:none;}
 .link_white a:hover {color: #919191; text-decoration:none;}
@@ -852,13 +853,14 @@ li{
 .iconnav-followers:hover {background-position:-64px -52px;}
 .iconnav-notification:hover {background-position:-96px -52px;}
 .iconnav-tools:hover {background-position:-128px -52px;}
+
 .iconnav-mashme { background-position: 0 -78px ;}
 .iconnav-mashme:hover { background-position: 0 -104px ;}
 .iconnav-mashmered { background-position: -32px -78px ;}
 .iconnav-star { background-position: -32px -104px ;}
 .iconnav-star:hover { background-position: -64px -78px ;}
 .iconnav-starred { background-position: -64px -78px ;}
-.iconnav-my { background-position: - 96px -104 px ;}
+.iconnav-my { background-position: - 96px -104px ;}
 .iconnav-my:hover { background-position: -96px -78px;}
 .iconnav-myred { background-position: -128px -104 px;}
 
@@ -1913,32 +1915,14 @@ margin-right: 15px;
   top: 10px;
   width: 32px;
 }
-.big-box{
-  display: inline;
-  float: left;
-  height: 22px;
-  width: auto
+.margin5 {
+  padding-left:5px;
+  padding-right:5px;
 
 }
 
-.icon-type-excursion{
-  display: inline;
-  float:left;
-  height: 32px;
-  width: 32px;
+.color-font-menu {
+color: #FF005D ;
+  margin-top:-4px;
 
 }
-
-.box-dropdonw{
-  display: inline;
-  float: right;
-  height: 32px;
-  width: 32px;
-
-
-}
-.box-excursiontext{
-  display:inline;
-
-}
-
