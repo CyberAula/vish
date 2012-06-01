@@ -8,13 +8,13 @@
 
 <% if profile_subject %>
   <%= location(
-    link_to(profile_subject.name, polymorphic_path(profile_subject),:remote => true),
-    link_to(t('repository.title'), polymorphic_path([profile_subject, controller.controller_name]),:remote => true)
-    ) %>
+        link_to(profile_subject.name, polymorphic_path(profile_subject), :remote => true),
+        link_to(t('repository.title'), polymorphic_path([profile_subject, controller.controller_name]), :remote => true)
+      ) %>
 <% else %>
   <%= location(
-    link_to(t('repository.title'), polymorphic_path(controller.controller_name),:remote => true)
-    ) %>
+        link_to(t('repository.title'), polymorphic_path(controller.controller_name), :remote => true)
+      ) %>
 <% end %>
 
 <% if profile_subject %>
@@ -24,69 +24,193 @@
 <% end %>
 
 
-<div class="boxy_gray" id="new_file_only">
-  <% d = Document.new %>
-  <% d.owner_id = Actor.normalize_id(current_user) %>
-  <%= form_for d, :namespace => 'new_file_only', :remote => false  do |f| %>
-    <%= f.hidden_field :owner_id %>
-    <%= f.file_field :file %>
 
-    <div id="new_file_only_wrapper">
-      <div class="form_row">
-        <div class="form_label">
-          <%= f.label t('document.info.title.title') %>
-        </div>
-        <div class="form_field">
-          <%= f.text_field :title, :class => "form_tag" %>
-        </div>
-      </div>
-      <div class="form_row">
-        <div class="form_label">
-          <%= f.label t('document.info.description.title') %>
-        </div>
-        <div class="form_field">
-          <%= f.text_area :description, :class => "form_tag" %>
-        </div>
-      </div>
-      <div class="form_row">
-        <div class="form_label">
-          <%= f.label t('document.info.tags.title') %>
-        </div>
-        <div class="form_field">
-          <%= f.select :tag_list, [], :class => "form_tag" %>
-        </div>
-      </div>
-      <div class="form_row">
-        <div class="actions center">
-          <%= f.submit t('button.save'), :class => "button" %>
-        </div>
-      </div>
+<div class="boxy_gray" id="new_file_only">
+  <div class="space_centre"></div>
+
+  <ul class="nav nav-pills">
+
+    <div class="menu_resources">
+      <a class="action" href="/excursions/new">
+        <i class="icontool16-tool16_embed"></i>
+        embed
+      </a>
     </div>
-  
-    <%= content_for :javascript do %>
-      $(function() {
-        $('#new_file_only_wrapper').hide();
+
+
+    <li class="active">
+      <a href="#">Document</a>
+    </li>
+    <li class="">
+      <a href="#">Link</a>
+    </li>
+    <li class="">
+      <a href="#">embed</a>
+    </li>
+  </ul>
+
+
+
+
+
+  <div class="margin15">
+    <% d = Document.new %>
+    <% d.owner_id = Actor.normalize_id(current_user) %>
+    <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+      <%= f.hidden_field :owner_id %>
+      <%= f.file_field :file %>
+      </div>
+      <div id="new_file_only_wrapper">
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_field :title, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.title.title') %>
+          </div>
+        </div>
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.description.title') %>
+          </div>
+        </div>
+        <div class="clearfloat"></div>
+        <div class="form_row margin15">
+            <label class="control-label " for="select01 "></label>
+            <div class="form_field-new_document ">
+              <select id="select01">
+                <option value="af_ZA">Afrikaans</option>
+                <option value="az_AZ">Azərbaycan dili</option>
+                <option value="id_ID">Bahasa Indonesia</option>
+                <option value="ms_MY">Bahasa Melayu</option>
+                <option value="bs_BA">Bosanski</option>
+                <option value="ca_ES">Català</option>
+                <option value="cy_GB">Cymraeg</option>
+                <option value="da_DK">Dansk</option>
+                <option value="de_DE">Deutsch</option>
+                <option value="et_EE">Eesti</option>
+                <option value="en_GB">English (UK)</option>
+                <option value="en_US">English (US)</option>
+                <option value="en_UD">English (Upside Down)</option>
+                <option selected="1" value="es_LA">Español</option>
+                <option value="es_ES">Español (España)</option>
+                <option value="eo_EO">Esperanto</option>
+                <option value="eu_ES">Euskara</option>
+                <option value="tl_PH">Filipino</option>
+                <option value="fr_CA">Français (Canada)</option>
+                <option value="fr_FR">Français (France)</option>
+                <option value="fy_NL">Frysk</option>
+                <option value="fo_FO">Føroyskt</option>
+                <option value="ga_IE">Gaeilge</option>
+                <option value="gl_ES">Galego</option>
+                <option value="hr_HR">Hrvatski</option>
+                <option value="it_IT">Italiano</option>
+                <option value="sw_KE">Kiswahili</option>
+                <option value="ku_TR">Kurdî</option>
+                <option value="lv_LV">Latviešu</option>
+                <option value="fb_LT">Leet Speak</option>
+                <option value="lt_LT">Lietuvių</option>
+                <option value="hu_HU">Magyar</option>
+                <option value="nl_NL">Nederlands</option>
+                <option value="nb_NO">Norsk (bokmål)</option>
+                <option value="nn_NO">Norsk (nynorsk)</option>
+                <option value="pl_PL">Polski</option>
+                <option value="pt_BR">Português (Brasil)</option>
+                <option value="pt_PT">Português (Portugal)</option>
+                <option value="ro_RO">Română</option>
+                <option value="sq_AL">Shqip</option>
+                <option value="sk_SK">Slovenčina</option>
+                <option value="sl_SI">Slovenščina</option>
+                <option value="fi_FI">Suomi</option>
+                <option value="sv_SE">Svenska</option>
+                <option value="vi_VN">Tiếng Việt</option>
+                <option value="tr_TR">Türkçe</option>
+                <option value="la_VA">lingua latina</option>
+                <option value="is_IS">Íslenska</option>
+                <option value="cs_CZ">Čeština</option>
+                <option value="el_GR">Ελληνικά</option>
+                <option value="be_BY">Беларуская</option>
+                <option value="bg_BG">Български</option>
+                <option value="mk_MK">Македонски</option>
+                <option value="ru_RU">Русский</option>
+                <option value="sr_RS">Српски</option>
+                <option value="uk_UA">Українська</option>
+                <option value="hy_AM">Հայերեն</option>
+                <option value="he_IL">עברית</option>
+                <option value="ar_AR">العربية</option>
+                <option value="fa_IR">فارسی</option>
+                <option value="ps_AF">پښتو</option>
+                <option value="ne_NP">नेपाली</option>
+                <option value="hi_IN">हिन्दी</option>
+                <option value="bn_IN">বাংলা</option>
+                <option value="pa_IN">ਪੰਜਾਬੀ</option>
+                <option value="ta_IN">தமிழ்</option>
+                <option value="te_IN">తెలుగు</option>
+                <option value="ml_IN">മലയാളം</option>
+                <option value="th_TH">ภาษาไทย</option>
+                <option value="ka_GE">ქართული</option>
+                <option value="km_KH">ភាសាខ្មែរ</option>
+                <option value="zh_TW">中文(台灣)</option>
+                <option value="zh_CN">中文(简体)</option>
+                <option value="zh_HK">中文(香港)</option>
+                <option value="ja_JP">日本語</option>
+                <option value="ko_KR">한국어</option>
+              </select>
+            </div>
+          <div class="form_label-new_document">
+            <%=  f.label t('lang.title') %>
+          </div>
+             <div class="clearfloat"></div>
+
+          <div class="form_row ">
+
+            <div class="form_field-new_document">
+              <%= f.select :tag_list, [], :class => "form_tag span4" %>
+            </div>
+
+            <div id="form_label-new_document span1 offset4">
+              <%= f.label t('document.info.tags.title') %>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="clearfloat"></div>
+
+        <div class="form-actions pagination-right space_right">
+          <div class="actions center">
+            <%= f.submit t('button.save'), :class => "button" %>
+          </div>
+        </div>
+      </div>
+
+      <%= content_for :javascript do %>
+        $(function() {
+        //$('#new_file_only_wrapper').hide();
         $("#new_file_only_document_description").watermark(I18n.t('document.input'), "#666");
 
         $('#new_file_only_document_file').change(function(){
-          $('#new_file_only_wrapper').show();
-          $("#new_file_only_document_title").val($(this).val().replace(/C:\\fakepath\\/i, ''));
+        //$('#new_file_only_wrapper').show();
+        $("#new_file_only_document_title").val($(this).val().replace(/C:\\fakepath\\/i, ''));
         });
 
         $('#new_file_only_document_file').trigger('click');
-      });  
-      $("#new_file_only_document_tag_list").fcbkcomplete({
+        });
+        $("#new_file_only_document_tag_list").fcbkcomplete({
         json_url: "<%= tags_path(:format => :json) %>",
         cache: false,
         filter_case: true,
         filter_hide: true,
         newel: false,
         height: 6
-      });
-      <% d.tag_list.each do |tag| %> $("#new_file_only_document_tag_list").trigger("addItem",{"title":"<%=
+        });
+        <% d.tag_list.each do |tag| %> $("#new_file_only_document_tag_list").trigger("addItem",{"title":"<%=
       tag %>","value":"<%= tag %>"});
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</div>
+    </div>
 

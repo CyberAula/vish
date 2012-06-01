@@ -1920,9 +1920,41 @@ margin-right: 15px;
   padding-right:5px;
 
 }
+.margin15 {
+  padding-left:15px;
+  padding-right:15px;
+
+}
 
 .color-font-menu {
 color: #FF005D ;
   margin-top:-4px;
+
+}
+
+.form_field-new_document{
+  display: inline-block;
+  float : left
+
+
+}
+
+.form_label-new_document{
+  display: inline-block;
+  float : left;
+  margin-left: 15px;
+  padding-top:8px
+
+
+
+  }
+
+#form_label-new_document{
+  display: inline-block;
+  float : left;
+  margin-right:15px;
+  padding-top:10px
+
+
 
 }
