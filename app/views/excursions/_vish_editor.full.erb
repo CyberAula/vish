@@ -228,35 +228,38 @@
             				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement()">Add Content</button>
             			</div>
         			</div>
-				</div>      
+				</div>
 				<div id='tab_pic_upload_content' class="fancy_tab_content">
-							<div class="box1 box1fancy3">
-                <p class="textfancy">Select picture to upload</p><br>
+              <div class="box1 box1fancy3">
+                <p class="textfancy">Select picture to upload</p></br>
                 <img class="image_add_url" src="/assets/url_upl.png"/>
-                <form class="documentsForm" action="/documents.json" method="post" enctype="multipart/form-data">
-                    <input type="file" name="document[file]" class="upload_file_input">
-                    <input type="hidden" name="document[title]">
-                    <input type="hidden" name="document[description]">
-                    <input type="hidden" name="document[owner_id]">
-                    <input type="hidden" name="authenticity_token">
-										<input type="hidden" name="tags">
-                    <input id="upload_document_submit" class="button" type="submit" value="Upload">
-                </form>
-                <div class="upload_progress_bar_wrapper">
-                    <div class="upload_progress_bar"></div >
-                    <div class="upload_progress_bar_percent">0%</div >
-                </div>
-								<div class="tagBox">
-                    <ul class="tagList"></ul>
-                </div>
+                
+                  <form id="upload_picture_form" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+                      <input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
+                      <input type="hidden" name="document[title]">
+                      <input type="hidden" name="document[description]">
+                      <input type="hidden" name="document[owner_id]">
+                      <input type="hidden" name="authenticity_token">
+                      <input type="hidden" name="tags">
+                      <input id="upload_document_submit" type="submit" class="button" value="Upload">
+                  </form>
+                  
+                  <div class="upload_progress_bar_wrapper">
+                      <div class="upload_progress_bar"></div >
+                      <div class="upload_progress_bar_percent">0%</div >
+                  </div>
+                  
+                  <div class="tagBox">
+                    <ul id="tagid" class="tagList"></ul>
+                  </div>
+                  
               </div>
               <div class="box2 box2_upload">
-          				<div class="previewimgbox">
-              				<img class="documentblank" src="/assets/document_black.png"/>
-              				<button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement()">Add Content</button>
-                  </div>
+                    <div class="previewimgbox">
+                        <button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement()">Add Content</button>
+                    </div>
               </div>
-        </div>            
+        </div>             
 				<div id='tab_pic_repo_content' class="fancy_tab_content">
                 	<div class="box1 box1fancy2">
                     				  		  
@@ -316,17 +319,18 @@
                     			</div>
                 			</div>
 				</div>
-				<div id='tab_flash_upload_content' class="fancy_tab_content">
-              <div class="box1 box1fancy1">
+        <div id='tab_flash_upload_content' class="fancy_tab_content">
+              <div class="box1 box1fancy3">
                 <p class="textfancy">Select SWF file to upload</p><br>
                 <img class="image_add_url" src="/assets/url_upl.png"/>
                 
-                  <form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+                  <form id="upload_flash_form" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
                       <input type="file" name="document[file]" class="upload_file_input">
                       <input type="hidden" name="document[title]">
                       <input type="hidden" name="document[description]">
                       <input type="hidden" name="document[owner_id]">
                       <input type="hidden" name="authenticity_token">
+                      <input type="hidden" name="tags">
                       <input id="upload_document_submit" type="submit" class="button" value="Upload">
                   </form>
                   
@@ -335,13 +339,17 @@
                       <div class="upload_progress_bar_percent">0%</div >
                   </div>
                   
+                  <div class="tagBox">
+                    <ul class="tagList"></ul>
+                  </div>
+                  
               </div>
-              <div class="box2">
+              <div class="box2 box2_upload">
                       <div class="previewimgbox">
                           <button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
                       </div>
               </div>
-        </div> 
+        </div>
 				<div id='tab_flash_repo_content' class="fancy_tab_content">	
                 	<div class="box1 box1fancy2">			  
 					<div class="search_container">
