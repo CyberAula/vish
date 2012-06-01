@@ -1,7 +1,7 @@
 <%= div_for document, :class => 'content_size' do %>
 
   <div class="document_show">
-    <%= link_to "", document, :class => icon75_class_for(document), :alt => document.title %>
+    <iframe src="http://docs.google.com/viewer?url=http%3A%2F%2Fvishub.global.dit.upm.es<%=u download_document_path(document)%>&embedded=true" width="600" height="480" style="border: none;"></iframe>
   </div>
 
 <% end %>
