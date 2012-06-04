@@ -23,7 +23,8 @@ en:
   disjunction:
     or: "or"
   document:
-    how: "How to share a resource"    
+    how: "How to share a resource"
+    document: "document"
     info:
       tags:
         title: "Tags"
@@ -34,6 +35,7 @@ en:
     welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
     regards: "King regards,<br/>"              
   embed:
+    embed: "embed"
     confirm_delete: "Delete embed?"
   excursion:
     one: "excursion"

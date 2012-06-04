@@ -855,6 +855,7 @@ input[type="file"] {
   /* For IE7, add top margin to align select with labels */
 
   line-height: 28px;
+  border-radius: 15px 15px 15px 15px;
 }
 
 input[type="file"] {
@@ -3209,7 +3210,7 @@ input[type="submit"].btn.btn-mini {
 
 .nav > li > a:hover {
   text-decoration: none;
-  background-color: #ffffff;
+  background-color: #F9F9F9;
   border: 1px solid #FF005D;
   border-bottom-color: transparent;
 }
@@ -3348,8 +3349,8 @@ input[type="submit"].btn.btn-mini {
 
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover {
-  color: #ffffff;
-  /*background-color: #0066FF; */
+  color: #919191;
+  background-color: #ffffff;
 }
 
 .nav-stacked > li {

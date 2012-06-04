@@ -1,31 +1,20 @@
-
 <div class="btn-group dropdonw margin5 ">
-
   <div class="inline-blok color-font-menu">
-
     <%= link_to(raw("<i class='iconnav-my'></i> ")) %>
-
-
     <%= t('excursion.other') %>
-
-
-
     <a href="#" data-toggle="dropdown" class="dropalining"><span class="caret"></span></a>
-
-  <ul class="dropdown-menu size12">
-    <li>
-      <%=link_to( raw("<i class='iconnav-followers'></i> ")+ t('excursion.network')) %>
-    </li>
-    <li>
-      <%=link_to( raw("<i class='iconnav-my'></i> ")+ t('excursion.my'))%>
-    </li>
-    <li>
-      <%=link_to( raw("<i class='iconnav-star'></i> ")+ t('excursion.favorites')) %>
-    </li>
-
-  </ul>
-</div>
-
+    <ul class="dropdown-menu size12">
+      <li>
+        <%= link_to(raw("<i class='iconnav-followers'></i> ")+ t('excursion.network')) %>
+      </li>
+      <li>
+        <%= link_to(raw("<i class='iconnav-my'></i> ")+ t('excursion.my')) %>
+      </li>
+      <li>
+        <%= link_to(raw("<i class='iconnav-star'></i> ")+ t('excursion.favorites')) %>
+      </li>
+    </ul>
+  </div>
 </div>
 
 

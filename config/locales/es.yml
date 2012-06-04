@@ -24,6 +24,7 @@ es:
     or: "or"
   document:
     how: "Cómo compartir un recurso"    
+    document: "documento"
     info:
       tags:
         title: "Tags"
@@ -34,6 +35,7 @@ es:
     welcome: "Bienvenido y gracias por registrarse en Virtual Science Hub.<br/>Le invitamos a <a href=\"%{{profile}}\"> configurar su perfil</a> para disfrutar de un mejor servicio.<br/>"
     regards: "Un cordial saludo,<br/>"              
   embed:
+    embed: "embed"
     confirm_delete: "¿Borrar recurso empotrado?"
   excursion:
     one: "excursión"
