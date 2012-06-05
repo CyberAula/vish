@@ -16,5 +16,6 @@
 //= require social_stream.video
 //= require social_stream-linkser
 //= require linkser
+//= require tagit
 //= require_tree .
 
