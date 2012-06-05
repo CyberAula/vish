@@ -17,8 +17,22 @@ Vish.Utils = (function(V,undefined){
     }
 
 
+    var validateInput = function(inputId){
+			
+			if(! $("#" + inputId).val()){
+				return false;
+			}
+			
+			if($("#" + inputId).val().trim()==""){
+           return false;
+      }
+			
+			return true;
+		}
+
     return {
 			init : init,
+			validateInput : validateInput,
 			convertToTagsArray : convertToTagsArray     
     };
 

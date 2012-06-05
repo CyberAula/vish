@@ -3335,6 +3335,7 @@ input[type="submit"].btn.btn-mini {
   border-bottom-color: transparent;
   cursor: default;
   font-weight: lighter;
+	outline: none;
 }
 
 .nav-pills > li > a {
@@ -3343,8 +3344,8 @@ input[type="submit"].btn.btn-mini {
   margin-top: 2px;
   margin-bottom: 2px;
   -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .nav-pills > .active > a,

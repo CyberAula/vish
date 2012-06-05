@@ -24,130 +24,234 @@
 <% end %>
 
 
-
 <div id="new_file_only" class="">
 
-
-<div class="menu_new_document tabbable">
-<ul class="nav nav-tabs ">
-<li class="active"><a data-toggle="tab" href="#docs-1"><i class="iconfile16-file16_file"></i>
-<%= t('document.document') %></a></li>
-<li> <a data-toggle="tab" href="#docs-2"> <i class="icontool16-tool16_html"></i>
-  <%= t('links') %>
-</a></li>
-<li><a data-toggle="tab" href="#docs-3"><i class="iconfile16-tool16_embed"></i> <%= t('embed.embed') %>
-</a></li>
-</ul>
-  </div>
-  </div>
-
+	<div class="menu_new_document tabbable">
+		<ul class="nav nav-tabs ">
+			<li class="active">
+				<a data-toggle="tab" href="#docs-1" id="upload_file"><i class="iconfile16-file16_file"></i><%= t('document.document') %></a>
+			</li>
+			<li> 
+			  <a data-toggle="tab" href="#docs-2" id="upload_link"> <i class="icontool16-tool16_html"></i><%= t('links') %></a>
+			</li>
+			<li>
+				<a data-toggle="tab" href="#docs-3" id="upload_embed"><i class="iconfile16-tool16_embed"></i> <%= t('embed.embed') %></a>
+			</li>
+		</ul>
+	</div>
+</div>
 
 <!--menu type of resource-->
 <div class="repository tabbable">
-<div class="tab-content">
-  <div id="docs-1" class="tab-pane active">
+  <div class="tab-content">
+  	
+		<!-- Tags preloaded -->
+    <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+    <ul id="preloadTagList" style="display:none">
+      <%@tags.each do |tag| %>
+        <li><%=tag.name%></li>
+      <%end%>
+    </ul>
+		
+  	<!-- FILES TAB -->
+    <div id="docs-1" class="tab-pane active">
+    	
+	    <!--open file browser-->
+	    <div class="margin15">
+	      <% d = Document.new %>
+	      <% d.owner_id = Actor.normalize_id(current_user) %>
+	      <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+	        <%= f.hidden_field :owner_id %>
+	        <%= f.file_field :file %>
+	    </div>
 
-    <!--open file browser-->
-    <div class="margin15">
-      <% d = Document.new %>
-      <% d.owner_id = Actor.normalize_id(current_user) %>
-      <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-        <%= f.hidden_field :owner_id %>
-        <%= f.file_field :file %>
-    </div>
+      <div id="new_file_only_wrapper">
 
-        <div id="new_file_only_wrapper">
-
-          <!--Input (only for links/embed)-->
-          <div id="input_wrapper" class="form_row margin15">
-            <div class="form_field-new_document">
-              <input type="text" name="embed" class="form_tag span4"></input>
-            </div>
-            <div class="form_label-new_document">
-              <%= f.label Link %>
-            </div>
+        <!--title-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_field :title, :class => "form_tag span4" %>
           </div>
-
-
-
-          <!--title-->
-          <div class="form_row margin15">
-            <div class="form_field-new_document">
-              <%= f.text_field :title, :class => "form_tag span4" %>
-            </div>
-            <div class="form_label-new_document">
-              <%= f.label t('document.info.title.title') %>
-            </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.title.title') %>
           </div>
-
-          <!--description-->
-          <div class="form_row margin15">
-            <div class="form_field-new_document">
-              <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
-            </div>
-            <div class="form_label-new_document">
-              <%= f.label t('document.info.description.title') %>
-            </div>
-          </div>
-
-
-          <!--tags-->
-          <%= f.hidden_field :tags %>
-
-          <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
-          <ul id="preloadTagList" style="display:none">
-            <%@tags.each do |tag| %>
-              <li><%=tag.name%></li>
-            <%end%>
-          </ul>
-
-          <div class="clearfloat"></div>
-          <div class="form_row ">
-            <div class="tagBox span5">
-              <ul class="tagList"></ul>
-            </div>
-          </div>
-
         </div>
 
-        <!--btn-->
+        <!--description-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.description.title') %>
+          </div>
+        </div>
+
+        <!--tags-->
+				<input type="hidden" name="document[tag_list][]"></input>
+
         <div class="clearfloat"></div>
-        <div class="form-actions pagination-right space_right">
-          <div class="actions center">
-            <%= f.submit t('button.save'), :class => "button" %>
+        <div class="form_row ">
+          <div class="tagBox span5">
+            <ul class="tagList"></ul>
           </div>
         </div>
 
+      </div>
+
+      <!--btn-->
+      <div class="clearfloat"></div>
+      <div class="form-actions pagination-right space_right">
+        <div class="actions center">
+          <%= f.submit t('button.save'), :class => "button", :tab => "file" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+		
+		<!-- LINKS TAB -->
+    <div id="docs-2" class="tab-pane">
+
+      <div class="margin15">
+        <% d = Link.new %>
+        <% d.owner_id = Actor.normalize_id(current_user) %>
+        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+          <%= f.hidden_field :owner_id %>
+      </div>
+
+      <div id="new_file_only_wrapper">
+
+        <!--URL-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_field :url, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label "URL" %>
+          </div>
+        </div>
+
+        <!--title-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+          	<%= f.text_field :title, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.title.title') %>
+          </div>
+        </div>
+
+        <!--description-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.description.title') %>
+          </div>
+        </div>
+
+        <!--tags-->
+        <input type="hidden" name="link[tag_list][]"></input>
+
+        <div class="clearfloat"></div>
+        <div class="form_row ">
+          <div class="tagBox span5">
+            <ul class="tagList"></ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!--btn-->
+      <div class="clearfloat"></div>
+      <div class="form-actions pagination-right space_right">
+        <div class="actions center">
+          <%= f.submit t('button.save'), :class => "button", :tab => "link" %>
+        </div>
+      </div>
+			<% end %>					
+    </div>
+		
+		<!-- EMBED TAB -->
+    <div id="docs-3" class="tab-pane">      
+		
+		  <div class="margin15">
+        <% d = Embed.new %>
+        <% d.owner_id = Actor.normalize_id(current_user) %>
+        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+          <%= f.hidden_field :owner_id %>
+      </div>
+
+      <div id="new_file_only_wrapper">
+
+        <!--Embed-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_field :fulltext, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label "Embed" %>
+          </div>
+        </div>
+
+        <!--title-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_field :title, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.title.title') %>
+          </div>
+        </div>
+
+        <!--description-->
+        <div class="form_row margin15">
+          <div class="form_field-new_document">
+            <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+          </div>
+          <div class="form_label-new_document">
+            <%= f.label t('document.info.description.title') %>
+          </div>
+        </div>
+
+        <!--tags-->
+        <input type="hidden" name="embed[tag_list][]"></input>
+
+        <div class="clearfloat"></div>
+        <div class="form_row ">
+          <div class="tagBox span5">
+            <ul class="tagList"></ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!--btn-->
+      <div class="clearfloat"></div>
+      <div class="form-actions pagination-right space_right">
+        <div class="actions center">
+          <%= f.submit t('button.save'), :class => "button", :tab => "embed" %>
+        </div>
+      </div>
+      <% end %> 
+		
+		</div>
+		
   </div>
-  <div id="docs-2" class="tab-pane">  
-  
-                    <p>Morcilla</p>
-  
-  </div>
-  <div id="docs-3" class="tab-pane">      </div>
-</div>
 
-
-
-
-
-
-
-
-
-     </div>
 </div>
 
 	<%= content_for :javascript do %>	
 	  $(document).ready(function() {
 		
 	    $("#new_file_only_document_description").watermark(I18n.t('document.input'), "#666");
+			$("#new_file_only_link_description").watermark(I18n.t('document.input'), "#666");
+			$("#new_file_only_embed_description").watermark(I18n.t('document.input'), "#666");
 			
 	    $('#new_file_only_document_file').change(function(){
 	      $("#new_file_only_document_title").val($(this).val().replace(/C:\\fakepath\\/i, ''));
 	    });
-
-		  $("#input_wrapper").hide();	
 			
 	    //$('#new_file_only_document_file').trigger('click');
 			
@@ -155,19 +259,45 @@
 			//////////////
 			// Link events
 			/////////////
+      $('#upload_file').click(function(event){
+        resetFields()
+      });
 
+      $('#upload_link').click(function(event){
+        resetFields()
+      });
+
+      $('#upload_embed').click(function(event){
+        resetFields()
+      });
 			
-			var button = $("input[value='Save'][type='submit'][name='commit'].button");
+			var allButtons = $("input[value='Save'][type='submit'][name='commit'].button");
 			
-			$(button).click(function(event) {
-			  if(!validateForm()){
-				  event.preventDefault();
-					return false;
-				}
-			  var tagList = $(".tagList")
-			  $("input[name='document[tags]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
-				<!-- Controller broken... (Provisional code) -->
-				$("input[name='document[tags]']").attr("name","tagsHERE")
+			$(allButtons).click(function(event) {
+        var tab = $(event.target).attr("tab");
+        if(!validateForm(tab)){
+          event.preventDefault();
+          return false;
+        }
+        
+        switch (tab){
+          case "file":
+            var tagList = $("#docs-1 .tagList")
+            $("input[name='document[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+            break;
+          case "link":  
+            var tagList = $("#docs-2 .tagList")
+            $("input[name='link[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+            break;
+          case "embed":
+           var tagList = $("#docs-3 .tagList")
+            $("input[name='embed[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+            break;
+          default : 
+            event.preventDefault();
+            return false;
+        }
+        return true;
       });
 			
 			
@@ -200,25 +330,67 @@
 	  }); 
 		
 		function resetFields(){
-		  $("#new_file_only_document_file").val("");
-			$("input[name='embed']").val("")
-			$("#new_file_only_document_description").val("");
-			$("#new_file_only_document_title").val("");
+		  //File input
+		  $("#new_file_only_document_file").val("")
+		  //All inputs
+		  $(".form_tag").val("")
+			//All tagits
 			var tagList = $(".tagList");
 			$(tagList).tagit("reset");
+			//All input tags
+			 $("input[name='document[tag_list][]']").val("")
+			 $("input[name='link[tag_list][]']").val("")
+			 $("input[name='embed[tag_list][]']").val("")
 		}
 		
-		function validateForm(){
-		  var fileVal = $("input[name='document[file]']").val();
-		  var embedVal = $("input[name='embed']").val();
-			if((fileVal.trim()=="")&&(embedVal.trim()=="")){
+		function validateForm(form){
+
+			if(!form){
 			  return false;
 			}
+			
+			switch (form){
+				case "file":
+				  if(! Vish.Utils.validateInput("new_file_only_document_file")){
+					  return false;
+					}
+				  if(! Vish.Utils.validateInput("new_file_only_document_title")){
+            return false;
+          }
+					if(! Vish.Utils.validateInput("new_file_only_document_description")){
+            return false;
+          }
+				break;
+				
+				case "link":	
+					if(! Vish.Utils.validateInput("new_file_only_link_url")){
+            return false;
+          }
+          if(! Vish.Utils.validateInput("new_file_only_link_title")){
+            return false;
+          }
+          if(! Vish.Utils.validateInput("new_file_only_link_description")){
+            return false;
+          }
+				break;
+        
+				case "embed":
+					if(! Vish.Utils.validateInput("new_file_only_embed_fulltext")){
+            return false;
+          }
+          if(! Vish.Utils.validateInput("new_file_only_embed_title")){
+            return false;
+          }
+          if(! Vish.Utils.validateInput("new_file_only_embed_description")){
+            return false;
+          }
+				break;
+				
+				default : 
+				  return false;
+		  }
+			
 			return true;
 		}
 		
-
 	<% end %>
-<% end %>
-
-</div>
