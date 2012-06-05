@@ -5,7 +5,7 @@ es:
         email: "Email"
   activity:
     empty: "Tu timeline está vacío"
-    new_user: "Eres un nuevo usuario de VISH. Desde aquí podrás compartir y enviar mensajes, enlaces y archivos como imágenes, fotos, videos, etc"    
+    new_user: "¡Bienvenido al Virtual Science Hub! Desde aquí podrás compartir y enviar mensajes, enlaces y archivos como imágenes, fotos, videos, etc"
     timeline: "timeline"
     title:
       other: "actividad"
@@ -32,7 +32,7 @@ es:
     new: "Añadir recurso"
     screencast: "Screencast de VISH"
   email:
-    welcome: "Bienvenido y gracias por registrarse en Virtual Science Hub.<br/>Le invitamos a <a href=\"%{{profile}}\"> configurar su perfil</a> para disfrutar de un mejor servicio.<br/>"
+    welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
     regards: "Un cordial saludo,<br/>"              
   embed:
     embed: "embed"
@@ -45,7 +45,8 @@ es:
     created: "creadas"
     how: "Como crear una excursión"    
     title:
-      other: "Excursiones"
+      other: "excursiones"
+    network2: "mi red"
     actions:
       edit: "Editar"
       show: "Visualizar"
@@ -58,7 +59,6 @@ es:
     favorites: "favoritas"
     others: "otras excursiones "
     session_start: "inicia session"
-    my: "mi"
   filter: "filtrar"
   follow:
     followers: "seguidores"
@@ -87,6 +87,8 @@ es:
     one: "organizador"
     other: "organizadores"
   password: "clave"
+  post:
+    input: "Comparte aquí tus opiniones, enlaces, imágenes, recursos y más..."
   profile:
     tags:
       default: "VisHub, virtual, excursion"
