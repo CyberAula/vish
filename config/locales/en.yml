@@ -79,6 +79,7 @@ en:
   mashme:
     header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invite your contacts"
+    invitesubject: "Join me watching this excursion at MashMeTV!"
     room_name: "Room name"
   navigation:
     home: "Home"
