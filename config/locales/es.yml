@@ -79,6 +79,7 @@ es:
   mashme:
     header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invita a tus contactos"
+    invitesubject: "Invitación para ver una excursión en MashMeTV"
     room_name: "Nombre de la sala"
   navigation:
     home: "Inicio"
@@ -93,7 +94,7 @@ es:
     other: "organizadores"
   password: "clave"
   post:
-    input: "Comparte aquí tus opiniones, enlaces, imágenes, recursos y más..."
+    input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
   profile:
     tags:
       default: "VisHub, virtual, excursion"
