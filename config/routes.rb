@@ -16,6 +16,8 @@ Vish::Application.routes.draw do
 
   match 'legal_notice' => 'legal_notice#index'
 
+  match 'mashme_invite' => 'mashme_invites#invite'
+
   match 'help' => 'help#index'
 
   # The priority is based upon order of creation:
