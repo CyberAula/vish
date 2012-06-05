@@ -10,13 +10,11 @@
           <%= link_to(raw("<i class='icon-user'></i> ") +  truncate_name(current_subject.name, :length => 15), current_subject, :class => "name-menu") %>
           <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> ") +
-
-
-                        raw(" (<span id='header_inbox_count'>") + current_subject.unread_messages_count.to_s +
-                        raw("</span>)"), messages_path, :class => "btn") %>
+                        raw("<span class='badge' id='header_inbox_count'>") + current_subject.unread_messages_count.to_s +
+                        raw("</span>"), messages_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-followers'></i> "), followings_path, :class => "btn") %>
-          <%= link_to(raw("<i class='iconnav-notification" + (current_subject.mailbox.notifications.not_trashed.unread.count > 0 ? " iconnav-notification_notification" : "") + "'></i> ") + "(" +
-                        current_subject.mailbox.notifications.not_trashed.unread.count.to_s + ")",
+          <%= link_to(raw("<i class='iconnav-notification" + (current_subject.mailbox.notifications.not_trashed.unread.count > 0 ? " iconnav-notification_notification" : "") + "'></i> ") + raw("<span class='badge'>" +
+                        current_subject.mailbox.notifications.not_trashed.unread.count.to_s + "</span>"),
                       notifications_path, :class => "btn") %>
         </div>
         <%=  render :partial => 'layouts/header_dropdown_menu' %>
