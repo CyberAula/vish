@@ -14,6 +14,7 @@ es:
     unfollow: "Dejar de seguir"
   all: "todos"
   author: "autor"
+  cancel: "Cancelar"
   conditions:
     other: "condiciones"
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
@@ -75,6 +76,10 @@ es:
   message:
     new: "Mensaje nuevo"
   more: "more"
+  mashme:
+    header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    invite_header: "Invita a tus contactos"
+    room_name: "Nombre de la sala"
   navigation:
     home: "Inicio"
   options:

@@ -38,14 +38,36 @@
     <% end %>
 
   </div>
-  <div class="quiz inline-block pagination-centered">
-
-  </div>
   <div class="views size24 inline-block pagination-right inline-block ">
     <span class="green"><%=excursion.visit_count.to_s%></span> <%=t('follow.views')%>
     <!--<div class="iconx-quiz"></div>-->
-    <div class="iconx-vc"></div>
+    <% if user_signed_in? %>
+      <a data-toggle="modal" href="#mashme-modal" class="iconx-vc"></a>
+        <div class="modal hide" style="text-align: left;" id="mashme-modal">
+          <div class="modal-header"><%= t('mashme.header_html') %></div>
+          <div class="modal-body">
+            <h3><%= t('mashme.room_name') %></h3>
+            <input type="text" id="mashme-room-id" value="<%= current_user.slug + rand(100000).to_s %>"></input>
+            <h3><%= t('mashme.invite_header') %></h3>
+            <div class="mashme-invites">
+              <% Actor.followed_by(current_user).each do |a| %>
+                <div class="span2"><a style="width: 80%; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; text-align: left;" class="btn" id="mashme-invite-<%= a.id %>"><%= image_tag(a.logo.url(:actor), :alt => a.name, :size => "25x25") + " " + a.name %></a></div>
+              <% end %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal"><%=t('cancel')%></a>
+            <button class="mashme-button" url="http://vishub.org/" title="Example room">Custom url button!</button>
+          </div>
+        </div>
+    <% end %>
   </div>
+
+  <%= content_for :javascript do %>
+    $('.mashme-invites .btn').on("click", function(){
+      $(this).toggleClass("btn-info");
+    });
+  <% end %>
 
   <!--
   <div class="stairs_excursion  pagination-right inline-block ">
