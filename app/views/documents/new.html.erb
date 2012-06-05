@@ -25,16 +25,17 @@
 
 
 
-<div id="new_file_only" class="boxy_gray">
+<div id="new_file_only" class="">
 
 <!--menu type of resource-->
   <div class="menu_new_document tabbable">
-    <ul class="nav nav-pills ">
-      <li class="active"><a data-toggle="tab" href="#docs-1"><i class="iconfile16-file16_file"></i>
-          <%= t('document.document') %></a></li>
+    <ul class="nav nav-tabs ">
+      <li class="active">
+        <a data-toggle="tab" href="#docs-1"><i class="iconfile16-file16_file"></i><%= t('document.document') %>
+        </a></li>
       <li> <a data-toggle="tab" href="#docs-2"> <i class="icontool16-tool16_html"></i> <%= t('links') %>
         </a></li>
-      <li><a data-toggle="tab" href="#docs-3"><i class="iconfile16-tool16_embed"></i> <%= t('embed.embed') %>
+      <li> <a data-toggle="tab" href="#docs-3"> <i class="iconfile16-tool16_embed"></i> <%= t('embed.embed') %>
         </a></li>
     </ul>
 
@@ -44,6 +45,10 @@
         <div id="docs-1" class="tab-pane active">
 
           <!--open file browser-->
+          <div class="boxy_gray span6">
+            <div class="row space_center"></div>
+
+
           <div class="margin15">
             <% d = Document.new %>
             <% d.owner_id = Actor.normalize_id(current_user) %>
@@ -66,7 +71,7 @@
                 <!--description-->
                 <div class="form_row margin15">
                   <div class="form_field-new_document">
-                    <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+                    <%= f.text_area :description, :cols => 10, :rows => 4 , :class => "form_tag span4" %>
                   </div>
                   <div class="form_label-new_document">
                     <%= f.label t('document.info.description.title') %>
@@ -217,7 +222,7 @@
               </div>
 
 
-
+              </div>
               </div>
 
               <%= content_for :javascript do %>
