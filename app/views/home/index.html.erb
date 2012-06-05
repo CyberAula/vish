@@ -2,42 +2,29 @@
 <section id="left" class="span6">
 
 
-  <div class="excursions tabbable ">
+  <div class="excursions tabbable">
+  	
     <ul class="nav nav-tabs" >
-
-      <li class="active ">
-        <a data-toggle="tab" href="#ex-1">
-
-          <i class='iconnav-followers margin-icon'></i>
-          <%= t('excursion.other') %>
-
-          <div class="btn-group dropdonw  inline-block">
-            <a href="#" data-toggle="dropdown" class=""><span class="caret"></span></a>
-            <ul class="dropdown-menu size12">
-              <li>
-                <%= link_to(raw("<i class='iconnav-followers'></i> ")+ t('excursion.network')) %>
-              </li>
-              <li>
-                <%= link_to(raw("<i class='iconnav-my'></i> ")+ t('excursion.my')) %>
-              </li>
-              <li>
-                <%= link_to(raw("<i class='iconnav-star'></i> ")+ t('excursion.favorites')) %>
-              </li>
-            </ul>
-          </div>
-
-
-
-
-
-
-
-        </a></li>
+      <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        	<i class='iconnav-followers margin-icon'></i> <%= t('excursion.other')%>
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+	        <li>
+    	        <%= link_to(raw("<i class='iconnav-followers'></i> ")+ t('excursion.network')) %>
+            </li>
+            <li>
+        	    <%= link_to(raw("<i class='iconnav-my'></i> ")+ t('excursion.my')) %>
+            </li>
+         </ul>
+       </li>
 
       <!--<li class=""><a data-toggle="tab" href="#ex-2"><%#=t('excursion.upcomming')%></a></li> -->
       <li class=""><a data-toggle="tab" href="#ex-3"><%= t('recommended') %></a></li>
       <!--<li class=""><a href="/search?type=excursion"><%#=t('all')%></a></li>  -->
     </ul>
+
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter", :locals => {:show_add => true} %>
