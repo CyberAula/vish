@@ -37,11 +37,22 @@
 
 #search-frontpage{margin-left:200px;}
 
+.title_menu_home{
+  vertical-align:bottom;
+  color: #e0e0e0;
+  font-family:'DsignesLight';
+
+  padding-top: 9px;
+  vertical-align: bottom;
+  text-align: center;
+
+}
 /************* FRONTPAGE *******/
 
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
 /****************** FRONTPAGE BOTTOM *****/
+
 #tags{color: #cccccc; font-family: DsignesLight; }
 #repositories>a, #excursion >a, #organizations > a, #users> a{position:relative; font-weight: lighter; font-family: 'DsignesLight';}
 #repositories>a{float: right; top:-20px; z-index:1;}
@@ -98,6 +109,7 @@
 .size24{font-size: 24px;}
 .size30{font-size: 30px;}
 .size40{font-size: 40px;}
+.size50{font-size: 50px;}
 .size60{font-size: 60px;}
 .size80{font-size: 80px;}
 .size100{font-size: 100px;}
@@ -1228,7 +1240,7 @@ li{list-style-type:none}
   width:16px;
   line-height:16px;
   vertical-align:text-top;
-  *margin-right: .3em;
+  margin-right: 3px;
 
 }
 [class^="icontool16-"]:last-child, [class*="icontool16-"]:last-child {
@@ -1991,3 +2003,4 @@ margin-top: -5 px;
    border-radius: 5px;
    border: none !important;
  }
+

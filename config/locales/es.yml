@@ -50,7 +50,8 @@ es:
     created: "creadas"
     favorites: "favoritas"
     how: "Como crear una excursión"
-    my: "mis excursiones"
+    my: "mis"
+    net: "red"
     network: "excursiones de mi red"
     network2: "mi red"    
     one: "excursión"
@@ -59,7 +60,8 @@ es:
     session_start: "inicia session"
     title:
       other: "excursiones"
-    upcomming: "upcomming"      
+    upcomming: "upcomming"
+    top: "top"
   filter: "filtrar"
   follow:
     followers: "seguidores"

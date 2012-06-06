@@ -46,11 +46,16 @@ en:
       edit: "edit"
       show: "show"
       share: "share"
+
+
+
     confirm_delete: "Delete excursion?"
     created: "created"
     favorites: "favorites"    
     how: "How to create an excursion"
-    my: "my excursions"    
+    my: "my"
+
+    net: "net"
     network: "my network excursions"
     network2: "my network"
     one: "excursion"
@@ -60,6 +65,7 @@ en:
     title:
       other: "excursions"
     upcomming: "upcomming"
+    top: "top"
   filter: "filter"
   follow:
     followers: "followers"

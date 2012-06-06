@@ -1,4 +1,7 @@
 <div id="logo_index">
+
+  <div class="title_bold dark-gray size14" ><%= subject.name %></div>
+
   <% if subject == current_subject %>
     <div class="center">
       <div class="logo_grid logo_full">          
@@ -8,7 +11,7 @@
         </div>
       </div>        
     </div>
-    <div class="title_bold dark-gray size14" ><%= subject.name %></div>
+
   <% else %>
     <%= link_to image_tag(subject.logo.url, :alt => subject.name , :size => "119x119"), subject %>
     <%=contact_to(subject) %>

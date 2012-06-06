@@ -4,28 +4,35 @@
 
   <div class="excursions tabbable">
   	
-    <ul class="nav nav-tabs" >
-      <li class="dropdown active">
+    <ul class="nav nav-tabs span3" >
+
+      <li class="active"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
+      <li class=""><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
+      <li class=""><a data-toggle="tab" href="#ex-3"><%= t('excursion.top') %></a></li>
+
+      <!-- <li class="dropdown active">
 
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <%=image_tag('network.png') %> <%= t('excursion.other')%>
-
+          <#%=image_tag('network.png') %> <#%= t('excursion.other')%>
 			<b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
 	        <li>
-    	        <%= link_to(image_tag('network.png')+ t('excursion.network')) %>
+    	        <%#= link_to(image_tag('network.png')+ t('excursion.network')) %>
             </li>
             <li>
-        	    <%= link_to(image_tag('my.png')+ t('excursion.my')) %>
+        	    <#%= link_to(image_tag('my.png')+ t('excursion.my')) %>
             </li>
          </ul>
-       </li>
+       </li>       -->
 
       <!--<li class=""><a data-toggle="tab" href="#ex-2"><%#=t('excursion.upcomming')%></a></li> -->
-      <li class=""><a data-toggle="tab" href="#ex-3"><%= t('recommended') %></a></li>
+
       <!--<li class=""><a href="/search?type=excursion"><%#=t('all')%></a></li>  -->
     </ul>
+    <div class="span3 size50 title_menu_home ">
+    <%= t('excursion.other')%></div>
+    <div class="clearfloat"></div>
 
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
