@@ -3430,7 +3430,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .nav > .dropdown.active > a:hover {
-  color: #000000;
+
   cursor: pointer;
 }
 
