@@ -132,9 +132,6 @@
         invitees.push($(ele).attr("id").substring(14));
       });
       $.ajax({
-        url: "/mashme_invite?targets=" + invitees.toString(",") + "&url=" + target_url + "&title=" + target_title,
-      })
-      $.ajax({
         url: "http://www.mashme.tv/api/buttons",
         type: "POST",
         data: {
@@ -142,6 +139,9 @@
           title: target_title
         },
         success: function(data) {
+          $.ajax({
+            url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
+          })
           launchIframe("http://www.mashme.tv/M/" + data);
         }
       });

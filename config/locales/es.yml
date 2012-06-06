@@ -88,6 +88,7 @@ es:
     header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invita a tus contactos"
     invitesubject: "Invitación para ver una excursión en MashMeTV"
+    invitebody_html: "Hola %{username}.<br/><br/>Haz click aquí para unirte a la videoconferencia: <a href='http://www.mashme.tv/M/%{room}'><img src='/assets/mashme_button.png' /></a>"
     launch: "Empezar"
     room_name: "Nombre de la sala"
   navigation:
