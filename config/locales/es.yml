@@ -9,6 +9,11 @@ es:
     timeline: "timeline"
     title:
       other: "actividad"
+    verb:
+      make-friend:
+        User:
+          title: "%{subject} y %{contact} están siguiéndose"
+          message: "%{name} también te está siguiendo."
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
@@ -83,9 +88,13 @@ es:
     header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invita a tus contactos"
     invitesubject: "Invitación para ver una excursión en MashMeTV"
+    launch: "Empezar"
     room_name: "Nombre de la sala"
   navigation:
     home: "Inicio"
+  notification:
+    makefriend:
+      user: "%{sender} está siguiendo a %{who}."
   options:
     add: "añadir"
     new: "nuevo"
