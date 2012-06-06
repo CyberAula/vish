@@ -32,24 +32,28 @@
       <%= f.text_area :description, :class => "form_tag" %>
     </div>
   </div>
+	
+	<!-- Tags -->
+	<!-- Preload tags -->
+	<%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+	<ul id="preloadTagList" style="display:none">
+	  <%@tags.each do |tag| %>
+	    <li><%=tag.name%></li>
+	  <%end%>
+	</ul>
+		
   <div class="form_row">
     <div class="form_label">
       <%= f.label t('document.info.tags.title') %>
     </div>
     <div class="form_field">
-      <%= f.select :tag_list, [], :class => "form_tag" %>
+      <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
+	    <div class="tagBox span5">
+        <ul class="tagList"></ul>
+      </div>
     </div>
   </div>
-  <!-- 
-  <div class="form_row">
-    <div class="form_label">
-      <%#= f.label t('document.info.file.title') %>
-    </div>
-    <div class="form_field">
-      <%#= f.file_field :file, :class => "form_tag" %>
-    </div>
-  </div>  
-  -->
+
   <div class="actions center">
     <%= f.submit t('button.save'), :class => "button" %>
   </div>
@@ -57,17 +61,34 @@
 </div>
 
 <%= content_for :javascript do %>
-  <% doc_type = if document.type.nil?; "document"; else document.type.downcase; end%>
-  $("#<%= doc_type %>_tag_list").fcbkcomplete({
-    json_url: "<%= tags_path(:format => :json) %>",
-    cache: false,
-    filter_case: true,
-    filter_hide: true,
-    newel: false,
-    height: 6 
-  });
-  <% document.tag_list.each do |tag| %> $("#document_tag_list").trigger("addItem",{"title":"<%= tag %>","value":"<%= tag %>"});
-  <% end %>
+  $(document).ready(function() {		
+    var tagList = $(".tagList");
+    var tags = [];
+    
+    //Load tags
+    $.each($("#preloadTagList li"), function(index, element) {
+       tags.push($(element).html());
+    });
+		
+		//Add existin tags to the input
+    var currentTags = $("#input_tag_list").val().split(",");
+		$.each(currentTags, function(index, tag) {
+		      if((typeof tag == "string")&&(tag != "")){
+					  $(tagList).append("<li>" + tag + "</li>")
+					}
+    });       
+    
+    $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 });
+		
+		//Fill tag_list hidden input before send
+		 var button = $("input[value='Save'][type='submit'][name='commit'].button");
+		 $(button).click(function(event) {
+       var tagList = $(".tagList");
+       $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+       return true;
+     });
+		
+  }); 
 <% end %>
 
 <% if params[:editing].present? and params[:editing].eql?"true" and document.post_activity.edit_object_by?(current_subject) %>
