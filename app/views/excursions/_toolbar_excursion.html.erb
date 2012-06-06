@@ -136,7 +136,11 @@
         type: "POST",
         data: {
           url: target_url,
-          title: target_title
+          title: target_title,
+          theme: "vish",
+          app: "cobrowser",
+          media: "<%= request.url %>",
+          name: "<%= current_user.slug if user_signed_in? %>"
         },
         success: function(data) {
           $.ajax({
