@@ -44,6 +44,26 @@
             <%= f.password_field :password, :class => "input-xlarge", :id => "password_confirmation" %>
           </div>
         </div>
+				
+				<!-- Tags -->
+			  <!-- Preload tags -->
+			  <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+			  <ul id="preloadTagList" style="display:none">
+			    <%@tags.each do |tag| %>
+			      <li><%=tag.name%></li>
+			    <%end%>
+			  </ul>
+			    
+			  <div class="control-group">
+			    <label class="control-label" for="tags">Tags</label>
+			    <div class="controls">
+			      <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %> 
+			      <div class="tagBoxNew span5">
+			        <ul class="tagList"></ul>
+			      </div>
+			    </div>
+			  </div>
+				
         <div class="control-group">
           <div class="controls">
             <%= t('conditions.check_message') %> <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
@@ -57,7 +77,7 @@
         </div>
         <div class="btn_devise">
           <div class="form-actions pagination-right space_right">
-            <%= f.submit t('action.accept').capitalize %>
+            <%= f.submit t('action.accept').capitalize, :id => "submit_new_user_button" %>
           </div>
         </div>
       </fieldset>
@@ -70,3 +90,26 @@
     </div>
 
 </div>
+
+<%= content_for :javascript do %>
+  $(document).ready(function() {    
+    var tagList = $(".tagList");
+    var tags = [];
+    
+    //Load tags
+    $.each($("#preloadTagList li"), function(index, element) {
+       tags.push($(element).html());
+    });      
+    
+    $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 });
+    
+    //Fill tag_list hidden input before send
+     var button = $("#submit_new_user_button");
+     $(button).click(function(event) {
+       var tagList = $(".tagList");
+       $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+       return true;
+     });
+    
+  }); 
+<% end %>
