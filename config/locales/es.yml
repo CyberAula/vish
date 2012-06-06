@@ -19,6 +19,9 @@ es:
     other: "condiciones"
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
     check_message_1: "Condiciones de Uso"
+  contact:
+    pending:
+      other: "Te siguen"
   devise:
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
   disjunction:
