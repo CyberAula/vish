@@ -10,7 +10,7 @@ Vish.Wall = (function(V, $, undefined){
     this.currentValue = $("#input_activities").val();
 
     if(regexpEmbed.test($("#input_activities").val())) {
-      $("#embed_fulltext").val( regexp.exec($("#input_activities").val())[1]);
+      $("#embed_fulltext").val( regexpEmbed.exec($("#input_activities").val())[1]);
       $("#new_post").attr("action", "/embeds");
       $("#embed_preview").html(hidden_embed_form);
       $("#embed_preview").show();
@@ -20,7 +20,7 @@ Vish.Wall = (function(V, $, undefined){
       $("#new_post").attr("action", "/links");
 
       if(this.currentValue != this.lastValue) {
-        $("#link_preview").html($('<img>').attr('src', '<%= asset_path('loading.gif') %>').addClass('loading'));
+        $("#link_preview").html($('<img>').attr('src', 'assets/images/loading.gif').addClass('loading'));
 
         this.lastValue = this.currentValue;
         var url = this.currentValue;
@@ -58,6 +58,7 @@ Vish.Wall = (function(V, $, undefined){
     $("#input_activities_document").watermark(I18n.t('document.input'), "#666");
 
     if($("#new_post").length) {
+      $("#input_activities").unbind();
       $("#input_activities").change(urlDetect).keyup(urlDetect);
       $("#new_post").append($('<input>').attr('type', 'hidden').attr('name', 'embed[owner_id]').attr('id', 'embed_owner_id').val($("#post_owner_id").val()));
       $("#new_post").append($('<input>').attr('type', 'hidden').attr('name', 'embed[fulltext]').attr('id', 'embed_fulltext'));
