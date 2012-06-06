@@ -16,9 +16,9 @@ en:
   author: "author"
   cancel: "Cancel"
   conditions:
-    other: "conditions"
     check_message: "By clicking Accept, you agree to our "  
     check_message_1: "Terms and Conditions."
+    other: "conditions"
   contact:
     pending:
       other: "Following you"
@@ -27,8 +27,8 @@ en:
   disjunction:
     or: "or"
   document:
-    how: "How to share a resource"
     document: "document"
+    how: "How to share a resource"
     info:
       tags:
         title: "Tags"
@@ -36,33 +36,33 @@ en:
     new: "Add resource"
     screencast: "VISH's screencast"
   email:
+    regards: "King regards,<br/>"
     welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
-    regards: "King regards,<br/>"              
   embed:
-    embed: "embed"
     confirm_delete: "Delete embed?"
+    embed: "embed"
   excursion:
-    one: "excursion"
-    other: "excursions"
-    upcomming: "upcomming"
-    confirm_delete: "Delete excursion?"
-    created: "created"
-    how: "How to create an excursion"
-    title:
-      other: "excursions"
-    network2: "my network"
     actions:
+      bookmark: "bookmark"
+      delete: "delete"
+      download: "download"            
       edit: "edit"
       show: "show"
-      delete: "delete"
-      download: "download"
       share: "share"
-      bookmark: "bookmark"
+    confirm_delete: "Delete excursion?"
+    created: "created"
+    favorites: "favorites"    
+    how: "How to create an excursion"
+    my: "my excursions"    
     network: "my network excursions"
-    my: "me"
-    favorites: "favorites"
+    network2: "my network"
+    one: "excursion"
+    other: "excursions"
     others: "others excursions"
     session_start: "start session"
+    title:
+      other: "excursions"
+    upcomming: "upcomming"
   filter: "filter"
   follow:
     followers: "followers"
@@ -71,9 +71,9 @@ en:
   help: "help"
   links: "links"
   lang:
-    title: "language"
     changed: "Changed language to %{lang}"
     error: "Language \"%{lang}\" not available"
+    title: "language"    
   translate:
     change: "Change language"
   message:
@@ -87,8 +87,8 @@ en:
   navigation:
     home: "Home"
   options:
-    new: "new"
     add: "add"
+    new: "new"
   organization:
     one: "organization"
     other: "organizations"
@@ -108,11 +108,11 @@ en:
     other: "repositories"
     title: "Resources"
   resource:
+    network: "my network resources"
     title:
       one: "resource"
       other: "resources"
     upload: "upload"
-    network: "my network resources"
   share: "Post"
   site:
     name: "Virtual Science Hub"
@@ -131,8 +131,8 @@ en:
     team: "The VISH Team"    
   views:
     pagination:
-      truncate: "..."
-      previous: "«"
       next: "»"
+      previous: "«"            
+      truncate: "..."
   view_all: "view all"
   yesterday: "Yesterday"

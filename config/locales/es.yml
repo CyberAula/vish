@@ -16,9 +16,9 @@ es:
   author: "autor"
   cancel: "Cancelar"
   conditions:
-    other: "condiciones"
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
     check_message_1: "Condiciones de Uso"
+    other: "condiciones"
   contact:
     pending:
       other: "Te siguen"
@@ -27,8 +27,8 @@ es:
   disjunction:
     or: "or"
   document:
-    how: "Cómo compartir un recurso"    
     document: "documento"
+    how: "Cómo compartir un recurso"    
     info:
       tags:
         title: "Tags"
@@ -36,33 +36,33 @@ es:
     new: "Añadir recurso"
     screencast: "Screencast de VISH"
   email:
+    regards: "Un cordial saludo,<br/>"
     welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
-    regards: "Un cordial saludo,<br/>"              
   embed:
-    embed: "embed"
     confirm_delete: "¿Borrar recurso empotrado?"
+    embed: "embed"
   excursion:
-    one: "excursión"
-    other: "excursiones"
-    upcomming: "upcomming"
-    confirm_delete: "¿Borrar excursión?"
-    created: "creadas"
-    how: "Como crear una excursión"    
-    title:
-      other: "excursiones"
-    network2: "mi red"
     actions:
-      edit: "Editar"
-      show: "Visualizar"
+      bookmark: "marcardor"      
       delete: "Borrar"
       download: "descargar"
+      edit: "Editar"
+      show: "Visualizar"
       share: "compartir"
-      bookmark: "marcardor"
-    network: "excursiones de mi red"
-    my: "mis excursiones"
+    confirm_delete: "¿Borrar excursión?"
+    created: "creadas"
     favorites: "favoritas"
+    how: "Como crear una excursión"
+    my: "mis excursiones"
+    network: "excursiones de mi red"
+    network2: "mi red"    
+    one: "excursión"
+    other: "excursiones"
     others: "otras excursiones "
     session_start: "inicia session"
+    title:
+      other: "excursiones"
+    upcomming: "upcomming"      
   filter: "filtrar"
   follow:
     followers: "seguidores"
@@ -71,9 +71,9 @@ es:
   help: "ayuda"
   links: "enlaces"
   lang:
-    title: "idioma"
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
+    title: "idioma"    
   translate:
     change: "Cambiar idioma"
   message:
@@ -87,8 +87,8 @@ es:
   navigation:
     home: "Inicio"
   options:
-    new: "nuevo"
     add: "añadir"
+    new: "nuevo"
   organization:
     one: "organización"
     other: "organizaciones"
@@ -108,11 +108,11 @@ es:
     other: "repositorios"
     title: "Recursos"
   resource:
+    network: "recursos de mi red"
     title:
       one: "recursos"
       other: "recursos"
     upload: "subir"
-    network: "recursos de mi red"
   share: "Enviar"
   site:
     name: "Virtual Science Hub"
@@ -131,9 +131,8 @@ es:
     team: "El equipo de VISH"    
   views:
     pagination:
-      truncate: "..."
-      previous: "«"
       next: "»"
+      previous: "«"
+      truncate: "..."            
   view_all: "ver todos"
   yesterday: "Ayer"
-

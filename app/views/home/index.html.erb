@@ -6,16 +6,18 @@
   	
     <ul class="nav nav-tabs" >
       <li class="dropdown active">
+
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        	<i class='iconnav-followers margin-icon'></i> <%= t('excursion.other')%>
+          <%=image_tag('network.png') %> <%= t('excursion.other')%>
+
 			<b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
 	        <li>
-    	        <%= link_to(raw("<i class='iconnav-followers'></i> ")+ t('excursion.network')) %>
+    	        <%= link_to(image_tag('network.png')+ t('excursion.network')) %>
             </li>
             <li>
-        	    <%= link_to(raw("<i class='iconnav-my'></i> ")+ t('excursion.my')) %>
+        	    <%= link_to(image_tag('my.png')+ t('excursion.my')) %>
             </li>
          </ul>
        </li>
