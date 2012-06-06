@@ -36,7 +36,7 @@ class ExcursionsController < ApplicationController
 
   def create
     super do |format|
-      format.all { render :json => resource }
+      format.all { render :json => { :url => excursion_path(resource) } }
     end
   end
 
