@@ -130,6 +130,7 @@
       var target_title = encodeURI("ViSH-excursion-<%= excursion.id %>-" + $('#mashme-room-id').val());
       $('.mashme-invites .btn-info').each(function(i,ele){
         invitees.push($(ele).attr("id").substring(14));
+        $(ele).removeClass("btn-info");
       });
       $.ajax({
         url: "http://www.mashme.tv/api/buttons",
@@ -148,6 +149,8 @@
           launchIframe("http://www.mashme.tv/M/" + data <%= if user_signed_in?; then "+ '?name=' + encodeURI('" + current_user.name + "')"; end %>);
         }
       });
+      $('#mashme-room-id').val("<%= current_user.slug %>" + Math.floor(Math.random()*100000));
+      $("#mashme-modal").modal('hide');
 
     });
 
