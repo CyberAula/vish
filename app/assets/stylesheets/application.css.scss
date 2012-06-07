@@ -1055,7 +1055,7 @@ li{
 .icon_repository32-32_mov { background-position: -126px -210px ;}
 .icon_repository32-32_flash { background-position: -168px -210px ;}
 .icon_repository32-32_quiz { background-position: -210px -210px ;}
-.icon_repository32-32_link:hover { background-position: -252px -168px;}
+.icon_repository32-32_link { background-position: -252px -210px;}
 
 
 /*........................hover........................... */
@@ -2023,3 +2023,16 @@ margin-top: -5 px;
   right: 9px;
 }
 
+.icon_x-link {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  vertical-align: text-top;
+  background-image: url("icons/link_small_gray.png");
+  background-repeat: no-repeat;
+  *margin-right: .3em;
+}
+.icon_x-link:hover {
+  background-image: url("icons/link_small_blue.png");
+}
