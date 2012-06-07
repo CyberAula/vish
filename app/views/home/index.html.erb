@@ -5,30 +5,9 @@
   <div class="excursions tabbable">
   	
     <ul class="nav nav-tabs span4" >
-
       <li class="active"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
       <li class=""><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
       <li class=""><a data-toggle="tab" href="#ex-3"><%= t('excursion.top') %></a></li>
-
-      <!-- <li class="dropdown active">
-
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <#%=image_tag('network.png') %> <#%= t('excursion.other')%>
-			<b class="caret"></b>
-		</a>
-		<ul class="dropdown-menu">
-	        <li>
-    	        <%#= link_to(image_tag('network.png')+ t('excursion.network')) %>
-            </li>
-            <li>
-        	    <#%= link_to(image_tag('my.png')+ t('excursion.my')) %>
-            </li>
-         </ul>
-       </li>       -->
-
-      <!--<li class=""><a data-toggle="tab" href="#ex-2"><%#=t('excursion.upcomming')%></a></li> -->
-
-      <!--<li class=""><a href="/search?type=excursion"><%#=t('all')%></a></li>  -->
     </ul>
     <div class="pan2 size40 title_menu_home ">
     <%= t('excursion.other')%></div>
@@ -48,17 +27,19 @@
           <% end %>
         </div>
       </div>
-      <!--
       <div id="ex-2" class="tab-pane">
-        <%#= render :partial => "excursions/filter"%>
-        <div id="upcomming" >
-          <%# for excursion in current_actor_excursions %>
-            <%#= render :partial => "excursions/home",
-                       :locals => { :excursion => excursion} %>
-          <%# end %>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-me"} %>
+        <div class="space_center"></div>
+        <div id="excursions-me" class="row height-tabs-home">
+          <% my_excursions = current_subject_excursions(:scope => :me) %>
+          <% if my_excursions.size == 0 %>
+            <%= render :partial => "excursions/my_zero_screen" %>
+          <% else %>
+            <%= render :partial => "excursions/filter_results",
+                       :locals => {:excursions => my_excursions} %>
+          <% end %>
         </div>
       </div>
-      -->
       <div id="ex-3" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => {:show_add => false, :filter_id => "excursion-filter-more"} %>
         <div class="space_center"></div>
@@ -114,13 +95,24 @@
         </div>
       </div>
       <div id="repo-2" class="tab-pane">
-        <%= render :partial => "links/home_filter" %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => true, :filter_id => "document-filter-me"} %>
         <div class="space_center"></div>
-        <div id="repository-links" class="repositories row height-tabs-home">
-          <% for link in current_subject_links(:limit => 8) %>
-            <%= render :partial => "links/home",
-                       :locals => {:link => link,
-                                   :div_class => 'content_size'} %>
+        <div id="repository-me" class="repositories row height-tabs-home">
+          <% my_resources = current_subject_resources({:scope => :me, :limit => 8}) %>
+          <% if my_resources.size == 0 %>
+            <%= render :partial => "common_documents/my_zero_screen" %>
+          <% else %>
+            <% for document in my_resources %>
+              <% if document.is_a? Embed %>
+                <%= render :partial => "embeds/home",
+                           :locals => {:embed => document,
+                                       :div_class => 'content_size'} %>
+              <% else %>
+                <%= render :partial => "common_documents/home",
+                           :locals => {:document => document,
+                                       :div_class => 'content_size'} %>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
       </div>
