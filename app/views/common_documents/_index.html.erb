@@ -104,7 +104,7 @@
 
         <div class="icon_link_delete">
               <% if link.post_activity.delete_object_by?(current_subject) %>
-                <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> "), :class => :action), link.post_activity.direct_object, :confirm => t('confirm_delete', :scope => link.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+                <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_close_2'></i> "), :class => :action), link.post_activity.direct_object, :confirm => t('confirm_delete', :scope => link.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
               <% end %>
         	
         </div>
