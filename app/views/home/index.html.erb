@@ -107,6 +107,10 @@
                 <%= render :partial => "embeds/home",
                            :locals => {:embed => document,
                                        :div_class => 'content_size'} %>
+              <% elsif document.is_a? Link %>
+                 <%= render :partial => "links/home",
+                            :locals => {:link => document,
+                                        :div_class => 'content_size'} %>
               <% else %>
                 <%= render :partial => "common_documents/home",
                            :locals => {:document => document,
