@@ -139,14 +139,13 @@
           title: target_title,
           theme: "vish",
           app: "cobrowser",
-          media: "<%= request.url %>",
-          name: "<%= current_user.slug if user_signed_in? %>"
+          media: "<%= request.url %>"
         },
         success: function(data) {
           $.ajax({
             url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
           })
-          launchIframe("http://www.mashme.tv/M/" + data);
+          launchIframe("http://www.mashme.tv/M/" + data <%= if user_signed_in?; then "+ '?name=' + encodeURI('" + current_user.name + "')"; end %>);
         }
       });
 
