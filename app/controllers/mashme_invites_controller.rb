@@ -5,8 +5,18 @@ class MashmeInvitesController < ApplicationController
   def invite
     #params[:url]
     params[:targets].split(',').each do |t|
-      Actor.find(t).notify(I18n.t('mashme.invitesubject'), "")
+      to_actor = Actor.find(t)
+      next if to_actor.blank?
+      if to_actor.respond_to? :language
+        I18n.locale = to_actor.language || I18n.default_locale
+      end
+      current_user.send_message(to_actor, mashme_invite(params[:room], to_actor.name), t('mashme.invitesubject'))
     end
+    render :nothing => true
+  end
+
+  def mashme_invite room, username
+    t('mashme.invitebody_html', :room => room, :username => username)
   end
 
 end

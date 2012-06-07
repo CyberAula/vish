@@ -9,6 +9,11 @@ en:
     timeline: "timeline"
     title:
       other: "activity"
+    verb:
+       make-friend:
+        User:
+          title: "%{subject} and %{contact} are following each other."
+          message: "%{name} is following you back."
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
@@ -19,6 +24,9 @@ en:
     check_message: "By clicking Accept, you agree to our "  
     check_message_1: "Terms and Conditions."
     other: "conditions"
+  contact:
+    pending:
+      other: "Following you"
   devise:
     invalid_login: "Please enter your email and password to continue."
   disjunction:
@@ -86,9 +94,14 @@ en:
     header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invite your contacts"
     invitesubject: "Join me watching this excursion at MashMeTV!"
+    invitebody_html: "Hi %{username}.<br/><br/>Click here to watch: <a href='http://www.mashme.tv/M/%{room}'><img src='/assets/mashme_button.png' /></a>"
+    launch: "Launch"
     room_name: "Room name"
   navigation:
     home: "Home"
+  notification:
+    makefriend:
+      user: "%{sender} is following %{who}."
   options:
     add: "add"
     new: "new"
