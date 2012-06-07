@@ -16,7 +16,7 @@ class MashmeInvitesController < ApplicationController
   end
 
   def mashme_invite room, username
-    t('mashme.invitebody_html', :room => room, :username => username)
+    t('mashme.invitebody_html', :room => room, :username => CGI::escapeHTML(username), :domain => request.env['HTTP_HOST'])
   end
 
 end
