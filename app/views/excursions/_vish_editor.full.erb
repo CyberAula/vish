@@ -1,49 +1,13 @@
 <section class="slides layout-regular template-default" id="slides_panel">
-		<div id='menubar'>
-		    <a id="edit_excursion_details" href="#excursiondetails">
-				  <div id="config_div" class='barbuttonaddsave' title="Edit details"></div>
-	        </a>
-            <div class='barbutton with_pointer' id=''>
-            </div>
-		    <div class='barbutton' id="slide_thumb_1">				
-					<img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-			</div>
-		    <div class='barbutton' id="slide_thumb_2" >
-				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-		    </div>
-		    <div class='barbutton' id="slide_thumb_3">
-				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-		    </div>
-		    <div class='barbutton' id="slide_thumb_4">
-				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-		    </div>
-		    <div class='barbutton' id="slide_thumb_5">
-				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-		    </div>
-		    <div class='barbutton' id="slide_thumb_6">
-				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-		    </div>
-		    <div class='barbutton' id="slide_thumb_7">
-				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-		    </div>
-		    <div class='barbutton' id="slide_thumb_8">
-				    <img class="image_barbutton" src="/assets/templatesthumbs/default.png"/>
-				    <span class="slide_number"></span>
-		    </div>
-		    <div class='barbutton with_pointer' id=''>
-		    </div>		    
-            <a id="save" href="#thumbcontent">
-			    <div id="save_div" class='barbuttonaddsave' title="Save slides">
-			    </div>
-            </a>
-		</div>
+    <div id='menubar'>
+        <a id="edit_excursion_details" href="#excursiondetails">
+          <div id="config_div" class='barbuttonaddsave' title="Edit details"></div>
+        </a>
+        <div id="slides_carrousel"></div>   
+        <a id="save" href="#thumbcontent">
+          <div id="save_div" class='barbuttonaddsave' title="Save slides"></div>
+        </a>
+    </div>
     </section>
 
     <!-- Hidden link to open fancybox when adding a slide -->
@@ -251,7 +215,7 @@
                       <div class="upload_progress_bar_percent">0%</div >
                   </div>
                   
-                  <div class="tagBox">
+                  <div class="tagBoxUpload">
                     <ul id="tagid" class="tagList"></ul>
                   </div>
                   
@@ -261,29 +225,21 @@
                         <button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Image.drawPreviewElement()">Add Content</button>
                     </div>
               </div>
-        </div>             
+        </div>
 				<div id='tab_pic_repo_content' class="fancy_tab_content">
-                	<div class="box1 box1fancy2">
-                    				  		  
-					<div class="search_container">
-					  <input type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-					</div>
-					
-					<div id="tab_pic_repo_content_carrousel"></div>
-					
-                    <div id="tab_pic_repo_content_preview">
-						<div id="tab_pic_repo_content_preview_image">
-							
-						</div>
-                        
-						<div id="tab_pic_repo_content_preview_metadata"></div>
-                        
-						<div id="tab_pic_repo_content_preview_foot">
-							<button type="button" class="okButton" onclick="VISH.Editor.Image.Repository.addSelectedImage()">Add</button>
-						</div>
-					</div>
-                    </div>	
-				</div>
+          <div class="box1 box1fancy2">
+            <img src="images/repositoryimg.png" class="imagelogotab">               
+            <div class="search_container">
+              <input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+            </div>
+            
+            <div id="tab_pic_repo_content_carrousel"></div>
+            
+            <div id="tab_pic_repo_content_preview">
+              <div id="tab_pic_repo_content_preview_image"></div>
+            </div>
+          </div>  
+        </div>
 				<div id='tab_pic_flikr_content' class="fancy_tab_content">
                 	  <div class="box1 box1fancy2">
                       <img src="/assets/flickrlogo.png" class="imagelogotab">
@@ -341,7 +297,7 @@
                       <div class="upload_progress_bar_percent">0%</div >
                   </div>
                   
-                  <div class="tagBox">
+                  <div class="tagBoxUpload">
                     <ul class="tagList"></ul>
                   </div>
                   
