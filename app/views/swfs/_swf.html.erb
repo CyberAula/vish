@@ -1,0 +1,23 @@
+<%= div_for swf, :class => 'content_size' do %>
+
+  <div class="span3">
+    <%= link_to thumb_for(swf, 130),
+                download_document_path(swf),
+        :type => swf.type,
+                :title => swf.title,
+                :path => document_path(swf) %>
+  </div>
+
+  <div class="span9">
+        <div class="title"> 
+          <%= truncate_name(swf.title, :length => 35) %>
+        </div>
+
+        <%= simple_format auto_link(swf.description) %>
+  </div>
+
+<iframe src="<%= swf.file %>" width="470" height="352.5">...</iframe>
+
+<% end %>
+
+<div class="clearfloat"></div>
