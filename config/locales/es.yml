@@ -61,7 +61,8 @@ es:
     my: "mis"
     net: "red"
     network: "excursiones de mi red"
-    network2: "mi red"    
+    network2: "mi red"
+    new: "Aún no has creado ninguna excursión. Puedes crear una nueva haciendo click en el botón añadir o en este "        
     one: "excursión"
     other: "excursiones"
     others: "otras excursiones "
@@ -76,6 +77,7 @@ es:
     followings: "siguiendo"
     views: "visitas"
   help: "ayuda"
+  link: "enlace."  
   links: "enlaces"
   lang:
     changed: "Se cambia el idioma a %{lang}"
@@ -120,6 +122,7 @@ es:
     other: "repositorios"
     title: "Recursos"
   resource:
+    empty: "No"    
     network: "recursos de mi red"
     title:
       one: "recursos"

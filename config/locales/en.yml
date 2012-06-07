@@ -54,18 +54,15 @@ en:
       edit: "edit"
       show: "show"
       share: "share"
-
-
-
     confirm_delete: "Delete excursion?"
     created: "created"
     favorites: "favorites"    
     how: "How to create an excursion"
     my: "my"
-
     net: "network"
     network: "my network excursions"
     network2: "my network"
+    new: "You have not created any excursion yet. You can add a new one by clicking the add button or in this "    
     one: "excursion"
     other: "excursions"
     others: "others excursions"
@@ -80,6 +77,7 @@ en:
     followings: "following"
     views: "views"
   help: "help"
+  link: "link."  
   links: "links"
   lang:
     changed: "Changed language to %{lang}"
@@ -124,6 +122,7 @@ en:
     other: "repositories"
     title: "Resources"
   resource:
+    empty: "You"    
     network: "my network resources"
     title:
       one: "resource"
