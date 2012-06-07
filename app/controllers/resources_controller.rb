@@ -17,7 +17,7 @@
 
 class ResourcesController < ApplicationController
   def search
-    @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed] } )
+    @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
     render :layout => false
   end
 
@@ -53,7 +53,7 @@ class ResourcesController < ApplicationController
     when "me"
       { :with => { :author_id => [ current_subject.author_id ] } }
     when "net"
-      { :with => { :author_id => current_subject.following_actor_and_self_ids } }
+      { :with => { :author_id => current_subject.following_actor_ids } }
     when "other"
       { :without => { :author_id => current_subject.following_actor_and_self_ids } }
     else

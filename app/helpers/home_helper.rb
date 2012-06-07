@@ -32,7 +32,7 @@ module HomeHelper
   end
 
   def subject_resources(subject, options = {})
-    subject_content subject, [Document, Embed], options
+    subject_content subject, [Document, Embed, Link], options
   end
 
   def subject_content(subject, klass, options = {})
@@ -40,7 +40,7 @@ module HomeHelper
     options[:scope] ||= :net
 
     following_ids = subject.following_actor_ids
-    following_ids |= [ subject.actor_id ]
+    #following_ids |= [ subject.actor_id ]
 
     query = klass
     query = ActivityObject.where(:object_type => klass.map{|t| t.to_s}) if klass.is_a?(Array)
@@ -51,6 +51,7 @@ module HomeHelper
     when :net
       query = query.authored_by(following_ids)
     when :more
+      following_ids |= [ subject.actor_id ]
       query = query.not_authored_by(following_ids)
     end
 
