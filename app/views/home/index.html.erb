@@ -4,7 +4,7 @@
 
   <div class="excursions tabbable">
   	
-    <ul class="nav nav-tabs span3" >
+    <ul class="nav nav-tabs span4" >
 
       <li class="active"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
       <li class=""><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
@@ -30,7 +30,7 @@
 
       <!--<li class=""><a href="/search?type=excursion"><%#=t('all')%></a></li>  -->
     </ul>
-    <div class="span3 size50 title_menu_home ">
+    <div class="pan2 size40 title_menu_home ">
     <%= t('excursion.other')%></div>
     <div class="clearfloat"></div>
 
@@ -77,12 +77,19 @@
   <div class="row space_center"></div>
 
   <div class="repository tabbable">
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('resource.title.other') %></a></li>
-      <li class=""><a data-toggle="tab" href="#repo-2"><%= t('links') %></a></li>
-      <li class=""><a data-toggle="tab" href="#repo-3"><%= t('recommended') %></a></li>
-      <!--<li class=""><a href="/search?type=resource"><%#=t('all')%></a></li> -->
+    <ul class="nav nav-tabs span4" >
+
+      <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('excursion.net') %></a></li>
+      <li class=""><a data-toggle="tab" href="#repo-2"><%= t('excursion.my') %></a></li>
+      <li class=""><a data-toggle="tab" href="#repo-3"><%= t('excursion.top') %></a></li>
     </ul>
+    <div class="span2 size40 title_menu_home ">
+      <%= t('resource.title.other')%></div>
+    <div class="clearfloat"></div>
+
+
+      <!--<li class=""><a href="/search?type=resource"><%#=t('all')%></a></li> -->
+
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
         <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => true} %>
