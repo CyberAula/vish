@@ -124,6 +124,7 @@ es:
   resource:
     empty: "No"    
     network: "recursos de mi red"
+    new: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "    
     title:
       one: "recursos"
       other: "recursos"

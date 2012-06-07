@@ -62,7 +62,7 @@ en:
     net: "network"
     network: "my network excursions"
     network2: "my network"
-    new: "You have not created any excursion yet. You can add a new one by clicking the add button or in this "    
+    new: "You have not created any excursion yet. You can add a new one by clicking on the add button or on this "    
     one: "excursion"
     other: "excursions"
     others: "others excursions"
@@ -124,6 +124,7 @@ en:
   resource:
     empty: "You"    
     network: "my network resources"
+    new: "You have not upload any resource yet. You can add a new one by clicking on the upload button or on this "    
     title:
       one: "resource"
       other: "resources"
