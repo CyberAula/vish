@@ -2,8 +2,8 @@ module RepositoryHelper
 
   def icon_class_for(document)
     return 'icon_x-link' if document.is_a? Link
-    return 'icon_repository32-32_file' unless document.respond_to? :type
-    case document.file.url.to_s.downcase[-3,3]
+    return 'icon_repository32-32_file' if document.is_a? Embed
+    case document.file.url.to_s.split('.').last.downcase
     when "pdf"
       return 'icon_repository32-32_pdf'
     when "mathml"  
@@ -53,8 +53,8 @@ module RepositoryHelper
 
   def icon75_class_for(document)
     return 'icon_75-link' if document.is_a? Link
-    return 'icon75-default' unless document.respond_to? :type
-    case document.file.url.to_s.downcase[-3,3]
+    return 'icon75-default' if document.is_a? Embed
+    case document.file.url.to_s.split('.').last.downcase
     when "pdf"
       return 'icon_repository75-75_pdf'
     when "mathml"  
