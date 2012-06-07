@@ -1,17 +1,18 @@
 <div id="logo_index">
 
-  <div class="title_bold dark-gray size14" ><%= subject.name %></div>
+
 
   <% if subject == current_subject %>
     <div class="center">
       <div class="logo_grid logo_full">          
         <%= link_to image_tag(subject.logo.url(:profile), :alt => subject.name , :size => "119x119", :id => "current_avatar_img"), subject %>    
-        <div class="logo_menu logo_caption">    
+        <div class="logo_menu logo_caption link_pink">
           <%= link_to t('avatar.profile_change'), avatars_path  %>
         </div>
       </div>        
     </div>
-
+    <div class=" row space_center"></div>
+    <div class="title_bold dark-gray size22 dsignesbold" ><%= subject.name %></div>
   <% else %>
     <%= link_to image_tag(subject.logo.url, :alt => subject.name , :size => "119x119"), subject %>
     <%=contact_to(subject) %>

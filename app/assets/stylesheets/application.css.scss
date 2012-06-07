@@ -30,6 +30,9 @@
   font-family:'DsignesRegular';
   src: url(fonts/DsignesRegular.otf);
 }
+.dsignesbold {font-family:'DsignesBold';}
+.dsigneslight {font-family:'DsignesLight';}
+.dsignesregular {font-family:'DsignesRegular';}
 
 /**** clase para el ALTO minimo del layout ***/
 .body-height{ min-height:  480px;}
@@ -106,6 +109,7 @@
 .size15{font-size: 15px;}
 .size16{font-size: 16px;}
 .size18{font-size: 18px;}
+.size22{font-size: 22px;}
 .size24{font-size: 24px;}
 .size30{font-size: 30px;}
 .size40{font-size: 40px;}
