@@ -149,7 +149,7 @@
           launchIframe("http://www.mashme.tv/M/" + data <%= if user_signed_in?; then "+ '?name=' + encodeURI('" + current_user.name + "')"; end %>);
         }
       });
-      $('#mashme-room-id').val("<%= current_user.slug %>" + Math.floor(Math.random()*100000));
+      $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));
       $("#mashme-modal").modal('hide');
 
     });
