@@ -3320,8 +3320,10 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 4px 4px 0 0;
      -moz-border-radius: 4px 4px 0 0;
           border-radius: 4px 4px 0 0;
-  color: #ff005d;
+  color: #FE99BE;
+
 }
+
 .nav-tabs > li > a:hover {
   /*border-color: #eeeeee #eeeeee #dddddd; */
   font-size: 18px;
@@ -3334,8 +3336,9 @@ input[type="submit"].btn.btn-mini {
   border: 1px solid #FF005D;
   border-bottom-color: transparent;
   cursor: default;
-  font-weight: lighter;
+  font-weight: 100;
 	outline: none;
+  font-size: 20px;
 }
 
 .nav-pills > li > a {

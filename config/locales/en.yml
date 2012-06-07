@@ -54,11 +54,16 @@ en:
       edit: "edit"
       show: "show"
       share: "share"
+
+
+
     confirm_delete: "Delete excursion?"
     created: "created"
     favorites: "favorites"    
     how: "How to create an excursion"
-    my: "my excursions"    
+    my: "my"
+
+    net: "network"
     network: "my network excursions"
     network2: "my network"
     one: "excursion"
@@ -68,6 +73,7 @@ en:
     title:
       other: "excursions"
     upcomming: "upcomming"
+    top: "top"
   filter: "filter"
   follow:
     followers: "followers"
@@ -88,7 +94,7 @@ en:
     header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invite your contacts"
     invitesubject: "Join me watching this excursion at MashMeTV!"
-    invitebody_html: "Hi %{username}.<br/><br/>Click here to watch: <a href='http://www.mashme.tv/M/%{room}'><img src='/assets/mashme_button.png' /></a>"
+    invitebody_html: "Click here to watch: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
     launch: "Launch"
     room_name: "Room name"
   navigation:
