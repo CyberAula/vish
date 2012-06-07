@@ -1,7 +1,7 @@
 module RepositoryHelper
 
   def icon_class_for(document)
-    return 'icon_x-link' if document.is_a? Link
+    return 'icon_repository32-32_link' if document.is_a? Link
     return 'icon_repository32-32_file' if document.is_a? Embed
     case document.file.url.to_s.split('.').last.downcase
     when "pdf"
@@ -15,6 +15,8 @@ module RepositoryHelper
     when "docx"  
       return 'icon_repository32-32_word'      
     when "ppt"  
+      return 'icon_repository32-32_ppt'
+    when "pptx"  
       return 'icon_repository32-32_ppt'      
     when "xls"  
       return 'icon_repository32-32_excel'      
@@ -52,8 +54,8 @@ module RepositoryHelper
   end
 
   def icon75_class_for(document)
-    return 'icon_75-link' if document.is_a? Link
-    return 'icon75-default' if document.is_a? Embed
+    return 'icon_repository75-75_link' if document.is_a? Link
+    return 'icon_repository75-75_file' if document.is_a? Embed
     case document.file.url.to_s.split('.').last.downcase
     when "pdf"
       return 'icon_repository75-75_pdf'
@@ -66,6 +68,8 @@ module RepositoryHelper
     when "docx"  
       return 'icon_repository75-75_word'      
     when "ppt"  
+      return 'icon_repository75-75_ppt'
+    when "pptx"  
       return 'icon_repository75-75_ppt'      
     when "xls"  
       return 'icon_repository75-75_excel'      
