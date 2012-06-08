@@ -55,6 +55,10 @@
 		
   	<!-- FILES TAB -->
     <div id="docs-1" class="tab-pane active">
+
+
+      <div class="boxy_gray span5">
+        <div class=" row space_center"></div>
     	
 	    <!--open file browser-->
 	    <div class="margin15">
@@ -80,11 +84,11 @@
         <!--description-->
         <div class="form_row margin15">
           <div class="form_field-new_document">
-            <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
           </div>
-          <div class="form_label-new_document">
-            <%= f.label t('document.info.description.title') %>
-          </div>
+          <!--<div class="form_label-new_document">
+            <%#= f.label t('document.info.description.title') %>
+          </div> -->
         </div>
 
         <!--tags-->
@@ -108,9 +112,12 @@
       </div>
       <% end %>
     </div>
-		
+
+    </div>
 		<!-- LINKS TAB -->
     <div id="docs-2" class="tab-pane">
+      <div class="boxy_gray span5">
+        <div class=" row space_center"></div>
 
       <div class="margin15">
         <% d = Link.new %>
@@ -144,11 +151,11 @@
         <!--description-->
         <div class="form_row margin15">
           <div class="form_field-new_document">
-            <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
           </div>
-          <div class="form_label-new_document">
-            <%= f.label t('document.info.description.title') %>
-          </div>
+          <!--<div class="form_label-new_document">
+            <%#= f.label t('document.info.description.title') %>
+          </div>  -->
         </div>
 
         <!--tags-->
@@ -172,9 +179,12 @@
       </div>
 			<% end %>					
     </div>
-		
+    </div>
 		<!-- EMBED TAB -->
-    <div id="docs-3" class="tab-pane">      
+    <div id="docs-3" class="tab-pane">
+
+      <div class="boxy_gray span5">
+        <div class=" row space_center"></div>
 		
 		  <div class="margin15">
         <% d = Embed.new %>
@@ -208,11 +218,11 @@
         <!--description-->
         <div class="form_row margin15">
           <div class="form_field-new_document">
-            <%= f.text_area :description, :cols => 10, :rows => 10, :class => "form_tag span4" %>
+            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
           </div>
-          <div class="form_label-new_document">
-            <%= f.label t('document.info.description.title') %>
-          </div>
+          <!--<div class="form_label-new_document">
+            <#%= f.label t('document.info.description.title') %>
+          </div> -->
         </div>
 
         <!--tags-->
@@ -237,7 +247,7 @@
       <% end %> 
 		
 		</div>
-		
+  </div>
   </div>
 
 </div>
