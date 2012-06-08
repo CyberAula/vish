@@ -55,202 +55,507 @@
 		
   	<!-- FILES TAB -->
     <div id="docs-1" class="tab-pane active">
-
-
+ 
       <div class="boxy_gray span5">
         <div class=" row space_center"></div>
     	
-	    <!--open file browser-->
-	    <div class="margin15">
-	      <% d = Document.new %>
-	      <% d.owner_id = Actor.normalize_id(current_user) %>
-	      <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-	        <%= f.hidden_field :owner_id %>
-	        <%= f.file_field :file %>
+		    <!--open file browser-->
+		    <div class="margin15">
+		      <% d = Document.new %>
+		      <% d.owner_id = Actor.normalize_id(current_user) %>
+		      <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+		        <%= f.hidden_field :owner_id %>
+		        <%= f.file_field :file %>
+		    </div>
+
+        <div id="new_file_only_wrapper">
+	
+	        <!--title-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	            <%= f.text_field :title, :class => "form_tag span4" %>
+	          </div>
+	          <div class="form_label-new_document">
+	            <%= f.label t('document.info.title.title') %>
+	          </div>
+	        </div>
+	
+	        <!--description-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
+	          </div>
+	          <!--<div class="form_label-new_document">
+	            <%#= f.label t('document.info.description.title') %>
+	          </div> -->
+	        </div>
+	
+	        <!--tags-->
+					<input type="hidden" name="document[tag_list][]"></input>
+	
+	        <div class="clearfloat"></div>
+	        <div class="form_row ">
+	          <div class="tagBoxDocument span5">
+	            <ul class="tagList"></ul>
+	          </div>
+	        </div>
+	
+	        <!--Language-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document span3">
+	            <select class="select01 span3" name="document[language]">
+	              <option value="af_ZA">Afrikaans</option>
+	              <option value="az_AZ">Azərbaycan dili</option>
+	              <option value="id_ID">Bahasa Indonesia</option>
+	              <option value="ms_MY">Bahasa Melayu</option>
+	              <option value="bs_BA">Bosanski</option>
+	              <option value="ca_ES">Català</option>
+	              <option value="cy_GB">Cymraeg</option>
+	              <option value="da_DK">Dansk</option>
+	              <option value="de_DE">Deutsch</option>
+	              <option value="et_EE">Eesti</option>
+	              <option value="en_GB">English (UK)</option>
+	              <option value="en_US">English (US)</option>
+	              <option value="en_UD">English (Upside Down)</option>
+	              <option value="es_LA">Español (Latino)</option>
+	              <option value="es_ES" selected="1">Español (España)</option>
+	              <option value="eo_EO">Esperanto</option>
+	              <option value="eu_ES">Euskara</option>
+	              <option value="tl_PH">Filipino</option>
+	              <option value="fr_CA">Français (Canada)</option>
+	              <option value="fr_FR">Français (France)</option>
+	              <option value="fy_NL">Frysk</option>
+	              <option value="fo_FO">Føroyskt</option>
+	              <option value="ga_IE">Gaeilge</option>
+	              <option value="gl_ES">Galego</option>
+	              <option value="hr_HR">Hrvatski</option>
+	              <option value="it_IT">Italiano</option>
+	              <option value="sw_KE">Kiswahili</option>
+	              <option value="ku_TR">Kurdî</option>
+	              <option value="lv_LV">Latviešu</option>
+	              <option value="fb_LT">Leet Speak</option>
+	              <option value="lt_LT">Lietuvių</option>
+	              <option value="hu_HU">Magyar</option>
+	              <option value="nl_NL">Nederlands</option>
+	              <option value="nb_NO">Norsk (bokmål)</option>
+	              <option value="nn_NO">Norsk (nynorsk)</option>
+	              <option value="pl_PL">Polski</option>
+	              <option value="pt_BR">Português (Brasil)</option>
+	              <option value="pt_PT">Português (Portugal)</option>
+	              <option value="ro_RO">Română</option>
+	              <option value="sq_AL">Shqip</option>
+	              <option value="sk_SK">Slovenčina</option>
+	              <option value="sl_SI">Slovenščina</option>
+	              <option value="fi_FI">Suomi</option>
+	              <option value="sv_SE">Svenska</option>
+	              <option value="vi_VN">Tiếng Việt</option>
+	              <option value="tr_TR">Türkçe</option>
+	              <option value="la_VA">lingua latina</option>
+	              <option value="is_IS">Íslenska</option>
+	              <option value="cs_CZ">Čeština</option>
+	              <option value="el_GR">Ελληνικά</option>
+	              <option value="be_BY">Беларуская</option>
+	              <option value="bg_BG">Български</option>
+	              <option value="mk_MK">Македонски</option>
+	              <option value="ru_RU">Русский</option>
+	              <option value="sr_RS">Српски</option>
+	              <option value="uk_UA">Українська</option>
+	              <option value="hy_AM">Հայերեն</option>
+	              <option value="he_IL">עברית</option>
+	              <option value="ar_AR">العربية</option>
+	              <option value="fa_IR">فارسی</option>
+	              <option value="ps_AF">پښتو</option>
+	              <option value="ne_NP">नेपाली</option>
+	              <option value="hi_IN">हिन्दी</option>
+	              <option value="bn_IN">বাংলা</option>
+	              <option value="pa_IN">ਪੰਜਾਬੀ</option>
+	              <option value="ta_IN">தமிழ்</option>
+	              <option value="te_IN">తెలుగు</option>
+	              <option value="ml_IN">മലയാളം</option>
+	              <option value="th_TH">ภาษาไทย</option>
+	              <option value="ka_GE">ქართული</option>
+	              <option value="km_KH">ភាសាខ្មែរ</option>
+	              <option value="zh_TW">中文(台灣)</option>
+	              <option value="zh_CN">中文(简体)</option>
+	              <option value="zh_HK">中文(香港)</option>
+	              <option value="ja_JP">日本語</option>
+	              <option value="ko_KR">한국어</option>
+	            </select>
+	          </div>
+	          <div class="form_label-new_document  ">
+	            <%= f.label t('lang.title') %>
+	          </div>
+	      </div>
+				
+				<!-- Age (With slider) -->
+				<div class="form_row margin15">
+					<div class="form_field-new_document span3">
+		        <input type="text" class="age"/>
+						<input type="hidden" name="document[age_min]"/>
+						<input type="hidden" name="document[age_max]"/>    
+					</div>
+					<div class="form_label-new_document">
+            <label for="age" class="ageLabel">Age</label>
+          </div>
+					<div class="form_field-new_document span3">
+						<div class="slider-range"></div>
+					</div>
+        </div>
+	
+	      <!--btn-->
+	      <div class="clearfloat"></div>
+	      <div class="form-actions pagination-right space_right">
+	        <div class="actions center">
+	          <%= f.submit t('button.save'), :class => "button", :tab => "file" %>
+	        </div>
+	      </div>
+	      <% end %>
 	    </div>
-
-      <div id="new_file_only_wrapper">
-
-        <!--title-->
-        <div class="form_row margin15">
-          <div class="form_field-new_document">
-            <%= f.text_field :title, :class => "form_tag span4" %>
-          </div>
-          <div class="form_label-new_document">
-            <%= f.label t('document.info.title.title') %>
-          </div>
-        </div>
-
-        <!--description-->
-        <div class="form_row margin15">
-          <div class="form_field-new_document">
-            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
-          </div>
-          <!--<div class="form_label-new_document">
-            <%#= f.label t('document.info.description.title') %>
-          </div> -->
-        </div>
-
-        <!--tags-->
-				<input type="hidden" name="document[tag_list][]"></input>
-
-        <div class="clearfloat"></div>
-        <div class="form_row ">
-          <div class="tagBoxDocument span5">
-            <ul class="tagList"></ul>
-          </div>
-        </div>
-
-      </div>
-
-      <!--btn-->
-      <div class="clearfloat"></div>
-      <div class="form-actions pagination-right space_right">
-        <div class="actions center">
-          <%= f.submit t('button.save'), :class => "button", :tab => "file" %>
-        </div>
-      </div>
-      <% end %>
-    </div>
-
-    </div>
+	  </div>
+  </div>
+		
 		<!-- LINKS TAB -->
     <div id="docs-2" class="tab-pane">
       <div class="boxy_gray span5">
         <div class=" row space_center"></div>
-
-      <div class="margin15">
-        <% d = Link.new %>
-        <% d.owner_id = Actor.normalize_id(current_user) %>
-        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-          <%= f.hidden_field :owner_id %>
-      </div>
-
-      <div id="new_file_only_wrapper">
-
-        <!--URL-->
+	
+	      <div class="margin15">
+	        <% d = Link.new %>
+	        <% d.owner_id = Actor.normalize_id(current_user) %>
+	        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+	          <%= f.hidden_field :owner_id %>
+	      </div>
+	
+	      <div id="new_file_only_wrapper">
+	
+	        <!--URL-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	            <%= f.text_field :url, :class => "form_tag span4" %>
+	          </div>
+	          <div class="form_label-new_document">
+	            <%= f.label "URL" %>
+	          </div>
+	        </div>
+	
+	        <!--title-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	          	<%= f.text_field :title, :class => "form_tag span4" %>
+	          </div>
+	          <div class="form_label-new_document">
+	            <%= f.label t('document.info.title.title') %>
+	          </div>
+	        </div>
+	
+	        <!--description-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
+	          </div>
+	          <!--<div class="form_label-new_document">
+	            <%#= f.label t('document.info.description.title') %>
+	          </div>  -->
+	        </div>
+	
+	        <!--tags-->
+	        <input type="hidden" name="link[tag_list][]"></input>
+	
+	        <div class="clearfloat"></div>
+	        <div class="form_row ">
+	          <div class="tagBoxDocument span5">
+	            <ul class="tagList"></ul>
+	          </div>
+	        </div>
+	
+          <!--Language-->
+          <div class="form_row margin15">
+            <div class="form_field-new_document span3">
+              <select class="select01 span3" name="link[language]">
+                <option value="af_ZA">Afrikaans</option>
+                <option value="az_AZ">Azərbaycan dili</option>
+                <option value="id_ID">Bahasa Indonesia</option>
+                <option value="ms_MY">Bahasa Melayu</option>
+                <option value="bs_BA">Bosanski</option>
+                <option value="ca_ES">Català</option>
+                <option value="cy_GB">Cymraeg</option>
+                <option value="da_DK">Dansk</option>
+                <option value="de_DE">Deutsch</option>
+                <option value="et_EE">Eesti</option>
+                <option value="en_GB">English (UK)</option>
+                <option value="en_US">English (US)</option>
+                <option value="en_UD">English (Upside Down)</option>
+                <option value="es_LA">Español (Latino)</option>
+                <option value="es_ES" selected="1">Español (España)</option>
+                <option value="eo_EO">Esperanto</option>
+                <option value="eu_ES">Euskara</option>
+                <option value="tl_PH">Filipino</option>
+                <option value="fr_CA">Français (Canada)</option>
+                <option value="fr_FR">Français (France)</option>
+                <option value="fy_NL">Frysk</option>
+                <option value="fo_FO">Føroyskt</option>
+                <option value="ga_IE">Gaeilge</option>
+                <option value="gl_ES">Galego</option>
+                <option value="hr_HR">Hrvatski</option>
+                <option value="it_IT">Italiano</option>
+                <option value="sw_KE">Kiswahili</option>
+                <option value="ku_TR">Kurdî</option>
+                <option value="lv_LV">Latviešu</option>
+                <option value="fb_LT">Leet Speak</option>
+                <option value="lt_LT">Lietuvių</option>
+                <option value="hu_HU">Magyar</option>
+                <option value="nl_NL">Nederlands</option>
+                <option value="nb_NO">Norsk (bokmål)</option>
+                <option value="nn_NO">Norsk (nynorsk)</option>
+                <option value="pl_PL">Polski</option>
+                <option value="pt_BR">Português (Brasil)</option>
+                <option value="pt_PT">Português (Portugal)</option>
+                <option value="ro_RO">Română</option>
+                <option value="sq_AL">Shqip</option>
+                <option value="sk_SK">Slovenčina</option>
+                <option value="sl_SI">Slovenščina</option>
+                <option value="fi_FI">Suomi</option>
+                <option value="sv_SE">Svenska</option>
+                <option value="vi_VN">Tiếng Việt</option>
+                <option value="tr_TR">Türkçe</option>
+                <option value="la_VA">lingua latina</option>
+                <option value="is_IS">Íslenska</option>
+                <option value="cs_CZ">Čeština</option>
+                <option value="el_GR">Ελληνικά</option>
+                <option value="be_BY">Беларуская</option>
+                <option value="bg_BG">Български</option>
+                <option value="mk_MK">Македонски</option>
+                <option value="ru_RU">Русский</option>
+                <option value="sr_RS">Српски</option>
+                <option value="uk_UA">Українська</option>
+                <option value="hy_AM">Հայերեն</option>
+                <option value="he_IL">עברית</option>
+                <option value="ar_AR">العربية</option>
+                <option value="fa_IR">فارسی</option>
+                <option value="ps_AF">پښتو</option>
+                <option value="ne_NP">नेपाली</option>
+                <option value="hi_IN">हिन्दी</option>
+                <option value="bn_IN">বাংলা</option>
+                <option value="pa_IN">ਪੰਜਾਬੀ</option>
+                <option value="ta_IN">தமிழ்</option>
+                <option value="te_IN">తెలుగు</option>
+                <option value="ml_IN">മലയാളം</option>
+                <option value="th_TH">ภาษาไทย</option>
+                <option value="ka_GE">ქართული</option>
+                <option value="km_KH">ភាសាខ្មែរ</option>
+                <option value="zh_TW">中文(台灣)</option>
+                <option value="zh_CN">中文(简体)</option>
+                <option value="zh_HK">中文(香港)</option>
+                <option value="ja_JP">日本語</option>
+                <option value="ko_KR">한국어</option>
+              </select>
+            </div>
+            <div class="form_label-new_document  ">
+              <%= f.label t('lang.title') %>
+            </div>
+          </div>
+					
+					
+	       <!-- Age (With slider) -->
         <div class="form_row margin15">
-          <div class="form_field-new_document">
-            <%= f.text_field :url, :class => "form_tag span4" %>
+          <div class="form_field-new_document span3">
+            <input type="text" class="age"/>
+            <input type="hidden" name="link[age_min]"/>
+            <input type="hidden" name="link[age_max]"/>    
           </div>
           <div class="form_label-new_document">
-            <%= f.label "URL" %>
+            <label for="age" class="ageLabel">Age</label>
+          </div>
+          <div class="form_field-new_document span3">
+            <div class="slider-range"></div>
           </div>
         </div>
-
-        <!--title-->
-        <div class="form_row margin15">
-          <div class="form_field-new_document">
-          	<%= f.text_field :title, :class => "form_tag span4" %>
-          </div>
-          <div class="form_label-new_document">
-            <%= f.label t('document.info.title.title') %>
-          </div>
-        </div>
-
-        <!--description-->
-        <div class="form_row margin15">
-          <div class="form_field-new_document">
-            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
-          </div>
-          <!--<div class="form_label-new_document">
-            <%#= f.label t('document.info.description.title') %>
-          </div>  -->
-        </div>
-
-        <!--tags-->
-        <input type="hidden" name="link[tag_list][]"></input>
-
-        <div class="clearfloat"></div>
-        <div class="form_row ">
-          <div class="tagBoxDocument span5">
-            <ul class="tagList"></ul>
-          </div>
-        </div>
-
-      </div>
-
-      <!--btn-->
-      <div class="clearfloat"></div>
-      <div class="form-actions pagination-right space_right">
-        <div class="actions center">
-          <%= f.submit t('button.save'), :class => "button", :tab => "link" %>
-        </div>
-      </div>
-			<% end %>					
-    </div>
-    </div>
+	
+		      <!--btn-->
+		      <div class="clearfloat"></div>
+		      <div class="form-actions pagination-right space_right">
+		        <div class="actions center">
+		          <%= f.submit t('button.save'), :class => "button", :tab => "link" %>
+		        </div>
+		      </div>
+					<% end %>					
+		    </div>
+	    </div>
+	  </div>
+	
 		<!-- EMBED TAB -->
     <div id="docs-3" class="tab-pane">
-
       <div class="boxy_gray span5">
         <div class=" row space_center"></div>
-		
-		  <div class="margin15">
-        <% d = Embed.new %>
-        <% d.owner_id = Actor.normalize_id(current_user) %>
-        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-          <%= f.hidden_field :owner_id %>
-      </div>
-
-      <div id="new_file_only_wrapper">
-
-        <!--Embed-->
-        <div class="form_row margin15">
-          <div class="form_field-new_document">
-            <%= f.text_field :fulltext, :class => "form_tag span4" %>
+			
+			  <div class="margin15">
+	        <% d = Embed.new %>
+	        <% d.owner_id = Actor.normalize_id(current_user) %>
+	        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+	          <%= f.hidden_field :owner_id %>
+	      </div>
+	
+	      <div id="new_file_only_wrapper">
+	
+	        <!--Embed-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	            <%= f.text_field :fulltext, :class => "form_tag span4" %>
+	          </div>
+	          <div class="form_label-new_document">
+	            <%= f.label "Embed" %>
+	          </div>
+	        </div>
+	
+	        <!--title-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	            <%= f.text_field :title, :class => "form_tag span4" %>
+	          </div>
+	          <div class="form_label-new_document">
+	            <%= f.label t('document.info.title.title') %>
+	          </div>
+	        </div>
+	
+	        <!--description-->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document">
+	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
+	          </div>
+	          <!--<div class="form_label-new_document">
+	            <#%= f.label t('document.info.description.title') %>
+	          </div> -->
+	        </div>
+	
+	        <!--tags-->
+	        <input type="hidden" name="embed[tag_list][]"></input>
+	
+	        <div class="clearfloat"></div>
+	        <div class="form_row ">
+	          <div class="tagBoxDocument span5">
+	            <ul class="tagList"></ul>
+	          </div>
+	        </div>
+					
+          <!--Language-->
+          <div class="form_row margin15">
+            <div class="form_field-new_document span3">
+              <select class="select01 span3" name="embed[language]">
+                <option value="af_ZA">Afrikaans</option>
+                <option value="az_AZ">Azərbaycan dili</option>
+                <option value="id_ID">Bahasa Indonesia</option>
+                <option value="ms_MY">Bahasa Melayu</option>
+                <option value="bs_BA">Bosanski</option>
+                <option value="ca_ES">Català</option>
+                <option value="cy_GB">Cymraeg</option>
+                <option value="da_DK">Dansk</option>
+                <option value="de_DE">Deutsch</option>
+                <option value="et_EE">Eesti</option>
+                <option value="en_GB">English (UK)</option>
+                <option value="en_US">English (US)</option>
+                <option value="en_UD">English (Upside Down)</option>
+                <option value="es_LA">Español (Latino)</option>
+								<option value="es_ES" selected="1">Español (España)</option>
+                <option value="eo_EO">Esperanto</option>
+                <option value="eu_ES">Euskara</option>
+                <option value="tl_PH">Filipino</option>
+                <option value="fr_CA">Français (Canada)</option>
+                <option value="fr_FR">Français (France)</option>
+                <option value="fy_NL">Frysk</option>
+                <option value="fo_FO">Føroyskt</option>
+                <option value="ga_IE">Gaeilge</option>
+                <option value="gl_ES">Galego</option>
+                <option value="hr_HR">Hrvatski</option>
+                <option value="it_IT">Italiano</option>
+                <option value="sw_KE">Kiswahili</option>
+                <option value="ku_TR">Kurdî</option>
+                <option value="lv_LV">Latviešu</option>
+                <option value="fb_LT">Leet Speak</option>
+                <option value="lt_LT">Lietuvių</option>
+                <option value="hu_HU">Magyar</option>
+                <option value="nl_NL">Nederlands</option>
+                <option value="nb_NO">Norsk (bokmål)</option>
+                <option value="nn_NO">Norsk (nynorsk)</option>
+                <option value="pl_PL">Polski</option>
+                <option value="pt_BR">Português (Brasil)</option>
+                <option value="pt_PT">Português (Portugal)</option>
+                <option value="ro_RO">Română</option>
+                <option value="sq_AL">Shqip</option>
+                <option value="sk_SK">Slovenčina</option>
+                <option value="sl_SI">Slovenščina</option>
+                <option value="fi_FI">Suomi</option>
+                <option value="sv_SE">Svenska</option>
+                <option value="vi_VN">Tiếng Việt</option>
+                <option value="tr_TR">Türkçe</option>
+                <option value="la_VA">lingua latina</option>
+                <option value="is_IS">Íslenska</option>
+                <option value="cs_CZ">Čeština</option>
+                <option value="el_GR">Ελληνικά</option>
+                <option value="be_BY">Беларуская</option>
+                <option value="bg_BG">Български</option>
+                <option value="mk_MK">Македонски</option>
+                <option value="ru_RU">Русский</option>
+                <option value="sr_RS">Српски</option>
+                <option value="uk_UA">Українська</option>
+                <option value="hy_AM">Հայերեն</option>
+                <option value="he_IL">עברית</option>
+                <option value="ar_AR">العربية</option>
+                <option value="fa_IR">فارسی</option>
+                <option value="ps_AF">پښتو</option>
+                <option value="ne_NP">नेपाली</option>
+                <option value="hi_IN">हिन्दी</option>
+                <option value="bn_IN">বাংলা</option>
+                <option value="pa_IN">ਪੰਜਾਬੀ</option>
+                <option value="ta_IN">தமிழ்</option>
+                <option value="te_IN">తెలుగు</option>
+                <option value="ml_IN">മലയാളം</option>
+                <option value="th_TH">ภาษาไทย</option>
+                <option value="ka_GE">ქართული</option>
+                <option value="km_KH">ភាសាខ្មែរ</option>
+                <option value="zh_TW">中文(台灣)</option>
+                <option value="zh_CN">中文(简体)</option>
+                <option value="zh_HK">中文(香港)</option>
+                <option value="ja_JP">日本語</option>
+                <option value="ko_KR">한국어</option>
+              </select>
+            </div>
+            <div class="form_label-new_document  ">
+              <%= f.label t('lang.title') %>
+            </div>
           </div>
-          <div class="form_label-new_document">
-            <%= f.label "Embed" %>
-          </div>
-        </div>
-
-        <!--title-->
-        <div class="form_row margin15">
-          <div class="form_field-new_document">
-            <%= f.text_field :title, :class => "form_tag span4" %>
-          </div>
-          <div class="form_label-new_document">
-            <%= f.label t('document.info.title.title') %>
-          </div>
-        </div>
-
-        <!--description-->
-        <div class="form_row margin15">
-          <div class="form_field-new_document">
-            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
-          </div>
-          <!--<div class="form_label-new_document">
-            <#%= f.label t('document.info.description.title') %>
-          </div> -->
-        </div>
-
-        <!--tags-->
-        <input type="hidden" name="embed[tag_list][]"></input>
-
-        <div class="clearfloat"></div>
-        <div class="form_row ">
-          <div class="tagBoxDocument span5">
-            <ul class="tagList"></ul>
-          </div>
-        </div>
-
-      </div>
-
-      <!--btn-->
-      <div class="clearfloat"></div>
-      <div class="form-actions pagination-right space_right">
-        <div class="actions center">
-          <%= f.submit t('button.save'), :class => "button", :tab => "embed" %>
-        </div>
-      </div>
-      <% end %> 
-		
+	
+		       <!-- Age (With slider) -->
+	        <div class="form_row margin15">
+	          <div class="form_field-new_document span3">
+	            <input type="text" class="age"/>
+	            <input type="hidden" name="embed[age_min]"/>
+	            <input type="hidden" name="embed[age_max]"/>    
+	          </div>
+	          <div class="form_label-new_document">
+	            <label for="age" class="ageLabel">Age</label>
+	          </div>
+	          <div class="form_field-new_document span3">
+	            <div class="slider-range"></div>
+	          </div>
+	        </div>
+	
+		      <!--btn-->
+		      <div class="clearfloat"></div>
+		      <div class="form-actions pagination-right space_right">
+		        <div class="actions center">
+		          <%= f.submit t('button.save'), :class => "button", :tab => "embed" %>
+		        </div>
+		      </div>
+		      <% end %> 	
+				</div>
+		  </div>
 		</div>
+		
+	<!-- Close tab_content div -->	
   </div>
-  </div>
-
+	
 </div>
+
 
 	<%= content_for :javascript do %>	
 	  $(document).ready(function() {
@@ -265,6 +570,25 @@
 			
 	    //$('#new_file_only_document_file').trigger('click');
 			
+			
+			//Prevent outline in selects
+			$("select").change(function() {
+        $(this).blur();
+      });
+			
+			//Sliders
+			$( ".slider-range" ).slider({
+	      range: true,
+	      min: 0,
+	      max: 30,
+	      values: [ 4, 20 ],
+	      slide: function( event, ui ) {
+				  var input = $(this).parent().parent().find("input[type=text]")
+	        $( input ).val( + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+	      }
+	    });
+	    $( ".age" ).val( $( ".slider-range" ).slider( "values", 0 ) +
+	      " - " + $( ".slider-range" ).slider( "values", 1 ) );
 			
 			//////////////
 			// Link events
@@ -293,6 +617,9 @@
         switch (tab){
           case "file":
             var tagList = $("#docs-1 .tagList")
+						var slider = $("#docs-1 .slider-range")
+						$("input[name='document[age_min]']").val($(slider).slider( "values", 0 ));
+						$("input[name='document[age_max]']").val($(slider).slider( "values", 1 ));
             $("input[name='document[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
             break;
           case "link":  
@@ -351,6 +678,10 @@
 			 $("input[name='document[tag_list][]']").val("")
 			 $("input[name='link[tag_list][]']").val("")
 			 $("input[name='embed[tag_list][]']").val("")
+			 //Sliders
+			 $(".slider-range").slider( "values", 0 , "4")
+       $(".slider-range").slider( "values", 1 , "20")
+			 $(".slider-range").parent().parent().find("input[type=text]").val( "4 - 20" )
 		}
 		
 		function validateForm(form){

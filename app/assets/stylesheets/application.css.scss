@@ -2011,3 +2011,14 @@ margin-top: -5 px;
   margin-left: 5px;
   font-size: 14px;
 }
+
+/* Remove outline */
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+.select01{
+  padding-right: 10px;
+}
+
+
+
