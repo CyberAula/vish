@@ -138,15 +138,14 @@
         data: {
           url: target_url,
           title: target_title,
-          theme: "vish",
-          app: "cobrowser",
-          media: "<%= request.url %>"
+          theme: "vish"
         },
         success: function(data) {
+          name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
           $.ajax({
             url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
           })
-          launchIframe("http://www.mashme.tv/M/" + data <%= if user_signed_in?; then "+ '?name=' + encodeURI('" + current_user.name + "')"; end %>);
+          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&app=cobrowser&media=" + encodeURI("<%= request.url.gsub('http://', '') %>"));
         }
       });
       $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));
