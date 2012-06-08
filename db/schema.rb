@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120528154529) do
+ActiveRecord::Schema.define(:version => 20120608101612) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(:version => 20120528154529) do
     t.text     "description"
     t.integer  "follower_count",               :default => 0
     t.integer  "visit_count",                  :default => 0
+    t.string   "language"
+    t.integer  "age_min",                      :default => 4
+    t.integer  "age_max",                      :default => 30
   end
 
   create_table "activity_verbs", :force => true do |t|
