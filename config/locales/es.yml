@@ -3,6 +3,7 @@ es:
     attributes:
       user:
         email: "Email"
+        tag: "Áreas de interes"
   activity:
     empty: "Tu timeline está vacío"
     new_user: "¡Bienvenido al Virtual Science Hub! Desde aquí podrás compartir y enviar mensajes, enlaces y archivos como imágenes, fotos, videos, etc"
@@ -36,7 +37,7 @@ es:
     how: "Cómo compartir un recurso"    
     info:
       tags:
-        title: "Tags"
+        title: "Temas"
     input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"
@@ -81,7 +82,6 @@ es:
     one: "enlace"
     other: "enlaces"
     confirm_delete: "¿Borrar enlace?"
-  links: "enlaces"
   lang:
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"

@@ -3,6 +3,7 @@ en:
     attributes:
       user:
         email: "Email"
+        tag: "Areas of interest"
   activity:
     empty: "Your timeline is empty"
     new_user: "Welcome to ViSH! Share your thoughts, links, resources and more"
@@ -36,7 +37,7 @@ en:
     how: "How to share a resource"
     info:
       tags:
-        title: "Tags"
+        title: "Topics"
     input: "Add a file description here"
     new: "Add resource"
     screencast: "VISH's screencast"
@@ -81,7 +82,6 @@ en:
     one: "link"
     other: "links"
     confirm_delete: "Delete excursion?"
-  links: "links"
   lang:
     changed: "Changed language to %{lang}"
     error: "Language \"%{lang}\" not available"
