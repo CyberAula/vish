@@ -77,7 +77,10 @@ es:
     followings: "siguiendo"
     views: "visitas"
   help: "ayuda"
-  link: "enlace."  
+  link:
+    one: "enlace"
+    other: "enlaces"
+    confirm_delete: "¿Borrar enlace?"
   links: "enlaces"
   lang:
     changed: "Se cambia el idioma a %{lang}"

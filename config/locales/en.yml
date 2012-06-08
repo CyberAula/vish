@@ -77,7 +77,10 @@ en:
     followings: "following"
     views: "views"
   help: "help"
-  link: "link."  
+  link:
+    one: "link"
+    other: "links"
+    confirm_delete: "Delete excursion?"
   links: "links"
   lang:
     changed: "Changed language to %{lang}"
@@ -111,7 +114,7 @@ en:
     other: "organizers"
   password: "password"
   post:
-    input: "Share your thoughts, links, resources and more, here!"
+    input: "Share your thoughts, links, videos and more, here!"
   profile:
     tags:
       default: "VisHub, virtual, excursion"
