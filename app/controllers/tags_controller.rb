@@ -9,7 +9,8 @@ class TagsController < ApplicationController
             end
     response = @tags.map{ |t| { 'key' => t.name, 'value' => t.name } }.to_json
     if @tags.count == 0
-      response = "[{\"key\":\""+params[:tag]+"\" , \"value\":\""+params[:tag]+"\"}]"
+      response = "[]"
+      response = "[{\"key\":\""+params[:tag]+"\" , \"value\":\""+params[:tag]+"\"}]" unless params[:tag].blank?
     end
 
     respond_to do |format|
