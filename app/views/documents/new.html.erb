@@ -632,10 +632,16 @@
             break;
           case "link":  
             var tagList = $("#docs-2 .tagList")
+						var slider = $("#docs-2 .slider-range")
+						$("input[name='link[age_min]']").val($(slider).slider( "values", 0 ));
+						$("input[name='link[age_max]']").val($(slider).slider( "values", 1 ));
             $("input[name='link[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
             break;
           case "embed":
            var tagList = $("#docs-3 .tagList")
+						var slider = $("#docs-3 .slider-range")
+						$("input[name='embed[age_min]']").val($(slider).slider( "values", 0 ));
+						$("input[name='embed[age_max]']").val($(slider).slider( "values", 1 ));
             $("input[name='embed[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
             break;
           default : 
