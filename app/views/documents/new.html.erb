@@ -52,7 +52,15 @@
         <li><%=tag.name%></li>
       <%end%>
     </ul>
-		
+
+    <!-- User tags -->
+    <%@user_tags = current_user.tags%>
+    <ul id="preloadUserTagList" style="display:none">
+      <%@user_tags.each do |tag| %>
+        <li><%=tag.name%></li>
+      <%end%>
+    </ul>
+
   	<!-- FILES TAB -->
     <div id="docs-1" class="tab-pane active">
  
@@ -650,13 +658,10 @@
 			});
 							
 			if ($(tagList).children().length == 0){
-	      $.each(tags, function(index, tag) {
-	        if(index==2){
-	          return false; //break the bucle
-	        }
-	        $(tagList).append("<li>" + tag + "</li>")
-	      });
-	    
+			  $.each($("#preloadUserTagList li"), function(index, element) {
+			     $(tagList).append("<li>" + $(element).html() + "</li>")
+		  	});
+
 		    $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
 				  tagsChanged:function (tag, action) {
 		        //tag==tagName
