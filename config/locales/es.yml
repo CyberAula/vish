@@ -47,9 +47,10 @@ es:
     regards: "Un cordial saludo,<br/>"
     welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
   embed:
-    input: "Pega aquí tu recurso empotrado"
     confirm_delete: "¿Borrar recurso empotrado?"
+    content: "Contenido en directo"
     embed: "embed"
+    input: "Pega aquí tu recurso empotrado"
   excursion:
     actions:
       bookmark: "marcardor"      
@@ -83,15 +84,15 @@ es:
     followings: "siguiendo"
     views: "visitas"
   help: "ayuda"
-  link:
-    one: "enlace"
-    other: "enlaces"
-    confirm_delete: "¿Borrar enlace?"
   lang:
     independent: "No depende del lenguage"
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
     title: "idioma"    
+  link:
+    one: "enlace"
+    other: "enlaces"
+    confirm_delete: "¿Borrar enlace?"
   translate:
     change: "Cambiar idioma"
   message:

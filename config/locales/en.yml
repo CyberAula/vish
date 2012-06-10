@@ -47,9 +47,10 @@ en:
     regards: "King regards,<br/>"
     welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
   embed:
-    input: "Paste your embed here"
     confirm_delete: "Delete embed?"
+    content: "Live content"
     embed: "embed"
+    input: "Paste your embed here"
   excursion:
     actions:
       bookmark: "bookmark"
@@ -83,15 +84,15 @@ en:
     followings: "following"
     views: "views"
   help: "help"
-  link:
-    one: "link"
-    other: "links"
-    confirm_delete: "Delete excursion?"
   lang:
     independent: "Language independent"
     changed: "Changed language to %{lang}"
     error: "Language \"%{lang}\" not available"
     title: "language"    
+  link:
+    one: "link"
+    other: "links"
+    confirm_delete: "Delete excursion?"
   translate:
     change: "Change language"
   message:

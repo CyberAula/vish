@@ -17,13 +17,22 @@
 
 class ResourcesController < ApplicationController
   def search
-    @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
+    if params[:live].present?
+      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed] } )
+    else
+      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
+    end
     render :layout => false
   end
 
   private
   def search_options
     opts = search_scope_options
+
+    # search only live resources
+    if params[:live].present?
+      opts.deep_merge!( { :with => { :live => true } } )
+    end
 
     # profile_subject
     if profile_subject.present?

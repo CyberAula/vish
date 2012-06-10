@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608101612) do
+ActiveRecord::Schema.define(:version => 20120610114259) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -191,6 +191,7 @@ ActiveRecord::Schema.define(:version => 20120608101612) do
     t.text     "fulltext"
     t.integer  "width",              :default => 470
     t.integer  "height",             :default => 353
+    t.boolean  "live",               :default => false
   end
 
   create_table "events", :force => true do |t|

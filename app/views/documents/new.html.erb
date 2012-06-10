@@ -528,11 +528,19 @@
 	
 		      <!--btn-->
 		      <div class="clearfloat"></div>
-		      <div class="form-actions pagination-right space_right">
-		        <div class="actions center">
-		          <%= f.submit t('button.save'), :class => "button", :tab => "embed" %>
+	        <div class="form_row margin15">
+            <div class="form_field-new_document span3 pagination-right">
+              <%= f.check_box :live %>
+            </div>
+	          <div class="form_label-new_document">
+              <label for="live"><%= t('embed.live') %></label>
+            </div>
+		        <div class="form-actions pagination-right space_right">
+		          <div class="actions center">
+		            <%= f.submit t('button.save'), :class => "button", :tab => "embed" %>
+		          </div>
 		        </div>
-		      </div>
+          </div>
 		      <% end %> 	
 				</div>
 		  </div>

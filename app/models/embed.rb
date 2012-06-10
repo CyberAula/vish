@@ -20,5 +20,7 @@ class Embed < ActiveRecord::Base
 
   define_index do
     activity_object_index
+
+    has live
   end
 end
