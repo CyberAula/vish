@@ -41,10 +41,12 @@ es:
     input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"
+    title_input: "Nombre del recurso"
   email:
     regards: "Un cordial saludo,<br/>"
     welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
   embed:
+    input: "Pega aquí tu recurso empotrado"
     confirm_delete: "¿Borrar recurso empotrado?"
     embed: "embed"
   excursion:
@@ -141,6 +143,8 @@ es:
     confirm_delete: "¿Borrar SWF?"
   today: "Hoy"
   top10: "Mejores 10"
+  url:
+    input: "Pega aquí el enlace"
   user:
     one: "usuario"
     other: "usuarios"

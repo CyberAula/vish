@@ -546,6 +546,12 @@
 
 	<%= content_for :javascript do %>	
 	  $(document).ready(function() {
+			$("#new_file_only_link_url").watermark(I18n.t('url.input'), "#666");
+			$("#new_file_only_embed_fulltext").watermark(I18n.t('embed.input'), "#666");
+
+	    $("#new_file_only_document_title").watermark(I18n.t('document.title_input'), "#666");
+			$("#new_file_only_link_title").watermark(I18n.t('document.title_input'), "#666");
+			$("#new_file_only_embed_title").watermark(I18n.t('document.title_input'), "#666");
 		
 	    $("#new_file_only_document_description").watermark(I18n.t('document.input'), "#666");
 			$("#new_file_only_link_description").watermark(I18n.t('document.input'), "#666");
