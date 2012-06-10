@@ -44,7 +44,7 @@
             <%= f.password_field :password, :class => "input-xlarge", :id => "password_confirmation" %>
           </div>
         </div>
-				
+
 				<!-- Tags -->
 			  <!-- Preload tags -->
 			  <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
@@ -53,17 +53,23 @@
 			      <li><%=tag.name%></li>
 			    <%end%>
 			  </ul>
-			    
+
 			  <div class="control-group">
 			    <label class="control-label" for="tags"><%= t('activerecord.attributes.user.tag') %></label>
 			    <div class="controls">
-			      <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %> 
+			      <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
 			      <div class="tagBoxNew span5">
 			        <ul class="tagList"></ul>
+              <ul class="tagit-suggestions">
+                <li class="tagit-choice">Nanotechnology</li>
+                <li class="tagit-choice">Biotechnology</li>
+                <li class="tagit-choice">Life-Sciences</li>
+                <li class="tagit-choice">Grid-Computing</li>
+              </ul>
 			      </div>
 			    </div>
 			  </div>
-				
+
         <div class="control-group">
           <div class="controls">
             <%= t('conditions.check_message') %> <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
@@ -92,17 +98,24 @@
 </div>
 
 <%= content_for :javascript do %>
-  $(document).ready(function() {    
+  $(document).ready(function() {
     var tagList = $(".tagList");
     var tags = [];
-    
+
     //Load tags
     $.each($("#preloadTagList li"), function(index, element) {
        tags.push($(element).html());
-    });      
-    
+    });
+
     $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 });
-    
+
+    //Allow suggestions
+    $(".tagit-suggestions li").on("click", function(){
+      //$(tagList).append("<li class='tagit-choice'>" + $(this).html() + "<a class='tagit-close'>x</a></li>")
+      $(".tagit").tagit('add', $(this).html() );
+      $(this).hide();
+    });
+
     //Fill tag_list hidden input before send
      var button = $("#submit_new_user_button");
      $(button).click(function(event) {
@@ -110,6 +123,6 @@
        $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
        return true;
      });
-    
-  }); 
+
+  });
 <% end %>
