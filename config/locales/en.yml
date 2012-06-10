@@ -6,7 +6,8 @@ en:
         tag: "Areas of interest"
   activity:
     empty: "Your timeline is empty"
-    new_user: "Welcome to ViSH! Share your thoughts, links, resources and more"
+    new_user: "Welcome to ViSH! Post and share your thoughts, links, videos with your followers."
+    newmessage: "This is your timeline. You can upload and share images, videos, links and more."
     timeline: "timeline"
     title:
       other: "activity"
@@ -65,7 +66,8 @@ en:
     net: "network"
     network: "my network excursions"
     network2: "my network"
-    new: "You have not created any excursion yet. You can add a new one by clicking on the add button or on this "    
+    newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "    
+    newnet_html: "Here you will see the excursions created by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
     one: "excursion"
     other: "excursions"
     others: "others excursions"
@@ -131,7 +133,8 @@ en:
   resource:
     empty: "You"    
     network: "my network resources"
-    new: "You have not upload any resource yet. You can add a new one by clicking on the upload button or on this "    
+    newmy_html: "You have not upload any resources yet. You can add a new one by clicking on the upload button or on this "    
+    newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
     title:
       one: "resource"
       other: "resources"
