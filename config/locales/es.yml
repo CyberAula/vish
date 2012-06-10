@@ -6,7 +6,8 @@ es:
         tag: "Áreas de interes"
   activity:
     empty: "Tu timeline está vacío"
-    new_user: "¡Bienvenido al Virtual Science Hub! Desde aquí podrás compartir y enviar mensajes, enlaces y archivos como imágenes, fotos, videos, etc"
+    new_user: "¡Bienvenido al Virtual Science Hub! Desde aquí podrás compartir y enviar mensajes, enlaces, imágenes, vídeos, etc"
+    newmessage: "Esta es tu timeline. Comparte con tus seguidores tus opiniones, sube imágenes, enlaces, vídeos..."
     timeline: "timeline"
     title:
       other: "actividad"
@@ -65,7 +66,8 @@ es:
     net: "red"
     network: "excursiones de mi red"
     network2: "mi red"
-    new: "Aún no has creado ninguna excursión. Puedes crear una nueva haciendo click en el botón añadir o en este "        
+    newmy_html: "Aún no has creado ninguna excursión. Puedes crear una nueva haciendo click en el botón añadir o en este "        
+    newnet_html: "Aquí podrás ver las excursiones creadas por la gente a quien sigues. Encuentra otros usuarios a seguir en <a href='/search?type=user'>este enlace</a>."
     one: "excursión"
     other: "excursiones"
     others: "otras excursiones "
@@ -131,7 +133,8 @@ es:
   resource:
     empty: "No"    
     network: "recursos de mi red"
-    new: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "    
+    newmy_html: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "    
+    newnet_html: "Aquí podrás ver los recursos subidos por la gente a quien sigues. Encuentra otros usuarios a seguir en <a href='/search?type=user'>este enlace</a>."
     title:
       one: "recursos"
       other: "recursos"
