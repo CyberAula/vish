@@ -10,7 +10,6 @@
             <h4><%= link_to truncate_name(excursion.title, :length => 22), excursion %></h4>
             <h5 class="blue-opacity">by <%=link_to( truncate_name(excursion.author.name, :length => 20), excursion.author.subject)%></h5>
             <h5><span class="dark-gray"><%=excursion.visit_count.to_s%></span> <%= t('follow.view') %> </h5>
-            <p><%= image_tag('star.png') %></p>
           </div>
         </li>
     </ul>
