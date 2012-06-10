@@ -17,9 +17,6 @@
         <%= embed.title %>
       </div>
     <% end %>
-    <div class="fulltext">
-      <%= truncate(embed.fulltext, :length => 120) %>
-    </div>
     <% if embed.description %>
       <div class="description">
         <%= auto_link(embed.description) %>
@@ -27,5 +24,15 @@
     <% end %>
   </div>
 <% end %>
+<div class="info">
+	<%= link_to (image_tag('/assets/more_embed.png')),  "javascript:showSettings(\"display_embed\");" %>
+</div>
+<div class="content settings_content" id="display_embed_content" style="display:none;">
+	<div class="settings_block">
+ 		<div class="embed_show">
+    		<textarea readonly="readonly" style="width: 100%;" rows="5"><%=h embed.fulltext %></textarea>
+  		</div>
+	</div>
+</div>
 
 <br class="clearfloat">
