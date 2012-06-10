@@ -84,6 +84,7 @@ es:
     other: "enlaces"
     confirm_delete: "¿Borrar enlace?"
   lang:
+    independent: "No depende del lenguage"
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
     title: "idioma"    

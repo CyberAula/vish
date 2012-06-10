@@ -84,6 +84,7 @@ en:
     other: "links"
     confirm_delete: "Delete excursion?"
   lang:
+    independent: "Language independent"
     changed: "Changed language to %{lang}"
     error: "Language \"%{lang}\" not available"
     title: "language"    
