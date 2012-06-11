@@ -19,6 +19,7 @@ en:
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
+  age: "age"
   all: "all"
   author: "author"
   cancel: "Cancel"

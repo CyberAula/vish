@@ -191,12 +191,12 @@
 				<!-- Age (With slider) -->
 				<div class="form_row margin15">
 					<div class="form_field-new_document span3">
-		        <input type="text" class="age"/>
-						<input type="hidden" name="document[age_min]"/>
-						<input type="hidden" name="document[age_max]"/>
+		        <input type="text" class="age span1"/>
+						<input type="hidden" class="span1" name="document[age_min]"/>
+						<input type="hidden" class="span1" name="document[age_max]"/>
 					</div>
 					<div class="form_label-new_document">
-            <label for="age" class="ageLabel">Age</label>
+            <label for="age" class="ageLabel"><%= f.label t('age') %></label>
           </div>
 					<div class="form_field-new_document span3">
 						<div class="slider-range"></div>
