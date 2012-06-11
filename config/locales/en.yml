@@ -19,7 +19,6 @@ en:
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
-  age: "age"
   all: "all"
   author: "author"
   cancel: "Cancel"
@@ -94,7 +93,8 @@ en:
     independent: "Language independent"
     changed: "Changed language to %{lang}"
     error: "Language \"%{lang}\" not available"
-    title: "language"    
+    title: "language"   
+    others: Others 
   link:
     one: "link"
     other: "links"

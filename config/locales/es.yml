@@ -19,7 +19,6 @@ es:
   activity_action:
     follow: "+ Seguir"
     unfollow: "Dejar de seguir"
-  age: "edad"
   all: "todos"
   author: "autor"
   cancel: "Cancelar"
@@ -95,6 +94,7 @@ es:
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
     title: "idioma"    
+    others: Otros
   link:
     one: "enlace"
     other: "enlaces"
