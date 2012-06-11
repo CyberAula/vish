@@ -38,8 +38,13 @@ es:
     document: "documento"
     how: "Cómo compartir un recurso"    
     info:
+      title: "Título"
+      description: "Descripción"
       tags:
         title: "Temas"
+        addMessage: "Añadir tags"
+        limitMessage: "Limite alcanzado"
+      age: "Edad"
     input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"

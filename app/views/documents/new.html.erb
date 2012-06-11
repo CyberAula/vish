@@ -84,7 +84,7 @@
 	            <%= f.text_field :title, :class => "form_tag span4" %>
 	          </div>
 	          <div class="form_label-new_document">
-	            <%= f.label t('document.info.title.title') %>
+	            <%= f.label t('document.info.title') %>
 	          </div>
 	        </div>
 	
@@ -93,9 +93,6 @@
 	          <div class="form_field-new_document">
 	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
 	          </div>
-	          <!--<div class="form_label-new_document">
-	            <%#= f.label t('document.info.description.title') %>
-	          </div> -->
 	        </div>
 	
 	        <!--tags-->
@@ -196,7 +193,7 @@
 						<input type="hidden" class="span1" name="document[age_max]"/>
 					</div>
 					<div class="form_label-new_document">
-            <label for="age" class="ageLabel"><%= f.label t('age') %></label>
+            <label for="age" class="ageLabel"><%=t('document.info.age')%></label>
           </div>
 					<div class="form_field-new_document span3">
 						<div class="slider-range"></div>
@@ -245,7 +242,7 @@
 	          	<%= f.text_field :title, :class => "form_tag span4" %>
 	          </div>
 	          <div class="form_label-new_document">
-	            <%= f.label t('document.info.title.title') %>
+	            <%= f.label t('document.info.title') %>
 	          </div>
 	        </div>
 	
@@ -254,9 +251,6 @@
 	          <div class="form_field-new_document">
 	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
 	          </div>
-	          <!--<div class="form_label-new_document">
-	            <%#= f.label t('document.info.description.title') %>
-	          </div>  -->
 	        </div>
 	
 	        <!--tags-->
@@ -358,7 +352,7 @@
             <input type="hidden" name="link[age_max]"/>
           </div>
           <div class="form_label-new_document">
-            <label for="age" class="ageLabel">Age</label>
+            <label for="age" class="ageLabel"><%=t('document.info.age')%></label>
           </div>
           <div class="form_field-new_document span3">
             <div class="slider-range"></div>
@@ -407,7 +401,7 @@
 	            <%= f.text_field :title, :class => "form_tag span4" %>
 	          </div>
 	          <div class="form_label-new_document">
-	            <%= f.label t('document.info.title.title') %>
+	            <%= f.label t('document.info.title') %>
 	          </div>
 	        </div>
 	
@@ -416,9 +410,6 @@
 	          <div class="form_field-new_document">
 	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
 	          </div>
-	          <!--<div class="form_label-new_document">
-	            <#%= f.label t('document.info.description.title') %>
-	          </div> -->
 	        </div>
 	
 	        <!--tags-->
@@ -519,7 +510,7 @@
 	            <input type="hidden" name="embed[age_max]"/>
 	          </div>
 	          <div class="form_label-new_document">
-	            <label for="age" class="ageLabel">Age</label>
+	            <label for="age" class="ageLabel"><%=t('document.info.age')%></label>
 	          </div>
 	          <div class="form_field-new_document span3">
 	            <div class="slider-range"></div>
@@ -661,12 +652,8 @@
 			     $(tagList).append("<li>" + $(element).html() + "</li>")
 		  	});
 
-		    $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 ,
-				  tagsChanged:function (tag, action) {
-		        //tag==tagName
-		        //action==["moved","added","popped" (remove)]
-		      }
-		    });
+				$(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+        watermarkAllowMessage: '<%=t('document.info.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' });
 	    }	
 	  });
 		

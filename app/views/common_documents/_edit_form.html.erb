@@ -18,7 +18,7 @@
   <% end %>
   <div class="form_row">
     <div class="form_label">
-      <%= f.label t('document.info.title.title') %>
+      <%= f.label t('document.info.title') %>
     </div>
     <div class="form_field">
       <%= f.text_field :title, :class => "form_tag" %>
@@ -26,7 +26,7 @@
   </div>
   <div class="form_row">
     <div class="form_label">
-      <%= f.label t('document.info.description.title') %>
+      <%= f.label t('document.info.description') %>
     </div>
     <div class="form_field">
       <%= f.text_area :description, :class => "form_tag" %>
@@ -77,8 +77,10 @@
 					  $(tagList).append("<li>" + tag + "</li>")
 					}
     });       
-    
-    $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 });
+		
+		$(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+        watermarkAllowMessage: '<%=t('document.info.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' });
+		
 		
 		//Fill tag_list hidden input before send
 		 var button = $("input[value='Save'][type='submit'][name='commit'].button");

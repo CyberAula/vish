@@ -38,8 +38,13 @@ en:
     document: "document"
     how: "How to share a resource"
     info:
+      title: "Title"
+      description: "Description"
       tags:
         title: "Topics"
+        addMessage: "Add tags"
+        limitMessage: "limit reached"
+      age: "Age"
     input: "Add a description here"
     new: "Add resource"
     screencast: "VISH's screencast"

@@ -285,7 +285,7 @@
 
             if(this.tagsArray.length > (this.options.maxTags-1)){
 							$(this.input).blur();
-              return;
+              return false;
             }
 
             this.input.autocomplete('close').val("");
