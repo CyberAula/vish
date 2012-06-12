@@ -926,6 +926,7 @@ textarea {
       -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
        -o-transition: border linear 0.2s, box-shadow linear 0.2s;
           transition: border linear 0.2s, box-shadow linear 0.2s;
+  resize: none;
 }
 
 input:focus,
