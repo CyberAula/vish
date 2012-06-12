@@ -1,8 +1,18 @@
 <div class="row">
   <div class="span6">
+
+    <div class="logo-home ">
     <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
-    <span class="link_gray inline-block"><h2><%= link_to(t('site.name'), '/', :class => "brand"); %></h2></span>
+    </div>
+
+    <span class="link_virtual size24 virtualsciencehub span3 ">
+      <%= link_to(t('site.name'), '/', :class => "brand"); %>
+    </span>
+
   </div>
+
+
+
   <div class="span6">
     <% if user_signed_in? %>
       <div class="btn-toolbar pull-right">
@@ -21,6 +31,7 @@
       </div>
     <% end %>
     <div id="espacio_busqueda"></div>
+
     <div id="header_search">
       <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" } %>
     </div>

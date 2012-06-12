@@ -54,6 +54,16 @@
 
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
+.logo-home{
+  display:inline-block;
+  float:left;
+}
+.virtualsciencehub{
+  padding-top: 34px;
+  padding-left: 5px;
+ display:inline-block;
+ float:left;
+}
 /****************** FRONTPAGE BOTTOM *****/
 
 #tags{color: #cccccc; font-family: DsignesLight; }
@@ -121,6 +131,8 @@
 /*************** LINKS *********/
 .link_gray a{color: #919191;text-decoration: none;}
 .link_gray a:hover{color: #3366FF;  text-decoration: none;}
+.link_virtual a {color: #adadad;text-decoration: none;}
+.link_virtual a:hover {color: #808080;text-decoration: none;}
 .link_pink a{color: #FF005D; text-decoration:none;}
 .link_pink a{color: #FF005D; text-decoration:none;}
 .link_pink a:hover {color: #3366FF; text-decoration:none;}
@@ -2020,5 +2032,14 @@ margin-top: -5 px;
   padding-right: 10px;
 }
 
+
+.message_space_menu{
+height: 65px;
+display: block
+}
+.follow-btn-profile {
+padding-left: 30px;
+padding-top: 10px;
+}
 
 

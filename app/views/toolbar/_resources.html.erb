@@ -3,7 +3,7 @@
   <%= t('resource.title.other') %>
 </div>
 <div class="menu_resources">
-  <a class="action" href="/common_documents/index">
+  <a class="action" href="">
     <%=link_to(t('go.repository'),[subject, Document.new])%>
   </a>
 </div>
@@ -15,8 +15,4 @@
     <%= render :partial => "common_documents/profile", :locals => { :document => r, :div_class => 'row' } %>
   <% end %>
 <% end %>
-
-
-
-
 <div class="row space_center"></div>

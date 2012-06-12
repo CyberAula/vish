@@ -1,7 +1,14 @@
 <div class="row">
   <div class="span6">
-    <%= link_to(image_tag('logo.png', :alt => t('site.name')), root_path, :class => "brand inline-block"); %>
-    <span class="inline-block link_gray"><h2><%= link_to(t('site.name'), root_path, :class => "brand"); %></h2></span>
+
+    <div class="logo-home ">
+      <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
+    </div>
+
+    <span class="link_virtual size24 virtualsciencehub span3 ">
+      <%= link_to(t('site.name'), '/', :class => "brand"); %>
+    </span>
+
   </div>
   <div class="login span6">
     <div id="menu_home">
