@@ -22,7 +22,12 @@ class ResourcesController < ApplicationController
     else
       @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
     end
-    render :layout => false
+    respond_to do |format|
+      format.json {
+        render :json => @found_resources
+      }
+      format.html { render :layout => false }
+    end
   end
 
   private
