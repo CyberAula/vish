@@ -2,7 +2,7 @@
   <div class="pull-right">
     <% filter_id ||= "document-filter" %>
     <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>"  name="filter">
-    <%if show_upload and profile_subject_is_current?%>
+    <%if profile_subject_is_current?%>
       <div class="menu_resources">
         <%= link_to  raw("<i class='icontool16-tool16_arrow_7'></i> ") + t('resource.upload'),new_document_path, :class => :action  %>
       </div>

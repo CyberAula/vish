@@ -73,7 +73,7 @@
 
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
-        <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => true} %>
+        <%= render :partial => "common_documents/home_filter" %>
         <div class="space_center"></div>
         <div id="repository" class="repositories row height-tabs-home">
           <% my_network_resources = current_subject_resources(:limit => 8) %>
@@ -95,7 +95,7 @@
         </div>
       </div>
       <div id="repo-2" class="tab-pane">
-        <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => true, :filter_id => "document-filter-me"} %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-me"} %>
         <div class="space_center"></div>
         <div id="repository-me" class="repositories row height-tabs-home">
           <% my_resources = current_subject_resources({:scope => :me, :limit => 8}) %>
@@ -121,7 +121,7 @@
         </div>
       </div>
       <div id="repo-3" class="tab-pane">
-        <%= render :partial => "common_documents/home_filter", :locals => {:show_upload => false, :filter_id => "document-filter-more"} %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-more"} %>
         <div class="space_center"></div>
         <div id="repository-more" class="repositories row height-tabs-home">
           <% for document in current_subject_documents({:scope => :more, :limit => 8}) %>
