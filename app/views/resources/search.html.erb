@@ -2,6 +2,8 @@
 <% for r in @found_resources %>
   <% if r.is_a? Embed %>
     <%= render :partial => 'embeds/home', :locals => { :embed => r} %>
+  <% elsif r.is_a? Link %>
+    <%= render :partial => 'links/home', :locals => { :link => r} %>
   <% else %>
     <%= render :partial => 'common_documents/home', :locals => { :document => r} %>
   <% end %>
