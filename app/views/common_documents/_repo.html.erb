@@ -1,0 +1,54 @@
+<div class="attachment_tile" id="<%= dom_id(document) %>">
+  <div class="attachment_tile_thumb">
+    <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+  </div>
+
+  <div class="attachment_tile_tipsy">
+    <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
+                "javascript:;" %>
+    <div class="tipsy_content" style="display:none;">
+      <div class="actions">
+        <div class="block menu_resources">
+        <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+       </div>
+        <div class="block menu_resources">
+        <% if document.post_activity.edit_object_by?(current_subject) %>
+          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
+        <% end %>
+        </div>
+          <div class="block menu_resources">
+        <% if document.post_activity.delete_object_by?(current_subject) %>
+          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
+                                                                                                                                                                                                         :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+        <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="attachment_tile_text">
+    <%= link_to truncate_name(document.title, :length => 15),
+                document_path(document),
+                :alt => document.title,
+                :path => document_path(document) %>
+  </div>
+</div>
+<%= javascript_tag do %>
+  $(document).ready(function(){
+
+  SocialStream.Repository.init();
+
+  $('#<%= dom_id(document) %> .attachment_tile_tipsy a').tipsy({
+  delayIn: 0,
+  delayOut: 1000,
+  gravity: 'nw',
+  className: 'attachment_tile_tipsy_menu',
+  html: true,
+  hoverable: true,
+  title: function(){
+  return $('#<%= dom_id(document) %> .attachment_tile_tipsy .tipsy_content').html();
+  }
+  });
+  });
+<% end %>
+

@@ -53,6 +53,13 @@ Vish.Filter = function(V, $, undefined){
                         });
                 });
 
+                $('#repository-filter-me').on("keyup", function() {
+                        $.ajax({
+                                url: "/resources/search",
+                                data: { q: $('#repository-filter-me')[0].value, scope: "me", per_page: 8 },
+                                success: function(data) { $('#repository-me').html(data); }
+                        });
+                });
         }
 
         return {
