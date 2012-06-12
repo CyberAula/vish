@@ -67,6 +67,8 @@ es:
     confirm_delete: "¿Borrar excursión?"
     created: "creadas"
     favorites: "favoritas"
+    go:
+        repository: "ir a repositorio"
     how: "Como crear una excursión"
     my: "mis"
     net: "red"

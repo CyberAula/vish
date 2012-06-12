@@ -1,5 +1,5 @@
 <div class="space_center"></div>
-<div class="header_text space_null"> <%=subject.followers.count  %>  <%= t('follow.followers') %> </div>
+<div class="header_text space_null"> <%=subject.followers.count  %> <%= t('follow.followers') %> </div>
 <div class="gray space_bottom"> <%=subject.following_actor_objects.includes(:actor).count%> <%= t('follow.followings') %> </div>
 <% subject.followers.limit(4).each do |object|  %>
 

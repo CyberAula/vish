@@ -88,6 +88,8 @@ en:
     followers: "followers"
     followings: "following"
     views: "views"
+  go:
+    repository: "go to repository"
   help: "help"
   lang:
     independent: "Language independent"
@@ -104,6 +106,7 @@ en:
   message:
     new: "New message"
   more: "more"
+
   mashme:
     header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invite your contacts"
