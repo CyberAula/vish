@@ -1,18 +1,17 @@
 <div class="row" id="contact_info">
-  <div class="space_center"></div>
   <div class="header">
     <div class="header_text2">
       <%= t('profile.contact') %>
       <% if is_owner? %>
         <div class="header_icon_right">
-          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), :controller => :profiles, :action => :edit, :section => "contact_info" %>
+          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), "javascript:showSettings(\"contact_info\");" %>
         </div>
       <% end %>
     </div>
   </div>
   <div class="row span6 boxy_white">
     <div class="space_center"></div>
-    <div class="content">
+    <div class="content" id="contact_info_briefing">
       <% if !is_contact_empty? %>
         <div class="sub-block">
           <% if @profile.phone? %>
@@ -81,7 +80,70 @@
         <%= t('profile.empty') %>
         </div>
       <% end %>
-      <div class="space_center"></div>
     </div>
+    <% if is_owner? %>
+      <div class="content" id="contact_info_content" style="display:none;">
+        <div class="field_profile">
+          <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
+            <%= f.fields_for :actor do |actor_form| %>
+              <div class="form_row">
+              <div class="row padding_left">
+              <div class="space_center"></div>
+              <div class="title_sub_profile">
+              <%= f.label t('profile.phone') %>
+              </div>
+              <div class="form_field">
+              <%= f.text_field :phone, :class => "phone form_tag" %>
+              </div>
+              <div class="form_row">
+              <div class="title_sub_profile">
+              <%= f.label t('profile.mobile') %>
+              </div>
+              <div class="form_field">
+              <%= f.text_field :mobile, :class => "phone form_tag" %>
+              </div>
+              </div>
+              <div class="form_row">
+              <div class="title_sub_profile">
+              <%= f.label t('profile.fax') %>
+              </div>
+              <div class="form_field">
+              <%= f.text_field :fax, :class => "phone form_tag" %>
+              </div>
+              </div>
+              <div class="form_row">
+              <div class="title_sub_profile">
+              <%= f.label t('profile.address') %>
+              </div>
+              <div class="form_field">
+              <%= f.text_field :address, :class => "form_tag" %>
+              </div>
+              </div>
+              <div class="form_row">
+              <div class="title_sub_profile">
+              <%= actor_form.label t('profile.email') %>
+              </div>
+              <div class="form_field">
+              <%= actor_form.text_field :email, :class => "email form_tag" %>
+              </div>
+              </div>
+              <div class="form_row">
+              <div class="title_sub_profile">
+              <%= f.label t('profile.website') %>
+              </div>
+              <div class="form_field">
+              <%= f.text_field :website, :class => "url form_tag" %>
+              </div>
+              <div class="space_center"></div>
+              </div>
+              </div>
+            <% end %>
+            <%= f.submit t('button.update'), :class => "button" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
+  <div class="space_center"></div>
 </div>
+
