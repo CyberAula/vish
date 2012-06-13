@@ -1,6 +1,6 @@
 //= require social_stream-base
 //
 //= require_self
-//= require_tree .
+//= require linkser
 
 SocialStream.Linkser = SocialStream.Linkser || {};
