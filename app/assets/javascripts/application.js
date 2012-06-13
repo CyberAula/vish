@@ -15,5 +15,6 @@
 //= require social_stream.repository
 //= require social_stream.video
 //= require tagit
+//= require vish
 //= require_tree .
 
