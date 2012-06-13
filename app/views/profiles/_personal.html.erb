@@ -1,17 +1,17 @@
-<div class="row" id="personal_info">
+<div class="row" id="profile_info">
   <div class="header">
     <div class="header_text2">
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
-      <div class="header_icon_right unborder">
-        <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), :controller => :profiles, :action => :edit, :section => "about_me" %>
-      </div>
+      <% if is_owner? %>
+        <div class="header_icon_right unborder">
+          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), "javascript:showSettings(\"profile_info\");" %>
+        </div>
+      <% end %>
     </div>
-    <% if is_owner? %>
-    <% end %>
   </div>
   <div class="row span6 boxy_white">
     <div class="space_center"></div>
-    <div class="content">
+    <div class="content settings_briefing" id="profile_info_briefing">
       <% if !is_personal_empty? %>
         <div class="sub-block">
           <% if @profile.organization? %>
@@ -73,9 +73,72 @@
           <%= t('profile.empty') %>
         </div>
       <% end %>
-      <div class="space_center"></div>
     </div>
+    <% if is_owner? %>
+       <div class="content settings_content" id="profile_info_content" style="display:none;">
+         <div class="field_profile">
+           <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
+               <%= f.fields_for :actor do |actor_form| %>
+                 <div class="block">
+                 <div class="form_row">
+                 <div class="title_sub_profile">
+                 <%= f.label t('actor.name') %>
+                 <span class="needed"></span>
+                 </div>
+                 <div class="form_field">
+                 <%= actor_form.text_field :name, :class => "required form_tag" %>
+                 </div>
+                 </div>
+                 <div class="form_row">
+                 <div class="title_sub_profile">
+                 <%= f.label t('profile.organization') %>
+                 </div>
+                 <div class="form_field">
+                 <%= f.text_field :organization, :class => "form_tag" %>
+                 </div>
+                 <div class="space_center"></div>
+                 </div>
+                 <div class="form_row">
+                 <div class="title_sub_profile">
+                 <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday') %>
+                 </div>
+                 <div class="form_field" id="form_select">
+                 <%= date_select "profile", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
+                 </div>
+                 <div class="form_row">
+                 <div class="title_sub_profile">
+                 <%= f.label t('profile.actualcity') %>
+                 </div>
+                 <div class="form_field">
+                 <%= f.text_field :city, :class => "form_tag" %>
+                 </div>
+                 </div>
+                 </div>
+                 <div class="form_row">
+                 <div class="title_sub_profile">
+                 <%= f.label t('profile.country') %>
+                 </div>
+                 <div class="form_field">
+                 <%= f.text_field :country, :class => "form_tag" %>
+                 </div>
+                 </div>
+                 <div class="form_row">
+                 <div class="title_sub_profile">
+                 <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.about') %>
+                 </div>
+                 </div>
+                 <div class="form_row">
+                 <%= f.text_area :description, :maxlength => 200, :rows => 10, :class => "form_tag_long" %>
+                 </div>
+                 <div class="form_row needed"><%= t('required') %></div>
+                 </div>
+               <% end %>
+               <%= f.submit t('button.update'), :class => "button" %>
+             <% end %>
+         </div>
+       </div>
+    <% end %>
+    <div class="space_center"></div>
   </div>
-  <div class="space_center"></div>
 </div>
 
