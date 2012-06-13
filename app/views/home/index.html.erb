@@ -153,7 +153,7 @@
   -->
 </section>
 
-<section name="wall" id="home_wall" class="span6">
+<section name="wall" id="home_wall" class="span5">
   <%= render :partial => "activities/index",
              :locals => {:activities => current_subject.wall(:home).page(params[:page]),
                          :owner => current_subject} %>
