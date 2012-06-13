@@ -134,6 +134,7 @@ en:
   profile:
     tags:
       default: "VisHub, virtual, excursion"
+      other: "Areas of interest"
   project: "Global Excursion"      
   recommended: "recommended"
   repository:
