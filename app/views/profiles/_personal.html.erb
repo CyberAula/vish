@@ -11,7 +11,7 @@
   </div>
   <div class="row span6 boxy_white">
     <div class="space_center"></div>
-    <div class="content" id="profile_info_briefing">
+    <div class="content settings_briefing" id="profile_info_briefing">
       <% if !is_personal_empty? %>
         <div class="sub-block">
           <% if @profile.organization? %>
@@ -75,7 +75,7 @@
       <% end %>
     </div>
     <% if is_owner? %>
-       <div class="content" id="profile_info_content" style="display:none;">
+       <div class="content settings_content" id="profile_info_content" style="display:none;">
          <div class="field_profile">
            <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
                <%= f.fields_for :actor do |actor_form| %>
