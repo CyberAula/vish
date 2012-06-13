@@ -1,35 +1,32 @@
-<div class="row">
-  <div class="span6">
-
+<div class="row ">
+  <div class="span6 ">
     <div class="logo-home ">
-    <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
+      <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
     </div>
-
     <span class="link_virtual size24 virtualsciencehub span3 ">
       <%= link_to(t('site.name'), '/', :class => "brand"); %>
     </span>
-
   </div>
-
-
-
   <div class="span6">
     <% if user_signed_in? %>
-      <div class="btn-toolbar pull-right">
-        <div class="btn-group">
-          <%= link_to(raw("<i class='icon-user'></i> ") +  truncate_name(current_subject.name, :length => 15), current_subject, :class => "name-menu") %>
+      <div class="btn-toolbar pull-right  ">
+        <div class="btn-group menu_header">
+          <%= link_to(raw("<i class='icon-user'></i> ") + truncate_name(current_subject.name, :length => 15), current_subject, :class => "name-menu") %>
           <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-followers'></i> "), followings_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-notification" + (current_subject.mailbox.notifications.not_trashed.unread.count > 0 ? " iconnav-notification_notification" : "") + "'></i> "), notifications_path, :class => "btn") %>
+          <%= render :partial => 'layouts/header_dropdown_menu' %>
         </div>
-        <%=  render :partial => 'layouts/header_dropdown_menu' %>
       </div>
     <% end %>
     <div id="espacio_busqueda"></div>
 
     <div id="header_search">
-      <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" } %>
+      <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-large"} %>
     </div>
   </div>
+
 </div>
+<div class="space_center"></div>
+<div class="space_center"></div>
