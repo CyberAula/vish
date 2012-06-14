@@ -100,8 +100,8 @@
         <a class="addvideo" href="#video_fancybox">
           <div class='menuicon videothumb' title="Video"></div>
         </a>
-        <a style='display:none' class="addLive" href="#live_fancybox">
-          <div class='menuicon videothumb' title="Live"></div>
+        <a class="addLive" href="#live_fancybox">
+          <div class='menuicon livethumb' title="Live"></div>
         </a>
       </div>
       
@@ -279,10 +279,12 @@
         <div class="fancy_tabs" id="flash_fancy_tabs_id">    
           <ul>
             <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">embed</a></li>
-            <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
-            <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
+            <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_web')" id="tab_flash_from_web" class="fancy_tab">web</a></li>
+						<li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
+            <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_flash_from_url_help' src='/assets/helptutorial_circle_blank.png'/>
+					<img class='help_in_fancybox' id='tab_flash_from_web_help' src='/assets/helptutorial_circle_blank.png'/>
           <img class='help_in_fancybox' id='tab_flash_upload_help' src='/assets/helptutorial_circle_blank.png'/>
           <img class='help_in_fancybox' id='tab_flash_repo_help' src='/assets/helptutorial_circle_blank.png'/>
         </div>
@@ -296,6 +298,20 @@
                 <div class="box2">
                         <div id="picture_preview" class="previewimgbox">
                             <button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
+                          </div>
+                      </div>
+        </div>
+				
+				<div id='tab_flash_from_web_content' class="fancy_tab_content">
+          <div class="box1 box1fancy1">
+            <p class="textfancy">embed websites</p></br>
+            <img class="image_add_url" src="/assets/url_img.png"/>
+            <input id="flash_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+            <button type="button" class="button buttonfancy previewButton">Preview</button>
+          </div>
+                <div class="box2">
+                        <div id="picture_preview" class="previewimgbox">
+                            <button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Object.Web.drawPreviewElement()">Add Content</button>
                           </div>
                       </div>
         </div>
@@ -453,7 +469,7 @@
         <div class="fancy_tabs" id="live_fancy_tabs_id">    
           <ul>
             <li><a href="#" onclick="VISH.Editor.loadTab('tab_live_webcam')" id="tab_live_webcam" class="fancy_tab">Webcams</a></li>
-            <li><a href="#" onclick="VISH.Editor.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab">Microscopes</a></li>
+            <li style='display:none'><a href="#" onclick="VISH.Editor.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab">Microscopes</a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_live_from_url_help' src='/assets/helptutorial_circle_blank.png'/>
           <img class='help_in_fancybox' id='tab_live_upload_help' src='/assets/helptutorial_circle_blank.png'/>

@@ -50,10 +50,7 @@
   text-align: right;
 
 }
-/************* FRONTPAGE *******/
-
-#logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
-.name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
+/************* HEADER *******/
 .logo-home{
   display:inline-block;
   float:left;
@@ -61,9 +58,19 @@
 .virtualsciencehub{
   padding-top: 34px;
   padding-left: 5px;
- display:inline-block;
- float:left;
+  display:inline-block;
+  float:left;
 }
+#menu_home{ height: 35px;}
+.menu_header {margin-top: -15px;}
+.text-center{text-align: center;}
+
+/************* FRONTPAGE *******/
+
+#logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
+.name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
+
+
 /****************** FRONTPAGE BOTTOM *****/
 
 #tags{color: #cccccc; font-family: DsignesLight; }
@@ -85,10 +92,8 @@
 .white{ background-color:#fff;margin-top: 40px; padding-top: 10px; padding-bottom: 5px;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
-/******************* HEADER *******************/
-#menu_home{ height: 35px;}
-.menu_header {margin-top: -5px;}
-.text-center{text-align: center;}
+
+
 
 
 /******************* BASIC CLASSES ******************/
@@ -437,7 +442,13 @@ form.file_upload {
 .thumb_logo_medium {background-image: url("doc.png"); display: inline-block;  float: left;  height: 34px; width: 34px; margin-right:10px; }
 .width-top { width: 80px; vertical-align: top;}
 .vertical-top {vertical-align: top;}
-.elipsis{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap;}
+
+
+
+.elipsis-excursion{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; max-width: 150px }
+.elipsis-resources{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; max-width: 190px }
+
+
 .copy_new_comment{ height: 5px;}
 
 .height-tabs-home{min-height: 180px }
@@ -1480,5 +1491,4 @@ display: block
 padding-left: 30px;
 padding-top: 10px;
 }
-
 

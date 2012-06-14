@@ -1,26 +1,23 @@
 <p class="devise_title2"><%= t('menu.information') %></p>
 <div class="space_center"></div>
 
-<% if (!is_personal_empty?) or(is_owner?) %>
-  <%= render :partial => "personal" %>
+<% if (@profile.subject.tag_list.count > 0) or (is_owner?) %>
+  <%= render :partial => "tags" %>
 <% end %>
 
-<% if  @profile.subject.subject_type == 'Event' %>
-  <%= render :partial => "outline", :locals => {:profile => @profile} %>
+<% if (!is_personal_empty?) or(is_owner?) %>
+  <%= render :partial => "personal" %>
 <% end %>
 
 <% if (!is_contact_empty?) or(is_owner?) %>
   <%= render :partial => "contact" %>
 <% end %>
+
 <% if (@profile.experience?) or(is_owner?) %>
   <%= render :partial => "experience" %>
 <% end %>
-<% if is_owner? %>
 
-<% end %>
-<% if (@profile.subject.tag_list.count > 0) or (is_owner?) %>
-  <%= render :partial => "tags" %>
-<% end %>
+<% if is_owner? %>
 <div class="row" id="avatar_info">
   <div class="header">
     <i class="icon-user"></i><%= t('avatar.profile_change') %>
@@ -34,5 +31,6 @@
   <div class="row">
   </div>
 </div>
+<% end %>
 
 
