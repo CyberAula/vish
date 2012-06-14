@@ -32,7 +32,7 @@
   float: left;
   max-height: 97px;
   max-width: 130px;
-  margin-right:10px;
+  margin-right:15px;
 }
 .link .thumbnail img.play_button{
   position: absolute;
@@ -46,9 +46,8 @@
   filter:alpha(opacity=80); /* For IE8 and earlier */
 }
 .link .info{
-  float: left;
-  width: 350px;
   text-align: left;
+  margin-left: 10px;
 }
 .activity_objects .link .info{
   width: 310px;
