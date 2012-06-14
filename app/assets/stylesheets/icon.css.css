@@ -328,16 +328,16 @@ li{
 .icon_repository75-75_audio { background-position: -595px -85px;}
 .icon_repository75-75_mp3 { background-position: -680px -85px;}
 .icon_repository75-75_wav { background-position: -756px -85px;}
-.icon_repository75-75_picture { background-position: 0 -225px ;}
-.icon_repository75-75_tiff { background-position: -85px -225px ;}
-.icon_repository75-75_jpg { background-position: -170px -225px ;}
-.icon_repository75-75_gif{ background-position: -255px -225px ;}
-.icon_repository75-75_png { background-position: -340px -225px ;}
-.icon_repository75-75_svg { background-position: -425px -225px ;}
-.icon_repository75-75_rar { background-position: -510px -225px ;}
-.icon_repository75-75_zip { background-position: -595px -225px ;}
-.icon_repository75-75_presentation { background-position: -680px -225px;}
-.icon_repository75-75_videoconference{ background-position: -756px -225px;}
+.icon_repository75-75_picture { background-position: 0 -255px ;}
+.icon_repository75-75_tiff { background-position: -85px -255px ;}
+.icon_repository75-75_jpg { background-position: -170px -255px ;}
+.icon_repository75-75_gif{ background-position: -255px -255px ;}
+.icon_repository75-75_png { background-position: -340px -255px ;}
+.icon_repository75-75_svg { background-position: -425px -255px ;}
+.icon_repository75-75_rar { background-position: -510px -255px ;}
+.icon_repository75-75_zip { background-position: -595px -255px ;}
+.icon_repository75-75_presentation { background-position: -680px -255px;}
+.icon_repository75-75_videoconference{ background-position: -756px -255px;}
 .icon_repository75-75_video { background-position: 0 -425px ;}
 .icon_repository75-75_avi { background-position: -85px -425px ;}
 .icon_repository75-75_mp4 { background-position: -170px -425px ;}
@@ -355,10 +355,10 @@ li{
 .icon_repository75-75_pdf:hover { background-position: -255px 0;}
 .icon_repository75-75_word:hover { background-position: -340px 0;}
 .icon_repository75-75_ppt:hover { background-position: -425px 0;}
-.icon_repository75-75_excel:hover { background-position: -510px -0;}
+.icon_repository75-75_excel:hover { background-position: -510px 0;}
 .icon_repository75-75_audio:hover { background-position: -595px 0;}
 .icon_repository75-75_mp3:hover { background-position: -680px 0;}
-.icon_repository75-75_wav:hover { background-position: -756px 0x;}
+.icon_repository75-75_wav:hover { background-position: -756px 0;}
 .icon_repository75-75_picture:hover { background-position: 0 -170px ;}
 .icon_repository75-75_tiff:hover { background-position: -85px -170px ;}
 .icon_repository75-75_jpg:hover { background-position: -170px -170px ;}
