@@ -139,7 +139,6 @@
 <section name="wall" id="home_wall" class="span5">
   <%= render :partial => "activities/index",
              :locals => {:activities => current_subject.wall(:home).page(params[:page]),
-                         :wall_id => 'wall',
                          :owner => current_subject} %>
 </section>
 <div class="space_double_center"></div>

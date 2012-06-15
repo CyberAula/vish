@@ -1,4 +1,4 @@
-<div id="wall" class="row-fluid tab-pane active">
+<div id="wall-me" class="row-fluid tab-pane">
   <% if activities.size == 0 %>
     <%= render :partial => "activities/zero_screen" %>
   <% else %>
@@ -9,7 +9,7 @@
 
 <%= javascript_tag do %>
   $(function(){  
-    SocialStream.Timeline.init();  
+    SocialStream.Timeline.init();
   });
 <% end %>
 

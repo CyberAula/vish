@@ -10,7 +10,11 @@
     <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
   </div>
   <div class="row space_center"></div>
+  <div class="tab-content">
   <%= render :partial => 'activities/wall',
-             :locals  => { :activities => activities } %>
+             :locals  => { :activities => current_subject.wall(:home).page(params[:page]) } %>
+  <%= render :partial => 'activities/wall_me',
+             :locals  => { :activities => current_user.wall(:profile, :for => current_subject). page(params[:page])} %>
+  </div>
 </section>
 

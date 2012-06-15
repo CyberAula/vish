@@ -27,7 +27,7 @@
 <div class="space_center">
 </div>
 
-<%= render :partial => "activities/index",
+<%= render :partial => "activities/profile",
            :locals  => { :activities => @group.wall(:profile, :for => current_subject).
                                                page(params[:page]),
                          :owner => @group } %>
