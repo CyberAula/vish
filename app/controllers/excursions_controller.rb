@@ -42,7 +42,7 @@ class ExcursionsController < ApplicationController
 
   def update
     super do |format|
-      format.all { render :json => resource }
+      format.all { render :json => { :url => excursion_path(resource) } }
     end
   end
 
