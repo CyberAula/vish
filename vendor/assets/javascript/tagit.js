@@ -6,6 +6,11 @@
  * ---------------------------
  */
 
+/*
+ * Dependencies
+ * JQuery $().watermark library is needed to allow input watermarks
+ */
+
 (function ($) {
     $.widget("ui.tagit", {
 
@@ -33,8 +38,9 @@
             highlightOnExistColor:'#0F0',
             //empty search on focus
             emptySearch:true,
-						watermarkAllowMessage: "Write more tags",
+						watermarkAllowMessage: "Add tags",
 						watermarkDenyMessage: "Tags limit reached",
+						
             //callback function for when tags are changed
                 //tagValue: value of tag that was changed
                 //action e.g. removed, added, sorted
@@ -90,7 +96,7 @@
             this.input = this.element.find(".tagit-input");
 						
 						//Add watermark
-						if(typeof $.watermark == "object"){
+						if(typeof $().watermark == "function"){
 							this.input.watermark(this.options.watermarkAllowMessage)
 						}					
 
@@ -119,17 +125,15 @@
             this.options.select = function (event, ui) {
                 self.input.data('autoCompleteTag', true);
                 clearTimeout(self.timer);
-								if(self.tagsArray.length >= self.options.maxTags){
-									self.input.val("");
-									return false;
-								}
                 if ((ui.item.label === undefined)){
 									self._addTag(ui.item.value);
 								} else {
 									//console.log("Autocomplete called with label and value with "+ ui.item.label + " " + ui.item.value)
 									self._addTag(ui.item.label, ui.item.value);
 								}
-                    
+                
+								event.stopPropagation()
+								    
                 return false;
             }
 
@@ -154,9 +158,7 @@
                     e.preventDefault();
                     self.input.data('autoCompleteTag', false);
 
-                    if (!self.options.allowNewTags || (self.options.maxTags !== undefined && self.tagsArray.length >= self.options.maxTags)) {
-                        self.input.val("");
-                    } else if (self.options.allowNewTags && $(this).val().length >= self.options.minLength) {
+                    if (self.options.allowNewTags && $(this).val().length >= self.options.minLength) {
 											  //console.log("Keydown event, call addtag with " + $(this).val())
                         self._addTag($(this).val());
                     }
@@ -264,7 +266,7 @@
 						}
             
 						//Restart watermark    
-            if(typeof $.watermark == "object"){
+            if(typeof $().watermark == "function"){
               this.input.watermark(this.options.watermarkAllowMessage)
             } 
 
@@ -279,19 +281,12 @@
             return;
         },
 
-        _addTag:function (label, value) {        
+        _addTag:function (label, value) {
 
             if(this.tagsArray.length > (this.options.maxTags-1)){
-              return;
-            }
-
-            if(this.tagsArray.length == (this.options.maxTags-1)){
-							//Last tag
-							if(typeof $.watermark == "object"){
-                this.input.watermark(this.options.watermarkDenyMessage)
-              }
 							$(this.input).blur();
-						}
+              return false;
+            }
 
             this.input.autocomplete('close').val("");
 
@@ -312,6 +307,14 @@
             if (tagExists !== false) {
                 this._highlightExisting(tagExists);
                 return false;
+            }
+						
+						if(this.tagsArray.length == (this.options.maxTags-1)){
+              //Last tag (or try to add more tags than maxTags)
+              if(typeof $().watermark == "function"){
+                this.input.watermark(this.options.watermarkDenyMessage)
+              }
+              $(this.input).blur();
             }
 
             var tag = this.tag(label, value);
@@ -472,7 +475,7 @@
             if (this.options.tagsChanged){
 							this.options.tagsChanged(null, 'reset', null);
 						}
-            if(typeof $.watermark == "object"){
+            if(typeof $().watermark == "function"){
               this.input.watermark(this.options.watermarkAllowMessage)
             }   
         },

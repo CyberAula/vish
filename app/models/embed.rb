@@ -23,4 +23,13 @@ class Embed < ActiveRecord::Base
 
     has live
   end
+
+  def as_json(options = nil)
+    {:id => id,
+     :title => title,
+     :description => description,
+     :author => author.name,
+     :fulltext => fulltext
+    }
+  end
 end

@@ -37,8 +37,13 @@ en:
     document: "document"
     how: "How to share a resource"
     info:
+      title: "Title"
+      description: "Description"
       tags:
         title: "Topics"
+        addMessage: "Add tags"
+        limitMessage: "limit reached"
+      age: "Age"
     input: "Add a description here"
     new: "Add resource"
     screencast: "VISH's screencast"
@@ -83,21 +88,26 @@ en:
     followers: "followers"
     followings: "following"
     views: "views"
+  go:
+    repository: "go to repository"
   help: "help"
   lang:
     independent: "Language independent"
     changed: "Changed language to %{lang}"
     error: "Language \"%{lang}\" not available"
-    title: "language"    
+    title: "language"   
+    others: Others 
   link:
     one: "link"
     other: "links"
-    confirm_delete: "Delete excursion?"
+    confirm_delete: "Delete link?"
+    go: "Go to link"
   translate:
     change: "Change language"
   message:
     new: "New message"
   more: "more"
+
   mashme:
     header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invite your contacts"
@@ -125,6 +135,7 @@ en:
   profile:
     tags:
       default: "VisHub, virtual, excursion"
+      other: "Areas of interest"
   project: "Global Excursion"      
   recommended: "recommended"
   repository:
@@ -141,6 +152,7 @@ en:
       other: "resources"
     upload: "upload"
   share: "Post"
+  sign_up: "Register"
   site:
     name: "Virtual Science Hub"
   swf:

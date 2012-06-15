@@ -59,7 +59,7 @@ SocialStream::Views::Toolbar.module_eval do
         #Information button
         items << {
           :key => :subject_info,
-          :html => link_to(t('menu.information'), [subject, :profile])
+          :html => link_to(raw("<i class='icontool16-tool16_ok'></i> ")+t('menu.information'), [subject, :profile])
         }
 
         #Resources brief

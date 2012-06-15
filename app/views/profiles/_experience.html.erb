@@ -1,19 +1,17 @@
 <div class="row" id="experience_info">
-  <div class="space_center"></div>
   <div class="header">
     <div class="header_text2">
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.experience') %>
       <% if is_owner? %>
-        <div class="header_icon_right">
-          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), :controller => :profiles, :action => :edit, :section => "my_experience" %>
+        <div class="header_icon_right unboder">
+          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), "javascript:showSettings(\"experience_info\");" %>
         </div>
       <% end %>
     </div>
-
   </div>
   <div class="row span6 boxy_white">
     <div class="space_center"></div>
-    <div class="content">
+    <div class="content settings_briefing" id="experience_info_briefing">
       <% if @profile.experience? %>
         <div class="row">
           <div class="field_profile">
@@ -27,5 +25,18 @@
       <% end %>
       <div class="space_center"></div>
     </div>
+    <% if is_owner? %>
+      <div class="content settings_content" id="experience_info_content" style="display:none;">
+        <div class="field_profile">
+          <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
+             <div class="row center">
+             <%= f.text_area :experience, :maxlength => 500, :rows => 10, :class => "form_tag_long" %>
+             </div>
+             <%= f.submit t('button.update'), :class => "button" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="space_center"></div>
   </div>
 </div>

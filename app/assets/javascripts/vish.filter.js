@@ -48,11 +48,18 @@ Vish.Filter = function(V, $, undefined){
                 $('#document-filter-me').on("keyup", function() {
                         $.ajax({
                                 url: "/resources/search",
-                                data: { q: $('#document-filter-me')[0].value, scope: "me" },
+                                data: { q: $('#document-filter-me')[0].value, scope: "me", per_page: 8 },
                                 success: function(data) { $('#repository-me').html(data); }
                         });
                 });
 
+                $('#repository-filter-me').on("keyup", function() {
+                        $.ajax({
+                                url: "/resources/search",
+                                data: { q: $('#repository-filter-me')[0].value, scope: "me", per_page: 16, print_format: "repo" },
+                                success: function(data) { $('#repository-me').html(data); }
+                        });
+                });
         }
 
         return {

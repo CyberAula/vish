@@ -1,15 +1,15 @@
 <% unless excursion.blank? %>
   <%= div_for excursion, :class => 'span3' do %>
-    <ul class="thumbnails">
+    <ul class="thumbnails ">
         <li class="span1">
           <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "container" %>
             <div class='number_pages'><%= excursion.slide_count %></div>
         </li>
         <li class="span2">
           <div class="caption inline-block">
-            <h4><%= link_to truncate_name(excursion.title, :length => 22), excursion %></h4>
-            <h5 class="blue-opacity">by <%=link_to( truncate_name(excursion.author.name, :length => 20), excursion.author.subject)%></h5>
-            <h5><span class="dark-gray"><%=excursion.visit_count.to_s%></span> <%= t('follow.view') %> </h5>
+            <h4 class="elipsis-excursion"><%= link_to truncate_name(excursion.title,), excursion %></h4>
+            <h5 class="blue-opacity elipsis-excursion">by <%=link_to( truncate_name(excursion.author.name, ), excursion.author.subject)%></h5>
+            <h5 class=""><span class="dark-gray "><%=excursion.visit_count.to_s%></span> <%= t('follow.view') %> </h5>
           </div>
         </li>
     </ul>

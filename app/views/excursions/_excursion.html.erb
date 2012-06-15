@@ -5,7 +5,7 @@
       <div class='number_pages'><%= excursion.slide_count %></div>
     </li>
     <li class="span9">
-        <h4><%= excursion.title %></h4>
+        <div class="title"><h4><%= excursion.title %></h4></div>
         <p><%= simple_format auto_link(excursion.description) %></p>
         <p><%= link_to t('details.msg'), excursion, :class => "attachment_text_link" %></p>
     </li>

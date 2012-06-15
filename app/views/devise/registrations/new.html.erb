@@ -106,14 +106,27 @@
     $.each($("#preloadTagList li"), function(index, element) {
        tags.push($(element).html());
     });
-
-    $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 });
+		
+		$(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+      watermarkAllowMessage: '<%=t('document.info.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' ,
+		  tagsChanged:function (tag, action) {
+			  //Check if the element popped is a suggestion
+			  if(action=="popped"){
+					$.each($(".tagit-suggestions li"), function(index, element) {
+            if($(element).html()==tag){
+						  $(element).show();
+						}
+          });
+				}
+      } 
+		});
 
     //Allow suggestions
     $(".tagit-suggestions li").on("click", function(){
-      //$(tagList).append("<li class='tagit-choice'>" + $(this).html() + "<a class='tagit-close'>x</a></li>")
-      $(".tagit").tagit('add', $(this).html() );
-      $(this).hide();
+      var result = $(".tagit").tagit('add', $(this).html() );
+			if(result==true){
+			  $(this).hide();
+			}
     });
 
     //Fill tag_list hidden input before send

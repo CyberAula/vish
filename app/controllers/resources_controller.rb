@@ -17,12 +17,19 @@
 
 class ResourcesController < ApplicationController
   def search
+    headers['Last-Modified'] = Time.now.httpdate
+
     if params[:live].present?
       @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed] } )
     else
       @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
     end
-    render :layout => false
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.json {
+        render :json => @found_resources
+      }
+    end
   end
 
   private
@@ -60,7 +67,7 @@ class ResourcesController < ApplicationController
 
     case params[:scope]
     when "me"
-      { :with => { :author_id => [ current_subject.author_id ] } }
+      { :with => { :author_id => [ current_subject.id ] } }
     when "net"
       { :with => { :author_id => current_subject.following_actor_ids } }
     when "other"

@@ -14,8 +14,7 @@
 //= require social_stream.audio
 //= require social_stream.repository
 //= require social_stream.video
-//= require social_stream-linkser
-//= require linkser
 //= require tagit
+//= require vish
 //= require_tree .
 

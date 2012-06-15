@@ -4,6 +4,7 @@
 /********************************* Header **************/
 #header_search {
   float: left;
+  padding-top: 3px;
 
   /*padding: 0px auto;*/
   z-index: 501;
@@ -26,7 +27,8 @@
   /*padding: 0 22px 0 22px;*/
   background-image: url('btn/search_icon.png');
   background-repeat: no-repeat;
-  background-position: 99% center
+  background-position: 99% center;
+  padding-right: 5px;
 }
 
 .banner_busqueda #header_search_input {

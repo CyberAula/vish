@@ -2,6 +2,12 @@
 <div class="header_text">
   <%= t('resource.title.other') %>
 </div>
+<div class="menu_resources">
+  <a class="action" href="">
+    <%=link_to(t('go.repository'),[subject, Document.new])%>
+  </a>
+</div>
+<div class=" row space_center"></div>
 <% for r in subject_resources(subject, :scope => :me) %>
   <% if r.is_a? Embed %>
     <%= render :partial => "embeds/profile", :locals => { :embed => r, :div_class => 'row' } %>
@@ -9,5 +15,4 @@
     <%= render :partial => "common_documents/profile", :locals => { :document => r, :div_class => 'row' } %>
   <% end %>
 <% end %>
-<div class="link_gray pagination-centered"><%=link_to(t('more'),[subject, Document.new])%></div>
-<div class="space_center"></div>
+<div class="row space_center"></div>

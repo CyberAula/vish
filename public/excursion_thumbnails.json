@@ -79,5 +79,6 @@
     { "title" : "Thumbnail 77",   "description" : "Sample excursion thumbnail 77",   "src" : "/assets/logos/original/excursion-77.png" },
     { "title" : "Thumbnail 78",   "description" : "Sample excursion thumbnail 78",   "src" : "/assets/logos/original/excursion-78.png" },
     { "title" : "Thumbnail 79",   "description" : "Sample excursion thumbnail 79",   "src" : "/assets/logos/original/excursion-79.png" },
-    { "title" : "Thumbnail 80",   "description" : "Sample excursion thumbnail 80",   "src" : "/assets/logos/original/excursion-80.png" }
+    { "title" : "Thumbnail 80",   "description" : "Sample excursion thumbnail 80",   "src" : "/assets/logos/original/excursion-80.png" },
+		{ "title" : "Thumbnail 81",   "description" : "Sample excursion thumbnail 81",   "src" : "/assets/logos/original/excursion-81.png" }
 ]}

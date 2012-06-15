@@ -37,8 +37,13 @@ es:
     document: "documento"
     how: "Cómo compartir un recurso"    
     info:
+      title: "Título"
+      description: "Descripción"
       tags:
         title: "Temas"
+        addMessage: "Añadir tags"
+        limitMessage: "Limite alcanzado"
+      age: "Edad"
     input: "Descripción del recurso"
     new: "Añadir recurso"
     screencast: "Screencast de VISH"
@@ -62,6 +67,8 @@ es:
     confirm_delete: "¿Borrar excursión?"
     created: "creadas"
     favorites: "favoritas"
+    go:
+        repository: "ir a repositorio"
     how: "Como crear una excursión"
     my: "mis"
     net: "red"
@@ -89,10 +96,12 @@ es:
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
     title: "idioma"    
+    others: Otros
   link:
     one: "enlace"
     other: "enlaces"
     confirm_delete: "¿Borrar enlace?"
+    go: "Ir al enlace"
   translate:
     change: "Cambiar idioma"
   message:
@@ -125,6 +134,7 @@ es:
   profile:
     tags:
       default: "VisHub, virtual, excursion"
+      other: "Áreas de interés"
   project: "Global Excursion"      
   recommended: "recomendados"
   repository:

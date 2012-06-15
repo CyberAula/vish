@@ -13,9 +13,13 @@
     </div>
     <div class=" row space_center"></div>
     <div class="title_bold dark-gray size22 dsignesbold" ><%= subject.name %></div>
+    <div class="row space_center"></div>
+
   <% else %>
     <%= link_to image_tag(subject.logo.url, :alt => subject.name , :size => "119x119"), subject %>
-    <%=contact_to(subject) %>
-    <div class="center"><span class="title_bold" ><%= subject.name %></span></div>
+    <div class=" row space_center"></div>
+    <div class="center"><span class="title_bold dark-gray size22 dsignesbold" ><%= subject.name %></span></div>
+    <div class="follow-btn-profile"><%=contact_to(subject) %></div>
   <% end %>
 </div>
+

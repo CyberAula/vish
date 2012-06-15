@@ -4,7 +4,9 @@ es:
       not_found: "no encontrado"
       already_confirmed: "ya ha sido confirmado"
       not_locked: "no está bloqueado"
-
+      not_saved:
+        one: "Se ha producido 1 error que impide guardar este %{resource}:"
+        other: "Se han producido %{count} errores que impiden guardar este %{resource}:"
   devise:
     sessions:
       link: 'Ingresar'

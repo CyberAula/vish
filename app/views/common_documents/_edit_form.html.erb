@@ -18,7 +18,7 @@
   <% end %>
   <div class="form_row">
     <div class="form_label">
-      <%= f.label t('document.info.title.title') %>
+      <%= f.label t('document.info.title') %>
     </div>
     <div class="form_field">
       <%= f.text_field :title, :class => "form_tag" %>
@@ -26,7 +26,7 @@
   </div>
   <div class="form_row">
     <div class="form_label">
-      <%= f.label t('document.info.description.title') %>
+      <%= f.label t('document.info.description') %>
     </div>
     <div class="form_field">
       <%= f.text_area :description, :class => "form_tag" %>
@@ -53,6 +53,32 @@
       </div>
     </div>
   </div>
+	
+	<div class="form_row">
+    <div class="form_label">
+      <%= f.label t('lang.title') %>
+    </div>
+    <div class="form_field">
+    	<% languages = [[t('lang.independent'), ''], ['Deutsch', 'de'], ['English', 'en'], ['Español', 'es'],
+      ['Français', 'fr'], ['Italiano', 'it'], ['Português', 'pt'], ['Русский', 'ru'],
+      [t('lang.others'), 'ot']] 
+      %>
+			<%= f.select(:language, languages, :class => "form_tag") %>
+    </div>
+  </div>
+	
+	 <div class="form_row">
+    <div class="form_label">
+      <%= f.label t('document.info.age') %>
+    </div>
+    <div class="form_field">
+    	<%= f.hidden_field :age_min, :class => "form_tag", :id => "age_min_field" %>
+			<%= f.hidden_field :age_max, :class => "form_tag", :id => "age_max_field" %>
+			<input type="text" class="age"/>
+      <div class="slider-range"></div>
+    </div>
+  </div>
+   <br/><br/>
 
   <div class="actions center">
     <%= f.submit t('button.save'), :class => "button" %>
@@ -77,16 +103,36 @@
 					  $(tagList).append("<li>" + tag + "</li>")
 					}
     });       
-    
-    $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 });
+		
+		$(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+        watermarkAllowMessage: '<%=t('document.info.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' });
+		
 		
 		//Fill tag_list hidden input before send
 		 var button = $("input[value='Save'][type='submit'][name='commit'].button");
 		 $(button).click(function(event) {
+		   var slider = $(".slider-range")
+       $("#age_min_field").val($(slider).slider( "values", 0 ));
+       $("#age_max_field").val($(slider).slider( "values", 1 ));
        var tagList = $(".tagList");
        $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
        return true;
      });
+		 
+		 
+		 //Sliders
+      $( ".slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 30,
+        values: [ $("#age_min_field").val(), $("#age_max_field").val() ],
+        slide: function( event, ui ) {
+          var input = $(this).parent().parent().find("input[type=text]")
+          $( input ).val( + ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+        }
+      });
+      $( ".age" ).val( $( ".slider-range" ).slider( "values", 0 ) +
+        " - " + $( ".slider-range" ).slider( "values", 1 ) );
 		
   }); 
 <% end %>
