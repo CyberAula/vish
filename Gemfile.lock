@@ -147,7 +147,7 @@ GEM
     god (0.12.1)
     has_scope (0.5.1)
     hashie (1.2.0)
-    highline (1.6.12)
+    highline (1.6.13)
     hike (1.2.1)
     httpauth (0.1)
     i18n (0.6.0)
