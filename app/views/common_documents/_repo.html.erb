@@ -9,10 +9,16 @@
                 "javascript:;" %>
     <div class="tipsy_content" style="display:none;">
       <div class="actions">
-        <div class="block menu_resources">
-        <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-       </div>
-        <% if document.post_activity.edit_object_by?(current_subject) %>
+        <% if document.is_a? Document %>
+          <div class="block menu_resources">
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+          </div>
+        <% elsif document.is_a? Link %>
+          <div class="block menu_resources">
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_8'></i> ") + t('link.go'), :class => :action), document.url, :target => '_blank' %>
+          </div>
+        <% end %>
+        <% if document.is_a? Document and document.post_activity.edit_object_by?(current_subject) %>
           <div class="block menu_resources">
             <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
           </div>
@@ -31,7 +37,7 @@
     <%= link_to truncate_name(document.title, :length => 15),
                 document,
                 :alt => document.title,
-                :path => document_path(document) %>
+                :path => document %>
   </div>
 </div>
 <%= javascript_tag do %>

@@ -100,7 +100,8 @@ en:
   link:
     one: "link"
     other: "links"
-    confirm_delete: "Delete excursion?"
+    confirm_delete: "Delete link?"
+    go: "Go to link"
   translate:
     change: "Change language"
   message:

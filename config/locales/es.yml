@@ -101,6 +101,7 @@ es:
     one: "enlace"
     other: "enlaces"
     confirm_delete: "¿Borrar enlace?"
+    go: "Ir al enlace"
   translate:
     change: "Cambiar idioma"
   message:
