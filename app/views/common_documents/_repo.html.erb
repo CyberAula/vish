@@ -1,4 +1,5 @@
 <div class="attachment_tile" id="<%= dom_id(document) %>">
+<% %>
   <div class="attachment_tile_thumb">
     <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
   </div>
@@ -11,17 +12,17 @@
         <div class="block menu_resources">
         <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
        </div>
-        <div class="block menu_resources">
         <% if document.post_activity.edit_object_by?(current_subject) %>
-          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
-        <% end %>
-        </div>
           <div class="block menu_resources">
-        <% if document.post_activity.delete_object_by?(current_subject) %>
-          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
-                                                                                                                                                                                                         :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-        <% end %>
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), :class => :action, :id => :document_edit_action), document_path(document, :editing => true) %>
           </div>
+        <% end %>
+        <% if document.post_activity.delete_object_by?(current_subject) %>
+          <div class="block menu_resources">
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',
+                                                                                                                                                                                                         :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
