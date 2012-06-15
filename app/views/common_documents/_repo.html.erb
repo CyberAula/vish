@@ -1,7 +1,7 @@
 <div class="attachment_tile" id="<%= dom_id(document) %>">
 <% %>
   <div class="attachment_tile_thumb">
-    <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+    <%= link_to "", document, :class => icon_class_for(document), :alt => document.title, :title => document.title, :rel=> 'tooltip' %>
   </div>
 
   <div class="attachment_tile_tipsy">
@@ -37,6 +37,8 @@
     <%= link_to truncate_name(document.title, :length => 15),
                 document,
                 :alt => document.title,
+                :title => document.title,
+                :rel => 'tooltip',
                 :path => document %>
   </div>
 </div>
@@ -44,6 +46,9 @@
   $(document).ready(function(){
 
   SocialStream.Repository.init();
+
+  $('.attachment_tile_thumb a').tooltip();
+  $('.attachment_tile_text a').tooltip({ placement: 'bottom'});
 
   $('#<%= dom_id(document) %> .attachment_tile_tipsy a').tipsy({
   delayIn: 0,
