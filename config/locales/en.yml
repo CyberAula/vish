@@ -147,9 +147,12 @@ en:
     network: "my network resources"
     newmy_html: "You have not upload any resources yet. You can add a new one by clicking on the upload button or on this "    
     newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
+    my: "my"
+    net: "network"
     title:
       one: "resource"
       other: "resources"
+    top: "top"
     upload: "upload"
   share: "Post"
   sign_up: "Register"

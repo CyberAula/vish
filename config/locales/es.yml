@@ -146,9 +146,12 @@ es:
     network: "recursos de mi red"
     newmy_html: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "    
     newnet_html: "Aquí podrás ver los recursos subidos por la gente a quien sigues. Encuentra otros usuarios a seguir en <a href='/search?type=user'>este enlace</a>."
+    my: "mis"
+    net: "red"
     title:
       one: "recursos"
       other: "recursos"
+    top: "top"
     upload: "subir"
   share: "Enviar"
   site:
