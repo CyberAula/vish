@@ -1,10 +1,10 @@
 <section id="wrapper_activities" class="tabbable" >
   <ul class="nav nav-tabs span3">
-    <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('timeline.net') %></a></li>
-    <li class=""><a data-toggle="tab" href="#repo-2"><%= t('timeline.my') %></a></li>
+    <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('resource.net') %></a></li>
+    <li class=""><a data-toggle="tab" href="#repo-2"><%= t('resource.my') %></a></li>
   </ul>
   <div class="span2 size40 title_menu_home ">
-    <%= t('timeline.')%></div>
+    <%= t('activity.timeline')%></div>
   <div class="clearfloat"></div>
   <div class="tab-content" id="wrapper_activities_header">
     <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
