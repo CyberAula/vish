@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 5ae88a4303f774af53e16e1007583a365a15632c
+  revision: 81a2a3725ba330c667a5f9ce9d274c508c4d4aee
   branch: stable
   specs:
     vish_editor (0.1.1)
@@ -156,7 +156,7 @@ GEM
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
-    journey (1.0.3)
+    journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
