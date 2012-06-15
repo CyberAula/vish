@@ -9,6 +9,6 @@
     </div>
   </div>
 </div>
-<%#= content_for :javascript do %>
- <!-- if(!Vish.Filter.loaded) Vish.Filter.init();-->
-<%# end %>
+<%= content_for :javascript do %>
+ if(!Vish.Filter.loaded) Vish.Filter.init();
+<% end %>

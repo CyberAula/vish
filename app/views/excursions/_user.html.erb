@@ -7,7 +7,7 @@
     </ul>
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
-        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-me" } %>
+        <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me" } %>
         <div id="excursions-me" class="row height-tabs-home" >
           <% for excursion in subject_excursions(@user, {:scope => :me}) %>
             <%= render :partial => "excursions/home",
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div id="ex-2" class="tab-pane">
-        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-me" } %>
+        <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me" } %>
         <div id="excursions" class="row height-tabs-home" >
           <% for excursion in subject_excursions(@user, {:scope => :me}) %>
             <%= render :partial => "excursions/home",
