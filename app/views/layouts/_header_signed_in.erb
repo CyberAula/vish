@@ -11,7 +11,6 @@
     <% if user_signed_in? %>
       <div class="btn-toolbar pull-right  ">
         <div class="btn-group menu_header">
-          <%= link_to(raw("<i class='icon-user'></i> ") + truncate_name(current_subject.name, :length => 15), current_subject, :class => "name-menu") %>
           <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-followers'></i> "), followings_path, :class => "btn") %>
