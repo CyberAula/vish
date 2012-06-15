@@ -11,18 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120610114259) do
+ActiveRecord::Schema.define(:version => 20120615143937) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"
-    t.integer  "channel_id"
+    t.integer  "author_id"
+    t.integer  "user_author_id"
+    t.integer  "owner_id"
   end
 
   add_index "activities", ["activity_verb_id"], :name => "index_activities_on_activity_verb_id"
-  add_index "activities", ["channel_id"], :name => "index_activities_on_channel_id"
 
   create_table "activity_actions", :force => true do |t|
     t.integer  "actor_id"
@@ -131,18 +132,6 @@ ActiveRecord::Schema.define(:version => 20120610114259) do
   end
 
   add_index "avatars", ["actor_id"], :name => "index_avatars_on_actor_id"
-
-  create_table "channels", :force => true do |t|
-    t.integer  "author_id"
-    t.integer  "owner_id"
-    t.integer  "user_author_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "channels", ["author_id"], :name => "index_channels_on_author_id"
-  add_index "channels", ["owner_id"], :name => "index_channels_on_owner_id"
-  add_index "channels", ["user_author_id"], :name => "index_channels_on_user_author_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "activity_object_id"
@@ -406,7 +395,6 @@ ActiveRecord::Schema.define(:version => 20120610114259) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   add_foreign_key "activities", "activity_verbs", :name => "index_activities_on_activity_verb_id"
-  add_foreign_key "activities", "channels", :name => "index_activities_on_channel_id"
 
   add_foreign_key "activity_actions", "activity_objects", :name => "index_activity_actions_on_activity_object_id"
   add_foreign_key "activity_actions", "actors", :name => "index_activity_actions_on_actor_id"
@@ -428,10 +416,6 @@ ActiveRecord::Schema.define(:version => 20120610114259) do
   add_foreign_key "authentications", "users", :name => "authentications_on_user_id"
 
   add_foreign_key "avatars", "actors", :name => "avatars_on_actor_id"
-
-  add_foreign_key "channels", "actors", :name => "index_channels_on_author_id", :column => "author_id"
-  add_foreign_key "channels", "actors", :name => "index_channels_on_owner_id", :column => "owner_id"
-  add_foreign_key "channels", "actors", :name => "index_channels_on_user_author_id", :column => "user_author_id"
 
   add_foreign_key "comments", "activity_objects", :name => "comments_on_activity_object_id"
 
