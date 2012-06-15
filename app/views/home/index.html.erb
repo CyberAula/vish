@@ -134,28 +134,12 @@
       <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
     </div>
   </div>
-  <!--
-  <div class="row space_center"></div>
-  <div class="organizations tabbable">
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#org-1"><%#=t('organization.other')%></a></li>
-    </ul>
-    <div class="tab-content">
-      <div id="org-1" class="tab-pane active">
-        <div class="row btn-toolbar">
-          <div class="pull-right">
-            <input type="text" class="input-medium inline-block ontop" placeholder="filter"  autofocus="" name="filter">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
 </section>
 
 <section name="wall" id="home_wall" class="span5">
   <%= render :partial => "activities/index",
              :locals => {:activities => current_subject.wall(:home).page(params[:page]),
+                         :wall_id => 'wall',
                          :owner => current_subject} %>
 </section>
 <div class="space_double_center"></div>
