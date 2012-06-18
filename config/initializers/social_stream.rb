@@ -62,18 +62,13 @@ SocialStream::Views::Toolbar.module_eval do
           :html => link_to(raw("<i class='icontool16-tool16_info'></i> ")+t('menu.information'), [subject, :profile])
         }
 
-        #Resources brief
-        items << {
-          :key => :resources,
-          :html => render(:partial => 'toolbar/resources', :locals => { :subject => subject })
-        }
-
         #Contacts brief
         items << {
           :key => :contacts,
           :html => render(:partial => 'toolbar/contacts', :locals => { :subject => subject })
         }
       end
+
     when :messages
       SocialStream::Views::List.new.tap do |items|
         items << {
