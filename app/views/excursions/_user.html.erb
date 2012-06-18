@@ -1,10 +1,15 @@
 <% self.class.send :include, HomeHelper  %>
 <section class="span6">
   <div class="excursions tabbable">
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.other') + " "+ t('excursion.created')%></a></li>
+    <ul class="nav nav-tabs span4">
+      <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.my') %></a></li>
       <!--<li><a data-toggle="tab" href="#ex-2"><%#= t('excursion.favorites')%></a></li>-->
     </ul>
+
+    <div class="span2 size40 title_menu_home ">
+    <%= t('excursion.other')%></div>
+    <div class="clearfloat"></div>
+
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
         <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me" } %>
