@@ -87,6 +87,7 @@ es:
   external: "recurso externo"
   filter: "filtrar"
   follow:
+    favorites: "favoritos"
     followers: "seguidores"
     followings: "siguiendo"
     views: "visitas"

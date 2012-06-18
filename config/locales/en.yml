@@ -85,6 +85,7 @@ en:
   external: "external resource"
   filter: "filter"
   follow:
+    favorites: "favorites"
     followers: "followers"
     followings: "following"
     views: "views"

@@ -7,9 +7,15 @@
         </li>
         <li class="span2">
           <div class="caption inline-block">
-            <h4 class="elipsis-excursion"><%= link_to truncate_name(excursion.title,), excursion %></h4>
+            <h4 class="elipsis-excursion">
+              <%= link_to truncate_name(excursion.title, :length => 18), excursion %>
+            </h4>
             <h5 class="blue-opacity elipsis-excursion">by <%=link_to( truncate_name(excursion.author.name, ), excursion.author.subject)%></h5>
-            <h5 class=""><span class="dark-gray "><%=excursion.visit_count.to_s%></span> <%= t('follow.view') %> </h5>
+            <h5 class=""><span class="green"><%=excursion.visit_count.to_s%></span> <%= t('follow.views') %> </h5>
+            <h5 class="">
+              <span class="green"><%=excursion.activities.first.likes.count.to_s%></span> <%= t('follow.favorites') %>
+              <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first)%></div>
+            </h5>
           </div>
         </li>
     </ul>
