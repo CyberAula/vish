@@ -115,6 +115,7 @@
 .clearfloat{clear: both;display: block}
 .bold{font-weight: bold; }
 #comment-1 .activity_new_comment{display:block !important;}
+.margin
 
 /*************** SIZE CLASSES **************/
 .size10{font-size: 10px;}
@@ -954,12 +955,17 @@ margin-left: 20px;
 
 
 .menu_resources:hover{
+
   background-color: #ffffff;
   display: inline-block;
   width:auto;
-  height: 16px;
   border:1px solid  ;
   border-color: #e6e6e6;
+  padding: 4px 6px 4px 6px;
+  border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
+  margin-right: 15px;
+
+
 }
 
 
@@ -1416,6 +1422,10 @@ margin-top: -5 px;
   padding-left:15px;
   padding-right:15px;
 
+}
+.margin_left_15{
+margin-top: 15px;
+margin-left: 15px;
 }
 
 .form_field-new_document{
