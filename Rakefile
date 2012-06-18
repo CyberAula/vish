@@ -25,7 +25,7 @@ RSpec::Core::RakeTask.new(:spec) do |s|
                 bsp('./models/profile_spec.rb'),
                 bsp('./models/user_spec.rb'),
                 bsp('./models/tie_spec.rb'),
-                bsp('./models/activity_spec.rb'),
+                # bsp('./models/activity_spec.rb'),
                 bsp('./models/actor_spec.rb'),
                 bsp('./models/group_spec.rb'),
                 bsp('./models/like_spec.rb'),
