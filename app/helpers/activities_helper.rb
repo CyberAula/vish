@@ -11,16 +11,16 @@ module ActivitiesHelper
   def link_like_params(object)
     params = Array.new
     if !user_signed_in?
-      params << t('activity.like')
+      params << image_tag("star2.png", :class => "menu_icon")
       params << new_user_session_path
       params << {:class => "verb_like",:id => "like_" + dom_id(object)}
     else
       if (object.liked_by?(current_subject))
-        params << t('activity.unlike')
+        params << image_tag("star1.png", :class => "menu_icon")
         params << [object, :like]
         params << {:class => "verb_like",:id => "like_" + dom_id(object),:method => :delete, :remote => true}
       else
-        params << t('activity.like')
+        params << image_tag("star2.png", :class => "menu_icon")
         params << [object, :like]
         params << {:class => "verb_like",:id => "like_" + dom_id(object),:method => :post, :remote => true}
       end
