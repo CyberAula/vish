@@ -62,8 +62,18 @@
   float:left;
 }
 #menu_home{ height: 35px;}
-.menu_header {margin-top: -15px;}
+.menu_header {margin-top: -10px; margin-left: 20px;}
+.tools{float: left; display: inline-block;}
 .text-center{text-align: center;}
+.name-menu{
+
+  display: inline-block;
+  float:left;
+  text-decoration: none;
+  padding-left: 64px
+}
+.logo-img{margin-right: 10px}
+
 
 /************* FRONTPAGE *******/
 
@@ -97,7 +107,7 @@
 
 
 /******************* BASIC CLASSES ******************/
-.inline {display:inline;}
+
 .inline-block {display:inline-block;}
 .inline {display: inline}
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
@@ -1295,13 +1305,7 @@ margin-left: 20px;}
 
 
 
-.name-menu{
-margin-top:13px;
-display: inline;
-float:left;
-margin-right: 20px;
-text-decoration: none;
-}
+
 .more{
 float: right;
 margin-right: 15px;

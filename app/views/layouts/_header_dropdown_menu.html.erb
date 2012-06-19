@@ -1,4 +1,4 @@
-<div class="btn-group ">
+
   <a href="#" data-toggle="dropdown" class="btn"><span class="caret"></span></a>
   <ul class="dropdown-menu">
     <%#= render :partial => 'layouts/header_dropdown_menu_sessions'%>
@@ -9,4 +9,4 @@
     <% end %>
     <li><%=link_to( raw("<i class='icontool16-tool16_out_site'></i> ") + t('sign_out'), destroy_user_session_path, :method => :delete) %></li>
   </ul>
-</div>
+

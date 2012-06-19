@@ -9,24 +9,31 @@
   </div>
   <div class="span6">
     <% if user_signed_in? %>
-      <div class="btn-toolbar pull-right  ">
+      <div class="span2 name-menu">
+      <%= link_to(image_tag(current_subject.logo.url , :size => "22x22", :alt => current_subject.name, :class => "logo-img" ) + truncate_name(current_subject.name, :length => 15), current_subject, :class => "") %>
+      </div>
+
+
+
+      <div class="btn-toolbar pull-right inline   span3">
         <div class="btn-group menu_header">
-          <%= link_to(image_tag(current_subject.logo.url , :size => "30x30", :alt => current_subject.name ) + truncate_name(current_subject.name, :length => 15), current_subject, :class => "name-menu") %>
+
           <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-followers'></i> "), followings_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-notification" + (current_subject.mailbox.notifications.not_trashed.unread.count > 0 ? " iconnav-notification_notification" : "") + "'></i> "), notifications_path, :class => "btn") %>
-          <%= render :partial => 'layouts/header_dropdown_menu' %>
+          <%= render :partial => 'layouts/header_dropdown_menu'%>
         </div>
       </div>
     <% end %>
-    <div id="espacio_busqueda"></div>
 
-    <div id="header_search">
+
+    <div id="header_search " class="span3 offset3">
       <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-large"} %>
     </div>
   </div>
 
 </div>
 <div class="space_center"></div>
+
 <div class="space_center"></div>
