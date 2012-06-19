@@ -14,7 +14,7 @@
         <div class="follwrs upfoll">followers: <%= link_to contact.receiver_subject.followers.count, "#" %></div>
         <div class="folling upfoll">followings: <%= link_to contact.receiver.following_actor_objects.includes(:actor).count, "#" %></div>
       </div>
-      <div class="send_messag size10 red-2 upfoll"><%=contact_to(contact.receiver) %></div>
+      <div class="send_messag size10 red-2 upfoll users_btn_follow"><%=contact_to(contact.receiver) %></div>
       </div>
     </li>
   </ul>
