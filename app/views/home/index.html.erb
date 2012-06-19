@@ -54,7 +54,7 @@
       <div id="ex-4" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-fav"} %>
         <div class="space_center"></div>
-        <div id="excursions-me" class="row height-tabs-home">
+        <div id="excursions-fav" class="row height-tabs-home">
           <% fav_excursions = current_subject_excursions(:scope => :like) %>
           <% if fav_excursions.size == 0 %>
             <%= render :partial => "excursions/fav_zero_screen" %>
@@ -163,7 +163,7 @@
       <div id="repo-4" class="tab-pane">
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-fav"} %>
         <div class="space_center"></div>
-        <div id="repository-me" class="repositories row height-tabs-home">
+        <div id="repository-fav" class="repositories row height-tabs-home">
           <% fav_resources = current_subject_resources({:scope => :like, :limit => 8}) %>
           <% if fav_resources.size == 0 %>
             <%= render :partial => "common_documents/fav_zero_screen" %>

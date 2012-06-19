@@ -3,7 +3,7 @@
   <div class="excursions tabbable">
     <ul class="nav nav-tabs span4">
       <li class="active"><a data-toggle="tab" href="#ex-1"><%=t('excursion.my') %></a></li>
-      <!--<li><a data-toggle="tab" href="#ex-2"><%#= t('excursion.favorites')%></a></li>-->
+      <li class=""><a data-toggle="tab" href="#ex-2"><%= image_tag "star-on.png" %></a></li>
     </ul>
 
     <div class="span2 size40 title_menu_home ">
@@ -21,9 +21,9 @@
         </div>
       </div>
       <div id="ex-2" class="tab-pane">
-        <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me" } %>
-        <div id="excursions" class="row height-tabs-home" >
-          <% for excursion in subject_excursions(@user, {:scope => :me}) %>
+        <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-fav" } %>
+        <div id="excursions-fav" class="row height-tabs-home" >
+          <% for excursion in subject_excursions(@user, {:scope => :like}) %>
             <%= render :partial => "excursions/home",
                        :locals => { :excursion => excursion} %>
           <% end %>
