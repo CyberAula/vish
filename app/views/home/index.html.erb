@@ -8,6 +8,7 @@
       <li class="active"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
       <li class=""><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
       <li class=""><a data-toggle="tab" href="#ex-3"><%= t('excursion.top') %></a></li>
+      <li class=""><a data-toggle="tab" href="#ex-4"><%= image_tag "star-on.png" %></a></li>
     </ul>
     <div class="span2 size40 title_menu_home ">
     <%= t('excursion.other')%></div>
@@ -41,12 +42,25 @@
         </div>
       </div>
       <div id="ex-3" class="tab-pane">
-        <%= render :partial => "excursions/filter", :locals => {:show_add => false, :filter_id => "excursion-filter-more"} %>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-more"} %>
         <div class="space_center"></div>
         <div id="more" class="row height-tabs-home">
           <% for excursion in current_subject_excursions(:scope => :more) %>
             <%= render :partial => "excursions/home",
                        :locals => {:excursion => excursion} %>
+          <% end %>
+        </div>
+      </div>
+      <div id="ex-4" class="tab-pane">
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-fav"} %>
+        <div class="space_center"></div>
+        <div id="excursions-fav" class="row height-tabs-home">
+          <% fav_excursions = current_subject_excursions(:scope => :like) %>
+          <% if fav_excursions.size == 0 %>
+            <%= render :partial => "excursions/fav_zero_screen" %>
+          <% else %>
+            <%= render :partial => "excursions/filter_results",
+                       :locals => {:excursions => fav_excursions} %>
           <% end %>
         </div>
       </div>
@@ -63,6 +77,7 @@
       <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('resource.net') %></a></li>
       <li class=""><a data-toggle="tab" href="#repo-2"><%= t('resource.my') %></a></li>
       <li class=""><a data-toggle="tab" href="#repo-3"><%= t('resource.top') %></a></li>
+      <li class=""><a data-toggle="tab" href="#repo-4"><%= image_tag "star-on.png" %></a></li>
     </ul>
     <div class="span2 size40 title_menu_home ">
       <%= t('resource.title.other')%></div>
@@ -85,6 +100,10 @@
                 <%= render :partial => "embeds/home",
                            :locals => {:embed => document,
                                        :div_class => 'content_size'} %>
+              <% elsif document.is_a? Link %>
+                 <%= render :partial => "links/home",
+                            :locals => {:link => document,
+                                        :div_class => 'content_size'} %>
               <% else %>
                 <%= render :partial => "common_documents/home",
                            :locals => {:document => document,
@@ -124,10 +143,46 @@
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-more"} %>
         <div class="space_center"></div>
         <div id="repository-more" class="repositories row height-tabs-home">
-          <% for document in current_subject_documents({:scope => :more, :limit => 8}) %>
-            <%= render :partial => "common_documents/home",
-                       :locals => {:document => document,
-                                   :div_class => 'content_size'} %>
+          <% for document in current_subject_resources({:scope => :more, :limit => 8}) %>
+            <% if document.is_a? Embed %>
+              <%= render :partial => "embeds/home",
+                         :locals => {:embed => document,
+                                     :div_class => 'content_size'} %>
+            <% elsif document.is_a? Link %>
+               <%= render :partial => "links/home",
+                          :locals => {:link => document,
+                                      :div_class => 'content_size'} %>
+            <% else %>
+              <%= render :partial => "common_documents/home",
+                         :locals => {:document => document,
+                                     :div_class => 'content_size'} %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="repo-4" class="tab-pane">
+        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-fav"} %>
+        <div class="space_center"></div>
+        <div id="repository-fav" class="repositories row height-tabs-home">
+          <% fav_resources = current_subject_resources({:scope => :like, :limit => 8}) %>
+          <% if fav_resources.size == 0 %>
+            <%= render :partial => "common_documents/fav_zero_screen" %>
+          <% else %>
+            <% for document in fav_resources %>
+              <% if document.is_a? Embed %>
+                <%= render :partial => "embeds/home",
+                           :locals => {:embed => document,
+                                       :div_class => 'content_size'} %>
+              <% elsif document.is_a? Link %>
+                 <%= render :partial => "links/home",
+                            :locals => {:link => document,
+                                        :div_class => 'content_size'} %>
+              <% else %>
+                <%= render :partial => "common_documents/home",
+                           :locals => {:document => document,
+                                       :div_class => 'content_size'} %>
+              <% end %>
+            <% end %>
           <% end %>
         </div>
       </div>

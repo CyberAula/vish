@@ -12,9 +12,6 @@
       <%= yield :toolbar %>
     </section>
     <section id="main" class="span6">
-      <div id="flash">
-        <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
-      </div>
       <section id="content">
         <%= yield %>
       </section>

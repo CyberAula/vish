@@ -50,6 +50,12 @@ module HomeHelper
       query = query.authored_by(subject.actor_id)
     when :net
       query = query.authored_by(following_ids)
+    when :like
+      query = if klass.is_a?(Array)
+        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+      else
+        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type = (?)", klass.to_s)
+      end
     when :more
       following_ids |= [ subject.actor_id ]
       query = query.not_authored_by(following_ids)
@@ -57,6 +63,11 @@ module HomeHelper
 
     query = query.order('updated_at DESC')
     query = query.first(options[:limit]) if options[:limit] > 0
+
+    if options[:scope] == :like
+      query = query.map { |a| a.activity_objects.first }
+      query = query.map { |ao| ao.object } unless klass.is_a?(Array)
+    end
 
     return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
