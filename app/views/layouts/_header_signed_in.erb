@@ -10,13 +10,16 @@
   <div class="span6">
     <% if user_signed_in? %>
       <div class="span2 name-menu">
-      <%= link_to(image_tag(current_subject.logo.url , :size => "22x22", :alt => current_subject.name, :class => "logo-img" ) + truncate_name(current_subject.name, :length => 15), current_subject, :class => "") %>
+      <%= link_to(image_tag(current_subject.logo.url , :size => "22x22", :alt => current_subject.name, :class => "logo-img" ), current_subject, :class => "") %>
+      <%= link_to(truncate_name(current_subject.name, :length => 15), current_subject, :class => "") %>
       </div>
 
 
 
-      <div class="btn-toolbar pull-right inline   span3">
-        <div class="btn-group menu_header">
+
+      <div class="btn-toolbar pull-right inline   span6">
+        <%= link_to(image_tag(current_subject.logo.url , :size => "22x22", :alt => current_subject.name, :class => "logo-img" ) + truncate_name(current_subject.name, :length => 20), current_subject, :class => " name-menu title_bold dark-gray size15 dsignesbold") %>
+        <div class="btn-group menu_header pull-right inline-block">
 
           <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn") %>
