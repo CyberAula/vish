@@ -66,7 +66,7 @@ en:
       share: "share"
     confirm_delete: "Delete excursion?"
     created: "created"
-    favorites: "favorites"    
+    favorites: "Favorites"    
     how: "How to create an excursion"
     my: "my"
     net: "network"
@@ -85,7 +85,7 @@ en:
   external: "external"
   filter: "filter"
   follow:
-    favorites: "favorites"
+    favorites: "Favorites"
     followers: "followers"
     followings: "following"
     views: "views"
