@@ -23,10 +23,8 @@
   margin-top: 5px;
 }
 .link {
-
   position: relative;
-
-}
+  }
 .link .thumbnail, .link .thumbnail img{
   position: relative;
   float: left;
@@ -47,22 +45,35 @@
 }
 .link .info{
   text-align: left;
-  margin-left: 10px;
+   margin-left: 150px;
+
 }
+
+
 .activity_objects .link .info{
   width: 310px;
+
 }
 .link .info .title{
+  margin-top: 20px;
+  position: relative;
   font-weight: bold;
-  margin-bottom: 3px;
+  margin-bottom: 3px; 
+  height: auto;
+
 }
 .link .info .url{
-  text-decoration: underline;
-  margin-bottom: 5px;
+    margin-bottom: 5px;
+    margin-top: 6px; /* Control title-url distance */
+    text-decoration: underline;
 }
+
 .link .info .description textarea {
-	height: 60px;
+  margin-top: 23px;
+height: 60px;
 }
 .link iframe{
   border: 0;
 }
+
+
