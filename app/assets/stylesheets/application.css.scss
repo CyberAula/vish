@@ -70,12 +70,16 @@ height: auto;
 .tools{float: left; display: inline-block;}
 .text-center{text-align: center;}
 
-.name-menu{
-
-float:right;
-display: inline-block;
+.name-user{
+  vertical-align: bottom;
 }
-.logo-img{margin-right: 10px}
+.logo-img{
+  margin-right: 10px;
+  margin-top: -5px
+  }
+.margin-logo-img{
+  margin-top: -15px
+}
 
 
 /************* FRONTPAGE *******/
