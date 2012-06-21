@@ -7,8 +7,25 @@
 <%= render :partial => 'vish_editor' %>
 
 <script>	
+
+var configuration = {};
+configuration["presentationSettings"] = true;
+configuration["presentationTags"] = true;
+configuration["presentationThumbnails"] = true;
+
+configuration["Vish"] = true;
+configuration["VishLives"] = true;
+configuration["VishUpload"] = true;
+configuration["VishRepo"] = true;
+
+configuration["Flickr"] = true;
+configuration["Youtube"] = true;
+configuration["Vimeo"] = false;
+
+configuration["VishIntegration"] = true;
+
 	//first function called when page loads
 	function start(){
-		VISH.Editor.init({"token":"<%= form_authenticity_token %>", "ownerId":"<%= current_user.id %>", "ownerName":"<%= current_user.name %>", "postPath": "<%= excursion_path @excursion, :format=> "json" %>", "documentsPath": "<%= documents_path :format=> "json"%>", "lang": "<%= I18n.locale.to_s%>" }, <%= raw @excursion.to_json%> );
+		VISH.Editor.init({"configuration": configuration, "token":"<%= form_authenticity_token %>", "ownerId":"<%= current_user.id %>", "ownerName":"<%= current_user.name %>", "postPath": "<%= excursion_path @excursion, :format=> "json" %>", "documentsPath": "<%= documents_path :format=> "json"%>", "lang": "<%= I18n.locale.to_s%>" }, <%= raw @excursion.to_json%> );
 	}
 </script>

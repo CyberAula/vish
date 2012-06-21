@@ -25,6 +25,9 @@
 <%= render :partial => "excursions/user",
            :locals => { :user => @user } %>
 
+<%= render :partial => "resources/user",
+           :locals => { :user => @user } %>
+
 <section name="wall" id="profile_wall">
 <%= render :partial => "activities/profile",
            :locals  => { :activities => @user.wall(:profile, :for => current_subject).

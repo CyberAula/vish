@@ -7,9 +7,8 @@
       <div class="caption">
         <h4><span class="size16"><%= link_to truncate_name(link.title, :length => 20), link, :class => "size14" %></span></h4>
         <h5 class="blue-opacity"><span class="size11">by <%=link_to( truncate_name(link.author.name, :length => 20), link.author.subject)%></span></h5>
-        <h5><em><%= t('external') %></em></h5>
         <h5>
-          <span class="green"><%=link.activities.first.likes.count.to_s%></span> <%= t('follow.favorites') %>
+          <span class="green" id="like_count_<%= dom_id(link.activities.first) %>"><%=link.activities.first.likes.count.to_s%></span>
           <div class="verb_like" id="like_<%= dom_id(link.activities.first) %>"><%= link_like(link.activities.first)%></div>
         </h5>
       </div>

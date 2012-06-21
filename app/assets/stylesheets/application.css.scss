@@ -50,6 +50,10 @@
   text-align: right;
 
 }
+.follow-home-box{
+height: auto;
+
+}
 /************* HEADER *******/
 .logo-home{
   display:inline-block;
@@ -65,14 +69,17 @@
 .menu_header {margin-top: -10px; margin-left: 20px;}
 .tools{float: left; display: inline-block;}
 .text-center{text-align: center;}
-.name-menu{
 
-  display: inline-block;
-  float:left;
-  text-decoration: none;
-  padding-left: 64px
+.name-user{
+  vertical-align: bottom;
 }
-.logo-img{margin-right: 10px}
+.logo-img{
+  margin-right: 10px;
+  margin-top: -5px
+  }
+.margin-logo-img{
+  margin-top: -15px
+}
 
 
 /************* FRONTPAGE *******/

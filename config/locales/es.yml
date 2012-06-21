@@ -66,7 +66,7 @@ es:
       share: "compartir"
     confirm_delete: "¿Borrar excursión?"
     created: "creadas"
-    favorites: "favoritas"
+    favorites: "Favoritos"
     go:
         repository: "ir a repositorio"
     how: "Como crear una excursión"
@@ -84,10 +84,10 @@ es:
       other: "excursiones"
     upcomming: "upcomming"
     top: "top"
-  external: "recurso externo"
+  external: "externo"
   filter: "filtrar"
   follow:
-    favorites: "favoritos"
+    favorites: "Favoritos"
     followers: "seguidores"
     followings: "siguiendo"
     views: "visitas"
