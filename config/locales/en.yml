@@ -74,6 +74,7 @@ en:
     network2: "my network"
     newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "    
     newnet_html: "Here you will see the excursions created by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
+    newfav_html: "You have no favorite excursions yet. Mark any excursion as favorite by clicking the star icon <img src='/assets/star-off.png'>"
     one: "excursion"
     other: "excursions"
     others: "others excursions"
@@ -85,9 +86,11 @@ en:
   external: "external"
   filter: "filter"
   follow:
+    add_favorite: "Add favorite"
     favorites: "Favorites"
     followers: "followers"
     followings: "following"
+    is_favorite: "Is favorite"
     views: "views"
   go:
     repository: "go to repository"
@@ -148,6 +151,7 @@ en:
     network: "my network resources"
     newmy_html: "You have not upload any resources yet. You can add a new one by clicking on the upload button or on this "    
     newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
+    newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/star-off.png'>"
     my: "my"
     net: "network"
     title:
