@@ -44,7 +44,7 @@
                <%= render :partial => "links/home",
                           :locals => {:link => document,
                                       :div_class => 'content_size'} %>
-            <% else %>
+            <% elsif document.is_a? Document %>
                <%= render :partial => "common_documents/home",
                           :locals => {:document => document,
                                       :div_class => 'content_size'} %>
