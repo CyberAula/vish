@@ -2,7 +2,7 @@
   <a href="#" data-toggle="dropdown" class="btn"><span class="caret"></span></a>
   <ul class="dropdown-menu">
     <%#= render :partial => 'layouts/header_dropdown_menu_sessions'%>
-    <li><%=link_to( raw("<i class='icontool16-tool16_tags'></i> ") + t('profile.one'), [current_subject, :profile], :id => "btn_menu_settings") %></li>
+    <li><%=link_to( raw("<i class='icontool16-tool16_info'></i> ") + t('profile.one'), [current_subject, :profile], :id => "btn_menu_settings") %></li>
     <li><%=link_to( raw("<i class='icontool16-tool16_tools'></i> ") + t('settings.main'), settings_path, :id => "btn_menu_settings") %></li>
     <% if SocialStream.relation_model == :custom %>
     <li><%=link_to( raw("<i class='icontool16-tool16_close'></i> ") + t('account.privacy'), relation_customs_path )%></li>
