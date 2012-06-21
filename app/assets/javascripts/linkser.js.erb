@@ -67,10 +67,10 @@ SocialStream.Linkser.Wall = (function(SS, $) {
       var height='span3';
 
       if(w>0 && h>0) {
-          height=300*h/w;
+          height=400*h/w;
       }
 
-      $("#" + id).html($('<iframe>').attr('src',url).attr('width','span3').attr('height',height));
+      $("#" + id).html($('<iframe>').attr('src',url).attr('width','370px').attr('height',height));
   }
 
   SocialStream.Wall.addInitCallback(init);
