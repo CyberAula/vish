@@ -37,9 +37,11 @@
       </div>
     <% end %>
 
-    <div class="menu_resources">
-      <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first, :size => :big)%></div>
-    </div>
+    <% unless excursion.activities.blank? %>
+      <div class="menu_resources">
+        <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first, :size => :big)%></div>
+      </div>
+    <% end %>
 
   </div>
   <div class="views size24 inline-block pagination-right inline-block ">
