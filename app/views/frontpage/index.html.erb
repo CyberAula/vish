@@ -5,10 +5,17 @@
   <div class="row span12">
     <div id="logo-frontpage"></div>
     <div class="pagination-centered name size40" id="tags"><%=t('site.name')%></div>
-    <div id="search-frontpage" class="container">
-        <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "input-xxlarge" } %>
+
+    <div id="search-frontpage " class="container row span12">
+
+      <div class=" margin-search-frontpage">
+
+      <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "input-xxlarge" } %>
     </div>
-  </div>
+    </div>
+    </div>
+
+
   <div class="row span12 space_double_center"></div>
   <div class="row span12">
     <div id="repositories"class="link_gray span5 offset6"><%= link_to(t('resource.title.other'),search_path(:type => "resource"), :class => 'size80') %></div>
