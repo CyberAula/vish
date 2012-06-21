@@ -87,6 +87,7 @@ en:
   filter: "filter"
   follow:
     add_favorite: "Add favorite"
+    contacts: "contacts"
     favorites: "Favorites"
     followers: "followers"
     followings: "following"
