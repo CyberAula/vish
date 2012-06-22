@@ -91,7 +91,7 @@
         <%= render :partial => "common_documents/home_filter" %>
         <div class="space_center"></div>
         <div id="repository" class="repositories row height-tabs-home">
-          <% my_network_resources = current_subject_resources(:limit => 8) %>
+          <% my_network_resources = current_subject_resources(:limit => 6) %>
           <% if my_network_resources.size == 0 %>
             <%= render :partial => "common_documents/zero_screen" %>
           <% else %>
@@ -104,7 +104,7 @@
                  <%= render :partial => "links/home",
                             :locals => {:link => document,
                                         :div_class => 'content_size'} %>
-              <% else %>
+              <% elsif document.is_a? Document %>
                 <%= render :partial => "common_documents/home",
                            :locals => {:document => document,
                                        :div_class => 'content_size'} %>
@@ -117,7 +117,7 @@
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-me"} %>
         <div class="space_center"></div>
         <div id="repository-me" class="repositories row height-tabs-home">
-          <% my_resources = current_subject_resources({:scope => :me, :limit => 8}) %>
+          <% my_resources = current_subject_resources({:scope => :me, :limit => 6}) %>
           <% if my_resources.size == 0 %>
             <%= render :partial => "common_documents/my_zero_screen" %>
           <% else %>
@@ -130,7 +130,7 @@
                  <%= render :partial => "links/home",
                             :locals => {:link => document,
                                         :div_class => 'content_size'} %>
-              <% else %>
+              <% elsif document.is_a? Document %>
                 <%= render :partial => "common_documents/home",
                            :locals => {:document => document,
                                        :div_class => 'content_size'} %>
@@ -143,7 +143,7 @@
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-more"} %>
         <div class="space_center"></div>
         <div id="repository-more" class="repositories row height-tabs-home">
-          <% for document in current_subject_resources({:scope => :more, :limit => 8}) %>
+          <% for document in current_subject_resources({:scope => :more, :limit => 6}) %>
             <% if document.is_a? Embed %>
               <%= render :partial => "embeds/home",
                          :locals => {:embed => document,
@@ -152,7 +152,7 @@
                <%= render :partial => "links/home",
                           :locals => {:link => document,
                                       :div_class => 'content_size'} %>
-            <% else %>
+            <% elsif document.is_a? Document %>
               <%= render :partial => "common_documents/home",
                          :locals => {:document => document,
                                      :div_class => 'content_size'} %>
@@ -164,7 +164,7 @@
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-fav"} %>
         <div class="space_center"></div>
         <div id="repository-fav" class="repositories row height-tabs-home">
-          <% fav_resources = current_subject_resources({:scope => :like, :limit => 8}) %>
+          <% fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
           <% if fav_resources.size == 0 %>
             <%= render :partial => "common_documents/fav_zero_screen" %>
           <% else %>
@@ -177,7 +177,7 @@
                  <%= render :partial => "links/home",
                             :locals => {:link => document,
                                         :div_class => 'content_size'} %>
-              <% else %>
+              <% elsif document.is_a? Document %>
                 <%= render :partial => "common_documents/home",
                            :locals => {:document => document,
                                        :div_class => 'content_size'} %>
@@ -189,6 +189,78 @@
       <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
     </div>
   </div>
+
+
+
+  <div class="row space_center"></div>
+
+
+  <div class="repository tabbable">
+    <ul class="nav nav-tabs span4" >
+
+      <li class="active"><a data-toggle="tab" href="#follow-1"><%= t('follow.followings') %></a></li>
+      <li class=""><a data-toggle="tab" href="#follow-2"><%= t('follow.followers') %></a></li>
+
+    </ul>
+    <div class="span2 size40 title_menu_home ">
+      <%= t('follow.contacts')%></div>
+    <div class="clearfloat"></div>
+
+
+
+
+    <div class="tab-content">
+      <div id="follow-1" class="tab-pane active">
+        <%= render :partial => "followers/filter" %>
+
+        <div class="follow-home-box ">
+        <% current_subject.following_actor_objects.includes(:actor).limit(6).each do |object|  %>
+
+          <%= div_for object.actor, :class => '' do %>
+            <ul class="thumbnails span">
+              <li class="span1">
+                <%= link_to(image_tag(object.actor.logo.url(:contact)),
+                            object.actor.subject, :class => "container") %>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+        </div>
+
+
+
+      </div>
+
+
+
+      <div id="follow-2" class="tab-pane">
+        <%= render :partial => "followers/filter" %>
+        <div class="space_center"></div>
+        <div class="follow-home-box ">
+        <% current_subject.followers.limit(6).each do |object|  %>
+
+          <%= div_for object.actor, :class => '' do %>
+            <ul class="thumbnails span">
+              <li class="span1">
+                <%= link_to(image_tag(object.actor.logo.url(:contact)),
+                            object.actor.subject, :class => "container") %>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+        </div>
+
+
+      </div>
+
+
+      <div class="more"><%= link_to(t('view_all'), followings_path(:type => "resource")) %>
+      </div>
+    </div>
+  </div>
+
+
+
 </section>
 
 <section name="wall" id="home_wall" class="span5">

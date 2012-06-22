@@ -1,0 +1,4 @@
+$(".verb_like#like_<%= dom_id(@like.object) %>").html("<%= escape_javascript(link_like(@like.object, :size => params[:size].to_sym) ) %>");
+var new_num = parseInt($(".like_count_<%= dom_id(@like.object) %>").html()) + 1;
+$(".like_count_<%= dom_id(@like.object) %>").html(new_num);
+

@@ -66,7 +66,7 @@ es:
       share: "compartir"
     confirm_delete: "¿Borrar excursión?"
     created: "creadas"
-    favorites: "favoritas"
+    favorites: "Favoritos"
     go:
         repository: "ir a repositorio"
     how: "Como crear una excursión"
@@ -76,6 +76,7 @@ es:
     network2: "mi red"
     newmy_html: "Aún no has creado ninguna excursión. Puedes crear una nueva haciendo click en el botón añadir o en este "        
     newnet_html: "Aquí podrás ver las excursiones creadas por la gente a quien sigues. Encuentra otros usuarios a seguir en <a href='/search?type=user'>este enlace</a>."
+    newfav_html: "Aún no tienes ninguna excursión favorita. Para marcar una excursión como favorita, haz click en la estrella <img src='/assets/star-off.png'>"
     one: "excursión"
     other: "excursiones"
     others: "otras excursiones "
@@ -87,9 +88,12 @@ es:
   external: "externo"
   filter: "filtrar"
   follow:
-    favorites: "favoritos"
+    add_favorite: "Añadir favorito"
+    contacts: "contactos"
+    favorites: "Favoritos"
     followers: "seguidores"
     followings: "siguiendo"
+    is_favorite: "Favorito"
     views: "visitas"
   help: "ayuda"
   lang:
@@ -107,6 +111,7 @@ es:
     change: "Cambiar idioma"
   message:
     new: "Mensaje nuevo"
+    unread: " sin leer"
   more: "more"
   mashme:
     header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
@@ -120,6 +125,7 @@ es:
   notification:
     makefriend:
       user: "%{sender} está siguiendo a %{who}."
+    unread: " sin leer"
   options:
     add: "añadir"
     new: "nuevo"
@@ -147,6 +153,7 @@ es:
     network: "recursos de mi red"
     newmy_html: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "    
     newnet_html: "Aquí podrás ver los recursos subidos por la gente a quien sigues. Encuentra otros usuarios a seguir en <a href='/search?type=user'>este enlace</a>."
+    newfav_html: "Aún no tienes ningún recurso favorito. Para marcar una recurso como favorito, haz click en la estrella <img src='/assets/star-off.png'>"
     my: "mis"
     net: "red"
     title:

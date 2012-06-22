@@ -38,7 +38,7 @@
 .body-height{ min-height:  300px;}
 
 
-#search-frontpage{margin-left:200px;}
+
 
 .title_menu_home{
   vertical-align:bottom;
@@ -48,6 +48,10 @@
   padding-top: 12px;
   vertical-align: bottom;
   text-align: right;
+
+}
+.follow-home-box{
+height: auto;
 
 }
 /************* HEADER *******/
@@ -65,17 +69,28 @@
 .menu_header {margin-top: -10px; margin-left: 20px;}
 .tools{float: left; display: inline-block;}
 .text-center{text-align: center;}
-.name-menu{
 
-  display: inline-block;
-  float:left;
-  text-decoration: none;
-  padding-left: 64px
+.name-user{
+  vertical-align: bottom;
 }
-.logo-img{margin-right: 10px}
+.logo-img{
+  margin-right: 10px;
+  margin-top: -5px
+  }
+.margin-logo-img{
+  margin-top: -15px
+}
 
 
 /************* FRONTPAGE *******/
+.margin-search-frontpage{
+ margin-left: auto;
+ margin-right: auto;
+ width:532px;
+
+
+}
+#search-frontpage{margin:0 auto 0 auto; text-align:center;display:block;}
 
 #logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
 .name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
@@ -97,7 +112,7 @@
 .menu ul li#trade_mark,#sponsor ul li#trademark{font-weight:bold;}
 .menu ul li#trade_mark_logo{font-weight:normal;}
 
-#top{height:120px;}
+#top{height:120px;margin-left: auto; margin-right: auto}
 #top-10{ height: 10px; margin:40px 0px 0px 30px; padding: 0px !important;font-family:'DsignesBold';font-size: 12 pt;}
 .white{ background-color:#fff;margin-top: 40px; padding-top: 10px; padding-bottom: 5px;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);

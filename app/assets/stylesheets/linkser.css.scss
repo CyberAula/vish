@@ -24,11 +24,12 @@
 }
 .link {
   position: relative;
+  margin-top: 8px;
   }
 .link .thumbnail, .link .thumbnail img{
   position: relative;
   float: left;
-  max-height: 97px;
+  max-height: 75px;
   max-width: 130px;
   margin-right:15px;
 }
@@ -39,13 +40,22 @@
   opacity:0.6;
   filter:alpha(opacity=60); /* For IE8 and earlier */
 }
+
 .link .thumbnail img.play_button:hover{
   opacity:0.8;
   filter:alpha(opacity=80); /* For IE8 and earlier */
 }
-.link .info{
+
+.link .info{ /* control title + url + description as a block */
   text-align: left;
-   margin-left: 150px;
+  margin-left: 138px;
+  /* margin-top: 20px; */ /* not a solution, it makes the link work but makes the text looks ugly */
+  text-overflow: ellipsis;
+  overflow:hidden;  /* this is what makes the name link doesn't work - solved*/
+  white-space: nowrap;
+  position: absolute;
+  width: 170px;
+  height: 120px; 
 
 }
 
@@ -59,21 +69,34 @@
   position: relative;
   font-weight: bold;
   margin-bottom: 3px; 
-  height: auto;
-
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+  display: block;
+  height: 25px;
 }
 .link .info .url{
-    margin-bottom: 5px;
-    margin-top: 6px; /* Control title-url distance */
-    text-decoration: underline;
+  margin-bottom: 5px;
+  margin-top: 3px; /* Control title-url distance */
+  text-decoration: underline;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space:nowrap; 
+  height: 15px;
 }
 
 .link .info .description textarea {
   margin-top: 23px;
-height: 60px;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  white-space: nowrap;
+  position: relative;
 }
+
 .link iframe{
   border: 0;
+
 }
+
 
 

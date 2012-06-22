@@ -23,11 +23,14 @@
     <div id="details" class="tab-pane active">
       <div class="">
         <div class="picture_icon">
-          <%= link_to "", document, :class => icon_class_for(document), :alt => document.title %>
+          <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first, :size => :big)%></div>
         </div>
         <div class="info_visits">
-          <span class="green"><%=document.visit_count.to_s%></span> <%= t('follow.views') %></div>
+          <span class="green"><%= document.visit_count.to_s %></span> <%= t('follow.views') %>, 
+          <span class="green like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s  %></span> <%= t('follow.favorites') %>
+        </div>
       </div>
+
       <div class="info_resources">
         <div class="details_resources">
           <%= t('document.info.date.created_at') %>
@@ -46,15 +49,13 @@
         </div>
       </div>
       <div class="info_resources">
-        <div class="details_resources">likes</div>
-        <div class="date_resources">  <%= document.like_count %></div>
-
-        <div id="file_size">
-          <div class="details_resources">Size</div>
-          <div class="date_resources"><%= number_to_human_size document.file_file_size %>
+        <% if document.is_a? Document %>
+          <div id="file_size">
+            <div class="details_resources">Size</div>
+            <div class="date_resources"><%= number_to_human_size document.file_file_size %></div>
           </div>
+        <% end %>
 
-        </div>
         <br class="clearfloat"/>
       </div>
     </div>

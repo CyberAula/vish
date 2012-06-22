@@ -19,7 +19,9 @@
     <%= link_to image_tag(subject.logo.url, :alt => subject.name , :size => "119x119"), subject %>
     <div class=" row space_center"></div>
     <div class="center"><span class="title_bold dark-gray size22 dsignesbold" ><%= subject.name %></span></div>
-    <div class="follow-btn-profile"><%=contact_to(subject) %></div>
+    <div class=" row space_center"></div>
+    <div class="users_btn_follow"><%=contact_to(subject) %></div>
+    <div class=" row space_center"></div>
   <% end %>
 </div>
 
