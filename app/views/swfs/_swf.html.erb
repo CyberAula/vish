@@ -3,7 +3,7 @@
 		<iframe src="<%= swf.file %>" width="130" height="80">...</iframe>
 	</div>
 	<div class="info">
-		<%= link_to image_tag("btn/btn_play.png", :title=> swf.description, :class => "play_button"),download_document_path(swf) %>
+		<%= link_to image_tag("btn/btn_play.png", :title=> swf.description, :class => "play_button"), swf %>
 		<%= truncate_name(swf.title, :length => 35) %>
 		<%= simple_format auto_link(swf.description) %>
 	</div>  
