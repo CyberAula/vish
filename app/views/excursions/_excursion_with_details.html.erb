@@ -5,7 +5,7 @@
   </div>
   <div class="span10 link_white caption">
     <h4><%= link_to truncate_name(excursion.title, :length => 40), excursion %></h4>
-    <h5 class="blue-white"><span class="size13"><%=t "#{excursion.class.name.underscore}.one" %></span>, <span class="green"><%=excursion.visit_count.to_s%></span> <%= image_tag "view.png" %> / <span class="green" id="like_count_<%= dom_id(excursion.activities.first) %>"><%=excursion.activities.first.likes.count.to_s%></span><div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first)%></div></h5>
+    <h5 class="blue-white"><span class="size13"><%=t "#{excursion.class.name.underscore}.one" %></span>, <span class="green"><%=excursion.visit_count.to_s%></span> <%= image_tag "view.png" %> / <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%=excursion.activities.first.likes.count.to_s%></span><div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first)%></div></h5>
     <h5><span class="size11">by <%=link_to( truncate_name(excursion.author.name, :length => 20), excursion.author.subject)%></span></h5>
   </div>
   </div>

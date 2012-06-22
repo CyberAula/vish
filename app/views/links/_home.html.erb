@@ -12,7 +12,7 @@
         <div class="rw-words rw-words-1">
           <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(link.author.name, :length => 18), link.author.subject)%></h5></span>
           <div class="clearfloat"></div>
-          <span><h5 class="green inline margin-home-resource-view" id="like_count_<%= dom_id(link.activities.first) %>"><%=link.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(link.activities.first) %>"><%= link_like(link.activities.first)%></div></span>
+          <span><h5 class="green inline margin-home-resource-view like_count_<%= dom_id(link.activities.first) %>"><%=link.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(link.activities.first) %>"><%= link_like(link.activities.first)%></div></span>
         </div>
     </div>
   </ul>
