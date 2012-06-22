@@ -8,6 +8,11 @@ Vish::Application.routes.draw do
 
   resources :embeds
 
+  resources :office_documents do
+    get "search",   :on => :collection
+    get "download", :on => :member
+  end
+
   match 'resources/search' => 'resources#search'
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}

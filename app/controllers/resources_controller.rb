@@ -22,7 +22,7 @@ class ResourcesController < ApplicationController
     if params[:live].present?
       @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed] } )
     elsif params[:object].present?
-      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, OfficeDocument] } )
+      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc] } )
     else
       @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
     end

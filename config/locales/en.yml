@@ -127,7 +127,7 @@ en:
     makefriend:
       user: "%{sender} is following %{who}."
     unread: " unread"
-  office_document:
+  officedoc:
     confirm_delete: "Delete document?"
   options:
     add: "add"

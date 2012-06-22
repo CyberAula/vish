@@ -7,7 +7,7 @@ class ConvertToOfficeDocument < ActiveRecord::Migration
          !(doc.file_content_type =~ /^application.*vnd.ms-excel/).nil? or
          !(doc.file_content_type =~ /^application.*vnd.ms-word/).nil? or
          !(doc.file_content_type =~ /^application.*vnd.ms-powerpoint/).nil?
-        doc.type="OfficeDocument"
+        doc.type="Officedoc"
         doc.save!
       end
     end
