@@ -111,6 +111,7 @@ es:
     change: "Cambiar idioma"
   message:
     new: "Mensaje nuevo"
+    unread: " sin leer"
   more: "more"
   mashme:
     header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
@@ -124,6 +125,7 @@ es:
   notification:
     makefriend:
       user: "%{sender} está siguiendo a %{who}."
+    unread: " sin leer"
   options:
     add: "añadir"
     new: "nuevo"

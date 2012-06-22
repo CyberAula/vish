@@ -18,10 +18,14 @@
 
         <div class="btn-group menu_header inline-block">
 
-          <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
-          <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn") %>
-          <%= link_to(raw("<i class='iconnav-followers'></i> "), followings_path, :class => "btn") %>
-          <%= link_to(raw("<i class='iconnav-notification" + (current_subject.mailbox.notifications.not_trashed.unread.count > 0 ? " iconnav-notification_notification" : "") + "'></i> "), notifications_path, :class => "btn") %>
+          <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn tooltip-header", :title => t('navigation.home'), :rel=> 'tooltip') %>
+          <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel=> 'tooltip') %>
+<%= link_to(raw("<i class='iconnav-followers'></i> "),
+           followings_path,
+           :class => "btn tooltip-header",
+           :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + '<br/>' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
+:rel=> 'tooltip') %>
+          <%= link_to(raw("<i class='iconnav-notification" + (current_subject.mailbox.notifications.not_trashed.unread.count > 0 ? " iconnav-notification_notification" : "") + "'></i> "), notifications_path, :class => "btn tooltip-header", :title => current_subject.mailbox.notifications.not_trashed.unread.count.to_s + t('notification.unread'), :rel=> 'tooltip') %>
           <%= render :partial => 'layouts/header_dropdown_menu'%>
 
         </div>
@@ -31,6 +35,12 @@
         <%= link_to(image_tag(current_subject.logo.url , :size => "22x22", :alt => current_subject.name, :class => "" ), current_subject, :class => "logo-img margin-logo-img") %>
         <%= link_to(truncate_name(current_subject.name, :length => 20), current_subject, :class => "title_bold dark-gray size15 dsignesbold name-user") %>
       </div>
+
+      <%= javascript_tag do %>
+        $(document).ready(function(){
+          $('.tooltip-header').tooltip({ placement: 'bottom'});
+        });
+      <% end %>
     <% end %>
 
 
@@ -47,3 +57,4 @@
   </div>
 </div>
 <div class="space_center"></div>
+
