@@ -422,6 +422,52 @@ li{
 .iconmessage22-message22_edit:hover {background-position: -256px -32px;}
 
 
+
+
+/*.................. icon message 22 x 22 px......................*/
+
+
+
+[class^="iconchat22-"], [class*="iconchat22-"] {
+    display:inline-block;
+    height:22px;
+    width:22px;
+    vertical-align:text-top;
+    background-image: url("icon_chat22.png");
+    background-position:22px 22px;
+    background-repeat:no-repeat;
+    line-height:22px;
+    *margin-right: .3em;}
+
+[class^="iconchat22-"]:last-child, [class*="iconchat22-"]:last-child {
+    *margin-left: 0;
+}
+.iconmessage22-message22_white {
+    background-image: url("icon_chat22.png");}
+
+.iconchat22-chat22_message { background-position: 0 0;}
+.iconchat22-chat22_new { background-position: -32px 0;}
+.iconchat22-chat22_remove { background-position: -64px 0;}
+.iconchat22-chat22_trash { background-position: -96px 0;}
+.iconchat22-chat22_ok { background-position: -128px 0;}
+.iconchat22-chat22_sendbox { background-position: -160px 0;}
+.iconchat22-chat22_inbox { background-position: -192px 0;}
+.iconchat22-chat22_mail { background-position: -224px 0;}
+.iconchat22-chat22_edit { background-position: -256px 0;}
+
+/*hover*/
+
+.iconchat22-chat22_message:hover { background-position: 0 -32px;}
+.iconchat22-chat22_new:hover { background-position: -32px -32px;}
+.iconchat22-chat22_remove:hover { background-position: -64px -32px;}
+.iconchat22-chat22_trash:hover { background-position: -96px -32px;}
+.iconchat22-chat22_ok:hover { background-position: -128px -32px;}
+.iconchat22-chat22_sendbox:hover { background-position: -160px -32px;}
+.iconchat22-chat22_inbox:hover { background-position: -192px -32px;}
+.iconchat22-chat22_mail:hover { background-position: -224px -32px;}
+.iconchat22-chat22_edit:hover {background-position: -256px -32px;}
+
+
 /*......................................................................tool 16x16*/
 
 li{list-style-type:none}
