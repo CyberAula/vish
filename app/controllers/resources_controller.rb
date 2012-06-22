@@ -21,13 +21,19 @@ class ResourcesController < ApplicationController
 
     if params[:live].present?
       @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed] } )
+    elsif params[:object].present?
+      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, OfficeDocument] } )
     else
       @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
     end
     respond_to do |format|
       format.html { render :layout => false }
       format.json {
-        render :json => @found_resources
+        if params[:object].present?
+          render :partial => 'objects/object_search_result'
+        else
+          render :json => @found_resources
+        end
       }
     end
   end
@@ -58,7 +64,7 @@ class ResourcesController < ApplicationController
     })
 
       opts
-    end
+  end
 
   def search_scope_options
     if params[:scope].blank? || ! user_signed_in?

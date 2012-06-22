@@ -1,0 +1,9 @@
+<%= div_for officedocument, :class => 'content_size' do %>
+	<div class="info">
+		<%= truncate_name(officedocument.title, :length => 35) %>
+		<%= simple_format auto_link(officedocument.description) %>
+	</div>  
+  
+<% end %>
+
+<div class="clearfloat"></div>
