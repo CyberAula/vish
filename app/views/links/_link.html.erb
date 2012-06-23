@@ -1,0 +1,21 @@
+<%= div_for link, :class => 'row-fluid' do %>
+  <ul class="thumbnails">
+    <li class="span3">
+      <% if link.image # TODO: consider callback URL %>
+        <%= link_to image_tag(link.image), link %>
+      <% else %>
+        <%= link_to image_tag("icons/link_big_gray.png"), link %>
+      <% end %>
+    </li>
+    <li class="span9">
+      <div class="title">
+        <h4><%= truncate_name(link.title, :length => 35) %></h4>
+      </div>
+      <p><%= simple_format auto_link(link.description) %></p>
+      <p><%= link_to t('details.msg'), link, :class => "attachment_text_link" %></p>
+    </li>
+  </ul>
+
+<% end %>
+
+<div class="clearfloat"></div>

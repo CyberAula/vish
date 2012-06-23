@@ -1,9 +1,16 @@
 <%= div_for officedoc, :class => 'content_size' do %>
-	<div class="info">
-		<%= truncate_name(officedoc.title, :length => 35) %>
-		<%= simple_format auto_link(officedoc.description) %>
-	</div>  
-  
+  <ul class="thumbnails">
+    <li class="span3">
+      <%= link_to thumb_for(officedoc, 130), officedoc, :class => "container" %>
+    </li>
+    <li class="span9">
+      <div class="title">
+        <h4><%= truncate_name(officedoc.title, :length => 35) %></h4>
+      </div>
+      <p><%= simple_format auto_link(officedoc.description) %></p>
+      <p><%= link_to t('details.msg'), officedoc, :class => "attachment_text_link" %></p>
+    </li>
+  </ul>
 <% end %>
 
 <div class="clearfloat"></div>

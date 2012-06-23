@@ -1,38 +1,25 @@
-<%= div_for embed, :class => 'content_size' do %>
-  <div class="thumbnail">
-    <%= link_to image_tag("icons/link_big_gray.png"),"javascript:void(0)" %>
-    <%= link_to image_tag("btn/btn_play.png", :class => "play_button"),"javascript:void(0)" %>
-    <%= javascript_tag do %>
-      $("#embed_<%= embed.id.to_s %> img").each(function(){
-        $(this).click(function(){
-          // TODO: Open callback
+<%= div_for embed, :class => 'row-fluid' do %>
+  <ul class="thumbnails">
+    <li class="span3">
+      <%= link_to image_tag("icons/link_big_gray.png"),"javascript:void(0)" %>
+      <%= link_to image_tag("btn/btn_play.png", :class => "play_button"),"javascript:void(0)" %>
+      <%= javascript_tag do %>
+        $("#embed_<%= embed.id.to_s %> img").each(function(){
+          $(this).click(function(){
+            // TODO: Open callback
+          });
         });
-      });
-      
-    <% end %>
-  </div>
-  <div class="info">
-    <% if embed.title %>
-      <div class="title">
-        <%= embed.title %>
-      </div>
-    <% end %>
-    <% if embed.description %>
-      <div class="description">
-        <%= auto_link(embed.description) %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-<div class="info">
-	<%= link_to (image_tag('/assets/more_embed.png')),  "javascript:showSettings(\"display_embed\");" %>
-</div>
-<div class="content settings_content" id="display_embed_content" style="display:none;">
-	<div class="settings_block">
- 		<div class="embed_show">
-    		<textarea readonly="readonly" style="width: 100%;" rows="5"><%=h embed.fulltext %></textarea>
-  		</div>
-	</div>
-</div>
+      <% end %>
+    </li>
 
-<br class="clearfloat">
+    <li class="span9">
+      <div class="title">
+        <h4><%= truncate_name(embed.title, :length => 35) %></h4>
+      </div>
+      <p><%= simple_format auto_link(embed.description) %></p>
+      <p><%= link_to t('details.msg'), embed, :class => "attachment_text_link" %></p>
+    </li>
+  </ul>
+<% end %>
+
+<div class="clearfloat"></div>

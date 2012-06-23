@@ -1,22 +1,18 @@
 <%= div_for document, :class => 'row-fluid' do %>
-  <!--
-  <div class="span2">
-    <%#= link_to thumb_for(document, 16),
-        document, 
-        :class => "unborder" %>
-  </div>-->
+  <ul class="thumbnails">
+    <li class="span3">
+      <%= link_to thumb_for(document, 75), excursion, :class => "container" %>
+    </li>
+    <li class="span9">
+      <div class="title">
+        <h4><%= truncate_name(document.title, :length => 35) %></h4>
+     </div>
 
-  <div class="span12">
-    <h4><%= document.title %></h4>
-
-    <%= simple_format auto_link(document.description) %>
-
-    <%= link_to t('details.msg'),
-       document_path(document),
-       :alt => t('details.msg'),
-       :type => document.type,
-       :path => document_path(document),
-       :class => "attachment_text_link document_link" %>
-  </div>
-
+      <p><%= simple_format auto_link(document.description) %></p>
+      <p><%= link_to t('details.msg'), document, :class => "attachment_text_link" %></p>
+    </li>
+  </ul>
 <% end %>
+
+<div class="clearfloat"></div>
+
