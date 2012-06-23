@@ -4,7 +4,7 @@
     <div class="verb_comment"> <%= link_to t('activity.to_comment'), "#", :class => "to_comment" %> </div>
   <% end %>
 
-  <% unless [Embed, Picture, Link, Excursion].drop_while{ |i| !activity.direct_object.is_a? i }.empty? %>
+  <% unless [Embed, Document, Link, Excursion].drop_while{ |i| !activity.direct_object.is_a? i }.empty? %>
     <% unless activity.direct_object.is_a? Link %>
       <span class="green"><%=activity.direct_object.visit_count.to_s%></span> <%= link_to image_tag("view.png"), activity.direct_object %> / 
     <% end %>
