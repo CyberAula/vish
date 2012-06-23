@@ -14,7 +14,7 @@
 
     <li class="span9">
       <div class="title">
-        <h4><%= truncate_name(embed.title, :length => 35) %></h4>
+        <h4 class="bold"><%= truncate_name(embed.title, :length => 35) %></h4>
       </div>
       <p><%= simple_format auto_link(embed.description) %></p>
       <p><%= link_to t('details.msg'), embed, :class => "attachment_text_link" %></p>
