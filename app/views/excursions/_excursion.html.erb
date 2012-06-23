@@ -11,7 +11,6 @@
         
         <p><%= simple_format auto_link(excursion.description) %></p>
         <p><%= link_to t('details.msg'), excursion, :class => "attachment_text_link" %></p>
-        <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first)%></div>
     </li>
   </ul>
 <% end %>

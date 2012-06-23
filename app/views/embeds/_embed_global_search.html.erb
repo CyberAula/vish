@@ -9,7 +9,7 @@
         <h5 class="blue-opacity"><span class="size11">by <%=link_to( truncate_name(embed.author.name, :length => 20), embed.author.subject)%></span></h5>
         <h5><span class="green"><%=embed.visit_count.to_s%></span> <%= link_to(image_tag("view.png"), embed) %></h5>
         <h5>
-          <span class="green" id="like_count_<%= dom_id(embed.activities.first) %>"><%=embed.activities.first.likes.count.to_s%></span>
+          <span class="green like_count_<%= dom_id(embed.activities.first) %>"><%=embed.activities.first.likes.count.to_s%></span>
           <div class="verb_like" id="like_<%= dom_id(embed.activities.first) %>"><%= link_like(embed.activities.first)%></div>
         </h5>
       </div>

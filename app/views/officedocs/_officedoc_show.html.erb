@@ -1,0 +1,7 @@
+<%= div_for officedoc, :class => 'content_size' do %>
+
+  <div class="officedoc_show">
+    <iframe src="http://docs.google.com/viewer?url=<%= request.env['HTTP_HOST'] + download_document_path(officedoc) %>&embedded=true" width="475" height="475" style="border: none;"></iframe>
+  </div>
+
+<% end %>

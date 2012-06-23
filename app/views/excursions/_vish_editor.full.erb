@@ -94,8 +94,8 @@
         <a class="addpicture" href="#picture_fancybox">
           <div class='menuicon picthumb' title="Image"></div>
         </a>
-        <a class="addflash" href="#flash_fancybox">
-          <div class='menuicon flashthumb' title="Flash"></div>
+        <a class="addobject" href="#object_fancybox">
+          <div class='menuicon objectthumb' title="Object"></div>
         </a>
         <a class="addvideo" href="#video_fancybox">
           <div class='menuicon videothumb' title="Video"></div>
@@ -273,26 +273,27 @@
     </div>
   
   
-    <!-- FLASH -->
+    <!-- object -->
     <div style='display:none'>
-      <div id="flash_fancybox" class="outer_box">
-        <div class="fancy_tabs" id="flash_fancy_tabs_id">    
+      <div id="object_fancybox" class="outer_box">
+        <div class="fancy_tabs" id="object_fancy_tabs_id">    
           <ul>
-            <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_url')" id="tab_flash_from_url" class="fancy_tab">embed</a></li>
-            <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_from_web')" id="tab_flash_from_web" class="fancy_tab">web</a></li>
-						<li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_upload')" id="tab_flash_upload" class="fancy_tab">upload</a></li>
-            <li><a href="#" onclick="VISH.Editor.loadTab('tab_flash_repo')" id="tab_flash_repo" class="fancy_tab">vish</a></li>
-          </ul>
-          <img class='help_in_fancybox' id='tab_flash_from_url_help' src='/assets/helptutorial_circle_blank.png'/>
-					<img class='help_in_fancybox' id='tab_flash_from_web_help' src='/assets/helptutorial_circle_blank.png'/>
-          <img class='help_in_fancybox' id='tab_flash_upload_help' src='/assets/helptutorial_circle_blank.png'/>
-          <img class='help_in_fancybox' id='tab_flash_repo_help' src='/assets/helptutorial_circle_blank.png'/>
+            <li><a href="#" onclick="VISH.Editor.loadTab('tab_object_from_url')" id="tab_object_from_url" class="fancy_tab">embed</a></li>
+            <li><a href="#" onclick="VISH.Editor.loadTab('tab_object_from_web')" id="tab_object_from_web" class="fancy_tab">web</a></li>
+						<li><a href="#" onclick="VISH.Editor.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab">upload</a></li>
+            <li><a href="#" onclick="VISH.Editor.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
+          <li><a href="#" onclick="VISH.Editor.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
+		 </ul>
+          <img class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/helptutorial_circle_blank.png'/>
+					<img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/helptutorial_circle_blank.png'/>
+          <img class='help_in_fancybox' id='tab_object_upload_help' src='/assets/helptutorial_circle_blank.png'/>
+          <img class='help_in_fancybox' id='tab_object_repo_help' src='/assets/helptutorial_circle_blank.png'/>
         </div>
-        <div id='tab_flash_from_url_content' class="fancy_tab_content">
+        <div id='tab_object_from_url_content' class="fancy_tab_content">
           <div class="box1 box1fancy1">
-            <p class="textfancy">embed flash</p></br>
+            <p class="textfancy">embed object</p></br>
             <img class="image_add_url" src="/assets/url_img.png"/>
-            <input id="flash_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+            <input id="object_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
             <button type="button" class="button buttonfancy previewButton">Preview</button>
           </div>
                 <div class="box2">
@@ -302,11 +303,11 @@
                       </div>
         </div>
 				
-				<div id='tab_flash_from_web_content' class="fancy_tab_content">
+				<div id='tab_object_from_web_content' class="fancy_tab_content">
           <div class="box1 box1fancy1">
             <p class="textfancy">embed websites</p></br>
             <img class="image_add_url" src="/assets/url_img.png"/>
-            <input id="flash_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+            <input id="object_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
             <button type="button" class="button buttonfancy previewButton">Preview</button>
           </div>
                 <div class="box2">
@@ -316,12 +317,12 @@
                       </div>
         </div>
         
-        <div id='tab_flash_upload_content' class="fancy_tab_content">
+        <div id='tab_object_upload_content' class="fancy_tab_content">
               <div class="box1 box1fancy3">
                 <p class="textfancy">Select SWF file to upload</p><br>
                 <img class="image_add_url" src="/assets/url_upl.png"/>
                 
-                  <form  id="flash_file_input"class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+                  <form  id="object_file_input"class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
                       <input type="file" name="document[file]" class="upload_file_input">
                       <input type="hidden" name="document[title]">
                       <input type="hidden" name="document[description]">
@@ -348,23 +349,38 @@
               </div>
         </div> 
         
-        <div id='tab_flash_repo_content' class="fancy_tab_content"> 
+        <div id='tab_object_repo_content' class="fancy_tab_content"> 
           <div class="box1 box1fancy2">
             <img src="/assets/repositoryimg.png" class="imagelogotab">         
             <div class="search_container">
-              <input id="search_flash" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+              <input id="search_object" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
             </div>
             
-            <div id="tab_flash_repo_content_carrousel"></div>
-            <div id="tab_flash_repo_content_preview" class="content_preview">
-              <div id="tab_flash_repo_content_preview_flash" class="content_preview_data"></div>
-              <div id="tab_flash_repo_content_preview_metadata" class="content_preview_metadata"></div>
-              <div id="tab_flash_repo_content_preview_foot" class="content_preview_foot">
+            <div id="tab_object_repo_content_carrousel"></div>
+            <div id="tab_object_repo_content_preview" class="content_preview">
+              <div id="tab_object_repo_content_preview_object" class="content_preview_data"></div>
+              <div id="tab_object_repo_content_preview_metadata" class="content_preview_metadata"></div>
+              <div id="tab_object_repo_content_preview_foot" class="content_preview_foot">
                 <button type="button" class="okButton" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
               </div>
             </div>        
           </div>
-        </div>   
+        </div> 
+        
+        <div id='tab_object_snapshot_content' class="fancy_tab_content">
+          <div class="box1 box1fancy1">
+            <p class="textfancy">Web Snapshot</p></br>
+            <img class="image_add_url" src="/assets/url_img.png"/>
+            <input id="object_snapshot_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+            <button type="button" class="button buttonfancy previewButton">Preview</button>
+          </div>
+          <div class="box2">
+                  <div class="previewimgbox">
+                      <button type="button" class="button buttonaddfancy" onclick="VISH.Editor.Object.Snapshot.drawPreviewElement()">Add Content</button>
+                  </div>
+          </div>
+        </div>
+          
       </div>
     </div>
   

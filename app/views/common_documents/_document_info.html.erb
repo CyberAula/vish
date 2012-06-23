@@ -27,7 +27,7 @@
         </div>
         <div class="info_visits">
           <span class="green"><%= document.visit_count.to_s %></span> <%= t('follow.views') %>, 
-          <span class="green" id="like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s  %></span> <%= t('follow.favorites') %>
+          <span class="green like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s  %></span> <%= t('follow.favorites') %>
         </div>
       </div>
 

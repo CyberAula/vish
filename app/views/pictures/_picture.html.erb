@@ -2,7 +2,7 @@
 
   <div class="span3">
     <%= link_to thumb_for(picture, 130),
-                download_document_path(picture),
+                picture,
         :type => picture.type,
                 :title => picture.title,
                 :path => document_path(picture) %>
