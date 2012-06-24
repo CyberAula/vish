@@ -1,5 +1,4 @@
 //= require social_stream.wall
-
 SocialStream.Linkser = SocialStream.Linkser || {};
 
 SocialStream.Linkser.Wall = (function(SS, $) {
@@ -64,13 +63,13 @@ SocialStream.Linkser.Wall = (function(SS, $) {
   }
 
   var openCallback = function(id,url,w,h){
-      var height='span3';
+      var height='353';
 
       if(w>0 && h>0) {
-          height=400*h/w;
+          height=470*h/w;
       }
 
-      $("#" + id).html($('<iframe>').attr('src',url).attr('width','370px').attr('height',height));
+      $("#" + id).html($('<iframe>').attr('src',url).attr('width','470').attr('height',height));
   }
 
   SocialStream.Wall.addInitCallback(init);

@@ -15,17 +15,13 @@
 
   <ul class="thumbnails">
     <li class="span3">
-      <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="container embed-modal-button-<%= embed.id.to_s%>">
-      <%= image_tag("icons/link_big_gray.png") %>
-      </a>
+      <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="container embed-modal-button-<%= embed.id.to_s%>"><%= image_tag("icons/link_big_gray.png") %></a>
     </li>
 
     <li class="span9">
       <div class="title">
         <h4 class="bold">
-          <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>">
-            <%= truncate_name(embed.title, :length => 35) %>
-          </a>
+          <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>"><%= truncate_name(embed.title, :length => 35) %></a>
         </h4>
       </div>
       <p><%= simple_format (embed.description) %></p>

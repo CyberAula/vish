@@ -15,16 +15,12 @@
 
 	<ul class="thumbnails">
     <li class="span3">
-      <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="container swf-modal-button-<%= swf.id.to_s%>">
-        <iframe src="<%= swf.file %>" width="75" height="75">...</iframe>
-      </a>
+      <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="container swf-modal-button-<%= swf.id.to_s%>"><iframe src="<%= swf.file %>" width="75" height="75" wmode="transparent">...</iframe></a>
     </li>
     <li class="span9">
       <div class="title">
         <h4 class="bold">
-          <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="swf-modal-button-<%= swf.id.to_s%>">
-            <%= truncate_name(swf.title, :length => 35) %>
-          </a>
+          <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="swf-modal-button-<%= swf.id.to_s%>"><%= truncate_name(swf.title, :length => 35) %></a>
         </h4>
       </div>
 
