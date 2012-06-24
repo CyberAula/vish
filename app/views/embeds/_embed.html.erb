@@ -1,25 +1,47 @@
 <%= div_for embed, :class => 'row-fluid' do %>
+  <div class="modal hide" id="embed-modal-<%= embed.id.to_s%>">
+    <div class="modal-header"><h3 class="text-center"><%= truncate_name(embed.title, :length => 75) %></h3></div>
+    <div class="modal-body text-center">
+      <%= image_tag('loading.gif', :class => :loading) %>
+    </div>
+    <div class="modal-footer">
+      <div class="menu_resources">
+        <div class="verb_like" id="like_<%= dom_id(embed.activities.first) %>"><%= link_like(embed.activities.first, :size => :big)%></div>
+      </div>
+      <a href="#" class="btn btn-danger embed-modal-close-<%= embed.id.to_s%>" data-dismiss="modal"><%=t('close')%></a>
+      <%= link_to t('details.msg'), embed, :class => "btn btn-success" %>
+    </div>
+  </div>
+
   <ul class="thumbnails">
     <li class="span3">
-      <%= link_to image_tag("icons/link_big_gray.png"),"javascript:void(0)" %>
-      <%= link_to image_tag("btn/btn_play.png", :class => "play_button"),"javascript:void(0)" %>
-      <%= javascript_tag do %>
-        $("#embed_<%= embed.id.to_s %> img").each(function(){
-          $(this).click(function(){
-            // TODO: Open callback
-          });
-        });
-      <% end %>
+      <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="container embed-modal-button-<%= embed.id.to_s%>">
+      <%= image_tag("icons/link_big_gray.png") %>
+      </a>
     </li>
 
     <li class="span9">
       <div class="title">
-        <h4 class="bold"><%= truncate_name(embed.title, :length => 35) %></h4>
+        <h4 class="bold">
+          <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>">
+            <%= truncate_name(embed.title, :length => 35) %>
+          </a>
+        </h4>
       </div>
-      <p><%= simple_format auto_link(embed.description) %></p>
+      <p><%= simple_format (embed.description) %></p>
       <p><%= link_to t('details.msg'), embed, :class => "attachment_text_link" %></p>
     </li>
   </ul>
+
+  <%= content_for :javascript do %>
+    $(".embed-modal-button-<%= embed.id.to_s%>").on("click", function(){
+      $("#embed-modal-<%= embed.id.to_s%> .modal-body").html("<%= raw j embed.fulltext %>");
+    });
+    $(".embed-modal-close-<%= embed.id.to_s%>").on("click", function(){
+       $("#embed-modal-<%= embed.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+    });
+  <% end %>
+
 <% end %>
 
 <div class="clearfloat"></div>

@@ -481,7 +481,7 @@ form.file_upload {
 
 /****************** WALL - ACTIVITIES *********************/
 
-#wall{	text-align:center;}
+#wall, #wall-me{text-align:center;}
 #wall-input {background-color: #E6E6E6; padding: 10px 0px 0px 0px; }
 .row-fluid-100 { width: 100%; *zoom: 1;}
 .row-fluid-90 { width: 90%; *zoom: 1;}
@@ -489,6 +489,7 @@ form.file_upload {
 .margin-thumbnail { margin-right:20px  !important; }
 .padding-margin-clear{margin:0px; padding: 9px 0px 1px 0px !important;}
 .subactivity{ /*margin-left: 5px;  font-size: 12px;  padding: 0px 5px 0px 5px;  display:block;float:left; */}
+#wall h4 a, #wall-me h4 a{ color: inherit; }
 
 
 /*******************INPUT FILE***********************/

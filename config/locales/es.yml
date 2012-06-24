@@ -22,6 +22,7 @@ es:
   all: "todos"
   author: "autor"
   cancel: "Cancelar"
+  close: "Cerrar"
   conditions:
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
     check_message_1: "Condiciones de Uso"
