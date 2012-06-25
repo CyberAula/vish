@@ -1,18 +1,4 @@
 <%= div_for officedoc, :class => 'row-fluid' do %>
-  <div class="modal hide" id="officedoc-modal-<%= officedoc.id.to_s%>">
-    <div class="modal-header"><h3 class="text-center"><%= truncate_name(officedoc.title, :length => 75) %></h3></div>
-    <div class="modal-body text-center">
-      <%= image_tag('loading.gif', :class => :loading) %>
-    </div>
-    <div class="modal-footer">
-      <div class="menu_resources">
-        <div class="verb_like" id="like_<%= dom_id(officedoc.activities.first) %>"><%= link_like(officedoc.activities.first, :size => :big)%></div>
-      </div>
-      <a href="#" class="btn btn-danger officedoc-modal-close-<%= officedoc.id.to_s%>" data-dismiss="modal"><%=t('close')%></a>
-      <%= link_to t('details.msg'), officedoc, :class => "btn btn-success" %>
-    </div>
-  </div>
-
   <ul class="thumbnails">
     <li class="span3">
       <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" class="officedoc-modal-button-<%= officedoc.id.to_s%>"><i class='icon75-pdf'></i></a>
@@ -30,6 +16,7 @@
 
   <%= content_for :javascript do %>
     $(".officedoc-modal-button-<%= officedoc.id.to_s%>").on("click", function(){
+      Vish.Wall.getModal("officedoc", <%= officedoc.id.to_s %>, <%= officedoc.activities.first.id.to_s %>, <%= officedoc.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(officedoc.title, :length => 75) %>");
       $("#officedoc-modal-<%= officedoc.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= request.env['HTTP_HOST'] + download_document_path(officedoc) %>&officedocded=true' width='480px' height='480px' style='border: none;'></iframe>");
     });
     $(".officedoc-modal-close-<%= officedoc.id.to_s%>").on("click", function(){

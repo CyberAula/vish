@@ -1,18 +1,4 @@
 <%= div_for embed, :class => 'row-fluid' do %>
-  <div class="modal hide" id="embed-modal-<%= embed.id.to_s%>">
-    <div class="modal-header"><h3 class="text-center"><%= truncate_name(embed.title, :length => 75) %></h3></div>
-    <div class="modal-body text-center">
-      <%= image_tag('loading.gif', :class => :loading) %>
-    </div>
-    <div class="modal-footer">
-      <div class="menu_resources">
-        <div class="verb_like" id="like_<%= dom_id(embed.activities.first) %>"><%= link_like(embed.activities.first, :size => :big)%></div>
-      </div>
-      <a href="#" class="btn btn-danger embed-modal-close-<%= embed.id.to_s%>" data-dismiss="modal"><%=t('close')%></a>
-      <%= link_to t('details.msg'), embed, :class => "btn btn-success" %>
-    </div>
-  </div>
-
   <ul class="thumbnails">
     <li class="span3">
       <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>"><%= image_tag("icons/link_big_gray.png") %></a>
@@ -31,6 +17,7 @@
 
   <%= content_for :javascript do %>
     $(".embed-modal-button-<%= embed.id.to_s%>").on("click", function(){
+      Vish.Wall.getModal("embed", <%= embed.id.to_s %>, <%= embed.activities.first.id.to_s %>, <%= embed.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(embed.title, :length => 75) %>");
       $("#embed-modal-<%= embed.id.to_s%> .modal-body").html("<%= raw j embed.fulltext %>");
     });
     $(".embed-modal-close-<%= embed.id.to_s%>").on("click", function(){

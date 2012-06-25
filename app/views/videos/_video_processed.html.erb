@@ -1,53 +1,3 @@
-<div class="modal hide" id="video-modal-<%= video.id.to_s%>">
-  <div class="modal-header"><h3 class="text-center"><%= truncate_name(video.title, :length => 75) %></h3></div>
-  <div class="modal-body text-center">
-    <div id="full_video_<%= video.id%>" class="jp-video jp-video-270p">
-      <div class="jp-type-single">
-        <div id="jpId<%= video.id%>" class="jp-jplayer"></div>
-        <div id="jp_interface_<%= video.id%>" class="jp-interface">
-          <div class="jp-video-play"></div>
-          <ul class="jp-controls">
-            <li>
-              <a href="#" class="jp-play" tabindex="1">play</a>
-            </li>
-            <li>
-              <a href="#" class="jp-pause" tabindex="1">pause</a>
-            </li>
-            <li>
-              <a href="#" class="jp-stop" tabindex="1">stop</a>
-            </li>
-            <li>
-              <a href="#" class="jp-mute" tabindex="1">mute</a>
-            </li>
-            <li>
-              <a href="#" class="jp-unmute" tabindex="1">unmute</a>
-            </li>
-          </ul>
-          <div class="jp-progress">
-            <div class="jp-seek-bar">
-              <div class="jp-play-bar"></div>
-            </div>
-          </div>
-          <div class="jp-volume-bar">
-            <div class="jp-volume-bar-value"></div>
-          </div>
-          <div class="jp-current-time"></div>
-          <div class="jp-duration"></div>
-        </div>
-        <div id="jp_playlist_<%= video.id%>" class="jp-playlist"></div>
-      </div>
-      <div id="inspector"></div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <div class="menu_resources">
-      <div class="verb_like" id="like_<%= dom_id(video.activities.first) %>"><%= link_like(video.activities.first, :size => :big)%></div>
-    </div>
-    <a href="#" class="btn btn-danger video-modal-close-<%= video.id.to_s%>" data-dismiss="modal"><%=t('close')%></a>
-    <%= link_to t('details.msg'), video, :class => "btn btn-success" %>
-  </div>
-</div>
-
 <ul class="thumbnails">
   <li class="span3">
     <a data-toggle="modal" href="#video-modal-<%= video.id.to_s%>" class="video-modal-button-<%= video.id.to_s%>"><%= thumb_for(video, 75) %></a>
@@ -70,22 +20,21 @@
 
 <%= content_for :javascript do %>
   $(".video-modal-button-<%= video.id.to_s%>").on("click", function(){
-    <% unless video.file_processing %>
-      $("#jpId<%=video.id%>").jPlayer( {
-        ready: function () {
-          $(this).jPlayer("setMedia", {
-            webmv: "<%= video_url(video, :format => 'webm' ) %>", // Defines the webm url
-            flv:   "<%= video_url(video, :format => 'flv') %>",
-            mp4:   "<%= video_url(video, :format => 'mp4') %>"
-          });
-        },
-        solution:"flash, html",
-        preload: "none",
-        supplied: "webmv, flv, mp4",
-        swfPath: "assets",
-        cssSelectorAncestor: "#jp_interface_<%=video.id%>"
-      });
-    <% end %>
+    Vish.Wall.getModal("video", <%= video.id.to_s %>, <%= video.activities.first.id.to_s %>, <%= video.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(video.title, :length => 75) %>");
+    $("#jpId<%=video.id%>").jPlayer( {
+      ready: function () {
+        $(this).jPlayer("setMedia", {
+          webmv: "<%= video_url(video, :format => 'webm' ) %>", // Defines the webm url
+          flv:   "<%= video_url(video, :format => 'flv') %>",
+          mp4:   "<%= video_url(video, :format => 'mp4') %>"
+        });
+      },
+      solution:"flash, html",
+      preload: "none",
+      supplied: "webmv, flv, mp4",
+      swfPath: "assets",
+      cssSelectorAncestor: "#jp_interface_<%=video.id%>"
+    });
   });
   $(".video-modal-close-<%= video.id.to_s%>").on("click", function(){
     $("#jpId<%=video.id%>").jPlayer('stop');

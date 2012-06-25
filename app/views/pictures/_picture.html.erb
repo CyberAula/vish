@@ -1,18 +1,4 @@
 <%= div_for picture, :class => 'row-fluid' do %>
-  <div class="modal hide" id="picture-modal-<%= picture.id.to_s%>">
-    <div class="modal-header"><h3 class="text-center"><%= truncate_name(picture.title, :length => 75) %></h3></div>
-    <div class="modal-body text-center">
-      <%= image_tag('loading.gif', :class => :loading) %>
-    </div>
-    <div class="modal-footer">
-      <div class="menu_resources">
-        <div class="verb_like" id="like_<%= dom_id(picture.activities.first) %>"><%= link_like(picture.activities.first, :size => :big)%></div>
-      </div>
-      <a href="#" class="btn btn-danger picture-modal-close-<%= picture.id.to_s%>" data-dismiss="modal"><%=t('close')%></a>
-      <%= link_to t('details.msg'), picture, :class => "btn btn-success" %>
-    </div>
-  </div>
-
   <ul class="thumbnails">
     <li class="span3">
       <a data-toggle="modal" href="#picture-modal-<%= picture.id.to_s%>" class="picture-modal-button-<%= picture.id.to_s%>"><%= thumb_for(picture, 75) %></a>
@@ -31,6 +17,7 @@
 
   <%= content_for :javascript do %>
     $(".picture-modal-button-<%= picture.id.to_s%>").on("click", function(){
+      Vish.Wall.getModal("picture", <%= picture.id.to_s %>, <%= picture.activities.first.id.to_s %>, <%= picture.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(picture.title, :length => 75) %>");
       $("#picture-modal-<%= picture.id.to_s%> .modal-body").html("<%= raw j (thumb_for(picture, 500)) %>");
     });
     $(".picture-modal-close-<%= picture.id.to_s%>").on("click", function(){

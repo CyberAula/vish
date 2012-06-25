@@ -79,7 +79,27 @@ Vish.Wall = (function(V, $, undefined){
     });
   }
 
+  var modalPayload = function(klass, id) { /* TODO: video, audio.... other payloads? */
+    if (klass == "video") {
+      return '<div id="full_video_'+id+'" class="jp-video jp-video-270p"><div class="jp-type-single"><div id="jpId'+id+'" class="jp-jplayer"></div><div id="jp_interface_'+id+'" class="jp-interface"><div class="jp-video-play"></div><ul class="jp-controls"><li><a href="#" class="jp-play" tabindex="1">play</a></li><li><a href="#" class="jp-pause" tabindex="1">pause</a></li><li><a href="#" class="jp-stop" tabindex="1">stop</a></li><li><a href="#" class="jp-mute" tabindex="1">mute</a></li><li><a href="#" class="jp-unmute" tabindex="1">unmute</a></li></ul><div class="jp-progress"><div class="jp-seek-bar"><div class="jp-play-bar"></div></div></div><div class="jp-volume-bar"><div class="jp-volume-bar-value"></div></div><div class="jp-current-time"></div><div class="jp-duration"></div></div><div id="jp_playlist_'+id+'" class="jp-playlist"></div></div><div id="inspector"></div></div>';
+    } else if (klass == "audio") {
+      return '<div id="full_audio_'+id+'" class="audio-full jp-audio"><div id="jpId'+id+'" class="jpId_size0 jp-jplayer"></div><div class="jp-audio"><div class="jp-type-single"><div id="jp_interface_'+id+'" class="jp-interface"><ul class="jp-controls"><li><a href="#" class="jp-play" tabindex="1">play</a></li><li><a href="#" class="jp-pause" tabindex="1">pause</a></li><li><a href="#" class="jp-stop" tabindex="1">stop</a></li><li><a href="#" class="jp-mute" tabindex="1">mute</a></li><li><a href="#" class="jp-unmute" tabindex="1">unmute</a></li></ul><div class="jp-progress"><div class="jp-seek-bar"><div class="jp-play-bar"></div></div></div><div class="jp-volume-bar"><div class="jp-volume-bar-value"></div></div><div class="jp-current-time"></div><div class="jp-duration"></div></div><div id="jp_playlist_'+id+'" class="jp-playlist"></div></div></div></div>';
+    } else {
+      return '<img alt="Loading" class="loading" src="/assets/loading.gif" />';
+    }
+  }
+
+  var getModal = function(klass, id, activity_id, is_fav, title) {
+    var modal = $('#' + klass + '-modal-' + id);
+    if (modal.length) {
+      return modal;
+    } else {
+      return $('<div class="modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer"><div class="menu_resources"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/assets/star-'+ (is_fav?'on':'off') +'.png" />'+ (is_fav?I18n.t('follow.is_favorite'):I18n.t('follow.add_favorite')) +'</a></div></div><a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div>').appendTo($('body'));
+    }
+  }
+
   return {
     init: init,
+    getModal: getModal,
   };
 }) (Vish, jQuery)
