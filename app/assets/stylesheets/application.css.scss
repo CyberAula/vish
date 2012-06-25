@@ -35,7 +35,7 @@
 .dsignesregular {font-family:'DsignesRegular';}
 
 /**** clase para el ALTO minimo del layout ***/
-.body-height{ min-height:  300px;}
+.body-height{ min-height:  100%;}
 
 
 
@@ -79,6 +79,25 @@ height: auto;
   }
 .margin-logo-img{
   margin-top: -15px
+}
+
+
+/************* Footer *******/
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+  margin-bottom: 0px
+}
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -40px; /* the bottom margin is the negative value of the footer's height */
+}
+.footersticky, .push {
+  height: 40px; /* .push must be the same height as .footer */
 }
 
 
