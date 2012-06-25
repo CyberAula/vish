@@ -16,6 +16,9 @@ en:
         User:
           title: "%{subject} and %{contact} are following each other."
           message: "%{name} is following you back."
+  activity2:
+    title:
+      other: "activity"
   activity_action:
     follow: "+ Follow"
     unfollow: "UnFollow"
