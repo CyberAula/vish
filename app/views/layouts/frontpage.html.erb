@@ -3,6 +3,7 @@
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
 <body>
+<div class="wrapper">
 <div class="container">
   <header id="headerFront" class="row span7 offset5">
     <%= render :partial => "layouts/header_frontpage" %>
@@ -30,10 +31,13 @@
     </div>
   </div>
 </section>
+<div class="push"></div>
+</div>
 <div class="container">
   <footer class="row span12">
     <%= render :partial => "layouts/footer" %>
   </footer>
-</div>
+  </div>
+
 </body>
 </html>
