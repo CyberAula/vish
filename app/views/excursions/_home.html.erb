@@ -11,7 +11,7 @@
               <%= link_to truncate_name(excursion.title, :length => 18), excursion %>
             </h4>
             <h5 class="blue-opacity elipsis-excursion">by <%=link_to( truncate_name(excursion.author.name, ), excursion.author.subject)%></h5>
-            <h5 class=""><span class="green"><%=excursion.visit_count.to_s%></span> <%= link_to image_tag("view.png"), excursion %> </h5>
+            <h5 class=""><span class="green"><%=excursion.visit_count.to_s%></span> <%= t("follow.views") %> </h5>
             <h5 class="">
               <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%=excursion.activities.first.likes.count.to_s%></span>
               <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first)%></div>

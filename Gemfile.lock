@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 299b32a8a840e5ebafaafc7d5322f256a35cdd14
+  revision: f6a0d47c18aa9ec493a0d7bce19cd643eb4a0a8d
   branch: vish
   specs:
     social_stream-base (0.21.2)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 7caea1fb5744cc7e6ba64c50e8d35ca3ac8cb00e
+  revision: a6479ac1db2cbe087a054daf468e227659e6be3f
   branch: stable
   specs:
     vish_editor (0.1.1)
@@ -195,7 +195,7 @@ GEM
       jruby-pageant (>= 1.0.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nokogiri (1.5.4)
+    nokogiri (1.5.5)
     oauth (0.4.6)
     oauth2 (0.6.1)
       faraday (~> 0.7)
@@ -222,7 +222,7 @@ GEM
       mime-types
     paperclip-ffmpeg (0.7.0)
       paperclip (>= 2.3.8)
-    pg (0.13.2)
+    pg (0.14.0)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
