@@ -1,9 +1,12 @@
 @import "colors";
 
+
+
 #link_preview {
   width: auto;
-  height: 120px;
+  height: auto;
   margin: 5px auto;
+  margin-left: 15px;
 }
 
 #link_preview img.loading{
@@ -22,6 +25,7 @@
   margin: auto;
   margin-top: 5px;
 }
+
 .link {
   position: relative;
   margin-top: 8px;
@@ -53,8 +57,8 @@
   text-overflow: ellipsis;
   overflow:hidden;  /* this is what makes the name link doesn't work - solved*/
   white-space: nowrap;
-  width: 170px;
-  height: 120px; 
+  width: auto;
+  height: auto;
 
 }
 
@@ -64,7 +68,6 @@
 
 }
 .link .info .title{
-  margin-top: 20px;
   position: relative;
   font-weight: bold;
   margin-bottom: 3px; 
@@ -72,7 +75,7 @@
   white-space: nowrap;
   overflow:hidden;
   display: block;
-  height: 25px;
+  height: auto
 }
 .link .info .url{
   margin-bottom: 5px;
@@ -85,7 +88,7 @@
 }
 
 .link .info .description textarea {
-  margin-top: 23px;
+
   text-overflow: ellipsis;
   overflow:hidden;
   white-space: nowrap;
