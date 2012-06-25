@@ -1,4 +1,4 @@
-<%= div_for excursion, :class => 'content_size' do %>
+<%= div_for excursion, :class => 'row-fluid' do %>
   <ul class="thumbnails">
     <li class="span3">
       <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "container" %>
@@ -6,7 +6,7 @@
     </li>
     <li class="span9">
         <div class="title">
-          <h4><%= excursion.title %></h4>
+          <h4 class="bold"><%= link_to truncate_name(excursion.title, :length => 35), excursion %></h4>
         </div>
         
         <p><%= simple_format auto_link(excursion.description) %></p>
@@ -15,3 +15,4 @@
   </ul>
 <% end %>
 
+<div class="clearfloat"></div>

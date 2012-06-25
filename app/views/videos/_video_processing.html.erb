@@ -1,9 +1,13 @@
-<div class="span3">
-  <%= thumb_for(video, 16) %>
-</div>
-<div class="span9">
-  <div class="title">
-    <%= video.title %>
-  </div>
-  <div class="processing_text"><%= t('video.processing')%></div>
-</div>
+<ul class="thumbnails">
+  <li class="span3">
+    <%= link_to raw("<i class='icon75-video'></i>"),video %>
+  </li>
+  <li class="span9">
+    <div class="title">
+      <h4 class="bold"><%= link_to truncate_name(video.title, :length => 35), video %></h4>
+    </div>
+    <p class="processing_text"><%= t('video.processing')%></p>
+    <p><%= link_to t('details.msg'), video, :class => "attachment_text_link" %></p>
+  </li>
+</ul>
+

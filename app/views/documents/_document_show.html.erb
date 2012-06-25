@@ -1,7 +1,5 @@
 <%= div_for document, :class => 'content_size' do %>
-
   <div class="document_show">
-    <iframe src="http://docs.google.com/viewer?url=<%=u request.url+'/download' %>&embedded=true" width="475" height="475" style="border: none;"></iframe>
+    <%= thumb_for(document, 75) %>
   </div>
-
 <% end %>

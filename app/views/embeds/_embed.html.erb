@@ -1,38 +1,43 @@
-<%= div_for embed, :class => 'content_size' do %>
-  <div class="thumbnail">
-    <%= link_to image_tag("icons/link_big_gray.png"),"javascript:void(0)" %>
-    <%= link_to image_tag("btn/btn_play.png", :class => "play_button"),"javascript:void(0)" %>
-    <%= javascript_tag do %>
-      $("#embed_<%= embed.id.to_s %> img").each(function(){
-        $(this).click(function(){
-          // TODO: Open callback
-        });
-      });
-      
-    <% end %>
-  </div>
-  <div class="info">
-    <% if embed.title %>
-      <div class="title">
-        <%= embed.title %>
+<%= div_for embed, :class => 'row-fluid' do %>
+  <div class="modal hide" id="embed-modal-<%= embed.id.to_s%>">
+    <div class="modal-header"><h3 class="text-center"><%= truncate_name(embed.title, :length => 75) %></h3></div>
+    <div class="modal-body text-center">
+      <%= image_tag('loading.gif', :class => :loading) %>
+    </div>
+    <div class="modal-footer">
+      <div class="menu_resources">
+        <div class="verb_like" id="like_<%= dom_id(embed.activities.first) %>"><%= link_like(embed.activities.first, :size => :big)%></div>
       </div>
-    <% end %>
-    <% if embed.description %>
-      <div class="description">
-        <%= auto_link(embed.description) %>
-      </div>
-    <% end %>
+      <a href="#" class="btn btn-danger embed-modal-close-<%= embed.id.to_s%>" data-dismiss="modal"><%=t('close')%></a>
+      <%= link_to t('details.msg'), embed, :class => "btn btn-success" %>
+    </div>
   </div>
-<% end %>
-<div class="info">
-	<%= link_to (image_tag('/assets/more_embed.png')),  "javascript:showSettings(\"display_embed\");" %>
-</div>
-<div class="content settings_content" id="display_embed_content" style="display:none;">
-	<div class="settings_block">
- 		<div class="embed_show">
-    		<textarea readonly="readonly" style="width: 100%;" rows="5"><%=h embed.fulltext %></textarea>
-  		</div>
-	</div>
-</div>
 
-<br class="clearfloat">
+  <ul class="thumbnails">
+    <li class="span3">
+      <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="container embed-modal-button-<%= embed.id.to_s%>"><%= image_tag("icons/link_big_gray.png") %></a>
+    </li>
+
+    <li class="span9">
+      <div class="title">
+        <h4 class="bold">
+          <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>"><%= truncate_name(embed.title, :length => 35) %></a>
+        </h4>
+      </div>
+      <p><%= simple_format (embed.description) %></p>
+      <p><%= link_to t('details.msg'), embed, :class => "attachment_text_link" %></p>
+    </li>
+  </ul>
+
+  <%= content_for :javascript do %>
+    $(".embed-modal-button-<%= embed.id.to_s%>").on("click", function(){
+      $("#embed-modal-<%= embed.id.to_s%> .modal-body").html("<%= raw j embed.fulltext %>");
+    });
+    $(".embed-modal-close-<%= embed.id.to_s%>").on("click", function(){
+       $("#embed-modal-<%= embed.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+    });
+  <% end %>
+
+<% end %>
+
+<div class="clearfloat"></div>
