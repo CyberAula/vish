@@ -1,4 +1,5 @@
-<%= render :partial => 'objects/show',
+
+  <%= render :partial => 'objects/show',
            :locals  => { :object => document } %>
 
 <% profile_subject ||= document.owner_subject %>
@@ -18,17 +19,46 @@
   ) %>
 <%end%>
 
-<div class="span6"></div>
-<div class="title_resources">
-<%= document.title.nil? ? document.file_file_name : document.title %></div>
-<div class="space_center"></div>
+<div class="span5">
+
+
 
 <%= show_view_for document %>
+  </div>
 
 <!---------end------------------------->
-<div class="space_center"></div>
 
 
+
+  <div class="span">
 <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
+  </div>
 
+
+
+
+  <div class="row">
+    <div class="span5">
+      <div class="space_center"></div>
+      <div id="" class="tabbable span5">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="comment-1" class="tab-pane active row-fluid activity_content">
+            <% unless document.post_activity.blank? %>
+              <%= render :partial => 'activities/comments', :locals => { :activity =>  document.post_activity, :logo_size => ':contact' } %>
+              <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity  } %>
+            <% else %>
+              <% if user_signed_in? %>
+                <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity } %>
+              <%else%>
+                <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.input') %>
+              <%end%>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 

@@ -1,28 +1,50 @@
+<div class="notebook">
+  <div class="decoration-notebook">
+
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+  </div>
+
+
+  <div class="content-notebook">
+
+
+
+
+
 <div class="documents tabbable">
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-pills">
     <li class="active">
       <a data-toggle="tab" href="#details"><%=t('document.actions.details')%></a>
     </li>
-
   	<% if document.post_activity.edit_object_by?(current_subject) %>
       <li class=""><a data-toggle="tab" href="#edit"><%=t('document.actions.edit')%></a></li>
 	  <% end %>
-
-	<div class="pagination-right margin-up">
-		<div class="menu_resources">
-		  <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-  	</div>
-		<% if document.post_activity.delete_object_by?(current_subject) %>
-   			<div class="menu_resources">
-   				<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-			</div>
-		<% end %>
-	</div>
 	</ul>
+
+
+
+
+
+
   <div class="tab-content">
+
+
+      <div class="details_resources">
+        <%= t('document.info.title') %>
+      </div>
+
+    <div class="title_resources">
+      <%= document.title.nil? ? document.file_file_name : document.title %>
+    </div>
+
+
     <div id="details" class="tab-pane active">
       <div class="">
-        <div class="picture_icon">
+        <div class="">
           <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first, :size => :big)%></div>
         </div>
         <div class="info_visits">
@@ -68,28 +90,22 @@
   </div>
   </div>
 
-<div class="row">
-  <div class="span7">
-    <div class="space_center"></div>
-    <div id="left" class="tabbable span6">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
-      </ul>
-      <div class="tab-content">
-        <div id="comment-1" class="tab-pane active row-fluid activity_content">
-        <% unless document.post_activity.blank? %>
-          <%= render :partial => 'activities/comments', :locals => { :activity =>  document.post_activity, :logo_size => ':contact' } %>
-          <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity  } %>
-        <% else %>
-          <% if user_signed_in? %>
-            <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity } %>
-          <%else%>
-            <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.input') %>
-          <%end%>
-         <%end%>
-        </div>
-      </div>
-    </div>
+
+
+
+
   </div>
 </div>
 
+<div class="space_center"></div>
+
+<div class="pagination-right margin-up">
+  <div class="menu_resources">
+    <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+  </div>
+  <% if document.post_activity.delete_object_by?(current_subject) %>
+    <div class="menu_resources">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+    </div>
+  <% end %>
+</div>
