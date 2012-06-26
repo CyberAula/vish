@@ -1,7 +1,22 @@
 <%= div_for link, :class => 'content_size' do %>
 
   <div class="link_show">
-    <textarea readonly="readonly" style="width: 100%;" rows="1"><%=h link.url %></textarea>
+    <a href="<%= link.url %>" target="_blank">
+    <% if link.image %>
+      <%= image_tag(link.image) %>
+    <% else %>
+      <i class='icon_repository75-75_link'></i>
+    <% end %>
+    </a>
+    <% if link.callback_url %>
+      <div id="link-show-callback-<%=link.id.to_s %>"></div>
+      <%= javascript_tag do %>
+        SocialStream.Linkser.Wall.openCallback("link-show-callback-<%= link.id.to_s %>", "<%= link.callback_url %>", "<%= link.width %>", "<%= link.height %>"); 
+      <% end %>
+    <% end %>
+    
+    <input type="text" readonly="readonly" style="width: 100%;" value="<%=h link.url %>" />
+    <p><%= simple_format link.description %></p>
   </div>
 
 <% end %>
