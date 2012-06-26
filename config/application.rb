@@ -54,6 +54,14 @@ module Vish
     config.to_prepare do
       MessagesController.layout "3x9"
       ConversationsController.layout "3x9"
+      DocumentsController.layout "3x9"
+      AudiosController.layout "3x9"
+      VideosController.layout "3x9"
+      PicturesController.layout "3x9"
+      OfficedocsController.layout "3x9"
+      EmbedsController.layout "3x9"
+      LinksController.layout "3x9"
+      ExcursionsController.layout "3x9"
     end
 
   end
