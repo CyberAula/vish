@@ -16,9 +16,9 @@
   </li>
 </ul>
 
-<%= content_for :javascript do %>
+<%= javascript_tag do %>
   $(".audio-modal-button-<%= audio.id.to_s%>").on("click", function(){
-    Vish.Wall.getModal("audio", <%= audio.id.to_s %>, <%= audio.activities.first.id.to_s %>, <%= audio.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(audio.title, :length => 75) %>");
+    <%= modal_for(audio) %>
     $("#jpId<%=audio.id%>").jPlayer( {
       ready: function () {
         $(this).jPlayer("setMedia", {

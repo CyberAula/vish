@@ -15,9 +15,9 @@
     </li>
   </ul>
 
-  <%= content_for :javascript do %>
+  <%= javascript_tag do %>
     $(".picture-modal-button-<%= picture.id.to_s%>").on("click", function(){
-      Vish.Wall.getModal("picture", <%= picture.id.to_s %>, <%= picture.activities.first.id.to_s %>, <%= picture.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(picture.title, :length => 75) %>");
+      <%= modal_for(picture) %>
       $("#picture-modal-<%= picture.id.to_s%> .modal-body").html("<%= raw j (thumb_for(picture, 500)) %>");
     });
     $(".picture-modal-close-<%= picture.id.to_s%>").on("click", function(){

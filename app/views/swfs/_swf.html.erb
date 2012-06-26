@@ -15,9 +15,9 @@
     </li>
 	</ul>
 
-  <%= content_for :javascript do %>
+  <%= javascript_tag do %>
     $(".swf-modal-button-<%= swf.id.to_s%>").on("click", function(){
-      Vish.Wall.getModal("swf", <%= swf.id.to_s %>, <%= swf.activities.first.id.to_s %>, <%= swf.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(swf.title, :length => 75) %>");
+      <%= modal_for(swf) %>
       $("#swf-modal-<%= swf.id.to_s%> .modal-body").html("<iframe src='<%= swf.file %>' width='475' height='475'>...</iframe>");
     });
     $(".swf-modal-close-<%= swf.id.to_s%>").on("click", function(){

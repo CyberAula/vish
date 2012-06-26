@@ -2,11 +2,13 @@
   <ul class="thumbnails">
     <li class="span">
       <div id="margin-resources">
-      <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
+      <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= icon_class_for(document) %> <%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>"></a>
       </div>
     </li>
     <div class="row-fluid-100">
-      <h4 class="link_gray size15 elipsis-resources"><%= link_to truncate_name(document.title,), document %></h4>
+      <h4 class="link_gray size15 elipsis-resources">
+        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>"><%= truncate_name(document.title, :length => 20) %></a>
+      </h4>
         <div class="rw-words rw-words-1">
           <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(document.author.name, :length => 18), document.author.subject)%></h5></span>
           <div class="clearfloat"></div>
@@ -15,4 +17,52 @@
         </div>
     </div>
   </ul>
+
+  <%= javascript_tag do %>
+    $(".<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>").on("click", function(){
+      <%= modal_for(document) %>
+      <% if document.is_a? Swf %>
+        $("#swf-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='<%= document.file %>' width='475' height='475'>...</iframe>");
+      <% elsif document.is_a? Officedoc %>
+        $("#officedoc-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= request.env['HTTP_HOST'] + download_document_path(document) %>&officedocded=true' width='480px' height='480px' style='border: none;'></iframe>");
+      <% elsif document.is_a? Picture %>
+        $("#picture-modal-<%= document.id.to_s%> .modal-body").html("<%= raw j (thumb_for(document, 500)) %>");
+      <% elsif document.is_a? Audio %>
+        $("#jpId<%=document.id%>").jPlayer( {
+          ready: function () {
+            $(this).jPlayer("setMedia", {
+              webma: "<%= audio_url(document, :format => 'webma') %>" // Defines the webma url
+            });
+          },
+          solution:"webma",
+          preload: "none",
+          swfPath: "assets",
+          cssSelectorAncestor: "#jp_interface_<%=document.id%>"
+        });
+      <% elsif document.is_a? Video %>
+        $("#jpId<%=document.id%>").jPlayer( {
+          ready: function () {
+            $(this).jPlayer("setMedia", {
+              webmv: "<%= video_url(document, :format => 'webm' ) %>", // Defines the webm url
+              flv:   "<%= video_url(document, :format => 'flv') %>",
+              mp4:   "<%= video_url(document, :format => 'mp4') %>"
+            });
+          },
+          solution:"flash, html",
+          preload: "none",
+          supplied: "webmv, flv, mp4",
+          swfPath: "assets",
+          cssSelectorAncestor: "#jp_interface_<%=document.id%>"
+        });
+      <% end %>
+    });
+    $(".<%= document.class.to_s.downcase %>-modal-close-<%= document.id.to_s%>").on("click", function(){
+      <% if document.is_a? Audio or document.is_a? Video %>
+      <% elsif document.is_a? Video %>
+        $("#jpId<%=document.id%>").jPlayer('stop');
+      <% else %>
+        $("#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+      <% end %>
+    });
+  <% end %>
 <% end %>
