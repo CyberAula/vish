@@ -7,8 +7,6 @@
 <%= profile_subject.name + ": " + t('repository.title') %>
 <% end %>
 
-<% sidebar %>
-
 <%if profile_subject_is_current?%>
 <%= location(
   link_to(t('repository.title'), polymorphic_path(controller.controller_name),:remote => true)
