@@ -88,7 +88,7 @@ GEM
       rmagick (>= 2.13.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
-    cancan (1.6.7)
+    cancan (1.6.8)
     capistrano (2.12.0)
       highline
       net-scp (>= 1.0.0)
