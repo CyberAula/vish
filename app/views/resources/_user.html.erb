@@ -2,8 +2,9 @@
 <section class="span6">
   <div class="resources tabbable">
     <ul class="nav nav-tabs span4">
-      <li class="active"><a data-toggle="tab" href="#repo-1"><%=t('resource.my') %></a></li>
-      <li class=""><a data-toggle="tab" href="#repo-2"><%= image_tag "star-on.png", :class => "star" %></a></li>
+      <li class=""><a data-toggle="tab" href="#repo-1"><%=t('resource.net') %></a></li>
+      <li class="active"><a data-toggle="tab" href="#repo-2"><%=t('resource.my') %></a></li>
+      <li class=""><a data-toggle="tab" href="#repo-3"><%= image_tag "star-on.png", :class => "star" %></a></li>
     </ul>
 
     <div class="span2 size40 title_menu_home ">
@@ -11,7 +12,28 @@
     <div class="clearfloat"></div>
 
     <div class="tab-content">
-      <div id="repo-1" class="tab-pane active">
+      <div id="repo-1" class="tab-pane">
+        <%= render :partial => "common_documents/filter", :locals => { :filter_id => "resource-filter" } %>
+        <div class="space_center"></div>
+        <div id="resources" class="row height-tabs-home" >
+          <% for document in subject_resources(@user, {:scope => :net}) %>
+            <% if document.is_a? Embed %>
+               <%= render :partial => "embeds/home",
+                          :locals => {:embed => document,
+                                      :div_class => 'content_size'} %>
+            <% elsif document.is_a? Link %>
+               <%= render :partial => "links/home",
+                          :locals => {:link => document,
+                                      :div_class => 'content_size'} %>
+            <% else %>
+               <%= render :partial => "common_documents/home",
+                          :locals => {:document => document,
+                                      :div_class => 'content_size'} %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div id="repo-2" class="tab-pane active">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "resource-filter-me" } %>
         <div class="space_center"></div>
         <div id="resources-me" class="row height-tabs-home" >
@@ -32,7 +54,7 @@
           <% end %>
         </div>
       </div>
-      <div id="repo-2" class="tab-pane">
+      <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "resource-filter-fav" } %>
         <div id="resources-fav" class="row height-tabs-home" >
           <% for resource in subject_resources(@user, {:scope => :like}) %>

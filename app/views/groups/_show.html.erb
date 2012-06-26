@@ -28,6 +28,4 @@
 </div>
 
 <%= render :partial => "activities/profile",
-           :locals  => { :activities => @group.wall(:profile, :for => current_subject).
-                                               page(params[:page]),
-                         :owner => @group } %>
+           :locals  => { :owner => @group } %>

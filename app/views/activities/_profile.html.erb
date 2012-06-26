@@ -1,6 +1,7 @@
 <section id="wrapper_activities" class="tabbable" >
   <ul class="nav nav-tabs span4">
-    <li class="active"><a data-toggle="tab" href="#wall"><%= t('resource.my') %></a></li>
+    <li class=""><a data-toggle="tab" href="#wall"><%= t('resource.net') %></a></li>
+    <li class="active"><a data-toggle="tab" href="#wall-me"><%= t('resource.my') %></a></li>
   </ul>
   <div class="span2 size40 title_menu_home ">
     <%= t('activity.timeline')%></div>
@@ -9,7 +10,13 @@
     <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
   </div>
   <div class="row space_center"></div>
+  <div class="tab-content">
   <%= render :partial => 'activities/wall',
-             :locals  => { :activities => activities } %>
+             :locals  => { :activities => owner.wall(:home).page(params[:page]),
+                           :is_active_wall => false } %>
+  <%= render :partial => 'activities/wall_me',
+             :locals  => { :activities => owner.wall(:profile, :for => owner). page(params[:page]),
+                           :is_active_wall => true } %>
+  </div>
 </section>
 
