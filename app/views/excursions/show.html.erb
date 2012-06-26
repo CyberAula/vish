@@ -61,25 +61,5 @@
         </div>
       </div>
     </div>
-
-    <div class="span3 space_left">
-      <!--
-      <div class="tabbable">
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#organizer-1"><%#= t('organizer.other') %></a></li>
-        </ul>
-        <div class="tab-content">
-          <div id="organizer-1" class="tab-pane active">
-
-          </div>
-        </div>
-      </div>
-      -->
-
-      <% if user_signed_in? %>
-        <%= render :partial => "contacts/suggestions" %>
-      <% end %>
-    </div>
-
   </div>
 </div>
