@@ -18,9 +18,9 @@
   </li>
 </ul>
 
-<%= content_for :javascript do %>
+<%= javascript_tag do %>
   $(".video-modal-button-<%= video.id.to_s%>").on("click", function(){
-    Vish.Wall.getModal("video", <%= video.id.to_s %>, <%= video.activities.first.id.to_s %>, <%= video.activities.first.liked_by?(current_subject) ? "true" : "false" %>, "<%= raw j truncate_name(video.title, :length => 75) %>");
+    <%= modal_for(video) %>
     $("#jpId<%=video.id%>").jPlayer( {
       ready: function () {
         $(this).jPlayer("setMedia", {

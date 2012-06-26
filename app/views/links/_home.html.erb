@@ -4,11 +4,17 @@
   <ul class="thumbnails">
     <li class="span">
       <div id="margin-resources">
-      <%= link_to  "", link.url, :class => icon_class_for(link), :alt => link_title, :target => "_blank" %>
+      <% if link.callback_url %>
+        <a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="<%= icon_class_for(link) %> link-modal-button-<%= link.id.to_s%>"></a>
+      <% else %>
+        <%= link_to  "", link.url, :class => icon_class_for(link), :alt => link_title, :target => "_blank" %>
+      <% end %>
       </div>
     </li>
     <div class="row-fluid-100">
-      <h4 class="link_gray size15 "><%= link_to truncate_name(link_title, :length => 20), link.url, :target => "_blank" %></h4>
+      <h4 class="link_gray size15 ">
+        <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%>"><% else %><a href="<%= link.url %>" target="_blank"><% end %><%= truncate_name(link.title, :length => 20) %></a>
+      </h4>
         <div class="rw-words rw-words-1">
           <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(link.author.name, :length => 18), link.author.subject)%></h5></span>
           <div class="clearfloat"></div>
@@ -16,4 +22,14 @@
         </div>
     </div>
   </ul>
+
+  <%= javascript_tag do %>
+    $(".link-modal-button-<%= link.id.to_s%>").on("click", function(){
+      <%= modal_for(link) %>
+      SocialStream.Linkser.Wall.openCallback("link-modal-body-<%= link.id.to_s %>", "<%= link.callback_url %>", "<%= link.width %>", "<%= link.height %>");
+    });
+    $(".link-modal-close-<%= link.id.to_s%>").on("click", function(){
+      $("#link-modal-<%= link.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+    });
+  <% end %>
 <% end %>

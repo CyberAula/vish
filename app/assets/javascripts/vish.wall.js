@@ -89,12 +89,20 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
-  var getModal = function(klass, id, activity_id, is_fav, title) {
+  var modalLikeBtn = function(signed_in, activity_id, is_fav){
+    if(signed_in) {
+      return '<div class="menu_resources"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/assets/star-'+ (is_fav?'on':'off') +'.png" />'+ (is_fav?I18n.t('follow.is_favorite'):I18n.t('follow.add_favorite')) +'</a></div></div>';
+    } else {
+      return ""; /* TODO: add button that leads to login? */
+    }
+  }
+
+  var getModal = function(klass, id, signed_in, activity_id, is_fav, title) {
     var modal = $('#' + klass + '-modal-' + id);
     if (modal.length) {
       return modal;
     } else {
-      return $('<div class="modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer"><div class="menu_resources"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/assets/star-'+ (is_fav?'on':'off') +'.png" />'+ (is_fav?I18n.t('follow.is_favorite'):I18n.t('follow.add_favorite')) +'</a></div></div><a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer">' + modalLikeBtn(signed_in, activity_id, is_fav) + '<a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div>').appendTo($('body'));
     }
   }
 
