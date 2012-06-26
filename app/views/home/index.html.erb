@@ -214,13 +214,17 @@
         <%= render :partial => "followers/filter" %>
 
         <div class="follow-home-box ">
-        <% current_subject.following_actor_objects.includes(:actor).limit(6).each do |object|  %>
+        <% current_subject.following_actor_objects.includes(:actor).all.shuffle.first(6).each do |object|  %>
 
           <%= div_for object.actor, :class => '' do %>
             <ul class="thumbnails span">
               <li class="span1">
                 <%= link_to(image_tag(object.actor.logo.url(:contact)),
-                            object.actor.subject, :class => "container") %>
+                            object.actor.subject,
+                            :class => "container follower-tooltip",
+                            :title => truncate(object.actor.name, :length => 20),
+                            :rel => 'tooltip'
+                            ) %>
               </li>
             </ul>
           <% end %>
@@ -235,15 +239,18 @@
 
       <div id="follow-2" class="tab-pane">
         <%= render :partial => "followers/filter" %>
-        <div class="space_center"></div>
         <div class="follow-home-box ">
-        <% current_subject.followers.limit(6).each do |object|  %>
+        <% current_subject.followers.all.shuffle.first(6).each do |object|  %>
 
           <%= div_for object.actor, :class => '' do %>
             <ul class="thumbnails span">
               <li class="span1">
                 <%= link_to(image_tag(object.actor.logo.url(:contact)),
-                            object.actor.subject, :class => "container") %>
+                            object.actor.subject,
+                            :class => "container follower-tooltip",
+                            :title => truncate(object.actor.name, :length => 20),
+                            :rel => 'tooltip'
+                            ) %>
               </li>
             </ul>
           <% end %>
@@ -259,7 +266,11 @@
     </div>
   </div>
 
-
+<%= javascript_tag do %>
+  $(document).ready(function(){
+    $('.follower-tooltip').tooltip({ placement: 'bottom'});
+  });
+<% end %>
 
 </section>
 
