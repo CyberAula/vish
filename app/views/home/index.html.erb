@@ -27,6 +27,7 @@
                        :locals => {:excursions => my_network_excursions} %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
       </div>
       <div id="ex-2" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-me"} %>
@@ -40,6 +41,7 @@
                        :locals => {:excursions => my_excursions} %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), [current_subject, Excursion]) %></div>
       </div>
       <div id="ex-3" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-more"} %>
@@ -50,6 +52,7 @@
                        :locals => {:excursion => excursion} %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
       </div>
       <div id="ex-4" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-fav"} %>
@@ -63,8 +66,8 @@
                        :locals => {:excursions => fav_excursions} %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
       </div>
-      <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
     </div>
 
   </div>
@@ -112,6 +115,7 @@
             <% end %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
       </div>
       <div id="repo-2" class="tab-pane">
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-me"} %>
@@ -138,6 +142,7 @@
             <% end %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), [current_subject, Document]) %></div>
       </div>
       <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-more"} %>
@@ -159,6 +164,7 @@
             <% end %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
       </div>
       <div id="repo-4" class="tab-pane">
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-fav"} %>
@@ -185,8 +191,8 @@
             <% end %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
       </div>
-      <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
     </div>
   </div>
 
@@ -205,9 +211,6 @@
     <div class="span2 size40 title_menu_home ">
       <%= t('follow.contacts')%></div>
     <div class="clearfloat"></div>
-
-
-
 
     <div class="tab-content">
       <div id="follow-1" class="tab-pane active">
@@ -230,12 +233,8 @@
           <% end %>
         <% end %>
         </div>
-
-
-
+        <div class="more"><%= link_to(t('view_all'), followings_path(:type => "resource")) %></div>
       </div>
-
-
 
       <div id="follow-2" class="tab-pane">
         <%= render :partial => "followers/filter" %>
@@ -255,16 +254,11 @@
             </ul>
           <% end %>
         <% end %>
-        </div>
-
-
-      </div>
-
-
-      <div class="more"><%= link_to(t('view_all'), followings_path(:type => "resource")) %>
+        <div class="more"><%= link_to(t('view_all'), followers_path(:type => "resource")) %></div>
       </div>
     </div>
   </div>
+</div>
 
 <%= javascript_tag do %>
   $(document).ready(function(){

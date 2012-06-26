@@ -32,6 +32,7 @@
             <% end %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
       </div>
       <div id="repo-2" class="tab-pane active">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "resource-filter-me" } %>
@@ -53,6 +54,7 @@
             <% end %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), [@user, Document]) %></div>
       </div>
       <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "resource-filter-fav" } %>
@@ -73,6 +75,7 @@
             <% end %>
           <% end %>
         </div>
+        <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
       </div>
     </div>
   </div>
