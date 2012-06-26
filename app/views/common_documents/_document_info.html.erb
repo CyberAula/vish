@@ -100,9 +100,11 @@
 <div class="space_center"></div>
 
 <div class="pagination-right margin-up">
-  <div class="menu_resources">
-    <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-  </div>
+  <% if document.is_a? Document %>
+    <div class="menu_resources">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+    </div>
+  <% end %>
   <% if document.post_activity.delete_object_by?(current_subject) %>
     <div class="menu_resources">
       <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
