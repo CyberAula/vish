@@ -1,6 +1,7 @@
 <%= div_for embed, :class => 'content_size' do %>
 
   <div class="embed_show">
+    <div><%= raw embed.fulltext %></div>
     <textarea readonly="readonly" style="width: 100%;" rows="10"><%=h embed.fulltext %></textarea>
   </div>
 
