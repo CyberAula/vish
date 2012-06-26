@@ -81,7 +81,7 @@
         <br class="clearfloat"/>
       </div>
     </div>
-    <% if document.post_activity.edit_object_by?(current_subject) %>
+    <% if user_signed_in? and document.post_activity.edit_object_by?(current_subject) %>
       <div id="edit" class="tab-pane">
         <%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
 
