@@ -1,5 +1,7 @@
 <% unless params[:controller].eql? 'devise/sessions' and params[:action].eql? 'new' %>
-<div class="pull-right">
+
+  <div class="space_center"></div>
+  <div class="pull-right">
   <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
     <div class="pagination-right">
       <%= f.email_field :email, :id => "username" %>

@@ -114,6 +114,7 @@ es:
   translate:
     change: "Cambiar idioma"
   message:
+    send: "Enviar mensaje"
     new: "Mensaje nuevo"
     unread: " sin leer"
   more: "more"
