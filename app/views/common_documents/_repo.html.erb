@@ -5,20 +5,26 @@
   </div>
 
   <div class="attachment_tile_tooltip">
-<% ttl = %>
-    <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
-                "javascript:;",  :alt => document.title, :rel => 'tooltip', :title=> 
-                    if document.is_a? Document 
-                        raw("<i class='icontool16-tool16_arrow_3'></i> ") +"<a href='" + download_document_path(document) + "'>" + t('document.actions.download') + "</a>" + 
+    <% ttl = ""
+       if document.is_a? Document 
+         ttl = ttl + link_to(raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), download_document_path(document)) + "<br/>"
+       elsif document.is_a? Link
+         ttl = ttl + link_to(raw("<i class='icontool16-tool16_arrow_8'></i> ")  + t('link.go'), document.url, :target => "_blank" ) + "<br/>" 
+       end
 
-                    if  document.is_a? Document and document.post_activity.edit_object_by?(current_subject) then 
-                    '<br/>' + raw("<i class='icontool16-tool16_edit'></i> ") +"<a href='" + document_path(document, :editing => true) + "'>" + t('document.actions.edit') + "</a>" end+    
+       if user_signed_in? and (document.is_a? Document or document.is_a? Embed) and document.post_activity.edit_object_by?(current_subject)
+         ttl = ttl + link_to(raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), document_path(document, :editing => true)) + "<br/>"
+       end
 
-                    if document.post_activity.delete_object_by?(current_subject) then
-                      '<br/>' + raw("<i class='icontool16-tool16_symbol_delete'></i> ")  + "<a href='"+ document_path(document) + "'data-confirm= 'Delete picture?' data-method='delete' rel='nofollow'>" +  t('document.actions.delete') + "</a>"end 
+       if document.post_activity.delete_object_by?(current_subject)
+         ttl = ttl + link_to(raw("<i class='icontool16-tool16_symbol_delete'></i> ")  + t('document.actions.delete'), document, :confirm => t('confirm_delete', :scope => document.class.to_s.underscore), :method => :delete, :class => :action) + "<br/>"
+       end
 
-                      else document.is_a? Link 
-                        raw("<i class='icontool16-tool16_arrow_8'></i> ")  +"<a href='" + document.url + "'>" + t('link.go') + "</a>" + if document.post_activity.delete_object_by?(current_subject) then '<br/>' + raw("<i class='icontool16-tool16_symbol_delete'></i> ")  + "<a href='"+ link_path(document) + "'data-confirm= 'Delete picture?' data-method='delete' rel='nofollow'>" +  t('document.actions.delete') + "</a>"end end %>   
+    %>
+    <% unless document.is_a? Embed and (not user_signed_in? or current_subject == document.owner) %>
+      <%= link_to content_tag(:span, raw("<i class=' iconnav-tools'></i> ")),
+                  "javascript:;",  :alt => document.title, :rel => 'tooltip', :title=> ttl %>
+    <% end %>
 
     <div class="tipsy_content" style="display:none;">
     </div>
