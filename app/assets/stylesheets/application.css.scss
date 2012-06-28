@@ -846,9 +846,10 @@ form.example input.file.hidden {
 .header_text2 {
   font-size: 20px;
   margin-left: 20px;
-  color:#FF005D;
+  color:#666666;
   margin-bottom: 10px;
-  margin_top:20px;
+  padding-top: 15px
+
 }
 .title_suggestion{
   width: 120px;
@@ -1048,8 +1049,8 @@ margin-left: 20px;
   color: #FF005D; opacity: 0.6;
 }
 #avatar_info{
-  margin-top: 40px;
-  margin-left: 25px;
+
+
   src: url(fonts/DsignesBold.otf);
   color: #3366FF;
   font-size: 14pt;

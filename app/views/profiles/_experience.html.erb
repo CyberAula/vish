@@ -3,12 +3,14 @@
     <div class="header_text2">
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.experience') %>
       <% if is_owner? %>
+
         <div class="header_icon_right unboder">
           <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), "javascript:showSettings(\"experience_info\");" %>
         </div>
       <% end %>
     </div>
   </div>
+</div>
   <div class="row span6 boxy_white">
     <div class="space_center"></div>
     <div class="content settings_briefing" id="experience_info_briefing">
@@ -39,4 +41,4 @@
     <% end %>
     <div class="space_center"></div>
   </div>
-</div>
+
