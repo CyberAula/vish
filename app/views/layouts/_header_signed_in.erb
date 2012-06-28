@@ -21,7 +21,7 @@
 
         <div class="btn-group menu_header inline-block">
 
-          <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn ", :title => t('navigation.home'), :rel=> '') %>
+          <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn") %>
           <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel=> 'tooltip') %>
 <%= link_to(raw("<i class='iconnav-followers'></i> "),
            followings_path,
