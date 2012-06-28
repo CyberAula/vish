@@ -55,14 +55,13 @@
           cssSelectorAncestor: "#jp_interface_<%=document.id%>"
         });
       <% end %>
-    });
-    $(".<%= document.class.to_s.downcase %>-modal-close-<%= document.id.to_s%>").on("click", function(){
-      <% if document.is_a? Audio or document.is_a? Video %>
-      <% elsif document.is_a? Video %>
-        $("#jpId<%=document.id%>").jPlayer('stop');
-      <% else %>
-        $("#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
-      <% end %>
+      $("#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>").on("hidden", function(){
+        <% if document.is_a? Audio or document.is_a? Video %>
+          $("#jpId<%=document.id%>").jPlayer('stop');
+        <% else %>
+          $("#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+        <% end %>
+      });
     });
   <% end %>
 <% end %>

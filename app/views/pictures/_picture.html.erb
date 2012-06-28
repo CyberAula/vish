@@ -19,9 +19,9 @@
     $(".picture-modal-button-<%= picture.id.to_s%>").on("click", function(){
       <%= modal_for(picture) %>
       $("#picture-modal-<%= picture.id.to_s%> .modal-body").html("<%= raw j (thumb_for(picture, 500)) %>");
-    });
-    $(".picture-modal-close-<%= picture.id.to_s%>").on("click", function(){
-       $("#picture-modal-<%= picture.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+      $("#picture-modal-<%= picture.id.to_s%>").on("hidden", function(){
+         $("#picture-modal-<%= picture.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+      });
     });
   <% end %>
 

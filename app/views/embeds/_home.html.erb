@@ -22,9 +22,9 @@
     $(".embed-modal-button-<%= embed.id.to_s%>").on("click", function(){
       <%= modal_for(embed) %>
       $("#embed-modal-<%= embed.id.to_s%> .modal-body").html("<%= raw j embed.fulltext %>");
-    });
-      $(".embed-modal-close-<%= embed.id.to_s%>").on("click", function(){
-      $("#embed-modal-<%= embed.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+      $("#embed-modal-<%= embed.id.to_s%>").on("hidden", function(){
+        $("#embed-modal-<%= embed.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+      });
     });
   <% end %>
 <% end %>

@@ -30,9 +30,9 @@
       swfPath: "assets",
       cssSelectorAncestor: "#jp_interface_<%=audio.id%>"
     });
-  });
-  $(".audio-modal-close-<%= audio.id.to_s%>").on("click", function(){
-    $("#jpId<%=audio.id%>").jPlayer('stop');
+    $("#audio-modal-<%= audio.id.to_s%>").on("hidden", function(){
+      $("#jpId<%=audio.id%>").jPlayer('stop');
+    });
   });
 <% end %>
 
