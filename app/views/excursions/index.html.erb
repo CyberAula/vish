@@ -1,21 +1,64 @@
-<h1>Listing excursions</h1>
+<% profile_subject ||= current_subject %>
+<div class="excursion tabbable">
+  <ul class="nav nav-tabs span7">
+    <% params[:scope]='me' unless params[:scope].present?  %>
+    <li class="<%= params[:scope]=='net'  ? "active" : ""  %>"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
+    <li class="<%= params[:scope]=='me'   ? "active" : ""  %>"><a data-toggle="tab" href="#ex-2"><%=t('excursion.my') %></a></li>
+    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#ex-3"><%= image_tag "star-on.png", :class => "star" %></a></li>
+  </ul>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <div class="span2 size40 title_menu_home ">
+    <%= t('excursion.title.other')%></div>
+    <div class="clearfloat"></div>
+</div>
 
-<% @excursions.each do |excursion| %>
-  <tr>
-    <td><%= link_to 'Show', excursion %></td>
-    <td><%= link_to 'Edit', edit_excursion_path(excursion) %></td>
-    <td><%= link_to 'Destroy', excursion, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+
+<% unless params[:no_layout].present? %>
+  <%= render :partial => "common_documents/headers" %>
+  <div id="excursions_grid"></div>
 <% end %>
-</table>
 
-<br />
 
-<%= link_to 'New Excursion', new_excursion_path %>
+<div class="tab-content">
+  <div id="ex-1" class="tab-pane <%= params[:scope]=='net'  ? "active" : ""  %>">
+    <div id="excursion_filter">
+      <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter"} %>
+    </div>
+
+    <div id="excursion-me" class="block row space_center">
+      <% subject_excursions(profile_subject, {:scope => :net, :limit => 0}).each do |excursion| %>
+        <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div id="ex-2" class="tab-pane <%= params[:scope]=='me'  ? "active" : ""  %>">
+    <div id="excursion_filter">
+      <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me"} %>
+    </div>
+
+    <div id="excursion-me" class="block row space_center">
+      <% subject_excursions(profile_subject, {:scope => :me, :limit => 0}).each do |excursion| %>
+        <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div id="ex-3" class="tab-pane <%= params[:scope]=='like'  ? "active" : ""  %>">
+    <div id="excursion_filter">
+      <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-fav"} %>
+    </div>
+
+    <div id="excursion-me" class="block row space_center">
+      <% subject_excursions(profile_subject, {:scope => :like, :limit => 0}).each do |excursion| %>
+        <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
+      <% end %>
+    </div>
+
+  </div>
+
+
+</div>
+

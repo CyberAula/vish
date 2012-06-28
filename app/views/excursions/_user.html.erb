@@ -20,7 +20,7 @@
                        :locals => { :excursion => excursion} %>
           <% end %>
         </div>
-        <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
+        <div class="more"><%= link_to(t('view_all'), url_for([@user, Excursion]) + "?scope=net") %></div>
       </div>
       <div id="ex-2" class="tab-pane active">
         <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me" } %>
@@ -40,7 +40,7 @@
                        :locals => { :excursion => excursion} %>
           <% end %>
         </div>
-        <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
+        <div class="more"><%= link_to(t('view_all'), url_for([@user, Excursion]) + "?scope=like") %></div>
       </div>
     </div>
   </div>
