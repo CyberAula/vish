@@ -1,4 +1,3 @@
 <% unless profile_subject.blank? %>
-  <% res = Kaminari.paginate_array(subject_resources(profile_subject, { :limit => 0, :scope => :me })).page(params[:page]).per(12) %>
-  <%= render :partial => 'common_documents/index', :locals => { :documents => res } %>
+  <%= render :partial => 'common_documents/index', :locals => { :user => profile_subject } %>
 <% end %>

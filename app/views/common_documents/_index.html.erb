@@ -1,34 +1,63 @@
-<div class="repository tabbable">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('repository.other') %></a></li>
+<div class="resource tabbable">
+  <ul class="nav nav-tabs span7">
+    <% params[:scope]='me' unless params[:scope].present?  %>
+    <li class="<%= params[:scope]=='net'  ? "active" : ""  %>"><a data-toggle="tab" href="#repo-1"><%= t('resource.net') %></a></li>
+    <li class="<%= params[:scope]=='me'   ? "active" : ""  %>"><a data-toggle="tab" href="#repo-2"><%=t('resource.my') %></a></li>
+    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#repo-3"><%= image_tag "star-on.png", :class => "star" %></a></li>
   </ul>
+
+    <div class="span2 size40 title_menu_home ">
+    <%= t('resource.title.other')%></div>
+    <div class="clearfloat"></div>
 </div>
+
 
 <% unless params[:no_layout].present? %>
   <%= render :partial => "common_documents/headers" %>
-  <div id="documents_grid">
-  </div>
+  <div id="documents_grid"></div>
 <% end %>
 
-<div class="tab-content">
-  <div id="repo-1" class="tab-pane active">
 
+<div class="tab-content">
+  <div id="repo-1" class="tab-pane <%= params[:scope]=='net'  ? "active" : ""  %>">
+    <div id="repository_filter">
+      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repository-filter"} %>
+    </div>
+
+    <div id="repository-me" class="block row space_center">
+      <% subject_resources(user, {:scope => :net, :limit => 0}).each do |document| %>
+        <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div id="repo-2" class="tab-pane <%= params[:scope]=='me'  ? "active" : ""  %>">
     <div id="repository_filter">
       <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repository-filter-me"} %>
     </div>
 
     <div id="repository-me" class="block row space_center">
-      <% documents.each do |document| %>
+      <% subject_resources(user, {:scope => :me, :limit => 0}).each do |document| %>
         <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
       <% end %>
     </div>
 
-    <% unless documents.last_page? %>
-      <% next_url = url_for(:no_layout => true,
-                            :page => params[:page].present? ? params[:page].to_i + 1 : 2,
-                            :query => params[:query].present? ? params[:query] : "") %>
-      <%#= content_tag(:span, "", :class => "screw screw-after", :rel => next_url) %>
-    <% end %>
   </div>
+
+  <div id="repo-3" class="tab-pane <%= params[:scope]=='like'  ? "active" : ""  %>">
+    <div id="repository_filter">
+      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repository-filter-fav"} %>
+    </div>
+
+    <div id="repository-me" class="block row space_center">
+      <% subject_resources(user, {:scope => :like, :limit => 0}).each do |document| %>
+        <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
+      <% end %>
+    </div>
+
+  </div>
+
+
 </div>
 
