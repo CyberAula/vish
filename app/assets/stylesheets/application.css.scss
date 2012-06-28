@@ -1006,23 +1006,6 @@ margin-right: 20px
 .icon_x-link:last-child {
   *margin-left: 0;
 }
-.icon_75-link {
-  display: inline-block;
-  width: 75px;
-  height: 75px;
-  line-height: 75px;
-  vertical-align: text-top;
-  background-image: url("icons/link_big_gray.png");
-  background-repeat: no-repeat;
-  *margin-right: .3em;
-}
-.icon_75-link:hover {
-  background-image: url("icons/link_big_blue.png");
-}
-.icon_75-link:last-child {
-  *margin-left: 0;
-}
-
 
 /*......................................................................edit profile*/
 .btn_info_profile{
@@ -1225,7 +1208,7 @@ margin-left: 20px;
   height: 48px;
 }
 
-.attachment_tile_tipsy{
+.attachment_tile_tooltip{
   position: absolute;
   top: 0px;
   right: 9px;

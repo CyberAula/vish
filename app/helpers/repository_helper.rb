@@ -2,7 +2,7 @@ module RepositoryHelper
 
   def icon_class_for(document)
     return 'icon_repository32-32_link' if document.is_a? Link
-    return 'icon_repository32-32_file' if document.is_a? Embed
+    return 'icon_repository32-32_embed' if document.is_a? Embed
     case document.file.url.to_s.split('.').last.downcase
     when "pdf"
       return 'icon_repository32-32_pdf'
