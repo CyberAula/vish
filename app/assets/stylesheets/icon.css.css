@@ -265,6 +265,7 @@ li{
 .icon_repository32-32_flash { background-position: -168px -210px ;}
 .icon_repository32-32_quiz { background-position: -210px -210px ;}
 .icon_repository32-32_link { background-position: -252px -210px;}
+.icon_repository32-32_embed { background-position: -294px -210px;}
 
 
 /*........................hover........................... */
@@ -296,6 +297,7 @@ li{
 .icon_repository32-32_flash:hover { background-position: -168px -168px ;}
 .icon_repository32-32_quiz:hover { background-position: -210px -168px ;}
 .icon_repository32-32_link:hover { background-position: -252px -168px;}
+.icon_repository32-32_embed:hover { background-position: -294px -168px;}
 
 
 /*.................. icon repository 75 x 75 px......................*/
@@ -345,6 +347,7 @@ li{
 .icon_repository75-75_flash { background-position: -340px -425px ;}
 .icon_repository75-75_quiz { background-position: -425px -425px ;}
 .icon_repository75-75_link { background-position: -510px -425px;}
+.icon_repository75-75_embed { background-position: -595px -425px;}
 
 
 /*........................hover........................... */
@@ -376,6 +379,7 @@ li{
 .icon_repository75-75_flash:hover { background-position: -340px -340px ;}
 .icon_repository75-75_quiz:hover { background-position: -425px -340px ;}
 .icon_repository75-75_link:hover { background-position: -510px -340px;}
+.icon_repository75-75_embed { background-position: -595px -340px;}
 
 
 /*.................. icon message 22 x 22 px......................*/

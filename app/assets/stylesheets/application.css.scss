@@ -1612,6 +1612,7 @@ margin-bottom: 30 px;
 width:auto;}
 
 
+
 /* details resources/excursion */
 
 .notebook{
@@ -1629,11 +1630,11 @@ width:auto;}
 
 }
 .decoration-notebook{
-width:25px;
-display: inline-block   ;
-float:left;
-height:auto;
-background-color: #f5f5f5;
+  width:25px;
+  display: inline-block   ;
+  float:left;
+  height:auto;
+  background-color: #f5f5f5;
 
 
 }
@@ -1655,23 +1656,22 @@ background-color: #f5f5f5;
 
 .content-notebook{
   display: inline-block;
-width: 250px;
-float:right;
+  width: 250px;
+  float:right;
 
 
 }
 
 #margin-resources{margin-right: 5px;}
 
+
+
+
 .title_resources{
-  font-size: 20px;
-  text-decoration: underline;
-  color:#FF005D;
-}
-.title_resources{
-  font-size: 20px;
-  text-decoration: underline;
-  color: #690024;
+  font-size: 15px;
+  color:#555555;
+  padding-left: 5px;
+  width:245px;
 }
 
 #description_resources{
@@ -1698,19 +1698,32 @@ float:right;
 }
 .info_visits{
   display:inline-block;
-  font-size: 14pt;
+  background-color: #FFFFFF;
+  margin-top: 5px;
+  margin-right: 5px;
+  padding: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  float:right;
+
 
 }
 .picture_icon{
   display: inline-block;
 
 }
+.date_resources{
+  padding-left:5px;
 
+}
 .details_resources{
   float:left;
   display: inline-block;
   width: auto;
-  color: #FF005D; opacity: 0.6;
+  color: #FF005D;
+  clear: right;
+  margin: 5 px;
 }
 .like_count{
   display:inline-block;
@@ -1722,3 +1735,56 @@ float:right;
   display: inline-block;
   float: right;
 }
+.view-and-like{
+  width: auto;
+  float:right;
+  display:inline-block;
+
+
+}
+.number_count{
+  width: 40px ;
+  height:15px;
+}
+.tabs_nav_notebook{
+  width: 150px;
+  float:left ;
+  margin-top:5px;
+
+
+}
+.tabs_nav_notebook .nav > li > a:hover {
+  text-decoration: none;
+  background-color: #F9F9F9;
+  border:none;
+
+}
+
+.tabs_nav_notebook.nav-pills > li > a {
+
+  background-color: #F5F5F5;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin_right:5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.favorit_resources{
+  float:left;
+  size-font:10px;
+  background-color: #F5F5F5;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 4px;
+  padding-left: 4px;
+  margin_right:5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+

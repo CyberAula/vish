@@ -1,113 +1,151 @@
 <div class="notebook">
   <div class="decoration-notebook">
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
+    <div class="hole_notebook"></div>
 
-    <div class="hole_notebook"></div>
-    <div class="hole_notebook"></div>
-    <div class="hole_notebook"></div>
-    <div class="hole_notebook"></div>
-    <div class="hole_notebook"></div>
+
   </div>
 
 
   <div class="content-notebook">
 
-
-
-
-
-<div class="documents tabbable">
-	<ul class="nav nav-pills">
-    <li class="active">
-      <a data-toggle="tab" href="#details"><%=t('document.actions.details')%></a>
-    </li>
-  	<% if document.post_activity.edit_object_by?(current_subject) %>
-      <li class=""><a data-toggle="tab" href="#edit"><%=t('document.actions.edit')%></a></li>
-	  <% end %>
-	</ul>
-
-
-
-
-
-
-  <div class="tab-content">
-
-
-      <div class="details_resources">
-        <%= t('document.info.title') %>
+    <div class="tabs_nav_notebook">
+      <div class="documents tabbable pull-left inline-block">
+        <ul class="nav nav-pills">
+          <li class="active">
+            <a data-toggle="tab" href="#details"><%= t('document.actions.details') %></a>
+          </li>
+          <% if document.post_activity.edit_object_by?(current_subject) %>
+              <li class=""><a data-toggle="tab" href="#edit"><%= t('document.actions.edit') %></a></li>
+          <% end %>
+        </ul>
       </div>
-
-    <div class="title_resources">
-      <%= document.title.nil? ? document.file_file_name : document.title %>
     </div>
 
 
-    <div id="details" class="tab-pane active">
-      <div class="">
-        <div class="">
-          <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first, :size => :big)%></div>
-        </div>
-        <div class="info_visits">
-          <span class="green"><%= document.visit_count.to_s %></span> <%= t('follow.views') %>, 
-          <span class="green like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s  %></span> <%= t('follow.favorites') %>
-        </div>
-      </div>
+    <div class="view-and-like">
 
-      <div class="info_resources">
-        <div class="details_resources">
-          <%= t('document.info.date.created_at') %>
-        </div>
-        <div class="date_resources">
-          <%= I18n.localize document.created_at, :format => :long %>
-        </div>
+      <div class="info_visits">
+        <span class="green number_count"><%= document.visit_count.to_s %></span> <%= t('follow.views') %> </br>
+        <span class="green like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s %></span> <%= t('follow.favorites') %>
       </div>
-      <div class="info_resources">
+    </div>
+
+    <div class="clearfloat"></div>
+    <div class="favorit_resources">
+      <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first, :size => :big) %></div>
+    </div>
+
+    <div class="clearfloat"></div>
+    <div class="space_center"></div>
+
+    <div class="tab-content">
+
+      <div id="details" class="tab-pane active">
+
         <div class="details_resources">
-          <%= t('document.info.date.updated_at') %>
+          <%= t('document.info.title') %>
+        </div>
+        <div class="clearfloat"></div>
+        <div class="title_resources">
+          <%= document.title.nil? ? document.file_file_name : document.title %>
         </div>
 
-        <div class="date_resources">
-          <%= I18n.localize document.updated_at, :format => :long %>
-        </div>
-      </div>
-      <div class="info_resources">
-        <% if document.is_a? Document %>
-          <div id="file_size">
-            <div class="details_resources">Size</div>
-            <div class="date_resources"><%= number_to_human_size document.file_file_size %></div>
+
+        <div class="info_resources">
+          <div class="details_resources">
+            <%= t('author') %>
           </div>
-        <% end %>
+          <div class="clearfloat"></div>
+          <div class="date_resources">
+            <%=link_to( truncate_name(document.author.name, :length => 18), document.author.subject)%>
+          </div>
+        </div>
 
-        <br class="clearfloat"/>
+
+        <div class="info_resources">
+          <div class="details_resources">
+            <%= t('info.description') %>
+          </div>
+          <div class="clearfloat"></div>
+          <div class="date_resources">
+            <!--------añadir descripcion---------->
+          </div>
+        </div>
+
+        <div class="info_resources">
+          <div class="details_resources">
+            <%= t('info.tags') %>
+          </div>
+          <div class="clearfloat"></div>
+          <div class="date_resources">
+            <!------añadir tags---------------->
+          </div>
+        </div>
+
+
+        <div class="info_resources">
+          <div class="details_resources">
+            <%= t('document.info.date.created_at') %>
+          </div>
+          <div class="clearfloat"></div>
+          <div class="date_resources">
+            <%= I18n.localize document.created_at, :format => :long %>
+          </div>
+        </div>
+        <div class="info_resources">
+          <div class="details_resources">
+            <%= t('document.info.date.updated_at') %>
+          </div>
+          <div class="clearfloat"></div>
+          <div class="date_resources">
+            <%= I18n.localize document.updated_at, :format => :long %>
+          </div>
+        </div>
+        <div class="info_resources">
+          <% if document.is_a? Document %>
+              <div id="file_size">
+                <div class="details_resources">Size</div>
+                <div class="clearfloat"></div>
+                <div class="date_resources"><%= number_to_human_size document.file_file_size %></div>
+              </div>
+          <% end %>
+
+          <br class="clearfloat"/>
+        </div>
       </div>
+      <% if user_signed_in? and document.post_activity.edit_object_by?(current_subject) %>
+          <div id="edit" class="tab-pane">
+            <%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
+
+          </div>
+      <% end %>
     </div>
-    <% if user_signed_in? and document.post_activity.edit_object_by?(current_subject) %>
-      <div id="edit" class="tab-pane">
-        <%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
-
-      </div>
-    <% end %>
-  </div>
   </div>
 
 
 
-
-
-  </div>
 </div>
+
 
 <div class="space_center"></div>
 
 <div class="pagination-right margin-up">
   <% if document.is_a? Document %>
-    <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-    </div>
+      <div class="menu_resources">
+        <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+      </div>
   <% end %>
   <% if document.post_activity.delete_object_by?(current_subject) %>
-    <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-    </div>
+      <div class="menu_resources">
+        <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete', :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+      </div>
   <% end %>
 </div>
+
