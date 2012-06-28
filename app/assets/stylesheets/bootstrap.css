@@ -4263,12 +4263,12 @@ input[type="submit"].btn.btn-mini {
 }
 
 .tooltip.in {
-  opacity: 0.8;
-  filter: alpha(opacity=80);
+  opacity: 0.9;
+  filter: alpha(opacity=90);
 }
 
 .tooltip.top {
-  margin-top: -2px;
+  margin-top: 13px;
 }
 
 .tooltip.right {
@@ -4284,10 +4284,11 @@ input[type="submit"].btn.btn-mini {
 }
 
 .tooltip.top .tooltip-arrow {
-  bottom: 0;
+  margin-top: 11px;
+  bottom: 1px;
   left: 50%;
   margin-left: -5px;
-  border-top: 5px solid #000000;
+  border-top: 5px solid  #e0e0e0;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;
 }
@@ -4298,7 +4299,7 @@ input[type="submit"].btn.btn-mini {
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 5px solid #000000;
+  border-left: 5px solid  #e0e0e0;
 }
 
 .tooltip.bottom .tooltip-arrow {
@@ -4306,7 +4307,7 @@ input[type="submit"].btn.btn-mini {
   left: 50%;
   margin-left: -5px;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #000000;
+  border-bottom: 5px solid  #e0e0e0;
   border-left: 5px solid transparent;
 }
 
@@ -4315,20 +4316,21 @@ input[type="submit"].btn.btn-mini {
   left: 0;
   margin-top: -5px;
   border-top: 5px solid transparent;
-  border-right: 5px solid #000000;
+  border-right: 5px solid  #e0e0e0;
   border-bottom: 5px solid transparent;
 }
 
 .tooltip-inner {
   max-width: 200px;
   padding: 3px 8px;
-  color: #ffffff;
+  font-size: 14px;
+  color: #666666;
   text-align: center;
   text-decoration: none;
-  background-color: #000000;
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
+  background-color: #e0e0e0;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius: 15px;
 }
 
 .tooltip-arrow {
