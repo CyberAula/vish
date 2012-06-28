@@ -115,7 +115,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
+        <div class="more"><%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=net") %></div>
       </div>
       <div id="repo-2" class="tab-pane">
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-me"} %>
@@ -191,7 +191,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
+        <div class="more"><%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=like") %></div>
       </div>
     </div>
   </div>
