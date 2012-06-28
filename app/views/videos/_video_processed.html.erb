@@ -35,9 +35,9 @@
       swfPath: "assets",
       cssSelectorAncestor: "#jp_interface_<%=video.id%>"
     });
-  });
-  $(".video-modal-close-<%= video.id.to_s%>").on("click", function(){
-    $("#jpId<%=video.id%>").jPlayer('stop');
+    $("#video-modal-<%= video.id.to_s%>").on("hidden", function(){
+      $("#jpId<%=video.id%>").jPlayer('stop');
+    });
   });
 <% end %>
 

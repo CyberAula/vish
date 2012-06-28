@@ -27,9 +27,9 @@
     $(".link-modal-button-<%= link.id.to_s%>").on("click", function(){
       <%= modal_for(link) %>
       SocialStream.Linkser.Wall.openCallback("link-modal-body-<%= link.id.to_s %>", "<%= link.callback_url %>", "<%= link.width %>", "<%= link.height %>");
-    });
-    $(".link-modal-close-<%= link.id.to_s%>").on("click", function(){
-      $("#link-modal-<%= link.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+      $("#link-modal-<%= link.id.to_s%>").on("hidden", function(){
+        $("#link-modal-<%= link.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
+      });
     });
   <% end %>
 <% end %>
