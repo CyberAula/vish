@@ -1,4 +1,5 @@
 <% profile_subject ||= current_subject %>
+<% unless profile_subject.nil? %>
 <div class="excursion tabbable">
   <ul class="nav nav-tabs span7">
     <% params[:scope]='me' unless params[:scope].present?  %>
@@ -61,4 +62,5 @@
 
 
 </div>
+<%end%>
 
