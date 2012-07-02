@@ -16,9 +16,9 @@
 
     <div class="tab-content">
       <div id="ex-1" class="tab-pane active">
-        <%= render :partial => "excursions/filter", :locals => {:show_add => true} %>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-net"} %>
         <div class="space_center"></div>
-        <div id="excursions" class="row height-tabs-home">
+        <div id="home-excursions-net" class="row height-tabs-home">
           <% my_network_excursions = current_subject_excursions %>
           <% if my_network_excursions.size == 0 %>
             <%= render :partial => "excursions/zero_screen" %>
@@ -30,9 +30,9 @@
         <div class="more"><%= link_to(t('view_all'), url_for([current_subject, Excursion]) + "?scope=net") %></div>
       </div>
       <div id="ex-2" class="tab-pane">
-        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-me"} %>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-me"} %>
         <div class="space_center"></div>
-        <div id="excursions-me" class="row height-tabs-home">
+        <div id="home-excursions-me" class="row height-tabs-home">
           <% my_excursions = current_subject_excursions(:scope => :me) %>
           <% if my_excursions.size == 0 %>
             <%= render :partial => "excursions/my_zero_screen" %>
@@ -44,9 +44,9 @@
         <div class="more"><%= link_to(t('view_all'), [current_subject, Excursion]) %></div>
       </div>
       <div id="ex-3" class="tab-pane">
-        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-more"} %>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-more"} %>
         <div class="space_center"></div>
-        <div id="more" class="row height-tabs-home">
+        <div id="home-excursions-more" class="row height-tabs-home">
           <% for excursion in current_subject_excursions(:scope => :more) %>
             <%= render :partial => "excursions/home",
                        :locals => {:excursion => excursion} %>
@@ -55,9 +55,9 @@
         <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
       </div>
       <div id="ex-4" class="tab-pane">
-        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "excursion-filter-fav"} %>
+        <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-fav"} %>
         <div class="space_center"></div>
-        <div id="excursions-fav" class="row height-tabs-home">
+        <div id="home-excursions-fav" class="row height-tabs-home">
           <% fav_excursions = current_subject_excursions(:scope => :like) %>
           <% if fav_excursions.size == 0 %>
             <%= render :partial => "excursions/fav_zero_screen" %>
@@ -91,9 +91,9 @@
 
     <div class="tab-content">
       <div id="repo-1" class="tab-pane active">
-        <%= render :partial => "common_documents/home_filter" %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-net"} %>
         <div class="space_center"></div>
-        <div id="repository" class="repositories row height-tabs-home">
+        <div id="home-resources-net" class="repositories row height-tabs-home">
           <% my_network_resources = current_subject_resources(:limit => 6) %>
           <% if my_network_resources.size == 0 %>
             <%= render :partial => "common_documents/zero_screen" %>
@@ -118,9 +118,9 @@
         <div class="more"><%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=net") %></div>
       </div>
       <div id="repo-2" class="tab-pane">
-        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-me"} %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-me"} %>
         <div class="space_center"></div>
-        <div id="repository-me" class="repositories row height-tabs-home">
+        <div id="home-resources-me" class="repositories row height-tabs-home">
           <% my_resources = current_subject_resources({:scope => :me, :limit => 6}) %>
           <% if my_resources.size == 0 %>
             <%= render :partial => "common_documents/my_zero_screen" %>
@@ -145,9 +145,9 @@
         <div class="more"><%= link_to(t('view_all'), [current_subject, Document]) %></div>
       </div>
       <div id="repo-3" class="tab-pane">
-        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-more"} %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-more"} %>
         <div class="space_center"></div>
-        <div id="repository-more" class="repositories row height-tabs-home">
+        <div id="home-resources-more" class="repositories row height-tabs-home">
           <% for document in current_subject_resources({:scope => :more, :limit => 6}) %>
             <% if document.is_a? Embed %>
               <%= render :partial => "embeds/home",
@@ -167,9 +167,9 @@
         <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
       </div>
       <div id="repo-4" class="tab-pane">
-        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "document-filter-fav"} %>
+        <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-fav"} %>
         <div class="space_center"></div>
-        <div id="repository-fav" class="repositories row height-tabs-home">
+        <div id="home-resources-fav" class="repositories row height-tabs-home">
           <% fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
           <% if fav_resources.size == 0 %>
             <%= render :partial => "common_documents/fav_zero_screen" %>
