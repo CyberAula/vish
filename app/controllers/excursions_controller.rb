@@ -61,7 +61,53 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def search
+    headers['Last-Modified'] = Time.now.httpdate
+
+    @found_excursions = Excursion.search params[:q], search_options
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.json { render :json => @found_excursions }
+    end
+  end
+
   private
+
+  def search_options
+    opts = search_scope_options
+
+    # Pagination
+    opts.merge!({
+      :order => :created_at,
+      :sort_mode => :desc,
+      :per_page => params[:per_page] || 20,
+      :page => params[:page]
+    })
+
+    opts
+  end
+
+  def search_subject
+    @search_subject ||=
+      ( Actor.find_by_slug(URI(request.referer).path.split("/")[2]) || current_subject )
+  end
+
+  def search_scope_options
+    if params[:scope].blank? || search_subject.blank?
+      return {}
+    end
+
+    case params[:scope]
+    when "me"
+      { :with => { :author_id => [ search_subject.id ] } }
+    when "net"
+      { :with => { :author_id => search_subject.following_actor_ids } }
+    when "other"
+      { :without => { :author_id => search_subject.following_actor_and_self_ids } }
+    else
+      raise "Unknown search scope #{ params[:scope] }"
+    end
+  end
 
   def hack_auth
     params["excursion"] ||= {}

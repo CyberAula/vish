@@ -1,7 +1,9 @@
 <div class="row btn-toolbar">
-  <div class="pull-right">
+  <div class="span2">
     <% filter_id ||= "document-filter" %>
-    <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>"  name="filter">
+    <div class="inline-block"><input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>"  name="filter"></div>
+  </div>
+  <div class="pull-right">
     <%if profile_subject_is_current?%>
       <div class="menu_resources">
         <%= link_to  raw("<i class='icontool16-tool16_arrow_7'></i> ") + t('resource.upload'),new_document_path, :class => :action  %>

@@ -47,14 +47,6 @@ class ResourcesController < ApplicationController
       opts.deep_merge!( { :with => { :live => true } } )
     end
 
-    # profile_subject
-    if profile_subject.present?
-      opts.deep_merge!( { :with => { :owner_id => profile_subject.actor_id } } )
-    end
-
-    # Authentication
-    opts.deep_merge!({ :with => { :relation_ids => Relation.ids_shared_with(current_subject) } } )
-
     # Pagination
     opts.merge!({
       :order => :created_at,
@@ -66,18 +58,23 @@ class ResourcesController < ApplicationController
       opts
   end
 
+  def search_subject
+    @search_subject ||=
+      ( Actor.find_by_slug(URI(request.referer).path.split("/")[2]) || current_subject )
+  end
+
   def search_scope_options
-    if params[:scope].blank? || ! user_signed_in?
+    if params[:scope].blank? || search_subject.blank?
       return {}
     end
 
     case params[:scope]
     when "me"
-      { :with => { :author_id => [ current_subject.id ] } }
+      { :with => { :author_id => [ search_subject.id ] } }
     when "net"
-      { :with => { :author_id => current_subject.following_actor_ids } }
+      { :with => { :author_id => search_subject.following_actor_ids } }
     when "other"
-      { :without => { :author_id => current_subject.following_actor_and_self_ids } }
+      { :without => { :author_id => search_subject.following_actor_and_self_ids } }
     else
       raise "Unknown search scope #{ params[:scope] }"
     end

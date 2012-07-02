@@ -22,11 +22,11 @@
 
 <div class="tab-content">
   <div id="ex-1" class="tab-pane <%= params[:scope]=='net'  ? "active" : ""  %>">
-    <div id="excursion_filter">
-      <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter"} %>
+    <div id="excursion_filter_net">
+      <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-net"} %>
     </div>
 
-    <div id="excursion-me" class="block row space_center">
+    <div id="repo-excursions-net" class="block row space_center">
       <% subject_excursions(profile_subject, {:scope => :net, :limit => 0}).each do |excursion| %>
         <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
       <% end %>
@@ -35,11 +35,11 @@
   </div>
 
   <div id="ex-2" class="tab-pane <%= params[:scope]=='me'  ? "active" : ""  %>">
-    <div id="excursion_filter">
-      <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-me"} %>
+    <div id="excursion_filter_me">
+      <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-me"} %>
     </div>
 
-    <div id="excursion-me" class="block row space_center">
+    <div id="repo-excursions-me" class="block row space_center">
       <% subject_excursions(profile_subject, {:scope => :me, :limit => 0}).each do |excursion| %>
         <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
       <% end %>
@@ -48,11 +48,11 @@
   </div>
 
   <div id="ex-3" class="tab-pane <%= params[:scope]=='like'  ? "active" : ""  %>">
-    <div id="excursion_filter">
-      <%= render :partial => "excursions/filter", :locals => { :filter_id => "excursion-filter-fav"} %>
+    <div id="excursion_filter_fav">
+      <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-fav"} %>
     </div>
 
-    <div id="excursion-me" class="block row space_center">
+    <div id="repo-excursions-fav" class="block row space_center">
       <% subject_excursions(profile_subject, {:scope => :like, :limit => 0}).each do |excursion| %>
         <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
       <% end %>

@@ -20,11 +20,11 @@
 
 <div class="tab-content">
   <div id="repo-1" class="tab-pane <%= params[:scope]=='net'  ? "active" : ""  %>">
-    <div id="repository_filter">
-      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repository-filter"} %>
+    <div id="repository_filter_net">
+      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-net"} %>
     </div>
 
-    <div id="repository-me" class="block row space_center">
+    <div id="repo-resources-net" class="block row space_center">
       <% subject_resources(user, {:scope => :net, :limit => 0}).each do |document| %>
         <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
       <% end %>
@@ -33,11 +33,11 @@
   </div>
 
   <div id="repo-2" class="tab-pane <%= params[:scope]=='me'  ? "active" : ""  %>">
-    <div id="repository_filter">
-      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repository-filter-me"} %>
+    <div id="repository_filter_me">
+      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-me"} %>
     </div>
 
-    <div id="repository-me" class="block row space_center">
+    <div id="repo-resources-me" class="block row space_center">
       <% subject_resources(user, {:scope => :me, :limit => 0}).each do |document| %>
         <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
       <% end %>
@@ -46,11 +46,11 @@
   </div>
 
   <div id="repo-3" class="tab-pane <%= params[:scope]=='like'  ? "active" : ""  %>">
-    <div id="repository_filter">
-      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repository-filter-fav"} %>
+    <div id="repository_filter_fav">
+      <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-fav"} %>
     </div>
 
-    <div id="repository-me" class="block row space_center">
+    <div id="repo-resources-fav" class="block row space_center">
       <% subject_resources(user, {:scope => :like, :limit => 0}).each do |document| %>
         <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
       <% end %>
