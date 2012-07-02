@@ -17,7 +17,7 @@
   <%= javascript_tag do %>
     $(".officedoc-modal-button-<%= officedoc.id.to_s%>").on("click", function(){
       <%= modal_for(officedoc) %>
-      $("#officedoc-modal-<%= officedoc.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= request.env['HTTP_HOST'] + download_document_path(officedoc) %>&officedocded=true' width='480px' height='480px' style='border: none;'></iframe>");
+      $("#officedoc-modal-<%= officedoc.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= request.env['HTTP_HOST'] + download_document_path(officedoc) %>&embedded=true' width='480px' height='480px' style='border: none;'></iframe>");
       $("#officedoc-modal-<%= officedoc.id.to_s%>").on("hidden", function(){
         $("#officedoc-modal-<%= officedoc.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
       });
