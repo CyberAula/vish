@@ -59,7 +59,7 @@ SocialStream::Views::Toolbar.module_eval do
         #Information button
         items << {
           :key => :subject_info,
-          :html => link_to(raw("<i class='icontool16-tool16_info'></i> ")+t('profile.one'), [subject, :profile])
+          :html => link_to(raw("<i class='icontool16-tool16_info'></i> ")+t('profile.one'), [subject, :profile],:class => "menu_resources")
         }
 
         items << {
@@ -71,7 +71,7 @@ SocialStream::Views::Toolbar.module_eval do
         items << {
           :key => :message_new,
           :html => link_to(raw("<i class='iconmessage22-message22_new'></i> ")+ t('message.send'),
-                           new_message_path,
+                           new_message_path, :class => "menu_resources",
                            :remote=> false)
         }
 
