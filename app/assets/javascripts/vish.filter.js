@@ -177,6 +177,23 @@ Vish.Filter = function(V, $, undefined){
                 });
 
 
+		/* Followers filter in full view */
+                $('#follower-filter').on("keyup", function() {
+                        $.ajax({
+                                url: "/followers/search",
+                                data: { q: $('#follower-filter')[0].value, per_page: 20 },
+                                success: function(data) { $('#repo-resources-net').html(data); }
+                        });
+                });
+
+                $('#following-filter').on("keyup", function() {
+                        $.ajax({
+                                url: "/followings/search",
+                                data: { q: $('#following-filter')[0].value, per_page: 20 },
+                                success: function(data) { $('#repo-resources-me').html(data); }
+                        });
+                });
+
         }
 
         return {

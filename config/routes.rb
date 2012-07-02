@@ -15,6 +15,9 @@ Vish::Application.routes.draw do
 
   match 'resources/search' => 'resources#search'
 
+  match 'followers/search' => 'followers#search_followers'
+  match 'followings/search' => 'followers#search_followings'
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   resource :session_locale
