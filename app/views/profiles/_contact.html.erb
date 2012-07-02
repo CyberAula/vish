@@ -85,7 +85,8 @@
 
   </div>
     <% if is_owner? %>
-      <div class="content settings_content" id="contact_info_content" style="display:none;">
+
+      <div class="content settings_content boxy_white" id="contact_info_content" style="display:none;">
         <div class="field_profile">
           <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
             <%= f.fields_for :actor do |actor_form| %>

@@ -18,8 +18,10 @@
 <% end %>
 
 <% if is_owner? %>
+
+
 <div class="row" id="avatar_info">
-  <div class="header">
+  <div class="header_text2">
     <%= t('avatar.profile_change') %>
     <div class="header_icon_right">
       <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), :controller => "avatars", :action => "index" %>
@@ -27,6 +29,8 @@
   </div>
   <div class="space_center"></div>
 </div>
+
+
 <div class="content">
   <div class="row">
   </div>
