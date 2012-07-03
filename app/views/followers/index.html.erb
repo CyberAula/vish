@@ -1,5 +1,5 @@
 <% sidebar %>
-<% toolbar :profile, :subject => current_subject %>
+<% toolbar :profile, :subject => profile_or_current_subject %>
 <div class="followers tabbable">
   <ul class="nav nav-tabs">
     <li class="active">
@@ -16,7 +16,7 @@
         <%= render @followings.
                    page(params[:page]).
                    per(20).
-                   map { |f| current_subject.contact_to!(f) } %>
+                   map { |f| profile_or_current_subject.contact_to!(f) } %>
       </div>
     </div>
     <div id="follower" class="tab-pane  ">
@@ -25,7 +25,7 @@
         <%= render @followers.
                    page(params[:page]).
                    per(20).
-                   map { |f| current_subject.contact_to!(f) } %>
+                   map { |f| profile_or_current_subject.contact_to!(f) } %>
       </div>
     </div>
   </div>
