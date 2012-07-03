@@ -21,9 +21,13 @@
 
 
 
-
+  <section id="" class=" span5 inline-block pull-left">
 <%= show_view_for document %>
+  </section>
 
+  <section id="" class=" span3 inline-block ">
+    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
+  </section>
 
 
         <div id="" class="tabbable span5 inline-block">
@@ -50,9 +54,7 @@
 
 
 <!---------end------------------------->
-  <section id="" class="inline-block">
-    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
-  </section>
+
 
 
 
