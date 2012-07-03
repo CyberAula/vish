@@ -60,7 +60,7 @@
 
         <div class="info_resources">
           <div class="details_resources">
-            <%= t('author') %>
+            <%= t('author').capitalize %>
           </div>
           <div class="clearfloat"></div>
           <div class="date_resources">
@@ -69,31 +69,70 @@
         </div>
 
 
-        <div class="info_resources">
-          <div class="details_resources">
-            <%= t('info.description') %>
+        <% unless document.description.blank? %>
+          <div class="info_resources">
+            <div class="details_resources">
+              <%= t('info.description') %>
+            </div>
+            <div class="clearfloat"></div>
+            <div class="date_resources">
+              <%= truncate(document.description, :length => 100) %>
+            </div>
           </div>
-          <div class="clearfloat"></div>
-          <div class="date_resources">
-            <%= truncate(document.description, :length => 100) %>
-          </div>
-        </div>
+        <% end %>
 
-        <div class="info_resources">
-          <div class="details_resources">
-            <%= t('info.tags') %>
+        <% unless document.tag_list.blank? %>
+          <div class="info_resources">
+            <div class="details_resources">
+              <%= t('info.tags') %>
+            </div>
+            <div class="clearfloat"></div>
+            <div class="date_resources">
+              <ul class="tagit-suggestions">
+                <% document.tag_list.each do |tag| %>
+                  <li class="tagit-choice"><%= tag %></li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="clearfloat"></div>
           </div>
-          <div class="clearfloat"></div>
-          <div class="date_resources">
-            <ul class="tagit-suggestions">
-              <% document.tag_list.each do |tag| %>
-                <li class="tagit-choice"><%= tag %></li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="clearfloat"></div>
-        </div>
+        <% end %>
 
+        <% unless document.language.blank? %>
+          <div class="info_resources">
+            <div class="details_resources">
+              <%= t('lang.title').capitalize %>
+            </div>
+            <div class="clearfloat"></div>
+            <div class="date_resources">
+              <%= case document.language
+                  when ''  ; t('lang.independent')
+                  when 'de'; 'Deutsch'
+                  when 'en'; 'English'
+                  when 'es'; 'Español'
+                  when 'fr'; 'Français'
+                  when 'it'; 'Italiano'
+                  when 'pt'; 'Português'
+                  when 'ru'; 'Русский'
+                  else     ; t('lang.others')
+                  end %>
+            </div>
+            <div class="clearfloat"></div>
+          </div>
+        <% end %>
+
+        <% if document.respond_to? :age_min and document.respond_to? :age_max %>
+          <div class="info_resources">
+            <div class="details_resources">
+              <%= t('document.recommended_age') %>
+            </div>
+            <div class="clearfloat"></div>
+            <div class="date_resources">
+              <%= t('document.recommended_age_detail', :min => document.age_min, :max => document.age_max) %>
+            </div>
+            <div class="clearfloat"></div>
+          </div>
+        <% end %>
 
         <div class="info_resources">
           <div class="details_resources">
