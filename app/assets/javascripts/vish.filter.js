@@ -182,7 +182,7 @@ Vish.Filter = function(V, $, undefined){
                         $.ajax({
                                 url: "/followers/search",
                                 data: { q: $('#follower-filter')[0].value, per_page: 20 },
-                                success: function(data) { $('#repo-resources-net').html(data); }
+                                success: function(data) { $('#followers').html(data); }
                         });
                 });
 
@@ -190,7 +190,7 @@ Vish.Filter = function(V, $, undefined){
                         $.ajax({
                                 url: "/followings/search",
                                 data: { q: $('#following-filter')[0].value, per_page: 20 },
-                                success: function(data) { $('#repo-resources-me').html(data); }
+                                success: function(data) { $('#followings').html(data); }
                         });
                 });
 

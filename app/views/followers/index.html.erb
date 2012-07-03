@@ -20,8 +20,8 @@
       </div>
     </div>
     <div id="follower" class="tab-pane  ">
-      <%= render :partial => "followers/filter", :locals => {:filter_id => "followers-filter"}  %>
-      <div id="followings">
+      <%= render :partial => "followers/filter", :locals => {:filter_id => "follower-filter"}  %>
+      <div id="followers">
         <%= render @followers.
                    page(params[:page]).
                    per(20).
