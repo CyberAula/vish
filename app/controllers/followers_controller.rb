@@ -1,5 +1,4 @@
 class FollowersController < ApplicationController
-  import SocialStream::Controllers::Helpers
   before_filter :profile_subject!, :only => :index
   before_filter :authenticate_user!, :except => :index
 
