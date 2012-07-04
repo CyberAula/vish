@@ -1,5 +1,5 @@
 <div class="space_center"></div>
-<div class="header_text space_null"> <%=subject.followers.count  %> <%= t('follow.followers') %> </div>
+<div class="header_text space_null"> <%= link_to subject.followers.count.to_s + ' ' + t('follow.followers'), [subject,"followers"] %> </div>
 <div class="space_center"></div>
 <% subject.followers.all.shuffle.first(4).each do |object|  %>
 
@@ -16,7 +16,7 @@
 <% end %>
 <% end %>
 <div class="row space_center"></div>
-<div class="header_text space_null"> <%=subject.following_actor_objects.includes(:actor).count%> <%= t('follow.followings') %> </div>
+<div class="header_text space_null"> <%= link_to subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'), [subject,"followings"] %> </div>
 <div class="space_center"></div>
 <% subject.following_actor_objects.includes(:actor).all.shuffle.first(4).each do |object|  %>
 

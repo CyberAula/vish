@@ -13,7 +13,11 @@
   </div>
   <div class="login span6">
     <div id="menu_home">
+      <div class="link_gray pagination-right span3 offset3">
+        <%= link_to t('sign_up'), new_user_registration_path %>
+      </div>
     </div>
+
     <div id="espacio_busqueda"></div>
     <div id="header_search">
       <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" } %>

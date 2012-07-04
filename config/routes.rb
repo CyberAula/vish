@@ -18,6 +18,13 @@ Vish::Application.routes.draw do
   match 'followers/search' => 'followers#search_followers'
   match 'followings/search' => 'followers#search_followings'
 
+  SocialStream.subjects.each do |actor|
+    resources actor.to_s.pluralize do
+      match 'followings' => 'followers#index', :as => :followings, :defaults => { :direction => 'sent' }
+      match 'followers' => 'followers#index', :as => :followers, :defaults => { :direction => 'received' }
+    end
+  end
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   resource :session_locale

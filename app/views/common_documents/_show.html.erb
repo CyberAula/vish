@@ -19,18 +19,18 @@
   ) %>
 <%end%>
 
-<div class="span6">
 
 
-
+  <section id="" class=" span5 inline-block pull-left">
 <%= show_view_for document %>
+  </section>
+
+  <section id="" class=" span3 inline-block ">
+    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
+  </section>
 
 
-  <section id="left" class="inline-block">
-    <div class="row">
-      <div class="span5">
-        <div class="space_center"></div>
-        <div id="" class="tabbable span5">
+        <div id="" class="tabbable span5 inline-block">
           <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
           </ul>
@@ -49,17 +49,12 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-</div>
+
 
 
 <!---------end------------------------->
-  <section id="right" class="span2">
-    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
-  </section>
+
 
 
 

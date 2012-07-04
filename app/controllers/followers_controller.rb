@@ -1,4 +1,5 @@
 class FollowersController < ApplicationController
+  before_filter :profile_subject!, :only => :index
   before_filter :authenticate_user!, :except => :index
 
   respond_to :html, :js
@@ -27,8 +28,8 @@ class FollowersController < ApplicationController
   end
 
   def index
-    @followings = current_subject.following_actor_objects.includes(:actor)
-    @followers = current_subject.followers
+    @followings = profile_or_current_subject.following_actor_objects.includes(:actor)
+    @followers = profile_or_current_subject.followers
 
     respond_to do |format|
       format.html

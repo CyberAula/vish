@@ -1022,7 +1022,11 @@ margin-right: 20px
 .padding_left{
 padding-left: 30px
 }
+.profile_space{
+  height:10px;
+  display: block
 
+}
 .margin_profile{
 margin-left: 20px;
 }
@@ -1609,7 +1613,7 @@ width:auto;}
   display: inline-block;
 
   padding-left: 3px;
-  background-color: #F5F5F5;
+
   -webkit-border-top-right-radius: 15px;
   -webkit-border-bottom-right-radius: 15px;
   -moz-border-radius-topright: 15px;
@@ -1617,6 +1621,39 @@ width:auto;}
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   width: 300px
+
+}
+
+.notebook-cabecera{
+  background-image: url("notebook/CABECERA.png");
+
+  background-repeat: no-repeat;
+  width: 290px;
+  height: 100px;
+  display:inline-block;
+}
+.notebook-medio{
+  background-image: url("notebook/MEDIO.png");
+
+  background-repeat: repeat-y;
+  width: 290px;
+  height: AUTO;
+  display:inline-block;
+  margin-top: 2px   ;
+  padding-top: 20px;
+
+
+}
+.notebook-pie{
+  background-image: url("notebook/PIE.png");
+
+  background-repeat: NO-REPEAT;
+  width: 290px;
+  height: 21PX;
+  display:inline-block;
+  margin-top: -5px
+
+
 
 }
 .decoration-notebook{
@@ -1629,24 +1666,9 @@ width:auto;}
 
 }
 
-.hole_notebook{
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
-  display: block;
-
-  width: 10px;
-  height: 10px;
-  background-color: #FFFFFF;
-  border: 0px solid #FFFFFF;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
 .content-notebook{
   display: inline-block;
-  width: 250px;
+  width: 262px;
   float:right;
 
 
@@ -1664,13 +1686,11 @@ width:auto;}
 
   width:231px;
   display:inline-block;
-  background-color: #FFFFFF;
+
   margin-top: 5px;
   margin-right: 5px;
   padding: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+
 }
 
 #description_resources{
@@ -1698,15 +1718,13 @@ width:auto;}
 }
 .info_visits{
   display:inline-block;
-  background-color: #FFFFFF;
-  margin-top: 7px;
-  margin-right: 5px;
-  padding: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  float:right;
-  width:118px
+  font-size: 18px;
+  margin-top: 15px;
+  margin-left:28px;
+
+
+  float:left;
+  width:260px
 
 
 }
@@ -1718,13 +1736,11 @@ width:auto;}
 
   width:231px;
   display:inline-block;
-  background-color: #FFFFFF;
-  margin-top: 5px;
+
+
   margin-right: 5px;
-  padding: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  padding: 0px 5px 5px 5px;
+
 
 
 
@@ -1736,6 +1752,8 @@ width:auto;}
   color: #FF005D;
   clear: right;
   margin: 5 px;
+  font-size: 17px;
+  text-decoration: underline
 }
 .like_count{
   display:inline-block;
@@ -1755,8 +1773,9 @@ width:auto;}
 
 }
 .number{
-  width: 20px;
+  width: auto;
   display: inline-block;
+  padding-right: 15px
 
 
 
@@ -1778,20 +1797,14 @@ width:auto;}
 
 
 .favorit_resources{
-  float:left;
-  size-font:10px;
-  background-color: #F5F5F5;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  padding-right: 7px;
-  padding-left: 7px;
-  margin_right:5px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  margin-right: 8px
+  float:right; 
+  margin-left: 10px;
+  margin-right:20px;
+
+
+}
+.favorite-count{
+float:right
 }
 
 .box_white_info_document{
@@ -1806,5 +1819,55 @@ width:auto;}
   float:right;
   width:118px
 
+
+}
+
+.all-description
+.nav-tabs:after,
+.nav-pills:after {
+  clear: none;
+}
+
+.all-description
+.nav-tabs {
+  border-bottom:none;
+}
+
+.all-description
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover {
+  color: #FF005D;
+  background-color: #Ffffff;
+  border: none;
+  cursor: default;
+  font-weight: 100;
+  outline: none;
+  font-size: 20px;
+
+}
+
+.all-description
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: #F9F9F9;
+  border: none;
+
+}
+.all-description
+.nav-tabs > li > a:hover {
+/*border-color: #eeeeee #eeeeee #dddddd; */
+  font-size: 20px;
+}
+
+.all-description
+.nav-tabs > li > a {
+  padding-top: 9px;
+  padding-bottom: 2px;
+  line-height: 20px;
+  border: none;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  color: #FE99BE;
 
 }

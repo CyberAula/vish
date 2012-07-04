@@ -48,6 +48,8 @@ en:
         addMessage: "Add tags"
         limitMessage: "limit reached"
       age: "Age"
+    recommended_age: "Recommended age"
+    recommended_age_detail: "From %{min} to %{max} years"
     input: "Add a description here"
     new: "Add resource"
     screencast: "VISH's screencast"
