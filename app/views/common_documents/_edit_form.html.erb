@@ -1,4 +1,4 @@
-<div class="boxy_white_edit block document_menu" id="document_edit"  >
+<div class=" content-notebook" id="document_edit"  >
   <%= form_for(document, :html => { :method => :put }) do |f| %>
   <% if document and document.errors.any? %>
   <%= javascript_tag do %>
@@ -16,22 +16,25 @@
     </ul>
   </div>
   <% end %>
-  <div class="form_row">
-    <div class="form_label">
-      <%= f.label t('document.info.title') %>
+
+
+    <div class="details_resources">
+      <%= t('document.info.title') %>
     </div>
-    <div class="form_field">
+    </br></br>
+    <div class="form_field_edit_resource">
       <%= f.text_field :title, :class => "form_tag" %>
     </div>
-  </div>
-  <div class="form_row">
-    <div class="form_label">
-      <%= f.label t('document.info.description') %>
+
+    <div class="details_resources">
+      <%=t('document.info.description') %>
     </div>
-    <div class="form_field">
+    </br></br>
+
+    <div id="form_field_edit_resource">
       <%= f.text_area :description, :class => "form_tag" %>
     </div>
-  </div>
+
 	
 	<!-- Tags -->
 	<!-- Preload tags -->
@@ -48,7 +51,7 @@
     </div>
     <div class="form_field">
       <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
-	    <div class="tagBoxEdit span5">
+	    <div class="tagBoxEdit span3">
         <ul class="tagList"></ul>
       </div>
     </div>
