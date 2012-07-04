@@ -21,34 +21,46 @@
 
 
 
-  <section id="" class=" span5 inline-block pull-left">
+  <section id="" class=" span5  ">
 <%= show_view_for document %>
-  </section>
 
-  <section id="" class=" span3 inline-block ">
-    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
-  </section>
-
-
-        <div id="" class="tabbable span5 inline-block">
-          <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
-          </ul>
-          <div class="tab-content">
-            <div id="comment-1" class="tab-pane active row-fluid activity_content">
-              <% unless document.post_activity.blank? %>
-                <%= render :partial => 'activities/comments', :locals => { :activity =>  document.post_activity, :logo_size => ':contact' } %>
-                <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity  } %>
-              <% else %>
-                <% if user_signed_in? %>
-                  <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity } %>
-                <%else%>
-                  <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.input') %>
-                <%end%>
+    <div class="margin-info-coments">
+    <section id="comentss" class="span5">
+      <div id="" class="tabbable  ">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="comment-1" class="tab-pane active row-fluid activity_content">
+            <% unless document.post_activity.blank? %>
+              <%= render :partial => 'activities/comments', :locals => { :activity =>  document.post_activity, :logo_size => ':contact' } %>
+              <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity  } %>
+            <% else %>
+              <% if user_signed_in? %>
+                <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity } %>
+              <%else%>
+                <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.input') %>
               <%end%>
-            </div>
+            <%end%>
           </div>
         </div>
+      </div>
+
+    </section>
+  </div>
+  </section>
+
+
+
+
+  <section id="" class="span3  ">
+    <div class="margin-info-resources  " >
+    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
+    </div>
+  </section>
+
+
+
 
 
 

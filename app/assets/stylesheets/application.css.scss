@@ -1623,7 +1623,12 @@ width:auto;}
   width: 300px
 
 }
-
+ .margin-info-coment{
+ margin-top: 80px
+ }
+.margin-info-resources{
+margin-left: 50px
+}
 .notebook-cabecera{
   background-image: url("notebook/CABECERA.png");
 
@@ -1898,4 +1903,7 @@ textarea,
 .uneditable-input {
   margin-left: 0;
   width: 225px;
+}
+.tags_edit_resources div.tagBoxEdit .tagit{
+  width: 210px;
 }
