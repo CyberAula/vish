@@ -233,7 +233,7 @@
           <% end %>
         <% end %>
         </div>
-        <div class="more"><%= link_to(t('view_all'), followings_path(:type => "resource")) %></div>
+        <div class="more"><%= link_to(t('view_all'), followings_path) %></div>
       </div>
 
       <div id="follow-2" class="tab-pane">
@@ -254,7 +254,7 @@
             </ul>
           <% end %>
         <% end %>
-        <div class="more"><%= link_to(t('view_all'), followers_path(:type => "resource")) %></div>
+        <div class="more"><%= link_to(t('view_all'), followers_path) %></div>
       </div>
     </div>
   </div>

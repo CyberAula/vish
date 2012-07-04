@@ -50,32 +50,18 @@
   filter:alpha(opacity=80); /* For IE8 and earlier */
 }
 
-.link .info{ /* control title + url + description as a block */
-  text-align: left;
-  margin-left: 138px;
-  /* margin-top: 20px; */ /* not a solution, it makes the link work but makes the text looks ugly */
-  text-overflow: ellipsis;
-  overflow:hidden;  /* this is what makes the name link doesn't work - solved*/
-  white-space: nowrap;
-  width: auto;
-  height: auto;
-
-}
 
 
 .activity_objects .link .info{
   width: 310px;
 
 }
-.link .info .title{
-  position: relative;
-  font-weight: bold;
-  margin-bottom: 3px; 
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow:hidden;
-  display: block;
-  height: auto
+.title{
+max-width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: bold;
 }
 .link .info .url{
   margin-bottom: 5px;
@@ -84,21 +70,15 @@
   text-overflow: ellipsis;
   overflow:hidden;
   white-space:nowrap; 
-  height: 15px;
 }
 
-.link .info .description textarea {
-
-  text-overflow: ellipsis;
-  overflow:hidden;
-  white-space: nowrap;
-  position: relative;
+.vdescription{
+  width: auto; 
+  height:40px; 
+  overflow: hidden; 
 }
+
 
 .link iframe{
   border: 0;
-
 }
-
-
-

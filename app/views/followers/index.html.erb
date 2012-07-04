@@ -2,15 +2,15 @@
 <% toolbar :profile, :subject => profile_or_current_subject %>
 <div class="followers tabbable">
   <ul class="nav nav-tabs">
-    <li class="active">
+    <li class="<%= 'active' if request.path_parameters[:direction] == 'sent' %>">
       <a data-toggle="tab" href="#following"><%=t('follow.followings')%></a>
     </li>
-    <li class="">
+    <li class="<%= 'active' if request.path_parameters[:direction] == 'received' %>">
       <a data-toggle="tab" href="#follower"><%=t('follow.followers')%></a>
     </li>
   </ul>
   <div class="tab-content">
-    <div id="following" class="tab-pane active ">
+    <div id="following" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'sent' %>">
       <%= render :partial => "followers/filter", :locals => {:filter_id => "following-filter"}  %>
       <div id="followings">
         <%= render @followings.
@@ -19,7 +19,7 @@
                    map { |f| profile_or_current_subject.contact_to!(f) } %>
       </div>
     </div>
-    <div id="follower" class="tab-pane  ">
+    <div id="follower" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'received' %>">
       <%= render :partial => "followers/filter", :locals => {:filter_id => "follower-filter"}  %>
       <div id="followers">
         <%= render @followers.
