@@ -1655,7 +1655,7 @@ margin-left: 50px
   background-repeat: NO-REPEAT;
   width: 290px;
   height: 21PX;
-  display:inline-block;
+  display:block;
   margin-top: -5px
 
 
@@ -1884,9 +1884,10 @@ textarea,
 select,
 .uneditable-input {
   display: inline-block;
-  width: 185px;
+  width: 184px;
   height: 20px;
   padding: 3px;
+
   margin-bottom: 9px;
   font-size: 13px;
   line-height: 18px;
@@ -1897,15 +1898,10 @@ select,
   -moz-border-radius: 15px;
   border-radius: 15px;
 }
-#form_field_edit_resource
-input,
-textarea,
-.uneditable-input {
-  margin-left: 0;
-  width: 225px;
-}
+
+
 .tags_edit_resources div.tagBoxEdit .tagit{
-  width: 210px;
+  width:173px;
 }
 .roundedbox{
   -webkit-border-top-left-radius: 15px;
@@ -1917,4 +1913,13 @@ textarea,
   background-color: #F9F9F9;
   padding-left: 15px;
   padding-top: 15px;
+}
+.form_field_edit_resource
+select {
+  background-color: #FFFFFF;
+  width: 193px;
+}
+.form_field_edit_resource
+.slider-range{
+  width: 72%;
 }

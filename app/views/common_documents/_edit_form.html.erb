@@ -32,7 +32,7 @@
     </br></br>
 
     <div id="form_field_edit_resource">
-      <%= f.text_area :description, :class => "form_tag" %>
+      <%= f.text_area :description,:cols => 10, :rows => 5, :class => "form_tag" %>
     </div>
 
 	
@@ -63,7 +63,7 @@
     <div class="form_label">
       <%= f.label t('lang.title') %>
     </div>
-    <div class="form_field">
+    <div class="form_field_edit_resource">
     	<% languages = [[t('lang.independent'), ''], ['Deutsch', 'de'], ['English', 'en'], ['Español', 'es'],
       ['Français', 'fr'], ['Italiano', 'it'], ['Português', 'pt'], ['Русский', 'ru'],
       [t('lang.others'), 'ot']] 
@@ -80,7 +80,9 @@
     	<%= f.hidden_field :age_min, :class => "form_tag", :id => "age_min_field" %>
 			<%= f.hidden_field :age_max, :class => "form_tag", :id => "age_max_field" %>
 			<input type="text" class="age"/>
+      <div class="form_field_edit_resource">
       <div class="slider-range"></div>
+    </div>
     </div>
   </div>
    <br/><br/>

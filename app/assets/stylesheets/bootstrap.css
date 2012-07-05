@@ -161,6 +161,21 @@ body {
   line-height: 18px;
   color: #6e6e6e;
   background-color: #F9F9F9;
+
+
+  /* Safari 5.1+ y Chrome 10+ */
+  background-image:-webkit-linear-gradient(#F4F4F4, #F9F9F9);
+
+  /* Firefox 3.6+ */
+  background-image:-moz-linear-gradient(top, #F4F4F4, #F9F9F9);
+
+  /* Opera 11.10+ */
+  background-image:-o-linear-gradient(top, #F4F4F4, #F9F9F9);
+
+  /* Internet Explorer 5.5+ */
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#F4F4F4', EndColorStr='#F9F9F9');
+  background-repeat: no-repeat;
+
 }
 
 a {
