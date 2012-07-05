@@ -24,6 +24,21 @@
   <section id="" class=" span5  ">
 <%= show_view_for document %>
 
+    <section id="" class=" pull-right roundedbox">
+      <div class="">
+        <% if document.is_a? Document %>
+          <div class="menu_resources">
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+          </div>
+        <% end %>
+        <% if document.post_activity.delete_object_by?(current_subject) %>
+          <div class="menu_resources">
+            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete', :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+          </div>
+        <% end %>
+      </div>
+    </section>
+
     <div class="margin-info-coments">
     <section id="comentss" class="span5">
       <div id="" class="tabbable  ">
@@ -58,6 +73,10 @@
     <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
     </div>
   </section>
+
+
+
+
 
 
 

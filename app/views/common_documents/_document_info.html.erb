@@ -1,175 +1,169 @@
 <div class="all-description">
- <div id=" notebook-menu" class="tabbable span3 inline-block">
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a data-toggle="tab" href="#details"><%= t('document.actions.details') %></a>
-    </li>
-    <% if document.post_activity.edit_object_by?(current_subject) %>
-      <li class=""><a data-toggle="tab" href="#edit"><%= t('document.actions.edit') %></a></li>
-    <% end %>
-  </ul>
-</div>
-
-<div class="notebook">
-  <div class="notebook-cabecera">
-  <div class="content-notebook">
-    <div class="view-and-like">
-      <div class="info_visits">
-        <div class="favorit_resources">
-          <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first, :size => :big) %></div>
-        </div>
-        <span class="green pull-left number_count number"><%= document.visit_count.to_s %></span> <%= t('follow.views') %>
-        <div class="favorite-count"><span class="green  number like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s %></span> <%= t('follow.favorites') %>
-      </div>
-      </div>
-    </div>
+  <div id=" notebook-menu" class="tabbable span3 inline-block">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a data-toggle="tab" href="#details"><%= t('document.actions.details') %></a>
+      </li>
+      <% if document.post_activity.edit_object_by?(current_subject) %>
+        <li class=""><a data-toggle="tab" href="#edit"><%= t('document.actions.edit') %></a></li>
+      <% end %>
+    </ul>
   </div>
-    <div class="clearfloat"></div>
-    <div class="tab-content">
-      <div id="details" class="tab-pane active">
-        <div class="notebook-medio">
-          <div class="content-notebook">
-        <div class="details_resources">
-          <%= t('document.info.title') %>
-        </div>
-        <div class="clearfloat"></div>
-        <div class="title_resources">
-          <%= document.title.nil? ? document.file_file_name : document.title %>
-        </div>
-        <div class="info_resources">
-          <div class="details_resources">
-            <%= t('author').capitalize %>
-          </div>
-          <div class="clearfloat"></div>
-          <div class="date_resources">
-            <%= link_to(truncate_name(document.author.name, :length => 50), document.author.subject) %>
+
+  <div class="notebook">
+    <div class="notebook-cabecera">
+      <div class="content-notebook">
+        <div class="view-and-like">
+          <div class="info_visits">
+            <div class="favorit_resources">
+              <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first, :size => :big) %></div>
+            </div>
+            <span class="green pull-left number_count number"><%= document.visit_count.to_s %></span> <%= t('follow.views') %>
+            <div class="favorite-count">
+              <span class="green  number like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s %></span> <%= t('follow.favorites') %>
+            </div>
           </div>
         </div>
-        <% unless document.description.blank? %>
-          <div class="info_resources">
-            <div class="details_resources">
-              <%= t('info.description') %>
-            </div>
-            <div class="clearfloat"></div>
-            <div class="date_resources">
-              <%= truncate(document.description, :length => 100) %>
-            </div>
-          </div>
-        <% end %>
-        <% unless document.tag_list.blank? %>
-          <div class="info_resources">
-            <div class="details_resources">
-              <%= t('info.tags') %>
-            </div>
-            <div class="clearfloat"></div>
-            <div class="date_resources">
-              <ul class="tagit-suggestions">
-                <% document.tag_list.each do |tag| %>
-                  <li class="tagit-choice"><%= tag %></li>
-                <% end %>
-              </ul>
-            </div>
-            <div class="clearfloat"></div>
-          </div>
-        <% end %>
-         <% unless document.language.blank? %>
-          <div class="info_resources">
-            <div class="details_resources">
-              <%= t('lang.title').capitalize %>
-            </div>
-            <div class="clearfloat"></div>
-            <div class="date_resources">
-              <%= case document.language
-                    when '';
-                      t('lang.independent')
-                    when 'de';
-                      'Deutsch'
-                    when 'en';
-                      'English'
-                    when 'es';
-                      'Español'
-                    when 'fr';
-                      'Français'
-                    when 'it';
-                      'Italiano'
-                    when 'pt';
-                      'Português'
-                    when 'ru';
-                      'Русский'
-                    else
-                      ; t('lang.others')
-                  end %>
-            </div>
-            <div class="clearfloat"></div>
-          </div>
-        <% end %>
-         <% if document.respond_to? :age_min and document.respond_to? :age_max %>
-          <div class="info_resources">
-            <div class="details_resources">
-              <%= t('document.recommended_age') %>
-            </div>
-            <div class="clearfloat"></div>
-            <div class="date_resources">
-              <%= t('document.recommended_age_detail', :min => document.age_min, :max => document.age_max) %>
-            </div>
-            <div class="clearfloat"></div>
-          </div>
-        <% end %>
-         <div class="info_resources">
-          <div class="details_resources">
-            <%= t('document.info.date.created_at') %>
-          </div>
-          <div class="clearfloat"></div>
-          <div class="date_resources">
-            <%= I18n.localize document.created_at, :format => :long %>
-          </div>
-        </div>
-        <div class="info_resources">
-          <div class="details_resources">
-            <%= t('document.info.date.updated_at') %>
-          </div>
-          <div class="clearfloat"></div>
-          <div class="date_resources">
-            <%= I18n.localize document.updated_at, :format => :long %>
-          </div>
-        </div>
-        <div class="info_resources">
-          <% if document.is_a? Document %>
-            <div id="file_size">
-              <div class="details_resources">Size</div>
+      </div>
+
+      <div class="clearfloat"></div>
+
+      <div class="tab-content">
+        <div id="details" class="tab-pane active">
+          <div class="notebook-medio">
+            <div class="content-notebook">
+              <div class="details_resources">
+                <%= t('document.info.title') %>
+              </div>
               <div class="clearfloat"></div>
-              <div class="date_resources"><%= number_to_human_size document.file_file_size %></div>
+              <div class="title_resources">
+                <%= document.title.nil? ? document.file_file_name : document.title %>
+              </div>
+              <div class="info_resources">
+                <div class="details_resources">
+                  <%= t('author').capitalize %>
+                </div>
+                <div class="clearfloat"></div>
+                <div class="date_resources">
+                  <%= link_to(truncate_name(document.author.name, :length => 50), document.author.subject) %>
+                </div>
+              </div>
+              <% unless document.description.blank? %>
+                <div class="info_resources">
+                  <div class="details_resources">
+                    <%= t('info.description') %>
+                  </div>
+                  <div class="clearfloat"></div>
+                  <div class="date_resources">
+                    <%= truncate(document.description, :length => 100) %>
+                  </div>
+                </div>
+              <% end %>
+              <% unless document.tag_list.blank? %>
+                <div class="info_resources">
+                  <div class="details_resources">
+                    <%= t('info.tags') %>
+                  </div>
+                  <div class="clearfloat"></div>
+                  <div class="">
+                    <ul class="tagit-suggestions">
+                      <% document.tag_list.each do |tag| %>
+                        <li class="tagit-choice"><%= tag %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                  <div class="clearfloat"></div>
+                </div>
+              <% end %>
+              <% unless document.language.blank? %>
+                <div class="info_resources">
+                  <div class="details_resources">
+                    <%= t('lang.title').capitalize %>
+                  </div>
+                  <div class="clearfloat"></div>
+                  <div class="date_resources">
+                    <%= case document.language
+                          when '';
+                            t('lang.independent')
+                          when 'de';
+                            'Deutsch'
+                          when 'en';
+                            'English'
+                          when 'es';
+                            'Español'
+                          when 'fr';
+                            'Français'
+                          when 'it';
+                            'Italiano'
+                          when 'pt';
+                            'Português'
+                          when 'ru';
+                            'Русский'
+                          else
+                            ; t('lang.others')
+                        end %>
+                  </div>
+                  <div class="clearfloat"></div>
+                </div>
+              <% end %>
+              <% if document.respond_to? :age_min and document.respond_to? :age_max %>
+                <div class="info_resources">
+                  <div class="details_resources">
+                    <%= t('document.recommended_age') %>
+                  </div>
+                  <div class="clearfloat"></div>
+                  <div class="">
+                    <%= t('document.recommended_age_detail', :min => document.age_min, :max => document.age_max) %>
+                  </div>
+                  <div class="clearfloat"></div>
+                </div>
+              <% end %>
+              <div class="info_resources">
+                <div class="details_resources">
+                  <%= t('document.info.date.created_at') %>
+                </div>
+                <div class="clearfloat"></div>
+                <div class="date_resources">
+                  <%= I18n.localize document.created_at, :format => :long %>
+                </div>
+              </div>
+              <div class="info_resources">
+                <div class="details_resources">
+                  <%= t('document.info.date.updated_at') %>
+                </div>
+                <div class="clearfloat"></div>
+                <div class="date_resources">
+                  <%= I18n.localize document.updated_at, :format => :long %>
+                </div>
+              </div>
+              <div class="info_resources">
+                <% if document.is_a? Document %>
+                  <div id="file_size">
+                    <div class="details_resources">Size</div>
+                    <div class="clearfloat"></div>
+                    <div class="date_resources"><%= number_to_human_size document.file_file_size %></div>
+                  </div>
+                <% end %>
+                <br class="clearfloat"/>
+              </div>
+            </div>
+          </div>
+          <div class="notebook-pie"></div>
+          <% if user_signed_in? and document.post_activity.edit_object_by?(current_subject) %>
+            </div>
+            <div id="edit" class="tab-pane">
+              <div class="notebook-medio">
+                <%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
+              </div>
+              <div class="notebook-pie"></div>
             </div>
           <% end %>
-          <br class="clearfloat"/>
-        </div>
-      </div>
-            </div>
-            <div class="notebook-pie"></div>
-            <% if user_signed_in? and document.post_activity.edit_object_by?(current_subject) %>
-      </div>
-          <div id="edit" class="tab-pane">
-            <div class="notebook-medio">
-          <%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
-            </div>
-            <div class="notebook-pie"></div>
-        </div>
-      <% end %>
+          </div>
+      <div class="space_center"></div>
     </div>
-    <div class="space_center"></div>
   </div>
+
+  <div class="space_center"></div>
+
 </div>
-<div class="space_center"></div>
-<div class="pagination-right margin-up">
-  <% if document.is_a? Document %>
-    <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-    </div>
-  <% end %>
-  <% if document.post_activity.delete_object_by?(current_subject) %>
-    <div class="menu_resources">
-      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete', :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-    </div>
-  <% end %>
 </div>
- </div>

@@ -581,7 +581,7 @@ form.example input.file.hidden {
 }
 
 /******************* WALL - ACTIVITY ***************/
-.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 5px 0px 5px 0px;}
+.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 10px 0px 10px 0px;}
 #main {margin-left: 30px;}
 #home_wall {margin-left: 48px; }
 #left {margin-left: 32px;}
@@ -1906,4 +1906,15 @@ textarea,
 }
 .tags_edit_resources div.tagBoxEdit .tagit{
   width: 210px;
+}
+.roundedbox{
+  -webkit-border-top-left-radius: 15px;
+  -moz-border-radius-topleft: 15px;
+  border-top-left-radius: 15px;
+  margin-top: -15px;
+  height: auto;
+  width: auto;
+  background-color: #F9F9F9;
+  padding-left: 15px;
+  padding-top: 15px;
 }
