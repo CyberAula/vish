@@ -11,8 +11,8 @@
       </div>
       <a class="close_suggestion"> <%= link_to(image_tag('close.png'), contact, :method => :delete, :remote => true )%></a>
       <div class="follwrs-ing">
-        <div class="follwrs upfoll">followers: <%= link_to contact.receiver_subject.followers.count, "#" %></div>
-        <div class="folling upfoll">followings: <%= link_to contact.receiver.following_actor_objects.includes(:actor).count, "#" %></div>
+        <div class="follwrs upfoll"><%= t('follow.followers') %>: <%= link_to contact.receiver_subject.followers.count, [contact.receiver_subject, "followers"] %></div>
+        <div class="folling upfoll"><%= t('follow.followings') %>: <%= link_to contact.receiver.following_actor_objects.includes(:actor).count, [contact.receiver_subject, "followings"] %></div>
       </div>
       <div class="send_messag size10 red-2 upfoll users_btn_follow"><%=contact_to(contact.receiver) %></div>
       </div>
