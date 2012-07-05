@@ -1,5 +1,5 @@
   <section class="slides layout-regular template-default" id="slides_panel">
-    <div id="menubar_helpsection"><img src="/assets/menubar_helpsection.png"/></div>
+    <div id="menubar_helpsection"><img src="images/menubar_helpsection.png"/></div>
     <div id="joyride_help_button"><img id="help_right" src="/assets/helptutorial_circle.png"/></div>
     <div id='menubar'>
         <div id="menubar_background"><img src="/assets/menubar.png"/></div>
@@ -15,6 +15,24 @@
            <div id="slides_carrousel"></div>   
         </div>
     </div>
+    
+    <div id="menubar-viewer" style="display:none">
+      <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
+      <div id="viewbar" class="viewbar">
+        <button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
+        <div id="slide-counter"></div>
+        <button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
+      </div>
+    </div>
+      
+    <!-- Generic toolbars -->
+    <div class="toolbar_wrapper" style="display:none">
+      <div class="toolbar_panel">
+        <img class="toolbar_icon toolbar_web toolbar_snapshot" action="zoomMore" src="/assets/toolbar/zoomMore.png"></img>
+        <img class="toolbar_icon toolbar_web toolbar_snapshot" action="zoomLess" src="/assets/toolbar/zoomLess.png"></img>
+      </div>
+    </div>
+    
     </section>
 
     <!-- Hidden link to open fancybox when adding a slide -->
