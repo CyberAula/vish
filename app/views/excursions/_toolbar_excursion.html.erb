@@ -1,29 +1,11 @@
 <div class="excursion_tools">
   <div class="options inline-block">
-    <!--
     <div class="menu_resources">
-      <%#= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ")+'clone', :class => :action), edit_excursion_path(excursion)  %>
-    </div>
-
-    <div class="menu_resources">
-      <%#= link_to content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> "), :class => :action), edit_excursion_path(excursion) %>
-    </div>
-     -->
-    <!--
-    <div class="menu_resources">
-      <%#= link_to content_tag(:span, raw("<i class='icontool16-tool16_spam'></i> "), :class => :action), edit_excursion_path(excursion) %>
-    </div>
-
-    <div class="menu_resources">
-      <%#= link_to  t('excursion.actions.share'),edit_excursion_path(excursion), :class => :action  %>
+      <a class="action" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
     </div>
     <div class="menu_resources">
-      <%#= link_to  t('excursion.actions.bookmark').downcase ,edit_excursion_path(excursion), :class => :action  %>
+      <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= t('excursion.actions.share') %></a>
     </div>
-       -->
-
-
-
     <% if user_signed_in? and excursion.post_activity.edit_object_by?(current_subject) %>
       <div class="menu_resources">
         <%= link_to raw("<i class='icontool16-tool16_edit'></i> ") + t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
@@ -69,6 +51,10 @@
         </div>
     <% end %>
   </div>
+<div id="excursion-share">
+  <div id="share" class="collapse in">http://<%= request.env['HTTP_HOST'] + excursion_path(excursion) %></div>
+  <div id="embed" class="collapse in">http://<%= request.env['HTTP_HOST'] + excursion_path(excursion) %></div>
+</div>
 
   <style type="text/css">
     .mashme-button {font-family: Helvetica, Arial, sans-serif; cursor: pointer; padding: 0; margin: 0; outline: 0; overflow: visible; font-weight: normal; font-weight: bold; text-decoration: none; text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25); text-align: center; background: transparent; border: none;}
@@ -159,6 +145,8 @@
       $("#mashme-modal").modal('hide');
 
     });
+
+    $('.collapse').collapse({parent: "#excursion-share"});
 
   <% end %>
 
