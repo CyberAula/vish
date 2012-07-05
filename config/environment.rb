@@ -6,3 +6,7 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Vish::Application.initialize!
+
+# Monkey patch Actor to include recommender system
+require 'recsys'
+

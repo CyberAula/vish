@@ -43,6 +43,9 @@ else
   end
 end
 
+# Composite keys for vish-recsys
+gem 'composite_primary_keys'
+
 # We do not know the reasons for this gem:
 #gem 'therubyracer'
 
