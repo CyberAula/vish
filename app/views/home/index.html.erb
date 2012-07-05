@@ -214,7 +214,7 @@
 
     <div class="tab-content">
       <div id="follow-1" class="tab-pane active">
-        <%= render :partial => "followers/filter" %>
+        <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
 
         <div class="follow-home-box ">
         <% current_subject.following_actor_objects.includes(:actor).all.shuffle.first(6).each do |object|  %>
@@ -237,7 +237,7 @@
       </div>
 
       <div id="follow-2" class="tab-pane">
-        <%= render :partial => "followers/filter" %>
+        <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
         <div class="follow-home-box ">
         <% current_subject.followers.all.shuffle.first(6).each do |object|  %>
 
