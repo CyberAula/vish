@@ -4,7 +4,10 @@ class EmbedsController < ApplicationController
   include SocialStream::Controllers::Objects
 
   def create
-    super
+    super do |format|
+      format.json { render :json => resource }
+      format.all {redirect_to embed_path(resource) || home_path}
+    end
   end
 
   def update

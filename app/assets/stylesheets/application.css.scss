@@ -497,6 +497,7 @@ form.file_upload {
 
 .elipsis-excursion{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; max-width: 150px }
 .elipsis-resources{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; max-width: 190px }
+.ellipsis-contact{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; max-width: 120px }
 
 
 .copy_new_comment{ height: 5px;}
@@ -1914,12 +1915,4 @@ select,
   padding-left: 15px;
   padding-top: 15px;
 }
-.form_field_edit_resource
-select {
-  background-color: #FFFFFF;
-  width: 193px;
-}
-.form_field_edit_resource
-.slider-range{
-  width: 72%;
-}
+
