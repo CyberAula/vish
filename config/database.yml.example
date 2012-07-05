@@ -27,9 +27,24 @@ test:
   password:
   socket: /var/run/mysqld/mysqld.sock
 
+recsys_test:
+  adapter: mysql2
+  database: vish_test
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
+
+
 production:
   adapter: mysql2
   database: vish_production
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
+
+recsys_production:
+  adapter: mysql2
+  database: vish_test
   username: root
   password:
   socket: /var/run/mysqld/mysqld.sock
