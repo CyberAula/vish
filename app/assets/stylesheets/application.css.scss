@@ -582,7 +582,7 @@ form.example input.file.hidden {
 }
 
 /******************* WALL - ACTIVITY ***************/
-.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 10px 0px 10px 0px;}
+.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 10px 0px 0px 0px; margin-bottom: 5px}
 #main {margin-left: 30px;}
 #home_wall {margin-left: 48px; }
 #left {margin-left: 32px;}
@@ -1656,7 +1656,7 @@ margin-left: 50px
   background-repeat: NO-REPEAT;
   width: 290px;
   height: 21PX;
-  display:inline-block;
+  display:block;
   margin-top: -5px
 
 
@@ -1693,9 +1693,9 @@ margin-left: 50px
   width:231px;
   display:inline-block;
 
-  margin-top: 5px;
+
   margin-right: 5px;
-  padding: 5px 5px 5px 5px;
+
 
 }
 
@@ -1753,13 +1753,15 @@ margin-left: 50px
 }
 .details_resources{
   float:left;
+  clear: right;
   display: inline-block;
-  width: auto;
+  width: 200px;
   color: #FF005D;
   clear: right;
   margin: 5 px;
   font-size: 17px;
-  text-decoration: underline
+  text-decoration: underline ;
+  margin-bottom: 10px
 }
 .like_count{
   display:inline-block;
@@ -1885,9 +1887,10 @@ textarea,
 select,
 .uneditable-input {
   display: inline-block;
-  width: 185px;
+  width: 184px;
   height: 20px;
   padding: 3px;
+
   margin-bottom: 9px;
   font-size: 13px;
   line-height: 18px;
@@ -1898,15 +1901,11 @@ select,
   -moz-border-radius: 15px;
   border-radius: 15px;
 }
-#form_field_edit_resource
-input,
-textarea,
-.uneditable-input {
-  margin-left: 0;
-  width: 225px;
-}
+
+
 .tags_edit_resources div.tagBoxEdit .tagit{
-  width: 210px;
+  width:173px;
+
 }
 .roundedbox{
   -webkit-border-top-left-radius: 15px;
@@ -1918,4 +1917,39 @@ textarea,
   background-color: #F9F9F9;
   padding-left: 15px;
   padding-top: 15px;
+}
+.form_field_edit_resource
+select {
+  background-color: #FFFFFF;
+  width: 193px;
+}
+.form_field_edit_resource
+.slider-range{
+
+  width: 72%;
+}
+.form_field_edit_resource
+.tagBoxEdit{
+  clear: right;
+  padding: 0px;
+  color: #7a8fa9;
+  font-size: 14px;
+  -moz-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  max-height: 45%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: -25px;
+  width: 100%;
+}
+.comments-resources
+.input-fluid {
+  margin-left: 7px;
+  height: 18px;
+  width: 95%;
 }

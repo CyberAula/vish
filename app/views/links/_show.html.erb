@@ -20,21 +20,45 @@
   ) %>
 <%end%>
 
-<div class="span6"></div>
-<div class="title_resources">
-<%= document.title.nil? ? truncate(document.fulltext) : document.title %></div>
-<div class="space_center"></div>
+<section id="" class=" span5  ">
+
 
 <%= show_view_for document %>
 
+
 <!---------end------------------------->
-<div class="space_center"></div>
+<div class="margin-info-coments">
+  <section id="comentss" class="span5">
+    <div id="" class="tabbable  ">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
+      </ul>
+      <div class="tab-content ">
+        <div id="comment-1" class="tab-pane active row-fluid activity_content comments-resources">
+          <% unless document.post_activity.blank? %>
+            <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity  } %>
+            <%= render :partial => 'activities/comments', :locals => { :activity =>  document.post_activity, :logo_size => ':contact' } %>
 
+          <% else %>
+            <% if user_signed_in? %>
+              <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity } %>
+            <%else%>
+              <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.input') %>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+    </div>
 
-<%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
-
-
-<div id="document_comments">
-  <%= render :partial => 'activities/comments', :locals => { :activity => document.post_activity } %>
-  <%= render :partial => 'comments/new', :locals => { :activity => document.post_activity } %>
+  </section>
 </div>
+</section>
+
+
+
+
+<section id="" class="span3  ">
+  <div class="margin-info-resources  " >
+    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
+  </div>
+</section>

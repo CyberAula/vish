@@ -21,6 +21,7 @@
     <div class="details_resources">
       <%= t('document.info.title') %>
     </div>
+
     <div class="clearfloat"></div>
     <div class="form_field_edit_resource">
       <%= f.text_field :title, :class => "form_tag" %>
@@ -29,10 +30,14 @@
     <div class="details_resources">
       <%=t('document.info.description') %>
     </div>
+
+
     <div class="clearfloat"></div>
 
     <div id="form_field_edit_resource">
+
       <%= f.text_area :description, :class => "form_tag", :rows => 5 %>
+
     </div>
 
 
@@ -48,6 +53,8 @@
   <div class="details_resources">
     <%= t('document.info.tags.title') %>
   </div>
+
+
   <div class="form_field_edit_resource">
     <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
 
@@ -60,6 +67,7 @@
   <div class="details_resources">
     <%= t('lang.title') %>
   </div>
+
   <div class="form_field_edit_resource">
     <% languages = [[t('lang.independent'), ''], ['Deutsch', 'de'], ['English', 'en'], ['Español', 'es'],
     ['Français', 'fr'], ['Italiano', 'it'], ['Português', 'pt'], ['Русский', 'ru'],
@@ -71,15 +79,18 @@
   <div class="details_resources">
     <%= t('document.info.age') %>
   </div>
+
   <div class="form_field_edit_resource">
     <%= f.hidden_field :age_min, :class => "form_tag", :id => "age_min_field" %>
     <%= f.hidden_field :age_max, :class => "form_tag", :id => "age_max_field" %>
     <input type="text" class="age"/>
       <div class="slider-range"></div>
+
   </div>
   <div class="clearfloat"></div>
+    </br>
 
-  <div class="actions center">
+  <div class="actions left">
     <%= f.submit t('button.save'), :class => "button", :id => "edit_resource_save_button" %>
   </div>
   <% end %>
