@@ -4466,7 +4466,7 @@ input[type="submit"].btn.btn-mini {
   margin-left: -5px;
   list-style: none;
   *zoom: 1;
-  height: 75px;
+  height: auto;
 }
 
 .thumbnails:before,

@@ -582,7 +582,7 @@ form.example input.file.hidden {
 }
 
 /******************* WALL - ACTIVITY ***************/
-.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 10px 0px 10px 0px;}
+.activity {	text-align:left;	display: block;	vertical-align: top;	padding: 10px 0px 0px 0px; margin-bottom: 5px}
 #main {margin-left: 30px;}
 #home_wall {margin-left: 48px; }
 #left {margin-left: 32px;}
@@ -1946,4 +1946,10 @@ select {
   margin-right: 10px;
   margin-left: -25px;
   width: 100%;
+}
+.comments-resources
+.input-fluid {
+  margin-left: 7px;
+  height: 18px;
+  width: 95%;
 }
