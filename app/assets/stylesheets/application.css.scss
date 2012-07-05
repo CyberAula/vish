@@ -1953,3 +1953,29 @@ select {
   height: 18px;
   width: 95%;
 }
+.boxy_white_wall   {
+  background-color: #FFFFFF;
+  border: 0px solid transparent;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+
+  background-color: #FFFFFF;
+
+
+/* Safari 5.1+ y Chrome 10+ */
+  background-image:-webkit-linear-gradient(top , #FFFFFF, #F5F5F5);
+
+/* Firefox 3.6+ */
+  background-image:-moz-linear-gradient(top, #FFFFFF, #F5F5F5);
+
+/* Opera 11.10+ */
+  background-image:-o-linear-gradient(top, #FFFFFF, #F5F5F5);
+
+/* Internet Explorer 5.5+ */
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#Ffffff', EndColorStr='#F5F5F5');
+  background-repeat: no-repeat;
+
+
+}
