@@ -10,7 +10,9 @@
           <a data-toggle="modal" href="#picture-modal-<%= picture.id.to_s%>" class="picture-modal-button-<%= picture.id.to_s%>"><%= truncate_name(picture.title, :length => 35) %></a>
         </h4>
       </div>
+      <div class = vdescription>
       <p><%= simple_format (picture.description) %></p>
+    </div>
       <p><%= link_to t('details.msg'), picture, :class => "attachment_text_link" %></p>
     </li>
   </ul>
