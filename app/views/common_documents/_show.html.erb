@@ -1,45 +1,44 @@
-
-  <%= render :partial => 'objects/show',
-           :locals  => { :object => document } %>
+<%= render :partial => 'objects/show',
+           :locals => {:object => document} %>
 
 <% profile_subject ||= document.owner_subject %>
 
 <% content_for :title do %>
-<%= profile_subject.name + ": " + t('repository.title') %>
+  <%= profile_subject.name + ": " + t('repository.title') %>
 <% end %>
 
-<%if profile_subject_is_current?%>
-<%= location(
-  link_to(t('repository.title'), polymorphic_path(controller.controller_name),:remote => true)
-  ) %>
-<%else%>
-<%= location(
-  link_to(profile_subject.name, polymorphic_path(profile_subject),:remote => true),
-  link_to(t('repository.title'), polymorphic_path([profile_subject, controller.controller_name]),:remote => true)
-  ) %>
-<%end%>
+<% if profile_subject_is_current? %>
+  <%= location(
+        link_to(t('repository.title'), polymorphic_path(controller.controller_name), :remote => true)
+      ) %>
+<% else %>
+  <%= location(
+        link_to(profile_subject.name, polymorphic_path(profile_subject), :remote => true),
+        link_to(t('repository.title'), polymorphic_path([profile_subject, controller.controller_name]), :remote => true)
+      ) %>
+<% end %>
 
 
 
-  <section id="" class=" span5  ">
-<%= show_view_for document %>
+<section id="" class=" span5  ">
+  <%= show_view_for document %>
 
-    <section id="" class=" pull-right roundedbox">
-      <div class="">
-        <% if document.is_a? Document %>
-          <div class="menu_resources">
-            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-          </div>
-        <% end %>
-        <% if document.post_activity.delete_object_by?(current_subject) %>
-          <div class="menu_resources">
-            <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete', :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-          </div>
-        <% end %>
-      </div>
-    </section>
+  <section id="" class=" pull-right roundedbox">
+    <div class="">
+      <% if document.is_a? Document %>
+        <div class="menu_resources">
+          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
+        </div>
+      <% end %>
+      <% if document.post_activity.delete_object_by?(current_subject) %>
+        <div class="menu_resources">
+          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete', :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+        </div>
+      <% end %>
+    </div>
+  </section>
 
-    <div class="margin-info-coments">
+  <div class="margin-info-coments">
     <section id="comentss" class="span5">
       <div id="" class="tabbable  ">
         <ul class="nav nav-tabs">
@@ -48,32 +47,32 @@
         <div class="tab-content ">
           <div id="comment-1" class="tab-pane active row-fluid activity_content comments-resources">
             <% unless document.post_activity.blank? %>
-              <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity  } %>
-              <%= render :partial => 'activities/comments', :locals => { :activity =>  document.post_activity, :logo_size => ':contact' } %>
+              <%= render :partial => 'comments/new', :locals => {:activity => document.post_activity} %>
+              <%= render :partial => 'activities/comments', :locals => {:activity => document.post_activity, :logo_size => ':contact'} %>
 
             <% else %>
               <% if user_signed_in? %>
-                <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity } %>
-              <%else%>
-                <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.input') %>
-              <%end%>
-            <%end%>
+                <%= render :partial => 'comments/new', :locals => {:activity => document.post_activity} %>
+              <% else %>
+                <%= link_to(t('session.session_start'), new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " + t('comment.input') %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
 
     </section>
   </div>
-  </section>
+</section>
 
 
 
 
-  <section id="" class="span3  ">
-    <div class="margin-info-resources  " >
+<section id="" class="span3  ">
+  <div class="margin-info-resources  ">
     <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
-    </div>
-  </section>
+  </div>
+</section>
 
 
 
