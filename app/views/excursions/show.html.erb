@@ -7,27 +7,7 @@
   </ul>
   <div class="tab-content">
     <div id="ex-1" class="tab-pane active">
-      <p id="notice"><%= notice %></p>
-      <% unless @excursion.tag_list.blank? %>
-        <ul>
-        <% @excursion.tag_list.each do |tag| %>
-          <li><%= tag %></li>
-        <% end %>
-        </ul>
-      <% end %>
-      <% unless @excursion.author.blank? %>
-        <h4><%=link_to( t('author')+': '+truncate_name(@excursion.author.name, :length => 20), @excursion.author.subject)%></h4>
-      <% else %>
-        <h4><%=t('anonymous')%></h4>
-      <% end%>
-      <div class="space_center"></div>
-      <h4><%= @excursion.description %></h4>
-      <div class="space_center"></div>
-      <% unless @excursion.author.blank? %>
-        <div class="pull-right space_right">
 
-        </div>
-      <% end %>
       <div class="space_center"></div>
       <div class="pagination-centered">
         <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
@@ -39,14 +19,13 @@
     </div>
 </div>
 
-<div class="row">
 
+<div class=" span12">
 
-
-  <div class="span12">
+  <section id="left" class="span6 ">
 
     <div class="space_center"></div>
-    <div id="left" class="tabbable span8 ">
+    <div id="" class="tabbable span6 ">
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
       </ul>
@@ -65,12 +44,15 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<section id="" class="span3  ">
-  <div class="margin-info-resources  " >
-    <%#= render :partial => "excursions/excursion_info", :locals => {:excursion =>  @excursion } %>
+  <section id="right" class="span3 offset1">
+
+      <%= render :partial => "excursions/excursion_info", :locals => {:excursion =>  @excursion } %>
+
+  </section>
   </div>
-</section>
+
+
+
 

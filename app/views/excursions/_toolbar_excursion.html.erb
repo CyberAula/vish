@@ -26,7 +26,7 @@
     <% end %>
 
   </div>
-  <div class="views size24 inline-block pagination-right inline-block ">
+  <div class="views size16 inline-block pagination-right inline-block ">
     <span class="green"><%=excursion.visit_count.to_s%></span><span> <%=t('follow.views')%></span>
     <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%= excursion.activities.first.likes.count.to_s  %></span><span> <%= t('follow.favorites').downcase %></span>
     <!--<div class="iconx-quiz"></div>-->

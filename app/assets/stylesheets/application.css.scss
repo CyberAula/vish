@@ -1631,14 +1631,27 @@ width:auto;}
 .margin-info-resources{
 margin-left: 50px
 }
-.notebook-cabecera{
+.excursion-notebook
+.notebook-cabecera
+{
   background-image: url("notebook/CABECERA.png");
+  background-repeat: no-repeat;
+  width: 290px;
+  height: 33px;
+  display:inline-block;
+  margin-bottom: -4px
+}
 
+
+.notebook-cabecera
+{
+  background-image: url("notebook/CABECERA.png");
   background-repeat: no-repeat;
   width: 290px;
   height: 100px;
   display:inline-block;
 }
+
 .notebook-medio{
   background-image: url("notebook/MEDIO.png");
 
