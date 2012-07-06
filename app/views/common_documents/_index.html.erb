@@ -24,9 +24,21 @@
       <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-net"} %>
     </div>
 
-    <div id="repo-resources-net" class="block row space_center">
+    <div id="repo-resources-net" class="block row space_bottom">
       <% subject_resources(user, {:scope => :net, :limit => 0}).each do |document| %>
-        <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
+        <% if document.is_a? Embed %>
+          <%= render :partial => "embeds/home",
+                     :locals => {:embed => document,
+                     :div_class => 'content_size'} %>
+        <% elsif document.is_a? Link %>
+          <%= render :partial => "links/home",
+                     :locals => {:link => document,
+                     :div_class => 'content_size'} %>
+        <% elsif document.is_a? Document %>
+          <%= render :partial => "common_documents/home",
+                     :locals => {:document => document,
+                     :div_class => 'content_size'} %>
+        <% end %>
       <% end %>
     </div>
 
@@ -37,9 +49,21 @@
       <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-me"} %>
     </div>
 
-    <div id="repo-resources-me" class="block row space_center">
+    <div id="repo-resources-me" class="block row space_bottom">
       <% subject_resources(user, {:scope => :me, :limit => 0}).each do |document| %>
-        <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
+        <% if document.is_a? Embed %>
+          <%= render :partial => "embeds/home",
+                     :locals => {:embed => document,
+                     :div_class => 'content_size'} %>
+        <% elsif document.is_a? Link %>
+          <%= render :partial => "links/home",
+                     :locals => {:link => document,
+                     :div_class => 'content_size'} %>
+        <% elsif document.is_a? Document %>
+          <%= render :partial => "common_documents/home",
+                     :locals => {:document => document,
+                     :div_class => 'content_size'} %>
+        <% end %>
       <% end %>
     </div>
 
@@ -50,9 +74,21 @@
       <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-fav"} %>
     </div>
 
-    <div id="repo-resources-fav" class="block row space_center">
+    <div id="repo-resources-fav" class="block row space_bottom">
       <% subject_resources(user, {:scope => :like, :limit => 0}).each do |document| %>
-        <%= render :partial => 'common_documents/repo', :locals => { :document => document } %>
+        <% if document.is_a? Embed %>
+          <%= render :partial => "embeds/home",
+                     :locals => {:embed => document,
+                     :div_class => 'content_size'} %>
+        <% elsif document.is_a? Link %>
+          <%= render :partial => "links/home",
+                     :locals => {:link => document,
+                     :div_class => 'content_size'} %>
+        <% elsif document.is_a? Document %>
+          <%= render :partial => "common_documents/home",
+                     :locals => {:document => document,
+                     :div_class => 'content_size'} %>
+        <% end %>
       <% end %>
     </div>
 

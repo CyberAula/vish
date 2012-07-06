@@ -3334,9 +3334,9 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
   color: #FF005D;
-  background-color: #F9F9F9;
+  background-color: transparent;
   border: 1px solid #FF005D;
-  border-bottom-color: transparent;
+  border-bottom-color: #F9F9F9;
   cursor: default;
   font-weight: 100;
 	outline: none;

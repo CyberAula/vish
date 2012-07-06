@@ -25,7 +25,7 @@
       <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-net"} %>
     </div>
 
-    <div id="repo-excursions-net" class="block row space_center">
+    <div id="repo-excursions-net" class="block row space_bottom">
       <% subject_excursions(profile_or_current_subject, {:scope => :net, :limit => 0}).each do |excursion| %>
         <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
       <% end %>
@@ -38,7 +38,7 @@
       <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-me"} %>
     </div>
 
-    <div id="repo-excursions-me" class="block row space_center">
+    <div id="repo-excursions-me" class="block row space_bottom">
       <% subject_excursions(profile_or_current_subject, {:scope => :me, :limit => 0}).each do |excursion| %>
         <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
       <% end %>
@@ -51,7 +51,7 @@
       <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-fav"} %>
     </div>
 
-    <div id="repo-excursions-fav" class="block row space_center">
+    <div id="repo-excursions-fav" class="block row space_bottom">
       <% subject_excursions(profile_or_current_subject, {:scope => :like, :limit => 0}).each do |excursion| %>
         <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
       <% end %>
