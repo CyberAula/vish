@@ -53,7 +53,7 @@
   </div>
 <div id="excursion-share">
   <div id="share" class="collapse in">http://<%= request.env['HTTP_HOST'] + excursion_path(excursion) %></div>
-  <div id="embed" class="collapse in">http://<%= request.env['HTTP_HOST'] + excursion_path(excursion) %></div>
+  <div id="embed" class="collapse in">&lt;iframe id="excursion_iframe" src="http://<%= request.env['HTTP_HOST'] + excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt;</div>
 </div>
 
   <style type="text/css">
