@@ -457,7 +457,7 @@ form.file_upload {
   background-color: #EDEDED !important;
   border-top: 1px solid #D8D8D9;
   border-radius: 0px 0px 20px 20px !important;
-  margin: auto;
+  margin: -5px auto 5px  ;
   width: 900px;
   min-height: 40px;
   vertical-align: middle;
@@ -1992,4 +1992,7 @@ select {
   background-repeat: no-repeat;
 
 
+}
+.embed{
+width: 387px;
 }
