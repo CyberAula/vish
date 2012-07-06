@@ -16,9 +16,9 @@
         <div class="view-and-like">
           <div class="info_visits">
             <div class="favorit_resources">
-              <div class="verb_like" id="like_<%= dom_id(@excursion.activities.first) %>"><%= link_like(document.activities.first, :size => :big) %></div>
+              <div class="verb_like" id="like_<%= dom_id(@excursion.activities.first) %>"><%= link_like(@excursion.activities.first, :size => :big) %></div>
             </div>
-            <span class="green pull-left number_count number"><%= document.visit_count.to_s %></span> <%= t('follow.views') %>
+            <span class="green pull-left number_count number"><%= @excursion.visit_count.to_s %></span> <%= t('follow.views') %>
             <div class="favorite-count">
               <span class="green  number like_count_<%= dom_id(@excursion.activities.first) %>"><%= @excursion.activities.first.likes.count.to_s %></span> <%= t('follow.favorites') %>
             </div>
@@ -37,7 +37,7 @@
               </div>
               <div class="clearfloat"></div>
               <div class="title_resources">
-                <%= @excursion.title.nil? ? document.file_file_name : @excursion.title %>
+                <%= @excursion.title.nil? ? @excursion.file_file_name : @excursion.title %>
               </div>
               <div class="info_resources">
                 <div class="details_resources">
@@ -136,29 +136,10 @@
                   <%= I18n.localize @excursion.updated_at, :format => :long %>
                 </div>
               </div>
-              <div class="info_resources">
-                <% if @excursion.is_a? @excursion %>
-                  <div id="file_size">
-                    <div class="details_resources">Size</div>
-                    <div class="clearfloat"></div>
-                    <div class="date_resources"><%= number_to_human_size @excursion.file_file_size %></div>
-                  </div>
-                <% end %>
-                <br class="clearfloat"/>
-              </div>
             </div>
           </div>
           <div class="notebook-pie"></div>
-          <% if user_signed_in? and @excursion.post_activity.edit_object_by?(current_subject) %>
-            </div>
-            <div id="edit" class="tab-pane">
-              <div class="notebook-medio">
-                <%= render :partial => "common_documents/edit_form", :locals => {:excursion =>  @excursion } %>
-              </div>
-              <div class="notebook-pie"></div>
-            </div>
-          <% end %>
-          </div>
+        </div>
       <div class="space_center"></div>
     </div>
   </div>
