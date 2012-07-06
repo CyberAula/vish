@@ -22,9 +22,11 @@
     $(".<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>").on("click", function(){
       <%= modal_for(document) %>
       <% if document.is_a? Swf %>
-        $("#swf-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='<%= document.file %>' width='475' height='475'>...</iframe>");
+        $("#swf-modal-<%= document.id.to_s%> .modal-body").css('padding', '0');
+        $("#swf-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='<%= document.file %>' width='545px' height='385px'>...</iframe>");
       <% elsif document.is_a? Officedoc %>
-        $("#officedoc-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= request.env['HTTP_HOST'] + download_document_path(document) %>&embedded=true' width='480px' height='480px' style='border: none;'></iframe>");
+        $("#officedoc-modal-<%= document.id.to_s%> .modal-body").css('padding', '0');
+        $("#officedoc-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= request.env['HTTP_HOST'] + download_document_path(document) %>&embedded=true' width='545px' height='385px' style='border: none;'></iframe>");
       <% elsif document.is_a? Picture %>
         $("#picture-modal-<%= document.id.to_s%> .modal-body").html("<%= raw j (thumb_for(document, 500)) %>");
       <% elsif document.is_a? Audio %>
