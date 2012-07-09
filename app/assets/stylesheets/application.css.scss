@@ -132,12 +132,14 @@ margin-top: -10px
 }
 html, body {
   height: 100%;
-  margin-bottom: 0px
+  width: 100%;
+  margin-bottom: 0px;
 }
 .wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
+  width: 100%;
   margin: 0 auto -40px; /* the bottom margin is the negative value of the footer's height */
 }
 .footersticky, .push {
@@ -1625,6 +1627,23 @@ margin-left: 15px;
 
 .select01{
   padding-right: 10px;
+
+}
+.select02{
+  padding-right: 10px;
+  width: 295px   ;
+  display:inline-block;
+}
+.upload02{
+
+margin-left: 75px
+}
+
+.upload-age{
+  width: 49%;
+
+
+
 }
 
 
@@ -2035,3 +2054,4 @@ select {
 .embed{
 width: 387px;
 }
+

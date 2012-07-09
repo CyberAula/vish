@@ -37,6 +37,11 @@ ul.tagit-suggestions li.tagit-choice:hover {
 		margin-right: 10px;
 		margin-left: -10px;
 }
+.upload01 .tagBoxDocument  {
+  margin-right: 0px !important ;
+
+}
+
 
 div.tagBoxDocument .tagit{
   width: 280px;

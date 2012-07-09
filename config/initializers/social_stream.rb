@@ -70,9 +70,8 @@ SocialStream::Views::Toolbar.module_eval do
         # Messages
         items << {
           :key => :message_new,
-          :html =>link_to image_tag("icon-message.png",:class => "imgnoradio")+ t('message.send'),
-                           new_message_path, :class => "menu_resources",
-                           :remote=> false
+          :html => link_to(image_tag("icon-message.png",:class => "imgnoradio")+ t('  ')+ t('message.send'),
+                          new_message_path, :class => "menu_resources", :remote=> false)
         }
 
         #Contacts brief
