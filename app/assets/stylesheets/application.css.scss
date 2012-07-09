@@ -16,6 +16,11 @@
  *= require_tree .
 */
 
+
+
+
+
+
 @import "colors";
 
 @font-face{
@@ -38,6 +43,24 @@
 .body-height{ min-height:  100%;}
 
 
+
+.right-fixed{
+  top: 40px;
+  position: fixed;
+  right: 211px;
+  
+}
+
+.left-fixed{
+  top: 40px;
+  position: fixed;
+  
+}
+
+.main-fixed{
+  position: absolute;
+  left: 182px;
+}
 
 
 .title_menu_home{
