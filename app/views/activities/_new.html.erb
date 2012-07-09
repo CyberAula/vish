@@ -18,14 +18,18 @@
       <%# end %>
     </div>
     -->
+
+    <div class="tools_activity">
     <div id="activity_form_select" class="inline-block type_share">
-      <button id="attachFileButton" class="btn"><i class='icontool16-tool16_add'></i></button>
+      <button id="attachFileButton" class="menu_resources"><%= image_tag("adjuntar.png",:class => "imgnoradio" )%></button>
     </div>
+
 
     <div id="activities_share_btn" class="inline">
       <%= submit_tag(t('share'), :class => "button submitActivity", :id => "masterSubmitButton") %>
     </div>
   </div>
+
 <% end %>
 
 <%= javascript_tag do %>

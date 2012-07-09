@@ -18,7 +18,7 @@
   <%= javascript_tag do %>
     $(".swf-modal-button-<%= swf.id.to_s%>").on("click", function(){
       <%= modal_for(swf) %>
-      $("#swf-modal-<%= swf.id.to_s%> .modal-body").html("<iframe src='<%= swf.file %>' width='475' height='475'>...</iframe>");
+      $("#swf-modal-<%= swf.id.to_s%> .modal-body").html("<iframe src='<%= swf.file %>' width='387' height='387'>...</iframe>");
       $("#swf-modal-<%= swf.id.to_s%>").on("hidden", function(){
          $("#swf-modal-<%= swf.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
       });

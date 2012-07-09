@@ -86,6 +86,22 @@ height: auto;
    border-radius: 5px;
 
  }
+.imgnoradio{
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+
+.d{
+height: 27px;
+width: 10px;
+background-color: #fe99be;
+margin-top: -10px
+}
+
+
+
+
 
 /************* Footer *******/
 * {
@@ -629,7 +645,7 @@ form.example input.file.hidden {
 .activity_new_comment{  font-size: 11px;  padding-left: 5px; padding-top: 3px;  padding-bottom: 3px;display:none;}
 .input_new_comments{width:98%;	padding: 2px; resize: none;  }
 .space_comments{padding-top: 1px;	padding-bottom: 1px;}
-#activities_share_btn {	text-align: right;	padding: 5px 16px 0px 10px;	vertical-align: middle;}
+#activities_share_btn {	text-align: right;	padding: 5px 16px 0px 10px;	vertical-align: top;}
 .activities_comment_btn{ text-align: right; padding: 0px 5px 2px 0px; vertical-align: middle;}
 
 .hide_show_comments{font-size: 11px;  padding: 3px 10px;}
