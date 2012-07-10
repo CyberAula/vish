@@ -12,10 +12,10 @@
   <div class="row space_center"></div>
   <div class="tab-content">
   <%= render :partial => 'activities/wall',
-             :locals  => { :activities => owner.wall(:home).page(params[:page]),
+             :locals  => { :activities => owner.wall(:home).page(params[:page_net]),
                            :is_active_wall => false } %>
   <%= render :partial => 'activities/wall_me',
-             :locals  => { :activities => owner.wall(:profile, :for => owner). page(params[:page]),
+             :locals  => { :activities => owner.wall(:profile, :for => owner). page(params[:page_me]),
                            :is_active_wall => true } %>
   </div>
 </section>

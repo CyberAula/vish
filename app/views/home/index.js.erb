@@ -1,5 +1,6 @@
-$('#wall').replaceWith("<%= escape_javascript render(:partial => 'activities/wall', :locals => { :activities => current_subject.wall(:home).page(params[:page]) }) %>");
+$('#wall').replaceWith("<%= escape_javascript render(:partial => 'activities/wall', :locals => { :activities => current_subject.wall(:home).page(params[:page_net]), :is_active_wall => (params[:active_tab] == 'net') }) %>");
+$('#wall-me').replaceWith("<%= escape_javascript render(:partial => 'activities/wall_me', :locals => { :activities => current_subject.wall(:profile, :for => current_user).page(params[:page_me]), :is_active_wall => (params[:active_tab] == 'me') }) %>");
 
-setActivityPrivacyTooltips();
+//setActivityPrivacyTooltips();
+//$.scrollTo('#wall', 1500,{axis:'y'});
 
-$.scrollTo('#wall', 1500,{axis:'y'});

@@ -3,7 +3,7 @@
     <%= render :partial => "activities/zero_screen" %>
   <% else %>
     <%= render activities  %>
-    <%= paginate activities %>
+    <%= paginate activities, :remote => true, :param_name => :page_net, :window => 2, :params => {:active_tab => 'net'} %>
   <% end %>
 </div>
 
