@@ -63,6 +63,7 @@ en:
     content: "Live content"
     embed: "embed"
     input: "Paste your embed here"
+    name: "embed"
   excursion:
     actions:
       bookmark: "bookmark"
@@ -76,6 +77,7 @@ en:
     favorites: "Favorites"    
     how: "How to create an excursion"
     my: "my"
+    name: "excursion"
     net: "network"
     network: "my network excursions"
     network2: "my network"
