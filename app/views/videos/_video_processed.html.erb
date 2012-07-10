@@ -4,8 +4,8 @@
   </li>
   <li class="span9">
     <div class="title">
-      <h4 class="bold">
-        <a data-toggle="modal" href="#video-modal-<%= video.id.to_s%>" class="video-modal-button-<%= video.id.to_s%>"><%= truncate_name(video.title, :length => 35) %></a>
+      <h4 class="bold ellipsis w190px">
+        <a data-toggle="modal" href="#video-modal-<%= video.id.to_s%>" class="video-modal-button-<%= video.id.to_s%>"><%= video.title %></a>
       </h4>
     </div>
     <p><%= simple_format video.description %></p>

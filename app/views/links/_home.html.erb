@@ -12,11 +12,11 @@
       </div>
     </li>
     <div class="row-fluid-100">
-      <h4 class="link_gray size15 ">
-        <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%>"><% else %><a href="<%= link.url %>" target="_blank"><% end %><%= truncate_name(link.title, :length => 20) %></a>
+      <h4 class="link_gray size15 ellipsis w150px">
+        <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%>"><% else %><a href="<%= link.url %>" target="_blank"><% end %><%= link.title %></a>
       </h4>
         <div class="rw-words rw-words-1">
-          <span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%=link_to( truncate_name(link.author.name, :length => 18), link.author.subject)%></h5></span>
+          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><%=link_to( link.author.name, link.author.subject)%></h5></span>
           <div class="clearfloat"></div>
           <span><h5 class="green inline margin-home-resource-view like_count_<%= dom_id(link.activities.first) %>"><%=link.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(link.activities.first) %>"><%= link_like(link.activities.first)%></div></span>
         </div>
