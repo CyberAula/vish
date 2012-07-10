@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: b529972d8a5bbdbbf24a18070b17a9fd17778e61
+  revision: 776606d9dd09c36aa88cb5a7a50587db3c2c3ee1
   branch: vish
   specs:
     social_stream-base (0.21.2)
