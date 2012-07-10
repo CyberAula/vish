@@ -6,6 +6,7 @@ en:
         tag: "Areas of interest"
   activity:
     empty: "Your timeline is empty"
+    more: "See more..."
     new_user: "Welcome to ViSH! Post and share your thoughts, links, videos with your followers."
     newmessage: "This is your timeline. You can upload and share images, videos, links and more."
     timeline: "timeline"

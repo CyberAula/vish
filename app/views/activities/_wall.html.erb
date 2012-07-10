@@ -3,7 +3,9 @@
     <%= render :partial => "activities/zero_screen" %>
   <% else %>
     <%= render activities  %>
-    <%= paginate activities, :remote => true, :param_name => :page_net, :window => 2, :params => {:active_tab => 'net'} %>
+    <%#= paginate activities, :remote => true, :param_name => :page_net, :window => 2, :params => {:active_tab => 'net'} %>
+    <% params[:page_net]="1" if params[:page_net].blank? %>
+    <%= link_to(t('activity.more'), {:page_net => (params[:page_net].to_i + 1), :active_tab => 'net'}, :id => 'net_load_more_button', :class =>'load_more_button', :remote => true) unless activities.last_page? %>
   <% end %>
 </div>
 
