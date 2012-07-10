@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622130731) do
+ActiveRecord::Schema.define(:version => 20120710095412) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -72,15 +72,16 @@ ActiveRecord::Schema.define(:version => 20120622130731) do
   create_table "activity_objects", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "object_type",    :limit => 45
-    t.integer  "like_count",                   :default => 0
-    t.string   "title",                        :default => ""
+    t.string   "object_type",          :limit => 45
+    t.integer  "like_count",                         :default => 0
+    t.string   "title",                              :default => ""
     t.text     "description"
-    t.integer  "follower_count",               :default => 0
-    t.integer  "visit_count",                  :default => 0
+    t.integer  "follower_count",                     :default => 0
+    t.integer  "visit_count",                        :default => 0
     t.string   "language"
-    t.integer  "age_min",                      :default => 4
-    t.integer  "age_max",                      :default => 30
+    t.integer  "age_min",                            :default => 4
+    t.integer  "age_max",                            :default => 30
+    t.boolean  "notified_after_draft",               :default => false
   end
 
   create_table "activity_verbs", :force => true do |t|
@@ -209,6 +210,7 @@ ActiveRecord::Schema.define(:version => 20120622130731) do
     t.text     "json"
     t.integer  "slide_count",        :default => 1
     t.string   "thumbnail_url",      :default => "/assets/logos/original/excursion-00.png"
+    t.boolean  "draft",              :default => false
   end
 
   create_table "groups", :force => true do |t|
