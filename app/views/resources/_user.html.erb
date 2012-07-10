@@ -59,7 +59,7 @@
       <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-fav" } %>
         <div id="profile-resources-fav" class="row height-tabs-home" >
-          <% for resource in subject_resources(@user, {:scope => :like}) %>
+          <% for document in subject_resources(@user, {:scope => :like}) %>
             <% if document.is_a? Embed %>
                <%= render :partial => "embeds/home",
                           :locals => {:embed => document,
