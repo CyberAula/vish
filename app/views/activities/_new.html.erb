@@ -9,24 +9,15 @@
       <% end %>
     </div>
 
-    <!--
-    <div id="activity_form_select" class="inline-block type_share">
-      <%# SocialStream.activity_forms.each do |element| %>
-        <div id="select_<%#= element %>" class="activity_form_selector inline-block">
-          <%#=t('options.add') + ' '+ t("#{ element }.form.title").downcase %>
-        </div>
-      <%# end %>
-    </div>
-    -->
-
     <div class="tools_activity">
-    <div id="activity_form_select" class="inline-block type_share">
-      <button id="attachFileButton" class="menu_resources"><%= image_tag("adjuntar.png",:class => "imgnoradio" )%></button>
-    </div>
+      <div id="activity_form_select" class="inline-block type_share">
+        <button id="attachFileButton" class="menu_resources"><%= image_tag("adjuntar.png",:class => "imgnoradio" )%></button>
+      </div>
 
 
-    <div id="activities_share_btn" class="inline">
-      <%= submit_tag(t('share'), :class => "button submitActivity", :id => "masterSubmitButton") %>
+      <div id="activities_share_btn" class="inline">
+        <%= submit_tag(t('share'), :class => "button submitActivity", :id => "masterSubmitButton") %>
+      </div>
     </div>
   </div>
 
