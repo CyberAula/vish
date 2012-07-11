@@ -4,7 +4,12 @@ module SubjectsHelper
 
   # Return a link to this subject with the name
   def link_name(subject, options = {})
-    "<a data-toggle=\"modal\" href=\"#user-modal-#{subject.slug}\" class=\"user-modal-button-#{subject.slug}\">#{subject.name}</a><script type='text/javascript'>#{modal_for subject}</script>"
+    "<a data-toggle=\"modal\" href=\"#user-modal-#{subject.slug}\" class=\"user-modal-button-#{subject.slug}\">#{subject.name}</a>
+     <script type='text/javascript'>
+       $(\".user-modal-button-#{subject.slug}\").on(\"click\", function(){
+         #{h modal_for(subject)}
+       });
+     </script>"
   end
 
   # Return the truncated name

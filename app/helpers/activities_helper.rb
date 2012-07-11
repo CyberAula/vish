@@ -2,7 +2,7 @@ module ActivitiesHelper
   # Javascript line to fetch or create the modal dialog
   def modal_for(object)
     if object.is_a? User
-      "Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', #{object.followers.count}, #{object.following_actor_ids.count}, #{ user_signed_in? and current_subject.contact_to!(object).sent? ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');"
+      "Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', '#{ raw j image_tag(object.logo.url(:profile))}', #{object.followers.count}, #{object.following_actor_ids.count}, '#{ raw j contact_to(object)}', '#{raw object.tag_list.to_s}' );"
     else
       "Vish.Wall.getModal('#{object.class.to_s.downcase}', '#{object.id.to_s}', #{ user_signed_in? ? "true" : "false" }, #{object.activities.first.id.to_s}, #{ user_signed_in? and object.activities.first.liked_by?(current_subject) ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');"
     end

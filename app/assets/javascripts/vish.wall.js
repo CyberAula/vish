@@ -89,6 +89,23 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
+  var areasOfInterest = function(tags) {
+    if(tags) {
+      var tag_a = tags.split(", ");
+      var tag_str = '';
+      for (i in tag_a) {
+        tag_str+='<li class="tagit-choice"><a style="color: white;" href="/search?q=' + encodeURI(tag_a[i]) + '">' + tag_a[i] + '</a></li>';
+      }
+      return I18n.t('profile.tags.other') + ': <ul class="tagit-suggestions">' + tag_str + '</ul>';
+    } else {
+      return '';
+    }
+  }
+
+  var userModalPayload = function(id, avatar, followers, followings, tags) {
+    return '<div class="row-fluid"><div class="span3"><a href="/users/' + id + '">' + $("<div/>").html(avatar).text() + '</a><br/>' + I18n.t('follow.followers')+': <a href="/users/' + id + '/followers">' + followers + '</a><br/>'+I18n.t('follow.followings')+': <a href="/users/' + id + '/followings">' + followings + '</a></div><div class="span9">' + areasOfInterest(tags) + '</div></div>';
+  }
+
   var modalLikeBtn = function(signed_in, activity_id, is_fav){
     if(signed_in) {
       return '<div class="menu_resources"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/assets/star-'+ (is_fav?'on':'off') +'.png" /></a></div></div>';
@@ -97,9 +114,9 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
-  var modalFollowBtn = function(signed_in, id, is_follow){
+  var modalFollowBtn = function(signed_in, contact_link){
     if(signed_in) {
-      return 'pepe';
+      return '<div class="send_message size10 red-2 upfoll">' + $("<div/>").html(contact_link).text() + '</div>'
     } else {
       return ""; /* TODO: add button that leads to login? */
     }
@@ -114,12 +131,12 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
-  var getUserModal = function(id, signed_in, name, followers, followings, is_follow) {
+  var getUserModal = function(id, signed_in, name, avatar, followers, followings, contact_link, tags) {
     var modal = $('#user-modal-' + id);
     if (modal.length) {
       return modal;
     } else {
-      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center">'+I18n.t('follow.followers')+': ' + followers + '<br/>'+I18n.t('follow.followings')+': ' + followings + '</div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, id, is_follow) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center">'+ userModalPayload(id, avatar, followers, followings, tags) + '</div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 
