@@ -97,6 +97,14 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
+  var modalFollowBtn = function(signed_in, id, is_follow){
+    if(signed_in) {
+      return 'pepe';
+    } else {
+      return ""; /* TODO: add button that leads to login? */
+    }
+  }
+
   var getModal = function(klass, id, signed_in, activity_id, is_fav, title) {
     var modal = $('#' + klass + '-modal-' + id);
     if (modal.length) {
@@ -106,8 +114,18 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
+  var getUserModal = function(id, signed_in, name, followers, followings, is_follow) {
+    var modal = $('#user-modal-' + id);
+    if (modal.length) {
+      return modal;
+    } else {
+      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center">'+I18n.t('follow.followers')+': ' + followers + '<br/>'+I18n.t('follow.followings')+': ' + followings + '</div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, id, is_follow) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+    }
+  }
+
   return {
     init: init,
     getModal: getModal,
+    getUserModal: getUserModal,
   };
 }) (Vish, jQuery)

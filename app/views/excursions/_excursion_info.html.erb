@@ -20,7 +20,7 @@
         </div>
         <div class="clearfloat"></div>
         <div class="date_resources">
-          <%= link_to(truncate_name(@excursion.author.name, :length => 50), @excursion.author.subject) %>
+          <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %>"><%= truncate_name(@excursion.author.name, :length => 50) %></a>
         </div>
       </div>
       <% unless @excursion.description.blank? %>
@@ -117,7 +117,9 @@
 </div>
 <div class="space_center"></div>
 
-
-
-
+<%= javascript_tag do %>
+  $(".user-modal-button-<%= @excursion.author.slug %>").on("click", function(){
+    <%= modal_for(@excursion.author.subject) %>
+  });
+<% end %>
 

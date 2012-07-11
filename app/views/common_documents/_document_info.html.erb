@@ -45,7 +45,7 @@
                 </div>
                 <div class="clearfloat"></div>
                 <div class="date_resources">
-                  <%= link_to(truncate_name(document.author.name, :length => 50), document.author.subject) %>
+                  <a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %>"><%= truncate(document.author.name, :length => 200) %></a>
                 </div>
               </div>
               <% unless document.description.blank? %>
@@ -164,6 +164,13 @@
   </div>
 
   <div class="space_center"></div>
+
+  <%= javascript_tag do %>
+    $(".user-modal-button-<%= document.author.slug %>").on("click", function(){
+      <%= modal_for(document.author.subject) %>
+    });
+  <% end %>
+
 
 </div>
 

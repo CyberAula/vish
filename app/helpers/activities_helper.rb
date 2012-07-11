@@ -1,7 +1,11 @@
 module ActivitiesHelper
   # Javascript line to fetch or create the modal dialog
   def modal_for(object)
-    "Vish.Wall.getModal('#{object.class.to_s.downcase}', '#{object.id.to_s}', #{ user_signed_in? ? "true" : "false" }, #{object.activities.first.id.to_s}, #{ user_signed_in? and object.activities.first.liked_by?(current_subject) ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');"
+    if object.is_a? User
+      "Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', #{object.followers.count}, #{object.following_actor_ids.count}, #{ user_signed_in? and current_subject.contact_to!(object).sent? ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');"
+    else
+      "Vish.Wall.getModal('#{object.class.to_s.downcase}', '#{object.id.to_s}', #{ user_signed_in? ? "true" : "false" }, #{object.activities.first.id.to_s}, #{ user_signed_in? and object.activities.first.liked_by?(current_subject) ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');"
+    end
   end
 
   # Link to 'like' or 'unlike' depending on the like status of the activity to current_subject

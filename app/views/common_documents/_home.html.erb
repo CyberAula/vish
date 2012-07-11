@@ -10,7 +10,7 @@
         <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>"><%= document.title %></a>
       </h4>
       <div class="rw-words rw-words-1">
-          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><%=link_to(document.author.name, document.author.subject)%></h5></span>
+          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %>"><%= document.author.name %></a></h5></span>
           <div class="clearfloat"></div>
           <span><h5 class="green inline margin-home-resource-view"><%=document.visit_count.to_s%> </h5> <%= t("follow.views") %> / <h5 class="green inline like_count_<%= dom_id(document.activities.first) %>"><%=document.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first)%></div></span>
 
@@ -66,4 +66,10 @@
       });
     });
   <% end %>
+<% end %>
+
+<%= javascript_tag do %>
+  $(".user-modal-button-<%= document.author.slug %>").on("click", function(){
+    <%= modal_for(document.author.subject) %>
+  });
 <% end %>

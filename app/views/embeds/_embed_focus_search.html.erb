@@ -6,7 +6,7 @@
     <li class="span">
       <div class="caption">
         <h4><span class="size16"><%= link_to truncate_name(embed.title, :length => 20), embed, :class => "size14" %></span></h4>
-        <h5 class="blue-opacity"><span class="size11">by <%=link_to( truncate_name(embed.author.name, :length => 20), embed.author.subject)%></span></h5>
+        <h5 class="blue-opacity"><span class="size11">by <a data-toggle="modal" href="#user-modal-<%= embed.author.slug %>" class="user-modal-button-<%= embed.author.slug %>"><%= truncate_name(embed.author.name, :length => 20) %></a></span></h5>
         <h5><span class="green"><%=embed.visit_count.to_s%></span> <%= t("follow.views") %></h5>
         <h5>
           <span class="green like_count_<%= dom_id(embed.activities.first) %>"><%=embed.activities.first.likes.count.to_s%></span>
@@ -16,3 +16,10 @@
     </li>
   </ul>
 </div>
+
+<%= javascript_tag do %>
+  $(".user-modal-button-<%= embed.author.slug %>").on("click", function(){
+    <%= modal_for(embed.author.subject) %>
+  });
+<% end %>
+
