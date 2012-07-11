@@ -4,7 +4,7 @@
   </li>
   <li class="span9">
     <div class="title">
-      <h4 class="bold"><%= link_to truncate_name(audio.title, :length => 35), audio %></h4>
+      <h4 class="bold ellipsis w190px"><%= link_to audio.title, audio %></h4>
     </div>
     <p class="processing_text"><%= t('audio.processing')%></p>
     <p><%= link_to t('details.msg'), audio, :class => "attachment_text_link" %></p>

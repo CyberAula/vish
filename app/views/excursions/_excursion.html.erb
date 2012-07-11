@@ -6,7 +6,7 @@
     </li>
     <li class="span9">
         <div class="title">
-          <h4 class="bold"><%= link_to truncate_name(excursion.title, :length => 35), excursion %></h4>
+          <h4 class="bold ellipsis w190px"><%= link_to excursion.title, excursion %></h4>
         </div>
         
         <p><%= simple_format auto_link(excursion.description) %></p>

@@ -63,6 +63,7 @@ es:
     content: "Contenido en directo"
     embed: "embed"
     input: "Pega aquí tu recurso empotrado"
+    name: "emged"
   excursion:
     actions:
       bookmark: "marcardor"      
@@ -78,6 +79,7 @@ es:
         repository: "ir a repositorio"
     how: "Como crear una excursión"
     my: "mis"
+    name: "excursion"
     net: "red"
     network: "excursiones de mi red"
     network2: "mi red"
