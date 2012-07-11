@@ -33,7 +33,7 @@
     <div class="push"></div>
   </div>
   <div class="container">
-    <footer class="row span12">
+    <footer class="row span12 footer">
       <%= render :partial => "layouts/footer" %>
     </footer>
   </div>
@@ -53,6 +53,7 @@ var $win = $(window)
 , $nav = $('.right')
 , $nav2 = $('#left')
 , $nav3 = $('#main')
+, $nav4 = $('.footer')
 , navTop = $('.right').length && $('.right').offset().top - 40
 , navTop2 = $('#left').length && $('#left').offset().top - 40
 , isFixed = 0
@@ -78,11 +79,13 @@ function processScroll() {
     $nav.addClass('right-fixed')
     $nav2.addClass('left-fixed')
     $nav3.addClass('main-fixed')
+    $nav4.addClass('footer-fixed')
   } else if (scrollTop <= navTop && isFixed) {
     isFixed = 0
     $nav.removeClass('right-fixed')
     $nav2.removeClass('left-fixed')
     $nav3.removeClass('main-fixed')
+    $nav4.removeClass('footer-fixed')
   }
 
 }

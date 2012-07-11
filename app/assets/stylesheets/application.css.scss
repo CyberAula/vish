@@ -62,6 +62,36 @@
   left: 182px;
 }
 
+.footer-fixed{
+  display: none;
+}
+
+
+.load_more_button{
+  background-color: #F7F7F7;
+  border: 1px solid  #FF005D;
+  border-radius: 7px 7px 7px 7px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  display: inline-block;
+  padding: 4px 6px;
+  padding-bottom: 3px;
+  width: 200px;
+  color: #6E6E6E;
+  font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 30px;
+}
+
+.load_more_button:hover { 
+  backgroun-color: red;
+  color: #6E6E6E;
+  background-image: url("notebook/Button.png");
+  
+}
+
 
 .title_menu_home{
   vertical-align:bottom;
