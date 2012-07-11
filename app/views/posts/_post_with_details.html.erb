@@ -1,7 +1,7 @@
 <% author = post.author_subject %>
 <div class="row-fluid">
   <div class="span2 pagination-centered link_white">
-    <%= link_to (image_tag(author.logo.url(:contact) ,  :alt => author.name )), author  %>
+    <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %>" alt='<%= author.name %>'><%= image_tag(author.logo.url(:contact)) %></a>
   </div>
   <div class=" link_white">
     <h4><%= link_to truncate_name(author.name, :length => 40), author %></h4>
@@ -15,3 +15,9 @@
     <% end %>
   </div>
 </div>
+
+<%= javascript_tag do %>
+  $(".user-modal-button-<%= author.slug %>").on("click", function(){
+    <%= modal_for(author.subject) %>
+  });
+<% end %>

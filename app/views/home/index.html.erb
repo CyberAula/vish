@@ -233,15 +233,15 @@
           <%= div_for object.actor, :class => '' do %>
             <ul class="thumbnails span">
               <li class="span1">
-                <%= link_to(image_tag(object.actor.logo.url(:contact)),
-                            object.actor.subject,
-                            :class => "container follower-tooltip",
-                            :title => truncate(object.actor.name, :length => 20),
-                            :rel => 'tooltip'
-                            ) %>
+<a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
               </li>
             </ul>
           <% end %>
+        <%= javascript_tag do %>
+          $(".user-modal-button-<%= object.actor.slug %>").on("click", function(){
+            <%= modal_for(object.actor.subject) %>
+          });
+        <% end %>
         <% end %>
         </div>
         <div class="more"><%= link_to(t('view_all'), followings_path) %></div>
@@ -255,15 +255,15 @@
           <%= div_for object.actor, :class => '' do %>
             <ul class="thumbnails span">
               <li class="span1">
-                <%= link_to(image_tag(object.actor.logo.url(:contact)),
-                            object.actor.subject,
-                            :class => "container follower-tooltip",
-                            :title => truncate(object.actor.name, :length => 20),
-                            :rel => 'tooltip'
-                            ) %>
+                <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
               </li>
             </ul>
           <% end %>
+        <%= javascript_tag do %>
+          $(".user-modal-button-<%= object.actor.slug %>").on("click", function(){
+            <%= modal_for(object.actor.subject) %>
+          });
+        <% end %>
         <% end %>
         <div class="more"><%= link_to(t('view_all'), followers_path) %></div>
       </div>
