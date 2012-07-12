@@ -124,7 +124,6 @@ en:
     new: "New message"
     unread: " unread"
   more: "more"
-
   mashme:
     header_html: "View in <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invite your contacts"
@@ -134,6 +133,7 @@ en:
     room_name: "Room name"
   navigation:
     home: "Home"
+  no_bio: "This user has not uploaded a biography."
   notification:
     makefriend:
       user: "%{sender} is following %{who}."
@@ -157,6 +157,7 @@ en:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"
   project: "Global Excursion"      
+  published: "Published"
   recommended: "recommended"
   repository:
     one: "repository"

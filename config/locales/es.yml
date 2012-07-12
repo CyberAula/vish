@@ -133,6 +133,7 @@ es:
     room_name: "Nombre de la sala"
   navigation:
     home: "Inicio"
+  no_bio: "Este usuario no ha actualizado su biografía."
   notification:
     makefriend:
       user: "%{sender} está siguiendo a %{who}."
@@ -156,6 +157,7 @@ es:
       default: "VisHub, virtual, excursion"
       other: "Áreas de interés"
   project: "Global Excursion"      
+  published: "Publicados"
   recommended: "recomendados"
   repository:
     one: "repositorio"
