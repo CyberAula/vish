@@ -1,13 +1,12 @@
 <%= div_for contact, :class => 'row' do %>
   <ul class="thumbnails span3">
     <li class="span1">
-      <%= link_to(image_tag(contact.receiver.logo.url(:profile)),
-                  contact.receiver_subject, :class => "container") %>
+      <a data-toggle="modal" href="#user-modal-<%= contact.receiver.slug %>" class="user-modal-button-<%= contact.receiver.slug %> container"><%= image_tag(contact.receiver.logo.url(:profile)) %></a>
     </li>
     <li class="span">
       <div class="caption ellipsis">
- <div class="title_suggestion">
-        <h4 class="w120px"><%= link_to(contact.receiver_subject.name, contact.receiver_subject, :class => "contact_link") %></h4>
+      <div class="title_suggestion">
+        <h4 class="w120px"><a data-toggle="modal" href="#user-modal-<%= contact.receiver.slug %>" class="user-modal-button-<%= contact.receiver.slug %> contact_link"><%= contact.receiver_subject.name %></a></h4>
       </div>
       <a class="close_suggestion"> <%= link_to(image_tag('close.png'), contact, :method => :delete, :remote => true )%></a>
       <div class="follwrs-ing">
@@ -20,6 +19,11 @@
   </ul>
   <div class="space_center">
   </div>
+  <%= javascript_tag do %>
+    $(".user-modal-button-<%= contact.receiver.slug %>").on("click", function(){
+      <%= modal_for(contact.receiver_subject) %>
+    });
+  <% end %>
 <% end %>
 
 
