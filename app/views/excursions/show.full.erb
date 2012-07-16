@@ -19,6 +19,6 @@
 <script>
 	//first function called when page loads
 	function start(){
-		VISH.SlideManager.init(<%= raw @excursion.json %>);
+		VISH.SlideManager.init({}, <%= raw @excursion.json %>);
 	}
 </script>
