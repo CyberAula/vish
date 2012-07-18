@@ -719,11 +719,10 @@ form.example input.file.hidden {
 .follwrs-ing{font-size: 11px; marging-top: 1px; margin-bottom: 1px;}
 .upfoll{;}
 #following,  #follower{margin-left: 20px}
-.following-button{
+.following-button, .unfollow-button, .follow-button{
   margin-top:-1px ;
   width: 120px;
   height: 18px;
-  color: #FF005D;
   margin-left: 0px;
   border: none;
   border-radius: 15px 15px 15px 15px;
@@ -740,10 +739,21 @@ form.example input.file.hidden {
   vertical-align: middle  ;
   padding-top  :4px;
   padding-bottom  :-4px;
-  background-color: #ffeeee;
-
   text-align:center;
  }
+
+.following-button {
+  color: #FF005D;
+  background-color: #ffeeee;
+}
+
+.unfollow-button, .follow-button {
+  background-color: #ff005d;
+}
+
+.unfollow-button a, .follow-button a, .unfollow-button a:hover, .follow-button a:hover {
+  color: #fff;
+}
 
 .users_btn_follow form{
   margin : 0 0 -9px !important;
