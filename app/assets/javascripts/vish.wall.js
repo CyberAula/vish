@@ -89,23 +89,6 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
-  var areasOfInterest = function(tags) {
-    if(tags) {
-      var tag_a = tags.split(", ");
-      var tag_str = '';
-      for (i in tag_a) {
-        tag_str+='<li class="tagit-choice"><a style="color: white;" href="/search?q=' + encodeURI(tag_a[i]) + '">' + tag_a[i] + '</a></li>';
-      }
-      return '<div class="text-center">' + I18n.t('profile.tags.other') + ': <ul class="tagit-suggestions">' + tag_str + '<br/><br/></ul></div><hr/>';
-    } else {
-      return '';
-    }
-  }
-
-  var userModalPayload = function(id, avatar, followers, followings, excursions, resources, tags, organization, bio) {
-    return '<div class="row-fluid"><div class="span3"><a href="/users/' + id + '">' + $("<div/>").html(avatar).text() + '</a><br/>' + I18n.t('follow.followers')+': <a href="/users/' + id + '/followers">' + followers + '</a><br/>'+I18n.t('follow.followings')+': <a href="/users/' + id + '/followings">' + followings + '</a></div><div class="span9">' + (organization ? '<div>' + organization + '</div><hr/>': '') + '<div class="text-center">' + I18n.t('published') + ': <a href="/users/' + id + '/excursions">' + excursions + '</a> ' + I18n.t('excursion.other')+ ' & <a href="/users/' + id + '/documents">' + resources + '</a> ' + I18n.t('resource.title.other') + '</div><hr/>' + areasOfInterest(tags) + '<div><em>' + (bio ? bio : I18n.t('no_bio')) + '</em></div></div></div>';
-  }
-
   var modalLikeBtn = function(signed_in, activity_id, is_fav){
     if(signed_in) {
       return '<div class="menu_resources"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/assets/star-'+ (is_fav?'on':'off') +'.png" /></a></div></div>';
@@ -131,12 +114,12 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
-  var getUserModal = function(id, signed_in, name, avatar, followers, followings, excursions, resources, contact_link, tags, organization, bio) {
+  var getUserModal = function(id, signed_in, name, contact_link) {
     var modal = $('#user-modal-' + id);
     if (modal.length) {
       return modal;
     } else {
-      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center">'+ userModalPayload(id, avatar, followers, followings, excursions, resources, tags, organization, bio) + '</div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center"><img alt="Loading" class="loading" src="/assets/loading.gif" /></div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 

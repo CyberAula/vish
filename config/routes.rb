@@ -24,6 +24,7 @@ Vish::Application.routes.draw do
     resources actor.to_s.pluralize do
       match 'followings' => 'followers#index', :as => :followings, :defaults => { :direction => 'sent' }
       match 'followers' => 'followers#index', :as => :followers, :defaults => { :direction => 'received' }
+      match 'modal' => 'modals#actor'
     end
   end
 

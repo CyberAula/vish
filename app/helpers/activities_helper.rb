@@ -2,7 +2,7 @@ module ActivitiesHelper
   # Javascript line to fetch or create the modal dialog
   def modal_for(object)
     if object.acts_as_actor?
-      "Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', '#{ raw j image_tag(object.logo.url(:profile))}', #{object.followers.count}, #{object.following_actor_ids.count}, #{Excursion.authored_by(object).count}, #{Document.authored_by(object).count + Embed.authored_by(object).count + Link.authored_by(object).count}, '#{ raw j contact_to(object)}', '#{raw object.tag_list.to_s}', '#{raw j object.profile.organization}', '#{raw j object.profile.description}' );"
+      "Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', '#{ raw j contact_to(object)}'); $.ajax('/users/#{ object.actor.slug }/modal');"
     else
       "Vish.Wall.getModal('#{object.class.to_s.downcase}', '#{object.id.to_s}', #{ user_signed_in? ? "true" : "false" }, #{object.activities.first.id.to_s}, #{ user_signed_in? and object.activities.first.liked_by?(current_subject) ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');"
     end
