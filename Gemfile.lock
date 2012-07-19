@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: git://github.com/ging/vish_editor.git
-  revision: 041ba66b5f51fe8683ea427ac184aa64fc576c52
+  revision: e6929f1b18b1845ad8e97aedd5c58a1dc45026e1
   branch: stable
   specs:
     vish_editor (0.1.1)
@@ -170,7 +170,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    libwebsocket (0.1.3)
+    libwebsocket (0.1.4)
       addressable
     linkser (0.0.12)
       ging-opengraph (~> 0.0.4)
@@ -293,7 +293,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.24.0)
+    selenium-webdriver (2.25.0)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
@@ -348,6 +348,8 @@ DEPENDENCIES
   net-ssh (= 2.4.0)
   pg
   rails (~> 3.2.0)
+  railties (= 3.2.6)
+  responders (= 0.9.1)
   rspec-rails (= 2.9.0)
   sass-rails (~> 3.2.4)
   social_stream-base!
