@@ -16,6 +16,8 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class ApplicationController < ActionController::Base
+  before_filter :detect_mobile_request
+
   protect_from_forgery
 
   layout :layout_by_resource
@@ -28,6 +30,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  private
+
+  def detect_mobile_request
+    request.format = :mobile if request.domain.split(".").first == 'm'
+  end
 
 end
 
