@@ -44,13 +44,7 @@
         <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-me"} %>
         <div class="space_center"></div>
         <div id="home-excursions-me" class="row height-tabs-home">
-          <% my_excursions = current_subject_excursions(:scope => :me) %>
-          <% if my_excursions.size == 0 %>
-            <%= render :partial => "excursions/my_zero_screen" %>
-          <% else %>
-            <%= render :partial => "excursions/filter_results",
-                       :locals => {:excursions => my_excursions} %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="more"><%= link_to(t('view_all'), [current_subject, Excursion]) %></div>
       </div>
@@ -58,10 +52,7 @@
         <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-more"} %>
         <div class="space_center"></div>
         <div id="home-excursions-more" class="row height-tabs-home">
-          <% for excursion in current_subject_excursions(:scope => :more) %>
-            <%= render :partial => "excursions/home",
-                       :locals => {:excursion => excursion} %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
       </div>
@@ -132,26 +123,7 @@
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-me"} %>
         <div class="space_center"></div>
         <div id="home-resources-me" class="repositories row height-tabs-home">
-          <% my_resources = current_subject_resources({:scope => :me, :limit => 6}) %>
-          <% if my_resources.size == 0 %>
-            <%= render :partial => "common_documents/my_zero_screen" %>
-          <% else %>
-            <% for document in my_resources %>
-              <% if document.is_a? Embed %>
-                <%= render :partial => "embeds/home",
-                           :locals => {:embed => document,
-                                       :div_class => 'content_size'} %>
-              <% elsif document.is_a? Link %>
-                 <%= render :partial => "links/home",
-                            :locals => {:link => document,
-                                        :div_class => 'content_size'} %>
-              <% elsif document.is_a? Document %>
-                <%= render :partial => "common_documents/home",
-                           :locals => {:document => document,
-                                       :div_class => 'content_size'} %>
-              <% end %>
-            <% end %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="more"><%= link_to(t('view_all'), [current_subject, Document]) %></div>
       </div>
@@ -159,21 +131,7 @@
         <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-more"} %>
         <div class="space_center"></div>
         <div id="home-resources-more" class="repositories row height-tabs-home">
-          <% for document in current_subject_resources({:scope => :more, :limit => 6}) %>
-            <% if document.is_a? Embed %>
-              <%= render :partial => "embeds/home",
-                         :locals => {:embed => document,
-                                     :div_class => 'content_size'} %>
-            <% elsif document.is_a? Link %>
-               <%= render :partial => "links/home",
-                          :locals => {:link => document,
-                                      :div_class => 'content_size'} %>
-            <% elsif document.is_a? Document %>
-              <%= render :partial => "common_documents/home",
-                         :locals => {:document => document,
-                                     :div_class => 'content_size'} %>
-            <% end %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
       </div>
@@ -274,6 +232,9 @@
 <%= javascript_tag do %>
   $(document).ready(function(){
     $('.follower-tooltip').tooltip({ placement: 'bottom'});
+  });
+  $('a[data-toggle="tab"]').on('shown', function(e) {
+    $('#' + e.target.href.split('#')[1]).find('input[name=filter]').keyup();
   });
 <% end %>
 
