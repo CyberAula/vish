@@ -40,7 +40,7 @@ gem 'responders', '0.9.1'
 gem 'railties', '3.2.6'
 
 if ENV['VISH_EDITOR_DEV']
-  gem 'vish_editor', :path => '../vish_editor/rails'
+  gem 'vish_editor', :path => '../vish_editor/public/vishEditor/rails'
 else
   git 'git://github.com/ging/vish_editor.git', :branch => 'stable' do
     gem 'vish_editor'
