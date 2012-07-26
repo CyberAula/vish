@@ -37,14 +37,6 @@ GIT
       linkser (~> 0.0.12)
       social_stream-base (~> 0.21.0)
 
-GIT
-  remote: git://github.com/ging/vish_editor.git
-  revision: e6929f1b18b1845ad8e97aedd5c58a1dc45026e1
-  branch: stable
-  specs:
-    vish_editor (0.1.1)
-      railties (>= 3.1.3)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -77,7 +69,7 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (2.2.2)
       rails (~> 3.0)
-    addressable (2.2.8)
+    addressable (2.3.1)
     ancestry (1.2.5)
       activerecord (>= 2.2.2)
     arel (3.0.2)
@@ -105,8 +97,8 @@ GEM
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    childprocess (0.3.3)
-      ffi (~> 1.0.6)
+    childprocess (0.3.4)
+      ffi (~> 1.0, >= 1.0.6)
     cocaine (0.2.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -115,8 +107,16 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    columnize (0.3.6)
     composite_primary_keys (5.0.8)
       activerecord (~> 3.2.0)
+    debugger (1.1.4)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.1.3)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.1.3)
     deep_merge (1.0.0)
     delayed_paperclip (2.4.5.1)
       paperclip (>= 2.4.5)
@@ -134,7 +134,7 @@ GEM
       activesupport (>= 2.3.9)
     faraday (0.8.1)
       multipart-post (~> 1.1)
-    ffi (1.0.11)
+    ffi (1.1.0)
     foreigner (1.1.6)
       activerecord (>= 3.0.0)
     forgery (0.5.0)
@@ -163,9 +163,9 @@ GEM
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     jruby-pageant (1.1.1)
-    json (1.7.3)
-    jwt (0.1.4)
-      json (>= 1.2.4)
+    json (1.7.4)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -339,6 +339,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.2)
   composite_primary_keys
+  debugger (~> 1.1.1)
   exception_notification
   factory_girl (~> 2.6)
   forgery
@@ -357,4 +358,3 @@ DEPENDENCIES
   social_stream-linkser!
   sqlite3
   uglifier (>= 1.2.3)
-  vish_editor!

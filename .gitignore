@@ -44,3 +44,9 @@ app/views/layouts/_grid.html.erb
 
 #Test gems
 carrierwave/
+
+#Ignore vish editor compile
+lib/tasks/compile
+
+#Ignore RVM personal config
+.rvmrc

@@ -39,14 +39,6 @@ gem 'avatars_for_rails', '~> 0.2.6'
 gem 'responders', '0.9.1'
 gem 'railties', '3.2.6'
 
-if ENV['VISH_EDITOR_DEV']
-  gem 'vish_editor', :path => '../vish_editor/public/vishEditor/rails'
-else
-  git 'git://github.com/ging/vish_editor.git', :branch => 'stable' do
-    gem 'vish_editor'
-  end
-end
-
 # Composite keys for vish-recsys
 gem 'composite_primary_keys'
 

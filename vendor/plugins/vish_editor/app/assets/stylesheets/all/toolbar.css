@@ -1,0 +1,27 @@
+.toolbar_wrapper {
+  border-bottom-top-radius: 15px;
+  border-bottom-top-radius: 15px;
+  background-color: transparent;
+  overflow: hidden;
+  width: 100%;
+  border: 0px solid #00ff00;
+}
+
+.toolbar_panel {
+  background-color: #fff;
+  border: 1px solid #ccc;
+	height: 24px;
+  width: 696px;
+  margin: 0px 2px 2px 0px; /* top margin, right margin, bottom margin, left margin */
+  padding-left: 212px;
+  zoom: 1;
+  overflow: hidden;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.toolbar_icon{
+	height: 91%;
+    margin-top: 1px;
+    padding-right: 6px;
+}

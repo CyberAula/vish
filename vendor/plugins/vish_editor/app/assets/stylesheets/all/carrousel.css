@@ -1,0 +1,343 @@
+.image_carousel {
+    position: relative;
+    width: 750px;
+    overflow: hidden;
+    margin-left: -10px;
+}
+
+.image_carousel>div {
+    margin-bottom: 15px;
+}
+
+.image_carousel_single_row {
+    padding: 85px 0 0px 0px;
+}
+
+.image_carousel_multiple_row {
+    padding: 80px 0 60px 0px;
+}
+
+.image_carousel img {
+    background-color: white;
+    margin: 6px;
+    display: block;
+    float: left;
+}
+
+a.prev, a.next {
+    background: url(/assets/carrousel_sprite.png) no-repeat transparent;
+    width: 45px;
+    height: 50px;
+    display: block;
+    position: absolute;
+	  outline: none;
+}
+
+a.prev_single_row, a.next_single_row{
+	top: 120px;
+}
+
+a.prev_multiple_row, a.next_multiple_row{
+    top: 245px;
+}
+
+a.prev {
+  left: 0px;
+  background-position: 0 0; 
+}
+a.prev:hover {      
+  background-position: 0 -50px; 
+}
+a.prev.disabled {   
+  background-position: 0 -100px !important;  
+}
+a.next {  
+  right: 0px;
+  background-position: -50px 0; 
+}
+a.next:hover {      
+  background-position: -50px -50px; 
+}
+a.next.disabled {   
+  background-position: -50px -100px !important;  
+}
+a.prev.disabled, a.next.disabled {
+    cursor: default;
+}
+   
+a.prev span, a.next span {
+  display: none;
+}
+
+.pagination {
+  text-align: center;
+	margin-right: 0px;
+	margin-top: 30px;
+}
+
+.pagination a {
+  background: url(/assets/carrousel_sprite.png) 0 -300px no-repeat transparent;
+  width: 15px;
+  height: 15px;
+  margin: 0 5px 0 0;
+  display: inline-block;
+	outline: none;
+}
+
+.pagination a.selected {
+  background-position: -25px -300px;
+  cursor: default;
+}
+
+.pagination a span {
+  display: none;
+}
+
+.clearfix {
+    float: none;
+    clear: both;
+}
+
+div.carrousel_element_single_row{
+  width: 100px;
+  height: 90px;
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+  margin-left: 35px;
+}
+
+img.carrousel_element_single_row{
+  width: 100px;
+  height: 90px;
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: -21px;
+  margin-top: 15px;
+}
+
+img.carrousel_element_selected{
+	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
+	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
+	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
+	border-radius: 13px;
+	-webkit-border-radius: 13px;
+	-moz-border-radius: 13px;
+	opacity: 1.0;
+}
+
+img.carrousel_element_selected:active{
+	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
+	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
+	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
+	border-radius: 13px;
+	-webkit-border-radius: 13px;
+	-moz-border-radius: 13px;
+	opacity: 1.0;
+}
+
+div.carrousel_element_multiple_row{
+  width: 150px;
+  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+  margin-left: 10px;
+}
+
+img.carrousel_element_multiple_row{
+  width: 150px;
+  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: -6px;
+  padding: 0px 0 0px 0px;
+  margin-top: 20px;
+}
+
+div.carrousel_wrapper_multiple_row{
+  /** margin-top: 20px; */
+}
+
+
+/* CSS for Title Carrousel */
+
+p.carrousel_element_single_row_title{
+  margin: 0px;
+  margin-top: 15px;
+  max-width: 100px;
+  max-height: 20px;
+  overflow: hidden;
+  margin-left: -15px;
+  text-align: center;
+  font-size: 15px;
+  font-family: Helvetica;
+}
+
+.image_carousel_single_row_title {
+    padding: 80px 0 0px 0px;
+}
+
+div.carrousel_element_single_row_title{
+  width: 100px;
+  height: 90px;
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+  margin-left: 35px;
+}
+
+img.carrousel_element_single_row_title{
+  margin-left: -10px;
+}
+
+a.prev_single_row_title, a.next_single_row_title{
+  top: 141px;
+}
+
+/** ADD style to pagination class (Optional) */
+.pagination_single_row_title {
+  margin-top: 55px;
+}
+
+.repositoryTitle{
+  margin: 0px;
+  margin-top: 15px;
+  max-width: 100px;
+  max-height: 20px;
+  overflow: hidden;
+  margin-left: -15px;
+  text-align: center;
+  font-size: 15px;
+	font-family: Helvetica;
+}
+
+
+
+/* CSS for Thumbnails Carrousel */
+
+.image_carousel_single_row_thumbnails {
+    padding: 10px 0 0px 0px;
+		margin-left: 25px;
+}
+
+div.carrousel_element_single_row_thumbnails{
+  width: 100px;
+  height: 90px;
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+  margin-left: 35px;
+  border-radius: 20px;
+}
+
+img.carrousel_element_single_row_thumbnails{
+  width: 100px;
+  height: 90px;
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: -27px;
+  margin-top: -2px;
+  border: none;
+  opacity: 0.6;
+}
+
+img.carrousel_element_single_row_thumbnails:hover{
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: -27px;
+  margin-top: -2px;
+  border: none;
+  opacity: 0.8;
+  cursor: pointer;
+  -webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
+  -moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
+  box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+}
+
+a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
+  top: 28px;
+}
+
+.carrousel_element_selected {
+	color: #0F9;
+}
+
+.pagination_single_row_thumbnails{
+	margin-top: 12px;
+	margin-bottom: 10px;
+}
+
+
+
+/* CSS for Slides Carrousel */
+
+.image_carousel_single_row_slides {
+    padding: 10px 0 0px 112px;
+    margin-left: 25px;
+}
+
+div.carrousel_element_single_row_slides{
+  width: 60px;
+  height: 60px;
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+  margin-left: 16px;
+}
+
+img.carrousel_element_single_row_slides{
+  width: 62px;
+  height: 52px;
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: -140px;
+  margin-top: 0px;
+  background: none;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  opacity: 0.6;
+}
+
+img.carrousel_element_single_row_slides:hover{
+}
+
+img.carrousel_element_single_row_slides:active{
+	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.1);
+	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.1);
+	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.1);
+	opacity: 1.0;
+}
+
+a.prev_single_row_slides, a.next_single_row_slides{
+  top: 15px;
+	display: block;
+}
+
+a.prev_single_row_slides{
+  left: 80px;
+}
+
+a.next_single_row_slides{
+  right: 80px;
+}
+
+p.carrousel_element_single_row_slides{
+	cursor: pointer;
+	background-color: #fff;
+    border-radius: 10px 0 5px 0;
+    font-family: Helvetica;
+    font-size: 15px;
+    margin: 31px 0 0 -101px;
+    max-height: 20px;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    width: 21px;
+	opacity: 0.9;
+	z-index: 10;
+}
