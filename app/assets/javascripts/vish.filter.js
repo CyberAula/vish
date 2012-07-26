@@ -6,193 +6,237 @@ Vish.Filter = function(V, $, undefined){
 	        Vish.Filter.loaded=true;
 
 		/* Filters for home-excursions */
-                $('#home-excursion-filter-net').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#home-excursion-filter-net')[0].value, scope: "net", per_page: 4 },
-                                success: function(data) { $('#home-excursions-net').html(data); }
-                        });
-                });
+		if (! $('#home-excursion-filter-net').data('events')) {
+                  $('#home-excursion-filter-net').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#home-excursion-filter-net')[0].value, scope: "net", per_page: 4 },
+                      success: function(data) { $('#home-excursions-net').html(data); }
+                    });
+                  });
+		}
 
-                $('#home-excursion-filter-me').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#home-excursion-filter-me')[0].value, scope: "me", per_page: 4 },
-                                success: function(data) { $('#home-excursions-me').html(data); }
-                        });
-                });
+		if (! $('#home-excursion-filter-me').data('events')) {
+                  $('#home-excursion-filter-me').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#home-excursion-filter-me')[0].value, scope: "me", per_page: 4 },
+                      success: function(data) { $('#home-excursions-me').html(data); }
+                    });
+                  });
+		}
 
-                $('#home-excursion-filter-more').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#home-excursion-filter-more')[0].value, scope: "other", per_page: 4 },
-                                success: function(data) { $('#home-excursions-more').html(data); }
-                        });
-                });
+		if (! $('#home-excursion-filter-more').data('events')) {
+                  $('#home-excursion-filter-more').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#home-excursion-filter-more')[0].value, scope: "other", per_page: 4 },
+                      success: function(data) { $('#home-excursions-more').html(data); }
+                    });
+                  });
+		}
 
-                $('#home-excursion-filter-fav').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#home-excursion-filter-fav')[0].value, scope: "like", per_page: 4 },
-                                success: function(data) { $('#home-excursions-fav').html(data); }
-                        });
-                });
+		if (! $('#home-excursion-filter-more').data('events')) {
+                  $('#home-excursion-filter-fav').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#home-excursion-filter-fav')[0].value, scope: "like", per_page: 4 },
+                      success: function(data) { $('#home-excursions-fav').html(data); }
+                    });
+                  });
+		}
 
 
 		/* Filters for home-resources */
-                $('#home-resource-filter-net').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#home-resource-filter-net')[0].value, scope: "net", per_page: 6 },
-                                success: function(data) { $('#home-resources-net').html(data); }
-                        });
-                });
+		if (! $('#home-resource-filter-net').data('events')) {
+                  $('#home-resource-filter-net').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#home-resource-filter-net')[0].value, scope: "net", per_page: 6 },
+                      success: function(data) { $('#home-resources-net').html(data); }
+                    });
+                  });
+		}
 
-                $('#home-resource-filter-me').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#home-resource-filter-me')[0].value, scope: "me", per_page: 6 },
-                                success: function(data) { $('#home-resources-me').html(data); }
-                        });
-                });
+		if (! $('#home-resource-filter-me').data('events')) {
+                  $('#home-resource-filter-me').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#home-resource-filter-me')[0].value, scope: "me", per_page: 6 },
+                      success: function(data) { $('#home-resources-me').html(data); }
+                    });
+                  });
+		}
 
-                $('#home-resource-filter-more').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#home-resource-filter-more')[0].value, scope: "other", per_page: 6 },
-                                success: function(data) { $('#home-resources-more').html(data); }
-                        });
-                });
+		if (! $('#home-resource-filter-more').data('events')) {
+                  $('#home-resource-filter-more').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#home-resource-filter-more')[0].value, scope: "other", per_page: 6 },
+                      success: function(data) { $('#home-resources-more').html(data); }
+                    });
+                  });
+		}
 
-                $('#home-resource-filter-fav').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#home-resource-filter-fav')[0].value, scope: "like", per_page: 6 },
-                                success: function(data) { $('#home-resources-fav').html(data); }
-                        });
-                });
+		if (! $('#home-resource-filter-fav').data('events')) {
+                  $('#home-resource-filter-fav').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#home-resource-filter-fav')[0].value, scope: "like", per_page: 6 },
+                      success: function(data) { $('#home-resources-fav').html(data); }
+                    });
+                  });
+		}
 
 
 		/* Filters for profile-excursions */
-                $('#profile-excursion-filter-net').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#profile-excursion-filter-net')[0].value, scope: "net", per_page: 4 },
-                                success: function(data) { $('#profile-excursions-net').html(data); }
-                        });
-                });
+		if (! $('#profile-excursion-filter-net').data('events')) {
+                  $('#profile-excursion-filter-net').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#profile-excursion-filter-net')[0].value, scope: "net", per_page: 4 },
+                      success: function(data) { $('#profile-excursions-net').html(data); }
+                    });
+                  });
+		}
 
-                $('#profile-excursion-filter-me').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#profile-excursion-filter-me')[0].value, scope: "me", per_page: 4 },
-                                success: function(data) { $('#profile-excursions-me').html(data); }
-                        });
-                });
+		if (! $('#profile-excursion-filter-me').data('events')) {
+                  $('#profile-excursion-filter-me').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#profile-excursion-filter-me')[0].value, scope: "me", per_page: 4 },
+                      success: function(data) { $('#profile-excursions-me').html(data); }
+                    });
+                  });
+		}
 
-                $('#profile-excursion-filter-fav').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#profile-excursion-filter-fav')[0].value, scope: "like", per_page: 4 },
-                                success: function(data) { $('#profile-excursions-fav').html(data); }
-                        });
-                });
+		if (! $('#profile-excursion-filter-fav').data('events')) {
+                  $('#profile-excursion-filter-fav').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#profile-excursion-filter-fav')[0].value, scope: "like", per_page: 4 },
+                      success: function(data) { $('#profile-excursions-fav').html(data); }
+                    });
+                  });
+		}
 
 
 		/* Filters for profile-resources */
-                $('#profile-resource-filter-net').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#profile-resource-filter-net')[0].value, scope: "net", per_page: 4 },
-                                success: function(data) { $('#profile-resources-net').html(data); }
-                        });
-                });
+		if (! $('#profile-resource-filter-net').data('events')) {
+                  $('#profile-resource-filter-net').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#profile-resource-filter-net')[0].value, scope: "net", per_page: 4 },
+                      success: function(data) { $('#profile-resources-net').html(data); }
+                    });
+                  });
+		}
 
-                $('#profile-resource-filter-me').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#profile-resource-filter-me')[0].value, scope: "me", per_page: 4 },
-                                success: function(data) { $('#profile-resources-me').html(data); }
-                        });
-                });
+		if (! $('#profile-resource-filter-me').data('events')) {
+                  $('#profile-resource-filter-me').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#profile-resource-filter-me')[0].value, scope: "me", per_page: 4 },
+                      success: function(data) { $('#profile-resources-me').html(data); }
+                    });
+                  });
+		}
 
-                $('#profile-resource-filter-fav').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#profile-resource-filter-fav')[0].value, scope: "like", per_page: 4 },
-                                success: function(data) { $('#profile-resources-fav').html(data); }
-                        });
-                });
+		if (! $('#profile-resource-filter-fav').data('events')) {
+                  $('#profile-resource-filter-fav').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#profile-resource-filter-fav')[0].value, scope: "like", per_page: 4 },
+                      success: function(data) { $('#profile-resources-fav').html(data); }
+                    });
+                  });
+		}
 
 
 		/* Filters for repo-excursions */
-                $('#repo-excursion-filter-net').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#repo-excursion-filter-net')[0].value, scope: "net", per_page: 20 },
-                                success: function(data) { $('#repo-excursions-net').html(data); }
-                        });
-                });
+		if (! $('#repo-excursion-filter-net').data('events')) {
+                  $('#repo-excursion-filter-net').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#repo-excursion-filter-net')[0].value, scope: "net", per_page: 20 },
+                      success: function(data) { $('#repo-excursions-net').html(data); }
+                    });
+                  });
+		}
 
-                $('#repo-excursion-filter-me').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#repo-excursion-filter-me')[0].value, scope: "me", per_page: 20 },
-                                success: function(data) { $('#repo-excursions-me').html(data); }
-                        });
-                });
+		if (! $('#repo-excursion-filter-me').data('events')) {
+                  $('#repo-excursion-filter-me').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#repo-excursion-filter-me')[0].value, scope: "me", per_page: 20 },
+                      success: function(data) { $('#repo-excursions-me').html(data); }
+                    });
+                  });
+		}
 
-                $('#repo-excursion-filter-fav').on("keyup", function() {
-                        $.ajax({
-                                url: "/excursions/search",
-                                data: { q: $('#repo-excursion-filter-fav')[0].value, scope: "like", per_page: 20 },
-                                success: function(data) { $('#repo-excursions-fav').html(data); }
-                        });
-                });
+		if (! $('#repo-excursion-filter-fav').data('events')) {
+                  $('#repo-excursion-filter-fav').on("keyup", function() {
+                    $.ajax({
+                      url: "/excursions/search",
+                      data: { q: $('#repo-excursion-filter-fav')[0].value, scope: "like", per_page: 20 },
+                      success: function(data) { $('#repo-excursions-fav').html(data); }
+                    });
+                  });
+		}
 
 
 		/* Filters for repo-resources */
-                $('#repo-resource-filter-net').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#repo-resource-filter-net')[0].value, scope: "net", per_page: 20 },
-                                success: function(data) { $('#repo-resources-net').html(data); }
-                        });
-                });
+		if (! $('#repo-resource-filter-net').data('events')) {
+                  $('#repo-resource-filter-net').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#repo-resource-filter-net')[0].value, scope: "net", per_page: 20 },
+                      success: function(data) { $('#repo-resources-net').html(data); }
+                    });
+                  });
+		}
 
-                $('#repo-resource-filter-me').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#repo-resource-filter-me')[0].value, scope: "me", per_page: 20 },
-                                success: function(data) { $('#repo-resources-me').html(data); }
-                        });
-                });
+		if (! $('#repo-resource-filter-me').data('events')) {
+                  $('#repo-resource-filter-me').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#repo-resource-filter-me')[0].value, scope: "me", per_page: 20 },
+                      success: function(data) { $('#repo-resources-me').html(data); }
+                    });
+                  });
+		}
 
-                $('#repo-resource-filter-fav').on("keyup", function() {
-                        $.ajax({
-                                url: "/resources/search",
-                                data: { q: $('#repo-resource-filter-fav')[0].value, scope: "like", per_page: 20 },
-                                success: function(data) { $('#repo-resources-fav').html(data); }
-                        });
-                });
+		if (! $('#repo-resource-filter-fav').data('events')) {
+                  $('#repo-resource-filter-fav').on("keyup", function() {
+                    $.ajax({
+                      url: "/resources/search",
+                      data: { q: $('#repo-resource-filter-fav')[0].value, scope: "like", per_page: 20 },
+                      success: function(data) { $('#repo-resources-fav').html(data); }
+                    });
+                  });
+		}
 
 
 		/* Followers filter in full view */
-                $('#follower-filter').on("keyup", function() {
-                        $.ajax({
-                                url: "/followers/search",
-                                data: { q: $('#follower-filter')[0].value, per_page: 20 },
-                                success: function(data) { $('#followers').html(data); }
-                        });
-                });
+		if (! $('#follower-filter').data('events')) {
+                  $('#follower-filter').on("keyup", function() {
+                    $.ajax({
+                      url: "/followers/search",
+                      data: { q: $('#follower-filter')[0].value, per_page: 20 },
+                      success: function(data) { $('#followers').html(data); }
+                    });
+                  });
+		}
 
-                $('#following-filter').on("keyup", function() {
-                        $.ajax({
-                                url: "/followings/search",
-                                data: { q: $('#following-filter')[0].value, per_page: 20 },
-                                success: function(data) { $('#followings').html(data); }
-                        });
-                });
+		if (! $('#following-filter').data('events')) {
+                  $('#following-filter').on("keyup", function() {
+                    $.ajax({
+                      url: "/followings/search",
+                      data: { q: $('#following-filter')[0].value, per_page: 20 },
+                      success: function(data) { $('#followings').html(data); }
+                    });
+                  });
+		}
 
         }
 

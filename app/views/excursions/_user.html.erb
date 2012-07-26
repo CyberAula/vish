@@ -15,10 +15,7 @@
       <div id="ex-1" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => { :filter_id => "profile-excursion-filter-net" } %>
         <div id="profile-excursions-net" class="row height-tabs-home" >
-          <% for excursion in subject_excursions(@user, {:scope => :net}) %>
-            <%= render :partial => "excursions/home",
-                       :locals => { :excursion => excursion} %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="more"><%= link_to(t('view_all'), url_for([@user, Excursion]) + "?scope=net") %></div>
       </div>

@@ -21,15 +21,23 @@
 
 <%#= render :partial => "users/groups",
            :locals  => { :user => @user } %>
+<div class="filtered-tabs">
+  <%= render :partial => "excursions/user",
+             :locals => { :user => @user } %>
 
-<%= render :partial => "excursions/user",
-           :locals => { :user => @user } %>
-
-<%= render :partial => "resources/user",
-           :locals => { :user => @user } %>
+  <%= render :partial => "resources/user",
+             :locals => { :user => @user } %>
+</div>
 
 <section name="wall" id="profile_wall">
 <%= render :partial => "activities/profile",
            :locals  => { :owner => @user } %>
+
 </section>
+
+<%= javascript_tag do %>
+  $('.filtered-tabs a[data-toggle="tab"]').on('shown', function(e) {
+    $('#' + e.target.href.split('#')[1]).find('input[name=filter]').keyup();
+  });
+<% end %>
 

@@ -16,21 +16,7 @@
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-net" } %>
         <div class="space_center"></div>
         <div id="profile-resources-net" class="row height-tabs-home" >
-          <% for document in subject_resources(@user, {:scope => :net}) %>
-            <% if document.is_a? Embed %>
-               <%= render :partial => "embeds/home",
-                          :locals => {:embed => document,
-                                      :div_class => 'content_size'} %>
-            <% elsif document.is_a? Link %>
-               <%= render :partial => "links/home",
-                          :locals => {:link => document,
-                                      :div_class => 'content_size'} %>
-            <% else %>
-               <%= render :partial => "common_documents/home",
-                          :locals => {:document => document,
-                                      :div_class => 'content_size'} %>
-            <% end %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="more"><%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=net") %></div>
       </div>
