@@ -2,8 +2,11 @@
 
 require 'rspec/core'
 require 'rspec/core/rake_task'
+require 'resque/tasks'
 
 require File.expand_path('../config/application', __FILE__)
+
+Resque.after_fork = Proc.new { ActiveRecord::Base.establish_connection } if Resque.present?
 
 # Include social_stream-base spec
 def bsp(str)
