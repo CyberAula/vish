@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710095412) do
+ActiveRecord::Schema.define(:version => 20120808124614) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -290,6 +290,30 @@ ActiveRecord::Schema.define(:version => 20120710095412) do
   end
 
   add_index "profiles", ["actor_id"], :name => "index_profiles_on_actor_id"
+
+  create_table "quiz_answers", :force => true do |t|
+    t.integer  "quiz_session_id"
+    t.datetime "created_at"
+    t.string   "json"
+  end
+
+  create_table "quiz_sessions", :force => true do |t|
+    t.integer  "quiz_id"
+    t.integer  "owner_id"
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "active",     :default => true
+    t.datetime "closed_at"
+  end
+
+  create_table "quizzes", :force => true do |t|
+    t.integer "excursion_id"
+    t.string  "type"
+    t.string  "question"
+    t.string  "options"
+  end
 
   create_table "receipts", :force => true do |t|
     t.integer  "receiver_id"

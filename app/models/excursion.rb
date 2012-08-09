@@ -18,6 +18,8 @@
 class Excursion < ActiveRecord::Base
   include SocialStream::Models::Object
 
+  has_many :quizzes
+
   validates_presence_of :json
   before_save :parse_for_meta
 
@@ -27,6 +29,28 @@ class Excursion < ActiveRecord::Base
 
   def to_json(options=nil)
     json
+  end
+
+  def extract_quizzes(parsed_json)
+    parsed_json["slides"].each do |s|
+      next unless s["template"] =~ /^t1[012]$/
+      q = Quiz.new
+      q.excursion=self
+      case s["template"]
+        when "t10" # Open question
+          q.type="OpenQuiz"
+          # PENDING
+        when "t11" # Multiple-choice
+          q.type="MultipleChoiceQuiz"
+          qelem = s["elements"].select { |e| e["type"] == "mcquestion" }.first
+          q.question = qelem["question"] unless qelem.nil? or qelem["question"].nil?
+          q.options  = qelem["options"].join(",") unless qelem.nil? or qelem["options"].nil?
+        when "t12" # True/False
+          q.type="TrueFalseQuiz"
+          # PENDING
+      end
+      q.save!
+    end
   end
 
   private
@@ -43,6 +67,8 @@ class Excursion < ActiveRecord::Base
 
     self.slide_count = parsed_json["slides"].size
     self.thumbnail_url = parsed_json["avatar"]
+
+    extract_quizzes(parsed_json)
   end
 
 end
