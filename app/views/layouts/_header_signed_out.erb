@@ -11,24 +11,57 @@
     </span>
   </div>
 
-  <div class="span6 pull-right">
-  <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
-    <div class="pagination-right">
-      <%= f.email_field :email, :id => "username" %>
-      <%= f.password_field :password, :id => "password"  %>
-      <%= f.submit t(:sign_in), :class => 'other_blue storePass'%>
-    </div>
 
-  <div class="link_gray pagination-right span3 offset3">
-    <%= link_to t('sign_up'), new_user_registration_path %>
-  </div>
-  <% end -%>
+
+
+  <% unless params[:controller].eql? 'devise/sessions' and params[:action].eql? 'new' %>
+
+
+    <div class="span6 pull-right">
+      <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
+        <div class="pagination-right">
+          <%= f.email_field :email, :id => "username" %>
+          <%= f.password_field :password, :id => "password"  %>
+          <%= f.submit t(:sign_in), :class => 'other_blue storePass'%>
+        </div>
+        <div class="link_gray pagination-right span6">
+          <%= link_to t('forgot_password'), new_user_password_path %>
+        </div>
+
+        <div class="link_gray pagination-right span6 ">
+          <%= link_to t('sign_up'), new_user_registration_path %>
+        </div>
+
+        <div id="header_search_nosession  " class="pull-right margin_search_no_session">
+          <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" } %>
+        </div>
+
+      <% end -%>
+    </div>
+  <% end %>
+
+  <%= javascript_tag do %>
+    $(function() {
+    if ("placeholder" in document.createElement("input")) {
+    $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+    } else {
+    $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+    }
+    $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+    });
+  <% end %>
+
+
+
+
+
+
+
+
 
   <div class="space_center"></div>
 
-  <div id="header_search" class="span3 offset3">
-    <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" } %>
-  </div>
+
 </div>
 
 <div class="space_center"></div>

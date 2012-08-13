@@ -19,10 +19,10 @@
     display:none;
 }
 .avatar .default {
-    border: 5px solid #2A3890;
+    border: 3px solid #3366FF;
 }
 .avatar .non_default {
-    border: 5px solid #E0EEF5;
+    border: 3px solid #C2C9E0;
 }
 #avatar_logo_drag{
     margin-left: 25px;
