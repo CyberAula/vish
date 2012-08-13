@@ -50,7 +50,9 @@ class Excursion < ActiveRecord::Base
           # PENDING
       end
       q.save!
+      s["quiz_id"]=q.id
     end
+    parsed_json
   end
 
   private
@@ -63,12 +65,12 @@ class Excursion < ActiveRecord::Base
 
     parsed_json["id"] = activity_object.id
     parsed_json["author"] = author.name
+    parsed_json = extract_quizzes(parsed_json) # Fill up quiz_id parameters
     self.json = parsed_json.to_json
 
     self.slide_count = parsed_json["slides"].size
     self.thumbnail_url = parsed_json["avatar"]
 
-    extract_quizzes(parsed_json)
   end
 
 end
