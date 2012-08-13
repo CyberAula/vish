@@ -40,6 +40,11 @@
 .dsignesregular {font-family:'DsignesRegular';}
 
 /**** clase para el ALTO minimo del layout ***/
+
+
+.nomargin{
+margin: 0px !important;
+}
 .body-height{ min-height:  100%;}
 
 
@@ -201,6 +206,20 @@ margin-top: -10px
 
 
 /************* Footer *******/
+.footer-right{
+display: block;
+  border-top: 1px solid #E9E9E9;
+  padding-top: 8px;
+  margin-top: 8px;
+  opacity: 0.6;
+
+}
+.margin-dropdown {
+margin-left:-8px ;
+margin-top: -3px
+}
+
+
 * {
   margin: 0;
 }
@@ -308,6 +327,8 @@ html, body {
 .link_pink a:hover {color: #3366FF; text-decoration:none;}
 .link_white a{color: #ffffff; text-decoration:none;}
 .link_white a:hover {color: #919191; text-decoration:none;}
+.link_blue a{color: #3366FF; text-decoration:none;}
+.link_blue a:hover {color: #919191; text-decoration:none;}
 
 
 /***********COLORS ***********/
@@ -859,18 +880,6 @@ form.example input.file.hidden {
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
   outline: thin dotted ;
 }
-
-
-
-
-
-
-
-
-/*******sugestion*******FOLLOWERS_FOLLOWINGS *************/
-
-
-
 
 /**************CONVERSATIONS *************/
 

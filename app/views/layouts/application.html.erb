@@ -25,18 +25,20 @@
     <!-- columna derecha-->
     <section class="span2 right" >
       <%= yield :sidebar %>
+      <div class="space_double_center"></div>
+
+      <div class="clearfloat"></div>
+      <div class="footer-right">
+      <%= render :partial => "layouts/footer-right" %>
+      </div>
     </section>
 
-    <div class="space_center"></div>
+
+
+
 </div>
 </div>
-    <div class="push"></div>
-  </div>
-  <div class="container">
-    <footer class="row span12 footer">
-      <%= render :partial => "layouts/footer" %>
-    </footer>
-  </div>
+
 
 </body>
 </html>
