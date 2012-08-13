@@ -2,9 +2,9 @@ class QuizSessionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :create, :delete ]
 
   def create # POST /quiz_sessions => open quiz to collect answers => respond with quiz_session id
-    return if params[:id].blank?
+    return if params[:quiz_id].blank?
     qs = QuizSession.new
-    qs.quiz = Quiz.find(params[:id])
+    qs.quiz = Quiz.find(params[:quiz_id])
     qs.owner=current_subject
     qs.active=true
     qs.name = params[:name] unless params[:name].blank?
