@@ -64,6 +64,9 @@ gem 'exception_notification'
 gem 'rspec-rails', '=2.9.0'
 gem 'net-ssh', '=2.4.0'
 
+# Shortener
+gem 'shortener'
+
 group :test do
   # Pretty printed test output
   gem 'factory_girl', '~> 2.6'
