@@ -68,27 +68,71 @@
 
 
 .load_more_button{
-  background-color: #F7F7F7;
-  border: 1px solid  #FF005D;
-  border-radius: 7px 7px 7px 7px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  background-color: #f2f2f2;
+
+  vertical-align: middle;
+  border: 0px solid transparent;
   display: inline-block;
-  padding: 4px 6px;
-  padding-bottom: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   width: 200px;
+  height:15px;
   color: #6E6E6E;
   font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;
   font-size: 13px;
   line-height: 18px;
   margin-bottom: 30px;
-}
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
 
-.load_more_button:hover { 
-  backgroun-color: red;
+  /* Safari 5.1+ y Chrome 10+ */
+    background-image:-webkit-linear-gradient(top , #FFFFFF, #ededed);
+
+  /* Firefox 3.6+ */
+    background-image:-moz-linear-gradient(top, #FFFFFF, #ededed);
+
+  /* Opera 11.10+ */
+    background-image:-o-linear-gradient(top, #FFFFFF, #ededed);
+
+  /* Internet Explorer 5.5+ */
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#Ffffff', EndColorStr='#ededed');
+    background-repeat: no-repeat;
+  }
+
+
+.load_more_button:hover {
+  background-color: D9D9D9;
+  vertical-align: middle;
+  border: 0px solid transparent;
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 200px;
+  height:15px;
   color: #6E6E6E;
-  background-image: url("notebook/Button.png");
+  font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 30px;
+  text-decoration: none;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+
+/* Safari 5.1+ y Chrome 10+ */
+  background-image:-webkit-linear-gradient(top , #FFFFFF, #D9D9D9);
+
+/* Firefox 3.6+ */
+  background-image:-moz-linear-gradient(top, #FFFFFF, #D9D9D9);
+
+/* Opera 11.10+ */
+  background-image:-o-linear-gradient(top, #FFFFFF, #D9D9D9);
+
+/* Internet Explorer 5.5+ */
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#Ffffff', EndColorStr='#D9D9D9');
+  background-repeat: no-repeat;
+
   
 }
 
@@ -716,6 +760,8 @@ form.example input.file.hidden {
 
 
 /**************FOLLOWERS_FOLLOWINGS *************/
+
+
 .follwrs-ing{font-size: 11px; marging-top: 1px; margin-bottom: 1px;}
 .upfoll{;}
 #following,  #follower{margin-left: 20px}
@@ -740,19 +786,20 @@ form.example input.file.hidden {
   padding-top  :4px;
   padding-bottom  :-4px;
   text-align:center;
- }
-
-.following-button {
   color: #FF005D;
-  background-color: #ffeeee;
+ }
+.follow-button{
+  background-color: #FF005D;
 }
+.unfollow-button{
+  background-color: #e8e8e8;
+}
+.following-button{
 
-.unfollow-button, .follow-button {
-  background-color: #ff005d;
 }
 
 .unfollow-button a, .follow-button a, .unfollow-button a:hover, .follow-button a:hover {
-  color: #fff;
+  color: #FF005D;
 }
 
 .users_btn_follow form{
@@ -1282,7 +1329,8 @@ margin-left: 20px;
 
 #new_document_title_wrapper input[type="text"] {
   display: inline;
-  width: 30%;
+  width: 70%;
+
 }
 
 .attachment_tile{
