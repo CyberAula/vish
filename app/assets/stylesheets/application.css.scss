@@ -760,11 +760,40 @@ form.example input.file.hidden {
 
 
 /**************FOLLOWERS_FOLLOWINGS *************/
-
-
 .follwrs-ing{font-size: 11px; marging-top: 1px; margin-bottom: 1px;}
 .upfoll{;}
 #following,  #follower{margin-left: 20px}
+
+.unfollow-button {
+  color: #FFFFFF;
+  background-color: #FF005D;
+}
+.unfollow-button a, .unfollow-button a:hover{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+
+.following-button{
+  color:    #FF005D;
+  background-color:  #FFFFFF;
+}
+
+
+
+
+.follow-button{
+  color: #FF005D;
+  background-color: #fff5ff;
+}
+.follow-button a,  .follow-button a:hover {
+  color: #FF005D;
+}
+
+
+
+
 .following-button, .unfollow-button, .follow-button{
   margin-top:-1px ;
   width: 120px;
@@ -786,21 +815,10 @@ form.example input.file.hidden {
   padding-top  :4px;
   padding-bottom  :-4px;
   text-align:center;
-  color: #FF005D;
- }
-.follow-button{
-  background-color: #FF005D;
-}
-.unfollow-button{
-  background-color: #e8e8e8;
-}
-.following-button{
-
 }
 
-.unfollow-button a, .follow-button a, .unfollow-button a:hover, .follow-button a:hover {
-  color: #FF005D;
-}
+
+
 
 .users_btn_follow form{
   margin : 0 0 -9px !important;
@@ -851,76 +869,6 @@ form.example input.file.hidden {
 
 /*******sugestion*******FOLLOWERS_FOLLOWINGS *************/
 
-.following-button-sugestion{
-  margin-top:-1px ;
-  width: 120px;
-  height: 18px;
-  color: #FF005D;
-  margin-left: 0px;
-  border: none;
-  border-radius: 15px 15px 15px 15px;
-  font-size: 13px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(200, 0, 0, 0.200);
-  -moz-box-shadow: inset 0 1px 1px rgba(200, 0, 0, 0.200);
-  box-shadow: inset 0 1px 1px rgba(200, 0, 0, 0.200);
-  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
-  transition: border linear 0.2s, box-shadow linear 0.2s;
-  resize: none;
-  vertical-align: middle  ;
-  padding-top  :4px;
-  padding-bottom  :-4px;
-  background-color: #ffeeee;
-  opacity: .60;
-  -moz-opacity: .60;
-  filter:alpha(opacity=60);
-  text-align:center;
-}
-
-.users_btn_follow-sugestion form{
-  margin : 0 0 -9px !important;
-}
-
-.users_btn_follow-sugestion input[type="submit"]  {
-  border: none;
-  margin-top:-1px ;
-  width: 120px;
-  height: 22px;
-  background-color: #e8e8e8;
-  color:#FF005D;
-  padding-left:10px; padding-right:10px;
-  vertical-align: middle  ;
-  -webkit-box-shadow: inset 0 1px 1px rgba(200, 0, 0, 0.200);
-  -moz-box-shadow: inset 0 1px 1px rgba(200, 0, 0, 0.200);
-  box-shadow: inset 0 1px 1px rgba(200, 0, 0, 0.200);
-  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
-  -o-transition: border linear 0.2s, box-shadow linear 0.2s;
-  transition: border linear 0.2s, box-shadow linear 0.2s;
-  resize: none;
-  vertical-align: middle  ;
-  padding-top  :4px;
-  padding-bottom  :-4px;
-  background-color: #f4f4f4;
-  text-align:center;
-  opacity: .60;
-  -moz-opacity: .60;
-  filter:alpha(opacity=60);
-}
-.users_btn_follow-sugestion input {
-
-}
-
-.users_btn_followt-sugestion:focus{
-  border-color: rgb(255, 2, 94);
-  -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
-  -moz-box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
-  box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
-  outline: thin dotted ;
-}
 
 
 
