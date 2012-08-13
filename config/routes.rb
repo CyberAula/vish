@@ -13,6 +13,8 @@ Vish::Application.routes.draw do
     get "download", :on => :member
   end
 
+  resources :quiz_sessions
+
   match 'resources/search' => 'resources#search'
 
   match 'followers/search' => 'followers#search_followers'
