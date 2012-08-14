@@ -271,9 +271,19 @@ img {
 }
 
 .truefalse_quiz_table {
-	width: 600px;
+	width: 650px;
 	border-collapse: collapse;
+	text-align:center;
 }
+
+.truefalse_quiz_table tr:nth-of-type(even) {
+	background-color:#F3F3F3;
+}
+
+.truefalse_quiz_table tr:nth-of-type(odd) {
+	background-color: #DDD;
+}
+
 
 .truefalse_quiz_table td th {
 	border:none;
@@ -286,9 +296,41 @@ img {
 }
 
 .truefalse_quiz_table td {
-	background-color: #FFF;
 	color:#000;
 }
+
+.td_true {
+	width: 10%;
+}
+
+.td_false{
+	width: 10%;
+}
+
+.td_truefalse_question{
+	text-align:left;
+	width: 75%;
+}
+
+.true_false_question {
+	background: none no-repeat scroll 5px 50% transparent;
+    border: 1px solid #9B999D;
+    border-radius: 10px 10px 10px 10px;
+    margin-left:3%;
+    font-family: Helvetica;
+    font-size: 16px;
+    outline: 0 none;
+    padding: 5px 7px;
+    position: relative;
+    z-index: 1000;
+    width: 94%;
+}
+
+.td_add_button{
+	width: 5%;
+}
+
+
 	
 #config_div {
 	background: url(/assets/config.png);
@@ -723,7 +765,7 @@ input.rounded:focus {
 
 
 .okButton {
-    background: url('/assets/carrousel_sprite2.png') 0 -150px no-repeat transparent;
+    background: url('/assets/carrousel_sprite.png') 0 -150px no-repeat transparent;
     cursor:pointer;
     width: 150px;
     height: 50px;
@@ -739,7 +781,7 @@ input.rounded:focus {
 }
 
 .okButton:hover {
-    background: url('/assets/carrousel_sprite2.png') 0 -200px no-repeat transparent;
+    background: url('/assets/carrousel_sprite.png') 0 -200px no-repeat transparent;
 }
 
 .okButton::-moz-focus-inner {

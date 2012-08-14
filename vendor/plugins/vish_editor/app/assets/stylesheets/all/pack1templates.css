@@ -652,19 +652,19 @@
 	margin-top:1.5%;
 	height: 10%;
 	width: 100%;	
-	/*display: block; */
 	display: inline-block;	
-	color: blue;
+	color:#000066;
 	text-align:center;
-	font-size:2em;
+	font-size:1.7em;
 	font-weight:bold;
 
 }
 
 .url_share {
 	
-width: 90%;
+width: 100%;
 height: 100%;	
+text-align:left;
 	
 }
 
@@ -686,6 +686,7 @@ height: 100%;
 	width: 5%;
 	text-align: right;
 	position:relative;
+	cursor:pointer;
 	
 }
 .shareQuizButton > img {
@@ -698,11 +699,13 @@ height: 100%;
 
 
 .shareContentIcons {
-	position:relative;
+	text-align:center;
+	
 	display:none;
 	width: 10%;
 	z-index: 1;
-	float:right;
+	
+	border: solid 0.5%;
 
 	
 }
@@ -713,8 +716,8 @@ height: 100%;
 }
 
 .shareContentIcons > a > img {
-	width: 100%;
-	height: 100%;
+	width: 50%;
+	height: 50%;
 	
 }
 
@@ -796,7 +799,7 @@ height: 100%;
 	
 	display:block;
 	position:relative;
-	color: red;
+	color:red;
 	font-size:1.3em;
 	font-weight:bold;
 	text-align:center;
@@ -931,6 +934,56 @@ height: 100%;
 	display:block;
 	
 }
+.save_quiz {
+	
+display:none; /* inline-block; */	
+font-size:0.8em;	
+}
+
+.mcquestion_save_yes_button {
+	position:relative;
+	color: blue;
+	font-size:0.8em;
+	text-align:center;
+	font-weight:bold;
+	vertical-align:bottom;
+	margin-top:0%; /* default 20%. It changes depending on the number of options*/
+	height:9%;
+	width: 15%;
+	-moz-border-radius:2em;
+	-webkit-border-radius: 2em;
+	cursor:pointer;
+	
+	
+}	
+
+.mcquestion_save_no_button {
+	position:relative;
+	color: red;
+	font-size:0.8em;
+	text-align:center;
+	font-weight:bold;
+	vertical-align:bottom;
+	margin-top:0%; /* default 20%. It changes depending on the number of options*/
+	height:9%;
+	width: 15%;
+	-moz-border-radius:2em;
+	-webkit-border-radius: 2em;
+	cursor:pointer;
+	
+}
+
+.t12_header {
+	
+	margin-top:1.5%;
+	height: 10%;
+	width: 100%;	
+	display: inline-block;	
+	text-align:center;
+	font-size:2em;
+	font-weight:bold;
+
+}
 		
 
 .t12_left{
@@ -941,6 +994,97 @@ height: 100%;
 	float: left;
 	overflow:hidden;	
 }
+/* cause the viewer is independent of the editor */
+.truefalse_question {
+	padding: 2%;
+	width:100%;
+	height: 90%;
+	
+}
+
+.truefalse_question_container {
+	padding: 2%;
+	width:100%;
+	height: 90%;
+	
+}
+
+.truefalse_quiz_table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align:center;
+}
+
+.truefalse_quiz_table tr:nth-of-type(even) {
+	background-color:#F3F3F3;
+}
+
+.truefalse_quiz_table tr:nth-of-type(odd) {
+	background-color: #DDD;
+}
+
+
+.truefalse_quiz_table td th {
+	border:none;
+}
+
+.truefalse_quiz_table th {
+	background-color: #000;
+	color:#fff;
+	border-left:5%;
+}
+
+.truefalse_quiz_table td {
+	color:#000;
+}
+
+.td_true {
+	width: 10%;
+}
+
+.td_false{
+	width: 10%;
+}
+
+.td_truefalse_question{
+	text-align:left;
+	width: 75%;
+}
+
+.true_false_question_txt {
+	background: none no-repeat scroll 5px 50% transparent;
+    margin-left:1%;
+    text-align:left;
+    font-family: Helvetica;
+    font-size: 1.2em;
+    line-height: 110%;
+    outline: 0 none;
+    padding: 1%;
+    width: 94%;
+}
+
+.tfquestion_button {
+	display:block;
+	position:relative;
+	float:right;
+	color: blue;
+	font-size:1.2em;
+	text-align:center;
+	font-weight:bold;
+	vertical-align:bottom;
+	margin-top:5%; 
+	margin-right:5%;
+	height:9%;
+	width: 20%;
+	-moz-border-radius:2em;
+	-webkit-border-radius: 2em;
+	cursor:pointer;
+	
+}
+
+
+
+
 
 
 

@@ -57,6 +57,8 @@ VISH.AUTHORS = "GING";
 VISH.ImagesPath = "/assets/";
 VISH.StylesheetsPath = "/assets/";
 VISH.Editing = false;
+VISH.slideEls;
+VISH.curSlide;
 (function(a, b) {
   function cy(a) {
     return f.isWindow(a) ? a : a.nodeType === 9 ? a.defaultView || a.parentWindow : !1
@@ -12251,457 +12253,7 @@ var nicEditorSaveButton = nicEditorButton.extend({init:function() {
   onSave(selectedInstance.getContent(), selectedInstance.elm.id, selectedInstance)
 }});
 nicEditors.registerPlugin(nicPlugin, nicSaveOptions);
-var PERMANENT_URL_PREFIX = "";
-var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
-var PM_TOUCH_SENSITIVITY = 200;
-var curSlide;
-if(typeof document !== "undefined" && !("classList" in document.createElement("a"))) {
-  (function(view) {
-    var classListProp = "classList", protoProp = "prototype", elemCtrProto = (view.HTMLElement || view.Element)[protoProp], objCtr = Object;
-    strTrim = String[protoProp].trim || function() {
-      return this.replace(/^\s+|\s+$/g, "")
-    }, arrIndexOf = Array[protoProp].indexOf || function(item) {
-      for(var i = 0, len = this.length;i < len;i++) {
-        if(i in this && this[i] === item) {
-          return i
-        }
-      }
-      return-1
-    }, DOMEx = function(type, message) {
-      this.name = type;
-      this.code = DOMException[type];
-      this.message = message
-    }, checkTokenAndGetIndex = function(classList, token) {
-      if(token === "") {
-        throw new DOMEx("SYNTAX_ERR", "An invalid or illegal string was specified");
-      }
-      if(/\s/.test(token)) {
-        throw new DOMEx("INVALID_CHARACTER_ERR", "String contains an invalid character");
-      }
-      return arrIndexOf.call(classList, token)
-    }, ClassList = function(elem) {
-      var trimmedClasses = strTrim.call(elem.className), classes = trimmedClasses ? trimmedClasses.split(/\s+/) : [];
-      for(var i = 0, len = classes.length;i < len;i++) {
-        this.push(classes[i])
-      }
-      this._updateClassName = function() {
-        elem.className = this.toString()
-      }
-    }, classListProto = ClassList[protoProp] = [], classListGetter = function() {
-      return new ClassList(this)
-    };
-    DOMEx[protoProp] = Error[protoProp];
-    classListProto.item = function(i) {
-      return this[i] || null
-    };
-    classListProto.contains = function(token) {
-      token += "";
-      return checkTokenAndGetIndex(this, token) !== -1
-    };
-    classListProto.add = function(token) {
-      token += "";
-      if(checkTokenAndGetIndex(this, token) === -1) {
-        this.push(token);
-        this._updateClassName()
-      }
-    };
-    classListProto.remove = function(token) {
-      token += "";
-      var index = checkTokenAndGetIndex(this, token);
-      if(index !== -1) {
-        this.splice(index, 1);
-        this._updateClassName()
-      }
-    };
-    classListProto.toggle = function(token) {
-      token += "";
-      if(checkTokenAndGetIndex(this, token) === -1) {
-        this.add(token)
-      }else {
-        this.remove(token)
-      }
-    };
-    classListProto.toString = function() {
-      return this.join(" ")
-    };
-    if(objCtr.defineProperty) {
-      var classListPropDesc = {get:classListGetter, enumerable:true, configurable:true};
-      try {
-        objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc)
-      }catch(ex) {
-        if(ex.number === -2146823252) {
-          classListPropDesc.enumerable = false;
-          objCtr.defineProperty(elemCtrProto, classListProp, classListPropDesc)
-        }
-      }
-    }else {
-      if(objCtr[protoProp].__defineGetter__) {
-        elemCtrProto.__defineGetter__(classListProp, classListGetter)
-      }
-    }
-  })(self)
-}
-function getSlideEl(no) {
-  if(no < 0 || no >= slideEls.length) {
-    return null
-  }else {
-    return slideEls[no]
-  }
-}
-function updateSlideClass(slideNo, className) {
-  var el = getSlideEl(slideNo);
-  if(!el) {
-    return
-  }
-  if(className) {
-    el.classList.add(className)
-  }
-  for(var i in SLIDE_CLASSES) {
-    if(className != SLIDE_CLASSES[i]) {
-      el.classList.remove(SLIDE_CLASSES[i])
-    }
-  }
-}
-function updateSlides(goingRight) {
-  for(var i = 0;i < slideEls.length;i++) {
-    switch(i) {
-      case curSlide - 2:
-        updateSlideClass(i, "far-past");
-        break;
-      case curSlide - 1:
-        updateSlideClass(i, "past");
-        break;
-      case curSlide:
-        updateSlideClass(i, "current");
-        break;
-      case curSlide + 1:
-        updateSlideClass(i, "next");
-        break;
-      case curSlide + 2:
-        updateSlideClass(i, "far-next");
-        break;
-      default:
-        updateSlideClass(i);
-        break
-    }
-  }
-  if(goingRight) {
-    triggerLeaveEvent(curSlide - 1)
-  }else {
-    triggerLeaveEvent(curSlide + 1)
-  }
-  triggerEnterEvent(curSlide);
-  if(isChromeVoxActive()) {
-    speakAndSyncToNode(slideEls[curSlide])
-  }
-  updateHash()
-}
-function buildNextItem() {
-  var toBuild = slideEls[curSlide].querySelectorAll(".to-build");
-  if(!toBuild.length) {
-    return false
-  }
-  toBuild[0].classList.remove("to-build", "");
-  if(isChromeVoxActive()) {
-    speakAndSyncToNode(toBuild[0])
-  }
-  return true
-}
-function prevSlide() {
-  if(curSlide > 0) {
-    curSlide--;
-    updateSlides(false)
-  }
-}
-function nextSlide() {
-  if(buildNextItem()) {
-    return
-  }
-  if(curSlide < slideEls.length - 1) {
-    curSlide++;
-    updateSlides(true)
-  }
-}
-function triggerEnterEvent(no) {
-  var el = getSlideEl(no);
-  if(!el) {
-    return
-  }
-  var onEnter = el.getAttribute("onslideenter");
-  if(onEnter) {
-    (new Function(onEnter)).call(el)
-  }
-  var evt = document.createEvent("Event");
-  evt.initEvent("slideenter", true, true);
-  evt.slideNumber = no + 1;
-  el.dispatchEvent(evt)
-}
-function triggerLeaveEvent(no) {
-  var el = getSlideEl(no);
-  if(!el) {
-    return
-  }
-  var onLeave = el.getAttribute("onslideleave");
-  if(onLeave) {
-    (new Function(onLeave)).call(el)
-  }
-  var evt = document.createEvent("Event");
-  evt.initEvent("slideleave", true, true);
-  evt.slideNumber = no + 1;
-  el.dispatchEvent(evt)
-}
-function getTouches(event) {
-  if(event.touches) {
-    return event.touches
-  }else {
-    if(event.originalEvent.touches) {
-      return event.originalEvent.touches
-    }else {
-      return null
-    }
-  }
-}
-function handleTouchStart(event) {
-  var touches = getTouches(event);
-  if(touches.length === 1) {
-    touchDX = 0;
-    touchDY = 0;
-    touchStartX = touches[0].pageX;
-    touchStartY = touches[0].pageY;
-    document.body.addEventListener("touchmove", handleTouchMove, true);
-    document.body.addEventListener("touchend", handleTouchEnd, true);
-    var zoom = document.documentElement.clientWidth / window.innerWidth;
-    if(zoom < 1.5) {
-      event.preventDefault()
-    }
-  }
-}
-function handleTouchMove(event) {
-  var touches = getTouches(event);
-  if(touches.length > 1) {
-    cancelTouch()
-  }else {
-    touchDX = touches[0].pageX - touchStartX;
-    touchDY = touches[0].pageY - touchStartY;
-    var zoom = document.documentElement.clientWidth / window.innerWidth;
-    if(zoom < 1.5) {
-      event.preventDefault()
-    }
-  }
-}
-function handleTouchEnd(event) {
-  var dx = Math.abs(touchDX);
-  var dy = Math.abs(touchDY);
-  if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
-    if(touchDX > 0) {
-      VISH.SlidesUtilities.backwardOneSlide()
-    }else {
-      VISH.SlidesUtilities.forwardOneSlide()
-    }
-  }
-  cancelTouch()
-}
-function cancelTouch() {
-  document.body.removeEventListener("touchmove", handleTouchMove, true);
-  document.body.removeEventListener("touchend", handleTouchEnd, true)
-}
-function setupInteraction() {
-  $(document).bind("touchstart", handleTouchStart)
-}
-function isChromeVoxActive() {
-  if(typeof cvox == "undefined") {
-    return false
-  }else {
-    return true
-  }
-}
-function speakAndSyncToNode(node) {
-  if(!isChromeVoxActive()) {
-    return
-  }
-  cvox.ChromeVox.navigationManager.switchToStrategy(cvox.ChromeVoxNavigationManager.STRATEGIES.LINEARDOM, 0, true);
-  cvox.ChromeVox.navigationManager.syncToNode(node);
-  cvox.ChromeVoxUserCommands.finishNavCommand("");
-  var target = node;
-  while(target.firstChild) {
-    target = target.firstChild
-  }
-  cvox.ChromeVox.navigationManager.syncToNode(target)
-}
-function speakNextItem() {
-  if(!isChromeVoxActive()) {
-    return
-  }
-  cvox.ChromeVox.navigationManager.switchToStrategy(cvox.ChromeVoxNavigationManager.STRATEGIES.LINEARDOM, 0, true);
-  cvox.ChromeVox.navigationManager.next(true);
-  if(!cvox.DomUtil.isDescendantOfNode(cvox.ChromeVox.navigationManager.getCurrentNode(), slideEls[curSlide])) {
-    var target = slideEls[curSlide];
-    while(target.firstChild) {
-      target = target.firstChild
-    }
-    cvox.ChromeVox.navigationManager.syncToNode(target);
-    cvox.ChromeVox.navigationManager.next(true)
-  }
-  cvox.ChromeVoxUserCommands.finishNavCommand("")
-}
-function speakPrevItem() {
-  if(!isChromeVoxActive()) {
-    return
-  }
-  cvox.ChromeVox.navigationManager.switchToStrategy(cvox.ChromeVoxNavigationManager.STRATEGIES.LINEARDOM, 0, true);
-  cvox.ChromeVox.navigationManager.previous(true);
-  if(!cvox.DomUtil.isDescendantOfNode(cvox.ChromeVox.navigationManager.getCurrentNode(), slideEls[curSlide])) {
-    var target = slideEls[curSlide];
-    while(target.lastChild) {
-      target = target.lastChild
-    }
-    cvox.ChromeVox.navigationManager.syncToNode(target);
-    cvox.ChromeVox.navigationManager.previous(true)
-  }
-  cvox.ChromeVoxUserCommands.finishNavCommand("")
-}
-function getCurSlideFromHash() {
-  var slideNo = parseInt(location.hash.substr(1));
-  if(slideNo) {
-    curSlide = slideNo - 1
-  }else {
-    curSlide = 0
-  }
-}
-function updateHash() {
-  location.replace("#" + (curSlide + 1))
-}
-function isSlideFocused() {
-  if($(".wysiwygInstance").is(":focus")) {
-    return false
-  }
-  return true
-}
-function handleBodyKeyDown(event) {
-  switch(event.keyCode) {
-    case 39:
-    ;
-    case 34:
-      if(isSlideFocused()) {
-        VISH.SlidesUtilities.forwardOneSlide();
-        event.preventDefault()
-      }
-      break;
-    case 37:
-      if(isSlideFocused()) {
-        VISH.SlidesUtilities.backwardOneSlide();
-        event.preventDefault()
-      }
-      break;
-    case 33:
-      VISH.SlidesUtilities.backwardOneSlide();
-      event.preventDefault();
-      break;
-    case 40:
-      if(isChromeVoxActive()) {
-        if(isSlideFocused()) {
-          speakNextItem();
-          event.preventDefault()
-        }
-      }else {
-        if(isSlideFocused()) {
-          VISH.SlidesUtilities.forwardOneSlide();
-          event.preventDefault()
-        }
-      }
-      break;
-    case 38:
-      if(isChromeVoxActive()) {
-        if(isSlideFocused) {
-          speakPrevItem();
-          event.preventDefault()
-        }
-      }else {
-        if(isSlideFocused()) {
-          VISH.SlidesUtilities.backwardOneSlide();
-          event.preventDefault()
-        }
-      }
-      break
-  }
-}
-var addedEventListeners = false;
-function addEventListeners() {
-  if(!addedEventListeners) {
-    $(document).bind("keydown", handleBodyKeyDown);
-    addedEventListeners = true
-  }
-}
-function addFontStyle() {
-  var el = document.createElement("link");
-  el.rel = "stylesheet";
-  el.type = "text/css";
-  el.href = "http://fonts.googleapis.com/css?family=" + "Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono";
-  document.body.appendChild(el)
-}
-function addGeneralStyle() {
-  var el = document.createElement("meta");
-  el.name = "viewport";
-  el.content = "width=900,height=750";
-  document.querySelector("head").appendChild(el);
-  var el = document.createElement("meta");
-  el.name = "apple-mobile-web-app-capable";
-  el.content = "yes";
-  document.querySelector("head").appendChild(el)
-}
-function makeBuildLists() {
-  for(var i = curSlide, slide;slide = slideEls[i];i++) {
-    var items = slide.querySelectorAll(".build > *");
-    for(var j = 0, item;item = items[j];j++) {
-      if(item.classList) {
-        item.classList.add("to-build")
-      }
-    }
-  }
-}
-function hideAddressBar() {
-  VISH.Debugging.log("TODO method hideAddressBar in slides.js")
-}
-function handleDomLoaded() {
-  slideEls = document.querySelectorAll("section.slides > article");
-  addFontStyle();
-  updateSlides();
-  setupInteraction();
-  makeBuildLists();
-  document.body.classList.add("loaded")
-}
-function initialize() {
-  getCurSlideFromHash();
-  if(window["_DEBUG"]) {
-    PERMANENT_URL_PREFIX = "../"
-  }
-  if(window["_DCL"]) {
-    handleDomLoaded()
-  }else {
-    $(document).bind("OURDOMContentLoaded", handleDomLoaded);
-    window.addEventListener("load", function() {
-      if(!window.pageYOffset) {
-        hideAddressBar()
-      }
-    });
-    window.addEventListener("orientationchange", hideAddressBar)
-  }
-}
-if(!window["_DEBUG"] && document.location.href.indexOf("?debug") !== -1) {
-  document.addEventListener("OURDOMContentLoaded", function() {
-    window["_DCL"] = true
-  }, false);
-  window["_DEBUG"] = true;
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = "../slides.js";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(script, s);
-  s.parentNode.removeChild(s)
-}else {
-  initialize()
-}
-;(function($) {
+(function($) {
   $.widget("ui.tagit", {options:{tagSource:[], triggerKeys:["enter", "space", "comma", "tab"], initialTags:[], minLength:1, select:false, allowNewTags:true, caseSensitive:false, sortable:false, highlightOnExistColor:"#0F0", emptySearch:true, watermarkAllowMessage:"Add tags", watermarkDenyMessage:"Tags limit reached", tagsChanged:function(tagValue, action, element) {
   }}, _splitAt:/\ |,/g, _existingAtIndex:0, _pasteMetaKeyPressed:false, _keys:{backspace:[8], enter:[13], space:[32], comma:[44, 188], tab:[9]}, _sortable:{sorting:-1}, _create:function() {
     var self = this;
@@ -13116,7 +12668,63 @@ VISH.Utils = function(V, undefined) {
   var filterFilePath = function(path) {
     return path.replace("C:\\fakepath\\", "")
   };
-  return{init:init, getOuterHTML:getOuterHTML, generateTable:generateTable, checkMiniumRequirements:checkMiniumRequirements, convertToTagsArray:convertToTagsArray, getURLParameter:getURLParameter, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath}
+  var getZoomInStyle = function(zoom) {
+    var style = "";
+    style = style + "-ms-transform: scale(" + zoom + "); ";
+    style = style + "-ms-transform-origin: 0 0; ";
+    style = style + "-moz-transform: scale(" + zoom + "); ";
+    style = style + "-moz-transform-origin: 0 0; ";
+    style = style + "-o-transform: scale(" + zoom + "); ";
+    style = style + "-o-transform-origin: 0 0; ";
+    style = style + "-webkit-transform: scale(" + zoom + "); ";
+    style = style + "-webkit-transform-origin: 0 0; ";
+    return style
+  };
+  var getZoomFromStyle = function(style) {
+    var zoom = 1;
+    if(!style) {
+      return zoom
+    }
+    var moz_zoom_pattern = /-moz-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
+    var webkit_zoom_pattern = /-webkit-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
+    var opera_zoom_pattern = /-o-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
+    var ie_zoom_pattern = /-ms-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
+    $.each(style.split(";"), function(index, property) {
+      if(property.match(moz_zoom_pattern) != null) {
+        var result = moz_zoom_pattern.exec(property);
+        if(result[1]) {
+          zoom = parseFloat(result[1]);
+          return false
+        }
+      }else {
+        if(property.match(webkit_zoom_pattern) != null) {
+          var result = webkit_zoom_pattern.exec(property);
+          if(result[1]) {
+            zoom = parseFloat(result[1]);
+            return false
+          }
+        }else {
+          if(property.match(opera_zoom_pattern) != null) {
+            var result = opera_zoom_pattern.exec(property);
+            if(result[1]) {
+              zoom = parseFloat(result[1]);
+              return false
+            }
+          }else {
+            if(property.match(ie_zoom_pattern) != null) {
+              var result = ie_zoom_pattern.exec(property);
+              if(result[1]) {
+                zoom = parseFloat(result[1]);
+                return false
+              }
+            }
+          }
+        }
+      }
+    });
+    return zoom
+  };
+  return{init:init, getOuterHTML:getOuterHTML, generateTable:generateTable, checkMiniumRequirements:checkMiniumRequirements, convertToTagsArray:convertToTagsArray, getURLParameter:getURLParameter, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
@@ -13127,19 +12735,22 @@ VISH.Editor = function(V, $, undefined) {
   var params = {current_el:null};
   var eventsLoaded = false;
   var init = function(options, excursion) {
+    V.Slides.init();
     if(!VISH.Utils.checkMiniumRequirements()) {
       return
     }
     VISH.Editing = true;
     if(options) {
       initOptions = options;
-      if(options["developping"] === true && VISH.Debugging) {
-        VISH.Debugging.init(true);
-        if(VISH.Debugging.getActionInit() == "loadSamples" && !excursion) {
+      if(VISH.Debugging) {
+        if(options["developping"] === true) {
+          VISH.Debugging.init(true)
+        }else {
+          VISH.Debugging.init(false)
+        }
+        if(options["configuration"]["mode"] == "noserver" && VISH.Debugging.getActionInit() == "loadSamples" && !excursion) {
           excursion = VISH.Debugging.getExcursionSamples()
         }
-      }else {
-        VISH.Debugging.init(false)
       }
       if(options["configuration"] && VISH.Configuration) {
         VISH.Configuration.init(options["configuration"]);
@@ -13147,7 +12758,9 @@ VISH.Editor = function(V, $, undefined) {
       }
     }else {
       initOptions = {};
-      VISH.Debugging.init(false)
+      if(VISH.Debugging) {
+        VISH.Debugging.init(false)
+      }
     }
     if(excursion) {
       excursion_to_edit = excursion;
@@ -13175,9 +12788,8 @@ VISH.Editor = function(V, $, undefined) {
       $(document).on("click", "#arrow_left_div", _onArrowLeftClicked);
       $(document).on("click", "#arrow_right_div", _onArrowRightClicked);
       _addEditorEnterLeaveEvents();
-      V.SlidesUtilities.redrawSlides();
+      V.Editor.Utils.redrawSlides();
       V.Editor.Thumbnails.redrawThumbnails();
-      addEventListeners();
       _addTutorialEvents()
     }
     if(excursion) {
@@ -13387,11 +12999,11 @@ VISH.Editor = function(V, $, undefined) {
   };
   var _onTemplateThumbClicked = function(event) {
     var slide = V.Dummies.getDummy($(this).attr("template"));
-    V.SlidesUtilities.addSlide(slide);
+    V.Editor.Utils.addSlide(slide);
     $.fancybox.close();
-    V.SlidesUtilities.redrawSlides();
+    V.Editor.Utils.redrawSlides();
     V.Editor.Thumbnails.redrawThumbnails();
-    setTimeout("VISH.SlidesUtilities.lastSlide()", 300)
+    setTimeout("VISH.Slides.lastSlide()", 300)
   };
   var _onEditableClicked = function(event) {
     $(this).removeClass("editable");
@@ -13448,10 +13060,10 @@ VISH.Editor = function(V, $, undefined) {
         $("#prompt_answer").val("false");
         $(".theslider").hide();
         article_to_delete.remove();
-        if(curSlide == slideEls.length - 1 && curSlide != 0) {
-          curSlide -= 1
+        if(V.curSlide == V.slideEls.length - 1 && V.curSlide != 0) {
+          V.curSlide -= 1
         }
-        V.SlidesUtilities.redrawSlides();
+        V.Editor.Utils.redrawSlides();
         V.Editor.Thumbnails.redrawThumbnails()
       }
     }})
@@ -13480,7 +13092,7 @@ VISH.Editor = function(V, $, undefined) {
     $(".selectable").css("cursor", "pointer")
   };
   var _onSaveButtonClicked = function() {
-    if(slideEls.length === 0) {
+    if(V.slideEls.length === 0) {
       $.fancybox($("#message1_form").html(), {"autoDimensions":false, "scrolling":"no", "width":350, "height":200, "showCloseButton":false, "padding":5})
     }else {
       $.fancybox($("#save_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
@@ -13497,7 +13109,11 @@ VISH.Editor = function(V, $, undefined) {
   var saveExcursion = function() {
     $(".object_wrapper").show();
     var excursion = {};
-    excursion.id = "";
+    if(excursion_to_edit) {
+      excursion.id = excursion_to_edit.id
+    }else {
+      excursion.id = ""
+    }
     excursion.title = excursionDetails.title;
     excursion.description = excursionDetails.description;
     excursion.avatar = excursionDetails.avatar;
@@ -13544,9 +13160,9 @@ VISH.Editor = function(V, $, undefined) {
                   $(myObject).removeAttr("style");
                   element.body = VISH.Utils.getOuterHTML(myObject);
                   element.style = _getStylesInPercentages($(div), $(object).parent());
-                  var zoom = VISH.SlidesUtilities.getZoomFromStyle($(object).attr("style"));
+                  var zoom = VISH.Utils.getZoomFromStyle($(object).attr("style"));
                   if(zoom != 1) {
-                    element.zoomInStyle = VISH.SlidesUtilities.getZoomInStyle(zoom)
+                    element.zoomInStyle = VISH.Utils.getZoomInStyle(zoom)
                   }
                 }else {
                   if(element.type == "openquestion") {
@@ -13560,17 +13176,34 @@ VISH.Editor = function(V, $, undefined) {
                         element.options[i] = input_text.value
                       })
                     }else {
-                      if(element.type === "snapshot") {
-                        var snapshotWrapper = $(div).find(".snapshot_wrapper");
-                        var snapshotIframe = $(snapshotWrapper).children()[0];
-                        $(snapshotIframe).removeAttr("style");
-                        element.body = VISH.Utils.getOuterHTML(snapshotIframe);
-                        element.style = _getStylesInPercentages($(div), snapshotWrapper);
-                        element.scrollTop = $(snapshotWrapper).scrollTop();
-                        element.scrollLeft = $(snapshotWrapper).scrollLeft()
+                      if(element.type == "truefalsequestion") {
+                        element.questions = [];
+                        var question = {};
+                        $(div).find(".true_false_question").each(function(i, input_text) {
+                          VISH.Debugging.log("input text for each question value is:" + input_text.value);
+                          question.id = i;
+                          question.text_question = input_text.value;
+                          if($(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val() == undefined) {
+                            question.answer = "null"
+                          }else {
+                            question.answer = $(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val()
+                          }
+                          element.questions.push(question);
+                          question = {}
+                        })
                       }else {
-                        if(typeof element.type == "undefined") {
-                          VISH.Debugging.log("Empty element")
+                        if(element.type === "snapshot") {
+                          var snapshotWrapper = $(div).find(".snapshot_wrapper");
+                          var snapshotIframe = $(snapshotWrapper).children()[0];
+                          $(snapshotIframe).removeAttr("style");
+                          element.body = VISH.Utils.getOuterHTML(snapshotIframe);
+                          element.style = _getStylesInPercentages($(div), snapshotWrapper);
+                          element.scrollTop = $(snapshotWrapper).scrollTop();
+                          element.scrollLeft = $(snapshotWrapper).scrollLeft()
+                        }else {
+                          if(typeof element.type == "undefined") {
+                            VISH.Debugging.log("Empty element")
+                          }
                         }
                       }
                     }
@@ -13592,60 +13225,61 @@ VISH.Editor = function(V, $, undefined) {
   };
   var _afterSaveExcursion = function(excursion) {
     console.log("VISH.Debugging.isDevelopping(): " + VISH.Debugging.isDevelopping());
-    if(VISH.Debugging && VISH.Debugging.isDevelopping()) {
-      if(VISH.Debugging.getActionSave() == "view") {
-        $("article").remove();
-        $("#menubar").hide();
-        $("#menubar_helpsection").hide();
-        $("#joyride_help_button").hide();
-        $(".theslider").hide();
-        $(".nicEdit-panelContain").hide();
-        $("#menubar-viewer").show();
-        VISH.SlideManager.init({"quiz_active":"false", "token":"453452453", "username":"ebarra", "postPath":"/quiz.json", "lang":"es"}, excursion)
+    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      var send_type;
+      if(excursion_to_edit) {
+        send_type = "PUT"
       }else {
-        if(VISH.Debugging.getActionSave() == "edit") {
-          $("article").remove();
-          var options = {};
-          options["developping"] = true;
-          options["configuration"] = configuration;
-          VISH.Editor.init(options, excursion)
-        }else {
-          if(VISH.Debugging.getActionSave() == "default") {
-            uploadPresentation(excursion)
+        send_type = "POST"
+      }
+      var jsonexcursion = JSON.stringify(excursion);
+      VISH.Debugging.log(jsonexcursion);
+      var params = {"excursion[json]":jsonexcursion, "authenticity_token":initOptions["token"]};
+      $.ajax({type:send_type, url:initOptions["postPath"], data:params, success:function(data) {
+        window.top.location.href = data.url
+      }})
+    }else {
+      if(VISH.Configuration.getConfiguration()["mode"] == "node") {
+        uploadPresentationWithNode(excursion)
+      }else {
+        if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+          if(VISH.Debugging && VISH.Debugging.isDevelopping()) {
+            if(VISH.Debugging.getActionSave() == "view") {
+              $("article").remove();
+              $("#menubar").hide();
+              $("#menubar_helpsection").hide();
+              $("#joyride_help_button").hide();
+              $(".theslider").hide();
+              $(".nicEdit-panelContain").hide();
+              $("#menubar-viewer").show();
+              VISH.SlideManager.init({"quiz_active":"false", "token":"453452453", "username":"ebarra", "postPath":"/quiz.json", "lang":"es"}, excursion)
+            }else {
+              if(VISH.Debugging.getActionSave() == "edit") {
+                $("article").remove();
+                var options = {};
+                options["developping"] = true;
+                options["configuration"] = configuration;
+                VISH.Editor.init(options, excursion)
+              }
+            }
           }
         }
       }
-    }else {
-      if(VISH.Configuration.getConfiguration()["VishIntegration"]) {
-        var send_type;
-        if(excursion_to_edit) {
-          send_type = "PUT"
-        }else {
-          send_type = "POST"
-        }
-        var jsonexcursion = JSON.stringify(excursion);
-        VISH.Debugging.log(jsonexcursion);
-        var params = {"excursion[json]":jsonexcursion, "authenticity_token":initOptions["token"]};
-        $.ajax({type:send_type, url:initOptions["postPath"], data:params, success:function(data) {
-          window.top.location.href = data.url
-        }})
-      }else {
-        uploadPresentation(excursion)
-      }
     }
   };
-  var uploadPresentation = function(excursion) {
-    console.log("uploadPresentation called");
+  var uploadPresentationWithNode = function(excursion) {
     var send_type;
+    var url = "/presentation/";
     if(excursion_to_edit) {
-      send_type = "PUT"
+      send_type = "PUT";
+      url = url + excursion_to_edit.id
     }else {
       send_type = "POST"
     }
     var jsonPresentation = JSON.stringify(excursion);
     var params = {"presentation[json]":jsonPresentation};
-    $.ajax({type:send_type, url:"/presentation/", data:params, success:function(data) {
-      console.log("Deberiamos redirigir... al show...")
+    $.ajax({type:send_type, url:url, data:params, success:function(data) {
+      window.top.location.href = data.url
     }})
   };
   var _getStylesInPercentages = function(parent, element) {
@@ -13659,10 +13293,10 @@ VISH.Editor = function(V, $, undefined) {
     return element.width() / element.height()
   };
   var _onArrowLeftClicked = function() {
-    V.SlidesUtilities.goToSlide(curSlide)
+    V.Slides.backwardOneSlide()
   };
   var _onArrowRightClicked = function() {
-    V.SlidesUtilities.goToSlide(curSlide + 2)
+    V.Slides.forwardOneSlide()
   };
   var getParams = function() {
     return params
@@ -13768,7 +13402,13 @@ VISH.Editor.Image = function(V, $, undefined) {
           $("#" + uploadDivId + " input[name='document[description]']").val(description);
           $("#" + uploadDivId + " input[name='document[owner_id]']").val(options["ownerId"]);
           $("#" + uploadDivId + " input[name='authenticity_token']").val(options["token"]);
-          $("#" + uploadDivId + " .documentsForm").attr("action", options["documentsPath"]);
+          if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+            $("#" + uploadDivId + " .documentsForm").attr("action", options["documentsPath"])
+          }else {
+            if(VISH.Configuration.getConfiguration()["mode"] == "node") {
+              $("#" + uploadDivId + " .documentsForm").attr("action", "/image")
+            }
+          }
           $("#" + uploadDivId + " input[name='tags']").val(VISH.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
           $(tagList).parent().hide();
@@ -13837,8 +13477,11 @@ VISH.Editor.Image = function(V, $, undefined) {
   };
   var processResponse = function(response) {
     try {
+      console.log("response");
+      console.log(response);
       var jsonResponse = JSON.parse(response);
       if(jsonResponse.src) {
+        console.log(jsonResponse.src);
         if(VISH.Police.validateObject(jsonResponse.src)[0]) {
           VISH.Editor.Object.drawPreview(uploadDivId, jsonResponse.src);
           contentToAdd = jsonResponse.src
@@ -13861,8 +13504,8 @@ VISH.Editor.Image = function(V, $, undefined) {
       current_area = VISH.Editor.getCurrentArea()
     }
     if(style) {
-      style = V.SlidesUtilities.setStyleInPixels(style, current_area);
-      image_width = V.SlidesUtilities.getWidthFromStyle(style, current_area)
+      style = V.Editor.Utils.setStyleInPixels(style, current_area);
+      image_width = V.Editor.Utils.getWidthFromStyle(style, current_area)
     }
     var template = VISH.Editor.getTemplate();
     var nextImageId = VISH.Editor.getId();
@@ -13930,7 +13573,13 @@ VISH.Editor.Object = function(V, $, undefined) {
           $("#" + uploadDivId + " input[name='document[description]']").val(description);
           $("#" + uploadDivId + " input[name='document[owner_id]']").val(options["ownerId"]);
           $("#" + uploadDivId + " input[name='authenticity_token']").val(options["token"]);
-          $("#" + uploadDivId + " .documentsForm").attr("action", options["documentsPath"]);
+          if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+            $("#" + uploadDivId + " .documentsForm").attr("action", options["documentsPath"])
+          }else {
+            if(VISH.Configuration.getConfiguration()["mode"] == "node") {
+              $("#" + uploadDivId + " .documentsForm").attr("action", "/object")
+            }
+          }
           $("#" + uploadDivId + " input[name='tags']").val(VISH.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
           $(tagList).parent().hide();
@@ -14117,7 +13766,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     var newWrapperWidth = Math.round(newWidth);
     $(parent).width(newWrapperWidth);
     $(parent).height(newWrapperHeight);
-    var zoom = VISH.SlidesUtilities.getZoomFromStyle($("#" + id).attr("style"));
+    var zoom = V.Editor.Utils.getZoomFromStyle($("#" + id).attr("style"));
     if(zoom != 1) {
       newWidth = newWidth / zoom;
       var newHeight = Math.round(newWidth / aspectRatio);
@@ -14286,7 +13935,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     $(wrapperDiv).append(wrapperTag);
     var width, value;
     if(style) {
-      width = V.SlidesUtilities.getWidthFromStyle(style, current_area);
+      width = V.Editor.Utils.getWidthFromStyle(style, current_area);
       value = 10 * width / $(current_area).width()
     }else {
       value = 10
@@ -14334,7 +13983,8 @@ VISH.Samples = function(V, undefined) {
   {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
   var quizes_samples = {"id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}, {"id":"article2", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Per\u00fa", 
   "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}, {"id":"article3", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Colombia", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}, {"id":"article4", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which which which which ... ", 
-  "options":["Un texto largo, muy largo que puede sobrepasar los l\u00edmites permitidos", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Otro texto largo, muy largo y m\u00e1s largo que sobrepase los l\u00edmites permitidos ... y m\u00e1s"]}]}, {"id":"article6", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which color do you prefer .... ... ", "options":["Red", "White", "Blue", "Orange"]}]}]};
+  "options":["Un texto largo, muy largo que puede sobrepasar los l\u00edmites permitidos", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Otro texto largo, muy largo y m\u00e1s largo que sobrepase los l\u00edmites permitidos ... y m\u00e1s"]}]}, {"id":"article5", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which color do you prefer .... ... ", "options":["Red", "White", "Blue", "Orange"]}]}, {"id":"article6", "template":"t12", 
+  "elements":[{"id":"zone11", "areaid":"header"}, {"id":"zone12", "type":"truefalsequestion", "areaid":"left", "questions":[{"id":0, "text_question":"Is carnivorous the iberian lynx", "answer":"true"}, {"id":1, "text_question":"a sdasd as d", "answer":"true"}, {"id":2, "text_question":"s adasdasd a", "answer":"false"}, {"id":3, "text_question":"as das dasd ad", "answer":"null"}]}]}]};
   return{full_samples:full_samples, samples:samples, samples_aldo:samples_aldo, quizes_samples:quizes_samples}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -14422,26 +14072,17 @@ VISH.Configuration = function(V, $, undefined) {
         $("#thumbnails_in_excursion_details").css("display", "none")
       }
     }
-    if(!configuration["Vish"]) {
-      $("#tab_pic_upload").css("display", "none");
-      $("#tab_pic_repo").css("display", "none");
-      $("#tab_object_upload").css("display", "none");
-      $("#tab_object_repo").css("display", "none");
-      $("#tab_video_repo").css("display", "none");
+    if(!configuration["VishLives"]) {
       $(".addLive").css("display", "none")
-    }else {
-      if(!configuration["VishLives"]) {
-        $(".addLive").css("display", "none")
-      }
-      if(!configuration["VishUpload"]) {
-        $("#tab_pic_upload").css("display", "none");
-        $("#tab_object_upload").css("display", "none")
-      }
-      if(!configuration["VishRepo"]) {
-        $("#tab_pic_repo").css("display", "none");
-        $("#tab_object_repo").css("display", "none");
-        $("#tab_video_repo").css("display", "none")
-      }
+    }
+    if(!configuration["VishRepo"]) {
+      $("#tab_pic_repo").css("display", "none");
+      $("#tab_object_repo").css("display", "none");
+      $("#tab_video_repo").css("display", "none")
+    }
+    if(!configuration["Upload"]) {
+      $("#tab_pic_upload").css("display", "none");
+      $("#tab_object_upload").css("display", "none")
     }
     if(!configuration["Youtube"]) {
       $("#tab_video_youtube").css("display", "none")
@@ -14459,9 +14100,9 @@ VISH.Configuration = function(V, $, undefined) {
   return{init:init, applyConfiguration:applyConfiguration, getConfiguration:getConfiguration}
 }(VISH, jQuery);
 VISH.Debugging = function(V, $, undefined) {
-  var actionSave = "default";
-  var actionInit = "nothing";
-  var excursionSamples = VISH.Samples.samples;
+  var actionSave = "view";
+  var actionInit = "loadSamples";
+  var excursionSamples = VISH.Samples.quizes_samples;
   var developping = false;
   var init = function(bol) {
     developping = bol
@@ -14549,14 +14190,16 @@ VISH.Dummies = function(VISH, undefined) {
   "<article id='article_id_to_change' template='t7'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t7_subheader editable grey_background selectable'></div></article>", 
   "<article id='article_id_to_change' template='t8'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t8_right editable grey_background selectable'></div></article>", 
   "<article id='article_id_to_change' template='t9'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t9_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t10'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul id='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='images/add_quiz_option.png' id='add_quiz_option_img'/></a></li> </ul> </div></article>", 
-  "<article id='article_id_to_change' template='t12'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table id='truefalse_quiz_table' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr><tr id='tr_question_1'><td id='td_true_1'><input type='checkbox' id='1_true'/></td><td id='td_false_1'><input type='checkbox' id='1_false'/></td><td id='td_question_1'><textarea rows='1' cols='50' class='value_multiplechoice_question' placeholder='Write question here'></textarea></td></tr>              </table></div></article>"];
+  "<article id='article_id_to_change' template='t10'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul id='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='images/add_quiz_option.png' id='add_quiz_option_img'/></a></li> </ul> </div></article>", 
+  "<article id='article_id_to_change' template='t12'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t12_header'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table id='truefalse_quiz_table' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th><th></th></tr><tr id='tr_question_1'><td id='td_true_1' class='td_true'><input type='radio' id='true_1' name='answer_1' class='truefalse_answer' value='true'/></td><td id='td_false_1' class='td_false'><input type='radio' id='false_1' name='answer_1' class='truefalse_answer' value='false'/></td><td id='td_question_1' class='td_truefalse_question'><textarea rows='1' class='true_false_question' placeholder='Write question here' id='true_false_question_1'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + 
+  VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr></table></div></article>"];
   var getDummy = function(template, article_id) {
     var dum = dummies[parseInt(template, 10) - 1];
     return _replaceIds(dum, article_id)
   };
   var _replaceIds = function(string, article_id) {
     var newString = string;
+    VISH.Debugging.log("article_id passed like parameter is: " + article_id);
     while(newString.indexOf("div_id_to_change") != -1) {
       newString = newString.replace("div_id_to_change", "zone" + nextDivId);
       nextDivId++
@@ -15633,7 +15276,7 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
     }
     var width, value;
     if(style) {
-      width = V.SlidesUtilities.getWidthFromStyle(style, current_area);
+      width = V.Editor.Utils.getWidthFromStyle(style, current_area);
       value = 10 * width / $(current_area).width()
     }else {
       value = 10
@@ -15718,33 +15361,68 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   var buttonRemoveOptionId = "a_remove_quiz_option";
   var MultipleChoiceOptionClass = "multiplechoice_text";
   var searchOptionText = "mchoice_radio_option_";
-  var num_options = 6;
+  var maxNumMultipleChoiceOptions = 6;
+  var buttonAddTrueFalseQuestionId = "a_add_true_false_question";
+  var maxNumTrueFalseQuestions = 6;
   var init = function() {
-    $(document).on("click", "#" + buttonAddOptionId, addMultipleChoiceOption)
+    var myInput = $(".current").find("input[type='text']");
+    V.Debugging.log("enter to init function");
+    $(document).on("click", "#" + buttonAddOptionId, addMultipleChoiceOption);
+    $(myInput).keydown(function(event) {
+      if(event.keyCode == 13) {
+        V.Debugging.log("event.keyCode =" + event.keyCode);
+        if($(myInput).val() != "" && $(myInput).val() != "write quiz options here") {
+          addMultipleChoiceOption();
+          $(myInput).blur()
+        }else {
+          alert("You must enter some text option.")
+        }
+      }
+    });
+    $(document).on("click", "#" + buttonAddTrueFalseQuestionId, addTrueFalseQuestion)
   };
   var addMultipleChoiceOption = function(event) {
-    var text = $("<div>").append($("." + MultipleChoiceOptionClass).clone()).html();
-    var inputs_search = $(".current").find("." + MultipleChoiceOptionClass);
-    var next_num = inputs_search.size() + 1;
-    var next_index = "a".charCodeAt(0) + (next_num - 1);
-    next_index = String.fromCharCode(next_index);
-    if(next_num < num_options) {
-      $(".add_quiz_option").remove();
-      var delete_icon = "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + (next_num - 1) + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='images/delete.png' id='remove_quiz_option_img'/></a>";
-      $(".current").find("#ul_mch_options").find("#li_mch_option_" + (next_num - 1)).append(delete_icon);
-      var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ") <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='insert text option here' />";
-      add_option += "<a id='" + buttonAddOptionId + "' class='add_quiz_option'><img src='images/add_quiz_option.png' id='add_quiz_option_img'/></a></li>";
-      $(".current").find("#ul_mch_options").append(add_option)
-    }else {
-      if(next_num == num_options) {
+    var myInput = $(".current").find("input[type='text']").last();
+    if(myInput.val() != "" && myInput.val() != "write quiz options here") {
+      $(".current").find("." + MultipleChoiceOptionClass).removeAttr("autofocus");
+      var text = $("<div>").append($("." + MultipleChoiceOptionClass).clone()).html();
+      var inputs_search = $(".current").find("." + MultipleChoiceOptionClass);
+      var next_num = inputs_search.size() + 1;
+      var next_index = "a".charCodeAt(0) + (next_num - 1);
+      next_index = String.fromCharCode(next_index);
+      if(next_num < maxNumMultipleChoiceOptions) {
         $(".add_quiz_option").remove();
         var delete_icon = "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + (next_num - 1) + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='images/delete.png' id='remove_quiz_option_img'/></a>";
-        $(".current").find("#ul_mch_options").find("#li_mch_option_" + (next_num - 1).toString()).append(delete_icon);
-        var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ")&nbsp;  <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='insert text option here' />";
-        add_option += "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + next_num + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='images/delete.png' id='remove_quiz_option_img'/></a></li>";
+        $(".current").find("#ul_mch_options").find("#li_mch_option_" + (next_num - 1)).append(delete_icon);
+        var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ") <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='write quiz options here' />";
+        add_option += "<a id='" + buttonAddOptionId + "' class='add_quiz_option'><img src='images/add_quiz_option.png' id='add_quiz_option_img'/></a></li>";
         $(".current").find("#ul_mch_options").append(add_option)
+      }else {
+        if(next_num == maxNumMultipleChoiceOptions) {
+          $(".add_quiz_option").remove();
+          var delete_icon = "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + (next_num - 1) + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='images/delete.png' id='remove_quiz_option_img'/></a>";
+          $(".current").find("#ul_mch_options").find("#li_mch_option_" + (next_num - 1).toString()).append(delete_icon);
+          var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ")&nbsp;  <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='write quiz options here' />";
+          add_option += "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + next_num + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='images/delete.png' id='remove_quiz_option_img'/></a></li>";
+          $(".current").find("#ul_mch_options").append(add_option)
+        }
       }
+    }else {
+      alert("You must enter some text option.")
     }
+    myNextInput = $(".current").find("#radio_text_" + next_num);
+    myNextInput.keydown(function(event) {
+      if(event.keyCode == 13) {
+        V.Debugging.log("event.type vale (inside addMultipleChoiceOption): " + event.type);
+        if($(myNextInput).val() != "" && $(myInput).val() != "write quiz options here") {
+          addMultipleChoiceOption();
+          $(myNextInput).blur()
+        }else {
+          alert("You must enter some text option.")
+        }
+      }
+    });
+    $(".current").find(myNextInput).attr("autofocus", "autofocus")
   };
   var removeMultipleChoiceOption = function(id) {
     var add_option_button = "<a id='" + buttonAddOptionId + "' class='add_quiz_option'><img src='images/add_quiz_option.png' id='add_quiz_option_img'/></a>";
@@ -15752,7 +15430,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     var num_inputs = $(".current").find(".li_mch_option").size();
     var i;
     var next_index;
-    if(id < num_options) {
+    if(id < maxNumMultipleChoiceOptions) {
       for(i = id;i <= num_inputs;i++) {
         next_index = "a".charCodeAt(0) + i;
         next_index = String.fromCharCode(next_index);
@@ -15766,7 +15444,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       }
       $(".current").find("#li_mch_option_" + num_inputs.toString()).remove()
     }else {
-      if(id == num_options) {
+      if(id == maxNumMultipleChoiceOptions) {
         $(".current").find("#li_mch_option_" + id.toString()).remove();
         $(".current").find("li#li_mch_option_" + (id - 1).toString() + " > #a_remove_quiz_option").remove();
         $(".current").find("#li_mch_option_" + (id - 1).toString()).append(add_option_button)
@@ -15775,7 +15453,24 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       }
     }
   };
-  return{init:init, addMultipleChoiceOption:addMultipleChoiceOption, removeMultipleChoiceOption:removeMultipleChoiceOption}
+  var addTrueFalseQuestion = function(event) {
+    $(".current").find(".true_false_question").removeAttr("autofocus");
+    var numCurrentQuestions = $(".current").find(".true_false_question").size();
+    if(numCurrentQuestions < maxNumTrueFalseQuestions) {
+      if($(".current").find(".true_false_question").last().val() != "" && $(".current").find(".true_false_question").last().val() != "Write question here") {
+        $(document).find("#" + buttonAddTrueFalseQuestionId).remove();
+        var trueFalseQuestionRow = "<tr id='tr_question_" + (numCurrentQuestions + 1) + "'><td id='td_true_" + (numCurrentQuestions + 1) + "' class='td_true'><input type='radio' id='true_" + (numCurrentQuestions + 1) + "' name='answer_" + (numCurrentQuestions + 1) + "' class='truefalse_answer' value='true'/></td><td id='td_false_" + (numCurrentQuestions + 1) + "' class='td_false'><input type='radio' id='false_" + (numCurrentQuestions + 1) + "' name='answer_" + (numCurrentQuestions + 1) + "' class='truefalse_answer' value='false'/></td><td id='td_question_" + 
+        (numCurrentQuestions + 1) + "' class='td_truefalse_question'><textarea rows='1' cols='50' class='true_false_question' placeholder='Write question here' id='true_false_question__" + (numCurrentQuestions + 1) + "'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr>";
+        $(".current").find(".truefalse_quiz_table").append(trueFalseQuestionRow);
+        $(".current").find(".true_false_question").last().attr("autofocus", "autofocus")
+      }else {
+        alert("Must write question before add new row.")
+      }
+    }else {
+      alert("Number of maximum questions reached.")
+    }
+  };
+  return{init:init, addMultipleChoiceOption:addMultipleChoiceOption, removeMultipleChoiceOption:removeMultipleChoiceOption, addTrueFalseQuestion:addTrueFalseQuestion}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
@@ -15796,9 +15491,9 @@ VISH.Editor.Renderer = function(V, $, undefined) {
   var _renderSlide = function(slide, position) {
     var template = slide.template.substring(1);
     var scaffold = V.Dummies.getDummy(template, slide.id);
-    V.SlidesUtilities.addSlide(scaffold);
-    V.SlidesUtilities.redrawSlides();
-    V.SlidesUtilities.lastSlide();
+    V.Editor.Utils.addSlide(scaffold);
+    V.Editor.Utils.redrawSlides();
+    V.Slides.lastSlide();
     for(el in slide.elements) {
       var area = $("#article" + slide.id + " div[areaid='" + slide.elements[el].areaid + "']");
       if(slide.elements[el].type === "text") {
@@ -15998,7 +15693,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         $("#addSlideFancybox").trigger("click");
         break;
       case "goToSlide":
-        VISH.SlidesUtilities.goToSlide($(event.target).attr("slideNumber"));
+        VISH.Slides.goToSlide($(event.target).attr("slideNumber"));
         break;
       default:
         break
@@ -16105,13 +15800,13 @@ VISH.Editor.Tools = function(V, $, undefined) {
         var objectInfo = VISH.Editor.Object.getObjectInfo(object);
         if(objectInfo.type === "web") {
           var iframe = $(area).find("iframe");
-          var zoom = VISH.SlidesUtilities.getZoomFromStyle($(iframe).attr("style"));
+          var zoom = VISH.Editor.Utils.getZoomFromStyle($(iframe).attr("style"));
           if(action == "+") {
             zoom = zoom + 0.1
           }else {
             zoom = zoom - 0.1
           }
-          $(iframe).attr("style", VISH.SlidesUtilities.addZoomToStyle($(iframe).attr("style"), zoom));
+          $(iframe).attr("style", VISH.Utils.addZoomToStyle($(iframe).attr("style"), zoom));
           VISH.Editor.Object.autofixWrapperedObjectAfterZoom(iframe, zoom)
         }
         break;
@@ -16139,6 +15834,125 @@ VISH.Editor.Tour = function(V, $, undefined) {
     })
   };
   return{clear:clear, startTourWithId:startTourWithId}
+}(VISH, jQuery);
+VISH.Editor.Utils = function(V, $, undefined) {
+  var redrawSlides = function() {
+    $(document).trigger("OURDOMContentLoaded")
+  };
+  var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
+    var element_type;
+    var dimentions_for_drawing = {width:350, height:195};
+    var aspect_ratio_zone = w_zone / h_zone;
+    var aspect_ratio_content = w_content / h_content;
+    if(aspect_ratio_zone > aspect_ratio_content) {
+      dimentions_for_drawing.width = aspect_ratio_content * h_zone;
+      dimentions_for_drawing.height = h_zone;
+      return dimentions_for_drawing
+    }else {
+      dimentions_for_drawing.width = w_zone;
+      dimentions_for_drawing.height = w_zone / aspect_ratio_content;
+      return dimentions_for_drawing
+    }
+  };
+  var addSlide = function(slide) {
+    $(".slides").append(slide)
+  };
+  var getWidthFromStyle = function(style, area) {
+    return getPixelDimensionsFromStyle(style, area)[0]
+  };
+  var getHeightFromStyle = function(style, area) {
+    return getPixelDimensionsFromStyle(style, area)[1]
+  };
+  var getPixelDimensionsFromStyle = function(style, area) {
+    var dimensions = [];
+    var width = null;
+    var height = null;
+    var width_percent_pattern = /width:\s?([0-9]+(\.[0-9]+)?)%/g;
+    var width_px_pattern = /width:\s?([0-9]+(\.?[0-9]+)?)px/g;
+    var height_percent_pattern = /height:\s?([0-9]+(\.[0-9]+)?)%/g;
+    var height_px_pattern = /height:\s?([0-9]+(\.?[0-9]+)?)px/g;
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("width") !== -1) {
+        if(property.match(width_px_pattern)) {
+          var result = width_px_pattern.exec(property);
+          if(result[1]) {
+            width = result[1]
+          }
+        }else {
+          if(property.match(width_percent_pattern)) {
+            var result = width_percent_pattern.exec(property);
+            if(result[1]) {
+              var percent = result[1];
+              if(area) {
+                width = $(area).width() * percent / 100
+              }
+            }
+          }
+        }
+      }else {
+        if(property.indexOf("height") !== -1) {
+          if(property.match(height_px_pattern)) {
+            var result = height_px_pattern.exec(property);
+            if(result[1]) {
+              height = result[1]
+            }
+          }else {
+            if(property.match(height_percent_pattern)) {
+              var result = height_percent_pattern.exec(property);
+              if(result[1]) {
+                var percent = result[1];
+                if(area) {
+                  height = $(area).height() * percent / 100
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+    dimensions.push(width);
+    dimensions.push(height);
+    return dimensions
+  };
+  var setStyleInPixels = function(style, area) {
+    var filterStyle = "";
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("width") === -1 && property.indexOf("height") === -1) {
+        filterStyle = filterStyle + property + "; "
+      }
+    });
+    var dimensions = getPixelDimensionsFromStyle(style, area);
+    if(dimensions && dimensions[0]) {
+      filterStyle = filterStyle + "width: " + dimensions[0] + "px; ";
+      if(dimensions[1]) {
+        filterStyle = filterStyle + "height: " + dimensions[1] + "px; "
+      }
+    }
+    return filterStyle
+  };
+  var addZoomToStyle = function(style, zoom) {
+    if(!style) {
+      return null
+    }
+    var filterStyle = "";
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("-ms-transform") === -1 && property.indexOf("-moz-transform") === -1 && property.indexOf("-o-transform") === -1 && property.indexOf("-webkit-transform") === -1 && property.indexOf("-moz-transform-origin") === -1 && property.indexOf("-webkit-transform-origin") === -1 && property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1) {
+        filterStyle = filterStyle + property + "; "
+      }
+    });
+    if(zoom) {
+      filterStyle = filterStyle + "-ms-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-ms-transform-origin: 0 0; ";
+      filterStyle = filterStyle + "-moz-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-moz-transform-origin: 0 0; ";
+      filterStyle = filterStyle + "-o-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-o-transform-origin: 0 0; ";
+      filterStyle = filterStyle + "-webkit-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-webkit-transform-origin: 0 0; "
+    }
+    return filterStyle
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -16198,7 +16012,7 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     VISH.Editor.addDeleteButton($(current_area));
     var width, value;
     if(style) {
-      width = V.SlidesUtilities.getWidthFromStyle(style);
+      width = V.Editor.Utils.getWidthFromStyle(style);
       value = width / 80
     }else {
       value = 4
@@ -16499,7 +16313,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
   var _generateWrapper = function(videoId) {
     var video_embedded = "http://www.youtube.com/embed/" + videoId;
     current_area = VISH.Editor.getCurrentArea();
-    var width_height = VISH.SlidesUtilities.dimentionToDraw(current_area.width(), current_area.height(), 325, 243);
+    var width_height = VISH.Editor.Utils.dimentionToDraw(current_area.width(), current_area.height(), 325, 243);
     var wrapper = "<iframe src='" + video_embedded + "?wmode=opaque' frameborder='0' style='width:" + width_height.width + "px; height:" + width_height.height + "px;'></iframe>";
     return wrapper
   };
@@ -16544,8 +16358,11 @@ VISH.Excursion = function(V, undefined) {
           V.Mods.fc.loader.init(flashcard)
         }else {
           if(mySlides[i].elements[num].type === "mcquestion") {
-            V.Debugging.log("length of elements is : " + mySlides[i].elements[num].options.length);
             VISH.Quiz.enableInteraction(mySlides[i].id.toString(), mySlides[i].elements[num].options.length)
+          }else {
+            if(mySlides[i].elements[num].type === "truefalsequestion") {
+              VISH.Quiz.enableTrueFalseInteraction(mySlides[i].id.toString(), mySlides[i].elements[num].questions.length)
+            }
           }
         }
       }
@@ -16580,7 +16397,7 @@ VISH.ObjectPlayer = function() {
   };
   var adjustDimensionsAfterZoom = function(objectWithZoom) {
     var parent = $(objectWithZoom).parent();
-    var zoom = VISH.SlidesUtilities.getZoomFromStyle($(objectWithZoom).attr("style"));
+    var zoom = VISH.Utils.getZoomFromStyle($(objectWithZoom).attr("style"));
     $(objectWithZoom).height($(parent).height() / zoom);
     $(objectWithZoom).width($(parent).width() / zoom)
   };
@@ -16648,26 +16465,34 @@ VISH.Quiz = function(V, $, undefined) {
   var userStatus;
   var startButton = "mcquestion_start_button";
   var stopButton = "mcquestion_stop_button";
+  trueFalseAnswers = new Array;
   var init = function(element, template, slide) {
-    user = V.SlideManager.getUser();
-    userStatus = V.SlideManager.getUserStatus();
-    role = user.role;
-    slideToVote = userStatus.quiz_active;
-    var obj;
-    switch(role) {
-      case "logged":
-        obj = _renderMcquestionLogged(element, template, slide);
-        break;
-      case "student":
-        obj = _renderMcquestionStudent(element, template, slide);
-        break;
-      case "none":
-        obj = _renderMcquestionNone(element, template, slide);
-        break;
-      default:
-        VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
+    if(element.type === "mcquestion") {
+      user = V.SlideManager.getUser();
+      userStatus = V.SlideManager.getUserStatus();
+      role = user.role;
+      slideToVote = userStatus.quiz_active;
+      var obj;
+      switch(role) {
+        case "logged":
+          obj = _renderMcquestionLogged(element, template, slide);
+          break;
+        case "student":
+          obj = _renderMcquestionStudent(element, template, slide);
+          break;
+        case "none":
+          obj = _renderMcquestionNone(element, template, slide);
+          break;
+        default:
+          VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
+      }
+      return obj
+    }else {
+      if(element.type === "truefalsequestion") {
+        obj = _renderTrueFalseQuestion(element, template);
+        return obj
+      }
     }
-    return obj
   };
   var enableInteraction = function(slide, options) {
     switch(role) {
@@ -16687,16 +16512,17 @@ VISH.Quiz = function(V, $, undefined) {
         VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
     }
   };
+  var enableTrueFalseInteraction = function(slide, options) {
+    var sendButton = $("#" + slide).find("#tf_send_button");
+    var radioInput = $("#" + slide).find("input:radio[name='tf_radio_1']")
+  };
   var _renderMcquestionLogged = function(element, template, slide) {
-    var next_num = 0;
     var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
     ret += "<form id='form_" + slide + "'class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
     for(var i = 0;i < element["options"].length;i++) {
-      var next_num = i;
-      var next_index = "a".charCodeAt(0) + next_num;
-      next_index = String.fromCharCode(next_index);
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>";
       ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
       ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
@@ -16706,22 +16532,21 @@ VISH.Quiz = function(V, $, undefined) {
     ret += "<img id='mch_statistics_button_" + slide + "' class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
     ret += "<input type='hidden' id='slide_to_activate' value='" + slide + "'/>";
     ret += "<input type='button' id='mcquestion_start_button_" + slide + "' class='mcquestion_start_button' value='Start Quiz'/>";
+    ret += "<div id='save_quiz_" + slide + "' class='save_quiz'><label>Do you want to save the polling results?</label>";
+    ret += "<input type='button'class='mcquestion_save_yes_button' id='mcquestion_save_yes_button_" + slide + "' value='Yes'><input type='button' class='mcquestion_save_no_button' id='mcquestion_save_no_button_" + slide + "' value='No'></div>";
     ret += "</div>";
     ret += "</form>";
     ret += "</div>";
     return ret
   };
   var _renderMcquestionStudent = function(element, template, slide) {
-    var next_num = 0;
     var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
     ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
     for(var i = 0;i < element["options"].length;i++) {
-      var next_num = i;
-      var next_index = "a".charCodeAt(0) + next_num;
-      next_index = String.fromCharCode(next_index);
-      ret += "<label class='mc_answer'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'>" + element["options"][i] + "</label>";
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      ret += "<label class='mc_answer' id='mc_answer_" + slide + "_option_" + next_index + "'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>" + element["options"][i] + "</label>";
       ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
       ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
     }
@@ -16735,15 +16560,12 @@ VISH.Quiz = function(V, $, undefined) {
     return ret
   };
   var _renderMcquestionNone = function(element, template, slide) {
-    var next_num = 0;
     var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
     ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
     for(var i = 0;i < element["options"].length;i++) {
-      var next_num = i;
-      var next_index = "a".charCodeAt(0) + next_num;
-      next_index = String.fromCharCode(next_index);
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>"
     }
     ret += "</div>";
@@ -16756,13 +16578,32 @@ VISH.Quiz = function(V, $, undefined) {
   var _activateLoggedInteraction = function() {
     var startButton = "#mcquestion_start_button_" + slideToActivate;
     var statisticsButton = "#mch_statistics_button_" + slideToActivate;
-    $(document).on("click", startButton, _onStartMcQuizButtonClicked);
-    $(document).on("click", statisticsButton, _onStatisticsMcQuizButtonClicked)
+    var saveQuizYesButton = "#mcquestion_save_yes_button_" + slideToActivate;
+    var saveQuizNoButton = "#mcquestion_save_no_button_" + slideToActivate;
+    $(document).on("click", startButton, _startMcQuizButtonClicked);
+    $(document).on("click", statisticsButton, _statisticsMcQuizButtonClicked);
+    $(document).on("click", saveQuizYesButton, _saveQuizYesButtonClicked);
+    $(document).on("click", saveQuizNoButton, _saveQuizNoButtonClicked)
   };
   var _activateStudentInteraction = function() {
-    var button = "#mcquestion_send_vote_button_" + slideToVote;
-    $(document).on("click", button, _onSendVoteMcQuizButtonClicked);
-    $(".mc_meter").hide()
+    var sendVoteButton = "#mcquestion_send_vote_button_" + slideToVote;
+    $(document).on("click", sendVoteButton, _onSendVoteMcQuizButtonClicked);
+    $(".mc_meter").hide();
+    var numOptions = $("#" + slideToVote).find(".mc_answer").size();
+    for(var i = 0;i < numOptions;i++) {
+      var next_num = i;
+      var next_index_prev = "a".charCodeAt(0) + next_num;
+      next_index = String.fromCharCode(next_index_prev);
+      var overOptionZone = "#mc_answer_" + slideToVote + "_option_" + next_index;
+      $("#" + slideToVote).on("mouseenter", overOptionZone, function(event) {
+        $(event.srcElement).css("color", "blue");
+        $(event.srcElement).css("font-weight", "bold")
+      });
+      $("#" + slideToVote).on("mouseleave", overOptionZone, function(event) {
+        $(event.srcElement).css("color", "black");
+        $(event.srcElement).css("font-weight", "normal")
+      })
+    }
   };
   var _activateNoneInteraction = function() {
     V.Debugging.log(" enter on _activeNoneInteraction function")
@@ -16773,57 +16614,77 @@ VISH.Quiz = function(V, $, undefined) {
     var marginTopPercentTxt = marginTopDefault * parseInt(options).toString() + "%";
     $("#" + startButton).css("margin-top", marginTopPercentTxt)
   };
-  var _onStartMcQuizButtonClicked = function() {
+  var _startMcQuizButtonClicked = function() {
     slideToPlay = $(".current").find("#slide_to_activate").val();
-    var url = "http://www.vishub.org/dasdas";
+    var url = "http://www.vishub.org/quiz_session/456";
     var divURLShare = "<div id='url_share_" + slideToPlay + "' class='url_share'></div>";
     var URL = "<span>" + url + "</span>";
-    var shareButton = "<a id='share_icon_" + slideToPlay + "' class='shareQuizButton' href='http://www.vishub.org'><img src=" + VISH.ImagesPath + "quiz/share-glossy-blue.png /></a>";
-    var shareContentIcons = "<div id='share_content_icons_" + slideToPlay + "' class='shareContentIcons'> <a ";
-    shareContentIcons += "href='http://www.google.es' id='fb_share_link_" + slideToPlay + "' class='a_share_content_icon'><img src='" + V.ImagesPath + "quiz/fb_40x40.jpg'/></a>";
-    shareContentIcons += "<a href='' id='tw_share_link_" + slideToPlay + "' class='a_share_content_icon'><img src='" + V.ImagesPath + "quiz/tw_40x40.jpg'/></a></div>";
+    var shareButton = "<a id='share_icon_" + slideToPlay + "' class='shareQuizButton' ><img src=" + VISH.ImagesPath + "quiz/share-glossy-blue.png /></a>";
+    var shareTwitterButton = "<a target='_blank' title='share on Twitter' href='http://twitter.com/share?url=" + encodeURIComponent(url) + "' class='twitter-share-button' data-url='" + encodeURIComponent(url) + "' data-size='large' data-count='none'><img src='" + V.ImagesPath + "quiz/tw_40x40.jpg'/></a>";
+    var shareFacebookButton = "<a target='_blank' title='share on Facebook' href='http://www.facebook.com/share.php?u=" + encodeURIComponent(url) + "' ";
+    shareFacebookButton += "id='fb_share_link_" + slideToPlay + "' class='a_share_content_icon'><img src='" + V.ImagesPath + "quiz/fb_40x40.jpg'/></a>";
+    var shareContainerIcons = "<div id='share_content_icons_" + slideToPlay + "' class='shareContentIcons'> ";
+    shareContainerIcons += shareFacebookButton;
+    shareContainerIcons += shareTwitterButton;
     if($("#" + slideToPlay).find(".t11_header").children()) {
       $("#" + slideToPlay).find(".t11_header").children().remove()
     }
     $("#" + slideToPlay).find(".t11_header").append(divURLShare);
     $(".current").find("#url_share_" + slideToPlay).append(URL);
     $(".current").find("#url_share_" + slideToPlay).append(shareButton);
-    $(".current").find("#url_share_" + slideToPlay).append(shareContentIcons);
+    $(".current").find("#url_share_" + slideToPlay).append(shareContainerIcons);
     $("#" + slideToPlay).find(".t11_header").show();
     $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("value", "Stop Quiz");
     $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("class", "mcquestion_stop_button");
     $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("id", "mcquestion_stop_button_" + slideToPlay);
     $("#" + slideToPlay).find("#slide_to_activate").attr("id", "slide_to_stop");
+    $("#" + slideToPlay).find(".mcquestion_stop_button").css("color", "red");
     $(".current").on("mouseenter", "#share_icon_" + slideToPlay, function(event) {
       event.preventDefault();
-      $(".current").find(".shareContentIcons").css("display", "block")
+      $(".current").find(".shareContentIcons").css("display", "inline-block")
     });
     $(document).on("click", "#share_icon_" + slideToPlay, function(event) {
       event.preventDefault()
     });
-    $(document).on("mouseleave", "#share_icon_" + slideToPlay, function(event) {
-      event.preventDefault()
+    $(document).on("mouseleave", "#url_share_" + slideToPlay, function(event) {
+      event.preventDefault();
+      $(".current").find(".shareContentIcons").css("display", "none")
     });
-    $(document).on("click", "#mcquestion_stop_button_" + slideToPlay, _onStopMcQuizButtonClicked)
+    $(document).on("click", "#mcquestion_stop_button_" + slideToPlay, _onStopMcQuizButtonClicked);
+    if($(".current").find(".save_quiz").css("display") == "inline-block") {
+      $(".current").find(".save_quiz").css("display", "none")
+    }
   };
   var _onSendVoteMcQuizButtonClicked = function(event) {
     slideToVote = $(".current").find("#slide_to_vote").val();
-    var vote_url;
-    var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-    _showResultsToParticipant(data);
-    $(".current").find(".mc_radio").remove();
-    $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove()
+    var answer = $(".current").find("input:radio[name='mc_radio']:checked'").val();
+    if(answer == undefined) {
+      alert("You must choice your answer before polling")
+    }else {
+      var vote_url;
+      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+      _showResultsToParticipant(data, slideToVote);
+      $(".current").find(".mc_radio").remove();
+      $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
+      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+      _showResultsToParticipant(data);
+      _removeOptionsListener(slideToVote)
+    }
   };
   var _onStopMcQuizButtonClicked = function() {
     slideToStop = $(".current").find("#slide_to_stop").val();
     $("#" + slideToStop).find(".t11_header").text("");
+    $(".current").find(".save_quiz").css("display", "inline-block");
+    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("disabled", "disabled");
     $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("value", "Start Quiz");
     $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("class", "mcquestion_start_button");
     $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("id", "mcquestion_start_button_" + slideToStop);
     $("#" + slideToStop).find("#slide_to_stop").attr("id", "slide_to_activate");
-    $(document).on("click", "#mcquestion_start_button_" + slideToStop, _onStartMcQuizButtonClicked)
+    $(document).on("click", "#mcquestion_start_button_" + slideToStop, _startMcQuizButtonClicked);
+    $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("color", "#F76464");
+    $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("background-color", "#F8F8F8")
   };
-  var _onStatisticsMcQuizButtonClicked = function() {
+  var _statisticsMcQuizButtonClicked = function() {
     var marginTopDefault = 18;
     var marginTopDefault2 = 24;
     if($(".current").find(".mc_meter").css("display") == "block") {
@@ -16854,24 +16715,52 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }
   };
-  var _showResultsToParticipant = function(data) {
+  var _saveQuizYesButtonClicked = function() {
+    V.Debugging.log("SaveQuizYes Button Clicked");
+    $(".current").find(".mcquestion_start_button").removeAttr("disabled");
+    $(".current").find(".save_quiz").css("display", "none");
+    $(".current").find(".mcquestion_start_button").css("color", "blue");
+    $(".current").find(".mcquestion_start_button").css("background-color", "buttonface")
+  };
+  var _saveQuizNoButtonClicked = function() {
+    V.Debugging.log("SaveQuizNo Button Clicked");
+    $(".current").find(".mcquestion_start_button").removeAttr("disabled");
+    $(".current").find(".save_quiz").css("display", "none");
+    $(".current").find(".mcquestion_start_button").css("color", "blue");
+    $(".current").find(".mcquestion_start_button").css("background-color", "buttonface")
+  };
+  var _showResultsToParticipant = function(data, slide) {
+    var greatestId;
+    var greatest = 0;
     if(data.quiz_id == userStatus.quiz_active) {
       var votes;
       var totalVotes = 0;
       for(votes in data.results) {
-        totalVotes += parseInt(data.results[votes])
+        totalVotes += parseInt(data.results[votes]);
+        if(parseInt(data.results[votes]) > greatest) {
+          greatestId = votes;
+          greatest = parseInt(data.results[votes])
+        }else {
+          greatestId
+        }
       }
       for(votes in data.results) {
-        var percent = (parseInt(data.results[votes]) / totalVotes * 100).toString();
-        var percentString = percent + "%";
+        var percent = parseInt(data.results[votes]) / totalVotes * 100;
+        var percentString = percent.toString() + "%";
         var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
         $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
         $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
       }
     }else {
-      V.Debugging.log(" The Quiz voted is not the active Quiz ... please reload the Quiz")
+      V.Debugging.log(" The Quiz voted is not the active Quiz. Reload the Quiz.")
     }
-    $(".current").find(".mc_meter").css("display", "block")
+    var indexOfGreatestVoted = String.fromCharCode("a".charCodeAt(0) + parseInt(greatestId));
+    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("color", "blue");
+    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("font-weight", "bold");
+    $(".current").find(".mc_meter").css("display", "block");
+    $(".current").find(".mcoption_label").css("display", "block");
+    $(".current").find(".mcquestion_right").remove();
+    $(".current").find(".mcquestion_left").css("width", "95%")
   };
   var _showResultsToTeacher = function(data) {
     if(role == "logged") {
@@ -16881,8 +16770,8 @@ VISH.Quiz = function(V, $, undefined) {
         totalVotes += parseInt(data.results[votes])
       }
       for(votes in data.results) {
-        var percent = (parseInt(data.results[votes]) / totalVotes * 100).toString();
-        var percentString = percent + "%";
+        var percent = parseInt(data.results[votes]) / totalVotes * 100;
+        var percentString = percent.toString() + "%";
         var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
         $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
         $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
@@ -16893,13 +16782,44 @@ VISH.Quiz = function(V, $, undefined) {
     $(".current").find(".mc_meter").css("display", "block");
     $(".current").find(".mcoption_label").css("display", "block")
   };
-  return{init:init, enableInteraction:enableInteraction}
+  var _removeOptionsListener = function(slideToRemoveListeners) {
+    var totalOptions = $(".current").find(".mc_answer").size();
+    for(var i = 0;i < totalOptions;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      var overOptionZone = "#mc_answer_" + slideToRemoveListeners + "_option_" + next_index;
+      $(overOptionZone).attr("id", "#mc_answer_" + slideToRemoveListeners + "_voted__option_" + next_index)
+    }
+  };
+  var _renderTrueFalseQuestion = function(element, template) {
+    var answers = new Array;
+    var ret = "<div id='" + element["id"] + "' class='truefalse_question'>";
+    ret += "<div class='truefalse_question_container'>";
+    ret += "<form class='truefalse_question_form' action='" + element["posturl"] + "' method='post'>";
+    ret += "<table id='truefalse_quiz_table_1' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr>";
+    for(var i = 0;i < element["questions"].length;i++) {
+      answers[i] = element["questions"][i]["answer"];
+      ret += "<tr id='tr_question_" + (i + 1) + "'>";
+      ret += "<td id='td_true_" + (i + 1) + "' class='td_true'>";
+      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='true'  id='radio_true_" + (i + 1) + "'/></td>";
+      ret += "<td id='td_false_" + (i + 1) + "' class='td_false' >";
+      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='false' id='radio_false_" + (i + 1) + "' /></td>";
+      ret += "<td id='td_question_" + (i + 1) + "' class='true_false_question_txt'><label>" + element["questions"][i]["text_question"] + "?</label></td>";
+      ret += "</tr>"
+    }
+    ret += "</table>";
+    ret += "<input type='button' class='tfquestion_button' value='Send' id='tf_send_button'/>";
+    ret += "</form>";
+    ret += "</div>";
+    trueFalseAnswers = answers;
+    asnswers = [];
+    VISH.Debugging.log("answer's array : " + trueFalseAnswers);
+    return ret
+  };
+  return{init:init, enableInteraction:enableInteraction, enableTrueFalseInteraction:enableTrueFalseInteraction}
 }(VISH, jQuery);
 VISH.Renderer = function(V, $, undefined) {
   var SLIDE_CONTAINER = null;
-  var username = "";
-  var token = "";
-  var quiz_active = "";
+  var trueFalseAnswers;
   var init = function() {
     SLIDE_CONTAINER = $(".slides")
   };
@@ -16940,7 +16860,12 @@ VISH.Renderer = function(V, $, undefined) {
                         content += V.Quiz.init(slide.elements[el], slide.template, slide.id);
                         classes += "mcquestion"
                       }else {
-                        content += _renderEmpty(slide.elements[el], slide.template)
+                        if(slide.elements[el].type === "truefalsequestion") {
+                          content += V.Quiz.init(slide.elements[el], slide.template, slide.id);
+                          classes += "truefalsequestion"
+                        }else {
+                          content += _renderEmpty(slide.elements[el], slide.template)
+                        }
                       }
                     }
                   }
@@ -17013,31 +16938,10 @@ VISH.Renderer = function(V, $, undefined) {
     ret += "<button type='button' class='question_button'>Send</button>";
     return ret
   };
-  var _renderMcquestion = function(element, template) {
-    var next_num = 0;
-    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
-    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
-    for(var i = 0;i < element["options"].length;i++) {
-      var next_num = i;
-      var next_index = "a".charCodeAt(0) + next_num;
-      next_index = String.fromCharCode(next_index);
-      ret += "<label class='mc_answer'>" + next_index + ") <input type='radio' name='mc_radio' value='" + next_index + "'>" + element["options"][i] + "</label>";
-      ret += "<div class='mc_meter'><span style='width:33%;'></span></div>"
-    }
-    ret += "</div>";
-    ret += "<div class='mcquestion_right'>";
-    ret += "<img class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
-    ret += "<input type='submit' class='mcquestion_button' value='Start Quiz'/>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    return ret
-  };
   return{init:init, renderVideo:renderVideo, renderSlide:renderSlide}
 }(VISH, jQuery);
 VISH.SlideManager = function(V, $, undefined) {
+  var initOptions;
   var mySlides = null;
   var slideStatus = {};
   var myDoc;
@@ -17045,8 +16949,20 @@ VISH.SlideManager = function(V, $, undefined) {
   var user = {};
   var status = {};
   var init = function(options, excursion) {
+    V.Slides.init();
     V.Status.init();
     VISH.Editing = false;
+    if(options) {
+      initOptions = options;
+      if(options["developping"] === true && VISH.Debugging) {
+        VISH.Debugging.init(true)
+      }else {
+        VISH.Debugging.init(false)
+      }
+    }else {
+      initOptions = {};
+      VISH.Debugging.init(false)
+    }
     if(options["username"]) {
       user.username = options["username"];
       user.role = "logged";
@@ -17080,9 +16996,8 @@ VISH.SlideManager = function(V, $, undefined) {
     V.ViewerAdapter.setupSize();
     if(!eventsLoaded) {
       eventsLoaded = true;
-      addEventListeners();
-      $(document).on("click", "#page-switcher-start", VISH.SlidesUtilities.backwardOneSlide);
-      $(document).on("click", "#page-switcher-end", VISH.SlidesUtilities.forwardOneSlide)
+      $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide)
     }
     if(V.Status.getIsInIframe()) {
       myDoc = parent.document
@@ -17102,7 +17017,14 @@ VISH.SlideManager = function(V, $, undefined) {
     }
     if(!V.Status.ua.mobile) {
       $("#viewbar").show();
-      VISH.SlidesUtilities.updateSlideCounter()
+      updateSlideCounter()
+    }else {
+      window.addEventListener("load", function() {
+        if(!window.pageYOffset) {
+          _hideAddressBar()
+        }
+      });
+      window.addEventListener("orientationchange", _hideAddressBar)
     }
   };
   var toggleFullScreen = function() {
@@ -17209,55 +17131,281 @@ VISH.SlideManager = function(V, $, undefined) {
     }
   };
   var _decideIfPageSwitcher = function() {
-    if(curSlide === 0) {
+    if(V.curSlide === 0) {
       $("#page-switcher-start").hide()
     }else {
       $("#page-switcher-start").show()
     }
-    if(curSlide === slideEls.length - 1) {
+    if(V.curSlide === V.slideEls.length - 1) {
       $("#page-switcher-end").hide()
     }else {
       $("#page-switcher-end").show()
     }
   };
-  return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, toggleFullScreen:toggleFullScreen, getUser:getUser, getUserStatus:getUserStatus}
-}(VISH, jQuery);
-VISH.SlidesUtilities = function(V, $, undefined) {
-  var redrawSlides = function() {
-    $(document).trigger("OURDOMContentLoaded")
+  var updateSlideCounter = function() {
+    var number_of_slides = V.slideEls.length;
+    var slide_number = V.curSlide + 1;
+    $("#slide-counter").html(slide_number + "/" + number_of_slides)
   };
-  var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
-    var element_type;
-    var dimentions_for_drawing = {width:350, height:195};
-    var aspect_ratio_zone = w_zone / h_zone;
-    var aspect_ratio_content = w_content / h_content;
-    if(aspect_ratio_zone > aspect_ratio_content) {
-      dimentions_for_drawing.width = aspect_ratio_content * h_zone;
-      dimentions_for_drawing.height = h_zone;
-      return dimentions_for_drawing
+  var _hideAddressBar = function() {
+    VISH.Debugging.log("TODO method hideAddressBar in slides.js")
+  };
+  return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, toggleFullScreen:toggleFullScreen, getUser:getUser, getUserStatus:getUserStatus, updateSlideCounter:updateSlideCounter}
+}(VISH, jQuery);
+VISH.Slides = function(V, $, undefined) {
+  var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
+  var PM_TOUCH_SENSITIVITY = 200;
+  var init = function() {
+    getCurSlideFromHash();
+    $(document).bind("OURDOMContentLoaded", handleDomLoaded)
+  };
+  var handleDomLoaded = function() {
+    V.slideEls = document.querySelectorAll("section.slides > article");
+    addFontStyle();
+    updateSlides();
+    setupInteraction();
+    addEventListeners();
+    $("body").addClass("loaded")
+  };
+  var getSlideEl = function(no) {
+    if(no < 0 || no >= V.slideEls.length) {
+      return null
     }else {
-      dimentions_for_drawing.width = w_zone;
-      dimentions_for_drawing.height = w_zone / aspect_ratio_content;
-      return dimentions_for_drawing
+      return V.slideEls[no]
     }
   };
-  var addSlide = function(slide) {
-    $(".slides").append(slide)
+  var updateSlideClass = function(slideNo, className) {
+    var el = getSlideEl(slideNo);
+    if(!el) {
+      return
+    }
+    if(className) {
+      $(el).addClass(className)
+    }
+    for(var i in SLIDE_CLASSES) {
+      if(className != SLIDE_CLASSES[i]) {
+        $(el).removeClass(SLIDE_CLASSES[i])
+      }
+    }
+  };
+  var updateSlides = function(goingRight) {
+    for(var i = 0;i < V.slideEls.length;i++) {
+      switch(i) {
+        case V.curSlide - 2:
+          updateSlideClass(i, "far-past");
+          break;
+        case V.curSlide - 1:
+          updateSlideClass(i, "past");
+          break;
+        case V.curSlide:
+          updateSlideClass(i, "current");
+          break;
+        case V.curSlide + 1:
+          updateSlideClass(i, "next");
+          break;
+        case V.curSlide + 2:
+          updateSlideClass(i, "far-next");
+          break;
+        default:
+          updateSlideClass(i);
+          break
+      }
+    }
+    if(goingRight) {
+      triggerLeaveEvent(V.curSlide - 1)
+    }else {
+      triggerLeaveEvent(V.curSlide + 1)
+    }
+    triggerEnterEvent(V.curSlide);
+    updateHash()
+  };
+  var prevSlide = function() {
+    if(V.curSlide > 0) {
+      V.curSlide--;
+      updateSlides(false)
+    }
+  };
+  var nextSlide = function() {
+    if(V.curSlide < V.slideEls.length - 1) {
+      V.curSlide++;
+      updateSlides(true)
+    }
+  };
+  var triggerEnterEvent = function(no) {
+    var el = getSlideEl(no);
+    if(!el) {
+      return
+    }
+    var onEnter = el.getAttribute("onslideenter");
+    if(onEnter) {
+      (new Function(onEnter)).call(el)
+    }
+    var evt = document.createEvent("Event");
+    evt.initEvent("slideenter", true, true);
+    evt.slideNumber = no + 1;
+    el.dispatchEvent(evt)
+  };
+  var triggerLeaveEvent = function(no) {
+    var el = getSlideEl(no);
+    if(!el) {
+      return
+    }
+    var onLeave = el.getAttribute("onslideleave");
+    if(onLeave) {
+      (new Function(onLeave)).call(el)
+    }
+    var evt = document.createEvent("Event");
+    evt.initEvent("slideleave", true, true);
+    evt.slideNumber = no + 1;
+    el.dispatchEvent(evt)
+  };
+  var getTouches = function(event) {
+    if(event.touches) {
+      return event.touches
+    }else {
+      if(event.originalEvent.touches) {
+        return event.originalEvent.touches
+      }else {
+        return null
+      }
+    }
+  };
+  var handleTouchStart = function(event) {
+    var touches = getTouches(event);
+    if(touches.length === 1) {
+      touchDX = 0;
+      touchDY = 0;
+      touchStartX = touches[0].pageX;
+      touchStartY = touches[0].pageY;
+      document.body.addEventListener("touchmove", handleTouchMove, true);
+      document.body.addEventListener("touchend", handleTouchEnd, true);
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      if(zoom < 1.5) {
+        event.preventDefault()
+      }
+    }
+  };
+  var handleTouchMove = function(event) {
+    var touches = getTouches(event);
+    if(touches.length > 1) {
+      cancelTouch()
+    }else {
+      touchDX = touches[0].pageX - touchStartX;
+      touchDY = touches[0].pageY - touchStartY;
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      if(zoom < 1.5) {
+        event.preventDefault()
+      }
+    }
+  };
+  var handleTouchEnd = function(event) {
+    var dx = Math.abs(touchDX);
+    var dy = Math.abs(touchDY);
+    if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
+      if(touchDX > 0) {
+        backwardOneSlide()
+      }else {
+        forwardOneSlide()
+      }
+    }
+    cancelTouch()
+  };
+  var cancelTouch = function() {
+    document.body.removeEventListener("touchmove", handleTouchMove, true);
+    document.body.removeEventListener("touchend", handleTouchEnd, true)
+  };
+  var setupInteraction = function() {
+    $(document).bind("touchstart", handleTouchStart)
+  };
+  var getCurSlideFromHash = function() {
+    var slideNo = parseInt(location.hash.substr(1));
+    if(slideNo) {
+      V.curSlide = slideNo - 1
+    }else {
+      V.curSlide = 0
+    }
+  };
+  var updateHash = function() {
+    location.replace("#" + (V.curSlide + 1))
+  };
+  var isSlideFocused = function() {
+    if($(".wysiwygInstance").is(":focus")) {
+      return false
+    }
+    return true
+  };
+  var handleBodyKeyDown = function(event) {
+    switch(event.keyCode) {
+      case 39:
+      ;
+      case 34:
+        if(isSlideFocused()) {
+          forwardOneSlide();
+          event.preventDefault()
+        }
+        break;
+      case 37:
+        if(isSlideFocused()) {
+          backwardOneSlide();
+          event.preventDefault()
+        }
+        break;
+      case 33:
+        backwardOneSlide();
+        event.preventDefault();
+        break;
+      case 40:
+        if(isSlideFocused()) {
+          forwardOneSlide();
+          event.preventDefault()
+        }
+        break;
+      case 38:
+        if(isSlideFocused()) {
+          backwardOneSlide();
+          event.preventDefault()
+        }
+        break
+    }
+  };
+  var addedEventListeners = false;
+  var addEventListeners = function() {
+    if(!addedEventListeners) {
+      $(document).bind("keydown", handleBodyKeyDown);
+      addedEventListeners = true
+    }
+  };
+  var addFontStyle = function() {
+    var el = document.createElement("link");
+    el.rel = "stylesheet";
+    el.type = "text/css";
+    el.href = "http://fonts.googleapis.com/css?family=" + "Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono";
+    document.body.appendChild(el)
+  };
+  var addGeneralStyle = function() {
+    var el = document.createElement("meta");
+    el.name = "viewport";
+    el.content = "width=900,height=750";
+    document.querySelector("head").appendChild(el);
+    var el = document.createElement("meta");
+    el.name = "apple-mobile-web-app-capable";
+    el.content = "yes";
+    document.querySelector("head").appendChild(el)
   };
   var lastSlide = function() {
-    goToSlide(slideEls.length)
+    goToSlide(V.slideEls.length)
   };
   var goToSlide = function(no) {
-    if(no > slideEls.length || no <= 0) {
+    if(no > V.slideEls.length || no <= 0) {
       return
     }else {
-      if(no > curSlide + 1) {
-        while(curSlide + 1 < no) {
+      if(no > V.curSlide + 1) {
+        while(V.curSlide + 1 < no) {
           nextSlide()
         }
       }else {
-        if(no < curSlide + 1) {
-          while(curSlide + 1 > no) {
+        if(no < V.curSlide + 1) {
+          while(V.curSlide + 1 > no) {
             prevSlide()
           }
         }
@@ -17268,172 +17416,16 @@ VISH.SlidesUtilities = function(V, $, undefined) {
       VISH.Editor.Tools.cleanZoneTools();
       V.Editor.Thumbnails.selectThumbnail(no)
     }else {
-      updateSlideCounter()
+      V.SlideManager.updateSlideCounter()
     }
   };
   var backwardOneSlide = function() {
-    goToSlide(curSlide)
+    goToSlide(V.curSlide)
   };
   var forwardOneSlide = function() {
-    goToSlide(curSlide + 2)
+    goToSlide(V.curSlide + 2)
   };
-  var getWidthFromStyle = function(style, area) {
-    return getPixelDimensionsFromStyle(style, area)[0]
-  };
-  var getHeightFromStyle = function(style, area) {
-    return getPixelDimensionsFromStyle(style, area)[1]
-  };
-  var getPixelDimensionsFromStyle = function(style, area) {
-    var dimensions = [];
-    var width = null;
-    var height = null;
-    var width_percent_pattern = /width:\s?([0-9]+(\.[0-9]+)?)%/g;
-    var width_px_pattern = /width:\s?([0-9]+(\.?[0-9]+)?)px/g;
-    var height_percent_pattern = /height:\s?([0-9]+(\.[0-9]+)?)%/g;
-    var height_px_pattern = /height:\s?([0-9]+(\.?[0-9]+)?)px/g;
-    $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("width") !== -1) {
-        if(property.match(width_px_pattern)) {
-          var result = width_px_pattern.exec(property);
-          if(result[1]) {
-            width = result[1]
-          }
-        }else {
-          if(property.match(width_percent_pattern)) {
-            var result = width_percent_pattern.exec(property);
-            if(result[1]) {
-              var percent = result[1];
-              if(area) {
-                width = $(area).width() * percent / 100
-              }
-            }
-          }
-        }
-      }else {
-        if(property.indexOf("height") !== -1) {
-          if(property.match(height_px_pattern)) {
-            var result = height_px_pattern.exec(property);
-            if(result[1]) {
-              height = result[1]
-            }
-          }else {
-            if(property.match(height_percent_pattern)) {
-              var result = height_percent_pattern.exec(property);
-              if(result[1]) {
-                var percent = result[1];
-                if(area) {
-                  height = $(area).height() * percent / 100
-                }
-              }
-            }
-          }
-        }
-      }
-    });
-    dimensions.push(width);
-    dimensions.push(height);
-    return dimensions
-  };
-  var setStyleInPixels = function(style, area) {
-    var filterStyle = "";
-    $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("width") === -1 && property.indexOf("height") === -1) {
-        filterStyle = filterStyle + property + "; "
-      }
-    });
-    var dimensions = getPixelDimensionsFromStyle(style, area);
-    if(dimensions && dimensions[0]) {
-      filterStyle = filterStyle + "width: " + dimensions[0] + "px; ";
-      if(dimensions[1]) {
-        filterStyle = filterStyle + "height: " + dimensions[1] + "px; "
-      }
-    }
-    return filterStyle
-  };
-  var getZoomInStyle = function(zoom) {
-    var style = "";
-    style = style + "-ms-transform: scale(" + zoom + "); ";
-    style = style + "-ms-transform-origin: 0 0; ";
-    style = style + "-moz-transform: scale(" + zoom + "); ";
-    style = style + "-moz-transform-origin: 0 0; ";
-    style = style + "-o-transform: scale(" + zoom + "); ";
-    style = style + "-o-transform-origin: 0 0; ";
-    style = style + "-webkit-transform: scale(" + zoom + "); ";
-    style = style + "-webkit-transform-origin: 0 0; ";
-    return style
-  };
-  var addZoomToStyle = function(style, zoom) {
-    if(!style) {
-      return null
-    }
-    var filterStyle = "";
-    $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("-ms-transform") === -1 && property.indexOf("-moz-transform") === -1 && property.indexOf("-o-transform") === -1 && property.indexOf("-webkit-transform") === -1 && property.indexOf("-moz-transform-origin") === -1 && property.indexOf("-webkit-transform-origin") === -1 && property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1) {
-        filterStyle = filterStyle + property + "; "
-      }
-    });
-    if(zoom) {
-      filterStyle = filterStyle + "-ms-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-ms-transform-origin: 0 0; ";
-      filterStyle = filterStyle + "-moz-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-moz-transform-origin: 0 0; ";
-      filterStyle = filterStyle + "-o-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-o-transform-origin: 0 0; ";
-      filterStyle = filterStyle + "-webkit-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-webkit-transform-origin: 0 0; "
-    }
-    return filterStyle
-  };
-  var getZoomFromStyle = function(style) {
-    var zoom = 1;
-    if(!style) {
-      return zoom
-    }
-    var moz_zoom_pattern = /-moz-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
-    var webkit_zoom_pattern = /-webkit-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
-    var opera_zoom_pattern = /-o-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
-    var ie_zoom_pattern = /-ms-transform: ?scale\(([0-9]+.[0-9]+)\)/g;
-    $.each(style.split(";"), function(index, property) {
-      if(property.match(moz_zoom_pattern) != null) {
-        var result = moz_zoom_pattern.exec(property);
-        if(result[1]) {
-          zoom = parseFloat(result[1]);
-          return false
-        }
-      }else {
-        if(property.match(webkit_zoom_pattern) != null) {
-          var result = webkit_zoom_pattern.exec(property);
-          if(result[1]) {
-            zoom = parseFloat(result[1]);
-            return false
-          }
-        }else {
-          if(property.match(opera_zoom_pattern) != null) {
-            var result = opera_zoom_pattern.exec(property);
-            if(result[1]) {
-              zoom = parseFloat(result[1]);
-              return false
-            }
-          }else {
-            if(property.match(ie_zoom_pattern) != null) {
-              var result = ie_zoom_pattern.exec(property);
-              if(result[1]) {
-                zoom = parseFloat(result[1]);
-                return false
-              }
-            }
-          }
-        }
-      }
-    });
-    return zoom
-  };
-  var updateSlideCounter = function() {
-    var number_of_slides = slideEls.length;
-    var slide_number = curSlide + 1;
-    $("#slide-counter").html(slide_number + "/" + number_of_slides)
-  };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, getZoomInStyle:getZoomInStyle, addZoomToStyle:addZoomToStyle, getZoomFromStyle:getZoomFromStyle, goToSlide:goToSlide, lastSlide:lastSlide, addSlide:addSlide, redrawSlides:redrawSlides, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, dimentionToDraw:dimentionToDraw, updateSlideCounter:updateSlideCounter}
+  return{addEventListeners:addEventListeners, backwardOneSlide:backwardOneSlide, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, init:init, nextSlide:nextSlide, prevSlide:prevSlide, lastSlide:lastSlide}
 }(VISH, jQuery);
 VISH.SnapshotPlayer = function() {
   var loadSnapshot = function(element) {
@@ -17448,7 +17440,7 @@ VISH.SnapshotPlayer = function() {
       var scrollLeft = $(value).attr("scrollLeft");
       $(value).html("<div class='" + wrapper_class + "' style='" + $(value).attr("objectStyle") + "'>" + VISH.Utils.getOuterHTML(iframe) + "</div>");
       if($(value).attr("zoom")) {
-        $(value).find("." + content_class).attr("style", VISH.SlidesUtilities.getZoomInStyle($(value).attr("zoom")))
+        $(value).find("." + content_class).attr("style", VISH.Utils.getZoomInStyle($(value).attr("zoom")))
       }
       $(value).find("." + wrapper_class).scrollTop(scrollTop);
       $(value).find("." + wrapper_class).scrollLeft(scrollLeft)
@@ -17465,7 +17457,7 @@ VISH.SnapshotPlayer = function() {
       var area = $(iframe).parent().parent();
       var iframe_wrapper = $(iframe).parent();
       $(area).attr("zoom", increase);
-      $(iframe).attr("style", VISH.SlidesUtilities.getZoomInStyle(increase));
+      $(iframe).attr("style", VISH.Utils.getZoomInStyle(increase));
       var scrollLeft = $(area).attr("scrollLeftOrigin");
       var newScrollLeft = scrollLeft * increase;
       var scrollTop = $(area).attr("scrollTopOrigin");
@@ -17522,11 +17514,6 @@ VISH.Status = function(V, $, undefined) {
     isInIframe = isIframe
   };
   return{features:features, getIsInIframe:getIsInIframe, init:init, ua:ua}
-}(VISH, jQuery);
-VISH.Utils.API = function(V, $, undefined) {
-  var init = function() {
-  };
-  return{init:init}
 }(VISH, jQuery);
 VISH.Utils.canvas = function(V, undefined) {
   var drawImageWithAspectRatio = function(ctx, content, dx, dy, dw, dh) {
