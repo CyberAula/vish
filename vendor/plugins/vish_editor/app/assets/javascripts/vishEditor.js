@@ -13766,7 +13766,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     var newWrapperWidth = Math.round(newWidth);
     $(parent).width(newWrapperWidth);
     $(parent).height(newWrapperHeight);
-    var zoom = V.Editor.Utils.getZoomFromStyle($("#" + id).attr("style"));
+    var zoom = V.Utils.getZoomFromStyle($("#" + id).attr("style"));
     if(zoom != 1) {
       newWidth = newWidth / zoom;
       var newHeight = Math.round(newWidth / aspectRatio);
@@ -15496,6 +15496,9 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     V.Slides.lastSlide();
     for(el in slide.elements) {
       var area = $("#article" + slide.id + " div[areaid='" + slide.elements[el].areaid + "']");
+      if(area.length === 0) {
+        continue
+      }
       if(slide.elements[el].type === "text") {
         V.Editor.Text.launchTextEditor({}, area, slide.elements[el].body)
       }else {
@@ -15800,7 +15803,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
         var objectInfo = VISH.Editor.Object.getObjectInfo(object);
         if(objectInfo.type === "web") {
           var iframe = $(area).find("iframe");
-          var zoom = VISH.Editor.Utils.getZoomFromStyle($(iframe).attr("style"));
+          var zoom = VISH.Utils.getZoomFromStyle($(iframe).attr("style"));
           if(action == "+") {
             zoom = zoom + 0.1
           }else {
