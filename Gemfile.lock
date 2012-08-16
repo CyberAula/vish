@@ -124,7 +124,7 @@ GEM
       multi_json (~> 1.0)
     factory_girl (2.6.4)
       activesupport (>= 2.3.9)
-    faraday (0.8.2)
+    faraday (0.8.4)
       multipart-post (~> 1.1)
     ffi (1.1.5)
     foreigner (1.1.6)
@@ -204,8 +204,8 @@ GEM
       rack
     omniauth-facebook (1.2.0)
       omniauth-oauth2 (~> 1.0.0)
-    omniauth-linkedin (0.0.6)
-      omniauth-oauth (~> 1.0.0)
+    omniauth-linkedin (0.0.8)
+      omniauth-oauth (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -280,7 +280,7 @@ GEM
       rspec (~> 2.9.0)
     ruby-imagespec (0.2.0)
     rubyzip (0.9.9)
-    sass (3.2.0)
+    sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
