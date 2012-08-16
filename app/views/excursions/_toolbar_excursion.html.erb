@@ -53,7 +53,11 @@
   </div>
 <div id="excursion-share">
   <div id="share" class="collapse in">
-    <input type="text" readonly="readonly" size="30" rows="1" value="<%= short_url ( 'http://' + request.env['HTTP_HOST'] + excursion_path(excursion) ) %>" onclick="this.select()" />
+    <% shortURL = short_url ( 'http://' + request.env['HTTP_HOST'] + excursion_path(excursion) ) %>
+    <input type="text" readonly="readonly" size="30" rows="1" value="<%= shortURL %>" onclick="this.select()" />
+    <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL} %>
+    <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+    <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
   </div>
   <div id="embed" class="collapse in">
     <textarea readonly="readonly" style="width: 500px;" rows="2">
