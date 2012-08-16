@@ -38,6 +38,9 @@ Vish::Application.routes.draw do
 
   match 'help' => 'help#index'
 
+  # Add this at the end so other URLs take prio
+  match '/s/:id' => "shortener/shortened_urls#show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

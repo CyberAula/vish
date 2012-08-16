@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="<%= I18n.locale.to_s %>">
 <head>
   <meta charset="utf-8">
   <title><%= yield(:title).empty? ? t('site.name') : yield(:title) %></title>
@@ -34,31 +32,3 @@
   <%= render :partial => 'layouts/uservoice' %>
     
 </head>
-
-<% content_for :title do%>
-  <%= t('welcome', :site => t('site.name')) %>
-<%end%>
-<section name="main" class="hidden-desktop hidden-tablet">
-  <div class="row span12">
-    <div id="logo-frontpage"></div>
-    <div class="pagination-centered name size40" id="tags"><%=t('site.name')%></div>
-
-    <div id="search-frontpage " class="container row span12">
-
-      <div class=" margin-search-frontpage">
-
-    </div>
-    </div>
-    </div>
-
-
-  <div class="row span12 space_double_center"></div>
-  <div class="row span12">
-    <div id="repositories"class="link_gray span5 offset6"><%= link_to(t('resource.title.other'),search_path(:type => "resource"), :class => 'size80') %></div>
-    <div id="excursion" class="link_gray span6"><%= link_to(t('excursion.other'),search_path(:type => "excursion"), :class => 'size100') %></div>
-    <!--<div id="organizations"class="link_gray span4 offset7"><%#= link_to(t('organization.other'),search_path(:type => "excursion"), :class => 'size60') %></div>-->
-    <div id="users" class="link_gray span2 offset6"><%= link_to(t('user.other'),search_path(:type => "user"), :class => 'size40') %></div>
-  </div>
-  <div class="row space_double_center"></div>
-</section>
-

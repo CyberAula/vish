@@ -52,29 +52,14 @@
     <% end %>
   </div>
 <div id="excursion-share">
-
-
-
-
   <div id="share" class="collapse in">
-
-    <textarea readonly="readonly" style="width: 500px;" rows="1">
-    http://<%= request.env['HTTP_HOST'] + excursion_path(excursion) %>
-    </textarea>
-
+    <input type="text" readonly="readonly" size="30" rows="1" value="<%= short_url ( 'http://' + request.env['HTTP_HOST'] + excursion_path(excursion) ) %>" onclick="this.select()" />
   </div>
   <div id="embed" class="collapse in">
-
     <textarea readonly="readonly" style="width: 500px;" rows="2">
     &lt;iframe id="excursion_iframe" src="http://<%= request.env['HTTP_HOST'] + excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt;
-
     </textarea>
-
   </div>
-
-
-
-
 </div>
 
   <style type="text/css">
