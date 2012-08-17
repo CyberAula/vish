@@ -65,7 +65,7 @@ module Vish
       SearchController.layout "12"
       LegalNoticeController.layout "12"
       HelpController.layout "12"
-      ApplicationController.layout ""
+
 
     end
 
