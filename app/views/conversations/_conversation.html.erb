@@ -21,7 +21,7 @@
     <div class="subject tittle_mens size14 ">
       <%= link_to(truncate(conversation.subject, :length => 50), conversation_path(conversation.id, :box => @box, :page => params[:page])) %>
     </div>
-    <div class="pre-message">
+    <div class=" word-break pre-message">
       <%= raw(truncate(strip_tags(conversation.last_message.body), :length => 100)) %>
     </div>
     <div class="clearfloat">
