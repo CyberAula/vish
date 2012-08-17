@@ -291,7 +291,7 @@ html, body {
 
 
 /******************* BASIC CLASSES ******************/
-
+.margin-bottom10 {margin-bottom: 10px}
 .inline-block {display:inline-block;}
 .inline {display: inline}
 .boxy_gray{background-color: #EFEFEF; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px;
@@ -1154,8 +1154,17 @@ margin-left: 20px;
   margin-left: 25px;
   color: #FF005D; opacity: 0.6;
 }
+
+#field_profile_field_empty_tags{
+  margin-left: -25px;
+  color: #FF005D; opacity: 0.6;
+}
+
+
+
 #avatar_info{
-  margin-top: 60px;
+
+  display: block;
 
   src: url(fonts/DsignesBold.otf);
   color: #3366FF;
@@ -1166,7 +1175,9 @@ margin-left: 20px;
 
 
 /*......................................................................edit profile*/
-
+#profile_experience{
+  widht:500px;
+}
 
 /******************************** repository ************/
 .margin-up{
@@ -2119,4 +2130,14 @@ width: 387px;
   width: 41px;
   margin-left: 200px;
 
+}
+
+.word-break {
+/* Div que corta las palabras largas */
+  width: auto; /* ancho que necesitas */
+  overflow: auto;
+  padding-right: 25px;
+
+  word-wrap: break-word; /* IE */
+  -moz-binding: url('xbl.xml#wordwrap'); /* Firefox (using XBL) */
 }
