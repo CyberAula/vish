@@ -62,6 +62,9 @@ module Vish
       EmbedsController.layout "3x9"
       LinksController.layout "3x9"
       ExcursionsController.layout "3x9"
+      SearchController.layout "12"
+      LegalNoticeController.layout "12"
+      HelpController.layout "12"
 
     end
 
