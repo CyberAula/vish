@@ -298,6 +298,7 @@ html, body {
   border: 0px solid #EFEFEF; }
 .ontop{vertical-align: top;}
 .moveup{margin-top:-5px; }
+.movedown{margin-top:5px}
 .onbottom{vertical-align: bottom; min-height: 30px;}
 .boxy_white{
   background-color: #FFFFFF;
@@ -592,6 +593,7 @@ form.file_upload {
 .leftinline{float:left; display:inline;margin-left: 10px;}
 .rightinline{float:right; display:inline;margin-right: 10px;}
 .margin-home-resource-view{margin-left: 42px}
+.margin
 
 
 /********************excursion page ************/
@@ -2113,3 +2115,8 @@ select {
 width: 387px;
 }
 
+.loading{
+  width: 41px;
+  margin-left: 200px;
+
+}
