@@ -21,7 +21,7 @@ class Excursion < ActiveRecord::Base
   has_many :quizzes
 
   validates_presence_of :json
-  before_save :parse_for_meta
+  after_save :parse_for_meta
 
   define_index do
     activity_object_index
@@ -31,32 +31,32 @@ class Excursion < ActiveRecord::Base
     json
   end
 
+  private
+
   def extract_quizzes(parsed_json)
-    parsed_json["slides"].each do |s|
-      next unless s["template"] =~ /^t1[012]$/
-      next unless s["quiz_id"].nil?
-      q = Quiz.new
-      q.excursion=self
-      case s["template"]
+    parsed_json["slides"].each do |slide|
+      next unless slide["template"] =~ /^t1[012]$/
+      next unless slide["quiz_id"].nil?
+      quiz = Quiz.new
+      quiz.excursion=self
+      case slide["template"]
         when "t10" # Open question
-          q.type="OpenQuiz"
+          quiz.type="OpenQuiz"
           # PENDING
         when "t11" # Multiple-choice
-          q.type="MultipleChoiceQuiz"
-          qelem = s["elements"].select { |e| e["type"] == "mcquestion" }.first
-          q.question = qelem["question"] unless qelem.nil? or qelem["question"].nil?
-          q.options  = qelem["options"].join(",") unless qelem.nil? or qelem["options"].nil?
+          quiz.type="MultipleChoiceQuiz"
+          qelem = slide["elements"].select { |e| e["type"] == "mcquestion" }.first
+          quiz.question = qelem["question"] unless qelem.nil? or qelem["question"].nil?
+          quiz.options  = qelem["options"].join(",") unless qelem.nil? or qelem["options"].nil?
         when "t12" # True/False
-          q.type="TrueFalseQuiz"
+          quiz.type="TrueFalseQuiz"
           # PENDING
       end
-      q.save!
-      s["quiz_id"]=q.id
+      quiz.save!
+      slide["quiz_id"]=quiz.id
     end
     parsed_json
   end
-
-  private
 
   def parse_for_meta
     parsed_json = JSON(json)
@@ -67,10 +67,10 @@ class Excursion < ActiveRecord::Base
     parsed_json["id"] = activity_object.id
     parsed_json["author"] = author.name
     parsed_json = extract_quizzes(parsed_json) # Fill up quiz_id parameters
-    self.json = parsed_json.to_json
+    self.update_column :json, parsed_json.to_json
 
-    self.slide_count = parsed_json["slides"].size
-    self.thumbnail_url = parsed_json["avatar"]
+    self.update_column :slide_count, parsed_json["slides"].size
+    self.update_column :thumbnail_url, parsed_json["avatar"]
 
   end
 
