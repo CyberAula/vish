@@ -1,0 +1,143 @@
+<div class= "container-logs">
+<section id= "wall">
+ <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+ <article class="row-fluid article">
+ <div class="span11 boxy_white">
+
+ <div class="span margin-top">
+ <div class="span4 inline">Name
+ </div>
+ <div class="span1 inline-block">
+ </div>
+ <div class="span7 inline-block">
+ <%= f.text_field :name, :class => "input-medium", :id => "name", :placeholder => "name" %>
+ </div>
+ </div>
+ <div class="span border-bottom">
+ </div>
+
+ <div class="span margin-top">
+ <div class="span4 inline">Email
+ </div>
+ <div class="span1 inline-block">
+ </div>
+ <div class="span7 inline-block">
+ <%= f.text_field :email, :class => "input-medium", :id => "email", :placeholder => "email" %>
+ </div>
+ </div>
+ <div class="span border-bottom">
+ </div>
+
+ <div class="span margin-top">
+ <div class="span4 inline">Password
+ </div>
+ <div class="span1 inline-block">
+ </div>
+ <div class="span7 inline-block">
+ <%= f.password_field :password, :class => "input-medium", :id => "password", :placeholer => "password" %>
+ </div>
+ </div>
+ <div class="span border-bottom">
+ </div>
+
+ <div class="span margin-top">
+ <div class="span4 inline">Comfirm password
+ </div>
+ <div class="span1 inline-block">
+ </div>
+ <div class="span7 inline-block">
+ <%= f.password_field :password, :class => "input-medium", :id => "password_confirmation", :placeholder => "confirm password" %>
+ </div>
+ </div>
+ <div class="span border-bottom">
+ </div>
+
+ <div class="span margin-top">
+ <div class="span4 inline"><%= t('activerecord.attributes.user.tag') %>
+ </div>
+
+ <!-- Tags -->
+ <!-- Preload tags -->
+ <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+ <ul id="preloadTagList" style="display:none">
+   <%@tags.each do |tag| %>
+     <li><%=tag.name%></li>
+   <%end%>
+ </ul>
+
+ <div class="control-group">
+   <div class="controls">
+     <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :class => "inline" %>
+     <div class="tagBoxNew span7 inline-block">
+       <ul class="tagList"></ul>
+       <ul class="tagit-suggestions">
+         <li class="tagit-choice">Nanotechnology</li>
+         <li class="tagit-choice">Biotechnology</li>
+         <li class="tagit-choice">Life-Sciences</li>
+         <li class="tagit-choice">Grid-Computing</li>
+       </ul>
+     </div>
+   </div>
+ </div>
+
+ </div>
+ <div class="span11">
+ <ul class="span7 pull-left">
+ <li>language</li>
+ <li class="blue-cake"><%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %></a>
+ <li>virtual science hub 2012</li>
+ </ul>
+ </div>
+ <div class="space">
+ </div></div>
+ <div class="span11 follow-button size20"><%= f.submit t('action.accept').capitalize %>
+ </div>
+
+ </article>
+ <% end %>
+</section>
+</div>
+
+<%= content_for :javascript do %>
+  $(document).ready(function() {
+    var tagList = $(".tagList");
+    var tags = [];
+
+    //Load tags
+    $.each($("#preloadTagList li"), function(index, element) {
+       tags.push($(element).html());
+    });
+                
+                $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+      watermarkAllowMessage: '<%=t('document.info.tags.addMessage').downcase %>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' ,
+                  tagsChanged:function (tag, action) {
+                          //Check if the element popped is a suggestion
+                          if(action=="popped"){
+                                        $.each($(".tagit-suggestions li"), function(index, element) {
+            if($(element).html()==tag){
+                                                  $(element).show();
+                                                }
+          });
+                                }
+      } 
+                });
+
+    //Allow suggestions
+    $(".tagit-suggestions li").on("click", function(){
+      var result = $(".tagit").tagit('add', $(this).html() );
+                        if(result==true){
+                          $(this).hide();
+                        }
+    });
+
+    //Fill tag_list hidden input before send
+     var button = $("#submit_new_user_button");
+     $(button).click(function(event) {
+       var tagList = $(".tagList");
+       $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+       return true;
+     });
+
+  });
+<% end %>
+

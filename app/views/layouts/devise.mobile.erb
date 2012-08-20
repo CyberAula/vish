@@ -4,7 +4,11 @@
 <%= render :partial => 'layouts/head' %>
 <body data-spy="scroll" data-target=".subnav" data-offset="50" class="visible-phone">
   <header id="navbar">
-    <%= render :partial => "layouts/header_mobile_empty" %>
+    <% if controller.class == Devise::RegistrationsController %>
+      <%= render :partial => "layouts/header_mobile_sign_up" %>
+    <% else %>
+      <%= render :partial => "layouts/header_mobile_empty" %>
+    <% end %>
   </header>
   <div class="row body-height" >
 
