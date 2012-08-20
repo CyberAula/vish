@@ -7,29 +7,29 @@
 </div>
   <div class="notebook-medio">
     <div class="content-notebook">
-      <div class="details_resources">
+      <div class="details_resources ">
         <%= t('document.info.title') %>
       </div>
       <div class="clearfloat"></div>
-      <div class="title_resources">
+      <div class="title_resources word-break span3">
         <%= @excursion.title %>
       </div>
       <div class="info_resources">
-        <div class="details_resources">
+        <div class="details_resources ">
           <%= t('author').capitalize %>
         </div>
         <div class="clearfloat"></div>
-        <div class="date_resources">
+        <div class="date_resources word-break span3">
           <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %>"><%= truncate_name(@excursion.author.name, :length => 50) %></a>
         </div>
       </div>
       <% unless @excursion.description.blank? %>
         <div class="info_resources">
-          <div class="details_resources">
+          <div class="details_resources ">
             <%= t('info.description') %>
           </div>
           <div class="clearfloat"></div>
-          <div class="date_resources">
+          <div class="date_resources word-break span3">
             <%= truncate(@excursion.description, :length => 200) %>
           </div>
         </div>

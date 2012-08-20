@@ -659,7 +659,9 @@ form.file_upload {
 
 
 }
-
+ .input-embed-excursion{
+cursor: text;
+ }
 
 
 .ellipsis{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; }
@@ -2152,7 +2154,7 @@ width: 387px;
 .word-break {
 /* Div que corta las palabras largas */
   width: auto; /* ancho que necesitas */
-  overflow: auto;
+  overflow: no;
   padding-right: 25px;
 
   word-wrap: break-word; /* IE */
