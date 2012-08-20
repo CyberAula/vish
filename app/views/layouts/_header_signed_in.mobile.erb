@@ -16,24 +16,17 @@
           <input type="text" class="search-query" placeholder="Search">
         </form>
       </div> 
-      <div style="height: auto;" class="nav-collapse in collapse">
+      <div style="height: auto;" class="nav-collapse collapse in">
         <hr class="soften"/>
           <ul class="nav">
-            <li class="size40 active"><a href="#">Willy Wonkas</a></li>
-            <li><a href="#">Home</a></li>
-            <li><img src="img/followers.png" width="10" height="6"><a href="#">Followers/ing</a></li>
-            <li><a href="#">Messages</a></li>
-            <li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Organizations </a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Nanotechnology</a></li>
-              <li><a href="#">Bifi</a></li>
-            </ul>
-          </ul>
-          <ul class="nav"> 
-            <li class="active"><a href="#">Settings</a></li>
-            <li><a href="#">Privacity</a></li>
-            <li><a href="#">Help</a></li>
-            <li class="active"><a href="#">Sing out</a></li>
+            <li class="size20 active"><%= link_to current_user.name, current_user%></li>
+            <li><a href="/home"><%= t('home') %></a></li>
+            <li><a href="/followers"><%= current_subject.followers.count.to_s + ' ' + t('follow.followers') %></a></li>
+            <li><a href="/followings"><%= current_user.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings') %></a></li>
+            <li><a href="/messages"><%= t('messages') %></a></li>
+            <li class="active"><a href="#"><%= t('settings.one') %></a></li>
+            <li><a href="/help"><%= t('help').capitalize %></a></li>
+            <li class="active"><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
           </ul>
           <div class="space"></div>
           <ul class="nav pull-right">
@@ -41,9 +34,9 @@
             <li class="dropdown foo">
               <ul>
                 <li><a href="#">Languaje</a></li>
-                <li><a href="#">Condition&terms of use</a></li>
+                <li><%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %></li>
                 <li class="divider"></li>
-                <li><a href="#">Virtual Science Hub C 2012</a></li>
+                <li>Virtual Science Hub &copy; 2012</li>
               </ul>
             </li>
           </ul>
