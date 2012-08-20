@@ -26,8 +26,8 @@
         </div>
 
           <div id="header_search_nosession  " class="pull-right margin_search_no_session span ">
-            <div class="rightinline movedown span"> <%=t('search')%></div>
-            <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" } %>
+
+            <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" ,  } %>
           </div>
         <div class="link_gray pagination-right span6">
           <%= link_to t('forgot_password'), new_user_password_path %>

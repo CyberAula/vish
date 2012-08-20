@@ -55,9 +55,22 @@
   <div id="share" class="collapse in">
     <% shortURL = short_url ( 'http://' + request.env['HTTP_HOST'] + excursion_path(excursion) ) %>
     <input type="text" readonly="readonly" size="30" rows="1" value="<%= shortURL %>" onclick="this.select()" />
+
+    <div class="social_toolbar_excursion">
     <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL} %>
-    <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
-    <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+
+
+      <div class="gplus_toolbar_excursion">
+      <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+      </div>
+
+        <div class="facebook_toolbar_excursion">
+      <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+        </div>
+     </div>
+
+
+
   </div>
   <div id="embed" class="collapse in">
     <textarea readonly="readonly" style="width: 500px;" rows="2">
