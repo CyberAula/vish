@@ -227,6 +227,12 @@ input, textarea, select, .uneditable-input{
 }
 input, textarea, select, .uneditable-input {width: 100%;}
 
+.row-fluid:before,
+.row-fluid:after {
+display: table;
+content: "";
+}
+
 /*<!--------------application in mobile */
 .btn-m {
   display: inline-block;
