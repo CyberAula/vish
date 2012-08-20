@@ -25,19 +25,27 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container">
+        <article class="row-fluid article">
+        <div class="span12">
+            <div class="span4 inline">
+                    <img src="images/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
+                </div>
+        <div class="span5 inline-block">    
+                    <form class="navbar-search span12 pull-rigth" action="">
+                        <input type="text" class="search-query" placeholder="Search">
+                    </form>
+                </div> 
+           
+            <div class="span3">
+            
+
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <div class="offset1 span2 inline">
-                    <img src="images/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
-                </div>
-        <div class="span3 inline-block">    
-                    <form class="navbar-search pull-rigth" action="">
-                        <input type="text" class="search-query" placeholder="Search">
-                    </form>
-                </div> 
+
+    </div>
         
         <div style="height: auto;" class="nav-collapse in collapse">
           <hr class="soften">
@@ -53,10 +61,10 @@
                             </ul>
                         <ul class="nav"> 
                 
-                <li class="active"><a href="#">Settings</a></li>
+                <li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings</a></li>
                 <li><a href="#">Privacity</a></li>
                 <li><a href="#">Help</a></li>
-                <li class="active"><a href="#">Sing out</a></li>
+                <li class="dropdown active"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sing out</a></li>
           </ul>
     <div class="space"></div>
           <ul class="nav pull-right">
@@ -91,13 +99,14 @@
 <section id= "wall">
     <article class="row-fluid article">
         <div class="span12">
-            <div class="span6"></div>
-            <div class="span3 pull-right">
-          
+            <div class="span5">
+            </div>
+                <div class="span3 pull-right">
                     <div class="span article btn-m btn-red">
                         <a href="#">sign up</a>
-                     </div>
-          
+                    </div>
+                </div>
+            <div class="span1">
             </div>
             <div class="span3 pull-right">
                 <div class="span article btn-m btn-red">
@@ -192,25 +201,27 @@
             </div>   
             <div class="row-fluid">                
                 <div class="span12">
-                     <div class="span3 inline">
-                         <div class="span12 pull-right send_messag size10 red-2 upfoll users_btn_follow">
-                         <div class="follow-link-contact_346">
-                            <div class="follow-button">
-                                <a class="size15" rel="nofollow" data-remote="true" data-method="put" href="/followers/346">Follow</a>
+                    <div class="span3 inline">
+                        <div class="span pull-right">
+                            <div class="span btn-m btn-red pull-right">
+                                <a href="#">Follow</a>
                             </div>
-                         </div>
-                         </div>
-                     </div>
-                     <div class="span3 inline-block"> 
-                         <button class="btn pull-right" href="#">
-                             <img width="20" height="16" src="images/notification.png">Default
-                         </button>
-                     </div>
-                     <div class="span6 inline-block">
-                         <button class="btn pull-right" href="#">
-                             <img width="20" height="16" src="images/notification.png">send message
-                         </button>
-                     </div>                       
+                        </div>
+                    </div>
+                    <div class="span1 inline-block">
+                    </div> 
+                    <div class="span3 inline-block"> 
+                        <div class="span btn-m btn-wb pull-right" href="#">
+                            <img width="20" height="16" src="images/notification.png">Default
+                        </div>
+                    </div>
+                    <div class="span1 inline-block">
+                    </div>
+                    <div class="span4 inline-block">
+                        <div class="span btn-m btn-wb pull-right" href="#">
+                            <img width="20" height="16" src="images/notification.png">send message
+                        </div>
+                    </div>                       
                 </div>
             </div>
 	</article>
@@ -228,24 +239,20 @@
 	<article class="row-fluid article">
         <div class="span12">
             <div class="span5">
-                <img src="images/icon-message.png" width="177" height="128" alt="image user, vish">
-                <h2 class="size30 gray article ellipsis w350px">Messages
-                </h2>
+                <img src="images/icon-message.png" width="212" height="139" alt="image user, vish">
+                <div class="size40 gray article ellipsis w350px">Messages
+                </div>
             </div>
             <div class="span6">
                 <div class="space"></div>
-                <button class="btn span margin-bottom margin-top" href="#">
-                    <img width="20" height="16" src="images/icon-message.png">new message
-                </button>
-                <button class="btn span margin-bottom" href="#">
-                    <img width="20" height="16" src="images/icon-message.png">inbox
-                </button>
-                <button class="btn span margin-bottom" href="#">
-                    <img width="20" height="16" src="images/icon-message.png">sent box
-                </button>
-                <button class="btn span margin-bottom" href="#">
-                    <img width="20" height="16" src="images/icon-message.png">trash
-                </button>
+                <div class="btn-m btn-wb pagination-center span margin-bottom margin-top" href="#">new message
+                </div>
+                <div class="btn-m btn-wb span margin-bottom" href="#">inbox
+                </div>
+                <div class="btn-m btn-wb span margin-bottom" href="#">sent box
+                </div>
+                <div class="btn-m btn-wb span margin-bottom" href="#">trash
+                </div>
                   
                 
             </div>   
@@ -330,12 +337,15 @@
                         </div>
                         <div class="span9 inline-block">
                             <div class="caption">
-                                <h2 class="span9 ellipsis w550px">
+                                <h2 class="span8 ellipsis w550px">
                                     <a href="/excursions/53">music time
                                     </a>
                                 </h2>
-                                <button href="#" class="btn pull-right"><img src="images/notification.png" width="20" height="16">Default</button>
-                            </div>
+                                <div class="span4 inline-block"> 
+                                    <div class="span btn-m btn-wb btn-small pull-right" href="#">
+                                       <img width="20" height="16" src="images/notification.png">Default
+                                    </div>
+                                </div>
                         <div class="span">  
                             <h3 class="span9 blue-opacity ellipsis w150px">by <a class="user-modal-button-crispin" href="#user-modal-crispin" data-toggle="modal">crispin</a>
                             </h3>
@@ -402,7 +412,7 @@
                         </div>
                         <div class="span9 inline-block">
                             <div class="size18">
-                                <a href="#">Nestor Toribio Mr foo</a><span class="size15"> is now following</span><a href="#">Diego Carrera</a>
+                                <a href="#">Nestor Toribio Mr foo</a><span class="size16 gray">&nbsp;is now following&nbsp;</span><a href="#">Diego Carrera</a>
                             </div>      
                         </div>
                         <div class="span9 margin-wall-txt"> 
@@ -517,11 +527,11 @@
                                       <h3>Followers:&nbsp;&nbsp;<span class="green">9</span></h3>
                                       <h3>Followers:&nbsp;&nbsp;<span class="green">9</span></h3>
                                     </div>
-                                    <div class="span4 inline-block pull-right send_messag size10 red-2 upfoll users_btn_follow">
-                                      <div class="btn-follow-wall2 follow-link-contact_346">
-                                        <div class="follow-button"><a class="size15" rel="nofollow" data-remote="true" data-method="put" href="/followers/346">Follow</a>
+                                    <div class="span4 inline-block pull-right">
+                                        <div class="span inline-block"> 
+                                            <div class="span btn-m btn-red-light btn-small pull-right" href="#">Follow
+                                            </div>
                                         </div>
-                                      </div>
                                     </div>
                                 </div>    
                             </div>      
@@ -553,12 +563,10 @@
             </div>
                 
             <div class="span11">                 
-                <div class="span inline-block pull-right send_messag size10 red-2 upfoll users_btn_follow">
-                     <div class="btn-follow-walll follow-link-contact_346">
-                          <div class="follow-button"><a class="size20" rel="nofollow" data-remote="true" data-method="put" href="/followers/346">send message</a>
-                          </div>
-                     </div>    
-                </div>      
+                <div class="span inline-block"> 
+                    <div class="span btn-m btn-red pull-right" href="#">send message
+                    </div>
+                </div> 
             </div>
          </div>          
     </article>
@@ -594,7 +602,7 @@
                     </div>
                     <div class="span11 article">
                         <h3 class="article">Tags</h3>
-                        <h4 class="span8 blue-opacity article ellipsis w400px">
+                        <h4 class="blue-opacity article ellipsis w400px">
                             <a href="#">natural science</a>,
                             <a href="#">flora</a>,
                             <a href="#">bugs</a>
@@ -615,10 +623,10 @@
                 </div>
             </div>
             <div class="span11">                 
-                <div class="span send_messag size10 red-2">
-                   
-                        <div class="follow-button"><a class="size20" rel="nofollow" data-remote="true" data-method="put" href="/followers/346">send message</a>
-                        </div>
+                <div class="span inline-block"> 
+                    <div class="span btn-m btn-red pull-right" href="#">send message
+                    </div>
+                </div>
                      
                 </div>      
             </div>
@@ -703,33 +711,27 @@
 
 <footer id="wall">
     <article class="row-fluid article">
-<div class="span11">
-    <div class="space"></div>
-                <div class="span4 send_messag size10 red-2 upfoll users_btn_follow">
-                    <div class="follow-link-contact_346">
-                        <div class="follow-button">
-                            <a class="size15" rel="nofollow" data-remote="true" data-method="put" href="/followers/346">sign up</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="span4 size10 ">
-                    <div class="button">
-                        <div class="btn explore-button">
-                            <a class="size15" href="#">explore</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="span4 send_messag size10 red-2 upfoll users_btn_follow">
-                    <div class="follow-link-contact_346">
-                        <div class="follow-button">
-                            <a class="size15" rel="nofollow" data-remote="true" data-method="put" href="/followers/346">log in</a>
-                        </div>
-                    </div>
+        <div class="span11">
+            <div class="span3 inline"> 
+                <div class="span btn-m btn-red pull-right" href="#">sign up</a>
                 </div>
             </div>
-        </article>
-            </footer>
-             </div>
+            <div class="span1 inline-block">
+            </div>
+            <div class="span4 inline-block"> 
+                <div class="span btn-m btn-green pull-right" href="#">explore</a>
+                </div>
+            </div>
+            <div class="span1 inline-block">
+            </div>
+            <div class="span3 inline-block"> 
+                <div class="span btn-m btn-red pull-right" href="#">log in
+                </div>
+            </div>
+        </div>
+    </article>
+</footer>
+</div>
 
 
 
@@ -742,11 +744,11 @@
 
 <div class= "container-logs">
 <header id= "wall">
-    <article class="row-fluid article">
+    <article class="row-fluid">
          <div class="space-double-center"></div>
         <div class="span12 pagination-centered">
-            <div class"logo"><img class="article" src="images/logo.png" w="100px" h="100px"></div>
-            <div id="tags" class=" article name size30">Virtual Science Hub</div>
+            <div class"logo"><img src="images/logo.png" weight="130px" height="130px" alt="vish logo mobile"></div>
+            <div id="tags" class="name size50">Virtual Science Hub</div>
         </div> 
     </article>     
 </heaeder>
@@ -765,7 +767,10 @@
             <div class="space"></div>
             <input id="username" class="span radius" type="email" value="" size="30" name="user[email]" placeholder="e mail">
             <input id="password" class="span radius" type="email" value="" size="30" name="user[password]" placeholder="password">
-            <div class="follow-button size20"><a href="#">log in</a>
+            <div class="span12 inline-block"> 
+                    <div class="span btn-m btn-red pull-right" href="#">Log in
+                    </div>
+                </div>
         
 
         
@@ -773,28 +778,29 @@
         </div> 
             <div class="span12">
                 <div class="space"></div>
-                <ul class="span pagination-right">
+                <ul class="span11 pagination-right">
                     <li class="blue-cake"><a href"#">Forgot your password?</a></li>
                     <li class="blue-cake"><a href"#">Sing up</a></li>
                 </ul>    
+                <div class="space"></div>
                 <ul class="span7 pull-left">
                     <li>language</li>
                     <li class="blue-cake"><a href"#">conditions &amp; terms of use</a></li>
                     <li>virtual science hub 2012</li>
                 </ul>    
             </div>
-        <div class="space">
-            </div>
+        <div class= "container-logs">
+            
             <div class="menu pagination-right">
-        <p class="span rightinline">
+        <p class="span11 rightinline">
           <a class="size16"href="#">help</a>
         </p>
+</div>
 </div>
   </article>
 
 </section>
 </div> 
-
 
 
 
@@ -808,7 +814,7 @@
     <article class="row-fluid article">
          <div class="space-double-center"></div>
         <div class="span11 pagination-centered">
-            <div class"logo"><img class="article" src="images/VISH_frontpage.png"></div>
+            <div class"logo"><img class="article" src="images/VISH_frontpage.png" alt="vish logo mobile"></div>
             <div id="tags" class=" article name size30">Virtual Science Hub</div>
         </div> 
     </article>     
@@ -890,8 +896,10 @@
             </div>
         <div class="space">
             </div></div>
-        <div class="span11 follow-button size20"><a href="#">send message</a>
-        </div> 
+        <div class="span11 inline-block"> 
+                    <div class="span btn-m btn-red pull-right" href="#">send message
+                    </div>
+                </div>
 
   </article>
 
