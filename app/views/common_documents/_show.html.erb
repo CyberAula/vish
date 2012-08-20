@@ -3,10 +3,6 @@
 
 <% profile_subject ||= document.owner_subject %>
 
-<% content_for :title do %>
-  <%= profile_subject.name + ": " + t('repository.title') %>
-<% end %>
-
 <% if profile_subject_is_current? %>
   <%= location(
         link_to(t('repository.title'), polymorphic_path(controller.controller_name), :remote => true)
@@ -18,7 +14,11 @@
       ) %>
 <% end %>
 
-
+<%= content_for :title do %><%= document.title %> - <%= profile_subject.name %><% end %>
+<%= content_for :description do %><%= document.description %><% end %>
+<%= content_for :keywords do %><%= document.tag_list %><% end %>
+<%= content_for :og_type do %>resource<% end %>
+<%= content_for :og_url do %><%= request.url %><% end %>
 
 <section id="" class=" span5  ">
   <%= show_view_for document %>
