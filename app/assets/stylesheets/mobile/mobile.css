@@ -309,14 +309,14 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 
 .notebook-cabecera
 {
-  background-image: url("images/CABECERA.png");
+  background-image: url("/assets/notebook/CABECERA.png");
   background-repeat: no-repeat;
   height: auto;
   display:inline-block;
 }
 
 .notebook-medio{
-  background-image: url("images/MEDIO.png");
+  background-image: url("/assets/notebook/MEDIO.png");
 
   background-repeat: repeat-y;
   height: AUTO;
@@ -330,7 +330,7 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 
 }
 .notebook-pie{
-  background-image: url("images/PIE.png");
+  background-image: url("/assets/notebook/PIE.png");
 
   background-repeat: NO-REPEAT;
   height: auto;
@@ -338,13 +338,13 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   margin-top: -5px
 }
 .backgindex-bottom{
-background-image: url("bottomindex.jpg"); 
+background-image: url("/assets/mobile/bottomindex.jpg"); 
 background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
 .backgindex-center{
-background-image: url("topindex.jpg"); 
+background-image: url("/assets/mobile/topindex.jpg"); 
 background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
 
-.backgindex{background-image: url("ballena2.jpg"); 
+.backgindex{background-image: url("/assets/mobile/ballena2.jpg"); 
 background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
 
 .vish-white{opacity: 0.6;}

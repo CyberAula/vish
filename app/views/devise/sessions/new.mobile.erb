@@ -1,0 +1,37 @@
+<div class="container-logs">
+<section id= "wall">
+    <article class="row-fluid article">
+ <div class="span11">
+ <div class="space"></div>
+ <%= form_for(resource, :as => resource_name, :url => user_session_path,  :html => { :method => :post, :class=>"form-horizontal2" }) do |f| %>
+ <%= f.text_field :email, :class => "span radius", :id => "email", :placeholder => "e-mail" %>
+ <%= f.password_field :password, :class => "span radius", :id => "password", :placeholder => "password" %>
+ <%= hidden_field :remember_me, true %> 
+ <div class="follow-button size-20">
+   <%= f.submit t('action.send') %>
+ </div>
+ </div>
+ <div class="span12">
+ <div class="space"></div>
+ <ul class="span pagination-right">
+   <%= render :partial => "devise/shared/links" %>
+ </ul>
+ <ul class="span7 pull-left">
+ <li>language</li>
+ <li class="blue-cake"><a href"#">conditions &amp; terms of use</a></li>
+ <li>virtual science hub 2012</li>
+ </ul>
+ </div>
+ <div class="space">
+ </div>
+ <div class="menu pagination-right">
+ <p class="span rightinline">
+ <a class="size16"href="#">help</a>
+ </p>
+ <% end %>
+</div>
+ </article>
+
+</section>
+</div>
+

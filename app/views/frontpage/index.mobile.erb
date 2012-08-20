@@ -1,3 +1,66 @@
 <% content_for :title do%>
   <%= t('welcome', :site => t('site.name')) %>
 <%end%>
+
+<div class= "container backgindex-center">
+
+<section id= "wall">
+ <article class="row-fluid article">
+ <div class="span11">
+ <div class="span12">
+
+
+ </div>
+ <div class="span11 dsigneslight gray">
+ <div class="span12 pagination-right size30">nanotecnology</div>
+ <div class="span12 size30">grid compute</div>
+ <div class="span12">
+ <div class="span3"></div>
+ <div class="span9 size50">excursions</div>
+ </div>
+ <div class="span12 size40">users</div>
+ <div class="span12 pagination-right size20">life sciences</div>
+ <div class="span12">
+ <div class="span3"></div>
+ <div class="span9 size30">biotechnology</div>
+ </div>
+ </div>
+ <div class="space-center"></div>
+
+ </div>
+ </article>
+</section>
+</div>
+<div class= "container backgindex-bottom">
+
+
+<footer id="wall">
+ <article class="row-fluid article">
+<div class="span11">
+
+ <div class="space"></div>
+ <div class="span4 send_messag size10 red-2 upfoll users_btn_follow">
+ <div class="follow-link-contact_346">
+ <div class="follow-button">
+ <%= link_to t('sign_up'), new_user_registration_path %>
+ </div>
+ </div>
+ </div>
+ <div class="span4 size10 ">
+ <div class="button">
+ <div class="btn explore-button">
+ <a class="size15" href="/explore"><%= t('explore') %></a>
+ </div>
+ </div>
+ </div>
+ <div class="span4 send_messag size10 red-2 upfoll users_btn_follow">
+ <div class="follow-link-contact_346">
+ <div class="follow-button">
+ <%= link_to t('devise.links.sign_in'), new_user_session_path %>
+ </div>
+ </div>
+ </div>
+ </div>
+ </article>
+ </footer>
+ </div>
