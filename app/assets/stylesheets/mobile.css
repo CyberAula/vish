@@ -40,6 +40,21 @@ h4{
   letter-spacing: 0.2em;
   font: 15px; 
 }
+
+.navbar-inner {
+  min-height: 40px;
+  padding-right: 20px;
+  padding-left: 20px;
+  background-color: #eeeeee;
+  background-image: none;
+  -webkit-border-radius: 4px 2px 4px 2px;
+     -moz-border-radius: 4px 2px 4px 2px;
+          border-radius: 4px 2px 4px 2px;
+  filter: progid:dximagetransform.microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
 .main-nav li{
 	color:#FFF;
 	text-align:center;
@@ -624,6 +639,22 @@ input, textarea, select, .uneditable-input {width: 100%;}
 }
 .follow-button a{
 	text-decoration:none;
+}
+
+.row-fluid [class*="span"] {
+  display: initial;
+  margin-left: 0px;
+}
+.row > [class*="span"], .row-fluid > [class*="span"] {
+float: left;
+display:initial;
+width: 100%;
+margin: 0;
+}
+.navbar .btn-navbar {
+  display: initial;
+  background-color: transparent;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(240, 240, 240)), to(rgb(223, 223, 223)));
 }
 /*<!--------------new classes in mobile */
 .explore-button {
