@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   private
 
   def detect_mobile_request
-    request.format = :mobile if request.domain.split(".").first == 'm'
+    request.format = :mobile if request.format == :html and request.domain.split(".").first == 'm'
   end
 
 end
