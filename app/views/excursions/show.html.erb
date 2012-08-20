@@ -1,3 +1,10 @@
+<%= content_for :title do %><%= @excursion.title %><% end %>
+<%= content_for :description do %><%= @excursion.description %><% end %>
+<%= content_for :keywords do %><%= @excursion.tag_list %><% end %>
+<%= content_for :og_type do %>excursion<% end %>
+<% shortURL = short_url ( 'http://' + request.env['HTTP_HOST'] + excursion_path(@excursion) ) %>
+<%= content_for :og_url do %><%= shortURL %><% end %>
+<%= content_for :og_image do %><%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
 
 <% javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
 
@@ -13,7 +20,7 @@
         <iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
       </div>
 
-      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion } %>
+      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion, :shortURL => shortURL} %>
 
       </div>
     </div>

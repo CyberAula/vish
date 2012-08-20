@@ -5,6 +5,14 @@
   <meta name="description" content="<%= yield(:description).empty? ? "Home" : yield(:description) %>">
   <meta name="generator" content="SocialStream" />
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+  <meta property="og:site_name" content="ViSH">
+  <meta property="og:title" content="<%= yield(:title) %>">
+  <meta property="og:type" content="<%= yield(:og_type) %>">
+  <meta property="og:url" content="<%= yield(:og_url) %>">
+  <meta property="og:image" content="<%= yield(:og_image) %>">
+  <meta property="og:description" content="<%= yield(:description) %>">
+
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
