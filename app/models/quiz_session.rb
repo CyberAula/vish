@@ -17,7 +17,7 @@
 
 class QuizSession < ActiveRecord::Base
   belongs_to :quiz
-  belongs_to :owner, :class_name => 'Actor'
+  belongs_to :owner, :class_name => 'User'
   has_many :quiz_answers
   has_one :excursion, :through => :quiz
 end
