@@ -187,6 +187,7 @@ img {
     position: relative;
     text-align:left;
     z-index: 1000;
+	width: 610px;
 }
 
 .label_question {
@@ -239,6 +240,7 @@ img {
     padding: 5px 7px;
     position: relative;
     z-index: 1000;
+	width: 610px;
 }
 
 .multiplechoice_text {

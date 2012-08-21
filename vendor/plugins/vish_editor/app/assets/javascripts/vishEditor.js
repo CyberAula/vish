@@ -13170,6 +13170,7 @@ VISH.Editor = function(V, $, undefined) {
                     element.question = $(div).find(".value_openquestion").val()
                   }else {
                     if(element.type == "mcquestion") {
+                      V.Debugging.log(" enter in element type mcquestion while creating the json");
                       element.question = $(div).find(".value_multiplechoice_question").val();
                       element.options = [];
                       $(div).find(".multiplechoice_text").each(function(i, input_text) {
@@ -13225,11 +13226,15 @@ VISH.Editor = function(V, $, undefined) {
   };
   var _afterSaveExcursion = function(excursion) {
     console.log("VISH.Debugging.isDevelopping(): " + VISH.Debugging.isDevelopping());
+    console.log("VISH.Configuration.getConfiguration()[mode]: " + VISH.Configuration.getConfiguration()["mode"]);
+    VISH.Debugging.log(JSON.stringify(excursion));
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      console.log("VISH.Configuration.getConfiguration()[mode] : " + VISH.Configuration.getConfiguration()["mode"]);
       var send_type;
       if(excursion_to_edit) {
         send_type = "PUT"
       }else {
+        VISH.Debugging.log("send_type = post!!");
         send_type = "POST"
       }
       var jsonexcursion = JSON.stringify(excursion);
@@ -14045,6 +14050,553 @@ VISH.Samples.API = function(V, undefined) {
   {"title":"Thumbnail 28", "description":"Sample excursion thumbnail 28", "src":"/vishEditor/images/excursion_thumbnails/excursion-28.png"}, {"title":"Thumbnail 29", "description":"Sample excursion thumbnail 29", "src":"/vishEditor/images/excursion_thumbnails/excursion-29.png"}, {"title":"Thumbnail 30", "description":"Sample excursion thumbnail 30", "src":"/vishEditor/images/excursion_thumbnails/excursion-30.png"}]};
   return{imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, objectListDummy:objectListDummy, tagsList:tagsList, thumbnailsList:thumbnailsList}
 }(VISH);
+VISH.Slides = function(V, $, undefined) {
+  var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
+  var PM_TOUCH_SENSITIVITY = 200;
+  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
+  var with_mashme_integration;
+  var init = function(mashme) {
+    getCurSlideFromHash();
+    with_mashme_integration = mashme;
+    $(document).bind("OURDOMContentLoaded", handleDomLoaded)
+  };
+  var handleDomLoaded = function() {
+    V.slideEls = document.querySelectorAll("section.slides > article");
+    addFontStyle();
+    updateSlides();
+    if(!with_mashme_integration) {
+      V.Slides.Events.init()
+    }else {
+      VISH.Debugging.log("INTEGRATION WITH MASHME, EVENTS WILL NOT WORK!!");
+      V.Slides.Mashme.init()
+    }
+    $("body").addClass("loaded")
+  };
+  var getSlideEl = function(no) {
+    if(no < 0 || no >= V.slideEls.length) {
+      return null
+    }else {
+      return V.slideEls[no]
+    }
+  };
+  var updateSlideClass = function(slideNo, className) {
+    var el = getSlideEl(slideNo);
+    if(!el) {
+      return
+    }
+    if(className) {
+      $(el).addClass(className)
+    }
+    for(var i in SLIDE_CLASSES) {
+      if(className != SLIDE_CLASSES[i]) {
+        $(el).removeClass(SLIDE_CLASSES[i])
+      }
+    }
+  };
+  var updateSlides = function(goingRight) {
+    for(var i = 0;i < V.slideEls.length;i++) {
+      switch(i) {
+        case V.curSlide - 2:
+          updateSlideClass(i, "far-past");
+          break;
+        case V.curSlide - 1:
+          updateSlideClass(i, "past");
+          break;
+        case V.curSlide:
+          updateSlideClass(i, "current");
+          break;
+        case V.curSlide + 1:
+          updateSlideClass(i, "next");
+          break;
+        case V.curSlide + 2:
+          updateSlideClass(i, "far-next");
+          break;
+        default:
+          updateSlideClass(i);
+          break
+      }
+    }
+    if(goingRight) {
+      triggerLeaveEvent(V.curSlide - 1)
+    }else {
+      triggerLeaveEvent(V.curSlide + 1)
+    }
+    triggerEnterEvent(V.curSlide);
+    updateHash()
+  };
+  var prevSlide = function() {
+    if(V.curSlide > 0) {
+      V.curSlide--;
+      updateSlides(false)
+    }
+  };
+  var nextSlide = function() {
+    if(V.curSlide < V.slideEls.length - 1) {
+      V.curSlide++;
+      updateSlides(true)
+    }
+  };
+  var triggerEnterEvent = function(no) {
+    var el = getSlideEl(no);
+    if(!el) {
+      return
+    }
+    var onEnter = el.getAttribute("onslideenter");
+    if(onEnter) {
+      (new Function(onEnter)).call(el)
+    }
+    var evt = document.createEvent("Event");
+    evt.initEvent("slideenter", true, true);
+    evt.slideNumber = no + 1;
+    el.dispatchEvent(evt)
+  };
+  var triggerLeaveEvent = function(no) {
+    var el = getSlideEl(no);
+    if(!el) {
+      return
+    }
+    var onLeave = el.getAttribute("onslideleave");
+    if(onLeave) {
+      (new Function(onLeave)).call(el)
+    }
+    var evt = document.createEvent("Event");
+    evt.initEvent("slideleave", true, true);
+    evt.slideNumber = no + 1;
+    el.dispatchEvent(evt)
+  };
+  var getCurSlideFromHash = function() {
+    var slideNo = parseInt(location.hash.substr(1));
+    if(slideNo) {
+      V.curSlide = slideNo - 1
+    }else {
+      V.curSlide = 0
+    }
+  };
+  var updateHash = function() {
+    location.replace("#" + (V.curSlide + 1))
+  };
+  var addFontStyle = function() {
+    var el = document.createElement("link");
+    el.rel = "stylesheet";
+    el.type = "text/css";
+    el.href = "http://fonts.googleapis.com/css?family=" + "Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono";
+    document.body.appendChild(el)
+  };
+  var addGeneralStyle = function() {
+    var el = document.createElement("meta");
+    el.name = "viewport";
+    el.content = "width=900,height=750";
+    document.querySelector("head").appendChild(el);
+    var el = document.createElement("meta");
+    el.name = "apple-mobile-web-app-capable";
+    el.content = "yes";
+    document.querySelector("head").appendChild(el)
+  };
+  var lastSlide = function() {
+    goToSlide(V.slideEls.length)
+  };
+  var goToSlide = function(no) {
+    if(no > V.slideEls.length || no <= 0) {
+      return
+    }else {
+      if(no > V.curSlide + 1) {
+        while(V.curSlide + 1 < no) {
+          nextSlide()
+        }
+      }else {
+        if(no < V.curSlide + 1) {
+          while(V.curSlide + 1 > no) {
+            prevSlide()
+          }
+        }
+      }
+    }
+    if(VISH.Editing) {
+      $(".selectable").css("border-style", "none");
+      VISH.Editor.Tools.cleanZoneTools();
+      V.Editor.Thumbnails.selectThumbnail(no)
+    }else {
+      V.SlideManager.updateSlideCounter()
+    }
+  };
+  var backwardOneSlide = function() {
+    goToSlide(V.curSlide)
+  };
+  var forwardOneSlide = function() {
+    goToSlide(V.curSlide + 2)
+  };
+  var isSlideFocused = function() {
+    if($(".wysiwygInstance").is(":focus")) {
+      return false
+    }
+    return true
+  };
+  return{backwardOneSlide:backwardOneSlide, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, init:init, nextSlide:nextSlide, prevSlide:prevSlide, lastSlide:lastSlide, isSlideFocused:isSlideFocused}
+}(VISH, jQuery);
+VISH.Quiz = function(V, $, undefined) {
+  var role;
+  var slideToActivate;
+  var slideToStop;
+  var slideToVote;
+  var user;
+  var userStatus;
+  var startButton = "mcquestion_start_button";
+  var stopButton = "mcquestion_stop_button";
+  trueFalseAnswers = new Array;
+  var init = function(element, template, slide) {
+    if(element.type === "mcquestion") {
+      user = V.SlideManager.getUser();
+      userStatus = V.SlideManager.getUserStatus();
+      role = user.role;
+      slideToVote = userStatus.quiz_active;
+      var obj;
+      switch(role) {
+        case "logged":
+          obj = _renderMcquestionLogged(element, template, slide);
+          break;
+        case "student":
+          obj = _renderMcquestionStudent(element, template, slide);
+          break;
+        case "none":
+          obj = _renderMcquestionNone(element, template, slide);
+          break;
+        default:
+          VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
+      }
+      return obj
+    }else {
+      if(element.type === "truefalsequestion") {
+        obj = _renderTrueFalseQuestion(element, template);
+        return obj
+      }
+    }
+  };
+  var enableInteraction = function(slide, options) {
+    switch(role) {
+      case "logged":
+        slideToActivate = slide;
+        _alignStartButton(options);
+        _activateLoggedInteraction();
+        break;
+      case "student":
+        slideToVote = slide;
+        _activateStudentInteraction();
+        break;
+      case "none":
+        _activateNoneInteraction();
+        break;
+      default:
+        VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
+    }
+  };
+  var enableTrueFalseInteraction = function(slide, options) {
+    var sendButton = $("#" + slide).find("#tf_send_button");
+    var radioInput = $("#" + slide).find("input:radio[name='tf_radio_1']")
+  };
+  var _renderMcquestionLogged = function(element, template, slide) {
+    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
+    ret += "<div class='mcquestion_container'>";
+    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
+    ret += "<form id='form_" + slide + "'class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
+    for(var i = 0;i < element["options"].length;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>";
+      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
+      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
+    }
+    ret += "</div>";
+    ret += "<div class='mcquestion_right'>";
+    ret += "<img id='mch_statistics_button_" + slide + "' class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
+    ret += "<input type='hidden' id='slide_to_activate' value='" + slide + "'/>";
+    ret += "<input type='button' id='mcquestion_start_button_" + slide + "' class='mcquestion_start_button' value='Start Quiz'/>";
+    ret += "<div id='save_quiz_" + slide + "' class='save_quiz'><label>Do you want to save the polling results?</label>";
+    ret += "<input type='button'class='mcquestion_save_yes_button' id='mcquestion_save_yes_button_" + slide + "' value='Yes'><input type='button' class='mcquestion_save_no_button' id='mcquestion_save_no_button_" + slide + "' value='No'></div>";
+    ret += "</div>";
+    ret += "</form>";
+    ret += "</div>";
+    return ret
+  };
+  var _renderMcquestionStudent = function(element, template, slide) {
+    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
+    ret += "<div class='mcquestion_container'>";
+    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
+    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
+    for(var i = 0;i < element["options"].length;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      ret += "<label class='mc_answer' id='mc_answer_" + slide + "_option_" + next_index + "'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>" + element["options"][i] + "</label>";
+      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
+      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
+    }
+    ret += "</div>";
+    ret += "<div class='mcquestion_right'>";
+    ret += "<input type='hidden' id='slide_to_vote' value='" + slide + "'/>";
+    ret += "<input type='button' id='mcquestion_send_vote_button_" + slide + "' class='mcquestion_send_vote_button' value='Send'/>";
+    ret += "</div>";
+    ret += "</form>";
+    ret += "</div>";
+    return ret
+  };
+  var _renderMcquestionNone = function(element, template, slide) {
+    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
+    ret += "<div class='mcquestion_container'>";
+    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
+    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
+    for(var i = 0;i < element["options"].length;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>"
+    }
+    ret += "</div>";
+    ret += "<div class='mcquestion_right'>";
+    ret += "</div>";
+    ret += "</form>";
+    ret += "</div>";
+    return ret
+  };
+  var _activateLoggedInteraction = function() {
+    var startButton = "#mcquestion_start_button_" + slideToActivate;
+    var statisticsButton = "#mch_statistics_button_" + slideToActivate;
+    var saveQuizYesButton = "#mcquestion_save_yes_button_" + slideToActivate;
+    var saveQuizNoButton = "#mcquestion_save_no_button_" + slideToActivate;
+    $(document).on("click", startButton, _startMcQuizButtonClicked);
+    $(document).on("click", statisticsButton, _statisticsMcQuizButtonClicked);
+    $(document).on("click", saveQuizYesButton, _saveQuizYesButtonClicked);
+    $(document).on("click", saveQuizNoButton, _saveQuizNoButtonClicked)
+  };
+  var _activateStudentInteraction = function() {
+    var sendVoteButton = "#mcquestion_send_vote_button_" + slideToVote;
+    $(document).on("click", sendVoteButton, _onSendVoteMcQuizButtonClicked);
+    $(".mc_meter").hide();
+    var numOptions = $("#" + slideToVote).find(".mc_answer").size();
+    for(var i = 0;i < numOptions;i++) {
+      var next_num = i;
+      var next_index_prev = "a".charCodeAt(0) + next_num;
+      next_index = String.fromCharCode(next_index_prev);
+      var overOptionZone = "#mc_answer_" + slideToVote + "_option_" + next_index;
+      $("#" + slideToVote).on("mouseenter", overOptionZone, function(event) {
+        $(event.srcElement).css("color", "blue");
+        $(event.srcElement).css("font-weight", "bold")
+      });
+      $("#" + slideToVote).on("mouseleave", overOptionZone, function(event) {
+        $(event.srcElement).css("color", "black");
+        $(event.srcElement).css("font-weight", "normal")
+      })
+    }
+  };
+  var _activateNoneInteraction = function() {
+    V.Debugging.log(" enter on _activeNoneInteraction function")
+  };
+  var _alignStartButton = function(options) {
+    var marginTopDefault = 18;
+    var startButton = "mcquestion_start_button_" + slideToActivate;
+    var marginTopPercentTxt = marginTopDefault * parseInt(options).toString() + "%";
+    $("#" + startButton).css("margin-top", marginTopPercentTxt)
+  };
+  var _startMcQuizButtonClicked = function() {
+    slideToPlay = $(".current").find("#slide_to_activate").val();
+    var quiz_id = 1;
+    var quiz_session_id = V.Quiz.API.postStartQuizSession(quiz_id);
+    V.Debugging.log("returned value is (quiz_Session_id?): " + quiz_session_id);
+    var url = "http://www.vishub.org/quiz_session/" + quiz_session_id;
+    var divURLShare = "<div id='url_share_" + slideToPlay + "' class='url_share'></div>";
+    var URL = "<span>" + url + "</span>";
+    var shareButton = "<a id='share_icon_" + slideToPlay + "' class='shareQuizButton' ><img src=" + VISH.ImagesPath + "quiz/share-glossy-blue.png /></a>";
+    var shareTwitterButton = "<a target='_blank' title='share on Twitter' href='http://twitter.com/share?url=" + encodeURIComponent(url) + "' class='twitter-share-button' data-url='" + encodeURIComponent(url) + "' data-size='large' data-count='none'><img src='" + V.ImagesPath + "quiz/tw_40x40.jpg'/></a>";
+    var shareFacebookButton = "<a target='_blank' title='share on Facebook' href='http://www.facebook.com/share.php?u=" + encodeURIComponent(url) + "' ";
+    shareFacebookButton += "id='fb_share_link_" + slideToPlay + "' class='a_share_content_icon'><img src='" + V.ImagesPath + "quiz/fb_40x40.jpg'/></a>";
+    var shareContainerIcons = "<div id='share_content_icons_" + slideToPlay + "' class='shareContentIcons'> ";
+    shareContainerIcons += shareFacebookButton;
+    shareContainerIcons += shareTwitterButton;
+    if($("#" + slideToPlay).find(".t11_header").children()) {
+      $("#" + slideToPlay).find(".t11_header").children().remove()
+    }
+    $("#" + slideToPlay).find(".t11_header").append(divURLShare);
+    $(".current").find("#url_share_" + slideToPlay).append(URL);
+    $(".current").find("#url_share_" + slideToPlay).append(shareButton);
+    $(".current").find("#url_share_" + slideToPlay).append(shareContainerIcons);
+    $("#" + slideToPlay).find(".t11_header").show();
+    $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("value", "Stop Quiz");
+    $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("class", "mcquestion_stop_button");
+    $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("id", "mcquestion_stop_button_" + slideToPlay);
+    $("#" + slideToPlay).find("#slide_to_activate").attr("id", "slide_to_stop");
+    $("#" + slideToPlay).find(".mcquestion_stop_button").css("color", "red");
+    $(".current").on("mouseenter", "#share_icon_" + slideToPlay, function(event) {
+      event.preventDefault();
+      $(".current").find(".shareContentIcons").css("display", "inline-block")
+    });
+    $(document).on("click", "#share_icon_" + slideToPlay, function(event) {
+      event.preventDefault()
+    });
+    $(document).on("mouseleave", "#url_share_" + slideToPlay, function(event) {
+      event.preventDefault();
+      $(".current").find(".shareContentIcons").css("display", "none")
+    });
+    $(document).on("click", "#mcquestion_stop_button_" + slideToPlay, _onStopMcQuizButtonClicked);
+    if($(".current").find(".save_quiz").css("display") == "inline-block") {
+      $(".current").find(".save_quiz").css("display", "none")
+    }
+  };
+  var _onSendVoteMcQuizButtonClicked = function(event) {
+    slideToVote = $(".current").find("#slide_to_vote").val();
+    var answer = $(".current").find("input:radio[name='mc_radio']:checked'").val();
+    if(answer == undefined) {
+      alert("You must choice your answer before polling")
+    }else {
+      var vote_url;
+      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+      _showResultsToParticipant(data, slideToVote);
+      $(".current").find(".mc_radio").remove();
+      $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
+      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+      _showResultsToParticipant(data);
+      _removeOptionsListener(slideToVote)
+    }
+  };
+  var _onStopMcQuizButtonClicked = function() {
+    slideToStop = $(".current").find("#slide_to_stop").val();
+    $("#" + slideToStop).find(".t11_header").text("");
+    $(".current").find(".save_quiz").css("display", "inline-block");
+    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("disabled", "disabled");
+    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("value", "Start Quiz");
+    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("class", "mcquestion_start_button");
+    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("id", "mcquestion_start_button_" + slideToStop);
+    $("#" + slideToStop).find("#slide_to_stop").attr("id", "slide_to_activate");
+    $(document).on("click", "#mcquestion_start_button_" + slideToStop, _startMcQuizButtonClicked);
+    $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("color", "#F76464");
+    $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("background-color", "#F8F8F8")
+  };
+  var _statisticsMcQuizButtonClicked = function() {
+    var marginTopDefault = 18;
+    var marginTopDefault2 = 24;
+    if($(".current").find(".mc_meter").css("display") == "block") {
+      var marginTopPercentTxt = marginTopDefault * parseInt($(".current").find(".mc_answer").length).toString() + "%";
+      $(".current").find(".mc_meter").css("display", "none");
+      $(".current").find(".mcoption_label").css("display", "none");
+      if($(".current").find("#slide_to_activate").val()) {
+        slideToActivate = $(".current").find("#slide_to_activate").val();
+        $("#" + startButton + "_" + slideToActivate).css("margin-top", marginTopPercentTxt)
+      }else {
+        if($(".current").find("#slide_to_stop").val()) {
+          slideToStop = $(".current").find("#slide_to_stop").val();
+          $("#" + stopButton + "_" + slideToStop).css("margin-top", marginTopPercentTxt)
+        }
+      }
+    }else {
+      var marginTopPercentTxt = marginTopDefault2 * parseInt($(".current").find(".mc_answer").length).toString() + "%";
+      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+      _showResultsToTeacher(data);
+      if($(".current").find("#slide_to_activate").val()) {
+        slideToActivate = $(".current").find("#slide_to_activate").val();
+        $("#" + startButton + "_" + slideToActivate).css("margin-top", marginTopPercentTxt)
+      }else {
+        if($(".current").find("#slide_to_stop").val()) {
+          slideToStop = $(".current").find("#slide_to_stop").val();
+          $("#" + stopButton + "_" + slideToStop).css("margin-top", marginTopPercentTxt)
+        }
+      }
+    }
+  };
+  var _saveQuizYesButtonClicked = function() {
+    V.Debugging.log("SaveQuizYes Button Clicked");
+    $(".current").find(".mcquestion_start_button").removeAttr("disabled");
+    $(".current").find(".save_quiz").css("display", "none");
+    $(".current").find(".mcquestion_start_button").css("color", "blue");
+    $(".current").find(".mcquestion_start_button").css("background-color", "buttonface")
+  };
+  var _saveQuizNoButtonClicked = function() {
+    V.Debugging.log("SaveQuizNo Button Clicked");
+    $(".current").find(".mcquestion_start_button").removeAttr("disabled");
+    $(".current").find(".save_quiz").css("display", "none");
+    $(".current").find(".mcquestion_start_button").css("color", "blue");
+    $(".current").find(".mcquestion_start_button").css("background-color", "buttonface")
+  };
+  var _showResultsToParticipant = function(data, slide) {
+    var greatestId;
+    var greatest = 0;
+    if(data.quiz_id == userStatus.quiz_active) {
+      var votes;
+      var totalVotes = 0;
+      for(votes in data.results) {
+        totalVotes += parseInt(data.results[votes]);
+        if(parseInt(data.results[votes]) > greatest) {
+          greatestId = votes;
+          greatest = parseInt(data.results[votes])
+        }else {
+          greatestId
+        }
+      }
+      for(votes in data.results) {
+        var percent = parseInt(data.results[votes]) / totalVotes * 100;
+        var percentString = percent.toString() + "%";
+        var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
+        $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
+        $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
+      }
+    }else {
+      V.Debugging.log(" The Quiz voted is not the active Quiz. Reload the Quiz.")
+    }
+    var indexOfGreatestVoted = String.fromCharCode("a".charCodeAt(0) + parseInt(greatestId));
+    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("color", "blue");
+    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("font-weight", "bold");
+    $(".current").find(".mc_meter").css("display", "block");
+    $(".current").find(".mcoption_label").css("display", "block");
+    $(".current").find(".mcquestion_right").remove();
+    $(".current").find(".mcquestion_left").css("width", "95%")
+  };
+  var _showResultsToTeacher = function(data) {
+    if(role == "logged") {
+      var votes;
+      var totalVotes = 0;
+      for(votes in data.results) {
+        totalVotes += parseInt(data.results[votes])
+      }
+      for(votes in data.results) {
+        var percent = parseInt(data.results[votes]) / totalVotes * 100;
+        var percentString = percent.toString() + "%";
+        var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
+        $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
+        $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
+      }
+    }else {
+      V.Debugging.log(" The User's role is not the correct")
+    }
+    $(".current").find(".mc_meter").css("display", "block");
+    $(".current").find(".mcoption_label").css("display", "block")
+  };
+  var _removeOptionsListener = function(slideToRemoveListeners) {
+    var totalOptions = $(".current").find(".mc_answer").size();
+    for(var i = 0;i < totalOptions;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      var overOptionZone = "#mc_answer_" + slideToRemoveListeners + "_option_" + next_index;
+      $(overOptionZone).attr("id", "#mc_answer_" + slideToRemoveListeners + "_voted__option_" + next_index)
+    }
+  };
+  var _renderTrueFalseQuestion = function(element, template) {
+    var answers = new Array;
+    var ret = "<div id='" + element["id"] + "' class='truefalse_question'>";
+    ret += "<div class='truefalse_question_container'>";
+    ret += "<form class='truefalse_question_form' action='" + element["posturl"] + "' method='post'>";
+    ret += "<table id='truefalse_quiz_table_1' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr>";
+    for(var i = 0;i < element["questions"].length;i++) {
+      answers[i] = element["questions"][i]["answer"];
+      ret += "<tr id='tr_question_" + (i + 1) + "'>";
+      ret += "<td id='td_true_" + (i + 1) + "' class='td_true'>";
+      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='true'  id='radio_true_" + (i + 1) + "'/></td>";
+      ret += "<td id='td_false_" + (i + 1) + "' class='td_false' >";
+      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='false' id='radio_false_" + (i + 1) + "' /></td>";
+      ret += "<td id='td_question_" + (i + 1) + "' class='true_false_question_txt'><label>" + element["questions"][i]["text_question"] + "?</label></td>";
+      ret += "</tr>"
+    }
+    ret += "</table>";
+    ret += "<input type='button' class='tfquestion_button' value='Send' id='tf_send_button'/>";
+    ret += "</form>";
+    ret += "</div>";
+    trueFalseAnswers = answers;
+    asnswers = [];
+    VISH.Debugging.log("answer's array : " + trueFalseAnswers);
+    return ret
+  };
+  return{init:init, enableInteraction:enableInteraction, enableTrueFalseInteraction:enableTrueFalseInteraction}
+}(VISH, jQuery);
 VISH.AppletPlayer = function() {
   var loadApplet = function(element) {
     $.each(element.children(".appletelement"), function(index, value) {
@@ -14190,7 +14742,7 @@ VISH.Dummies = function(VISH, undefined) {
   "<article id='article_id_to_change' template='t7'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t7_subheader editable grey_background selectable'></div></article>", 
   "<article id='article_id_to_change' template='t8'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t8_right editable grey_background selectable'></div></article>", 
   "<article id='article_id_to_change' template='t9'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t9_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t10'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul id='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='" + 
+  "<article id='article_id_to_change' template='t10'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='" + 
   VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a></li> </ul> </div></article>", "<article id='article_id_to_change' template='t12'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t12_header'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table id='truefalse_quiz_table' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th><th></th></tr><tr id='tr_question_1'><td id='td_true_1' class='td_true'><input type='radio' id='true_1' name='answer_1' class='truefalse_answer' value='true'/></td><td id='td_false_1' class='td_false'><input type='radio' id='false_1' name='answer_1' class='truefalse_answer' value='false'/></td><td id='td_question_1' class='td_truefalse_question'><textarea rows='1' class='true_false_question' placeholder='Write question here' id='true_false_question_1'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + 
   VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr></table></div></article>"];
   var getDummy = function(template, article_id) {
@@ -15370,7 +15922,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     $(document).on("click", "#" + buttonAddOptionId, addMultipleChoiceOption);
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
-        V.Debugging.log("event.keyCode =" + event.keyCode);
+        V.Debugging.log("event.keyCode in init =" + event.keyCode);
         if($(myInput).val() != "" && $(myInput).val() != "write quiz options here") {
           addMultipleChoiceOption();
           $(myInput).blur()
@@ -15383,28 +15935,33 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   };
   var addMultipleChoiceOption = function(event) {
     var myInput = $(".current").find("input[type='text']").last();
+    V.Debugging.log("my Input value is: " + myInput);
     if(myInput.val() != "" && myInput.val() != "write quiz options here") {
       $(".current").find("." + MultipleChoiceOptionClass).removeAttr("autofocus");
       var text = $("<div>").append($("." + MultipleChoiceOptionClass).clone()).html();
       var inputs_search = $(".current").find("." + MultipleChoiceOptionClass);
+      V.Debugging.log("inputs search value is: " + inputs_search);
       var next_num = inputs_search.size() + 1;
+      V.Debugging.log("next_num value is: " + next_num);
       var next_index = "a".charCodeAt(0) + (next_num - 1);
       next_index = String.fromCharCode(next_index);
       if(next_num < maxNumMultipleChoiceOptions) {
         $(".add_quiz_option").remove();
         var delete_icon = "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + (next_num - 1) + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='" + VISH.ImagesPath + "/delete.png' id='remove_quiz_option_img'/></a>";
-        $(".current").find("#ul_mch_options").find("#li_mch_option_" + (next_num - 1)).append(delete_icon);
+        $(".current").find(".ul_mch_options").find("#li_mch_option_" + (next_num - 1)).append(delete_icon);
         var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ") <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='write quiz options here' />";
         add_option += "<a id='" + buttonAddOptionId + "' class='add_quiz_option'><img src='" + VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a></li>";
-        $(".current").find("#ul_mch_options").append(add_option)
+        $(".current").find(".ul_mch_options").append(add_option)
       }else {
         if(next_num == maxNumMultipleChoiceOptions) {
           $(".add_quiz_option").remove();
           var delete_icon = "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + (next_num - 1) + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='" + VISH.ImagesPath + "/delete.png' id='remove_quiz_option_img'/></a>";
-          $(".current").find("#ul_mch_options").find("#li_mch_option_" + (next_num - 1).toString()).append(delete_icon);
+          $(".current").find(".ul_mch_options").find("#li_mch_option_" + (next_num - 1).toString()).append(delete_icon);
           var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ")&nbsp;  <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='write quiz options here' />";
           add_option += "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + next_num + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='" + VISH.ImagesPath + "/delete.png' id='remove_quiz_option_img'/></a></li>";
-          $(".current").find("#ul_mch_options").append(add_option)
+          $(".current").find(".ul_mch_options").append(add_option)
+        }else {
+          V.Debugging.log("Something went wrong: next num greater than maximum number of options allowed")
         }
       }
     }else {
@@ -16459,366 +17016,25 @@ VISH.Police = function(V, $, undefined) {
   };
   return{init:init, validateObject:validateObject, validateFileUpload:validateFileUpload}
 }(VISH, jQuery);
-VISH.Quiz = function(V, $, undefined) {
-  var role;
-  var slideToActivate;
-  var slideToStop;
-  var slideToVote;
-  var user;
-  var userStatus;
-  var startButton = "mcquestion_start_button";
-  var stopButton = "mcquestion_stop_button";
-  trueFalseAnswers = new Array;
-  var init = function(element, template, slide) {
-    if(element.type === "mcquestion") {
-      user = V.SlideManager.getUser();
-      userStatus = V.SlideManager.getUserStatus();
-      role = user.role;
-      slideToVote = userStatus.quiz_active;
-      var obj;
-      switch(role) {
-        case "logged":
-          obj = _renderMcquestionLogged(element, template, slide);
-          break;
-        case "student":
-          obj = _renderMcquestionStudent(element, template, slide);
-          break;
-        case "none":
-          obj = _renderMcquestionNone(element, template, slide);
-          break;
-        default:
-          VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
-      }
-      return obj
-    }else {
-      if(element.type === "truefalsequestion") {
-        obj = _renderTrueFalseQuestion(element, template);
-        return obj
-      }
-    }
+VISH.Quiz.API = function(V, $, undefined) {
+  var init = function() {
   };
-  var enableInteraction = function(slide, options) {
-    switch(role) {
-      case "logged":
-        slideToActivate = slide;
-        _alignStartButton(options);
-        _activateLoggedInteraction();
-        break;
-      case "student":
-        slideToVote = slide;
-        _activateStudentInteraction();
-        break;
-      case "none":
-        _activateNoneInteraction();
-        break;
-      default:
-        VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
-    }
+  var postStartQuizSession = function(quiz_id, successCallback, failCallback) {
+    V.Debugging.log("quiz_id to start Quiz Session is: " + quiz_id);
+    var send_type = "POST";
+    V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
+    var params = {"quiz_id":quiz_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
+    $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions", data:params, success:function(data) {
+      return data
+    }})
   };
-  var enableTrueFalseInteraction = function(slide, options) {
-    var sendButton = $("#" + slide).find("#tf_send_button");
-    var radioInput = $("#" + slide).find("input:radio[name='tf_radio_1']")
+  var deleteQuizSession = function(quiz_session_id, successCallback, failCallback) {
   };
-  var _renderMcquestionLogged = function(element, template, slide) {
-    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
-    ret += "<form id='form_" + slide + "'class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
-    for(var i = 0;i < element["options"].length;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>";
-      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
-      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
-    }
-    ret += "</div>";
-    ret += "<div class='mcquestion_right'>";
-    ret += "<img id='mch_statistics_button_" + slide + "' class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
-    ret += "<input type='hidden' id='slide_to_activate' value='" + slide + "'/>";
-    ret += "<input type='button' id='mcquestion_start_button_" + slide + "' class='mcquestion_start_button' value='Start Quiz'/>";
-    ret += "<div id='save_quiz_" + slide + "' class='save_quiz'><label>Do you want to save the polling results?</label>";
-    ret += "<input type='button'class='mcquestion_save_yes_button' id='mcquestion_save_yes_button_" + slide + "' value='Yes'><input type='button' class='mcquestion_save_no_button' id='mcquestion_save_no_button_" + slide + "' value='No'></div>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    return ret
+  var getQuizSession = function(quiz_session_id, successCallback, failCallback) {
   };
-  var _renderMcquestionStudent = function(element, template, slide) {
-    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
-    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
-    for(var i = 0;i < element["options"].length;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      ret += "<label class='mc_answer' id='mc_answer_" + slide + "_option_" + next_index + "'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>" + element["options"][i] + "</label>";
-      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
-      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
-    }
-    ret += "</div>";
-    ret += "<div class='mcquestion_right'>";
-    ret += "<input type='hidden' id='slide_to_vote' value='" + slide + "'/>";
-    ret += "<input type='button' id='mcquestion_send_vote_button_" + slide + "' class='mcquestion_send_vote_button' value='Send'/>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    return ret
+  var putQuizSession = function(quiz_session_id, successCallback, failCallback) {
   };
-  var _renderMcquestionNone = function(element, template, slide) {
-    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
-    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
-    for(var i = 0;i < element["options"].length;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>"
-    }
-    ret += "</div>";
-    ret += "<div class='mcquestion_right'>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    return ret
-  };
-  var _activateLoggedInteraction = function() {
-    var startButton = "#mcquestion_start_button_" + slideToActivate;
-    var statisticsButton = "#mch_statistics_button_" + slideToActivate;
-    var saveQuizYesButton = "#mcquestion_save_yes_button_" + slideToActivate;
-    var saveQuizNoButton = "#mcquestion_save_no_button_" + slideToActivate;
-    $(document).on("click", startButton, _startMcQuizButtonClicked);
-    $(document).on("click", statisticsButton, _statisticsMcQuizButtonClicked);
-    $(document).on("click", saveQuizYesButton, _saveQuizYesButtonClicked);
-    $(document).on("click", saveQuizNoButton, _saveQuizNoButtonClicked)
-  };
-  var _activateStudentInteraction = function() {
-    var sendVoteButton = "#mcquestion_send_vote_button_" + slideToVote;
-    $(document).on("click", sendVoteButton, _onSendVoteMcQuizButtonClicked);
-    $(".mc_meter").hide();
-    var numOptions = $("#" + slideToVote).find(".mc_answer").size();
-    for(var i = 0;i < numOptions;i++) {
-      var next_num = i;
-      var next_index_prev = "a".charCodeAt(0) + next_num;
-      next_index = String.fromCharCode(next_index_prev);
-      var overOptionZone = "#mc_answer_" + slideToVote + "_option_" + next_index;
-      $("#" + slideToVote).on("mouseenter", overOptionZone, function(event) {
-        $(event.srcElement).css("color", "blue");
-        $(event.srcElement).css("font-weight", "bold")
-      });
-      $("#" + slideToVote).on("mouseleave", overOptionZone, function(event) {
-        $(event.srcElement).css("color", "black");
-        $(event.srcElement).css("font-weight", "normal")
-      })
-    }
-  };
-  var _activateNoneInteraction = function() {
-    V.Debugging.log(" enter on _activeNoneInteraction function")
-  };
-  var _alignStartButton = function(options) {
-    var marginTopDefault = 18;
-    var startButton = "mcquestion_start_button_" + slideToActivate;
-    var marginTopPercentTxt = marginTopDefault * parseInt(options).toString() + "%";
-    $("#" + startButton).css("margin-top", marginTopPercentTxt)
-  };
-  var _startMcQuizButtonClicked = function() {
-    slideToPlay = $(".current").find("#slide_to_activate").val();
-    var url = "http://www.vishub.org/quiz_session/456";
-    var divURLShare = "<div id='url_share_" + slideToPlay + "' class='url_share'></div>";
-    var URL = "<span>" + url + "</span>";
-    var shareButton = "<a id='share_icon_" + slideToPlay + "' class='shareQuizButton' ><img src=" + VISH.ImagesPath + "quiz/share-glossy-blue.png /></a>";
-    var shareTwitterButton = "<a target='_blank' title='share on Twitter' href='http://twitter.com/share?url=" + encodeURIComponent(url) + "' class='twitter-share-button' data-url='" + encodeURIComponent(url) + "' data-size='large' data-count='none'><img src='" + V.ImagesPath + "quiz/tw_40x40.jpg'/></a>";
-    var shareFacebookButton = "<a target='_blank' title='share on Facebook' href='http://www.facebook.com/share.php?u=" + encodeURIComponent(url) + "' ";
-    shareFacebookButton += "id='fb_share_link_" + slideToPlay + "' class='a_share_content_icon'><img src='" + V.ImagesPath + "quiz/fb_40x40.jpg'/></a>";
-    var shareContainerIcons = "<div id='share_content_icons_" + slideToPlay + "' class='shareContentIcons'> ";
-    shareContainerIcons += shareFacebookButton;
-    shareContainerIcons += shareTwitterButton;
-    if($("#" + slideToPlay).find(".t11_header").children()) {
-      $("#" + slideToPlay).find(".t11_header").children().remove()
-    }
-    $("#" + slideToPlay).find(".t11_header").append(divURLShare);
-    $(".current").find("#url_share_" + slideToPlay).append(URL);
-    $(".current").find("#url_share_" + slideToPlay).append(shareButton);
-    $(".current").find("#url_share_" + slideToPlay).append(shareContainerIcons);
-    $("#" + slideToPlay).find(".t11_header").show();
-    $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("value", "Stop Quiz");
-    $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("class", "mcquestion_stop_button");
-    $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("id", "mcquestion_stop_button_" + slideToPlay);
-    $("#" + slideToPlay).find("#slide_to_activate").attr("id", "slide_to_stop");
-    $("#" + slideToPlay).find(".mcquestion_stop_button").css("color", "red");
-    $(".current").on("mouseenter", "#share_icon_" + slideToPlay, function(event) {
-      event.preventDefault();
-      $(".current").find(".shareContentIcons").css("display", "inline-block")
-    });
-    $(document).on("click", "#share_icon_" + slideToPlay, function(event) {
-      event.preventDefault()
-    });
-    $(document).on("mouseleave", "#url_share_" + slideToPlay, function(event) {
-      event.preventDefault();
-      $(".current").find(".shareContentIcons").css("display", "none")
-    });
-    $(document).on("click", "#mcquestion_stop_button_" + slideToPlay, _onStopMcQuizButtonClicked);
-    if($(".current").find(".save_quiz").css("display") == "inline-block") {
-      $(".current").find(".save_quiz").css("display", "none")
-    }
-  };
-  var _onSendVoteMcQuizButtonClicked = function(event) {
-    slideToVote = $(".current").find("#slide_to_vote").val();
-    var answer = $(".current").find("input:radio[name='mc_radio']:checked'").val();
-    if(answer == undefined) {
-      alert("You must choice your answer before polling")
-    }else {
-      var vote_url;
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToParticipant(data, slideToVote);
-      $(".current").find(".mc_radio").remove();
-      $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToParticipant(data);
-      _removeOptionsListener(slideToVote)
-    }
-  };
-  var _onStopMcQuizButtonClicked = function() {
-    slideToStop = $(".current").find("#slide_to_stop").val();
-    $("#" + slideToStop).find(".t11_header").text("");
-    $(".current").find(".save_quiz").css("display", "inline-block");
-    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("disabled", "disabled");
-    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("value", "Start Quiz");
-    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("class", "mcquestion_start_button");
-    $("#" + slideToStop).find("#mcquestion_stop_button_" + slideToStop).attr("id", "mcquestion_start_button_" + slideToStop);
-    $("#" + slideToStop).find("#slide_to_stop").attr("id", "slide_to_activate");
-    $(document).on("click", "#mcquestion_start_button_" + slideToStop, _startMcQuizButtonClicked);
-    $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("color", "#F76464");
-    $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("background-color", "#F8F8F8")
-  };
-  var _statisticsMcQuizButtonClicked = function() {
-    var marginTopDefault = 18;
-    var marginTopDefault2 = 24;
-    if($(".current").find(".mc_meter").css("display") == "block") {
-      var marginTopPercentTxt = marginTopDefault * parseInt($(".current").find(".mc_answer").length).toString() + "%";
-      $(".current").find(".mc_meter").css("display", "none");
-      $(".current").find(".mcoption_label").css("display", "none");
-      if($(".current").find("#slide_to_activate").val()) {
-        slideToActivate = $(".current").find("#slide_to_activate").val();
-        $("#" + startButton + "_" + slideToActivate).css("margin-top", marginTopPercentTxt)
-      }else {
-        if($(".current").find("#slide_to_stop").val()) {
-          slideToStop = $(".current").find("#slide_to_stop").val();
-          $("#" + stopButton + "_" + slideToStop).css("margin-top", marginTopPercentTxt)
-        }
-      }
-    }else {
-      var marginTopPercentTxt = marginTopDefault2 * parseInt($(".current").find(".mc_answer").length).toString() + "%";
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToTeacher(data);
-      if($(".current").find("#slide_to_activate").val()) {
-        slideToActivate = $(".current").find("#slide_to_activate").val();
-        $("#" + startButton + "_" + slideToActivate).css("margin-top", marginTopPercentTxt)
-      }else {
-        if($(".current").find("#slide_to_stop").val()) {
-          slideToStop = $(".current").find("#slide_to_stop").val();
-          $("#" + stopButton + "_" + slideToStop).css("margin-top", marginTopPercentTxt)
-        }
-      }
-    }
-  };
-  var _saveQuizYesButtonClicked = function() {
-    V.Debugging.log("SaveQuizYes Button Clicked");
-    $(".current").find(".mcquestion_start_button").removeAttr("disabled");
-    $(".current").find(".save_quiz").css("display", "none");
-    $(".current").find(".mcquestion_start_button").css("color", "blue");
-    $(".current").find(".mcquestion_start_button").css("background-color", "buttonface")
-  };
-  var _saveQuizNoButtonClicked = function() {
-    V.Debugging.log("SaveQuizNo Button Clicked");
-    $(".current").find(".mcquestion_start_button").removeAttr("disabled");
-    $(".current").find(".save_quiz").css("display", "none");
-    $(".current").find(".mcquestion_start_button").css("color", "blue");
-    $(".current").find(".mcquestion_start_button").css("background-color", "buttonface")
-  };
-  var _showResultsToParticipant = function(data, slide) {
-    var greatestId;
-    var greatest = 0;
-    if(data.quiz_id == userStatus.quiz_active) {
-      var votes;
-      var totalVotes = 0;
-      for(votes in data.results) {
-        totalVotes += parseInt(data.results[votes]);
-        if(parseInt(data.results[votes]) > greatest) {
-          greatestId = votes;
-          greatest = parseInt(data.results[votes])
-        }else {
-          greatestId
-        }
-      }
-      for(votes in data.results) {
-        var percent = parseInt(data.results[votes]) / totalVotes * 100;
-        var percentString = percent.toString() + "%";
-        var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-        $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
-        $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
-      }
-    }else {
-      V.Debugging.log(" The Quiz voted is not the active Quiz. Reload the Quiz.")
-    }
-    var indexOfGreatestVoted = String.fromCharCode("a".charCodeAt(0) + parseInt(greatestId));
-    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("color", "blue");
-    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("font-weight", "bold");
-    $(".current").find(".mc_meter").css("display", "block");
-    $(".current").find(".mcoption_label").css("display", "block");
-    $(".current").find(".mcquestion_right").remove();
-    $(".current").find(".mcquestion_left").css("width", "95%")
-  };
-  var _showResultsToTeacher = function(data) {
-    if(role == "logged") {
-      var votes;
-      var totalVotes = 0;
-      for(votes in data.results) {
-        totalVotes += parseInt(data.results[votes])
-      }
-      for(votes in data.results) {
-        var percent = parseInt(data.results[votes]) / totalVotes * 100;
-        var percentString = percent.toString() + "%";
-        var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-        $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
-        $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
-      }
-    }else {
-      V.Debugging.log(" The User's role is not the correct")
-    }
-    $(".current").find(".mc_meter").css("display", "block");
-    $(".current").find(".mcoption_label").css("display", "block")
-  };
-  var _removeOptionsListener = function(slideToRemoveListeners) {
-    var totalOptions = $(".current").find(".mc_answer").size();
-    for(var i = 0;i < totalOptions;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      var overOptionZone = "#mc_answer_" + slideToRemoveListeners + "_option_" + next_index;
-      $(overOptionZone).attr("id", "#mc_answer_" + slideToRemoveListeners + "_voted__option_" + next_index)
-    }
-  };
-  var _renderTrueFalseQuestion = function(element, template) {
-    var answers = new Array;
-    var ret = "<div id='" + element["id"] + "' class='truefalse_question'>";
-    ret += "<div class='truefalse_question_container'>";
-    ret += "<form class='truefalse_question_form' action='" + element["posturl"] + "' method='post'>";
-    ret += "<table id='truefalse_quiz_table_1' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr>";
-    for(var i = 0;i < element["questions"].length;i++) {
-      answers[i] = element["questions"][i]["answer"];
-      ret += "<tr id='tr_question_" + (i + 1) + "'>";
-      ret += "<td id='td_true_" + (i + 1) + "' class='td_true'>";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='true'  id='radio_true_" + (i + 1) + "'/></td>";
-      ret += "<td id='td_false_" + (i + 1) + "' class='td_false' >";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='false' id='radio_false_" + (i + 1) + "' /></td>";
-      ret += "<td id='td_question_" + (i + 1) + "' class='true_false_question_txt'><label>" + element["questions"][i]["text_question"] + "?</label></td>";
-      ret += "</tr>"
-    }
-    ret += "</table>";
-    ret += "<input type='button' class='tfquestion_button' value='Send' id='tf_send_button'/>";
-    ret += "</form>";
-    ret += "</div>";
-    trueFalseAnswers = answers;
-    asnswers = [];
-    VISH.Debugging.log("answer's array : " + trueFalseAnswers);
-    return ret
-  };
-  return{init:init, enableInteraction:enableInteraction, enableTrueFalseInteraction:enableTrueFalseInteraction}
+  return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, getQuizSession:getQuizSession, putQuizSession:putQuizSession}
 }(VISH, jQuery);
 VISH.Renderer = function(V, $, undefined) {
   var SLIDE_CONTAINER = null;
@@ -16948,22 +17164,18 @@ VISH.SlideManager = function(V, $, undefined) {
   var mySlides = null;
   var slideStatus = {};
   var myDoc;
-  var eventsLoaded = false;
   var user = {};
   var status = {};
   var init = function(options, excursion) {
-    V.Slides.init();
+    var with_mashme_integration = options["mashme"];
+    V.Slides.init(with_mashme_integration);
     V.Status.init();
     VISH.Editing = false;
-    if(options) {
-      initOptions = options;
-      if(options["developping"] === true && VISH.Debugging) {
-        VISH.Debugging.init(true)
-      }else {
-        VISH.Debugging.init(false)
-      }
+    V.Debugging.log("options : username " + options["username"] + " token " + options["token"] + " quiz_active " + options["quiz_active"]);
+    initOptions = options;
+    if(options["developping"] === true && VISH.Debugging) {
+      VISH.Debugging.init(true)
     }else {
-      initOptions = {};
       VISH.Debugging.init(false)
     }
     if(options["username"]) {
@@ -16997,11 +17209,6 @@ VISH.SlideManager = function(V, $, undefined) {
     mySlides = excursion.slides;
     V.Excursion.init(mySlides);
     V.ViewerAdapter.setupSize();
-    if(!eventsLoaded) {
-      eventsLoaded = true;
-      $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
-      $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide)
-    }
     if(V.Status.getIsInIframe()) {
       myDoc = parent.document
     }else {
@@ -17013,7 +17220,7 @@ VISH.SlideManager = function(V, $, undefined) {
     if(V.Status.features.fullscreen) {
       $(document).on("click", "#page-fullscreen", toggleFullScreen);
       $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function() {
-        V.ViewerAdapter.setupSize()
+        setTimeout(V.ViewerAdapter.setupSize, 200)
       })
     }else {
       $("#page-fullscreen").hide()
@@ -17155,113 +17362,39 @@ VISH.SlideManager = function(V, $, undefined) {
   };
   return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, toggleFullScreen:toggleFullScreen, getUser:getUser, getUserStatus:getUserStatus, updateSlideCounter:updateSlideCounter}
 }(VISH, jQuery);
-VISH.Slides = function(V, $, undefined) {
-  var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
-  var PM_TOUCH_SENSITIVITY = 200;
-  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
+VISH.Slides.Events = function(V, $, undefined) {
+  var addedEventListeners = false;
   var init = function() {
-    getCurSlideFromHash();
-    $(document).bind("OURDOMContentLoaded", handleDomLoaded)
-  };
-  var handleDomLoaded = function() {
-    V.slideEls = document.querySelectorAll("section.slides > article");
-    addFontStyle();
-    updateSlides();
-    setupInteraction();
     addEventListeners();
-    $("body").addClass("loaded")
+    $(document).bind("touchstart", handleTouchStart)
   };
-  var getSlideEl = function(no) {
-    if(no < 0 || no >= V.slideEls.length) {
-      return null
-    }else {
-      return V.slideEls[no]
-    }
-  };
-  var updateSlideClass = function(slideNo, className) {
-    var el = getSlideEl(slideNo);
-    if(!el) {
-      return
-    }
-    if(className) {
-      $(el).addClass(className)
-    }
-    for(var i in SLIDE_CLASSES) {
-      if(className != SLIDE_CLASSES[i]) {
-        $(el).removeClass(SLIDE_CLASSES[i])
-      }
+  var addEventListeners = function() {
+    if(!addedEventListeners) {
+      $(document).bind("keydown", handleBodyKeyDown);
+      $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+      addedEventListeners = true
     }
   };
-  var updateSlides = function(goingRight) {
-    for(var i = 0;i < V.slideEls.length;i++) {
-      switch(i) {
-        case V.curSlide - 2:
-          updateSlideClass(i, "far-past");
-          break;
-        case V.curSlide - 1:
-          updateSlideClass(i, "past");
-          break;
-        case V.curSlide:
-          updateSlideClass(i, "current");
-          break;
-        case V.curSlide + 1:
-          updateSlideClass(i, "next");
-          break;
-        case V.curSlide + 2:
-          updateSlideClass(i, "far-next");
-          break;
-        default:
-          updateSlideClass(i);
-          break
-      }
+  var handleBodyKeyDown = function(event) {
+    switch(event.keyCode) {
+      case 39:
+      ;
+      case 40:
+        if(V.Slides.isSlideFocused()) {
+          V.Slides.forwardOneSlide();
+          event.preventDefault()
+        }
+        break;
+      case 37:
+      ;
+      case 38:
+        if(V.Slides.isSlideFocused()) {
+          V.Slides.backwardOneSlide();
+          event.preventDefault()
+        }
+        break
     }
-    if(goingRight) {
-      triggerLeaveEvent(V.curSlide - 1)
-    }else {
-      triggerLeaveEvent(V.curSlide + 1)
-    }
-    triggerEnterEvent(V.curSlide);
-    updateHash()
-  };
-  var prevSlide = function() {
-    if(V.curSlide > 0) {
-      V.curSlide--;
-      updateSlides(false)
-    }
-  };
-  var nextSlide = function() {
-    if(V.curSlide < V.slideEls.length - 1) {
-      V.curSlide++;
-      updateSlides(true)
-    }
-  };
-  var triggerEnterEvent = function(no) {
-    var el = getSlideEl(no);
-    if(!el) {
-      return
-    }
-    var onEnter = el.getAttribute("onslideenter");
-    if(onEnter) {
-      (new Function(onEnter)).call(el)
-    }
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideenter", true, true);
-    evt.slideNumber = no + 1;
-    el.dispatchEvent(evt)
-  };
-  var triggerLeaveEvent = function(no) {
-    var el = getSlideEl(no);
-    if(!el) {
-      return
-    }
-    var onLeave = el.getAttribute("onslideleave");
-    if(onLeave) {
-      (new Function(onLeave)).call(el)
-    }
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideleave", true, true);
-    evt.slideNumber = no + 1;
-    el.dispatchEvent(evt)
   };
   var getTouches = function(event) {
     if(event.touches) {
@@ -17318,118 +17451,69 @@ VISH.Slides = function(V, $, undefined) {
     document.body.removeEventListener("touchmove", handleTouchMove, true);
     document.body.removeEventListener("touchend", handleTouchEnd, true)
   };
-  var setupInteraction = function() {
-    $(document).bind("touchstart", handleTouchStart)
+  return{init:init}
+}(VISH, jQuery);
+VISH.Slides.Mashme = function(V, $, undefined) {
+  var addedEventListeners = false;
+  var MASHME_API_SCRIPT_URL = "https://mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
+  var init = function() {
+    $.getScript(MASHME_API_SCRIPT_URL).done(function(script, textStatus) {
+      MASHME.API.iFrame.init("myappkey", "myappsecret", _onMashmeMessage)
+    });
+    addEventListeners()
   };
-  var getCurSlideFromHash = function() {
-    var slideNo = parseInt(location.hash.substr(1));
-    if(slideNo) {
-      V.curSlide = slideNo - 1
-    }else {
-      V.curSlide = 0
+  var addEventListeners = function() {
+    if(!addedEventListeners) {
+      $(document).bind("keydown", handleBodyKeyDown);
+      $(document).on("click", "#page-switcher-start", _sendBackward);
+      $(document).on("click", "#page-switcher-end", _sendForward);
+      addedEventListeners = true
     }
-  };
-  var updateHash = function() {
-    location.replace("#" + (V.curSlide + 1))
-  };
-  var isSlideFocused = function() {
-    if($(".wysiwygInstance").is(":focus")) {
-      return false
-    }
-    return true
   };
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
       case 39:
       ;
-      case 34:
-        if(isSlideFocused()) {
-          forwardOneSlide();
+      case 40:
+        if(V.Slides.isSlideFocused()) {
+          _sendForward();
           event.preventDefault()
         }
         break;
       case 37:
-        if(isSlideFocused()) {
-          backwardOneSlide();
-          event.preventDefault()
-        }
-        break;
-      case 33:
-        backwardOneSlide();
-        event.preventDefault();
-        break;
-      case 40:
-        if(isSlideFocused()) {
-          forwardOneSlide();
-          event.preventDefault()
-        }
-        break;
+      ;
       case 38:
-        if(isSlideFocused()) {
-          backwardOneSlide();
+        if(V.Slides.isSlideFocused()) {
+          _sendBackward();
           event.preventDefault()
         }
         break
     }
   };
-  var addedEventListeners = false;
-  var addEventListeners = function() {
-    if(!addedEventListeners) {
-      $(document).bind("keydown", handleBodyKeyDown);
-      addedEventListeners = true
+  var _onMashmeMessage = function(message) {
+    console.log("Recibiendo:" + message.data + " from:" + message.origin);
+    var command = message.data.substring(message.data.indexOf(":") + 1);
+    switch(command) {
+      case "backwardOneSlide":
+        V.Debugging.log("backwardOneSlide");
+        V.Slides.backwardOneSlide();
+        break;
+      case "forwardOneSlide":
+        V.Debugging.log("forwardOneSlide");
+        V.Slides.forwardOneSlide();
+        break
     }
   };
-  var addFontStyle = function() {
-    var el = document.createElement("link");
-    el.rel = "stylesheet";
-    el.type = "text/css";
-    el.href = "http://fonts.googleapis.com/css?family=" + "Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono";
-    document.body.appendChild(el)
+  var _sendForward = function() {
+    _sendMessage("forwardOneSlide")
   };
-  var addGeneralStyle = function() {
-    var el = document.createElement("meta");
-    el.name = "viewport";
-    el.content = "width=900,height=750";
-    document.querySelector("head").appendChild(el);
-    var el = document.createElement("meta");
-    el.name = "apple-mobile-web-app-capable";
-    el.content = "yes";
-    document.querySelector("head").appendChild(el)
+  var _sendBackward = function() {
+    _sendMessage("backwardOneSlide")
   };
-  var lastSlide = function() {
-    goToSlide(V.slideEls.length)
+  var _sendMessage = function(message) {
+    MASHME.API.iFrame.broadcast("MashMeAPIMessage:" + message)
   };
-  var goToSlide = function(no) {
-    if(no > V.slideEls.length || no <= 0) {
-      return
-    }else {
-      if(no > V.curSlide + 1) {
-        while(V.curSlide + 1 < no) {
-          nextSlide()
-        }
-      }else {
-        if(no < V.curSlide + 1) {
-          while(V.curSlide + 1 > no) {
-            prevSlide()
-          }
-        }
-      }
-    }
-    if(VISH.Editing) {
-      $(".selectable").css("border-style", "none");
-      VISH.Editor.Tools.cleanZoneTools();
-      V.Editor.Thumbnails.selectThumbnail(no)
-    }else {
-      V.SlideManager.updateSlideCounter()
-    }
-  };
-  var backwardOneSlide = function() {
-    goToSlide(V.curSlide)
-  };
-  var forwardOneSlide = function() {
-    goToSlide(V.curSlide + 2)
-  };
-  return{addEventListeners:addEventListeners, backwardOneSlide:backwardOneSlide, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, init:init, nextSlide:nextSlide, prevSlide:prevSlide, lastSlide:lastSlide}
+  return{init:init}
 }(VISH, jQuery);
 VISH.SnapshotPlayer = function() {
   var loadSnapshot = function(element) {
@@ -17796,8 +17880,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var width = $(window).width();
     var finalW = 800;
     var finalH = 600;
-    VISH.Debugging.log("height " + height);
-    VISH.Debugging.log("width " + width);
     var aspectRatio = width / height;
     var slidesRatio = 4 / 3;
     if(aspectRatio > slidesRatio) {
@@ -17807,8 +17889,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       finalW = width - margin_width;
       finalH = finalW / slidesRatio
     }
-    VISH.Debugging.log("finalH " + finalH);
-    VISH.Debugging.log("finalW " + finalW);
     $(".slides > article").css("height", finalH);
     $(".slides > article").css("width", finalW);
     var marginTop = finalH / 2 + reserved_px_for_menubar / 2;
