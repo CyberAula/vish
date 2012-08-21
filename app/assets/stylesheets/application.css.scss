@@ -665,9 +665,11 @@ cursor: text;
 
 
 .ellipsis{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; }
+
 .w120px{ max-width: 120px; }
 .w150px{ max-width: 150px; }
 .w190px{ max-width: 190px; }
+.w200px{ max-width: 200px; }
 
 
 .copy_new_comment{ height: 5px;}
@@ -923,7 +925,14 @@ form.example input.file.hidden {
   width: 98%;
 }
 .messages_margin{margin-top: 10px ;margin-right: 10px; width: 50px;
+
+
 }
+
+.participants{
+margin-left: 10px;
+}
+
 .boxy_gray_message {
   background-color: #f5f5f5;
   margin-top: 18px;
