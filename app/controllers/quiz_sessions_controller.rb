@@ -5,7 +5,7 @@ class QuizSessionsController < ApplicationController
     return if params[:quiz_id].blank?
     qs = QuizSession.new
     qs.quiz = Quiz.find(params[:quiz_id])
-    qs.owner=current_subject
+    qs.owner=current_user
     qs.active=true
     qs.name = params[:name] unless params[:name].blank?
     qs.save!
