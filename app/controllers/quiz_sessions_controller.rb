@@ -36,7 +36,7 @@ class QuizSessionsController < ApplicationController
 
   def destroy # DELETE /quiz_sessions/X => close quiz => show results
     @quiz_session = QuizSession.find(params[:id])
-    render 'quiz_sessions/not_owner' unless @quiz_session.owner = current_subject
+    render 'quiz_sessions/not_owner' unless @quiz_session.owner = current_user
     @quiz_session.active=false
     @quiz_session.name = params[:name] unless params[:name].blank?
     @quiz_session.name = "No Name" if @quiz_session.name.blank?
