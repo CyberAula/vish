@@ -196,34 +196,7 @@ hr {
 
 }
 
-.radio {
-	height: 25px;
-	width: 19px;
-	clear:left;
-	float:left;
-	margin: 0 0 3px;
-	padding: 0 0 0 26px;
-	background: url("radio.png");
-	background-repeat:no-repeat;
-	cursor: default;
-}
-.checkbox {
-	height: 25px;
-	width: 19px;
-	clear:left;
-	float:left;
-	margin: 0 0 3px;
-	padding: 0 0 0 26px;
-	background: url("checkbox.gif") no-repeat;
-	cursor: default;
-	text-align:left;
-}
-.checkbox input,.radio input {
-	display: none;
-}
-.checkbox input.show,.radio input.show {
-	display: inline;
-}
+
 .selected {
 	background-position: 0 -52px;
 }
