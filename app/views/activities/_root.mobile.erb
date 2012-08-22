@@ -10,6 +10,9 @@
             <div class="size18">
               <%= activity.title(self) %>
             </div>
+            <% unless activity.activity_objects.empty? %>
+              <span class=""><%= render activity.activity_objects %></span>
+            <%end%>
           </div>
           <div class="span9 margin-wall-txt">
             <div class="span6 ellipsis w450px"><%= t('time.ago', :time => time_ago_in_words(activity.created_at)) %></div>
