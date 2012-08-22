@@ -47,7 +47,6 @@
         </div>
       </div>
     </div> 
-    </div> 
   </div>
 </article>
 
@@ -57,8 +56,6 @@
   $(".carousel").carousel({
     interval: false
   });
-  $(".carousel").touchwipe({
-    wipeLeft: this.carousel("next");
-    wipeRight: this.carousel("prev");
-  });
+  $(".carousel").on("swipeLeft", function() { this.carousel("next")});
+  $(".carousel").on("swipeRight", function() { this.carousel("prev")});
 <% end %>
