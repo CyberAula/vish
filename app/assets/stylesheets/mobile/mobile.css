@@ -352,3 +352,61 @@ background-repeat: no-repeat; background-position: top-center;background-size: 1
 opacity: 0.87;}
 
 .container-logs{padding-top: 66px;}
+
+/*radiobuttons clases*/
+
+.imageless-css-3-form-elements label{
+  cursor: hand;
+  cursor: pointer;
+}        
+.imageless-css-3-form-elements label input[type="checkbox"],
+.imageless-css-3-form-elements label input[type="checkbox"] + span,
+.imageless-css-3-form-elements label input[type="checkbox"] + span::before,{
+  vertical-align: middle;
+}        
+.imageless-css-3-form-elements label input[type="checkbox"]{
+  position: absolute;
+  filter: alpha(opacity=0);
+            -moz-opacity: 0;
+            -webkit-opacity: 0;
+            opacity: 0;
+}        
+.imageless-css-3-form-elements label input[type="checkbox"] + span,
+.imageless-css-3-form-elements label input[type="checkbox"] + span::before{
+    display: inline-block;
+}        
+.imageless-css-3-form-elements label input[type="checkbox"] + span::before{
+    content: "O";
+}       
+.imageless-css-3-form-elements label input[type="checkbox"] + span::before{
+  text-indent: -9999px;
+  width: 21px;
+  height: 24px;
+  color: #000;
+  font: bold 25px/25px Garamond, "Segoe UI", Sans-serif;
+  text-transform: uppercase;
+  border: solid 1px #cccccc;
+  border-radius: 19px;
+  box-shadow: 0 0 1px 1px #ccc;
+  background: #ffffff;
+  margin: 7px 5px 10px 19px;
+  padding: 5px 8px 5px 5px;
+}       
+.imageless-css-3-form-elements label:hover input[type="checkbox"]:not(:disabled) + span::before{
+  box-shadow: 0 0 4px 4px #ccc;
+}       
+.imageless-css-3-form-elements label input[type="checkbox"]:checked + span::before{
+  text-indent: 2px;
+  color: #cccccc;
+  text-shadow: 0 0 2px #cccccc;
+}
+.imageless-css-3-form-elements label input[type="checkbox"]:disabled + span::before{
+            filter: alpha(opacity=50);
+            -moz-opacity: .5;
+            -webkit-opacity: .5;
+            opacity: .5;
+}
+.imageless-css-3-form-elements label input[type="checkbox"]:disabled + span,
+.imageless-css-3-form-elements label input[type="checkbox"]:disabled + span::before{
+  cursor: default;
+}
