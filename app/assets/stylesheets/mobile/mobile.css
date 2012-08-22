@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /* CSS Document */
 
+#email{margin-top: 20px; margin-bottom: 20px;}
+
 body {
     color: #333333;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -195,35 +197,6 @@ hr {
   font-size: 35px;
 
 }
-
-.radio {
-	height: 25px;
-	width: 19px;
-	clear:left;
-	float:left;
-	margin: 0 0 3px;
-	padding: 0 0 0 26px;
-	background: url("radio.png");
-	background-repeat:no-repeat;
-	cursor: default;
-}
-.checkbox {
-	height: 25px;
-	width: 19px;
-	clear:left;
-	float:left;
-	margin: 0 0 3px;
-	padding: 0 0 0 26px;
-	background: url("checkbox.gif") no-repeat;
-	cursor: default;
-	text-align:left;
-}
-.checkbox input,.radio input {
-	display: none;
-}
-.checkbox input.show,.radio input.show {
-	display: inline;
-}
 .selected {
 	background-position: 0 -52px;
 }
@@ -246,7 +219,7 @@ label {
     width: 98%;
 }
 
-input, textarea, select, .uneditable-input{border-radius:5px; background-color: #fefefe; margin-bottom: 25px; margin-top: -6px;}
+input, textarea, select, .uneditable-input{border-radius:5px; background-color: #fefefe; margin-bottom: 25px !important; margin-top: -6px;}
 
 .input-xlarge {height:60px}
 .section {margin-right: 10px; margin-left: 10px;}
@@ -348,8 +321,7 @@ background-repeat: no-repeat; background-position: top-center;background-size: 1
 background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
 
 .vish-white{opacity: 0.6;}
-.welcome{text-shadow: 1px 2px #999;
-opacity: 0.87;}
+.welcome{text-shadow: 1px 2px #999; opacity: 0.87;}
 
 .container-logs{padding-top: 66px;}
 

@@ -2,7 +2,7 @@
   <%= t('welcome', :site => t('site.name')) %>
 <%end%>
 
-<div class= "container backgindex-center">
+
 
 <section id= "wall">
  <article class="row-fluid article">
@@ -11,7 +11,7 @@
 
 
  </div>
- <div class="span11 dsigneslight gray">
+ <div class="span11 DsignesLight gray">
  <div class="span12 pagination-right size30">nanotechnology</div>
  <div class="span12 size30">grid computing</div>
  <div class="span12">
@@ -30,37 +30,38 @@
  </div>
  </article>
 </section>
-</div>
-<div class= "container backgindex-bottom">
+
+
 
 
 <footer id="wall">
  <article class="row-fluid article">
 <div class="span11">
 
- <div class="space"></div>
- <div class="span4 send_messag size10 red-2 upfoll users_btn_follow">
- <div class="follow-link-contact_346">
- <div class="follow-button">
+
+ <div class="span3 inline">
+ <div class="span btn-m btn-red pull-right">
+ 
  <%= link_to t('sign_up'), new_user_registration_path %>
+ 
  </div>
  </div>
+ <div class="span1 inline-block"> </div>
+ <div class="span4 inline-block">
+ <div class="span btn-m btn-green pull-right">
+ <a href="/explore"><%= t('explore') %></a>
+
  </div>
- <div class="span4 size10 ">
- <div class="button">
- <div class="btn explore-button">
- <a class="size15" href="/explore"><%= t('explore') %></a>
  </div>
- </div>
- </div>
- <div class="span4 send_messag size10 red-2 upfoll users_btn_follow">
- <div class="follow-link-contact_346">
- <div class="follow-button">
+ <div class="span1 inline-block"> </div>
+ <div class="span3 inline-block">
+ <div class="span btn-m btn-red pull-right">
+
  <%= link_to t('devise.links.sign_in'), new_user_session_path %>
- </div>
+
  </div>
  </div>
  </div>
  </article>
  </footer>
- </div>
+
