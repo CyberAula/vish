@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813150704) do
+ActiveRecord::Schema.define(:version => 20120822160631) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -313,6 +313,7 @@ ActiveRecord::Schema.define(:version => 20120813150704) do
     t.string  "type"
     t.string  "question"
     t.string  "options"
+    t.string  "simple_json"
   end
 
   create_table "receipts", :force => true do |t|
