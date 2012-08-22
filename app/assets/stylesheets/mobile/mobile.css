@@ -232,18 +232,6 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 
 .margin-wall-txt{margin-top:10px;}
 
-.following-button, .unfollow-button, .follow-button {
-    padding-bottom: 5px;
-    padding-top: 5px;
-    margin-top:0px;
-	font-weight:100;
-	letter-spacing: 0.1em;
-	text-decoration:none;
-	width:auto;
-}
-.follow-button a{
-	text-decoration:none;
-}
 .explore-button {
    padding-bottom: 5px;
     padding-top: 5px;
@@ -310,19 +298,9 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   display:block;
   margin-top: -5px
 }
-.backgindex-bottom{
-background-image: url("/assets/mobile/bottomindex.jpg"); 
-background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
-.backgindex-center{
-background-image: url("/assets/mobile/topindex.jpg"); 
-background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
-
-.backgindex{background-image: url("/assets/mobile/ballena2.jpg"); 
-background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
 
 .vish-white{opacity: 0.6;}
-.welcome{text-shadow: 1px 2px #999;
-opacity: 0.87;}
+
 
 .container-logs{padding-top: 66px;}
 
