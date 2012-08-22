@@ -118,4 +118,3 @@ namespace :vish_editor do
   end
 
 end
-

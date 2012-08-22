@@ -14240,10 +14240,11 @@ VISH.Quiz = function(V, $, undefined) {
   var slideToVote;
   var user;
   var userStatus;
+  var quizUrlForSession = " http://www.vishub.org/quiz_sessions/";
   var startButton = "mcquestion_start_button";
   var stopButton = "mcquestion_stop_button";
   trueFalseAnswers = new Array;
-  var init = function(element, template, slide) {
+  var init = function(element, template, slide, quiz_id) {
     if(element.type === "mcquestion") {
       user = V.SlideManager.getUser();
       userStatus = V.SlideManager.getUserStatus();
@@ -14252,7 +14253,7 @@ VISH.Quiz = function(V, $, undefined) {
       var obj;
       switch(role) {
         case "logged":
-          obj = _renderMcquestionLogged(element, template, slide);
+          obj = _renderMcquestionLogged(element, template, slide, quiz_id);
           break;
         case "student":
           obj = _renderMcquestionStudent(element, template, slide);
@@ -14293,7 +14294,7 @@ VISH.Quiz = function(V, $, undefined) {
     var sendButton = $("#" + slide).find("#tf_send_button");
     var radioInput = $("#" + slide).find("input:radio[name='tf_radio_1']")
   };
-  var _renderMcquestionLogged = function(element, template, slide) {
+  var _renderMcquestionLogged = function(element, template, slide, quiz_id) {
     var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
@@ -14308,6 +14309,7 @@ VISH.Quiz = function(V, $, undefined) {
     ret += "<div class='mcquestion_right'>";
     ret += "<img id='mch_statistics_button_" + slide + "' class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
     ret += "<input type='hidden' id='slide_to_activate' value='" + slide + "'/>";
+    ret += "<input type='hidden' id='quiz_id_to_activate' value='" + quiz_id + "'/>";
     ret += "<input type='button' id='mcquestion_start_button_" + slide + "' class='mcquestion_start_button' value='Start Quiz'/>";
     ret += "<div id='save_quiz_" + slide + "' class='save_quiz'><label>Do you want to save the polling results?</label>";
     ret += "<input type='button'class='mcquestion_save_yes_button' id='mcquestion_save_yes_button_" + slide + "' value='Yes'><input type='button' class='mcquestion_save_no_button' id='mcquestion_save_no_button_" + slide + "' value='No'></div>";
@@ -14393,12 +14395,15 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _startMcQuizButtonClicked = function() {
     slideToPlay = $(".current").find("#slide_to_activate").val();
-    var quiz_id = 1;
-    var quiz_session_id = V.Quiz.API.postStartQuizSession(quiz_id);
+    var quiz_id = $(".current").find("#quiz_id_to_activate").val();
+    V.Debugging.log("Quiz_id from form : " + quiz_id);
+    V.Quiz.API.postStartQuizSession(quiz_id, _onQuizSessionReceived, _OnQuizSessionReceivedError)
+  };
+  var _onQuizSessionReceived = function(quiz_session_id) {
     V.Debugging.log("returned value is (quiz_Session_id?): " + quiz_session_id);
-    var url = "http://www.vishub.org/quiz_session/" + quiz_session_id;
+    var url = quizUrlForSession + quiz_session_id;
     var divURLShare = "<div id='url_share_" + slideToPlay + "' class='url_share'></div>";
-    var URL = "<span>" + url + "</span>";
+    var urlToAppend = "<span>" + url + "</span>";
     var shareButton = "<a id='share_icon_" + slideToPlay + "' class='shareQuizButton' ><img src=" + VISH.ImagesPath + "quiz/share-glossy-blue.png /></a>";
     var shareTwitterButton = "<a target='_blank' title='share on Twitter' href='http://twitter.com/share?url=" + encodeURIComponent(url) + "' class='twitter-share-button' data-url='" + encodeURIComponent(url) + "' data-size='large' data-count='none'><img src='" + V.ImagesPath + "quiz/tw_40x40.jpg'/></a>";
     var shareFacebookButton = "<a target='_blank' title='share on Facebook' href='http://www.facebook.com/share.php?u=" + encodeURIComponent(url) + "' ";
@@ -14410,7 +14415,7 @@ VISH.Quiz = function(V, $, undefined) {
       $("#" + slideToPlay).find(".t11_header").children().remove()
     }
     $("#" + slideToPlay).find(".t11_header").append(divURLShare);
-    $(".current").find("#url_share_" + slideToPlay).append(URL);
+    $(".current").find("#url_share_" + slideToPlay).append(urlToAppend);
     $(".current").find("#url_share_" + slideToPlay).append(shareButton);
     $(".current").find("#url_share_" + slideToPlay).append(shareContainerIcons);
     $("#" + slideToPlay).find(".t11_header").show();
@@ -14419,6 +14424,8 @@ VISH.Quiz = function(V, $, undefined) {
     $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("id", "mcquestion_stop_button_" + slideToPlay);
     $("#" + slideToPlay).find("#slide_to_activate").attr("id", "slide_to_stop");
     $("#" + slideToPlay).find(".mcquestion_stop_button").css("color", "red");
+    $(".current").find("#quiz_id_to_activate").attr("id", "quiz_session_id");
+    $(".current").find("#quiz_session_id").attr("value", quiz_session_id);
     $(".current").on("mouseenter", "#share_icon_" + slideToPlay, function(event) {
       event.preventDefault();
       $(".current").find(".shareContentIcons").css("display", "inline-block")
@@ -14434,6 +14441,9 @@ VISH.Quiz = function(V, $, undefined) {
     if($(".current").find(".save_quiz").css("display") == "inline-block") {
       $(".current").find(".save_quiz").css("display", "none")
     }
+  };
+  var _OnQuizSessionReceivedError = function(error) {
+    console.log("_OnQuizSessionReceivedError:  " + error)
   };
   var _onSendVoteMcQuizButtonClicked = function(event) {
     slideToVote = $(".current").find("#slide_to_vote").val();
@@ -14452,6 +14462,12 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var _onStopMcQuizButtonClicked = function() {
+    var quiz_id = $(".current").find("#quiz_session_id").val();
+    V.Debugging.log("Quiz_session id from form : " + quiz_id);
+    V.Quiz.API.deleteQuizSession(quiz_id, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError)
+  };
+  var _onQuizSessionCloseReceived = function(results) {
+    console.log("_onQuizSessionCloseReceived:  " + results);
     slideToStop = $(".current").find("#slide_to_stop").val();
     $("#" + slideToStop).find(".t11_header").text("");
     $(".current").find(".save_quiz").css("display", "inline-block");
@@ -14463,6 +14479,9 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", "#mcquestion_start_button_" + slideToStop, _startMcQuizButtonClicked);
     $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("color", "#F76464");
     $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("background-color", "#F8F8F8")
+  };
+  var _onQuizSessionCloseReceivedError = function(error) {
+    console.log("_onQuizSessionCloseReceivedError:  " + error)
   };
   var _statisticsMcQuizButtonClicked = function() {
     var marginTopDefault = 18;
@@ -17020,15 +17039,37 @@ VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
   var postStartQuizSession = function(quiz_id, successCallback, failCallback) {
+    console.log("Vish case");
     V.Debugging.log("quiz_id to start Quiz Session is: " + quiz_id);
     var send_type = "POST";
     V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
     var params = {"quiz_id":quiz_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
     $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions", data:params, success:function(data) {
-      return data
-    }})
+      V.Debugging.log("data: " + data);
+      var quiz_session_id = data;
+      if(typeof successCallback == "function") {
+        successCallback(quiz_session_id)
+      }
+    }, error:function(error) {
+      failCallback(error)
+    }});
+    return null
   };
   var deleteQuizSession = function(quiz_session_id, successCallback, failCallback) {
+    V.Debugging.log("quiz_session_id to delete is: " + quiz_session_id);
+    var send_type = "DELETE";
+    V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
+    var params = {"id":quiz_session_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
+    $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
+      V.Debugging.log("data: " + data);
+      var results = data;
+      if(typeof successCallback == "function") {
+        successCallback(results)
+      }
+    }, error:function(error) {
+      failCallback(error)
+    }});
+    return null
   };
   var getQuizSession = function(quiz_session_id, successCallback, failCallback) {
   };
@@ -17076,7 +17117,8 @@ VISH.Renderer = function(V, $, undefined) {
                       classes += "openquestion"
                     }else {
                       if(slide.elements[el].type === "mcquestion") {
-                        content += V.Quiz.init(slide.elements[el], slide.template, slide.id);
+                        var quiz_id = slide.quiz_id;
+                        content += V.Quiz.init(slide.elements[el], slide.template, slide.id, slide.quiz_id);
                         classes += "mcquestion"
                       }else {
                         if(slide.elements[el].type === "truefalsequestion") {
@@ -17173,6 +17215,9 @@ VISH.SlideManager = function(V, $, undefined) {
     VISH.Editing = false;
     V.Debugging.log("options : username " + options["username"] + " token " + options["token"] + " quiz_active " + options["quiz_active"]);
     initOptions = options;
+    if(options && options["configuration"] && VISH.Configuration) {
+      VISH.Configuration.init(options["configuration"])
+    }
     if(options["developping"] === true && VISH.Debugging) {
       VISH.Debugging.init(true)
     }else {
