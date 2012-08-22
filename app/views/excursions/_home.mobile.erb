@@ -9,18 +9,39 @@
           <%= link_to excursion_thumb_for(excursion, 130) , excursion %>
         </div>
         <div class="span9 inline-block">
-          <div class="caption">
-            <h2 class="span9 ellipsis w550px">
-              <%= link_to excursion.title, excursion %>
-            </h2>
-            <button href="#" class="btn pull-right"><img src="/assets/notification.png" width="20" height="16" /><%= t('info') %></button>
-          </div>
-          <div class="span">
-            <h3 class="span9 blue-opacity ellipsis w150px">by <%= link_to excursion.author.name, excursion.author.user %>
-            </h3>
-            <div class="pull-right">
-              <h3><span  class="green inline"><%=excursion.post_activity.likes.count.to_s%></span><img src="/assets/star-MENU-active.png" width="12" height="12">&nbsp;&nbsp;<span class="green inline-block"><%= excursion.post_activity.comments.count.to_s %><img src="/assets/icon-message.png" width="16" height="12"></a></span>
-              </h3>   
+          <div id="excursion-mobile-carousel-<%= excursion.id %>" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="active item">
+                <div class="caption">
+                  <h2 class="span9 ellipsis w550px">
+                    <%= link_to excursion.title, excursion %>
+                  </h2>
+                  <button href="#" class="btn pull-right"><img src="/assets/notification.png" width="20" height="16" /><%= t('info') %></button>
+                </div>
+                <div class="span">
+                  <h3 class="span9 blue-opacity ellipsis w150px">by <%= link_to excursion.author.name, excursion.author.user %>
+                  </h3>
+                  <div class="pull-right">
+                    <h3><span  class="green inline"><%=excursion.post_activity.likes.count.to_s%></span><img src="/assets/star-MENU-active.png" width="12" height="12">&nbsp;&nbsp;<span class="green inline-block"><%= excursion.post_activity.comments.count.to_s %><img src="/assets/icon-message.png" width="16" height="12"></a></span>
+                    </h3>   
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <h2 class="span8"> <span class= "green"><%= excursion.visit_count %></span> <%= t('follow.views') %></h2>
+                <h3 class="span8 blue-opacity article ellipsis w400px">
+                  <% excursion.tags.each do |t| %>
+                    <a href="#"><%= t.to_s %></a>,
+                  <% end %>
+                </h3>
+              </div>
+              <% unless excursion.description.empty? %>
+                <div class="item">
+                  <p class="size15">
+                    <%= excursion.description %>
+                  </p>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -32,7 +53,9 @@
 <% end %>
 
 <%= javascript_tag do %>
-  $(".user-modal-button-<%= excursion.author.slug %>").on("click", function(){
-    <%= modal_for(excursion.author.subject) %>
+  $(".carousel").carousel({
+    interval: false
   });
+  $(".carousel").on("swipeLeft", function() { this.carousel("next")});
+  $(".carousel").on("swipeRight", function() { this.carousel("prev")});
 <% end %>
