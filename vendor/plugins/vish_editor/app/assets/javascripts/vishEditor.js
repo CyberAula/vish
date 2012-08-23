@@ -13123,6 +13123,7 @@ VISH.Editor = function(V, $, undefined) {
     var slide = {};
     $("article").each(function(index, s) {
       slide.id = $(s).attr("id");
+      slide.type = "standard";
       slide.template = $(s).attr("template");
       slide.elements = [];
       var element = {};
@@ -13175,7 +13176,8 @@ VISH.Editor = function(V, $, undefined) {
                       element.options = [];
                       $(div).find(".multiplechoice_text").each(function(i, input_text) {
                         element.options[i] = input_text.value
-                      })
+                      });
+                      slide.type = "quiz"
                     }else {
                       if(element.type == "truefalsequestion") {
                         element.questions = [];
@@ -13216,12 +13218,22 @@ VISH.Editor = function(V, $, undefined) {
           slide.elements.push(element);
           element = {}
         }
+        if(slide.type == "quiz") {
+          var quizSlide = $.extend(true, new Object, slide);
+          var quizExcursion = new Object;
+          quizExcursion.title = excursion.title;
+          quizExcursion.description = excursion.description;
+          quizExcursion.author = "";
+          quizExcursion.slides = [quizSlide];
+          quizExcursion.type = "quiz_simple";
+          slide.quiz_simple_json = quizExcursion;
+          VISH.Debugging.log(JSON.stringify(quizExcursion))
+        }
       });
       excursion.slides.push(slide);
       slide = {}
     });
     saved_excursion = excursion;
-    VISH.Debugging.log(JSON.stringify(excursion));
     return saved_excursion
   };
   var _afterSaveExcursion = function(excursion) {
@@ -13986,10 +13998,8 @@ VISH.Samples = function(V, undefined) {
   {"id":"vish13", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video with style param"}, {"id":"335", "type":"object", "areaid":"left", "body":'<iframe width="324" height="243" src="http://www.youtube.com/embed/_jvDzfTRP4E" frameborder="0" allowfullscreen></iframe>', "style":"position: relative; left: 163px; top: 110px; width: 325px; height: 215px;"}]}, {"id":"vish14", "template":"t1", "elements":[{"id":"7393", "type":"text", "areaid":"header", 
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
-  var quizes_samples = {"id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}, {"id":"article2", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Per\u00fa", 
-  "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}, {"id":"article3", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Colombia", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}, {"id":"article4", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which which which which ... ", 
-  "options":["Un texto largo, muy largo que puede sobrepasar los l\u00edmites permitidos", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Otro texto largo, muy largo y m\u00e1s largo que sobrepase los l\u00edmites permitidos ... y m\u00e1s"]}]}, {"id":"article5", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which color do you prefer .... ... ", "options":["Red", "White", "Blue", "Orange"]}]}, {"id":"article6", "template":"t12", 
-  "elements":[{"id":"zone11", "areaid":"header"}, {"id":"zone12", "type":"truefalsequestion", "areaid":"left", "questions":[{"id":0, "text_question":"Is carnivorous the iberian lynx", "answer":"true"}, {"id":1, "text_question":"a sdasd as d", "answer":"true"}, {"id":2, "text_question":"s adasdasd a", "answer":"false"}, {"id":3, "text_question":"as das dasd ad", "answer":"null"}]}]}]};
+  var quizes_samples = {"id":12313, "author":"", "slides":[{"id":"articlearticle1", "type":"quiz", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara esta mierda?", "options":["Si", "Claro que si", "Siempre", ""]}]}], "type":"quiz_simple"};
+  var quizes_samples_2 = {"id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}]};
   return{full_samples:full_samples, samples:samples, samples_aldo:samples_aldo, quizes_samples:quizes_samples}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -14054,21 +14064,17 @@ VISH.Slides = function(V, $, undefined) {
   var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
   var PM_TOUCH_SENSITIVITY = 200;
   var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
-  var with_mashme_integration;
-  var init = function(mashme) {
+  var init = function() {
     getCurSlideFromHash();
-    with_mashme_integration = mashme;
     $(document).bind("OURDOMContentLoaded", handleDomLoaded)
   };
   var handleDomLoaded = function() {
     V.slideEls = document.querySelectorAll("section.slides > article");
     addFontStyle();
     updateSlides();
-    if(!with_mashme_integration) {
-      V.Slides.Events.init()
-    }else {
-      VISH.Debugging.log("INTEGRATION WITH MASHME, EVENTS WILL NOT WORK!!");
-      V.Slides.Mashme.init()
+    V.Slides.Events.init();
+    if(!V.Editing) {
+      window.addEventListener("message", V.Slides.Mashme.onMashmeHello, false)
     }
     $("body").addClass("loaded")
   };
@@ -17039,21 +17045,31 @@ VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
   var postStartQuizSession = function(quiz_id, successCallback, failCallback) {
-    console.log("Vish case");
-    V.Debugging.log("quiz_id to start Quiz Session is: " + quiz_id);
-    var send_type = "POST";
-    V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
-    var params = {"quiz_id":quiz_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
-    $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions", data:params, success:function(data) {
-      V.Debugging.log("data: " + data);
-      var quiz_session_id = data;
-      if(typeof successCallback == "function") {
-        successCallback(quiz_session_id)
+    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      console.log("Vish case");
+      V.Debugging.log("quiz_id to start Quiz Session is: " + quiz_id);
+      var send_type = "POST";
+      V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
+      var params = {"quiz_id":quiz_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
+      $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions", data:params, success:function(data) {
+        V.Debugging.log("data: " + data);
+        var quiz_session_id = data;
+        if(typeof successCallback == "function") {
+          successCallback(quiz_session_id)
+        }
+      }, error:function(error) {
+        failCallback(error)
+      }});
+      return null
+    }else {
+      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+        console.log("No server case");
+        var quiz_session_id = "123";
+        if(typeof successCallback == "function") {
+          successCallback(quiz_session_id)
+        }
       }
-    }, error:function(error) {
-      failCallback(error)
-    }});
-    return null
+    }
   };
   var deleteQuizSession = function(quiz_session_id, successCallback, failCallback) {
     V.Debugging.log("quiz_session_id to delete is: " + quiz_session_id);
@@ -17209,8 +17225,7 @@ VISH.SlideManager = function(V, $, undefined) {
   var user = {};
   var status = {};
   var init = function(options, excursion) {
-    var with_mashme_integration = options["mashme"];
-    V.Slides.init(with_mashme_integration);
+    V.Slides.init();
     V.Status.init();
     VISH.Editing = false;
     V.Debugging.log("options : username " + options["username"] + " token " + options["token"] + " quiz_active " + options["quiz_active"]);
@@ -17254,15 +17269,15 @@ VISH.SlideManager = function(V, $, undefined) {
     mySlides = excursion.slides;
     V.Excursion.init(mySlides);
     V.ViewerAdapter.setupSize();
-    if(V.Status.getIsInIframe()) {
-      myDoc = parent.document
-    }else {
-      myDoc = document
-    }
     $(window).on("orientationchange", function() {
       V.ViewerAdapter.setupSize()
     });
     if(V.Status.features.fullscreen) {
+      if(V.Status.getIsInIframe()) {
+        myDoc = parent.document
+      }else {
+        myDoc = document
+      }
       $(document).on("click", "#page-fullscreen", toggleFullScreen);
       $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function() {
         setTimeout(V.ViewerAdapter.setupSize, 200)
@@ -17496,11 +17511,28 @@ VISH.Slides.Events = function(V, $, undefined) {
     document.body.removeEventListener("touchmove", handleTouchMove, true);
     document.body.removeEventListener("touchend", handleTouchEnd, true)
   };
-  return{init:init}
+  var unbindAll = function() {
+    $(document).unbind("keydown", handleBodyKeyDown);
+    $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+    $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+    $(document).unbind("touchstart", handleTouchStart)
+  };
+  return{init:init, unbindAll:unbindAll}
 }(VISH, jQuery);
 VISH.Slides.Mashme = function(V, $, undefined) {
   var addedEventListeners = false;
   var MASHME_API_SCRIPT_URL = "https://mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
+  var mashme_hello = "MASHMETV_HELLO";
+  var onMashmeHello = function(message) {
+    V.Debugging.log("Recibiendo:" + message.data + " from:" + message.origin);
+    if(message.data === mashme_hello) {
+      V.Slides.Events.unbindAll();
+      window.removeEventListener("message", V.Slides.onMashmeHello, false);
+      init()
+    }else {
+      V.Debugging.log("WARNING unknown message received from " + message.origin + " with data: " + message.data)
+    }
+  };
   var init = function() {
     $.getScript(MASHME_API_SCRIPT_URL).done(function(script, textStatus) {
       MASHME.API.iFrame.init("myappkey", "myappsecret", _onMashmeMessage)
@@ -17536,7 +17568,7 @@ VISH.Slides.Mashme = function(V, $, undefined) {
     }
   };
   var _onMashmeMessage = function(message) {
-    console.log("Recibiendo:" + message.data + " from:" + message.origin);
+    V.Debugging.log("Recibiendo:" + message.data + " from:" + message.origin);
     var command = message.data.substring(message.data.indexOf(":") + 1);
     switch(command) {
       case "backwardOneSlide":
@@ -17558,7 +17590,7 @@ VISH.Slides.Mashme = function(V, $, undefined) {
   var _sendMessage = function(message) {
     MASHME.API.iFrame.broadcast("MashMeAPIMessage:" + message)
   };
-  return{init:init}
+  return{init:init, onMashmeHello:onMashmeHello}
 }(VISH, jQuery);
 VISH.SnapshotPlayer = function() {
   var loadSnapshot = function(element) {
@@ -17616,7 +17648,17 @@ VISH.Status = function(V, $, undefined) {
     V.Debugging.log("We are in iframe: " + getIsInIframe());
     var elem = document.getElementById("page-fullscreen");
     if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
-      features.fullscreen = true
+      if(!isInIframe) {
+        features.fullscreen = true
+      }else {
+        try {
+          if(window.parent.location.host == window.location.host) {
+            features.fullscreen = true
+          }
+        }catch(e) {
+          features.fullscreen = false
+        }
+      }
     }
     V.Debugging.log("Fullscreen supported: " + features.fullscreen);
     features.touchScreen = !!("ontouchstart" in window);
