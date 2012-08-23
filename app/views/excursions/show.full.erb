@@ -19,6 +19,7 @@
 
 		//params (options, excursion)
 		//VISH.SlideManager.init({}, <%= raw @excursion.json %>);
-		VISH.SlideManager.init({"quiz_active": false, "token":"<%= form_authenticity_token %>", "username":"<%= current_user.name %>", "developping":true}, <%= raw @excursion.json %>);
+    <% username = current_user.name if user_signed_in? %>
+		VISH.SlideManager.init({"quiz_active": false, "token":"<%= form_authenticity_token %>", "username":"<%= username %>", "developping":true}, <%= raw @excursion.json %>);
 	}
 </script>

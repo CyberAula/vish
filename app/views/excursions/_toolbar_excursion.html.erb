@@ -30,7 +30,7 @@
     <span class="green"><%=excursion.visit_count.to_s%></span><span> <%=t('follow.views')%></span>
     <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%= excursion.activities.first.likes.count.to_s  %></span><span> <%= t('follow.favorites').downcase %></span>
     <!--<div class="iconx-quiz"></div>-->
-    <% if user_signed_in? %>
+    <% if false and user_signed_in? %> <!-- Hide MashME.TV button temporarily -->
       <button data-toggle="modal" href="#mashme-modal" class="mashme-button mini"><span></span></button>
         <div class="modal hide" style="text-align: left;" id="mashme-modal">
           <div class="modal-header"><%= t('mashme.header_html') %></div>
@@ -148,20 +148,23 @@
         invitees.push($(ele).attr("id").substring(14));
         $(ele).removeClass("btn-info");
       });
+      name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
       $.ajax({
         url: "http://www.mashme.tv/api/buttons",
         type: "POST",
         data: {
           url: target_url,
           title: target_title,
-          theme: "vish"
+          theme: "vish",
+          name: name,
+          app: "cobrowser",
+          media: encodeURI("<%= request.url.gsub('http://', '') %>")
         },
         success: function(data) {
-          name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
           $.ajax({
             url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
           })
-          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&app=cobrowser&media=" + encodeURI("<%= request.url.gsub('http://', '') %>"));
+          launchIframe("http://www.mashme.tv/M/" + data);
         }
       });
       $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));
