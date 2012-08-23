@@ -17,9 +17,10 @@
 	//first function called when page loads
 	function start(){
 
+
 		//params (options, excursion)
 		//VISH.SlideManager.init({}, <%= raw @excursion.json %>);
     <% username = current_user.name if user_signed_in? %>
-		VISH.SlideManager.init({"quiz_active": false, "token":"<%= form_authenticity_token %>", "username":"<%= username %>", "developping":true}, <%= raw @excursion.json %>);
+		VISH.SlideManager.init({"quiz_active_session_id": false, "token":"<%= form_authenticity_token %>", "username":"<%= username %>"}, <%= raw @excursion.json %>);
 	}
 </script>
