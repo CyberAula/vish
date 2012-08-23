@@ -2167,10 +2167,14 @@ width: 387px;
 
 .word-break {
 /* Div que corta las palabras largas */
-  width: auto; /* ancho que necesitas */
+
   overflow: no;
   padding-right: 25px;
 
   word-wrap: break-word; /* IE */
   -moz-binding: url('xbl.xml#wordwrap'); /* Firefox (using XBL) */
+}
+
+.overflow{
+  overflow-x: -moz-hidden-unscrollable !important;
 }
