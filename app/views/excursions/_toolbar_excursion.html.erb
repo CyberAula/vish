@@ -30,7 +30,7 @@
     <span class="green"><%=excursion.visit_count.to_s%></span><span> <%=t('follow.views')%></span>
     <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%= excursion.activities.first.likes.count.to_s  %></span><span> <%= t('follow.favorites').downcase %></span>
     <!--<div class="iconx-quiz"></div>-->
-    <% if user_signed_in? %>
+    <% if false and user_signed_in? %> <!-- Hide MashME.TV button temporarily -->
       <button data-toggle="modal" href="#mashme-modal" class="mashme-button mini"><span></span></button>
         <div class="modal hide" style="text-align: left;" id="mashme-modal">
           <div class="modal-header"><%= t('mashme.header_html') %></div>
