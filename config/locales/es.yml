@@ -135,6 +135,7 @@ es:
     home: "Inicio"
   no_bio: "Este usuario no ha actualizado su biografía."
   notification:
+    config: "Si quieres modificar el servicio de notificaciones. Pulsa aquí"
     makefriend:
       user: "%{sender} está siguiendo a %{who}."
     unread: " sin leer"
