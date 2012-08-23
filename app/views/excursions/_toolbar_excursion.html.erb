@@ -148,20 +148,23 @@
         invitees.push($(ele).attr("id").substring(14));
         $(ele).removeClass("btn-info");
       });
+      name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
       $.ajax({
         url: "http://www.mashme.tv/api/buttons",
         type: "POST",
         data: {
           url: target_url,
           title: target_title,
-          theme: "vish"
+          theme: "vish",
+          name: name,
+          app: "cobrowser",
+          media: encodeURI("<%= request.url.gsub('http://', '') %>")
         },
         success: function(data) {
-          name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
           $.ajax({
             url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
           })
-          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&app=cobrowser&media=" + encodeURI("<%= request.url.gsub('http://', '') %>"));
+          launchIframe("http://www.mashme.tv/M/" + data);
         }
       });
       $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));
