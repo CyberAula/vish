@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    <title>ViSH Excursion</title>
+      <%= favicon_link_tag "icons/favicon.ico" %>
+    <style>
+       .slides > article:not(.fill)::before {
+         content: '';
+         display: block;
+         width: 100px;
+         height: 100px;
+         position: absolute;
+         left: 0;
+         bottom: 0;
+       }
+    </style>
+
+  	  <meta name="viewport" content="width=900,height=740">
+  	  <meta name="apple-mobile-web-app-capable" content="yes">
+
+	  <%=javascript_include_tag "vishEditor" %>
+	  <%= stylesheet_link_tag "vish_editor" %>
+
+	  <%= yield :headers %>
+	  <!--[if gte IE 7]>
+		<%= stylesheet_link_tag "ie/pack1explorer9" %>
+	  <![endif]-->
+
+  </head>
+
+   <body onload="start()" style="display: none" class="loaded">
+ 	 <%= yield %>
+   </body>
+
+</html>
+
