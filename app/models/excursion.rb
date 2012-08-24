@@ -56,7 +56,6 @@ class Excursion < ActiveRecord::Base
           quiz.type="TrueFalseQuiz"
           # PENDING
       end
-      debugger
       quiz.simple_json = slide["quiz_simple_json"].to_json
       quiz.save!
       slide["quiz_id"]=quiz.id
