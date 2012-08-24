@@ -351,13 +351,8 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 }
         
 .imageless-css-3-form-elements label:hover input[type="radio"]:not(:disabled) + span::before{
-  background: #0b70cd;
-  background: -moz-linear-gradient(45deg, #fefefe, #cccccc);
-  background: -webkit-linear-gradient(45deg, #fefefe, #cccccc);
-  background: -o-linear-gradient(45deg, #fefefe, #cccccc);
-  background: -ms-linear-gradient(45deg, #fefefe, #cccccc);
-  background: linear-gradient(45deg, #fefefe, #cccccc);
-  box-shadow: 0 0 1px 2px #ccc;
+  background: #ffffff;
+  box-shadow: 0 0 2px 2px #ccc;
 }
         
 .imageless-css-3-form-elements label input[type="radio"]:checked + span::before{
