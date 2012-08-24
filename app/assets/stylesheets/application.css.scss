@@ -25,6 +25,7 @@
  *= require search
  *= require slider
  *= require tags
+ *= require button
 */
 
 
@@ -51,6 +52,10 @@
 .dsignesregular {font-family:'DsignesRegular';}
 
 /**** clase para el ALTO minimo del layout ***/
+
+
+
+
 
 
 .nomargin{
@@ -1217,31 +1222,7 @@ margin-left: 20px;
  margin-top:-5px;
 }
 
-.menu_resources{
-  background-color: #f7f7f7;
-  display: inline-block;
-  width:auto;
-  border:1px solid  ;
-  border-color: #e6e6e6;
-  padding: 4px 6px 4px 6px;
-  border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
 
-}
-
-
-.menu_resources:hover{
-
-  background-color: #ffffff;
-  display: inline-block;
-  width:auto;
-  border:1px solid  ;
-  border-color: #e6e6e6;
-  padding: 4px 6px 4px 6px;
-  border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
-
-
-
-}
 
 
 
