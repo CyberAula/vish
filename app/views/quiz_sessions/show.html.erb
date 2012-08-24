@@ -11,13 +11,15 @@
     </button>
   </div>
 </section>
+
+
   
 <script>
   //first function called when page loads
   function start(){
 
     //params (options, excursion)
-    VISH.SlideManager.init({"quiz_active": false,  "developping":true}, <%= raw @quiz_session.quiz.simple_json %>);
+    VISH.SlideManager.init({"username": false ,  "quiz_active_session_id":<%= @quiz_session.quiz_id %>,  "developping":true}, <%= raw @quiz_session.quiz.simple_json %>);
   }
 </script>
 
