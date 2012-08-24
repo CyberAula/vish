@@ -21,10 +21,11 @@
  *= require icon
  *= require linkser
  * require mobile
- *= require phone
+ * require phone
  *= require search
  *= require slider
  *= require tags
+ *= require button
 */
 
 
@@ -51,6 +52,10 @@
 .dsignesregular {font-family:'DsignesRegular';}
 
 /**** clase para el ALTO minimo del layout ***/
+
+
+
+
 
 
 .nomargin{
@@ -82,75 +87,6 @@ margin: 0px !important;
   display: none;
 }
 
-
-.load_more_button{
-  background-color: #f2f2f2;
-
-  vertical-align: middle;
-  border: 0px solid transparent;
-  display: inline-block;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: 200px;
-  height:15px;
-  color: #6E6E6E;
-  font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  margin-bottom: 30px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-
-  /* Safari 5.1+ y Chrome 10+ */
-    background-image:-webkit-linear-gradient(top , #FFFFFF, #ededed);
-
-  /* Firefox 3.6+ */
-    background-image:-moz-linear-gradient(top, #FFFFFF, #ededed);
-
-  /* Opera 11.10+ */
-    background-image:-o-linear-gradient(top, #FFFFFF, #ededed);
-
-  /* Internet Explorer 5.5+ */
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#Ffffff', EndColorStr='#ededed');
-    background-repeat: no-repeat;
-  }
-
-
-.load_more_button:hover {
-  background-color: D9D9D9;
-  vertical-align: middle;
-  border: 0px solid transparent;
-  display: inline-block;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: 200px;
-  height:15px;
-  color: #6E6E6E;
-  font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;
-  font-size: 15px;
-  line-height: 18px;
-  margin-bottom: 30px;
-  text-decoration: none;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-
-/* Safari 5.1+ y Chrome 10+ */
-  background-image:-webkit-linear-gradient(top , #FFFFFF, #D9D9D9);
-
-/* Firefox 3.6+ */
-  background-image:-moz-linear-gradient(top, #FFFFFF, #D9D9D9);
-
-/* Opera 11.10+ */
-  background-image:-o-linear-gradient(top, #FFFFFF, #D9D9D9);
-
-/* Internet Explorer 5.5+ */
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#Ffffff', EndColorStr='#D9D9D9');
-  background-repeat: no-repeat;
-
-  
-}
 
 
 .title_menu_home{
@@ -212,6 +148,11 @@ background-color: #fe99be;
 margin-top: -10px
 }
 
+.tools-log-out{
+  margin-top: -17px;
+  margin-left: 45px;
+
+}
 
 
 
@@ -801,7 +742,7 @@ form.example input.file.hidden {
 .activity_new_comment{  font-size: 11px;  padding-left: 5px; padding-top: 3px;  padding-bottom: 3px;display:none;}
 .input_new_comments{width:98%;	padding: 2px; resize: none;  }
 .space_comments{padding-top: 1px;	padding-bottom: 1px;}
-#activities_share_btn {	text-align: right;	padding: 5px 16px 0px 10px;	vertical-align: top;}
+#activities_share_btn {	text-align: right;	padding: 5px 16px 0px 0px;	vertical-align: middle;}
 .activities_comment_btn{ text-align: right; padding: 0px 5px 2px 0px; vertical-align: middle;}
 
 .hide_show_comments{font-size: 11px;  padding: 3px 10px;}
@@ -1212,31 +1153,7 @@ margin-left: 20px;
  margin-top:-5px;
 }
 
-.menu_resources{
-  background-color: #f7f7f7;
-  display: inline-block;
-  width:auto;
-  border:1px solid  ;
-  border-color: #e6e6e6;
-  padding: 4px 6px 4px 6px;
-  border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
 
-}
-
-
-.menu_resources:hover{
-
-  background-color: #ffffff;
-  display: inline-block;
-  width:auto;
-  border:1px solid  ;
-  border-color: #e6e6e6;
-  padding: 4px 6px 4px 6px;
-  border-radius: 7px; -moz-border-radius: 7px; -webkit-border-radius: 7px;
-
-
-
-}
 
 
 
@@ -1537,10 +1454,7 @@ margin-left: 20px;}
 
 
 
-.more{
-float: right;
 
-}
 
 
 
@@ -2162,10 +2076,14 @@ width: 387px;
 
 .word-break {
 /* Div que corta las palabras largas */
-  width: auto; /* ancho que necesitas */
+
   overflow: no;
   padding-right: 25px;
 
   word-wrap: break-word; /* IE */
   -moz-binding: url('xbl.xml#wordwrap'); /* Firefox (using XBL) */
+}
+
+.overflow{
+  overflow-x: -moz-hidden-unscrollable !important;
 }

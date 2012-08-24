@@ -10,7 +10,7 @@
     <div class="tipsy_content" style="display:none;">
       <div class="actions">
         <% if embed.post_activity.delete_object_by?(current_subject) %>
-          <div class="block menu_resources">
+          <div class="block btn-gray">
             <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('embed.actions.delete'), :class => :action), embed.post_activity.direct_object, :confirm => t('confirm_delete',
                                                                                                                                                                                                          :scope => embed.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
           </div>

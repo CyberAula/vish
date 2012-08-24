@@ -864,6 +864,22 @@ input[type="submit"] {
   border: solid 1px #FF005D;
 }
 
+input [type="button"]:hover,
+input[type="reset"]:hover ,
+input[type="submit"]:hover  {
+  width: auto;
+  height: auto;
+  background-color:#3366FF;
+  color:#ffffff;
+  padding: 4px 8px 4px 8px;
+  border: solid 1px #3366FF;
+}
+
+
+
+
+
+
 select,
 input[type="file"] {
   height: 28px;

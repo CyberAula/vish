@@ -9,11 +9,11 @@
                 "javascript:;" %>
     <div class="tipsy_content" style="display:none;">
       <div class="actions">
-        <div class="block menu_resources">
+        <div class="block btn-gray">
           <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_8'></i> ") + t('link.go'), :class => :action), link.url, :target => '_blank' %>
         </div>
         <% if link.post_activity.delete_object_by?(current_subject) %>
-          <div class="block menu_resources">
+          <div class="block btn-gray">
             <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), link.post_activity.direct_object, :confirm => t('confirm_delete',
                                                                                                                                                                                                          :scope => link.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
           </div>

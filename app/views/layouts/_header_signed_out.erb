@@ -27,17 +27,21 @@
 
           <div id="header_search_nosession  " class="pull-right margin_search_no_session span ">
 
-            <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-large" ,  } %>
+            <%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-searchlarge" ,  } %>
           </div>
-        <div class="link_gray pagination-right span6">
+
+
+          <div class="tools-log-out">
+
+          <div class="link_gray pagination-right span2">
           <%= link_to t('forgot_password'), new_user_password_path %>
         </div>
 
-        <div class="link_gray pagination-right span6 ">
+        <div class="link_gray pagination-right span2 ">
           <%= link_to t('sign_up'), new_user_registration_path %>
         </div>
 
-
+          </div>
 
       <% end -%>
     </div>
