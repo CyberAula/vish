@@ -16,7 +16,7 @@ class QuizSessionsController < ApplicationController
 
   def show # GET /quiz_sessions/X => render vote or results page
     @quiz_session = QuizSession.find(params[:id])
-    render
+    render :layout => 'iframe'
   end
 
   def index # GET /quiz_sessions => list your quiz sessions as a list
