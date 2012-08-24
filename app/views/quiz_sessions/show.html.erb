@@ -16,10 +16,28 @@
   
 <script>
   //first function called when page loads
+
+var configuration = {};
+configuration["presentationSettings"] = true;
+configuration["presentationTags"] = true;
+configuration["presentationThumbnails"] = true;
+
+configuration["VishLives"] = true;
+configuration["VishUpload"] = true;
+configuration["VishRepo"] = true;
+
+configuration["Flickr"] = true;
+configuration["Youtube"] = true;
+configuration["Vimeo"] = false;
+
+configuration["VishIntegration"] = true;
+
+configuration["mode"] = "vish";
+
   function start(){
 
     //params (options, excursion)
-    VISH.SlideManager.init({"username": false ,  "quiz_active_session_id":<%= @quiz_session.quiz_id %>,  "developping":true}, <%= raw @quiz_session.quiz.simple_json %>);
+    VISH.SlideManager.init({"configuration": configuration, "username": false ,  "quiz_active_session_id":<%= @quiz_session.id %>,  "developping":true}, <%= raw @quiz_session.quiz.simple_json %>);
   }
 </script>
 
