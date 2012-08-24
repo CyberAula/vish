@@ -135,7 +135,7 @@ en:
     home: "Home"
   no_bio: "This user has not uploaded a biography."
   notification:
-    config: "If you want to modify the notification service. Click here"
+    config_html: "If you want to modify the notification service. Click <a href='%{url}'>here</a>"
     makefriend:
       user: "%{sender} is following %{who}."
     unread: " unread"
