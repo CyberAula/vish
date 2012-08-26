@@ -17,10 +17,26 @@
 	//first function called when page loads
 	function start(){
 
+		var configuration = {};
+		configuration["presentationSettings"] = true;
+		configuration["presentationTags"] = true;
+		configuration["presentationThumbnails"] = true;
 
+		configuration["VishLives"] = true;
+		configuration["VishUpload"] = true;
+		configuration["VishRepo"] = true;
+
+		configuration["Flickr"] = true;
+		configuration["Youtube"] = true;
+		configuration["Vimeo"] = false;
+
+		configuration["VishIntegration"] = true;
+
+		configuration["mode"] = "vish";
 		//params (options, excursion)
 		//VISH.SlideManager.init({}, <%= raw @excursion.json %>);
     <% username = current_user.name if user_signed_in? %>
-		VISH.SlideManager.init({"quiz_active_session_id": false, "token":"<%= form_authenticity_token %>", "username":"<%= username %>"}, <%= raw @excursion.json %>);
+		VISH.SlideManager.init({"configuration": configuration, "quiz_session_active": false, "token":"<%= form_authenticity_token %>", "username":"<%= username %>", "developping":true}, <%= raw @excursion.json %>);
+
 	}
 </script>

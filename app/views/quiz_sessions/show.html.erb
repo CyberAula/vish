@@ -38,6 +38,7 @@ configuration["mode"] = "vish";
 
     //params (options, excursion)
     VISH.SlideManager.init({"configuration": configuration, "username": false ,  "quiz_active_session_id":<%= @quiz_session.id %>,  "developping":true}, <%= raw @quiz_session.quiz.simple_json %>);
+
   }
 </script>
 
