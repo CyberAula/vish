@@ -3,7 +3,7 @@ es:
     attributes:
       user:
         email: "Email"
-        tag: "Áreas de interes"
+        tag: "Áreas de interés"
   activity:
     empty: "Tu timeline está vacío"
     more: "Ver más..."
@@ -47,7 +47,7 @@ es:
       tags:
         title: "Temas"
         addMessage: "Añadir tags"
-        limitMessage: "Limite alcanzado"
+        limitMessage: "Límite alcanzado"
       age: "Edad"
     recommended_age: "Edades recomendadas"
     recommended_age_detail: "De %{min} a %{max} años"
@@ -59,11 +59,11 @@ es:
     regards: "Un cordial saludo,<br/>"
     welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
   embed:
-    confirm_delete: "¿Borrar recurso empotrado?"
+    confirm_delete: "¿Borrar recurso?"
     content: "Contenido en directo"
     embed: "embed"
-    input: "Pega aquí tu recurso empotrado"
-    name: "emged"
+    input: "Pega aquí el recurso a insertar"
+    name: "embed"
   excursion:
     actions:
       bookmark: "marcardor"      
@@ -79,7 +79,7 @@ es:
         repository: "ir a repositorio"
     how: "Como crear una excursión"
     my: "mis"
-    name: "excursion"
+    name: "excursión"
     net: "red"
     network: "excursiones de mi red"
     network2: "mi red"
@@ -89,7 +89,7 @@ es:
     one: "excursión"
     other: "excursiones"
     others: "otras excursiones "
-    session_start: "inicia session"
+    session_start: "inicia sesión"
     title:
       other: "excursiones"
     upcomming: "upcomming"
@@ -107,7 +107,7 @@ es:
     views: "visitas"
   help: "ayuda"
   lang:
-    independent: "No depende del lenguage"
+    independent: "No depende del lenguaje"
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
     title: "idioma"    
@@ -155,7 +155,7 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
   profile:
     tags:
-      default: "VisHub, virtual, excursion"
+      default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
   project: "Global Excursion"      
   published: "Publicados"
