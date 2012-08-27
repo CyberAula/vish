@@ -12773,7 +12773,7 @@ VISH.Editor = function(V, $, undefined) {
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       params["current_el"] = $("#" + clickedZoneId);
-      loadTab("tab_templates")
+      V.Editor.Utils.loadTab("tab_templates")
     }});
     if(!eventsLoaded) {
       eventsLoaded = true;
@@ -12825,67 +12825,6 @@ VISH.Editor = function(V, $, undefined) {
   };
   var addDeleteButton = function(element) {
     element.append("<div class='delete_content'></div>")
-  };
-  var loadTab = function(tab_id) {
-    $(".joyride-close-tip").click();
-    $(".fancy_tab").removeClass("fancy_selected");
-    $("#" + tab_id).addClass("fancy_selected");
-    $(".fancy_tab_content").hide();
-    $("#" + tab_id + "_content").show();
-    $(".help_in_fancybox").hide();
-    $("#" + tab_id + "_help").show();
-    switch(tab_id) {
-      case "tab_pic_from_url":
-        V.Editor.Image.onLoadTab("url");
-        break;
-      case "tab_pic_upload":
-        V.Editor.Image.onLoadTab("upload");
-        break;
-      case "tab_pic_repo":
-        V.Editor.Image.Repository.onLoadTab();
-        break;
-      case "tab_pic_flikr":
-        V.Editor.Image.Flikr.onLoadTab();
-        break;
-      case "tab_video_from_url":
-        VISH.Editor.Video.onLoadTab();
-        break;
-      case "tab_video_repo":
-        VISH.Editor.Video.Repository.onLoadTab();
-        break;
-      case "tab_video_youtube":
-        VISH.Editor.Video.Youtube.onLoadTab();
-        break;
-      case "tab_video_vimeo":
-        VISH.Editor.Video.Vimeo.onLoadTab();
-        break;
-      case "tab_object_from_url":
-        VISH.Editor.Object.onLoadTab("url");
-        break;
-      case "tab_object_from_web":
-        VISH.Editor.Object.Web.onLoadTab();
-        break;
-      case "tab_object_snapshot":
-        VISH.Editor.Object.Snapshot.onLoadTab();
-        break;
-      case "tab_object_upload":
-        VISH.Editor.Object.onLoadTab("upload");
-        break;
-      case "tab_object_repo":
-        VISH.Editor.Object.Repository.onLoadTab();
-        break;
-      case "tab_live_webcam":
-        VISH.Editor.Object.Live.onLoadTab("webcam");
-        break;
-      case "tab_live_micro":
-        VISH.Editor.Object.Live.onLoadTab("micro");
-        break;
-      default:
-        break
-    }
-  };
-  var _closeFancybox = function() {
-    $.fancybox.close()
   };
   var _onInitialTagsReceived = function(data) {
     var tagList = $(".tagBoxIntro .tagList");
@@ -13021,22 +12960,22 @@ VISH.Editor = function(V, $, undefined) {
     $("a.addpicture").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_pic_from_url")
+      V.Editor.Utils.loadTab("tab_pic_from_url")
     }});
     $("a.addobject").fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_object_from_url")
+      V.Editor.Utils.loadTab("tab_object_from_url")
     }});
     $("a.addvideo").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_video_from_url")
+      V.Editor.Utils.loadTab("tab_video_from_url")
     }});
     $("a.addLive").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_live_webcam")
+      V.Editor.Utils.loadTab("tab_live_webcam")
     }})
   };
   var _onDeleteItemClicked = function() {
@@ -13354,7 +13293,7 @@ VISH.Editor = function(V, $, undefined) {
     $("#" + fancy + "_content").show();
     $("#tab_" + fancy).attr("class", "fancy_tab fancy_selected")
   };
-  return{init:init, addDeleteButton:addDeleteButton, loadTab:loadTab, getId:getId, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getParams:getParams, getOptions:getOptions, loadFancyBox:loadFancyBox, getSavedExcursion:getSavedExcursion, saveExcursion:saveExcursion}
+  return{init:init, addDeleteButton:addDeleteButton, getId:getId, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getParams:getParams, getOptions:getOptions, loadFancyBox:loadFancyBox, getSavedExcursion:getSavedExcursion, saveExcursion:saveExcursion}
 }(VISH, jQuery);
 VISH.Editor.Video = function(V, $, undefined) {
   var urlDivId = "tab_video_from_url_content";
@@ -13998,7 +13937,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"vish13", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video with style param"}, {"id":"335", "type":"object", "areaid":"left", "body":'<iframe width="324" height="243" src="http://www.youtube.com/embed/_jvDzfTRP4E" frameborder="0" allowfullscreen></iframe>', "style":"position: relative; left: 163px; top: 110px; width: 325px; height: 215px;"}]}, {"id":"vish14", "template":"t1", "elements":[{"id":"7393", "type":"text", "areaid":"header", 
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
-  var quizes_samples = {"id":12313, "author":"", "slides":[{"id":"articlearticle1", "type":"quiz", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara esta mierda?", "options":["Si", "Claro que si", "Siempre", ""]}]}], "type":"quiz_simple"};
+  var quizes_samples = {"id":12313, "author":"", "slides":[{"id":"articlearticle1", "type":"quiz", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}], "type":"quiz_simple"};
   var quizes_samples_2 = {"id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}]};
   return{full_samples:full_samples, samples:samples, samples_aldo:samples_aldo, quizes_samples:quizes_samples}
 }(VISH);
@@ -14062,8 +14001,6 @@ VISH.Samples.API = function(V, undefined) {
 }(VISH);
 VISH.Slides = function(V, $, undefined) {
   var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
-  var PM_TOUCH_SENSITIVITY = 200;
-  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
   var init = function() {
     getCurSlideFromHash();
     $(document).bind("OURDOMContentLoaded", handleDomLoaded)
@@ -14246,7 +14183,7 @@ VISH.Quiz = function(V, $, undefined) {
   var slideToVote;
   var user;
   var userStatus;
-  var quizUrlForSession = " http://www.vishub.org/quiz_sessions/";
+  var quizUrlForSession = " http://" + window.location.host.toString() + "/quiz_sessions/";
   var startButton = "mcquestion_start_button";
   var stopButton = "mcquestion_stop_button";
   trueFalseAnswers = new Array;
@@ -14255,7 +14192,7 @@ VISH.Quiz = function(V, $, undefined) {
       user = V.SlideManager.getUser();
       userStatus = V.SlideManager.getUserStatus();
       role = user.role;
-      slideToVote = userStatus.quiz_active;
+      slideToVote = userStatus.quiz_active_session_id;
       var obj;
       switch(role) {
         case "logged":
@@ -14338,6 +14275,7 @@ VISH.Quiz = function(V, $, undefined) {
     ret += "</div>";
     ret += "<div class='mcquestion_right'>";
     ret += "<input type='hidden' id='slide_to_vote' value='" + slide + "'/>";
+    ret += "<input type='hidden' id='quiz_active_session_id' value='" + V.SlideManager.getUserStatus().quiz_active_session_id + "'/>";
     ret += "<input type='button' id='mcquestion_send_vote_button_" + slide + "' class='mcquestion_send_vote_button' value='Send'/>";
     ret += "</div>";
     ret += "</form>";
@@ -14457,15 +14395,25 @@ VISH.Quiz = function(V, $, undefined) {
     if(answer == undefined) {
       alert("You must choice your answer before polling")
     }else {
-      var vote_url;
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToParticipant(data, slideToVote);
-      $(".current").find(".mc_radio").remove();
-      $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToParticipant(data);
-      _removeOptionsListener(slideToVote)
+      V.Debugging.log("answer option selected is: " + answer);
+      var quiz_active_session_id = $(".current").find("#quiz_active_session_id").val();
+      V.Debugging.log("quiz_active_session_id is: " + quiz_active_session_id);
+      V.Quiz.API.putQuizSession(answer, quiz_active_session_id, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError)
     }
+  };
+  var _onQuizVotingSuccessReceived = function(data) {
+    V.Debugging.log("_onQuizVotingSuccessReceived and data received is: " + data);
+    var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+    _showResultsToParticipant(data, slideToVote);
+    $(".current").find(".mc_radio").remove();
+    $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
+    var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+    _showResultsToParticipant(data);
+    _removeOptionsListener(slideToVote)
+  };
+  var _OnQuizVotingReceivedError = function(error) {
+    var received = JSON.stringify(error);
+    console.log("_OnQuizVotingReceivedError, and value received is:  " + received)
   };
   var _onStopMcQuizButtonClicked = function() {
     var quiz_id = $(".current").find("#quiz_session_id").val();
@@ -14487,7 +14435,8 @@ VISH.Quiz = function(V, $, undefined) {
     $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("background-color", "#F8F8F8")
   };
   var _onQuizSessionCloseReceivedError = function(error) {
-    console.log("_onQuizSessionCloseReceivedError:  " + error)
+    var received = JSON.stringify(error);
+    console.log("_onQuizSessionCloseReceivedError, and value received is:  " + received)
   };
   var _statisticsMcQuizButtonClicked = function() {
     var marginTopDefault = 18;
@@ -14537,27 +14486,23 @@ VISH.Quiz = function(V, $, undefined) {
   var _showResultsToParticipant = function(data, slide) {
     var greatestId;
     var greatest = 0;
-    if(data.quiz_id == userStatus.quiz_active) {
-      var votes;
-      var totalVotes = 0;
-      for(votes in data.results) {
-        totalVotes += parseInt(data.results[votes]);
-        if(parseInt(data.results[votes]) > greatest) {
-          greatestId = votes;
-          greatest = parseInt(data.results[votes])
-        }else {
-          greatestId
-        }
+    var votes;
+    var totalVotes = 0;
+    for(votes in data.results) {
+      totalVotes += parseInt(data.results[votes]);
+      if(parseInt(data.results[votes]) > greatest) {
+        greatestId = votes;
+        greatest = parseInt(data.results[votes])
+      }else {
+        greatestId
       }
-      for(votes in data.results) {
-        var percent = parseInt(data.results[votes]) / totalVotes * 100;
-        var percentString = percent.toString() + "%";
-        var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-        $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
-        $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
-      }
-    }else {
-      V.Debugging.log(" The Quiz voted is not the active Quiz. Reload the Quiz.")
+    }
+    for(votes in data.results) {
+      var percent = parseInt(data.results[votes]) / totalVotes * 100;
+      var percentString = percent.toString() + "%";
+      var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
+      $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
+      $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
     }
     var indexOfGreatestVoted = String.fromCharCode("a".charCodeAt(0) + parseInt(greatestId));
     $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("color", "blue");
@@ -16537,7 +16482,65 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     return filterStyle
   };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw}
+  var loadTab = function(tab_id) {
+    $(".joyride-close-tip").click();
+    $(".fancy_tab").removeClass("fancy_selected");
+    $("#" + tab_id).addClass("fancy_selected");
+    $(".fancy_tab_content").hide();
+    $("#" + tab_id + "_content").show();
+    $(".help_in_fancybox").hide();
+    $("#" + tab_id + "_help").show();
+    switch(tab_id) {
+      case "tab_pic_from_url":
+        V.Editor.Image.onLoadTab("url");
+        break;
+      case "tab_pic_upload":
+        V.Editor.Image.onLoadTab("upload");
+        break;
+      case "tab_pic_repo":
+        V.Editor.Image.Repository.onLoadTab();
+        break;
+      case "tab_pic_flikr":
+        V.Editor.Image.Flikr.onLoadTab();
+        break;
+      case "tab_video_from_url":
+        VISH.Editor.Video.onLoadTab();
+        break;
+      case "tab_video_repo":
+        VISH.Editor.Video.Repository.onLoadTab();
+        break;
+      case "tab_video_youtube":
+        VISH.Editor.Video.Youtube.onLoadTab();
+        break;
+      case "tab_video_vimeo":
+        VISH.Editor.Video.Vimeo.onLoadTab();
+        break;
+      case "tab_object_from_url":
+        VISH.Editor.Object.onLoadTab("url");
+        break;
+      case "tab_object_from_web":
+        VISH.Editor.Object.Web.onLoadTab();
+        break;
+      case "tab_object_snapshot":
+        VISH.Editor.Object.Snapshot.onLoadTab();
+        break;
+      case "tab_object_upload":
+        VISH.Editor.Object.onLoadTab("upload");
+        break;
+      case "tab_object_repo":
+        VISH.Editor.Object.Repository.onLoadTab();
+        break;
+      case "tab_live_webcam":
+        VISH.Editor.Object.Live.onLoadTab("webcam");
+        break;
+      case "tab_live_micro":
+        VISH.Editor.Object.Live.onLoadTab("micro");
+        break;
+      default:
+        break
+    }
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, loadTab:loadTab}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -17051,7 +17054,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       var send_type = "POST";
       V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
       var params = {"quiz_id":quiz_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
-      $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions", data:params, success:function(data) {
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
         V.Debugging.log("data: " + data);
         var quiz_session_id = data;
         if(typeof successCallback == "function") {
@@ -17076,7 +17079,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     var send_type = "DELETE";
     V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
     var params = {"id":quiz_session_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
-    $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
+    $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
       V.Debugging.log("data: " + data);
       var results = data;
       if(typeof successCallback == "function") {
@@ -17089,7 +17092,33 @@ VISH.Quiz.API = function(V, $, undefined) {
   };
   var getQuizSession = function(quiz_session_id, successCallback, failCallback) {
   };
-  var putQuizSession = function(quiz_session_id, successCallback, failCallback) {
+  var putQuizSession = function(answer_selected, quiz_active_session_id, successCallback, failCallback) {
+    V.Debugging.log("quiz_active_session_id for voting is : " + quiz_active_session_id);
+    V.Debugging.log("Answer selected value is: " + answer_selected);
+    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      console.log("Vish case");
+      var send_type = "PUT";
+      V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
+      var params = {"id":quiz_active_session_id, "option":answer_selected, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id, data:params, success:function(data) {
+        V.Debugging.log("data: " + data);
+        var results = data;
+        if(typeof successCallback == "function") {
+          successCallback(results)
+        }
+      }, error:function(error) {
+        failCallback(error)
+      }});
+      return null
+    }else {
+      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+        console.log("No server case");
+        var quiz_session_id = "123";
+        if(typeof successCallback == "function") {
+          successCallback(quiz_session_id)
+        }
+      }
+    }
   };
   return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, getQuizSession:getQuizSession, putQuizSession:putQuizSession}
 }(VISH, jQuery);
@@ -17228,7 +17257,6 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Slides.init();
     V.Status.init();
     VISH.Editing = false;
-    V.Debugging.log("options : username " + options["username"] + " token " + options["token"] + " quiz_active " + options["quiz_active"]);
     initOptions = options;
     if(options && options["configuration"] && VISH.Configuration) {
       VISH.Configuration.init(options["configuration"])
@@ -17243,32 +17271,33 @@ VISH.SlideManager = function(V, $, undefined) {
       user.role = "logged";
       if(options["token"]) {
         status.token = options["token"];
-        if(options["quiz_active"]) {
-          status.quiz_active = options["quiz_active"]
+        if(options["quiz_active_session_id"]) {
+          status.quiz_active_session_id = options["quiz_active_session_id"]
         }else {
-          status.quiz_active = options["quiz_active"]
+          status.quiz_active_session_id = options["quiz_active_session_id"]
         }
       }else {
         status.token = "";
-        if(options["quiz_active"]) {
-          status.quiz_active = options["quiz_active"]
+        if(options["quiz_active_session_id"]) {
+          status.quiz_active_session_id = options["quiz_active_session_id"]
         }
       }
     }else {
       user.username = "";
       status.token = "";
-      if(options["quiz_active"]) {
-        V.Debugging.log("options quiz_active value is: " + options["quiz_active"]);
+      if(options["quiz_active_session_id"]) {
+        V.Debugging.log("options quiz_active_session_id value is: " + options["quiz_active_session_id"]);
         user.role = "student";
-        status.quiz_active = options["quiz_active"]
+        status.quiz_active_session_id = options["quiz_active_session_id"]
       }else {
         user.role = "none";
-        status.quiz_active = options["quiz_active"]
+        status.quiz_active_session_id = options["quiz_active_session_id"]
       }
     }
+    V.Debugging.log("Vish.SlideManager: options [username]= " + options["username"] + ", [token]=" + options["token"], +" [quiz_active_session_id]= " + options["quiz_active_session_id"]);
     mySlides = excursion.slides;
     V.Excursion.init(mySlides);
-    V.ViewerAdapter.setupSize();
+    V.ViewerAdapter.setupSize(false);
     $(window).on("orientationchange", function() {
       V.ViewerAdapter.setupSize()
     });
@@ -17279,8 +17308,12 @@ VISH.SlideManager = function(V, $, undefined) {
         myDoc = document
       }
       $(document).on("click", "#page-fullscreen", toggleFullScreen);
-      $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function() {
-        setTimeout(V.ViewerAdapter.setupSize, 200)
+      $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
+        V.ViewerAdapter.setupElements();
+        setTimeout(function() {
+          VISH.ViewerAdapter.setupSize(true);
+          VISH.ViewerAdapter.decideIfPageSwitcher()
+        }, 400)
       })
     }else {
       $("#page-fullscreen").hide()
@@ -17290,9 +17323,7 @@ VISH.SlideManager = function(V, $, undefined) {
       updateSlideCounter()
     }else {
       window.addEventListener("load", function() {
-        if(!window.pageYOffset) {
-          _hideAddressBar()
-        }
+        _hideAddressBar()
       });
       window.addEventListener("orientationchange", _hideAddressBar)
     }
@@ -17311,12 +17342,6 @@ VISH.SlideManager = function(V, $, undefined) {
           }
         }
       }
-      $("#page-fullscreen").css("background-position", "-45px 0px");
-      $("#page-fullscreen").hover(function() {
-        $("#page-fullscreen").css("background-position", "-45px -40px")
-      }, function() {
-        $("#page-fullscreen").css("background-position", "-45px 0px")
-      })
     }else {
       if(myDoc.cancelFullScreen) {
         myDoc.cancelFullScreen()
@@ -17329,12 +17354,6 @@ VISH.SlideManager = function(V, $, undefined) {
           }
         }
       }
-      $("#page-fullscreen").css("background-position", "0px 0px");
-      $("#page-fullscreen").hover(function() {
-        $("#page-fullscreen").css("background-position", "0px -40px")
-      }, function() {
-        $("#page-fullscreen").css("background-position", "0px 0px")
-      })
     }
   };
   var addEnterLeaveEvents = function() {
@@ -17357,7 +17376,7 @@ VISH.SlideManager = function(V, $, undefined) {
     return status
   };
   var _onslideenter = function(e) {
-    _decideIfPageSwitcher();
+    V.ViewerAdapter.decideIfPageSwitcher();
     var fcElem, slideId;
     setTimeout(function() {
       if($(e.target).hasClass("object")) {
@@ -17400,30 +17419,25 @@ VISH.SlideManager = function(V, $, undefined) {
       V.Mods.fc.player.clear()
     }
   };
-  var _decideIfPageSwitcher = function() {
-    if(V.curSlide === 0) {
-      $("#page-switcher-start").hide()
-    }else {
-      $("#page-switcher-start").show()
-    }
-    if(V.curSlide === V.slideEls.length - 1) {
-      $("#page-switcher-end").hide()
-    }else {
-      $("#page-switcher-end").show()
-    }
-  };
   var updateSlideCounter = function() {
     var number_of_slides = V.slideEls.length;
     var slide_number = V.curSlide + 1;
     $("#slide-counter").html(slide_number + "/" + number_of_slides)
   };
   var _hideAddressBar = function() {
-    VISH.Debugging.log("TODO method hideAddressBar in slides.js")
+    VISH.Debugging.log("TODO method hideAddressBar in slides.js");
+    window.scrollTo(0, 10);
+    setTimeout(function() {
+      window.scrollTo(0, 1);
+      document.getElementById("scroller").style.height = window.innerHeight + "px"
+    }, 500)
   };
   return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, toggleFullScreen:toggleFullScreen, getUser:getUser, getUserStatus:getUserStatus, updateSlideCounter:updateSlideCounter}
 }(VISH, jQuery);
 VISH.Slides.Events = function(V, $, undefined) {
   var addedEventListeners = false;
+  var PM_TOUCH_SENSITIVITY = 200;
+  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
   var init = function() {
     addEventListeners();
     $(document).bind("touchstart", handleTouchStart)
@@ -17433,6 +17447,14 @@ VISH.Slides.Events = function(V, $, undefined) {
       $(document).bind("keydown", handleBodyKeyDown);
       $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
       $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+      $(document).on("click", "#mobile_back_arrow", function() {
+        console.log("entra back");
+        V.Slides.backwardOneSlide()
+      });
+      $(document).on("click", "#mobile_forward_arrow", function() {
+        console.log("entra back");
+        V.Slides.forwardOneSlide()
+      });
       addedEventListeners = true
     }
   };
@@ -17477,7 +17499,7 @@ VISH.Slides.Events = function(V, $, undefined) {
       document.body.addEventListener("touchmove", handleTouchMove, true);
       document.body.addEventListener("touchend", handleTouchEnd, true);
       var zoom = document.documentElement.clientWidth / window.innerWidth;
-      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && event.target.id !== "mobile_forward_arrow" && event.target.id !== "mobile_back_arrow") {
         event.preventDefault()
       }
     }
@@ -17500,9 +17522,9 @@ VISH.Slides.Events = function(V, $, undefined) {
     var dy = Math.abs(touchDY);
     if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
       if(touchDX > 0) {
-        backwardOneSlide()
+        V.Slides.backwardOneSlide()
       }else {
-        forwardOneSlide()
+        V.Slides.forwardOneSlide()
       }
     }
     cancelTouch()
@@ -17515,6 +17537,8 @@ VISH.Slides.Events = function(V, $, undefined) {
     $(document).unbind("keydown", handleBodyKeyDown);
     $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
     $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+    $(document).off("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
+    $(document).off("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
     $(document).unbind("touchstart", handleTouchStart)
   };
   return{init:init, unbindAll:unbindAll}
@@ -17953,15 +17977,27 @@ VISH.VideoPlayer = function() {
   return{setVideoTagEvents:setVideoTagEvents, playVideos:playVideos, stopVideos:stopVideos}
 }(VISH, jQuery);
 VISH.ViewerAdapter = function(V, $, undefined) {
-  var setupSize = function() {
+  var page_is_fullscreen = false;
+  var setupSize = function(fullscreen) {
+    var reserved_px_for_menubar;
+    var margin_height;
+    var margin_width;
     if(V.Status.ua.mobile) {
-      var reserved_px_for_menubar = 0;
-      var margin_height = 0;
-      var margin_width = 0
+      reserved_px_for_menubar = 0;
+      margin_height = 0;
+      margin_width = 0
     }else {
-      var reserved_px_for_menubar = 40;
-      var margin_height = 40;
-      var margin_width = 30
+      if(fullscreen && !page_is_fullscreen) {
+        page_is_fullscreen = true;
+        reserved_px_for_menubar = 0;
+        margin_height = 0;
+        margin_width = 0
+      }else {
+        page_is_fullscreen = false;
+        reserved_px_for_menubar = 40;
+        margin_height = 40;
+        margin_width = 30
+      }
     }
     var height = $(window).height() - reserved_px_for_menubar;
     var width = $(window).width();
@@ -17989,7 +18025,53 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
   };
-  return{setupSize:setupSize}
+  var setupElements = function() {
+    if(page_is_fullscreen) {
+      $("#page-fullscreen").css("background-position", "0px 0px");
+      $("#page-fullscreen").hover(function() {
+        $("#page-fullscreen").css("background-position", "0px -40px")
+      }, function() {
+        $("#page-fullscreen").css("background-position", "0px 0px")
+      });
+      $("#viewbar").show();
+      $(".vish_arrow").hide()
+    }else {
+      $("#page-fullscreen").css("background-position", "-45px 0px");
+      $("#page-fullscreen").hover(function() {
+        $("#page-fullscreen").css("background-position", "-45px -40px")
+      }, function() {
+        $("#page-fullscreen").css("background-position", "-45px 0px")
+      });
+      $("#viewbar").hide();
+      $(".vish_arrow").show()
+    }
+  };
+  var decideIfPageSwitcher = function() {
+    if(!page_is_fullscreen && !V.Status.ua.mobile) {
+      if(V.curSlide === 0) {
+        $("#page-switcher-start").hide()
+      }else {
+        $("#page-switcher-start").show()
+      }
+      if(V.curSlide === V.slideEls.length - 1) {
+        $("#page-switcher-end").hide()
+      }else {
+        $("#page-switcher-end").show()
+      }
+    }else {
+      if(V.curSlide === 0) {
+        $("#mobile_back_arrow").hide()
+      }else {
+        $("#mobile_back_arrow").show()
+      }
+      if(V.curSlide === V.slideEls.length - 1) {
+        $("#mobile_forward_arrow").hide()
+      }else {
+        $("#mobile_forward_arrow").show()
+      }
+    }
+  };
+  return{decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupSize:setupSize}
 }(VISH, jQuery);
 VISH.Mods.fc = {};
 VISH.Mods.fc.loader = function(V, undefined) {

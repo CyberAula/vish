@@ -40,7 +40,7 @@ class QuizSessionsController < ApplicationController
     qa.quiz_session = @quiz_session
     qa.json = '{"option": ' + params[:option].to_json + '}'
     qa.save!
-    redirect_to results_quiz_session_path(@quiz_session), :status => 303
+    redirect_to quiz_session_path(@quiz_session)
   end
 
   def destroy # DELETE /quiz_sessions/X => close quiz => show results
