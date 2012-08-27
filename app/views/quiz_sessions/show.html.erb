@@ -46,7 +46,7 @@ options["quiz_active_session_id"]=<%= @quiz_session.id %>;
   function start(){
 
     //params (options, excursion)
-    VISH.SlideManager.init( options, <%= raw @quiz_session.quiz.simple_json %>);
+    VISH.SlideManager.init( options, <%= render :partial => 'show', :formats => [:json] %>);
 
   }
 </script>
