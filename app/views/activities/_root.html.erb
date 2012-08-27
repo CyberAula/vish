@@ -6,8 +6,8 @@
                   activity.sender_subject, :class=> "container" %>
     </li>
     <li class="span10 activity_content">
-      <div class="row-fluid">
-        <span class="span"><%= activity.title(self)%></span>
+      <div class="row">
+        <span class="span9"><%= activity.title(self)%></span>
         <% if activity.delete_object_by?(current_subject) %>
           <div class="icon_close">
 
@@ -17,9 +17,9 @@
           </div>
         <% end %>
         <span class=""><%= render activity.activity_objects %></span>
-        <span class="row-fluid-100">
+        <span class="row">
           <%= render :partial => 'activities/options',
-                           :locals => { :activity => activity } %>
+                     :locals => { :activity => activity } %>
           <%= render :partial => 'activities/comments',
                      :locals => { :activity => activity } %>
           <%= render :partial => 'comments/new',

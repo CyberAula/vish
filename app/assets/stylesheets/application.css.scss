@@ -16,12 +16,12 @@
  * require_tree .
  *= require avatars_for_rails
  *= require bootstrap 
- *= require bootstrap-responsive
+ * require bootstrap-responsive
  *= require fcbkComplete
  *= require icon
  *= require linkser
  * require mobile
- *=require phone
+ *require phone
  *= require search
  *= require slider
  *= require tags
@@ -729,7 +729,7 @@ form.example input.file.hidden {
 
 
 /************* ACTIVITY - FOOTER *********/
-.space_comments {	padding-top: 1px; 	padding-bottom: 1px;}
+.space_comments {	}
 .space_activities {	text-align:center;	padding: 0px 0px 0px 1px;	width:100%;}
 .space_sub{	display: inline;	padding: 1px 200px 1px 200px;	border-bottom: thin solid;
   font-size: 2px;	text-align:center;}
@@ -741,7 +741,7 @@ form.example input.file.hidden {
 /****************** SUB-ACTIVITY by ACTIVITY ********/
 .activity_new_comment{  font-size: 11px;  padding-left: 5px; padding-top: 3px;  padding-bottom: 3px;display:none;}
 .input_new_comments{width:98%;	padding: 2px; resize: none;  }
-.space_comments{padding-top: 1px;	padding-bottom: 1px;}
+.space_comments{}
 #activities_share_btn {	text-align: right;	padding: 5px 16px 0px 0px;	vertical-align: middle;}
 .activities_comment_btn{ text-align: right; padding: 0px 5px 2px 0px; vertical-align: middle;}
 
@@ -2039,32 +2039,39 @@ select {
   height: 18px;
   width: 95%;
 }
+
+
+
 .boxy_white_wall   {
-  background-color: #FFFFFF;
-  border: 0px solid transparent;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-
-
-  background-color: #FFFFFF;
-
-
-/* Safari 5.1+ y Chrome 10+ */
-  background-image:-webkit-linear-gradient(top , #FFFFFF, #F5F5F5);
-
-/* Firefox 3.6+ */
-  background-image:-moz-linear-gradient(top, #FFFFFF, #F5F5F5);
-
-/* Opera 11.10+ */
-  background-image:-o-linear-gradient(top, #FFFFFF, #F5F5F5);
-
-/* Internet Explorer 5.5+ */
-  filter:progid:DXImageTransform.Microsoft.gradient(startColorStr='#Ffffff', EndColorStr='#F5F5F5');
-  background-repeat: no-repeat;
+  border-radius: 15px 15px 15px 15px;
+  border-top: 1px solid #F2F2F2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  position: relative;
+  width: 97%;
+  z-index: 1;
 
 
 }
+
+.boxy_white_wall2
+ {
+border: medium none;
+border-radius: 100% 100% 100% 100% / 33px;
+box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
+
+}
+
+
+.boxy_white_wall3 {
+  background: -moz-linear-gradient(center top , #F9F9F9 50%, #F0F0F0 100%) repeat scroll 0 0 transparent;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset;
+  cursor: pointer;
+  display: block;
+}
+
+
+
 .embed{
 width: 387px;
 }

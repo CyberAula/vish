@@ -17,7 +17,9 @@ group :assets do
   gem 'uglifier', '>= 1.2.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '2.0.2'
+gem 'json', '1.7.4'
+gem 'sinatra', '1.3.2'
 
 social_stream_gems = lambda {
   gem 'social_stream-base'
@@ -52,7 +54,7 @@ gem 'composite_primary_keys'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
+gem 'capistrano', '2.12.0'
 
 # Use god for its own purpose
 gem 'god'
