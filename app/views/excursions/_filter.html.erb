@@ -6,7 +6,7 @@
   <% show_add = false if !defined?(show_add) %>
   <% if user_signed_in? and profile_subject_is_current? or show_add %>
   <div class="pull-right">
-    <div class="menu_resources">
+    <div class="btn-gray">
       <%= link_to  raw("<i class='icontool16-tool16_more'></i> ") + t('options.add'),new_excursion_path, :class => :action  %>
     </div>
   </div>

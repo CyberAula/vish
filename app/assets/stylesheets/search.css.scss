@@ -10,8 +10,9 @@
   z-index: 501;
 
 }
-.margin_search_no_session{
-margin-top: 5px
+.input-searchlarge {
+  width: 251px;
+  height: 25px;
 }
 #header_search_nosession {
   float: right;
@@ -39,7 +40,7 @@ margin-top: 5px
   /*padding: 0 22px 0 22px;*/
   background-image: url('btn/search_icon.png');
   background-repeat: no-repeat;
-  background-position: 99% center;
+  background-position: 96% center;
   padding-right: 5px;
 }
 

@@ -197,6 +197,11 @@ hr {
   font-size: 35px;
 
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> d3c89276d907385bd74e22d9ae555c41479ce031
 .selected {
 	background-position: 0 -52px;
 }
@@ -232,18 +237,6 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 
 .margin-wall-txt{margin-top:10px;}
 
-.following-button, .unfollow-button, .follow-button {
-    padding-bottom: 5px;
-    padding-top: 5px;
-    margin-top:0px;
-	font-weight:100;
-	letter-spacing: 0.1em;
-	text-decoration:none;
-	width:auto;
-}
-.follow-button a{
-	text-decoration:none;
-}
 .explore-button {
    padding-bottom: 5px;
     padding-top: 5px;
@@ -310,75 +303,94 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   display:block;
   margin-top: -5px
 }
-.backgindex-bottom{
-background-image: url("/assets/mobile/bottomindex.jpg"); 
-background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
-.backgindex-center{
-background-image: url("/assets/mobile/topindex.jpg"); 
-background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
-
-.backgindex{background-image: url("/assets/mobile/ballena2.jpg"); 
-background-repeat: no-repeat; background-position: top-center;background-size: 100%;}
 
 .vish-white{opacity: 0.6;}
+<<<<<<< HEAD
 .welcome{text-shadow: 1px 2px #999; opacity: 0.87;}
+=======
+
+>>>>>>> d3c89276d907385bd74e22d9ae555c41479ce031
 
 .container-logs{padding-top: 66px;}
 
 /*radiobuttons clases*/
 
+
 .imageless-css-3-form-elements label{
   cursor: hand;
   cursor: pointer;
-}        
-.imageless-css-3-form-elements label input[type="checkbox"],
-.imageless-css-3-form-elements label input[type="checkbox"] + span,
-.imageless-css-3-form-elements label input[type="checkbox"] + span::before,{
+}
+        
+.imageless-css-3-form-elements label input[type="radio"],
+.imageless-css-3-form-elements label input[type="radio"] + span,
+.imageless-css-3-form-elements label input[type="radio"] + span::before{
   vertical-align: middle;
-}        
-.imageless-css-3-form-elements label input[type="checkbox"]{
+}
+        
+.imageless-css-3-form-elements label input[type="radio"]{
   position: absolute;
   filter: alpha(opacity=0);
-            -moz-opacity: 0;
-            -webkit-opacity: 0;
-            opacity: 0;
-}        
-.imageless-css-3-form-elements label input[type="checkbox"] + span,
-.imageless-css-3-form-elements label input[type="checkbox"] + span::before{
-    display: inline-block;
-}        
-.imageless-css-3-form-elements label input[type="checkbox"] + span::before{
-    content: "O";
-}       
-.imageless-css-3-form-elements label input[type="checkbox"] + span::before{
+     -moz-opacity: 0;
+     -webkit-opacity: 0;
+  opacity: 0;
+}
+        
+.imageless-css-3-form-elements label input[type="radio"] + span,
+.imageless-css-3-form-elements label input[type="radio"] + span::before{
+  display: inline-block;
+}
+        
+.imageless-css-3-form-elements label input[type="radio"] + span{
+  font: normal 22px/52px "Segoe UI", Sans-serif;
+}
+        
+.imageless-css-3-form-elements label input[type="radio"] + span::before{
   text-indent: -9999px;
   width: 21px;
   height: 24px;
   color: #000;
   font: bold 25px/25px Garamond, "Segoe UI", Sans-serif;
   text-transform: uppercase;
-  border: solid 1px #cccccc;
+  border: solid 1px #0b70cd;
   border-radius: 19px;
   box-shadow: 0 0 1px 1px #ccc;
+  background: #ffffff; 
+  margin: 0 4px 0 0;
+  padding: 4px 8px 4px 0px;
+}
+        
+.imageless-css-3-form-elements label:hover input[type="radio"]:not(:disabled) + span::before{
   background: #ffffff;
-  margin: 7px 5px 10px 19px;
-  padding: 5px 8px 5px 5px;
-}       
-.imageless-css-3-form-elements label:hover input[type="checkbox"]:not(:disabled) + span::before{
-  box-shadow: 0 0 4px 4px #ccc;
-}       
-.imageless-css-3-form-elements label input[type="checkbox"]:checked + span::before{
+  box-shadow: 0 0 2px 2px #ccc;
+}
+        
+.imageless-css-3-form-elements label input[type="radio"]:checked + span::before{
   text-indent: 2px;
   color: #cccccc;
   text-shadow: 0 0 2px #cccccc;
 }
-.imageless-css-3-form-elements label input[type="checkbox"]:disabled + span::before{
-            filter: alpha(opacity=50);
-            -moz-opacity: .5;
-            -webkit-opacity: .5;
-            opacity: .5;
+        
+.imageless-css-3-form-elements label input[type="radio"] + span::before{
+  content: "O";
+  font-size: 32px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+  border-radius: 20px;
 }
-.imageless-css-3-form-elements label input[type="checkbox"]:disabled + span,
-.imageless-css-3-form-elements label input[type="checkbox"]:disabled + span::before{
+        
+.imageless-css-3-form-elements label input[type="radio"]:checked + span::before{
+  text-indent: 2px;
+}
+        
+.imageless-css-3-form-elements label input[type="radio"]:disabled + span::before{
+     filter: alpha(opacity=50);
+       -moz-opacity: .5;
+       -webkit-opacity: .5;
+  opacity: .5;
+}
+        
+.imageless-css-3-form-elements label input[type="radio"]:disabled + span,
+.imageless-css-3-form-elements label input[type="radio"]:disabled + span::before{
   cursor: default;
 }
+

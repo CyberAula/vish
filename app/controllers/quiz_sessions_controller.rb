@@ -14,9 +14,18 @@ class QuizSessionsController < ApplicationController
     render :text => qs.id.to_s
   end
 
-  def show # GET /quiz_sessions/X => render vote or results page
+  def show # GET /quiz_sessions/X => render vote page 
     @quiz_session = QuizSession.find(params[:id])
-    render
+    if @quiz_session.active
+      render :layout => 'iframe'
+    else
+      render 'quiz_sessions/closed' # Quiz is closed!!!
+    end
+  end
+
+  def results # GET /quiz_sessions/X/results => render results page 
+    @quiz_session = QuizSession.find(params[:id])
+    render :layout => 'iframe'
   end
 
   def index # GET /quiz_sessions => list your quiz sessions as a list
@@ -31,7 +40,7 @@ class QuizSessionsController < ApplicationController
     qa.quiz_session = @quiz_session
     qa.json = '{"option": ' + params[:option].to_json + '}'
     qa.save!
-    redirect_to quiz_session_path(@quiz_session)
+    redirect_to results_quiz_session_path(@quiz_session), :status => 303
   end
 
   def destroy # DELETE /quiz_sessions/X => close quiz => show results

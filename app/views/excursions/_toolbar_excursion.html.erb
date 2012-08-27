@@ -1,18 +1,18 @@
 <div class="excursion_tools">
   <div class="options inline-block">
-    <div class="menu_resources">
+    <div class="btn-gray">
       <a class="action" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
     </div>
-    <div class="menu_resources">
+    <div class="btn-gray">
       <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= t('excursion.actions.share') %></a>
     </div>
     <% if user_signed_in? and excursion.post_activity.edit_object_by?(current_subject) %>
-      <div class="menu_resources">
+      <div class="btn-gray">
         <%= link_to raw("<i class='icontool16-tool16_edit'></i> ") + t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
       </div>
     <%end%>
     <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
-      <div class="menu_resources">
+      <div class="btn-gray">
           <%= link_to raw("<i class='icontool16-tool16_symbol_delete'></i> ") +  t('excursion.actions.delete'),  excursion.post_activity.direct_object,
                       :confirm => t('confirm_delete', :scope => @excursion.post_activity.direct_object.class.to_s.underscore),
                       :method => :delete, :class => :action %>
@@ -20,7 +20,7 @@
     <% end %>
 
     <% unless excursion.activities.blank? %>
-      <div class="menu_resources">
+      <div class="btn-gray">
         <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first, :size => :big)%></div>
       </div>
     <% end %>
@@ -148,20 +148,23 @@
         invitees.push($(ele).attr("id").substring(14));
         $(ele).removeClass("btn-info");
       });
+      name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
       $.ajax({
         url: "http://www.mashme.tv/api/buttons",
         type: "POST",
         data: {
           url: target_url,
           title: target_title,
-          theme: "vish"
+          theme: "vish",
+          name: name,
+          app: "cobrowser",
+          media: encodeURI("<%= request.url.gsub('http://', '') %>")
         },
         success: function(data) {
-          name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
           $.ajax({
             url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
           })
-          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&app=cobrowser&media=" + encodeURI("<%= request.url.gsub('http://', '') %>"));
+          launchIframe("http://www.mashme.tv/M/" + data);
         }
       });
       $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));

@@ -35,9 +35,13 @@ class Excursion < ActiveRecord::Base
 
   def extract_quizzes(parsed_json)
     parsed_json["slides"].each do |slide|
+      next unless slide["type"] == "quiz"
       next unless slide["template"] =~ /^t1[012]$/
-      next unless slide["quiz_id"].nil?
-      quiz = Quiz.new
+      if slide["quiz_id"].nil?
+        quiz = Quiz.new
+      else
+        quiz = Quiz.find(slide["quiz_id"])
+      end
       quiz.excursion=self
       case slide["template"]
         when "t10" # Open question
@@ -52,6 +56,7 @@ class Excursion < ActiveRecord::Base
           quiz.type="TrueFalseQuiz"
           # PENDING
       end
+      quiz.simple_json = slide["quiz_simple_json"].to_json
       quiz.save!
       slide["quiz_id"]=quiz.id
     end

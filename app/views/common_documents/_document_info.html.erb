@@ -28,7 +28,7 @@
 
       <div class="clearfloat"></div>
 
-      <div class="tab-content">
+      <div class="tab-content overflow">
         <div id="details" class="tab-pane active">
           <div class="notebook-medio">
             <div class="content-notebook">
@@ -36,7 +36,7 @@
                 <%= t('document.info.title') %>
               </div>
               <div class="clearfloat"></div>
-              <div class="title_resources">
+              <div class="title_resources word-break">
                 <%= document.title.nil? ? document.file_file_name : document.title %>
               </div>
               <div class="info_resources">
@@ -54,7 +54,7 @@
                     <%= t('info.description') %>
                   </div>
                   <div class="clearfloat"></div>
-                  <div class="date_resources">
+                  <div class="date_resources word-break">
                     <%= truncate(document.description, :length => 200) %>
                   </div>
                 </div>

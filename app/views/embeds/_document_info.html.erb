@@ -10,7 +10,7 @@
 
 	<div class="pagination-right margin-up">
 		<% if document.post_activity.delete_object_by?(current_subject) %>
-   			<div class="menu_resources">
+   			<div class="btn-gray">
    				<%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete',                                                                                                                                                                                                    :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
 			</div>
 		<% end %>

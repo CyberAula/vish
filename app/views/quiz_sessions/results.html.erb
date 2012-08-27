@@ -1,0 +1,47 @@
+<section class="slides layout-regular template-default">
+  <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
+  <div id="viewbar" class="viewbar">
+    <button id="page-switcher-start" class="page-switcher" tabindex="2">
+      <
+    </button>
+    <div id="slide-counter"></div>
+    <button id="page-switcher-end" class="page-switcher" tabindex="2" >
+      >
+    </button>
+    </button>
+  </div>
+</section>
+
+
+  
+<script>
+  //first function called when page loads
+
+var configuration = {};
+configuration["presentationSettings"] = true;
+configuration["presentationTags"] = true;
+configuration["presentationThumbnails"] = true;
+
+configuration["VishLives"] = true;
+configuration["VishUpload"] = true;
+configuration["VishRepo"] = true;
+
+configuration["Flickr"] = true;
+configuration["Youtube"] = true;
+configuration["Vimeo"] = false;
+
+configuration["VishIntegration"] = true;
+
+configuration["mode"] = "vish";
+
+  function start(){
+
+<% username = false 
+   username = current_user.name if user_signed_in? %>
+    //params (options, quiz_results)
+
+    VISH.SlideManager.init({"configuration": configuration, "username": <%= username %> ,  "quiz_active_session_id":<%= @quiz_session.id %>, "show_results": true ,  "developping":true}, <%= raw @quiz_session.quiz.simple_json %>);
+//@results_quiz.to_json
+  }
+</script>
+
