@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /* CSS Document */
 
+#email{margin-top: 20px; margin-bottom: 20px;}
+
 body {
     color: #333333;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -195,8 +197,11 @@ hr {
   font-size: 35px;
 
 }
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> d3c89276d907385bd74e22d9ae555c41479ce031
 .selected {
 	background-position: 0 -52px;
 }
@@ -219,7 +224,7 @@ label {
     width: 98%;
 }
 
-input, textarea, select, .uneditable-input{border-radius:5px; background-color: #fefefe; margin-bottom: 25px; margin-top: -6px;}
+input, textarea, select, .uneditable-input{border-radius:5px; background-color: #fefefe; margin-bottom: 25px !important; margin-top: -6px;}
 
 .input-xlarge {height:60px}
 .section {margin-right: 10px; margin-left: 10px;}
@@ -300,7 +305,11 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 }
 
 .vish-white{opacity: 0.6;}
+<<<<<<< HEAD
+.welcome{text-shadow: 1px 2px #999; opacity: 0.87;}
+=======
 
+>>>>>>> d3c89276d907385bd74e22d9ae555c41479ce031
 
 .container-logs{padding-top: 66px;}
 

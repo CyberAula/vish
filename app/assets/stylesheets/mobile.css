@@ -222,7 +222,7 @@ label {
 input, textarea, select, .uneditable-input{
   border-radius:5px; 
   background-color: #fefefe; 
-  margin-bottom: 25px; 
+  margin-bottom: 25px !important; 
   margin-top: -6px;
 }
 input, textarea, select, .uneditable-input {width: 100%;}

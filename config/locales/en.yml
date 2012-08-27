@@ -56,7 +56,7 @@ en:
     screencast: "VISH's screencast"
     title_input: "Name for this resource"
   email:
-    regards: "King regards,<br/>"
+    regards: "Kind regards,<br/>"
     welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
   embed:
     confirm_delete: "Delete embed?"
@@ -167,7 +167,7 @@ en:
   resource:
     empty: "You"    
     network: "my network resources"
-    newmy_html: "You have not upload any resources yet. You can add a new one by clicking on the upload button or on this "    
+    newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "    
     newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
     newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/star-off.png'>"
     my: "my"
