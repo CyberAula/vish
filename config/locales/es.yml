@@ -93,7 +93,7 @@ es:
     title:
       other: "excursiones"
     upcomming: "upcomming"
-    top: "top"
+    top: "paraMí"
   external: "externo"
   filter: "filtrar"
   follow:
@@ -175,7 +175,7 @@ es:
     title:
       one: "recursos"
       other: "recursos"
-    top: "top"
+    top: "paraMí"
     upload: "subir"
   share: "Enviar"
   site:

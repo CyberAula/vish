@@ -91,7 +91,7 @@ en:
     title:
       other: "excursions"
     upcomming: "upcomming"
-    top: "top"
+    top: "forMe"
   external: "external"
   filter: "filter"
   follow:
@@ -175,7 +175,7 @@ en:
     title:
       one: "resource"
       other: "resources"
-    top: "top"
+    top: "forMe"
     upload: "upload"
   share: "Post"
   sign_up: "Register"
