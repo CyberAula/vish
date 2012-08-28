@@ -19,16 +19,7 @@
   </ul>
 
   <%= javascript_tag do %>
-    $(".embed-modal-button-<%= embed.id.to_s%>").on("click", function(){
-      <%= modal_for(embed) %>
-      $("#embed-modal-<%= embed.id.to_s%> .modal-body").html("<%= raw j embed.fulltext %>");
-      $("#embed-modal-<%= embed.id.to_s%>").on("hidden", function(){
-        $("#embed-modal-<%= embed.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
-      });
-    });
-
-    $(".user-modal-button-<%= embed.author.slug %>").on("click", function(){
-      <%= modal_for(embed.author.subject) %>
-    });
+    <%= modal_for(embed) %>
+    <%= modal_for(embed.author.subject) %>
   <% end %>
 <% end %>

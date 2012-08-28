@@ -110,7 +110,7 @@ Vish.Wall = (function(V, $, undefined){
     if (modal.length) {
       return modal;
     } else {
-      return $('<div class="modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer"><div class="pull-left">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="pull-right"><a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" data-show="false" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer"><div class="pull-left">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="pull-right"><a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 
@@ -119,7 +119,7 @@ Vish.Wall = (function(V, $, undefined){
     if (modal.length) {
       return modal;
     } else {
-      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center"><img alt="Loading" class="loading" src="/assets/loading.gif" /></div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" data-show="false" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center"><img alt="Loading" class="loading" src="/assets/loading.gif" /></div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 

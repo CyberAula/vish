@@ -13,9 +13,7 @@
   </ul>
 <% end %>
 <%= javascript_tag do %>
-  $(".user-modal-button-<%= object.actor.slug %>").on("click", function(){
-   <%= modal_for(object.actor.subject) %>
-  });
+ <%= modal_for(object.actor.subject) %>
 <% end %>
 <% end %>
 <div class="row space_center"></div>

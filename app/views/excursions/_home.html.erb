@@ -23,7 +23,5 @@
 <% end %>
 
 <%= javascript_tag do %>
-  $(".user-modal-button-<%= excursion.author.slug %>").on("click", function(){
-    <%= modal_for(excursion.author.subject) %>
-  });
+  <%= modal_for(excursion.author.subject) %>
 <% end %>

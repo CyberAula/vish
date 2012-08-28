@@ -18,7 +18,5 @@
 </div>
 
 <%= javascript_tag do %>
-  $(".user-modal-button-<%=document.author.slug %>").on("click", function(){
-    <%= modal_for(document.author.subject) %>
-  });
+  <%= modal_for(document.author.subject) %>
 <% end %>

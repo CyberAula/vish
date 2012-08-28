@@ -20,9 +20,7 @@
   <div class="space_center">
   </div>
   <%= javascript_tag do %>
-    $(".user-modal-button-<%= contact.receiver.slug %>").on("click", function(){
-      <%= modal_for(contact.receiver_subject) %>
-    });
+    <%= modal_for(contact.receiver_subject) %>
   <% end %>
 <% end %>
 
