@@ -1,5 +1,8 @@
 <% author = post.author_subject %>
 <div class="model_with_details span3  box-result">
+  <%= javascript_tag do %>
+    <%= modal_for(author.subject) %>
+  <% end %>
   <ul class="thumbnails">
     <li class="span1 margin-clear ">
       <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %>"><%= image_tag(author.logo.url, :alt => author.name) %></a>
@@ -22,6 +25,3 @@
   </ul>
 </div>
 
-<%= javascript_tag do %>
-  <%= modal_for(author.subject) %>
-<% end %>

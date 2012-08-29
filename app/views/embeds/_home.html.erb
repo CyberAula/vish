@@ -1,4 +1,8 @@
 <%= div_for embed, :class => 'span3' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(embed) %>
+    <%= modal_for(embed.author.subject) %>
+  <% end %>
   <ul class="thumbnails">
     <li class="span">
       <div id="margin-resources">
@@ -17,9 +21,4 @@
         </div>
     </div>
   </ul>
-
-  <%= javascript_tag do %>
-    <%= modal_for(embed) %>
-    <%= modal_for(embed.author.subject) %>
-  <% end %>
 <% end %>

@@ -1,4 +1,8 @@
 <%= div_for swf, :class => 'row-fluid' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(swf) %>
+  <% end %>
+
 	<ul class="thumbnails">
     <li class="span3">
       <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="swf-modal-button-<%= swf.id.to_s%>"><i class='icon75-swf'></i></a>
@@ -14,10 +18,6 @@
       <p><%= link_to t('details.msg'), swf, :class => "attachment_text_link" %></p>
     </li>
 	</ul>
-
-  <%= javascript_tag do %>
-    <%= modal_for(swf) %>
-  <% end %>
 
 <% end %>
 

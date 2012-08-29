@@ -1,4 +1,7 @@
 <ul class="thumbnails">
+  <%= javascript_tag do %>
+    <%= modal_for(audio) %>
+  <% end %>
   <li class="span3">
     <a data-toggle="modal" href="#audio-modal-<%= audio.id.to_s%>" class="audio-modal-button-<%= audio.id.to_s%>"><i class='icon75-audio'></i></a>
   </li>
@@ -15,8 +18,4 @@
     </div>
   </li>
 </ul>
-
-<%= javascript_tag do %>
-  <%= modal_for(audio) %>
-<% end %>
 

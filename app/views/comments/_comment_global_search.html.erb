@@ -1,5 +1,8 @@
 <% author = comment.author_subject %>
 <div class="model_with_details">
+  <%= javascript_tag do %>
+    <%= modal_for(author.subject) %>
+  <% end %>
   <div class="logo">
     <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %>"><%= image_tag(author.logo.url, :size => "50x50", :alt => author.name) %></a>
   </div>
@@ -17,6 +20,3 @@
   </div>
 </div>
 
-<%= javascript_tag do %>
-  <%= modal_for(author.subject) %>
-<% end %>

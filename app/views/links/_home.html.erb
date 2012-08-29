@@ -1,6 +1,11 @@
 <%= div_for link, :class => 'span3', :style => 'padding: 0; margin-top: 0;' do %>
   <% link_title = link.title %>
   <% link_title = link.url if link_title.blank? %>
+  <%= javascript_tag do %>
+    <%= modal_for(link) %>
+    <%= modal_for(link.author.subject) %>
+  <% end %>
+
   <ul class="thumbnails">
     <li class="span">
       <div id="margin-resources">
@@ -22,10 +27,5 @@
         </div>
     </div>
   </ul>
-
-  <%= javascript_tag do %>
-    <%= modal_for(link) %>
-    <%= modal_for(link.author.subject) %>
-  <% end %>
 
 <% end %>

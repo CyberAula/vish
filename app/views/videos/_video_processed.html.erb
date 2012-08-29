@@ -1,3 +1,6 @@
+<%= javascript_tag do %>
+  <%= modal_for(video) %>
+<% end %>
 <ul class="thumbnails">
   <li class="span3">
     <a data-toggle="modal" href="#video-modal-<%= video.id.to_s%>" class="video-modal-button-<%= video.id.to_s%>"><%= thumb_for(video, 75) %></a>
@@ -17,9 +20,4 @@
     </div>
   </li>
 </ul>
-
-<%= javascript_tag do %>
-  <%= modal_for(video) %>
-<% end %>
-
 

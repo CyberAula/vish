@@ -1,5 +1,8 @@
 <% author = post.author_subject %>
 <div class="row-fluid">
+  <%= javascript_tag do %>
+    <%= modal_for(author.subject) %>
+  <% end %>
   <div class="span2 pagination-centered link_white">
     <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %>" alt='<%= author.name %>'><%= image_tag(author.logo.url(:contact)) %></a>
   </div>
@@ -16,6 +19,3 @@
   </div>
 </div>
 
-<%= javascript_tag do %>
-  <%= modal_for(author.subject) %>
-<% end %>
