@@ -2090,7 +2090,7 @@ width: 387px;
 .word-break {
 /* Div que corta las palabras largas */
 
-  overflow: no;
+  overflow: hidden;
   padding-right: 25px;
 
   word-wrap: break-word; /* IE */
@@ -2099,6 +2099,7 @@ width: 387px;
 
 .overflow{
   overflow-x: -moz-hidden-unscrollable !important;
+  overflow: hidden;
 }
 
 

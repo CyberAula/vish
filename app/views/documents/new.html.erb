@@ -43,7 +43,7 @@
 
 <!--menu type of resource-->
 <div class="repository tabbable">
-  <div class="tab-content">
+  <div class="tab-content span10 ">
   	
 		<!-- Tags preloaded -->
     <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
@@ -62,7 +62,7 @@
     </ul>
 
   	<!-- FILES TAB -->
-    <div id="docs-1" class="tab-pane active">
+    <div id="docs-1" class="tab-pane span active">
 
       <div class="boxy_gray span6">
         <div class=" row space_center"></div>
@@ -170,24 +170,26 @@
 	  </div>
 
 
-      <div class="span2 size15 red-1 margin-new_resource">
-        <%= t('document.help.title')%>
+      <div class="span3 size18 red-1 ">
+
+        <div class="margin-new_resource">
+        <%= t('document.help.title')%> </div>
         <div class=" row space_center"></div>
-        <div class="gray size12">
-          <%= t('document.help.info1_html')%>
-          <%= t('document.help.info2_html')%>
-          <%= t('document.help.info3_html')%>
-          <%= t('document.help.info4_html')%>
-          <%= t('document.help.info5_html')%>
-          <%= t('document.help.info6_html')%>
-          <%= t('document.help.info7_html')%>
+        <div class="gray size12 margin-new_resource">
+          <%= t('document.help.info1_html')%> <br/>
+          <%= t('document.help.info2_html')%> <br/>
+          <%= t('document.help.info3_html')%>  <br/>
+          <%= t('document.help.info4_html')%>  <br/>
+          <%= t('document.help.info5_html')%>  <br/>
+          <%= t('document.help.info6_html')%>  <br/>
+          <%= t('document.help.info7_html')%>  <br/>
           <%= t('document.help.info8_html')%>
         </div>
       </div>
   </div>
 		
 		<!-- LINKS TAB -->
-    <div id="docs-2" class="tab-pane">
+    <div id="docs-2" class="tab-pane span">
       <div class="boxy_gray span6">
         <div class=" row space_center"></div>
 	
@@ -298,13 +300,28 @@
 					<% end %>					
 		    </div>
 	    </div>
+      <div class="span3 size18 red-1 ">
 
+        <div class="margin-new_resource">
+          <%= t('document.help.title')%> </div>
+        <div class=" row space_center"></div>
+        <div class="gray size12 margin-new_resource">
+          <%= t('document.help.info1_html')%> <br/>
+          <%= t('document.help.info2_html')%> <br/>
+          <%= t('document.help.info3_html')%>  <br/>
+          <%= t('document.help.info4_html')%>  <br/>
+          <%= t('document.help.info5_html')%>  <br/>
+          <%= t('document.help.info6_html')%>  <br/>
+          <%= t('document.help.info7_html')%>  <br/>
+          <%= t('document.help.info8_html')%>
+        </div>
+      </div>
 
 
 	  </div>
 	
 		<!-- EMBED TAB -->
-    <div id="docs-3" class="tab-pane">
+    <div id="docs-3" class="tab-pane span ">
       <div class="boxy_gray span6">
         <div class=" row space_center"></div>
 			
@@ -421,6 +438,23 @@
 		      <% end %> 	
 				</div>
 		  </div>
+      <div class="span3 size18 red-1 ">
+
+        <div class="margin-new_resource">
+          <%= t('document.help.title')%> </div>
+        <div class=" row space_center"></div>
+        <div class="gray size12 margin-new_resource">
+          <%= t('document.help.info1_html')%> <br/>
+          <%= t('document.help.info2_html')%> <br/>
+          <%= t('document.help.info3_html')%>  <br/>
+          <%= t('document.help.info4_html')%>  <br/>
+          <%= t('document.help.info5_html')%>  <br/>
+          <%= t('document.help.info6_html')%>  <br/>
+          <%= t('document.help.info7_html')%>  <br/>
+          <%= t('document.help.info8_html')%>
+        </div>
+      </div>
+
 		</div>
 		
 	<!-- Close tab_content div -->	
