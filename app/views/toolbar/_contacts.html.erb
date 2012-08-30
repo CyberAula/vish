@@ -9,7 +9,7 @@
   <% end %>
   <ul class="thumbnails span">
     <li class="span1">
-      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
+      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
         <%= image_tag(object.actor.logo.url(:contact)) %>
       </a>
     </li>
@@ -27,7 +27,7 @@
   <% end %>
   <ul class="thumbnails span">
     <li class="span1">
-      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
+      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
         <%= image_tag(object.actor.logo.url(:contact)) %>
       </a>
     </li>

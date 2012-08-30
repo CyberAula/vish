@@ -4,7 +4,7 @@
     <%= modal_for(author.subject) %>
   <% end %>
   <div class="logo">
-    <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %>"><%= image_tag(author.logo.url, :size => "50x50", :alt => author.name) %></a>
+    <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-trigger"><%= image_tag(author.logo.url, :size => "50x50", :alt => author.name) %></a>
   </div>
   <div class="sub-block">
     <div class="brief">

@@ -5,13 +5,13 @@
 
   <ul class="thumbnails">
     <li class="span3">
-      <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>"><i class="icon_repository75-75_embed"></i></a>
+      <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%> modal-trigger"><i class="icon_repository75-75_embed"></i></a>
     </li>
 
     <li class="span9">
       <div class="title">
         <h4 class="bold ellipsis w190px">
-          <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>"><%= embed.title %></a>
+          <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%> modal-trigger"><%= embed.title %></a>
         </h4>
       </div>
       <p><%= simple_format (embed.description) %></p>

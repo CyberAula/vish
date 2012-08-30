@@ -7,15 +7,15 @@
   <ul class="thumbnails">
     <li class="span">
       <div id="margin-resources">
-        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= icon_class_for(document) %> <%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>"></a>
+        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= icon_class_for(document) %> <%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%> modal-trigger"></a>
       </div>
     </li>
     <div class="row-fluid-100">
       <h4 class="link_gray size15 ellipsis w150px">
-        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>"><%= document.title %></a>
+        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%> modal-trigger"><%= document.title %></a>
       </h4>
       <div class="rw-words rw-words-1">
-          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %>"><%= document.author.name %></a></h5></span>
+          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %> modal-trigger"><%= document.author.name %></a></h5></span>
           <div class="clearfloat"></div>
           <span><h5 class="green inline margin-home-resource-view"><%=document.visit_count.to_s%> </h5> <%= t("follow.views") %> / <h5 class="green inline like_count_<%= dom_id(document.activities.first) %>"><%=document.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first)%></div></span>
 

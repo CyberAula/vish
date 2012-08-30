@@ -8,7 +8,7 @@ module SubjectsHelper
      "<script type='text/javascript'>
        #{h modal_for(subject)}
      </script>
-     <a data-toggle=\"modal\" href=\"#user-modal-#{subject.slug}\" class=\"user-modal-button-#{subject.slug}\">#{subject.name}</a>"
+     <a data-toggle=\"modal\" href=\"#user-modal-#{subject.slug}\" class=\"user-modal-button-#{subject.slug} modal-trigger\">#{subject.name}</a>"
   end
 
   # Return the truncated name

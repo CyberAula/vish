@@ -49,7 +49,7 @@
                 </div>
                 <div class="clearfloat"></div>
                 <div class="date_resources">
-                  <a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %>"><%= truncate(document.author.name, :length => 200) %></a>
+                  <a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %> modal-trigger"><%= truncate(document.author.name, :length => 200) %></a>
                 </div>
               </div>
               <% unless document.description.blank? %>

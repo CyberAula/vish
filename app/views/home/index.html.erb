@@ -93,26 +93,13 @@
         <div id="repo-1" class="tab-pane active">
           <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-net"} %>
           <div class="space_center"></div>
-          <div id="home-resources-net" class="repositories row height-tabs-home">
+          <div id="home-resources-net" class="repositories row height-tabs-home modal-pivot">
             <% my_network_resources = current_subject_resources(:limit => 6) %>
             <% if my_network_resources.size == 0 %>
               <%= render :partial => "common_documents/zero_screen" %>
             <% else %>
-              <% for document in my_network_resources %>
-                <% if document.is_a? Embed %>
-                  <%= render :partial => "embeds/home",
-                             :locals => {:embed => document,
-                                         :div_class => 'content_size'} %>
-                <% elsif document.is_a? Link %>
-                   <%= render :partial => "links/home",
-                              :locals => {:link => document,
-                                          :div_class => 'content_size'} %>
-                <% elsif document.is_a? Document %>
-                  <%= render :partial => "common_documents/home",
-                             :locals => {:document => document,
-                                         :div_class => 'content_size'} %>
-                <% end %>
-              <% end %>
+              <%= render :partial => "common_documents/filter_results",
+                         :locals => {:documents => my_network_resources} %>
             <% end %>
           </div>
           <div class="more"><%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=net") %></div>
@@ -120,7 +107,7 @@
         <div id="repo-2" class="tab-pane">
           <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-me"} %>
           <div class="space_center"></div>
-          <div id="home-resources-me" class=" repositories row height-tabs-home  ">
+          <div id="home-resources-me" class=" repositories row height-tabs-home modal-pivot">
             <img alt="Loading" class="loading" src="/assets/loading.gif" />
           </div>
           <div class="more"><%= link_to(t('view_all'), [current_subject, Document]) %></div>
@@ -128,7 +115,7 @@
         <div id="repo-3" class="tab-pane">
           <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-more"} %>
           <div class="space_center"></div>
-          <div id="home-resources-more" class="repositories row height-tabs-home">
+          <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
             <img alt="Loading" class="loading" src="/assets/loading.gif" />
           </div>
           <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
@@ -136,11 +123,13 @@
         <div id="repo-4" class="tab-pane">
           <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-fav"} %>
           <div class="space_center"></div>
-          <div id="home-resources-fav" class="repositories row height-tabs-home">
+          <div id="home-resources-fav" class="repositories row height-tabs-home modal-pivot">
             <% fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
             <% if fav_resources.size == 0 %>
               <%= render :partial => "common_documents/fav_zero_screen" %>
             <% else %>
+              <%= render :partial => "common_documents/filter_results",
+                         :locals => {:documents => my_network_resources} %>
               <% for document in fav_resources %>
                 <% if document.is_a? Embed %>
                   <%= render :partial => "embeds/home",
@@ -180,10 +169,10 @@
       <div class="clearfloat"></div>
 
       <div class="tab-content">
-        <div id="follow-1" class="tab-pane active">
+        <div id="follow-1" class="tab-pane active modal-pivot">
           <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
 
-          <div class="follow-home-box ">
+          <div class="follow-home-box">
           <% current_subject.following_actor_objects.includes(:actor).all.shuffle.first(6).each do |object|  %>
             <%= javascript_tag do %>
               <%= modal_for(object.actor.subject) %>
@@ -192,7 +181,7 @@
             <%= div_for object.actor, :class => '' do %>
               <ul class="thumbnails span">
                 <li class="span1">
-  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
+  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
                 </li>
               </ul>
             <% end %>
@@ -201,9 +190,9 @@
           <div class="more"><%= link_to(t('view_all'), followings_path) %></div>
         </div>
 
-        <div id="follow-2" class="tab-pane">
+        <div id="follow-2" class="tab-pane modal-pivot">
           <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
-          <div class="follow-home-box ">
+          <div class="follow-home-box">
           <% current_subject.followers.all.shuffle.first(6).each do |object|  %>
             <%= javascript_tag do %>
               <%= modal_for(object.actor.subject) %>
@@ -212,7 +201,7 @@
             <%= div_for object.actor, :class => '' do %>
               <ul class="thumbnails span">
                 <li class="span1">
-                  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
+                  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
                 </li>
               </ul>
             <% end %>

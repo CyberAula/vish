@@ -77,6 +77,123 @@ Vish.Wall = (function(V, $, undefined){
         $('#document_file').trigger('click');
       }
     });
+
+    $('.modal-slide-prev').on("click", function(){
+      $('.modal').modal('hide');
+      my_pivot = $(this).parents('.modal').first().attr('data-modal-pivot'); // modal-pivot NEEDS to have an id
+      all_modals = $(my_pivot).find('.modal-trigger');
+      my_target = '#' + this.href.split('#',2)[1];
+      next_target = '#' + $(this).parents('.modal')[0].id;
+      prev_target = my_target;
+      next_index = parseInt($(this).parents('.modal').first().attr('data-modal-index'));
+      my_index = next_index;
+      while(my_index >= 0 && my_target != ('#' + all_modals[my_index].href.split('#',2)[1])) my_index--;
+      prev_index = my_index;
+      while(prev_index >= 0) {
+        prev_target = '#' + all_modals[prev_index].href.split('#',2)[1];
+	if(my_target == prev_target) {
+	  prev_index-=1;
+	} else {
+	  break;
+	}
+      }
+
+      $(my_target).attr('data-modal-pivot', my_pivot);
+      $(my_target).attr('data-modal-index', prev_index);
+      $(my_target + ' .next_modal').show();
+      $(my_target + ' .next_modal a').attr('href', next_target);
+
+      if(my_index < 0 || my_target == prev_target) {
+        $(my_target + ' .prev_modal').hide();
+      } else {
+        $(my_target + ' .prev_modal').show();
+        $(my_target + ' .prev_modal a').attr('href', prev_target);
+      }
+    });
+
+    $('.modal-slide-next').on("click", function(){
+      $('.modal').modal('hide');
+      my_pivot = $(this).parents('.modal').first().attr('data-modal-pivot'); // modal-pivot NEEDS to have an id
+      all_modals = $(my_pivot).find('.modal-trigger');
+      my_target = '#' + this.href.split('#',2)[1];
+      prev_target = '#' + $(this).parents('.modal')[0].id;
+      next_target = my_target;
+      prev_index = parseInt($(this).parents('.modal').first().attr('data-modal-index'));
+      my_index = prev_index;
+      while(my_index < all_modals.length && my_target != ('#' + all_modals[my_index].href.split('#',2)[1])) my_index++;
+      next_index = my_index;
+
+      while(next_index < all_modals.length) {
+        next_target = '#' + all_modals[next_index].href.split('#',2)[1];
+	if(my_target == next_target) {
+	  next_index+=1;
+	} else {
+	  break;
+	}
+      }
+
+      $(my_target).attr('data-modal-pivot', my_pivot);
+      $(my_target).attr('data-modal-index', next_index);
+      $(my_target + ' .prev_modal').show();
+      $(my_target + ' .prev_modal a').attr('href', prev_target);
+
+      if(my_index < 0 || my_target == next_target) {
+        $(my_target + ' .next_modal').hide();
+      } else {
+        $(my_target + ' .next_modal').show();
+        $(my_target + ' .next_modal a').attr('href', next_target);
+      }
+    });
+
+    $('.modal-trigger').on("click", function(){
+      my_pivot = '#' + $(this).parents('.modal-pivot')[0].id; // modal-pivot NEEDS to have an id
+      all_modals = $(this).parents('.modal-pivot').find('.modal-trigger');
+      my_target = '#' + this.href.split('#',2)[1];
+
+      if(my_pivot == '#') {
+        $(my_target + ' .prev_modal').hide();
+        $(my_target + ' .next_modal').hide();
+	return;
+      }
+
+      next_target = prev_target = my_target;
+      my_index = $.inArray(this, all_modals);
+      next_index = my_index+1;
+      prev_index = my_index-1;
+
+      while(next_index < all_modals.length) {
+        next_target = '#' + all_modals[next_index].href.split('#',2)[1];
+        if(my_target == next_target) {
+          next_index+=1;
+        } else {
+          break;
+        }
+      }
+
+      while(prev_index >= 0) {
+        prev_target = '#' + all_modals[prev_index].href.split('#',2)[1];
+        if(my_target == prev_target) {
+          prev_index-=1;
+        } else {
+          break;
+        }
+      }
+
+      $(my_target).attr('data-modal-pivot', my_pivot);
+      $(my_target).attr('data-modal-index', my_index);
+      if(my_index < 0 || my_target == prev_target) {
+        $(my_target + ' .prev_modal').hide();
+      } else {
+        $(my_target + ' .prev_modal').show();
+        $(my_target + ' .prev_modal a').attr('href', prev_target);
+      }
+      if(my_index < 0 || my_target == next_target) {
+        $(my_target + ' .next_modal').hide();
+      } else {
+        $(my_target + ' .next_modal').show();
+        $(my_target + ' .next_modal a').attr('href', next_target);
+      }
+    });
   }
 
   var modalPayload = function(klass, id) { /* TODO: video, audio.... other payloads? */
@@ -97,6 +214,12 @@ Vish.Wall = (function(V, $, undefined){
     }
   }
 
+  var modalNavBtns = function(){
+    prev_btn = '<div class="btn-gray link_gray prev_modal"><a class="modal-slide-prev" href="#" data-toggle="modal">&larr;</a></div>';
+    next_btn = '<div class="btn-gray link_gray next_modal"><a class="modal-slide-next" href="#" data-toggle="modal">&rarr;</a></div>';
+    return prev_btn + next_btn;
+  }
+
   var modalFollowBtn = function(signed_in, contact_link){
     if(signed_in) {
       return '<div class="send_message size10 red-2 upfoll">' + $("<div/>").html(contact_link).text() + '</div>'
@@ -110,7 +233,7 @@ Vish.Wall = (function(V, $, undefined){
     if (modal.length) {
       return "";
     } else {
-      return $('<div class="modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer"><div class="pull-left">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="pull-right"><a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer"><div class="pull-left">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="pull-right">' + modalNavBtns() + '<a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 
@@ -119,7 +242,7 @@ Vish.Wall = (function(V, $, undefined){
     if (modal.length) {
       return "";
     } else {
-      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center"><img alt="Loading" class="loading" src="/assets/loading.gif" /></div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right"><a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center"><img alt="Loading" class="loading" src="/assets/loading.gif" /></div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right">' + modalNavBtns() + '<a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 
