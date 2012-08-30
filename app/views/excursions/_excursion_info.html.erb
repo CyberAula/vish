@@ -1,3 +1,7 @@
+<%= javascript_tag do %>
+  <%= modal_for(@excursion.author.subject) %>
+<% end %>
+
 <div class="space_center"></div>
 <div class="notebook">
   <div class="excursion-notebook">
@@ -116,10 +120,4 @@
   <div class="notebook-pie"></div>
 </div>
 <div class="space_center"></div>
-
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= @excursion.author.slug %>").on("click", function(){
-    <%= modal_for(@excursion.author.subject) %>
-  });
-<% end %>
 

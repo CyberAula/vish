@@ -1,4 +1,7 @@
 <% unless excursion.blank? %>
+  <%= javascript_tag do %>
+    <%= modal_for(excursion.author.subject) %>
+  <% end %>
   <%= div_for excursion, :class => 'span3' do %>
     <ul class="thumbnails ">
         <li class="span1">
@@ -22,8 +25,3 @@
   <% end %>
 <% end %>
 
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= excursion.author.slug %>").on("click", function(){
-    <%= modal_for(excursion.author.subject) %>
-  });
-<% end %>

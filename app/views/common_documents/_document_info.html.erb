@@ -1,4 +1,8 @@
 <div class="all-description">
+  <%= javascript_tag do %>
+    <%= modal_for(document.author.subject) %>
+  <% end %>
+
   <div id=" notebook-menu" class="tabbable span3 inline-block">
     <ul class="nav nav-tabs">
       <li class="active">
@@ -164,13 +168,6 @@
   </div>
 
   <div class="space_center"></div>
-
-  <%= javascript_tag do %>
-    $(".user-modal-button-<%= document.author.slug %>").on("click", function(){
-      <%= modal_for(document.author.subject) %>
-    });
-  <% end %>
-
 
 </div>
 

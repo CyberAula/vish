@@ -12,7 +12,6 @@
   </div>
 </section>
 
-
   
 <script>
   //first function called when page loads
@@ -30,10 +29,10 @@ configuration["Flickr"] = true;
 configuration["Youtube"] = true;
 configuration["Vimeo"] = false;
 
-configuration["VishIntegration"] = true;
-
 configuration["mode"] = "vish";
+
 options["configuration"] = configuration; 
+
  <% if user_signed_in? %>
     options["username"]= "<%= current_user.name %>";
  <% else %>
@@ -41,12 +40,12 @@ options["configuration"] = configuration;
   <% end %>
 
 
-options["quiz_active_session_id"]=<%= @quiz_session.id %>;
-
+options["quiz_active_session_id"]=false;
+//options["developping"]=true;
   function start(){
 
     //params (options, excursion)
-    VISH.SlideManager.init( options, <%= render :partial => 'show', :formats => [:json] %>);
+    VISH.SlideManager.init(options , <%= raw @quiz_session.quiz.simple_json %>);
 
   }
 </script>

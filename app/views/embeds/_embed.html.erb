@@ -1,4 +1,8 @@
 <%= div_for embed, :class => 'row-fluid' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(embed) %>
+  <% end %>
+
   <ul class="thumbnails">
     <li class="span3">
       <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%>"><i class="icon_repository75-75_embed"></i></a>
@@ -14,17 +18,6 @@
       <p><%= link_to t('details.msg'), embed, :class => "attachment_text_link" %></p>
     </li>
   </ul>
-
-  <%= javascript_tag do %>
-    $(".embed-modal-button-<%= embed.id.to_s%>").on("click", function(){
-      <%= modal_for(embed) %>
-      $("#embed-modal-<%= embed.id.to_s%> .modal-body").html("<%= raw j embed.fulltext %>");
-      $("#embed-modal-<%= embed.id.to_s%>").on("hidden", function(){
-         $("#embed-modal-<%= embed.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
-      });
-    });
-  <% end %>
-
 <% end %>
 
 <div class="clearfloat"></div>

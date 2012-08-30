@@ -1,11 +1,14 @@
-<%= div_for activity, :class => "subactivity row-fluid boxy_white_wall" do %>
-  <ul class="thumbnails">
+<div class="boxy_white_wall">
+  <div class="boxy_white_wall2">
+<%= div_for activity, :class => "subactivity  boxy_white_wall3" do %>
+
+  <ul class="thumbnails ">
     <li class="span2 pagination-centered">
       <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
                             :alt => activity.sender_subject.name, :class => "miniborder"),
                   activity.sender_subject %>
     </li>
-    <li class="span10 activity_content">
+    <li class="span9 activity_content">
       <div class="row-fluid-100">
         <span><%= link_to(activity.sender_subject.name, activity.sender_subject) %> <%= render activity.activity_objects %></span>
         <span>
@@ -19,5 +22,5 @@
 <div class="space_comments"></div>
 
 
-
-
+  </div>
+</div>

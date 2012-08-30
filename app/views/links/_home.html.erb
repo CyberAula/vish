@@ -1,6 +1,11 @@
 <%= div_for link, :class => 'span3', :style => 'padding: 0; margin-top: 0;' do %>
   <% link_title = link.title %>
   <% link_title = link.url if link_title.blank? %>
+  <%= javascript_tag do %>
+    <%= modal_for(link) %>
+    <%= modal_for(link.author.subject) %>
+  <% end %>
+
   <ul class="thumbnails">
     <li class="span">
       <div id="margin-resources">
@@ -22,19 +27,5 @@
         </div>
     </div>
   </ul>
-
-  <%= javascript_tag do %>
-    $(".link-modal-button-<%= link.id.to_s%>").on("click", function(){
-      <%= modal_for(link) %>
-      SocialStream.Linkser.Wall.openCallback("link-modal-body-<%= link.id.to_s %>", "<%= link.callback_url %>", "<%= link.width %>", "<%= link.height %>");
-      $("#link-modal-<%= link.id.to_s%>").on("hidden", function(){
-        $("#link-modal-<%= link.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
-      });
-    });
-
-    $(".user-modal-button-<%= link.author.slug %>").on("click", function(){
-      <%= modal_for(link.author.subject) %>
-    });
-  <% end %>
 
 <% end %>

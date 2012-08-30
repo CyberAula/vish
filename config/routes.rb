@@ -8,10 +8,14 @@ Vish::Application.routes.draw do
 
   resources :embeds
 
-  resources :office_documents do
-    get "search",   :on => :collection
-    get "download", :on => :member
-  end
+  match 'embeds/:id/modal' => 'modals#embed'
+  match 'links/:id/modal' => 'modals#link'
+  match 'officedocs/:id/modal' => 'modals#officedoc'
+  match 'audios/:id/modal' => 'modals#audio'
+  match 'videos/:id/modal' => 'modals#video'
+  match 'documents/:id/modal' => 'modals#document'
+  match 'pictures/:id/modal' => 'modals#picture'
+  match 'swfs/:id/modal' => 'modals#swf'
 
   resources :quiz_sessions do
     get "results", :on => :member

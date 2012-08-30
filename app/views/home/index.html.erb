@@ -185,6 +185,9 @@
 
           <div class="follow-home-box ">
           <% current_subject.following_actor_objects.includes(:actor).all.shuffle.first(6).each do |object|  %>
+            <%= javascript_tag do %>
+              <%= modal_for(object.actor.subject) %>
+            <% end %>
 
             <%= div_for object.actor, :class => '' do %>
               <ul class="thumbnails span">
@@ -193,11 +196,6 @@
                 </li>
               </ul>
             <% end %>
-          <%= javascript_tag do %>
-            $(".user-modal-button-<%= object.actor.slug %>").on("click", function(){
-              <%= modal_for(object.actor.subject) %>
-            });
-          <% end %>
           <% end %>
           </div>
           <div class="more"><%= link_to(t('view_all'), followings_path) %></div>
@@ -207,6 +205,9 @@
           <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
           <div class="follow-home-box ">
           <% current_subject.followers.all.shuffle.first(6).each do |object|  %>
+            <%= javascript_tag do %>
+              <%= modal_for(object.actor.subject) %>
+            <% end %>
 
             <%= div_for object.actor, :class => '' do %>
               <ul class="thumbnails span">
@@ -214,11 +215,6 @@
                   <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
                 </li>
               </ul>
-            <% end %>
-            <%= javascript_tag do %>
-              $(".user-modal-button-<%= object.actor.slug %>").on("click", function(){
-                <%= modal_for(object.actor.subject) %>
-              });
             <% end %>
           <% end %>
           <div class="more"><%= link_to(t('view_all'), followers_path) %></div>

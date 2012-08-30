@@ -3,7 +3,7 @@ es:
     attributes:
       user:
         email: "Email"
-        tag: "Áreas de interes"
+        tag: "Áreas de interés"
   activity:
     empty: "Tu timeline está vacío"
     more: "Ver más..."
@@ -40,14 +40,24 @@ es:
     or: "or"
   document:
     document: "documento"
-    how: "Cómo compartir un recurso"    
+    help:
+      title: "Subir recursos"
+      info1_html: "1. Haga click en el tab <b>documentos</b>, <b>enlaces</b> o <b>embed</b>.<br>"
+      info2_html: "2. Si desea subir un documento, haga click en el botón <b>browse</b> para seleccionar un archivo. Si su recurso es un enlace o un embed lo puede <b>pegar</b> dentro de la caja de texto.<br>"
+      info3_html: "3. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
+      info4_html: "4. Añada <b>tags</b> relacionados a su recurso. Sus áreas de interés han sido asignadas por defecto. Sin embargo, puede borrarlas o añadir unas nuevas.<br>"
+      info5_html: "5. Seleccione el <b>idioma</b>, si lo considera necesario.<br>"
+      info6_html: "6. Asigne un rango de <b>edad</b>. Esta información será usada por el sistema de recomendación.<br>"
+      info7_html: "7. Si desea subir el embed de un video en vivo, haga click en la opción <b>Live</b>.<br>"
+      info8_html: "8. Finalmente, haga click en el botón <b> guardar </b>para actualizar su recurso."
+    how: "Cómo compartir un recurso"
     info:
       title: "Título"
       description: "Descripción"
       tags:
         title: "Temas"
         addMessage: "Añadir tags"
-        limitMessage: "Limite alcanzado"
+        limitMessage: "Límite alcanzado"
       age: "Edad"
     recommended_age: "Edades recomendadas"
     recommended_age_detail: "De %{min} a %{max} años"
@@ -59,11 +69,11 @@ es:
     regards: "Un cordial saludo,<br/>"
     welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"
   embed:
-    confirm_delete: "¿Borrar recurso empotrado?"
+    confirm_delete: "¿Borrar recurso?"
     content: "Contenido en directo"
     embed: "embed"
-    input: "Pega aquí tu recurso empotrado"
-    name: "emged"
+    input: "Pega aquí el recurso a insertar"
+    name: "embed"
   excursion:
     actions:
       bookmark: "marcardor"      
@@ -79,7 +89,7 @@ es:
         repository: "ir a repositorio"
     how: "Como crear una excursión"
     my: "mis"
-    name: "excursion"
+    name: "excursión"
     net: "red"
     network: "excursiones de mi red"
     network2: "mi red"
@@ -89,11 +99,11 @@ es:
     one: "excursión"
     other: "excursiones"
     others: "otras excursiones "
-    session_start: "inicia session"
+    session_start: "inicia sesión"
     title:
       other: "excursiones"
     upcomming: "upcomming"
-    top: "top"
+    top: "paraMí"
   external: "externo"
   filter: "filtrar"
   follow:
@@ -107,7 +117,7 @@ es:
     views: "visitas"
   help: "ayuda"
   lang:
-    independent: "No depende del lenguage"
+    independent: "No depende del lenguaje"
     changed: "Se cambia el idioma a %{lang}"
     error: "El idioma \"%{lang}\" no está disponible"
     title: "idioma"    
@@ -155,7 +165,7 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
   profile:
     tags:
-      default: "VisHub, virtual, excursion"
+      default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
   project: "Global Excursion"      
   published: "Publicados"
@@ -175,7 +185,7 @@ es:
     title:
       one: "recursos"
       other: "recursos"
-    top: "top"
+    top: "paraMí"
     upload: "subir"
   share: "Enviar"
   site:

@@ -1,4 +1,7 @@
 <div class="model_with_details span3 box-result">
+  <%= javascript_tag do %>
+    <%= modal_for(link.author.subject) %>
+  <% end %>
   <ul class="thumbnails">
     <li class="span1 margin-clear">
       <%= link_to  "", link, :class => icon75_class_for(link) , :alt => link.title %>
@@ -15,10 +18,4 @@
     </li>
   </ul>
 </div>
-
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= link.author.slug %>").on("click", function(){
-    <%= modal_for(link.author.subject) %>
-  });
-<% end %>
 
