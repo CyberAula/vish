@@ -53,7 +53,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#home-resource-filter-net')[0].value, scope: "net", per_page: 6 },
-                      success: function(data) { $('#home-resources-net').html(data); }
+                      success: function(data) { $('#home-resources-net').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -63,7 +63,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#home-resource-filter-me')[0].value, scope: "me", per_page: 6 },
-                      success: function(data) { $('#home-resources-me').html(data); }
+                      success: function(data) { $('#home-resources-me').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -73,7 +73,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#home-resource-filter-more')[0].value, scope: "other", per_page: 6 },
-                      success: function(data) { $('#home-resources-more').html(data); }
+                      success: function(data) { $('#home-resources-more').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -83,7 +83,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#home-resource-filter-fav')[0].value, scope: "like", per_page: 6 },
-                      success: function(data) { $('#home-resources-fav').html(data); }
+                      success: function(data) { $('#home-resources-fav').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -127,7 +127,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#profile-resource-filter-net')[0].value, scope: "net", per_page: 4 },
-                      success: function(data) { $('#profile-resources-net').html(data); }
+                      success: function(data) { $('#profile-resources-net').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -137,7 +137,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#profile-resource-filter-me')[0].value, scope: "me", per_page: 4 },
-                      success: function(data) { $('#profile-resources-me').html(data); }
+                      success: function(data) { $('#profile-resources-me').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -147,7 +147,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#profile-resource-filter-fav')[0].value, scope: "like", per_page: 4 },
-                      success: function(data) { $('#profile-resources-fav').html(data); }
+                      success: function(data) { $('#profile-resources-fav').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -159,7 +159,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/excursions/search",
                       data: { q: $('#repo-excursion-filter-net')[0].value, scope: "net", per_page: 20 },
-                      success: function(data) { $('#repo-excursions-net').html(data); }
+                      success: function(data) { $('#repo-excursions-net').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -169,7 +169,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/excursions/search",
                       data: { q: $('#repo-excursion-filter-me')[0].value, scope: "me", per_page: 20 },
-                      success: function(data) { $('#repo-excursions-me').html(data); }
+                      success: function(data) { $('#repo-excursions-me').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -179,7 +179,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/excursions/search",
                       data: { q: $('#repo-excursion-filter-fav')[0].value, scope: "like", per_page: 20 },
-                      success: function(data) { $('#repo-excursions-fav').html(data); }
+                      success: function(data) { $('#repo-excursions-fav').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -191,7 +191,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#repo-resource-filter-net')[0].value, scope: "net", per_page: 20 },
-                      success: function(data) { $('#repo-resources-net').html(data); }
+                      success: function(data) { $('#repo-resources-net').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -201,7 +201,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#repo-resource-filter-me')[0].value, scope: "me", per_page: 20 },
-                      success: function(data) { $('#repo-resources-me').html(data); }
+                      success: function(data) { $('#repo-resources-me').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -211,7 +211,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/resources/search",
                       data: { q: $('#repo-resource-filter-fav')[0].value, scope: "like", per_page: 20 },
-                      success: function(data) { $('#repo-resources-fav').html(data); }
+                      success: function(data) { $('#repo-resources-fav').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -223,7 +223,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/followers/search",
                       data: { q: $('#follower-filter')[0].value, per_page: 20 },
-                      success: function(data) { $('#followers').html(data); }
+                      success: function(data) { $('#followers').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}
@@ -233,7 +233,7 @@ Vish.Filter = function(V, $, undefined){
                     $.ajax({
                       url: "/followings/search",
                       data: { q: $('#following-filter')[0].value, per_page: 20 },
-                      success: function(data) { $('#followings').html(data); }
+                      success: function(data) { $('#followings').html(data); Vish.Wall.initModals(); }
                     });
                   });
 		}

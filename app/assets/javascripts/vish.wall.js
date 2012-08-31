@@ -78,6 +78,10 @@ Vish.Wall = (function(V, $, undefined){
       }
     });
 
+  }
+
+  var initModals = function() {
+    $('.modal-slide-prev').off("click");
     $('.modal-slide-prev').on("click", function(){
       $('.modal').modal('hide');
       my_pivot = $(this).parents('.modal').first().attr('data-modal-pivot'); // modal-pivot NEEDS to have an id
@@ -111,6 +115,7 @@ Vish.Wall = (function(V, $, undefined){
       }
     });
 
+    $('.modal-slide-next').off("click");
     $('.modal-slide-next').on("click", function(){
       $('.modal').modal('hide');
       my_pivot = $(this).parents('.modal').first().attr('data-modal-pivot'); // modal-pivot NEEDS to have an id
@@ -145,12 +150,14 @@ Vish.Wall = (function(V, $, undefined){
       }
     });
 
+    $('.modal-no-trigger').off("click");
     $('.modal-no-trigger').on("click", function(){
       my_target = '#' + this.href.split('#',2)[1];
       $(my_target + ' .prev_modal').hide();
       $(my_target + ' .next_modal').hide();
     });
 
+    $('.modal-trigger').off("click");
     $('.modal-trigger').on("click", function(){
       my_pivot = '#' + $(this).parents('.modal-pivot')[0].id; // modal-pivot NEEDS to have an id
       all_modals = $(this).parents('.modal-pivot').find('.modal-trigger');
@@ -254,6 +261,7 @@ Vish.Wall = (function(V, $, undefined){
 
   return {
     init: init,
+    initModals: initModals,
     getModal: getModal,
     getUserModal: getUserModal,
   };
