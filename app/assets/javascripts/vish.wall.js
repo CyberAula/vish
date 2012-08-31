@@ -145,6 +145,12 @@ Vish.Wall = (function(V, $, undefined){
       }
     });
 
+    $('.modal-no-trigger').on("click", function(){
+      my_target = '#' + this.href.split('#',2)[1];
+      $(my_target + ' .prev_modal').hide();
+      $(my_target + ' .next_modal').hide();
+    });
+
     $('.modal-trigger').on("click", function(){
       my_pivot = '#' + $(this).parents('.modal-pivot')[0].id; // modal-pivot NEEDS to have an id
       all_modals = $(this).parents('.modal-pivot').find('.modal-trigger');

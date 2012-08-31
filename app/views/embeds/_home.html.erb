@@ -14,7 +14,7 @@
         <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%> modal-trigger"><%= embed.title %></a>
       </h4>
         <div class="rw-words rw-words-1">
-          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= embed.author.slug %>" class="user-modal-button-<%= embed.author.slug %> modal-trigger"><%= embed.author.name %></a></h5></span>
+          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= embed.author.slug %>" class="user-modal-button-<%= embed.author.slug %> modal-no-trigger"><%= embed.author.name %></a></h5></span>
           <div class="clearfloat"></div>
           <span><h5 class="green inline margin-home-resource-view"><%=embed.visit_count.to_s%> </h5><%= t("follow.views") %> / <h5 class="green inline like_count_<%= dom_id(embed.activities.first) %>"><%=embed.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(embed.activities.first) %>"><%= link_like(embed.activities.first)%></div></span>
 

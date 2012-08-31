@@ -3,7 +3,7 @@
 <div class="space_center"></div>
 <% subject.followers.all.shuffle.first(4).each do |object|  %>
 
-<%= div_for object.actor, :class => '' do %>
+<%= div_for object.actor, :class => 'modal-pivot' do %>
   <%= javascript_tag do %>
     <%= modal_for(object.actor.subject) %>
   <% end %>
@@ -21,7 +21,7 @@
 <div class="space_center"></div>
 <% subject.following_actor_objects.includes(:actor).all.shuffle.first(4).each do |object|  %>
 
-<%= div_for object.actor, :class => '' do %>
+<%= div_for object.actor, :class => 'modal-pivot' do %>
   <%= javascript_tag do %>
     <%= modal_for(object.actor.subject) %>
   <% end %>

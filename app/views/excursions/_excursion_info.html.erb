@@ -24,7 +24,7 @@
         </div>
         <div class="clearfloat"></div>
         <div class="date_resources word-break span3">
-          <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %> modal-trigger"><%= truncate_name(@excursion.author.name, :length => 50) %></a>
+          <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %> modal-no-trigger"><%= truncate_name(@excursion.author.name, :length => 50) %></a>
         </div>
       </div>
       <% unless @excursion.description.blank? %>

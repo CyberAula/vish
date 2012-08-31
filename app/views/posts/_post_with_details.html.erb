@@ -4,7 +4,7 @@
     <%= modal_for(author.subject) %>
   <% end %>
   <div class="span2 pagination-centered link_white">
-    <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-trigger" alt='<%= author.name %>'><%= image_tag(author.logo.url(:contact)) %></a>
+    <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger" alt='<%= author.name %>'><%= image_tag(author.logo.url(:contact)) %></a>
   </div>
   <div class=" link_white">
     <h4><%= link_to truncate_name(author.name, :length => 40), author %></h4>
