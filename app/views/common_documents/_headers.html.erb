@@ -18,6 +18,6 @@
 <% if profile_subject %>
   <% toolbar :profile, :subject => profile_subject %>
 <% elsif user_signed_in? %>
-  <% toolbar %>
+  <% toolbar :profile, :subject => current_subject %>
 <% end %>
 

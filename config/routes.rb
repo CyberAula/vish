@@ -1,4 +1,12 @@
 Vish::Application.routes.draw do
+  # Blatant redirections
+  match '/links' => redirect('/documents')
+  match '/embeds' => redirect('/documents')
+  match '/contacts' => redirect('/followings')
+  match '/users/:id/links' => redirect('/users/%{id}/documents')
+  match '/users/:id/embeds' => redirect('/users/%{id}/documents')
+  match '/users/:id/contacts' => redirect('/users/%{id}/followings')
+
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
 
