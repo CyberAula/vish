@@ -3,7 +3,7 @@
     <% params[:scope]='me' unless params[:scope].present?  %>
     <li class="<%= params[:scope]=='net'  ? "active" : ""  %>"><a data-toggle="tab" href="#repo-1"><%= t('resource.net') %></a></li>
     <li class="<%= params[:scope]=='me'   ? "active" : ""  %>"><a data-toggle="tab" href="#repo-2"><%=t('resource.my') %></a></li>
-    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#repo-3"><%= image_tag "star-on.png", :class => "star" %></a></li>
+    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#repo-3"><%= image_tag "star-MENU-active.png", :class => "star" %></a></li>
   </ul>
 
     <div class="span2 size40 title_menu_home ">
