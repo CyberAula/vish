@@ -1,12 +1,16 @@
 <%= div_for swf, :class => 'row-fluid' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(swf) %>
+  <% end %>
+
 	<ul class="thumbnails">
     <li class="span3">
-      <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="swf-modal-button-<%= swf.id.to_s%>"><i class='icon75-swf'></i></a>
+      <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="swf-modal-button-<%= swf.id.to_s%> modal-trigger"><i class='icon75-swf'></i></a>
     </li>
     <li class="span9">
       <div class="title">
         <h4 class="bold">
-          <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="swf-modal-button-<%= swf.id.to_s%>"><%= truncate_name(swf.title, :length => 35) %></a>
+          <a data-toggle="modal" href="#swf-modal-<%= swf.id.to_s%>" class="swf-modal-button-<%= swf.id.to_s%> modal-trigger"><%= truncate_name(swf.title, :length => 35) %></a>
         </h4>
       </div>
 
@@ -14,16 +18,6 @@
       <p><%= link_to t('details.msg'), swf, :class => "attachment_text_link" %></p>
     </li>
 	</ul>
-
-  <%= javascript_tag do %>
-    $(".swf-modal-button-<%= swf.id.to_s%>").on("click", function(){
-      <%= modal_for(swf) %>
-      $("#swf-modal-<%= swf.id.to_s%> .modal-body").html("<iframe src='<%= swf.file %>' width='387' height='387'>...</iframe>");
-      $("#swf-modal-<%= swf.id.to_s%>").on("hidden", function(){
-         $("#swf-modal-<%= swf.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
-      });
-    });
-  <% end %>
 
 <% end %>
 

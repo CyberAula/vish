@@ -12,7 +12,7 @@
   <div class="tab-content">
     <div id="following" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'sent' %>">
       <%= render :partial => "followers/filter", :locals => {:filter_id => "following-filter"}  %>
-      <div id="followings">
+      <div id="followings" class="modal-pivot">
         <%= render @followings.
                    page(params[:page]).
                    per(20).
@@ -21,7 +21,7 @@
     </div>
     <div id="follower" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'received' %>">
       <%= render :partial => "followers/filter", :locals => {:filter_id => "follower-filter"}  %>
-      <div id="followers">
+      <div id="followers" class="modal-pivot">
         <%= render @followers.
                    page(params[:page]).
                    per(20).

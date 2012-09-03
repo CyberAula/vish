@@ -141,7 +141,7 @@ GEM
     god (0.12.1)
     has_scope (0.5.1)
     hashie (1.2.0)
-    highline (1.6.13)
+    highline (1.6.14)
     hike (1.2.1)
     httpauth (0.1)
     i18n (0.6.0)
@@ -329,7 +329,7 @@ PLATFORMS
 
 DEPENDENCIES
   avatars_for_rails (~> 0.2.6)
-  capistrano
+  capistrano (= 2.12.0)
   capybara
   coffee-rails (~> 3.2.2)
   composite_primary_keys
@@ -337,7 +337,8 @@ DEPENDENCIES
   factory_girl (~> 2.6)
   forgery
   god
-  jquery-rails
+  jquery-rails (= 2.0.2)
+  json (= 1.7.4)
   mysql2
   net-ssh (= 2.4.0)
   pg
@@ -347,6 +348,7 @@ DEPENDENCIES
   rspec-rails (= 2.9.0)
   sass-rails (~> 3.2.4)
   shortener
+  sinatra (= 1.3.2)
   social_stream-base!
   social_stream-documents!
   social_stream-linkser!

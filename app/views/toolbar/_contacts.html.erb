@@ -3,19 +3,17 @@
 <div class="space_center"></div>
 <% subject.followers.all.shuffle.first(4).each do |object|  %>
 
-<%= div_for object.actor, :class => '' do %>
+<%= div_for object.actor, :class => 'modal-pivot' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(object.actor.subject) %>
+  <% end %>
   <ul class="thumbnails span">
     <li class="span1">
-      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
+      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
         <%= image_tag(object.actor.logo.url(:contact)) %>
       </a>
     </li>
   </ul>
-<% end %>
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= object.actor.slug %>").on("click", function(){
-   <%= modal_for(object.actor.subject) %>
-  });
 <% end %>
 <% end %>
 <div class="row space_center"></div>
@@ -23,19 +21,17 @@
 <div class="space_center"></div>
 <% subject.following_actor_objects.includes(:actor).all.shuffle.first(4).each do |object|  %>
 
-<%= div_for object.actor, :class => '' do %>
+<%= div_for object.actor, :class => 'modal-pivot' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(object.actor.subject) %>
+  <% end %>
   <ul class="thumbnails span">
     <li class="span1">
-      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
+      <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title="<%=truncate(object.actor.name, :length => 20)%>" rel="tooltip">
         <%= image_tag(object.actor.logo.url(:contact)) %>
       </a>
     </li>
   </ul>
-<% end %>
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= object.actor.slug %>").on("click", function(){
-   <%= modal_for(object.actor.subject) %>
-  });
 <% end %>
 <% end %>
 

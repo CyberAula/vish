@@ -15,8 +15,11 @@
   
 <script>
 	//first function called when page loads
-	function start(){
 
+
+
+
+		var options = {};
 		var configuration = {};
 		configuration["presentationSettings"] = true;
 		configuration["presentationTags"] = true;
@@ -33,10 +36,25 @@
 		configuration["VishIntegration"] = true;
 
 		configuration["mode"] = "vish";
+
+
+options["configuration"] = configuration; 
+
+ <% if user_signed_in? %>
+    options["username"]= "<%= current_user.name %>";
+ <% else %>
+    options["username"]= false;
+  <% end %>
+
+
+options["quiz_active_session_id"]=false;
+options["token"]= "<%= form_authenticity_token %>";
+
+	function start(){
 		//params (options, excursion)
 		//VISH.SlideManager.init({}, <%= raw @excursion.json %>);
-    <% username = current_user.name if user_signed_in? %>
-		VISH.SlideManager.init({"configuration": configuration, "quiz_session_active": false, "token":"<%= form_authenticity_token %>", "username":"<%= username %>", "developping":true}, <%= raw @excursion.json %>);
-
+       
+		VISH.SlideManager.init( options , <%= raw @excursion.json %>);
 	}
+
 </script>

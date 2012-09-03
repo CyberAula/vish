@@ -40,6 +40,16 @@ en:
     or: "or"
   document:
     document: "document"
+    help:
+      title: "Uploading resources"
+      info1_html: "1. Click on <b>documents</b>, <b>links</b> or <b>embed</b> tab.<br>"
+      info2_html: "2. If you want to upload a document, click on <b>browse</b> to choose a file from your computer. If your resource is a link or embed, you can <b>paste</b> it into the text box.<br>"
+      info3_html: "3. Type a <b>title</b> and <b>description</b>.<br>"
+      info4_html: "4. Add related <b>tags</b> to your resource. Your areas of interest have been assigned by default. However, you can delete them or add new tags.<br>"
+      info5_html: "5. Choose a required <b>language</b>, if necessary.<br>"
+      info6_html: "6. Select an <b>age </b>range. This information will be used for recommendation purposes.<br>"
+      info7_html: "7. If you want to embed a live streaming video, click on <b>Live</b> option.<br>"
+      info8_html: "8. Finally, click on <b> save </b> button to upload your resource."
     how: "How to share a resource"
     info:
       title: "Title"
@@ -91,7 +101,7 @@ en:
     title:
       other: "excursions"
     upcomming: "upcomming"
-    top: "top"
+    top: "forMe"
   external: "external"
   filter: "filter"
   follow:
@@ -175,7 +185,7 @@ en:
     title:
       one: "resource"
       other: "resources"
-    top: "top"
+    top: "forMe"
     upload: "upload"
   share: "Post"
   sign_up: "Register"

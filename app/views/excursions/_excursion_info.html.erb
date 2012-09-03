@@ -1,3 +1,7 @@
+<%= javascript_tag do %>
+  <%= modal_for(@excursion.author.subject) %>
+<% end %>
+
 <div class="space_center"></div>
 <div class="notebook">
   <div class="excursion-notebook">
@@ -20,7 +24,7 @@
         </div>
         <div class="clearfloat"></div>
         <div class="date_resources word-break span3">
-          <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %>"><%= truncate_name(@excursion.author.name, :length => 50) %></a>
+          <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %> modal-no-trigger"><%= truncate_name(@excursion.author.name, :length => 50) %></a>
         </div>
       </div>
       <% unless @excursion.description.blank? %>
@@ -116,10 +120,4 @@
   <div class="notebook-pie"></div>
 </div>
 <div class="space_center"></div>
-
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= @excursion.author.slug %>").on("click", function(){
-    <%= modal_for(@excursion.author.subject) %>
-  });
-<% end %>
 

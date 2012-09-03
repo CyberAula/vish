@@ -3,7 +3,7 @@
     <% params[:scope]='me' unless params[:scope].present?  %>
     <li class="<%= params[:scope]=='net'  ? "active" : ""  %>"><a data-toggle="tab" href="#repo-1"><%= t('resource.net') %></a></li>
     <li class="<%= params[:scope]=='me'   ? "active" : ""  %>"><a data-toggle="tab" href="#repo-2"><%=t('resource.my') %></a></li>
-    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#repo-3"><%= image_tag "star-on.png", :class => "star" %></a></li>
+    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#repo-3"><%= image_tag "star-MENU-active.png", :class => "star" %></a></li>
   </ul>
 
     <div class="span2 size40 title_menu_home ">
@@ -24,7 +24,7 @@
       <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-net"} %>
     </div>
 
-    <div id="repo-resources-net" class="block row space_bottom">
+    <div id="repo-resources-net" class="modal-pivot block row space_bottom">
       <% subject_resources(user, {:scope => :net, :limit => 0}).each do |document| %>
         <% if document.is_a? Embed %>
           <%= render :partial => "embeds/home",
@@ -49,7 +49,7 @@
       <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-me"} %>
     </div>
 
-    <div id="repo-resources-me" class="block row space_bottom">
+    <div id="repo-resources-me" class="modal-pivot block row space_bottom">
       <% subject_resources(user, {:scope => :me, :limit => 0}).each do |document| %>
         <% if document.is_a? Embed %>
           <%= render :partial => "embeds/home",
@@ -74,7 +74,7 @@
       <%= render :partial => "common_documents/filter", :locals => { :filter_id => "repo-resource-filter-fav"} %>
     </div>
 
-    <div id="repo-resources-fav" class="block row space_bottom">
+    <div id="repo-resources-fav" class="modal-pivot block row space_bottom">
       <% subject_resources(user, {:scope => :like, :limit => 0}).each do |document| %>
         <% if document.is_a? Embed %>
           <%= render :partial => "embeds/home",

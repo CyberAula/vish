@@ -12735,31 +12735,24 @@ VISH.Editor = function(V, $, undefined) {
   var params = {current_el:null};
   var eventsLoaded = false;
   var init = function(options, excursion) {
-    VISH.Slides.init();
+    VISH.Debugging.init(options);
     if(!VISH.Utils.checkMiniumRequirements()) {
       return
     }
     VISH.Editing = true;
     if(options) {
       initOptions = options;
-      if(VISH.Debugging) {
-        if(options["developping"] === true) {
-          VISH.Debugging.init(true)
-        }else {
-          VISH.Debugging.init(false)
-        }
-        if(options["configuration"]["mode"] == "noserver" && VISH.Debugging.getActionInit() == "loadSamples" && !excursion) {
-          excursion = VISH.Debugging.getExcursionSamples()
-        }
-      }
       if(options["configuration"] && VISH.Configuration) {
         VISH.Configuration.init(options["configuration"]);
         VISH.Configuration.applyConfiguration()
       }
     }else {
-      initOptions = {};
-      if(VISH.Debugging) {
-        VISH.Debugging.init(false)
+      initOptions = {}
+    }
+    VISH.Slides.init();
+    if(VISH.Debugging.isDevelopping()) {
+      if(options["configuration"]["mode"] == "noserver" && VISH.Debugging.getActionInit() == "loadSamples" && !excursion) {
+        excursion = VISH.Debugging.getExcursionSamples()
       }
     }
     if(excursion) {
@@ -12773,7 +12766,7 @@ VISH.Editor = function(V, $, undefined) {
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       params["current_el"] = $("#" + clickedZoneId);
-      loadTab("tab_templates")
+      V.Editor.Utils.loadTab("tab_templates")
     }});
     if(!eventsLoaded) {
       eventsLoaded = true;
@@ -12825,67 +12818,6 @@ VISH.Editor = function(V, $, undefined) {
   };
   var addDeleteButton = function(element) {
     element.append("<div class='delete_content'></div>")
-  };
-  var loadTab = function(tab_id) {
-    $(".joyride-close-tip").click();
-    $(".fancy_tab").removeClass("fancy_selected");
-    $("#" + tab_id).addClass("fancy_selected");
-    $(".fancy_tab_content").hide();
-    $("#" + tab_id + "_content").show();
-    $(".help_in_fancybox").hide();
-    $("#" + tab_id + "_help").show();
-    switch(tab_id) {
-      case "tab_pic_from_url":
-        V.Editor.Image.onLoadTab("url");
-        break;
-      case "tab_pic_upload":
-        V.Editor.Image.onLoadTab("upload");
-        break;
-      case "tab_pic_repo":
-        V.Editor.Image.Repository.onLoadTab();
-        break;
-      case "tab_pic_flikr":
-        V.Editor.Image.Flikr.onLoadTab();
-        break;
-      case "tab_video_from_url":
-        VISH.Editor.Video.onLoadTab();
-        break;
-      case "tab_video_repo":
-        VISH.Editor.Video.Repository.onLoadTab();
-        break;
-      case "tab_video_youtube":
-        VISH.Editor.Video.Youtube.onLoadTab();
-        break;
-      case "tab_video_vimeo":
-        VISH.Editor.Video.Vimeo.onLoadTab();
-        break;
-      case "tab_object_from_url":
-        VISH.Editor.Object.onLoadTab("url");
-        break;
-      case "tab_object_from_web":
-        VISH.Editor.Object.Web.onLoadTab();
-        break;
-      case "tab_object_snapshot":
-        VISH.Editor.Object.Snapshot.onLoadTab();
-        break;
-      case "tab_object_upload":
-        VISH.Editor.Object.onLoadTab("upload");
-        break;
-      case "tab_object_repo":
-        VISH.Editor.Object.Repository.onLoadTab();
-        break;
-      case "tab_live_webcam":
-        VISH.Editor.Object.Live.onLoadTab("webcam");
-        break;
-      case "tab_live_micro":
-        VISH.Editor.Object.Live.onLoadTab("micro");
-        break;
-      default:
-        break
-    }
-  };
-  var _closeFancybox = function() {
-    $.fancybox.close()
   };
   var _onInitialTagsReceived = function(data) {
     var tagList = $(".tagBoxIntro .tagList");
@@ -13021,22 +12953,22 @@ VISH.Editor = function(V, $, undefined) {
     $("a.addpicture").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_pic_from_url")
+      V.Editor.Utils.loadTab("tab_pic_from_url")
     }});
     $("a.addobject").fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_object_from_url")
+      V.Editor.Utils.loadTab("tab_object_from_url")
     }});
     $("a.addvideo").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_video_from_url")
+      V.Editor.Utils.loadTab("tab_video_from_url")
     }});
     $("a.addLive").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      loadTab("tab_live_webcam")
+      V.Editor.Utils.loadTab("tab_live_webcam")
     }})
   };
   var _onDeleteItemClicked = function() {
@@ -13234,14 +13166,13 @@ VISH.Editor = function(V, $, undefined) {
       slide = {}
     });
     saved_excursion = excursion;
+    VISH.Debugging.log("Excursion saved:");
+    VISH.Debugging.log(JSON.stringify(excursion));
     return saved_excursion
   };
   var _afterSaveExcursion = function(excursion) {
-    console.log("VISH.Debugging.isDevelopping(): " + VISH.Debugging.isDevelopping());
-    console.log("VISH.Configuration.getConfiguration()[mode]: " + VISH.Configuration.getConfiguration()["mode"]);
-    VISH.Debugging.log(JSON.stringify(excursion));
+    VISH.Debugging.log("VISH.Configuration.getConfiguration()[mode]: " + VISH.Configuration.getConfiguration()["mode"]);
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
-      console.log("VISH.Configuration.getConfiguration()[mode] : " + VISH.Configuration.getConfiguration()["mode"]);
       var send_type;
       if(excursion_to_edit) {
         send_type = "PUT"
@@ -13269,14 +13200,11 @@ VISH.Editor = function(V, $, undefined) {
               $(".theslider").hide();
               $(".nicEdit-panelContain").hide();
               $("#menubar-viewer").show();
-              VISH.SlideManager.init({"quiz_active":"false", "token":"453452453", "username":"ebarra", "postPath":"/quiz.json", "lang":"es"}, excursion)
+              VISH.SlideManager.init(initOptions, excursion)
             }else {
               if(VISH.Debugging.getActionSave() == "edit") {
                 $("article").remove();
-                var options = {};
-                options["developping"] = true;
-                options["configuration"] = configuration;
-                VISH.Editor.init(options, excursion)
+                VISH.Editor.init(initOptions, excursion)
               }
             }
           }
@@ -13354,7 +13282,7 @@ VISH.Editor = function(V, $, undefined) {
     $("#" + fancy + "_content").show();
     $("#tab_" + fancy).attr("class", "fancy_tab fancy_selected")
   };
-  return{init:init, addDeleteButton:addDeleteButton, loadTab:loadTab, getId:getId, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getParams:getParams, getOptions:getOptions, loadFancyBox:loadFancyBox, getSavedExcursion:getSavedExcursion, saveExcursion:saveExcursion}
+  return{init:init, addDeleteButton:addDeleteButton, getId:getId, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getParams:getParams, getOptions:getOptions, loadFancyBox:loadFancyBox, getSavedExcursion:getSavedExcursion, saveExcursion:saveExcursion}
 }(VISH, jQuery);
 VISH.Editor.Video = function(V, $, undefined) {
   var urlDivId = "tab_video_from_url_content";
@@ -13998,7 +13926,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"vish13", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video with style param"}, {"id":"335", "type":"object", "areaid":"left", "body":'<iframe width="324" height="243" src="http://www.youtube.com/embed/_jvDzfTRP4E" frameborder="0" allowfullscreen></iframe>', "style":"position: relative; left: 163px; top: 110px; width: 325px; height: 215px;"}]}, {"id":"vish14", "template":"t1", "elements":[{"id":"7393", "type":"text", "areaid":"header", 
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
-  var quizes_samples = {"id":12313, "author":"", "slides":[{"id":"articlearticle1", "type":"quiz", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara esta mierda?", "options":["Si", "Claro que si", "Siempre", ""]}]}], "type":"quiz_simple"};
+  var quizes_samples = {"id":12313, "author":"", "slides":[{"id":"articlearticle1", "type":"quiz", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}], "type":"quiz_simple"};
   var quizes_samples_2 = {"id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"]}]}]};
   return{full_samples:full_samples, samples:samples, samples_aldo:samples_aldo, quizes_samples:quizes_samples}
 }(VISH);
@@ -14062,8 +13990,6 @@ VISH.Samples.API = function(V, undefined) {
 }(VISH);
 VISH.Slides = function(V, $, undefined) {
   var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
-  var PM_TOUCH_SENSITIVITY = 200;
-  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
   var init = function() {
     getCurSlideFromHash();
     $(document).bind("OURDOMContentLoaded", handleDomLoaded)
@@ -14074,7 +14000,9 @@ VISH.Slides = function(V, $, undefined) {
     updateSlides();
     V.Slides.Events.init();
     if(!V.Editing) {
-      window.addEventListener("message", V.Slides.Mashme.onMashmeHello, false)
+      if(typeof V.Slides.Mashme != "undefined") {
+        window.addEventListener("message", V.Slides.Mashme.onMashmeHello, false)
+      }
     }
     $("body").addClass("loaded")
   };
@@ -14246,37 +14174,32 @@ VISH.Quiz = function(V, $, undefined) {
   var slideToVote;
   var user;
   var userStatus;
-  var quizUrlForSession = " http://www.vishub.org/quiz_sessions/";
+  var quizUrlForSession = " http://" + window.location.host.toString() + "/quiz_sessions/";
   var startButton = "mcquestion_start_button";
   var stopButton = "mcquestion_stop_button";
-  trueFalseAnswers = new Array;
-  var init = function(element, template, slide, quiz_id) {
-    if(element.type === "mcquestion") {
-      user = V.SlideManager.getUser();
-      userStatus = V.SlideManager.getUserStatus();
-      role = user.role;
-      slideToVote = userStatus.quiz_active;
-      var obj;
-      switch(role) {
-        case "logged":
-          obj = _renderMcquestionLogged(element, template, slide, quiz_id);
-          break;
-        case "student":
-          obj = _renderMcquestionStudent(element, template, slide);
-          break;
-        case "none":
-          obj = _renderMcquestionNone(element, template, slide);
-          break;
-        default:
-          VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
+  var trueFalseAnswers = new Array;
+  var quizStatus = {};
+  var init = function(excursion) {
+    V.Debugging.log("Vish Quiz init");
+    var options = VISH.SlideManager.getOptions();
+    if(excursion.type == "quiz_simple") {
+      if(options["quiz_active_session_id"]) {
+        quizStatus.quiz_active_session_id = options["quiz_active_session_id"]
       }
-      return obj
     }else {
-      if(element.type === "truefalsequestion") {
-        obj = _renderTrueFalseQuestion(element, template);
-        return obj
+      if(excursion.type == "standard") {
+        _loadEvents();
+        if(VISH.User.isLogged()) {
+        }else {
+        }
       }
     }
+    VISH.Quiz.Renderer.init();
+    VISH.Quiz.API.init()
+  };
+  var _loadEvents = function() {
+    $(document).on("click", ".mcquestion_start_button", _startMcQuizButtonClicked);
+    $(document).on("click", ".mch_statistics_icon", _statisticsMcQuizButtonClicked)
   };
   var enableInteraction = function(slide, options) {
     switch(role) {
@@ -14286,11 +14209,11 @@ VISH.Quiz = function(V, $, undefined) {
         _activateLoggedInteraction();
         break;
       case "student":
+        quizStatus.quiz_active_session_id;
         slideToVote = slide;
         _activateStudentInteraction();
         break;
       case "none":
-        _activateNoneInteraction();
         break;
       default:
         VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
@@ -14299,66 +14222,6 @@ VISH.Quiz = function(V, $, undefined) {
   var enableTrueFalseInteraction = function(slide, options) {
     var sendButton = $("#" + slide).find("#tf_send_button");
     var radioInput = $("#" + slide).find("input:radio[name='tf_radio_1']")
-  };
-  var _renderMcquestionLogged = function(element, template, slide, quiz_id) {
-    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
-    ret += "<form id='form_" + slide + "'class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
-    for(var i = 0;i < element["options"].length;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>";
-      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
-      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
-    }
-    ret += "</div>";
-    ret += "<div class='mcquestion_right'>";
-    ret += "<img id='mch_statistics_button_" + slide + "' class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
-    ret += "<input type='hidden' id='slide_to_activate' value='" + slide + "'/>";
-    ret += "<input type='hidden' id='quiz_id_to_activate' value='" + quiz_id + "'/>";
-    ret += "<input type='button' id='mcquestion_start_button_" + slide + "' class='mcquestion_start_button' value='Start Quiz'/>";
-    ret += "<div id='save_quiz_" + slide + "' class='save_quiz'><label>Do you want to save the polling results?</label>";
-    ret += "<input type='button'class='mcquestion_save_yes_button' id='mcquestion_save_yes_button_" + slide + "' value='Yes'><input type='button' class='mcquestion_save_no_button' id='mcquestion_save_no_button_" + slide + "' value='No'></div>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    return ret
-  };
-  var _renderMcquestionStudent = function(element, template, slide) {
-    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
-    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
-    for(var i = 0;i < element["options"].length;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      ret += "<label class='mc_answer' id='mc_answer_" + slide + "_option_" + next_index + "'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>" + element["options"][i] + "</label>";
-      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
-      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
-    }
-    ret += "</div>";
-    ret += "<div class='mcquestion_right'>";
-    ret += "<input type='hidden' id='slide_to_vote' value='" + slide + "'/>";
-    ret += "<input type='button' id='mcquestion_send_vote_button_" + slide + "' class='mcquestion_send_vote_button' value='Send'/>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    return ret
-  };
-  var _renderMcquestionNone = function(element, template, slide) {
-    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
-    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
-    for(var i = 0;i < element["options"].length;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>"
-    }
-    ret += "</div>";
-    ret += "<div class='mcquestion_right'>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    return ret
   };
   var _activateLoggedInteraction = function() {
     var startButton = "#mcquestion_start_button_" + slideToActivate;
@@ -14389,9 +14252,6 @@ VISH.Quiz = function(V, $, undefined) {
         $(event.srcElement).css("font-weight", "normal")
       })
     }
-  };
-  var _activateNoneInteraction = function() {
-    V.Debugging.log(" enter on _activeNoneInteraction function")
   };
   var _alignStartButton = function(options) {
     var marginTopDefault = 18;
@@ -14449,7 +14309,8 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var _OnQuizSessionReceivedError = function(error) {
-    console.log("_OnQuizSessionReceivedError:  " + error)
+    var received = JSON.stringify(error);
+    console.log("_OnQuizSessionReceivedError:  " + received)
   };
   var _onSendVoteMcQuizButtonClicked = function(event) {
     slideToVote = $(".current").find("#slide_to_vote").val();
@@ -14457,15 +14318,36 @@ VISH.Quiz = function(V, $, undefined) {
     if(answer == undefined) {
       alert("You must choice your answer before polling")
     }else {
-      var vote_url;
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToParticipant(data, slideToVote);
-      $(".current").find(".mc_radio").remove();
-      $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToParticipant(data);
-      _removeOptionsListener(slideToVote)
+      V.Debugging.log("answer option selected is: " + answer);
+      var quiz_active_session_id = $(".current").find("#quiz_active_session_id").val();
+      V.Debugging.log("quiz_active_session_id is: " + quiz_active_session_id);
+      V.Quiz.API.putQuizSession(answer, quiz_active_session_id, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError)
     }
+  };
+  var _onQuizVotingSuccessReceived = function(data) {
+    var received = JSON.stringify(data);
+    V.Debugging.log("_onQuizVotingSuccessReceived and data received is: " + received);
+    var quiz_active_session_id = $(".current").find("#quiz_active_session_id").val();
+    V.Quiz.API.getQuizSessionResults(quiz_active_session_id, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
+  };
+  var _OnQuizVotingReceivedError = function(error) {
+    var received = JSON.stringify(error);
+    console.log("_OnQuizVotingReceivedError, and value received is:  " + received)
+  };
+  var _onQuizSessionResultsReceived = function(data) {
+    var received = JSON.stringify(data);
+    V.Debugging.log("_onQuizSessionResultsReceived and data received is: " + received);
+    var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+    _showResultsToParticipant(data, slideToVote);
+    $(".current").find(".mc_radio").remove();
+    $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
+    var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+    _showResultsToParticipant(data);
+    _removeOptionsListener(slideToVote)
+  };
+  var _onQuizSessionResultsReceivedError = function(error) {
+    var received = JSON.stringify(error);
+    console.log("_onQuizSessionResultsReceivedError, and value received is:  " + received)
   };
   var _onStopMcQuizButtonClicked = function() {
     var quiz_id = $(".current").find("#quiz_session_id").val();
@@ -14473,7 +14355,6 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.deleteQuizSession(quiz_id, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError)
   };
   var _onQuizSessionCloseReceived = function(results) {
-    console.log("_onQuizSessionCloseReceived:  " + results);
     slideToStop = $(".current").find("#slide_to_stop").val();
     $("#" + slideToStop).find(".t11_header").text("");
     $(".current").find(".save_quiz").css("display", "inline-block");
@@ -14487,7 +14368,8 @@ VISH.Quiz = function(V, $, undefined) {
     $("#" + slideToStop).find("#mcquestion_start_button_" + slideToStop).css("background-color", "#F8F8F8")
   };
   var _onQuizSessionCloseReceivedError = function(error) {
-    console.log("_onQuizSessionCloseReceivedError:  " + error)
+    var received = JSON.stringify(error);
+    console.log("_onQuizSessionCloseReceivedError, and value received is:  " + received)
   };
   var _statisticsMcQuizButtonClicked = function() {
     var marginTopDefault = 18;
@@ -14537,27 +14419,23 @@ VISH.Quiz = function(V, $, undefined) {
   var _showResultsToParticipant = function(data, slide) {
     var greatestId;
     var greatest = 0;
-    if(data.quiz_id == userStatus.quiz_active) {
-      var votes;
-      var totalVotes = 0;
-      for(votes in data.results) {
-        totalVotes += parseInt(data.results[votes]);
-        if(parseInt(data.results[votes]) > greatest) {
-          greatestId = votes;
-          greatest = parseInt(data.results[votes])
-        }else {
-          greatestId
-        }
+    var votes;
+    var totalVotes = 0;
+    for(votes in data.results) {
+      totalVotes += parseInt(data.results[votes]);
+      if(parseInt(data.results[votes]) > greatest) {
+        greatestId = votes;
+        greatest = parseInt(data.results[votes])
+      }else {
+        greatestId
       }
-      for(votes in data.results) {
-        var percent = parseInt(data.results[votes]) / totalVotes * 100;
-        var percentString = percent.toString() + "%";
-        var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-        $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
-        $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
-      }
-    }else {
-      V.Debugging.log(" The Quiz voted is not the active Quiz. Reload the Quiz.")
+    }
+    for(votes in data.results) {
+      var percent = parseInt(data.results[votes]) / totalVotes * 100;
+      var percentString = percent.toString() + "%";
+      var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
+      $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
+      $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
     }
     var indexOfGreatestVoted = String.fromCharCode("a".charCodeAt(0) + parseInt(greatestId));
     $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("color", "blue");
@@ -14594,31 +14472,6 @@ VISH.Quiz = function(V, $, undefined) {
       var overOptionZone = "#mc_answer_" + slideToRemoveListeners + "_option_" + next_index;
       $(overOptionZone).attr("id", "#mc_answer_" + slideToRemoveListeners + "_voted__option_" + next_index)
     }
-  };
-  var _renderTrueFalseQuestion = function(element, template) {
-    var answers = new Array;
-    var ret = "<div id='" + element["id"] + "' class='truefalse_question'>";
-    ret += "<div class='truefalse_question_container'>";
-    ret += "<form class='truefalse_question_form' action='" + element["posturl"] + "' method='post'>";
-    ret += "<table id='truefalse_quiz_table_1' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr>";
-    for(var i = 0;i < element["questions"].length;i++) {
-      answers[i] = element["questions"][i]["answer"];
-      ret += "<tr id='tr_question_" + (i + 1) + "'>";
-      ret += "<td id='td_true_" + (i + 1) + "' class='td_true'>";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='true'  id='radio_true_" + (i + 1) + "'/></td>";
-      ret += "<td id='td_false_" + (i + 1) + "' class='td_false' >";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='false' id='radio_false_" + (i + 1) + "' /></td>";
-      ret += "<td id='td_question_" + (i + 1) + "' class='true_false_question_txt'><label>" + element["questions"][i]["text_question"] + "?</label></td>";
-      ret += "</tr>"
-    }
-    ret += "</table>";
-    ret += "<input type='button' class='tfquestion_button' value='Send' id='tf_send_button'/>";
-    ret += "</form>";
-    ret += "</div>";
-    trueFalseAnswers = answers;
-    asnswers = [];
-    VISH.Debugging.log("answer's array : " + trueFalseAnswers);
-    return ret
   };
   return{init:init, enableInteraction:enableInteraction, enableTrueFalseInteraction:enableTrueFalseInteraction}
 }(VISH, jQuery);
@@ -14677,12 +14530,27 @@ VISH.Configuration = function(V, $, undefined) {
   return{init:init, applyConfiguration:applyConfiguration, getConfiguration:getConfiguration}
 }(VISH, jQuery);
 VISH.Debugging = function(V, $, undefined) {
-  var actionSave = "view";
-  var actionInit = "loadSamples";
-  var excursionSamples = VISH.Samples.quizes_samples;
   var developping = false;
-  var init = function(bol) {
-    developping = bol
+  var settings;
+  var presentationOptions;
+  var init = function(options) {
+    if(options) {
+      if(typeof options["developping"] == "boolean") {
+        developping = options["developping"];
+        if(developping) {
+          presentationOptions = options;
+          if(options["developmentSettings"]) {
+            settings = options["developmentSettings"]
+          }
+        }
+      }else {
+        developping = false;
+        settings = null
+      }
+    }else {
+      developping = false;
+      settings = null
+    }
   };
   var log = function(text) {
     if(window.console && window.console.log && developping) {
@@ -14707,17 +14575,34 @@ VISH.Debugging = function(V, $, undefined) {
     return developping
   };
   var getActionSave = function() {
-    return actionSave
+    if(settings) {
+      return settings.actionSave
+    }else {
+      return"view"
+    }
   };
   var getActionInit = function() {
-    return actionInit
+    if(settings) {
+      return settings.actionInit
+    }else {
+      return"nothing"
+    }
   };
   var getExcursionSamples = function() {
-    return excursionSamples
+    if(settings && settings.samples) {
+      return settings.samples
+    }else {
+      log("VISH.Debugging Error: Please specify development settings");
+      return null
+    }
   };
   var initVishViewer = function() {
     var myexcursion = null;
     if(VISH.Editing) {
+      if(!presentationOptions) {
+        log("VISH.Debugging Error: Specify presentationOptions");
+        return
+      }
       myexcursion = VISH.Editor.saveExcursion()
     }else {
       log("You are already in Vish Viewer");
@@ -14730,8 +14615,8 @@ VISH.Debugging = function(V, $, undefined) {
     $(".theslider").hide();
     $(".nicEdit-panelContain").hide();
     $("#menubar-viewer").show();
-    VISH.Debugging.log("Init Vish Viewer with excursion: " + JSON.stringify(myexcursion));
-    VISH.SlideManager.init(myexcursion)
+    log("Init Vish Viewer with excursion: " + JSON.stringify(myexcursion));
+    VISH.SlideManager.init(presentationOptions, myexcursion)
   };
   var initVishEditor = function() {
     var myexcursion = null;
@@ -14739,6 +14624,10 @@ VISH.Debugging = function(V, $, undefined) {
       log("You are already in Vish Editor");
       return
     }else {
+      if(!presentationOptions) {
+        log("VISH.Debugging Error: Specify presentationOptions");
+        return
+      }
       myexcursion = VISH.Editor.getSavedExcursion()
     }
     $("article").remove();
@@ -14748,11 +14637,8 @@ VISH.Debugging = function(V, $, undefined) {
     $(".theslider").show();
     $(".nicEdit-panelContain").show();
     $("#menubar-viewer").hide();
-    var options = {};
-    options["developping"] = true;
-    options["configuration"] = configuration;
     VISH.Debugging.log("Init Vish Editor with excursion: " + JSON.stringify(myexcursion));
-    VISH.Editor.init(options, myexcursion)
+    VISH.Editor.init(presentationOptions, myexcursion)
   };
   return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getExcursionSamples:getExcursionSamples, initVishViewer:initVishViewer, initVishEditor:initVishEditor}
 }(VISH, jQuery);
@@ -15943,7 +15829,6 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   var maxNumTrueFalseQuestions = 6;
   var init = function() {
     var myInput = $(".current").find("input[type='text']");
-    V.Debugging.log("enter to init function");
     $(document).on("click", "#" + buttonAddOptionId, addMultipleChoiceOption);
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
@@ -16537,7 +16422,65 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     return filterStyle
   };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw}
+  var loadTab = function(tab_id) {
+    $(".joyride-close-tip").click();
+    $(".fancy_tab").removeClass("fancy_selected");
+    $("#" + tab_id).addClass("fancy_selected");
+    $(".fancy_tab_content").hide();
+    $("#" + tab_id + "_content").show();
+    $(".help_in_fancybox").hide();
+    $("#" + tab_id + "_help").show();
+    switch(tab_id) {
+      case "tab_pic_from_url":
+        V.Editor.Image.onLoadTab("url");
+        break;
+      case "tab_pic_upload":
+        V.Editor.Image.onLoadTab("upload");
+        break;
+      case "tab_pic_repo":
+        V.Editor.Image.Repository.onLoadTab();
+        break;
+      case "tab_pic_flikr":
+        V.Editor.Image.Flikr.onLoadTab();
+        break;
+      case "tab_video_from_url":
+        VISH.Editor.Video.onLoadTab();
+        break;
+      case "tab_video_repo":
+        VISH.Editor.Video.Repository.onLoadTab();
+        break;
+      case "tab_video_youtube":
+        VISH.Editor.Video.Youtube.onLoadTab();
+        break;
+      case "tab_video_vimeo":
+        VISH.Editor.Video.Vimeo.onLoadTab();
+        break;
+      case "tab_object_from_url":
+        VISH.Editor.Object.onLoadTab("url");
+        break;
+      case "tab_object_from_web":
+        VISH.Editor.Object.Web.onLoadTab();
+        break;
+      case "tab_object_snapshot":
+        VISH.Editor.Object.Snapshot.onLoadTab();
+        break;
+      case "tab_object_upload":
+        VISH.Editor.Object.onLoadTab("upload");
+        break;
+      case "tab_object_repo":
+        VISH.Editor.Object.Repository.onLoadTab();
+        break;
+      case "tab_live_webcam":
+        VISH.Editor.Object.Live.onLoadTab("webcam");
+        break;
+      case "tab_live_micro":
+        VISH.Editor.Object.Live.onLoadTab("micro");
+        break;
+      default:
+        break
+    }
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, loadTab:loadTab}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -16941,14 +16884,6 @@ VISH.Excursion = function(V, undefined) {
         if(mySlides[i].elements[num].type === "flashcard") {
           var flashcard = JSON.parse(mySlides[i].elements[num].jsoncontent);
           V.Mods.fc.loader.init(flashcard)
-        }else {
-          if(mySlides[i].elements[num].type === "mcquestion") {
-            VISH.Quiz.enableInteraction(mySlides[i].id.toString(), mySlides[i].elements[num].options.length)
-          }else {
-            if(mySlides[i].elements[num].type === "truefalsequestion") {
-              VISH.Quiz.enableTrueFalseInteraction(mySlides[i].id.toString(), mySlides[i].elements[num].questions.length)
-            }
-          }
         }
       }
     }
@@ -17043,15 +16978,16 @@ VISH.Police = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
+    console.log("VIS.QUIZ.API init")
   };
   var postStartQuizSession = function(quiz_id, successCallback, failCallback) {
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
       console.log("Vish case");
       V.Debugging.log("quiz_id to start Quiz Session is: " + quiz_id);
       var send_type = "POST";
-      V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
-      var params = {"quiz_id":quiz_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
-      $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions", data:params, success:function(data) {
+      V.Debugging.log("token is: " + V.User.getToken());
+      var params = {"quiz_id":quiz_id, "authenticity_token":V.User.getToken()};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
         V.Debugging.log("data: " + data);
         var quiz_session_id = data;
         if(typeof successCallback == "function") {
@@ -17074,9 +17010,9 @@ VISH.Quiz.API = function(V, $, undefined) {
   var deleteQuizSession = function(quiz_session_id, successCallback, failCallback) {
     V.Debugging.log("quiz_session_id to delete is: " + quiz_session_id);
     var send_type = "DELETE";
-    V.Debugging.log("token is: " + V.SlideManager.getUserStatus()["token"]);
-    var params = {"id":quiz_session_id, "authenticity_token":V.SlideManager.getUserStatus()["token"]};
-    $.ajax({type:send_type, url:"http://localhost:3000/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
+    V.Debugging.log("token is: " + V.User.getToken());
+    var params = {"id":quiz_session_id, "authenticity_token":V.User.getToken()};
+    $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
       V.Debugging.log("data: " + data);
       var results = data;
       if(typeof successCallback == "function") {
@@ -17089,9 +17025,190 @@ VISH.Quiz.API = function(V, $, undefined) {
   };
   var getQuizSession = function(quiz_session_id, successCallback, failCallback) {
   };
-  var putQuizSession = function(quiz_session_id, successCallback, failCallback) {
+  var putQuizSession = function(answer_selected, quiz_active_session_id, successCallback, failCallback) {
+    V.Debugging.log("quiz_active_session_id for voting is : " + quiz_active_session_id);
+    V.Debugging.log("Answer selected value is: " + answer_selected);
+    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      console.log("Vish case");
+      var send_type = "PUT";
+      V.Debugging.log("token is: " + V.User.getToken());
+      var params = {"id":quiz_active_session_id, "option":answer_selected, "authenticity_token":V.User.getToken()};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id, data:params, success:function(data) {
+        V.Debugging.log("data: " + data);
+        var results = data;
+        if(typeof successCallback == "function") {
+          successCallback(results)
+        }
+      }, error:function(error) {
+        failCallback(error)
+      }});
+      return null
+    }else {
+      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+        console.log("No server case");
+        var quiz_session_id = "123";
+        if(typeof successCallback == "function") {
+          successCallback(quiz_session_id)
+        }
+      }
+    }
   };
-  return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, getQuizSession:getQuizSession, putQuizSession:putQuizSession}
+  var getQuizSessionResults = function(quiz_active_session_id, successCallback, failCallback) {
+    V.Debugging.log("quiz_active_session_id for asking results is : " + quiz_active_session_id);
+    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      console.log("Vish case");
+      var send_type = "GET";
+      V.Debugging.log("token is: " + V.User.getToken());
+      var params = {"id":quiz_active_session_id, "authenticity_token":V.User.getToken()};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id + "/results", data:params, success:function(data) {
+        V.Debugging.log("data: " + data);
+        var results = data;
+        if(typeof successCallback == "function") {
+          successCallback(results)
+        }
+      }, error:function(error) {
+        failCallback(error)
+      }});
+      return null
+    }else {
+      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+        console.log("No server case");
+        var results = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
+        if(typeof successCallback == "function") {
+          successCallback(results)
+        }
+      }
+    }
+  };
+  return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, getQuizSession:getQuizSession, putQuizSession:putQuizSession, getQuizSessionResults:getQuizSessionResults}
+}(VISH, jQuery);
+VISH.Quiz.Renderer = function(V, $, undefined) {
+  var init = function() {
+  };
+  var renderQuiz = function(quizType, element, template, slide, quiz_id) {
+    switch(quizType) {
+      case "mcquestion":
+        return _renderMcQuestion(element, template, slide, quiz_id);
+        break;
+      case "openQuestion":
+        return _renderOpenquestion(element, template);
+        break;
+      case "truefalsequestion":
+        return _renderTrueFalseQuestion(element, template);
+        break;
+      default:
+        break
+    }
+  };
+  var _renderMcQuestion = function(element, template, slide, quiz_id) {
+    var user = V.User.getUser();
+    var logged = V.User.isLogged();
+    var obj;
+    if(logged) {
+      obj = _renderMcquestionLogged(element, template, slide, quiz_id)
+    }else {
+      obj = _renderMcquestionNone(element, template, slide)
+    }
+    return obj
+  };
+  var _renderMcquestionLogged = function(element, template, slide, quiz_id) {
+    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
+    ret += "<div class='mcquestion_container'>";
+    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
+    ret += "<form id='form_" + slide + "'class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
+    for(var i = 0;i < element["options"].length;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>";
+      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
+      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
+    }
+    ret += "</div>";
+    ret += "<div class='mcquestion_right'>";
+    ret += "<img id='mch_statistics_button_" + slide + "' class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
+    ret += "<input type='hidden' id='slide_to_activate' value='" + slide + "'/>";
+    ret += "<input type='hidden' id='quiz_id_to_activate' value='" + quiz_id + "'/>";
+    ret += "<input type='button' id='mcquestion_start_button_" + slide + "' class='mcquestion_start_button' value='Start Quiz'/>";
+    ret += "<div id='save_quiz_" + slide + "' class='save_quiz'><label>Do you want to save the polling results?</label>";
+    ret += "<input type='button'class='mcquestion_save_yes_button' id='mcquestion_save_yes_button_" + slide + "' value='Yes'><input type='button' class='mcquestion_save_no_button' id='mcquestion_save_no_button_" + slide + "' value='No'></div>";
+    ret += "</div>";
+    ret += "</form>";
+    ret += "</div>";
+    return ret
+  };
+  var _renderMcquestionNone = function(element, template, slide) {
+    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
+    ret += "<div class='mcquestion_container'>";
+    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
+    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
+    for(var i = 0;i < element["options"].length;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>"
+    }
+    ret += "</div>";
+    ret += "<div class='mcquestion_right'>";
+    ret += "</div>";
+    ret += "</form>";
+    ret += "</div>";
+    return ret
+  };
+  var _renderMcquestionToAnswer = function(element, template, slide) {
+    var ret = "<div id='" + element["id"] + "' class='multiplechoicequestion'>";
+    ret += "<div class='mcquestion_container'>";
+    ret += "<div class='mcquestion_left'><h2 class='question'>" + element["question"] + "?</h2>";
+    ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
+    for(var i = 0;i < element["options"].length;i++) {
+      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
+      ret += "<label class='mc_answer' id='mc_answer_" + slide + "_option_" + next_index + "'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>" + element["options"][i] + "</label>";
+      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
+      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
+    }
+    ret += "</div>";
+    ret += "<div class='mcquestion_right'>";
+    ret += "<input type='hidden' id='slide_to_vote' value='" + slide + "'/>";
+    ret += "<input type='hidden' id='quiz_active_session_id' value='" + quizStatus.quiz_active_session_id + "'/>";
+    ret += "<input type='button' id='mcquestion_send_vote_button_" + slide + "' class='mcquestion_send_vote_button' value='Send'/>";
+    ret += "</div>";
+    ret += "</form>";
+    ret += "</div>";
+    return ret
+  };
+  var _renderOpenquestion = function(element, template) {
+    var ret = "<form action='" + element["posturl"] + "' method='post' style='text-align:center;'>";
+    ret += "<label class='question_name'>Name:  </label>";
+    ret += "<textarea id='pupil_name' rows='1' cols='50' class='question_name_input' placeholder='Write your name here'></textarea>";
+    ret += "<h2 class='question'> Question: " + element["question"] + "? </h2>";
+    ret += "<label class='label_question'>Answer: </label>";
+    ret += "<textarea id='question_answer' rows='5' cols='50' class='question_answer' placeholder='Write your answer here'></textarea>";
+    ret += "<button type='button' class='question_button'>Send</button>";
+    return ret
+  };
+  var _renderTrueFalseQuestion = function(element, template) {
+    var next_num = 0;
+    var answers = new Array;
+    var ret = "<div id='" + element["id"] + "' class='truefalse_question'>";
+    ret += "<div class='truefalse_question_container'>";
+    ret += "<form class='truefalse_question_form' action='" + element["posturl"] + "' method='post'>";
+    ret += "<table id='truefalse_quiz_table_1' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr>";
+    for(var i = 0;i < element["questions"].length;i++) {
+      answers[i] = element["questions"][i]["answer"];
+      ret += "<tr id='tr_question_" + (i + 1) + "'>";
+      ret += "<td id='td_true_" + (i + 1) + "' class='td_true'>";
+      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='true' /></td>";
+      ret += "<td id='td_false_" + (i + 1) + "' class='td_false' >";
+      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='false'/></td>";
+      ret += "<td id='td_question_" + (i + 1) + "' class='true_false_question_txt'><label>" + element["questions"][i]["text_question"] + "?</label></td>";
+      ret += "</tr>"
+    }
+    ret += "</table>";
+    ret += "<input type='button' class='tfquestion_button' value='Send'/>";
+    ret += "</form>";
+    ret += "</div>";
+    trueFalseAnswers = answers;
+    asnswers = [];
+    VISH.Debugging.log("JSON object answer is: " + trueFalseAnswers);
+    return ret
+  };
+  return{init:init, renderQuiz:renderQuiz}
 }(VISH, jQuery);
 VISH.Renderer = function(V, $, undefined) {
   var SLIDE_CONTAINER = null;
@@ -17129,16 +17246,16 @@ VISH.Renderer = function(V, $, undefined) {
                     classes += "flashcard"
                   }else {
                     if(slide.elements[el].type === "openquestion") {
-                      content += _renderOpenquestion(slide.elements[el], slide.template);
+                      content += V.Quiz.Renderer.renderQuiz("openquestion", slide.elements[el], slide.template);
                       classes += "openquestion"
                     }else {
                       if(slide.elements[el].type === "mcquestion") {
-                        var quiz_id = slide.quiz_id;
-                        content += V.Quiz.init(slide.elements[el], slide.template, slide.id, slide.quiz_id);
+                        var quiz_id = parseInt(slide.quiz_id);
+                        content += V.Quiz.Renderer.renderQuiz("mcquestion", slide.elements[el], slide.template, slide.id, slide.quiz_id);
                         classes += "mcquestion"
                       }else {
                         if(slide.elements[el].type === "truefalsequestion") {
-                          content += V.Quiz.init(slide.elements[el], slide.template, slide.id);
+                          content += V.Quiz.Renderer.renderQuiz("truefalsequestion", slide.elements[el], slide.template, slide.id);
                           classes += "truefalsequestion"
                         }else {
                           content += _renderEmpty(slide.elements[el], slide.template)
@@ -17205,16 +17322,6 @@ VISH.Renderer = function(V, $, undefined) {
   var _renderFlashcard = function(element, template) {
     return"<div id='" + element["id"] + "' class='template_flashcard'><canvas id='" + element["canvasid"] + "'>Your browser does not support canvas</canvas></div>"
   };
-  var _renderOpenquestion = function(element, template) {
-    var ret = "<form action='" + element["posturl"] + "' method='post' style='text-align:center;'>";
-    ret += "<label class='question_name'>Name:  </label>";
-    ret += "<textarea id='pupil_name' rows='1' cols='50' class='question_name_input' placeholder='Write your name here'></textarea>";
-    ret += "<h2 class='question'> Question: " + element["question"] + "? </h2>";
-    ret += "<label class='label_question'>Answer: </label>";
-    ret += "<textarea id='question_answer' rows='5' cols='50' class='question_answer' placeholder='Write your answer here'></textarea>";
-    ret += "<button type='button' class='question_button'>Send</button>";
-    return ret
-  };
   return{init:init, renderVideo:renderVideo, renderSlide:renderSlide}
 }(VISH, jQuery);
 VISH.SlideManager = function(V, $, undefined) {
@@ -17223,78 +17330,66 @@ VISH.SlideManager = function(V, $, undefined) {
   var slideStatus = {};
   var myDoc;
   var user = {};
-  var status = {};
   var init = function(options, excursion) {
-    V.Slides.init();
-    V.Status.init();
+    VISH.Debugging.init(options);
     VISH.Editing = false;
-    V.Debugging.log("options : username " + options["username"] + " token " + options["token"] + " quiz_active " + options["quiz_active"]);
-    initOptions = options;
+    if(options) {
+      initOptions = options
+    }else {
+      initOptions = {}
+    }
     if(options && options["configuration"] && VISH.Configuration) {
       VISH.Configuration.init(options["configuration"])
     }
-    if(options["developping"] === true && VISH.Debugging) {
-      VISH.Debugging.init(true)
-    }else {
-      VISH.Debugging.init(false)
-    }
-    if(options["username"]) {
-      user.username = options["username"];
-      user.role = "logged";
-      if(options["token"]) {
-        status.token = options["token"];
-        if(options["quiz_active"]) {
-          status.quiz_active = options["quiz_active"]
-        }else {
-          status.quiz_active = options["quiz_active"]
-        }
-      }else {
-        status.token = "";
-        if(options["quiz_active"]) {
-          status.quiz_active = options["quiz_active"]
-        }
-      }
-    }else {
-      user.username = "";
-      status.token = "";
-      if(options["quiz_active"]) {
-        V.Debugging.log("options quiz_active value is: " + options["quiz_active"]);
-        user.role = "student";
-        status.quiz_active = options["quiz_active"]
-      }else {
-        user.role = "none";
-        status.quiz_active = options["quiz_active"]
+    if(VISH.Debugging.isDevelopping()) {
+      if(options["configuration"]["mode"] == "noserver" && !excursion && VISH.Debugging.getExcursionSamples() != null) {
+        excursion = VISH.Debugging.getExcursionSamples()
       }
     }
+    V.Slides.init();
+    V.Status.init();
+    if(V.Status.ua.mobile) {
+      V.Debugging.log("Load Mobile CSS");
+      $("head").append('<link rel="stylesheet" href="/vishEditor/stylesheets/mobile/mobile.css" type="text/css" />')
+    }else {
+      if(V.Status.ua.tablet) {
+        V.Debugging.log("Load Tablet CSS");
+        $("head").append('<link rel="stylesheet" href="/vishEditor/stylesheets/mobile/tablet.css" type="text/css" />')
+      }
+    }
+    V.User.init(options);
+    V.Quiz.init(excursion);
     mySlides = excursion.slides;
     V.Excursion.init(mySlides);
-    V.ViewerAdapter.setupSize();
+    V.ViewerAdapter.setupSize(false);
     $(window).on("orientationchange", function() {
       V.ViewerAdapter.setupSize()
     });
-    if(V.Status.features.fullscreen) {
+    if(V.Status.features.fullscreen && V.Status.ua.desktop) {
       if(V.Status.getIsInIframe()) {
         myDoc = parent.document
       }else {
         myDoc = document
       }
       $(document).on("click", "#page-fullscreen", toggleFullScreen);
-      $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function() {
-        setTimeout(V.ViewerAdapter.setupSize, 200)
+      $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
+        V.ViewerAdapter.setupElements();
+        setTimeout(function() {
+          VISH.ViewerAdapter.setupSize(true);
+          VISH.ViewerAdapter.decideIfPageSwitcher()
+        }, 400)
       })
     }else {
       $("#page-fullscreen").hide()
     }
-    if(!V.Status.ua.mobile) {
+    if(V.Status.ua.desktop) {
       $("#viewbar").show();
       updateSlideCounter()
     }else {
       window.addEventListener("load", function() {
-        if(!window.pageYOffset) {
-          _hideAddressBar()
-        }
+        hideAddressBar()
       });
-      window.addEventListener("orientationchange", _hideAddressBar)
+      window.addEventListener("orientationchange", hideAddressBar)
     }
   };
   var toggleFullScreen = function() {
@@ -17311,12 +17406,6 @@ VISH.SlideManager = function(V, $, undefined) {
           }
         }
       }
-      $("#page-fullscreen").css("background-position", "-45px 0px");
-      $("#page-fullscreen").hover(function() {
-        $("#page-fullscreen").css("background-position", "-45px -40px")
-      }, function() {
-        $("#page-fullscreen").css("background-position", "-45px 0px")
-      })
     }else {
       if(myDoc.cancelFullScreen) {
         myDoc.cancelFullScreen()
@@ -17329,12 +17418,6 @@ VISH.SlideManager = function(V, $, undefined) {
           }
         }
       }
-      $("#page-fullscreen").css("background-position", "0px 0px");
-      $("#page-fullscreen").hover(function() {
-        $("#page-fullscreen").css("background-position", "0px -40px")
-      }, function() {
-        $("#page-fullscreen").css("background-position", "0px 0px")
-      })
     }
   };
   var addEnterLeaveEvents = function() {
@@ -17350,14 +17433,11 @@ VISH.SlideManager = function(V, $, undefined) {
   var updateStatus = function(slideid, newStatus) {
     slideStatus[slideid] = newStatus
   };
-  var getUser = function() {
-    return user
-  };
-  var getUserStatus = function() {
-    return status
+  var getOptions = function() {
+    return initOptions
   };
   var _onslideenter = function(e) {
-    _decideIfPageSwitcher();
+    V.ViewerAdapter.decideIfPageSwitcher();
     var fcElem, slideId;
     setTimeout(function() {
       if($(e.target).hasClass("object")) {
@@ -17400,30 +17480,20 @@ VISH.SlideManager = function(V, $, undefined) {
       V.Mods.fc.player.clear()
     }
   };
-  var _decideIfPageSwitcher = function() {
-    if(V.curSlide === 0) {
-      $("#page-switcher-start").hide()
-    }else {
-      $("#page-switcher-start").show()
-    }
-    if(V.curSlide === V.slideEls.length - 1) {
-      $("#page-switcher-end").hide()
-    }else {
-      $("#page-switcher-end").show()
-    }
-  };
   var updateSlideCounter = function() {
     var number_of_slides = V.slideEls.length;
     var slide_number = V.curSlide + 1;
     $("#slide-counter").html(slide_number + "/" + number_of_slides)
   };
-  var _hideAddressBar = function() {
+  var hideAddressBar = function() {
     VISH.Debugging.log("TODO method hideAddressBar in slides.js")
   };
-  return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, toggleFullScreen:toggleFullScreen, getUser:getUser, getUserStatus:getUserStatus, updateSlideCounter:updateSlideCounter}
+  return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, hideAddressBar:hideAddressBar, toggleFullScreen:toggleFullScreen, getOptions:getOptions, updateSlideCounter:updateSlideCounter}
 }(VISH, jQuery);
 VISH.Slides.Events = function(V, $, undefined) {
   var addedEventListeners = false;
+  var PM_TOUCH_SENSITIVITY = 200;
+  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
   var init = function() {
     addEventListeners();
     $(document).bind("touchstart", handleTouchStart)
@@ -17433,6 +17503,14 @@ VISH.Slides.Events = function(V, $, undefined) {
       $(document).bind("keydown", handleBodyKeyDown);
       $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
       $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+      $(document).on("click", "#mobile_back_arrow", function() {
+        console.log("entra back");
+        V.Slides.backwardOneSlide()
+      });
+      $(document).on("click", "#mobile_forward_arrow", function() {
+        console.log("entra back");
+        V.Slides.forwardOneSlide()
+      });
       addedEventListeners = true
     }
   };
@@ -17477,7 +17555,7 @@ VISH.Slides.Events = function(V, $, undefined) {
       document.body.addEventListener("touchmove", handleTouchMove, true);
       document.body.addEventListener("touchend", handleTouchEnd, true);
       var zoom = document.documentElement.clientWidth / window.innerWidth;
-      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && event.target.id !== "mobile_forward_arrow" && event.target.id !== "mobile_back_arrow") {
         event.preventDefault()
       }
     }
@@ -17500,9 +17578,9 @@ VISH.Slides.Events = function(V, $, undefined) {
     var dy = Math.abs(touchDY);
     if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
       if(touchDX > 0) {
-        backwardOneSlide()
+        V.Slides.backwardOneSlide()
       }else {
-        forwardOneSlide()
+        V.Slides.forwardOneSlide()
       }
     }
     cancelTouch()
@@ -17515,6 +17593,8 @@ VISH.Slides.Events = function(V, $, undefined) {
     $(document).unbind("keydown", handleBodyKeyDown);
     $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
     $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+    $(document).off("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
+    $(document).off("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
     $(document).unbind("touchstart", handleTouchStart)
   };
   return{init:init, unbindAll:unbindAll}
@@ -17522,10 +17602,11 @@ VISH.Slides.Events = function(V, $, undefined) {
 VISH.Slides.Mashme = function(V, $, undefined) {
   var addedEventListeners = false;
   var MASHME_API_SCRIPT_URL = "https://mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
-  var mashme_hello = "MASHMETV_HELLO";
+  var MASHME_HELLO = "MASHMETV_HELLO";
+  var GO_TO_SLIDE = "GO_TO_SLIDE";
   var onMashmeHello = function(message) {
     V.Debugging.log("Recibiendo:" + message.data + " from:" + message.origin);
-    if(message.data === mashme_hello) {
+    if(message.data === MASHME_HELLO) {
       V.Slides.Events.unbindAll();
       window.removeEventListener("message", V.Slides.onMashmeHello, false);
       init()
@@ -17542,8 +17623,8 @@ VISH.Slides.Mashme = function(V, $, undefined) {
   var addEventListeners = function() {
     if(!addedEventListeners) {
       $(document).bind("keydown", handleBodyKeyDown);
-      $(document).on("click", "#page-switcher-start", _sendBackward);
-      $(document).on("click", "#page-switcher-end", _sendForward);
+      $(document).on("click", "#page-switcher-start", "back", _sendSlideNumber);
+      $(document).on("click", "#page-switcher-end", "forward", _sendSlideNumber);
       addedEventListeners = true
     }
   };
@@ -17553,7 +17634,7 @@ VISH.Slides.Mashme = function(V, $, undefined) {
       ;
       case 40:
         if(V.Slides.isSlideFocused()) {
-          _sendForward();
+          __sendSlideNumber("forward");
           event.preventDefault()
         }
         break;
@@ -17561,7 +17642,7 @@ VISH.Slides.Mashme = function(V, $, undefined) {
       ;
       case 38:
         if(V.Slides.isSlideFocused()) {
-          _sendBackward();
+          _sendSlideNumber("back");
           event.preventDefault()
         }
         break
@@ -17569,26 +17650,25 @@ VISH.Slides.Mashme = function(V, $, undefined) {
   };
   var _onMashmeMessage = function(message) {
     V.Debugging.log("Recibiendo:" + message.data + " from:" + message.origin);
-    var command = message.data.substring(message.data.indexOf(":") + 1);
+    var command = message.data.substring(message.data.indexOf(":") + 1, message.data.indexOf("//"));
+    var data = message.data.substring(message.data.indexOf("//") + 2);
     switch(command) {
-      case "backwardOneSlide":
-        V.Debugging.log("backwardOneSlide");
-        V.Slides.backwardOneSlide();
+      case GO_TO_SLIDE:
+        V.Debugging.log("Message GO_TO_SLIDE: " + data);
+        V.Slides.goToSlide(data);
         break;
-      case "forwardOneSlide":
-        V.Debugging.log("forwardOneSlide");
-        V.Slides.forwardOneSlide();
-        break
+      default:
+        V.Debugging.log("WARNING: Message not known " + message)
     }
   };
-  var _sendForward = function() {
-    _sendMessage("forwardOneSlide")
-  };
-  var _sendBackward = function() {
-    _sendMessage("backwardOneSlide")
-  };
-  var _sendMessage = function(message) {
-    MASHME.API.iFrame.broadcast("MashMeAPIMessage:" + message)
+  var _sendSlideNumber = function(click) {
+    var slideNumber = V.curSlide + 1;
+    if(click === "back") {
+      slideNumber -= 1
+    }else {
+      slideNumber += 1
+    }
+    MASHME.API.iFrame.broadcast("MashMeAPIMessage:" + GO_TO_SLIDE + "//" + slideNumber)
   };
   return{init:init, onMashmeHello:onMashmeHello}
 }(VISH, jQuery);
@@ -17671,16 +17751,57 @@ VISH.Status = function(V, $, undefined) {
     ua.iPhone = /iPhone/i.test(navigator.userAgent);
     ua.iPhone4 = ua.iPhone && ua.pixelRatio == 2;
     ua.iPad = /iPad/i.test(navigator.userAgent);
-    ua.android = /android/i.test(navigator.userAgent);
     ua.iOS = ua.iPhone || ua.iPad;
-    ua.mobile = ua.iOS || ua.android;
+    ua.applePhone = ua.iPhone || ua.iPhone4;
+    ua.appleTablet = ua.iPad;
+    ua.android = /android/i.test(navigator.userAgent);
     if(ua.android) {
-      V.Debugging.log("Android device")
+      ua.androidPhone = false;
+      ua.androidTablet = false;
+      if(/tablet/i.test(navigator.userAgent)) {
+        ua.androidTablet = true
+      }else {
+        var landscape = window.screen.availWidth > window.screen.availHeight;
+        if(landscape) {
+          if(window.screen.availWidth >= 1024 && window.screen.availHeight >= 720) {
+            ua.androidTablet = true
+          }else {
+            ua.androidPhone = true
+          }
+        }else {
+          if(window.screen.availHeight >= 1024 && window.screen.availWidth >= 720) {
+            ua.androidTablet = true
+          }else {
+            ua.androidPhone = true
+          }
+        }
+      }
+    }else {
+      ua.androidPhone = false;
+      ua.androidTablet = false
     }
+    ua.mobile = ua.applePhone || ua.androidPhone;
+    ua.tablet = ua.appleTablet || ua.androidTablet;
+    if(!ua.mobile && !ua.tablet) {
+      ua.desktop = true
+    }else {
+      ua.desktop = false
+    }
+    V.Debugging.log("isMobile " + ua.mobile);
+    V.Debugging.log("isTablet: " + ua.tablet);
     V.Debugging.log("Screen width: " + ua.screen.width);
     V.Debugging.log("Screen height: " + ua.screen.height);
-    V.Debugging.log("Viewport width: " + ua.viewport.width);
-    V.Debugging.log("Viewport height: " + ua.viewport.height)
+    V.Debugging.log("Visual Viewport width: " + ua.viewport.width);
+    V.Debugging.log("Visual Viewport height: " + ua.viewport.height);
+    V.Debugging.log("Layout Viewport width: " + document.documentElement.clientWidth);
+    V.Debugging.log("Layout Viewport height: " + document.documentElement.clientHeight);
+    V.Debugging.log("HTML element width: " + document.documentElement.offsetWidth);
+    V.Debugging.log("HTML element height: " + document.documentElement.offsetHeight);
+    V.Debugging.log("window.screen.availWidth: " + window.screen.availWidth);
+    V.Debugging.log("window.screen.availHeight: " + window.screen.availHeight)
+  };
+  var updateOrientation = function() {
+    V.Debugging.log("updateOrientation called with " + window.orientation)
   };
   var getIsInIframe = function() {
     return isInIframe
@@ -17689,6 +17810,47 @@ VISH.Status = function(V, $, undefined) {
     isInIframe = isIframe
   };
   return{features:features, getIsInIframe:getIsInIframe, init:init, ua:ua}
+}(VISH, jQuery);
+VISH.User = function(V, $, undefined) {
+  var user;
+  var init = function(options) {
+    user = new Object;
+    if(options["username"]) {
+      user.username = options["username"]
+    }
+    if(options["token"]) {
+      user.token = options["token"]
+    }
+  };
+  var isLogged = function() {
+    if(user && user.token) {
+      return typeof user.token == "string"
+    }else {
+      return false
+    }
+  };
+  var getUser = function() {
+    if(user) {
+      return user
+    }else {
+      return null
+    }
+  };
+  var getName = function() {
+    if(user && user.username) {
+      return user.username
+    }else {
+      return null
+    }
+  };
+  var getToken = function() {
+    if(user && user.token) {
+      return user.token
+    }else {
+      return null
+    }
+  };
+  return{init:init, isLogged:isLogged, getUser:getUser, getName:getName, getToken:getToken}
 }(VISH, jQuery);
 VISH.Utils.canvas = function(V, undefined) {
   var drawImageWithAspectRatio = function(ctx, content, dx, dy, dw, dh) {
@@ -17953,15 +18115,27 @@ VISH.VideoPlayer = function() {
   return{setVideoTagEvents:setVideoTagEvents, playVideos:playVideos, stopVideos:stopVideos}
 }(VISH, jQuery);
 VISH.ViewerAdapter = function(V, $, undefined) {
-  var setupSize = function() {
+  var page_is_fullscreen = false;
+  var setupSize = function(fullscreen) {
+    var reserved_px_for_menubar;
+    var margin_height;
+    var margin_width;
     if(V.Status.ua.mobile) {
-      var reserved_px_for_menubar = 0;
-      var margin_height = 0;
-      var margin_width = 0
+      reserved_px_for_menubar = 0;
+      margin_height = 0;
+      margin_width = 0
     }else {
-      var reserved_px_for_menubar = 40;
-      var margin_height = 40;
-      var margin_width = 30
+      if(fullscreen && !page_is_fullscreen) {
+        page_is_fullscreen = true;
+        reserved_px_for_menubar = 0;
+        margin_height = 0;
+        margin_width = 0
+      }else {
+        page_is_fullscreen = false;
+        reserved_px_for_menubar = 40;
+        margin_height = 40;
+        margin_width = 30
+      }
     }
     var height = $(window).height() - reserved_px_for_menubar;
     var width = $(window).width();
@@ -17989,7 +18163,53 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
   };
-  return{setupSize:setupSize}
+  var setupElements = function() {
+    if(page_is_fullscreen) {
+      $("#page-fullscreen").css("background-position", "0px 0px");
+      $("#page-fullscreen").hover(function() {
+        $("#page-fullscreen").css("background-position", "0px -40px")
+      }, function() {
+        $("#page-fullscreen").css("background-position", "0px 0px")
+      });
+      $("#viewbar").show();
+      $(".vish_arrow").hide()
+    }else {
+      $("#page-fullscreen").css("background-position", "-45px 0px");
+      $("#page-fullscreen").hover(function() {
+        $("#page-fullscreen").css("background-position", "-45px -40px")
+      }, function() {
+        $("#page-fullscreen").css("background-position", "-45px 0px")
+      });
+      $("#viewbar").hide();
+      $(".vish_arrow").show()
+    }
+  };
+  var decideIfPageSwitcher = function() {
+    if(!page_is_fullscreen && !V.Status.ua.mobile) {
+      if(V.curSlide === 0) {
+        $("#page-switcher-start").hide()
+      }else {
+        $("#page-switcher-start").show()
+      }
+      if(V.curSlide === V.slideEls.length - 1) {
+        $("#page-switcher-end").hide()
+      }else {
+        $("#page-switcher-end").show()
+      }
+    }else {
+      if(V.curSlide === 0) {
+        $("#mobile_back_arrow").hide()
+      }else {
+        $("#mobile_back_arrow").show()
+      }
+      if(V.curSlide === V.slideEls.length - 1) {
+        $("#mobile_forward_arrow").hide()
+      }else {
+        $("#mobile_forward_arrow").show()
+      }
+    }
+  };
+  return{decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupSize:setupSize}
 }(VISH, jQuery);
 VISH.Mods.fc = {};
 VISH.Mods.fc.loader = function(V, undefined) {

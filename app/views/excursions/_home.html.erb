@@ -1,4 +1,7 @@
 <% unless excursion.blank? %>
+  <%= javascript_tag do %>
+    <%= modal_for(excursion.author.subject) %>
+  <% end %>
   <%= div_for excursion, :class => 'span3' do %>
     <ul class="thumbnails ">
         <li class="span1">
@@ -10,7 +13,7 @@
             <h4 class="ellipsis w150px">
               <%= link_to excursion.title, excursion %>
             </h4>
-            <h5 class="blue-opacity ellipsis w150px">by <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %>"><%= excursion.author.name %></a></h5>
+            <h5 class="blue-opacity ellipsis w150px">by <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %> modal-no-trigger"><%= excursion.author.name %></a></h5>
             <h5 class=""><span class="green"><%=excursion.visit_count.to_s%></span> <%= t("follow.views") %> </h5>
             <h5 class="">
               <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%=excursion.activities.first.likes.count.to_s%></span>
@@ -22,8 +25,3 @@
   <% end %>
 <% end %>
 
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= excursion.author.slug %>").on("click", function(){
-    <%= modal_for(excursion.author.subject) %>
-  });
-<% end %>

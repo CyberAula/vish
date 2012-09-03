@@ -1,12 +1,15 @@
 <%= div_for contact, :class => 'row' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(contact.receiver_subject) %>
+  <% end %>
   <ul class="thumbnails span3">
     <li class="span1">
-      <a data-toggle="modal" href="#user-modal-<%= contact.receiver.slug %>" class="user-modal-button-<%= contact.receiver.slug %> container"><%= image_tag(contact.receiver.logo.url(:profile)) %></a>
+      <a data-toggle="modal" href="#user-modal-<%= contact.receiver.slug %>" class="user-modal-button-<%= contact.receiver.slug %> container modal-trigger"><%= image_tag(contact.receiver.logo.url(:profile)) %></a>
     </li>
     <li class="span">
       <div class="caption ellipsis">
       <div class="title_suggestion">
-        <h4 class="w120px"><a data-toggle="modal" href="#user-modal-<%= contact.receiver.slug %>" class="user-modal-button-<%= contact.receiver.slug %> contact_link"><%= contact.receiver_subject.name %></a></h4>
+        <h4 class="w120px"><a data-toggle="modal" href="#user-modal-<%= contact.receiver.slug %>" class="user-modal-button-<%= contact.receiver.slug %> contact_link modal-trigger"><%= contact.receiver_subject.name %></a></h4>
       </div>
       <a class="close_suggestion"> <%= link_to(image_tag('close.png'), contact, :method => :delete, :remote => true )%></a>
       <div class="follwrs-ing">
@@ -19,11 +22,6 @@
   </ul>
   <div class="space_center">
   </div>
-  <%= javascript_tag do %>
-    $(".user-modal-button-<%= contact.receiver.slug %>").on("click", function(){
-      <%= modal_for(contact.receiver_subject) %>
-    });
-  <% end %>
 <% end %>
 
 

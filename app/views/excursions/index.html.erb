@@ -4,7 +4,7 @@
     <% params[:scope]='me' unless params[:scope].present?  %>
     <li class="<%= params[:scope]=='net'  ? "active" : ""  %>"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
     <li class="<%= params[:scope]=='me'   ? "active" : ""  %>"><a data-toggle="tab" href="#ex-2"><%=t('excursion.my') %></a></li>
-    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#ex-3"><%= image_tag "star-on.png", :class => "star" %></a></li>
+    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#ex-3"><%= image_tag "star-MENU-active.png", :class => "star" %></a></li>
   </ul>
 
     <div class="span2 size40 title_menu_home ">

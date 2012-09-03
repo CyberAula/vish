@@ -1,75 +1,26 @@
 <%= div_for document, :class => 'span3' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(document) %>
+    <%= modal_for(document.author.subject) %>
+  <% end %>
+
   <ul class="thumbnails">
     <li class="span">
       <div id="margin-resources">
-        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= icon_class_for(document) %> <%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>"></a>
+        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= icon_class_for(document) %> <%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%> modal-trigger"></a>
       </div>
     </li>
     <div class="row-fluid-100">
       <h4 class="link_gray size15 ellipsis w150px">
-        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>"><%= document.title %></a>
+        <a data-toggle="modal" href="#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>" class="<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%> modal-trigger"><%= document.title %></a>
       </h4>
       <div class="rw-words rw-words-1">
-          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %>"><%= document.author.name %></a></h5></span>
+          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %> modal-no-trigger"><%= document.author.name %></a></h5></span>
           <div class="clearfloat"></div>
           <span><h5 class="green inline margin-home-resource-view"><%=document.visit_count.to_s%> </h5> <%= t("follow.views") %> / <h5 class="green inline like_count_<%= dom_id(document.activities.first) %>"><%=document.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first)%></div></span>
 
       </div>
     </div>
   </ul>
-
-  <%= javascript_tag do %>
-    $(".<%= document.class.to_s.downcase %>-modal-button-<%= document.id.to_s%>").on("click", function(){
-      <%= modal_for(document) %>
-      <% if document.is_a? Swf %>
-        $("#swf-modal-<%= document.id.to_s%> .modal-body").css('padding', '0');
-        $("#swf-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='<%= document.file %>' width='545px' height='385px'>...</iframe>");
-      <% elsif document.is_a? Officedoc %>
-        $("#officedoc-modal-<%= document.id.to_s%> .modal-body").css('padding', '0');
-        $("#officedoc-modal-<%= document.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= CGI::escapeHTML( 'http://' + request.env['HTTP_HOST'] + download_document_path(document)) %>&embedded=true' width='545px' height='385px' style='border: none;'></iframe>");
-      <% elsif document.is_a? Picture %>
-        $("#picture-modal-<%= document.id.to_s%> .modal-body").html("<%= raw j (thumb_for(document, 500)) %>");
-      <% elsif document.is_a? Audio %>
-        $("#jpId<%=document.id%>").jPlayer( {
-          ready: function () {
-            $(this).jPlayer("setMedia", {
-              webma: "<%= audio_url(document, :format => 'webma') %>" // Defines the webma url
-            });
-          },
-          solution:"webma",
-          preload: "none",
-          swfPath: "assets",
-          cssSelectorAncestor: "#jp_interface_<%=document.id%>"
-        });
-      <% elsif document.is_a? Video %>
-        $("#jpId<%=document.id%>").jPlayer( {
-          ready: function () {
-            $(this).jPlayer("setMedia", {
-              webmv: "<%= video_url(document, :format => 'webm' ) %>", // Defines the webm url
-              flv:   "<%= video_url(document, :format => 'flv') %>",
-              mp4:   "<%= video_url(document, :format => 'mp4') %>"
-            });
-          },
-          solution:"flash, html",
-          preload: "none",
-          supplied: "webmv, flv, mp4",
-          swfPath: "assets",
-          cssSelectorAncestor: "#jp_interface_<%=document.id%>"
-        });
-      <% end %>
-      $("#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%>").on("hidden", function(){
-        <% if document.is_a? Audio or document.is_a? Video %>
-          $("#jpId<%=document.id%>").jPlayer('stop');
-        <% else %>
-          $("#<%= document.class.to_s.downcase %>-modal-<%= document.id.to_s%> .modal-body").html ("<%= raw j image_tag('loading.gif', :class => :loading) %>");
-        <% end %>
-      });
-    });
-  <% end %>
 <% end %>
 
-<%= javascript_tag do %>
-  $(".user-modal-button-<%= document.author.slug %>").on("click", function(){
-    <%= modal_for(document.author.subject) %>
-  });
-<% end %>
