@@ -22,4 +22,9 @@ class Quiz < ActiveRecord::Base
   def possible_answers
     []
   end
+
+  def sessions_by user=nil
+    quiz_session if user.nil?
+    quiz_sessions.where(:owner_id => user.id)
+  end
 end
