@@ -61,5 +61,6 @@ class QuizSessionsController < ApplicationController
     @quiz_session.name = "No Name" if @quiz_session.name.blank?
     @quiz_session.closed_at = Time.now
     @quiz_session.save!
-    render 'quiz_sessions/accepted'
+       render 'quiz_sessions/accepted'
+  end
 end
