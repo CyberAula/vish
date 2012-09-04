@@ -33,7 +33,7 @@ class QuizSessionsController < ApplicationController
     @results[:quiz_id] = @quiz_session.quiz.id
     respond_to do |format|
       format.html { render :layout => 'iframe' }
-      @results[:results] = QuizAnswer.group(:json).where(:quiz_session_id=>@quiz_session.id).count.values
+      @results[:results] = @quiz_session.answers.values
       format.all { render :json => @results }
     end
   end
