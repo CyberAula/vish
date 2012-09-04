@@ -169,6 +169,18 @@ es:
       other: "Áreas de interés"
   project: "Global Excursion"      
   published: "Publicados"
+  quiz:
+    answer:
+      title:
+        other: "Cuestionarios"
+    no: "No"
+    no_answers: "No answers yet!"
+    no_title: "<Sin título>"
+    one: "cuestionario"
+    open: "open"
+    other: "cuestionarios"
+    possible_answers: "Posibles respuestas"
+    yes: "Si"
   recommended: "recomendados"
   repository:
     one: "repositorio"

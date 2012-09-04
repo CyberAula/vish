@@ -1,0 +1,20 @@
+<% if excursion.quizzes.empty? %>
+  <%= t ('quiz.no_answers') %>
+<% else %>
+  <% excursion.quizzes.each do |quiz| %>
+    <h2><%= quiz.question %></h2>
+    <% unless quiz.possible_answers.empty? %>
+      <h5><%= t('quiz.possible_answers') %>: <%= quiz.possible_answers.join(", ") %><h5>
+    <% end %>
+    <% quiz.quiz_sessions.each do |qs| %>
+      <div class="boxy_white">
+        <h3><%= (qs.name.present? ? qs.name : t('quiz.no_title') ) %><%= raw '  <strong>(' + t('quiz.open') + ')</strong>' if qs.active %><h3>
+        <% qs.answers.each_pair do |answer, votes| %>
+          <%= answer %>: <%= votes %><br/>
+        <% end %>
+      </div>
+    <% end %>
+    <hr/>
+  <% end %>
+<% end %>
+

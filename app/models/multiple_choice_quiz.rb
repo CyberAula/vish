@@ -16,4 +16,7 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class MultipleChoiceQuiz < Quiz
+  def possible_answers
+    options.split ","
+  end
 end

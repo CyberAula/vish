@@ -31,6 +31,14 @@ class Excursion < ActiveRecord::Base
     json
   end
 
+  def has_quizzes?
+    not quizzes.empty?
+  end
+
+  def has_quiz_results?
+    has_quizzes? # TODO: Hide unless there are answers
+  end
+
   private
 
   def extract_quizzes(parsed_json)

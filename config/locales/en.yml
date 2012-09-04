@@ -169,6 +169,18 @@ en:
       other: "Areas of interest"
   project: "Global Excursion"      
   published: "Published"
+  quiz:
+    answer:
+      title:
+        other: "Quiz answers"
+    no: "No"
+    no_answers: "No answers yet!"
+    no_title: "<Untitled>"
+    one: "quiz"
+    open: "open"
+    other: "quizzes"
+    possible_answers: "Possible answers"
+    yes: "Yes"
   recommended: "recommended"
   repository:
     one: "repository"

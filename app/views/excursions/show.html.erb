@@ -35,6 +35,9 @@
     <div id="" class="tabbable span6 ">
       <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
+        <% if @excursion.has_quiz_results? %>
+          <li class=""><a data-toggle="tab" href="#quiz-results-1"><%= t('quiz.answer.title.other') %></a></li>
+        <% end %>
       </ul>
       <div class="tab-content">
         <div id="comment-1" class="tab-pane active row-fluid activity_content">
@@ -49,6 +52,11 @@
           <%end%>
          <%end%>
         </div>
+        <% if @excursion.has_quiz_results? %>
+          <div id="quiz-results-1" class="tab-pane row-fluid activity_content">
+            <%= render :partial => 'excursions/quiz_results', :locals => { :excursion => @excursion } %>
+          </div>
+        <% end %>
       </div>
     </div>
   </section>

@@ -16,4 +16,7 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class TrueFalseQuiz < Quiz
+  def possible_answers
+    [I18n.t("quiz.yes"), I18n.t("quiz.no")]
+  end
 end

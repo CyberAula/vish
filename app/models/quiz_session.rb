@@ -20,4 +20,20 @@ class QuizSession < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User'
   has_many :quiz_answers
   has_one :excursion, :through => :quiz
+
+  def answers
+    ans_hash = QuizAnswer.group(:json).where(:quiz_session_id=>id).count
+    ks = ans_hash.keys
+    vs = ans_hash.values
+    ks = ks.map do |k|
+      j=JSON(k)
+      j['option']
+    end
+    unless quiz.possible_answers.empty?
+      ks = ks.map do |k|
+        quiz.possible_answers[k.to_i]
+      end
+    end
+    Hash[ks.zip(vs)]
+  end
 end

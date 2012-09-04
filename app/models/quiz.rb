@@ -18,4 +18,8 @@
 class Quiz < ActiveRecord::Base
   belongs_to :excursion
   has_many :quiz_sessions
+
+  def possible_answers
+    []
+  end
 end
