@@ -8,12 +8,11 @@
   <% excursion.quizzes.each do |quiz| %>
     <h2><%= quiz.question %></h2>
     <% unless quiz.possible_answers.empty? %>
-      <h5><%= t('quiz.possible_answers') %>: <%= quiz.possible_answers.join(", ") %><h5>
+      <h5><%= t('quiz.possible_answers') %>: <%= quiz.possible_answers.join(", ") %></h5>
     <% end %>
     <% quiz.sessions_by(current_user).each do |qs| %>
       <div class="boxy_white row-fluid">
-        <div class="span6">
-          <script type="text/javascript">
+        <script type="text/javascript">
             google.setOnLoadCallback(drawChart);
             function drawChart() {
               var data = new google.visualization.DataTable();
@@ -30,9 +29,14 @@
               var chart = new google.visualization.PieChart(document.getElementById('chart-div-<%= qs.id.to_s %>'));
               chart.draw(data, options);
             }
-          </script>
+        </script>
+        <div id="chart-div-<%= qs.id.to_s %>">
+          <!-- Fallback if Google is down -->
+          <h3><%= (qs.name.present? ? qs.name : t('quiz.no_title') ) %><%= raw '  <strong>(' + t('quiz.open') + ')</strong>' if qs.active %><h3>
+          <% qs.answers.each_pair do |answer, votes| %>
+            <%= answer %>: <%= votes %><br/>
+          <% end %>
         </div>
-        <div id="chart-div-<%= qs.id.to_s %>"></div>
       </div>
     <% end %>
     <hr/>
