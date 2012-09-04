@@ -1,17 +1,38 @@
 <% if excursion.quizzes.empty? %>
   <%= t ('quiz.no_answers') %>
 <% else %>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load('visualization', '1.0', {'packages':['corechart']});
+  </script>
   <% excursion.quizzes.each do |quiz| %>
     <h2><%= quiz.question %></h2>
     <% unless quiz.possible_answers.empty? %>
       <h5><%= t('quiz.possible_answers') %>: <%= quiz.possible_answers.join(", ") %><h5>
     <% end %>
     <% quiz.sessions_by(current_user).each do |qs| %>
-      <div class="boxy_white">
-        <h3><%= (qs.name.present? ? qs.name : t('quiz.no_title') ) %><%= raw '  <strong>(' + t('quiz.open') + ')</strong>' if qs.active %><h3>
-        <% qs.answers.each_pair do |answer, votes| %>
-          <%= answer %>: <%= votes %><br/>
-        <% end %>
+      <div class="boxy_white row-fluid">
+        <div class="span6">
+          <script type="text/javascript">
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+              var data = new google.visualization.DataTable();
+              data.addColumn('string', 'Answers');
+              data.addColumn('number', 'Votes');
+              data.addRows(<%= raw qs.answers.to_a.to_s %>);
+
+              var options = {'title':'<%= raw (qs.name.present? ? qs.name : t('quiz.no_title') ) %><%= raw '  (' + t('quiz.open') + ')' if qs.active %>',
+                             'width':300,
+                             'colors': ['#ff005d', '#bf1a86', '#8033ae', '#0066ff'],
+                             'legend':'right',
+                             'height':300};
+
+              var chart = new google.visualization.PieChart(document.getElementById('chart-div-<%= qs.id.to_s %>'));
+              chart.draw(data, options);
+            }
+          </script>
+        </div>
+        <div id="chart-div-<%= qs.id.to_s %>"></div>
       </div>
     <% end %>
     <hr/>
