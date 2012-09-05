@@ -7,16 +7,6 @@
 	padding: 3px;
 }
 
-/*
-.nicEdit-selected {
-	border: 0px solid #0000ff !important;
-}
-*/
-
-*:focus  /* To remove Chrome's orange outline related to focused objects */
-{  
-    outline: none;  
-}  
 
 /**************************************
  * Style for the panel in which 
@@ -24,24 +14,12 @@
  **************************************/
 
 .nicEdit-panelContain {
-	border-bottom-top-radius: 15px;
-	border-bottom-top-radius: 15px;
-	background-color: transparent;
-	overflow: hidden;
-	width: 100%;
-	border: 0px solid #00ff00;
+	text-align: center;
 }
 
 .nicEdit-panel {
-	background-color: #fff !important;
-	border: 1px solid #ccc;
-	width: 696px;
-	margin:0px 2px 2px 0px; /* top margin, right margin, bottom margin, left margin */
-	padding-left: 212px;
+	width: 450px;
 	zoom: 1;
-	overflow: hidden;
-	border-top-right-radius: 15px;
-	border-top-left-radius: 15px;
 }
 
 .nicEdit-button {

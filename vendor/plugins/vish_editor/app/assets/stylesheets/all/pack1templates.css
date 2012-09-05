@@ -939,6 +939,19 @@ display:none; /* inline-block; */
 font-size:0.8em;	
 }
 
+.save_results_quiz {
+
+	background: none no-repeat scroll 1% 50% transparent;
+    border: 1% solid #9B999D;
+    border-radius: 2%;
+    font-family: Helvetica;
+    font-size: 1em;
+    outline: 0 none;
+    padding: 0%;
+    position: relative;
+    /*z-index: 1000; */
+
+}
 .mcquestion_save_yes_button {
 	position:relative;
 	color: blue;
@@ -1110,3 +1123,13 @@ iframe.snapshot_content_viewer{
   
 }
 
+
+/* flashcard background (only used in editor for now)*/
+
+.template_flashcard{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	border: none;
+}
