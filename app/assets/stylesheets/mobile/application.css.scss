@@ -1,3 +1,17 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+
+
+*/
+
+
+
+
+
+
 @import "colors";
 
 @font-face{
@@ -169,8 +183,14 @@ html, body {
 }
 #search-frontpage{margin:0 auto 0 auto; text-align:center;display:block;}
 
-#logo-frontpage{ background: transparent url(VISH_frontpage.png);  width:342px;  height:98px; margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
-.name{padding-left:10px; padding-bottom: 18px; padding-top: 20px; letter-spacing: 3pt; }
+#logo-frontpage{ background: transparent url(/assets/VISH_frontpage.png);
+
+ width: 100%;
+  height: auto;
+
+ margin:0px auto 0px; position:relatives; background-repeat:no-repeat; }
+
+.name{ padding-bottom: 18px; padding-top: 9px; letter-spacing: 3pt; }
 
 
 /****************** FRONTPAGE BOTTOM *****/
@@ -241,6 +261,7 @@ html, body {
 .size60{font-size: 60px;}
 .size80{font-size: 80px;}
 .size100{font-size: 100px;}
+.size-responsive{font-size: x-large;}
 
 /*************** LINKS *********/
 .link_gray a{color: #6e6e6e;text-decoration: none;}
@@ -2083,4 +2104,14 @@ select {
 .embed{
 width: 387px;
 }
+
+
+
+
+
+
+/************* HEADER *******/
+
+
+
 

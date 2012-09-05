@@ -221,7 +221,7 @@ label {
 }
 
 .row-fluid {
-    width: 98%;
+    width: 100%;
 }
 
 input, textarea, select, .uneditable-input{border-radius:5px; background-color: #fefefe; margin-bottom: 25px !important; margin-top: -6px;}
@@ -394,3 +394,22 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   cursor: default;
 }
 
+ /*************/
+
+#logo-frontpage{
+  background: transparent url(VISH_frontpage.png);
+  width:90%;
+  height:auto;
+  margin: 0px auto;
+  position:relative;
+  background-repeat:no-repeat;
+}
+
+.objet_center{
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.container-frontpage{
+  padding-top: 33px;}

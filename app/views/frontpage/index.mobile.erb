@@ -1,66 +1,89 @@
-<% content_for :title do%>
+<% content_for :title do %>
   <%= t('welcome', :site => t('site.name')) %>
-<%end%>
+<% end %>
 
 
 
-<section id= "wall">
- <article class="row-fluid article">
- <div class="span11">
- <div class="span12">
+<section id="wall">
+  <article class="row-fluid article">
+    <div class="span11">
+      <div class="span11">
 
 
- </div>
- <div class="span11 DsignesLight gray">
- <div class="span12 pagination-right size30">nanotechnology</div>
- <div class="span12 size30">grid computing</div>
- <div class="span12">
- <div class="span3"></div>
- <div class="span9 size50">excursions</div>
- </div>
- <div class="span12 size40">users</div>
- <div class="span12 pagination-right size20">life sciences</div>
- <div class="span12">
- <div class="span3"></div>
- <div class="span9 size30">biotechnology</div>
- </div>
- </div>
- <div class="space-center"></div>
 
- </div>
- </article>
+        <div id="search-frontpage " class=" row-fluid span11">
+
+          <div class=" margin-search-frontpage">
+        <form>
+            <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "span11" } %>
+            </form>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="span11 DsignesLight gray">
+        <div class="span12 pagination-right size10">
+          <%= link_to(t('excursion.other'),search_path(:q => "nanotechnology"), :class => '') %>
+        </div>
+        <div class="span12 size10">
+          <%= link_to(t('excursion.other'),search_path(:q => "grid computing"), :class => '') %>
+        </div>
+        <div class="span12">
+          <div class="span3"></div>
+          <div class="span9 size10">
+            <%= link_to(t('excursion.other'),search_path(:type => "excursion"), :class => '') %>
+          </div>
+        </div>
+        <div class="span12 size10">
+          <%= link_to(t('user.other'),search_path(:type => "user"), :class => 'size40') %>
+        </div>
+        <div class="span12 pagination-right size10">
+          <%= link_to(t('excursion.other'),search_path(:q => "life sciences"), :class => '') %>
+        </div>
+        <div class="span12">
+          <div class="span3"></div>
+          <div class="span9 size30">
+            <%= link_to(t('excursion.other'),search_path(:q => "biotechnology"), :class => '') %>
+          </div>
+        </div>
+      </div>
+      <div class="space-center"></div>
+
+    </div>
+  </article>
 </section>
 
 
 
 
 <footer id="wall">
- <article class="row-fluid article">
-<div class="span11">
+  <article class="row-fluid article">
+    <div class="span11">
 
 
- <div class="span3 inline">
- <div class="span btn-m btn-red pull-right">
- 
- <%= link_to t('sign_up'), new_user_registration_path %>
- 
- </div>
- </div>
- <div class="span1 inline-block"> </div>
- <div class="span4 inline-block">
- <div class="span btn-m btn-green pull-right">
- <a href="/explore"><%= t('explore') %></a>
+      <div class="span3 inline">
+        <div class="span btn-m btn-red pull-right">
 
- </div>
- </div>
- <div class="span1 inline-block"> </div>
- <div class="span3 inline-block">
- <div class="span btn-m btn-red pull-right">
+          <%= link_to t('sign_up'), new_user_registration_path %>
 
- <%= link_to t('devise.links.sign_in'), new_user_session_path %>
+        </div>
+      </div>
+      <div class="span1 inline-block"></div>
+      <div class="span4 inline-block">
+        <div class="span btn-m btn-green pull-right">
+          <a href="/explore"><%= t('explore') %></a>
 
- </div>
- </div>
- </div>
- </article>
- </footer>
+        </div>
+      </div>
+      <div class="span1 inline-block"></div>
+      <div class="span3 inline-block">
+        <div class="span btn-m btn-red pull-right">
+
+          <%= link_to t('devise.links.sign_in'), new_user_session_path %>
+
+        </div>
+      </div>
+    </div>
+  </article>
+</footer>
