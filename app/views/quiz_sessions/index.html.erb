@@ -1,0 +1,48 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load('visualization', '1.0', {'packages':['corechart']});
+</script>
+
+<% unless profile_or_current_subject.blank? %>
+<div class="quizresults tabbable">
+  <ul class="nav nav-tabs span7">
+    <% params[:scope]='ongoing' unless params[:scope].present?  %>
+    <li class="<%= params[:scope]=='ongoing'  ? "active" : ""  %>"><a data-toggle="tab" href="#quiz-1"><%= t('quiz.ongoing') %></a></li>
+    <li class="<%= params[:scope]=='past'   ? "active" : ""  %>"><a data-toggle="tab" href="#quiz-2"><%=t('quiz.past') %></a></li>
+  </ul>
+
+    <div class="span2 size40 title_menu_home ">
+    <%= t('quiz.other')%></div>
+    <div class="clearfloat"></div>
+</div>
+
+
+<% unless params[:no_layout].present? %>
+  <%= render :partial => "common_documents/headers" %>
+  <div id="quiz_results_grid"></div>
+<% end %>
+
+
+<div class="tab-content">
+  <div id="quiz-1" class="tab-pane <%= params[:scope]=='ongoing'  ? "active" : ""  %>">
+    <div class="space_center"></div>
+    <div id="quiz-results-ongoing" class="block row space_bottom">
+      <% QuizSession.where(:owner_id => current_user.id).where(:active => true).each do |qs| %>
+        <%= render :partial => "quiz_sessions/historic", :locals => {:qs => qs} %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="quiz-2" class="tab-pane <%= params[:scope]=='past'  ? "active" : ""  %>">
+    <div class="space_center"></div>
+    <div id="repo-excursions-me" class="block row space_bottom">
+      <% QuizSession.where(:owner_id => current_user.id).where(:active => false).each do |qs| %>
+        <%= render :partial => "quiz_sessions/historic", :locals => {:qs => qs} %>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
+<% end %>
+

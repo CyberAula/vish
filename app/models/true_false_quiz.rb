@@ -17,6 +17,10 @@
 
 class TrueFalseQuiz < Quiz
   def possible_answers
-    [I18n.t("quiz.yes"), I18n.t("quiz.no")]
+    { true => I18n.t("quiz.yes"), false => I18n.t("quiz.no") }
+  end
+
+  def possible_answers_raw
+    [true, false]
   end
 end

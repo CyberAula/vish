@@ -1,13 +1,13 @@
 <div class="<%= follow_link_class contact %>">
   <% if contact.sent? %>
-    <div class="following-button">
+    <div class="btn btn-primary follow">
       <%= t 'contact.following' %>
     </div>
-    <div class="unfollow-button">
+    <div class="btn btn-primary follow">
       <%= link_to t('contact.unfollow'), follower_path(contact), :method => :delete, :remote => true %>
     </div>
   <% else %>
-    <div class="follow-button">
+    <div class="btn btn-primary follow">
       <%= link_to t('contact.follow'), follower_path(contact), :method => :put, :remote => true %>
     </div>
   <% end %>

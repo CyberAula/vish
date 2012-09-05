@@ -1151,12 +1151,24 @@ textarea {
 #help_right{
 	background-image:url(/assets/helptutorial_circle_bg.png);
 	position: absolute;
-	right: -2px;
+	left: 2px;
 	top: 642px;
 }
 
 #help_right:hover {
 	background-image:url(/assets/hover/helptutorial_circle_hover_bg.png);
+	cursor: pointer;
+}
+
+#preview_circle{
+	background-image:url(/assets/preview_circle.png);
+	position: absolute;
+	right: -2px;
+	top: 642px;
+}
+
+#preview_circle:hover {
+	background-image:url(/assets/hover/preview_circle_bg.png);
 	cursor: pointer;
 }
 
@@ -1263,6 +1275,12 @@ textarea {
 	position: absolute;
 	right: -2px;
 	top: 632px;
+}
+
+#menubar_helpsection2 {
+	position: absolute;
+	left: -3px;
+	top: 631px;
 }
 
 #help_template_selection {
@@ -1499,4 +1517,39 @@ iframe.snapshot_content{
 .selectedSlideThumbnail {
 	opacity: 1.0 !important;
 	border: 1px solid #005fdd;
+}
+
+/* Flashcards */
+#flashcard_button img{
+	width: 40px;
+	height: 40px;
+}
+
+#flashcard_button{
+	display: inline-block;
+}
+
+#flashcard-background{
+	display:none;
+	z-index: 1050;
+	width: 800px;
+	height: 600px;
+	margin-top: -300px;
+	margin-left: -400px;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	background-image: url(/assets/flashcard_initial_background.jpg);
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center center;
+	background-size: 100%;
+}
+
+.carrousel_element_single_row_slides img.fc_draggable_arrow{
+	display: none;
+	margin-top: -20px;
+	margin-bottom: -30px;
+	width: 30px;
+	height: 30px;
 }

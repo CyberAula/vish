@@ -17,6 +17,13 @@
 
 class MultipleChoiceQuiz < Quiz
   def possible_answers
-    options.split ","
+    Hash[possible_answers_raw.zip(options.split ",")]
+  end
+
+  def possible_answers_raw
+    i='`'
+    options.split(",").map do |c|
+      i=i.succ
+    end
   end
 end

@@ -1,0 +1,27 @@
+<div class="boxy_white row-fluid">
+  <script type="text/javascript">
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Answers');
+        data.addColumn('number', 'Votes');
+        data.addRows(<%= raw qs.answers_clear.to_a.to_s %>);
+
+        var options = {'title':'<%= raw (qs.name.present? ? qs.name : t('quiz.no_title') ) %><%= raw '  (' + t('quiz.open') + ')' if qs.active %>',
+                       'width':300,
+                       'colors': ['#ff005d', '#bf1a86', '#8033ae', '#0066ff'],
+                       'legend':'right',
+                       'height':300};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart-div-<%= qs.id.to_s %>'));
+        chart.draw(data, options);
+      }
+  </script>
+  <div id="chart-div-<%= qs.id.to_s %>">
+    <!-- Fallback if Google is down -->
+    <h3><%= (qs.name.present? ? qs.name : t('quiz.no_title') ) %><%= raw '  <strong>(' + t('quiz.open') + ')</strong>' if qs.active %><h3>
+    <% qs.answers_clear.each_pair do |answer, votes| %>
+      <%= answer %>: <%= votes %><br/>
+    <% end %>
+  </div>
+</div>

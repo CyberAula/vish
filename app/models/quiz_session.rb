@@ -29,11 +29,25 @@ class QuizSession < ActiveRecord::Base
       j=JSON(k)
       j['option']
     end
-    unless quiz.possible_answers.empty?
-      ks = ks.map do |k|
-        quiz.possible_answers[k.to_i]
+    ans_hash=Hash[ks.zip(vs)]
+    unless quiz.possible_answers_raw.empty?
+      quiz.possible_answers_raw.each do |pa|
+        ans_hash[pa]=0 if ans_hash[pa].nil?
       end
     end
-    Hash[ks.zip(vs)]
+    ans_hash
+  end
+
+  def answers_clear
+    ans_hash = answers
+    unless quiz.possible_answers.empty?
+      ks = ans_hash.keys
+      vs = ans_hash.values
+      ks = ks.map do |k|
+        quiz.possible_answers[k]
+      end
+      ans_hash=Hash[ks.zip(vs)]
+    end
+    ans_hash
   end
 end

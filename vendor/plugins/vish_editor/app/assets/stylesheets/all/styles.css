@@ -44,7 +44,9 @@ body {
   
   -webkit-font-smoothing: antialiased;
 }
-
+#my_game_iframe {
+  display: none;
+}
 .slides {
 	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, -moz-radial-gradient(center, ellipse cover, rgba(249,249,249,1) 20%, rgba(237,237,237,1) 100%);
 	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(249,249,249,1)), color-stop(100%,rgba(237,237,237,1)));
@@ -102,6 +104,7 @@ body {
 
 .slides > article {
   display: none;
+  z-index: 1075;
 }
 .slides > article.far-past {
   display: block;
@@ -126,7 +129,6 @@ body {
   -ms-transform: translate(0);  /* Added to fix explorer view*/
   /*-moz-transform: translate(0); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
   -webkit-transform: translate3d(0, 0, 0);
-  z-index:1;
 }
 .slides > article.next {
   display: block;
@@ -164,7 +166,10 @@ body {
 /*added by KIKE to put the flashcard in the full slide*/
 .slides > article.flashcard{
   padding: 0;
+
 }
+
+
 
 /* buttons next and previous */
 .page-switcher {
@@ -378,3 +383,8 @@ body {
   top: 0;
   z-index: 5;
 }
+
+*:focus  /* To remove Chrome's orange outline related to focused objects */
+{  
+    outline: none;  
+}  
