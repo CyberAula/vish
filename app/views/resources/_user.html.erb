@@ -44,6 +44,7 @@
       </div>
       <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-fav" } %>
+        <div class="space_center"></div>
         <div id="profile-resources-fav" class="modal-pivot row height-tabs-home" >
           <% for document in subject_resources(@user, {:scope => :like}) %>
             <% if document.is_a? Embed %>
