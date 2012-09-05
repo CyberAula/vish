@@ -1,20 +1,20 @@
 @import "colors";
 
 @font-face{
-  font-family:'DsignesBold';
+  font-family:DsignesBold;
   src: url(fonts/DsignesBold.otf);
 }
 @font-face{
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
   src: url(fonts/DsignesLight.otf);
 }
 @font-face{
-  font-family:'DsignesRegular';
+  font-family:DsignesRegular;
   src: url(fonts/DsignesRegular.otf);
 }
-.dsignesbold {font-family:'DsignesBold';}
-.dsigneslight {font-family:'DsignesLight';}
-.dsignesregular {font-family:'DsignesRegular';}
+.dsignesbold {font-family:DsignesBold;}
+.dsigneslight {font-family:DsignesLight;}
+.dsignesregular {font-family:DsignesRegular;}
 
 /**** clase para el ALTO minimo del layout ***/
 .body-height{ min-height:  100%;}
@@ -78,7 +78,7 @@
 .title_menu_home{
   vertical-align:bottom;
   color: #adadad;
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
 
   padding-top: 12px;
   vertical-align: bottom;
@@ -176,7 +176,7 @@ html, body {
 /****************** FRONTPAGE BOTTOM *****/
 
 #tags{color: #cccccc; font-family: DsignesLight; }
-#repositories>a, #excursion >a, #organizations > a, #users> a{position:relative; font-weight: lighter; font-family: 'DsignesLight';}
+#repositories>a, #excursion >a, #organizations > a, #users> a{position:relative; font-weight: lighter; font-family: DsignesLight;}
 #repositories>a{float: right; top:-20px; z-index:1;}
 #excursion>a{left:10px;  top:10px; z-index:2;}
 #organizations>a{left:19px; float: right; top:15px; ; z-index:3;}
@@ -190,7 +190,7 @@ html, body {
 .menu ul li#trade_mark_logo{font-weight:normal;}
 
 #top{height:120px;margin-left: auto; margin-right: auto}
-#top-10{ height: 10px; margin:40px 0px 0px 30px; padding: 0px !important;font-family:'DsignesBold';font-size: 12 pt;}
+#top-10{ height: 10px; margin:40px 0px 0px 30px; padding: 0px !important;font-family:DsignesBold;font-size: 12 pt;}
 .whit-box{ background-color:#fff;margin-top: 40px; padding-top: 10px; padding-bottom: 5px;}
 .rotate-90 { -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); transform: rotate(-90deg);
   filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);}
@@ -949,14 +949,14 @@ form.example input.file.hidden {
   text-align:right;
   font-size: 45px;
   line-height: 115%;
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
   src: url(fonts/DsignesLight.otf);
 }
 .devise_title2{
   text-align:left;
   font-size: 45px;
   line-height: 115%;
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
   src: url(fonts/DsignesLight.otf);
 }
 
@@ -1108,7 +1108,7 @@ margin-left: 20px !important;
  margin-right: 20px;
  }
 .title_sub_profile{
-  font-family:'DsignesBold';
+  font-family:DsignesBold;
   src: url(fonts/DsignesBold.otf);
   font-size: 16pt;
   margin-top: 10px;

@@ -31,20 +31,20 @@
 @import "colors";
 
 @font-face{
-  font-family:'DsignesBold';
+  font-family:DsignesBold;
   src: url(fonts/DsignesBold.otf);
 }
 @font-face{
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
   src: url(fonts/DsignesLight.otf);
 }
 @font-face{
-  font-family:'DsignesRegular';
+  font-family:DsignesRegular;
   src: url(fonts/DsignesRegular.otf);
 }
-.dsignesbold {font-family:'DsignesBold';}
-.dsigneslight {font-family:'DsignesLight';}
-.dsignesregular {font-family:'DsignesRegular';}
+.dsignesbold {font-family:DsignesBold;}
+.dsigneslight {font-family:DsignesLight;}
+.dsignesregular {font-family:DsignesRegular;}
 
 /**** clase para el ALTO minimo del layout ***/
 
@@ -81,7 +81,7 @@ min-height:  100%;
 .title_menu_home{
   vertical-align:bottom;
   color: #adadad;
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
   padding-top: 12px;
   vertical-align: bottom;
   text-align: right;
@@ -236,7 +236,7 @@ html, body {
 #repositories>a, #excursion >a, #organizations > a, #users> a{
   position:relative; 
   font-weight: lighter; 
-  font-family: 'DsignesLight;
+  font-family:DsignesLight;
 }
 
 #repositories>a{
@@ -299,7 +299,7 @@ margin-right: auto
   height: 10px; 
   margin:40px 0px 0px 30px; 
   padding: 0px !important;
-  font-family:'DsignesBold';
+  font-family:DsignesBold;
   font-size: 12 pt;
 }
 
@@ -886,7 +886,7 @@ form.example input.file.hidden {
 .hide_show_comments{font-size: 11px;  padding: 3px 10px;}
 .copy_new_comment{visibility: hidden; }
 
-.icono-home{ background-image: url('home.png');}
+.icono-home{ background-image: url(home.png);}
 
 
 /**************NOTIFICATIONS *************/
@@ -992,14 +992,14 @@ margin-left: 10px;
   text-align:right;
   font-size: 45px;
   line-height: 115%;
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
   src: url(fonts/DsignesLight.otf);
 }
 .devise_title2{
   text-align:left;
   font-size: 45px;
   line-height: 115%;
-  font-family:'DsignesLight';
+  font-family:DsignesLight;
   src: url(fonts/DsignesLight.otf);
 }
 
@@ -1015,7 +1015,7 @@ margin-left: 10px;
 .cleditorMain textarea {border:none; margin:0; padding:0; overflow-y:scroll; font:10pt; resize:none; outline:none; /* webkit grip focus */}
 .cleditorToolbar {background-color: #cccccc; border-bottom: 1px; border-radius: 9px 9px 0px 0px;}
 .cleditorGroup {float:left; height:26px}
-.cleditorButton {float:left; width:24px; height:24px; margin:1px 0 1px 0; background: url('cleditor/buttons.gif')}
+.cleditorButton {float:left; width:24px; height:24px; margin:1px 0 1px 0; background: url(cleditor/buttons.gif)}
 .cleditorDisabled {opacity:0.3; filter:alpha(opacity=30)}
 .cleditorDivider {float:left; width:1px; height:23px; margin:1px 0 1px 0; background:#CCC}
 .cleditorPopup {border:solid 1px #999; background-color:white; position:absolute; font:10pt; cursor:default; z-index:10000}
@@ -1132,7 +1132,7 @@ margin-left: 20px;
  margin-right: 20px;
  }
 .title_sub_profile{
-  font-family:'DsignesBold';
+  font-family:DsignesBold;
   src: url(fonts/DsignesBold.otf);
   font-size: 16pt;
   margin-top: 10px;
@@ -2109,7 +2109,7 @@ width: 387px;
   padding-right: 25px;
 
   word-wrap: break-word; /* IE */
-  -moz-binding: url('xbl.xml#wordwrap'); /* Firefox (using XBL) */
+  -moz-binding: url(xbl.xml#wordwrap); /* Firefox (using XBL) */
 }
 
 .overflow{
