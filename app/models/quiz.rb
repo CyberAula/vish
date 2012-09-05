@@ -20,6 +20,10 @@ class Quiz < ActiveRecord::Base
   has_many :quiz_sessions
 
   def possible_answers
+    {}
+  end
+
+  def possible_answers_raw
     []
   end
 
