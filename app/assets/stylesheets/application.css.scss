@@ -345,8 +345,16 @@ margin-right: auto
 .moveup{
   margin-top:-5px; 
 }
-.movedown{margin-top:5px}
-.onbottom{vertical-align: bottom; min-height: 30px;}
+
+.movedown{
+  margin-top:5px
+}
+
+.onbottom{
+  vertical-align: bottom; 
+  min-height: 30px;
+}
+
 .boxy_white{
   background-color: #FFFFFF;
   border: 0px solid #FFFFFF;
@@ -354,11 +362,25 @@ margin-right: auto
   -moz-border-radius: 15px;
   border-radius: 15px;
 }
-.clearfloat{clear: both;display: block}
-.bold{font-weight: bold; }
-#comment-1 .activity_new_comment{display:block !important;}
-.margin
-.clearight{clear: right;display: block}
+
+.clearfloat{
+  clear: both;
+  display: block
+}
+
+.bold{
+  font-weight: bold; 
+}
+
+#comment-1 .activity_new_comment{
+  display:block !important;
+}
+
+.margin .clearight{
+  clear: right;
+  display: block
+}
+
 /*************** SIZE CLASSES **************/
 .size10{font-size: 10px;}
 .size11{font-size: 11px;}
