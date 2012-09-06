@@ -6,7 +6,7 @@ SocialStream.Follow = (function(SS, $, undefined){
 			$(this).siblings(".btn-unfollow").show();
 		});
 
-		$(".btn-unfollow").off("mouseenter");
+		$(".btn-unfollow").off("mouseleave");
 		$(".btn-unfollow").mouseleave(function(){
 			$(this).hide();
 			$(this).siblings(".btn-following").show();
