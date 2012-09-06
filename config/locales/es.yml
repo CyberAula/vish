@@ -168,6 +168,7 @@ es:
   password: "clave"
   post:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
+    search_name: "actualización de estado"
   profile:
     tags:
       default: "VisHub, virtual, excursión"

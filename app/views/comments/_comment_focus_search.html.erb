@@ -1,37 +1,27 @@
-<% activity = comment.post_activity %>
-<%= div_for activity, :class => 'super_activity' do %>
-<div class="actor_logo">
-  <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
-  :alt => activity.sender_subject.name),
-  activity.sender_subject %>
+<% author = comment.author_subject %>
+<div class="model_with_details span3  box-result">
+  <%= javascript_tag do %>
+    <%= modal_for(author.subject) %>
+  <% end %>
+  <ul class="thumbnails">
+    <li class="span1 margin-clear ">
+      <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= image_tag(author.logo.url, :alt => author.name) %></a>
+    </li>
+    <li class="span w150px">
+      <div class="caption">
+        <h4><span class="size16"><a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= truncate_name(author.name, :length => 40) %></a></span></h4>
+        <div class="size12 link_gray">
+          <h5 class="blue-opacity"><span class="size13"><%=t "#{comment.class.name.underscore}.name"  %></span></h5>
+          <%= link_to comment do%>
+            <% text = excerpt(strip_tags(comment.text),get_search_query_words.first,:radius => 25) || truncate(comment.text, :length => 60) %>
+            <% if text.length < 60 %>
+              <% text = excerpt(strip_tags(comment.text),get_search_query_words.first,:radius => 30 + (60 - text.length)) || comment.text %>
+            <% end %>
+            <%= highlight(text,get_search_query_words) %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
-<div class="activity_content">
-  <div class="actor_name">
-    <%= activity.title(self) %>
-  </div>
-  <div class="activity_objects">
-    <%= link_to comment do%>
-      <% text = excerpt(strip_tags(comment.text),get_search_query_words.first,:radius => 180) || "" %>
-      <% if text.length < 400 %>
-        <% text = excerpt(strip_tags(comment.text),get_search_query_words.first,:radius => 540 - text.length) || "" %>
-      <% end %>
-      <%= highlight(text,get_search_query_words) %>
-      <% end %>
-  </div>
-  <div class="activity_options">
-    <div class="comment_time_ago">
-      <%= t('time.ago', :time => time_ago_in_words(activity.created_at)) %>
-    </div>
-    <% if user_signed_in? %>
-    ·
-    <%= link_to activity.audience_in_words(current_subject, :details => :summary),
-    'javascript:;',
-    :class => 'activity_audience_summary' %>
-    <div class="activity_audience">
-      <%= activity.audience_in_words(current_subject) %>
-    </div>
-    <% end %>
-  </div>
-</div>
-<% end %> 
 

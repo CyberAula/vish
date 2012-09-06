@@ -11,7 +11,7 @@
         <h4><span class="size16"><a data-toggle="modal" href="#<%= subject.class.to_s.underscore %>-modal-<%= subject.slug %>" class="<%= subject.class.to_s.underscore %>-modal-button-<%= subject.slug %> modal-trigger"><%= truncate_name(subject.name, :length => 40) %></a></span></h4>
         <% unless subject.tag_list.blank? %>
           <ul class="tagit-suggestions nomargin single-line-tags">
-            <% subject.tag_list.each do |tag| %>
+            <% subject.tag_list.shuffle.each do |tag| %>
               <li class="tagit-choice"><%= link_to tag, search_path(:q => tag) %></li>
             <% end %>
           </ul>

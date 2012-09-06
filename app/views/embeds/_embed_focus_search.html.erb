@@ -17,7 +17,7 @@
         </h5>
         <% unless embed.tag_list.blank? %>
           <ul class="tagit-suggestions nomargin single-line-tags">
-            <% embed.tag_list.each do |tag| %>
+            <% embed.tag_list.shuffle.each do |tag| %>
               <li class="tagit-choice"><%= link_to tag, search_path(:q => tag) %></li>
             <% end %>
           </ul>
