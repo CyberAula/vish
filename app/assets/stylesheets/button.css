@@ -3,7 +3,7 @@
 .btn{
   display: inline-block;
   *display: inline;
-  padding: 4px 20px 6px;
+  padding: 4px 10px 5px;
   margin-bottom: 0;
   *margin-left: .3em;
   font-size: 14px;
@@ -347,6 +347,12 @@
     -moz-text-decoration-style: solid;
 }
 
+.btn-unfollow{
+  border-color:#BF285D; 
+  background-color:#F40055;
+  color: #FFF5FF;
+}
+
 .btn-following {
   text-shadow: none;
   color: #FF005D;
@@ -378,9 +384,9 @@
   color: #fff;
 }
 
-.btn-following, .btn-follow{
+.btn-following, .btn-follow, .btn-unfollow{
   margin-top:-1px ;
-  width: 120px;
+  width: 112px;
   height: 18px;
   margin-left: 0px;
   border: none;
@@ -405,6 +411,10 @@
   text-shadow: none;
   color: #FF005D;
   background-color: #FFF5FF;
+}
+.btn-follow a{
+  color: #FF005D;
+  text-decoration: none;
 }
 
 .btn-follow:hover,
