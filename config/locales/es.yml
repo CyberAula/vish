@@ -173,6 +173,7 @@ es:
     answer:
       title:
         other: "Cuestionarios"
+    from_excursion: "De la excursión"
     no: "No"
     no_answers: "No answers yet!"
     no_title: "<Sin título>"
