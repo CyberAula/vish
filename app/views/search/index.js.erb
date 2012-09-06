@@ -11,8 +11,10 @@
 
 <% if params[:type].blank? %>
   $('#all').html('<%= j results %>');
+  $('#search_toolbar').html('<%= j render :partial => 'toolbar/search_all', :formats => [:html] %>');
 <% else %>
   $('#<%= j params[:type] %>').html('<%= j results %>');
+  $('#search_toolbar').html('<%= j render :partial => "toolbar/search_#{ params[:type] }", :formats => [:html] %>');
 <% end %>
 
 SocialStream.Follow.initButtons();

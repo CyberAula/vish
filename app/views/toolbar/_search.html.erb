@@ -1,7 +1,7 @@
 <div class="span2 inline">
   <div id="menuv">
     <h4><span class="size16 gray-ligth">advanced options</h4>
-    <ul class="advanced">
+    <ul id="search_toolbar" class="advanced">
       <% if params[:type].blank? %>
         <%= render :partial => 'toolbar/search_all' %>
       <% else %>
