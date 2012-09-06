@@ -353,6 +353,11 @@
   color: #FFF5FF;
 }
 
+.btn-unfollow a{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
 .btn-following {
   text-shadow: none;
   color: #FF005D;
