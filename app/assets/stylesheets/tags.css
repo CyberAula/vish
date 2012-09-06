@@ -2,6 +2,11 @@ ul.tagit-suggestions {
     list-style: none;
 }
 
+ul.single-line-tags {
+    height: 23px; /* This smells a bit */
+    overflow: hidden;
+}
+
 ul.tagit-suggestions li.tagit-choice {
     float: left;
     background-color: #0066ff;
@@ -20,6 +25,11 @@ ul.tagit-suggestions li.tagit-choice:hover {
     background-color: #0066ff;
     opacity: 0.7;
     border-color: #6d95e0;
+}
+
+ul.tagit-suggestions li.tagit-choice a,
+ul.tagit-suggestions li.tagit-choice a:hover {
+    color: #fff;
 }
 
 .tagBoxDocument {
