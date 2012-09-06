@@ -2169,8 +2169,10 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
 }
 
 .result-margin{
-  margin: 10px 30px 10px 30px;
+  margin: 0px 10px 0px 20px;
 }
+
+.padding-boxy-quiz{padding:15px;}
 
 .text-margin{
   margin-left:20px;
@@ -2180,3 +2182,7 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
 
 
 chart-div-1{border-radius:30px;}
+
+#Drawing_Frame_96254 {
+  border-radius:20%;
+}

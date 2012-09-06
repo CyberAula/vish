@@ -1,18 +1,18 @@
 SocialStream.Follow = (function(SS, $, undefined){
 	var initButtons = function(){
-		$(".following-button").off("mouseenter");
-		$(".following-button").mouseenter(function(){
+		$(".btn-following").off("mouseenter");
+		$(".btn-following").mouseenter(function(){
 			$(this).hide();
-			$(this).siblings(".unfollow-button").show();
+			$(this).siblings(".btn-unfollow").show();
 		});
 
-		$(".unfollow-button").off("mouseenter");
-		$(".unfollow-button").mouseleave(function(){
+		$(".btn-unfollow").off("mouseenter");
+		$(".btn-unfollow").mouseleave(function(){
 			$(this).hide();
-			$(this).siblings(".following-button").show();
+			$(this).siblings(".btn-following").show();
 		});
 
-		$(".unfollow-button").hide();
+		$(".btn-unfollow").hide();
 	}
 
 	$(function(){
