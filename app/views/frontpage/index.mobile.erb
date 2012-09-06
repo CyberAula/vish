@@ -5,52 +5,48 @@
 
 
 <section id="wall">
-  <article class="row-fluid article">
-    <div class="span11">
-      <div class="span11">
+  <article class="row-fluid ">
 
+    <div id="search-frontpage">
 
-
-        <div id="search-frontpage " class=" row-fluid span11">
-
-          <div class=" margin-search-frontpage">
+      <div class="  pagination-centered ">
         <form>
-            <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "span11" } %>
-            </form>
-          </div>
-        </div>
+
+          <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-resize"} %>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="span12 DsignesLight ">
+
+      <div class="span11 pagination-right link_gray2 ">
+        <%= link_to(t('frontpage.nanotechnology'), search_path(:q => "nanotechnology"), :class => 'size_medium') %>
+      </div>
+
+      <div class="span7 pagination-right margin_user link_gray3 ">
+        <%= link_to(t('frontpage.gridComputing'), search_path(:q => "grid computing"), :class => 'size_x-large') %>
+      </div>
+
+      <div class="span10  pagination-right link_gray4  ">
+        <%= link_to(t('excursion.other'), search_path(:type => "excursion"), :class => 'size_xx-large') %>
+      </div>
+
+      <div class="span11 pagination-right margin_user link_gray3">
+        <%= link_to(t('user.other'), search_path(:type => "user"), :class => 'size_x-large') %>
+      </div>
+
+      <div class="span7 margin_life_sciences link_gray2 ">
+        <%= link_to(t('frontpage.lifesciences'), search_path(:q => "life sciences"), :class => 'size_largue') %>
+      </div>
 
 
+      <div class="span8 pagination-right margin_user  link_gray1 ">
+        <%= link_to(t('frontpage.biotechnology'), search_path(:q => "biotechnology"), :class => 'size_small') %>
       </div>
-      <div class="span11 DsignesLight gray">
-        <div class="span12 pagination-right size10">
-          <%= link_to(t('frontpage.nanotechnology'),search_path(:q => "nanotechnology"), :class => '') %>
-        </div>
-        <div class="span12 size20 ">
-          <%= link_to(t('frontpage.gridComputing'),search_path(:q => "grid computing"), :class => '') %>
-        </div>
-        <div class="span12">
-          <div class="span3"></div>
-          <div class="span9 size10">
-            <%= link_to(t('excursion.other'),search_path(:type => "excursion"), :class => '') %>
-          </div>
-        </div>
-        <div class="span12 size10">
-          <%= link_to(t('user.other'),search_path(:type => "user"), :class => 'size40') %>
-        </div>
-        <div class="span12 pagination-right size10">
-          <%= link_to(t('frontpage.lifesciences'),search_path(:q => "life sciences"), :class => '') %>
-        </div>
-        <div class="span12">
-          <div class="span3"></div>
-          <div class="span9 size30">
-            <%= link_to(t('frontpage.biotechnology'),search_path(:q => "biotechnology"), :class => '') %>
-          </div>
-        </div>
-      </div>
-      <div class="space-center"></div>
 
     </div>
+
   </article>
 </section>
 
@@ -58,32 +54,31 @@
 
 
 <footer id="wall">
-  <article class="row-fluid article">
-    <div class="span11">
+  <article class="row-fluid ">
+    <div class="span12">
 
 
-      <div class="span3 inline">
-        <div class="span btn-m btn-red pull-right">
+
+        <div class="btn btn-primary">
 
           <%= link_to t('sign_up'), new_user_registration_path %>
 
         </div>
-      </div>
-      <div class="span1 inline-block"></div>
-      <div class="span4 inline-block">
-        <div class="span btn-m btn-green pull-right">
+
+
+        <div class="btn btn-primary">
           <a href="/explore"><%= t('explore') %></a>
 
         </div>
-      </div>
-      <div class="span1 inline-block"></div>
-      <div class="span3 inline-block">
-        <div class="span btn-m btn-red pull-right">
+
+
+
+        <div class="btn btn-primary">
 
           <%= link_to t('devise.links.sign_in'), new_user_session_path %>
 
         </div>
       </div>
-    </div>
+
   </article>
 </footer>
