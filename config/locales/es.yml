@@ -115,6 +115,11 @@ es:
     followings: "siguiendo"
     is_favorite: "Favorito"
     views: "visitas"
+  frontpage:
+    nanotechnology: "nanotecnología"
+    gridComputing: "grid computing"
+    lifesciences: "ciencias naturales"
+    biotechnology: "biotecnología"
   help: "ayuda"
   lang:
     independent: "No depende del lenguaje"
@@ -227,3 +232,4 @@ es:
       truncate: "..."            
   view_all: "ver todos"
   yesterday: "Ayer"
+

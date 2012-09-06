@@ -113,6 +113,11 @@ en:
     followings: "following"
     is_favorite: "Is favorite"
     views: "views"
+  frontpage:
+    nanotechnology: "nanotechnology"
+    gridComputing: "grid computing"
+    lifesciences: "lifes ciences"
+    biotechnology: "biotechnology"
   go:
     repository: "go to repository"
   help: "help"
