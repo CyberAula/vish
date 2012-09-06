@@ -8,15 +8,20 @@
     <li class="span1 margin-clear">
       <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="<%= icon75_class_for(embed) %> embed-modal-button-<%= embed.id.to_s%> modal-trigger" alt="<%= embed.title %>"></a>
     </li>
-    <li class="span">
+    <li class="span w150px">
       <div class="caption">
         <h4><span class="size16"><a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="size14 embed-modal-button-<%= embed.id.to_s%> modal-trigger"><%= embed.title %></a></span></h4>
         <h5 class="blue-opacity"><span class="size11">by <a data-toggle="modal" href="#user-modal-<%= embed.author.slug %>" class="user-modal-button-<%= embed.author.slug %> modal-no-trigger"><%= truncate_name(embed.author.name, :length => 20) %></a></span></h5>
-        <h5><span class="green"><%=embed.visit_count.to_s%></span> <%= t("follow.views") %></h5>
-        <h5>
-          <span class="green like_count_<%= dom_id(embed.activities.first) %>"><%=embed.activities.first.likes.count.to_s%></span>
+        <h5><span class="green"><%=embed.visit_count.to_s%></span> <%= t("follow.views") %> / <span class="green like_count_<%= dom_id(embed.activities.first) %>"><%=embed.activities.first.likes.count.to_s%></span>
           <div class="verb_like" id="like_<%= dom_id(embed.activities.first) %>"><%= link_like(embed.activities.first)%></div>
         </h5>
+        <% unless embed.tag_list.blank? %>
+          <ul class="tagit-suggestions nomargin single-line-tags">
+            <% embed.tag_list.each do |tag| %>
+              <li class="tagit-choice"><%= link_to tag, search_path(:q => tag) %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
     </li>
   </ul>

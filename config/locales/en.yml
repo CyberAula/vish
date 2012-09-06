@@ -173,6 +173,7 @@ en:
     answer:
       title:
         other: "Quiz answers"
+    from_excursion: "From excursion"
     no: "No"
     no_answers: "No answers yet!"
     no_title: "<Untitled>"

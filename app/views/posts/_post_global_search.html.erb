@@ -7,7 +7,7 @@
     <li class="span1 margin-clear ">
       <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= image_tag(author.logo.url, :alt => author.name) %></a>
     </li>
-    <li class="span2">
+    <li class="span w150px">
       <div class="caption">
         <h4><span class="size16"><a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= truncate_name(author.name, :length => 40) %></a></span></h4>
         <div class="size12 link_gray">
