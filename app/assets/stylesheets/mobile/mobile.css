@@ -387,7 +387,7 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   cursor: default;
 }
 
- /*****frontpage********/
+
 
 
 .logo{
@@ -398,8 +398,8 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 
 }
 
-.container-frontpage{
-  padding-top: 33px;}
+#container-frontpage{
+  margin-top-top: 33px;}
 
 .name{
   padding-bottom: 30px;
@@ -407,3 +407,7 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   letter-spacing: 3pt;
 }
 .welcome{text-shadow: 1px 2px #999; opacity: 0.87;}
+.verde{background-color: #000000;
+  width: 100px;
+  height: 100px;
+}
