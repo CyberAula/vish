@@ -165,23 +165,6 @@ hr {
         box-shadow:  0px 0px 1px 0px rgba(100, 100, 100, 0.1);
 }
 
-.btn {
-  display: inline-block;
-  *display: inline;
-  padding: 1px 6px 2px 2px;
-  margin-bottom: 0;
-  *margin-left: .3em;
-  font-size: 12px;
-  *line-height: 24px;
-  color: #3366FF;
-  text-align: center;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  vertical-align: middle;
-  cursor: pointer;
-  background-color:#f9f9f9;
-  border:solid 1px #3366FF;
-  border-radius:20px;
-}
 
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {font-size: 35px; text-decoration: none;}
 .nav-tabs > li > a:hover {font-size: 35px; text-decoration: none;}
