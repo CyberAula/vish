@@ -36,7 +36,7 @@
           <div class="modal-header"><%= t('mashme.header_html') %></div>
           <div class="modal-body">
             <h3><%= t('mashme.room_name') %></h3>
-            <input type="text" id="mashme-room-id" value="<%= current_user.slug + rand(100000).to_s %>"></input>
+            <input type="text" id="mashme-room-id" value="<%= current_user.slug + '-' + rand(100000).to_s %>"></input>
             <h3><%= t('mashme.invite_header') %></h3>
             <div class="mashme-invites">
               <% Actor.followed_by(current_user).each do |a| %>
@@ -139,11 +139,11 @@
     $('#mashme-button-excursion').on("click", function(){
       var invitees = [];
       <% if request.env['HTTP_HOST'] =~ /^localhost/ or request.env['HTTP_HOST'] =~ /^0.0.0.0/ %>
-      var target_url = encodeURI("http://FUUUUUUU" + "<%= request.path %>" + "|||" + $('#mashme-room-id').val());
+      var target_url = encodeURI("http://FUUUUUUU" + "<%= request.path %>" + ".full" + "|||" + $('#mashme-room-id').val());
       <% else %>
-      var target_url = encodeURI("<%= request.url %>" + "|||" + $('#mashme-room-id').val());
+      var target_url = encodeURI("<%= request.url %>" + ".full" + "|||" + $('#mashme-room-id').val());
       <% end %>
-      var target_title = encodeURI("ViSH-excursion-<%= excursion.id %>-" + $('#mashme-room-id').val());
+      var target_title = encodeURI("<%= excursion.title.split(' ').map {|w| w.capitalize }.join('') %>--" + $('#mashme-room-id').val());
       $('.mashme-invites .btn-info').each(function(i,ele){
         invitees.push($(ele).attr("id").substring(14));
         $(ele).removeClass("btn-info");
