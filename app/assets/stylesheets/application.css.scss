@@ -1783,32 +1783,20 @@ margin-left: 50px
   display: inline-block;
   width: 262px;
   float:right;
-
-
 }
 
 #margin-resources{margin-right: 5px;}
 
-
-
-
 .title_resources{
   font-size: 15px;
   color:#555555;
-
-
   width:231px;
   display:inline-block;
-
-
   margin-right: 5px;
-
-
 }
 
 #description_resources{
   font-size: 16px;
-
 }
 
 .picture.content_size .picture_show img{
@@ -1834,30 +1822,21 @@ margin-left: 50px
   font-size: 18px;
   margin-top: 15px;
   margin-left:28px;
-
-
   float:left;
   width:260px
-
-
 }
+
 .picture_icon{
   display: inline-block;
-
 }
-.date_resources{
 
+.date_resources{
   width:231px;
   display:inline-block;
-
-
   margin-right: 5px;
   padding: 0px 5px 5px 5px;
-
-
-
-
 }
+
 .details_resources{
   float:left;
   clear: right;
@@ -1884,40 +1863,33 @@ margin-left: 50px
   width: auto;
   float:right;
   display:inline-block;
-
-
 }
+
 .number{
   width: auto;
   display: inline-block;
   padding-right: 15px
-
-
-
 }
+
 .tabs_nav_notebook{
   width: 136px;
   float:right; ;
   margin-top:5px;
   margin-left: -20px
-
-
 }
+
 .tabs_nav_notebook .nav > li > a:hover {
   text-decoration: none;
   background-color: #F9F9F9;
   border:none;
-
 }
-
 
 .favorit_resources{
   float:right; 
   margin-left: 10px;
   margin-right:20px;
-
-
 }
+
 .favorite-count{
 float:right
 }
@@ -1933,8 +1905,6 @@ float:right
   border-radius: 5px;
   float:right;
   width:118px
-
-
 }
 
 .all-description
@@ -1958,7 +1928,6 @@ float:right
   font-weight: 100;
   outline: none;
   font-size: 20px;
-
 }
 
 .all-description
@@ -1968,8 +1937,8 @@ float:right
   border: none;
   color:#ffffff;
   font-size: 20px;
-
 }
+
 .all-description
 .nav-tabs > li > a:hover {
 /*border-color: #eeeeee #eeeeee #dddddd; */
@@ -1987,8 +1956,8 @@ float:right
   border-radius: 10px 10px 0 0;
   color: #ffffff;
   background-color:#FF005D
-
 }
+
 .form_field_edit_resource
 input,
 textarea,
@@ -2010,11 +1979,10 @@ select,
   border-radius: 15px;
 }
 
-
 .tags_edit_resources div.tagBoxEdit .tagit{
   width:173px;
-
 }
+
 .roundedbox{
   -webkit-border-top-left-radius: 15px;
   -moz-border-radius-topleft: 15px;
@@ -2026,16 +1994,18 @@ select,
   padding-left: 15px;
   padding-top: 15px;
 }
+
 .form_field_edit_resource
 select {
   background-color: #FFFFFF;
   width: 193px;
 }
+
 .form_field_edit_resource
 .slider-range{
-
   width: 72%;
 }
+
 .form_field_edit_resource
 .tagBoxEdit{
   clear: right;
@@ -2055,14 +2025,13 @@ select {
   margin-left: -25px;
   width: 100%;
 }
+
 .comments-resources
 .input-fluid {
   margin-left: 7px;
   height: 18px;
   width: 95%;
 }
-
-
 
 .boxy_white_wall   {
   border-radius: 15px 15px 15px 15px;
@@ -2071,18 +2040,13 @@ select {
   position: relative;
   width: 97%;
   z-index: 1;
-
-
 }
 
-.boxy_white_wall2
- {
+.boxy_white_wall2{
 border: medium none;
 border-radius: 100% 100% 100% 100% / 33px;
 box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
-
 }
-
 
 .boxy_white_wall3 {
   background: -moz-linear-gradient(center top , #F9F9F9 50%, #F0F0F0 100%) repeat scroll 0 0 transparent;
@@ -2099,15 +2063,12 @@ width: 387px;
 .loading{
   width: 41px;
   margin-left: 200px;
-
 }
 
 .word-break {
 /* Div que corta las palabras largas */
-
   overflow: hidden;
   padding-right: 25px;
-
   word-wrap: break-word; /* IE */
   -moz-binding: url(xbl.xml#wordwrap); /* Firefox (using XBL) */
 }
@@ -2117,16 +2078,13 @@ width: 387px;
   overflow: hidden;
 }
 
-
 .row-fluid [class*="span"] {
-
   min-height: none !important;
-
 }
 
 /*************************** search screen classes */
 /**** vertical menu advanced search---have to menuv class*/
-  .advanced {
+.advanced {
   background: #FFFFFF;
   color: #3366FF;
   font-size: 13px;
@@ -2138,7 +2096,8 @@ width: 387px;
   font-size: 12px;
   cursor: pointer;
  }
- .advanced a.active {
+
+.advanced a.active {
   background: #F9F9F9;
   color: #FF005D;
   font-size: 13px;
@@ -2150,6 +2109,7 @@ width: 387px;
   font-size: 12px;
   cursor: pointer;
  }
+
 /**** horizontal menu alphabet search classes***/
 .alphabet{
   margin-left:-32px;
@@ -2199,4 +2159,17 @@ width: 387px;
   opacity: 0.6;
   text-align: center;
 
+}
+/**** Quizes classes***/
+
+#chartArea{
+  left: 20, 
+  top: 0, 
+  width: "50%", 
+  altura: "75%"}
+  
+}
+
+.result-margin{
+  margin: 10px 30px 10px 30px;
 }
