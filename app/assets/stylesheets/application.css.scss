@@ -434,9 +434,7 @@ margin-right: auto
 .unmargin{margin-right:0em !important;}
 .miniborder{border-radius: 5px;}
 .margin-new_resource{
-
-margin-left: 20px;
-
+  margin-left: 20px;
 }
 
 
@@ -2163,20 +2161,18 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
 /**** Quizes classes***/
 
 #chartArea{
-<<<<<<< HEAD
   left: 20; 
   top: 0; 
   width: 50%; 
   heigth: 75%;
-  
-=======
-  left: 20;
-  top: 0;
-  width: "50%"; 
-  altura: "75%";
->>>>>>> 79c3da6d7e86aa2e02bd360113464b4997aa3559
 }
 
 .result-margin{
   margin: 10px 30px 10px 30px;
+}
+
+.text-margin{
+  margin-left:20px;
+  margin-right:17px;
+  margin-top:-16px;
 }
