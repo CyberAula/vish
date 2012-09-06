@@ -196,12 +196,7 @@ hr {
   outline: none;
   font-size: 35px;
 
-}
-<<<<<<< HEAD
-=======
 
-
->>>>>>> d3c89276d907385bd74e22d9ae555c41479ce031
 .selected {
 	background-position: 0 -52px;
 }
@@ -305,11 +300,9 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 }
 
 .vish-white{opacity: 0.6;}
-<<<<<<< HEAD
-.welcome{text-shadow: 1px 2px #999; opacity: 0.87;}
-=======
 
->>>>>>> d3c89276d907385bd74e22d9ae555c41479ce031
+
+
 
 .container-logs{padding-top: 66px;}
 
@@ -413,3 +406,4 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   padding-top: 9px;
   letter-spacing: 3pt;
 }
+.welcome{text-shadow: 1px 2px #999; opacity: 0.87;}
