@@ -2,15 +2,13 @@
 <%= t('search.name')%> <%= params[:q].present? ? ": #{params[:q]}" : "" %>
 <% end %>
 
-<%# sidebar %>
-
-<% toolbar if user_signed_in? %>
+<% toolbar :search %>
 
 <div class="row"><span class="size40"><%=t('search.name') %></span></div>
 <div class="row space_center"></div>
 
 <div class="row">
-  <section name="Search" class="span12">
+  <section name="Search" class="span9">
     <div class="error" id="too_short_error" <%#= 'style=display:block;' if too_short_query? %>><%#= t('search.at_least') %></div>
 
     <div class="search tabbable">

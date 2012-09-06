@@ -63,7 +63,7 @@ module Vish
       LinksController.layout "3x9"
       ExcursionsController.layout "3x9"
       QuizSessionsController.layout "3x9"
-      SearchController.layout "12"
+      SearchController.layout "3x9"
       LegalNoticeController.layout "12"
       HelpController.layout "12"
 

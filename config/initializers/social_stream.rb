@@ -92,6 +92,13 @@ SocialStream::Views::Toolbar.module_eval do
           :html => toolbar_menu(type, options)
         }
       end
+    when :search
+      SocialStream::Views::List.new.tap do |items|
+        items << {
+          :key => :search,
+          :html => render(:partial => 'toolbar/search')
+        }
+      end
     end
   end
 
