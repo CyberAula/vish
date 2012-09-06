@@ -1,12 +1,21 @@
 <div class="model_with_details span3 box-result users_btn_follow">
+  <%= javascript_tag do %>
+    <%= modal_for(subject) %>
+  <% end %>
   <ul class="thumbnails">
     <li class="span1 margin-clear">
-      <%= link_to(image_tag(subject.logo.url(:profile)), subject, :class => "container") %>
+      <a data-toggle="modal" href="#<%= subject.class.to_s.underscore %>-modal-<%= subject.slug %>" class="<%= subject.class.to_s.underscore %>-modal-button-<%= subject.slug %> modal-trigger container" alt="<%= subject.name %>"><%= image_tag(subject.logo.url(:profile)) %></a>
     </li>
-    <li class="span2">
+    <li class="span w150px">
       <div class="caption">
-        <h4><span class="size14"><%= link_to truncate_name(subject.name, :length => 40), subject %></span></h4>
-        <h5><%=t('follow.followers')%>: <span class="dark-gray"><%=subject.follower_count%></span></h5>
+        <h4><span class="size16"><a data-toggle="modal" href="#<%= subject.class.to_s.underscore %>-modal-<%= subject.slug %>" class="<%= subject.class.to_s.underscore %>-modal-button-<%= subject.slug %> modal-trigger"><%= truncate_name(subject.name, :length => 40) %></a></span></h4>
+        <% unless subject.tag_list.blank? %>
+          <ul class="tagit-suggestions nomargin single-line-tags">
+            <% subject.tag_list.each do |tag| %>
+              <li class="tagit-choice"><%= link_to tag, search_path(:q => tag) %></li>
+            <% end %>
+          </ul>
+        <% end %>
         <div class="send_messag size10 red-2 upfoll"><%=contact_to(subject) %></div>
       </div>
     </li>

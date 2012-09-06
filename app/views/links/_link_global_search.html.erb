@@ -7,7 +7,7 @@
     <li class="span1 margin-clear">
       <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="<%= icon75_class_for(link) %> link-modal-button-<%= link.id.to_s%> modal-trigger"></a><% else %><a href="<%= link.url %>" target="_blank" class="<%= icon75_class_for(link) %> container"></a><% end %>
     </li>
-    <li class="span">
+    <li class="span w150px">
       <div class="caption">
         <h4><span class="size16"><% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="size14 link-modal-button-<%= link.id.to_s%> modal-trigger"></a><% else %><a href="<%= link.url %>" target="_blank" class="size14"><% end %><%= truncate_name(link.title, :length => 20) %></a></span></h4>
         <h5 class="blue-opacity"><span class="size11">by <a data-toggle="modal" href="#user-modal-<%= link.author.slug %>" class="user-modal-button-<%= link.author.slug %> modal-no-trigger"><%= truncate_name(link.author.name, :length => 20)%></a></span></h5>
@@ -15,6 +15,13 @@
           <span class="green like_count_<%= dom_id(link.activities.first) %>"><%=link.activities.first.likes.count.to_s%></span>
           <div class="verb_like" id="like_<%= dom_id(link.activities.first) %>"><%= link_like(link.activities.first)%></div>
         </h5>
+        <% unless link.tag_list.blank? %>
+          <ul class="tagit-suggestions nomargin single-line-tags">
+            <% link.tag_list.each do |tag| %>
+              <li class="tagit-choice"><%= link_to tag, search_path(:q => tag) %></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
     </li>
   </ul>
