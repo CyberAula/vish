@@ -394,22 +394,22 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
   cursor: default;
 }
 
- /*************/
+ /*****frontpage********/
 
-#logo-frontpage{
-  background: transparent url(VISH_frontpage.png);
-  width:90%;
-  height:auto;
-  margin: 0px auto;
-  position:relative;
-  background-repeat:no-repeat;
-}
 
-.objet_center{
+.logo{
   margin-left: auto;
   margin-right: auto;
+  height: auto;
+  width: 90%;
 
 }
 
 .container-frontpage{
   padding-top: 33px;}
+
+.name{
+  padding-bottom: 30px;
+  padding-top: 9px;
+  letter-spacing: 3pt;
+}
