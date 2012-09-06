@@ -71,7 +71,7 @@ SocialStream::Views::Toolbar.module_eval do
         items << {
           :key => :message_new,
           :html => link_to(image_tag("icon-message.png",:class => "imgnoradio")+ t('  ')+ t('message.send'),
-                          new_message_path, :class => "btn-gray", :remote=> false)
+                          new_message_path(:receiver => subject.slug), :class => "btn-gray", :remote=> false)
         }
 
         #Contacts brief
