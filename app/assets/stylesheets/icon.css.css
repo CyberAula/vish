@@ -45,7 +45,7 @@ li{
   list-style-type:none}
 
 [class^="iconnav-"], [class*=" iconnav-"] {
-  background-image: url("icon_nav.png");
+  background-image: url("icons/icon_nav.png");
   background-position:22px 22px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -60,13 +60,14 @@ li{
 [class^="iconnav-"]:last-child, [class*="iconnav-"]:last-child {
 }
 .iconnav-white {
-  background-image: url("icon_nav.png");
+  background-image: url("icons/icon_nav.png");
 }
 /* normal*/
 .iconnav-home { background-position:0 0;}
 .iconnav-message {background-position:-32px 0;}
 .iconnav-followers {background-position:-64px 0;}
 .iconnav-notification {background-position:-96px 0;}
+.iconnav-quiz {background-position:-159px 0;}
 .iconnav-tools {background-position:-128px 0;}
 /* alarm*/
 .iconnav-notification_message {background-position:-32px -26px;}
@@ -77,6 +78,7 @@ li{
 .iconnav-message:hover {background-position:-32px -52px;}
 .iconnav-followers:hover {background-position:-64px -52px;}
 .iconnav-notification:hover {background-position:-96px -52px;}
+.iconnav-quiz:hover {background-position:-159px -52px;}
 .iconnav-tools:hover {background-position:-128px -52px;}
 
 .iconnav-mashme { background-position: 0 -78px ;}
