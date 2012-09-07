@@ -48,10 +48,11 @@
           <div class="more"><%= link_to(t('view_all'), [current_subject, Excursion]) %></div>
         </div>
         <div id="ex-3" class="tab-pane">
-          <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-more"} %>
+          <div>TODO: Dani recommender text + add button</div>
           <div class="space_center"></div>
           <div id="home-excursions-more" class="row height-tabs-home">
-            <img alt="Loading" class="loading" src="/assets/loading.gif" />
+            <%= render :partial => "excursions/filter_results",
+                       :locals => {:excursions => current_subject.excursion_suggestions(4) } %>
           </div>
           <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
         </div>
@@ -86,9 +87,6 @@
         <%= t('resource.title.other')%></div>
       <div class="clearfloat"></div>
 
-
-        <!--<li class=""><a href="/search?type=resource"><%#=t('all')%></a></li> -->
-
       <div class="tab-content">
         <div id="repo-1" class="tab-pane active">
           <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-net"} %>
@@ -113,10 +111,11 @@
           <div class="more"><%= link_to(t('view_all'), [current_subject, Document]) %></div>
         </div>
         <div id="repo-3" class="tab-pane">
-          <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-more"} %>
+          <div>TODO: Dani recommender text + upload button</div>
           <div class="space_center"></div>
           <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
-            <img alt="Loading" class="loading" src="/assets/loading.gif" />
+            <%= render :partial => "common_documents/filter_results",
+                       :locals => {:documents => current_subject.resource_suggestions(6)} %>
           </div>
           <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
         </div>
@@ -124,27 +123,12 @@
           <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-fav"} %>
           <div class="space_center"></div>
           <div id="home-resources-fav" class="repositories row height-tabs-home modal-pivot">
-            <% fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
-            <% if fav_resources.size == 0 %>
+            <% my_fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
+            <% if my_fav_resources.size == 0 %>
               <%= render :partial => "common_documents/fav_zero_screen" %>
             <% else %>
               <%= render :partial => "common_documents/filter_results",
-                         :locals => {:documents => my_network_resources} %>
-              <% for document in fav_resources %>
-                <% if document.is_a? Embed %>
-                  <%= render :partial => "embeds/home",
-                             :locals => {:embed => document,
-                                         :div_class => 'content_size'} %>
-                <% elsif document.is_a? Link %>
-                   <%= render :partial => "links/home",
-                              :locals => {:link => document,
-                                          :div_class => 'content_size'} %>
-                <% elsif document.is_a? Document %>
-                  <%= render :partial => "common_documents/home",
-                             :locals => {:document => document,
-                                         :div_class => 'content_size'} %>
-                <% end %>
-              <% end %>
+                         :locals => {:documents => my_fav_resources} %>
             <% end %>
           </div>
           <div class="more"><%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=like") %></div>

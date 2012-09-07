@@ -20,10 +20,12 @@ require 'composite_primary_keys'
 class RecsysLearningObject < ActiveRecord::Base
   establish_connection "recsys_#{Rails.env}"
   set_table_name "learning_objects"
+  set_inheritance_column nil
   #set_primary_key "id"
   self.primary_keys = :id, :clusterid
 
   belongs_to :cluster, :class_name => 'RecsysCluster', :foreign_key => 'clusterid'
+  belongs_to :activity_object, :foreign_key => 'id'
 
   def readonly?
     return true

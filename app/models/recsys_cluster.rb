@@ -28,6 +28,10 @@ class RecsysCluster < ActiveRecord::Base
     users.map{ |u| u.actor }
   end
 
+  def activity_objects
+    objects.map{ |o| o.activity_object }
+  end
+
   def readonly?
     return true
   end
