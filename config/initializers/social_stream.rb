@@ -41,6 +41,22 @@ SocialStream.setup do |config|
 end
 
 SocialStream::Views::Toolbar.module_eval do
+  def sidebar_items type
+    SocialStream::Views::List.new.tap do |items|
+      items << {
+        :key => 'contact_suggestions',
+        :html => render(:partial => 'contacts/suggestions')
+      }
+
+      items << {
+        :key => 'excursion_suggestions',
+        :html => render(:partial => 'excursions/suggestions')
+      }
+    end
+  end
+end
+
+SocialStream::Views::Toolbar.module_eval do
   def toolbar_items type, options = {}
     case type
     when :home
