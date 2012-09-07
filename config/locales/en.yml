@@ -98,6 +98,8 @@ en:
     other: "excursions"
     others: "others excursions"
     session_start: "start session"
+    suggestion:
+      other: "Excursions"
     title:
       other: "excursions"
     upcomming: "upcomming"

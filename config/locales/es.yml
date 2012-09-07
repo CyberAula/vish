@@ -99,6 +99,8 @@ es:
     one: "excursión"
     other: "excursiones"
     others: "otras excursiones "
+    suggestion:
+      other: "Excursiones"
     session_start: "inicia sesión"
     title:
       other: "excursiones"
