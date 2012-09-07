@@ -6,7 +6,7 @@
     <div class="btn-gray">
       <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= t('excursion.actions.share') %></a>
     </div>
-    <% if user_signed_in? and excursion.post_activity.edit_object_by?(current_subject) %>
+    <% if user_signed_in? and (can? :update, excursion) %>
       <div class="btn-gray">
         <%= link_to raw("<i class='icontool16-tool16_edit'></i> ") + t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
       </div>
