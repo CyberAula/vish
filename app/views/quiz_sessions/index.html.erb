@@ -28,11 +28,13 @@
     <div id="quiz-results-ongoing" class="block row space_bottom">
       <% QuizSession.where(:owner_id => current_user.id).where(:active => true).group_by(&:quiz_id).sort.each do |quiz_id,qss| %>
         <% quiz = Quiz.find(quiz_id) %>
-        <h2><%= quiz.question %></h2>
-        <% unless quiz.possible_answers.empty? %>
-          <h5><%= t('quiz.possible_answers') %>: <em><%= quiz.possible_answers.values.join(", ") %></em></h5>
-        <% end %>
-        <h5><%= t('quiz.from_excursion') %>: <em><%= link_to quiz.excursion.title, quiz.excursion %></em></h5>
+        <div class="text-margin">
+          <h2><%= quiz.question %></h2>
+          <% unless quiz.possible_answers.empty? %>
+            <h5><%= t('quiz.possible_answers') %>: <em><%= quiz.possible_answers.values.join(", ") %></em></h5>
+          <% end %>
+          <h5><%= t('quiz.from_excursion') %>: <em><%= link_to quiz.excursion.title, quiz.excursion %></em></h5>
+        </div>
         <% qss.each do |qs| %>
           <%= render :partial => "quiz_sessions/historic", :locals => {:qs => qs} %>
         <% end %>
@@ -46,12 +48,12 @@
       <% QuizSession.where(:owner_id => current_user.id).where(:active => false).group_by(&:quiz_id).sort.each do |quiz_id,qss| %>
         <% quiz = Quiz.find(quiz_id) %>
         <div class="text-margin">
-        <h2><%= quiz.question %></h2>
-        <% unless quiz.possible_answers.empty? %>
-          <h5><%= t('quiz.possible_answers') %>: <em><%= quiz.possible_answers.values.join(", ") %></em></h5>
-        <% end %>
-        <h5><%= t('quiz.from_excursion') %>: <em><%= link_to quiz.excursion.title, quiz.excursion %></em></h5>
-      </div>
+          <h2><%= quiz.question %></h2>
+          <% unless quiz.possible_answers.empty? %>
+            <h5><%= t('quiz.possible_answers') %>: <em><%= quiz.possible_answers.values.join(", ") %></em></h5>
+          <% end %>
+          <h5><%= t('quiz.from_excursion') %>: <em><%= link_to quiz.excursion.title, quiz.excursion %></em></h5>
+        </div>
         <% qss.each do |qs| %>
           <%= render :partial => "quiz_sessions/historic", :locals => {:qs => qs} %>
         <% end %>
@@ -63,4 +65,3 @@
 </div>
 <% end %>
 
-a
