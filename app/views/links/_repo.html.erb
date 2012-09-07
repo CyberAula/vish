@@ -12,7 +12,7 @@
         <div class="block btn-gray">
           <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_8'></i> ") + t('link.go'), :class => :action), link.url, :target => '_blank' %>
         </div>
-        <% if link.post_activity.direct_object && can?(:destroy, link.post_activity.direct_object) %>
+        <% if can?(:destroy, link) %>
           <div class="block btn-gray">
             <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), link.post_activity.direct_object, :confirm => t('confirm_delete',
                                                                                                                                                                                                          :scope => link.post_activity.direct_object.class.to_s.underscore), :method => :delete %>

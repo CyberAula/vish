@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* CSS Document 
+/* CSS Document
 
 
 <!--------------boostrap in mobile */
@@ -43,8 +43,8 @@ h4{
 
 .navbar-inner {
   min-height: 40px;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
   background-color: #eeeeee;
   background-image: none;
   -webkit-border-radius: 4px 2px 4px 2px;

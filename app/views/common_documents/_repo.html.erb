@@ -16,7 +16,7 @@
          ttl = ttl + link_to(raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), document_path(document, :editing => true)) + "<br/>"
        end
 
-       if document.post_activity.direct_object && can?(:destroy, document.post_activity.direct_object)
+       if can?(:destroy, document)
          ttl = ttl + link_to(raw("<i class='icontool16-tool16_symbol_delete'></i> ")  + t('document.actions.delete'), document, :confirm => t('confirm_delete', :scope => document.class.to_s.underscore), :method => :delete, :class => :action) + "<br/>"
        end
 
