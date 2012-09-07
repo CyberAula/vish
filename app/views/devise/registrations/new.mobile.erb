@@ -6,14 +6,14 @@
         <div class="span12 box_basic">
 
           <div class="span12 border_bottom ">
-              <label class="span3 text_imput_center" for="name"><%= f.label :name %></label>
-              <%= f.text_field :name, :class => "span9 input_nude", :id => "name", :placeholder => "Insert Name" %>
+            <label class="span3 text_imput_center" for="name"><%= f.label :name %></label>
+            <%= f.text_field :name, :class => "span9 input_nude", :id => "name", :placeholder => "Insert Name" %>
           </div>
 
 
           <div class="span12 border_bottom ">
             <label class="span3 text_imput_center" for="email"><%= f.label :email %></label>
-            <%= f.text_field :email, :class => "span8 input_nude", :id => "email", :placeholder => "email@example.com"  %>
+            <%= f.text_field :email, :class => "span8 input_nude", :id => "email", :placeholder => "email@example.com" %>
           </div>
 
 
@@ -28,57 +28,47 @@
           </div>
 
 
-
-
           <!-- Tags -->
           <!-- Preload tags -->
-          <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+          <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc") %>
           <ul id="preloadTagList" style="display:none">
-            <%@tags.each do |tag| %>
-              <li><%=tag.name%></li>
-            <%end%>
+            <% @tags.each do |tag| %>
+              <li><%= tag.name %></li>
+            <% end %>
           </ul>
 
 
-            <label class="span3 text_imput_center" for="tags"><%= t('activerecord.attributes.user.tag') %></label>
-            <div class="controls">
+          <label class="span3 text_imput_center" for="tags"><%= t('activerecord.attributes.user.tag') %></label>
 
-              <div class="tagBoxNew span8 ">
-                <%= f.hidden_field :tag_list, :class => "form_tag span8", :id => "input_tag_list "%>
-
-
-                <div class="tagList span8 margin-top10 "></div>
-              </div>
-
-
+          <div class="controls">
+            <div class="tagBoxNew span8 ">
+              <%= f.hidden_field :tag_list, :class => "form_tag span8", :id => "input_tag_list " %>
+              <div class="tagList span8 margin-top10 "></div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
-          <div class="span11">
-            <ul class="span7 pull-left">
-              <li>language</li>
-              <li class="blue-cake"><%= link_to t('conditions.check_message_1'), '/legal_notice', :target => '_blank' %></li>
-              <li>virtual science hub 2012</li>
-            </ul>
-          </div>
-          <div class="space">
-          </div>
+
         </div>
-        <div class="span11 follow-button size20"><%= f.submit t('action.accept').capitalize %>
-        </div>
+
+
+
+
+
+
+          <div class=" span12 margin-top10 pagination-centered">
+            <div class="controls">
+              <%= t('conditions.check_message') %> <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+            </div>
+          </div>
+
+          <div class="row">
+            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+              <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
+            <% end -%>
+          </div>
+
+
+              <%= f.submit t('action.accept').capitalize, :id => "submit_new_user_button", :class =>" margin-top10 btn btn-primary span12" %>
+
 
       </article>
     <% end %>
