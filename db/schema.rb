@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823132902) do
+ActiveRecord::Schema.define(:version => 20120907102615) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20120823132902) do
     t.integer  "age_min",                            :default => 4
     t.integer  "age_max",                            :default => 30
     t.boolean  "notified_after_draft",               :default => false
+    t.integer  "comment_count",                      :default => 0
   end
 
   create_table "activity_verbs", :force => true do |t|

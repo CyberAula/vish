@@ -11,7 +11,7 @@
         <%= link_to raw("<i class='icontool16-tool16_edit'></i> ") + t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
       </div>
     <%end%>
-    <% if user_signed_in? and  @excursion.post_activity.delete_object_by?(current_subject) %>
+    <% if user_signed_in? and  @excursion.post_activity.direct_object && can?(:destroy, @excursion.post_activity.direct_object) %>
       <div class="btn-gray">
           <%= link_to raw("<i class='icontool16-tool16_symbol_delete'></i> ") +  t('excursion.actions.delete'),  excursion.post_activity.direct_object,
                       :confirm => t('confirm_delete', :scope => @excursion.post_activity.direct_object.class.to_s.underscore),
