@@ -292,86 +292,102 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
 
 .container-logs{padding-top: 66px;}
 
-/*radiobuttons clases*/
+/* radiobuttons*/
 
+  .imageless-css-3-form-elements label{
+            cursor: hand;
+            cursor: pointer;
+        }
+        
+        .imageless-css-3-form-elements label input[type="checkbox"],
+        .imageless-css-3-form-elements label input[type="checkbox"] + span,
+        .imageless-css-3-form-elements label input[type="checkbox"] + span::before,
+        .imageless-css-3-form-elements label input[type="radio"],
+        .imageless-css-3-form-elements label input[type="radio"] + span,
+        .imageless-css-3-form-elements label input[type="radio"] + span::before{
+            vertical-align: middle;
+        }
+        
+        .imageless-css-3-form-elements label input[type="checkbox"],
+        .imageless-css-3-form-elements label input[type="radio"]{
+            position: absolute;
+            filter: alpha(opacity=0);
+            -moz-opacity: 0;
+            -webkit-opacity: 0;
+            opacity: 0;
+        }
+        
+        .imageless-css-3-form-elements label input[type="checkbox"] + span,
+        .imageless-css-3-form-elements label input[type="checkbox"] + span::before,
+        .imageless-css-3-form-elements label input[type="radio"] + span,
+        .imageless-css-3-form-elements label input[type="radio"] + span::before{
+            display: inline-block;
+        }
+        
 
-.imageless-css-3-form-elements label{
-  cursor: hand;
-  cursor: pointer;
-}
+        .imageless-css-3-form-elements label input[type="checkbox"] + span,
+        .imageless-css-3-form-elements label input[type="radio"] + span{
+            font: normal 22px/52px "Segoe UI", Sans-serif;
+        }
         
-.imageless-css-3-form-elements label input[type="radio"],
-.imageless-css-3-form-elements label input[type="radio"] + span,
-.imageless-css-3-form-elements label input[type="radio"] + span::before{
-  vertical-align: middle;
-}
         
-.imageless-css-3-form-elements label input[type="radio"]{
-  position: absolute;
-  filter: alpha(opacity=0);
-     -moz-opacity: 0;
-     -webkit-opacity: 0;
-  opacity: 0;
-}
+        .imageless-css-3-form-elements label input[type="checkbox"] + span::before,
+        .imageless-css-3-form-elements label input[type="radio"] + span::before{
+            text-indent: -9999px;
+            width: 21px;
+            height: 24px;
+            color: #000;
+            font: bold 25px/25px Garamond, "Segoe UI", Sans-serif;
+            text-transform: uppercase;
+            border: solid 1px #cccccc;
+            border-radius: 19px;
+            box-shadow: 0 0 1px 1px #ccc;
+            background: #ffffff; 
+            margin: 0 4px 0 0;
+            padding: 4px 8px 4px 0px;
+        }
         
-.imageless-css-3-form-elements label input[type="radio"] + span,
-.imageless-css-3-form-elements label input[type="radio"] + span::before{
-  display: inline-block;
-}
+        .imageless-css-3-form-elements label:hover input[type="checkbox"]:not(:disabled) + span::before,
+        .imageless-css-3-form-elements label:hover input[type="radio"]:not(:disabled) + span::before{
+            background: #ffffff;
+            box-shadow: 0 0 2px 2px #ccc;
+        }
         
-.imageless-css-3-form-elements label input[type="radio"] + span{
-  font: normal 22px/52px "Segoe UI", Sans-serif;
-}
+        .imageless-css-3-form-elements label input[type="checkbox"]:checked + span::before,
+        .imageless-css-3-form-elements label input[type="radio"]:checked + span::before{
+            text-indent: 2px;
+            color: #cccccc;
+            text-shadow: 0 0 2px #cccccc;
+        }
         
-.imageless-css-3-form-elements label input[type="radio"] + span::before{
-  text-indent: -9999px;
-  width: 21px;
-  height: 24px;
-  color: #000;
-  font: bold 25px/25px Garamond, "Segoe UI", Sans-serif;
-  text-transform: uppercase;
-  border: solid 1px #0b70cd;
-  border-radius: 19px;
-  box-shadow: 0 0 1px 1px #ccc;
-  background: #ffffff; 
-  margin: 0 4px 0 0;
-  padding: 4px 8px 4px 0px;
-}
+        .imageless-css-3-form-elements label input[type="checkbox"] + span::before,
+        .imageless-css-3-form-elements label input[type="radio"] + span::before{
+            content: "O";
+            font-size: 32px;
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            border-radius: 20px;
+        }
         
-.imageless-css-3-form-elements label:hover input[type="radio"]:not(:disabled) + span::before{
-  background: #ffffff;
-  box-shadow: 0 0 2px 2px #ccc;
-}
+        .imageless-css-3-form-elements label input[type="radio"]:checked + span::before{
+            text-indent: 2px;
+        }
         
-.imageless-css-3-form-elements label input[type="radio"]:checked + span::before{
-  text-indent: 2px;
-  color: #cccccc;
-  text-shadow: 0 0 2px #cccccc;
-}
+        .imageless-css-3-form-elements label input[type="checkbox"]:disabled + span::before,
+        .imageless-css-3-form-elements label input[type="radio"]:disabled + span::before{
+            filter: alpha(opacity=50);
+            -moz-opacity: .5;
+            -webkit-opacity: .5;
+            opacity: .5;
+        }
         
-.imageless-css-3-form-elements label input[type="radio"] + span::before{
-  content: "O";
-  font-size: 32px;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-  border-radius: 20px;
-}
-        
-.imageless-css-3-form-elements label input[type="radio"]:checked + span::before{
-  text-indent: 2px;
-}
-        
-.imageless-css-3-form-elements label input[type="radio"]:disabled + span::before{
-     filter: alpha(opacity=50);
-       -moz-opacity: .5;
-       -webkit-opacity: .5;
-  opacity: .5;
-}
-        
-.imageless-css-3-form-elements label input[type="radio"]:disabled + span,
-.imageless-css-3-form-elements label input[type="radio"]:disabled + span::before{
-  cursor: default;
-}
+        .imageless-css-3-form-elements label input[type="checkbox"]:disabled + span,
+        .imageless-css-3-form-elements label input[type="radio"]:disabled + span,
+        .imageless-css-3-form-elements label input[type="checkbox"]:disabled + span::before,
+        .imageless-css-3-form-elements label input[type="radio"]:disabled + span::before{
+            cursor: default;
+        }
+
 
 
 
