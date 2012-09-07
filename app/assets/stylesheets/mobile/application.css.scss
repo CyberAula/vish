@@ -2150,6 +2150,7 @@ margin-right: 5px;
 
 
 .box_basic{
+  display: block;
   padding:10px;
   background-color: #FFFFFF;
   -webkit-border-radius: 15px;
@@ -2191,4 +2192,9 @@ margin-top: 5px;
 .margin-left10{
   float:none;
 padding-left: 10px
+}
+
+.no_margin{
+
+margin:none;
 }
