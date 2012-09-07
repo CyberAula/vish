@@ -8,7 +8,7 @@
       <li class="active">
         <a data-toggle="tab" href="#details"><%= t('document.actions.details') %></a>
       </li>
-      <% if document.post_activity.edit_object_by?(current_subject) %>
+      <% if can? :update, document %>
         <li class=""><a data-toggle="tab" href="#edit"><%= t('document.actions.edit') %></a></li>
       <% end %>
     </ul>
@@ -153,7 +153,7 @@
             </div>
           </div>
           <div class="notebook-pie"></div>
-          <% if user_signed_in? and document.post_activity.edit_object_by?(current_subject) %>
+          <% if user_signed_in? and (can? :update, document) %>
             </div>
             <div id="edit" class="tab-pane">
               <div class="notebook-medio">

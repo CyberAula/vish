@@ -12,7 +12,7 @@
          ttl = ttl + link_to(raw("<i class='icontool16-tool16_arrow_8'></i> ")  + t('link.go'), document.url, :target => "_blank" ) + "<br/>" 
        end
 
-       if user_signed_in? and (document.is_a? Document or document.is_a? Embed) and document.post_activity.edit_object_by?(current_subject)
+       if user_signed_in? and (document.is_a? Document or document.is_a? Embed) and (can? :update, document)
          ttl = ttl + link_to(raw("<i class='icontool16-tool16_edit'></i> ") + t('document.actions.edit'), document_path(document, :editing => true)) + "<br/>"
        end
 

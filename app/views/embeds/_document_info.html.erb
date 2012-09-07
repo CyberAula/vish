@@ -4,7 +4,7 @@
       <a data-toggle="tab" href="#details"><%=t('document.actions.details')%></a>
     </li>
 
-  	<% if document.post_activity.edit_object_by?(current_subject) %>
+  	<% if can? :update, document %>
       <li class=""><a data-toggle="tab" href="#edit"><%=t('document.actions.edit')%></a></li>
 	  <% end %>
 
@@ -49,7 +49,7 @@
         <br class="clearfloat"/>
       </div>
     </div>
-    <% if document.post_activity.edit_object_by?(current_subject) %>
+    <% if can? :update, document %>
       <div id="edit" class="tab-pane">
         <%= render :partial => "common_documents/edit_form", :locals => {:document => document} %>
 
