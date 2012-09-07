@@ -6,27 +6,35 @@
 
 <%= render :partial => 'vish_editor' %>
 
-<script>
+<script>	
+	options = {};
+	var configuration = {};
 
-var configuration = {};
-configuration["presentationSettings"] = true;
-configuration["presentationTags"] = true;
-configuration["presentationThumbnails"] = true;
+	configuration["presentationSettings"] = true;
+	configuration["presentationTags"] = true;
+	configuration["presentationThumbnails"] = true;
 
-configuration["VishLives"] = true;
-configuration["VishUpload"] = true;
-configuration["VishRepo"] = true;
+	configuration["VishLives"] = true;
+	configuration["VishRepo"] = true;
 
-configuration["Flickr"] = true;
-configuration["Youtube"] = true;
-configuration["Vimeo"] = false;
+	configuration["Flickr"] = true;
+	configuration["Youtube"] = true;
+	configuration["Vimeo"] = false;
 
-configuration["VishIntegration"] = true;
+	configuration["Upload"] = true;
 
-configuration["mode"] = "vish";
-	
-	//first function called when page loads
+	configuration["mode"] = "vish";
+	options["configuration"] = configuration;
+	options["developping"] = false;
+
+	options["token"] = "<%= form_authenticity_token %>";
+	options["ownerId"] = "<%= current_user.id %>";
+	options["ownerName"] = "<%= current_user.name %>";
+	options["postPath"] = "<%= excursions_path :format=> "json"%>";
+	options["documentsPath"] = "<%= documents_path :format=> "json"%>";
+	options["lang"] = "<%= I18n.locale.to_s%>";
+
 	function start(){
-		VISH.Editor.init({"configuration": configuration, "token":"<%= form_authenticity_token %>", "ownerId":"<%= current_user.id %>", "ownerName":"<%= current_user.name %>", "postPath": "<%= excursions_path :format=> "json"%>", "documentsPath": "<%= documents_path :format=> "json"%>", "lang": "<%= I18n.locale.to_s%>" });		
-	}	
+		VISH.Editor.init(options);
+	}
 </script>

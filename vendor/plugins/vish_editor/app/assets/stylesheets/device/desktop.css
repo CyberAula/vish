@@ -1,0 +1,6 @@
+/* Custom CSS for Desktops */
+
+/* dropdown */
+#menu li:hover > ul {
+	display: block;
+}

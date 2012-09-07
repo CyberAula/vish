@@ -12730,7 +12730,7 @@ VISH.Utils = function(V, undefined) {
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
   var domId = 0;
-  var draftExcursion = {};
+  var draftExcursion = null;
   var saved_excursion = null;
   var initial_excursion = false;
   var params = {current_el:null};
@@ -12751,6 +12751,18 @@ VISH.Editor = function(V, $, undefined) {
       initOptions = {}
     }
     VISH.Slides.init();
+    VISH.Status.init();
+    if(V.Status.ua.desktop) {
+      $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/desktop.css" type="text/css" />')
+    }else {
+      if(V.Status.ua.mobile) {
+        $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/mobile.css" type="text/css" />')
+      }else {
+        if(V.Status.ua.tablet) {
+          $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/tablet.css" type="text/css" />')
+        }
+      }
+    }
     if(VISH.Debugging.isDevelopping()) {
       if(options["configuration"]["mode"] == "noserver" && VISH.Debugging.getActionInit() == "loadSamples" && !excursion) {
         excursion = VISH.Debugging.getExcursionSamples()
@@ -12760,7 +12772,10 @@ VISH.Editor = function(V, $, undefined) {
       initial_excursion = true;
       setExcursion(excursion);
       V.Editor.Renderer.init(excursion);
-      _removeSelectableProperties()
+      _removeSelectableProperties();
+      if(excursion.type === "flashcard") {
+        V.Editor.Flashcard.loadFlashcard()
+      }
     }
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
@@ -12769,10 +12784,10 @@ VISH.Editor = function(V, $, undefined) {
     }});
     if(!eventsLoaded) {
       eventsLoaded = true;
-      $(document).on("click", "#edit_excursion_details", _onEditExcursionDetailsButtonClicked);
-      $(document).on("click", "#save_excursion_details", _onSaveExcursionDetailsButtonClicked);
+      $(document).on("click", "#edit_excursion_details", VISH.Editor.Tools.Menu.onSettings);
+      $(document).on("click", "#save", VISH.Editor.Tools.Menu.onSaveButtonClicked);
+      $(document).on("click", "#save_excursion_details", VISH.Editor.Tools.Menu.onSaveExcursionDetailsButtonClicked);
       $(document).on("click", ".templatethumb", _onTemplateThumbClicked);
-      $(document).on("click", "#save", _onSaveButtonClicked);
       $(document).on("click", ".editable", _onEditableClicked);
       $(document).on("click", ".selectable", _onSelectableClicked);
       $(document).on("click", ".delete_content", _onDeleteItemClicked);
@@ -12782,8 +12797,7 @@ VISH.Editor = function(V, $, undefined) {
       _addEditorEnterLeaveEvents();
       V.Editor.Utils.redrawSlides();
       V.Editor.Thumbnails.redrawThumbnails();
-      _addTutorialEvents();
-      $("#preview_circle").fancybox({"width":"8", "height":"6", "autoScale":false, "transitionIn":"none", "transitionOut":"none", "type":"iframe", "onStart":VISH.Editor.Preview.prepare})
+      _addTutorialEvents()
     }
     if(excursion) {
       $(".object_wrapper").hide()
@@ -12796,13 +12810,7 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.AvatarPicker.init();
     V.Editor.I18n.init(options["lang"]);
     V.Editor.Quiz.init();
-    V.Editor.Tools.init();
-    if(VISH.Configuration.getConfiguration()["presentationSettings"] && !initial_excursion) {
-      $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":false});
-      $("#edit_excursion_details").trigger("click")
-    }else {
-      $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":true})
-    }
+    V.Editor.Tools.init()
   };
   var getId = function() {
     domId = domId + 1;
@@ -12818,26 +12826,6 @@ VISH.Editor = function(V, $, undefined) {
   };
   var addDeleteButton = function(element) {
     element.append("<div class='delete_content'></div>")
-  };
-  var _onInitialTagsReceived = function(data) {
-    var tagList = $(".tagBoxIntro .tagList");
-    if($(tagList).children().length == 0) {
-      if(!draftExcursion) {
-        $.each(data, function(index, tag) {
-          if(index == 2) {
-            return false
-          }
-          $(tagList).append("<li>" + tag + "</li>")
-        })
-      }else {
-        if(draftExcursion.tags) {
-          $.each(draftExcursion.tags, function(index, tag) {
-            $(tagList).append("<li>" + tag + "</li>")
-          })
-        }
-      }
-      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:6, watermarkAllowMessage:"Add tags", watermarkDenyMessage:"limit reached"})
-    }
   };
   var _addTutorialEvents = function() {
     $(document).on("click", "#start_tutorial", function() {
@@ -12901,36 +12889,9 @@ VISH.Editor = function(V, $, undefined) {
   var _onslideleaveEditor = function() {
     $(".object_wrapper").hide()
   };
-  var firstCall = true;
-  var _onEditExcursionDetailsButtonClicked = function(event) {
-    if(VISH.Configuration.getConfiguration()["presentationTags"] && firstCall) {
-      VISH.Editor.API.requestTags(_onInitialTagsReceived);
-      if(draftExcursion && draftExcursion.avatar) {
-        VISH.Editor.AvatarPicker.onLoadExcursionDetails(draftExcursion.avatar)
-      }else {
-        VISH.Editor.AvatarPicker.onLoadExcursionDetails(null)
-      }
-    }
-    if(firstCall) {
-      firstCall = false;
-      $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":true})
-    }
-  };
-  var _onSaveExcursionDetailsButtonClicked = function(event) {
-    if($("#excursion_title").val().length < 1) {
-      $("#excursion_details_error").slideDown("slow");
-      $("#excursion_details_error").show();
-      return false
-    }
-    draftExcursion.title = $("#excursion_title").val();
-    draftExcursion.description = $("#excursion_description").val();
-    draftExcursion.avatar = $("#excursion_avatar").val();
-    draftExcursion.tags = VISH.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
-    $("#excursion_details_error").hide();
-    $.fancybox.close()
-  };
   var _onTemplateThumbClicked = function(event) {
-    var slide = V.Dummies.getDummy($(this).attr("template"));
+    var theid = draftExcursion ? draftExcursion.id : "";
+    var slide = V.Dummies.getDummy($(this).attr("template"), V.Slides.getSlides().length, theid, false);
     V.Editor.Utils.addSlide(slide);
     $.fancybox.close();
     V.Editor.Utils.redrawSlides();
@@ -13021,22 +12982,7 @@ VISH.Editor = function(V, $, undefined) {
     $(".selectable").css("outline", "0");
     $(".selectable").css("cursor", "pointer")
   };
-  var _onSaveButtonClicked = function() {
-    if(VISH.Slides.getSlides().length === 0) {
-      $.fancybox($("#message1_form").html(), {"autoDimensions":false, "scrolling":"no", "width":350, "height":200, "showCloseButton":false, "padding":5})
-    }else {
-      $.fancybox($("#save_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
-        if($("#save_answer").val() === "true") {
-          $("#save_answer").val("false");
-          var excursion = saveExcursion();
-          _afterSaveExcursion(excursion)
-        }else {
-          return false
-        }
-      }})
-    }
-  };
-  var saveExcursion = function() {
+  var saveExcursion = function(forcePresentation) {
     $(".object_wrapper").show();
     var excursion = {};
     if(draftExcursion) {
@@ -13044,16 +12990,22 @@ VISH.Editor = function(V, $, undefined) {
     }else {
       excursion.id = ""
     }
-    excursion.type = getExcursionType();
+    if(forcePresentation) {
+      excursion.type = "presentation"
+    }else {
+      excursion.type = getExcursionType()
+    }
     if(excursion.type === "flashcard") {
       excursion.background = {};
       excursion.background.src = $("#flashcard-background").css("background-image");
       excursion.background.pois = V.Editor.Flashcard.savePois()
     }
-    excursion.title = draftExcursion.title;
-    excursion.description = draftExcursion.description;
-    excursion.avatar = draftExcursion.avatar;
-    excursion.tags = draftExcursion.tags;
+    if(draftExcursion) {
+      excursion.title = draftExcursion.title;
+      excursion.description = draftExcursion.description;
+      excursion.avatar = draftExcursion.avatar;
+      excursion.tags = draftExcursion.tags
+    }
     excursion.author = "";
     excursion.slides = [];
     var slide = {};
@@ -13063,7 +13015,7 @@ VISH.Editor = function(V, $, undefined) {
       slide.template = $(s).attr("template");
       slide.elements = [];
       var element = {};
-      $(s).show();
+      $(s).addClass("temp_shown");
       $(s).find("div").each(function(i, div) {
         if($(div).attr("areaid") !== undefined) {
           element.id = $(div).attr("id");
@@ -13141,7 +13093,6 @@ VISH.Editor = function(V, $, undefined) {
                           element.scrollLeft = $(snapshotWrapper).scrollLeft()
                         }else {
                           if(typeof element.type == "undefined") {
-                            VISH.Debugging.log("Empty element")
                           }
                         }
                       }
@@ -13167,14 +13118,13 @@ VISH.Editor = function(V, $, undefined) {
         }
       });
       excursion.slides.push(slide);
-      slide = {}
+      slide = {};
+      $(s).removeClass("temp_shown")
     });
     saved_excursion = excursion;
-    VISH.Debugging.log("Excursion saved:");
-    VISH.Debugging.log(JSON.stringify(excursion));
     return saved_excursion
   };
-  var _afterSaveExcursion = function(excursion) {
+  var afterSaveExcursion = function(excursion) {
     VISH.Debugging.log("VISH.Configuration.getConfiguration()[mode]: " + VISH.Configuration.getConfiguration()["mode"]);
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
       var send_type;
@@ -13274,14 +13224,17 @@ VISH.Editor = function(V, $, undefined) {
       return null
     }
   };
+  var hasInitialExcursion = function() {
+    return initial_excursion
+  };
   var loadFancyBox = function(fancy) {
     var fancyBoxes = {1:"templates", 2:"quizes"};
     for(tab in fancyBoxes) {
-      $("#" + fancyBoxes[tab] + "_content").hide();
+      $("#tab_" + fancyBoxes[tab] + "_content").hide();
       $("#tab_" + fancyBoxes[tab]).attr("class", "");
       $("#tab_" + fancyBoxes[tab]).attr("class", "fancy_tab")
     }
-    $("#" + fancy + "_content").show();
+    $("#tab_" + fancy + "_content").show();
     $("#tab_" + fancy).attr("class", "fancy_tab fancy_selected")
   };
   var getExcursionType = function() {
@@ -13291,6 +13244,9 @@ VISH.Editor = function(V, $, undefined) {
     return draftExcursion.type
   };
   var setExcursionType = function(type) {
+    if(!draftExcursion) {
+      draftExcursion = new Object
+    }
     if(type) {
       draftExcursion.type = type
     }else {
@@ -13315,7 +13271,7 @@ VISH.Editor = function(V, $, undefined) {
     });
     return isStandard
   };
-  return{init:init, addDeleteButton:addDeleteButton, getId:getId, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getExcursionType:getExcursionType, getParams:getParams, getOptions:getOptions, loadFancyBox:loadFancyBox, getExcursion:getExcursion, setExcursion:setExcursion, isPresentationStandard:isPresentationStandard, getSavedExcursion:getSavedExcursion, saveExcursion:saveExcursion, setExcursionType:setExcursionType}
+  return{init:init, addDeleteButton:addDeleteButton, getId:getId, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getExcursionType:getExcursionType, getParams:getParams, getOptions:getOptions, loadFancyBox:loadFancyBox, getExcursion:getExcursion, setExcursion:setExcursion, isPresentationStandard:isPresentationStandard, getSavedExcursion:getSavedExcursion, hasInitialExcursion:hasInitialExcursion, saveExcursion:saveExcursion, afterSaveExcursion:afterSaveExcursion, setExcursionType:setExcursionType}
 }(VISH, jQuery);
 VISH.Editor.Video = function(V, $, undefined) {
   var urlDivId = "tab_video_from_url_content";
@@ -13350,6 +13306,7 @@ VISH.Editor.Image = function(V, $, undefined) {
   var uploadDivId = "tab_pic_upload_content";
   var urlDivId = "tab_pic_from_url_content";
   var urlInputId = "picture_url";
+  var flashcard_background_mode = false;
   var init = function() {
     VISH.Editor.Image.Flikr.init();
     VISH.Editor.Image.Repository.init();
@@ -13469,7 +13426,7 @@ VISH.Editor.Image = function(V, $, undefined) {
     VISH.Editor.Object.drawPreviewObject(contentToAdd)
   };
   var drawImage = function(image_url, area, style) {
-    if(V.Editor.getExcursionType() === "flashcard") {
+    if(flashcard_background_mode) {
       _drawImageAsFlashcardBackground(image_url)
     }else {
       _drawImageInArea(image_url, area, style)
@@ -13516,7 +13473,10 @@ VISH.Editor.Image = function(V, $, undefined) {
       $(this).parent().click()
     }})
   };
-  return{init:init, onLoadTab:onLoadTab, drawImage:drawImage, drawPreviewElement:drawPreviewElement}
+  var setFlashcardMode = function(is_flashcard) {
+    flashcard_background_mode = is_flashcard
+  };
+  return{init:init, onLoadTab:onLoadTab, drawImage:drawImage, drawPreviewElement:drawPreviewElement, setFlashcardMode:setFlashcardMode}
 }(VISH, jQuery);
 VISH.Editor.Object = function(V, $, undefined) {
   var contentToAdd = null;
@@ -13946,8 +13906,9 @@ VISH.Samples = function(V, undefined) {
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"articlevish4", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, 
   {"id":"zone5", "type":"image", "areaid":"left", "body":"http://www.viajes.okviajar.es/wp-content/uploads/2010/11/parque-donana.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
-  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"http://www.andaluciacar.com/images/imagesMaps/donanabig.jpg", "pois":[{"id":"poi1", "x":"200", "y":"200", "slide_id":"1"}, {"id":"poi2", "x":"400", "y":"400", 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
+  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://www.andaluciacar.com/images/imagesMaps/donanabig.jpg)", "pois":[{"id":"poi1", "x":"200", "y":"200", "slide_id":"1"}, {"id":"poi2", "x":"400", "y":"400", 
   "slide_id":"2"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://www.absoluthuelva.com/wp-content/uploads/2009/03/donana.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
   "type":"image", "areaid":"left", "body":"http://www.viajes.okviajar.es/wp-content/uploads/2010/11/parque-donana.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
@@ -14199,7 +14160,11 @@ VISH.Slides = function(V, $, undefined) {
     if(slideNo) {
       curSlideIndex = slideNo - 1
     }else {
-      curSlideIndex = 0
+      if(VISH.Editing) {
+        curSlideIndex = -1
+      }else {
+        curSlideIndex = 0
+      }
     }
   };
   var updateHash = function() {
@@ -14268,10 +14233,9 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   var closeSlide = function(slide_id) {
-    if(slideEls.length >= slide_id - 1) {
-      $(slideEls[slide_id - 1]).hide();
-      triggerLeaveEvent(slide_id - 1)
-    }
+    $("#" + slide_id).hide();
+    var slideNumber = $.inArray($("#" + slide_id)[0], slideEls);
+    triggerLeaveEvent(slideNumber)
   };
   var moveSlideTo = function(slide_to_move, reference_slide, movement) {
     if(typeof slide_to_move === "undefined" || typeof reference_slide === "undefined") {
@@ -14332,7 +14296,6 @@ VISH.Quiz = function(V, $, undefined) {
   var trueFalseAnswers = new Array;
   var quizStatus = {};
   var init = function(excursion) {
-    V.Debugging.log("Vish Quiz init");
     var options = VISH.SlideManager.getOptions();
     if(excursion.type == "quiz_simple") {
       if(options["quiz_active_session_id"]) {
@@ -14363,30 +14326,12 @@ VISH.Quiz = function(V, $, undefined) {
         V.Debugging.log("event.keyCode  =" + event.keyCode);
         if($(myInput).val() != "" && $(myInput).val() != "write a name for saving") {
           _saveQuizYesButtonClicked();
-          $(myInput).blur()
+          return false
         }else {
           alert("You must enter some text option.")
         }
       }
     })
-  };
-  var enableInteraction = function(slide, options) {
-    switch(role) {
-      case "logged":
-        slideToActivate = slide;
-        _alignStartButton(options);
-        _activateLoggedInteraction();
-        break;
-      case "student":
-        quizStatus.quiz_active_session_id;
-        slideToVote = slide;
-        _activateStudentInteraction();
-        break;
-      case "none":
-        break;
-      default:
-        VISH.Debugging.log("Something went wrong while processing the Quiz, role value is: " + role)
-    }
   };
   var enableTrueFalseInteraction = function(slide, options) {
     var sendButton = $("#" + slide).find("#tf_send_button");
@@ -14429,11 +14374,9 @@ VISH.Quiz = function(V, $, undefined) {
   var _startMcQuizButtonClicked = function() {
     slideToPlay = $(".current").find("#slide_to_activate").val();
     var quiz_id = $(".current").find(".quiz_id_to_activate").val();
-    V.Debugging.log("Quiz_id from form : " + quiz_id);
     V.Quiz.API.postStartQuizSession(quiz_id, _onQuizSessionReceived, _OnQuizSessionReceivedError)
   };
   var _onQuizSessionReceived = function(quiz_session_id) {
-    V.Debugging.log("returned value is (quiz_Session_id?): " + quiz_session_id);
     var url = quizUrlForSession + quiz_session_id;
     var divURLShare = "<div id='url_share_" + slideToPlay + "' class='url_share'></div>";
     var urlToAppend = "<span>" + url + "</span>";
@@ -14449,8 +14392,6 @@ VISH.Quiz = function(V, $, undefined) {
     }
     $("#" + slideToPlay).find(".t11_header").append(divURLShare);
     $(".current").find("#url_share_" + slideToPlay).append(urlToAppend);
-    $(".current").find("#url_share_" + slideToPlay).append(shareButton);
-    $(".current").find("#url_share_" + slideToPlay).append(shareContainerIcons);
     $("#" + slideToPlay).find(".t11_header").show();
     $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("value", "Stop Quiz");
     $("#" + slideToPlay).find("#mcquestion_start_button_" + slideToPlay).attr("class", "mcquestion_stop_button");
@@ -14486,12 +14427,9 @@ VISH.Quiz = function(V, $, undefined) {
     if(answer == undefined) {
       alert("You must choice your answer before polling")
     }else {
-      V.Debugging.log("answer option selected is: " + answer);
       var quiz_active_session_id = $(".current").find("#quiz_active_session_id").val();
-      V.Debugging.log("quiz_active_session_id is: " + quiz_active_session_id);
       V.Quiz.API.putQuizSession(answer, quiz_active_session_id, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError)
     }
-    setQuizToActivate
   };
   var _onQuizVotingSuccessReceived = function(data) {
     var quiz_active_session_id = $(".current").find("#quiz_active_session_id").val();
@@ -14503,7 +14441,6 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _onQuizSessionResultsReceived = function(data) {
     var received = JSON.stringify(data);
-    V.Debugging.log("_onQuizSessionResultsReceived and data received is: " + received);
     _showResultsToParticipant(data, slideToVote);
     $(".current").find(".mc_radio").remove();
     $(".current").find("#mcquestion_send_vote_button_" + slideToVote).remove();
@@ -14514,11 +14451,9 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + received)
   };
   var _onStopMcQuizButtonClicked = function() {
-    V.Debugging.log("_onStopMcQuizButtonClicked function called. ");
     $(".current").find(".save_quiz").css("display", "inline-block")
   };
   var _onQuizSessionCloseReceived = function(results) {
-    V.Debugging.log("_onQuizSessionCloseReceived ");
     slideToStop = $(".current").find("#slide_to_stop").val();
     $("#" + slideToStop).find(".t11_header").text("");
     var quiz_active_session_id = $(".current").find(".quiz_session_id").val();
@@ -14559,9 +14494,9 @@ VISH.Quiz = function(V, $, undefined) {
         }
       }
     }else {
+      var quiz_active_session_id = $(".current").find(".quiz_session_id").val();
+      V.Quiz.API.getQuizSessionResults(quiz_active_session_id, _showResultsToTeacher, _onQuizSessionResultsReceivedError);
       var marginTopPercentTxt = marginTopDefault2 * parseInt($(".current").find(".mc_answer").length).toString() + "%";
-      var data = {"quiz_session_id":"444", "quiz_id":"4", "results":["23", "3", "5", "1", "6"]};
-      _showResultsToTeacher(data);
       if($(".current").find("#slide_to_activate").val()) {
         slideToActivate = $(".current").find("#slide_to_activate").val();
         $("#" + startButton + "_" + slideToActivate).css("margin-top", marginTopPercentTxt)
@@ -14574,11 +14509,8 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var _saveQuizYesButtonClicked = function() {
-    V.Debugging.log("SaveQuizYes Button Clicked");
     var quizSessionActiveId = $(".current").find("#quiz_session_id").val();
-    V.Debugging.log("Quiz_session id from form : " + quizSessionActiveId);
     var quizNameForSaving = $(".current").find(".save_results_quiz").val();
-    V.Debugging.log("save_results_quiz : " + quizNameForSaving);
     V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizNameForSaving);
     $(".current").find(".mcquestion_start_button").removeAttr("disabled");
     $(".current").find(".save_quiz").css("display", "none");
@@ -14586,9 +14518,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(".current").find(".mcquestion_start_button").css("background-color", "buttonface")
   };
   var _saveQuizNoButtonClicked = function() {
-    V.Debugging.log("SaveQuizNo Button Clicked");
     var quizSessionActiveId = $(".current").find("#quiz_session_id").val();
-    V.Debugging.log("Quiz_session id from form : " + quizSessionActiveId);
     $(".current").find(".mcquestion_start_button").removeAttr("disabled");
     $(".current").find(".save_quiz").css("display", "none");
     $(".current").find(".mcquestion_start_button").css("color", "blue");
@@ -14604,11 +14534,12 @@ VISH.Quiz = function(V, $, undefined) {
     var greatest = 0;
     var votes;
     var totalVotes = 0;
+    var index = "";
     for(votes in data.results) {
-      totalVotes += parseInt(data.results[votes]);
-      if(parseInt(data.results[votes]) > greatest) {
+      totalVotes += data.results[votes];
+      if(data.results[votes] > greatest) {
         greatestId = votes;
-        greatest = parseInt(data.results[votes])
+        greatest = data.results[votes]
       }else {
         greatestId
       }
@@ -14617,31 +14548,34 @@ VISH.Quiz = function(V, $, undefined) {
       var percent = parseInt(data.results[votes]) / totalVotes * 100;
       var percentString = percent.toString() + "%";
       var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-      $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
-      $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
+      $(".current").find("#mcoption_" + votes).css("width", percentString);
+      $(".current").find("#mcoption_label_" + votes).text(newnumber + "%")
     }
-    var indexOfGreatestVoted = String.fromCharCode("a".charCodeAt(0) + parseInt(greatestId));
-    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("color", "blue");
-    $(".current").find("#mc_answer_" + slide + "_option_" + indexOfGreatestVoted).css("font-weight", "bold");
+    var indexOfGreatestVoted = String.fromCharCode(greatestId);
+    $(".current").find("#mc_answer_" + slideToVote + "_option_" + indexOfGreatestVoted).css("color", "blue");
+    $(".current").find("#mc_answer_" + slideToVote + "_option_" + indexOfGreatestVoted).css("font-weight", "bold");
     $(".current").find(".mc_meter").css("display", "block");
     $(".current").find(".mcoption_label").css("display", "block");
     $(".current").find(".mcquestion_right").remove();
     $(".current").find(".mcquestion_left").css("width", "95%")
   };
   var _showResultsToTeacher = function(data) {
-    var received = JSON.stringify(data);
-    V.Debugging.log("_showResultsToTeacher and data is: " + received);
     var votes;
     var totalVotes = 0;
     for(votes in data.results) {
       totalVotes += parseInt(data.results[votes])
     }
     for(votes in data.results) {
-      var percent = parseInt(data.results[votes]) / totalVotes * 100;
-      var percentString = percent.toString() + "%";
-      var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-      $(".current").find("#mcoption" + (parseInt(votes) + 1).toString()).css("width", percentString);
-      $(".current").find("#mcoption_label_" + (parseInt(votes) + 1).toString()).text(newnumber + "%")
+      if(data.results[votes] != 0) {
+        var percent = parseInt(data.results[votes]) / totalVotes * 100;
+        var percentString = percent.toString() + "%";
+        var newnumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2)
+      }else {
+        var percentString = "0%";
+        var newnumber = 0
+      }
+      $(".current").find("#mcoption_" + votes).css("width", percentString);
+      $(".current").find("#mcoption_label_" + votes).text(newnumber + "%")
     }
     $(".current").find(".mc_meter").css("display", "block");
     $(".current").find(".mcoption_label").css("display", "block")
@@ -14666,7 +14600,7 @@ VISH.Quiz = function(V, $, undefined) {
   var setSlideToVote = function(slide) {
     slideToVote = slide
   };
-  return{getQuizStatus:getQuizStatus, init:init, enableInteraction:enableInteraction, enableTrueFalseInteraction:enableTrueFalseInteraction, setQuizToActivate:setQuizToActivate, getQuizIdToStartSession:getQuizIdToStartSession, setSlideToVote:setSlideToVote}
+  return{getQuizStatus:getQuizStatus, init:init, enableTrueFalseInteraction:enableTrueFalseInteraction, setQuizToActivate:setQuizToActivate, getQuizIdToStartSession:getQuizIdToStartSession, setSlideToVote:setSlideToVote}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
@@ -14734,12 +14668,6 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var disableToolbar = function() {
     $("#toolbar_wrapper").hide()
   };
-  var disableMenu = function() {
-    $("#menuButton").hide()
-  };
-  var enableMenu = function() {
-    $("#menuButton").show()
-  };
   var loadPresentationToolbar = function() {
     var presentationType = VISH.Editor.getExcursionType();
     switch(presentationType) {
@@ -14747,6 +14675,12 @@ VISH.Editor.Tools = function(V, $, undefined) {
         $("#toolbar_presentation").find("img.toolbar_presentation").show();
         break;
       case "flashcard":
+        $("#hidden_button_to_launch_picture_fancybox_for_flashcard").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
+          V.Editor.Image.setFlashcardMode(true);
+          V.Editor.Utils.loadTab("tab_pic_from_url")
+        }, "onClosed":function(data) {
+          V.Editor.Image.setFlashcardMode(false)
+        }});
         $("#toolbar_presentation").find("img.toolbar_flashcard").show();
         break;
       case "game":
@@ -14803,7 +14737,8 @@ VISH.Editor.Tools = function(V, $, undefined) {
     V.Debugging.log("selectTheme called")
   };
   var changeFlashcardBackground = function() {
-    V.Debugging.log("changeFlashcardBackground called")
+    V.Debugging.log("changeFlashcardBackground called");
+    $("#hidden_button_to_launch_picture_fancybox_for_flashcard").trigger("click")
   };
   var zoomMore = function() {
     _changeZoom("+")
@@ -14974,7 +14909,9 @@ VISH.Debugging = function(V, $, undefined) {
     $("article").remove();
     $("#menubar").hide();
     $("#menubar_helpsection").hide();
+    $("#menubar_helpsection2").hide();
     $("#joyride_help_button").hide();
+    $("#preview_circle").hide();
     VISH.Editor.Tools.disableToolbar();
     $("#menubar-viewer").show();
     log("Init Vish Viewer with excursion: " + JSON.stringify(myexcursion));
@@ -14995,7 +14932,9 @@ VISH.Debugging = function(V, $, undefined) {
     $("article").remove();
     $("#menubar").show();
     $("#menubar_helpsection").show();
+    $("#menubar_helpsection2").show();
     $("#joyride_help_button").show();
+    $("#preview_circle").show();
     VISH.Editor.Tools.enableToolbar();
     $("#menubar-viewer").hide();
     VISH.Debugging.log("Init Vish Editor with excursion: " + JSON.stringify(myexcursion));
@@ -15006,36 +14945,37 @@ VISH.Debugging = function(V, $, undefined) {
 VISH.Dummies = function(VISH, undefined) {
   var nextDivId = 1;
   var nextArticleId = 1;
-  var dummies = ["<article id='article_id_to_change' template='t1'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t1_subheader editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t2'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t3_left editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t4'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t4_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t5'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t5_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t6'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t6_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t7'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t7_subheader editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t8'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t8_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t9'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t9_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t10'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='" + 
-  VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a></li> </ul> </div></article>", "<article id='article_id_to_change' template='t12'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t12_header'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table id='truefalse_quiz_table' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th><th></th></tr><tr id='tr_question_1'><td id='td_true_1' class='td_true'><input type='radio' id='true_1' name='answer_1' class='truefalse_answer' value='true'/></td><td id='td_false_1' class='td_false'><input type='radio' id='false_1' name='answer_1' class='truefalse_answer' value='false'/></td><td id='td_question_1' class='td_truefalse_question'><textarea rows='1' class='true_false_question' placeholder='Write question here' id='true_false_question_1'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + 
+  var dummies = ["<article id='article_id_to_change' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t1_subheader editable grey_background selectable'></div></article>", 
+  "<article id='article_id_to_change' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+  VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t4_right editable grey_background selectable'></div></article>", 
+  "<article id='article_id_to_change' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t5_right editable grey_background selectable'></div></article>", 
+  "<article id='article_id_to_change' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t6_right editable grey_background selectable'></div></article>", 
+  "<article id='article_id_to_change' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t7_subheader editable grey_background selectable'></div></article>", 
+  "<article id='article_id_to_change' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t8_right editable grey_background selectable'></div></article>", 
+  "<article id='article_id_to_change' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t9_right editable grey_background selectable'></div></article>", 
+  "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='" + 
+  VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a></li> </ul> </div></article>", "<article id='article_id_to_change' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t12_header'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table id='truefalse_quiz_table' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th><th></th></tr><tr id='tr_question_1'><td id='td_true_1' class='td_true'><input type='radio' id='true_1' name='answer_1' class='truefalse_answer' value='true'/></td><td id='td_false_1' class='td_false'><input type='radio' id='false_1' name='answer_1' class='truefalse_answer' value='false'/></td><td id='td_question_1' class='td_truefalse_question'><textarea rows='1' class='true_false_question' placeholder='Write question here' id='true_false_question_1'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + 
   VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr></table></div></article>"];
-  var getDummy = function(template, article_id) {
+  var getDummy = function(template, position, excursion_id, existing_slide) {
     var dum = dummies[parseInt(template, 10) - 1];
-    return _replaceIds(dum, article_id)
+    return _replaceIds(dum, position, excursion_id, existing_slide)
   };
-  var _replaceIds = function(string, article_id) {
+  var _replaceIds = function(string, position, excursion_id, existing_slide) {
     var newString = string;
     while(newString.indexOf("div_id_to_change") != -1) {
       newString = newString.replace("div_id_to_change", "zone" + nextDivId);
       nextDivId++
     }
     while(newString.indexOf("article_id_to_change") != -1) {
-      if(article_id) {
-        newString = newString.replace("article_id_to_change", "article" + article_id)
-      }else {
-        newString = newString.replace("article_id_to_change", "article" + nextArticleId);
-        nextArticleId++
+      if(!excursion_id) {
+        excursion_id = ""
       }
+      newString = newString.replace("article_id_to_change", "article_" + excursion_id + "_" + position)
     }
-    if(article_id) {
+    while(newString.indexOf("slidenumber_to_change") != -1) {
+      newString = newString.replace("slidenumber_to_change", position)
+    }
+    if(existing_slide) {
       newString = newString.replace(/editable /g, "")
     }
     return newString
@@ -15315,7 +15255,7 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     var carrouselImages = [];
     $.each(avatars.pictures, function(i, item) {
       var myImg = $("<img src=" + item.src + " />");
-      carrouselImages.push(myImg)
+      carrouselImages.push($(myImg)[0])
     });
     VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
@@ -15547,42 +15487,44 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
   return{createCarrousel:createCarrousel, cleanCarrousel:cleanCarrousel, goToElement:goToElement, advanceCarrousel:advanceCarrousel, backCarrousel:backCarrousel}
 }(VISH, jQuery);
 VISH.Editor.Flashcard = function(V, $, undefined) {
-  var switchToFlashcard = function() {
+  var loadFlashcard = function() {
     V.Editor.setExcursionType("flashcard");
     V.Editor.Utils.hideSlides();
     $("#flashcard-background").show();
-    $("#flashcard-background").droppable();
-    V.Editor.Thumbnails.redrawThumbnails(_redrawPois);
+    $("#flashcard-background").droppable()
+  };
+  var switchToFlashcard = function() {
+    loadFlashcard();
+    V.Editor.Thumbnails.redrawThumbnails(redrawPois);
     VISH.Editor.Tools.init()
   };
-  var _redrawPois = function() {
-    $(".fc_draggable_arrow").show();
+  var redrawPois = function() {
+    $(".draggable_arrow_div").show();
     _applyStyleToPois();
-    $(".fc_draggable_arrow").draggable({stop:function(event, ui) {
-      console.log("start drag")
-    }, revert:"invalid", stop:function(event, ui) {
-      if($(event.srcElement).offset().top > 100 && $(event.srcElement).offset().top < 700 && $(event.srcElement).offset().left > 55 && $(event.srcElement).offset().left < 855) {
-        $(event.srcElement).attr("moved", "true")
+    $(".draggable_arrow_div").draggable({revert:"invalid", stop:function(event, ui) {
+      if($(event.target).offset().top > 100 && $(event.target).offset().top < 700 && $(event.target).offset().left > 55 && $(event.target).offset().left < 855) {
+        $(event.target).attr("moved", "true")
       }else {
-        $(event.srcElement).attr("moved", "false")
+        $(event.target).attr("moved", "false")
       }
     }});
     $(".carrousel_element_single_row_slides").droppable();
     $(".image_carousel").css("overflow", "visible");
-    $("#menubar").css("z-index", "2000");
-    $(".fc_draggable_arrow").css("z-index", "2000")
+    $("#menubar").css("z-index", "1075");
+    $(".draggable_arrow_div").css("z-index", "1075")
   };
   var _applyStyleToPois = function() {
     var excursion = V.Editor.getExcursion();
     if(excursion && excursion.background && excursion.background.pois) {
-      $.each(excursion.background.pois, function(index, value) {
-        console.log("val" + value)
+      $.each(excursion.background.pois, function(index, val) {
+        $("#" + val.id).offset({top:parseInt(val.y) + 75, left:parseInt(val.x) + 55});
+        $("#" + val.id).attr("moved", "true")
       })
     }
   };
   var savePois = function() {
     var pois = [];
-    $(".fc_draggable_arrow[moved='true']").each(function(index, s) {
+    $(".draggable_arrow_div[moved='true']").each(function(index, s) {
       pois[index] = {};
       pois[index].id = $(s).attr("id");
       pois[index].x = $(s).offset().left - 55;
@@ -15592,9 +15534,9 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     return pois
   };
   var removePois = function() {
-    $(".fc_draggable_arrow").hide()
+    $(".draggable_arrow_div").hide()
   };
-  return{removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard}
+  return{loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard}
 }(VISH, jQuery);
 VISH.Editor.I18n = function(V, $, undefined) {
   var language;
@@ -15642,7 +15584,7 @@ VISH.Editor.I18n = function(V, $, undefined) {
       }, function() {
         $("#start_tutorial").css("background-position", "0px -" + normal_pos + "px")
       });
-      $("#contentusetut").attr("src", "images/contentuse_" + language + ".png")
+      $("#contentusetut").attr("src", VISH.ImagesPath + "contentuse_" + language + ".png")
     }
     var duration = (new Date).getTime() - initTime;
     VISH.Debugging.log("Internationalization took " + duration + " ms.")
@@ -15782,6 +15724,27 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     $.fancybox.close()
   };
   return{init:init, onLoadTab:onLoadTab}
+}(VISH, jQuery);
+VISH.Editor.MenuTablet = function(V, $, undefined) {
+  var init = function() {
+    $(".menu_option_main").click(function(event) {
+      if($("ul.menu_option_main").css("display") == "none") {
+        $("ul.menu_option_main").show()
+      }else {
+        $("ul.menu_option_main").hide()
+      }
+    });
+    $("a.menu_option").click(function(event) {
+      if(!$(this).hasClass("menu_action") && $(this).parent()[0].tagName === "LI" && $(this).parent().find("ul").length == 1) {
+        var subMenu = $(this).parent().find("ul")[0];
+        event.preventDefault();
+        event.stopPropagation();
+        $(subMenu).show()
+      }else {
+      }
+    })
+  };
+  return{init:init}
 }(VISH, jQuery);
 VISH.Editor.Object.Flash = function(V, $, undefined) {
   var drawFlashObjectWithSource = function(src) {
@@ -16240,11 +16203,31 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
 }(VISH, jQuery);
 VISH.Editor.Preview = function(V, $, undefined) {
-  var prepare = function() {
-    $("#preview_circle").attr("href", "/vishEditor/viewer.html#" + V.Slides.getCurrentSlideNumber());
-    presentation_preview = V.Editor.saveExcursion()
+  var presentation_preview;
+  var forcePresentation = false;
+  var prepare = function(slideNumberToPreview) {
+    if(!slideNumberToPreview) {
+      slideNumberToPreview = V.Slides.getCurrentSlideNumber()
+    }
+    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      $("#preview_circle").attr("href", "/")
+    }else {
+      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+        $("#preview_circle").attr("href", "/vishEditor/viewer.html#" + slideNumberToPreview)
+      }else {
+        if(VISH.Configuration.getConfiguration()["mode"] == "node") {
+        }
+      }
+    }
+    presentation_preview = V.Editor.saveExcursion(forcePresentation)
   };
-  return{prepare:prepare}
+  var setForcePresentation = function(force) {
+    forcePresentation = force
+  };
+  var getPreview = function() {
+    return presentation_preview
+  };
+  return{prepare:prepare, getPreview:getPreview, setForcePresentation:setForcePresentation}
 }(VISH, jQuery);
 VISH.Editor.Quiz = function(V, $, undefined) {
   var buttonAddOptionId = "a_add_quiz_option";
@@ -16277,9 +16260,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       $(".current").find("." + MultipleChoiceOptionClass).removeAttr("autofocus");
       var text = $("<div>").append($("." + MultipleChoiceOptionClass).clone()).html();
       var inputs_search = $(".current").find("." + MultipleChoiceOptionClass);
-      V.Debugging.log("inputs search value is: " + inputs_search);
       var next_num = inputs_search.size() + 1;
-      V.Debugging.log("next_num value is: " + next_num);
       var next_index = "a".charCodeAt(0) + (next_num - 1);
       next_index = String.fromCharCode(next_index);
       if(next_num < maxNumMultipleChoiceOptions) {
@@ -16379,17 +16360,17 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     });
     slides = excursion.slides;
     for(var i = 0;i < slides.length;i++) {
-      _renderSlide(slides[i], i)
+      _renderSlide(slides[i], i, excursion.id)
     }
   };
-  var _renderSlide = function(slide, position) {
+  var _renderSlide = function(slide, position, excursion_id) {
     var template = slide.template.substring(1);
-    var scaffold = V.Dummies.getDummy(template, slide.id);
+    var scaffold = V.Dummies.getDummy(template, position, excursion_id, true);
     V.Editor.Utils.addSlide(scaffold);
     V.Editor.Utils.redrawSlides();
     V.Slides.lastSlide();
     for(el in slide.elements) {
-      var area = $("#article" + slide.id + " div[areaid='" + slide.elements[el].areaid + "']");
+      var area = $("#article_" + excursion_id + "_" + position + " div[areaid='" + slide.elements[el].areaid + "']");
       if(area.length === 0) {
         continue
       }
@@ -16530,7 +16511,7 @@ VISH.Editor.Text = function(V, $, undefined) {
         _unnestFontTags(elem)
       }else {
         if(!$(elem).is("font")) {
-          $(elem).wrap("<font size='" + $(myelem).attr("size") + "' style='" + $(myelem).attr("style") + "' face='" + $(myelem).attr("face") + "'>")
+          $(elem).wrap("<font size='" + $(myelem).attr("size") + "' style='" + $(myelem).attr("style") + "' color='" + $(myelem).attr("color") + "' face='" + $(myelem).attr("face") + "'>")
         }
       }
     });
@@ -16542,7 +16523,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
   var carrouselDivId = "slides_carrousel";
   var init = function() {
   };
-  var redrawThumbnails = function(afterCreateCarruselFunction) {
+  var redrawThumbnails = function() {
     VISH.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     var carrouselImages = [];
@@ -16563,9 +16544,9 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         carrouselElements += 1
       }
     }
-    VISH.Utils.loader.loadImagesOnCarrouselOrder(carrouselImages, _onImagesLoaded, afterCreateCarruselFunction, carrouselDivId, carrouselImagesTitles)
+    VISH.Utils.loader.loadImagesOnCarrouselOrder(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
   };
-  var _onImagesLoaded = function(afterCreateCarruselFunction) {
+  var _onImagesLoaded = function() {
     $(".add_slide_button").hover(function() {
       $(this).attr("src", VISH.ImagesPath + "hover/add_slide.png")
     }, function() {
@@ -16585,9 +16566,14 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     options["width"] = 900;
     options["startAtLastElement"] = true;
     options["pagination"] = false;
-    options["afterCreateCarruselFunction"] = afterCreateCarruselFunction;
+    if(V.Editor.getExcursionType() === "flashcard") {
+      options["afterCreateCarruselFunction"] = VISH.Editor.Flashcard.redrawPois
+    }
     $("#" + carrouselDivId).show();
     VISH.Editor.Carrousel.createCarrousel(carrouselDivId, options);
+    if(VISH.Slides.getCurrentSlideNumber() > 0) {
+      selectThumbnail(VISH.Slides.getCurrentSlideNumber())
+    }
     if(V.Editor.getExcursionType() === "presentation") {
       var firstCarrouselNumber;
       $("#" + carrouselDivId).sortable({items:'div.carrousel_element_single_row_slides:has(img[action="goToSlide"])', change:function(event, ui) {
@@ -16600,10 +16586,11 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
           return
         }
         var orgPosition = parseInt($(img).attr("slidenumber"));
-        var destPosition = firstCarrouselNumber + $("div.carrousel_element_single_row_slides").index($("div.carrousel_element_single_row_slides:has(img[slidenumber='" + orgPosition + "'])"));
-        V.Debugging.log("firstCarrouselNumber: " + firstCarrouselNumber);
-        V.Debugging.log("Org position: " + orgPosition);
-        V.Debugging.log("Dest position: " + destPosition);
+        var carrouselContainer = [];
+        $.each($("div.carrousel_element_single_row_slides:has(img[slidenumber])"), function(index, value) {
+          carrouselContainer.push(value)
+        });
+        var destPosition = firstCarrouselNumber + $(carrouselContainer).index($("div.carrousel_element_single_row_slides:has(img[slidenumber='" + orgPosition + "'])"));
         var movement = null;
         if(destPosition > orgPosition) {
           movement = "after"
@@ -16653,7 +16640,9 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         V.Debugging.log("Show message warning that we are changing to presentation and change");
         break;
       case "goToSlide":
-        V.Debugging.log("Preview slide: " + $(event.target).attr("slideNumber"));
+        V.Slides.setCurrentSlideNumber($(event.target).attr("slideNumber"));
+        V.Editor.Preview.setForcePresentation(true);
+        $("img#preview_circle").trigger("click");
         break;
       default:
         break
@@ -16668,6 +16657,15 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
 VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var menuEventsLoaded = false;
   var init = function() {
+    $("#menu").hide();
+    if(!VISH.Status.ua.desktop) {
+      if(VISH.Status.ua.tablet) {
+        VISH.Editor.MenuTablet.init()
+      }else {
+        disableMenu();
+        return
+      }
+    }
     var presentationType = VISH.Editor.getExcursionType();
     $("ul.menu_option_main").find("li").hide();
     $("ul.menu_option_main").find("a.menu_all").parent().show();
@@ -16723,11 +16721,111 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       });
       menuEventsLoaded = true
     }
+    $("#menu").show();
+    _initSettings();
+    _initPreview()
   };
-  var settings = function() {
-    V.Debugging.log("Settings called");
-    $.fancybox($("#excursiondetails").html(), {"autoDimensions":false, "width":800, "height":660, "scrolling":"no", "showCloseButton":true, "padding":0, "onClosed":function() {
+  var disableMenu = function() {
+    $("#menu").hide();
+    $("#menu").attr("id", "menuDisabled")
+  };
+  var enableMenu = function() {
+    $("#menuDisabled").show();
+    $("#menuDisabled").attr("id", "menu")
+  };
+  var initializedSettings = false;
+  var _initSettings = function() {
+    if(VISH.Configuration.getConfiguration()["presentationSettings"] && !VISH.Editor.hasInitialExcursion()) {
+      $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":false});
+      displaySettings()
+    }else {
+      $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":true})
+    }
+  };
+  var displaySettings = function() {
+    $("a#edit_excursion_details").trigger("click")
+  };
+  var firstSettingsCall = true;
+  var onSettings = function() {
+    if(firstSettingsCall) {
+      $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":true})
+    }
+    if(VISH.Configuration.getConfiguration()["presentationTags"] && firstSettingsCall) {
+      VISH.Editor.API.requestTags(_onInitialTagsReceived);
+      var draftExcursion = VISH.Editor.getExcursion();
+      if(draftExcursion && draftExcursion.avatar) {
+        VISH.Editor.AvatarPicker.onLoadExcursionDetails(draftExcursion.avatar)
+      }else {
+        VISH.Editor.AvatarPicker.onLoadExcursionDetails(null)
+      }
+    }
+  };
+  var _onInitialTagsReceived = function(data) {
+    var tagList = $(".tagBoxIntro .tagList");
+    var draftExcursion = VISH.Editor.getExcursion();
+    if($(tagList).children().length == 0) {
+      if(!draftExcursion) {
+        $.each(data, function(index, tag) {
+          if(index == 2) {
+            return false
+          }
+          $(tagList).append("<li>" + tag + "</li>")
+        })
+      }else {
+        if(draftExcursion.tags) {
+          $.each(draftExcursion.tags, function(index, tag) {
+            $(tagList).append("<li>" + tag + "</li>")
+          })
+        }
+      }
+      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:6, watermarkAllowMessage:"Add tags", watermarkDenyMessage:"limit reached"})
+    }
+  };
+  var onSaveExcursionDetailsButtonClicked = function(event) {
+    if($("#excursion_title").val().length < 1) {
+      $("#excursion_details_error").slideDown("slow");
+      $("#excursion_details_error").show();
+      return false
+    }
+    var draftExcursion = VISH.Editor.getExcursion();
+    if(!draftExcursion) {
+      draftExcursion = {}
+    }
+    draftExcursion.title = $("#excursion_title").val();
+    draftExcursion.description = $("#excursion_description").val();
+    draftExcursion.avatar = $("#excursion_avatar").val();
+    draftExcursion.tags = VISH.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
+    VISH.Editor.setExcursion(draftExcursion);
+    $("#excursion_details_error").hide();
+    $.fancybox.close()
+  };
+  var onSaveButtonClicked = function() {
+    if(VISH.Slides.getSlides().length === 0) {
+      $.fancybox($("#message1_form").html(), {"autoDimensions":false, "scrolling":"no", "width":350, "height":200, "showCloseButton":false, "padding":5})
+    }else {
+      $.fancybox($("#save_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
+        if($("#save_answer").val() === "true") {
+          $("#save_answer").val("false");
+          var excursion = VISH.Editor.saveExcursion();
+          VISH.Editor.afterSaveExcursion(excursion)
+        }else {
+          return false
+        }
+      }})
+    }
+  };
+  var preview = function() {
+    $("img#preview_circle").trigger("click")
+  };
+  var _initPreview = function() {
+    $("img#preview_circle").fancybox({"width":"8", "height":"6", "autoScale":false, "transitionIn":"none", "transitionOut":"none", "type":"iframe", "onStart":function() {
+      VISH.Editor.Preview.prepare(V.Slides.getCurrentSlideNumber())
+    }, "onClosed":function() {
+      V.Editor.Preview.setForcePresentation(false)
     }})
+  };
+  var help = function() {
+    $("#help_right").trigger("click")
   };
   var switchToFlashcard = function() {
     V.Editor.Flashcard.switchToFlashcard()
@@ -16738,9 +16836,10 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.setExcursionType("presentation");
     V.Editor.Utils.showSlides();
     $("#flashcard-background").hide();
-    V.Editor.Thumbnails.redrawThumbnails()
+    V.Editor.Thumbnails.redrawThumbnails();
+    VISH.Editor.Tools.init()
   };
-  return{init:init, settings:settings, switchToFlashcard:switchToFlashcard, switchToPresentation:switchToPresentation}
+  return{init:init, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, onSettings:onSettings, onSaveExcursionDetailsButtonClicked:onSaveExcursionDetailsButtonClicked, onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, switchToFlashcard:switchToFlashcard, switchToPresentation:switchToPresentation}
 }(VISH, jQuery);
 VISH.Editor.Tour = function(V, $, undefined) {
   var startTourWithId = function(helpid, tipLocation) {
@@ -16764,14 +16863,10 @@ VISH.Editor.Utils = function(V, $, undefined) {
     $(document).trigger("OURDOMContentLoaded")
   };
   var hideSlides = function() {
-    $(".slides > article").hide()
+    $(".slides > article").addClass("temp_hidden")
   };
   var showSlides = function() {
-    $(".slides > article.far-past").show();
-    $(".slides > article.past").show();
-    $(".slides > article.current").show();
-    $(".slides > article.next").show();
-    $(".slides > article.far-next").show()
+    $(".slides > article").removeClass("temp_hidden")
   };
   var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
     var element_type;
@@ -16888,10 +16983,10 @@ VISH.Editor.Utils = function(V, $, undefined) {
   };
   var loadTab = function(tab_id) {
     $(".joyride-close-tip").click();
-    $(".fancy_tab").removeClass("fancy_selected");
-    $("#" + tab_id).addClass("fancy_selected");
     $(".fancy_tab_content").hide();
     $("#" + tab_id + "_content").show();
+    $(".fancy_tab").removeClass("fancy_selected");
+    $("#" + tab_id).addClass("fancy_selected");
     $(".help_in_fancybox").hide();
     $("#" + tab_id + "_help").show();
     switch(tab_id) {
@@ -17364,13 +17459,13 @@ VISH.Flashcard = function(V, $, undefined) {
     var fileref = document.createElement("link");
     fileref.setAttribute("rel", "stylesheet");
     fileref.setAttribute("type", "text/css");
-    fileref.setAttribute("href", "stylesheets/all/flashcard.css");
+    fileref.setAttribute("href", "stylesheets/flashcard/flashcard.css");
     document.getElementsByTagName("body")[0].appendChild(fileref);
     var flashcard_div = $("#flashcard-background");
-    flashcard_div.css("background-image", "url('" + excursion.background.src + "')");
+    flashcard_div.css("background-image", excursion.background.src);
     for(index in excursion.background.pois) {
       var poi = excursion.background.pois[index];
-      var div_to_add = "<div id='" + poi.id + "' style='position:relative;display: inline-block;left:" + poi.x + "px;top:" + poi.y + "px'><img src='" + VISH.ImagesPath + "arrow_down.gif'/></div>";
+      var div_to_add = "<div id='" + poi.id + "' style='position:absolute;display: inline-block;left:" + poi.x + "px;top:" + poi.y + "px'><img src='" + VISH.ImagesPath + "arrow_down.gif'/></div>";
       flashcard_div.append(div_to_add);
       $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onPoiClicked)
     }
@@ -17394,7 +17489,7 @@ VISH.Game = function(V, $, undefined) {
   };
   var raiseAction = function(action_name) {
     if(actions[action_name]) {
-      console.log("show slide " + actions[action_name].slide_id)
+      V.Debugging.log("show slide " + actions[action_name].slide_id)
     }
   };
   return{raiseAction:raiseAction, registerActions:registerActions}
@@ -17492,7 +17587,6 @@ VISH.Quiz.API = function(V, $, undefined) {
       V.Debugging.log("token is: " + V.User.getToken());
       var params = {"quiz_id":quiz_id, "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
-        V.Debugging.log("data: " + data);
         var quiz_session_id = data;
         if(typeof successCallback == "function") {
           successCallback(quiz_session_id)
@@ -17518,7 +17612,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     if(quiz_name) {
       quizName = quiz_name
     }else {
-      quizName = false
+      quizName = ""
     }
     var send_type = "DELETE";
     V.Debugging.log("token is: " + V.User.getToken());
@@ -17533,8 +17627,6 @@ VISH.Quiz.API = function(V, $, undefined) {
     }});
     return null
   };
-  var getQuizSession = function(quiz_session_id, successCallback, failCallback) {
-  };
   var putQuizSession = function(answer_selected, quiz_active_session_id, successCallback, failCallback) {
     V.Debugging.log("quiz_active_session_id for voting is : " + quiz_active_session_id);
     V.Debugging.log("Answer selected value is: " + answer_selected);
@@ -17544,7 +17636,6 @@ VISH.Quiz.API = function(V, $, undefined) {
       V.Debugging.log("token is: " + V.User.getToken());
       var params = {"id":quiz_active_session_id, "option":answer_selected, "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id, data:params, success:function(data) {
-        V.Debugging.log("data: " + data);
         var results = data;
         if(typeof successCallback == "function") {
           successCallback(results)
@@ -17570,7 +17661,6 @@ VISH.Quiz.API = function(V, $, undefined) {
       var send_type = "GET";
       var params = {"id":quiz_active_session_id, "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id + "/results.json", data:params, success:function(data) {
-        console.log("data: " + data);
         var results = data;
         if(typeof successCallback == "function") {
           successCallback(results)
@@ -17589,7 +17679,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }
     }
   };
-  return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, getQuizSession:getQuizSession, putQuizSession:putQuizSession, getQuizSessionResults:getQuizSessionResults}
+  return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, putQuizSession:putQuizSession, getQuizSessionResults:getQuizSessionResults}
 }(VISH, jQuery);
 VISH.Quiz.Renderer = function(V, $, undefined) {
   var quiz_id;
@@ -17637,8 +17727,8 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     for(var i = 0;i < element["options"].length;i++) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>";
-      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
-      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
+      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption_" + next_index + "' style='width:0%'></span></div>";
+      ret += "<label class='mcoption_label' id='mcoption_label_" + next_index + "'></label>"
     }
     ret += "</div>";
     ret += "<div class='mcquestion_right'>";
@@ -17647,7 +17737,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     ret += "<input type='hidden' id='quiz_id_to_activate_" + slide + "' value='" + V.Quiz.getQuizIdToStartSession() + "' class='quiz_id_to_activate'/>";
     ret += "<input type='button' id='mcquestion_start_button_" + slide + "' class='mcquestion_start_button' value='Start Quiz'/>";
     ret += "<div id='save_quiz_" + slide + "' class='save_quiz'><label>Do you want to save the polling results?</label>";
-    ret += "<input type='text' id='save_name_quiz_" + slide + " class='save_results_quiz' type='text' placeholder='write a name for saving' />";
+    ret += "<input type='text' id='save_name_quiz_" + slide + "' class='save_results_quiz' type='text' placeholder='write a name for saving' />";
     ret += "<input type='button'class='mcquestion_save_yes_button' id='mcquestion_save_yes_button_" + slide + "' value='Yes'><input type='button' class='mcquestion_save_no_button' id='mcquestion_save_no_button_" + slide + "' value='No'></div>";
     ret += "</div>";
     ret += "</form>";
@@ -17678,8 +17768,8 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     for(var i = 0;i < element["options"].length;i++) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       ret += "<label class='mc_answer' id='mc_answer_" + slide + "_option_" + next_index + "'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>" + element["options"][i] + "</label>";
-      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption" + (i + 1) + "'></span></div>";
-      ret += "<label class='mcoption_label' id='mcoption_label_" + (i + 1) + "'></label>"
+      ret += "<div class='mc_meter' id='mcoption_div_" + (i + 1) + "'><span  id='mcoption_" + next_index + "'></span></div>";
+      ret += "<label class='mcoption_label' id='mcoption_label_" + next_index + "'></label>"
     }
     ret += "</div>";
     ret += "<div class='mcquestion_right'>";
@@ -17871,13 +17961,15 @@ VISH.SlideManager = function(V, $, undefined) {
     }
     V.Slides.init();
     V.Status.init();
-    if(V.Status.ua.mobile) {
-      V.Debugging.log("Load Mobile CSS");
-      $("head").append('<link rel="stylesheet" href="/vishEditor/stylesheets/mobile/mobile.css" type="text/css" />')
+    if(V.Status.ua.desktop) {
+      $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/desktop.css" type="text/css" />')
     }else {
-      if(V.Status.ua.tablet) {
-        V.Debugging.log("Load Tablet CSS");
-        $("head").append('<link rel="stylesheet" href="/vishEditor/stylesheets/mobile/tablet.css" type="text/css" />')
+      if(V.Status.ua.mobile) {
+        $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/mobile.css" type="text/css" />')
+      }else {
+        if(V.Status.ua.tablet) {
+          $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/tablet.css" type="text/css" />')
+        }
       }
     }
     V.User.init(options);
@@ -18016,6 +18108,9 @@ VISH.SlideManager = function(V, $, undefined) {
   var updateSlideCounter = function() {
     var number_of_slides = V.Slides.getSlides().length;
     var slide_number = VISH.Slides.getCurrentSlideNumber();
+    if(number_of_slides === 0) {
+      slide_number = 0
+    }
     $("#slide-counter").html(slide_number + "/" + number_of_slides)
   };
   var hideAddressBar = function() {
@@ -18256,14 +18351,13 @@ VISH.Status = function(V, $, undefined) {
   };
   var fillFeatures = function() {
     setIsInIframe(window.location != window.parent.location ? true : false);
-    V.Debugging.log("We are in iframe: " + getIsInIframe());
     var elem = document.getElementById("page-fullscreen");
     if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
       if(!isInIframe) {
         features.fullscreen = true
       }else {
         try {
-          if(window.parent.location.host === window.location.host && !window.parent.presentation_preview) {
+          if(window.parent.location.host === window.location.host && (!window.parent.VISH || !window.parent.VISH.Editor || !(typeof window.parent.VISH.Editor.Preview.getPreview === "function"))) {
             features.fullscreen = true
           }
         }catch(e) {
@@ -18271,9 +18365,7 @@ VISH.Status = function(V, $, undefined) {
         }
       }
     }
-    V.Debugging.log("Fullscreen supported: " + features.fullscreen);
-    features.touchScreen = !!("ontouchstart" in window);
-    V.Debugging.log("TouchScreen supported: " + features.touchScreen)
+    features.touchScreen = !!("ontouchstart" in window)
   };
   var fillUserAgent = function() {
     ua.pixelRatio = window.devicePixelRatio || 1;
@@ -18318,21 +18410,8 @@ VISH.Status = function(V, $, undefined) {
     }else {
       ua.desktop = false
     }
-    V.Debugging.log("isMobile " + ua.mobile);
-    V.Debugging.log("isTablet: " + ua.tablet);
-    V.Debugging.log("Screen width: " + ua.screen.width);
-    V.Debugging.log("Screen height: " + ua.screen.height);
-    V.Debugging.log("Visual Viewport width: " + ua.viewport.width);
-    V.Debugging.log("Visual Viewport height: " + ua.viewport.height);
-    V.Debugging.log("Layout Viewport width: " + document.documentElement.clientWidth);
-    V.Debugging.log("Layout Viewport height: " + document.documentElement.clientHeight);
-    V.Debugging.log("HTML element width: " + document.documentElement.offsetWidth);
-    V.Debugging.log("HTML element height: " + document.documentElement.offsetHeight);
-    V.Debugging.log("window.screen.availWidth: " + window.screen.availWidth);
-    V.Debugging.log("window.screen.availHeight: " + window.screen.availHeight)
   };
   var updateOrientation = function() {
-    V.Debugging.log("updateOrientation called with " + window.orientation)
   };
   var getIsInIframe = function() {
     return isInIframe
@@ -18535,7 +18614,7 @@ VISH.Utils.loader = function(V, undefined) {
       })
     })
   };
-  var loadImagesOnCarrouselOrder = function(imagesArray, callback, data, carrouselDivId, titleArray) {
+  var loadImagesOnCarrouselOrder = function(imagesArray, callback, carrouselDivId, titleArray) {
     var validImagesArray = imagesArray;
     var imagesLength = imagesArray.length;
     var imagesLoaded = 0;
@@ -18544,7 +18623,7 @@ VISH.Utils.loader = function(V, undefined) {
         imagesLoaded = imagesLoaded + 1;
         if(imagesLoaded == imagesLength) {
           _insertElementsWithOrder(validImagesArray, carrouselDivId, titleArray);
-          callback(data)
+          callback()
         }
       });
       $(image).error(function(response) {
@@ -18552,7 +18631,7 @@ VISH.Utils.loader = function(V, undefined) {
         validImagesArray.splice(validImagesArray.indexOf(image), 1);
         if(imagesLoaded == imagesLength) {
           _insertElementsWithOrder(validImagesArray, carrouselDivId, titleArray);
-          callback(data)
+          callback()
         }
       })
     })
@@ -18560,7 +18639,8 @@ VISH.Utils.loader = function(V, undefined) {
   var _insertElementsWithOrder = function(imagesArray, carrouselDivId, titleArray) {
     $.each(imagesArray, function(i, image) {
       if(titleArray && titleArray[imagesArray.indexOf(image)]) {
-        $("#" + carrouselDivId).append("<div><img src='/vishEditor/images/flashcard_button.jpg' id='poi" + titleArray[imagesArray.indexOf(image)] + "' class='fc_draggable_arrow'/><p slidenumber='" + titleArray[imagesArray.indexOf(image)] + "' action='goToSlide'>" + titleArray[imagesArray.indexOf(image)] + "</p>" + VISH.Utils.getOuterHTML(image) + "</div>")
+        $("#" + carrouselDivId).append("<div><div class='draggable_arrow_div' slide_id='" + titleArray[imagesArray.indexOf(image)] + "' id='poi" + titleArray[imagesArray.indexOf(image)] + "'><img src='" + VISH.ImagesPath + "flashcard_button.png'  class='fc_draggable_arrow'/><p class='draggable_number'>" + titleArray[imagesArray.indexOf(image)] + "</p></div><p slidenumber='" + titleArray[imagesArray.indexOf(image)] + "' action='goToSlide'>" + titleArray[imagesArray.indexOf(image)] + "</p>" + VISH.Utils.getOuterHTML(image) + 
+        "</div>")
       }else {
         $("#" + carrouselDivId).append("<div>" + VISH.Utils.getOuterHTML(image) + "</div>")
       }
@@ -18720,7 +18800,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var fileref = document.createElement("link");
     fileref.setAttribute("rel", "stylesheet");
     fileref.setAttribute("type", "text/css");
-    fileref.setAttribute("href", "stylesheets/all/game.css");
+    fileref.setAttribute("href", "stylesheets/game/game.css");
     document.getElementsByTagName("body")[0].appendChild(fileref)
   };
   var decideIfPageSwitcher = function() {

@@ -106,6 +106,27 @@ body {
   display: none;
   z-index: 1075;
 }
+/*class used to show a slide to get width and height and after that remove the class
+this can not be done with show() and hide() because then it remains with display:none*/
+.slides > article.temp_shown {
+  display: block !important;
+}
+.slides > article.far-past.temp_hidden {
+  display: none;
+}
+.slides > article.past.temp_hidden {
+  display: none;
+}
+.slides > article.current.temp_hidden {
+  display: none;
+}
+.slides > article.next.temp_hidden {
+  display: none;
+}
+.slides > article.far-next.temp_hidden {
+  display: none;
+}
+
 .slides > article.far-past {
   display: block;
   transform: translate(-230%);
@@ -328,6 +349,21 @@ body {
 
 .vish-fontverdana{
 	font-family: "verdana";	
+}
+
+.vish-3d {
+      text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
 }
 
 #mobile_back_arrow{

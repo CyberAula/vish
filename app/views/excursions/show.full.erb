@@ -13,48 +13,39 @@
 	</div>
 </section>
   
-<script>
-	//first function called when page loads
+<script>	
+	options = {};
+	var configuration = {};
 
+	configuration["presentationSettings"] = true;
+	configuration["presentationTags"] = true;
+	configuration["presentationThumbnails"] = true;
 
+	configuration["VishLives"] = true;
+	configuration["VishRepo"] = true;
 
+	configuration["Flickr"] = true;
+	configuration["Youtube"] = true;
+	configuration["Vimeo"] = false;
 
-		var options = {};
-		var configuration = {};
-		configuration["presentationSettings"] = true;
-		configuration["presentationTags"] = true;
-		configuration["presentationThumbnails"] = true;
+	configuration["Upload"] = true;
 
-		configuration["VishLives"] = true;
-		configuration["VishUpload"] = true;
-		configuration["VishRepo"] = true;
+	configuration["mode"] = "vish";
+	options["configuration"] = configuration;
+	options["developping"] = false;
 
-		configuration["Flickr"] = true;
-		configuration["Youtube"] = true;
-		configuration["Vimeo"] = false;
+	options["token"] = "<%= form_authenticity_token %>";
+	options["lang"] = "<%= I18n.locale.to_s%>";
 
-		configuration["VishIntegration"] = true;
+	options["quiz_active_session_id"]=false;
 
-		configuration["mode"] = "vish";
-
-
-options["configuration"] = configuration; 
-
- <% if user_signed_in? %>
-    options["username"]= "<%= current_user.name %>";
- <% else %>
-    options["username"]= false;
-  <% end %>
-
-
-options["quiz_active_session_id"]=false;
-options["token"]= "<%= form_authenticity_token %>";
+	<% if user_signed_in? %>
+	    options["username"]= "<%= current_user.name %>";
+	<% else %>
+	    options["username"]= false;
+	<% end %>
 
 	function start(){
-		//params (options, excursion)
-		//VISH.SlideManager.init({}, <%= raw @excursion.json %>);
-       
 		VISH.SlideManager.init( options , <%= raw @excursion.json %>);
 	}
-
 </script>

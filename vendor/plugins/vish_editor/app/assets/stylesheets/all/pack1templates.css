@@ -550,19 +550,20 @@
 } */
 
 .question {
-	background: none repeat scroll 0 0 #F9F9F9;
 	border-radius: 0.4em 0.4em 0em 0em;
 	color: #212121;
 	display: block;
 	font-family: Helvetica;
-	font-size: 1.3em;
+	font-size: 1.4em;
 	font-weight: bold;
-	padding: 0.5em 0.5em;
+	padding: 0.3em;
 	text-decoration: none;
-	width:90%;	
+	width:135%;	
 	float: left;
 	line-height: 120%;
 	text-align:left;
+	margin-left: -1%;
+
 	
 		
 	}
@@ -655,14 +656,16 @@ text-align:left;
 }
 
 .url_share > span {
-	 background-color:#CCCCCC;
+	 background-color: #f7f7f7;
 	/*-moz-border-radius:15px;
 	-webkit-border-radius: 15px; */
 	
 	-moz-border-radius:2em;
 	-webkit-border-radius: 2em;
-	padding: 1%;
+	padding: 2%;
+	left: 0%;
 	position:relative;
+	top: -15px;
 }
 
 
@@ -708,13 +711,13 @@ text-align:left;
 }
 
 .t11_header {
+	padding-left: 20%;
   	margin-top:1.5%;
-  	height: 10%;
   	width: 100%;  
   	display: inline-block;  
   	color:#000066;
   	text-align:center;
-  	font-size:1.7em;
+  	font-size:1.2em;
 	font-weight:bold;
 }
 
@@ -761,33 +764,29 @@ text-align:left;
 .mcquestion_form {
 	text-align:center;	
 	width: 100%;	
-	height: 80%;
+	height: 62%;<
 	
 }
 
 .mch_statistics_icon {
-	
-	width: 40%;
-	height: 10%;
-	display:block;
-	margin:0 auto;
-	margin-top:5%;
-	position:relative;	
-	cursor:pointer;
+	position: absolute;
+	cursor: pointer;
+	top: 75%;
+	right: 6%;
 
 }
 
 .mcquestion_start_button{
 	display:block;
-	position:relative;
+	position:absolute;
 	color: blue;
 	font-size:1.2em;
 	text-align:center;
 	font-weight:bold;
 	vertical-align:bottom;
-	margin-top:20%; /* default 20%. It changes depending on the number of options*/
 	height:9%;
-	width: 100%;
+	width: 31%;
+	top: 100%;
 	-moz-border-radius:2em;
 	-webkit-border-radius: 2em;
 	cursor:pointer;
@@ -797,15 +796,15 @@ text-align:left;
 .mcquestion_stop_button {
 	
 	display:block;
-	position:relative;
-	color:red;
-	font-size:1.3em;
-	font-weight:bold;
+	position:absolute;
+	color: red;
+	font-size:1.2em;
 	text-align:center;
+	font-weight:bold;
 	vertical-align:bottom;
-	margin-top:20%; /* default 20%. It changes depending on the number of options*/
 	height:9%;
-	width: 100%;
+	width: 31%;
+	top: 100%;
 	-moz-border-radius:2em;
 	-webkit-border-radius: 2em;
 	cursor:pointer;
@@ -833,8 +832,7 @@ text-align:left;
 	font-size: 1.2em;
 	width:90%;
 	display: block;
-	margin-left: 3%;
-	margin-right: 3%;
+	margin: 1%;
 	line-height: 110%;
 	float:left;
 	position: relative;
@@ -865,7 +863,7 @@ text-align:left;
 
 	}		
 
-.mc_meter #mcoption1 { 
+.mc_meter #mcoption_a { 
 		width:0%;
 		height:100%;
 		background-color: red;
@@ -875,7 +873,7 @@ text-align:left;
 
 	}		
 		
-.mc_meter #mcoption2 { 
+.mc_meter #mcoption_b { 
 		width:0%;
 		height:100%;
 		background-color: green;
@@ -885,7 +883,7 @@ text-align:left;
 
 	}	
 
-.mc_meter #mcoption3 { 
+.mc_meter #mcoption_c { 
 		width:0%;
 		height:100%;
 		background-color: yellow;
@@ -894,7 +892,7 @@ text-align:left;
 		float:left;
 	}	
 
-.mc_meter #mcoption4 { 
+.mc_meter #mcoption_d { 
 		width:0%;
 		height:100%;
 		background-color: orange;
@@ -904,7 +902,7 @@ text-align:left;
 
 	}	
 		
-.mc_meter #mcoption5 { 
+.mc_meter #mcoption_e { 
 		width:0%;
 		height:100%;
 		background-color: blue;
@@ -914,7 +912,7 @@ text-align:left;
 
 	}		
 		
-.mc_meter #mcoption6 { 
+.mc_meter #mcoption_f { 
 		width:0%;
 		height:100%;
 		background-color:#FF05DD;
@@ -961,7 +959,6 @@ font-size:0.8em;
 	vertical-align:bottom;
 	margin-top:0%; /* default 20%. It changes depending on the number of options*/
 	height:9%;
-	width: 15%;
 	-moz-border-radius:2em;
 	-webkit-border-radius: 2em;
 	cursor:pointer;
@@ -978,7 +975,6 @@ font-size:0.8em;
 	vertical-align:bottom;
 	margin-top:0%; /* default 20%. It changes depending on the number of options*/
 	height:9%;
-	width: 15%;
 	-moz-border-radius:2em;
 	-webkit-border-radius: 2em;
 	cursor:pointer;

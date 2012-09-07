@@ -236,14 +236,14 @@ img {
 	background: none no-repeat scroll 5px 50% transparent;
     border: 1px solid #9B999D;
     border-radius: 10px 10px 10px 10px;
-    margin-left:3%;
     font-family: Helvetica;
-    font-size: 16px;
+    font-size: 1.4em;
     outline: 0 none;
-    padding: 5px 7px;
+    padding: 2% 4%;
     position: relative;
     z-index: 1000;
-	width: 610px;
+	max-width: 100%;
+	min-width: 50%;
 }
 
 .multiplechoice_text {
@@ -1534,7 +1534,7 @@ iframe.snapshot_content{
 	z-index: 1050;
 	width: 800px;
 	height: 600px;
-	margin-top: -300px;
+	margin-top: -327px;
 	margin-left: -400px;
 	left: 50%;
 	top: 50%;
@@ -1544,12 +1544,25 @@ iframe.snapshot_content{
 	background-attachment:fixed;
 	background-position:center center;
 	background-size: 100%;
+	border-radius: 20px;
+	webkit-border-radius: 20px;
+	moz-border-radius: 20px;
 }
 
-.carrousel_element_single_row_slides img.fc_draggable_arrow{
+.carrousel_element_single_row_slides div.draggable_arrow_div{
 	display: none;
-	margin-top: -20px;
+	margin-top: -30px;
 	margin-bottom: -30px;
-	width: 30px;
-	height: 30px;
+	opacity: 1;
+	cursor: pointer;
+}
+
+.draggable_arrow_div img.fc_draggable_arrow{
+	background-color: transparent;
+}
+
+.draggable_number{
+	position: relative;
+	top: -45px;
+	left: 27px;
 }

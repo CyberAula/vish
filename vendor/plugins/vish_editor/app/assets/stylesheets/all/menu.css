@@ -14,7 +14,7 @@
 	float: left;
 	position: relative;
 	list-style: none;
-	z-index: 9999;
+	z-index: 1080;
 }
 
 
@@ -85,11 +85,6 @@ ul.menu_option_main ul {
 	padding-bottom: 50px;
 	padding-right: 50px;
 	padding-left: 50px;
-}
-
-/* dropdown */
-#menu li:hover > ul {
-	display: block;
 }
 
 #menu ul li {
