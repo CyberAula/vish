@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* CSS Document */
 
-#email{margin-top: 20px; margin-bottom: 20px;}
+/*#email{margin-top: 20px; margin-bottom: 20px;}   */
 
 body {
     color: #333333;
@@ -9,12 +9,12 @@ body {
     font-size: 13px;
     line-height: 18px;
     margin-bottom: 0;
-
-
+    margin-left: 0;
+    margin-right: 0;
     margin-top: 0;
 	background-color: #f9f9f9;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 h1,
