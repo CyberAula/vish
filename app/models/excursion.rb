@@ -75,6 +75,7 @@ class Excursion < ActiveRecord::Base
     parsed_json = JSON(json)
     activity_object.title = parsed_json["title"]
     activity_object.description = parsed_json["description"]
+    activity_object.tag_list = parsed_json["tags"]
     activity_object.save!
 
     parsed_json["id"] = activity_object.id
