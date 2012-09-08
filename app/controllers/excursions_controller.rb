@@ -57,6 +57,7 @@ class ExcursionsController < ApplicationController
   def show
     show! do |format|
       format.full { render :layout => 'iframe' }
+      format.mobile { render :layout => 'iframe' }
       format.json { render :json => resource }
     end
   end
