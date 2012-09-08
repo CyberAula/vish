@@ -17,7 +17,6 @@ group :assets do
   gem 'uglifier', '>= 1.2.3'
 end
 
-gem 'jquery_mobile_rails'
 gem 'jquery-rails', '2.0.2'
 gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'

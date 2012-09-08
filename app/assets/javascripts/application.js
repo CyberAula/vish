@@ -8,7 +8,6 @@
 //= require jquery_ujs
 //= require jquery.tipsy
 //= require jquery.jplayer
-//= require jquery.mobile
 //= require jquery.ae.image.resize
 //= require social_stream-base
 //= require social_stream-documents
