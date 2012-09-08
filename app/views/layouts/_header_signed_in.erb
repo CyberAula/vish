@@ -49,9 +49,11 @@
     <% end %>
 
 
-    <div id="header_search " class="span3 offset3">
-      <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-large" } %>
-    </div>
+    <% unless controller.class == SearchController %>
+      <div id="header_search " class="span3 offset3">
+        <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-large" } %>
+      </div>
+    <% end %>
   </div>
 
 </div>

@@ -4,12 +4,14 @@ Vish.Search = function(V, $, undefined){
 	var index = function(options){
 		$('#tab').children('li').each(function(){
 			if ($(this).hasClass('disabled')) {
+			        $(this).off('click');
 				return;
 			}
 
 			var anchor = $(this).find('a').attr('href').replace('#', '');
 
-			$(this).click(function(){
+			$(this).off('click');
+			$(this).on('click', function(){
 				var indexPath = options['indexPath'];
 				var typeParam = (anchor == 'all' ? '' : 'type=' + anchor);
 				var query;

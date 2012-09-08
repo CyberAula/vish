@@ -4,7 +4,18 @@
 
 <% toolbar :search %>
 
-<div class="row"><span class="size40"><%=t('search.name') %></span></div>
+<div class="row">
+<form action="<%=search_path%>" method="get" id="main_search_form" data-remote="true">
+<%= label_tag 'q', t('search.name') + ':  ', :class => 'size30 inline' %>
+<%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "input-large" %>
+<%= hidden_field_tag :type, '', :id => 'main_search_form_type' %>
+<%= hidden_field_tag :time, '', :id => 'main_search_form_time' %>
+<%= hidden_field_tag :class, '', :id => 'main_search_form_class' %>
+<%= hidden_field_tag :sort, '', :id => 'main_search_form_sort' %>
+<%= hidden_field_tag :slides, '', :id => 'main_search_form_slides' %>
+<%= hidden_field_tag :quiz, '', :id => 'main_search_form_quiz' %>
+</form>
+</div>
 <div class="row space_center"></div>
 
 <div class="row">

@@ -1,9 +1,12 @@
 class SearchController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
+  include SearchHelper
 
   RESULTS_SEARCH_PER_PAGE=12
   MIN_QUERY=2
   def index
+    headers['Last-Modified'] = Time.now.httpdate
+
     @search_result =
       if params[:q].blank?
         search :extended # TODO: this should have :match_mode => :fullscan for efficiency
@@ -38,18 +41,9 @@ class SearchController < ApplicationController
 
   private
 
-  def search mode
-    result = SocialStream::Search.search(params[:q],
-                                         current_subject,
-                                         :mode => mode,
-                                         :key  => params[:type])
-
-    if mode.to_s.eql? "quick"
-      result = Kaminari.paginate_array(result).page(1).per(4)
-    else
-      result = Kaminari.paginate_array(result).page(params[:page]).per(RESULTS_SEARCH_PER_PAGE)
-    end
-
-    result
+  def search mode="extended"
+    results = ThinkingSphinx.search params[:q], search_options(mode)
+    results = Kaminari.paginate_array(results).page(1).per(7) if mode.to_s.eql? "quick"
+    results
   end
 end

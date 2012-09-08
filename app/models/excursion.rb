@@ -25,6 +25,10 @@ class Excursion < ActiveRecord::Base
 
   define_index do
     activity_object_index
+
+    has slide_count
+    has activity_object.like_count, :as => :like_count
+    has activity_object.visit_count, :as => :visit_count
   end
 
   def to_json(options=nil)
