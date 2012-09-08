@@ -193,6 +193,12 @@ en:
     possible_answers: "Possible answers"
     yes: "Yes"
   recommended: "recommended"
+  recsys:
+    recommended:
+      excursions:
+        explain_html: "Recommended according to your areas of interest"
+      resources:
+        explain_html: "Recommended according to your areas of interest"
   repository:
     one: "repository"
     other: "repositories"
