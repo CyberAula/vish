@@ -12,7 +12,7 @@ class AddCommentCountToActivityObject < ActiveRecord::Migration
       # Actors have not parent activities
       next if parent_activity.blank?
 
-      ao.update_attribute(:comment_count, Activity.includes(:activity_objects).where('activity_objects.object_type' => "Comment").where(:ancestry => [parent_activity.id]).size)
+      ao.update_attribute(:comment_count, Activity.includes(:activity_objects).where('activity_objects.object_type' => "Comment").where(:ancestry => [parent_activity.id.to_s]).size)
     end
 
     ActivityObject.record_timestamps = true
