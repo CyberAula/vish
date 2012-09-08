@@ -166,9 +166,9 @@ hr {
 }
 
 
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {font-size: 35px; text-decoration: none;}
-.nav-tabs > li > a:hover {font-size: 35px; text-decoration: none;}
-.nav-tabs > li > a {font-size: 35px; text-decoration: none; font-weight: 100; padding-bottom:5px;}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover { text-decoration: none;}
+.nav-tabs > li > a:hover { text-decoration: none;}
+.nav-tabs > li > a {font-size: 20px; text-decoration: none; font-weight: 100; padding-bottom:5px;}
 
 
 
@@ -180,7 +180,7 @@ hr {
   cursor: default;
   font-weight: 100;
   outline: none;
-  font-size: 35px;
+  font-size: 20px;
 
 
 .selected {
