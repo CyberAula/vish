@@ -49,12 +49,12 @@
         </div>
         <div id="ex-3" class="tab-pane">
           <div class="inline profile-excursion-recomended-me"><%= t('recsys.recommended.excursions.explain_html') %></div>
-          <div class="space_center"></div>
           <div class="pull-right">
             <div class="btn-gray">
               <a class="action" href="/excursions/new"><i class="icontool16-tool16_more"></i> <%= t('options.add') %></a>
             </div>
           </div>
+          <div class="space_center"></div>
           <div class="space_center"></div>
           <div id="home-excursions-more" class="row height-tabs-home">
             <%= render :partial => "excursions/filter_results",
@@ -118,12 +118,12 @@
         </div>
         <div id="repo-3" class="tab-pane">
           <div class="inline profile-excursion-recomended-me"><%= t('recsys.recommended.resources.explain_html') %></div>
-          <div class="space_center"></div>
           <div class="pull-right">
             <div class="btn-gray">
               <a class="action" href="/documents/new"><i class="icontool16-tool16_arrow_7"></i> <%= t('resource.upload') %></a>
             </div>
           </div>
+          <div class="space_center"></div>
           <div class="space_center"></div>
           <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
             <%= render :partial => "common_documents/filter_results",
