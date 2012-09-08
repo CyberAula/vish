@@ -26,17 +26,7 @@ Vish.Filter = function(V, $, undefined){
                   });
 		}
 
-		if (! $('#home-excursion-filter-more').data('events')) {
-                  $('#home-excursion-filter-more').on("keyup", function() {
-                    $.ajax({
-                      url: "/excursions/search",
-                      data: { q: $('#home-excursion-filter-more')[0].value, scope: "other", per_page: 4 },
-                      success: function(data) { $('#home-excursions-more').html(data); SocialStream.Follow.initButtons(); }
-                    });
-                  });
-		}
-
-		if (! $('#home-excursion-filter-more').data('events')) {
+		if (! $('#home-excursion-filter-fav').data('events')) {
                   $('#home-excursion-filter-fav').on("keyup", function() {
                     $.ajax({
                       url: "/excursions/search",
@@ -64,16 +54,6 @@ Vish.Filter = function(V, $, undefined){
                       url: "/resources/search",
                       data: { q: $('#home-resource-filter-me')[0].value, scope: "me", per_page: 6 },
                       success: function(data) { $('#home-resources-me').html(data); Vish.Wall.initModals(); SocialStream.Follow.initButtons(); }
-                    });
-                  });
-		}
-
-		if (! $('#home-resource-filter-more').data('events')) {
-                  $('#home-resource-filter-more').on("keyup", function() {
-                    $.ajax({
-                      url: "/resources/search",
-                      data: { q: $('#home-resource-filter-more')[0].value, scope: "other", per_page: 6 },
-                      success: function(data) { $('#home-resources-more').html(data); Vish.Wall.initModals(); SocialStream.Follow.initButtons(); }
                     });
                   });
 		}
