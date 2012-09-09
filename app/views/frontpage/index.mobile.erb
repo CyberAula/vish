@@ -10,10 +10,8 @@
     <div id="search-frontpage">
 
       <div class="  pagination-centered ">
-        <form>
-
+        <form action="<%=search_path%>" method="get">
           <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-resize"} %>
-
         </form>
       </div>
     </div>

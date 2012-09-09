@@ -11,11 +11,13 @@
           <img src="/assets/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
         </a>
       </div>
-      <div class="span3 inline-block">    
-        <form class="navbar-search pull-rigth" action="">
-          <input type="text" class="search-query" placeholder="Search">
-        </form>
-      </div> 
+      <% unless controller.class == SearchController %>
+        <div class="span3 inline-block">    
+          <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
+            <input type="text" class="search-query" placeholder="Search">
+          </form>
+        </div>
+      <% end %>
       <div style="height: 0px;" class="nav-collapse collapse in">
         <hr class="soften"/>
           <ul class="nav">
