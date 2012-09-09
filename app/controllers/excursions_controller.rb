@@ -20,8 +20,8 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
+  skip_load_and_authorize_resource :only => :preview
   include SocialStream::Controllers::Objects
-
 
   def new
     new! do |format|
@@ -54,11 +54,11 @@ class ExcursionsController < ApplicationController
     end
   end
 
-def preview
-respond_to do |format|
-  format.full { render "show", :layout => 'iframe' }
-end
-end
+  def preview
+    respond_to do |format|
+      format.full { render "show", :layout => 'iframe' }
+    end
+  end
 
   def show
     show! do |format|
