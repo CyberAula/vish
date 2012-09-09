@@ -10,6 +10,8 @@ Vish::Application.routes.draw do
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
 
+  match 'excursions/preview' => 'excursions#preview'
+
   resources :excursions
 
   resources :slides

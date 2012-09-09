@@ -54,6 +54,12 @@ class ExcursionsController < ApplicationController
     end
   end
 
+def preview
+respond_to do |format|
+  format.full { render "show", :layout => 'iframe' }
+end
+end
+
   def show
     show! do |format|
       format.full { render :layout => 'iframe' }
