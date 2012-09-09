@@ -4,3 +4,4 @@
 # Mime::Type.register "text/richtext", :rtf
 Mime::Type.register_alias "text/html", :full
 Mime::Type.register_alias "text/html", :mobile
+Mime::Type.register_alias "text/javascript", :jsmobile

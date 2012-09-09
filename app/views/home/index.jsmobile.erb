@@ -1,0 +1,8 @@
+<% case params[:active_tab] %>
+<%  when 'net' then %>
+  $('#net_load_more_button').remove();
+  <% self.formats = [:mobile] %>
+  $('#wall').append('<%= j render :partial => 'activities/wall', :locals => { :activities => current_subject.wall(:home).page(params[:page_net]), :is_active_wall => true } %>');
+<%  when 'me' then %>
+<% end %>
+

@@ -16,32 +16,41 @@
             </div>
         </article>
         <article class="article">
-            <div class="row-fluid">
-                <div class="span12">
-                    <ul class="imageless-css-3-form-elements">
-                        <li><label><input type="checkbox" checked="checked"><span class="red-1">net</span></label>
-                        </li>
-                        <li><label><input type="checkbox"><span class="red-1">my</span></label>
-                        </li>
-                        <li><label><input type="checkbox"><span class="red-1">top</span></label>
-                        </li>
-                        <li><label><input type="checkbox"><span><img src="images/star-MENU-active.png" width="15" height="15"></span></label>
-                            <li>
-                    </ul> 
-                </div>
-            </div>
-            <ul class="imageless-css-3-form-elements">
-            <li><label><input type="checkbox"><span>unchecked</span></label></li>
-            <li><label><input type="checkbox" checked="checked"><span>checked</span></label></li>
-        </ul>
-            <div class="row-fluid">
-                <div class="span">
-                    <input id="profile-excursion-filter-me" class="input-large mobile" type="text" name="filter" placeholder="filter">
-                </div>
-            </div>
             <div class="tab-content">
                 <div id="excursions" class="tab-pane active">
-                    <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions } %>
+                  <div class="row-fluid">
+                    <div class="span12">
+                      <ul class="nav nav-pills" >
+                        <li class="active"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
+                        <li class=""><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
+                        <li class=""><a data-toggle="tab" href="#ex-3"><%= t('excursion.top') %></a></li>
+                        <li class="" id="star"><a data-toggle="tab" href="#ex-4"><%= image_tag "star-MENU-active.png" %></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="tab-content">
+                    <div id="ex-1" class="tab-pane active">
+                      <div id="home-excursions-net">
+                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions(:limit => 10) } %>
+                      </div>
+                    </div>
+                    <div id="ex-2" class="tab-pane">
+                      <div id="home-excursions-me">
+                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions(:scope => :me, :limit => 10) } %>
+                      </div>
+                    </div>
+                    <div id="ex-3" class="tab-pane">
+                      <div id="home-excursions-more">
+                        <% recommended_excursions = (defined? current_subject.excursion_suggestions) ? current_subject.excursion_suggestions(10) : current_subject_excursions(:scope => :more, :limit => 10) %>
+                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => recommended_excursions } %>
+                      </div>
+                    </div>
+                    <div id="ex-4" class="tab-pane">
+                      <div id="home-excursions-fav">
+                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions(:scope => :like, :limit => 10) } %>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div id="timeline" class="tab-pane">
                     <%= render :partial => 'activities/wall', :locals  => { :activities => @activities_net, :is_active_wall => true } %>
