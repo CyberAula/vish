@@ -1,0 +1,77 @@
+<% unless profile_or_current_subject.nil? %>
+  <% content_for :title do %>
+    <%= profile_or_current_subject.name+" | "+t('follow.followers') %>
+  <% end %>
+
+  <% content_for :description do %>
+    <% if profile_or_current_subject.profile.description? %>
+      <%= profile_or_current_subject.profile.description%>
+    <% else %>
+      <%= profile_or_current_subject.name+" "+t('profile.is_on') + " "+ t('site.name') %>
+    <% end %>
+  <% end %>
+
+  <% content_for :keywords do %>
+    <%= profile_or_current_subject.profile.subject.tag_list%>
+  <% end %>
+
+
+  <section id= "wall">
+   <article class="row-fluid article">
+     <div class="span12">
+       <div class="span3">
+         <%= image_tag(profile_or_current_subject.logo.url(:profile), :alt => profile_or_current_subject.name, :id => "current_avatar_img") %>
+       </div>
+       <div class="span8">
+         <div class="caption">
+           <h2 class="span8 size30 ellipsis w350px"><%= profile_or_current_subject.name %></h2>
+           <div class="span4 pull-right send_messag size10 red-2 btn btn-primary">
+             <%=contact_to(profile_or_current_subject) %>
+           </div>
+           <h3 class="span ellipsis w340px">
+             <% profile_or_current_subject.tag_list.each do |t| %>
+               <a href="#"><%= t.to_s %></a>
+             <% end %>
+           </h3>
+           <div class="span12">
+             <h3><%= link_to profile_or_current_subject.followers.count.to_s, [profile_or_current_subject,"followers"], :class => "green" %> <%= t('follow.followers')%> / <%= link_to profile_or_current_subject.following_actor_objects.includes(:actor).count.to_s, [profile_or_current_subject,"followings"], :class => 'green' %> <%= t('follow.followings') %></h3>
+           </div>
+         </div>
+       </div>
+     </div>
+   </article>
+  </section>
+<% end %>
+
+<div class="followers tabbable">
+  <ul class="nav nav-tabs">
+    <li class="<%= 'active' if request.path_parameters[:direction] == 'sent' %>">
+      <a data-toggle="tab" href="#following"><%=t('follow.followings')%></a>
+    </li>
+    <li class="<%= 'active' if request.path_parameters[:direction] == 'received' %>">
+      <a data-toggle="tab" href="#follower"><%=t('follow.followers')%></a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div id="following" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'sent' %>">
+      <div id="followings">
+        <%= render @followings.
+                   page(params[:page]).
+                   per(20).
+                   map { |f| profile_or_current_subject.contact_to!(f) } %>
+      </div>
+    </div>
+    <div id="follower" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'received' %>">
+      <div id="followers">
+        <%= render @followers.
+                   page(params[:page]).
+                   per(20).
+                   map { |f| profile_or_current_subject.contact_to!(f) } %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="users_btn_follow">
+
+</div>
+

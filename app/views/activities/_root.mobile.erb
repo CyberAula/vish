@@ -4,7 +4,7 @@
       <div class="boxy_white">
         <div class="thumbnails">
           <div class="span3 inline">
-            <%= link_to image_tag(activity.sender_subject.logo.url(:actor), :alt => activity.sender_subject.name), activity.sender_subject %>
+            <%= link_to image_tag(activity.sender_subject.logo.url(:profile), :alt => activity.sender_subject.name), activity.sender_subject %>
           </div>
           <div class="span9 inline-block">
             <div class="size18">
@@ -26,3 +26,4 @@
   </div>
 </article>
 
+<div class="clearfloat"></div>

@@ -1,0 +1,27 @@
+<%= div_for contact, :class => 'row-fluid' do %>
+  <div class="boxy_white">
+    <ul class="thumbnails">
+      <li class="span3 inline">
+        <%= link_to image_tag(contact.receiver.logo.url(:profile)), contact.receiver.user %>
+      </li>
+      <li class="span9 inline-block">
+        <div class="caption">
+          <div class="title inline-block">
+            <h2 class="bold ellipsis w190px">
+              <%= link_to contact.receiver.name, contact.receiver.user %>
+            </h2>
+          </div>
+          <div class="follwrs-ing">
+            <h3><%= t('follow.followers') %>: <%= link_to contact.receiver_subject.followers.count, [contact.receiver_subject, "followers"] %></h3>
+            <h3><%= t('follow.followings') %>: <%= link_to contact.receiver.following_actor_objects.includes(:actor).count, [contact.receiver_subject, "followings"] %></h3>
+          </div>
+          <div class="send_messag size10 red-2 upfoll users_btn_follow"><%=contact_to(contact.receiver) %></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="space_center">
+  </div>
+<% end %>
+
+
