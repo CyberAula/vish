@@ -7,6 +7,9 @@ Vish::Application.routes.draw do
   match '/users/:id/embeds' => redirect('/users/%{id}/documents')
   match '/users/:id/contacts' => redirect('/users/%{id}/followings')
 
+  # Explore
+  match '/explore' => 'frontpage#explore'
+
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
 

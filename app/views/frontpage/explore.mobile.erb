@@ -1,0 +1,14 @@
+<section id="top" class="white">
+  <div class="container">
+    <div class="row span12">
+    <div class="inline-block">
+      </div>
+      <% self.class.send :include, FrontpageHelper  %>
+      <% for excursion in current_top_actor_excursions %>
+      <%= render :partial => "excursions/home",
+                 :locals => { :excursion => excursion} %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
