@@ -25,7 +25,7 @@
             <li><a href="/home"><%= t('home') %></a></li>
             <li><a href="/followers"><%= current_subject.followers.count.to_s + ' ' + t('follow.followers') %></a></li>
             <li><a href="/followings"><%= current_user.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings') %></a></li>
-            <li><a href="/messages"><%= t('messages') %></a></li>
+            <!-- <li><a href="/messages"><%#= t('messages') %></a></li> -->
             <li class="active"><a href="#"><%= t('settings.one') %></a></li>
             <li><a href="/help"><%= t('help').capitalize %></a></li>
             <li class="active"><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
