@@ -28,12 +28,11 @@ module SearchHelper
     return bare_query.strip.split
   end
 
-  def search_options mode, key=nil
-    key ||= params[:type]
+  def vish_search_options mode, key=nil
     options = {:with => { :relation_ids => Relation.ids_shared_with(current_subject) }, :classes => SocialStream::Search.models(mode, key) }
 
     options.deep_merge!({ :with => { :created_at => time_constraint(params[:time]) } }) if params[:time].present?
-    if params['type'].present?
+    if key.present?
       case key
       when 'excursion'
         options.deep_merge!({ :order => :created_at, :sort_mode => :desc }) if params[:sort].present? and params[:sort] == "newest"
@@ -57,7 +56,7 @@ module SearchHelper
 
   def search_results?(key)
     bare_query = strip_tags(params[:q]) || ""
-    ThinkingSphinx.count(bare_query.strip, search_options(:extended, key)) > 0
+    ThinkingSphinx.count(bare_query.strip, vish_search_options(:extended, key)) > 0
   end
 
   private
