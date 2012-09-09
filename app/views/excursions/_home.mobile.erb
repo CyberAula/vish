@@ -35,7 +35,7 @@
                   <% end %>
                 </h3>
               </div>
-              <% unless excursion.description.empty? %>
+              <% unless excursion.description.blank? %>
                 <div class="item">
                   <p class="size15">
                     <%= truncate excursion.description, :length => 90 %>
