@@ -387,12 +387,8 @@ input, textarea, select, .uneditable-input{border-radius:5px; background-color: 
             cursor: default;
         }
 
-
-
-
-
-
-
-
-.welcome{ text-shadow: 1px 2px #999; opacity: 0.87; }
+.welcome {
+  text-shadow: 1px 2px #999;
+  opacity: 0.87;
+}
 
