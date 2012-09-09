@@ -127,8 +127,9 @@
           <div class="space_center"></div>
           <div class="space_center"></div>
           <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
+            <% recommended_resources = (defined? current_subject.resource_suggestions) ? current_subject.resource_suggestions(6) : current_subject_resources(:scope => :more, :limit => 6) %>
             <%= render :partial => "common_documents/filter_results",
-                       :locals => {:documents => current_subject.resource_suggestions(6)} %>
+                       :locals => {:documents => recommended_resources } %>
           </div>
           <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
         </div>
