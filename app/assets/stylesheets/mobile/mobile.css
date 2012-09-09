@@ -112,7 +112,7 @@ h4{
 .navbar .btn-navbar.disabled,
 .navbar .btn-navbar[disabled] {
   background-color: #eeeeee;
-  *background-color: #151515;
+  background-color: #151515;
 }
 .navbar .nav > li > a {
   float: none;
