@@ -57,8 +57,9 @@
           <div class="space_center"></div>
           <div class="space_center"></div>
           <div id="home-excursions-more" class="row height-tabs-home">
+            <% recommended_excursions = (defined? current_subject.excursion_suggestions) ? current_subject.excursion_suggestions(4) : current_subject_excursions(:scope => :more, :limit => 4) %>
             <%= render :partial => "excursions/filter_results",
-                       :locals => {:excursions => current_subject.excursion_suggestions(4) } %>
+                       :locals => {:excursions => recommended_excursions } %>
           </div>
           <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
         </div>
