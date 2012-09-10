@@ -29,6 +29,7 @@ namespace :vish_editor do
 
 
     system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
+    #system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/VISH.js"
     system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/VISH.js"
     system "sed -i 's/vishEditor\\\/stylesheets/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/VISH.js"
 

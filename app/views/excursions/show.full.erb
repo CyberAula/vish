@@ -46,6 +46,18 @@
 	<% end %>
 
 	function start(){
-		VISH.SlideManager.init( options , <%= raw @excursion.json %>);
+		var myexcursion;
+		if(window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function")){
+        	//called to show a preview
+        	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
+      	}
+      	else{
+      		<% if @excursion %>
+      			myexcursion = <%= raw @excursion.json %>;
+      		<%else%>
+      			myexcursion = null;
+      		<%end%>
+      	}
+		VISH.SlideManager.init(options , myexcursion);
 	}
 </script>

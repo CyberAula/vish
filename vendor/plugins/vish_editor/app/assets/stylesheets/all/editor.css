@@ -904,7 +904,7 @@ table.metadata td div.height_wrapper_description{
 }
 
 .buttons_together{
-	margin-top: 5px;
+	margin-top: 12px;
 }
 
 .text_in_fancybox{
@@ -1547,6 +1547,10 @@ iframe.snapshot_content{
 	border-radius: 20px;
 	webkit-border-radius: 20px;
 	moz-border-radius: 20px;
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
 }
 
 .carrousel_element_single_row_slides div.draggable_arrow_div{
