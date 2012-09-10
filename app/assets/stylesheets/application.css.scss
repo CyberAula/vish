@@ -2191,3 +2191,24 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
   font-size:15px;
 }
 
+
+/**** Modales extra grandes ***/
+
+.modal {
+    height: 98%;
+    left: 1%;
+    position: fixed;
+    top: 1%;
+    width: 98%;
+}
+
+.modal-body {
+    height: 88%;
+    max-height: 84%;
+    width: 98%;
+}
+
+.modal-body img {
+    height: 98%;
+    max-width: 100%;
+}
