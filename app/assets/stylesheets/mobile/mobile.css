@@ -89,6 +89,7 @@ h4{
 .navbar .btn-navbar {
   float: right;
   padding: 7px 7px;
+  margin-top: 9px;
   margin-right: 5px;
   margin-left: 5px;
   background-color: #eeeeee;
@@ -104,7 +105,8 @@ h4{
 }
 
 .navbar .btn-navbar .icon-bar {
-    background-color: #0066FF;}
+    background-color: #0066FF;
+border-radius: 3px;}
 	
 	.navbar .btn-navbar:hover,
 .navbar .btn-navbar:active,
@@ -112,7 +114,7 @@ h4{
 .navbar .btn-navbar.disabled,
 .navbar .btn-navbar[disabled] {
   background-color: #eeeeee;
-  background-color: #151515;
+  background-color: #dedede;
 }
 .navbar .nav > li > a {
   float: none;
