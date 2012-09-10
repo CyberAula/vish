@@ -1,5 +1,14 @@
-<div class="container-frontpage">
-  <section id="">
+<div class="container-device">
+<div class="pagination-centered ">
+  <span class="dark-gray size20"><%= t('sign_in') %></span>
+</div>
+<div class="pagination-centered gray-medium margin-bottom10">
+
+    <%= t('devise.invalid_login') %>
+
+
+</div>
+<section id="">
     <article class="row-fluid ">
       <div class="span12 box_basic">
         <div class="span12 border_bottom ">
@@ -12,16 +21,9 @@
             <div class=" row"></div>
             <%= f.submit t('action.send'), :class => " margin-top10 btn btn-primary span12" %>
             <div class="span12 margin-top10">
-
-
-
-
               <ul class="span12 pagination-right pull-right">
                 <%= render :partial => "devise/shared/links" %>
               </ul>
-
-
-
           <% end %>
           </div>
           </article>

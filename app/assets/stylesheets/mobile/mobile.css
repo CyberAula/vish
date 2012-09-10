@@ -154,7 +154,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#12000000', e
 }
 
 .navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
-    width: 100%;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -moz-border-radius-bottomleft: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 hr {
