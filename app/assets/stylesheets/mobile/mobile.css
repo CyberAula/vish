@@ -206,7 +206,7 @@ label {
     width: 100%;
 }
 
-input, textarea, select, .uneditable-input{border-radius:5px; background-color: #fefefe; margin-bottom: 25px !important; margin-top: -6px;}
+input, textarea, select, .uneditable-input{border-radius:15px; background-color: #fefefe; margin-top: -6px;}
 
 .input-xlarge {height:60px}
 .section {margin-right: 10px; margin-left: 10px;}
