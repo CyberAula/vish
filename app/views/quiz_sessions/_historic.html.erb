@@ -10,13 +10,12 @@
         var options = {'title':'<%= raw (qs.name.present? ? qs.name : t('quiz.no_title') ) %><%= raw '  (' + t('quiz.open') + ')' if qs.active %>',
                        'width':300,
                        'colors': ['#ff005d', '#bf1a86', '#8033ae', '#0066ff'],
-                       'legendText-style':['left', 'gray', '22'],
-                       'legend.position':'top',
-                       'fontSize':'18',
+                       'legend.position':'right',
+                       'fontSize':'15',
                        'fontName':'Helvetica',
-                       'chartArea.left':'20%',
+                       'chartArea':'left 38',
                        'pieSliceText':'value',
-                       'height':300};
+                       'height':253};
 
         var chart = new google.visualization.PieChart(document.getElementById('chart-div-<%= qs.id.to_s %>'));
         chart.draw(data, options);
