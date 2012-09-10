@@ -5,12 +5,12 @@
 <body data-spy="scroll" data-target=".subnav" data-offset="50" class="visible-phone">
   <header id="navbar">
     <% if controller.class == Devise::RegistrationsController %>
-      <%= render :partial => "layouts/header_mobile_sign_up" %>
+      <%= render :partial => "layouts/header_signed_out" %>
     <% else %>
-      <%= render :partial => "layouts/header_mobile_empty" %>
+      <%= render :partial => "layouts/header_signed_out" %>
     <% end %>
   </header>
-  <div class="row body-height" >
+  <div class="row body-height" ></div>
 
   <section id="content">
     <%= yield %>

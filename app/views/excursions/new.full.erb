@@ -10,6 +10,12 @@
 	options = {};
 	var configuration = {};
 
+	configuration["ImagesPath"] = "/assets/";
+	configuration["StylesheetsPath"] = "/assets/";
+	configuration["uploadImagePath"] = "<%= documents_path :format=> "json"%>";
+	configuration["uploadObjectPath"] = "<%= documents_path :format=> "json"%>";
+	configuration["uploadPresentationPath"] = "<%= excursions_path :format=> "json"%>";
+
 	configuration["presentationSettings"] = true;
 	configuration["presentationTags"] = true;
 	configuration["presentationThumbnails"] = true;
@@ -27,11 +33,10 @@
 	options["configuration"] = configuration;
 	options["developping"] = false;
 
+	options["username"] = "<%= current_user.name %>";
+	options["userId"] = "<%= current_user.id %>";
 	options["token"] = "<%= form_authenticity_token %>";
-	options["ownerId"] = "<%= current_user.id %>";
-	options["ownerName"] = "<%= current_user.name %>";
-	options["postPath"] = "<%= excursions_path :format=> "json"%>";
-	options["documentsPath"] = "<%= documents_path :format=> "json"%>";
+
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
 	function start(){

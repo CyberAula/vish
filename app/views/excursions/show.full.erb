@@ -17,6 +17,9 @@
 	options = {};
 	var configuration = {};
 
+	configuration["ImagesPath"] = "/assets/";
+	configuration["StylesheetsPath"] = "/assets/";
+
 	configuration["presentationSettings"] = true;
 	configuration["presentationTags"] = true;
 	configuration["presentationThumbnails"] = true;
@@ -40,9 +43,9 @@
 	options["quiz_active_session_id"]=false;
 
 	<% if user_signed_in? %>
-	    options["username"]= "<%= current_user.name %>";
+	    options["username"] = "<%= current_user.name %>";
 	<% else %>
-	    options["username"]= false;
+	    options["username"] = false;
 	<% end %>
 
 	function start(){

@@ -255,6 +255,8 @@ margin-top: -10px
 .white{color: #FFFFFF;}
 .green{ color:#40CC7F;}
 .ligth-gray{color: #E6E6E6}
+
+.gray-medium{ color: #8f8f8f;}
 .gray{ color:#6e6e6e;}
 .dark-gray {color: #666666;}
 .blue-cake{color: #3366FF;}
@@ -2089,7 +2091,7 @@ select {
 
 
 .name{
-  padding-bottom: 20px;
+  margin-bottom: 14px;
   padding-top: 9px;
   letter-spacing: 3pt;
 }
@@ -2099,6 +2101,11 @@ select {
 
   }
 
+.container-device{
+  padding-top: 0;
+
+}
+
 .logo{
   margin-left: auto;
   margin-right: auto;
@@ -2106,9 +2113,15 @@ select {
   width: 90%;
 
 }
+
+
 .input-resize{
 
 width: 80%}
+
+input-resize-header{
+  width: 125%
+}
 
 .margin_life_sciences{
 margin-top: -20px;
@@ -2165,6 +2178,9 @@ border: none;
 box-shadow: none
 
 }
+.btn-languaje{
+margin-left: -8px
+}
 
 
 .border_bottom{
@@ -2194,7 +2210,18 @@ margin-top: 5px;
 padding-left: 10px
 }
 
+.margin-right5{
+
+  margin-right:5px
+}
+
+.margin-bottom10{
+
+  margin-bottom:10px
+}
+
 .no_margin{
 
 margin:none;
 }
+

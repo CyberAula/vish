@@ -1,25 +1,56 @@
-<div class="navbar">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
-      <div class="offset1 span2 inline">
-        <a href="/">
-          <img src="/assets/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
-        </a>
-      </div>
+    <div class="container ">
+      <button class="btn btn-navbar margin-top5" data-target=".nav-collapse" data-toggle="collapse" type="button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="span margin-right5 margin-top5">
+        <img src="/assets/logo.png"  class="pull-left" width="100" height="auto" alt="vish logo mobile">
+      </a>
+
+
       <% unless controller.class == SearchController %>
-        <div class="span3 inline">    
+        <div class="span2 ">
           <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
             <input type="text" class="search-query" placeholder="Search">
           </form>
-        </div> 
+        </div>
       <% end %>
-      <div class="btn btn-primary inline">
-        <%= link_to t('devise.links.sign_in'), new_user_session_path %>
-      </div>
-      <div class="btn btn-primary inline-block">
-        <%= link_to t('sign_up'), new_user_registration_path %>
+
+
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="active border_bottom margin-top5">
+            <%= link_to t('devise.links.sign_in'), new_user_session_path %>
+          </li>
+          <li class="">
+            <%= link_to t('sign_up'), new_user_registration_path %>
+          </li>
+          <li><%= link_to t('conditions.other'), '/legal_notice', :target => '_blank' %></li>
+          <li><%= link_to t('help'), '/help' %></li>
+          <li class="">
+            <div class="btn-group  btn-languaje clearfloat">
+              <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
+                <span class="gray-medium"><%= t('lang.title') %></span>
+
+              </button>
+              <ul class="dropdown-menu ">
+                <% for locale in (I18n.available_locales) -%>
+                  <% next if locale.to_s == "pt" %>
+                  <li class="textonleft unmargin">
+                    <%= link_to image_tag("flags/" + locale.to_s + ".png", :title => locale.to_s, :class => "unborder") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+                  </li>
+                <% end -%>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-  </div><!-- /navbar-inner -->
-</div><!-- /navbar -->
+  </div>
+</div>
+
+
 
