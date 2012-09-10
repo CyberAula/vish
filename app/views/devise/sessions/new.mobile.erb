@@ -13,31 +13,10 @@
             <%= f.submit t('action.send'), :class => " margin-top10 btn btn-primary span12" %>
             <div class="span12 margin-top10">
 
-              <nav class="span6 pull-left ">
-                <div class="link_gray btn-group dropup no_margin ">
-                  <li><%= link_to t('conditions.other'), '/legal_notice', :target => '_blank' %></li>
-                  <li><%= link_to t('help'), '/help' %></li>
-                  <li>
-                    <div class="btn-group dropup btn-languaje clearfloat">
-                      <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
-                        <span class="gray-medium"><%= t('lang.title') %></span>
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu ">
-                        <% for locale in (I18n.available_locales) -%>
-                          <% next if locale.to_s == "pt" %>
-                          <li class="textonleft unmargin">
-                            <%= link_to image_tag("flags/" + locale.to_s + ".png", :title => locale.to_s, :class => "unborder") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
-                          </li>
-                        <% end -%>
-                      </ul>
-                    </div>
-                  </li>
-                </div>
-              </nav>
 
 
-              <ul class="span6 pagination-right pull-right">
+
+              <ul class="span12 pagination-right pull-right">
                 <%= render :partial => "devise/shared/links" %>
               </ul>
 
