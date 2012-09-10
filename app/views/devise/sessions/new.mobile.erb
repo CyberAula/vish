@@ -1,58 +1,51 @@
-<div class="container-logs">
+<div class="container-frontpage">
   <section id="">
     <article class="row-fluid ">
       <div class="span12 box_basic">
         <div class="span12 border_bottom ">
           <%= form_for(resource, :as => resource_name, :url => user_session_path, :html => {:method => :post, :class => "form-horizontal2"}) do |f| %>
             <%= f.text_field :email, :class => "span12 input_nude", :id => "email", :placeholder => "e-mail" %>
-        </div>
+            </div>
             <%= f.password_field :password, :class => "span12 input_nude", :id => "password", :placeholder => "password" %>
-      </div>
-
+            </div>
             <%= hidden_field :remember_me, true %>
-
-
             <div class=" row"></div>
             <%= f.submit t('action.send'), :class => " margin-top10 btn btn-primary span12" %>
-
-
             <div class="span12 margin-top10">
 
-              <ul class="span12 pagination-centered ">
-                <%= render :partial => "devise/shared/links" %>
-              </ul>
-
-
-              <nav class="span12 pagination-centered">
-                <div class="link_gray btn-group dropup no_margin">
-
-
-
-                  <li><%= link_to t('conditions.other'), '/legal_notice', :target=>'_blank' %></li>
-
+              <nav class="span6 pull-left ">
+                <div class="link_gray btn-group dropup no_margin ">
+                  <li><%= link_to t('conditions.other'), '/legal_notice', :target => '_blank' %></li>
                   <li><%= link_to t('help'), '/help' %></li>
                   <li>
-                    <div class="btn-group dropup  clearfloat">
+                    <div class="btn-group dropup btn-languaje clearfloat">
                       <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
-                        <span class="gray"><%=t('lang.title')%></span>
+                        <span class="gray-medium"><%= t('lang.title') %></span>
                         <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu ">
                         <% for locale in (I18n.available_locales) -%>
                           <% next if locale.to_s == "pt" %>
                           <li class="textonleft unmargin">
-                            <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "unborder") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+                            <%= link_to image_tag("flags/" + locale.to_s + ".png", :title => locale.to_s, :class => "unborder") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
                           </li>
                         <% end -%>
                       </ul>
                     </div>
                   </li>
-
                 </div>
               </nav>
+
+
+              <ul class="span6 pagination-right pull-right">
+                <%= render :partial => "devise/shared/links" %>
+              </ul>
+
+
+
           <% end %>
-      </div>
-    </article>
+          </div>
+          </article>
   </section>
 </div>
 

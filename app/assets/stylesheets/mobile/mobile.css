@@ -206,14 +206,12 @@ label {
     width: 100%;
 }
 
-input, textarea, select, .uneditable-input{border-radius:15px; background-color: #fefefe; margin-top: -6px;}
+input, textarea, select, .uneditable-input{border-radius:15px; background-color: #fefefe; }
 
 .input-xlarge {height:60px}
 .section {margin-right: 10px; margin-left: 10px;}
 
-#wall {margin-left:20px;
-       text-align:left;       
-}
+
 .caption{height:20px;}
 
 

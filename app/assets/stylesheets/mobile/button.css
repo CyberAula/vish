@@ -71,7 +71,7 @@
 }
 .btn-primary a:hover {
   color: #FFFfff;
-  font-weight:bold;
+
   text-decoration: none;
   text-align: center;
 }
@@ -257,7 +257,7 @@
 }
 .btn-success a:hover {
   color: #FFFfff;
-  font-weight:bold;
+
   text-decoration: none;
 }
 .btn-success:hover,
