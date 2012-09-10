@@ -54,9 +54,6 @@ var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
 VISH.AUTHORS = "GING";
-VISH.ImagesPath = "/assets/";
-VISH.StylesheetsPath = "/assets/";
-VISH.Editing = false;
 VISH.ViewerEngine = "presentation";
 (function(a, b) {
   function cy(a) {
@@ -11513,10 +11510,16 @@ Function.prototype.closureListener = function() {
     return __method.apply(object, [e, target].concat(args))
   }
 };
+var nicEditorInit = function() {
+  nicEditorConfig = bkClass.extend({buttons:{"bold":{name:__("Click to Bold"), command:"Bold", tags:["B", "STRONG"], css:{"font-weight":"bold"}, key:"b"}, "italic":{name:__("Click to Italic"), command:"Italic", tags:["EM", "I"], css:{"font-style":"italic"}, key:"i"}, "underline":{name:__("Click to Underline"), command:"Underline", tags:["U"], css:{"text-decoration":"underline"}, key:"u"}, "left":{name:__("Left Align"), command:"justifyleft", noActive:true}, "center":{name:__("Center Align"), command:"justifycenter", 
+  noActive:true}, "right":{name:__("Right Align"), command:"justifyright", noActive:true}, "justify":{name:__("Justify Align"), command:"justifyfull", noActive:true}, "ol":{name:__("Insert Ordered List"), command:"insertorderedlist", tags:["OL"]}, "ul":{name:__("Insert Unordered List"), command:"insertunorderedlist", tags:["UL"]}, "subscript":{name:__("Click to Subscript"), command:"subscript", tags:["SUB"]}, "superscript":{name:__("Click to Superscript"), command:"superscript", tags:["SUP"]}, "strikethrough":{name:__("Click to Strike Through"), 
+  command:"strikeThrough", css:{"text-decoration":"line-through"}}, "removeformat":{name:__("Remove Formatting"), command:"removeformat", noActive:true}, "indent":{name:__("Indent Text"), command:"indent", noActive:true}, "outdent":{name:__("Remove Indent"), command:"outdent", noActive:true}, "hr":{name:__("Horizontal Rule"), command:"insertHorizontalRule", noActive:true}}, iconsPath:VISH.ImagesPath + "nicEditorIcons.gif", buttonList:["save", "bold", "italic", "underline", "left", "center", "right", 
+  "justify", "ol", "ul", "fontSize", "fontFamily", "upload", "link", "unlink", "forecolor", "bgcolor"], iconList:{"bgcolor":1, "forecolor":2, "bold":3, "center":4, "hr":5, "indent":6, "italic":7, "justify":8, "left":9, "ol":10, "outdent":11, "removeformat":12, "right":13, "save":24, "strikethrough":15, "subscript":16, "superscript":17, "ul":18, "underline":19, "image":20, "link":21, "unlink":22, "close":23, "arrow":25}})
+};
 var nicEditorConfig = bkClass.extend({buttons:{"bold":{name:__("Click to Bold"), command:"Bold", tags:["B", "STRONG"], css:{"font-weight":"bold"}, key:"b"}, "italic":{name:__("Click to Italic"), command:"Italic", tags:["EM", "I"], css:{"font-style":"italic"}, key:"i"}, "underline":{name:__("Click to Underline"), command:"Underline", tags:["U"], css:{"text-decoration":"underline"}, key:"u"}, "left":{name:__("Left Align"), command:"justifyleft", noActive:true}, "center":{name:__("Center Align"), command:"justifycenter", 
 noActive:true}, "right":{name:__("Right Align"), command:"justifyright", noActive:true}, "justify":{name:__("Justify Align"), command:"justifyfull", noActive:true}, "ol":{name:__("Insert Ordered List"), command:"insertorderedlist", tags:["OL"]}, "ul":{name:__("Insert Unordered List"), command:"insertunorderedlist", tags:["UL"]}, "subscript":{name:__("Click to Subscript"), command:"subscript", tags:["SUB"]}, "superscript":{name:__("Click to Superscript"), command:"superscript", tags:["SUP"]}, "strikethrough":{name:__("Click to Strike Through"), 
-command:"strikeThrough", css:{"text-decoration":"line-through"}}, "removeformat":{name:__("Remove Formatting"), command:"removeformat", noActive:true}, "indent":{name:__("Indent Text"), command:"indent", noActive:true}, "outdent":{name:__("Remove Indent"), command:"outdent", noActive:true}, "hr":{name:__("Horizontal Rule"), command:"insertHorizontalRule", noActive:true}}, iconsPath:VISH.ImagesPath + "nicEditorIcons.gif", buttonList:["save", "bold", "italic", "underline", "left", "center", "right", 
-"justify", "ol", "ul", "fontSize", "fontFamily", "upload", "link", "unlink", "forecolor", "bgcolor"], iconList:{"bgcolor":1, "forecolor":2, "bold":3, "center":4, "hr":5, "indent":6, "italic":7, "justify":8, "left":9, "ol":10, "outdent":11, "removeformat":12, "right":13, "save":24, "strikethrough":15, "subscript":16, "superscript":17, "ul":18, "underline":19, "image":20, "link":21, "unlink":22, "close":23, "arrow":25}});
+command:"strikeThrough", css:{"text-decoration":"line-through"}}, "removeformat":{name:__("Remove Formatting"), command:"removeformat", noActive:true}, "indent":{name:__("Indent Text"), command:"indent", noActive:true}, "outdent":{name:__("Remove Indent"), command:"outdent", noActive:true}, "hr":{name:__("Horizontal Rule"), command:"insertHorizontalRule", noActive:true}}, buttonList:["save", "bold", "italic", "underline", "left", "center", "right", "justify", "ol", "ul", "fontSize", "fontFamily", 
+"upload", "link", "unlink", "forecolor", "bgcolor"], iconList:{"bgcolor":1, "forecolor":2, "bold":3, "center":4, "hr":5, "indent":6, "italic":7, "justify":8, "left":9, "ol":10, "outdent":11, "removeformat":12, "right":13, "save":24, "strikethrough":15, "subscript":16, "superscript":17, "ul":18, "underline":19, "image":20, "link":21, "unlink":22, "close":23, "arrow":25}});
 var nicEditors = {nicPlugins:[], editors:[], registerPlugin:function(plugin, options) {
   this.nicPlugins.push({p:plugin, o:options})
 }, allTextAreas:function(nicOptions) {
@@ -12750,15 +12753,17 @@ VISH.Editor = function(V, $, undefined) {
     }else {
       initOptions = {}
     }
+    VISH.Dummies.init();
     VISH.Slides.init();
     VISH.Status.init();
-    if(V.Status.ua.desktop) {
+    VISH.User.init(options);
+    if(VISH.Status.ua.desktop) {
       $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/desktop.css" type="text/css" />')
     }else {
-      if(V.Status.ua.mobile) {
+      if(VISH.Status.ua.mobile) {
         $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/mobile.css" type="text/css" />')
       }else {
-        if(V.Status.ua.tablet) {
+        if(VISH.Status.ua.tablet) {
           $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/tablet.css" type="text/css" />')
         }
       }
@@ -12771,16 +12776,16 @@ VISH.Editor = function(V, $, undefined) {
     if(excursion) {
       initial_excursion = true;
       setExcursion(excursion);
-      V.Editor.Renderer.init(excursion);
+      VISH.Editor.Renderer.init(excursion);
       _removeSelectableProperties();
       if(excursion.type === "flashcard") {
-        V.Editor.Flashcard.loadFlashcard()
+        VISH.Editor.Flashcard.loadFlashcard()
       }
     }
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       params["current_el"] = $("#" + clickedZoneId);
-      V.Editor.Utils.loadTab("tab_templates")
+      VISH.Editor.Utils.loadTab("tab_templates")
     }});
     if(!eventsLoaded) {
       eventsLoaded = true;
@@ -12795,22 +12800,22 @@ VISH.Editor = function(V, $, undefined) {
       $(document).on("click", "#arrow_left_div", _onArrowLeftClicked);
       $(document).on("click", "#arrow_right_div", _onArrowRightClicked);
       _addEditorEnterLeaveEvents();
-      V.Editor.Utils.redrawSlides();
-      V.Editor.Thumbnails.redrawThumbnails();
+      VISH.Editor.Utils.redrawSlides();
+      VISH.Editor.Thumbnails.redrawThumbnails();
       _addTutorialEvents()
     }
     if(excursion) {
       $(".object_wrapper").hide()
     }
-    V.Editor.Text.init();
-    V.Editor.Image.init();
-    V.Editor.Video.init();
-    V.Editor.Object.init();
-    V.Editor.Thumbnails.init();
-    V.Editor.AvatarPicker.init();
-    V.Editor.I18n.init(options["lang"]);
-    V.Editor.Quiz.init();
-    V.Editor.Tools.init()
+    VISH.Editor.Text.init();
+    VISH.Editor.Image.init();
+    VISH.Editor.Video.init();
+    VISH.Editor.Object.init();
+    VISH.Editor.Thumbnails.init();
+    VISH.Editor.AvatarPicker.init();
+    VISH.Editor.I18n.init(options["lang"]);
+    VISH.Editor.Quiz.init();
+    VISH.Editor.Tools.init()
   };
   var getId = function() {
     domId = domId + 1;
@@ -12829,52 +12834,52 @@ VISH.Editor = function(V, $, undefined) {
   };
   var _addTutorialEvents = function() {
     $(document).on("click", "#start_tutorial", function() {
-      V.Editor.Tour.startTourWithId("initial_screen_help", "top")
+      VISH.Editor.Tour.startTourWithId("initial_screen_help", "top")
     });
     $(document).on("click", "#help_right", function() {
-      V.Editor.Tour.startTourWithId("menubar_help", "top")
+      VISH.Editor.Tour.startTourWithId("menubar_help", "top")
     });
     $(document).on("click", "#help_template_image", function() {
-      V.Editor.Tour.startTourWithId("template_help", "bottom")
+      VISH.Editor.Tour.startTourWithId("template_help", "bottom")
     });
     $(document).on("click", "#help_template_selection", function() {
-      V.Editor.Tour.startTourWithId("help_template_selection_help", "bottom")
+      VISH.Editor.Tour.startTourWithId("help_template_selection_help", "bottom")
     });
     $(document).on("click", "#tab_pic_from_url_help", function() {
-      V.Editor.Tour.startTourWithId("images_fancy_tabs_id_help", "top")
+      VISH.Editor.Tour.startTourWithId("images_fancy_tabs_id_help", "top")
     });
     $(document).on("click", "#tab_pic_upload_help", function() {
-      V.Editor.Tour.startTourWithId("upload_picture_form_help", "top")
+      VISH.Editor.Tour.startTourWithId("upload_picture_form_help", "top")
     });
     $(document).on("click", "#tab_pic_repo_help", function() {
-      V.Editor.Tour.startTourWithId("search_picture_help", "bottom")
+      VISH.Editor.Tour.startTourWithId("search_picture_help", "bottom")
     });
     $(document).on("click", "#tab_pic_flikr_help", function() {
-      V.Editor.Tour.startTourWithId("search_flickr_fancy_help", "bottom")
+      VISH.Editor.Tour.startTourWithId("search_flickr_fancy_help", "bottom")
     });
     $(document).on("click", "#tab_object_from_url_help", function() {
-      V.Editor.Tour.startTourWithId("object_fancy_tabs_id_help", "top")
+      VISH.Editor.Tour.startTourWithId("object_fancy_tabs_id_help", "top")
     });
     $(document).on("click", "#tab_object_upload_help", function() {
-      V.Editor.Tour.startTourWithId("upload_object_form_help", "top")
+      VISH.Editor.Tour.startTourWithId("upload_object_form_help", "top")
     });
     $(document).on("click", "#tab_object_repo_help", function() {
-      V.Editor.Tour.startTourWithId("search_object_help", "bottom")
+      VISH.Editor.Tour.startTourWithId("search_object_help", "bottom")
     });
     $(document).on("click", "#tab_video_from_url_help", function() {
-      V.Editor.Tour.startTourWithId("video_fancy_tabs_id_help", "top")
+      VISH.Editor.Tour.startTourWithId("video_fancy_tabs_id_help", "top")
     });
     $(document).on("click", "#tab_video_repo_help", function() {
-      V.Editor.Tour.startTourWithId("search_video_help", "top")
+      VISH.Editor.Tour.startTourWithId("search_video_help", "top")
     });
     $(document).on("click", "#tab_video_youtube_help", function() {
-      V.Editor.Tour.startTourWithId("search_youtube_fancy_help", "bottom")
+      VISH.Editor.Tour.startTourWithId("search_youtube_fancy_help", "bottom")
     });
     $(document).on("click", "#tab_video_vimeo_help", function() {
-      V.Editor.Tour.startTourWithId("search_vimeo_fancy_help", "bottom")
+      VISH.Editor.Tour.startTourWithId("search_vimeo_fancy_help", "bottom")
     });
     $(document).on("click", "#tab_live_webcam_help", function() {
-      V.Editor.Tour.startTourWithId("tab_live_webcam_id", "bottom")
+      VISH.Editor.Tour.startTourWithId("tab_live_webcam_id", "bottom")
     })
   };
   var _addEditorEnterLeaveEvents = function() {
@@ -12891,11 +12896,11 @@ VISH.Editor = function(V, $, undefined) {
   };
   var _onTemplateThumbClicked = function(event) {
     var theid = draftExcursion ? draftExcursion.id : "";
-    var slide = V.Dummies.getDummy($(this).attr("template"), V.Slides.getSlides().length, theid, false);
-    V.Editor.Utils.addSlide(slide);
+    var slide = VISH.Dummies.getDummy($(this).attr("template"), VISH.Slides.getSlides().length, theid, false);
+    VISH.Editor.Utils.addSlide(slide);
     $.fancybox.close();
-    V.Editor.Utils.redrawSlides();
-    V.Editor.Thumbnails.redrawThumbnails();
+    VISH.Editor.Utils.redrawSlides();
+    VISH.Editor.Thumbnails.redrawThumbnails();
     setTimeout("VISH.Slides.lastSlide()", 300)
   };
   var _onEditableClicked = function(event) {
@@ -12914,22 +12919,22 @@ VISH.Editor = function(V, $, undefined) {
     $("a.addpicture").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Editor.Utils.loadTab("tab_pic_from_url")
+      VISH.Editor.Utils.loadTab("tab_pic_from_url")
     }});
     $("a.addobject").fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Editor.Utils.loadTab("tab_object_from_url")
+      VISH.Editor.Utils.loadTab("tab_object_from_url")
     }});
     $("a.addvideo").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Editor.Utils.loadTab("tab_video_from_url")
+      VISH.Editor.Utils.loadTab("tab_video_from_url")
     }});
     $("a.addLive").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Editor.Utils.loadTab("tab_live_webcam")
+      VISH.Editor.Utils.loadTab("tab_live_webcam")
     }})
   };
   var _onDeleteItemClicked = function() {
@@ -12953,9 +12958,9 @@ VISH.Editor = function(V, $, undefined) {
         $("#prompt_answer").val("false");
         $(".theslider").hide();
         article_to_delete.remove();
-        V.Slides.onDeleteSlide();
-        V.Editor.Utils.redrawSlides();
-        V.Editor.Thumbnails.redrawThumbnails()
+        VISH.Slides.onDeleteSlide();
+        VISH.Editor.Utils.redrawSlides();
+        VISH.Editor.Thumbnails.redrawThumbnails()
       }
     }})
   };
@@ -12998,7 +13003,7 @@ VISH.Editor = function(V, $, undefined) {
     if(excursion.type === "flashcard") {
       excursion.background = {};
       excursion.background.src = $("#flashcard-background").css("background-image");
-      excursion.background.pois = V.Editor.Flashcard.savePois()
+      excursion.background.pois = VISH.Editor.Flashcard.savePois()
     }
     if(draftExcursion) {
       excursion.title = draftExcursion.title;
@@ -13022,16 +13027,16 @@ VISH.Editor = function(V, $, undefined) {
           element.type = $(div).attr("type");
           element.areaid = $(div).attr("areaid");
           if(element.type == "text") {
-            element.body = V.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance"))
+            element.body = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance"))
           }else {
             if(element.type == "image") {
               element.body = $(div).find("img").attr("src");
-              element.style = _getStylesInPercentages($(div), $(div).find("img"))
+              element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(div).find("img"))
             }else {
               if(element.type == "video") {
                 var video = $(div).find("video");
                 element.poster = $(video).attr("poster");
-                element.style = _getStylesInPercentages($(div), $(video));
+                element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(video));
                 var sources = "";
                 $(video).find("source").each(function(index, source) {
                   if(index != 0) {
@@ -13048,7 +13053,7 @@ VISH.Editor = function(V, $, undefined) {
                   var myObject = $(object).clone();
                   $(myObject).removeAttr("style");
                   element.body = VISH.Utils.getOuterHTML(myObject);
-                  element.style = _getStylesInPercentages($(div), $(object).parent());
+                  element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(object).parent());
                   var zoom = VISH.Utils.getZoomFromStyle($(object).attr("style"));
                   if(zoom != 1) {
                     element.zoomInStyle = VISH.Utils.getZoomInStyle(zoom)
@@ -13059,7 +13064,7 @@ VISH.Editor = function(V, $, undefined) {
                     element.question = $(div).find(".value_openquestion").val()
                   }else {
                     if(element.type == "mcquestion") {
-                      V.Debugging.log(" enter in element type mcquestion while creating the json");
+                      VISH.Debugging.log(" enter in element type mcquestion while creating the json");
                       element.question = $(div).find(".value_multiplechoice_question").val();
                       element.options = [];
                       $(div).find(".multiplechoice_text").each(function(i, input_text) {
@@ -13088,7 +13093,7 @@ VISH.Editor = function(V, $, undefined) {
                           var snapshotIframe = $(snapshotWrapper).children()[0];
                           $(snapshotIframe).removeAttr("style");
                           element.body = VISH.Utils.getOuterHTML(snapshotIframe);
-                          element.style = _getStylesInPercentages($(div), snapshotWrapper);
+                          element.style = VISH.Editor.Utils.getStylesInPercentages($(div), snapshotWrapper);
                           element.scrollTop = $(snapshotWrapper).scrollTop();
                           element.scrollLeft = $(snapshotWrapper).scrollLeft()
                         }else {
@@ -13137,7 +13142,7 @@ VISH.Editor = function(V, $, undefined) {
       var jsonexcursion = JSON.stringify(excursion);
       VISH.Debugging.log(jsonexcursion);
       var params = {"excursion[json]":jsonexcursion, "authenticity_token":initOptions["token"]};
-      $.ajax({type:send_type, url:initOptions["postPath"], data:params, success:function(data) {
+      $.ajax({type:send_type, url:VISH.UploadPresentationPath, data:params, success:function(data) {
         window.top.location.href = data.url
       }})
     }else {
@@ -13160,7 +13165,7 @@ VISH.Editor = function(V, $, undefined) {
   };
   var uploadPresentationWithNode = function(excursion) {
     var send_type;
-    var url = "/presentation/";
+    var url = VISH.UploadPresentationPath;
     if(draftExcursion) {
       send_type = "PUT";
       url = url + draftExcursion.id
@@ -13173,21 +13178,11 @@ VISH.Editor = function(V, $, undefined) {
       window.top.location.href = data.url
     }})
   };
-  var _getStylesInPercentages = function(parent, element) {
-    var WidthPercent = element.width() * 100 / parent.width();
-    var HeightPercent = element.height() * 100 / parent.height();
-    var TopPercent = element.position().top * 100 / parent.height();
-    var LeftPercent = element.position().left * 100 / parent.width();
-    return"position: relative; width:" + WidthPercent + "%; height:" + HeightPercent + "%; top:" + TopPercent + "%; left:" + LeftPercent + "%;"
-  };
-  var _getAspectRatio = function(element) {
-    return element.width() / element.height()
-  };
   var _onArrowLeftClicked = function() {
-    V.Slides.backwardOneSlide()
+    VISH.Slides.backwardOneSlide()
   };
   var _onArrowRightClicked = function() {
-    V.Slides.forwardOneSlide()
+    VISH.Slides.forwardOneSlide()
   };
   var getParams = function() {
     return params
@@ -13333,17 +13328,11 @@ VISH.Editor.Image = function(V, $, undefined) {
         event.preventDefault()
       }else {
         if(options) {
-          var description = "Uploaded by " + options["ownerName"] + " via Vish Editor";
+          var description = "Uploaded by " + VISH.User.getName() + " via Vish Editor";
           $("#" + uploadDivId + " input[name='document[description]']").val(description);
-          $("#" + uploadDivId + " input[name='document[owner_id]']").val(options["ownerId"]);
-          $("#" + uploadDivId + " input[name='authenticity_token']").val(options["token"]);
-          if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
-            $("#" + uploadDivId + " .documentsForm").attr("action", options["documentsPath"])
-          }else {
-            if(VISH.Configuration.getConfiguration()["mode"] == "node") {
-              $("#" + uploadDivId + " .documentsForm").attr("action", "/image")
-            }
-          }
+          $("#" + uploadDivId + " input[name='document[owner_id]']").val(VISH.User.getId());
+          $("#" + uploadDivId + " input[name='authenticity_token']").val(VISH.User.getToken());
+          $("#" + uploadDivId + " .documentsForm").attr("action", VISH.UploadImagePath);
           $("#" + uploadDivId + " input[name='tags']").val(VISH.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
           $(tagList).parent().hide();
@@ -13514,17 +13503,11 @@ VISH.Editor.Object = function(V, $, undefined) {
         event.preventDefault()
       }else {
         if(options) {
-          var description = "Uploaded by " + options["ownerName"] + " via Vish Editor";
+          var description = "Uploaded by " + VISH.User.getName() + " via Vish Editor";
           $("#" + uploadDivId + " input[name='document[description]']").val(description);
-          $("#" + uploadDivId + " input[name='document[owner_id]']").val(options["ownerId"]);
-          $("#" + uploadDivId + " input[name='authenticity_token']").val(options["token"]);
-          if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
-            $("#" + uploadDivId + " .documentsForm").attr("action", options["documentsPath"])
-          }else {
-            if(VISH.Configuration.getConfiguration()["mode"] == "node") {
-              $("#" + uploadDivId + " .documentsForm").attr("action", "/object")
-            }
-          }
+          $("#" + uploadDivId + " input[name='document[owner_id]']").val(VISH.User.getId());
+          $("#" + uploadDivId + " input[name='authenticity_token']").val(VISH.User.getToken());
+          $("#" + uploadDivId + " .documentsForm").attr("action", VISH.UploadObjectPath);
           $("#" + uploadDivId + " input[name='tags']").val(VISH.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
           $(tagList).parent().hide();
@@ -13908,8 +13891,8 @@ VISH.Samples = function(V, undefined) {
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
-  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://www.andaluciacar.com/images/imagesMaps/donanabig.jpg)", "pois":[{"id":"poi1", "x":"200", "y":"200", "slide_id":"1"}, {"id":"poi2", "x":"400", "y":"400", 
-  "slide_id":"2"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://www.absoluthuelva.com/wp-content/uploads/2009/03/donana.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://i3.photobucket.com/albums/y78/Txemin/cuadricula/cuadriculamostra.jpg)", "pois":[{"id":"poi1", "x":"20", "y":"20", "slide_id":"1"}, {"id":"poi2", "x":"70", 
+  "y":"30", "slide_id":"2"}, {"id":"poi3", "x":"45", "y":"90", "slide_id":"3"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://www.absoluthuelva.com/wp-content/uploads/2009/03/donana.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
   "type":"image", "areaid":"left", "body":"http://www.viajes.okviajar.es/wp-content/uploads/2010/11/parque-donana.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
@@ -14788,7 +14771,15 @@ VISH.AppletPlayer = function() {
 VISH.Configuration = function(V, $, undefined) {
   var configuration;
   var init = function(myConfiguration) {
-    configuration = myConfiguration
+    configuration = myConfiguration;
+    _initPaths()
+  };
+  var _initPaths = function() {
+    VISH.ImagesPath = configuration["ImagesPath"];
+    VISH.StylesheetsPath = configuration["StylesheetsPath"];
+    VISH.UploadImagePath = configuration["uploadImagePath"];
+    VISH.UploadObjectPath = configuration["uploadObjectPath"];
+    VISH.UploadPresentationPath = configuration["uploadPresentationPath"]
   };
   var applyConfiguration = function() {
     if(configuration["presentationSettings"]) {
@@ -14912,6 +14903,7 @@ VISH.Debugging = function(V, $, undefined) {
     $("#menubar_helpsection2").hide();
     $("#joyride_help_button").hide();
     $("#preview_circle").hide();
+    VISH.Editor.Tools.cleanZoneTools();
     VISH.Editor.Tools.disableToolbar();
     $("#menubar-viewer").show();
     log("Init Vish Viewer with excursion: " + JSON.stringify(myexcursion));
@@ -14945,17 +14937,20 @@ VISH.Debugging = function(V, $, undefined) {
 VISH.Dummies = function(VISH, undefined) {
   var nextDivId = 1;
   var nextArticleId = 1;
-  var dummies = ["<article id='article_id_to_change' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t1_subheader editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-  VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t4_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t5_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t6_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t7_subheader editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t8_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t9_right editable grey_background selectable'></div></article>", 
-  "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='" + 
-  VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a></li> </ul> </div></article>", "<article id='article_id_to_change' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t12_header'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table id='truefalse_quiz_table' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th><th></th></tr><tr id='tr_question_1'><td id='td_true_1' class='td_true'><input type='radio' id='true_1' name='answer_1' class='truefalse_answer' value='true'/></td><td id='td_false_1' class='td_false'><input type='radio' id='false_1' name='answer_1' class='truefalse_answer' value='false'/></td><td id='td_question_1' class='td_truefalse_question'><textarea rows='1' class='true_false_question' placeholder='Write question here' id='true_false_question_1'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + 
-  VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr></table></div></article>"];
+  var dummies = [];
+  var init = function() {
+    dummies = ["<article id='article_id_to_change' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t1_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t4_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t5_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t6_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t7_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t8_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t9_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li id='li_mch_option_1' class='li_mch_option'>a) <input id='radio_text_1' class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a src='' id='a_add_quiz_option' class='add_quiz_option'><img src='" + 
+    VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a></li> </ul> </div></article>", "<article id='article_id_to_change' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t12_header'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table id='truefalse_quiz_table' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th><th></th></tr><tr id='tr_question_1'><td id='td_true_1' class='td_true'><input type='radio' id='true_1' name='answer_1' class='truefalse_answer' value='true'/></td><td id='td_false_1' class='td_false'><input type='radio' id='false_1' name='answer_1' class='truefalse_answer' value='false'/></td><td id='td_question_1' class='td_truefalse_question'><textarea rows='1' class='true_false_question' placeholder='Write question here' id='true_false_question_1'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + 
+    VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr></table></div></article>"]
+  };
   var getDummy = function(template, position, excursion_id, existing_slide) {
     var dum = dummies[parseInt(template, 10) - 1];
     return _replaceIds(dum, position, excursion_id, existing_slide)
@@ -14980,7 +14975,7 @@ VISH.Dummies = function(VISH, undefined) {
     }
     return newString
   };
-  return{getDummy:getDummy}
+  return{init:init, getDummy:getDummy}
 }(VISH);
 VISH.Editor.API = function(V, $, undefined) {
   var init = function() {
@@ -16210,7 +16205,7 @@ VISH.Editor.Preview = function(V, $, undefined) {
       slideNumberToPreview = V.Slides.getCurrentSlideNumber()
     }
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
-      $("#preview_circle").attr("href", "/")
+      $("#preview_circle").attr("href", "/excursions/preview#" + slideNumberToPreview)
     }else {
       if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
         $("#preview_circle").attr("href", "/vishEditor/viewer.html#" + slideNumberToPreview)
@@ -16407,10 +16402,16 @@ VISH.Editor.Renderer = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.Text = function(V, $, undefined) {
   var myNicEditor;
+  var initialized = false;
   var init = function() {
-    $(document).on("click", ".textthumb", launchTextEditor)
+    if(!initialized) {
+      $(document).on("click", ".textthumb", launchTextEditor);
+      nicEditorInit();
+      initialized = true
+    }
   };
   var launchTextEditor = function(event, area, initial_text) {
+    init();
     var current_area;
     if(area) {
       current_area = area
@@ -16981,6 +16982,13 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     return filterStyle
   };
+  var getStylesInPercentages = function(parent, element) {
+    var WidthPercent = element.width() * 100 / parent.width();
+    var HeightPercent = element.height() * 100 / parent.height();
+    var TopPercent = element.position().top * 100 / parent.height();
+    var LeftPercent = element.position().left * 100 / parent.width();
+    return"position: relative; width:" + WidthPercent + "%; height:" + HeightPercent + "%; top:" + TopPercent + "%; left:" + LeftPercent + "%;"
+  };
   var loadTab = function(tab_id) {
     $(".joyride-close-tip").click();
     $(".fancy_tab_content").hide();
@@ -17039,7 +17047,7 @@ VISH.Editor.Utils = function(V, $, undefined) {
         break
     }
   };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, loadTab:loadTab, showSlides:showSlides}
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, loadTab:loadTab, showSlides:showSlides}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -17465,7 +17473,7 @@ VISH.Flashcard = function(V, $, undefined) {
     flashcard_div.css("background-image", excursion.background.src);
     for(index in excursion.background.pois) {
       var poi = excursion.background.pois[index];
-      var div_to_add = "<div id='" + poi.id + "' style='position:absolute;display: inline-block;left:" + poi.x + "px;top:" + poi.y + "px'><img src='" + VISH.ImagesPath + "arrow_down.gif'/></div>";
+      var div_to_add = "<div id='" + poi.id + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'><img src='" + VISH.ImagesPath + "arrow_down.gif'/></div>";
       flashcard_div.append(div_to_add);
       $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onPoiClicked)
     }
@@ -18428,6 +18436,9 @@ VISH.User = function(V, $, undefined) {
     if(options["username"]) {
       user.username = options["username"]
     }
+    if(options["userId"]) {
+      user.id = options["userId"]
+    }
     if(options["token"]) {
       user.token = options["token"]
     }
@@ -18453,6 +18464,13 @@ VISH.User = function(V, $, undefined) {
       return null
     }
   };
+  var getId = function() {
+    if(user && user.id) {
+      return user.id
+    }else {
+      return null
+    }
+  };
   var getToken = function() {
     if(user && user.token) {
       return user.token
@@ -18460,7 +18478,7 @@ VISH.User = function(V, $, undefined) {
       return null
     }
   };
-  return{init:init, isLogged:isLogged, getUser:getUser, getName:getName, getToken:getToken}
+  return{init:init, isLogged:isLogged, getUser:getUser, getName:getName, getId:getId, getToken:getToken}
 }(VISH, jQuery);
 VISH.Utils.canvas = function(V, undefined) {
   var drawImageWithAspectRatio = function(ctx, content, dx, dy, dw, dh) {
@@ -18743,7 +18761,11 @@ VISH.ViewerAdapter = function(V, $, undefined) {
         margin_width = 0
       }else {
         page_is_fullscreen = false;
-        reserved_px_for_menubar = 40;
+        if(VISH.ViewerEngine === "presentation") {
+          reserved_px_for_menubar = 40
+        }else {
+          reserved_px_for_menubar = 0
+        }
         margin_height = 40;
         margin_width = 30
       }
@@ -18763,14 +18785,21 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
     $(".slides > article").css("height", finalH);
     $(".slides > article").css("width", finalW);
+    $("#flashcard-background").css("height", finalH);
+    $("#flashcard-background").css("width", finalW);
+    $("#flashcard-background").css("background-size", "" + finalW + "px " + finalH + "px");
     var marginTop = finalH / 2 + reserved_px_for_menubar / 2;
     var marginLeft = finalW / 2;
     $(".slides > article").css("margin-top", "-" + marginTop + "px");
     $(".slides > article").css("margin-left", "-" + marginLeft + "px");
+    $("#flashcard-background").css("margin-top", "-" + marginTop + "px");
+    $("#flashcard-background").css("margin-left", "-" + marginLeft + "px");
     var increase = finalH / 600;
     var font_size = V.Status.ua.mobile ? 15 : 16;
     $(".slides > article").css("font-size", font_size * increase + "px");
     $(".slides > article").css("line-height", font_size * increase + "px");
+    $(".fc_poi img").css("width", 50 * increase + "px");
+    $(".fc_poi img").css("height", 50 * increase + "px");
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
   };

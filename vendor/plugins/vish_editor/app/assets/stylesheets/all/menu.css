@@ -8,6 +8,8 @@
 	margin-bottom: 0px;
 	margin-top: 0px;
 	padding: 0px;
+	width: 131px;
+	min-width: 131px;
 }
 
 #menu li {
@@ -83,8 +85,9 @@ ul.menu_option_main ul {
 #menu a.menu_option_main{
 	padding-top: 0px;
 	padding-bottom: 50px;
-	padding-right: 50px;
-	padding-left: 50px;
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-left: -10px;
 }
 
 #menu ul li {

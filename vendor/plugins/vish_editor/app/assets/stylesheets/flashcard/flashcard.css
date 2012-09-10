@@ -65,17 +65,27 @@
 #flashcard-background {
   z-index: 1050; 
 	display: block;
+<<<<<<< HEAD
   width: 800px;
   height: 600px;
-  margin-top: -300px;
+  margin-top: -327px;
   margin-left: -400px;
+=======
+>>>>>>> e9a1c2739bf68e41ac4d6e8311c6dcfb6ddc0b51
   left: 50%;
   top: 50%;
-  position: absolute;	
+  position: relative;	
 	background-repeat:no-repeat;
 	background-attachment:fixed;
 	background-position:center center;
   background-size: 100%;
+  border-radius: 20px;
+  webkit-border-radius: 20px;
+  moz-border-radius: 20px;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
  
 }
 
