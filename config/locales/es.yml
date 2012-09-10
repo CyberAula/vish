@@ -196,9 +196,9 @@ es:
   recsys:
     recommended:
       excursions:
-        explain_html: "Recomendados de acuerdo con tus areas de interés"
+        explain_html: "Vistas por usuarios afines a tus intereses:"
       resources:
-        explain_html: "Recomendados de acuerdo con tus areas de interés"
+        explain_html: "Vistos por usuarios afines a tus intereses:"
   repository:
     one: "repositorio"
     other: "repositorios"
