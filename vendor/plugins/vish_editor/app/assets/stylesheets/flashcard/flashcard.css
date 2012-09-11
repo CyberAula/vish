@@ -63,15 +63,9 @@
 }
 
 #flashcard-background {
+  position: relative; /*to position the arrows relative to it*/
   z-index: 1050; 
 	display: block;
-<<<<<<< HEAD
-  width: 800px;
-  height: 600px;
-  margin-top: -327px;
-  margin-left: -400px;
-=======
->>>>>>> e9a1c2739bf68e41ac4d6e8311c6dcfb6ddc0b51
   left: 50%;
   top: 50%;
   position: relative;	
@@ -87,5 +81,10 @@
     moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
     webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
  
+}
+
+.fc_poi img{
+  width: 50px;
+  height: 50px;
 }
 

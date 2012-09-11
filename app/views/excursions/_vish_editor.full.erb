@@ -111,7 +111,7 @@
       <img class="toolbar_icon" style="display:none" 
       action="selectTheme" src="/assets/toolbar/theme_selection.png"/>
       <img class="toolbar_icon toolbar_flashcard" style="display:none" 
-      action="changeFlashcardBackground" src="/assets/toolbar/flashcard_background.png"/>
+      action="changeFlashcardBackground" src="/assets/toolbar/flashcard_background.png" title="Change background"/>
     </div>
     <div id="toolbar_element">
       <img class="toolbar_icon toolbar_web toolbar_snapshot"  style="display:none" action="zoomMore" 
@@ -317,6 +317,32 @@
       </div>
     </div>
   </div>
+
+  <!-- PROMPT WHEN CLICK ON ADD SLIDE IN FLASHCARD MODE -->
+    <div style='display:none'>
+      <div id='message2_form'>
+        <div class="text_in_fancybox">
+          <img id="message2img" src="/assets/images/content_fail.png">
+          <span class="deltext">Transform the excursion to presentation to add a new slide.</span>
+        </div>    
+        <div id="button_accept_when_fail">
+          <a href="#" onclick="$.fancybox.close();" class="prompt_button buttonfail">accept</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE FLASHCARD-->
+    <div style='display:none'>
+      <div id='message3_form'>
+        <div class="text_in_fancybox">
+          <img id="message3img" src="/assets/images/content_fail.png">
+          <span class="deltext">Please drag and drop at least one arrow in the flashcard.</span>
+        </div>    
+        <div id="button_accept_when_fail">
+          <a href="#" onclick="$.fancybox.close();" class="prompt_button buttonfail">accept</a>
+        </div>
+      </div>
+    </div>
   
 
   <!-- IMAGE -->

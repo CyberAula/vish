@@ -16858,7 +16858,7 @@ VISH.Editor.Tour = function(V, $, undefined) {
     }else {
       loc = tipLocation
     }
-    $(window).joyride({"tipLocation":loc, "tipContent":"#" + helpid, "postRideCallback":VISH.Editor.Tour.clear()})
+    $(window).joyride({"tipLocation":loc, "tipContent":"#" + helpid, "postRideCallback":VISH.Editor.Tour.clear})
   };
   var clear = function() {
     $(".joyride-tip-guide").each(function() {
@@ -17481,7 +17481,7 @@ VISH.Flashcard = function(V, $, undefined) {
     flashcard_div.css("background-image", excursion.background.src);
     for(index in excursion.background.pois) {
       var poi = excursion.background.pois[index];
-      var div_to_add = "<div id='" + poi.id + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'><img src='" + VISH.ImagesPath + "arrow_down.gif'/></div>";
+      var div_to_add = "<div class='fc_poi' id='" + poi.id + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'><img src='" + VISH.ImagesPath + "arrow_down.gif'/></div>";
       flashcard_div.append(div_to_add);
       $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onPoiClicked)
     }
