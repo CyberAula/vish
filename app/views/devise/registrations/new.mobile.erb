@@ -15,16 +15,16 @@
   <section id="">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
       <article class="row-fluid">
-        <div class="span12 box_basic">
+        <div class="span12 box_basic ">
           <div class=" span12 border_bottom ">
             <%= f.label :name, :class => "span4 text_imput_center" %>
-            <%= f.text_field :name, :class => "span7 input_nude pull-right", :id => "name", :placeholder => "Insert Name" %>
+            <%= f.text_field :name, :class => "span7 input_nude pull-right pull-right", :id => "name", :placeholder => "Insert Name" %>
           </div>
           <div class="span12 border_bottom ">
             <%= f.label :email, :class => "span4 text_imput_center" %>
             <%= f.text_field :email, :class => "span7 input_nude", :id => "email", :placeholder => "email@example.com" %>
           </div>
-          <div class="span12 border_bottom ">
+          <div class="span12 border_bottom text_imput_center ">
             <%= f.label :password, :class => "span4 text_imput_center" %>
             <%= f.password_field :password, :class => "span7 input_nude text_imput_center", :id => "password", :placeholder => "********" %>
           </div>

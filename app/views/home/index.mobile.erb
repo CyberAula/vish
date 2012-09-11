@@ -1,9 +1,9 @@
 <section>
     <nav>
-        <article class="article">
+        <article class="article ">
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="span2"></div>
+
                     <ul class="nav nav-tabs">
                         <li class="">
                             <a data-toggle="tab" href="#excursions"><%= t('excursion.other')%></a>
@@ -18,19 +18,25 @@
         <article class="article">
             <div class="tab-content">
                 <div id="excursions" class="tab-pane">
+
                   <div class="row-fluid">
                     <div class="span12">
-                      <ul class="nav nav-pills" >
+                      <ul class="nav nav-pills " >
                         <li class="active"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
                         <li class=""><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
                         <li class=""><a data-toggle="tab" href="#ex-3"><%= t('excursion.top') %></a></li>
                         <li class="" id="star"><a data-toggle="tab" href="#ex-4"><%= image_tag "star-MENU-active.png" %></a></li>
-                      </ul>
+                     </ul>
                     </div>
                   </div>
+
+                  <div class="row "></div>
+                  <div class="space_center"></div>
+
                   <div class="tab-content">
                     <div id="ex-1" class="tab-pane active">
                       <div id="home-excursions-net">
+
                         <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions(:limit => 10) } %>
                       </div>
                     </div>
