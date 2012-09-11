@@ -1,5 +1,6 @@
 class ModalsController < ApplicationController
   before_filter :profile_subject!, :only => :actor
+  before_filter :kill_cache
 
   respond_to :js
 
@@ -45,5 +46,11 @@ class ModalsController < ApplicationController
   def document
     @document = Document.find(params[:id])
     render
+  end
+
+  private
+
+  def kill_cache
+    headers['Last-Modified'] = Time.now.httpdate
   end
 end
