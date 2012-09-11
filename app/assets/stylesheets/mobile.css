@@ -41,15 +41,12 @@ h4{
   font: 15px; 
 }
 
-.navbar {
-    margin-left: -10px;
-    margin-right: -10px;
-}
 
 .navbar-inner {
-  min-height: 40px;
+  height: auto;
   padding-right: 10px;
-  padding-left: 10px;
+  padding-left: 14px;
+  padding-top: 10px;
   background-color: #eeeeee;
   background-image: none;
   -webkit-border-radius: 4px 2px 4px 2px;
@@ -66,7 +63,7 @@ h4{
 	padding-top:15px;
 }
 .navbar-search .search-query {
-  padding: 4px 9px;
+  padding: 0px 0px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
@@ -187,9 +184,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#12000000', e
     margin-right: 0px;
 }
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {font-size: 35px; text-decoration: none;}
-.nav-tabs > li > a:hover {font-size: 35px; text-decoration: none;}
-.nav-tabs > li > a {font-size: 35px; text-decoration: none; font-weight: 100; padding-bottom:6px;}
-
+.nav-tabs > li > a:hover {font-size: 32px; text-decoration: none;}
+.nav-tabs > li > a {font-size: 32px; text-decoration: none; font-weight: 100; padding-bottom:6px;}
+.mag{margin-left: 10px;}
 
 
 .all-description
@@ -200,7 +197,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#12000000', e
   cursor: default;
   font-weight: 100;
   outline: none;
-  font-size: 35px;
+  font-size: 32px;
 
 }
 
@@ -227,7 +224,7 @@ label {
 input, textarea, select, .uneditable-input{
   border-radius:5px; 
   background-color: #fefefe; 
-  margin-bottom: 25px !important; 
+  margin-bottom: 12px !important; 
   margin-top: -6px;
 }
 input, textarea, select, .uneditable-input {width: 100%;}
@@ -692,9 +689,7 @@ margin: 0;
   margin-top:26px; 
   margin-left:10px;
 }
-.article{
-  margin-left:10px;
-}
+
 .margin-top{
   margin-top:10px;
 }
