@@ -2,7 +2,9 @@
   <% link_title = link.title %>
   <% link_title = link.url if link_title.blank? %>
   <%= javascript_tag do %>
-    <%= modal_for(link) %>
+    <% if link.callback_url %>
+      <%= modal_for(link) %>
+    <% end%>
     <%= modal_for(link.author.subject) %>
   <% end %>
 
