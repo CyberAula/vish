@@ -8,5 +8,7 @@ require File.expand_path('../application', __FILE__)
 Vish::Application.initialize!
 
 # Monkey patch Actor to include recommender system
-require 'recsys'
+ActiveSupport.on_load :actor do
+  require 'recsys'
+end
 

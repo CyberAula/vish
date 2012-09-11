@@ -1,4 +1,4 @@
-<% if user_signed_in? and (defined? current_subject.excursion_suggestions) and (sgs = current_subject.excursion_suggestions(2)).present? %>
+<% if user_signed_in? and (sgs = current_subject.excursion_suggestions(2)).present? %>
   <div class="span">
     <div class="header_followers">
       <div class="header_text">

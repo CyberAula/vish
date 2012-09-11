@@ -41,8 +41,7 @@
                     </div>
                     <div id="ex-3" class="tab-pane">
                       <div id="home-excursions-more">
-                        <% recommended_excursions = (defined? current_subject.excursion_suggestions) ? current_subject.excursion_suggestions(10) : current_subject_excursions(:scope => :more, :limit => 10) %>
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => recommended_excursions } %>
+                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject.excursion_suggestions(10) } %>
                       </div>
                     </div>
                     <div id="ex-4" class="tab-pane">

@@ -57,9 +57,8 @@
           <div class="space_center"></div>
           <div class="space_center"></div>
           <div id="home-excursions-more" class="row height-tabs-home">
-            <% recommended_excursions = (defined? current_subject.excursion_suggestions) ? current_subject.excursion_suggestions(4) : current_subject_excursions(:scope => :more, :limit => 4) %>
             <%= render :partial => "excursions/filter_results",
-                       :locals => {:excursions => recommended_excursions } %>
+                       :locals => {:excursions => current_subject.excursion_suggestions(4) } %>
           </div>
           <div class="more"><%= link_to(t('view_all'), search_path(:type => "excursion")) %></div>
         </div>
@@ -127,9 +126,8 @@
           <div class="space_center"></div>
           <div class="space_center"></div>
           <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
-            <% recommended_resources = (defined? current_subject.resource_suggestions) ? current_subject.resource_suggestions(6) : current_subject_resources(:scope => :more, :limit => 6) %>
             <%= render :partial => "common_documents/filter_results",
-                       :locals => {:documents => recommended_resources } %>
+                       :locals => {:documents => current_subject.resource_suggestions(6) } %>
           </div>
           <div class="more"><%= link_to(t('view_all'), search_path(:type => "resource")) %></div>
         </div>
