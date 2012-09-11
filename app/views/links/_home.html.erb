@@ -18,7 +18,7 @@
     </li>
     <div class="row-fluid-100">
       <h4 class="link_gray size15 ellipsis w150px">
-        <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%> modal-trigger"><% else %><a href="<%= link.url %>" target="_blank"><% end %><%= link.title %></a>
+        <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%> modal-trigger"><% else %><a href="<%= link.url %>" target="_blank"><% end %><%= link_title %></a>
       </h4>
         <div class="rw-words rw-words-1">
           <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= link.author.slug %>" class="user-modal-button-<%= link.author.slug %> modal-no-trigger"><%= link.author.name %></a></h5></span>
