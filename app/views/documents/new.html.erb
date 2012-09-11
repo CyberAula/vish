@@ -198,6 +198,9 @@
 	        <% d.owner_id = Actor.normalize_id(current_user) %>
 	        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
 	          <%= f.hidden_field :owner_id %>
+	          <%= f.hidden_field :callback_url %>
+	          <%= f.hidden_field :loaded %>
+	          <%= f.hidden_field :image %>
 	      </div>
 	
 	      <div id="new_file_only_wrapper">
@@ -233,7 +236,7 @@
 	        </div>
 
 	        <!--tags-->
-          <input type="hidden" name="document[tag_list][]"></input>
+          <input type="hidden" name="link[tag_list][]"></input>
 
           <div class="clearfloat"></div>
           <div class="form_row upload01 ">
@@ -516,9 +519,11 @@
       $('#upload_embed').click(function(event){
         resetFields()
       });
-			
+
 			var allButtons = $("input[value='Save'][type='submit'][name='commit'].button");
-			
+
+      $('#new_file_only_link_url').change(urlDetect).keyup(urlDetect);
+
 			$(allButtons).click(function(event) {
         var tab = $(event.target).attr("tab");
         if(!validateForm(tab)){
@@ -576,6 +581,46 @@
         watermarkAllowMessage: '<%=t('document.info.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' });
 	    }	
 	  });
+
+    $.preloadImages("<%= asset_path('loading.gif') %>");
+    var regexpLink = /^(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&;:\/~+#-]*[\w@?^=%&;\/~+#-])?$/
+    var currentLink = '';
+    var lastLink = '';
+
+    function urlDetect(){
+      currentLink = $("#new_file_only_link_url").val();
+
+      if(regexpLink.test($("#new_file_only_link_url").val())) {
+        $("#new_file_only_link_loaded").val(false);
+
+        if(currentLink != lastLink) {
+          lastLink = currentLink;
+          var url = currentLink;
+          var urlDetect = this;
+
+          $.ajax({
+            type : "GET",
+            url : "/linkser_parse?url=" + url,
+            dataType: 'json',
+            success : function(reply_json) {
+              if($("#new_file_only_link_url").val() == url) {//Only show if input value is still the same
+                $("#new_file_only_link_title").val(reply_json['title']);
+                $("#new_file_only_link_description").html(reply_json['description']);
+                $("#new_file_only_link_callback_url").val(reply_json['callback_url']);
+                $("#new_file_only_link_image").val(reply_json['image']);
+                $("#new_file_only_link_loaded").val(true);
+              }
+            },
+            error : function(xhr, ajaxOptions, thrownError) {
+              if($("#new_file_only_link_url").val() == url) {//Only show if input value is still the same
+                $("#new_file_only_link_description").html(I18n.t('link.errors.loading'));
+              }
+            }
+          });
+        }
+      }
+ 
+    }
 		
 		function resetFields(){
 		  //File input
@@ -615,7 +660,7 @@
 				break;
 				
 				case "link":	
-					if(! Vish.Utils.validateInput("new_file_only_link_url")){
+					if(! Vish.Utils.validateInput("new_file_only_link_url") || ! regexpLink.test($('#new_file_only_link_url').val()) ){
             return false;
           }
           if(! Vish.Utils.validateInput("new_file_only_link_title")){
@@ -644,5 +689,5 @@
 			
 			return true;
 		}
-		
+
 	<% end %>
