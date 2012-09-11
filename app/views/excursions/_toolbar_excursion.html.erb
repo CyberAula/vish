@@ -57,7 +57,7 @@
 
     <div class="social_toolbar_excursion">
       <div class="gplus_toolbar_excursion span1">
-    <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL} %>
+    <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(excursion) )} %>
      </div>
       <div class="facebook_toolbar_excursion span1">
         <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
