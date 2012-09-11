@@ -6,17 +6,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <div class="offset1 span2 inline">
-        <a href="/">
-          <img src="/assets/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
-        </a>
-      </div>
+      <a href="/">
+        <img src="/assets/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
+      </a>
       <% unless controller.class == SearchController %>
-        <div class="span3 inline-block">    
-          <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
-            <input type="text" class="search-query" placeholder="Search">
-          </form>
-        </div>
+      <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
+        <input type="text" class="search-query" placeholder="Search">
+      </form>
       <% end %>
       <div style="height: 0px;" class="nav-collapse collapse in">
         <hr class="soften"/>
