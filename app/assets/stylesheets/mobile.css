@@ -41,6 +41,11 @@ h4{
   font: 15px; 
 }
 
+.navbar {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
 .navbar-inner {
   min-height: 40px;
   padding-right: 10px;
@@ -626,7 +631,7 @@ content: "";
 .input-xlarge {height:60px}
 .section {margin-right: 10px; margin-left: 10px;}
 
-#wall {margin-left:20px;
+#wall {margin-left:7px;
        text-align:left;       
 }
 .caption{height:20px;}
