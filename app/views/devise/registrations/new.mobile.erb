@@ -17,20 +17,20 @@
       <article class="row-fluid">
         <div class="span12 box_basic">
           <div class=" span12 border_bottom ">
-            <%= f.label :name, :class => "span3 text_imput_center" %>
-            <%= f.text_field :name, :class => "span8 input_nude", :id => "name", :placeholder => "Insert Name" %>
+            <%= f.label :name, :class => "span4 text_imput_center" %>
+            <%= f.text_field :name, :class => "span7 input_nude pull-right", :id => "name", :placeholder => "Insert Name" %>
           </div>
           <div class="span12 border_bottom ">
-            <%= f.label :email, :class => "span3 text_imput_center" %>
-            <%= f.text_field :email, :class => "span8 input_nude", :id => "email", :placeholder => "email@example.com" %>
+            <%= f.label :email, :class => "span4 text_imput_center" %>
+            <%= f.text_field :email, :class => "span7 input_nude", :id => "email", :placeholder => "email@example.com" %>
           </div>
           <div class="span12 border_bottom ">
-            <%= f.label :password, :class => "span3 text_imput_center" %>
-            <%= f.password_field :password, :class => "span8 input_nude text_imput_center", :id => "password", :placeholder => "********" %>
+            <%= f.label :password, :class => "span4 text_imput_center" %>
+            <%= f.password_field :password, :class => "span7 input_nude text_imput_center", :id => "password", :placeholder => "********" %>
           </div>
           <div class="span12 border_bottom ">
-            <%= f.label :password_confirmation, :class => "span3 text_imput_center" %>
-            <%= f.password_field :password, :class => "span8 input_nude text_imput_center", :id => "password_confirmation", :placeholder => "********" %>
+            <%= f.label :password_confirmation, :class => "span4 text_imput_center" %>
+            <%= f.password_field :password, :class => "span7 input_nude text_imput_center", :id => "password_confirmation", :placeholder => "********" %>
           </div>
           <!-- Tags -->
           <!-- Preload tags -->
@@ -40,12 +40,12 @@
               <li><%= tag.name %></li>
             <% end %>
           </ul>
-          <label class="span3 text_imput_center" for="tags"><%= t('activerecord.attributes.user.tag') %></label>
+          <label class="span4 text_imput_center" for="tags"><%= t('activerecord.attributes.user.tag') %></label>
 
           <div class="controls">
-            <div class="tagBoxNew span8 ">
-              <%= f.hidden_field :tag_list, :class => "form_tag span8", :id => "input_tag_list " %>
-              <div class="tagList span8 margin-top10 "></div>
+            <div class="tagBoxNew  span6 ">
+              <%= f.hidden_field :tag_list, :class => "form_tag span6", :id => "input_tag_list input_nude " %>
+              <div class="tagList span6 margin-top10 "></div>
             </div>
           </div>
         </div>

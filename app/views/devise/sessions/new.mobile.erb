@@ -10,15 +10,19 @@
 </div>
 <section id="">
     <article class="row-fluid ">
-      <div class="span12 box_basic">
+      <div class="span12 box_basic form">
         <div class="span12 border_bottom ">
           <%= form_for(resource, :as => resource_name, :url => user_session_path, :html => {:method => :post, :class => "form-horizontal2"}) do |f| %>
             <%= f.text_field :email, :class => "span12 input_nude", :id => "email", :placeholder => "e-mail" %>
             </div>
+            <div class="span12 margin-top10">
             <%= f.password_field :password, :class => "span12 input_nude", :id => "password", :placeholder => "password" %>
             </div>
+            </div>
             <%= hidden_field :remember_me, true %>
-            <div class=" row"></div>
+
+            <div class="row "></div>
+            <div class="space_center"></div>
             <%= f.submit t('action.send'), :class => " margin-top10 btn btn-primary span12" %>
             <div class="span12 margin-top10">
               <ul class="span12 pagination-right pull-right">
