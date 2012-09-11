@@ -41,6 +41,11 @@ h4{
   font: 15px; 
 }
 
+.navbar {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
 .navbar-inner {
   min-height: 40px;
   padding-right: 10px;
