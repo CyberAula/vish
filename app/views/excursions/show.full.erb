@@ -50,7 +50,7 @@
 
 	function start(){
 		var myexcursion;
-		if(window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function")){
+		if(window.parent.VISH && window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function")){
         	//called to show a preview
         	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
       	}
