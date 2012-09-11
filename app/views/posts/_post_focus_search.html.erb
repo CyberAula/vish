@@ -1,27 +1,29 @@
-<% author = post.author_subject %>
-<div class="model_with_details span3  box-result">
-  <%= javascript_tag do %>
-    <%= modal_for(author.subject) %>
-  <% end %>
-  <ul class="thumbnails">
-    <li class="span1 margin-clear ">
-      <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= image_tag(author.logo.url, :alt => author.name) %></a>
-    </li>
-    <li class="span w150px">
-      <div class="caption">
-        <h4><span class="size16"><a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= truncate_name(author.name, :length => 40) %></a></span></h4>
-        <div class="size12 link_gray">
-          <h5 class="blue-opacity"><span class="size13"><%=t "#{post.class.name.underscore}.search_name"  %></span></h5>
-          <%= link_to post do%>
-            <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 25) || truncate(post.text, :length => 60) %>
-            <% if text.length < 60 %>
-              <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 30 + (60 - text.length)) || post.text %>
+<% unless post.blank? %>
+  <% author = post.author_subject %>
+  <div class="model_with_details span3  box-result">
+    <%= javascript_tag do %>
+      <%= modal_for(author.subject) %>
+    <% end %>
+    <ul class="thumbnails">
+      <li class="span1 margin-clear ">
+        <a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= image_tag(author.logo.url, :alt => author.name) %></a>
+      </li>
+      <li class="span w150px">
+        <div class="caption">
+          <h4><span class="size16"><a data-toggle="modal" href="#user-modal-<%= author.slug %>" class="user-modal-button-<%= author.slug %> modal-no-trigger"><%= truncate_name(author.name, :length => 40) %></a></span></h4>
+          <div class="size12 link_gray">
+            <h5 class="blue-opacity"><span class="size13"><%=t "#{post.class.name.underscore}.search_name"  %></span></h5>
+            <%= link_to post do%>
+              <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 25) || truncate(post.text, :length => 60) %>
+              <% if text.length < 60 %>
+                <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 30 + (60 - text.length)) || post.text %>
+              <% end %>
+              <%= highlight(text,get_search_query_words) %>
             <% end %>
-            <%= highlight(text,get_search_query_words) %>
-          <% end %>
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
-</div>
+      </li>
+    </ul>
+  </div>
+<% end %>
 
