@@ -6,7 +6,7 @@
   height: 32px;
   line-height: 32px;
   vertical-align: text-top;
-  background-image: url("iconrepository32.png");
+  background-image: url("icons/iconrepository32.png");
   background-position: 32px 32px;
   background-repeat: no-repeat;
   *margin-right: .3em;
@@ -179,7 +179,7 @@ li{
   height: 75px;
   line-height: 75px;
   vertical-align: text-top;
-  background-image: url("iconrepository75.png");
+  background-image: url("icons/iconrepository75.png");
   background-position: 75px 75px;
   background-repeat: no-repeat;
   *margin-right: .3em;
@@ -222,7 +222,7 @@ li{
 /*.................. icon repository 32 x 32 px......................*/
 
 [class^="icon_repository32-"], [class*=" icon_repository32-"] {
-  background-image: url("iconrepository32.png");
+  background-image: url("icons/iconrepository32.png");
   background-position:32px 32px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -236,7 +236,7 @@ li{
 [class^="icon_repository32-"]:last-child, [class*="icon_repository32-"]:last-child {
 }
 .icon_repository32-white {
-  background-image: url("iconrepository32.png");}
+  background-image: url("icons/iconrepository32.png");}
 
 /*................................................... */
 
@@ -305,7 +305,7 @@ li{
 /*.................. icon repository 75 x 75 px......................*/
 
 [class^="icon_repository75-"], [class*=" icon_repository75-"] {
-  background-image: url("iconrepository75.png");
+  background-image: url("icons/iconrepository75.png");
   background-position:75px 75px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -318,7 +318,7 @@ li{
 [class^="icon_repository75-"]:last-child, [class*="icon_repository75-"]:last-child {
 }
 .icon_repository75-75_repository_white {
-  background-image: url("iconrepository75.png");}
+  background-image: url("icons/iconrepository75.png");}
 
 /*................................................... */
 
