@@ -1,6 +1,5 @@
 Vish::Application.routes.draw do
   # Blatant redirections
-  match '/contacts' => redirect('/followings')
   match '/users/:id/links' => redirect('/users/%{id}/documents')
   match '/users/:id/embeds' => redirect('/users/%{id}/documents')
   match '/users/:id/contacts' => redirect('/users/%{id}/followings')
