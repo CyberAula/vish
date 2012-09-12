@@ -1570,3 +1570,8 @@ iframe.snapshot_content{
 	top: -45px;
 	left: 27px;
 }
+
+#flashcard_help_button{
+	position: absolute;
+	right: 0px;
+}

@@ -13,7 +13,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  /*-moz-transform: translate(0); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -moz-transform: translate(0); 
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.past {
@@ -21,7 +21,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  /*-moz-transform: translate(0); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -moz-transform: translate(0); 
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.current {
@@ -29,7 +29,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  /*-moz-transform: translate(0); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -moz-transform: translate(0px, 0px); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.next {
@@ -37,7 +37,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  /*-moz-transform: translate(0); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -moz-transform: translate(0); 
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.far-next {
@@ -45,7 +45,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  /*-moz-transform: translate(0); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -moz-transform: translate(0); 
   -webkit-transform: translate3d(0, 0, 0);
 }
 

@@ -60,48 +60,48 @@ VISH.ViewerEngine = "presentation";
   function cy(a) {
     return f.isWindow(a) ? a : a.nodeType === 9 ? a.defaultView || a.parentWindow : !1
   }
-  function cv(a) {
-    if(!ck[a]) {
+  function cu(a) {
+    if(!cj[a]) {
       var b = c.body, d = f("<" + a + ">").appendTo(b), e = d.css("display");
       d.remove();
       if(e === "none" || e === "") {
-        cl || (cl = c.createElement("iframe"), cl.frameBorder = cl.width = cl.height = 0), b.appendChild(cl);
-        if(!cm || !cl.createElement) {
-          cm = (cl.contentWindow || cl.contentDocument).document, cm.write((c.compatMode === "CSS1Compat" ? "<!doctype html>" : "") + "<html><body>"), cm.close()
+        ck || (ck = c.createElement("iframe"), ck.frameBorder = ck.width = ck.height = 0), b.appendChild(ck);
+        if(!cl || !ck.createElement) {
+          cl = (ck.contentWindow || ck.contentDocument).document, cl.write((f.support.boxModel ? "<!doctype html>" : "") + "<html><body>"), cl.close()
         }
-        d = cm.createElement(a), cm.body.appendChild(d), e = f.css(d, "display"), b.removeChild(cl)
+        d = cl.createElement(a), cl.body.appendChild(d), e = f.css(d, "display"), b.removeChild(ck)
       }
-      ck[a] = e
+      cj[a] = e
     }
-    return ck[a]
+    return cj[a]
   }
-  function cu(a, b) {
+  function ct(a, b) {
     var c = {};
-    f.each(cq.concat.apply([], cq.slice(0, b)), function() {
+    f.each(cp.concat.apply([], cp.slice(0, b)), function() {
       c[this] = a
     });
     return c
   }
-  function ct() {
-    cr = b
-  }
   function cs() {
-    setTimeout(ct, 0);
-    return cr = f.now()
+    cq = b
   }
-  function cj() {
+  function cr() {
+    setTimeout(cs, 0);
+    return cq = f.now()
+  }
+  function ci() {
     try {
       return new a.ActiveXObject("Microsoft.XMLHTTP")
     }catch(b) {
     }
   }
-  function ci() {
+  function ch() {
     try {
       return new a.XMLHttpRequest
     }catch(b) {
     }
   }
-  function cc(a, c) {
+  function cb(a, c) {
     a.dataFilter && (c = a.dataFilter(c, a.dataType));
     var d = a.dataTypes, e = {}, g, h, i = d.length, j, k = d[0], l, m, n, o, p;
     for(g = 1;g < i;g++) {
@@ -135,7 +135,7 @@ VISH.ViewerEngine = "presentation";
     }
     return c
   }
-  function cb(a, c, d) {
+  function ca(a, c, d) {
     var e = a.contents, f = a.dataTypes, g = a.responseFields, h, i, j, k;
     for(i in g) {
       i in d && (c[g[i]] = d[i])
@@ -168,72 +168,72 @@ VISH.ViewerEngine = "presentation";
       return d[j]
     }
   }
-  function ca(a, b, c, d) {
+  function b_(a, b, c, d) {
     if(f.isArray(b)) {
       f.each(b, function(b, e) {
-        c || bE.test(a) ? d(a, e) : ca(a + "[" + (typeof e == "object" || f.isArray(e) ? b : "") + "]", e, c, d)
+        c || bD.test(a) ? d(a, e) : b_(a + "[" + (typeof e == "object" ? b : "") + "]", e, c, d)
       })
     }else {
-      if(!c && b != null && typeof b == "object") {
+      if(!c && f.type(b) === "object") {
         for(var e in b) {
-          ca(a + "[" + e + "]", b[e], c, d)
+          b_(a + "[" + e + "]", b[e], c, d)
         }
       }else {
         d(a, b)
       }
     }
   }
-  function b_(a, c) {
+  function b$(a, c) {
     var d, e, g = f.ajaxSettings.flatOptions || {};
     for(d in c) {
       c[d] !== b && ((g[d] ? a : e || (e = {}))[d] = c[d])
     }
     e && f.extend(!0, a, e)
   }
-  function b$(a, c, d, e, f, g) {
+  function bZ(a, c, d, e, f, g) {
     f = f || c.dataTypes[0], g = g || {}, g[f] = !0;
-    var h = a[f], i = 0, j = h ? h.length : 0, k = a === bT, l;
+    var h = a[f], i = 0, j = h ? h.length : 0, k = a === bS, l;
     for(;i < j && (k || !l);i++) {
-      l = h[i](c, d, e), typeof l == "string" && (!k || g[l] ? l = b : (c.dataTypes.unshift(l), l = b$(a, c, d, e, l, g)))
+      l = h[i](c, d, e), typeof l == "string" && (!k || g[l] ? l = b : (c.dataTypes.unshift(l), l = bZ(a, c, d, e, l, g)))
     }
-    (k || !l) && !g["*"] && (l = b$(a, c, d, e, "*", g));
+    (k || !l) && !g["*"] && (l = bZ(a, c, d, e, "*", g));
     return l
   }
-  function bZ(a) {
+  function bY(a) {
     return function(b, c) {
       typeof b != "string" && (c = b, b = "*");
       if(f.isFunction(c)) {
-        var d = b.toLowerCase().split(bP), e = 0, g = d.length, h, i, j;
+        var d = b.toLowerCase().split(bO), e = 0, g = d.length, h, i, j;
         for(;e < g;e++) {
           h = d[e], j = /^\+/.test(h), j && (h = h.substr(1) || "*"), i = a[h] = a[h] || [], i[j ? "unshift" : "push"](c)
         }
       }
     }
   }
-  function bC(a, b, c) {
-    var d = b === "width" ? a.offsetWidth : a.offsetHeight, e = b === "width" ? bx : by, g = 0, h = e.length;
+  function bB(a, b, c) {
+    var d = b === "width" ? a.offsetWidth : a.offsetHeight, e = b === "width" ? 1 : 0, g = 4;
     if(d > 0) {
       if(c !== "border") {
-        for(;g < h;g++) {
-          c || (d -= parseFloat(f.css(a, "padding" + e[g])) || 0), c === "margin" ? d += parseFloat(f.css(a, c + e[g])) || 0 : d -= parseFloat(f.css(a, "border" + e[g] + "Width")) || 0
+        for(;e < g;e += 2) {
+          c || (d -= parseFloat(f.css(a, "padding" + bx[e])) || 0), c === "margin" ? d += parseFloat(f.css(a, c + bx[e])) || 0 : d -= parseFloat(f.css(a, "border" + bx[e] + "Width")) || 0
         }
       }
       return d + "px"
     }
-    d = bz(a, b, b);
+    d = by(a, b);
     if(d < 0 || d == null) {
-      d = a.style[b] || 0
+      d = a.style[b]
+    }
+    if(bt.test(d)) {
+      return d
     }
     d = parseFloat(d) || 0;
     if(c) {
-      for(;g < h;g++) {
-        d += parseFloat(f.css(a, "padding" + e[g])) || 0, c !== "padding" && (d += parseFloat(f.css(a, "border" + e[g] + "Width")) || 0), c === "margin" && (d += parseFloat(f.css(a, c + e[g])) || 0)
+      for(;e < g;e += 2) {
+        d += parseFloat(f.css(a, "padding" + bx[e])) || 0, c !== "padding" && (d += parseFloat(f.css(a, "border" + bx[e] + "Width")) || 0), c === "margin" && (d += parseFloat(f.css(a, c + bx[e])) || 0)
       }
     }
     return d + "px"
-  }
-  function bp(a, b) {
-    b.src ? f.ajax({url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || b.textContent || b.innerHTML || "").replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
   }
   function bo(a) {
     var b = c.createElement("div");
@@ -254,25 +254,8 @@ VISH.ViewerEngine = "presentation";
   }
   function bk(a, b) {
     var c;
-    if(b.nodeType === 1) {
-      b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase();
-      if(c === "object") {
-        b.outerHTML = a.outerHTML
-      }else {
-        if(c !== "input" || a.type !== "checkbox" && a.type !== "radio") {
-          if(c === "option") {
-            b.selected = a.defaultSelected
-          }else {
-            if(c === "input" || c === "textarea") {
-              b.defaultValue = a.defaultValue
-            }
-          }
-        }else {
-          a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && (b.value = a.value)
-        }
-      }
-      b.removeAttribute(f.expando)
-    }
+    b.nodeType === 1 && (b.clearAttributes && b.clearAttributes(), b.mergeAttributes && b.mergeAttributes(a), c = b.nodeName.toLowerCase(), c === "object" ? b.outerHTML = a.outerHTML : c !== "input" || a.type !== "checkbox" && a.type !== "radio" ? c === "option" ? b.selected = a.defaultSelected : c === "input" || c === "textarea" ? b.defaultValue = a.defaultValue : c === "script" && b.text !== a.text && (b.text = a.text) : (a.checked && (b.defaultChecked = b.checked = a.checked), b.value !== a.value && 
+    (b.value = a.value)), b.removeAttribute(f.expando), b.removeAttribute("_submit_attached"), b.removeAttribute("_change_attached"))
   }
   function bj(a, b) {
     if(b.nodeType === 1 && !!f.hasData(a)) {
@@ -281,7 +264,7 @@ VISH.ViewerEngine = "presentation";
         delete h.handle, h.events = {};
         for(c in i) {
           for(d = 0, e = i[c].length;d < e;d++) {
-            f.event.add(b, c + (i[c][d].namespace ? "." : "") + i[c][d].namespace, i[c][d], i[c][d].data)
+            f.event.add(b, c, i[c][d])
           }
         }
       }
@@ -358,7 +341,7 @@ VISH.ViewerEngine = "presentation";
       d = a.getAttribute(e);
       if(typeof d == "string") {
         try {
-          d = d === "true" ? !0 : d === "false" ? !1 : d === "null" ? null : f.isNumeric(d) ? parseFloat(d) : j.test(d) ? f.parseJSON(d) : d
+          d = d === "true" ? !0 : d === "false" ? !1 : d === "null" ? null : f.isNumeric(d) ? +d : j.test(d) ? f.parseJSON(d) : d
         }catch(g) {
         }
         f.data(a, c, d)
@@ -430,7 +413,7 @@ VISH.ViewerEngine = "presentation";
       }
       a.selector !== b && (this.selector = a.selector, this.context = a.context);
       return e.makeArray(a, this)
-    }, selector:"", jquery:"1.7.1", length:0, size:function() {
+    }, selector:"", jquery:"1.7.2", length:0, size:function() {
       return this.length
     }, toArray:function() {
       return F.call(this, 0)
@@ -516,7 +499,7 @@ VISH.ViewerEngine = "presentation";
     }, isArray:Array.isArray || function(a) {
       return e.type(a) === "array"
     }, isWindow:function(a) {
-      return a && typeof a == "object" && "setInterval" in a
+      return a != null && a == a.window
     }, isNumeric:function(a) {
       return!isNaN(parseFloat(a)) && isFinite(a)
     }, type:function(a) {
@@ -556,6 +539,9 @@ VISH.ViewerEngine = "presentation";
       }
       e.error("Invalid JSON: " + b)
     }, parseXML:function(c) {
+      if(typeof c != "string" || !c) {
+        return null
+      }
       var d, f;
       try {
         a.DOMParser ? (f = new DOMParser, d = f.parseFromString(c, "text/xml")) : (d = new ActiveXObject("Microsoft.XMLDOM"), d.async = "false", d.loadXML(c))
@@ -675,22 +661,27 @@ VISH.ViewerEngine = "presentation";
       };
       g.guid = a.guid = a.guid || g.guid || e.guid++;
       return g
-    }, access:function(a, c, d, f, g, h) {
-      var i = a.length;
-      if(typeof c == "object") {
-        for(var j in c) {
-          e.access(a, j, c[j], f, g, d)
+    }, access:function(a, c, d, f, g, h, i) {
+      var j, k = d == null, l = 0, m = a.length;
+      if(d && typeof d == "object") {
+        for(l in d) {
+          e.access(a, c, l, d[l], 1, h, f)
         }
-        return a
-      }
-      if(d !== b) {
-        f = !h && f && e.isFunction(d);
-        for(var k = 0;k < i;k++) {
-          g(a[k], c, f ? d.call(a[k], k, g(a[k], c)) : d, h)
+        g = 1
+      }else {
+        if(f !== b) {
+          j = i === b && e.isFunction(f), k && (j ? (j = c, c = function(a, b, c) {
+            return j.call(e(a), c)
+          }) : (c.call(a, f), c = null));
+          if(c) {
+            for(;l < m;l++) {
+              c(a[l], d, j ? f.call(a[l], l, c(a[l], d)) : f, i)
+            }
+          }
+          g = 1
         }
-        return a
       }
-      return i ? g(a[0], c) : b
+      return g ? a : k ? c.call(a) : m ? c(a[0], d) : h
     }, now:function() {
       return(new Date).getTime()
     }, uaMatch:function(a) {
@@ -718,24 +709,24 @@ VISH.ViewerEngine = "presentation";
   }(), g = {};
   f.Callbacks = function(a) {
     a = a ? g[a] || h(a) : {};
-    var c = [], d = [], e, i, j, k, l, m = function(b) {
+    var c = [], d = [], e, i, j, k, l, m, n = function(b) {
       var d, e, g, h, i;
       for(d = 0, e = b.length;d < e;d++) {
-        g = b[d], h = f.type(g), h === "array" ? m(g) : h === "function" && (!a.unique || !o.has(g)) && c.push(g)
+        g = b[d], h = f.type(g), h === "array" ? n(g) : h === "function" && (!a.unique || !p.has(g)) && c.push(g)
       }
-    }, n = function(b, f) {
-      f = f || [], e = !a.memory || [b, f], i = !0, l = j || 0, j = 0, k = c.length;
-      for(;c && l < k;l++) {
-        if(c[l].apply(b, f) === !1 && a.stopOnFalse) {
+    }, o = function(b, f) {
+      f = f || [], e = !a.memory || [b, f], i = !0, j = !0, m = k || 0, k = 0, l = c.length;
+      for(;c && m < l;m++) {
+        if(c[m].apply(b, f) === !1 && a.stopOnFalse) {
           e = !0;
           break
         }
       }
-      i = !1, c && (a.once ? e === !0 ? o.disable() : c = [] : d && d.length && (e = d.shift(), o.fireWith(e[0], e[1])))
-    }, o = {add:function() {
+      j = !1, c && (a.once ? e === !0 ? p.disable() : c = [] : d && d.length && (e = d.shift(), p.fireWith(e[0], e[1])))
+    }, p = {add:function() {
       if(c) {
         var a = c.length;
-        m(arguments), i ? k = c.length : e && e !== !0 && (j = a, n(e[0], e[1]))
+        n(arguments), j ? l = c.length : e && e !== !0 && (k = a, o(e[0], e[1]))
       }
       return this
     }, remove:function() {
@@ -744,7 +735,7 @@ VISH.ViewerEngine = "presentation";
         for(;d < e;d++) {
           for(var f = 0;f < c.length;f++) {
             if(b[d] === c[f]) {
-              i && f <= k && (k--, f <= l && l--), c.splice(f--, 1);
+              j && f <= l && (l--, f <= m && m--), c.splice(f--, 1);
               if(a.unique) {
                 break
               }
@@ -772,20 +763,20 @@ VISH.ViewerEngine = "presentation";
     }, disabled:function() {
       return!c
     }, lock:function() {
-      d = b, (!e || e === !0) && o.disable();
+      d = b, (!e || e === !0) && p.disable();
       return this
     }, locked:function() {
       return!d
     }, fireWith:function(b, c) {
-      d && (i ? a.once || d.push([b, c]) : (!a.once || !e) && n(b, c));
+      d && (j ? a.once || d.push([b, c]) : (!a.once || !e) && o(b, c));
       return this
     }, fire:function() {
-      o.fireWith(this, arguments);
+      p.fireWith(this, arguments);
       return this
     }, fired:function() {
-      return!!e
+      return!!i
     }};
-    return o
+    return p
   };
   var i = [].slice;
   f.extend({Deferred:function(a) {
@@ -847,33 +838,33 @@ VISH.ViewerEngine = "presentation";
     }
     return k
   }}), f.support = function() {
-    var b, d, e, g, h, i, j, k, l, m, n, o, p, q = c.createElement("div"), r = c.documentElement;
-    q.setAttribute("className", "t"), q.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>", d = q.getElementsByTagName("*"), e = q.getElementsByTagName("a")[0];
+    var b, d, e, g, h, i, j, k, l, m, n, o, p = c.createElement("div"), q = c.documentElement;
+    p.setAttribute("className", "t"), p.innerHTML = "   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>", d = p.getElementsByTagName("*"), e = p.getElementsByTagName("a")[0];
     if(!d || !d.length || !e) {
       return{}
     }
-    g = c.createElement("select"), h = g.appendChild(c.createElement("option")), i = q.getElementsByTagName("input")[0], b = {leadingWhitespace:q.firstChild.nodeType === 3, tbody:!q.getElementsByTagName("tbody").length, htmlSerialize:!!q.getElementsByTagName("link").length, style:/top/.test(e.getAttribute("style")), hrefNormalized:e.getAttribute("href") === "/a", opacity:/^0.55/.test(e.style.opacity), cssFloat:!!e.style.cssFloat, checkOn:i.value === "on", optSelected:h.selected, getSetAttribute:q.className !== 
-    "t", enctype:!!c.createElement("form").enctype, html5Clone:c.createElement("nav").cloneNode(!0).outerHTML !== "<:nav></:nav>", submitBubbles:!0, changeBubbles:!0, focusinBubbles:!1, deleteExpando:!0, noCloneEvent:!0, inlineBlockNeedsLayout:!1, shrinkWrapBlocks:!1, reliableMarginRight:!0}, i.checked = !0, b.noCloneChecked = i.cloneNode(!0).checked, g.disabled = !0, b.optDisabled = !h.disabled;
+    g = c.createElement("select"), h = g.appendChild(c.createElement("option")), i = p.getElementsByTagName("input")[0], b = {leadingWhitespace:p.firstChild.nodeType === 3, tbody:!p.getElementsByTagName("tbody").length, htmlSerialize:!!p.getElementsByTagName("link").length, style:/top/.test(e.getAttribute("style")), hrefNormalized:e.getAttribute("href") === "/a", opacity:/^0.55/.test(e.style.opacity), cssFloat:!!e.style.cssFloat, checkOn:i.value === "on", optSelected:h.selected, getSetAttribute:p.className !== 
+    "t", enctype:!!c.createElement("form").enctype, html5Clone:c.createElement("nav").cloneNode(!0).outerHTML !== "<:nav></:nav>", submitBubbles:!0, changeBubbles:!0, focusinBubbles:!1, deleteExpando:!0, noCloneEvent:!0, inlineBlockNeedsLayout:!1, shrinkWrapBlocks:!1, reliableMarginRight:!0, pixelMargin:!0}, f.boxModel = b.boxModel = c.compatMode === "CSS1Compat", i.checked = !0, b.noCloneChecked = i.cloneNode(!0).checked, g.disabled = !0, b.optDisabled = !h.disabled;
     try {
-      delete q.test
-    }catch(s) {
+      delete p.test
+    }catch(r) {
       b.deleteExpando = !1
     }
-    !q.addEventListener && q.attachEvent && q.fireEvent && (q.attachEvent("onclick", function() {
+    !p.addEventListener && p.attachEvent && p.fireEvent && (p.attachEvent("onclick", function() {
       b.noCloneEvent = !1
-    }), q.cloneNode(!0).fireEvent("onclick")), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), q.appendChild(i), k = c.createDocumentFragment(), k.appendChild(q.lastChild), b.checkClone = k.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, k.removeChild(i), k.appendChild(q), q.innerHTML = "", a.getComputedStyle && (j = c.createElement("div"), j.style.width = "0", j.style.marginRight = 
-    "0", q.style.width = "2px", q.appendChild(j), b.reliableMarginRight = (parseInt((a.getComputedStyle(j, null) || {marginRight:0}).marginRight, 10) || 0) === 0);
-    if(q.attachEvent) {
-      for(o in{submit:1, change:1, focusin:1}) {
-        n = "on" + o, p = n in q, p || (q.setAttribute(n, "return;"), p = typeof q[n] == "function"), b[o + "Bubbles"] = p
+    }), p.cloneNode(!0).fireEvent("onclick")), i = c.createElement("input"), i.value = "t", i.setAttribute("type", "radio"), b.radioValue = i.value === "t", i.setAttribute("checked", "checked"), i.setAttribute("name", "t"), p.appendChild(i), j = c.createDocumentFragment(), j.appendChild(p.lastChild), b.checkClone = j.cloneNode(!0).cloneNode(!0).lastChild.checked, b.appendChecked = i.checked, j.removeChild(i), j.appendChild(p);
+    if(p.attachEvent) {
+      for(n in{submit:1, change:1, focusin:1}) {
+        m = "on" + n, o = m in p, o || (p.setAttribute(m, "return;"), o = typeof p[m] == "function"), b[n + "Bubbles"] = o
       }
     }
-    k.removeChild(q), k = g = h = j = q = i = null, f(function() {
-      var a, d, e, g, h, i, j, k, m, n, o, r = c.getElementsByTagName("body")[0];
-      !r || (j = 1, k = "position:absolute;top:0;left:0;width:1px;height:1px;margin:0;", m = "visibility:hidden;border:0;", n = "style='" + k + "border:5px solid #000;padding:0;'", o = "<div " + n + "><div></div></div>" + "<table " + n + " cellpadding='0' cellspacing='0'>" + "<tr><td></td></tr></table>", a = c.createElement("div"), a.style.cssText = m + "width:0;height:0;position:static;top:0;margin-top:" + j + "px", r.insertBefore(a, r.firstChild), q = c.createElement("div"), a.appendChild(q), q.innerHTML = 
-      "<table><tr><td style='padding:0;border:0;display:none'></td><td>t</td></tr></table>", l = q.getElementsByTagName("td"), p = l[0].offsetHeight === 0, l[0].style.display = "", l[1].style.display = "none", b.reliableHiddenOffsets = p && l[0].offsetHeight === 0, q.innerHTML = "", q.style.width = q.style.paddingLeft = "1px", f.boxModel = b.boxModel = q.offsetWidth === 2, typeof q.style.zoom != "undefined" && (q.style.display = "inline", q.style.zoom = 1, b.inlineBlockNeedsLayout = q.offsetWidth === 
-      2, q.style.display = "", q.innerHTML = "<div style='width:4px;'></div>", b.shrinkWrapBlocks = q.offsetWidth !== 2), q.style.cssText = k + m, q.innerHTML = o, d = q.firstChild, e = d.firstChild, h = d.nextSibling.firstChild.firstChild, i = {doesNotAddBorder:e.offsetTop !== 5, doesAddBorderForTableAndCells:h.offsetTop === 5}, e.style.position = "fixed", e.style.top = "20px", i.fixedPosition = e.offsetTop === 20 || e.offsetTop === 15, e.style.position = e.style.top = "", d.style.overflow = "hidden", 
-      d.style.position = "relative", i.subtractsBorderForOverflowNotVisible = e.offsetTop === -5, i.doesNotIncludeMarginInBodyOffset = r.offsetTop !== j, r.removeChild(a), q = a = null, f.extend(b, i))
+    j.removeChild(p), j = g = h = p = i = null, f(function() {
+      var d, e, g, h, i, j, l, m, n, q, r, s, t, u = c.getElementsByTagName("body")[0];
+      !u || (m = 1, t = "padding:0;margin:0;border:", r = "position:absolute;top:0;left:0;width:1px;height:1px;", s = t + "0;visibility:hidden;", n = "style='" + r + t + "5px solid #000;", q = "<div " + n + "display:block;'><div style='" + t + "0;display:block;overflow:hidden;'></div></div>" + "<table " + n + "' cellpadding='0' cellspacing='0'>" + "<tr><td></td></tr></table>", d = c.createElement("div"), d.style.cssText = s + "width:0;height:0;position:static;top:0;margin-top:" + m + "px", u.insertBefore(d, 
+      u.firstChild), p = c.createElement("div"), d.appendChild(p), p.innerHTML = "<table><tr><td style='" + t + "0;display:none'></td><td>t</td></tr></table>", k = p.getElementsByTagName("td"), o = k[0].offsetHeight === 0, k[0].style.display = "", k[1].style.display = "none", b.reliableHiddenOffsets = o && k[0].offsetHeight === 0, a.getComputedStyle && (p.innerHTML = "", l = c.createElement("div"), l.style.width = "0", l.style.marginRight = "0", p.style.width = "2px", p.appendChild(l), b.reliableMarginRight = 
+      (parseInt((a.getComputedStyle(l, null) || {marginRight:0}).marginRight, 10) || 0) === 0), typeof p.style.zoom != "undefined" && (p.innerHTML = "", p.style.width = p.style.padding = "1px", p.style.border = 0, p.style.overflow = "hidden", p.style.display = "inline", p.style.zoom = 1, b.inlineBlockNeedsLayout = p.offsetWidth === 3, p.style.display = "block", p.style.overflow = "visible", p.innerHTML = "<div style='width:5px;'></div>", b.shrinkWrapBlocks = p.offsetWidth !== 3), p.style.cssText = 
+      r + s, p.innerHTML = q, e = p.firstChild, g = e.firstChild, i = e.nextSibling.firstChild.firstChild, j = {doesNotAddBorder:g.offsetTop !== 5, doesAddBorderForTableAndCells:i.offsetTop === 5}, g.style.position = "fixed", g.style.top = "20px", j.fixedPosition = g.offsetTop === 20 || g.offsetTop === 15, g.style.position = g.style.top = "", e.style.overflow = "hidden", e.style.position = "relative", j.subtractsBorderForOverflowNotVisible = g.offsetTop === -5, j.doesNotIncludeMarginInBodyOffset = 
+      u.offsetTop !== m, a.getComputedStyle && (p.style.marginTop = "1%", b.pixelMargin = (a.getComputedStyle(p, null) || {marginTop:0}).marginTop !== "1%"), typeof d.style.zoom != "undefined" && (d.style.zoom = 1), u.removeChild(d), l = p = d = null, f.extend(b, j))
     });
     return b
   }();
@@ -935,34 +926,36 @@ VISH.ViewerEngine = "presentation";
     }
     return!0
   }}), f.fn.extend({data:function(a, c) {
-    var d, e, g, h = null;
-    if(typeof a == "undefined") {
+    var d, e, g, h, i, j = this[0], k = 0, m = null;
+    if(a === b) {
       if(this.length) {
-        h = f.data(this[0]);
-        if(this[0].nodeType === 1 && !f._data(this[0], "parsedAttrs")) {
-          e = this[0].attributes;
-          for(var i = 0, j = e.length;i < j;i++) {
-            g = e[i].name, g.indexOf("data-") === 0 && (g = f.camelCase(g.substring(5)), l(this[0], g, h[g]))
+        m = f.data(j);
+        if(j.nodeType === 1 && !f._data(j, "parsedAttrs")) {
+          g = j.attributes;
+          for(i = g.length;k < i;k++) {
+            h = g[k].name, h.indexOf("data-") === 0 && (h = f.camelCase(h.substring(5)), l(j, h, m[h]))
           }
-          f._data(this[0], "parsedAttrs", !0)
+          f._data(j, "parsedAttrs", !0)
         }
       }
-      return h
+      return m
     }
     if(typeof a == "object") {
       return this.each(function() {
         f.data(this, a)
       })
     }
-    d = a.split("."), d[1] = d[1] ? "." + d[1] : "";
-    if(c === b) {
-      h = this.triggerHandler("getData" + d[1] + "!", [d[0]]), h === b && this.length && (h = f.data(this[0], a), h = l(this[0], a, h));
-      return h === b && d[1] ? this.data(d[0]) : h
-    }
-    return this.each(function() {
-      var b = f(this), e = [d[0], c];
-      b.triggerHandler("setData" + d[1] + "!", e), f.data(this, a, c), b.triggerHandler("changeData" + d[1] + "!", e)
-    })
+    d = a.split(".", 2), d[1] = d[1] ? "." + d[1] : "", e = d[1] + "!";
+    return f.access(this, function(c) {
+      if(c === b) {
+        m = this.triggerHandler("getData" + e, [d[0]]), m === b && j && (m = f.data(j, a), m = l(j, a, m));
+        return m === b && d[1] ? this.data(d[0]) : m
+      }
+      d[1] = c, this.each(function() {
+        var b = f(this);
+        b.triggerHandler("setData" + e, d), f.data(this, a, c), b.triggerHandler("changeData" + e, d)
+      })
+    }, null, c, arguments.length > 1, null, !1)
   }, removeData:function(a) {
     return this.each(function() {
       f.removeData(this, a)
@@ -989,11 +982,12 @@ VISH.ViewerEngine = "presentation";
       f.dequeue(a, b)
     }, e)), c.length || (f.removeData(a, b + "queue " + b + ".run", !0), n(a, b, "queue"))
   }}), f.fn.extend({queue:function(a, c) {
-    typeof a != "string" && (c = a, a = "fx");
-    if(c === b) {
+    var d = 2;
+    typeof a != "string" && (c = a, a = "fx", d--);
+    if(arguments.length < d) {
       return f.queue(this[0], a)
     }
-    return this.each(function() {
+    return c === b ? this : this.each(function() {
       var b = f.queue(this, a, c);
       a === "fx" && b[0] !== "inprogress" && f.dequeue(this, a)
     })
@@ -1023,17 +1017,17 @@ VISH.ViewerEngine = "presentation";
       }
     }
     m();
-    return d.promise()
+    return d.promise(c)
   }});
   var o = /[\n\t\r]/g, p = /\s+/, q = /\r/g, r = /^(?:button|input)$/i, s = /^(?:button|input|object|select|textarea)$/i, t = /^a(?:rea)?$/i, u = /^(?:autofocus|autoplay|async|checked|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped|selected)$/i, v = f.support.getSetAttribute, w, x, y;
   f.fn.extend({attr:function(a, b) {
-    return f.access(this, a, b, !0, f.attr)
+    return f.access(this, f.attr, a, b, arguments.length > 1)
   }, removeAttr:function(a) {
     return this.each(function() {
       f.removeAttr(this, a)
     })
   }, prop:function(a, b) {
-    return f.access(this, a, b, !0, f.prop)
+    return f.access(this, f.prop, a, b, arguments.length > 1)
   }, removeProp:function(a) {
     a = f.propFix[a] || a;
     return this.each(function() {
@@ -1128,7 +1122,7 @@ VISH.ViewerEngine = "presentation";
         if(this.nodeType === 1) {
           e ? h = a.call(this, d, g.val()) : h = a, h == null ? h = "" : typeof h == "number" ? h += "" : f.isArray(h) && (h = f.map(h, function(a) {
             return a == null ? "" : a + ""
-          })), c = f.valHooks[this.nodeName.toLowerCase()] || f.valHooks[this.type];
+          })), c = f.valHooks[this.type] || f.valHooks[this.nodeName.toLowerCase()];
           if(!c || !("set" in c) || c.set(this, h, "value") === b) {
             this.value = h
           }
@@ -1136,7 +1130,7 @@ VISH.ViewerEngine = "presentation";
       })
     }
     if(g) {
-      c = f.valHooks[g.nodeName.toLowerCase()] || f.valHooks[g.type];
+      c = f.valHooks[g.type] || f.valHooks[g.nodeName.toLowerCase()];
       if(c && "get" in c && (d = c.get(g, "value")) !== b) {
         return d
       }
@@ -1200,11 +1194,11 @@ VISH.ViewerEngine = "presentation";
       return g === null ? b : g
     }
   }, removeAttr:function(a, b) {
-    var c, d, e, g, h = 0;
+    var c, d, e, g, h, i = 0;
     if(b && a.nodeType === 1) {
       d = b.toLowerCase().split(p), g = d.length;
-      for(;h < g;h++) {
-        e = d[h], e && (c = f.propFix[e] || e, f.attr(a, e, ""), a.removeAttribute(v ? e : c), u.test(e) && c in a && (a[c] = !1))
+      for(;i < g;i++) {
+        e = d[i], e && (c = f.propFix[e] || e, h = u.test(e), h || f.attr(a, e, ""), a.removeAttribute(v ? e : c), h && c in a && (a[c] = !1))
       }
     }
   }, attrHooks:{type:{set:function(a, b) {
@@ -1243,7 +1237,7 @@ VISH.ViewerEngine = "presentation";
     var d;
     b === !1 ? f.removeAttr(a, c) : (d = f.propFix[c] || c, d in a && (a[d] = !0), a.setAttribute(c, c.toLowerCase()));
     return c
-  }}, v || (y = {name:!0, id:!0}, w = f.valHooks.button = {get:function(a, c) {
+  }}, v || (y = {name:!0, id:!0, coords:!0}, w = f.valHooks.button = {get:function(a, c) {
     var d;
     d = a.getAttributeNode(c);
     return d && (y[c] ? d.nodeValue !== "" : d.specified) ? d.nodeValue : b
@@ -1284,7 +1278,7 @@ VISH.ViewerEngine = "presentation";
       }
     }})
   });
-  var z = /^(?:textarea|input|select)$/i, A = /^([^\.]*)?(?:\.(.+))?$/, B = /\bhover(\.\S+)?\b/, C = /^key/, D = /^(?:mouse|contextmenu)|click/, E = /^(?:focusinfocus|focusoutblur)$/, F = /^(\w*)(?:#([\w\-]+))?(?:\.([\w\-]+))?$/, G = function(a) {
+  var z = /^(?:textarea|input|select)$/i, A = /^([^\.]*)?(?:\.(.+))?$/, B = /(?:^|\s)hover(\.\S+)?\b/, C = /^key/, D = /^(?:mouse|contextmenu)|click/, E = /^(?:focusinfocus|focusoutblur)$/, F = /^(\w*)(?:#([\w\-]+))?(?:\.([\w\-]+))?$/, G = function(a) {
     var b = F.exec(a);
     b && (b[1] = (b[1] || "").toLowerCase(), b[3] = b[3] && new RegExp("(?:^|\\s)" + b[3] + "(?:\\s|$)"));
     return b
@@ -1297,11 +1291,11 @@ VISH.ViewerEngine = "presentation";
   f.event = {add:function(a, c, d, e, g) {
     var h, i, j, k, l, m, n, o, p, q, r, s;
     if(!(a.nodeType === 3 || a.nodeType === 8 || !c || !d || !(h = f._data(a)))) {
-      d.handler && (p = d, d = p.handler), d.guid || (d.guid = f.guid++), j = h.events, j || (h.events = j = {}), i = h.handle, i || (h.handle = i = function(a) {
+      d.handler && (p = d, d = p.handler, g = p.selector), d.guid || (d.guid = f.guid++), j = h.events, j || (h.events = j = {}), i = h.handle, i || (h.handle = i = function(a) {
         return typeof f != "undefined" && (!a || f.event.triggered !== a.type) ? f.event.dispatch.apply(i.elem, arguments) : b
       }, i.elem = a), c = f.trim(I(c)).split(" ");
       for(k = 0;k < c.length;k++) {
-        l = A.exec(c[k]) || [], m = l[1], n = (l[2] || "").split(".").sort(), s = f.event.special[m] || {}, m = (g ? s.delegateType : s.bindType) || m, s = f.event.special[m] || {}, o = f.extend({type:m, origType:l[1], data:e, handler:d, guid:d.guid, selector:g, quick:G(g), namespace:n.join(".")}, p), r = j[m];
+        l = A.exec(c[k]) || [], m = l[1], n = (l[2] || "").split(".").sort(), s = f.event.special[m] || {}, m = (g ? s.delegateType : s.bindType) || m, s = f.event.special[m] || {}, o = f.extend({type:m, origType:l[1], data:e, handler:d, guid:d.guid, selector:g, quick:g && G(g), namespace:n.join(".")}, p), r = j[m];
         if(!r) {
           r = j[m] = [], r.delegateCount = 0;
           if(!s.setup || s.setup.call(a, e, n, i) === !1) {
@@ -1370,29 +1364,34 @@ VISH.ViewerEngine = "presentation";
     }
   }, dispatch:function(c) {
     c = f.event.fix(c || a.event);
-    var d = (f._data(this, "events") || {})[c.type] || [], e = d.delegateCount, g = [].slice.call(arguments, 0), h = !c.exclusive && !c.namespace, i = [], j, k, l, m, n, o, p, q, r, s, t;
+    var d = (f._data(this, "events") || {})[c.type] || [], e = d.delegateCount, g = [].slice.call(arguments, 0), h = !c.exclusive && !c.namespace, i = f.event.special[c.type] || {}, j = [], k, l, m, n, o, p, q, r, s, t, u;
     g[0] = c, c.delegateTarget = this;
-    if(e && !c.target.disabled && (!c.button || c.type !== "click")) {
-      m = f(this), m.context = this.ownerDocument || this;
-      for(l = c.target;l != this;l = l.parentNode || this) {
-        o = {}, q = [], m[0] = l;
-        for(j = 0;j < e;j++) {
-          r = d[j], s = r.selector, o[s] === b && (o[s] = r.quick ? H(l, r.quick) : m.is(s)), o[s] && q.push(r)
-        }
-        q.length && i.push({elem:l, matches:q})
-      }
-    }
-    d.length > e && i.push({elem:this, matches:d.slice(e)});
-    for(j = 0;j < i.length && !c.isPropagationStopped();j++) {
-      p = i[j], c.currentTarget = p.elem;
-      for(k = 0;k < p.matches.length && !c.isImmediatePropagationStopped();k++) {
-        r = p.matches[k];
-        if(h || !c.namespace && !r.namespace || c.namespace_re && c.namespace_re.test(r.namespace)) {
-          c.data = r.data, c.handleObj = r, n = ((f.event.special[r.origType] || {}).handle || r.handler).apply(p.elem, g), n !== b && (c.result = n, n === !1 && (c.preventDefault(), c.stopPropagation()))
+    if(!i.preDispatch || i.preDispatch.call(this, c) !== !1) {
+      if(e && (!c.button || c.type !== "click")) {
+        n = f(this), n.context = this.ownerDocument || this;
+        for(m = c.target;m != this;m = m.parentNode || this) {
+          if(m.disabled !== !0) {
+            p = {}, r = [], n[0] = m;
+            for(k = 0;k < e;k++) {
+              s = d[k], t = s.selector, p[t] === b && (p[t] = s.quick ? H(m, s.quick) : n.is(t)), p[t] && r.push(s)
+            }
+            r.length && j.push({elem:m, matches:r})
+          }
         }
       }
+      d.length > e && j.push({elem:this, matches:d.slice(e)});
+      for(k = 0;k < j.length && !c.isPropagationStopped();k++) {
+        q = j[k], c.currentTarget = q.elem;
+        for(l = 0;l < q.matches.length && !c.isImmediatePropagationStopped();l++) {
+          s = q.matches[l];
+          if(h || !c.namespace && !s.namespace || c.namespace_re && c.namespace_re.test(s.namespace)) {
+            c.data = s.data, c.handleObj = s, o = ((f.event.special[s.origType] || {}).handle || s.handler).apply(q.elem, g), o !== b && (c.result = o, o === !1 && (c.preventDefault(), c.stopPropagation()))
+          }
+        }
+      }
+      i.postDispatch && i.postDispatch.call(this, c);
+      return c.result
     }
-    return c.result
   }, props:"attrChange attrName relatedNode srcElement altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "), fixHooks:{}, keyHooks:{props:"char charCode key keyCode".split(" "), filter:function(a, b) {
     a.which == null && (a.which = b.charCode != null ? b.charCode : b.keyCode);
     return a
@@ -1452,9 +1451,11 @@ VISH.ViewerEngine = "presentation";
     f.event.add(this, "click._submit keypress._submit", function(a) {
       var c = a.target, d = f.nodeName(c, "input") || f.nodeName(c, "button") ? c.form : b;
       d && !d._submit_attached && (f.event.add(d, "submit._submit", function(a) {
-        this.parentNode && !a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0)
+        a._submit_bubble = !0
       }), d._submit_attached = !0)
     })
+  }, postDispatch:function(a) {
+    a._submit_bubble && (delete a._submit_bubble, this.parentNode && !a.isTrigger && f.event.simulate("submit", this.parentNode, a, !0))
   }, teardown:function() {
     if(f.nodeName(this, "form")) {
       return!1
@@ -1497,7 +1498,7 @@ VISH.ViewerEngine = "presentation";
   }), f.fn.extend({on:function(a, c, d, e, g) {
     var h, i;
     if(typeof a == "object") {
-      typeof c != "string" && (d = c, c = b);
+      typeof c != "string" && (d = d || c, c = b);
       for(i in a) {
         this.on(i, c, d, a[i], g)
       }
@@ -1519,11 +1520,11 @@ VISH.ViewerEngine = "presentation";
       f.event.add(this, a, e, d, c)
     })
   }, one:function(a, b, c, d) {
-    return this.on.call(this, a, b, c, d, 1)
+    return this.on(a, b, c, d, 1)
   }, off:function(a, c, d) {
     if(a && a.preventDefault && a.handleObj) {
       var e = a.handleObj;
-      f(a.delegateTarget).off(e.namespace ? e.type + "." + e.namespace : e.type, e.selector, e.handler);
+      f(a.delegateTarget).off(e.namespace ? e.origType + "." + e.namespace : e.origType, e.selector, e.handler);
       return this
     }
     if(typeof a == "object") {
@@ -1783,7 +1784,7 @@ VISH.ViewerEngine = "presentation";
     var n = m.getText = function(a) {
       var b, c, d = a.nodeType, e = "";
       if(d) {
-        if(d === 1 || d === 9) {
+        if(d === 1 || d === 9 || d === 11) {
           if(typeof a.textContent == "string") {
             return a.textContent
           }
@@ -2040,6 +2041,7 @@ VISH.ViewerEngine = "presentation";
     for(var r in o.match) {
       o.match[r] = new RegExp(o.match[r].source + /(?![^\[]*\])(?![^\(]*\))/.source), o.leftMatch[r] = new RegExp(/(^(?:.|\r|\n)*?)/.source + o.match[r].source.replace(/\\(\d+)/g, q))
     }
+    o.match.globalPOS = p;
     var s = function(a, b) {
       a = Array.prototype.slice.call(a, 0);
       if(b) {
@@ -2266,7 +2268,7 @@ VISH.ViewerEngine = "presentation";
     };
     m.attr = f.attr, m.selectors.attrMap = {}, f.find = m, f.expr = m.selectors, f.expr[":"] = f.expr.filters, f.unique = m.uniqueSort, f.text = m.getText, f.isXMLDoc = m.isXML, f.contains = m.contains
   }();
-  var L = /Until$/, M = /^(?:parents|prevUntil|prevAll)/, N = /,/, O = /^.[^:#\[\.,]*$/, P = Array.prototype.slice, Q = f.expr.match.POS, R = {children:!0, contents:!0, next:!0, prev:!0};
+  var L = /Until$/, M = /^(?:parents|prevUntil|prevAll)/, N = /,/, O = /^.[^:#\[\.,]*$/, P = Array.prototype.slice, Q = f.expr.match.globalPOS, R = {children:!0, contents:!0, next:!0, prev:!0};
   f.fn.extend({find:function(a) {
     var b = this, c, d;
     if(typeof a != "string") {
@@ -2369,7 +2371,7 @@ VISH.ViewerEngine = "presentation";
   }, prevUntil:function(a, b, c) {
     return f.dir(a, "previousSibling", c)
   }, siblings:function(a) {
-    return f.sibling(a.parentNode.firstChild, a)
+    return f.sibling((a.parentNode || {}).firstChild, a)
   }, children:function(a) {
     return f.sibling(a.firstChild)
   }, contents:function(a) {
@@ -2405,19 +2407,12 @@ VISH.ViewerEngine = "presentation";
     }
     return c
   }});
-  var V = "abbr|article|aside|audio|canvas|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video", W = / jQuery\d+="(?:\d+|null)"/g, X = /^\s+/, Y = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig, Z = /<([\w:]+)/, $ = /<tbody/i, _ = /<|&#?\w+;/, ba = /<(?:script|style)/i, bb = /<(?:script|object|embed|option|style)/i, bc = new RegExp("<(?:" + V + ")", "i"), bd = /checked\s*(?:[^=]|=\s*.checked.)/i, be = /\/(java|ecma)script/i, 
-  bf = /^\s*<!(?:\[CDATA\[|\-\-)/, bg = {option:[1, "<select multiple='multiple'>", "</select>"], legend:[1, "<fieldset>", "</fieldset>"], thead:[1, "<table>", "</table>"], tr:[2, "<table><tbody>", "</tbody></table>"], td:[3, "<table><tbody><tr>", "</tr></tbody></table>"], col:[2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"], area:[1, "<map>", "</map>"], _default:[0, "", ""]}, bh = U(c);
+  var V = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video", W = / jQuery\d+="(?:\d+|null)"/g, X = /^\s+/, Y = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig, Z = /<([\w:]+)/, $ = /<tbody/i, _ = /<|&#?\w+;/, ba = /<(?:script|style)/i, bb = /<(?:script|object|embed|option|style)/i, bc = new RegExp("<(?:" + V + ")[\\s/>]", "i"), bd = /checked\s*(?:[^=]|=\s*.checked.)/i, 
+  be = /\/(java|ecma)script/i, bf = /^\s*<!(?:\[CDATA\[|\-\-)/, bg = {option:[1, "<select multiple='multiple'>", "</select>"], legend:[1, "<fieldset>", "</fieldset>"], thead:[1, "<table>", "</table>"], tr:[2, "<table><tbody>", "</tbody></table>"], td:[3, "<table><tbody><tr>", "</tr></tbody></table>"], col:[2, "<table><tbody></tbody><colgroup>", "</colgroup></table>"], area:[1, "<map>", "</map>"], _default:[0, "", ""]}, bh = U(c);
   bg.optgroup = bg.option, bg.tbody = bg.tfoot = bg.colgroup = bg.caption = bg.thead, bg.th = bg.td, f.support.htmlSerialize || (bg._default = [1, "div<div>", "</div>"]), f.fn.extend({text:function(a) {
-    if(f.isFunction(a)) {
-      return this.each(function(b) {
-        var c = f(this);
-        c.text(a.call(this, b, c.text()))
-      })
-    }
-    if(typeof a != "object" && a !== b) {
-      return this.empty().append((this[0] && this[0].ownerDocument || c).createTextNode(a))
-    }
-    return f.text(this)
+    return f.access(this, function(a) {
+      return a === b ? f.text(this) : this.empty().append((this[0] && this[0].ownerDocument || c).createTextNode(a))
+    }, null, a, arguments.length)
   }, wrapAll:function(a) {
     if(f.isFunction(a)) {
       return this.each(function(b) {
@@ -2505,25 +2500,23 @@ VISH.ViewerEngine = "presentation";
       return f.clone(this, a, b)
     })
   }, html:function(a) {
-    if(a === b) {
-      return this[0] && this[0].nodeType === 1 ? this[0].innerHTML.replace(W, "") : null
-    }
-    if(typeof a == "string" && !ba.test(a) && (f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]) {
-      a = a.replace(Y, "<$1></$2>");
-      try {
-        for(var c = 0, d = this.length;c < d;c++) {
-          this[c].nodeType === 1 && (f.cleanData(this[c].getElementsByTagName("*")), this[c].innerHTML = a)
-        }
-      }catch(e) {
-        this.empty().append(a)
+    return f.access(this, function(a) {
+      var c = this[0] || {}, d = 0, e = this.length;
+      if(a === b) {
+        return c.nodeType === 1 ? c.innerHTML.replace(W, "") : null
       }
-    }else {
-      f.isFunction(a) ? this.each(function(b) {
-        var c = f(this);
-        c.html(a.call(this, b, c.html()))
-      }) : this.empty().append(a)
-    }
-    return this
+      if(typeof a == "string" && !ba.test(a) && (f.support.leadingWhitespace || !X.test(a)) && !bg[(Z.exec(a) || ["", ""])[1].toLowerCase()]) {
+        a = a.replace(Y, "<$1></$2>");
+        try {
+          for(;d < e;d++) {
+            c = this[d] || {}, c.nodeType === 1 && (f.cleanData(c.getElementsByTagName("*")), c.innerHTML = a)
+          }
+          c = 0
+        }catch(g) {
+        }
+      }
+      c && this.empty().append(a)
+    }, null, a, arguments.length)
   }, replaceWith:function(a) {
     if(this[0] && this[0].parentNode) {
       if(f.isFunction(a)) {
@@ -2562,7 +2555,9 @@ VISH.ViewerEngine = "presentation";
           d.call(c ? bi(this[l], g) : this[l], e.cacheable || m > 1 && l < n ? f.clone(h, !0, !0) : h)
         }
       }
-      k.length && f.each(k, bp)
+      k.length && f.each(k, function(a, b) {
+        b.src ? f.ajax({type:"GET", global:!1, url:b.src, async:!1, dataType:"script"}) : f.globalEval((b.text || b.textContent || b.innerHTML || "").replace(bf, "/*$0*/")), b.parentNode && b.parentNode.removeChild(b)
+      })
     }
     return this
   }}), f.buildFragment = function(a, b, d) {
@@ -2583,7 +2578,7 @@ VISH.ViewerEngine = "presentation";
       return this.pushStack(d, a, e.selector)
     }
   }), f.extend({clone:function(a, b, c) {
-    var d, e, g, h = f.support.html5Clone || !bc.test("<" + a.nodeName) ? a.cloneNode(!0) : bo(a);
+    var d, e, g, h = f.support.html5Clone || f.isXMLDoc(a) || !bc.test("<" + a.nodeName + ">") ? a.cloneNode(!0) : bo(a);
     if((!f.support.noCloneEvent || !f.support.noCloneChecked) && (a.nodeType === 1 || a.nodeType === 11) && !f.isXMLDoc(a)) {
       bk(a, h), d = bl(a), e = bl(h);
       for(g = 0;d[g];++g) {
@@ -2602,62 +2597,62 @@ VISH.ViewerEngine = "presentation";
     d = e = null;
     return h
   }, clean:function(a, b, d, e) {
-    var g;
+    var g, h, i, j = [];
     b = b || c, typeof b.createElement == "undefined" && (b = b.ownerDocument || b[0] && b[0].ownerDocument || c);
-    var h = [], i;
-    for(var j = 0, k;(k = a[j]) != null;j++) {
-      typeof k == "number" && (k += "");
-      if(!k) {
+    for(var k = 0, l;(l = a[k]) != null;k++) {
+      typeof l == "number" && (l += "");
+      if(!l) {
         continue
       }
-      if(typeof k == "string") {
-        if(!_.test(k)) {
-          k = b.createTextNode(k)
+      if(typeof l == "string") {
+        if(!_.test(l)) {
+          l = b.createTextNode(l)
         }else {
-          k = k.replace(Y, "<$1></$2>");
-          var l = (Z.exec(k) || ["", ""])[1].toLowerCase(), m = bg[l] || bg._default, n = m[0], o = b.createElement("div");
-          b === c ? bh.appendChild(o) : U(b).appendChild(o), o.innerHTML = m[1] + k + m[2];
-          while(n--) {
-            o = o.lastChild
+          l = l.replace(Y, "<$1></$2>");
+          var m = (Z.exec(l) || ["", ""])[1].toLowerCase(), n = bg[m] || bg._default, o = n[0], p = b.createElement("div"), q = bh.childNodes, r;
+          b === c ? bh.appendChild(p) : U(b).appendChild(p), p.innerHTML = n[1] + l + n[2];
+          while(o--) {
+            p = p.lastChild
           }
           if(!f.support.tbody) {
-            var p = $.test(k), q = l === "table" && !p ? o.firstChild && o.firstChild.childNodes : m[1] === "<table>" && !p ? o.childNodes : [];
-            for(i = q.length - 1;i >= 0;--i) {
-              f.nodeName(q[i], "tbody") && !q[i].childNodes.length && q[i].parentNode.removeChild(q[i])
+            var s = $.test(l), t = m === "table" && !s ? p.firstChild && p.firstChild.childNodes : n[1] === "<table>" && !s ? p.childNodes : [];
+            for(i = t.length - 1;i >= 0;--i) {
+              f.nodeName(t[i], "tbody") && !t[i].childNodes.length && t[i].parentNode.removeChild(t[i])
             }
           }
-          !f.support.leadingWhitespace && X.test(k) && o.insertBefore(b.createTextNode(X.exec(k)[0]), o.firstChild), k = o.childNodes
+          !f.support.leadingWhitespace && X.test(l) && p.insertBefore(b.createTextNode(X.exec(l)[0]), p.firstChild), l = p.childNodes, p && (p.parentNode.removeChild(p), q.length > 0 && (r = q[q.length - 1], r && r.parentNode && r.parentNode.removeChild(r)))
         }
       }
-      var r;
+      var u;
       if(!f.support.appendChecked) {
-        if(k[0] && typeof(r = k.length) == "number") {
-          for(i = 0;i < r;i++) {
-            bn(k[i])
+        if(l[0] && typeof(u = l.length) == "number") {
+          for(i = 0;i < u;i++) {
+            bn(l[i])
           }
         }else {
-          bn(k)
+          bn(l)
         }
       }
-      k.nodeType ? h.push(k) : h = f.merge(h, k)
+      l.nodeType ? j.push(l) : j = f.merge(j, l)
     }
     if(d) {
       g = function(a) {
         return!a.type || be.test(a.type)
       };
-      for(j = 0;h[j];j++) {
-        if(e && f.nodeName(h[j], "script") && (!h[j].type || h[j].type.toLowerCase() === "text/javascript")) {
-          e.push(h[j].parentNode ? h[j].parentNode.removeChild(h[j]) : h[j])
+      for(k = 0;j[k];k++) {
+        h = j[k];
+        if(e && f.nodeName(h, "script") && (!h.type || be.test(h.type))) {
+          e.push(h.parentNode ? h.parentNode.removeChild(h) : h)
         }else {
-          if(h[j].nodeType === 1) {
-            var s = f.grep(h[j].getElementsByTagName("script"), g);
-            h.splice.apply(h, [j + 1, 0].concat(s))
+          if(h.nodeType === 1) {
+            var v = f.grep(h.getElementsByTagName("script"), g);
+            j.splice.apply(j, [k + 1, 0].concat(v))
           }
-          d.appendChild(h[j])
+          d.appendChild(h)
         }
       }
     }
-    return h
+    return j
   }, cleanData:function(a) {
     var b, c, d = f.cache, e = f.event.special, g = f.support.deleteExpando;
     for(var h = 0, i;(i = a[h]) != null;h++) {
@@ -2677,17 +2672,14 @@ VISH.ViewerEngine = "presentation";
       }
     }
   }});
-  var bq = /alpha\([^)]*\)/i, br = /opacity=([^)]*)/, bs = /([A-Z]|^ms)/g, bt = /^-?\d+(?:px)?$/i, bu = /^-?\d/, bv = /^([\-+])=([\-+.\de]+)/, bw = {position:"absolute", visibility:"hidden", display:"block"}, bx = ["Left", "Right"], by = ["Top", "Bottom"], bz, bA, bB;
+  var bp = /alpha\([^)]*\)/i, bq = /opacity=([^)]*)/, br = /([A-Z]|^ms)/g, bs = /^[\-+]?(?:\d*\.)?\d+$/i, bt = /^-?(?:\d*\.)?\d+(?!px)[^\d\s]+$/i, bu = /^([\-+])=([\-+.\de]+)/, bv = /^margin/, bw = {position:"absolute", visibility:"hidden", display:"block"}, bx = ["Top", "Right", "Bottom", "Left"], by, bz, bA;
   f.fn.css = function(a, c) {
-    if(arguments.length === 2 && c === b) {
-      return this
-    }
-    return f.access(this, a, c, !0, function(a, c, d) {
+    return f.access(this, function(a, c, d) {
       return d !== b ? f.style(a, c, d) : f.css(a, c)
-    })
+    }, a, c, arguments.length > 1)
   }, f.extend({cssHooks:{opacity:{get:function(a, b) {
     if(b) {
-      var c = bz(a, "opacity", "opacity");
+      var c = by(a, "opacity");
       return c === "" ? "1" : c
     }
     return a.style.opacity
@@ -2701,7 +2693,7 @@ VISH.ViewerEngine = "presentation";
         }
         return j[c]
       }
-      h = typeof d, h === "string" && (g = bv.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number");
+      h = typeof d, h === "string" && (g = bu.exec(d)) && (d = +(g[1] + 1) * +g[2] + parseFloat(f.css(a, c)), h = "number");
       if(d == null || h === "number" && isNaN(d)) {
         return
       }
@@ -2719,83 +2711,79 @@ VISH.ViewerEngine = "presentation";
     if(g && "get" in g && (e = g.get(a, !0, d)) !== b) {
       return e
     }
-    if(bz) {
-      return bz(a, c)
+    if(by) {
+      return by(a, c)
     }
   }, swap:function(a, b, c) {
-    var d = {};
-    for(var e in b) {
-      d[e] = a.style[e], a.style[e] = b[e]
+    var d = {}, e, f;
+    for(f in b) {
+      d[f] = a.style[f], a.style[f] = b[f]
     }
-    c.call(a);
-    for(e in b) {
-      a.style[e] = d[e]
+    e = c.call(a);
+    for(f in b) {
+      a.style[f] = d[f]
     }
-  }}), f.curCSS = f.css, f.each(["height", "width"], function(a, b) {
+    return e
+  }}), f.curCSS = f.css, c.defaultView && c.defaultView.getComputedStyle && (bz = function(a, b) {
+    var c, d, e, g, h = a.style;
+    b = b.replace(br, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && (e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && !f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b))), !f.support.pixelMargin && e && bv.test(b) && bt.test(c) && (g = h.width, h.width = c, c = e.width, h.width = g);
+    return c
+  }), c.documentElement.currentStyle && (bA = function(a, b) {
+    var c, d, e, f = a.currentStyle && a.currentStyle[b], g = a.style;
+    f == null && g && (e = g[b]) && (f = e), bt.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
+    return f === "" ? "auto" : f
+  }), by = bz || bA, f.each(["height", "width"], function(a, b) {
     f.cssHooks[b] = {get:function(a, c, d) {
-      var e;
       if(c) {
-        if(a.offsetWidth !== 0) {
-          return bC(a, b, d)
-        }
-        f.swap(a, bw, function() {
-          e = bC(a, b, d)
-        });
-        return e
+        return a.offsetWidth !== 0 ? bB(a, b, d) : f.swap(a, bw, function() {
+          return bB(a, b, d)
+        })
       }
     }, set:function(a, b) {
-      if(!bt.test(b)) {
-        return b
-      }
-      b = parseFloat(b);
-      if(b >= 0) {
-        return b + "px"
-      }
+      return bs.test(b) ? b + "px" : b
     }}
   }), f.support.opacity || (f.cssHooks.opacity = {get:function(a, b) {
-    return br.test((b && a.currentStyle ? a.currentStyle.filter : a.style.filter) || "") ? parseFloat(RegExp.$1) / 100 + "" : b ? "1" : ""
+    return bq.test((b && a.currentStyle ? a.currentStyle.filter : a.style.filter) || "") ? parseFloat(RegExp.$1) / 100 + "" : b ? "1" : ""
   }, set:function(a, b) {
     var c = a.style, d = a.currentStyle, e = f.isNumeric(b) ? "alpha(opacity=" + b * 100 + ")" : "", g = d && d.filter || c.filter || "";
     c.zoom = 1;
-    if(b >= 1 && f.trim(g.replace(bq, "")) === "") {
+    if(b >= 1 && f.trim(g.replace(bp, "")) === "") {
       c.removeAttribute("filter");
       if(d && !d.filter) {
         return
       }
     }
-    c.filter = bq.test(g) ? g.replace(bq, e) : g + " " + e
+    c.filter = bp.test(g) ? g.replace(bp, e) : g + " " + e
   }}), f(function() {
     f.support.reliableMarginRight || (f.cssHooks.marginRight = {get:function(a, b) {
-      var c;
-      f.swap(a, {display:"inline-block"}, function() {
-        b ? c = bz(a, "margin-right", "marginRight") : c = a.style.marginRight
-      });
-      return c
+      return f.swap(a, {display:"inline-block"}, function() {
+        return b ? by(a, "margin-right") : a.style.marginRight
+      })
     }})
-  }), c.defaultView && c.defaultView.getComputedStyle && (bA = function(a, b) {
-    var c, d, e;
-    b = b.replace(bs, "-$1").toLowerCase(), (d = a.ownerDocument.defaultView) && (e = d.getComputedStyle(a, null)) && (c = e.getPropertyValue(b), c === "" && !f.contains(a.ownerDocument.documentElement, a) && (c = f.style(a, b)));
-    return c
-  }), c.documentElement.currentStyle && (bB = function(a, b) {
-    var c, d, e, f = a.currentStyle && a.currentStyle[b], g = a.style;
-    f === null && g && (e = g[b]) && (f = e), !bt.test(f) && bu.test(f) && (c = g.left, d = a.runtimeStyle && a.runtimeStyle.left, d && (a.runtimeStyle.left = a.currentStyle.left), g.left = b === "fontSize" ? "1em" : f || 0, f = g.pixelLeft + "px", g.left = c, d && (a.runtimeStyle.left = d));
-    return f === "" ? "auto" : f
-  }), bz = bA || bB, f.expr && f.expr.filters && (f.expr.filters.hidden = function(a) {
+  }), f.expr && f.expr.filters && (f.expr.filters.hidden = function(a) {
     var b = a.offsetWidth, c = a.offsetHeight;
     return b === 0 && c === 0 || !f.support.reliableHiddenOffsets && (a.style && a.style.display || f.css(a, "display")) === "none"
   }, f.expr.filters.visible = function(a) {
     return!f.expr.filters.hidden(a)
+  }), f.each({margin:"", padding:"", border:"Width"}, function(a, b) {
+    f.cssHooks[a + b] = {expand:function(c) {
+      var d, e = typeof c == "string" ? c.split(" ") : [c], f = {};
+      for(d = 0;d < 4;d++) {
+        f[a + bx[d] + b] = e[d] || e[d - 2] || e[0]
+      }
+      return f
+    }}
   });
-  var bD = /%20/g, bE = /\[\]$/, bF = /\r?\n/g, bG = /#.*$/, bH = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, bI = /^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i, bJ = /^(?:about|app|app\-storage|.+\-extension|file|res|widget):$/, bK = /^(?:GET|HEAD)$/, bL = /^\/\//, bM = /\?/, bN = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, bO = /^(?:select|textarea)/i, bP = /\s+/, bQ = /([?&])_=[^&]*/, bR = /^([\w\+\.\-]+:)(?:\/\/([^\/?#:]*)(?::(\d+))?)?/, 
-  bS = f.fn.load, bT = {}, bU = {}, bV, bW, bX = ["*/"] + ["*"];
+  var bC = /%20/g, bD = /\[\]$/, bE = /\r?\n/g, bF = /#.*$/, bG = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, bH = /^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i, bI = /^(?:about|app|app\-storage|.+\-extension|file|res|widget):$/, bJ = /^(?:GET|HEAD)$/, bK = /^\/\//, bL = /\?/, bM = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, bN = /^(?:select|textarea)/i, bO = /\s+/, bP = /([?&])_=[^&]*/, bQ = /^([\w\+\.\-]+:)(?:\/\/([^\/?#:]*)(?::(\d+))?)?/, 
+  bR = f.fn.load, bS = {}, bT = {}, bU, bV, bW = ["*/"] + ["*"];
   try {
-    bV = e.href
-  }catch(bY) {
-    bV = c.createElement("a"), bV.href = "", bV = bV.href
+    bU = e.href
+  }catch(bX) {
+    bU = c.createElement("a"), bU.href = "", bU = bU.href
   }
-  bW = bR.exec(bV.toLowerCase()) || [], f.fn.extend({load:function(a, c, d) {
-    if(typeof a != "string" && bS) {
-      return bS.apply(this, arguments)
+  bV = bQ.exec(bU.toLowerCase()) || [], f.fn.extend({load:function(a, c, d) {
+    if(typeof a != "string" && bR) {
+      return bR.apply(this, arguments)
     }
     if(!this.length) {
       return this
@@ -2811,7 +2799,7 @@ VISH.ViewerEngine = "presentation";
     f.ajax({url:a, type:h, dataType:"html", data:c, complete:function(a, b, c) {
       c = a.responseText, a.isResolved() && (a.done(function(a) {
         c = a
-      }), i.html(g ? f("<div>").append(c.replace(bN, "")).find(g) : c)), d && i.each(d, [c, b, a])
+      }), i.html(g ? f("<div>").append(c.replace(bM, "")).find(g) : c)), d && i.each(d, [c, b, a])
     }});
     return this
   }, serialize:function() {
@@ -2820,12 +2808,12 @@ VISH.ViewerEngine = "presentation";
     return this.map(function() {
       return this.elements ? f.makeArray(this.elements) : this
     }).filter(function() {
-      return this.name && !this.disabled && (this.checked || bO.test(this.nodeName) || bI.test(this.type))
+      return this.name && !this.disabled && (this.checked || bN.test(this.nodeName) || bH.test(this.type))
     }).map(function(a, b) {
       var c = f(this).val();
       return c == null ? null : f.isArray(c) ? f.map(c, function(a, c) {
-        return{name:b.name, value:a.replace(bF, "\r\n")}
-      }) : {name:b.name, value:c.replace(bF, "\r\n")}
+        return{name:b.name, value:a.replace(bE, "\r\n")}
+      }) : {name:b.name, value:c.replace(bE, "\r\n")}
     }).get()
   }}), f.each("ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split(" "), function(a, b) {
     f.fn[b] = function(a) {
@@ -2841,14 +2829,14 @@ VISH.ViewerEngine = "presentation";
   }, getJSON:function(a, b, c) {
     return f.get(a, b, c, "json")
   }, ajaxSetup:function(a, b) {
-    b ? b_(a, f.ajaxSettings) : (b = a, a = f.ajaxSettings), b_(a, b);
+    b ? b$(a, f.ajaxSettings) : (b = a, a = f.ajaxSettings), b$(a, b);
     return a
-  }, ajaxSettings:{url:bV, isLocal:bJ.test(bW[1]), global:!0, type:"GET", contentType:"application/x-www-form-urlencoded", processData:!0, async:!0, accepts:{xml:"application/xml, text/xml", html:"text/html", text:"text/plain", json:"application/json, text/javascript", "*":bX}, contents:{xml:/xml/, html:/html/, json:/json/}, responseFields:{xml:"responseXML", text:"responseText"}, converters:{"* text":a.String, "text html":!0, "text json":f.parseJSON, "text xml":f.parseXML}, flatOptions:{context:!0, 
-  url:!0}}, ajaxPrefilter:bZ(bT), ajaxTransport:bZ(bU), ajax:function(a, c) {
+  }, ajaxSettings:{url:bU, isLocal:bI.test(bV[1]), global:!0, type:"GET", contentType:"application/x-www-form-urlencoded; charset=UTF-8", processData:!0, async:!0, accepts:{xml:"application/xml, text/xml", html:"text/html", text:"text/plain", json:"application/json, text/javascript", "*":bW}, contents:{xml:/xml/, html:/html/, json:/json/}, responseFields:{xml:"responseXML", text:"responseText"}, converters:{"* text":a.String, "text html":!0, "text json":f.parseJSON, "text xml":f.parseXML}, flatOptions:{context:!0, 
+  url:!0}}, ajaxPrefilter:bY(bS), ajaxTransport:bY(bT), ajax:function(a, c) {
     function w(a, c, l, m) {
       if(s !== 2) {
         s = 2, q && clearTimeout(q), p = b, n = m || "", v.readyState = a > 0 ? 4 : 0;
-        var o, r, u, w = c, x = l ? cb(d, v, l) : b, y, z;
+        var o, r, u, w = c, x = l ? ca(d, v, l) : b, y, z;
         if(a >= 200 && a < 300 || a === 304) {
           if(d.ifModified) {
             if(y = v.getResponseHeader("Last-Modified")) {
@@ -2862,7 +2850,7 @@ VISH.ViewerEngine = "presentation";
             w = "notmodified", o = !0
           }else {
             try {
-              r = cc(d, x), w = "success", o = !0
+              r = cb(d, x), w = "success", o = !0
             }catch(A) {
               w = "parsererror", u = A
             }
@@ -2890,7 +2878,7 @@ VISH.ViewerEngine = "presentation";
       if(s === 2) {
         if(!o) {
           o = {};
-          while(c = bH.exec(n)) {
+          while(c = bG.exec(n)) {
             o[c[1].toLowerCase()] = c[2]
           }
         }
@@ -2916,19 +2904,19 @@ VISH.ViewerEngine = "presentation";
         }
       }
       return this
-    }, d.url = ((a || d.url) + "").replace(bG, "").replace(bL, bW[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bP), d.crossDomain == null && (r = bR.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bW[1] && r[2] == bW[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bW[3] || (bW[1] === "http:" ? 80 : 443)))), d.data && d.processData && typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)), b$(bT, d, c, v);
+    }, d.url = ((a || d.url) + "").replace(bF, "").replace(bK, bV[1] + "//"), d.dataTypes = f.trim(d.dataType || "*").toLowerCase().split(bO), d.crossDomain == null && (r = bQ.exec(d.url.toLowerCase()), d.crossDomain = !(!r || r[1] == bV[1] && r[2] == bV[2] && (r[3] || (r[1] === "http:" ? 80 : 443)) == (bV[3] || (bV[1] === "http:" ? 80 : 443)))), d.data && d.processData && typeof d.data != "string" && (d.data = f.param(d.data, d.traditional)), bZ(bS, d, c, v);
     if(s === 2) {
       return!1
     }
-    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bK.test(d.type), t && f.active++ === 0 && f.event.trigger("ajaxStart");
+    t = d.global, d.type = d.type.toUpperCase(), d.hasContent = !bJ.test(d.type), t && f.active++ === 0 && f.event.trigger("ajaxStart");
     if(!d.hasContent) {
-      d.data && (d.url += (bM.test(d.url) ? "&" : "?") + d.data, delete d.data), k = d.url;
+      d.data && (d.url += (bL.test(d.url) ? "&" : "?") + d.data, delete d.data), k = d.url;
       if(d.cache === !1) {
-        var x = f.now(), y = d.url.replace(bQ, "$1_=" + x);
-        d.url = y + (y === d.url ? (bM.test(d.url) ? "&" : "?") + "_=" + x : "")
+        var x = f.now(), y = d.url.replace(bP, "$1_=" + x);
+        d.url = y + (y === d.url ? (bL.test(d.url) ? "&" : "?") + "_=" + x : "")
       }
     }
-    (d.data && d.hasContent && d.contentType !== !1 || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bX + "; q=0.01" : "") : d.accepts["*"]);
+    (d.data && d.hasContent && d.contentType !== !1 || c.contentType) && v.setRequestHeader("Content-Type", d.contentType), d.ifModified && (k = k || d.url, f.lastModified[k] && v.setRequestHeader("If-Modified-Since", f.lastModified[k]), f.etag[k] && v.setRequestHeader("If-None-Match", f.etag[k])), v.setRequestHeader("Accept", d.dataTypes[0] && d.accepts[d.dataTypes[0]] ? d.accepts[d.dataTypes[0]] + (d.dataTypes[0] !== "*" ? ", " + bW + "; q=0.01" : "") : d.accepts["*"]);
     for(u in d.headers) {
       v.setRequestHeader(u, d.headers[u])
     }
@@ -2939,7 +2927,7 @@ VISH.ViewerEngine = "presentation";
     for(u in{success:1, error:1, complete:1}) {
       v[u](d[u])
     }
-    p = b$(bU, d, c, v);
+    p = bZ(bT, d, c, v);
     if(!p) {
       w(-1, "No Transport")
     }else {
@@ -2968,19 +2956,19 @@ VISH.ViewerEngine = "presentation";
       })
     }else {
       for(var g in a) {
-        ca(g, a[g], c, e)
+        b_(g, a[g], c, e)
       }
     }
-    return d.join("&").replace(bD, "+")
+    return d.join("&").replace(bC, "+")
   }}), f.extend({active:0, lastModified:{}, etag:{}});
-  var cd = f.now(), ce = /(\=)\?(&|$)|\?\?/i;
+  var cc = f.now(), cd = /(\=)\?(&|$)|\?\?/i;
   f.ajaxSetup({jsonp:"callback", jsonpCallback:function() {
-    return f.expando + "_" + cd++
+    return f.expando + "_" + cc++
   }}), f.ajaxPrefilter("json jsonp", function(b, c, d) {
-    var e = b.contentType === "application/x-www-form-urlencoded" && typeof b.data == "string";
-    if(b.dataTypes[0] === "jsonp" || b.jsonp !== !1 && (ce.test(b.url) || e && ce.test(b.data))) {
+    var e = typeof b.data == "string" && /^application\/x\-www\-form\-urlencoded/.test(b.contentType);
+    if(b.dataTypes[0] === "jsonp" || b.jsonp !== !1 && (cd.test(b.url) || e && cd.test(b.data))) {
       var g, h = b.jsonpCallback = f.isFunction(b.jsonpCallback) ? b.jsonpCallback() : b.jsonpCallback, i = a[h], j = b.url, k = b.data, l = "$1" + h + "$2";
-      b.jsonp !== !1 && (j = j.replace(ce, l), b.url === j && (e && (k = k.replace(ce, l)), b.data === k && (j += (/\?/.test(j) ? "&" : "?") + b.jsonp + "=" + h))), b.url = j, b.data = k, a[h] = function(a) {
+      b.jsonp !== !1 && (j = j.replace(cd, l), b.url === j && (e && (k = k.replace(cd, l)), b.data === k && (j += (/\?/.test(j) ? "&" : "?") + b.jsonp + "=" + h))), b.url = j, b.data = k, a[h] = function(a) {
         g = [a]
       }, d.always(function() {
         a[h] = i, g && f.isFunction(i) && a[h](g[0])
@@ -3009,14 +2997,14 @@ VISH.ViewerEngine = "presentation";
       }}
     }
   });
-  var cf = a.ActiveXObject ? function() {
-    for(var a in ch) {
-      ch[a](0, 1)
+  var ce = a.ActiveXObject ? function() {
+    for(var a in cg) {
+      cg[a](0, 1)
     }
-  } : !1, cg = 0, ch;
+  } : !1, cf = 0, cg;
   f.ajaxSettings.xhr = a.ActiveXObject ? function() {
-    return!this.isLocal && ci() || cj()
-  } : ci, function(a) {
+    return!this.isLocal && ch() || ci()
+  } : ch, function(a) {
     f.extend(f.support, {ajax:!!a, cors:!!a && "withCredentials" in a})
   }(f.ajaxSettings.xhr()), f.support.ajax && f.ajaxTransport(function(c) {
     if(!c.crossDomain || f.support.cors) {
@@ -3040,11 +3028,15 @@ VISH.ViewerEngine = "presentation";
           var j, k, l, m, n;
           try {
             if(d && (e || h.readyState === 4)) {
-              d = b, i && (h.onreadystatechange = f.noop, cf && delete ch[i]);
+              d = b, i && (h.onreadystatechange = f.noop, ce && delete cg[i]);
               if(e) {
                 h.readyState !== 4 && h.abort()
               }else {
-                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && n.documentElement && (m.xml = n), m.text = h.responseText;
+                j = h.status, l = h.getAllResponseHeaders(), m = {}, n = h.responseXML, n && n.documentElement && (m.xml = n);
+                try {
+                  m.text = h.responseText
+                }catch(a) {
+                }
                 try {
                   k = h.statusText
                 }catch(o) {
@@ -3057,20 +3049,20 @@ VISH.ViewerEngine = "presentation";
             e || g(-1, p)
           }
           m && g(j, k, m, l)
-        }, !c.async || h.readyState === 4 ? d() : (i = ++cg, cf && (ch || (ch = {}, f(a).unload(cf)), ch[i] = d), h.onreadystatechange = d)
+        }, !c.async || h.readyState === 4 ? d() : (i = ++cf, ce && (cg || (cg = {}, f(a).unload(ce)), cg[i] = d), h.onreadystatechange = d)
       }, abort:function() {
         d && d(0, 1)
       }}
     }
   });
-  var ck = {}, cl, cm, cn = /^(?:toggle|show|hide)$/, co = /^([+\-]=)?([\d+.\-]+)([a-z%]*)$/i, cp, cq = [["height", "marginTop", "marginBottom", "paddingTop", "paddingBottom"], ["width", "marginLeft", "marginRight", "paddingLeft", "paddingRight"], ["opacity"]], cr;
+  var cj = {}, ck, cl, cm = /^(?:toggle|show|hide)$/, cn = /^([+\-]=)?([\d+.\-]+)([a-z%]*)$/i, co, cp = [["height", "marginTop", "marginBottom", "paddingTop", "paddingBottom"], ["width", "marginLeft", "marginRight", "paddingLeft", "paddingRight"], ["opacity"]], cq;
   f.fn.extend({show:function(a, b, c) {
     var d, e;
     if(a || a === 0) {
-      return this.animate(cu("show", 3), a, b, c)
+      return this.animate(ct("show", 3), a, b, c)
     }
     for(var g = 0, h = this.length;g < h;g++) {
-      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && e === "none" && (e = d.style.display = ""), e === "" && f.css(d, "display") === "none" && f._data(d, "olddisplay", cv(d.nodeName)))
+      d = this[g], d.style && (e = d.style.display, !f._data(d, "olddisplay") && e === "none" && (e = d.style.display = ""), (e === "" && f.css(d, "display") === "none" || !f.contains(d.ownerDocument.documentElement, d)) && f._data(d, "olddisplay", cu(d.nodeName)))
     }
     for(g = 0;g < h;g++) {
       d = this[g];
@@ -3084,7 +3076,7 @@ VISH.ViewerEngine = "presentation";
     return this
   }, hide:function(a, b, c) {
     if(a || a === 0) {
-      return this.animate(cu("hide", 3), a, b, c)
+      return this.animate(ct("hide", 3), a, b, c)
     }
     var d, e, g = 0, h = this.length;
     for(;g < h;g++) {
@@ -3099,25 +3091,34 @@ VISH.ViewerEngine = "presentation";
     f.isFunction(a) && f.isFunction(b) ? this._toggle.apply(this, arguments) : a == null || d ? this.each(function() {
       var b = d ? a : f(this).is(":hidden");
       f(this)[b ? "show" : "hide"]()
-    }) : this.animate(cu("toggle", 3), a, b, c);
+    }) : this.animate(ct("toggle", 3), a, b, c);
     return this
   }, fadeTo:function(a, b, c, d) {
     return this.filter(":hidden").css("opacity", 0).show().end().animate({opacity:b}, a, c, d)
   }, animate:function(a, b, c, d) {
     function g() {
       e.queue === !1 && f._mark(this);
-      var b = f.extend({}, e), c = this.nodeType === 1, d = c && f(this).is(":hidden"), g, h, i, j, k, l, m, n, o;
+      var b = f.extend({}, e), c = this.nodeType === 1, d = c && f(this).is(":hidden"), g, h, i, j, k, l, m, n, o, p, q;
       b.animatedProperties = {};
       for(i in a) {
-        g = f.camelCase(i), i !== g && (a[g] = a[i], delete a[i]), h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || b.easing || "swing";
+        g = f.camelCase(i), i !== g && (a[g] = a[i], delete a[i]);
+        if((k = f.cssHooks[g]) && "expand" in k) {
+          l = k.expand(a[g]), delete a[g];
+          for(i in l) {
+            i in a || (a[i] = l[i])
+          }
+        }
+      }
+      for(g in a) {
+        h = a[g], f.isArray(h) ? (b.animatedProperties[g] = h[1], h = a[g] = h[0]) : b.animatedProperties[g] = b.specialEasing && b.specialEasing[g] || b.easing || "swing";
         if(h === "hide" && d || h === "show" && !d) {
           return b.complete.call(this)
         }
-        c && (g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cv(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))
+        c && (g === "height" || g === "width") && (b.overflow = [this.style.overflow, this.style.overflowX, this.style.overflowY], f.css(this, "display") === "inline" && f.css(this, "float") === "none" && (!f.support.inlineBlockNeedsLayout || cu(this.nodeName) === "inline" ? this.style.display = "inline-block" : this.style.zoom = 1))
       }
       b.overflow != null && (this.style.overflow = "hidden");
       for(i in a) {
-        j = new f.fx(this, b, i), h = a[i], cn.test(h) ? (o = f._data(this, "toggle" + i) || (h === "toggle" ? d ? "show" : "hide" : 0), o ? (f._data(this, "toggle" + i, o === "show" ? "hide" : "show"), j[o]()) : j[h]()) : (k = co.exec(h), l = j.cur(), k ? (m = parseFloat(k[2]), n = k[3] || (f.cssNumber[i] ? "" : "px"), n !== "px" && (f.style(this, i, (m || 1) + n), l = (m || 1) / j.cur() * l, f.style(this, i, l + n)), k[1] && (m = (k[1] === "-=" ? -1 : 1) * m + l), j.custom(l, m, n)) : j.custom(l, 
+        j = new f.fx(this, b, i), h = a[i], cm.test(h) ? (q = f._data(this, "toggle" + i) || (h === "toggle" ? d ? "show" : "hide" : 0), q ? (f._data(this, "toggle" + i, q === "show" ? "hide" : "show"), j[q]()) : j[h]()) : (m = cn.exec(h), n = j.cur(), m ? (o = parseFloat(m[2]), p = m[3] || (f.cssNumber[i] ? "" : "px"), p !== "px" && (f.style(this, i, (o || 1) + p), n = (o || 1) / j.cur() * n, f.style(this, i, n + p)), m[1] && (o = (m[1] === "-=" ? -1 : 1) * o + n), j.custom(n, o, p)) : j.custom(n, 
         h, ""))
       }
       return!0
@@ -3149,7 +3150,7 @@ VISH.ViewerEngine = "presentation";
       }
       (!d || !c) && f.dequeue(this, a)
     })
-  }}), f.each({slideDown:cu("show", 1), slideUp:cu("hide", 1), slideToggle:cu("toggle", 1), fadeIn:{opacity:"show"}, fadeOut:{opacity:"hide"}, fadeToggle:{opacity:"toggle"}}, function(a, b) {
+  }}), f.each({slideDown:ct("show", 1), slideUp:ct("hide", 1), slideToggle:ct("toggle", 1), fadeIn:{opacity:"show"}, fadeOut:{opacity:"hide"}, fadeToggle:{opacity:"toggle"}}, function(a, b) {
     f.fn[a] = function(a, c, d) {
       return this.animate(b, a, c, d)
     }
@@ -3163,10 +3164,10 @@ VISH.ViewerEngine = "presentation";
       f.isFunction(d.old) && d.old.call(this), d.queue ? f.dequeue(this, d.queue) : a !== !1 && f._unmark(this)
     };
     return d
-  }, easing:{linear:function(a, b, c, d) {
-    return c + d * a
-  }, swing:function(a, b, c, d) {
-    return(-Math.cos(a * Math.PI) / 2 + 0.5) * d + c
+  }, easing:{linear:function(a) {
+    return a
+  }, swing:function(a) {
+    return-Math.cos(a * Math.PI) / 2 + 0.5
   }}, timers:[], fx:function(a, b, c) {
     this.options = b, this.elem = a, this.prop = c, b.orig = b.orig || {}
   }}), f.fx.prototype = {update:function() {
@@ -3182,16 +3183,16 @@ VISH.ViewerEngine = "presentation";
       return e.step(a)
     }
     var e = this, g = f.fx;
-    this.startTime = cr || cs(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || this.unit || (f.cssNumber[this.prop] ? "" : "px"), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
-      e.options.hide && f._data(e.elem, "fxshow" + e.prop) === b && f._data(e.elem, "fxshow" + e.prop, e.start)
-    }, h() && f.timers.push(h) && !cp && (cp = setInterval(g.tick, g.interval))
+    this.startTime = cq || cr(), this.end = c, this.now = this.start = a, this.pos = this.state = 0, this.unit = d || this.unit || (f.cssNumber[this.prop] ? "" : "px"), h.queue = this.options.queue, h.elem = this.elem, h.saveState = function() {
+      f._data(e.elem, "fxshow" + e.prop) === b && (e.options.hide ? f._data(e.elem, "fxshow" + e.prop, e.start) : e.options.show && f._data(e.elem, "fxshow" + e.prop, e.end))
+    }, h() && f.timers.push(h) && !co && (co = setInterval(g.tick, g.interval))
   }, show:function() {
     var a = f._data(this.elem, "fxshow" + this.prop);
     this.options.orig[this.prop] = a || f.style(this.elem, this.prop), this.options.show = !0, a !== b ? this.custom(this.cur(), a) : this.custom(this.prop === "width" || this.prop === "height" ? 1 : 0, this.cur()), f(this.elem).show()
   }, hide:function() {
     this.options.orig[this.prop] = f._data(this.elem, "fxshow" + this.prop) || f.style(this.elem, this.prop), this.options.hide = !0, this.custom(this.cur(), 0)
   }, step:function(a) {
-    var b, c, d, e = cr || cs(), g = !0, h = this.elem, i = this.options;
+    var b, c, d, e = cq || cr(), g = !0, h = this.elem, i = this.options;
     if(a || e >= i.duration + this.startTime) {
       this.now = this.end, this.pos = this.state = 1, this.update(), i.animatedProperties[this.prop] = !0;
       for(b in i.animatedProperties) {
@@ -3219,70 +3220,59 @@ VISH.ViewerEngine = "presentation";
     }
     b.length || f.fx.stop()
   }, interval:13, stop:function() {
-    clearInterval(cp), cp = null
+    clearInterval(co), co = null
   }, speeds:{slow:600, fast:200, _default:400}, step:{opacity:function(a) {
     f.style(a.elem, "opacity", a.now)
   }, _default:function(a) {
     a.elem.style && a.elem.style[a.prop] != null ? a.elem.style[a.prop] = a.now + a.unit : a.elem[a.prop] = a.now
-  }}}), f.each(["width", "height"], function(a, b) {
-    f.fx.step[b] = function(a) {
+  }}}), f.each(cp.concat.apply([], cp), function(a, b) {
+    b.indexOf("margin") && (f.fx.step[b] = function(a) {
       f.style(a.elem, b, Math.max(0, a.now) + a.unit)
-    }
+    })
   }), f.expr && f.expr.filters && (f.expr.filters.animated = function(a) {
     return f.grep(f.timers, function(b) {
       return a === b.elem
     }).length
   });
-  var cw = /^t(?:able|d|h)$/i, cx = /^(?:body|html)$/i;
-  "getBoundingClientRect" in c.documentElement ? f.fn.offset = function(a) {
-    var b = this[0], c;
-    if(a) {
-      return this.each(function(b) {
-        f.offset.setOffset(this, a, b)
-      })
-    }
-    if(!b || !b.ownerDocument) {
-      return null
-    }
-    if(b === b.ownerDocument.body) {
-      return f.offset.bodyOffset(b)
-    }
+  var cv, cw = /^t(?:able|d|h)$/i, cx = /^(?:body|html)$/i;
+  "getBoundingClientRect" in c.documentElement ? cv = function(a, b, c, d) {
     try {
-      c = b.getBoundingClientRect()
-    }catch(d) {
+      d = a.getBoundingClientRect()
+    }catch(e) {
     }
-    var e = b.ownerDocument, g = e.documentElement;
-    if(!c || !f.contains(g, b)) {
-      return c ? {top:c.top, left:c.left} : {top:0, left:0}
+    if(!d || !f.contains(c, a)) {
+      return d ? {top:d.top, left:d.left} : {top:0, left:0}
     }
-    var h = e.body, i = cy(e), j = g.clientTop || h.clientTop || 0, k = g.clientLeft || h.clientLeft || 0, l = i.pageYOffset || f.support.boxModel && g.scrollTop || h.scrollTop, m = i.pageXOffset || f.support.boxModel && g.scrollLeft || h.scrollLeft, n = c.top + l - j, o = c.left + m - k;
-    return{top:n, left:o}
-  } : f.fn.offset = function(a) {
-    var b = this[0];
-    if(a) {
-      return this.each(function(b) {
-        f.offset.setOffset(this, a, b)
-      })
-    }
-    if(!b || !b.ownerDocument) {
-      return null
-    }
-    if(b === b.ownerDocument.body) {
-      return f.offset.bodyOffset(b)
-    }
-    var c, d = b.offsetParent, e = b, g = b.ownerDocument, h = g.documentElement, i = g.body, j = g.defaultView, k = j ? j.getComputedStyle(b, null) : b.currentStyle, l = b.offsetTop, m = b.offsetLeft;
-    while((b = b.parentNode) && b !== i && b !== h) {
-      if(f.support.fixedPosition && k.position === "fixed") {
+    var g = b.body, h = cy(b), i = c.clientTop || g.clientTop || 0, j = c.clientLeft || g.clientLeft || 0, k = h.pageYOffset || f.support.boxModel && c.scrollTop || g.scrollTop, l = h.pageXOffset || f.support.boxModel && c.scrollLeft || g.scrollLeft, m = d.top + k - i, n = d.left + l - j;
+    return{top:m, left:n}
+  } : cv = function(a, b, c) {
+    var d, e = a.offsetParent, g = a, h = b.body, i = b.defaultView, j = i ? i.getComputedStyle(a, null) : a.currentStyle, k = a.offsetTop, l = a.offsetLeft;
+    while((a = a.parentNode) && a !== h && a !== c) {
+      if(f.support.fixedPosition && j.position === "fixed") {
         break
       }
-      c = j ? j.getComputedStyle(b, null) : b.currentStyle, l -= b.scrollTop, m -= b.scrollLeft, b === d && (l += b.offsetTop, m += b.offsetLeft, f.support.doesNotAddBorder && (!f.support.doesAddBorderForTableAndCells || !cw.test(b.nodeName)) && (l += parseFloat(c.borderTopWidth) || 0, m += parseFloat(c.borderLeftWidth) || 0), e = d, d = b.offsetParent), f.support.subtractsBorderForOverflowNotVisible && c.overflow !== "visible" && (l += parseFloat(c.borderTopWidth) || 0, m += parseFloat(c.borderLeftWidth) || 
-      0), k = c
+      d = i ? i.getComputedStyle(a, null) : a.currentStyle, k -= a.scrollTop, l -= a.scrollLeft, a === e && (k += a.offsetTop, l += a.offsetLeft, f.support.doesNotAddBorder && (!f.support.doesAddBorderForTableAndCells || !cw.test(a.nodeName)) && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 0), g = e, e = a.offsetParent), f.support.subtractsBorderForOverflowNotVisible && d.overflow !== "visible" && (k += parseFloat(d.borderTopWidth) || 0, l += parseFloat(d.borderLeftWidth) || 
+      0), j = d
     }
-    if(k.position === "relative" || k.position === "static") {
-      l += i.offsetTop, m += i.offsetLeft
+    if(j.position === "relative" || j.position === "static") {
+      k += h.offsetTop, l += h.offsetLeft
     }
-    f.support.fixedPosition && k.position === "fixed" && (l += Math.max(h.scrollTop, i.scrollTop), m += Math.max(h.scrollLeft, i.scrollLeft));
-    return{top:l, left:m}
+    f.support.fixedPosition && j.position === "fixed" && (k += Math.max(c.scrollTop, h.scrollTop), l += Math.max(c.scrollLeft, h.scrollLeft));
+    return{top:k, left:l}
+  }, f.fn.offset = function(a) {
+    if(arguments.length) {
+      return a === b ? this : this.each(function(b) {
+        f.offset.setOffset(this, a, b)
+      })
+    }
+    var c = this[0], d = c && c.ownerDocument;
+    if(!d) {
+      return null
+    }
+    if(c === d.body) {
+      return f.offset.bodyOffset(c)
+    }
+    return cv(c, d, d.documentElement)
   }, f.offset = {bodyOffset:function(a) {
     var b = a.offsetTop, c = a.offsetLeft;
     f.support.doesNotIncludeMarginInBodyOffset && (b += parseFloat(f.css(a, "marginTop")) || 0, c += parseFloat(f.css(a, "marginLeft")) || 0);
@@ -3307,53 +3297,45 @@ VISH.ViewerEngine = "presentation";
       }
       return a
     })
-  }}), f.each(["Left", "Top"], function(a, c) {
-    var d = "scroll" + c;
-    f.fn[d] = function(c) {
-      var e, g;
-      if(c === b) {
-        e = this[0];
-        if(!e) {
-          return null
+  }}), f.each({scrollLeft:"pageXOffset", scrollTop:"pageYOffset"}, function(a, c) {
+    var d = /Y/.test(c);
+    f.fn[a] = function(e) {
+      return f.access(this, function(a, e, g) {
+        var h = cy(a);
+        if(g === b) {
+          return h ? c in h ? h[c] : f.support.boxModel && h.document.documentElement[e] || h.document.body[e] : a[e]
         }
-        g = cy(e);
-        return g ? "pageXOffset" in g ? g[a ? "pageYOffset" : "pageXOffset"] : f.support.boxModel && g.document.documentElement[d] || g.document.body[d] : e[d]
-      }
-      return this.each(function() {
-        g = cy(this), g ? g.scrollTo(a ? f(g).scrollLeft() : c, a ? c : f(g).scrollTop()) : this[d] = c
-      })
+        h ? h.scrollTo(d ? f(h).scrollLeft() : g, d ? g : f(h).scrollTop()) : a[e] = g
+      }, a, e, arguments.length, null)
     }
-  }), f.each(["Height", "Width"], function(a, c) {
-    var d = c.toLowerCase();
-    f.fn["inner" + c] = function() {
+  }), f.each({Height:"height", Width:"width"}, function(a, c) {
+    var d = "client" + a, e = "scroll" + a, g = "offset" + a;
+    f.fn["inner" + a] = function() {
       var a = this[0];
-      return a ? a.style ? parseFloat(f.css(a, d, "padding")) : this[d]() : null
-    }, f.fn["outer" + c] = function(a) {
+      return a ? a.style ? parseFloat(f.css(a, c, "padding")) : this[c]() : null
+    }, f.fn["outer" + a] = function(a) {
       var b = this[0];
-      return b ? b.style ? parseFloat(f.css(b, d, a ? "margin" : "border")) : this[d]() : null
-    }, f.fn[d] = function(a) {
-      var e = this[0];
-      if(!e) {
-        return a == null ? null : this
-      }
-      if(f.isFunction(a)) {
-        return this.each(function(b) {
-          var c = f(this);
-          c[d](a.call(this, b, c[d]()))
-        })
-      }
-      if(f.isWindow(e)) {
-        var g = e.document.documentElement["client" + c], h = e.document.body;
-        return e.document.compatMode === "CSS1Compat" && g || h && h["client" + c] || g
-      }
-      if(e.nodeType === 9) {
-        return Math.max(e.documentElement["client" + c], e.body["scroll" + c], e.documentElement["scroll" + c], e.body["offset" + c], e.documentElement["offset" + c])
-      }
-      if(a === b) {
-        var i = f.css(e, d), j = parseFloat(i);
-        return f.isNumeric(j) ? j : i
-      }
-      return this.css(d, typeof a == "string" ? a : a + "px")
+      return b ? b.style ? parseFloat(f.css(b, c, a ? "margin" : "border")) : this[c]() : null
+    }, f.fn[c] = function(a) {
+      return f.access(this, function(a, c, h) {
+        var i, j, k, l;
+        if(f.isWindow(a)) {
+          i = a.document, j = i.documentElement[d];
+          return f.support.boxModel && j || i.body && i.body[d] || j
+        }
+        if(a.nodeType === 9) {
+          i = a.documentElement;
+          if(i[d] >= i[e]) {
+            return i[d]
+          }
+          return Math.max(a.body[e], i[e], a.body[g], i[g])
+        }
+        if(h === b) {
+          k = f.css(a, c), l = parseFloat(k);
+          return f.isNumeric(l) ? l : k
+        }
+        f(a).css(c, h)
+      }, c, a, arguments.length, null)
     }
   }), a.jQuery = a.$ = f, typeof define == "function" && define.amd && define.amd.jQuery && define("jquery", [], function() {
     return f
@@ -7712,6 +7694,25 @@ jQuery.effects || function(a, b) {
     return t * (33 * t2 * t2 - 106 * t2 * t + 126 * t2 - 67 * t + 15)
   }})
 })(jQuery);
+jQuery.cookie = function(key, value, options) {
+  if(arguments.length > 1 && String(value) !== "[object Object]") {
+    options = jQuery.extend({}, options);
+    if(value === null || value === undefined) {
+      options.expires = -1
+    }
+    if(typeof options.expires === "number") {
+      var days = options.expires, t = options.expires = new Date;
+      t.setDate(t.getDate() + days)
+    }
+    value = String(value);
+    return document.cookie = [encodeURIComponent(key), "=", options.raw ? value : encodeURIComponent(value), options.expires ? "; expires=" + options.expires.toUTCString() : "", options.path ? "; path=" + options.path : "", options.domain ? "; domain=" + options.domain : "", options.secure ? "; secure" : ""].join("")
+  }
+  options = value || {};
+  var result, decode = options.raw ? function(s) {
+    return s
+  } : decodeURIComponent;
+  return(result = (new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)")).exec(document.cookie)) ? decode(result[1]) : null
+};
 (function($) {
   var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [], ajaxLoader = null, imgPreloader = new Image, imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, loadingTimer, loadingFrame = 1, titleHeight = 0, titleStr = "", start_pos, final_pos, busy = false, fx = $.extend($("<div/>")[0], {prop:0}), isIE6 = $.browser.msie && $.browser.version < 
   7 && !window.XMLHttpRequest, _abort = function() {
@@ -9159,9 +9160,11 @@ jQuery.effects || function(a, b) {
         return
       }
       $(options.tipContent).hide();
-      var bodyOffset = $(options.tipContainer).children("*").first().position(), tipContent = $(options.tipContent + " li"), count = skipCount = 0, prevCount = -1, timerIndicatorInstance, timerIndicatorTemplate = '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>', tipTemplate = function(tipClass, index, buttonText, self) {
+      var bodyOffset = $(options.tipContainer).children("*").first().position(), tipContent = $(options.tipContent + " li"), count = skipCount = 0, prevCount = -1, timerIndicatorInstance, timerIndicatorTemplate = '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>';
+      var tipTemplate = function(tipClass, index, buttonText, self) {
         return'<div class="joyride-tip-guide ' + tipClass + '" id="joyRidePopup' + index + '"><span class="joyride-nub"></span><div class="joyride-content-wrapper">' + $(self).html() + buttonText + '<a href="#close" class="joyride-close-tip"></a>' + timerIndicatorInstance + "</div></div>"
-      }, tipLayout = function(tipClass, index, buttonText, self) {
+      };
+      var tipLayout = function(tipClass, index, buttonText, self) {
         if(index == 0 && settings.startTimerOnClick && settings.timer > 0 || settings.timer == 0) {
           timerIndicatorInstance = ""
         }else {
@@ -9170,7 +9173,11 @@ jQuery.effects || function(a, b) {
         if(!tipClass) {
           tipClass = ""
         }
-        buttonText != "" ? buttonText = '<a href="#" class="joyride-next-tip small nice radius yellow button">' + buttonText + "</a>" : buttonText = "";
+        if(buttonText) {
+          buttonText = '<a href="#" class="joyride-next-tip small nice radius yellow button">' + buttonText + "</a>"
+        }else {
+          buttonText = ""
+        }
         if(settings.inline) {
           $(tipTemplate(tipClass, index, buttonText, self)).insertAfter("#" + $(self).data("id"))
         }else {
@@ -9180,7 +9187,7 @@ jQuery.effects || function(a, b) {
       if(!settings.cookieMonster || !$.cookie(settings.cookieName)) {
         tipContent.each(function(index) {
           var buttonText = $(this).data("text"), tipClass = $(this).attr("class"), self = this;
-          if(settings.nextButton && buttonText == undefined) {
+          if(settings.nextButton && !buttonText) {
             buttonText = "Next"
           }
           if(settings.nextButton || !settings.nextButton && settings.startTimerOnClick) {
@@ -9203,18 +9210,19 @@ jQuery.effects || function(a, b) {
       }
       showNextTip = function() {
         var parentElementID = $(tipContent[count]).data("id"), parentElement = $("#" + parentElementID), opt = {};
-        ($(tipContent[count]).data("options") || ":").split(";").map(function(s) {
+        $.each(($(tipContent[count]).data("options") || ":").split(";"), function(i, s) {
           var p = s.split(":");
           if(p.length == 2) {
-            opt[p[0].trim()] = p[1].trim()
+            opt[$.trim(p[0])] = $.trim(p[1])
           }
         });
-        options = $.extend(options, opt);
-        settings = $.extend(settings, opt);
+        var tipSettings = $.extend({}, settings, opt);
         while(parentElement.offset() === null) {
           count++;
           skipCount++;
-          tipContent.length - 1 > prevCount ? prevCount++ : prevCount;
+          if(tipContent.length - 1 > prevCount) {
+            prevCount++
+          }
           parentElementID = $(tipContent[count]).data("id"), parentElement = $("#" + parentElementID);
           if($(tipContent).length < count) {
             break
@@ -9242,36 +9250,45 @@ jQuery.effects || function(a, b) {
               }
             }
           }
+          var nub = currentTip.children(".joyride-nub");
+          var left = currentTipPosition.left - bodyOffset.left;
+          nub.removeClass("bottom").removeClass("top").removeClass("right");
+          if($(window).scrollLeft() + $(window).width() < left + currentTip.width()) {
+            left -= currentTip.width() - nub.offset().left * 2;
+            nub.addClass("right")
+          }
           if(Modernizr.mq("only screen and (max-width: 769px)")) {
-            if(settings.tipLocation == "bottom") {
-              currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight});
-              currentTip.children(".joyride-nub").addClass("top").removeClass("bottom").css({left:currentTipPosition.left - bodyOffset.left})
-            }else {
-              if(settings.tipLocation == "top") {
-                if(currentTipHeight >= currentTipPosition.top) {
-                  currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight - bodyOffset.top});
-                  currentTip.children(".joyride-nub").addClass("top").removeClass("bottom").css({left:currentTipPosition.left - bodyOffset.left})
-                }else {
-                  currentTip.offset({top:currentTipPosition.top - (currentTipHeight + bodyOffset.top + nubHeight)});
-                  currentTip.children(".joyride-nub").addClass("bottom").removeClass("top").css({left:currentTipPosition.left - bodyOffset.left})
-                }
+            if(tipSettings.tipLocation.indexOf("top") != -1) {
+              if(currentTipHeight >= currentTipPosition.top) {
+                currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight - bodyOffset.top});
+                nub.addClass("top").css({left:left})
+              }else {
+                currentTip.offset({top:currentTipPosition.top - (currentTipHeight + bodyOffset.top + nubHeight)});
+                nub.addClass("bottom").css({left:left})
               }
+            }else {
+              currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight});
+              nub.addClass("top").css({left:left})
             }
           }else {
-            if(settings.tipLocation == "bottom") {
-              currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight, left:currentTipPosition.left - bodyOffset.left});
-              currentTip.children(".joyride-nub").addClass("top").removeClass("bottom")
+            if(tipSettings.tipLocation == "top") {
+              if(currentTipHeight >= currentTipPosition.top) {
+                currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight - bodyOffset.top, left:left});
+                nub.addClass("top")
+              }else {
+                currentTip.offset({top:currentTipPosition.top - (currentTipHeight + bodyOffset.top + nubHeight), left:left});
+                nub.addClass("bottom")
+              }
             }else {
-              if(settings.tipLocation == "top") {
-                if(currentTipHeight >= currentTipPosition.top) {
-                  currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight - bodyOffset.top, left:currentTipPosition.left - bodyOffset.left});
-                  currentTip.children(".joyride-nub").addClass("top").removeClass("bottom")
-                }else {
-                  currentTip.offset({top:currentTipPosition.top - (currentTipHeight + bodyOffset.top + nubHeight), left:currentTipPosition.left - bodyOffset.left});
-                  currentTip.children(".joyride-nub").addClass("bottom").removeClass("top")
-                }
+              if(tipSettings.tipLocation == "bottom") {
+                currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight, left:left});
+                nub.addClass("top")
               }
             }
+          }
+          if(tipSettings.tipLocation.indexOf("right") != -1) {
+            currentTip.offset({left:currentTipPosition.left - bodyOffset.left - currentTip.width() + parentElement.width()});
+            currentTip.children(".joyride-nub").addClass("right")
           }
           tipOffset = Math.ceil(currentTip.offset().top - windowHalf);
           $("html, body").animate({scrollTop:tipOffset}, settings.scrollSpeed);
@@ -9292,11 +9309,12 @@ jQuery.effects || function(a, b) {
           }
         }else {
           if(tipContent.length - 1 < count) {
+            var hideCnt;
             if(skipCount > 0) {
-              var hideCount = prevCount - skipCount;
+              hideCount = prevCount - skipCount;
               skipCount = 0
             }else {
-              var hideCount = prevCount
+              hideCount = prevCount
             }
             if(settings.cookieMonster == true) {
               $.cookie(settings.cookieName, "ridden", {expires:365, domain:settings.cookieDomain})
@@ -9404,25 +9422,6 @@ jQuery.effects || function(a, b) {
         }
       })
     })
-  };
-  jQuery.cookie = function(key, value, options) {
-    if(arguments.length > 1 && String(value) !== "[object Object]") {
-      options = jQuery.extend({}, options);
-      if(value === null || value === undefined) {
-        options.expires = -1
-      }
-      if(typeof options.expires === "number") {
-        var days = options.expires, t = options.expires = new Date;
-        t.setDate(t.getDate() + days)
-      }
-      value = String(value);
-      return document.cookie = [encodeURIComponent(key), "=", options.raw ? value : encodeURIComponent(value), options.expires ? "; expires=" + options.expires.toUTCString() : "", options.path ? "; path=" + options.path : "", options.domain ? "; domain=" + options.domain : "", options.secure ? "; secure" : ""].join("")
-    }
-    options = value || {};
-    var result, decode = options.raw ? function(s) {
-      return s
-    } : decodeURIComponent;
-    return(result = (new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)")).exec(document.cookie)) ? decode(result[1]) : null
   }
 })(jQuery);
 (function(d) {
@@ -11296,6 +11295,72 @@ window.Modernizr = function(a, b, c) {
 }, Modernizr.addTest("ie8compat", function() {
   return!window.addEventListener && document.documentMode && document.documentMode === 7
 });
+window.Modernizr = function(a, b, c) {
+  function v(a) {
+    i.cssText = a
+  }
+  function w(a, b) {
+    return v(prefixes.join(a + ";") + (b || ""))
+  }
+  function x(a, b) {
+    return typeof a === b
+  }
+  function y(a, b) {
+    return!!~("" + a).indexOf(b)
+  }
+  function z(a, b, d) {
+    for(var e in a) {
+      var f = b[a[e]];
+      if(f !== c) {
+        return d === !1 ? a[e] : x(f, "function") ? f.bind(d || b) : f
+      }
+    }
+    return!1
+  }
+  var d = "2.5.3", e = {}, f = b.documentElement, g = "modernizr", h = b.createElement(g), i = h.style, j, k = {}.toString, l = {}, m = {}, n = {}, o = [], p = o.slice, q, r = function(a, c, d, e) {
+    var h, i, j, k = b.createElement("div"), l = b.body, m = l ? l : b.createElement("body");
+    if(parseInt(d, 10)) {
+      while(d--) {
+        j = b.createElement("div"), j.id = e ? e[d] : g + (d + 1), k.appendChild(j)
+      }
+    }
+    return h = ["&#173;", "<style>", a, "</style>"].join(""), k.id = g, (l ? k : m).innerHTML += h, m.appendChild(k), l || (m.style.background = "", f.appendChild(m)), i = c(k, a), l ? k.parentNode.removeChild(k) : m.parentNode.removeChild(m), !!i
+  }, s = function(b) {
+    var c = a.matchMedia || a.msMatchMedia;
+    if(c) {
+      return c(b).matches
+    }
+    var d;
+    return r("@media " + b + " { #" + g + " { position: absolute; } }", function(b) {
+      d = (a.getComputedStyle ? getComputedStyle(b, null) : b.currentStyle)["position"] == "absolute"
+    }), d
+  }, t = {}.hasOwnProperty, u;
+  !x(t, "undefined") && !x(t.call, "undefined") ? u = function(a, b) {
+    return t.call(a, b)
+  } : u = function(a, b) {
+    return b in a && x(a.constructor.prototype[b], "undefined")
+  }, Function.prototype.bind || (Function.prototype.bind = function(b) {
+    var c = this;
+    if(typeof c != "function") {
+      throw new TypeError;
+    }
+    var d = p.call(arguments, 1), e = function() {
+      if(this instanceof e) {
+        var a = function() {
+        };
+        a.prototype = c.prototype;
+        var f = new a, g = c.apply(f, d.concat(p.call(arguments)));
+        return Object(g) === g ? g : f
+      }
+      return c.apply(b, d.concat(p.call(arguments)))
+    };
+    return e
+  });
+  for(var A in l) {
+    u(l, A) && (q = A.toLowerCase(), e[q] = l[A](), o.push((e[q] ? "" : "no-") + q))
+  }
+  return v(""), h = j = null, e._version = d, e.mq = s, e.testStyles = r, e
+}(this, this.document);
 var bkExtend = function() {
   var args = arguments;
   if(args.length == 1) {
@@ -12616,8 +12681,25 @@ VISH.Utils = function(V, undefined) {
   };
   var checkMiniumRequirements = function() {
     var browserRequirements = true;
-    if(navigator.appName == "Microsoft Internet Explorer" && _getInternetExplorerVersion() < 9) {
-      browserRequirements = false
+    var device = VISH.Status.getDevice();
+    switch(device.browser.name) {
+      case VISH.Constant.IE:
+        if(VISH.Editing) {
+          if(device.browser.version < 9) {
+            browserRequirements = false
+          }
+        }else {
+          if(device.browser.version < 8) {
+            browserRequirements = false
+          }
+        }
+        break;
+      case VISH.Constant.FIREFOX:
+        break;
+      case VISH.Constant.CHROME:
+        break;
+      default:
+        break
     }
     if(!browserRequirements) {
       $.fancybox($("#requirements_form_wrapper").html(), {"autoDimensions":false, "width":650, "height":400, "showCloseButton":false, "padding":0, "onClosed":function() {
@@ -12626,28 +12708,6 @@ VISH.Utils = function(V, undefined) {
     }
     return true
   };
-  function _getInternetExplorerVersion() {
-    var rv = -1;
-    if(navigator.appName == "Microsoft Internet Explorer") {
-      var ua = navigator.userAgent;
-      var re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
-      if(re.exec(ua) != null) {
-        rv = parseFloat(RegExp.$1)
-      }
-    }
-    return rv
-  }
-  function _getFirefoxVersion() {
-    var rv = -1;
-    if(navigator.appName == "Netscape") {
-      var ua = navigator.userAgent;
-      var re = new RegExp(".* Firefox/([0-9.]+)");
-      if(re.exec(ua) != null) {
-        rv = parseFloat(RegExp.$1)
-      }
-    }
-    return rv
-  }
   var convertToTagsArray = function(tags) {
     var tagsArray = [];
     if(!tags || tags.length == 0) {
@@ -12663,7 +12723,7 @@ VISH.Utils = function(V, undefined) {
   };
   var autocompleteUrls = function(input) {
     var http_urls_pattern = /(^http(s)?:\/\/)/g;
-    var objectInfo = VISH.Editor.Object.getObjectInfo();
+    var objectInfo = VISH.Object.getObjectInfo();
     if(objectInfo.wrapper == null && input.match(http_urls_pattern) == null) {
       return"http://" + input
     }else {
@@ -12741,9 +12801,6 @@ VISH.Editor = function(V, $, undefined) {
   var eventsLoaded = false;
   var init = function(options, excursion) {
     VISH.Debugging.init(options);
-    if(!VISH.Utils.checkMiniumRequirements()) {
-      return
-    }
     VISH.Editing = true;
     if(options) {
       initOptions = options;
@@ -12754,17 +12811,20 @@ VISH.Editor = function(V, $, undefined) {
     }else {
       initOptions = {}
     }
+    VISH.Status.init();
+    if(!VISH.Utils.checkMiniumRequirements()) {
+      return
+    }
     VISH.Dummies.init();
     VISH.Slides.init();
-    VISH.Status.init();
     VISH.User.init(options);
-    if(VISH.Status.ua.desktop) {
+    if(VISH.Status.getDevice().desktop) {
       $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/desktop.css" type="text/css" />')
     }else {
-      if(VISH.Status.ua.mobile) {
+      if(VISH.Status.getDevice().mobile) {
         $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/mobile.css" type="text/css" />')
       }else {
-        if(VISH.Status.ua.tablet) {
+        if(VISH.Status.getDevice().tablet) {
           $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/tablet.css" type="text/css" />')
         }
       }
@@ -12839,6 +12899,9 @@ VISH.Editor = function(V, $, undefined) {
     });
     $(document).on("click", "#help_right", function() {
       VISH.Editor.Tour.startTourWithId("menubar_help", "top")
+    });
+    $(document).on("click", "#help_flashcard", function() {
+      VISH.Editor.Tour.startTourWithId("fc_help", "top")
     });
     $(document).on("click", "#help_template_image", function() {
       VISH.Editor.Tour.startTourWithId("template_help", "bottom")
@@ -13620,74 +13683,6 @@ VISH.Editor.Object = function(V, $, undefined) {
       $.fancybox.close()
     }
   };
-  function objectInfo(wrapper, source, sourceType) {
-    this.wrapper = wrapper;
-    this.source = source;
-    this.type = sourceType
-  }
-  var getObjectInfo = function(object) {
-    var wrapper = null;
-    var element = $(object)[0];
-    if(typeof element != "undefined") {
-      var wrapper = element.tagName
-    }
-    var source = _getSourceFromObject(object, wrapper);
-    var type = _getTypeFromSource(source);
-    return new objectInfo(wrapper, source, type)
-  };
-  var _getSourceFromObject = function(object, wrapper) {
-    switch(wrapper) {
-      case null:
-        return object;
-      case "EMBED":
-        return $(object).attr("src");
-      case "OBJECT":
-        if(typeof $(object).attr("src") != "undefined") {
-          return $(object).attr("src")
-        }
-        if(typeof $(object).attr("data") != "undefined") {
-          return $(object).attr("data")
-        }
-        return"source not founded";
-      case "IFRAME":
-        return $(object).attr("src");
-      default:
-        VISH.Debugging.log("Unrecognized object wrapper: " + wrapper);
-        return null;
-        break
-    }
-  };
-  var _getTypeFromSource = function(source) {
-    var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
-    var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
-    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9]+))|((www.youtube.com\/((watch\?v=)|(embed\/)))([aA-z0-9Z&=.])+))/g;
-    var html5VideoFormats = ["mp4", "webm", "ogg"];
-    var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp"];
-    if(typeof source != "string") {
-      return null
-    }
-    if(source.match(youtube_video_pattern) != null) {
-      return"youtube"
-    }
-    source = source.split("?")[0];
-    var extension = source.split(".").pop().toLowerCase();
-    if(imageFormats.indexOf(extension) != "-1") {
-      return"image"
-    }
-    if(extension == "swf") {
-      return"swf"
-    }
-    if(extension == "pdf") {
-      return"pdf"
-    }
-    if(html5VideoFormats.indexOf(extension) != "-1") {
-      return"HTML5"
-    }
-    if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
-      return"web"
-    }
-    return extension
-  };
   var resizeObject = function(id, newWidth) {
     var parent = $("#" + id).parent();
     var aspectRatio = $("#" + id).width() / $("#" + id).height();
@@ -13737,7 +13732,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     $(object).width($(wrapper).width() / zoom)
   };
   var renderObjectPreview = function(object) {
-    var objectInfo = getObjectInfo(object);
+    var objectInfo = VISH.Object.getObjectInfo(object);
     switch(objectInfo.wrapper) {
       case null:
         switch(objectInfo.type) {
@@ -13787,7 +13782,6 @@ VISH.Editor.Object = function(V, $, undefined) {
     return wrapperPreview
   };
   var drawObject = function(object, area, style, zoomInStyle) {
-    VISH.Debugging.log("Se llamo a Draw object con object " + object + ", area " + area + ", y style " + style + " y zoomInStyle " + zoomInStyle);
     if(!VISH.Police.validateObject(object)[0]) {
       return
     }
@@ -13801,7 +13795,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     if(style) {
       object_style = style
     }
-    var objectInfo = getObjectInfo(object);
+    var objectInfo = VISH.Object.getObjectInfo(object);
     switch(objectInfo.wrapper) {
       case null:
         switch(objectInfo.type) {
@@ -13882,41 +13876,41 @@ VISH.Editor.Object = function(V, $, undefined) {
       VISH.ObjectPlayer.adjustDimensionsAfterZoom($(wrapperTag))
     }
   };
-  return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, getObjectInfo:getObjectInfo, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject, _getTypeFromSource:_getTypeFromSource, _getSourceFromObject:_getSourceFromObject}
+  return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject}
 }(VISH, jQuery);
 VISH.Samples = function(V, undefined) {
-  var samples = {"id":"", "type":"presentation", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://www.absoluthuelva.com/wp-content/uploads/2009/03/donana.jpg", 
+  var samples = {"id":"", "type":"presentation", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"articlevish4", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, 
-  {"id":"zone5", "type":"image", "areaid":"left", "body":"http://www.viajes.okviajar.es/wp-content/uploads/2010/11/parque-donana.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone5", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
   var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://i3.photobucket.com/albums/y78/Txemin/cuadricula/cuadriculamostra.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", 
-  "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://www.absoluthuelva.com/wp-content/uploads/2009/03/donana.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
-  "type":"image", "areaid":"left", "body":"http://www.viajes.okviajar.es/wp-content/uploads/2010/11/parque-donana.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
   var samples_game = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"game", "game":{"src":"games/sokoban/sokoban.html", "actions":{"devil":{"slide_id":"1", "when":"after"}, "diamond":{"slide_id":"2", "when":"before"}}}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", 
-  "type":"image", "areaid":"left", "body":"http://www.absoluthuelva.com/wp-content/uploads/2009/03/donana.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
-  "type":"image", "areaid":"left", "body":"http://www.viajes.okviajar.es/wp-content/uploads/2010/11/parque-donana.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
   var full_samples = {"id":"1", "type":"presentation", "title":"Nanoyou", "description":"This excursion is about nanotechnology", "avatar":"/assets/logos/original/excursion-02.png", "author":"Enrique Barra", "slides":[{"id":"vish1", "author":"John Doe", "template":"t1", "elements":[{"id":"315", "type":"text", "areaid":"header", "body":"Ejemplo de flora"}, {"id":"316", "type":"text", "areaid":"left", "body":'<div><ol><li>lolo<br></li><li>perrito<br></li></ol><div><font size="6">gato</font></div></div>'}, 
-  {"id":"317", "type":"image", "areaid":"right", "body":"http://www.asturtalla.com/arbol.jpg"}]}, {"id":"vish2", "template":"t2", "elements":[{"id":"318", "type":"text", "areaid":"header", "body":"Ejemplo de fauna..."}, {"id":"319", "type":"image", "areaid":"left", "body":"http://www.absoluthuelva.com/wp-content/uploads/2009/03/donana.jpg"}]}, {"id":"vish3", "template":"t1", "elements":[{"id":"320", "type":"text", "areaid":"header", "body":"Sensores"}, {"id":"321", "type":"text", "areaid":"left", 
-  "body":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas orci nisl, euismod a posuere ac, commodo quis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sollicitudin risus laoreet velit dapibus bibendum. Nullam cursus sollicitudin hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ullamcorper tempor bibendum. Morbi gravida pretium leo, vitae scelerisque quam mattis eu. Sed hendrerit molestie magna, sit amet porttitor nulla facilisis in. Donec vel massa mauris, sit amet condimentum lacus.</p>"}, 
-  {"id":"322", "type":"image", "areaid":"right", "body":"http://www.satec.es/es-ES/NuestraActividad/CasosdeExito/PublishingImages/IMG%20Do%C3%B1ana/do%C3%B1ana_fig2.png"}]}, {"id":"vish4", "template":"t2", "elements":[{"id":"323", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"324", "type":"image", "areaid":"left", "body":"http://www.viajes.okviajar.es/wp-content/uploads/2010/11/parque-donana.jpg"}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", 
-  "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"vish6", "template":"t2", "elements":[{"id":"327", "type":"flashcard", "areaid":"left", "canvasid":"myCanvas", "jsoncontent":'{"name": "myFirstFlashcard","description": "flashcard explanation","type": "flashcard","backgroundSrc": "media/images/background.jpg","pois": [{"id": 1,"x": 200,"y": 325,"templateNumber": 0,"zonesContent": [{"type": "text","content": "El tantalio o t\ufffdntalo es un elemento qu\ufffdmico de n\ufffdmero at\ufffdmico 73, que se sit\ufffda en el grupo 5 de la tabla peri\ufffddica de los elementos. Su s\ufffdmbolo es Ta. Se trata de un metal de transici\ufffdn raro, azul gris\ufffdceo, duro, que presenta brillo met\ufffdlico y resiste muy bien la corrosi\ufffdn. Se encuentra en el mineral tantalita. Es fisiol\ufffdgicamente inerte, por lo que, entre sus variadas aplicaciones, se puede emplear para la fabricaci\ufffdn de instrumentos quir\ufffdrgicos y en implantes. En ocasiones se le llama t\ufffdntalo, pero el \ufffdnico nombre reconocido por la Real Academia Espa\ufffdola es tantalio."}]},{"id": 2,"x": 458,"y": 285,"templateNumber": 1,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "image","content": "media/images/3.jpg"}]},{"id": 3,"x": 658,"y": 285,"templateNumber": 0,"zonesContent": [{"type": "video","content": [{"mimetype": "video/webm","src": "media/videos/video1.webm"},{"mimetype": "video/mp4","src": "http://video-js.zencoder.com/oceans-clip.mp4"}]}]},{"id": 4,"x": 458,"y": 457,"templateNumber": 2,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "empty","content": ""},{"type": "text","content": "El tantalio o t\ufffdntalo es un elemento qu\ufffdmico de n\ufffdmero at\ufffdmico 73, que se sit\ufffda en el grupo 5 de la tabla peri\ufffddica de los elementos. Su s\ufffdmbolo es Ta. Se trata de un metal de transici\ufffdn raro, azul gris\ufffdceo, duro, que presenta brillo met\ufffdlico y resiste muy bien la corrosi\ufffdn. Se encuentra en el mineral tantalita. Es fisiol\ufffdgicamente inerte, por lo que, entre sus variadas aplicaciones, se puede emplear para la fabricaci\ufffdn de instrumentos quir\ufffdrgicos y en implantes. En ocasiones se le llama t\ufffdntalo, pero el \ufffdnico nombre reconocido por la Real Academia Espa\ufffdola es tantalio."}]}]}', 
-  "js":"js/mods/fc/VISH.Mods.fc.js"}]}, {"id":"vish7", "template":"t2", "elements":[{"id":"328", "type":"flashcard", "areaid":"left", "canvasid":"myCanvas2", "jsoncontent":'{"name": "myFirstFlashcard","description": "flashcard explanation","type": "flashcard","backgroundSrc": "media/images/background2.png","pois": [{"id": 1,"x": 200,"y": 325,"templateNumber": 0,"zonesContent": [{"type": "text","content": "texto texto texto"}]},{"id": 2,"x": 458,"y": 285,"templateNumber": 1,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "image","content": "media/images/plata.jpg"}]},{"id": 3,"x": 658,"y": 285,"templateNumber": 0,"zonesContent": [{"type": "video","content": [{"mimetype": "video/webm","src": "media/videos/video1.webm"},{"mimetype": "video/mp4","src": "http://video-js.zencoder.com/oceans-clip.mp4"}]}]},{"id": 4,"x": 458,"y": 457,"templateNumber": 2,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "empty","content": ""},{"type": "text","content": "texto 2 texto 2."}]}]}', 
+  {"id":"317", "type":"image", "areaid":"right", "body":"http://www.asturtalla.com/arbol.jpg"}]}, {"id":"vish2", "template":"t2", "elements":[{"id":"318", "type":"text", "areaid":"header", "body":"Ejemplo de fauna..."}, {"id":"319", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}, {"id":"vish3", "template":"t1", "elements":[{"id":"320", "type":"text", "areaid":"header", "body":"Sensores"}, {"id":"321", "type":"text", 
+  "areaid":"left", "body":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas orci nisl, euismod a posuere ac, commodo quis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sollicitudin risus laoreet velit dapibus bibendum. Nullam cursus sollicitudin hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ullamcorper tempor bibendum. Morbi gravida pretium leo, vitae scelerisque quam mattis eu. Sed hendrerit molestie magna, sit amet porttitor nulla facilisis in. Donec vel massa mauris, sit amet condimentum lacus.</p>"}, 
+  {"id":"322", "type":"image", "areaid":"right", "body":"http://www.satec.es/es-ES/NuestraActividad/CasosdeExito/PublishingImages/IMG%20Do%C3%B1ana/do%C3%B1ana_fig2.png"}]}, {"id":"vish4", "template":"t2", "elements":[{"id":"323", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"324", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", 
+  "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"vish6", "template":"t2", "elements":[{"id":"327", "type":"flashcard", "areaid":"left", "canvasid":"myCanvas", "jsoncontent":'{"name": "myFirstFlashcard","description": "flashcard explanation","type": "flashcard","backgroundSrc": "contents/images/background.jpg","pois": [{"id": 1,"x": 200,"y": 325,"templateNumber": 0,"zonesContent": [{"type": "text","content": "El tantalio o t\ufffdntalo es un elemento qu\ufffdmico de n\ufffdmero at\ufffdmico 73, que se sit\ufffda en el grupo 5 de la tabla peri\ufffddica de los elementos. Su s\ufffdmbolo es Ta. Se trata de un metal de transici\ufffdn raro, azul gris\ufffdceo, duro, que presenta brillo met\ufffdlico y resiste muy bien la corrosi\ufffdn. Se encuentra en el mineral tantalita. Es fisiol\ufffdgicamente inerte, por lo que, entre sus variadas aplicaciones, se puede emplear para la fabricaci\ufffdn de instrumentos quir\ufffdrgicos y en implantes. En ocasiones se le llama t\ufffdntalo, pero el \ufffdnico nombre reconocido por la Real Academia Espa\ufffdola es tantalio."}]},{"id": 2,"x": 458,"y": 285,"templateNumber": 1,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "image","content": "contents/images/3.jpg"}]},{"id": 3,"x": 658,"y": 285,"templateNumber": 0,"zonesContent": [{"type": "video","content": [{"mimetype": "video/webm","src": "contents/videos/video1.webm"},{"mimetype": "video/mp4","src": "http://video-js.zencoder.com/oceans-clip.mp4"}]}]},{"id": 4,"x": 458,"y": 457,"templateNumber": 2,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "empty","content": ""},{"type": "text","content": "El tantalio o t\ufffdntalo es un elemento qu\ufffdmico de n\ufffdmero at\ufffdmico 73, que se sit\ufffda en el grupo 5 de la tabla peri\ufffddica de los elementos. Su s\ufffdmbolo es Ta. Se trata de un metal de transici\ufffdn raro, azul gris\ufffdceo, duro, que presenta brillo met\ufffdlico y resiste muy bien la corrosi\ufffdn. Se encuentra en el mineral tantalita. Es fisiol\ufffdgicamente inerte, por lo que, entre sus variadas aplicaciones, se puede emplear para la fabricaci\ufffdn de instrumentos quir\ufffdrgicos y en implantes. En ocasiones se le llama t\ufffdntalo, pero el \ufffdnico nombre reconocido por la Real Academia Espa\ufffdola es tantalio."}]}]}', 
+  "js":"js/mods/fc/VISH.Mods.fc.js"}]}, {"id":"vish7", "template":"t2", "elements":[{"id":"328", "type":"flashcard", "areaid":"left", "canvasid":"myCanvas2", "jsoncontent":'{"name": "myFirstFlashcard","description": "flashcard explanation","type": "flashcard","backgroundSrc": "contents/images/background2.png","pois": [{"id": 1,"x": 200,"y": 325,"templateNumber": 0,"zonesContent": [{"type": "text","content": "texto texto texto"}]},{"id": 2,"x": 458,"y": 285,"templateNumber": 1,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "image","content": "contents/images/plata.jpg"}]},{"id": 3,"x": 658,"y": 285,"templateNumber": 0,"zonesContent": [{"type": "video","content": [{"mimetype": "video/webm","src": "contents/videos/video1.webm"},{"mimetype": "video/mp4","src": "http://video-js.zencoder.com/oceans-clip.mp4"}]}]},{"id": 4,"x": 458,"y": 457,"templateNumber": 2,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "empty","content": ""},{"type": "text","content": "texto 2 texto 2."}]}]}', 
   "js":"js/mods/fc/VISH.Mods.fc.js"}]}, {"id":"vish8", "template":"t2", "elements":[{"id":"329", "type":"openquestion", "areaid":"header", "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf"}]}, {"id":"vish9", "template":"t2", "elements":[{"id":"330", "type":"mcquestion", "areaid":"header", "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf", "options":["yes", "no", "maybe"], "rightanswer":0}]}, {"id":"vish10", "template":"t2", "elements":[{"id":"331", 
   "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}, {"id":"vish11", 
   "template":"t1", "elements":[{"id":"333", "type":"text", "areaid":"header", "body":"Example of HTML5 video with autostart"}, {"id":"334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"335", "type":"video", "areaid":"right", "controls":true, "autoplay":true, "sources":'[{ "type": "video/webm", "src": "videos/kids.webm"},{"type": "video/mp4","src": "videos/kids.mp4"}]'}]}, {"id":"vish12", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video"}, {"id":"394", "type":"object", "areaid":"left", "body":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns" frameborder="0" allowfullscreen></iframe>'}]}, 
   {"id":"vish13", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video with style param"}, {"id":"335", "type":"object", "areaid":"left", "body":'<iframe width="324" height="243" src="http://www.youtube.com/embed/_jvDzfTRP4E" frameborder="0" allowfullscreen></iframe>', "style":"position: relative; left: 163px; top: 110px; width: 325px; height: 215px;"}]}, {"id":"vish14", "template":"t1", "elements":[{"id":"7393", "type":"text", "areaid":"header", 
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
-  {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
+  {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
   var quizes_samples = {"type":"quiz_simple", "id":12313, "author":"", "slides":[{"id":"article1", "type":"quiz", "quiz_id":"1112", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}]};
   var quizes_samples_2 = {"type":"presentation", "id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "quiz_id":"1112", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"], "quiz_simple_json":{"type":"quiz_simple", "id":12313, "author":"", "slides":[{"id":"article1", "type":"quiz", "template":"t11", 
   "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}]}}]}]};
@@ -14697,7 +14691,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
     $(".nicEdit-panel").show()
   };
   var loadToolbarForObject = function(object) {
-    var objectInfo = VISH.Editor.Object.getObjectInfo(object);
+    var objectInfo = VISH.Object.getObjectInfo(object);
     switch(objectInfo.type) {
       case "web":
         loadToolbarForElement(objectInfo.type);
@@ -14736,7 +14730,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
     switch(type) {
       case "object":
         var object = area.children()[0].children[0];
-        var objectInfo = VISH.Editor.Object.getObjectInfo(object);
+        var objectInfo = VISH.Object.getObjectInfo(object);
         if(objectInfo.type === "web") {
           var iframe = $(area).find("iframe");
           var zoom = VISH.Utils.getZoomFromStyle($(iframe).attr("style"));
@@ -14819,6 +14813,13 @@ VISH.Configuration = function(V, $, undefined) {
   };
   return{init:init, applyConfiguration:applyConfiguration, getConfiguration:getConfiguration}
 }(VISH, jQuery);
+VISH.Constant = {};
+VISH.Constant.UA_IE = "Microsoft Internet Explorer";
+VISH.Constant.UA_NETSCAPE = "Netscape";
+VISH.Constant.IE = "Internet Explorer";
+VISH.Constant.FIREFOX = "Mozilla Firefox";
+VISH.Constant.CHROME = "Google Chrome";
+VISH.Constant.UNKNOWN = "Unknown";
 VISH.Debugging = function(V, $, undefined) {
   var developping = false;
   var settings;
@@ -15585,8 +15586,6 @@ VISH.Editor.I18n = function(V, $, undefined) {
       });
       $("#contentusetut").attr("src", VISH.ImagesPath + "contentuse_" + language + ".png")
     }
-    var duration = (new Date).getTime() - initTime;
-    VISH.Debugging.log("Internationalization took " + duration + " ms.")
   };
   var _filterAndSubText = function(elemType) {
     $(elemType).filter(function(index) {
@@ -15822,7 +15821,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
       return
     }
     $.each(data, function(index, object) {
-      var objectInfo = VISH.Editor.Object.getObjectInfo(object.fulltext);
+      var objectInfo = VISH.Object.getObjectInfo(object.fulltext);
       var imageSource = null;
       switch(objectInfo.type) {
         case "swf":
@@ -15951,7 +15950,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
       return
     }
     $.each(data, function(index, objectItem) {
-      var objectInfo = VISH.Editor.Object.getObjectInfo(objectItem.object);
+      var objectInfo = VISH.Object.getObjectInfo(objectItem.object);
       var imageSource = null;
       switch(objectInfo.type) {
         case "swf":
@@ -16051,7 +16050,7 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
     }
   };
   var _validateSnapShot = function(object) {
-    var objectInfo = VISH.Editor.Object.getObjectInfo(object);
+    var objectInfo = VISH.Object.getObjectInfo(object);
     switch(objectInfo.wrapper) {
       case null:
         return _validateUrl(object);
@@ -16073,7 +16072,7 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
     }
   };
   var _wrapperSnapShot = function(content) {
-    var objectInfo = VISH.Editor.Object.getObjectInfo(content);
+    var objectInfo = VISH.Object.getObjectInfo(content);
     if(objectInfo.wrapper === null) {
       return"<iframe src='" + content + "'></iframe>"
     }else {
@@ -16663,8 +16662,8 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var menuEventsLoaded = false;
   var init = function() {
     $("#menu").hide();
-    if(!VISH.Status.ua.desktop) {
-      if(VISH.Status.ua.tablet) {
+    if(!VISH.Status.getDevice().desktop) {
+      if(VISH.Status.getDevice().tablet) {
         VISH.Editor.MenuTablet.init()
       }else {
         disableMenu();
@@ -16740,9 +16739,10 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   };
   var initializedSettings = false;
   var _initSettings = function() {
-    if(VISH.Configuration.getConfiguration()["presentationSettings"] && !VISH.Editor.hasInitialExcursion()) {
+    if(VISH.Configuration.getConfiguration()["presentationSettings"] && !VISH.Editor.hasInitialExcursion() && !initializedSettings) {
       $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":false});
-      displaySettings()
+      displaySettings();
+      initializedSettings = true
     }else {
       $("a#edit_excursion_details").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":660, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":true})
     }
@@ -17064,7 +17064,7 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     drawVideo([[url, _getVideoType(url)]])
   };
   var _getVideoType = function(url) {
-    var source = VISH.Editor.Object.getObjectInfo(url).source;
+    var source = VISH.Object.getObjectInfo(url).source;
     return"video/" + source.split(".").pop()
   };
   var drawVideo = function(sources, options, area, style) {
@@ -17510,6 +17510,79 @@ VISH.Game = function(V, $, undefined) {
   };
   return{raiseAction:raiseAction, registerActions:registerActions}
 }(VISH, jQuery);
+VISH.Object = function(V, $, undefined) {
+  var init = function() {
+  };
+  function objectInfo(wrapper, source, sourceType) {
+    this.wrapper = wrapper;
+    this.source = source;
+    this.type = sourceType
+  }
+  var getObjectInfo = function(object) {
+    var wrapper = null;
+    var element = $(object)[0];
+    if(typeof element != "undefined") {
+      var wrapper = element.tagName
+    }
+    var source = _getSourceFromObject(object, wrapper);
+    var type = _getTypeFromSource(source);
+    return new objectInfo(wrapper, source, type)
+  };
+  var _getSourceFromObject = function(object, wrapper) {
+    switch(wrapper) {
+      case null:
+        return object;
+      case "EMBED":
+        return $(object).attr("src");
+      case "OBJECT":
+        if(typeof $(object).attr("src") != "undefined") {
+          return $(object).attr("src")
+        }
+        if(typeof $(object).attr("data") != "undefined") {
+          return $(object).attr("data")
+        }
+        return"source not founded";
+      case "IFRAME":
+        return $(object).attr("src");
+      default:
+        VISH.Debugging.log("Unrecognized object wrapper: " + wrapper);
+        return null;
+        break
+    }
+  };
+  var _getTypeFromSource = function(source) {
+    var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
+    var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
+    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9]+))|((www.youtube.com\/((watch\?v=)|(embed\/)))([aA-z0-9Z&=.])+))/g;
+    var html5VideoFormats = ["mp4", "webm", "ogg"];
+    var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp"];
+    if(typeof source != "string") {
+      return null
+    }
+    if(source.match(youtube_video_pattern) != null) {
+      return"youtube"
+    }
+    source = source.split("?")[0];
+    var extension = source.split(".").pop().toLowerCase();
+    if(imageFormats.indexOf(extension) != "-1") {
+      return"image"
+    }
+    if(extension == "swf") {
+      return"swf"
+    }
+    if(extension == "pdf") {
+      return"pdf"
+    }
+    if(html5VideoFormats.indexOf(extension) != "-1") {
+      return"HTML5"
+    }
+    if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
+      return"web"
+    }
+    return extension
+  };
+  return{init:init, getObjectInfo:getObjectInfo}
+}(VISH, jQuery);
 VISH.ObjectPlayer = function() {
   var loadObject = function(element) {
     $.each(element.children(".objectelement"), function(index, value) {
@@ -17549,7 +17622,7 @@ VISH.Police = function(V, $, undefined) {
     if(typeof object == "string" && object.trim() == "") {
       return[false, "Object is an empty string"]
     }
-    var objectInfo = VISH.Editor.Object.getObjectInfo(object);
+    var objectInfo = VISH.Object.getObjectInfo(object);
     if(!objectInfo) {
       return[false, "Can't get Object info"]
     }
@@ -17593,7 +17666,6 @@ VISH.Police = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
-    V.Debugging.log("VIS.QUIZ.API init")
   };
   var postStartQuizSession = function(quiz_id, successCallback, failCallback) {
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
@@ -17835,17 +17907,66 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
   };
   return{init:init, renderQuiz:renderQuiz}
 }(VISH, jQuery);
+VISH.Renderer.Filter = function(V, $, undefined) {
+  var init = function() {
+  };
+  var allowElement = function(element) {
+    var device = VISH.Status.getDevice();
+    if(device.desktop) {
+      switch(element.type) {
+        case "applet":
+          return false;
+        default:
+          return true
+      }
+    }else {
+      if(device.mobile || device.tablet) {
+        switch(element.type) {
+          case "object":
+            var objectInfo = VISH.Object.getObjectInfo(element.body);
+            if(objectInfo.type == "swf") {
+              return false
+            }else {
+              if(objectInfo.type == "youtube") {
+                return true
+              }
+            }
+            break;
+          case "video":
+            return true;
+            break;
+          case "snapshot":
+            return true;
+            break;
+          case "applet":
+            return false;
+          default:
+            return true
+        }
+      }
+    }
+    return true
+  };
+  var renderContentFiltered = function(element, template) {
+    return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + VISH.ImagesPath + "background_ie.png'/></div>"
+  };
+  return{init:init, allowElement:allowElement, renderContentFiltered:renderContentFiltered}
+}(VISH, jQuery);
 VISH.Renderer = function(V, $, undefined) {
   var SLIDE_CONTAINER = null;
-  var trueFalseAnswers;
   var init = function() {
-    SLIDE_CONTAINER = $(".slides")
+    SLIDE_CONTAINER = $(".slides");
+    VISH.Renderer.Filter.init()
   };
   var renderSlide = function(slide) {
     var content = "";
     var classes = "";
     var buttons = "";
     for(el in slide.elements) {
+      if(!VISH.Renderer.Filter.allowElement(slide.elements[el])) {
+        content += VISH.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template);
+        break
+      }
       if(slide.elements[el].type === "text") {
         content += _renderText(slide.elements[el], slide.template)
       }else {
@@ -17977,13 +18098,13 @@ VISH.SlideManager = function(V, $, undefined) {
     }
     V.Slides.init();
     V.Status.init();
-    if(V.Status.ua.desktop) {
+    if(VISH.Status.getDevice().desktop) {
       $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/desktop.css" type="text/css" />')
     }else {
-      if(V.Status.ua.mobile) {
+      if(VISH.Status.getDevice().mobile) {
         $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/mobile.css" type="text/css" />')
       }else {
-        if(V.Status.ua.tablet) {
+        if(VISH.Status.getDevice().tablet) {
           $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/tablet.css" type="text/css" />')
         }
       }
@@ -18006,7 +18127,7 @@ VISH.SlideManager = function(V, $, undefined) {
     $(window).on("orientationchange", function() {
       V.ViewerAdapter.setupSize()
     });
-    if(V.Status.features.fullscreen && V.Status.ua.desktop) {
+    if(V.Status.getDevice().features.fullscreen && V.Status.getDevice().desktop) {
       if(V.Status.getIsInIframe()) {
         myDoc = parent.document
       }else {
@@ -18023,7 +18144,7 @@ VISH.SlideManager = function(V, $, undefined) {
     }else {
       $("#page-fullscreen").hide()
     }
-    if(V.Status.ua.desktop) {
+    if(V.Status.getDevice().desktop) {
       $("#viewbar").show();
       updateSlideCounter()
     }else {
@@ -18358,10 +18479,13 @@ VISH.SnapshotPlayer = function() {
   return{loadSnapshot:loadSnapshot, unloadSnapshot:unloadSnapshot, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Status = function(V, $, undefined) {
-  var ua = {};
-  var features = {};
+  var device;
   var isInIframe;
   var init = function() {
+    device = {};
+    device.browser = {};
+    device.features = {};
+    fillBrowser();
     fillUserAgent();
     fillFeatures()
   };
@@ -18370,64 +18494,118 @@ VISH.Status = function(V, $, undefined) {
     var elem = document.getElementById("page-fullscreen");
     if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
       if(!isInIframe) {
-        features.fullscreen = true
+        device.features.fullscreen = true
       }else {
         try {
           if(window.parent.location.host === window.location.host && (!window.parent.VISH || !window.parent.VISH.Editor || !(typeof window.parent.VISH.Editor.Preview.getPreview === "function"))) {
-            features.fullscreen = true
+            device.features.fullscreen = true
           }
         }catch(e) {
-          features.fullscreen = false
+          device.features.fullscreen = false
         }
       }
     }
-    features.touchScreen = !!("ontouchstart" in window)
+    device.features.touchScreen = !!("ontouchstart" in window)
   };
   var fillUserAgent = function() {
-    ua.pixelRatio = window.devicePixelRatio || 1;
-    ua.viewport = {width:window.innerWidth, height:window.innerHeight};
-    ua.screen = {width:window.screen.availWidth * ua.pixelRatio, height:window.screen.availHeight * ua.pixelRatio};
-    ua.iPhone = /iPhone/i.test(navigator.userAgent);
-    ua.iPhone4 = ua.iPhone && ua.pixelRatio == 2;
-    ua.iPad = /iPad/i.test(navigator.userAgent);
-    ua.iOS = ua.iPhone || ua.iPad;
-    ua.applePhone = ua.iPhone || ua.iPhone4;
-    ua.appleTablet = ua.iPad;
-    ua.android = /android/i.test(navigator.userAgent);
-    if(ua.android) {
-      ua.androidPhone = false;
-      ua.androidTablet = false;
+    device.pixelRatio = window.devicePixelRatio || 1;
+    device.viewport = {width:window.innerWidth, height:window.innerHeight};
+    device.screen = {width:window.screen.availWidth * device.pixelRatio, height:window.screen.availHeight * device.pixelRatio};
+    device.iPhone = /iPhone/i.test(navigator.userAgent);
+    device.iPhone4 = device.iPhone && device.pixelRatio == 2;
+    device.iPad = /iPad/i.test(navigator.userAgent);
+    device.iOS = device.iPhone || device.iPad;
+    device.applePhone = device.iPhone || device.iPhone4;
+    device.appleTablet = device.iPad;
+    device.android = /android/i.test(navigator.userAgent);
+    if(device.android) {
+      device.androidPhone = false;
+      device.androidTablet = false;
       if(/tablet/i.test(navigator.userAgent)) {
-        ua.androidTablet = true
+        device.androidTablet = true
       }else {
         var landscape = window.screen.availWidth > window.screen.availHeight;
         if(landscape) {
           if(window.screen.availWidth >= 1024 && window.screen.availHeight >= 720) {
-            ua.androidTablet = true
+            device.androidTablet = true
           }else {
-            ua.androidPhone = true
+            device.androidPhone = true
           }
         }else {
           if(window.screen.availHeight >= 1024 && window.screen.availWidth >= 720) {
-            ua.androidTablet = true
+            device.androidTablet = true
           }else {
-            ua.androidPhone = true
+            device.androidPhone = true
           }
         }
       }
     }else {
-      ua.androidPhone = false;
-      ua.androidTablet = false
+      device.androidPhone = false;
+      device.androidTablet = false
     }
-    ua.mobile = ua.applePhone || ua.androidPhone;
-    ua.tablet = ua.appleTablet || ua.androidTablet;
-    if(!ua.mobile && !ua.tablet) {
-      ua.desktop = true
+    device.mobile = device.applePhone || device.androidPhone;
+    device.tablet = device.appleTablet || device.androidTablet;
+    if(!device.mobile && !device.tablet) {
+      device.desktop = true
     }else {
-      ua.desktop = false
+      device.desktop = false
     }
   };
-  var updateOrientation = function() {
+  var fillBrowser = function() {
+    var version;
+    version = _getInternetExplorerVersion();
+    if(version != -1) {
+      device.browser.name = VISH.Constant.IE;
+      device.browser.version = version;
+      return
+    }
+    version = _getFirefoxVersion();
+    if(version != -1) {
+      device.browser.name = VISH.Constant.FIREFOX;
+      device.browser.version = version;
+      return
+    }
+    version = _getGoogleChromeVersion();
+    if(version != -1) {
+      device.browser.name = VISH.Constant.CHROME;
+      device.browser.version = version;
+      return
+    }
+    device.browser.name = VISH.Constant.UNKNOWN;
+    device.browser.name = -1
+  };
+  var _getInternetExplorerVersion = function() {
+    var rv = -1;
+    if(navigator.appName === VISH.Constant.UA_IE) {
+      var ua = navigator.userAgent;
+      var re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
+      if(re.exec(ua) != null) {
+        rv = parseFloat(RegExp.$1)
+      }
+    }
+    return rv
+  };
+  var _getFirefoxVersion = function() {
+    var rv = -1;
+    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+      var ua = navigator.userAgent;
+      var re = new RegExp(".* Firefox/([0-9.]+)");
+      if(re.exec(ua) != null) {
+        rv = parseFloat(RegExp.$1)
+      }
+    }
+    return rv
+  };
+  var _getGoogleChromeVersion = function() {
+    var rv = -1;
+    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+      var ua = navigator.userAgent;
+      var re = new RegExp(".* Chrome/([0-9.]+)");
+      if(re.exec(ua) != null) {
+        rv = parseFloat(RegExp.$1)
+      }
+    }
+    return rv
   };
   var getIsInIframe = function() {
     return isInIframe
@@ -18435,7 +18613,10 @@ VISH.Status = function(V, $, undefined) {
   var setIsInIframe = function(isIframe) {
     isInIframe = isIframe
   };
-  return{features:features, getIsInIframe:getIsInIframe, init:init, ua:ua}
+  var getDevice = function() {
+    return device
+  };
+  return{init:init, getIsInIframe:getIsInIframe, getDevice:getDevice}
 }(VISH, jQuery);
 VISH.User = function(V, $, undefined) {
   var user;
@@ -18757,7 +18938,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var reserved_px_for_menubar;
     var margin_height;
     var margin_width;
-    if(V.Status.ua.mobile) {
+    if(V.Status.getDevice().mobile) {
       reserved_px_for_menubar = 0;
       margin_height = 0;
       margin_width = 0
@@ -18803,7 +18984,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     $("#flashcard-background").css("margin-top", "-" + marginTop + "px");
     $("#flashcard-background").css("margin-left", "-" + marginLeft + "px");
     var increase = finalH / 600;
-    var font_size = V.Status.ua.mobile ? 15 : 16;
+    var font_size = V.Status.getDevice().mobile ? 15 : 16;
     $(".slides > article").css("font-size", font_size * increase + "px");
     $(".slides > article").css("line-height", font_size * increase + "px");
     $(".fc_poi img").css("width", 50 * increase + "px");
@@ -18841,7 +19022,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     document.getElementsByTagName("body")[0].appendChild(fileref)
   };
   var decideIfPageSwitcher = function() {
-    if(!page_is_fullscreen && !V.Status.ua.mobile) {
+    if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
       if(VISH.Slides.isCurrentFirstSlide()) {
         $("#page-switcher-start").hide()
       }else {
