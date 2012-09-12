@@ -233,7 +233,7 @@ label {
   text-align:left;
 }
 .row-fluid {
-    width: 98%;
+    width: 100%;
 }
 input, textarea, select, .uneditable-input{
   border-radius:5px; 
@@ -253,7 +253,7 @@ content: "";
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
   color: #FF005D;
-  background-color: #ffffff;
+  background-color: transparent;
   cursor: default;
   font-weight: 100;
   outline: none;

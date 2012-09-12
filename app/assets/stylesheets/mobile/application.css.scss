@@ -2163,7 +2163,7 @@ margin-right: 5px;
 
 
 .box_basic{
-  display: block;
+  display: inline-block;
   padding:10px;
   background-color: #FFFFFF;
   -webkit-border-radius: 15px;
@@ -2214,16 +2214,22 @@ display: inline-block;
 .margin-right15{margin-right:15px}
 .margin-right20{margin-right:20px}
 
-/*******no_margin**********/
+/*******margin-top**********/
 
 .margin-bottom5{margin-bottom:5px}
 .margin-bottom10{margin-bottom:10px}
 .margin-bottom15{margin-bottom:15px}
 .margin-bottom20{margin-bottom:20px}
 
-/********margin-top**********/
+/*********no margin*********/
 
 .no_margin{margin:none;}
+
+.margin-top-negative_19{
+margin-top: -19px;
+}
+
+
 
 .padding-center{
 padding-right: 10px;

@@ -72,15 +72,9 @@ SocialStream::Views::Toolbar.module_eval do
           :html => render(:partial => 'toolbar/logo', :locals => { :subject => subject })
         }
 
-        #Information button
-        items << {
-          :key => :subject_info,
-          :html => link_to(raw("<i class='icontool16-tool16_info'></i> ")+t('profile.one'), [subject, :profile],:class => "btn-gray")
-        }
-
         items << {
           :key => :message,
-          :html => render(:partial => 'toolbar/profile')
+          :html => render(:partial => 'toolbar/profile', :locals => { :subject => subject } )
         }
 
         # Messages
