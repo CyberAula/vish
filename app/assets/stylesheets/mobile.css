@@ -14,8 +14,8 @@ body {
     margin-right: 0;
     margin-top: 0;
 	background-color: #f9f9f9;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 a{
@@ -41,6 +41,10 @@ h4{
   font: 15px; 
 }
 
+.navbar {
+  margin-left: -5px;
+  margin-right: -5px;
+}
 
 .navbar-inner {
   height: auto;
