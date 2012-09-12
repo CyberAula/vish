@@ -66,6 +66,14 @@ h4{
 	text-align:center;
 	padding-top:15px;
 }
+
+.navbar-search {
+  width: 27%;
+  margin-right: 7%;
+  margin-left: 2%;
+  
+}
+
 .navbar-search .search-query {
   padding: 4px 5px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
