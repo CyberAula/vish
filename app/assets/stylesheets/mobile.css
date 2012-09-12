@@ -367,6 +367,21 @@ margin: 0;
     padding-right: 12px;
 }
 
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+    background-color: #FFFFFF;
+    color: #FF005D;
+}
+.star{
+  background-image: url("/assets/star-off.png");
+  background-position: center;
+  background-repeat: no-repeat; 
+}
+.star > .active > a, .star > .active > a:hover
+{
+  background-image: url("/assets/star-MENU-active.png");
+  background-position: center;
+  background-repeat: no-repeat; 
+}
 /*.nav-pills > li > a {
   margin-right: 10px;
   font-size: 20px;
