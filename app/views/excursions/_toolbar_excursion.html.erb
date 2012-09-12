@@ -161,7 +161,7 @@
           $.ajax({
             url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
           })
-          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&app=cobrowser&media=<%= request.url + '.full' %>");
+          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&app=cobrowser&media=" + encodeURI("<%= request.url + '.full' %>"));
         }
       });
       $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));
