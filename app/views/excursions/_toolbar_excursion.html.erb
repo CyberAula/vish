@@ -139,9 +139,9 @@
     $('#mashme-button-excursion').on("click", function(){
       var invitees = [];
       <% if request.env['HTTP_HOST'] =~ /^localhost/ or request.env['HTTP_HOST'] =~ /^0.0.0.0/ %>
-      var target_url = encodeURI("http://FUUUUUUU" + "<%= request.path %>" + ".full" + "|||" + $('#mashme-room-id').val());
+      var target_url = encodeURI("http://FUUUUUUU" + "<%= request.path %>" + "|||" + $('#mashme-room-id').val());
       <% else %>
-      var target_url = encodeURI("<%= request.url %>" + ".full" + "|||" + $('#mashme-room-id').val());
+      var target_url = encodeURI("<%= request.url %>" + "|||" + $('#mashme-room-id').val());
       <% end %>
       var target_title = encodeURI("<%= excursion.title.split(' ').map {|w| w.capitalize }.join('') unless excursion.title.blank? %>--" + $('#mashme-room-id').val());
       $('.mashme-invites .btn-info').each(function(i,ele){
@@ -158,7 +158,7 @@
           theme: "vish",
           name: name,
           app: "cobrowser",
-          media: encodeURI("<%= request.url.gsub('http://', '') %>")
+          media: encodeURI("<%= request.url.gsub('http://', '') + '.full' %>")
         },
         success: function(data) {
           $.ajax({
