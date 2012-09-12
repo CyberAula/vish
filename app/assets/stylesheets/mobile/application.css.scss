@@ -250,13 +250,15 @@ margin-top: -10px
 .link_white a:hover {color: #919191; text-decoration:none;}
 .link_blue a{color: #68A3FF; text-decoration:none;}
 .link_blue a:hover {color: #68A3FF;text-decoration:none;}
+.link_blue2 a{color: #3366FF; text-decoration:none;font-size: 18px; }
+.link_blue2 a:hover {color: #68A3FF;text-decoration:none;}
 
 /***********COLORS ***********/
 .background{color: #F9F9F9;}
 .white{color: #FFFFFF;}
 .green{ color:#40CC7F;}
 .ligth-gray{color: #E6E6E6}
-
+.gray-activity{ color: #949eab;}
 .gray-medium{ color: #8f8f8f;}
 .gray{ color:#6e6e6e;}
 .dark-gray {color: #666666;}
@@ -2203,10 +2205,10 @@ display: inline-block;
 
 /********margin-left**********/
 
-.margin-left5{float:none;padding-left: 5px}
-.margin-left10{float:none;padding-left: 10px}
-.margin-left15{float:none;padding-left: 15px}
-.margin-left20{float:none;padding-left: 20px}
+.margin-left5{margin-left: 5px}
+.margin-left10{margin-left: 10px}
+.margin-left15{margin-left: 15px}
+.margin-left20{margin-left: 20px}
 
 /********margin-right**********/
 
