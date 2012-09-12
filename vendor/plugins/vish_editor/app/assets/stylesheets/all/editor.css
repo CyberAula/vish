@@ -174,6 +174,7 @@ img {
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6);
 	z-index: 1000;
 }
+
 /* css for quizzes in editor*/
 
 /* Open Question Quiz*/
@@ -204,7 +205,6 @@ img {
 	display: block;	
 	
 }
-
 	
 .header_openquestion {
 	background: none repeat scroll 0 0 #F9F9F9;
@@ -247,7 +247,7 @@ img {
 }
 
 .multiplechoice_text {
-		background: none no-repeat scroll 5px 50% transparent;
+	background: none no-repeat scroll 5px 50% transparent;
     border: 1px solid #9B999D;
     border-radius: 10px 10px 10px 10px;
     font-family: Helvetica;
@@ -256,6 +256,7 @@ img {
     padding: 5px 7px;
     position: relative;
     z-index: 1000;
+    width: 300px;
 }
 
 .li_mch_option {
@@ -1335,6 +1336,18 @@ textarea {
 	left: 255px;
 }
 
+.imagetutflash {
+	position: absolute;
+	top:98px;
+	left:380px;
+}
+
+.imagetutflash2 {
+	position: absolute;
+	top:202px;
+	left:399px;
+}
+
 .tut_menubar{
   top: 510px;
   left: 255px ;
@@ -1574,4 +1587,8 @@ iframe.snapshot_content{
 #flashcard_help_button{
 	position: absolute;
 	right: 0px;
+}
+
+span.mcChoiceSpan{
+	margin-right: 3px;
 }

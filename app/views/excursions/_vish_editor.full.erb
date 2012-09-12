@@ -1,7 +1,9 @@
 <section class="slides layout-regular template-default" id="slides_panel">
   
-  <div id="flashcard-background" style="display:none"></div>
-  
+  <div id="flashcard-background" style="display:none">
+    <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/helptutorial_circle.png"></div>
+  </div>
+
   <div id="menubar_helpsection"><img src="/assets/menubar_helpsection.png"/></div>
   <div id="menubar_helpsection2"><img src="/assets/menubar_helpsection2.png"/></div>
   <div id="joyride_help_button"><img id="help_right" src="/assets/helptutorial_circle.png"/></div>
@@ -110,7 +112,7 @@
     <div id="toolbar_presentation">
       <img class="toolbar_icon" style="display:none" 
       action="selectTheme" src="/assets/toolbar/theme_selection.png"/>
-      <img class="toolbar_icon toolbar_flashcard" style="display:none" 
+      <img id="change_background_fc" class="toolbar_icon toolbar_flashcard" style="display:none" 
       action="changeFlashcardBackground" src="/assets/toolbar/flashcard_background.png" title="Change background"/>
     </div>
     <div id="toolbar_element">
@@ -734,6 +736,28 @@
       </li>
     </ol>
     
+      <!--help for flashcard -->
+      <ol id="fc_help" class="joyRideTipContent">
+          <li data-id="change_background_fc" data-text="Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
+          <h2>Flashcards</h2>
+          <p i18n-key="i.walk8"><p>A flashcard, is an application that will help you to represent your excursion as an infography, using an image to represent the concept of the excursion and mark zones of the image for the user to interact with them in order to see the pages of the excursion.</p>
+          <p>First, Use these icons to add a background to the slide.</p>
+          <img class="imagetutflash" src="/assets/icons_flashcard_tut.png"/> 
+          <p>You can add images by:</p>
+          <ul>
+            <li><h1>Url</h1></li><img class="imagetutflash2" src="/assets/icons_flashcard_tut3.png"/> 
+            <li><h1>Upload</h1></li>
+            <li><h1>From the vish repository</h1></li>
+            <li><h1>From Flickr</h1></li>
+        </ul>
+          <p>Once, you done with this step, you can "drag and drop" the arrows in the lower zone of theeditor upside the slides into the flashcard background image to mark the zones that you want the user to interact with.</p>
+          <img src="/assets/icons_flashcard_tut2.png"/>
+      <p>You can click on the "preview button" to test the flashcard before you save it.<img src="/assets/preview_circle.png"/></p>
+      <p> If you save your presentation as a flashcard, it will be shown on the Vish webpage as a flashcard, but you can always edit your excursion back and save it as a presentation</p> 
+
+        </li>
+      </ol>
+
     <!--help for template-->
     <ol id="template_help" class="joyRideTipContent">
       <li data-id="zone1" data-text="Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">

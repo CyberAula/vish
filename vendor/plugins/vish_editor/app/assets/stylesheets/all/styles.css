@@ -150,7 +150,7 @@ this can not be done with show() and hide() because then it remains with display
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  /*-moz-transform: translate(0); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -moz-transform: none; /* translate(0) REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.next {

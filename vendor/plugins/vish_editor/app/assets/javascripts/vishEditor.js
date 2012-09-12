@@ -12668,48 +12668,48 @@ VISH.Renderer = function(V, $, undefined) {
     var buttons = "";
     for(el in slide.elements) {
       if(!VISH.Renderer.Filter.allowElement(slide.elements[el])) {
-        content += VISH.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template);
-        break
-      }
-      if(slide.elements[el].type === "text") {
-        content += _renderText(slide.elements[el], slide.template)
+        content += VISH.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template)
       }else {
-        if(slide.elements[el].type === "image") {
-          content += _renderImage(slide.elements[el], slide.template)
+        if(slide.elements[el].type === "text") {
+          content += _renderText(slide.elements[el], slide.template)
         }else {
-          if(slide.elements[el].type === "video") {
-            content += renderVideo(slide.elements[el], slide.template)
+          if(slide.elements[el].type === "image") {
+            content += _renderImage(slide.elements[el], slide.template)
           }else {
-            if(slide.elements[el].type === "object") {
-              content += _renderObject(slide.elements[el], slide.template);
-              classes += "object "
+            if(slide.elements[el].type === "video") {
+              content += renderVideo(slide.elements[el], slide.template)
             }else {
-              if(slide.elements[el].type === "snapshot") {
-                content += _renderSnapshot(slide.elements[el], slide.template);
-                classes += "snapshot "
+              if(slide.elements[el].type === "object") {
+                content += _renderObject(slide.elements[el], slide.template);
+                classes += "object "
               }else {
-                if(slide.elements[el].type === "applet") {
-                  content += _renderApplet(slide.elements[el], slide.template);
-                  classes += "applet "
+                if(slide.elements[el].type === "snapshot") {
+                  content += _renderSnapshot(slide.elements[el], slide.template);
+                  classes += "snapshot "
                 }else {
-                  if(slide.elements[el].type === "flashcard") {
-                    content = _renderFlashcard(slide.elements[el], slide.template);
-                    classes += "flashcard"
+                  if(slide.elements[el].type === "applet") {
+                    content += _renderApplet(slide.elements[el], slide.template);
+                    classes += "applet "
                   }else {
-                    if(slide.elements[el].type === "openquestion") {
-                      content += V.Quiz.Renderer.renderQuiz("openquestion", slide.elements[el], slide.template);
-                      classes += "openquestion"
+                    if(slide.elements[el].type === "flashcard") {
+                      content = _renderFlashcard(slide.elements[el], slide.template);
+                      classes += "flashcard"
                     }else {
-                      if(slide.elements[el].type === "mcquestion") {
-                        V.Quiz.setQuizToActivate(parseInt(slide.quiz_id));
-                        content += V.Quiz.Renderer.renderQuiz("mcquestion", slide.elements[el], slide.template, slide.id);
-                        classes += "mcquestion"
+                      if(slide.elements[el].type === "openquestion") {
+                        content += V.Quiz.Renderer.renderQuiz("openquestion", slide.elements[el], slide.template);
+                        classes += "openquestion"
                       }else {
-                        if(slide.elements[el].type === "truefalsequestion") {
-                          content += V.Quiz.Renderer.renderQuiz("truefalsequestion", slide.elements[el], slide.template, slide.id);
-                          classes += "truefalsequestion"
+                        if(slide.elements[el].type === "mcquestion") {
+                          V.Quiz.setQuizToActivate(parseInt(slide.quiz_id));
+                          content += V.Quiz.Renderer.renderQuiz("mcquestion", slide.elements[el], slide.template, slide.id);
+                          classes += "mcquestion"
                         }else {
-                          content += _renderEmpty(slide.elements[el], slide.template)
+                          if(slide.elements[el].type === "truefalsequestion") {
+                            content += V.Quiz.Renderer.renderQuiz("truefalsequestion", slide.elements[el], slide.template, slide.id);
+                            classes += "truefalsequestion"
+                          }else {
+                            content += _renderEmpty(slide.elements[el], slide.template)
+                          }
                         }
                       }
                     }
@@ -13138,7 +13138,8 @@ VISH.Editor = function(V, $, undefined) {
     VISH.Editor.AvatarPicker.init();
     VISH.Editor.I18n.init(options["lang"]);
     VISH.Editor.Quiz.init();
-    VISH.Editor.Tools.init()
+    VISH.Editor.Tools.init();
+    VISH.Editor.Filter.init()
   };
   var getId = function() {
     domId = domId + 1;
@@ -14204,13 +14205,13 @@ VISH.Samples.API = function(V, undefined) {
   "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1536", "title":"Otro paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://1.bp.blogspot.com/-DFj9INluj80/TfiNl7q3DbI/AAAAAAAAAws/hVJu13VbKEY/s1600/paisaje.jpg", 
   "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}]};
   var videoListDummy = {"videos":[]};
-  var flashList = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, 
+  var flashList = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, 
   {"id":"1536", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "content":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, {"id":"1537", "title":"Image", "description":"Image Embed", "author":"Globedia", "content":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, {"id":"1538", "title":"Profe Demo", "description":"Flash Object Test 2", 
-  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1539", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", 
-  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1541", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1542", "title":"Profe Demo", "description":"Flash Object Test 2", 
-  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1543", "title":"Youtube video", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns" frameborder="0" allowfullscreen></iframe>'}]};
-  var flashListLittle = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, 
-  {"id":"1536", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "content":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}]};
+  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1539", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", 
+  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1541", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1542", "title":"Profe Demo", "description":"Flash Object Test 2", 
+  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1543", "title":"Youtube video", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns" frameborder="0" allowfullscreen></iframe>'}]};
+  var flashListLittle = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", 
+  "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1536", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "content":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}]};
   var flashListDummy = {"flashes":[]};
   var liveList = [{"id":"1534", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1535", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1536", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, 
   {"id":"1537", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1538", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1539", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, 
@@ -14219,10 +14220,10 @@ VISH.Samples.API = function(V, undefined) {
   {"id":"1546", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1547", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
   var liveListLittle = [{"id":"1534", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1535", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
   var liveListDummy = [];
-  var objectList = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
+  var objectList = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, 
-  {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}];
-  var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="/media/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
+  {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}];
+  var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}];
   var objectListDummy = [];
   var tagsList = {"tags":["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"]};
@@ -14523,18 +14524,14 @@ VISH.Slides = function(V, $, undefined) {
   isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, showSlide:showSlide}
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
-  var role;
   var slideToActivate;
   var slideToStop;
   var slideToVote;
-  var user;
-  var userStatus;
   var quizIdToStartSession;
   var quizUrlForSession = " http://" + window.location.host.toString() + "/quiz_sessions/";
+  var quizStatus = {};
   var startButton = "mcquestion_start_button";
   var stopButton = "mcquestion_stop_button";
-  var trueFalseAnswers = new Array;
-  var quizStatus = {};
   var init = function(excursion) {
     var options = VISH.SlideManager.getOptions();
     if(excursion.type == "quiz_simple") {
@@ -14545,22 +14542,24 @@ VISH.Quiz = function(V, $, undefined) {
     }else {
       if(excursion.type == "presentation") {
         if(VISH.User.isLogged()) {
-          $(".mcquestion_start_button").show();
-          _loadEvents()
+          _loadLoggedEvents();
+          $(".mcquestion_start_button").show()
         }else {
+          $(".mcquestion_start_button").hide()
         }
       }
     }
     VISH.Quiz.Renderer.init(quizStatus);
     VISH.Quiz.API.init()
   };
-  var _loadEvents = function() {
+  var _loadLoggedEvents = function() {
     var myInput = $(".current").find("input[class='save_results_quiz']");
     $(document).on("click", ".mcquestion_start_button", _startMcQuizButtonClicked);
     $(document).on("click", ".mch_statistics_icon", _statisticsMcQuizButtonClicked);
     $(document).on("click", ".mcquestion_save_yes_button", _saveQuizYesButtonClicked);
     $(document).on("click", ".mcquestion_save_no_button", _saveQuizNoButtonClicked);
     $(myInput).keydown(function(event) {
+      V.Debugging.log("event.keyCode  =" + event.keyCode);
       event.preventDefault();
       if(event.keyCode == 13) {
         V.Debugging.log("event.keyCode  =" + event.keyCode);
@@ -14568,14 +14567,9 @@ VISH.Quiz = function(V, $, undefined) {
           _saveQuizYesButtonClicked();
           return false
         }else {
-          alert("You must enter some text option.")
         }
       }
     })
-  };
-  var enableTrueFalseInteraction = function(slide, options) {
-    var sendButton = $("#" + slide).find("#tf_send_button");
-    var radioInput = $("#" + slide).find("input:radio[name='tf_radio_1']")
   };
   var _activateLoggedInteraction = function() {
     var startButton = "#mcquestion_start_button_" + slideToActivate;
@@ -14840,7 +14834,7 @@ VISH.Quiz = function(V, $, undefined) {
   var setSlideToVote = function(slide) {
     slideToVote = slide
   };
-  return{getQuizStatus:getQuizStatus, init:init, enableTrueFalseInteraction:enableTrueFalseInteraction, setQuizToActivate:setQuizToActivate, getQuizIdToStartSession:getQuizIdToStartSession, setSlideToVote:setSlideToVote}
+  return{getQuizStatus:getQuizStatus, init:init, setQuizToActivate:setQuizToActivate, getQuizIdToStartSession:getQuizIdToStartSession, setSlideToVote:setSlideToVote}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
@@ -15745,6 +15739,21 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
   };
   return{createCarrousel:createCarrousel, cleanCarrousel:cleanCarrousel, goToElement:goToElement, advanceCarrousel:advanceCarrousel, backCarrousel:backCarrousel}
 }(VISH, jQuery);
+VISH.Editor.Filter = function(V, $, undefined) {
+  var init = function() {
+    var device = VISH.Status.getDevice();
+    var browser = device.browser;
+    switch(browser.name) {
+      case VISH.Constant.IE:
+        $("#tab_object_snapshot").hide();
+        break;
+      case VISH.Constant.UNKNOWN:
+        $("#tab_object_snapshot").hide();
+        break
+    }
+  };
+  return{init:init}
+}(VISH, jQuery);
 VISH.Editor.Flashcard = function(V, $, undefined) {
   var loadFlashcard = function() {
     V.Editor.setExcursionType("flashcard");
@@ -16489,122 +16498,79 @@ VISH.Editor.Preview = function(V, $, undefined) {
   return{prepare:prepare, getPreview:getPreview, setForcePresentation:setForcePresentation}
 }(VISH, jQuery);
 VISH.Editor.Quiz = function(V, $, undefined) {
-  var buttonAddOptionId = "a_add_quiz_option";
-  var buttonRemoveOptionId = "a_remove_quiz_option";
-  var MultipleChoiceOptionClass = "multiplechoice_text";
-  var searchOptionText = "mchoice_radio_option_";
   var maxNumMultipleChoiceOptions = 6;
-  var buttonAddTrueFalseQuestionId = "a_add_true_false_question";
-  var maxNumTrueFalseQuestions = 6;
+  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)"];
   var init = function() {
-    var myInput = $(".current").find("input[type='text']");
-    $(document).on("click", "#" + buttonAddOptionId, addMultipleChoiceOption);
-    $(myInput).keydown(function(event) {
-      if(event.keyCode == 13) {
-        V.Debugging.log("event.keyCode in init =" + event.keyCode);
-        if($(myInput).val() != "" && $(myInput).val() != "write quiz options here") {
-          addMultipleChoiceOption();
-          $(myInput).blur()
-        }else {
-          alert("You must enter some text option.")
-        }
+    $(document).on("click", ".add_quiz_option", _addMultipleChoiceOption);
+    $(document).on("click", ".remove_quiz_option", _removeMultipleChoiceOption);
+    $(document).on("keydown", ".multiplechoice_text", _onKeyDown)
+  };
+  var _onKeyDown = function(event) {
+    if(event.keyCode == 13) {
+      var target = event.target;
+      if($(target).val() != "" && $(target).val() != "write quiz options here") {
+        _addMultipleChoiceOption(event)
       }
+    }
+  };
+  var _addMultipleChoiceOption = function(event) {
+    var optionsLength = $(".current").find(".ul_mch_options > li").length;
+    if(optionsLength >= maxNumMultipleChoiceOptions) {
+      return
+    }
+    if(event.target.tagName === "INPUT") {
+      var img = $(event.target).parent().find("img");
+      var input = event.target
+    }else {
+      if(event.target.tagName === "IMG") {
+        var img = event.target;
+        var input = $(event.target).parent().parent().find("input")
+      }
+    }
+    var a = $(img).parent();
+    var li = $(input).parent();
+    var targetChoice = $(".current").find(".ul_mch_options > li").index(li);
+    var isLastChoice = targetChoice === optionsLength - 1;
+    if(!isLastChoice) {
+      return
+    }
+    $(img).attr("src", VISH.ImagesPath + "delete.png");
+    $(a).removeClass().addClass("remove_quiz_option");
+    $(input).blur();
+    var maxChoicesReached = optionsLength == maxNumMultipleChoiceOptions - 1;
+    var newMultipleChoice = _renderDummyMultipleChoice(choicesLetters[optionsLength], !maxChoicesReached);
+    $(".current").find(".ul_mch_options").append(newMultipleChoice);
+    $(".current").find(".ul_mch_options > li").last().find("input").focus()
+  };
+  var _renderDummyMultipleChoice = function(text, addImage) {
+    var li = $("<li class='li_mch_option'></li>");
+    $(li).append("<span class='mcChoiceSpan'>" + text + "</span>");
+    $(li).append("<input type='text' class='multiplechoice_text'></input>");
+    if(addImage === true) {
+      $(li).append(_renderAddImg())
+    }
+    return li
+  };
+  var _renderAddImg = function() {
+    var a = $("<a class='add_quiz_option'></a>");
+    var addImg = $("<img src='" + VISH.ImagesPath + "add_quiz_option.png'/>");
+    $(a).append(addImg);
+    return a
+  };
+  var _removeMultipleChoiceOption = function(id) {
+    var li = $(event.target).parent().parent();
+    $(li).remove();
+    $(".current").find(".ul_mch_options > li").each(function(index, value) {
+      var span = $(value).find("span");
+      $(span).html(choicesLetters[index])
     });
-    $(document).on("click", "#" + buttonAddTrueFalseQuestionId, addTrueFalseQuestion)
-  };
-  var addMultipleChoiceOption = function(event) {
-    var myInput = $(".current").find("input[type='text']").last();
-    V.Debugging.log("my Input value is: " + myInput);
-    if(myInput.val() != "" && myInput.val() != "write quiz options here") {
-      $(".current").find("." + MultipleChoiceOptionClass).removeAttr("autofocus");
-      var text = $("<div>").append($("." + MultipleChoiceOptionClass).clone()).html();
-      var inputs_search = $(".current").find("." + MultipleChoiceOptionClass);
-      var next_num = inputs_search.size() + 1;
-      var next_index = "a".charCodeAt(0) + (next_num - 1);
-      next_index = String.fromCharCode(next_index);
-      if(next_num < maxNumMultipleChoiceOptions) {
-        $(".add_quiz_option").remove();
-        var delete_icon = "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + (next_num - 1) + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='" + VISH.ImagesPath + "/delete.png' id='remove_quiz_option_img'/></a>";
-        $(".current").find(".ul_mch_options").find("#li_mch_option_" + (next_num - 1)).append(delete_icon);
-        var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ") <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='write quiz options here' />";
-        add_option += "<a id='" + buttonAddOptionId + "' class='add_quiz_option'><img src='" + VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a></li>";
-        $(".current").find(".ul_mch_options").append(add_option)
-      }else {
-        if(next_num == maxNumMultipleChoiceOptions) {
-          $(".add_quiz_option").remove();
-          var delete_icon = "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + (next_num - 1) + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='" + VISH.ImagesPath + "/delete.png' id='remove_quiz_option_img'/></a>";
-          $(".current").find(".ul_mch_options").find("#li_mch_option_" + (next_num - 1).toString()).append(delete_icon);
-          var add_option = "<li id='li_mch_option_" + next_num + "' class='li_mch_option'>" + next_index + ")&nbsp;  <input id='radio_text_" + next_num + "' class='" + MultipleChoiceOptionClass + "' type='text' placeholder='write quiz options here' />";
-          add_option += "<a href='javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + next_num + ")' id='" + buttonRemoveOptionId + "' class='remove_quiz_option'><img src='" + VISH.ImagesPath + "/delete.png' id='remove_quiz_option_img'/></a></li>";
-          $(".current").find(".ul_mch_options").append(add_option)
-        }else {
-          V.Debugging.log("Something went wrong: next num greater than maximum number of options allowed")
-        }
-      }
-    }else {
-      alert("You must enter some text option.")
-    }
-    myNextInput = $(".current").find("#radio_text_" + next_num);
-    myNextInput.keydown(function(event) {
-      if(event.keyCode == 13) {
-        V.Debugging.log("event.type vale (inside addMultipleChoiceOption): " + event.type);
-        if($(myNextInput).val() != "" && $(myInput).val() != "write quiz options here") {
-          addMultipleChoiceOption();
-          $(myNextInput).blur()
-        }else {
-          alert("You must enter some text option.")
-        }
-      }
-    });
-    $(".current").find(myNextInput).attr("autofocus", "autofocus")
-  };
-  var removeMultipleChoiceOption = function(id) {
-    var add_option_button = "<a id='" + buttonAddOptionId + "' class='add_quiz_option'><img src='" + VISH.ImagesPath + "/add_quiz_option.png' id='add_quiz_option_img'/></a>";
-    $("#li_mch_option_" + id.toString()).children().remove();
-    var num_inputs = $(".current").find(".li_mch_option").size();
-    var i;
-    var next_index;
-    if(id < maxNumMultipleChoiceOptions) {
-      for(i = id;i <= num_inputs;i++) {
-        next_index = "a".charCodeAt(0) + i;
-        next_index = String.fromCharCode(next_index);
-        $(".current").find("li#li_mch_option_" + (i + 1).toString() + "> input").attr("id", "radio_text_" + i.toString());
-        $(".current").find("li#li_mch_option_" + (i + 1).toString() + "> a").attr("href", "javascript:VISH.Editor.Quiz.removeMultipleChoiceOption(" + i.toString() + ")");
-        $("#li_mch_option_" + i.toString()).append($("#li_mch_option_" + (i + 1).toString()).children());
-        if(i == num_inputs) {
-          $(".current").find("#li_mch_option_" + (i - 1).toString() + " > a").remove();
-          $(".current").find("#li_mch_option_" + (i - 1).toString()).append(add_option_button)
-        }
-      }
-      $(".current").find("#li_mch_option_" + num_inputs.toString()).remove()
-    }else {
-      if(id == maxNumMultipleChoiceOptions) {
-        $(".current").find("#li_mch_option_" + id.toString()).remove();
-        $(".current").find("li#li_mch_option_" + (id - 1).toString() + " > #a_remove_quiz_option").remove();
-        $(".current").find("#li_mch_option_" + (id - 1).toString()).append(add_option_button)
-      }else {
-        VISH.Debugging.log("Error executing VISH.Editor.Quiz.removeMultipleChoiceOption function with parameter: " + id)
-      }
+    var lastLi = $(".current").find(".ul_mch_options > li").last();
+    var lastA = $(lastLi).find("a");
+    if($(lastA).length == 0 || $(lastA).hasClass("add_quiz_option") === false) {
+      $(lastLi).append(_renderAddImg())
     }
   };
-  var addTrueFalseQuestion = function(event) {
-    $(".current").find(".true_false_question").removeAttr("autofocus");
-    var numCurrentQuestions = $(".current").find(".true_false_question").size();
-    if(numCurrentQuestions < maxNumTrueFalseQuestions) {
-      if($(".current").find(".true_false_question").last().val() != "" && $(".current").find(".true_false_question").last().val() != "Write question here") {
-        $(document).find("#" + buttonAddTrueFalseQuestionId).remove();
-        var trueFalseQuestionRow = "<tr id='tr_question_" + (numCurrentQuestions + 1) + "'><td id='td_true_" + (numCurrentQuestions + 1) + "' class='td_true'><input type='radio' id='true_" + (numCurrentQuestions + 1) + "' name='answer_" + (numCurrentQuestions + 1) + "' class='truefalse_answer' value='true'/></td><td id='td_false_" + (numCurrentQuestions + 1) + "' class='td_false'><input type='radio' id='false_" + (numCurrentQuestions + 1) + "' name='answer_" + (numCurrentQuestions + 1) + "' class='truefalse_answer' value='false'/></td><td id='td_question_" + 
-        (numCurrentQuestions + 1) + "' class='td_truefalse_question'><textarea rows='1' cols='50' class='true_false_question' placeholder='Write question here' id='true_false_question__" + (numCurrentQuestions + 1) + "'></textarea></td><td class='td_add_button'><a id='a_add_true_false_question' ><img src='" + VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr>";
-        $(".current").find(".truefalse_quiz_table").append(trueFalseQuestionRow);
-        $(".current").find(".true_false_question").last().attr("autofocus", "autofocus")
-      }else {
-        alert("Must write question before add new row.")
-      }
-    }else {
-      alert("Number of maximum questions reached.")
-    }
-  };
-  return{init:init, addMultipleChoiceOption:addMultipleChoiceOption, removeMultipleChoiceOption:removeMultipleChoiceOption, addTrueFalseQuestion:addTrueFalseQuestion}
+  return{init:init}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
@@ -17737,7 +17703,7 @@ VISH.Flashcard = function(V, $, undefined) {
     var fileref = document.createElement("link");
     fileref.setAttribute("rel", "stylesheet");
     fileref.setAttribute("type", "text/css");
-    fileref.setAttribute("href", "stylesheets/flashcard/flashcard.css");
+    fileref.setAttribute("href", VISH.StylesheetsPath + "flashcard/flashcard.css");
     document.getElementsByTagName("body")[0].appendChild(fileref);
     var flashcard_div = $("#flashcard-background");
     flashcard_div.css("background-image", excursion.background.src);
@@ -18210,7 +18176,7 @@ VISH.Renderer.Filter = function(V, $, undefined) {
     return true
   };
   var renderContentFiltered = function(element, template) {
-    return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + VISH.ImagesPath + "background_ie.png'/></div>"
+    return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + VISH.ImagesPath + "advert_new_grey.png'/></div>"
   };
   return{init:init, allowElement:allowElement, renderContentFiltered:renderContentFiltered}
 }(VISH, jQuery);
