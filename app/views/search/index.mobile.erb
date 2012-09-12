@@ -2,12 +2,6 @@
 <%= t('search.name')%> <%= params[:q].present? ? ": #{params[:q]}" : "" %>
 <% end %>
 
-<div class="row">
-<form action="<%=search_path%>" method="get" id="main_search_form">
-<%= label_tag 'q', t('search.name') + ':  ', :class => 'size30 inline' %>
-<%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "input-large" %>
-</form>
-</div>
 <div class="row space_center"></div>
 
 <div class="row">

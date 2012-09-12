@@ -1,3 +1,10 @@
+<ul class="nav nav-pills ">
+  <li class="active"><a data-toggle="tab" href="#ex-1">todo</a></li>
+  <li class=""><a data-toggle="tab" href="#ex-2">excursiones</a></li>
+  <li class=""><a data-toggle="tab" href="#ex-3">usuarios</a></li>
+  <li class=""><a data-toggle="tab" href="#ex-4">recursos</a></li>
+
+</ul>
 <div id="all" class="tab-pane <%= "active" if params[:type].blank? %> row">
   <% if @search_result.empty? %>
     <%= I18n.t('search.nothing') %>
