@@ -10,6 +10,11 @@
         <img src="/assets/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
       </a>
       <% unless controller.class == SearchController %>
+
+      <form class="navbar-search pull-left" action="">
+                      <input type="text" class="search-query span2" placeholder="Search">
+                    </form>
+                    
       <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
         <input type="text" class="search-query" placeholder="Search">
       </form>
