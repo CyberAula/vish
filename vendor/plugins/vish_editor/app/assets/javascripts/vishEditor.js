@@ -12656,6 +12656,268 @@ nicEditors.registerPlugin(nicPlugin, nicSaveOptions);
     return{label:label, value:value === undefined ? label : value, element:element, index:self.tagsArray.length}
   }})
 })(jQuery);
+VISH.Renderer = function(V, $, undefined) {
+  var SLIDE_CONTAINER = null;
+  var init = function() {
+    SLIDE_CONTAINER = $(".slides");
+    VISH.Renderer.Filter.init()
+  };
+  var renderSlide = function(slide) {
+    var content = "";
+    var classes = "";
+    var buttons = "";
+    for(el in slide.elements) {
+      if(!VISH.Renderer.Filter.allowElement(slide.elements[el])) {
+        content += VISH.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template);
+        break
+      }
+      if(slide.elements[el].type === "text") {
+        content += _renderText(slide.elements[el], slide.template)
+      }else {
+        if(slide.elements[el].type === "image") {
+          content += _renderImage(slide.elements[el], slide.template)
+        }else {
+          if(slide.elements[el].type === "video") {
+            content += renderVideo(slide.elements[el], slide.template)
+          }else {
+            if(slide.elements[el].type === "object") {
+              content += _renderObject(slide.elements[el], slide.template);
+              classes += "object "
+            }else {
+              if(slide.elements[el].type === "snapshot") {
+                content += _renderSnapshot(slide.elements[el], slide.template);
+                classes += "snapshot "
+              }else {
+                if(slide.elements[el].type === "applet") {
+                  content += _renderApplet(slide.elements[el], slide.template);
+                  classes += "applet "
+                }else {
+                  if(slide.elements[el].type === "flashcard") {
+                    content = _renderFlashcard(slide.elements[el], slide.template);
+                    classes += "flashcard"
+                  }else {
+                    if(slide.elements[el].type === "openquestion") {
+                      content += V.Quiz.Renderer.renderQuiz("openquestion", slide.elements[el], slide.template);
+                      classes += "openquestion"
+                    }else {
+                      if(slide.elements[el].type === "mcquestion") {
+                        V.Quiz.setQuizToActivate(parseInt(slide.quiz_id));
+                        content += V.Quiz.Renderer.renderQuiz("mcquestion", slide.elements[el], slide.template, slide.id);
+                        classes += "mcquestion"
+                      }else {
+                        if(slide.elements[el].type === "truefalsequestion") {
+                          content += V.Quiz.Renderer.renderQuiz("truefalsequestion", slide.elements[el], slide.template, slide.id);
+                          classes += "truefalsequestion"
+                        }else {
+                          content += _renderEmpty(slide.elements[el], slide.template)
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if(V.ViewerEngine === "flashcard") {
+      buttons = "<div class='close_slide' id='close" + slide.id + "'></div>"
+    }
+    SLIDE_CONTAINER.append("<article class='" + classes + "' id='" + slide.id + "'>" + buttons + content + "</article>")
+  };
+  var _renderText = function(element, template) {
+    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'>" + element["body"] + "</div>"
+  };
+  var _renderEmpty = function(element, template) {
+    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'></div>"
+  };
+  var _renderImage = function(element, template) {
+    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + element["body"] + "' style='" + element["style"] + "' /></div>"
+  };
+  var renderVideo = function(element, template) {
+    var rendered = "<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'>";
+    var style = element["style"] ? "style='" + element["style"] + "'" : "";
+    var controls = element["controls"] ? "controls='" + element["controls"] + "' " : "controls='controls' ";
+    var autoplay = element["autoplay"] ? "autoplayonslideenter='" + element["autoplay"] + "' " : "";
+    var poster = element["poster"] ? "poster='" + element["poster"] + "' " : "";
+    var loop = element["loop"] ? "loop='loop' " : "";
+    var sources = element["sources"];
+    if(typeof sources == "string") {
+      sources = JSON.parse(sources)
+    }
+    rendered = rendered + "<video class='" + template + "_video' preload='metadata' " + style + controls + autoplay + poster + loop + ">";
+    $.each(sources, function(index, source) {
+      var type = source.type ? "type='" + source.type + "' " : "";
+      rendered = rendered + "<source src='" + source.src + "' " + type + ">"
+    });
+    if(sources.length > 0) {
+      rendered = rendered + "<p>Your browser does not support HTML5 video.</p>"
+    }
+    rendered = rendered + "</video>";
+    return rendered
+  };
+  var _renderObject = function(element, template) {
+    var style = element["style"] ? element["style"] : "";
+    var body = element["body"];
+    var zoomInStyle = element["zoomInStyle"] ? element["zoomInStyle"] : "";
+    return"<div id='" + element["id"] + "' class='objectelement " + template + "_" + element["areaid"] + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + body + "'>" + "" + "</div>"
+  };
+  var _renderSnapshot = function(element, template) {
+    var style = element["style"] ? element["style"] : "";
+    var body = element["body"];
+    var scrollTop = element["scrollTop"] ? element["scrollTop"] : 0;
+    var scrollLeft = element["scrollLeft"] ? element["scrollLeft"] : 0;
+    return"<div id='" + element["id"] + "' class='snapshotelement " + template + "_" + element["areaid"] + "' template='" + template + "' objectStyle='" + style + "' scrollTop='" + scrollTop + "' scrollTopOrigin='" + scrollTop + "' scrollLeft='" + scrollLeft + "' scrollLeftOrigin='" + scrollLeft + "' objectWrapper='" + body + "'>" + "" + "</div>"
+  };
+  var _renderApplet = function(element, template) {
+    return"<div id='" + element["id"] + "' class='appletelement " + template + "_" + element["areaid"] + "' code='" + element["code"] + "' width='" + element["width"] + "' height='" + element["height"] + "' archive='" + element["archive"] + "' params='" + element["params"] + "' ></div>"
+  };
+  var _renderFlashcard = function(element, template) {
+    return"<div id='" + element["id"] + "' class='template_flashcard'><canvas id='" + element["canvasid"] + "'>Your browser does not support canvas</canvas></div>"
+  };
+  return{init:init, renderVideo:renderVideo, renderSlide:renderSlide}
+}(VISH, jQuery);
+VISH.Status = function(V, $, undefined) {
+  var device;
+  var isInIframe;
+  var init = function() {
+    device = {};
+    device.browser = {};
+    device.features = {};
+    fillBrowser();
+    fillUserAgent();
+    fillFeatures()
+  };
+  var fillFeatures = function() {
+    setIsInIframe(window.location != window.parent.location ? true : false);
+    var elem = document.getElementById("page-fullscreen");
+    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
+      if(!isInIframe) {
+        device.features.fullscreen = true
+      }else {
+        try {
+          if(window.parent.location.host === window.location.host && (!window.parent.VISH || !window.parent.VISH.Editor || !(typeof window.parent.VISH.Editor.Preview.getPreview === "function"))) {
+            device.features.fullscreen = true
+          }
+        }catch(e) {
+          device.features.fullscreen = false
+        }
+      }
+    }
+    device.features.touchScreen = !!("ontouchstart" in window)
+  };
+  var fillUserAgent = function() {
+    device.pixelRatio = window.devicePixelRatio || 1;
+    device.viewport = {width:window.innerWidth, height:window.innerHeight};
+    device.screen = {width:window.screen.availWidth * device.pixelRatio, height:window.screen.availHeight * device.pixelRatio};
+    device.iPhone = /iPhone/i.test(navigator.userAgent);
+    device.iPhone4 = device.iPhone && device.pixelRatio == 2;
+    device.iPad = /iPad/i.test(navigator.userAgent);
+    device.iOS = device.iPhone || device.iPad;
+    device.applePhone = device.iPhone || device.iPhone4;
+    device.appleTablet = device.iPad;
+    device.android = /android/i.test(navigator.userAgent);
+    if(device.android) {
+      device.androidPhone = false;
+      device.androidTablet = false;
+      if(/tablet/i.test(navigator.userAgent)) {
+        device.androidTablet = true
+      }else {
+        var landscape = window.screen.availWidth > window.screen.availHeight;
+        if(landscape) {
+          if(window.screen.availWidth >= 1024 && window.screen.availHeight >= 720) {
+            device.androidTablet = true
+          }else {
+            device.androidPhone = true
+          }
+        }else {
+          if(window.screen.availHeight >= 1024 && window.screen.availWidth >= 720) {
+            device.androidTablet = true
+          }else {
+            device.androidPhone = true
+          }
+        }
+      }
+    }else {
+      device.androidPhone = false;
+      device.androidTablet = false
+    }
+    device.mobile = device.applePhone || device.androidPhone;
+    device.tablet = device.appleTablet || device.androidTablet;
+    if(!device.mobile && !device.tablet) {
+      device.desktop = true
+    }else {
+      device.desktop = false
+    }
+  };
+  var fillBrowser = function() {
+    var version;
+    version = _getInternetExplorerVersion();
+    if(version != -1) {
+      device.browser.name = VISH.Constant.IE;
+      device.browser.version = version;
+      return
+    }
+    version = _getFirefoxVersion();
+    if(version != -1) {
+      device.browser.name = VISH.Constant.FIREFOX;
+      device.browser.version = version;
+      return
+    }
+    version = _getGoogleChromeVersion();
+    if(version != -1) {
+      device.browser.name = VISH.Constant.CHROME;
+      device.browser.version = version;
+      return
+    }
+    device.browser.name = VISH.Constant.UNKNOWN;
+    device.browser.name = -1
+  };
+  var _getInternetExplorerVersion = function() {
+    var rv = -1;
+    if(navigator.appName === VISH.Constant.UA_IE) {
+      var ua = navigator.userAgent;
+      var re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
+      if(re.exec(ua) != null) {
+        rv = parseFloat(RegExp.$1)
+      }
+    }
+    return rv
+  };
+  var _getFirefoxVersion = function() {
+    var rv = -1;
+    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+      var ua = navigator.userAgent;
+      var re = new RegExp(".* Firefox/([0-9.]+)");
+      if(re.exec(ua) != null) {
+        rv = parseFloat(RegExp.$1)
+      }
+    }
+    return rv
+  };
+  var _getGoogleChromeVersion = function() {
+    var rv = -1;
+    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+      var ua = navigator.userAgent;
+      var re = new RegExp(".* Chrome/([0-9.]+)");
+      if(re.exec(ua) != null) {
+        rv = parseFloat(RegExp.$1)
+      }
+    }
+    return rv
+  };
+  var getIsInIframe = function() {
+    return isInIframe
+  };
+  var setIsInIframe = function(isIframe) {
+    isInIframe = isIframe
+  };
+  var getDevice = function() {
+    return device
+  };
+  return{init:init, getIsInIframe:getIsInIframe, getDevice:getDevice}
+}(VISH, jQuery);
 VISH.Utils = function(V, undefined) {
   var init = function() {
   };
@@ -17952,128 +18214,6 @@ VISH.Renderer.Filter = function(V, $, undefined) {
   };
   return{init:init, allowElement:allowElement, renderContentFiltered:renderContentFiltered}
 }(VISH, jQuery);
-VISH.Renderer = function(V, $, undefined) {
-  var SLIDE_CONTAINER = null;
-  var init = function() {
-    SLIDE_CONTAINER = $(".slides");
-    VISH.Renderer.Filter.init()
-  };
-  var renderSlide = function(slide) {
-    var content = "";
-    var classes = "";
-    var buttons = "";
-    for(el in slide.elements) {
-      if(!VISH.Renderer.Filter.allowElement(slide.elements[el])) {
-        content += VISH.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template);
-        break
-      }
-      if(slide.elements[el].type === "text") {
-        content += _renderText(slide.elements[el], slide.template)
-      }else {
-        if(slide.elements[el].type === "image") {
-          content += _renderImage(slide.elements[el], slide.template)
-        }else {
-          if(slide.elements[el].type === "video") {
-            content += renderVideo(slide.elements[el], slide.template)
-          }else {
-            if(slide.elements[el].type === "object") {
-              content += _renderObject(slide.elements[el], slide.template);
-              classes += "object "
-            }else {
-              if(slide.elements[el].type === "snapshot") {
-                content += _renderSnapshot(slide.elements[el], slide.template);
-                classes += "snapshot "
-              }else {
-                if(slide.elements[el].type === "applet") {
-                  content += _renderApplet(slide.elements[el], slide.template);
-                  classes += "applet "
-                }else {
-                  if(slide.elements[el].type === "flashcard") {
-                    content = _renderFlashcard(slide.elements[el], slide.template);
-                    classes += "flashcard"
-                  }else {
-                    if(slide.elements[el].type === "openquestion") {
-                      content += V.Quiz.Renderer.renderQuiz("openquestion", slide.elements[el], slide.template);
-                      classes += "openquestion"
-                    }else {
-                      if(slide.elements[el].type === "mcquestion") {
-                        V.Quiz.setQuizToActivate(parseInt(slide.quiz_id));
-                        content += V.Quiz.Renderer.renderQuiz("mcquestion", slide.elements[el], slide.template, slide.id);
-                        classes += "mcquestion"
-                      }else {
-                        if(slide.elements[el].type === "truefalsequestion") {
-                          content += V.Quiz.Renderer.renderQuiz("truefalsequestion", slide.elements[el], slide.template, slide.id);
-                          classes += "truefalsequestion"
-                        }else {
-                          content += _renderEmpty(slide.elements[el], slide.template)
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    if(V.ViewerEngine === "flashcard") {
-      buttons = "<div class='close_slide' id='close" + slide.id + "'></div>"
-    }
-    SLIDE_CONTAINER.append("<article class='" + classes + "' id='" + slide.id + "'>" + buttons + content + "</article>")
-  };
-  var _renderText = function(element, template) {
-    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'>" + element["body"] + "</div>"
-  };
-  var _renderEmpty = function(element, template) {
-    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'></div>"
-  };
-  var _renderImage = function(element, template) {
-    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + element["body"] + "' style='" + element["style"] + "' /></div>"
-  };
-  var renderVideo = function(element, template) {
-    var rendered = "<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'>";
-    var style = element["style"] ? "style='" + element["style"] + "'" : "";
-    var controls = element["controls"] ? "controls='" + element["controls"] + "' " : "controls='controls' ";
-    var autoplay = element["autoplay"] ? "autoplayonslideenter='" + element["autoplay"] + "' " : "";
-    var poster = element["poster"] ? "poster='" + element["poster"] + "' " : "";
-    var loop = element["loop"] ? "loop='loop' " : "";
-    var sources = element["sources"];
-    if(typeof sources == "string") {
-      sources = JSON.parse(sources)
-    }
-    rendered = rendered + "<video class='" + template + "_video' preload='metadata' " + style + controls + autoplay + poster + loop + ">";
-    $.each(sources, function(index, source) {
-      var type = source.type ? "type='" + source.type + "' " : "";
-      rendered = rendered + "<source src='" + source.src + "' " + type + ">"
-    });
-    if(sources.length > 0) {
-      rendered = rendered + "<p>Your browser does not support HTML5 video.</p>"
-    }
-    rendered = rendered + "</video>";
-    return rendered
-  };
-  var _renderObject = function(element, template) {
-    var style = element["style"] ? element["style"] : "";
-    var body = element["body"];
-    var zoomInStyle = element["zoomInStyle"] ? element["zoomInStyle"] : "";
-    return"<div id='" + element["id"] + "' class='objectelement " + template + "_" + element["areaid"] + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + body + "'>" + "" + "</div>"
-  };
-  var _renderSnapshot = function(element, template) {
-    var style = element["style"] ? element["style"] : "";
-    var body = element["body"];
-    var scrollTop = element["scrollTop"] ? element["scrollTop"] : 0;
-    var scrollLeft = element["scrollLeft"] ? element["scrollLeft"] : 0;
-    return"<div id='" + element["id"] + "' class='snapshotelement " + template + "_" + element["areaid"] + "' template='" + template + "' objectStyle='" + style + "' scrollTop='" + scrollTop + "' scrollTopOrigin='" + scrollTop + "' scrollLeft='" + scrollLeft + "' scrollLeftOrigin='" + scrollLeft + "' objectWrapper='" + body + "'>" + "" + "</div>"
-  };
-  var _renderApplet = function(element, template) {
-    return"<div id='" + element["id"] + "' class='appletelement " + template + "_" + element["areaid"] + "' code='" + element["code"] + "' width='" + element["width"] + "' height='" + element["height"] + "' archive='" + element["archive"] + "' params='" + element["params"] + "' ></div>"
-  };
-  var _renderFlashcard = function(element, template) {
-    return"<div id='" + element["id"] + "' class='template_flashcard'><canvas id='" + element["canvasid"] + "'>Your browser does not support canvas</canvas></div>"
-  };
-  return{init:init, renderVideo:renderVideo, renderSlide:renderSlide}
-}(VISH, jQuery);
 VISH.SlideManager = function(V, $, undefined) {
   var initOptions;
   var mySlides = null;
@@ -18477,146 +18617,6 @@ VISH.SnapshotPlayer = function() {
     })
   };
   return{loadSnapshot:loadSnapshot, unloadSnapshot:unloadSnapshot, aftersetupSize:aftersetupSize}
-}(VISH, jQuery);
-VISH.Status = function(V, $, undefined) {
-  var device;
-  var isInIframe;
-  var init = function() {
-    device = {};
-    device.browser = {};
-    device.features = {};
-    fillBrowser();
-    fillUserAgent();
-    fillFeatures()
-  };
-  var fillFeatures = function() {
-    setIsInIframe(window.location != window.parent.location ? true : false);
-    var elem = document.getElementById("page-fullscreen");
-    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
-      if(!isInIframe) {
-        device.features.fullscreen = true
-      }else {
-        try {
-          if(window.parent.location.host === window.location.host && (!window.parent.VISH || !window.parent.VISH.Editor || !(typeof window.parent.VISH.Editor.Preview.getPreview === "function"))) {
-            device.features.fullscreen = true
-          }
-        }catch(e) {
-          device.features.fullscreen = false
-        }
-      }
-    }
-    device.features.touchScreen = !!("ontouchstart" in window)
-  };
-  var fillUserAgent = function() {
-    device.pixelRatio = window.devicePixelRatio || 1;
-    device.viewport = {width:window.innerWidth, height:window.innerHeight};
-    device.screen = {width:window.screen.availWidth * device.pixelRatio, height:window.screen.availHeight * device.pixelRatio};
-    device.iPhone = /iPhone/i.test(navigator.userAgent);
-    device.iPhone4 = device.iPhone && device.pixelRatio == 2;
-    device.iPad = /iPad/i.test(navigator.userAgent);
-    device.iOS = device.iPhone || device.iPad;
-    device.applePhone = device.iPhone || device.iPhone4;
-    device.appleTablet = device.iPad;
-    device.android = /android/i.test(navigator.userAgent);
-    if(device.android) {
-      device.androidPhone = false;
-      device.androidTablet = false;
-      if(/tablet/i.test(navigator.userAgent)) {
-        device.androidTablet = true
-      }else {
-        var landscape = window.screen.availWidth > window.screen.availHeight;
-        if(landscape) {
-          if(window.screen.availWidth >= 1024 && window.screen.availHeight >= 720) {
-            device.androidTablet = true
-          }else {
-            device.androidPhone = true
-          }
-        }else {
-          if(window.screen.availHeight >= 1024 && window.screen.availWidth >= 720) {
-            device.androidTablet = true
-          }else {
-            device.androidPhone = true
-          }
-        }
-      }
-    }else {
-      device.androidPhone = false;
-      device.androidTablet = false
-    }
-    device.mobile = device.applePhone || device.androidPhone;
-    device.tablet = device.appleTablet || device.androidTablet;
-    if(!device.mobile && !device.tablet) {
-      device.desktop = true
-    }else {
-      device.desktop = false
-    }
-  };
-  var fillBrowser = function() {
-    var version;
-    version = _getInternetExplorerVersion();
-    if(version != -1) {
-      device.browser.name = VISH.Constant.IE;
-      device.browser.version = version;
-      return
-    }
-    version = _getFirefoxVersion();
-    if(version != -1) {
-      device.browser.name = VISH.Constant.FIREFOX;
-      device.browser.version = version;
-      return
-    }
-    version = _getGoogleChromeVersion();
-    if(version != -1) {
-      device.browser.name = VISH.Constant.CHROME;
-      device.browser.version = version;
-      return
-    }
-    device.browser.name = VISH.Constant.UNKNOWN;
-    device.browser.name = -1
-  };
-  var _getInternetExplorerVersion = function() {
-    var rv = -1;
-    if(navigator.appName === VISH.Constant.UA_IE) {
-      var ua = navigator.userAgent;
-      var re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
-      if(re.exec(ua) != null) {
-        rv = parseFloat(RegExp.$1)
-      }
-    }
-    return rv
-  };
-  var _getFirefoxVersion = function() {
-    var rv = -1;
-    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
-      var ua = navigator.userAgent;
-      var re = new RegExp(".* Firefox/([0-9.]+)");
-      if(re.exec(ua) != null) {
-        rv = parseFloat(RegExp.$1)
-      }
-    }
-    return rv
-  };
-  var _getGoogleChromeVersion = function() {
-    var rv = -1;
-    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
-      var ua = navigator.userAgent;
-      var re = new RegExp(".* Chrome/([0-9.]+)");
-      if(re.exec(ua) != null) {
-        rv = parseFloat(RegExp.$1)
-      }
-    }
-    return rv
-  };
-  var getIsInIframe = function() {
-    return isInIframe
-  };
-  var setIsInIframe = function(isIframe) {
-    isInIframe = isIframe
-  };
-  var getDevice = function() {
-    return device
-  };
-  return{init:init, getIsInIframe:getIsInIframe, getDevice:getDevice}
 }(VISH, jQuery);
 VISH.User = function(V, $, undefined) {
   var user;
