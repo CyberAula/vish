@@ -367,13 +367,13 @@
     -moz-text-decoration-style: solid;
 }
 
-.btn-unfollow{
+.btn-unfollow, .btn-unfollow-mobile{
   border-color:#BF285D; 
   background-color:#F40055;
   color: #FFF5FF;
 }
 
-.btn-unfollow a{
+.btn-unfollow a, .btn-unfollow-mobile a{
   color: #FFFFFF;
   text-decoration: none;
 }
@@ -409,7 +409,7 @@
   color: #fff;
 }
 
-.btn-following, .btn-follow, .btn-unfollow{
+.btn-following, .btn-follow, .btn-unfollow, .btn-unfollow-mobile{
   margin-top:-1px ;
   width: 112px;
   height: 18px;
