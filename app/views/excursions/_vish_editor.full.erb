@@ -1,7 +1,7 @@
 <section class="slides layout-regular template-default" id="slides_panel">
   
   <div id="flashcard-background" style="display:none">
-    <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/helptutorial_circle.png"></div>
+    <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/helptutorial_circle.png"/></div>
   </div>
 
   <div id="menubar_helpsection"><img src="/assets/menubar_helpsection.png"/></div>
@@ -346,6 +346,31 @@
       </div>
     </div>
   
+  <!-- PROMPT WHEN TRY TO SAVE AND BACKGROUND IS NOT SET-->
+    <div style='display:none'>
+      <div id='message4_form'>
+        <div class="text_in_fancybox">
+          <img id="message4img" src="/assets/images/content_fail.png">
+          <span class="deltext">Please change the flashcard background before saving.</span>
+        </div>    
+        <div id="button_accept_when_fail">
+          <a href="#" onclick="$.fancybox.close();" class="prompt_button buttonfail">accept</a>
+        </div>
+      </div>
+    </div>
+
+     <!-- PROMPT WHEN TRY TO CHANGE TO FLASHCARD AND THERE IS NO SLIDES-->
+    <div style='display:none'>
+      <div id='message5_form'>
+        <div class="text_in_fancybox">
+          <img id="message5img" src="/assets/images/content_fail.png">
+          <span class="deltext">Please create at least one slide before changing to flashcard mode.</span>
+        </div>    
+        <div id="button_accept_when_fail">
+          <a href="#" onclick="$.fancybox.close();" class="prompt_button buttonfail">accept</a>
+        </div>
+      </div>
+    </div>
 
   <!-- IMAGE -->
     <a id="hidden_button_to_launch_picture_fancybox_for_flashcard" href="#picture_fancybox" style="display:none"> Change background</a>
