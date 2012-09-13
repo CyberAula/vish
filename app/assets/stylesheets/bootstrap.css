@@ -3327,7 +3327,7 @@ input[type="submit"].btn.btn-mini {
 
 .nav-tabs > li {
   margin-bottom: -1px;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .nav-tabs > li > a {
@@ -5009,4 +5009,8 @@ a.badge:hover {
 
 .invisible {
   visibility: hidden;
+}
+
+.form_field_edit_resource select{
+  height: 27px;
 }

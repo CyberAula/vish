@@ -11,7 +11,7 @@
         <%= render :partial => "excursions/suggestion", :collection => sgs, :locals => { :close_button => true } %>
       </div>
     </div>
-    <div class="more">
+    <div class="btn btn-link pull-right">
       <%=link_to( t('view_all'), search_path(:type => "excursion") ) %>
     </div>
   </div>
