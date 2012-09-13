@@ -13102,7 +13102,7 @@ VISH.Editor = function(V, $, undefined) {
       VISH.Editor.Renderer.init(excursion);
       _removeSelectableProperties();
       if(excursion.type === "flashcard") {
-        VISH.Editor.Flashcard.loadFlashcard()
+        VISH.Editor.Flashcard.loadFlashcard(excursion)
       }
     }
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
@@ -15757,15 +15757,19 @@ VISH.Editor.Filter = function(V, $, undefined) {
   return{init:init}
 }(VISH, jQuery);
 VISH.Editor.Flashcard = function(V, $, undefined) {
-  var loadFlashcard = function() {
+  var loadFlashcard = function(excursion) {
     V.Editor.setExcursionType("flashcard");
     V.Editor.Utils.hideSlides();
     $("#flashcard-background").show();
+    if(excursion) {
+      $("#flashcard-background").css("background-image", excursion.background.src);
+      $("#fc_change_bg_big").hide()
+    }
     $("#flashcard-background").droppable()
   };
   var switchToFlashcard = function() {
     loadFlashcard();
-    V.Editor.Thumbnails.redrawThumbnails(redrawPois);
+    V.Editor.Thumbnails.redrawThumbnails();
     VISH.Editor.Tools.init()
   };
   var redrawPois = function() {
@@ -18983,8 +18987,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }, function() {
         $("#page-fullscreen").css("background-position", "0px 0px")
       });
-      $("#viewbar").show();
-      $(".vish_arrow").hide()
+      if(VISH.ViewerEngine === "presentation") {
+        $("#viewbar").show();
+        $(".vish_arrow").hide()
+      }
     }else {
       $("#page-fullscreen").css("background-position", "-45px 0px");
       $("#page-fullscreen").hover(function() {
@@ -18992,8 +18998,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }, function() {
         $("#page-fullscreen").css("background-position", "-45px 0px")
       });
-      $("#viewbar").hide();
-      $(".vish_arrow").show()
+      if(VISH.ViewerEngine === "presentation") {
+        $("#viewbar").hide();
+        $(".vish_arrow").show()
+      }
     }
   };
   var setupGame = function(excursion) {
@@ -19005,27 +19013,29 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     document.getElementsByTagName("body")[0].appendChild(fileref)
   };
   var decideIfPageSwitcher = function() {
-    if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
-      if(VISH.Slides.isCurrentFirstSlide()) {
-        $("#page-switcher-start").hide()
+    if(VISH.ViewerEngine === "presentation") {
+      if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
+        if(VISH.Slides.isCurrentFirstSlide()) {
+          $("#page-switcher-start").hide()
+        }else {
+          $("#page-switcher-start").show()
+        }
+        if(VISH.Slides.isCurrentLastSlide()) {
+          $("#page-switcher-end").hide()
+        }else {
+          $("#page-switcher-end").show()
+        }
       }else {
-        $("#page-switcher-start").show()
-      }
-      if(VISH.Slides.isCurrentLastSlide()) {
-        $("#page-switcher-end").hide()
-      }else {
-        $("#page-switcher-end").show()
-      }
-    }else {
-      if(VISH.Slides.isCurrentFirstSlide()) {
-        $("#mobile_back_arrow").hide()
-      }else {
-        $("#mobile_back_arrow").show()
-      }
-      if(VISH.Slides.isCurrentLastSlide()) {
-        $("#mobile_forward_arrow").hide()
-      }else {
-        $("#mobile_forward_arrow").show()
+        if(VISH.Slides.isCurrentFirstSlide()) {
+          $("#mobile_back_arrow").hide()
+        }else {
+          $("#mobile_back_arrow").show()
+        }
+        if(VISH.Slides.isCurrentLastSlide()) {
+          $("#mobile_forward_arrow").hide()
+        }else {
+          $("#mobile_forward_arrow").show()
+        }
       }
     }
   };

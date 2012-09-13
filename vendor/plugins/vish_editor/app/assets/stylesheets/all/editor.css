@@ -1547,6 +1547,7 @@ iframe.snapshot_content{
 	z-index: 1050;
 	width: 800px;
 	height: 600px;
+	background-size: 800px 600px;
 	margin-top: -327px;
 	margin-left: -400px;
 	left: 50%;
@@ -1554,9 +1555,9 @@ iframe.snapshot_content{
 	position: absolute;
 	background-image: url(/assets/flashcard_initial_background.jpg);
 	background-repeat:no-repeat;
-	background-attachment:fixed;
+	/*background-attachment:fixed;*/
 	background-position:center center;
-	background-size: 100%;
+	
 	border-radius: 20px;
 	webkit-border-radius: 20px;
 	moz-border-radius: 20px;

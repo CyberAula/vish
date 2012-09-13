@@ -70,7 +70,7 @@
   top: 50%;
   position: relative;	
 	background-repeat:no-repeat;
-	background-attachment:fixed;
+	/*background-attachment:fixed;*/
 	background-position:center center;
   background-size: 100%;
   border-radius: 20px;
