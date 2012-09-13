@@ -18,7 +18,7 @@
         <div id="profile-resources-net" class="modal-pivot row height-tabs-home" >
           <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
-        <div class="btn-more pull-right"><%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=net") %></div>
+        <div class="pull-right"><%= link_to(t('view_all'), url_for([@user, Document]), :class => "btn btn-link "  + "?scope=net") %></div>
       </div>
       <div id="repo-2" class="tab-pane active">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-me" } %>
@@ -40,7 +40,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="btn-more pull-right"><%= link_to(t('view_all'), [@user, Document]) %></div>
+        <div class="pull-right"><%= link_to(t('view_all'), [@user, Document], :class => "btn btn-link " ) %></div>
       </div>
       <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-fav" } %>
@@ -62,7 +62,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="btn-more pull-right"><%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=like") %></div>
+        <div class="pull-right"><%= link_to(t('view_all'), url_for([@user, Document]), :class => "btn btn-link "  + "?scope=like") %></div>
       </div>
     </div>
   </div>

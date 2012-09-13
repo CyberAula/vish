@@ -167,10 +167,6 @@ h4{
 .navbar .nav > li > a:active{
   font: 25px;
 }
-.nav-tabs > li {
-    font-size: 25px;
-    margin-bottom: -1px;
-}
 
 .navbar .nav .active > a,
 .navbar .nav .active > a:hover {
@@ -197,8 +193,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#12000000', e
     margin-left: 0px;
     margin-right: 0px;
 }
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover {font-size: 25px; text-decoration: none;}
-.nav-tabs > li > a:hover {font-size: 25px; text-decoration: none;}
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover {
+  color: #FF005D;
+  background-color: transparent;
+  cursor: default;
+
+  outline: none;
+
+  line-height: 18px;
+  border: 1px solid #FF005D;
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  border-bottom-color:#f9f9f9;
+
+
+
+  font-size: 25px;
+  text-decoration: none;
+  padding-bottom:6px;}
+.nav-tabs > li > a:hover { font-size: 25px; text-decoration: none; padding-bottom:6px;}
 .nav-tabs > li > a {font-size: 25px; text-decoration: none; font-weight: 100; padding-bottom:6px;}
 .mag{margin-left: 10px;}
 

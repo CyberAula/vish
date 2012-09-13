@@ -5,9 +5,9 @@
                     contact.receiver_subject, :class => "container") %>
       </li>
       <li class="span">
-        <div class="caption ellipsis">
+        <div class="caption">
           <div class="title_suggestion">
-            <h4 class="w120px"><%= link_to(contact.receiver_subject.name, contact.receiver_subject, :class => "contact_link") %></h4>
+            <h4 class=" ellipsis w80px"><%= link_to(contact.receiver_subject.name, contact.receiver_subject, :class => "contact_link") %></h4>
           </div>
           <a class="close_suggestion"> <%= link_to '×', contact, :method => :delete, :remote => true %></a>
           <h5><%= contact_brief(contact.receiver_subject) %></h5>

@@ -1,3 +1,4 @@
+<% user ||= profile_or_current_subject %>
 <div class="resource tabbable">
   <ul class="nav nav-tabs span7">
     <% params[:scope]='me' unless params[:scope].present?  %>

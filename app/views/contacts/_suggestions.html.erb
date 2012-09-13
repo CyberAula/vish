@@ -11,8 +11,8 @@
         <%= render :partial => "contacts/contact", :collection => sgs, :locals => { :close_button => true } %>
       </div>
     </div>
-    <div class="btn-more pull-right">
-      <%=link_to( t('view_all'), search_path(:type => "user") ) %>
+    <div class=" pull-right">
+      <%=link_to( t('view_all'), search_path(:type => "user"), :class => "btn btn-link " ) %>
     </div>
   </div>
 <% end %>
