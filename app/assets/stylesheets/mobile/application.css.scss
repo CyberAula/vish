@@ -218,6 +218,8 @@ margin-top: -10px
 .margin
 
 /*************** SIZE CLASSES **************/
+
+.size6{font-size: 6px;}
 .size10{font-size: 10px;}
 .size11{font-size: 11px;}
 .size12{font-size: 12px;}
@@ -2135,31 +2137,31 @@ display: inline-block;
 
 /********margin-top**********/
 
-.margin-top5{margin-top: 5px;}
-.margin-top10{margin-top: 10px;}
-.margin-top15{margin-top: 15px;}
-.margin-top20{margin-top: 20px;}
+.margin-top5{margin-top: 5px!important;}
+.margin-top10{margin-top: 10px!important;}
+.margin-top15{margin-top: 15px!important;}
+.margin-top20{margin-top: 20px!important;}
 
 /********margin-left**********/
 
-.margin-left5{margin-left: 5px}
-.margin-left10{margin-left: 10px}
-.margin-left15{margin-left: 15px}
-.margin-left20{margin-left: 20px}
+.margin-left5{margin-left: 5px!important}
+.margin-left10{margin-left: 10px!important}
+.margin-left15{margin-left: 15px!important}
+.margin-left20{margin-left: 20px!important}
 
 /********margin-right**********/
 
-.margin-right5{margin-right:5px}
-.margin-right10{margin-right:10px}
-.margin-right15{margin-right:15px}
-.margin-right20{margin-right:20px}
+.margin-right5{margin-right:5px!important}
+.margin-right10{margin-right:10px!important}
+.margin-right15{margin-right:15px!important}
+.margin-right20{margin-right:20px!important}
 
 /*******margin-top**********/
 
-.margin-bottom5{margin-bottom:5px}
-.margin-bottom10{margin-bottom:10px}
-.margin-bottom15{margin-bottom:15px}
-.margin-bottom20{margin-bottom:20px}
+.margin-bottom5{margin-bottom:5px!important}
+.margin-bottom10{margin-bottom:10px!important}
+.margin-bottom15{margin-bottom:15px!important}
+.margin-bottom20{margin-bottom:20px !important}
 
 /*********no margin*********/
 
@@ -2182,4 +2184,13 @@ padding-left: 10px;
 float:right;
 display: inline-block;
 
+}
+
+.liquid_text75{
+width:75%;
+display: inline-block;
+}
+.liquid_text95{
+  width:95%;
+  display: inline-block;
 }
