@@ -59,9 +59,9 @@ min-height:  100%;
 }
 
 .right.right-fixed{
-  top: 40px;
+  top: 17px;
   position: fixed;
-  margin-left: 752px !important;
+  margin-left: 731px !important;
 }
 
 .left-fixed{
@@ -757,6 +757,7 @@ cursor: text;
 
 .ellipsis{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; }
 
+.w80px{ max-width: 80px; }
 .w120px{ max-width: 120px; }
 .w150px{ max-width: 150px; }
 .w190px{ max-width: 190px; }
