@@ -103,6 +103,7 @@ en:
     title:
       other: "excursions"
     upcomming: "upcomming"
+    unload_warning: "The excursion is not saved!"
     top: "forMe"
   external: "external"
   filter: "filter"

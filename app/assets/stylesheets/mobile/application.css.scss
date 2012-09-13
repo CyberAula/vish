@@ -248,19 +248,22 @@ margin-top: -10px
 .link_pink a:hover {color: #3366FF; text-decoration:none;}
 .link_white a{color: #ffffff; text-decoration:none;}
 .link_white a:hover {color: #919191; text-decoration:none;}
-
+.link_blue a{color: #68A3FF; text-decoration:none;}
+.link_blue a:hover {color: #68A3FF;text-decoration:none;}
+.link_blue2 a{color: #3366FF; text-decoration:none;font-size: 18px; }
+.link_blue2 a:hover {color: #68A3FF;text-decoration:none;}
 
 /***********COLORS ***********/
 .background{color: #F9F9F9;}
 .white{color: #FFFFFF;}
 .green{ color:#40CC7F;}
 .ligth-gray{color: #E6E6E6}
-
+.gray-activity{ color: #949eab;}
 .gray-medium{ color: #8f8f8f;}
 .gray{ color:#6e6e6e;}
 .dark-gray {color: #666666;}
 .blue-cake{color: #3366FF;}
-.blue-opacity{color: #3366FF; opacity: 0.6;}
+.blue-opacity{color: #68A3FF;}
 .blue-white{color:#C2C9E0;}
 .red-1{color: #FF005D;}
 .red-2{color: #FF005D; opacity: 0.6;}
@@ -1887,20 +1890,7 @@ margin-left: 50px
 
 
 }
-.tabs_nav_notebook{
-  width: 136px;
-  float:right; ;
-  margin-top:5px;
-  margin-left: -20px
 
-
-}
-.tabs_nav_notebook .nav > li > a:hover {
-  text-decoration: none;
-  background-color: #F9F9F9;
-  border:none;
-
-}
 
 
 .favorit_resources{
@@ -1929,57 +1919,7 @@ float:right
 
 }
 
-.all-description
-.nav-tabs:after,
-.nav-pills:after {
-  clear: none;
-}
 
-.all-description
-.nav-tabs {
-  border-bottom:none;
-}
-
-.all-description
-.nav-tabs > .active > a,
-.nav-tabs > .active > a:hover {
-  color: #Ffffff;
-  background-color: #3366FF;
-  border: none;
-  cursor: default;
-  font-weight: 100;
-  outline: none;
-  font-size: 20px;
-
-}
-
-.all-description
-.nav > li > a:hover {
-  text-decoration: none;
-  background-color: #FF005D;
-  border: none;
-  color:#ffffff;
-
-}
-.all-description
-.nav-tabs > li > a:hover {
-/*border-color: #eeeeee #eeeeee #dddddd; */
-  font-size: 20px;
-}
-
-.all-description
-.nav-tabs > li > a {
-  padding-top: 9px;
-  padding-bottom: 2px;
-  line-height: 20px;
-  border: none;
-  -webkit-border-radius: 10px 10px 0 0;
-  -moz-border-radius: 10px 10px 0 0;
-  border-radius: 10px 10px 0 0;
-  color: #ffffff;
-  background-color:#FF005D
-
-}
 .form_field_edit_resource
 input,
 textarea,
@@ -2202,10 +2142,10 @@ display: inline-block;
 
 /********margin-left**********/
 
-.margin-left5{float:none;padding-left: 5px}
-.margin-left10{float:none;padding-left: 10px}
-.margin-left15{float:none;padding-left: 15px}
-.margin-left20{float:none;padding-left: 20px}
+.margin-left5{margin-left: 5px}
+.margin-left10{margin-left: 10px}
+.margin-left15{margin-left: 15px}
+.margin-left20{margin-left: 20px}
 
 /********margin-right**********/
 

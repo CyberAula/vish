@@ -105,6 +105,7 @@ es:
     title:
       other: "excursiones"
     upcomming: "upcomming"
+    unload_warning: "The excursion is not saved!"
     top: "paraMí"
   external: "externo"
   filter: "filtrar"

@@ -1592,3 +1592,17 @@ iframe.snapshot_content{
 span.mcChoiceSpan{
 	margin-right: 3px;
 }
+
+.change_bg_button_class{
+	position: absolute;
+	left: 325px;
+	top: 225px;
+	background: url(/assets/flashcard_add_img_button.png);
+	width: 150px;
+	height: 150px;
+	cursor: pointer;
+}
+
+.change_bg_button_class:hover {
+	background: url(/assets/hover/flashcard_add_img_button_hover.png);
+}

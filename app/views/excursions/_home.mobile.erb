@@ -29,16 +29,27 @@
                       <!------info-------div class="">
                         <#%= link_to(raw("<i class='iconnav-notification'></i> "), :class => "btn pull-right") %>
                        </div-->
-                    <div class="span8 margin-left10 blue-opacity ellipsis size16">by
-                      <%= link_to excursion.author.name, excursion.author.user %>
+                    <div class="span9 margin-left10 green ellipsis size16">by
+                      <span class="link_blue"><%= link_to excursion.author.name, excursion.author.user %> </span>
+
+                      <div class="pull-right ">
+                        <h3>
+                        <span class="green inline size14">
+                          <%= excursion.post_activity.likes.count.to_s %>
+                        </span>
+                          <img src="/assets/star-MENU-active.png" width="12" height="12">
+
+                        <span class="green inline-block size14">
+                        <%= excursion.post_activity.comments.count.to_s %>
+                          <img src="/assets/view2.png" width="auto" height="auto">
+                        </span>
+                        </h3>
+                      </div>
+
+
                     </div>
 
-                    <div class="pull-right margin-top-negative_19">
-                      <h3>
-                        <span class="green inline"><%= excursion.post_activity.likes.count.to_s %></span><img src="/assets/star-MENU-active.png" width="12" height="12">&nbsp;&nbsp;<span class="green inline-block"><%= excursion.post_activity.comments.count.to_s %>
-                        <img src="/assets/icon-message.png" width="16" height="12"></span>
-                      </h3>
-                    </div>
+
                   </div>
                 <!--
 

@@ -13122,6 +13122,7 @@ VISH.Editor = function(V, $, undefined) {
       $(document).on("click", ".delete_slide", _onDeleteSlideClicked);
       $(document).on("click", "#arrow_left_div", _onArrowLeftClicked);
       $(document).on("click", "#arrow_right_div", _onArrowRightClicked);
+      $(document).on("click", "#fc_change_bg_big", V.Editor.Tools.changeFlashcardBackground);
       _addEditorEnterLeaveEvents();
       VISH.Editor.Utils.redrawSlides();
       VISH.Editor.Thumbnails.redrawThumbnails();
@@ -13743,7 +13744,8 @@ VISH.Editor.Image = function(V, $, undefined) {
   };
   var drawImage = function(image_url, area, style) {
     if(flashcard_background_mode) {
-      _drawImageAsFlashcardBackground(image_url)
+      _drawImageAsFlashcardBackground(image_url);
+      $("#fc_change_bg_big").hide()
     }else {
       _drawImageInArea(image_url, area, style)
     }
@@ -15807,7 +15809,14 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
   var hasPoiInBackground = function() {
     return $(".draggable_arrow_div[moved='true']").length > 0
   };
-  return{hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard}
+  var hasChangedBackground = function() {
+    if($("#flashcard-background").css("background-image").indexOf("flashcard_initial_background.jpg") != -1) {
+      return false
+    }else {
+      return true
+    }
+  };
+  return{hasChangedBackground:hasChangedBackground, hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard}
 }(VISH, jQuery);
 VISH.Editor.I18n = function(V, $, undefined) {
   var language;
@@ -17039,15 +17048,19 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       if(VISH.Editor.getExcursionType() === "flashcard" && !VISH.Editor.Flashcard.hasPoiInBackground()) {
         $.fancybox($("#message3_form").html(), {"autoDimensions":false, "scrolling":"no", "width":350, "height":250, "showCloseButton":false, "padding":5})
       }else {
-        $.fancybox($("#save_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
-          if($("#save_answer").val() === "true") {
-            $("#save_answer").val("false");
-            var excursion = VISH.Editor.saveExcursion();
-            VISH.Editor.afterSaveExcursion(excursion)
-          }else {
-            return false
-          }
-        }})
+        if(VISH.Editor.getExcursionType() === "flashcard" && !VISH.Editor.Flashcard.hasChangedBackground()) {
+          $.fancybox($("#message4_form").html(), {"autoDimensions":false, "scrolling":"no", "width":350, "height":250, "showCloseButton":false, "padding":5})
+        }else {
+          $.fancybox($("#save_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
+            if($("#save_answer").val() === "true") {
+              $("#save_answer").val("false");
+              var excursion = VISH.Editor.saveExcursion();
+              VISH.Editor.afterSaveExcursion(excursion)
+            }else {
+              return false
+            }
+          }})
+        }
       }
     }
   };
@@ -17065,7 +17078,11 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     $("#help_right").trigger("click")
   };
   var switchToFlashcard = function() {
-    V.Editor.Flashcard.switchToFlashcard()
+    if(V.Slides.getSlides().length === 0) {
+      $.fancybox($("#message5_form").html(), {"autoDimensions":false, "scrolling":"no", "width":450, "height":220, "showCloseButton":false, "padding":5})
+    }else {
+      V.Editor.Flashcard.switchToFlashcard()
+    }
   };
   var switchToPresentation = function() {
     var excursion = V.Editor.saveExcursion();
