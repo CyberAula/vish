@@ -1,0 +1,704 @@
+/* Open Question Quiz*/
+.value_openquestion {	
+	background: none no-repeat scroll 5px 50% transparent;
+    border: 1px solid #9B999D;
+    border-radius: 10px 10px 10px 10px;
+    margin-left:3%;
+    font-family: Helvetica;
+    font-size: 16px;
+    outline: 0 none;
+    padding: 5px 7px;
+    position: relative;
+    text-align:left;
+    z-index: 1000;
+	width: 610px;
+}
+
+.label_question {
+	text-align: justify;
+	padding-top: 3%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 1%;
+	width: 95%;
+	color: black;
+	font-size: 1.3em;
+	display: block;	
+	
+}
+	
+.header_openquestion {
+	background: none repeat scroll 0 0 #F9F9F9;
+    border-radius: 4px 4px 0 0;
+    color: #FF005D;
+    display: block;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0.5em 1.5em;
+    text-decoration: none;
+    text-align:left;
+}
+
+/* Multiple Choice Question Quiz*/
+.header_multiplechoice_question {
+	background: none repeat scroll 0 0 #F9F9F9;
+    border-radius: 4px 4px 0 0;
+    color: #FF005D;
+    display: block;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0.5em 1.5em;
+    text-decoration: none;	
+}
+
+.value_multiplechoice_question {
+	background: none no-repeat scroll 5px 50% transparent;
+    border: 1px solid #9B999D;
+    border-radius: 10px 10px 10px 10px;
+    font-family: Helvetica;
+    font-size: 1.4em;
+    outline: 0 none;
+    padding: 2% 4%;
+    position: relative;
+    z-index: 1000;
+	max-width: 100%;
+	min-width: 50%;
+}
+
+.multiplechoice_text {
+	background: none no-repeat scroll 5px 50% transparent;
+    border: 1px solid #9B999D;
+    border-radius: 10px 10px 10px 10px;
+    font-family: Helvetica;
+    font-size: 16px;
+    outline: 0 none;
+    padding: 5px 7px;
+    position: relative;
+    z-index: 1000;
+    width: 300px;
+}
+
+.li_mch_option {
+	
+	list-style:none;
+}
+
+/* True/False Question Quiz*/
+
+.header_truefalse_question {
+	background: none repeat scroll 0 0 #F9F9F9;
+    border-radius: 4px 4px 0 0;
+    color: #FF005D;
+    display: block;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0.5em 1.5em;
+    text-decoration: none;	
+}
+
+.truefalse_quiz_table {
+	width: 650px;
+	border-collapse: collapse;
+	text-align:center;
+}
+
+.truefalse_quiz_table tr:nth-of-type(even) {
+	background-color:#F3F3F3;
+}
+
+.truefalse_quiz_table tr:nth-of-type(odd) {
+	background-color: #DDD;
+}
+
+
+.truefalse_quiz_table td th {
+	border:none;
+}
+
+.truefalse_quiz_table th {
+	background-color: #000;
+	color:#fff;
+	border-left:5%;
+}
+
+.truefalse_quiz_table td {
+	color:#000;
+}
+
+.td_true {
+	width: 10%;
+}
+
+.td_false{
+	width: 10%;
+}
+
+.td_truefalse_question{
+	text-align:left;
+	width: 75%;
+}
+
+.true_false_question {
+	background: none no-repeat scroll 5px 50% transparent;
+    border: 1px solid #9B999D;
+    border-radius: 10px 10px 10px 10px;
+    margin-left:3%;
+    font-family: Helvetica;
+    font-size: 16px;
+    outline: 0 none;
+    padding: 5px 7px;
+    position: relative;
+    z-index: 1000;
+    width: 94%;
+}
+
+.td_add_button{
+	width: 5%;
+}
+
+span.mcChoiceSpan{
+    margin-right: 3px;
+}
+
+/**
+ Templates
+ **/
+
+ .mcquestion_container {
+    position:relative;
+    width:100%;
+    height:90%;
+    
+}
+
+.mcoptions_container {
+    width: 100%;
+    height: 100%;
+}
+
+.mcquestion_body {
+    width:100%;
+    height:80%;
+}
+
+.mcquestion_buttons {
+    width:100%;
+    height:20%;
+    display: block;
+}
+
+
+.mch_statistics_icon_wrapper{
+    display: block;
+    height:50%;
+    width: 100%;
+    text-align: right;
+}
+
+.mch_inputs_wrapper{
+    display: block;
+    height:50%;
+    width: 100%;
+    text-align: right;
+}
+
+
+.mcquestion_form {
+    text-align:center;  
+    width: 100%;    
+    height: 62%;    
+}
+
+.mch_statistics_icon {
+    cursor: pointer;
+    height: 100%;
+    margin-right: 6%;
+}
+
+.multiplechoicequestion {
+    padding: 2%;
+    width:100%;
+    height: 95%;
+}
+
+.mcquestion_start_button, .mcquestion_stop_button{
+    display: block;
+    font-size:1.2em;
+    text-align:center;
+    font-weight:bold;
+    height: 100%;
+    -moz-border-radius:2em;
+    -webkit-border-radius: 2em;
+    cursor:pointer;
+    float: right;
+    margin-top: 3%;
+    margin-right: 4%;
+}
+
+.mcquestion_start_button {
+    color: blue;
+}
+
+.mcquestion_stop_button {
+    color: red;
+}   
+    
+    
+.mcquestion_send_vote_button{
+    display:block;
+    position:relative;
+    color: blue;
+    font-size:1.2em;
+    text-align:center;
+    vertical-align:bottom;
+    margin-top:100%;
+    height:9%;
+    width: 80%;
+    
+    }
+
+.mc_answer{
+    text-align: justify;
+    color: black;
+    font-size: 1.2em;
+    width:100%;
+    display: block;
+    margin: 1%;
+    line-height: 110%;
+    float:left;
+    position: relative;
+}
+
+.mc_answer input{
+    margin: 1% 2% 0% 1%;
+}
+
+.mc_meter { 
+        width:72%;
+        height:5%;
+        background-color:#CCCCCC;
+        position: relative;
+        display:none;
+        margin-left:2%;
+        margin-right:2%;
+        margin-top:1.5%;
+        float:left;
+    }
+        
+.mc_meter > span { 
+        width:0%;
+        height:100%;
+        background-color: red;
+        position: relative;
+        /* display:block; */
+
+    }       
+
+.mc_meter #mcoption_a { 
+        width:0%;
+        height:100%;
+        background-color: red;
+        position: relative;
+        display:block; 
+        float:left;
+
+    }       
+        
+.mc_meter #mcoption_b { 
+        width:0%;
+        height:100%;
+        background-color: green;
+        position: relative;
+        display:block;
+        float:left;
+
+    }   
+
+.mc_meter #mcoption_c { 
+        width:0%;
+        height:100%;
+        background-color: yellow;
+        position: relative;
+        display:block;
+        float:left;
+    }   
+
+.mc_meter #mcoption_d { 
+        width:0%;
+        height:100%;
+        background-color: orange;
+        position: relative;
+        display:block;
+        float:left;
+
+    }   
+        
+.mc_meter #mcoption_e { 
+        width:0%;
+        height:100%;
+        background-color: blue;
+        position: relative;
+        display:block;
+        float:left;
+
+    }       
+        
+.mc_meter #mcoption_f { 
+        width:0%;
+        height:100%;
+        background-color:#FF05DD;
+        position: relative;
+        display:block;
+        float:left;
+}
+
+.mcoption_label {
+    float:left;
+    position: relative; 
+    width:20%;
+    margin-left:2%;
+    margin-right:2%;
+    margin-top:1.5%;
+    display:block;
+    text-align: left;
+}
+
+.save_quiz {
+    display:none; /* inline-block; */   
+    font-size:0.8em;    
+}
+
+.save_results_quiz {
+
+    background: none no-repeat scroll 1% 50% transparent;
+    border: 1% solid #9B999D;
+    border-radius: 2%;
+    font-family: Helvetica;
+    font-size: 1em;
+    outline: 0 none;
+    padding: 0%;
+    position: relative;
+    /*z-index: 1000; */
+
+}
+.mcquestion_save_yes_button {
+    position:relative;
+    color: blue;
+    font-size:0.8em;
+    text-align:center;
+    font-weight:bold;
+    vertical-align:bottom;
+    margin-top:0%; /* default 20%. It changes depending on the number of options*/
+    height:9%;
+    -moz-border-radius:2em;
+    -webkit-border-radius: 2em;
+    cursor:pointer;
+    
+    
+}   
+
+.mcquestion_save_no_button {
+    position:relative;
+    color: red;
+    font-size:0.8em;
+    text-align:center;
+    font-weight:bold;
+    vertical-align:bottom;
+    margin-top:0%; /* default 20%. It changes depending on the number of options*/
+    height:9%;
+    -moz-border-radius:2em;
+    -webkit-border-radius: 2em;
+    cursor:pointer; 
+}   
+
+
+.t12_header {   
+    margin-top:1.5%;
+    height: 10%;
+    width: 100%;  
+    display: inline-block;  
+    text-align:center;
+    font-size:2em;
+    font-weight:bold;
+}
+
+
+.t12_left{
+    margin-top: 2%;
+    position:relative;
+    width: 100%;
+    height: 90%;
+    float: left;
+    overflow:hidden;    
+}
+/* cause the viewer is independent of the editor */
+.truefalse_question {
+    padding: 2%;
+    width:100%;
+    height: 90%;
+    
+}
+
+.truefalse_question_container {
+    padding: 2%;
+    width:100%;
+    height: 90%;
+    
+}
+
+.truefalse_quiz_table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align:center;
+}
+
+.truefalse_quiz_table tr:nth-of-type(even) {
+    background-color:#F3F3F3;
+}
+
+.truefalse_quiz_table tr:nth-of-type(odd) {
+    background-color: #DDD;
+}
+
+
+.truefalse_quiz_table td th {
+    border:none;
+}
+
+.truefalse_quiz_table th {
+    background-color: #000;
+    color:#fff;
+    border-left:5%;
+}
+
+.truefalse_quiz_table td {
+    color:#000;
+}
+
+.td_true {
+    width: 10%;
+}
+
+.td_false{
+    width: 10%;
+}
+
+.td_truefalse_question{
+    text-align:left;
+    width: 75%;
+}
+
+.true_false_question_txt {
+    background: none no-repeat scroll 5px 50% transparent;
+    margin-left:1%;
+    text-align:left;
+    font-family: Helvetica;
+    font-size: 1.2em;
+    line-height: 110%;
+    outline: 0 none;
+    padding: 1%;
+    width: 94%;
+}
+
+.tfquestion_button {
+    display:block;
+    position:relative;
+    float:right;
+    color: blue;
+    font-size:1.2em;
+    text-align:center;
+    font-weight:bold;
+    vertical-align:bottom;
+    margin-top:5%; 
+    margin-right:5%;
+    height:9%;
+    width: 20%;
+    -moz-border-radius:2em;
+    -webkit-border-radius: 2em;
+    cursor:pointer;
+}
+
+
+
+/*
+    OPEN QUESTION SLIDE
+    by Enrique Barra
+    css for quiz slide containing only question, name and answer
+*/
+
+.t10_left{
+    text-align:left;
+    margin-top: 2%;
+    position:relative;
+    width: 100%;
+    height: 90%;
+    float:left;
+    overflow:hidden;    
+}
+
+.question {
+    border-radius: 0.4em 0.4em 0em 0em;
+    color: #212121;
+    display: block;
+    font-family: Helvetica;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 0.3em;
+    text-decoration: none;
+    width:135%; 
+    float: left;
+    line-height: 120%;
+    text-align:left;
+    margin-left: -1%; 
+}
+    
+    
+
+.question_name{
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 8%;
+    padding-right: 5%;
+    display: block;
+    text-align: left;
+    color: black;
+    font-size: 1.3em;
+    
+}
+
+.question_name_input{
+    background: none no-repeat scroll 5px 50% transparent;
+    border: 0.1em solid #9B999D;
+    border-radius: .5em .5em .5em .5em;
+    font-family: Helvetica;
+    outline: 0 none;
+    padding: .25em .25em;
+     z-index: 1000;
+    
+    font-size: 1.2em;
+    
+    position:relative;
+}
+
+.label_question{
+    padding-top: 3%;
+    padding-bottom: 1%;
+    padding-left: 8%;
+    padding-right: 5%;
+    display: block;
+    text-align: left;
+    color: black;
+    font-size: 1.3em;
+}
+
+
+.question_answer{
+    background: none no-repeat scroll 1% 50% transparent;
+    border: 0.1em solid #9B999D;
+    border-radius: .5em .5em .5em .5em;
+    font-family: Helvetica;
+    outline: 0 none;
+    padding: .25em .25em;
+    z-index: 1000;
+    color: black;
+    font-size: 1.2em;
+    }
+
+.question_button{
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: black;
+    font-size: 1.2em; 
+    text-align:center;
+    display:block;
+    float: right;
+    margin-right: 10%;
+    
+    }
+
+.url_share {
+    width: 100%;
+    height: 100%;   
+    text-align:left;
+}
+
+.url_share > span {
+     background-color: #f7f7f7;
+    -moz-border-radius:2em;
+    -webkit-border-radius: 2em;
+    padding: 2%;
+    left: 0%;
+    position:relative;
+    top: -15px;
+}
+
+
+.shareQuizButton {
+    padding: 1%;
+    height: 5%;
+    width: 5%;
+    text-align: right;
+    position:relative;
+    cursor:pointer;
+    
+}
+.shareQuizButton > img {
+    height: 70%;
+    width: 7%;
+    text-align: right;
+    position:relative;
+    
+}
+
+
+.shareContentIcons {
+    text-align:center;
+    
+    display:none;
+    width: 10%;
+    z-index: 1;
+    
+    border: solid 0.5%;
+
+    
+}
+
+.shareContentIcons > a {
+    height: 20%;
+    width: 20%;
+}
+
+.shareContentIcons > a > img {
+    width: 50%;
+    height: 50%;
+    
+}
+
+.t11_header {
+    padding-left: 20%;
+    margin-top:1.5%;
+    width: 100%;  
+    display: inline-block;  
+    color:#000066;
+    text-align:center;
+    font-size:1.2em;
+    font-weight:bold;
+}
+
+
+
+.t11_left{
+    margin-top: 2%;
+    position:relative;
+    width: 100%;
+    height: 90%;
+    float: left;
+    overflow:hidden;    
+}
+
+.remove_quiz_option > img {
+    margin-left: 5px;
+}

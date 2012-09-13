@@ -41,7 +41,7 @@
 	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
-	options["quiz_active_session_id"]=false;
+	options["debugging"] = true
 
 	<% if user_signed_in? %>
 	    options["username"] = "<%= current_user.name %>";

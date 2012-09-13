@@ -175,171 +175,6 @@ img {
 	z-index: 1000;
 }
 
-/* css for quizzes in editor*/
-
-/* Open Question Quiz*/
-.value_openquestion {	
-	background: none no-repeat scroll 5px 50% transparent;
-    border: 1px solid #9B999D;
-    border-radius: 10px 10px 10px 10px;
-    margin-left:3%;
-    font-family: Helvetica;
-    font-size: 16px;
-    outline: 0 none;
-    padding: 5px 7px;
-    position: relative;
-    text-align:left;
-    z-index: 1000;
-	width: 610px;
-}
-
-.label_question {
-	text-align: justify;
-	padding-top: 3%;
-	padding-left: 5%;
-	padding-right: 5%;
-	padding-bottom: 1%;
-	width: 95%;
-	color: black;
-	font-size: 1.3em;
-	display: block;	
-	
-}
-	
-.header_openquestion {
-	background: none repeat scroll 0 0 #F9F9F9;
-    border-radius: 4px 4px 0 0;
-    color: #FF005D;
-    display: block;
-    font-family: Helvetica;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 0.5em 1.5em;
-    text-decoration: none;
-    text-align:left;
-}
-
-/* Multiple Choice Question Quiz*/
-.header_multiplechoice_question {
-	background: none repeat scroll 0 0 #F9F9F9;
-    border-radius: 4px 4px 0 0;
-    color: #FF005D;
-    display: block;
-    font-family: Helvetica;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 0.5em 1.5em;
-    text-decoration: none;	
-}
-
-.value_multiplechoice_question {
-	background: none no-repeat scroll 5px 50% transparent;
-    border: 1px solid #9B999D;
-    border-radius: 10px 10px 10px 10px;
-    font-family: Helvetica;
-    font-size: 1.4em;
-    outline: 0 none;
-    padding: 2% 4%;
-    position: relative;
-    z-index: 1000;
-	max-width: 100%;
-	min-width: 50%;
-}
-
-.multiplechoice_text {
-	background: none no-repeat scroll 5px 50% transparent;
-    border: 1px solid #9B999D;
-    border-radius: 10px 10px 10px 10px;
-    font-family: Helvetica;
-    font-size: 16px;
-    outline: 0 none;
-    padding: 5px 7px;
-    position: relative;
-    z-index: 1000;
-    width: 300px;
-}
-
-.li_mch_option {
-	
-	list-style:none;
-}
-
-/* True/False Question Quiz*/
-
-.header_truefalse_question {
-	background: none repeat scroll 0 0 #F9F9F9;
-    border-radius: 4px 4px 0 0;
-    color: #FF005D;
-    display: block;
-    font-family: Helvetica;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 0.5em 1.5em;
-    text-decoration: none;	
-}
-
-.truefalse_quiz_table {
-	width: 650px;
-	border-collapse: collapse;
-	text-align:center;
-}
-
-.truefalse_quiz_table tr:nth-of-type(even) {
-	background-color:#F3F3F3;
-}
-
-.truefalse_quiz_table tr:nth-of-type(odd) {
-	background-color: #DDD;
-}
-
-
-.truefalse_quiz_table td th {
-	border:none;
-}
-
-.truefalse_quiz_table th {
-	background-color: #000;
-	color:#fff;
-	border-left:5%;
-}
-
-.truefalse_quiz_table td {
-	color:#000;
-}
-
-.td_true {
-	width: 10%;
-}
-
-.td_false{
-	width: 10%;
-}
-
-.td_truefalse_question{
-	text-align:left;
-	width: 75%;
-}
-
-.true_false_question {
-	background: none no-repeat scroll 5px 50% transparent;
-    border: 1px solid #9B999D;
-    border-radius: 10px 10px 10px 10px;
-    margin-left:3%;
-    font-family: Helvetica;
-    font-size: 16px;
-    outline: 0 none;
-    padding: 5px 7px;
-    position: relative;
-    z-index: 1000;
-    width: 94%;
-}
-
-.td_add_button{
-	width: 5%;
-}
-
-/*end css for quizzes in editor*/
-
 	
 #config_div {
 	background: url(/assets/config.png);
@@ -1547,6 +1382,7 @@ iframe.snapshot_content{
 	z-index: 1050;
 	width: 800px;
 	height: 600px;
+	background-size: 800px 600px;
 	margin-top: -327px;
 	margin-left: -400px;
 	left: 50%;
@@ -1554,9 +1390,9 @@ iframe.snapshot_content{
 	position: absolute;
 	background-image: url(/assets/flashcard_initial_background.jpg);
 	background-repeat:no-repeat;
-	background-attachment:fixed;
+	/*background-attachment:fixed;*/
 	background-position:center center;
-	background-size: 100%;
+	
 	border-radius: 20px;
 	webkit-border-radius: 20px;
 	moz-border-radius: 20px;

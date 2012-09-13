@@ -15,33 +15,41 @@
 
   
 <script>
-  //first function called when page loads
+  options = {};
+  var configuration = {};
 
-var configuration = {};
-configuration["presentationSettings"] = true;
-configuration["presentationTags"] = true;
-configuration["presentationThumbnails"] = true;
+  configuration["ImagesPath"] = "/assets/";
+  configuration["StylesheetsPath"] = "/assets/";
 
-configuration["VishLives"] = true;
-configuration["VishUpload"] = true;
-configuration["VishRepo"] = true;
+  configuration["presentationSettings"] = true;
+  configuration["presentationTags"] = true;
+  configuration["presentationThumbnails"] = true;
 
-configuration["Flickr"] = true;
-configuration["Youtube"] = true;
-configuration["Vimeo"] = false;
+  configuration["VishLives"] = true;
+  configuration["VishUpload"] = true;
+  configuration["VishRepo"] = true;
 
-configuration["VishIntegration"] = true;
+  configuration["Flickr"] = true;
+  configuration["Youtube"] = true;
+  configuration["Vimeo"] = false;
 
-configuration["mode"] = "vish";
+  configuration["Upload"] = true;
+
+  configuration["mode"] = "vish";
+  options["configuration"] = configuration;
+  options["developping"] = false;
+
+  options["lang"] = "<%= I18n.locale.to_s%>";
+
+  <% if user_signed_in? %>
+    options["username"] = "<%= current_user.name %>";
+  <%end%>
+
+  options["quiz_active_session_id"] = '<%= @quiz_session.id %>';
 
   function start(){
-
-<% username = false 
-   username = current_user.name if user_signed_in? %>
-    //params (options, quiz_results)
-
-    VISH.SlideManager.init({"configuration": configuration, "username": <%= username %> ,  "quiz_active_session_id":<%= @quiz_session.id %>, "show_results": true ,  "developping":true}, <%= raw @quiz_session.quiz.simple_json %>);
-//@results_quiz.to_json
+    VISH.SlideManager.init(options, <%= raw @quiz_session.quiz.simple_json %>);
   }
+
 </script>
 
