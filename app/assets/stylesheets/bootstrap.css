@@ -5010,3 +5010,7 @@ a.badge:hover {
 .invisible {
   visibility: hidden;
 }
+
+.form_field_edit_resource select{
+  height: 27px;
+}
