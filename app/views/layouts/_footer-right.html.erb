@@ -11,7 +11,7 @@
           <span class="gray"><%=t('lang.title')%></span>
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu pull-right">
+        <ul class="dropdown-menu">
           <% for locale in (I18n.available_locales) -%>
             <% next if locale.to_s == "pt" %>
             <li class="textonleft unmargin">

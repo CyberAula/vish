@@ -17,6 +17,9 @@
 	options = {};
 	var configuration = {};
 
+	configuration["ImagesPath"] = "/assets/";
+	configuration["StylesheetsPath"] = "/assets/";
+
 	configuration["presentationSettings"] = true;
 	configuration["presentationTags"] = true;
 	configuration["presentationThumbnails"] = true;
@@ -40,12 +43,24 @@
 	options["quiz_active_session_id"]=false;
 
 	<% if user_signed_in? %>
-	    options["username"]= "<%= current_user.name %>";
+	    options["username"] = "<%= current_user.name %>";
 	<% else %>
-	    options["username"]= false;
+	    options["username"] = false;
 	<% end %>
 
 	function start(){
-		VISH.SlideManager.init( options , <%= raw @excursion.json %>);
+		var myexcursion;
+		if(window.parent.VISH && window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function") && (typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined')){
+        	//called to show a preview
+        	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
+      	}
+      	else{
+      		<% if @excursion %>
+      			myexcursion = <%= raw @excursion.json %>;
+      		<%else%>
+      			myexcursion = null;
+      		<%end%>
+      	}
+		VISH.SlideManager.init(options , myexcursion);
 	}
 </script>

@@ -59,13 +59,13 @@ min-height:  100%;
 }
 
 .right.right-fixed{
-  top: 40px;
+  top: 17px;
   position: fixed;
-  margin-left: 752px !important;
+  margin-left: 725px !important;
 }
 
 .left-fixed{
-  top: 40px;
+  top: 8px;
   position: fixed;
 }
 
@@ -757,6 +757,7 @@ cursor: text;
 
 .ellipsis{ overflow: hidden;  text-overflow: ellipsis;   white-space: nowrap; }
 
+.w80px{ max-width: 80px; }
 .w120px{ max-width: 120px; }
 .w150px{ max-width: 150px; }
 .w190px{ max-width: 190px; }
@@ -836,7 +837,7 @@ form.example input.file.hidden {
 
 /******************* WALL - ACTIVITY ***************/
 .activity { text-align:left;  display: block; vertical-align: top;  padding: 10px 0px 0px 0px; margin-bottom: 5px}
-#main {margin-left: 30px;}
+/**#main {margin-left: 30px;}**/
 #home_wall {margin-left: 48px; }
 #left {margin-left: 32px;}
 .right { margin-left: 60px !important; }
@@ -1285,7 +1286,7 @@ margin-left: 20px;
 
 .attachment_tile{
   margin: 5px;
-  width: 90px;
+  width: 120px;
   height: 70px;
   border-bottom: 2px solid transparent;
   float: left;
@@ -1905,56 +1906,6 @@ float:right
   width:118px
 }
 
-.all-description
-.nav-tabs:after,
-.nav-pills:after {
-  clear: none;
-}
-
-.all-description
-.nav-tabs {
-  border-bottom:none;
-}
-
-.all-description
-.nav-tabs > .active > a,
-.nav-tabs > .active > a:hover {
-  color: #Ffffff;
-  background-color: #3366FF;
-  border: none;
-  cursor: default;
-  font-weight: 100;
-  outline: none;
-  font-size: 20px;
-}
-
-.all-description
-.nav > li > a:hover {
-  text-decoration: none;
-  background-color: #FF005D;
-  border: none;
-  color:#ffffff;
-  font-size: 20px;
-}
-
-.all-description
-.nav-tabs > li > a:hover {
-/*border-color: #eeeeee #eeeeee #dddddd; */
-  font-size: 20px;
-}
-
-.all-description
-.nav-tabs > li > a {
-  padding-top: 9px;
-  padding-bottom: 2px;
-  line-height: 20px;
-  border: none;
-  -webkit-border-radius: 10px 10px 0 0;
-  -moz-border-radius: 10px 10px 0 0;
-  border-radius: 10px 10px 0 0;
-  color: #ffffff;
-  background-color:#FF005D
-}
 
 .form_field_edit_resource
 input,
@@ -2191,3 +2142,16 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
   font-size:15px;
 }
 
+
+/**** detalles recurso editar***/
+
+.form_field_edit_resource select, .select02{
+  height: 27px;
+}
+
+
+/**** modal ***/
+
+.modal-space{
+  margin-bottom: 10px;
+}

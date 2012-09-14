@@ -4,95 +4,104 @@
 
 <% content_for :description do %>
   <% if @user.profile.description? %>
-    <%= @user.profile.description%>
+    <%= @user.profile.description %>
   <% else %>
     <%= @user.name+" "+t('profile.is_on') + " "+ t('site.name') %>
   <% end %>
 <% end %>
 
 <% content_for :keywords do %>
-  <%= @user.profile.subject.tag_list%>
+  <%= @user.profile.subject.tag_list %>
 <% end %>
 
 
-<section id= "wall">
- <article class="row-fluid article">
-   <div class="span12">
-     <div class="span3">
-       <%= image_tag(@user.logo.url(:profile), :alt => @user.name, :id => "current_avatar_img") %>
-     </div>
-     <div class="span8">
-       <div class="caption">
-         <h2 class="span8 size30 ellipsis w350px"><%= @user.name %></h2>
-         <div class="span4 pull-right send_messag size10 red-2 btn btn-primary">
-           <%=contact_to(@user) %>
-         </div>
-         <h3 class="span ellipsis w340px">
-           <% @user.profile.subject.tag_list.each do |t| %>
-             <a href="#"><%= t.to_s %></a>
-           <% end %>
-         </h3>
-         <div class="span12">
-           <h3><%= link_to @user.followers.count.to_s, [@user,"followers"], :class => "green" %> <%= t('follow.followers')%> / <%= link_to @user.following_actor_objects.includes(:actor).count.to_s, [@user,"followings"], :class => 'green' %> <%= t('follow.followings') %></h3>
-         </div>
-       </div>
-     </div>
-   </div>
- </article>
+<section id="wall">
+  <article class="row-fluid ">
+    <div class="span12 margin-bottom20">
+      <div class="span2">
+        <%= image_tag(@user.logo.url(:profile), :alt => @user.name, :id => "current_avatar_img") %>
+      </div>
+      <div class="span10 ">
+        <div class="caption">
+          <h2 class="span7 margin-left10 size24 ellipsis "><%= @user.name %></h2>
+
+          <div class="pull-right span3  margin-top5 send_messag size6 red-2">
+            <%= contact_to(@user) %>
+          </div>
+          <h3 class="margin-left10 ellipsis liquid_text95">
+            <% @user.profile.subject.tag_list.each do |t| %>
+              <a href="#"><%= t.to_s %></a>
+            <% end %>
+          </h3>
+
+          <div class="span12 margin-left10 size8 gray-medium">
+            <h3><%= link_to @user.followers.count.to_s, [@user, "followers"], :class => "green" %> <%= t('follow.followers') %>
+              / <%= link_to @user.following_actor_objects.includes(:actor).count.to_s, [@user, "followings"], :class => 'green' %> <%= t('follow.followings') %></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
 </section>
 
 
+
+
+
 <section>
-    <nav>
-        <article class="article">
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="span2"></div>
-                    <ul class="nav nav-tabs">
-                        <li class="">
-                            <a data-toggle="tab" href="#excursions"><%= t('excursion.other')%></a>
-                        </li>
-                        <li class="active">
-                            <a data-toggle="tab" href="#timeline"><%= t('activity.timeline')%></a>
-                        </li>
-                    </ul>
-                </div>
+  <nav>
+    <article class="article ">
+      <div class="row-fluid">
+        <div class="span12">
+
+          <ul class="nav nav-tabs">
+            <li class="">
+              <a data-toggle="tab" href="#excursions"><%= t('excursion.other') %></a>
+            </li>
+            <li class="active">
+              <a data-toggle="tab" href="#timeline"><%= t('activity.timeline') %></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="article">
+      <div class="tab-content">
+        <div id="excursions" class="tab-pane">
+          <div class="row-fluid">
+            <div class="span12">
+              <ul class="nav nav-pills">
+                <li class=""><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
+                <li class="active"><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
+                <li class="" id="star"><a data-toggle="tab" href="#ex-4"><%= image_tag "star-MENU-active.png" %></a>
+                </li>
+              </ul>
             </div>
-        </article>
-        <article class="article">
-            <div class="tab-content">
-                <div id="excursions" class="tab-pane">
-                  <div class="row-fluid">
-                    <div class="span12">
-                      <ul class="nav nav-pills" >
-                        <li class=""><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
-                        <li class="active"><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
-                        <li class="" id="star"><a data-toggle="tab" href="#ex-4"><%= image_tag "star-MENU-active.png" %></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="tab-content">
-                    <div id="ex-1" class="tab-pane">
-                      <div id="home-excursions-net">
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => subject_excursions(@user, :limit => 10) } %>
-                      </div>
-                    </div>
-                    <div id="ex-2" class="tab-pane active">
-                      <div id="home-excursions-me">
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => subject_excursions(@user, :scope => :me, :limit => 10) } %>
-                      </div>
-                    </div>
-                    <div id="ex-4" class="tab-pane">
-                      <div id="home-excursions-fav">
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => subject_excursions(@user, :scope => :like, :limit => 10) } %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div id="timeline" class="tab-pane active">
-                    <%= render :partial => 'activities/profile', :locals  => { :owner => @user } %>
-                </div>
+          </div>
+          <div class="tab-content">
+            <div id="ex-1" class="tab-pane">
+              <div id="home-excursions-net">
+                <%= render :partial => 'excursions/filter_results', :locals => {:excursions => subject_excursions(@user, :limit => 10)} %>
+              </div>
             </div>
-        </article>
-    </nav>
+            <div id="ex-2" class="tab-pane active">
+              <div id="home-excursions-me">
+                <%= render :partial => 'excursions/filter_results', :locals => {:excursions => subject_excursions(@user, :scope => :me, :limit => 10)} %>
+              </div>
+            </div>
+            <div id="ex-4" class="tab-pane">
+              <div id="home-excursions-fav">
+                <%= render :partial => 'excursions/filter_results', :locals => {:excursions => subject_excursions(@user, :scope => :like, :limit => 10)} %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="timeline" class="tab-pane active">
+          <%= render :partial => 'activities/profile', :locals => {:owner => @user} %>
+        </div>
+      </div>
+    </article>
+  </nav>
 </section>

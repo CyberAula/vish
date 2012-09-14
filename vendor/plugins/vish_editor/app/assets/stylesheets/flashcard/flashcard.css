@@ -13,7 +13,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  -moz-transform: translate(0); 
+  -moz-transform: none; 
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.past {
@@ -21,7 +21,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  -moz-transform: translate(0); 
+  -moz-transform: none; 
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.current {
@@ -29,7 +29,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  -moz-transform: translate(0px, 0px); /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -moz-transform: none; /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.next {
@@ -37,7 +37,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  -moz-transform: translate(0); 
+  -moz-transform: none; 
   -webkit-transform: translate3d(0, 0, 0);
 }
 .slides > article.far-next {
@@ -45,7 +45,7 @@
   transform: translate(0);
   -o-transform: translate(0);
   -ms-transform: translate(0);  /* Added to fix explorer view*/
-  -moz-transform: translate(0); 
+  -moz-transform: none; 
   -webkit-transform: translate3d(0, 0, 0);
 }
 
@@ -70,7 +70,7 @@
   top: 50%;
   position: relative;	
 	background-repeat:no-repeat;
-	background-attachment:fixed;
+	/*background-attachment:fixed;*/
 	background-position:center center;
   background-size: 100%;
   border-radius: 20px;

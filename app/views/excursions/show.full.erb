@@ -1,5 +1,6 @@
 
   <section class="slides layout-regular template-default">
+	<div id="flashcard-background"></div>
 	<button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
 	<div id="viewbar" class="viewbar">
 		<button id="page-switcher-start" class="page-switcher" tabindex="2">
@@ -11,6 +12,10 @@
 		</button>
 		</button>
 	</div>
+
+	<button id="mobile_back_arrow" class="vish_arrow" tabindex="2" style="display:none"><</button>
+    <button id="mobile_forward_arrow" class="vish_arrow" tabindex="2" style="display:none">></button>
+
 </section>
   
 <script>	
@@ -40,7 +45,7 @@
 	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
-	options["quiz_active_session_id"]=false;
+	options["debugging"] = true
 
 	<% if user_signed_in? %>
 	    options["username"] = "<%= current_user.name %>";
@@ -51,15 +56,16 @@
 	function start(){
 		var isPreview = false;
         try{
-            isPreview = window.parent.VISH && window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function");
+            isPreview = window.parent.VISH && window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function") && (typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined');
         }
         catch(exception){
             isPreview = false;
         }
         
 		var myexcursion;
+
 		if(isPreview){
-        	//called to show a preview
+			//called to show a preview
         	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
       	}
       	else{
