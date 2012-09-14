@@ -49,8 +49,16 @@
 	<% end %>
 
 	function start(){
+		var isPreview = false;
+        try{
+            isPreview = window.parent.VISH && window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function");
+        }
+        catch(exception){
+            isPreview = false;
+        }
+        
 		var myexcursion;
-		if(window.parent.VISH && window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function")){
+		if(isPreview){
         	//called to show a preview
         	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
       	}
