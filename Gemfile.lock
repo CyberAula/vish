@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 35dd905897e8da8490374b370145e53bcf4c13cf
+  revision: 4dce9397477a332aa3efa60c402587898b0f54a5
   branch: vish
   specs:
     social_stream-base (0.22.1)
@@ -79,7 +79,7 @@ GEM
       paperclip (>= 2.3.4)
       rmagick (>= 2.13.1)
     bcrypt-ruby (3.0.1)
-    builder (3.0.2)
+    builder (3.0.3)
     cancan (1.6.7)
     capistrano (2.12.0)
       highline
@@ -107,16 +107,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
-    columnize (0.3.6)
     composite_primary_keys (5.0.8)
       activerecord (~> 3.2.0)
-    debugger (1.1.4)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.3)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.3)
     deep_merge (1.0.0)
     delayed_paperclip (2.4.5.1)
       paperclip (>= 2.4.5)
@@ -339,7 +331,6 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.2)
   composite_primary_keys
-  debugger (~> 1.1.1)
   exception_notification
   factory_girl (~> 2.6)
   forgery
