@@ -18258,44 +18258,50 @@ VISH.Slides.Events = function(V, $, undefined) {
     }
   };
   var handleTouchStart = function(event) {
-    var touches = getTouches(event);
-    if(touches.length === 1) {
-      touchDX = 0;
-      touchDY = 0;
-      touchStartX = touches[0].pageX;
-      touchStartY = touches[0].pageY;
-      document.body.addEventListener("touchmove", handleTouchMove, true);
-      document.body.addEventListener("touchend", handleTouchEnd, true);
-      var zoom = document.documentElement.clientWidth / window.innerWidth;
-      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && event.target.id !== "mobile_forward_arrow" && event.target.id !== "mobile_back_arrow") {
-        event.preventDefault()
+    if(V.ViewerEngine === "presentation") {
+      var touches = getTouches(event);
+      if(touches.length === 1) {
+        touchDX = 0;
+        touchDY = 0;
+        touchStartX = touches[0].pageX;
+        touchStartY = touches[0].pageY;
+        document.body.addEventListener("touchmove", handleTouchMove, true);
+        document.body.addEventListener("touchend", handleTouchEnd, true);
+        var zoom = document.documentElement.clientWidth / window.innerWidth;
+        if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && event.target.id !== "mobile_forward_arrow" && event.target.id !== "mobile_back_arrow") {
+          event.preventDefault()
+        }
       }
     }
   };
   var handleTouchMove = function(event) {
-    var touches = getTouches(event);
-    if(touches.length > 1) {
-      cancelTouch()
-    }else {
-      touchDX = touches[0].pageX - touchStartX;
-      touchDY = touches[0].pageY - touchStartY;
-      var zoom = document.documentElement.clientWidth / window.innerWidth;
-      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
-        event.preventDefault()
+    if(V.ViewerEngine === "presentation") {
+      var touches = getTouches(event);
+      if(touches.length > 1) {
+        cancelTouch()
+      }else {
+        touchDX = touches[0].pageX - touchStartX;
+        touchDY = touches[0].pageY - touchStartY;
+        var zoom = document.documentElement.clientWidth / window.innerWidth;
+        if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+          event.preventDefault()
+        }
       }
     }
   };
   var handleTouchEnd = function(event) {
-    var dx = Math.abs(touchDX);
-    var dy = Math.abs(touchDY);
-    if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
-      if(touchDX > 0) {
-        V.Slides.backwardOneSlide()
-      }else {
-        V.Slides.forwardOneSlide()
+    if(V.ViewerEngine === "presentation") {
+      var dx = Math.abs(touchDX);
+      var dy = Math.abs(touchDY);
+      if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
+        if(touchDX > 0) {
+          V.Slides.backwardOneSlide()
+        }else {
+          V.Slides.forwardOneSlide()
+        }
       }
+      cancelTouch()
     }
-    cancelTouch()
   };
   var cancelTouch = function() {
     document.body.removeEventListener("touchmove", handleTouchMove, true);

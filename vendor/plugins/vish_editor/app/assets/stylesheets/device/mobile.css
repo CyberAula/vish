@@ -32,3 +32,10 @@
 .slides > article.far-next {
   display: none;
 }
+
+.close_slide{
+	width: 50px !important;
+	height: 50px !important;
+	background-repeat: no-repeat;
+	background-size: 50px 50px;
+}
