@@ -1,4 +1,6 @@
 class QuizSessionsController < ApplicationController
+  include Shortener::ShortenerHelper
+
   before_filter :authenticate_user!, :only => [ :create, :delete ]
 
   def create # POST /quiz_sessions => open quiz to collect answers => respond with quiz_session id
@@ -9,7 +11,7 @@ class QuizSessionsController < ApplicationController
     qs.active=true
     qs.name = params[:name] unless params[:name].blank?
     qs.save!
-    qs.url="/quiz_sessions/#{qs.id.to_s}"
+    qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
     qs.save!
     render :text => qs.id.to_s
   end
