@@ -2155,3 +2155,33 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
 .modal-space{
   margin-bottom: 10px;
 }
+
+/**** icons - menu header ***/
+
+.btn-header{
+  display: inline-block;
+  *display: inline;
+  padding: 4px 8px 13px 9px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 14px;
+  line-height: 18px;
+  *line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+ }
+
+ .btn-header:hover{
+  display: inline-block;
+  *display: inline;
+  padding: 4px 8px 13px 9px;
+  margin-bottom: 0;
+  *margin-left: .3em;
+  font-size: 14px;
+  line-height: 18px;
+  *line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+ }
