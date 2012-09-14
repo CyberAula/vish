@@ -18341,12 +18341,14 @@ VISH.Slides.Mashme = function(V, $, undefined) {
     }
   };
   var handleBodyKeyDown = function(event) {
+    var click = {};
     switch(event.keyCode) {
       case 39:
       ;
       case 40:
         if(V.Slides.isSlideFocused()) {
-          __sendSlideNumber("forward");
+          click.data = "forward";
+          _sendSlideNumber(click);
           event.preventDefault()
         }
         break;
@@ -18354,7 +18356,8 @@ VISH.Slides.Mashme = function(V, $, undefined) {
       ;
       case 38:
         if(V.Slides.isSlideFocused()) {
-          _sendSlideNumber("back");
+          click.data = "back";
+          _sendSlideNumber(click);
           event.preventDefault()
         }
         break
@@ -18375,7 +18378,7 @@ VISH.Slides.Mashme = function(V, $, undefined) {
   };
   var _sendSlideNumber = function(click) {
     var slideNumber = VISH.Slides.getCurrentSlideNumber();
-    if(click === "back") {
+    if(click && click.data === "back") {
       slideNumber -= 1
     }else {
       slideNumber += 1
