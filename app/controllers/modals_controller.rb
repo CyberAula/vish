@@ -15,7 +15,7 @@ class ModalsController < ApplicationController
 
   def link
     @link = Link.find(params[:id])
-    render 'modals/document'
+    render
   end
 
   def officedoc
