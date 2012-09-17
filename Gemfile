@@ -23,6 +23,7 @@ social_stream_gems = lambda {
   gem 'social_stream-base'
   gem 'social_stream-documents'
   gem 'social_stream-linkser'
+  gem 'social_stream-ostatus'
 }
 
 # Developing Social Stream
