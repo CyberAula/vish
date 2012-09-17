@@ -14,14 +14,14 @@
         <%end%>
           <div class="span12 ellipsis size14 inline-block ">
             <div class="red-2 inline-block  "><%= t('time.ago', :time => time_ago_in_words(activity.created_at)) %></div>
-            <div class="pull-right inline-block ">
+            <div class="pull-right inline-block  ">
                         <div class="green inline size14">
                           <%= activity.likes.count.to_s %>
                         </div>
               <img src="/assets/star-MENU-active.png" width="12" height="12">
                          <div class="green inline-block size14">
                         <%= activity.comments.count.to_s %>
-                          <img src="/assets/view2.png" width="auto" height="auto">
+                          <img class="imgnoradio" src="/assets/mensajes.png" width="auto" height="auto">
                         </div>
              </div>
           </div>
