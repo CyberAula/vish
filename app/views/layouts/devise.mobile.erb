@@ -3,7 +3,7 @@
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
 <body data-spy="scroll" data-target=".subnav" data-offset="50" class="visible-phone">
-<div class="padding-center ">
+
 <header id="navbar">
 
     <% if controller.class == Devise::RegistrationsController %>
@@ -13,7 +13,7 @@
     <% end %>
   </header>
   <div class="row body-height" ></div>
-
+<div class="padding-center ">
   <section id="content">
     <%= yield %>
   </section>
