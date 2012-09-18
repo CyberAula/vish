@@ -77,12 +77,20 @@ es:
   excursion:
     actions:
       bookmark: "marcardor"      
+      clone: "clonar"
       delete: "Borrar"
       download: "descargar"
       edit: "Editar"
       show: "Visualizar"
       share: "compartir"
+    clone:
+      confirm: "Esto clonará la excursión en tu propio repositorio"
+      not_found: "Excursion no encontrada"
+      ok: "Clonada con éxito"
+      owner: "Esta excursión ya es tuya"
     confirm_delete: "¿Borrar excursión?"
+    contributors:
+      name: "Con contenido de"
     created: "creadas"
     favorites: "Favoritos"
     go:

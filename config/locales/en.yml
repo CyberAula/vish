@@ -77,12 +77,20 @@ en:
   excursion:
     actions:
       bookmark: "bookmark"
+      clone: "clone"
       delete: "delete"
       download: "download"            
       edit: "edit"
       show: "show"
       share: "share"
+    clone:
+      confirm: "This will clone this excursion to your own repository"
+      not_found: "Excursion not found"
+      ok: "Succesfully cloned"
+      owner: "You already own this excursion"
     confirm_delete: "Delete excursion?"
+    contributors:
+      name: "With content from"
     created: "created"
     favorites: "Favorites"    
     how: "How to create an excursion"

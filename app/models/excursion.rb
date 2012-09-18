@@ -45,7 +45,9 @@ class Excursion < ActiveRecord::Base
     e.owner=sbj
     e.user_author=sbj.user.actor
     e.json=self.quizless_json # We do this so quizzes are re-created upon cloning.
-    e.contributors=self.contributors.push(self.author).uniq
+    e.contributors=self.contributors.push(self.author)
+    e.contributors.uniq!
+    e.contributors.delete(sbj)
     e.save!
     e
   end
