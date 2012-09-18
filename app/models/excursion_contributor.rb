@@ -15,20 +15,8 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
-class Quiz < ActiveRecord::Base
+class ExcursionContributor < ActiveRecord::Base
   belongs_to :excursion
-  has_many :quiz_sessions, :dependent => :destroy
-
-  def possible_answers
-    {}
-  end
-
-  def possible_answers_raw
-    []
-  end
-
-  def sessions_by user=nil
-    quiz_session if user.nil?
-    quiz_sessions.where(:owner_id => user.id)
-  end
+  belongs_to :contributor, :class_name => "Actor"
 end
+

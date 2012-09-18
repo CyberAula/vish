@@ -18,7 +18,10 @@
 class Excursion < ActiveRecord::Base
   include SocialStream::Models::Object
 
-  has_many :quizzes
+  has_many :quizzes, :dependent => :destroy
+
+  has_many :excursion_contributors, :dependent => :destroy
+  has_many :contributors, :class_name => "Actor", :through => :excursion_contributors
 
   validates_presence_of :json
   after_save :parse_for_meta
@@ -35,12 +38,32 @@ class Excursion < ActiveRecord::Base
     json
   end
 
+  def clone_for sbj
+    return nil if sbj.blank?
+    e=Excursion.new
+    e.author=sbj
+    e.owner=sbj
+    e.user_author=sbj.user.actor
+    e.json=self.quizless_json # We do this so quizzes are re-created upon cloning.
+    e.contributors=self.contributors.push(self.author).uniq
+    e.save!
+    e
+  end
+
   def has_quizzes?
     not quizzes.empty?
   end
 
   def has_quiz_results?
     has_quizzes? # TODO: Hide unless there are answers
+  end
+
+  def quizless_json
+    parsed_json = JSON(json)
+    parsed_json["slides"].each do |slide|
+      slide.delete("quiz_id")
+    end
+    parsed_json.to_json
   end
 
   private
@@ -82,7 +105,7 @@ class Excursion < ActiveRecord::Base
     activity_object.tag_list = parsed_json["tags"]
     activity_object.save!
 
-    parsed_json["id"] = activity_object.id
+    parsed_json["id"] = activity_object.id.to_s
     parsed_json["author"] = author.name
     parsed_json = extract_quizzes(parsed_json) # Fill up quiz_id parameters
     self.update_column :json, parsed_json.to_json
