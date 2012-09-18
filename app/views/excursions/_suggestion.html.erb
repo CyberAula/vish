@@ -4,13 +4,16 @@
       <%= link_to excursion_thumb_for(suggestion, 130), suggestion, :class => "container" %>
       <div class='number_pages'><%= suggestion.slide_count %></div>
     </li>
-    <li class="span attachment_tile">
-        <div class="title">
+    <li class="span header_text">
+        <div class="title_suggestion">
           <h4 class="ellipsis w120px"><%= link_to suggestion.title, suggestion %></h4>
         </div>
-        <p class="w120px size10 textonleft" style="line-height: 110%;"><%= truncate suggestion.description, :length => 90 %></p>
+        <p class="w120px size10 gray-medium" style="line-height: 110%;"><%= truncate suggestion.description, :length => 90 %></p>
     </li>
   </ul>
 <% end %>
 
 <div class="clearfloat"></div>
+
+
+
