@@ -140,7 +140,7 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
-    god (0.12.1)
+    god (0.13.0)
     has_scope (0.5.1)
     hashie (1.2.0)
     highline (1.6.15)

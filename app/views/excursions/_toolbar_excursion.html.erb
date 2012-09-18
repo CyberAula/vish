@@ -6,6 +6,11 @@
     <div class="btn-gray">
       <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= t('excursion.actions.share') %></a>
     </div>
+    <% if user_signed_in? and (excursion.author != current_subject.actor) %>
+      <div class="btn-gray">
+        <%= link_to raw("<i class='icontool16-tool16_clone'></i> ") + t('excursion.actions.clone'),excursion_path(excursion) + '/clone', :confirm => t('excursion.clone.confirm'), :class => :action, :id => :document_clone_action   %>
+      </div>
+    <%end%>
     <% if user_signed_in? and (can? :update, excursion) %>
       <div class="btn-gray">
         <%= link_to raw("<i class='icontool16-tool16_edit'></i> ") + t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>

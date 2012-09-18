@@ -17,18 +17,33 @@
 
 class ExcursionsController < ApplicationController
   # Quick hack for bypassing social stream's auth
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => :preview
+  skip_load_and_authorize_resource :only => [ :preview, :clone]
   include SocialStream::Controllers::Objects
+
+  def clone
+    original = Excursion.find_by_id(params[:id])
+    if original.blank?
+      flash[:error] = t('excursion.clone.not_found')
+      redirect_to home_path if original.blank? # Bad parameter
+    elsif original.author == current_subject.actor
+      flash[:warning] = t('excursion.clone.owner')
+      redirect_to excursion_path(original)
+    else
+      # Do clone
+      excursion = original.clone_for current_subject.actor
+      flash[:success] = t('excursion.clone.ok')
+      redirect_to excursion_path(excursion)
+    end
+  end
 
   def new
     new! do |format|
       format.full { render :layout => 'iframe' }
     end
   end
-
 
   def edit
     edit! do |format|
