@@ -1,7 +1,9 @@
 <div id="all" class="tab-pane <%= "active" if params[:type].blank? %> row modal-pivot">
   <% if @search_result.empty? %>
+<div class="margin-left20 gray-medium size18">
     <%= I18n.t('search.nothing') %>
-  <% elsif params[:type].blank? %>
+</div>
+<% elsif params[:type].blank? %>
     <% @search_result.each do |res| %>
       <%= render_global_search_for res  %>
     <% end %>
