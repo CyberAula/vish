@@ -1,40 +1,30 @@
-	<section class="slides layout-regular template-default">
-	    <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
-	    <div id="flashcard-background"></div>
-    </section>
-    
-    <div id="viewbar" class="viewbar" style="display:none">   
-		<button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
-	    <div id="slide-counter"></div>
-	  <button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
-    </div>
+<section class="slides layout-regular template-default">
+    <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
+    <div id="flashcard-background"></div>
+</section>
 
-    <button id="mobile_back_arrow" class="vish_arrow" tabindex="2" style="display:none"><</button>
-    <button id="mobile_forward_arrow" class="vish_arrow" tabindex="2" style="display:none">></button>
+<div id="viewbar" class="viewbar" style="display:none">   
+	<button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
+    <div id="slide-counter"></div>
+  <button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
+</div>
 
-  
+<iframe id="my_game_iframe" src="" style="border:0" width="890" height="740" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
+
+<div style="display:none" id="viewerpreview">Preview</div>
+<button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/vishEditor/images/back_icon.png"/></button>
+<button id="mobile_back_arrow" class="vish_arrow" tabindex="2" style="display:none"><</button>
+<button id="mobile_forward_arrow" class="vish_arrow" tabindex="2" style="display:none">></button>
+
 <script>	
 	options = {};
 	var configuration = {};
 
 	configuration["ImagesPath"] = "/assets/";
 	configuration["StylesheetsPath"] = "/assets/";
-
-	configuration["presentationSettings"] = true;
-	configuration["presentationTags"] = true;
-	configuration["presentationThumbnails"] = true;
-
-	configuration["VishLives"] = true;
-	configuration["VishRepo"] = true;
-
-	configuration["Flickr"] = true;
-	configuration["Youtube"] = true;
-	configuration["Vimeo"] = false;
-
-	configuration["Upload"] = true;
-
 	configuration["mode"] = "vish";
 	options["configuration"] = configuration;
+	
 	options["developping"] = false;
 
 	options["token"] = "<%= form_authenticity_token %>";
@@ -50,20 +40,21 @@
 
 	function start(){
 		var isPreview = false;
-        try{
-            isPreview = window.parent.VISH && window.parent.VISH.Editor && (typeof window.parent.VISH.Editor.Preview.getPreview == "function") && (typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined');
-        }
-        catch(exception){
+        try {
+            isPreview = window.parent.VISH && 
+            			window.parent.VISH.Editor && 
+            			(typeof window.parent.VISH.Editor.Preview.getPreview == "function") && 
+            			(typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined');
+        } catch(exception) {
             isPreview = false;
         }
         
 		var myexcursion;
 
 		if(isPreview){
-			//called to show a preview
+			options["preview"] = true;
         	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
-      	}
-      	else{
+      	} else {
       		<% if @excursion %>
       			myexcursion = <%= raw @excursion.json %>;
       		<%else%>

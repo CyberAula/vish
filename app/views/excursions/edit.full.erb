@@ -37,6 +37,8 @@
 	options["userId"] = "<%= current_user.id %>";
 	options["token"] = "<%= form_authenticity_token %>";
 
+	options["draft"] = "<%@excursion.draft%>";
+
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
 	function start(){

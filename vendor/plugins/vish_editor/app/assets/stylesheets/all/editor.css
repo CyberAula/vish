@@ -11,7 +11,7 @@ img {
 	margin-top: 50px;
 }
 
-#excursiondetails {
+#presentationdetails {
 	background: url(/assets/excursiondetails_bg.png) no-repeat top;
 }
 
@@ -736,11 +736,13 @@ table.metadata td div.height_wrapper_description{
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 	margin-left: -75px;
-	margin-top: 45px;
+	margin-top: 25px;
 }
 
 .buttons_together{
-	margin-top: 12px;
+	margin-top: 15px;
+	text-align: right;
+	margin-right: 20px;
 }
 
 .text_in_fancybox{
@@ -758,10 +760,7 @@ table.metadata td div.height_wrapper_description{
 	margin-left: -18px;
 	margin-bottom: 35px;
 }
-.button1 {
-	margin-left: 170px;
-	margin-top: 25px;
-}
+
 .button220 {
 	margin-left: 220px;
 	margin-top: 25px;
@@ -820,7 +819,7 @@ div.object_wrapper{
  * EXCURSION DETAILS FANCYBOX
  ***********************************/ 
 
-#excursion_details_error{
+#presentation_details_error{
 }
 	
 .formsizefancy3 {
@@ -907,7 +906,7 @@ textarea {
 	cursor: pointer;
 }
 
-#excursion_details_fields{
+#presentation_details_fields{
 	position: relative;
 }
 
@@ -1193,12 +1192,12 @@ textarea {
   left: 190px;
 }
 
-.tut_saveexcursion{
+.tut_savepresentation{
 	top: 542px;
 	left: 505px;
 }
 
-.tut_saveexcursion span.joyride-nub{
+.tut_savepresentation span.joyride-nub{
   bottom: -28px;
   left: 341px;
 }
