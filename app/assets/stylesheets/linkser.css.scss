@@ -28,21 +28,21 @@
 
 .link {
   position: relative;
-  margin-top: 8px;
-  }
+/*margin-top: 8px; */
+}
 .link .thumbnail, .link .thumbnail img{
-  position: relative;
-  float: left;
-  max-height: 75px;
-  max-width: 130px;
-  margin-right:15px;
+position: relative;
+float: left;
+max-height: 75px;
+max-width: 130px;
+margin-right:15px;
 }
 .link .thumbnail img.play_button{
-  position: absolute;
-  bottom: 2px;
-  left: 2px;
-  opacity:0.6;
-  filter:alpha(opacity=60); /* For IE8 and earlier */
+position: absolute;
+bottom: 2px;
+left: 2px;
+opacity:0.6;
+filter:alpha(opacity=60); /* For IE8 and earlier */
 }
 
 .link .thumbnail img.play_button:hover{
