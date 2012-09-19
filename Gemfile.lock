@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 4dce9397477a332aa3efa60c402587898b0f54a5
+  revision: a6cd9b561951efb435b3d5111197cde88d151a66
   branch: vish
   specs:
-    social_stream-base (0.22.1)
+    social_stream-base (0.22.2)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 0.2.5)
@@ -35,6 +35,10 @@ GIT
       social_stream-base (~> 0.22.0)
     social_stream-linkser (0.13.0)
       linkser (~> 0.0.12)
+      social_stream-base (~> 0.22.0)
+    social_stream-ostatus (0.0.1)
+      nokogiri (> 1.4.4)
+      proudhon (>= 0.3)
       social_stream-base (~> 0.22.0)
 
 GEM
@@ -136,10 +140,10 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
-    god (0.12.1)
+    god (0.13.0)
     has_scope (0.5.1)
     hashie (1.2.0)
-    highline (1.6.14)
+    highline (1.6.15)
     hike (1.2.1)
     httpauth (0.1)
     i18n (0.6.1)
@@ -220,6 +224,10 @@ GEM
       paperclip (>= 2.3.8)
     pg (0.14.1)
     polyglot (0.3.3)
+    proudhon (0.3.1)
+      json
+      nokogiri
+      rest-client
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -350,5 +358,6 @@ DEPENDENCIES
   social_stream-base!
   social_stream-documents!
   social_stream-linkser!
+  social_stream-ostatus!
   sqlite3
   uglifier (>= 1.2.3)

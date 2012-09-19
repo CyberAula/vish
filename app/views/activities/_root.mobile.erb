@@ -1,29 +1,33 @@
 <article>
   <div class="row-fluid">
-    <div class="span11">
-      <div class="boxy_white">
-        <div class="thumbnails">
-          <div class="span3 inline">
-            <%= link_to image_tag(activity.sender_subject.logo.url(:profile), :alt => activity.sender_subject.name), activity.sender_subject %>
-          </div>
-          <div class="span9 inline-block">
-            <div class="size16 link_blue2 gray-medium">
-              <%= activity.title(self) %>
-            </div>
-            <% unless activity.activity_objects.empty? %>
-              <span class="gray-activity margin-left10 size16"><%= render activity.activity_objects %></span>
-            <%end%>
-          </div>
-          <div class="span9 margin-wall-txt">
-            <div class=" red-2 span8 ellipsis w350px "><%= t('time.ago', :time => time_ago_in_words(activity.created_at)) %></div>
-          </div>
-          <div class="pull-right">
-            <h3><span  class="green inline"><%= activity.likes.count.to_s %></span><img src="/assets/star-MENU-active.png" width="12" height="12">&nbsp;&nbsp;<span class="green inline-block"><%= activity.comments.count.to_s %><img src="/assets/icon-message.png" width="16" height="12"></a></span></h3>   
+    <div class="span12">
+      <div class="box_basic span12 margin-bottom5">
+        <div class="span3 inline-block">
+          <%= link_to image_tag(activity.sender_subject.logo.url(:profile), :alt => activity.sender_subject.name), activity.sender_subject %>
+        </div>
+        <div class="span9 inline-block">
+        <div class="span12 margin-top5 gray-medium size16">
+          <%= activity.title(self) %>
+        </div>
+        <% unless activity.activity_objects.empty? %>
+          <span class="gray-activity margin-left10 size16"><%= render activity.activity_objects %></span>
+        <%end%>
+          <div class="span12 ellipsis size14 inline-block ">
+            <div class="red-2 inline-block  "><%= t('time.ago', :time => time_ago_in_words(activity.created_at)) %></div>
+            <div class="pull-right inline-block  ">
+                        <div class="green inline size14">
+                          <%= activity.likes.count.to_s %>
+                        </div>
+              <img src="/assets/star-MENU-active.png" width="12" height="12">
+                         <div class="green inline-block size14">
+                        <%= activity.comments.count.to_s %>
+                          <img class="imgnoradio" src="/assets/mensajes.png" width="auto" height="auto">
+                        </div>
+             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
 </article>
-
 <div class="clearfloat"></div>

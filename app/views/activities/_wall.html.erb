@@ -6,7 +6,7 @@
     <%#= paginate activities, :remote => true, :param_name => :page_net, :window => 2, :params => {:active_tab => 'net'} %>
     <% params[:page_net]="1" if params[:page_net].blank? %>
     <div class = "gray_links ">
-      <%= link_to(t('activity.more'), {:page_net => (params[:page_net].to_i + 1), :active_tab => 'net'}, :id => 'net_load_more_button', :class =>'load_more_button', :remote => true) unless activities.last_page? %>
+      <%= link_to(t('activity.more'), {:page_net => (params[:page_net].to_i + 1), :active_tab => 'net'}, :id => 'net_load_more_button', :class =>'btn-more', :remote => true) unless activities.last_page? %>
      
     </div>
   <% end %>

@@ -107,11 +107,11 @@
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-
+    background-color: #F9F9F9;
     position: static;
     padding: 5px;
     margin: 10px;
-    min-height: 400px;
+    min-height: 300px;
     width: 650px;
     display: block;
 
@@ -119,29 +119,19 @@
 
   .header {
     float: left;
-    width: 650px;
-    height: 150px;
+    width: 600px;
+    height: 110px;
     display: block;
-
-    background-image: url("http://vishub.org/assets/heard_mail.png;");
-
-  }
-
-  .bottom_img{
-    float: left;
-    width: 650px;
-    height: 105px;
-    display: block;
-
-    background-image: url("http://vishub.org/assets/pie_mail.png;");
+    padding: 25px;
+    padding-bottom: 10px
 
   }
 
   .hello {
     float: left;
     padding-top: 75px;
+    padding-left: 15px;
     width: 350px;
-
     display: inline-block;
 
   }
@@ -151,21 +141,30 @@
   }
 
   .word-break {
-    overflow: hidden;
+    overflow: none;
     padding-right: 25px;
     word-wrap: break-word;
     -moz-binding: url('xbl.xml#wordwrap');
+  }
+
+  .box_logo {
+    float: right;
+    padding-top: 20px;
+    padding-right: 20px;
+    display: inline-block;
+    width: 210px;
+    height: 120px;
+
   }
 
     /***********parte inferior ***********/
 
   .box2 {
     float: left;
-    width: 650px;
+
     display: block;
     padding: 25px;
-    padding-top: 0px;
-    background-color: #F9F9F9;
+    padding-top: 0px
 
   }
 
@@ -186,7 +185,17 @@
     float: right;
     display: inline-block;
   }
+
+  .img {
+    float: left;
+    margin-right: 20px;
+
+    height: 119px;
+    width: 119px;
+    display: inline-block;
+  }
 </style>
+
 
 <body>
 <div class="box  ">
@@ -195,7 +204,9 @@
     <div class="hello word-break gray size22">
       <%= t('notification.hello', :receiver => @receiver.name) %>
     </div>
-
+    <div class="box_logo">
+      <%= render :partial => "notification_mailer/logo" %>
+    </div>
   </div>
   <div class="box2">
     <div class="photo">
@@ -217,14 +228,14 @@
       </div>
     </div>
 
-</div>
+  </div>
 
   <div class="bottom_img">
-<div class="size12 blue-opacity" style="padding: 3px 5px 5px 25px;">
-  <p>
-    <%= raw t('notification.config_html', :url => 'http://vishub.org/settings') %>
-  </p>
-</div>
+    <div class="size12 blue-opacity" style="padding: 3px 5px 5px 25px;">
+      <p>
+        <%= raw t('notification.config_html', :url => 'http://vishub.org/settings') %>
+      </p>
+    </div>
   </div>
 </div>
 </body>
