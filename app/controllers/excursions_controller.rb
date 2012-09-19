@@ -59,7 +59,7 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.save!
-    render :json => { :url => excursion_path(resource) }
+    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
   end
 
   def update
@@ -71,7 +71,7 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.save!
-    render :json => { :url => excursion_path(resource) }
+    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
   end
 
   def destroy
@@ -88,6 +88,13 @@ class ExcursionsController < ApplicationController
 
   def show
     show! do |format|
+      format.html {
+        if @excursion.draft and (can? :edit, @excursion)
+          redirect_to edit_excursion_path(@excursion)
+        else
+          render
+        end
+      }
       format.full { render :layout => 'iframe' }
       format.mobile { render :layout => 'iframe' }
       format.json { render :json => resource }
