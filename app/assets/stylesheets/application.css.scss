@@ -1989,6 +1989,7 @@ select {
   position: relative;
   width: 97%;
   z-index: 1;
+  margin-left: 1%
 }
 
 .boxy_white_wall2{
@@ -2185,3 +2186,6 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
   vertical-align: middle;
   cursor: pointer;
  }
+.margin-negative-btn {
+margin-top: -10px;
+}

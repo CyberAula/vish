@@ -6,7 +6,7 @@
     <div class="pagination-right">
       <%= f.email_field :email, :id => "username" %>
       <%= f.password_field :password, :id => "password"  %>
-      <%= f.submit t(:sign_in), :class => 'btn btn-primary storePass'%>
+      <%= f.submit t(:sign_in), :class => 'btn btn-primary storePass margin-negative-btn'%>
     </div>
   <div class="link_gray pagination-right span3 offset9">
     <%= link_to t('forgot_password'), new_user_password_path %>
