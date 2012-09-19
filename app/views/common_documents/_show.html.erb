@@ -49,11 +49,11 @@
             <% unless document.post_activity.blank? %>
               <%= render :partial => 'comments/new', :locals => {:activity => document.post_activity} %>
               <%= render :partial => 'activities/comments', :locals => {:activity => document.post_activity, :logo_size => ':contact'} %>
-
+              <%= javascript_tag do %>
+                SocialStream.Comments.initNew();
+              <%end%>
             <% else %>
-              <% if user_signed_in? %>
-                <%= render :partial => 'comments/new', :locals => {:activity => document.post_activity} %>
-              <% else %>
+              <% unless user_signed_in? %>
                 <%= link_to(t('session.session_start'), new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " + t('comment.input') %>
               <% end %>
             <% end %>
