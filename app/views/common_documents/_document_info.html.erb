@@ -20,11 +20,11 @@
         <div class="view-and-like">
           <div class="info_visits">
             <div class="favorit_resources">
-              <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first, :size => :big) %></div>
+              <div class="verb_like" id="like_<%= dom_id(document.post_activity) %>"><%= link_like(document.post_activity, :size => :big) %></div>
             </div>
             <span class="green pull-left number_count number"><%= document.visit_count.to_s %></span> <%= t('follow.views') %>
             <div class="favorite-count">
-              <span class="green  number like_count_<%= dom_id(document.activities.first) %>"><%= document.activities.first.likes.count.to_s %></span> <%= t('follow.favorites') %>
+              <span class="green  number like_count_<%= dom_id(document.post_activity) %>"><%= document.post_activity.likes.count.to_s %></span> <%= t('follow.favorites') %>
             </div>
           </div>
         </div>

@@ -33,17 +33,19 @@
                       <span class="link_blue"><%= link_to excursion.author.name, excursion.author.user %> </span>
 
                       <div class="pull-right ">
-                        <h3>
-                        <span class="green inline size14">
-                          <%= excursion.post_activity.likes.count.to_s %>
-                        </span>
-                          <img src="/assets/star-MENU-active.png" width="12" height="12">
+                        <% unless excursion.draft %>
+                          <h3>
+                          <span class="green inline size14">
+                            <%= excursion.post_activity.likes.count.to_s %>
+                          </span>
+                            <img src="/assets/star-MENU-active.png" width="12" height="12">
 
-                        <span class="green inline-block size14">
-                        <%= excursion.post_activity.comments.count.to_s %>
-                          <img src="/assets/view2.png" width="auto" height="auto">
-                        </span>
-                        </h3>
+                          <span class="green inline-block size14">
+                          <%= excursion.post_activity.comments.count.to_s %>
+                            <img src="/assets/view2.png" width="auto" height="auto">
+                          </span>
+                          </h3>
+                        <%end%>
                       </div>
 
 

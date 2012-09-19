@@ -6,7 +6,7 @@
     <ul class="thumbnails ">
         <li class="span1">
           <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "container" %>
-            <div class='number_pages'><%= excursion.slide_count %></div>
+          <div class='number_pages'><%= excursion.slide_count %></div>
         </li>
         <li class="span2">
           <div class="caption inline-block">
@@ -15,10 +15,12 @@
             </h4>
             <h5 class="blue-opacity ellipsis w150px">by <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %> modal-no-trigger"><%= excursion.author.name %></a></h5>
             <h5 class=""><span class="green"><%=excursion.visit_count.to_s%></span> <%= t("follow.views") %> </h5>
-            <h5 class="">
-              <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%=excursion.activities.first.likes.count.to_s%></span>
-              <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first)%></div>
-            </h5>
+            <% unless excursion.draft %>
+              <h5 class="">
+                <span class="green like_count_<%= dom_id(excursion.post_activity) %>"><%=excursion.post_activity.likes.count.to_s%></span>
+                <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>"><%= link_like(excursion.post_activity)%></div>
+              </h5>
+            <% end %>
           </div>
         </li>
     </ul>

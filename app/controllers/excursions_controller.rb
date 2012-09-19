@@ -52,15 +52,26 @@ class ExcursionsController < ApplicationController
   end
 
   def create
-    super do |format|
-      format.all { render :json => { :url => excursion_path(resource) } }
+    @excursion = Excursion.new(params[:excursion])
+    if(params[:draft] and params[:draft] == "true")
+      @excursion.draft = true
+    else
+      @excursion.draft = false
     end
+    @excursion.save!
+    render :json => { :url => excursion_path(resource) }
   end
 
   def update
-    super do |format|
-      format.all { render :json => { :url => excursion_path(resource) } }
+    @excursion = Excursion.find(params[:id])
+    @excursion.update_attributes(params[:excursion])
+    if(@excursion.draft and params[:draft] and params[:draft] == "true")
+      @excursion.draft = true
+    else
+      @excursion.draft = false
     end
+    @excursion.save!
+    render :json => { :url => excursion_path(resource) }
   end
 
   def destroy
@@ -123,9 +134,9 @@ class ExcursionsController < ApplicationController
     when "me"
       { :with => { :author_id => [ search_subject.id ] } }
     when "net"
-      { :with => { :author_id => search_subject.following_actor_ids } }
+      { :with => { :author_id => search_subject.following_actor_ids, :draft => false } }
     when "other"
-      { :without => { :author_id => search_subject.following_actor_and_self_ids } }
+      { :without => { :author_id => search_subject.following_actor_and_self_ids }, :with => { :draft => false } }
     else
       raise "Unknown search scope #{ params[:scope] }"
     end

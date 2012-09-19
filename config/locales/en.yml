@@ -94,6 +94,7 @@ en:
     created: "created"
     favorites: "Favorites"    
     how: "How to create an excursion"
+    is_draft: "[DRAFT]"
     my: "my"
     name: "excursion"
     net: "network"

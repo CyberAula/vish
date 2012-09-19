@@ -1,11 +1,13 @@
 <div class="excursion_tools">
   <div class="options inline-block">
-    <div class="btn-gray">
-      <a class="action" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
-    </div>
-    <div class="btn-gray">
-      <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%=link_to image_tag("icons/compartir.png") + t('excursion.actions.share') %></a>
-    </div>
+    <% unless excursion.draft %>
+      <div class="btn-gray">
+        <a class="action" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
+      </div>
+      <div class="btn-gray">
+        <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%=link_to image_tag("icons/compartir.png") + t('excursion.actions.share') %></a>
+      </div>
+    <%end%>
     <% if user_signed_in? and (excursion.author != current_subject.actor) %>
       <div class="btn-gray">
         <%= link_to image_tag("icons/clone.png") + t('excursion.actions.clone'),excursion_path(excursion) + '/clone', :confirm => t('excursion.clone.confirm'), :class => :action, :id => :document_clone_action   %>
@@ -18,42 +20,46 @@
     <%end%>
     <% if user_signed_in? and can?(:destroy, @excursion) %>
       <div class="btn-gray">
-          <%= link_to raw("<i class='icontool16-tool16_symbol_delete'></i> ") +  t('excursion.actions.delete'),  excursion.post_activity.direct_object,
-                      :confirm => t('confirm_delete', :scope => @excursion.post_activity.direct_object.class.to_s.underscore),
+          <%= link_to raw("<i class='icontool16-tool16_symbol_delete'></i> ") +  t('excursion.actions.delete'),  excursion,
+                      :confirm => t('confirm_delete', :scope => @excursion.class.to_s.underscore),
                       :method => :delete, :class => :action %>
       </div>
     <% end %>
 
-    <% unless excursion.activities.blank? %>
+    <% unless excursion.draft %>
       <div class="btn-gray">
-        <div class="verb_like" id="like_<%= dom_id(excursion.activities.first) %>"><%= link_like(excursion.activities.first, :size => :big)%></div>
+        <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>"><%= link_like(excursion.post_activity, :size => :big)%></div>
       </div>
     <% end %>
 
   </div>
   <div class="views size16 inline-block pagination-right inline-block ">
-    <span class="green"><%=excursion.visit_count.to_s%></span><span> <%=t('follow.views')%></span>
-    <span class="green like_count_<%= dom_id(excursion.activities.first) %>"><%= excursion.activities.first.likes.count.to_s  %></span><span> <%= t('follow.favorites').downcase %></span>
-    <!--<div class="iconx-quiz"></div>-->
-    <% if user_signed_in? %>
-      <button data-toggle="modal" href="#mashme-modal" class="mashme-button mini"><span></span></button>
-        <div class="modal hide" style="text-align: left;" id="mashme-modal">
-          <div class="modal-header"><%= t('mashme.header_html') %></div>
-          <div class="modal-body">
-            <h3><%= t('mashme.room_name') %></h3>
-            <input type="text" id="mashme-room-id" value="<%= current_user.slug + '-' + rand(100000).to_s %>"></input>
-            <h3><%= t('mashme.invite_header') %></h3>
-            <div class="mashme-invites">
-              <% Actor.followed_by(current_user).each do |a| %>
-                <div class="span2"><a style="width: 80%; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; text-align: left;" class="btn" id="mashme-invite-<%= a.id %>"><%= image_tag(a.logo.url(:actor), :alt => a.name, :size => "25x25") + " " + a.name %></a></div>
-              <% end %>
+    <% unless excursion.draft %>
+      <span class="green"><%=excursion.visit_count.to_s%></span><span> <%=t('follow.views')%></span>
+      <span class="green like_count_<%= dom_id(excursion.post_activity) %>"><%= excursion.post_activity.likes.count.to_s  %></span><span> <%= t('follow.favorites').downcase %></span>
+      <!--<div class="iconx-quiz"></div>-->
+      <% if user_signed_in? %>
+        <button data-toggle="modal" href="#mashme-modal" class="mashme-button mini"><span></span></button>
+          <div class="modal hide" style="text-align: left;" id="mashme-modal">
+            <div class="modal-header"><%= t('mashme.header_html') %></div>
+            <div class="modal-body">
+              <h3><%= t('mashme.room_name') %></h3>
+              <input type="text" id="mashme-room-id" value="<%= current_user.slug + '-' + rand(100000).to_s %>"></input>
+              <h3><%= t('mashme.invite_header') %></h3>
+              <div class="mashme-invites">
+                <% Actor.followed_by(current_user).each do |a| %>
+                  <div class="span2"><a style="width: 80%; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; text-align: left;" class="btn" id="mashme-invite-<%= a.id %>"><%= image_tag(a.logo.url(:actor), :alt => a.name, :size => "25x25") + " " + a.name %></a></div>
+                <% end %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-danger" data-dismiss="modal"><%=t('cancel')%></a>
+              <button class="mashme-button" id="mashme-button-excursion"><span><%=t('mashme.launch')%></span><div></div></button>
             </div>
           </div>
-          <div class="modal-footer">
-            <a href="#" class="btn btn-danger" data-dismiss="modal"><%=t('cancel')%></a>
-            <button class="mashme-button" id="mashme-button-excursion"><span><%=t('mashme.launch')%></span><div></div></button>
-          </div>
-        </div>
+      <% end %>
+    <% else %>
+      <%= t('excursion.is_draft') %>
     <% end %>
   </div>
 <div id="excursion-share">

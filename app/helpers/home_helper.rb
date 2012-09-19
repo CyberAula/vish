@@ -61,6 +61,8 @@ module HomeHelper
       query = query.not_authored_by(following_ids)
     end
 
+    query = query.where(:draft => false) if (klass == Excursion) and (options[:scope] == :net or options[:scope] == :more)
+
     query = query.order('updated_at DESC')
     query = query.first(options[:limit]) if options[:limit] > 0
 

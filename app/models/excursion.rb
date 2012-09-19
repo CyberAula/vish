@@ -25,11 +25,13 @@ class Excursion < ActiveRecord::Base
 
   validates_presence_of :json
   after_save :parse_for_meta
+  before_save :fix_relation_ids_drafts
 
   define_index do
     activity_object_index
 
     has slide_count
+    has draft
     has activity_object.like_count, :as => :like_count
     has activity_object.visit_count, :as => :visit_count
   end
@@ -48,6 +50,7 @@ class Excursion < ActiveRecord::Base
     e.contributors=self.contributors.push(self.author)
     e.contributors.uniq!
     e.contributors.delete(sbj)
+    e.draft=true
     e.save!
     e
   end
@@ -115,6 +118,14 @@ class Excursion < ActiveRecord::Base
     self.update_column :slide_count, parsed_json["slides"].size
     self.update_column :thumbnail_url, parsed_json["avatar"]
 
+  end
+
+  def fix_relation_ids_drafts
+    if draft
+      activity_object.relation_ids=[Relation::Private.instance.id]
+    else
+      activity_object.relation_ids=[Relation::Private.instance.id]
+    end
   end
 
 end

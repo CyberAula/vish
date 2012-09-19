@@ -17,7 +17,7 @@
       <div class="rw-words rw-words-1">
           <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= document.author.slug %>" class="user-modal-button-<%= document.author.slug %> modal-no-trigger"><%= document.author.name %></a></h5></span>
           <div class="clearfloat"></div>
-          <span><h5 class="green inline margin-home-resource-view"><%=document.visit_count.to_s%> </h5> <%= t("follow.views") %> / <h5 class="green inline like_count_<%= dom_id(document.activities.first) %>"><%=document.activities.first.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(document.activities.first) %>"><%= link_like(document.activities.first)%></div></span>
+          <span><h5 class="green inline margin-home-resource-view"><%=document.visit_count.to_s%> </h5> <%= t("follow.views") %> / <h5 class="green inline like_count_<%= dom_id(document.post_activity) %>"><%=document.post_activity.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(document.post_activity) %>"><%= link_like(document.post_activity)%></div></span>
 
       </div>
     </div>

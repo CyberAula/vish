@@ -96,6 +96,7 @@ es:
     go:
         repository: "ir a repositorio"
     how: "Como crear una excursión"
+    is_draft: "[BORRADOR]"
     my: "mis"
     name: "excursión"
     net: "red"

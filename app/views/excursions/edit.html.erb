@@ -3,8 +3,8 @@
 <iframe id="presentation_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="910" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
 
 <% if user_signed_in? and can?(:destroy, @excursion) %>
-   <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion.post_activity.direct_object , :confirm => t('confirm_delete',
-     :scope => @excursion.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+   <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion, :confirm => t('confirm_delete',
+     :scope => @excursion.class.to_s.underscore), :method => :delete %>
    <% end %>
 
 <% content_for :javascript do %>

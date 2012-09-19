@@ -26,11 +26,9 @@
     </div>
 </div>
 
-
+<% unless @excursion.draft %>
 <div class=" span12">
-
   <section id="left" class="span6 ">
-
     <div class="space_center"></div>
     <div id="" class="tabbable span6 ">
       <ul class="nav nav-tabs">
@@ -61,14 +59,11 @@
       </div>
     </div>
   </section>
-
   <section id="right" class="span3 offset1">
-
       <%= render :partial => "excursions/excursion_info", :locals => {:excursion =>  @excursion } %>
-
   </section>
-  </div>
-
+</div>
+<% end %>
 
 
 
