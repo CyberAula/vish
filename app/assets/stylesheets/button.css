@@ -92,7 +92,7 @@
 
 
 .btn-gray{
-  background-color: #f7f7f7;
+  background-color: #f4f8ff;
   margin-right: 7px;
   display: inline-block;
   width:auto;
@@ -297,7 +297,7 @@
 }
 
 .btn-link {
-  background-color:#EBEBEB;
+  background-color:#F4F8FF;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 20px;
   border-bottom-style: none;
@@ -391,7 +391,7 @@
 
 .btn-following, .btn-follow, .btn-unfollow{
   width: 112px;
-  height: 18px;
+  height: 12px;
   margin-left: 0px;
   border: none;
   border-radius: 15px 15px 15px 15px;
@@ -406,7 +406,7 @@
   transition: border linear 0.2s, box-shadow linear 0.2s;
   resize: none;
   vertical-align: middle;
-  padding-top  :4px;
+  padding-top  :3px;
   padding-bottom  :-4px;
   text-align:center;
 }

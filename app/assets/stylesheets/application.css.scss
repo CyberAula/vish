@@ -444,6 +444,7 @@ margin-right: auto
 
 /*************** menu messages ***************/
 #menuv {
+  margin-top: -5px;
   margin-right: 13px;
   margin-left: -8px  !important;
   border: none;
@@ -455,6 +456,9 @@ margin-right: auto
   padding-top: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 #menuv ul, li, ol {
@@ -1993,9 +1997,9 @@ select {
 }
 
 .boxy_white_wall2{
-border: medium none;
-border-radius: 100% 100% 100% 100% / 33px;
-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
+  border: medium none;
+  border-radius: 100% 100% 100% 100% / 33px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
 }
 
 .boxy_white_wall3 {
@@ -2004,6 +2008,11 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
   box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset;
   cursor: pointer;
   display: block;
+}
+
+.padding_box_message{
+  padding: 10px
+
 }
 
 .embed_show{
@@ -2188,4 +2197,67 @@ box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02);
  }
 .margin-negative-btn {
 margin-top: -10px;
+}
+
+/********margin-top**********/
+
+.margin-top5{margin-top: 5px!important;}
+.margin-top10{margin-top: 10px!important;}
+.margin-top15{margin-top: 15px!important;}
+.margin-top20{margin-top: 20px!important;}
+
+/********margin-left**********/
+
+.margin-left5{margin-left: 5px!important}
+.margin-left10{margin-left: 10px!important}
+.margin-left15{margin-left: 15px!important}
+.margin-left20{margin-left: 20px!important}
+
+/********margin-right**********/
+
+.margin-right5{margin-right:5px!important}
+.margin-right10{margin-right:10px!important}
+.margin-right15{margin-right:15px!important}
+.margin-right20{margin-right:20px!important}
+
+/*******margin-top**********/
+
+.margin-bottom5{margin-bottom:5px!important}
+.margin-bottom10{margin-bottom:10px!important}
+.margin-bottom15{margin-bottom:15px!important}
+.margin-bottom20{margin-bottom:20px !important}
+
+/*********no margin*********/
+
+.no_margin{margin:none;}
+
+
+/*********percent*********/
+
+.percent10{ width: 10%;}
+.percent20{ width: 20%;}
+.percent30{ width: 30%;}
+.percent40{ width: 40%;}
+.percent50{ width: 50%;}
+.percent60{ width: 60%;}
+.percent70{ width: 70%;}
+.percent80{ width: 80%;}
+.percent90{ width: 90%;}
+.percent95{ width: 95%;}
+.percent100{ width: 100%;}
+
+/*********display*********/
+
+.inline{display: inline;}
+.inline-block{display: inline-block;}
+.block{display: block;}
+
+
+.row-new-file-help{
+width:228px   ;
+margin-top: 34px;
+}
+.box-upload-resource{
+width:450px;
+
 }
