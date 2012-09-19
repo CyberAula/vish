@@ -15,7 +15,7 @@
       <div id="followings" class="modal-pivot">
         <%= render @followings.
                    page(params[:page]).
-                   per(20).
+                   per(50).
                    map { |f| profile_or_current_subject.contact_to!(f) } %>
       </div>
     </div>
@@ -24,7 +24,7 @@
       <div id="followers" class="modal-pivot">
         <%= render @followers.
                    page(params[:page]).
-                   per(20).
+                   per(50).
                    map { |f| profile_or_current_subject.contact_to!(f) } %>
       </div>
     </div>
