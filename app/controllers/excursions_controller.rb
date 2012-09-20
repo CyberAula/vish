@@ -64,12 +64,12 @@ class ExcursionsController < ApplicationController
 
   def update
     @excursion = Excursion.find(params[:id])
-    @excursion.update_attributes(params[:excursion])
     if(@excursion.draft and params[:draft] and params[:draft] == "true")
       @excursion.draft = true
     else
       @excursion.draft = false
     end
+    @excursion.update_attributes(params[:excursion])
     @excursion.save!
     render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
   end
