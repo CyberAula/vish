@@ -392,6 +392,7 @@ margin-right: auto
 .size22{font-size: 22px;}
 .size24{font-size: 24px;}
 .size30{font-size: 30px;}
+.size35{font-size: 35px;}
 .size40{font-size: 40px;}
 .size50{font-size: 50px;}
 .size60{font-size: 60px;}
@@ -417,10 +418,12 @@ margin-right: auto
 .white{color: #FFFFFF;}
 .green{ color:#40CC7F;}
 .ligth-gray{color: #E6E6E6}
+.gray-activity{ color: #949eab;}
+.gray-medium{ color: #8f8f8f;}
 .gray{ color:#6e6e6e;}
 .dark-gray {color: #666666;}
 .blue-cake{color: #3366FF;}
-.blue-opacity{color: #3366FF; opacity: 0.6;}
+.blue-opacity{color: #68A3FF;}
 .blue-white{color:#C2C9E0;}
 .red-1{color: #FF005D;}
 .red-2{color: #FF005D; opacity: 0.6;}
@@ -1465,7 +1468,7 @@ margin-left: 20px;
   -moz-border-radius: 4px 4px 0 0;
   border-radius: 4px 4px 0 0;
   background-color: #F9F9F9;
-  border-bottom-color: #FF005D;
+
   cursor: default;
 }
 
@@ -2259,5 +2262,32 @@ margin-top: 34px;
 }
 .box-upload-resource{
 width:450px;
+
+}
+
+.margin-search-toolbar{
+margin-top: 26px;
+}
+.margin-search-title{
+margin-right: 8px  ;
+padding-top:2px;
+
+}
+.title-search-advanced{
+
+  background-color: #ededed;
+  color: #858585;
+  display: block;
+  margin-left: -9px;
+  margin-top:-9px;
+  padding-top: 10px;
+  text-align: center;
+  width: 149px;
+  height: 22px;
+  -webkit-border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
 
 }
