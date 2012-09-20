@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918124346) do
+ActiveRecord::Schema.define(:version => 20120920142058) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -90,6 +90,15 @@ ActiveRecord::Schema.define(:version => 20120918124346) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "actor_keys", :force => true do |t|
+    t.integer  "actor_id"
+    t.binary   "key_der"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "actor_keys", ["actor_id"], :name => "index_actor_keys_on_actor_id"
 
   create_table "actors", :force => true do |t|
     t.string   "name"
@@ -464,6 +473,8 @@ ActiveRecord::Schema.define(:version => 20120918124346) do
 
   add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_activity_object_id"
   add_foreign_key "activity_object_properties", "activity_objects", :name => "index_activity_object_properties_on_property_id", :column => "property_id"
+
+  add_foreign_key "actor_keys", "actors", :name => "actor_keys_on_actor_id"
 
   add_foreign_key "actors", "activity_objects", :name => "actors_on_activity_object_id"
 
