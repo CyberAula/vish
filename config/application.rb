@@ -61,7 +61,7 @@ module Vish
       OfficedocsController.layout "3x9"
       EmbedsController.layout "3x9"
       LinksController.layout "3x9"
-      ExcursionsController.layout "3x9"
+      ExcursionsController.layout "12"
       QuizSessionsController.layout "3x9"
       SearchController.layout "search"
       LegalNoticeController.layout "12"
