@@ -267,6 +267,10 @@ img {
 	background: url(/assets/live.png);
 }
 
+.quizthumb {
+	background: url(/assets/quiz.png);
+}
+
 .livethumb:hover {
 	background: url(/assets/hover/live_hover.png);
 }
