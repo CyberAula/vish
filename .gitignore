@@ -16,6 +16,7 @@
 config/database.yml
 config/deploy.rb
 config/initializers/exception_notification.rb
+config/initializers/social_stream-ostatus.rb
 config/development.sphinx.conf
 
 # Ignore all logfiles and tempfiles.
