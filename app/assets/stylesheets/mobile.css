@@ -365,7 +365,7 @@ margin: 0;
 
 
 /*<!--------------new classes in mobile */
-
+/*
 .nav-pills > li > a {
     border-radius: 5px 5px 5px 5px;
     margin-bottom: 2px;
@@ -403,25 +403,54 @@ margin: 0;
   background-position: center;
   background-repeat: no-repeat; 
 }
-/*.nav-pills > li > a {
-  margin-right: 10px;
-  font-size: 20px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin-top: 2px;
-  margin-bottom: 2px;
-  -webkit-border-radius:15px;
-  -moz-border-radius: 15px;
-  border-radius: 15px;
-  color: #9e9e9e;
-  background-color: #ededed;
+
+*/
+
+.radiobuttons{
+  margin-left: 15px
+}
+.radiobuttons .nav-pills > li > a {
+height: 20px;
+  width: 20px;
+  -webkit-border-radius:10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid  #9e9e9e;
+  display: inline-block;
+  background-color: #ffffff;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px;
 }
 
-.nav-pills > .active > a,
-.nav-pills > .active > a:hover {
+.radiobuttons .nav-pills > .active > a,
+.radiobuttons .nav-pills > .active > a:hover {
   color:  #ffffff;
-  background-color: #FF005D;
-}*/
+  background-color: #dbdbdb;
+}
+
+
+
+.radiobuttons .nav-pills > li > a {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  line-height: 0px;
+}
+.radiobuttons .nav-pills > li {
+font-size: 16px;
+  color: #8f8f8f;
+  margin-right: 15px;
+
+}
+.text-radiobuttons{
+
+padding-left: 4px;
+  display:inline-block;
+
+}
+
 
 .percent10{
   width: 10%;
