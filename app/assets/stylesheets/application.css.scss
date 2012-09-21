@@ -741,11 +741,11 @@ form.file_upload {
 .width-top { width: 80px; vertical-align: top;}
 .vertical-top {vertical-align: top;}
 
-.social_toolbar_excursion{
+.social_toolbar_excursion, .social_toolbar_excursion div{
 
   display: inline-block;
 }
-.gplus_toolbar_excursion {
+.gplus_toolbar_excursion, .twitter_toolbar_excursion {
   display: inline-block;
   margin-left: 5px
 
@@ -753,9 +753,10 @@ form.file_upload {
 }
 .facebook_toolbar_excursion {
   display: inline-block;
-  margin-left: -5px;
-
-
+  margin-left: 5px;
+}
+.email_toolbar_excursion {
+  display: inline-block;
 }
  .input-embed-excursion{
 cursor: text;

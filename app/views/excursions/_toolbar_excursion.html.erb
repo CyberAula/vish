@@ -5,7 +5,7 @@
         <a class="action" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
       </div>
       <div class="btn-gray">
-        <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%=link_to image_tag("icons/compartir.png") + t('excursion.actions.share') %></a>
+        <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= content_tag(:span, image_tag("icons/compartir.png") + t('excursion.actions.share')) %></a>
       </div>
     <%end%>
     <% if user_signed_in? and (excursion.author != current_subject.actor) %>
@@ -67,17 +67,18 @@
     <input class="input-embed-excursion " type="text"  size="30" rows="1" value="<%= shortURL %>" onclick="this.select()" />
 
     <div class="social_toolbar_excursion">
-      <div class="gplus_toolbar_excursion span1">
-    <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(excursion) )} %>
-     </div>
-      <div class="facebook_toolbar_excursion span1">
+      <div class="twitter_toolbar_excursion span1">
+        <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(excursion) )} %>
+      </div>
+      <div class="facebook_toolbar_excursion">
         <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
       </div>
       <div class="gplus_toolbar_excursion ">
-      <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+        <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
       </div>
-
-
+      <div class="email_toolbar_excursion ">
+        <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+      </div>
      </div>
 
 

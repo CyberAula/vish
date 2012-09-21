@@ -1,0 +1,1 @@
+<a href="mailto:?subject=<%= t('excursion.invite.email.subject', :title => CGI::escape(title)) %>&amp;body=<%= t('excursion.invite.email.body', { :url => url, :name => CGI::escape(name) }) %>"><%= image_tag('recommend_excursion_email.png') + ' ' + t('excursion.invite.email.link') %></a>

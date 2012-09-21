@@ -94,6 +94,11 @@ en:
     created: "created"
     favorites: "Favorites"    
     how: "How to create an excursion"
+    invite:
+      email:
+        body: "Hi,%0A%0ACheck%20out%20this%20excursion%20at%20ViSH:%0A%0A%{url}%0A%0AI%20hope%20you%20like%20it!%0A%0A%{name}"
+        link: "e-mail"
+        subject: "Check%20out%20this%20excursion%20at%20http://vishub.org%20:%20%{title}"
     is_draft: "[DRAFT]"
     my: "my"
     name: "excursion"

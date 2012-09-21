@@ -96,6 +96,11 @@ es:
     go:
         repository: "ir a repositorio"
     how: "Como crear una excursión"
+    invite:
+      email:
+        body: "Hola,%0A%0ATe%20recomiendo%20esta%20excursión%20en%20ViSH:%0A%0A%{url}%0A%0A¡Espero%20que%20te%20guste!%0A%0A%{name}"
+        link: "e-mail"
+        subject: "Mira%20esta%20excursión%20en%20http://vishub.org%20:%20%{title}"
     is_draft: "[BORRADOR]"
     my: "mis"
     name: "excursión"
