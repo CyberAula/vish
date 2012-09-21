@@ -1,9 +1,16 @@
 /*
 	TEMPLATE 1: "t1"
 	by Néstor Toribio
-
-	Cuatro Bloques: título + texto + imágen + texto;
 */
+
+.t1_left{
+    height: 72%;
+    margin-left: 16%;
+    margin-top: 1%;
+    overflow: hidden;
+    position: relative;
+    width: 68%;
+}
 
 .t1_header{
     float: left;
@@ -14,15 +21,6 @@
     position: relative;
     width: 68%;
 	z-index: 10px;
-}
-
-.t1_left{
-    height: 72%;
-    margin-left: 16%;
-    margin-top: 1%;
-    overflow: hidden;
-    position: relative;
-    width: 68%;
 }
 
 .t1_subheader{
@@ -51,7 +49,6 @@
 	border: none;
 }
 
-
 .t1_swf{
 	width: 100%;
 	height: 100%;
@@ -61,10 +58,7 @@
 /*
 	TEMPLATE 2: "Espiritu minimalista"
 	by Víctor Sánchez
-
-	Dos elementos título + imágen fullscreen
 */
-
 
 .t2_left{
 	height: 100%;
@@ -106,11 +100,9 @@
 	height: 100%;
 }
 
-/*
-	TEMPLATE 2: "Espiritu minimalista"
-	by Víctor Sánchez
 
-	Dos elementos título + imágen fullscreen
+/*
+	TEMPLATE 3
 */
 
 .t3_header{
@@ -164,11 +156,9 @@
 	height: 100%;
 }
 
-/*
-	TEMPLATE 4: "t4"
-	by Néstor Toribio
 
-	Cuatro Bloques: título + texto + imágen + texto;
+/*
+	TEMPLATE 4
 */
 
 .t4_header{
@@ -221,10 +211,7 @@
 
 
 /*
-	TEMPLATE 1: "Espiritu minimalista"
-	by Víctor Sánchez
-
-	Tres bloques: título + texto + imágen;
+	TEMPLATE 5
 */
 
 .t5_header{
@@ -276,10 +263,7 @@
 }
 
 /*
-	TEMPLATE 5: "t5"
-	by Néstor Toribio
-
-	Cuatro Bloques: título + texto + imágen + texto;
+	TEMPLATE 6
 */
 
 .t6_header{
@@ -341,10 +325,7 @@
 
 
 /*
-	TEMPLATE 3: "3 blocks"
-	by Néstor Toribio
-
-	Cuatro Bloques: título + texto + imágen + texto;
+	TEMPLATE 7
 */
 
 .t7_header{
@@ -404,10 +385,7 @@
 }
 
 /*
-	TEMPLATE 7: "t7"
-	by Néstor Toribio
-
-	Cuatro Bloques: título + texto + imágen + texto;
+	TEMPLATE 8
 */
 
 .t8_header{
@@ -466,7 +444,10 @@
 	border: none;
 }
 
-/*template 9*/
+/*
+	TEMPLATE 9
+*/
+
 
 .t9_header{
 	height: 10%;
@@ -525,7 +506,9 @@
 }
 
 
-/* Snapshots */
+/* 
+	Snapshots 
+*/
 
 div.snapshot_wrapper_viewer{
   width: 100%;
@@ -548,7 +531,9 @@ iframe.snapshot_content_viewer{
 }
 
 
-/* flashcard background (only used in editor for now)*/
+/* 
+	Flashcard background
+*/
 
 .template_flashcard{
 	height: 100%;

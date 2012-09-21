@@ -15,15 +15,15 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.walk48":'Los formatos de video soportados por la aplicaci\u00f3n son muy variados (avi, flv, mpg...).Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk49":'En este espacio puedes buscar videos dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
 "i.walk50":'En este espacio puedes buscar videos dentro de youtube. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', "i.walk51":'En este espacio puedes buscar videos dentro de vimeo. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
 "i.walk52":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenido en directo. Como puedes ver el la zona superior tienes de momento la siguiente opci\u00f3n:", "i.walk53":"(a\u00f1adir video desde una camara en directo)", "i.walk54":'Ahora estas en la secci\u00f3n Webcam.Haz click en "Continuar"', "i.walk55":'En este espacio puedes buscar contenido en directo dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda, desde la cual solo debes pulsar encima del contenido para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adirlo. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
-"i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.AddVideoUrl":"a\u00f1adir URL de video", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", "i.AddObjectContent":"A\u00f1adiendo contenido flash", 
-"i.AddObjectContentUpload":"Subiendo contenido flash", "i.AddObjectContentUrl":"A\u00f1adiendo contenido flash por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.AddVideoContent":"A\u00f1adiendo video", "i.AddVideoContentUrl":"A\u00f1adiendo video por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", 
-"i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", "i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", 
-"i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.objectContent":"Contenido Flash", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Video":"Video", "i.Videos":"Videos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", 
-"i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.SearchVideosVimeo":"Buscar videos en Vimeo", "i.SearchVideosVish":"Buscar videos en el repositorio del ViSH", 
+"i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.AddVideoUrl":"a\u00f1adir URL de video", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", 
+"i.AddObjectContent":"A\u00f1adiendo contenido flash", "i.AddObjectContentUpload":"Subiendo contenido flash", "i.AddObjectContentUrl":"A\u00f1adiendo contenido flash por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.AddVideoContent":"A\u00f1adiendo video", "i.AddVideoContentUrl":"A\u00f1adiendo video por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", 
+"i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", "i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", 
+"i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.objectContent":"Contenido Flash", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Video":"Video", "i.Videos":"Videos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", 
+"i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.SearchVideosVimeo":"Buscar videos en Vimeo", "i.SearchVideosVish":"Buscar videos en el repositorio del ViSH", 
 "i.SearchVideosYoutube":"Buscar videos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.SeeVideoBefore":"Puedes ver el video antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", 
 "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenido al ViSH editor!", "i.Url":"Enlace", "i.url":"enlace", "i.Upload":"Subir", "i.upload":"subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", 
-"i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, "default":{"i.Author":"Author", 
-"i.AddTags":"Add tags", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, 
+"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
@@ -11334,6 +11334,15 @@ window.Modernizr = function(a, b, c) {
   }
   return v(""), h = j = null, e._version = d, e.mq = s, e.testStyles = r, e
 }(this, this.document);
+var getTrans = function(s) {
+  if(typeof VISH !== "undefined" && typeof VISH.Editor !== "undefined" && typeof VISH.Editor.I18n !== "undefined") {
+    var translate = VISH.Editor.I18n.getTrans(s);
+    if(translate != null) {
+      return translate
+    }
+  }
+  return s
+};
 var bkExtend = function() {
   var args = arguments;
   if(args.length == 1) {
@@ -12101,7 +12110,7 @@ var nicEditorAdvancedButton = nicEditorButton.extend({init:function() {
       }
     }
   }
-  (new bkElement("input")).setAttributes({"type":"submit"}).setStyle({backgroundColor:"#efefef", border:"1px solid #ccc", margin:"3px 0", "float":"left", "clear":"both"}).appendTo(this.form);
+  (new bkElement("input")).setAttributes({value:getTrans("i.add"), type:"submit"}).setStyle({backgroundColor:"#efefef", border:"1px solid #ccc", margin:"3px 0", "float":"left", "clear":"both"}).appendTo(this.form);
   this.form.onsubmit = bkLib.cancelEvent
 }, submit:function() {
 }, findElm:function(tag, attr, val) {
@@ -12220,20 +12229,30 @@ nicEditors.registerPlugin(nicPlugin, nicSelectOptions);
 var nicLinkOptions = {buttons:{"link":{name:"Add Link", type:"nicLinkButton", tags:["A"]}, "unlink":{name:"Remove Link", command:"unlink", noActive:true}}};
 var nicLinkButton = nicEditorAdvancedButton.extend({addPane:function() {
   this.ln = this.ne.selectedInstance.selElm().parentTag("A");
-  this.addForm({"":{type:"title", txt:"Add/Edit Link"}, "href":{type:"text", txt:"URL", value:"http://", style:{width:"150px"}}, "title":{type:"text", txt:"Title"}}, this.ln)
+  this.addForm({"":{type:"title", txt:getTrans("i.wysiwyg.addurl")}, "href":{type:"text", txt:"Url", value:"http://", style:{width:"150px"}}, "title":{type:"text", txt:getTrans("i.Title")}}, this.ln)
 }, submit:function(e) {
   var url = this.inputs["href"].value;
   if(url == "http://" || url == "") {
     return false
   }
+  var titleParam = typeof this.inputs["title"].value == "string" && this.inputs["title"].value != "";
+  if(titleParam) {
+    title = this.inputs["title"].value
+  }else {
+    title = url
+  }
   this.removePane();
   if(!this.ln) {
-    var tmp = "javascript:nicTemp();";
+    var tmp = title;
     this.ne.nicCommand("createlink", tmp);
     this.ln = this.findElm("A", "href", tmp)
   }
+  var linkTxtParam = typeof $(this.ln).val() == "string" && $(this.ln).val() != "";
+  if(!titleParam && linkTxtParam) {
+    title = $(this.ln).val()
+  }
   if(this.ln) {
-    this.ln.setAttributes({href:this.inputs["href"].value, title:this.inputs["title"].value, target:this.inputs["target"].options[this.inputs["target"].selectedIndex].value})
+    this.ln.setAttributes({href:url, title:title, target:"blank_"})
   }
 }});
 nicEditors.registerPlugin(nicPlugin, nicLinkOptions);
@@ -12715,7 +12734,16 @@ VISH.Renderer = function(V, $, undefined) {
     return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'></div>"
   };
   var _renderImage = function(element, template) {
-    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + element["body"] + "' style='" + element["style"] + "' /></div>"
+    var div = $("<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'></div>");
+    var img = $("<img class='" + template + "_image' src='" + element["body"] + "' style='" + element["style"] + "' />");
+    if(element["hyperlink"]) {
+      var a = $("<a href='" + element["hyperlink"] + "' target='blank_'></a>");
+      $(a).append(img);
+      $(div).append(a)
+    }else {
+      $(div).append(img)
+    }
+    return VISH.Utils.getOuterHTML(div)
   };
   var renderVideo = function(element, template) {
     var rendered = "<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'>";
@@ -13351,7 +13379,10 @@ VISH.Editor = function(V, $, undefined) {
           }else {
             if(element.type == "image") {
               element.body = $(div).find("img").attr("src");
-              element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(div).find("img"))
+              element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(div).find("img"));
+              if($(div).attr("hyperlink")) {
+                element.hyperlink = $(div).attr("hyperlink")
+              }
             }else {
               if(element.type == "video") {
                 var video = $(div).find("video");
@@ -13749,18 +13780,18 @@ VISH.Editor.Image = function(V, $, undefined) {
   var drawPreviewElement = function(divId) {
     VISH.Editor.Object.drawPreviewObject(contentToAdd)
   };
-  var drawImage = function(image_url, area, style) {
+  var drawImage = function(image_url, area, style, hyperlink) {
     if(flashcard_background_mode) {
       _drawImageAsFlashcardBackground(image_url);
       $("#fc_change_bg_big").hide()
     }else {
-      _drawImageInArea(image_url, area, style)
+      _drawImageInArea(image_url, area, style, hyperlink)
     }
   };
   var _drawImageAsFlashcardBackground = function(image_url) {
     $("#flashcard-background").css("background-image", "url(" + image_url + ")")
   };
-  var _drawImageInArea = function(image_url, area, style) {
+  var _drawImageInArea = function(image_url, area, style, hyperlink) {
     var current_area;
     var reference_width = 100;
     var image_width = 300;
@@ -13778,6 +13809,9 @@ VISH.Editor.Image = function(V, $, undefined) {
     var nextImageId = VISH.Editor.getId();
     var idToDragAndResize = "draggable" + nextImageId;
     current_area.attr("type", "image");
+    if(hyperlink) {
+      current_area.attr("hyperlink", hyperlink)
+    }
     current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' title='Click to drag' src='" + image_url + "' style='" + style + "'/>");
     V.Editor.addDeleteButton(current_area);
     var scaleFactor = image_width / reference_width;
@@ -14149,7 +14183,7 @@ VISH.Samples = function(V, undefined) {
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"articlevish4", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, 
   {"id":"zone5", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
   var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://i3.photobucket.com/albums/y78/Txemin/cuadricula/cuadriculamostra.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", 
@@ -14709,6 +14743,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
           }
         })
       });
+      $(document).on("keydown", ".tools_input_addUrl", _addUrlOnKeyDown);
       toolbarEventsLoaded = true
     }
     loadPresentationToolbar();
@@ -14865,7 +14900,47 @@ VISH.Editor.Tools = function(V, $, undefined) {
         break
     }
   };
-  return{init:init, loadPresentationToolbar:loadPresentationToolbar, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, loadToolbarForElement:loadToolbarForElement, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, selectTheme:selectTheme, changeFlashcardBackground:changeFlashcardBackground, zoomMore:zoomMore, zoomLess:zoomLess}
+  var addLink = function() {
+    $.fancybox($("#tools_addUrl").html(), {"autoDimensions":false, "scrolling":"no", "width":800, "height":215, "showCloseButton":true, "padding":0, "onStart":function() {
+    }, "onComplete":function() {
+      var area = VISH.Editor.getCurrentArea();
+      var hyperlink = $(area).attr("hyperlink");
+      if(hyperlink) {
+        $(".tools_input_addUrl").val(hyperlink)
+      }
+    }, "onClosed":function() {
+    }})
+  };
+  var _addUrlOnKeyDown = function(event) {
+    switch(event.keyCode) {
+      case 13:
+        addUrl();
+        break;
+      default:
+        break
+    }
+  };
+  var addUrl = function() {
+    var url;
+    $(".tools_input_addUrl").each(function(index, input) {
+      if($($(input).parent().parent()).attr("id") !== "tools_addUrl") {
+        url = $(input).val()
+      }
+    });
+    if(url) {
+      url = VISH.Utils.autocompleteUrls(url);
+      var area = VISH.Editor.getCurrentArea();
+      switch($(area).attr("type")) {
+        case "image":
+          $(area).attr("hyperlink", url);
+          break;
+        default:
+          break
+      }
+    }
+    $.fancybox.close()
+  };
+  return{init:init, loadPresentationToolbar:loadPresentationToolbar, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, loadToolbarForElement:loadToolbarForElement, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, selectTheme:selectTheme, changeFlashcardBackground:changeFlashcardBackground, addLink:addLink, addUrl:addUrl, zoomMore:zoomMore, zoomLess:zoomLess}
 }(VISH, jQuery);
 VISH.AppletPlayer = function() {
   var loadApplet = function(element) {
@@ -14939,6 +15014,9 @@ VISH.Constant.UNKNOWN = "Unknown";
 VISH.Constant.NOSERVER = "noserver";
 VISH.Constant.VISH = "vish";
 VISH.Constant.STANDALONE = "node";
+VISH.Constant.SMALL = "small";
+VISH.Constant.MEDIUM = "medium";
+VISH.Constant.LARGE = "large";
 VISH.Debugging = function(V, $, undefined) {
   var developping = false;
   var settings;
@@ -15060,17 +15138,16 @@ VISH.Dummies = function(VISH, undefined) {
   var nextArticleId = 1;
   var dummies = [];
   var init = function() {
-    dummies = ["<article id='article_id_to_change' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t1_subheader editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t4_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t5_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t6_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' class='t7_subheader editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t8_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' class='t9_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li class='li_mch_option'>a) <input class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a class='add_quiz_option'><img src='" + 
-    VISH.ImagesPath + "add_quiz_option.png' /></a></li> </ul> </div></article>", "<article id='article_id_to_change' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t12_header'></div><div id='div_id_to_change' areaid='left' class='t12_left truefalsequestion' type='truefalsequestion'><h2 class='header_truefalse_question'>True/False Question:</h2><table class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th><th></th></tr><tr><td class='td_true'><input type='radio' name='answer_1' class='truefalse_answer' value='true'/></td><td class='td_false'><input type='radio' name='answer_1' class='truefalse_answer' value='false'/></td><td class='td_truefalse_question'><textarea rows='1' class='true_false_question' placeholder='Write question here'></textarea></td><td class='td_add_button'><a><img src='" + 
-    VISH.ImagesPath + "/add_quiz_option.png' /></a> </td></tr></table></div></article>"]
+    dummies = ["<article id='article_id_to_change' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='large' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' size='small' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t1_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='large' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='small'  class='t4_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='medium' class='t5_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t6_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t7_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='small'  class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='small'     class='t8_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t9_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li class='li_mch_option'>a) <input class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a class='add_quiz_option'><img src='" + 
+    VISH.ImagesPath + "add_quiz_option.png' /></a></li> </ul> </div></article>"]
   };
   var getDummy = function(template, position, presentation_id, existing_slide) {
     var dum = dummies[parseInt(template, 10) - 1];
@@ -15335,9 +15412,13 @@ VISH.Editor.API = function(V, $, undefined) {
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;
   var selectedAvatar;
-  var thumbnailsDetailsId = "thumbnails_in_excursion_details";
+  var thumbnailsDetailsId = "thumbnails_in_presentation_details";
   var carrouselDivId = "avatars_carrousel";
   var init = function() {
+    $("#hidden_button_to_launch_picture_fancybox_for_thumbnail").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
+      V.Editor.Utils.loadTab("tab_pic_from_url")
+    }, "onClosed":function(data) {
+    }})
   };
   var onLoadPresentationDetails = function(mySelectedAvatar) {
     selectedAvatar = mySelectedAvatar;
@@ -15345,18 +15426,23 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     VISH.Editor.API.requestThumbnails(_onThumbnailsReceived, _onThumbnailsError)
   };
   var _selectAvatar = function(event) {
+    var avatar = $(event.target);
+    if($(avatar).hasClass("uploadThumbnail")) {
+      $("#hidden_button_to_launch_picture_fancybox_for_thumbnail").trigger("click");
+      return
+    }
     $(".carrousel_element_single_row_thumbnails").removeClass("selectedThumbnail");
-    $(event.target).addClass("selectedThumbnail");
-    $("#excursion_avatar").val($(event.target).attr("src"))
+    $(avatar).addClass("selectedThumbnail");
+    $("#presentation_avatar").val($(event.target).attr("src"))
   };
   var selectRandom = function(max) {
     var randomnumber = Math.ceil(Math.random() * max);
     $("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").addClass("selectedThumbnail");
-    $("#excursion_avatar").val($("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").attr("src"))
+    $("#presentation_avatar").val($("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").attr("src"))
   };
   var selectAvatarInCarrousel = function(avatar) {
     avatar = avatar.split("/").pop();
-    var avatarImages = $("#avatars_carrousel").find("img.carrousel_element_single_row_thumbnails");
+    var avatarImages = $("#" + carrouselDivId).find("img.carrousel_element_single_row_thumbnails");
     $.each(avatarImages, function(i, image) {
       if($(image).attr("src").split("/").pop() == avatar) {
         $(image).addClass("selectedThumbnail");
@@ -15373,7 +15459,7 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
       var myImg = $("<img src=" + item.src + " />");
       carrouselImages.push($(myImg)[0])
     });
-    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+    VISH.Utils.loader.loadImagesOnCarrouselOrder(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onThumbnailsError = function(xhr, ajaxOptions, thrownError) {
     VISH.Debugging.log("_onThumbnailsError");
@@ -16440,6 +16526,7 @@ VISH.Editor.Preview = function(V, $, undefined) {
 VISH.Editor.Quiz = function(V, $, undefined) {
   var maxNumMultipleChoiceOptions = 6;
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)"];
+  var fancyTabs = false;
   var init = function() {
     $(document).on("click", ".add_quiz_option", _addMultipleChoiceOption);
     $(document).on("click", ".remove_quiz_option", _removeMultipleChoiceOption);
@@ -16453,6 +16540,9 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         V.Debugging.log("quiz open load tab")
       }
     }
+  };
+  var addMChoiceQuiz = function() {
+    V.Debugging.log("add MChoice Quiz Button clicked")
   };
   var drawQuiz = function(question, options) {
     $(".current").find(".value_multiplechoice_question").val(question);
@@ -16478,11 +16568,13 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       return
     }
     if(event) {
+      V.Debugging.log("event.target.tagName addMultipleChoiceOption: " + event.target.tagName);
       if(event.target.tagName === "INPUT") {
         img = $(event.target).parent().find("img");
         input = event.target
       }else {
         if(event.target.tagName === "IMG") {
+          V.Debugging.log("event.target : " + event.target);
           img = event.target;
           input = $(event.target).parent().parent().find("input")
         }
@@ -16494,7 +16586,13 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     }
     var a = $(img).parent();
     var li = $(input).parent();
-    var targetChoice = $(".current").find(".ul_mch_options > li").index(li);
+    if(fancyTabs) {
+      V.Debugging.log("enter into fancyTabs true first");
+      var targetChoice = $("#tab_quiz_mchoice_content").find(".ul_mch_options > li").index(li)
+    }else {
+      var targetChoice = $(".current").find(".ul_mch_options > li").index(li)
+    }
+    V.Debugging.log("targetChoice" + targetChoice);
     var isLastChoice = targetChoice === optionsLength - 1;
     if(!isLastChoice) {
       return
@@ -16504,10 +16602,18 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     $(input).blur();
     var maxChoicesReached = optionsLength == maxNumMultipleChoiceOptions - 1;
     var newMultipleChoice = _renderDummyMultipleChoice(choicesLetters[optionsLength], !maxChoicesReached);
-    $(".current").find(".ul_mch_options").append(newMultipleChoice);
-    $(".current").find(".ul_mch_options > li").last().find("input").focus()
+    V.Debugging.log("newMultipleChoice" + newMultipleChoice);
+    if(fancyTabs) {
+      V.Debugging.log("fancyTabs true second one");
+      $("#tab_quiz_mchoice_content").find(".ul_mch_options").append(newMultipleChoice);
+      $("#tab_quiz_mchoice_content").find(".ul_mch_options > li").last().find("input").focus()
+    }else {
+      $(".current").find(".ul_mch_options").append(newMultipleChoice);
+      $(".current").find(".ul_mch_options > li").last().find("input").focus()
+    }
   };
   var _renderDummyMultipleChoice = function(text, addImage) {
+    V.Debugging.log("enter into _renderDummyMultipleChoice");
     var li = $("<li class='li_mch_option'></li>");
     $(li).append("<span class='mcChoiceSpan'>" + text + "</span>");
     $(li).append("<input type='text' class='multiplechoice_text'></input>");
@@ -16536,9 +16642,11 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     }
   };
   var _onLoadTabMChoiceQuiz = function() {
-    V.Debugging.log("enter into onLoadTabMChoiceQuiz")
+    fancyTabs = true;
+    $("#tab_quiz_mchoice").show();
+    $("#tab_quiz_mchoice_content").find(".add_quiz_option_img").attr("src", VISH.ImagesPath + "add_quiz_option.png")
   };
-  return{drawQuiz:drawQuiz, init:init, onLoadTab:onLoadTab}
+  return{drawQuiz:drawQuiz, init:init, onLoadTab:onLoadTab, addMChoiceQuiz:addMChoiceQuiz}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
@@ -16571,7 +16679,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
         V.Editor.Text.launchTextEditor({}, area, slide.elements[el].body)
       }else {
         if(slide.elements[el].type === "image") {
-          V.Editor.Image.drawImage(slide.elements[el].body, area, slide.elements[el].style)
+          V.Editor.Image.drawImage(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].hyperlink)
         }else {
           if(slide.elements[el].type === "video") {
             var options = [];
@@ -16619,7 +16727,21 @@ VISH.Editor.Text = function(V, $, undefined) {
       current_area = area
     }else {
       current_area = $(this).parents(".selectable");
-      initial_text = "<div><font size='3'>" + VISH.Editor.I18n.getTrans("i.WysiwygInit") + "</font></div>"
+      var fontSize;
+      switch($(current_area).attr("size")) {
+        case VISH.Constant.SMALL:
+          fontSize = 4;
+          break;
+        case VISH.Constant.MEDIUM:
+          fontSize = 5;
+          break;
+        case VISH.Constant.LARGE:
+          fontSize = 7;
+          break;
+        default:
+          break
+      }
+      initial_text = "<div><font size='" + fontSize + "''>" + VISH.Editor.I18n.getTrans("i.WysiwygInit") + "</font></div>"
     }
     if(myNicEditor == null) {
       myNicEditor = new nicEditor;
@@ -18792,17 +18914,6 @@ VISH.Utils.loader = function(V, undefined) {
     })
   };
   return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder}
-}(VISH);
-VISH.Utils.quiz = function(V, undefined) {
-  var init = function() {
-    if($(".mcquestion")) {
-      $(".mcquestion").find(".mc_meter").css("display", "none")
-    }
-  };
-  var showStatistic = function(event) {
-    VISH.Debugging.log(" Enter showStatistics value of the event: " + event)
-  };
-  return{init:init, showStatistic:showStatistic}
 }(VISH);
 VISH.Utils.text = function(V, undefined) {
   var getLines = function(ctx, phrase, maxPxLength, textStyle) {

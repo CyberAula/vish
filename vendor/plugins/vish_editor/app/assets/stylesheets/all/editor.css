@@ -818,6 +818,14 @@ div.object_wrapper{
   min-height: 80%;
 }
 
+/*quiz */
+
+.quiz_mchoice_content_foot{
+	outline: none;
+	text-align: center;
+  margin-left: 70px;
+}
+
 
 /************************************
  * EXCURSION DETAILS FANCYBOX
