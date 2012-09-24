@@ -742,7 +742,6 @@ form.file_upload {
 .vertical-top {vertical-align: top;}
 
 .social_toolbar_excursion, .social_toolbar_excursion div{
-
   display: inline-block;
 }
 .gplus_toolbar_excursion, .twitter_toolbar_excursion {
@@ -757,6 +756,11 @@ form.file_upload {
 }
 .email_toolbar_excursion {
   display: inline-block;
+  width: 120px;
+}
+
+.email_toolbar_excursion span {
+  padding: 3px 15px;
 }
  .input-embed-excursion{
 cursor: text;
