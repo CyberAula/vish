@@ -124,7 +124,7 @@ class Excursion < ActiveRecord::Base
     if draft
       activity_object.relation_ids=[Relation::Private.instance.id]
     else
-      activity_object.relation_ids=[Relation::Private.instance.id]
+      activity_object.relation_ids=[Relation::Public.instance.id]
     end
   end
 
