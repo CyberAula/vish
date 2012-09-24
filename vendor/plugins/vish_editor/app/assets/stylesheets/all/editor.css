@@ -64,6 +64,17 @@ img {
   -webkit-border-radius: 10px;
 }
 
+.box3 {
+	margin-left: 30px;
+	margin-top: 30px;
+	border: none;
+	width: 730px;
+	height: 500px;
+	border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
 .box2_upload {
   margin-top: 15px;
   height: 285px;

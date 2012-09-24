@@ -676,3 +676,20 @@ span.mcChoiceSpan{
 .remove_quiz_option > img {
     margin-left: 5px;
 }
+
+
+.quiz_mch_question {
+    border-radius: 0.4em 0.4em 0em 0em;
+    color: #212121;
+    display: block;
+    font-family: Helvetica;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 1%;
+    text-decoration: none;
+    width:96%; 
+    float: left;
+    line-height: 120%;
+    text-align:left;
+    margin: 1%; 
+}
