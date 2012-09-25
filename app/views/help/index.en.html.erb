@@ -9,40 +9,37 @@ ViSH will be using Social Stream as a social networking library and it is enteri
 
 <div class="row space_center"></div>
 <div class="row space_center"></div>
-<div class="header_text"><%= t('excursion.how')%></div>
-<div class = "excursion span3">
-    <ul class="thumbnails">
-        <li class="span1">
-            <%= link_to image_tag("logos/original/excursion-vish.png"), "/excursions/6"%>
-        </li>
-        <li class="span2">
-          <div class="caption inline-block">
-            <h4><%= link_to  t('excursion.how'), "/excursions/6"%></h4>
-            <h5 class="blue-opacity">by <%= t('site.name') %></h5>
-          </div>
-        </li>
-    </ul>
+
+<div class="header_text">Starter guide</div>
+<div class = "excursion span">
+  <div class="span3">
+    <%= link_to image_tag("logos/original/excursion-vish.png"), "/excursions/6"%>
+  </div>
+  <div class="span6">
+    <div class="caption inline-block size16">
+      <%= link_to  t('excursion.how'), "/excursions/6"%>
+      <span class="blue-opacity">by <%= t('site.name') %>
+      </span>
+    </div>     
+  </div>
 </div>
-<div class="row space_center"></div>
-<div class="row space_center"></div>
-<div class="row space_center"></div>
-<div class="header_text"><%= t('document.screencast')%></div>
-<div class="picture span3" id="picture_1">
-	<ul class="thumbnails">
-    	<li class="span">
-      		<div id="margin-resources">
-      			 <%= link_to  "", "/videos/49", :class => "iconx-video", :alt => t('document.screencast') %>
-      		</div>
-    	</li>
-    	<div class="row-fluid-100">
-    		<h4 class="link_gray size15 ">
-    			<%= link_to truncate_name(t('document.screencast'), :length => 20), "/videos/49" %></h4>
-    		</h4>
-    		<div class="rw-words rw-words-1">
-    			<span><h5 class="green inline">by </h5><h5 class="link_gray inline"><%= t('site.name') %></h5></span>
-			</div>
-		</div>			    				
-	 </ul>
+<div class="row space_double_center"></div>
+<div class="picture span7" id="picture_1">
+  <div class="span3">
+    <div id="margin-resources">
+      <%= link_to  "", "/videos/49/download", :class => "iconx-video", :alt => t('document.screencast') %>
+    </div>
+  </div>
+  <div class="span9">
+    <div class="caption inline-block size16">
+      <%= link_to truncate_name(t('document.screencast'), :length => 20), "/videos/49/download" %>
+      <span class="blue-opacity">by <%= t('site.name') %>
+      </span>
+    </div>
+  </div>
 </div>
+
+
+
 
 
