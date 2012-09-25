@@ -5,7 +5,7 @@
 <!--------------boostrap in mobile */
 
 body {
-    color: #333333;
+    color: #6E6E6E;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 13px;
     line-height: 18px;
@@ -451,7 +451,6 @@ padding-left: 4px;
 
 }
 
-
 .percent10{
   width: 10%;
   display: inline-block;
@@ -476,4 +475,9 @@ padding-left: 4px;
   width: 50%;
   display: inline-block;
   float: left;
+}
+.header_text {
+    color: #FF005D;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
