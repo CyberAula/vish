@@ -4346,9 +4346,9 @@ input[type="submit"].btn.btn-mini {
 }
 
 .tooltip-inner {
-  max-width: 200px;
+  width: 150px;
   padding: 3px 8px;
-  font-size: 14px;
+  font-size: 11px;
   color: #666666;
   text-align: center;
   text-decoration: none;
@@ -4356,6 +4356,10 @@ input[type="submit"].btn.btn-mini {
   -webkit-border-radius: 15px;
      -moz-border-radius: 15px;
           border-radius: 15px;
+  height: 20px;
+  overflow:hidden;
+  display: block;
+
 }
 
 .tooltip-arrow {
