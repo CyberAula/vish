@@ -76,7 +76,7 @@
       <div class="gplus_toolbar_excursion ">
         <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
       </div>
-      <div class="email_toolbar_excursion ">
+      <div class="btn-gray">
         <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
       </div>
      </div>

@@ -22,7 +22,7 @@
         <div class="pagination-right">
           <%= f.email_field :email, :id => "username" %>
           <%= f.password_field :password, :id => "password"  %>
-          <%= f.submit t(:sign_in), :class => 'btn btn-primary storePassz'%>
+          <%= f.submit t(:sign_in), :class => 'btn btn-primary storePassz margin-negative-btn'%>
         </div>
 
           <% unless controller.class == SearchController %>
@@ -31,13 +31,13 @@
             </div>
           <% end %>
 
-          <div class="tools-log-out">
+          <div class="">
 
-          <div class="link_gray pagination-right span2">
+          <div class="link_gray pagination-right ">
           <%= link_to t('forgot_password'), new_user_password_path %>
         </div>
 
-        <div class="link_gray pagination-right span2 ">
+        <div class="link_gray pagination-right  ">
           <%= link_to t('sign_up'), new_user_registration_path %>
         </div>
 
