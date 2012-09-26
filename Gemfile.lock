@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: dc632a5401048e9c93dc3bfab1bdc40df2558b9a
+  revision: 91e16e2d406159204bdefd2c1ad3719aef1b0c51
   branch: vish
   specs:
     social_stream-base (0.22.4)
@@ -38,7 +38,7 @@ GIT
       social_stream-base (~> 0.22.0)
     social_stream-ostatus (0.0.1)
       nokogiri (> 1.4.4)
-      proudhon (>= 0.3.2)
+      proudhon (>= 0.3.5)
       social_stream-base (~> 0.22.0)
 
 GEM
@@ -103,7 +103,7 @@ GEM
       activesupport (>= 3.2.0)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
-    cocaine (0.3.0)
+    cocaine (0.3.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -146,7 +146,7 @@ GEM
     hashie (1.2.0)
     highline (1.6.15)
     hike (1.2.1)
-    httpauth (0.1)
+    httpauth (0.2.0)
     i18n (0.6.1)
     i18n-js (2.1.2)
       i18n
@@ -230,7 +230,7 @@ GEM
       paperclip (>= 2.3.8)
     pg (0.14.1)
     polyglot (0.3.3)
-    proudhon (0.3.2)
+    proudhon (0.3.5)
       jeweler
       json
       nokogiri
