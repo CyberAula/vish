@@ -33,8 +33,8 @@ class ApplicationController < ActionController::Base
   private
 
   def detect_mobile_request
-    request.format = :mobile if request.format == :html and request.host.split(".").first == 'm'
-    request.format = :jsmobile if request.format == :js and request.host.split(".").first == 'm'
+    request.format = :mobile if (request.format == :html and request.host.split(".").first == 'm') or (request.format == :html and request.host.split(".").first == 'fruta')
+    request.format = :jsmobile if (request.format == :js and request.host.split(".").first == 'm') or (request.format == :js and request.host.split(".").first == 'fruta')
   end
 
 end
