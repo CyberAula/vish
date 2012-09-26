@@ -166,15 +166,15 @@ select.tagit-hiddenSelect{
 ul.tagit {
     cursor: text;
     overflow: auto;
-    font-size: 14px;
-    padding: 9px;
-    background: #fff;
-    color: #555;
-    border: 1px solid #E5E5E5;
-    -moz-border-radius: 10px;
-    -khtml-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 15px 15px 15px 15px;
+  display: inline-block;
+  font-size: 13px;
+  height: auto;
+  line-height: 18px;
+  margin-bottom: 9px;
+  padding: 3px;
 }
 
 ul.tagit li {
@@ -298,3 +298,51 @@ ul.tagit input[type="text"] {
   font-weight: normal;
   margin: -1px;
 }
+
+
+/** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** rewrite ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **/
+
+.repository_box .tagBoxDocument {
+  padding: 0px;
+  color: #7a8fa9;
+  font-size: 14px;
+  -moz-border-radius: 0;
+  -khtml-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  max-height:none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 9px;
+  margin-right: 0;
+  margin-left: 0px;
+
+}
+.repository_box .upload01 .tagBoxDocument  {
+  margin-right: 0px !important ;
+
+}
+
+
+.repository_box div.tagBoxDocument .tagit{
+  width: 277px;
+}
+
+.repository_box ul.tagit {
+  cursor: text;
+  overflow: auto;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 15px 15px 15px 15px;
+  display: inline-block;
+  font-size: 13px;
+  height: auto;
+  line-height: 18px;
+  margin-bottom: 0px;
+  padding: 10px;
+  margin-left: 0px;
+  width: 277px;
+}
+
+
+

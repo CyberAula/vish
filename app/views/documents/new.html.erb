@@ -23,26 +23,10 @@
   <% toolbar %>
 <% end %>
 
-<div class="row-new-file-help pull-right size18 red-1 inline-block ">
+<!--tabs-->
+<div id="new_file_only" class=" pull-left span6 inline-block">
 
-  <div class="margin-new_resource">
-    <%= t('document.help.title')%> </div>
-  <div class=" row space_center"></div>
-  <div class="gray size12 margin-new_resource">
-    <%= t('document.help.info1_html')%> <br/>
-    <%= t('document.help.info2_html')%> <br/>
-    <%= t('document.help.info3_html')%>  <br/>
-    <%= t('document.help.info4_html')%>  <br/>
-    <%= t('document.help.info5_html')%>  <br/>
-    <%= t('document.help.info6_html')%>  <br/>
-    <%= t('document.help.info7_html')%>  <br/>
-    <%= t('document.help.info8_html')%>
-  </div>
-</div>
-
-<div id="new_file_only" class=" pull-left span6 inline inline-block">
-
-	<div class="menu_new_document tabbable">
+	<div class="tabbable">
 		<ul class="nav nav-tabs span6">
 			<li class="active">
 				<a data-toggle="tab" href="#docs-1" id="upload_file"><%= t('document.document') %></a>
@@ -59,10 +43,12 @@
 
 
 
+<!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
+
 
 <!--menu type of resource-->
-<div class="repository tabbable margin-left15">
-  <div class="tab-content box-upload-resource ">
+<div class="repository tabbable repository_box">
+  <div class="tab-content">
   	
 		<!-- Tags preloaded -->
     <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
@@ -80,14 +66,16 @@
       <%end%>
     </ul>
 
-  	<!-- FILES TAB -->
+    <!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
+
+    <!-- FILES TAB -->
     <div id="docs-1" class="tab-pane active">
 
-      <div class="boxy_gray box-upload-resource">
+      <div class="boxy_gray span6 padding_15">
         <div class=" row space_center"></div>
     	
 		    <!--open file browser-->
-		    <div class="margin15">
+		    <div class="">
 		      <% d = Document.new %>
 		      <% d.owner_id = Actor.normalize_id(current_user) %>
 		      <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
@@ -99,21 +87,21 @@
 
 	
 	        <!--title-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	            <%= f.text_field :title, :class => "form_tag span4" %>
+	        <div class="form row ">
+	          <div class="span4">
+	            <%= f.text_field :title, :class => "span4" %>
 	          </div>
-	          <div class="form_label-new_document">
+	          <div class="span2">
 	            <%= f.label t('document.info.title') %>
 	          </div>
 	        </div>
 
 	        <!--description-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
+	        <div class="form row ">
+	          <div class="span4">
+	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "span4" %>
 	          </div>
-            <div class="form_label-new_document">
+            <div class="span2">
               <%= f.label t('document.info.description') %>
             </div>
 	        </div>
@@ -121,20 +109,23 @@
 	        <!--tags-->
 					<input type="hidden" name="document[tag_list][]"></input>
 	
-	        <div class="clearfloat"></div>
-	        <div class="form_row upload01 ">
 
+	        <div class="form row upload01 repository_box ">
+            <div class="span4">
 	          <div class="tagBoxDocument span">
-	            <ul class="tagList"></ul>
+	            <ul class="tagList span4"></ul>
 	          </div>
-            <div class="form_label-new_document">
-              <%= f.label t('document.info.tags.title') %>
+
             </div>
+            <div class="span2">
+              <%= f.label t('document.info.tags.title') %>
 	        </div>
+            </div>
+
 
 	
 	        <!--Language-->
-	        <div class="form_row margin15">
+	        <div class="form_row ">
 	          <div class="form_field-new_document span3">
 	            <select class="select02 inline-block" name="document[language]">
 	              <option value="" selected="1">(<%= t('lang.independent') %>)</option>
@@ -159,7 +150,7 @@
 
 
           <div class="clearfloat"></div>
-				<div class="form_row margin15">
+				<div class="form_row ">
 
 					<div class="form_field-new_document span ">
 		        <input type="text" class="age span1"/>
@@ -191,13 +182,18 @@
 
 
   </div>
+
+<!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
+
+
+
 		
 		<!-- LINKS TAB -->
     <div id="docs-2" class="tab-pane ">
       <div class="boxy_gray box-upload-resource">
         <div class=" row space_center"></div>
 	
-	      <div class="margin15">
+	      <div class="">
 	        <% d = Link.new %>
 	        <% d.owner_id = Actor.normalize_id(current_user) %>
 	        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
