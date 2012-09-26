@@ -141,7 +141,7 @@
   }
 
   .word-break {
-    overflow: none;
+    overflow: inherit;
     padding-right: 25px;
     word-wrap: break-word;
     -moz-binding: url('xbl.xml#wordwrap');
@@ -194,11 +194,15 @@
     width: 119px;
     display: inline-block;
   }
+  .boxfooter{
+    float:left;
+    display: block
+  }
 </style>
 
 
 <body>
-<div class="box  ">
+<div class="box">
   <div class="header">
 
     <div class="hello word-break gray size22">
@@ -227,17 +231,16 @@
                    :locals => {:activity => @notification.notified_object} %>
       </div>
     </div>
-
   </div>
-
-  <div class="bottom_img">
-    <div class="size12 blue-opacity" style="padding: 3px 5px 5px 25px;">
+</div>
+  <div class="boxfooter">
+    <div class="size12 blue-opacity " style="padding: 3px 5px 5px 25px;">
       <p>
         <%= raw t('notification.config_html', :url => 'http://vishub.org/settings') %>
       </p>
     </div>
   </div>
-</div>
+
 </body>
 </html>
 

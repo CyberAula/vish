@@ -335,7 +335,10 @@ margin-right: auto
   border-radius: 15px; 
     -moz-border-radius: 15px; 
     -webkit-border-radius: 15px;
-  border: 0px solid #EFEFEF; 
+  border: 0px solid #EFEFEF;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .ontop{
@@ -743,6 +746,8 @@ form.file_upload {
 
 .social_toolbar_excursion, .social_toolbar_excursion div{
   display: inline-block;
+  height:19px;
+
 }
 .gplus_toolbar_excursion, .twitter_toolbar_excursion {
   display: inline-block;
@@ -758,6 +763,7 @@ form.file_upload {
   display: inline-block;
   width: 120px;
 }
+.email_toolbar_excursion{}
 
 .email_toolbar_excursion span {
   padding: 3px 15px;

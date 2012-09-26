@@ -185,6 +185,7 @@
     float: right;
     display: inline-block;
   }
+
   .img {
     float: left;
     margin-right: 20px;
@@ -193,13 +194,18 @@
     width: 119px;
     display: inline-block;
   }
+
+  .boxfooter {
+    float: left;
+    display: block
+  }
 </style>
 
 <body>
 <div class="box  ">
   <div class="header">
     <div class="hello word-break gray size22">
-      <span style="font-weight: bold;"><%= truncate_name(@message.sender.name)%></span>
+      <span style="font-weight: bold;"><%= truncate_name(@message.sender.name) %></span>
       <%= t('mailboxer.message_mailer.has_sent_reply.' + @receiver.subject.class.to_s.downcase, :receiver => @receiver.name) %>
     </div>
     <div class="box_logo">
@@ -208,15 +214,15 @@
   </div>
   <div class="box2">
     <div class="photo border-radius">
-      <img src="http://<%= ActionMailer::Base.default_url_options[:host] +@message.sender.logo.url(:profile)%>" alt="<%=@message.sender.name%>">
+      <img src="http://<%= ActionMailer::Base.default_url_options[:host] +@message.sender.logo.url(:profile) %>" alt="<%= @message.sender.name %>">
     </div>
     <div class="boxtext">
       <div class="name size18 blue-cake ">
         <%= @message.sender.name %>
         <% if @message.sender.profile.organization? %>
-            <br/>
+          <br/>
 			<span style="color: #3366FF; opacity: 0.6; font-weight: normal;">
-			<%= @message.sender.profile.organization%>
+			<%= @message.sender.profile.organization %>
 			</span>
         <% end %>
       </div>
@@ -226,10 +232,12 @@
     </div>
   </div>
 </div>
-<div class="size12 blue-opacity" style="padding: 3px 5px 5px 25px;">
-  <p>
-    <%= link_to t('message.look'), conversation_url(@message.conversation)%> at <%= t('site.name')%>
-  </p>
+<div class="boxfooter ">
+  <div class="size12 blue-opacity " style="padding: 3px 5px 5px 25px;">
+    <p>
+      <%= link_to t('message.look'), conversation_url(@message.conversation) %> at <%= t('site.name') %>
+    </p>
+  </div>
 </div>
 </body>
 </html>
