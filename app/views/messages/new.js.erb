@@ -1,3 +1,5 @@
+
+
 $("#content").html("<%= escape_javascript(render :partial => 'new') %>");
 
 <%= toolbar :messages %>
@@ -8,13 +10,52 @@ $("#content").html("<%= escape_javascript(render :partial => 'new') %>");
 ) %>
 
 
-var recipients = $("#_recipients").fcbkcomplete({
-        json_url: "<%= contacts_path(:form => true, :format => :json) %>",
-	cache: true,
-	filter_hide: true,
-	newel: false,
-	height: 6
-});
+
+      
+      
+     //////////////
+      //Contacts
+      //////////////
+
+      var contactos = [];
+      var i = 0;
+
+      <%@user_contacts = current_user.sent_contacts %>
+        <%@user_contacts.each do |contact| %>
+             contactos[i]= "<%=contact.receiver.name %>";
+             i++;
+        <%end%>
+
+
+    $('#singleFieldTag').tagit({
+    <% unless @recipient.nil? %>
+      initialTags:["<%= @recipient.name %>"],   
+    <% end %>
+        allowSpaces: true, 
+         allowNewTags:false, 
+          tagSource: contactos,
+          availableTags: contactos, 
+          // This will make Tag-it submit a single form value, as a comma-delimited field.
+          singleField: true,
+           triggerKeys:['enter', 'comma', 'tab'],
+                singleFieldNode: $('#_recipients')
+        });
+  
+  
+
+
+
+
+function resetFields(){
+  //File input
+  $(".form_tag").val("")
+  //All tagits
+    var tagList = $(".tagList");
+    $(tagList).tagit("reset");
+  //All input tags
+    $("input[name='document[tag_list][]']").val("")
+
+}
 
   $("#body").cleditor({
     width:"100%",
