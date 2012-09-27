@@ -11,9 +11,9 @@
         <% if activity.direct_object && can?(:destroy, activity.direct_object) %>
           <div class="icon_close">
 
-            <%= link_to(image_tag('close.png'), activity.direct_object , :confirm => t('confirm_delete',
-                                                                                       :scope => activity.direct_object.class.to_s.underscore), :method => :delete,
-                        :remote => true) %>
+            <%= link_to(raw("<i class='icontool16-tool16_close_2'></i> "), activity.direct_object , :confirm => t('confirm_delete',
+            :scope => activity.direct_object.class.to_s.underscore), :method => :delete,
+            :remote => true) %>
           </div>
         <% end %>
         <span class="span"><%= render activity.activity_objects %></span>
