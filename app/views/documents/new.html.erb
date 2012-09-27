@@ -41,6 +41,24 @@
 	</div>
 </div>
 
+<!--help-->
+
+
+<div class="span3 pull-right size18 red-1 margin-top15 ">
+
+  <%= t('document.help.title')%>
+  <div class=" row space_center"></div>
+  <div class="gray size12 ">
+    <%= t('document.help.info1_html')%> <br/>
+    <%= t('document.help.info2_html')%> <br/>
+    <%= t('document.help.info3_html')%>  <br/>
+    <%= t('document.help.info4_html')%>  <br/>
+    <%= t('document.help.info5_html')%>  <br/>
+    <%= t('document.help.info6_html')%>  <br/>
+    <%= t('document.help.info7_html')%>  <br/>
+    <%= t('document.help.info8_html')%>
+  </div>
+</div>
 
 
 <!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
@@ -91,7 +109,7 @@
 	          <div class="span4">
 	            <%= f.text_field :title, :class => "span4" %>
 	          </div>
-	          <div class="span2">
+	          <div class="span2 margin-top5">
 	            <%= f.label t('document.info.title') %>
 	          </div>
 	        </div>
@@ -101,7 +119,7 @@
 	          <div class="span4">
 	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "span4" %>
 	          </div>
-            <div class="span2">
+            <div class="span2 margin-top5">
               <%= f.label t('document.info.description') %>
             </div>
 	        </div>
@@ -117,7 +135,7 @@
 	          </div>
 
             </div>
-            <div class="span2">
+            <div class="span2 margin-top5">
               <%= f.label t('document.info.tags.title') %>
 	        </div>
             </div>
@@ -125,9 +143,9 @@
 
 	
 	        <!--Language-->
-	        <div class="form_row ">
-	          <div class="form_field-new_document span3">
-	            <select class="select02 inline-block" name="document[language]">
+	        <div class="form row ">
+            <div class="span4">
+	            <select class="span4 " name="document[language]">
 	              <option value="" selected="1">(<%= t('lang.independent') %>)</option>
 	              <option value="de">Deutsch</option>
 	              <option value="en">English</option>
@@ -138,43 +156,42 @@
 	              <option value="ru">Русский</option>
 								<option value="ot"><%= t('lang.others') %></option>
 	            </select>
-	          </div>
-          </div>
+            </div>
 
-          <div class="form_label-new_document upload02">
+
+          <div class="span2 margin-top5">
             <%= f.label t('lang.title') %>
           </div>
-				
+          </div>
 				<!-- Age (With slider) -->
 
 
 
-          <div class="clearfloat"></div>
-				<div class="form_row ">
 
-					<div class="form_field-new_document span ">
-		        <input type="text" class="age span1"/>
+				<div class="form row ">
+
+					<div class="span4">
+
+		        <input type="text" class="age span1 pagination-centered"/>
 						<input type="hidden"  name="document[age_min]"/>
 						<input type="hidden"  name="document[age_max]"/>
-					</div>
-					<div class="form_label-new_document upload-age ">
+
+            <div class="span3 pull-right">
             <div class="slider-range"></div>
+            </div>
           </div>
-            <div class="form_label-new_document  ">
-
-              <%= f.label t('document.info.age')%>
-
-          </div>
+            <div class="span2 margin-top5 ">
+               <%= f.label t('document.info.age')%>
+            </div>
 
         </div>
 	
 	      <!--btn-->
-	      <div class="clearfloat"></div>
-	      <div class="form-actions pagination-right space_right">
-	        <div class="actions center">
-	          <%= f.submit t('button.save'), :class => "button", :tab => "file" %>
+
+	        <div class="span1 offset5">
+	          <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "file" %>
 	        </div>
-	      </div>
+
 	      <% end %>
 	    </div>
 	  </div>
@@ -183,6 +200,7 @@
 
   </div>
 
+
 <!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
 
 
@@ -190,116 +208,124 @@
 		
 		<!-- LINKS TAB -->
     <div id="docs-2" class="tab-pane ">
-      <div class="boxy_gray box-upload-resource">
+
+      <div class="boxy_gray span6 padding_15">
         <div class=" row space_center"></div>
-	
-	      <div class="">
-	        <% d = Link.new %>
-	        <% d.owner_id = Actor.normalize_id(current_user) %>
-	        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-	          <%= f.hidden_field :owner_id %>
-	          <%= f.hidden_field :callback_url %>
-	          <%= f.hidden_field :loaded %>
-	          <%= f.hidden_field :image %>
-	      </div>
-	
-	      <div id="new_file_only_wrapper">
+
+
+        <div class="">
+          <% d = Link.new %>
+          <% d.owner_id = Actor.normalize_id(current_user) %>
+          <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+            <%= f.hidden_field :owner_id %>
+            <%= f.hidden_field :callback_url %>
+            <%= f.hidden_field :loaded %>
+            <%= f.hidden_field :image %>
+            </div>
+
+            <div id="new_file_only_wrapper">
+
+
 	
 	        <!--URL-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	            <%= f.text_field :url, :class => "form_tag span4" %>
+            <div class="form row ">
+              <div class="span4">
+	            <%= f.text_field :url, :class => "span4" %>
 	          </div>
-	          <div class="form_label-new_document">
+              <div class="span2 margin-top5">
 	            <%= f.label "URL" %>
 	          </div>
 	        </div>
 	
 	        <!--title-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	          	<%= f.text_field :title, :class => "form_tag span4" %>
+              <div class="form row ">
+                <div class="span4">
+	          	<%= f.text_field :title, :class => "span4" %>
 	          </div>
-	          <div class="form_label-new_document">
+                <div class="span2 margin-top5">
 	            <%= f.label t('document.info.title') %>
 	          </div>
 	        </div>
 	
 	        <!--description-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
+            <div class="form row ">
+              <div class="span4">
+	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "span4" %>
 	          </div>
-            <div class="form_label-new_document">
+              <div class="span2 margin-top5">
               <%= f.label t('document.info.description') %>
             </div>
 	        </div>
 
 	        <!--tags-->
-          <input type="hidden" name="link[tag_list][]"></input>
+            <input type="hidden" name="link[tag_list][]"></input>
 
-          <div class="clearfloat"></div>
-          <div class="form_row upload01 ">
 
-            <div class="tagBoxDocument span">
-              <ul class="tagList"></ul>
+            <div class="form row upload01 repository_box ">
+              <div class="span4">
+                <div class="tagBoxDocument span">
+                  <ul class="tagList span4"></ul>
+                </div>
+
+              </div>
+              <div class="span2 margin-top5">
+                <%= f.label t('document.info.tags.title') %>
+              </div>
             </div>
-            <div class="form_label-new_document">
-              <%= f.label t('document.info.tags.title') %>
-            </div>
-          </div>
+
 
 
           <!--Language-->
-          <div class="form_row margin15">
-            <div class="form_field-new_document span3">
-              <select class="select02 inline-block" name="document[language]">
-                <option value="" selected="1">(<%= t('lang.independent') %>)</option>
-                <option value="de">Deutsch</option>
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="it">Italiano</option>
-                <option value="pt">Português</option>
-                <option value="ru">Русский</option>
-                <option value="ot"><%= t('lang.others') %></option>
-              </select>
-            </div>
-          </div>
+            <div class="form row ">
+              <div class="span4">
+                <select class="span4 " name="document[language]">
+                  <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+                  <option value="de">Deutsch</option>
+                  <option value="en">English</option>
+                  <option value="es">Español</option>
+                  <option value="fr">Français</option>
+                  <option value="it">Italiano</option>
+                  <option value="pt">Português</option>
+                  <option value="ru">Русский</option>
+                  <option value="ot"><%= t('lang.others') %></option>
+                </select>
+              </div>
 
-          <div class="form_label-new_document upload02">
-            <%= f.label t('lang.title') %>
-          </div>
+
+              <div class="span2 margin-top5">
+                <%= f.label t('lang.title') %>
+              </div>
+            </div>
+
+
           <!-- Age (With slider) -->
 
 
 
-          <div class="clearfloat"></div>
-          <div class="form_row margin15">
+            <div class="form row ">
 
-            <div class="form_field-new_document span ">
-              <input type="text" class="age span1"/>
-              <input type="hidden"  name="document[age_min]"/>
-              <input type="hidden"  name="document[age_max]"/>
+              <div class="span4">
+
+                <input type="text" class="age span1 pagination-centered"/>
+                <input type="hidden"  name="document[age_min]"/>
+                <input type="hidden"  name="document[age_max]"/>
+
+                <div class="span3 pull-right">
+                  <div class="slider-range"></div>
+                </div>
+              </div>
+              <div class="span2 margin-top5 ">
+                <%= f.label t('document.info.age')%>
+              </div>
+
             </div>
-            <div class="form_label-new_document upload-age ">
-              <div class="slider-range"></div>
-            </div>
-            <div class="form_label-new_document  ">
-
-              <%= f.label t('document.info.age')%>
-
-            </div>
-
-          </div>
 	
 		      <!--btn-->
-		      <div class="clearfloat"></div>
-		      <div class="form-actions pagination-right space_right">
-		        <div class="actions center">
-		          <%= f.submit t('button.save'), :class => "button", :tab => "link" %>
+
+            <div class="span1 offset5">
+		          <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "link" %>
 		        </div>
-		      </div>
+
 					<% end %>					
 		    </div>
 	    </div>
@@ -307,13 +333,16 @@
 
 
 	  </div>
-	
-		<!-- EMBED TAB -->
+
+<!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
+
+
+    <!-- EMBED TAB -->
     <div id="docs-3" class="tab-pane  ">
-      <div class="boxy_gray box-upload-resource">
+      <div class="boxy_gray span6 padding_15">
         <div class=" row space_center"></div>
 			
-			  <div class="margin15">
+			  <div class="">
 	        <% d = Embed.new %>
 	        <% d.owner_id = Actor.normalize_id(current_user) %>
 	        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
@@ -323,31 +352,31 @@
 	      <div id="new_file_only_wrapper">
 	
 	        <!--Embed-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	            <%= f.text_field :fulltext, :class => "form_tag span4" %>
+          <div class="form row ">
+            <div class="span4">
+	            <%= f.text_field :fulltext, :class => "span4" %>
 	          </div>
-	          <div class="form_label-new_document">
+            <div class="span2 margin-top5">
 	            <%= f.label "Embed" %>
 	          </div>
 	        </div>
 	
 	        <!--title-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	            <%= f.text_field :title, :class => "form_tag span4" %>
+          <div class="form row ">
+            <div class="span4">
+	            <%= f.text_field :title, :class => "span4" %>
 	          </div>
-	          <div class="form_label-new_document">
+            <div class="span2 margin-top5">
 	            <%= f.label t('document.info.title') %>
 	          </div>
 	        </div>
 	
 	        <!--description-->
-	        <div class="form_row margin15">
-	          <div class="form_field-new_document">
-	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "form_tag span4" %>
+          <div class="form row ">
+            <div class="span4">
+	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "span4" %>
 	          </div>
-            <div class="form_label-new_document">
+            <div class="span2 margin-top5">
               <%= f.label t('document.info.description') %>
             </div>
 	        </div>
@@ -355,21 +384,23 @@
 	        <!--tags-->
           <input type="hidden" name="document[tag_list][]"></input>
 
-          <div class="clearfloat"></div>
-          <div class="form_row upload01 ">
+          <div class="form row upload01 repository_box ">
+            <div class="span4">
+              <div class="tagBoxDocument span">
+                <ul class="tagList span4"></ul>
+              </div>
 
-            <div class="tagBoxDocument span">
-              <ul class="tagList"></ul>
             </div>
-            <div class="form_label-new_document">
+            <div class="span2 margin-top5">
               <%= f.label t('document.info.tags.title') %>
             </div>
           </div>
 
+
           <!--Language-->
-          <div class="form_row margin15">
-            <div class="form_field-new_document span3">
-              <select class="select02 inline-block" name="document[language]">
+          <div class="form row ">
+            <div class="span4">
+              <select class="span4 " name="document[language]">
                 <option value="" selected="1">(<%= t('lang.independent') %>)</option>
                 <option value="de">Deutsch</option>
                 <option value="en">English</option>
@@ -381,47 +412,48 @@
                 <option value="ot"><%= t('lang.others') %></option>
               </select>
             </div>
-          </div>
 
-          <div class="form_label-new_document upload02">
-            <%= f.label t('lang.title') %>
+
+            <div class="span2 margin-top5">
+              <%= f.label t('lang.title') %>
+            </div>
           </div>
           <!-- Age (With slider) -->
 
 
 
-          <div class="clearfloat"></div>
-          <div class="form_row margin15">
+          <div class="form row ">
 
-            <div class="form_field-new_document span ">
-              <input type="text" class="age span1"/>
+            <div class="span4">
+
+              <input type="text" class="age span1 pagination-centered"/>
               <input type="hidden"  name="document[age_min]"/>
               <input type="hidden"  name="document[age_max]"/>
-            </div>
-            <div class="form_label-new_document upload-age ">
-              <div class="slider-range"></div>
-            </div>
-            <div class="form_label-new_document  ">
 
+              <div class="span3 pull-right">
+                <div class="slider-range"></div>
+              </div>
+            </div>
+            <div class="span2 margin-top5 ">
               <%= f.label t('document.info.age')%>
-
             </div>
 
           </div>
 		      <!--btn-->
-		      <div class="clearfloat"></div>
-	        <div class="form_row margin15">
-            <div class="form_field-new_document span3 pagination-left">
+
+
+
+
+	        <div class="span1">
+
               <%= f.check_box :live %> <label class ="inline" for="live"><%= t('embed.live') %></label>
 
-            </div>
+
 
           </div>
-		        <div class="form-actions pagination-right space_right">
-		          <div class="actions center">
-		            <%= f.submit t('button.save'), :class => "button", :tab => "embed" %>
-		          </div>
-		        </div>
+          <div class="span1 offset5">
+            <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "embed" %>
+          </div>
 
 		      <% end %> 	
 				</div>

@@ -1,5 +1,12 @@
-/**** boostrap reesscrito***/
 
+
+/*********linea 1082*********/
+select.span4,
+.uneditable-input.span4 {
+  width: 299px;
+}
+
+/*********linea 3493*********/
 .repository_box .tab-content {
   overflow: visible !important;
 }

@@ -69,3 +69,38 @@
 .slider-range{
 	width: 98%;
 }
+/** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** rewrite ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **/
+ /***upload resource****/
+
+
+.span3 .slider-range{
+  margin-top: 10px;
+  width: 92%;
+}
+
+.span4 .age{
+  border:0;
+  font-weight: bold;
+  align-text: center;
+  padding-left: 0px;
+  border: 1px solid #CCCCCC;
+  line-height: 18px;
+  padding: 3px;
+}
+
+.span4 .ui-widget-content {
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+}
+
+
+.span4 .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  background: url("icons/opcion.png") no-repeat;
+  border: none;
+  color: none;
+  font-weight: normal;
+}
+.span4  .ui-widget {
+  font-size: 9px;
+}
+/***upload resource****/
