@@ -19,7 +19,7 @@
             //Maps directly to the jQuery-ui Autocomplete option
             tagSource:[],
             //What keys should trigger the completion of a tag
-            triggerKeys:['enter', 'space', 'comma', 'tab'],
+            triggerKeys:['enter', 'comma', 'tab'],
             //array method for setting initial tags
             initialTags:[],
             //minimum length of tags

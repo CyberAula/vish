@@ -1,3 +1,6 @@
+
+
+
 <% content_for :title do %>
   <%=t('message.other')%>
 <% end %>
@@ -11,15 +14,59 @@
   link_to(t('message.new'), new_message_path, :remote => true)
 ) %>
 
-<% content_for :javascript do %>
 
-	var recipients = $("#_recipients").fcbkcomplete({
-                json_url: "<%= contacts_path(:form => true, :format => :json) %>",
-		cache: true,
-		filter_hide: true,
-		newel: false,
-		height: 6
-	});	
+
+<!-- User tags -->
+    <%@user_contacts = current_user.sent_contacts %>
+    <ul id="preloadUserContactList" style="display:none">
+      <%@user_contacts.each do |contact| %>
+        <li><%= contact.receiver.name %></li>
+      <%end%>
+    </ul>
+
+<% content_for :javascript do %>	
+			//////////////
+			//Contacts
+			//////////////
+
+			var contactos = [];
+			var i = 0;
+
+			<%@user_contacts = current_user.sent_contacts %>
+     		<%@user_contacts.each do |contact| %>
+      			 contactos[i]= "<%=contact.receiver.name %>";
+      			 i++;
+     		<%end%>
+
+
+		$('#singleFieldTag').tagit({
+		<% unless @recipient.nil? %>
+			initialTags:["<%= @recipient.name %>"],		
+		<% end %>
+				allowSpaces: true, 
+			    tagSource: contactos,
+			    availableTags: contactos,
+			    allowNewTags:false, 
+			    // This will make Tag-it submit a single form value, as a comma-delimited field.
+			    singleField: true,
+			     triggerKeys:['enter', 'comma', 'tab'],
+                singleFieldNode: $('#_recipients')
+		    });
+	
+
+	
+	function resetFields(){
+	//File input
+	$(".form_tag").val("")
+	//All tagits
+		var contactList = $("#_recipients");
+		$(contactList).tagit("reset");
+	//All input tags
+		$("input[name='document[tag_list][]']").val("")
+
+	}
+
+
 	
 	$("#body").cleditor({
     width:"100%",
@@ -27,10 +74,12 @@
 	});
 
 	<% unless @recipient.nil? %>
+	initialTags:["receiver"],
 		$("#_recipients").trigger("addItem",[{"title": "<%= truncate_name @recipient.name %>", "value": "<%= @recipient.id %>"}]);
 	<% end %>
 
   $(".new_message").validate({errorClass: "validation_error"});
+
 
 <% end %>
 
