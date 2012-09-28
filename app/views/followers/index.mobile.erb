@@ -54,7 +54,7 @@
   </ul>
   <div class="tab-content">
     <div id="following" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'sent' %>">
-      <div id="followings">
+      <div id="followings" class="box_basic span12 margin-bottom5">
         <%= render @followings.
                    page(params[:page]).
                    per(20).
@@ -62,7 +62,7 @@
       </div>
     </div>
     <div id="follower" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'received' %>">
-      <div id="followers">
+      <div id="followers" class="box_basic span12 margin-bottom5">
         <%= render @followers.
                    page(params[:page]).
                    per(20).
