@@ -30,10 +30,13 @@
           <div class="space"></div>
           <ul class="nav pull-right">
             <li class="divider-vertical"></li>
-            <li class="dropdown foo">
-              <ul>
-                <li><a href="#">Languaje</a></li>
-                <li><%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %></li>
+            <li class="">
+              <div class="btn-group btn-languaje clearfloat">
+                <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
+                  <span class="gray-medium"><%= t('lang.title') %></span>
+
+                </button>
+                <li><%= link_to t('conditions.other'), '/legal_notice', :target => '_blank' %></li>
                 <li class="divider"></li>
                 <li>Virtual Science Hub &copy; 2012</li>
               </ul>
