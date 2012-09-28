@@ -38,69 +38,104 @@
 <% end %>
 <div class="space_center"></div>
 <section>
-    <nav>
-        <article class="article ">
-            <div class="row-fluid">
-                <div class="span12 ">
+  <nav>
+    <article class="article ">
+      <div class="row-fluid">
+        <div class="span12 ">
 
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a data-toggle="tab" href="#excursions"><%= t('excursion.other')%></a>
-                        </li>
-                        <li class="">
-                            <a data-toggle="tab" href="#timeline"><%= t('activity.timeline')%></a>
-                        </li>
-                    </ul>
-                </div>
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a data-toggle="tab" href="#excursions"><%= t('excursion.other') %></a>
+            </li>
+            <li class="">
+              <a data-toggle="tab" href="#timeline"><%= t('activity.timeline') %></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+    <article class="article">
+      <div class="tab-content">
+        <div id="excursions" class="tab-pane active">
+
+          <div class="row-fluid">
+            <div class="radiobuttons ">
+              <div class="span12 ">
+                <ul class="nav nav-pills ">
+                  <li class="active"><a data-toggle="tab" href="#ex-1"></a>
+
+                    <div class="text-radiobuttons size16"><%= t('excursion.net') %></div>
+                  </li>
+                  <li class=""><a data-toggle="tab" href="#ex-2"></a>
+
+                    <div class="text-radiobuttons size16"><%= t('excursion.my') %></div>
+                  </li>
+                  <li class=""><a data-toggle="tab" href="#ex-3"></a>
+
+                    <div class="text-radiobuttons size16"><%= t('excursion.top') %></div>
+                  </li>
+                  <li class=""><a data-toggle="tab" href="#ex-4"></a>
+
+                    <div class="text-radiobuttons size16"><%= image_tag("star-on.png") %></div>
+                  </li>
+                </ul>
+              </div>
             </div>
-        </article>
-        <article class="article">
-            <div class="tab-content">
-                <div id="excursions" class="tab-pane active">
+          </div>
 
-                  <div class="row-fluid">
-                    <div class="radiobuttons ">
-                      <div class="span12 ">
-                      <ul class="nav nav-pills " >
-                        <li class="active"><a data-toggle="tab" href="#ex-1"></a> <div class="text-radiobuttons size16"><%= t('excursion.net') %></div></li>
-                        <li class=""><a data-toggle="tab" href="#ex-2"></a><div class="text-radiobuttons size16"><%= t('excursion.my') %></div></li>
-                        <li class=""><a data-toggle="tab" href="#ex-3"></a><div class="text-radiobuttons size16"><%= t('excursion.top') %></div></li>
-                        <li class=""><a  data-toggle="tab" href="#ex-4"></a><div class="text-radiobuttons size16"><%= image_tag("star-on.png")%></div></li>
-                     </ul>
-                    </div>
-                      </div>
+
+          <div class="tab-content">
+            <div id="ex-1" class="tab-pane active">
+              <div id="home-excursions-net">
+
+                <%= render :partial => 'excursions/filter_results', :locals => {:excursions => current_subject_excursions(:limit => 10)} %>
+                <div class="row-fluid">
+                  <div class="span12 btn-more link_gray4">
+                    <%= t('activity.more') %>
                   </div>
 
-
-
-                  <div class="tab-content">
-                    <div id="ex-1" class="tab-pane active">
-                      <div id="home-excursions-net">
-
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions(:limit => 10) } %>
-                      </div>
-                    </div>
-                    <div id="ex-2" class="tab-pane">
-                      <div id="home-excursions-me">
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions(:scope => :me, :limit => 10) } %>
-                      </div>
-                    </div>
-                    <div id="ex-3" class="tab-pane">
-                      <div id="home-excursions-more">
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject.excursion_suggestions(10) } %>
-                      </div>
-                    </div>
-                    <div id="ex-4" class="tab-pane">
-                      <div id="home-excursions-fav">
-                        <%= render :partial => 'excursions/filter_results', :locals => { :excursions => current_subject_excursions(:scope => :like, :limit => 10) } %>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div id="timeline" class="tab-pane ">
-                    <%= render :partial => 'activities/wall', :locals  => { :activities => @activities_net, :is_active_wall => true } %>
-                </div>
+              </div>
             </div>
-        </article>
-    </nav>
+            <div id="ex-2" class="tab-pane">
+              <div id="home-excursions-me">
+                <%= render :partial => 'excursions/filter_results', :locals => {:excursions => current_subject_excursions(:scope => :me, :limit => 10)} %>
+                <div class="row-fluid">
+                  <div class="span12 btn-more link_gray4">
+                    <%= t('activity.more') %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div id="ex-3" class="tab-pane">
+              <div id="home-excursions-more">
+                <%= render :partial => 'excursions/filter_results', :locals => {:excursions => current_subject.excursion_suggestions(10)} %>
+                <div class="row-fluid">
+                  <div class="span12 btn-more link_gray4">
+                    <%= t('activity.more') %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div id="ex-4" class="tab-pane">
+              <div id="home-excursions-fav">
+                <%= render :partial => 'excursions/filter_results', :locals => {:excursions => current_subject_excursions(:scope => :like, :limit => 10)} %>
+                <div class="row-fluid">
+                  <div class="span12 btn-more link_gray4">
+                    <%= t('activity.more') %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="timeline" class="tab-pane ">
+          <%= render :partial => 'activities/wall', :locals => {:activities => @activities_net, :is_active_wall => true} %>
+        </div>
+      </div>
+    </article>
+  </nav>
 </section>
