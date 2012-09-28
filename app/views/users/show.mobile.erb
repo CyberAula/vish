@@ -17,28 +17,29 @@
 
 <section id="wall">
   <article class="row-fluid ">
-    <div class="span12 margin-bottom20">
+    <div class="span12">
       <div class="span2">
         <%= image_tag(@user.logo.url(:profile), :alt => @user.name, :id => "current_avatar_img") %>
       </div>
-      <div class="span10 ">
-        <div class="caption">
-          <h2 class="span7 margin-left10 size24 ellipsis "><%= @user.name %></h2>
 
-          <div class="pull-right span3  margin-top5 send_messag size6 red-2">
-            <%= contact_to(@user) %>
-          </div>
-          <h3 class="margin-left10 ellipsis liquid_text95">
+      <div class="span10 padding_10">
+        <div class="span10 size22 ellipsis"><%= @user.name %>  </div>
+
+        <div class="pull-right span2 ">
+          <%= contact_to(@user) %>
+        </div>
+        <div class="margin-top10 size14 ellipsis ">
             <% @user.profile.subject.tag_list.each do |t| %>
               <a href="#"><%= t.to_s %></a>
             <% end %>
-          </h3>
+          </div>
 
-          <div class="span12 margin-left10 size8 gray-medium">
-            <h3><%= link_to @user.followers.count.to_s, [@user, "followers"], :class => "green" %> <%= t('follow.followers') %>
-              / <%= link_to @user.following_actor_objects.includes(:actor).count.to_s, [@user, "followings"], :class => 'green' %> <%= t('follow.followings') %></h3>
+          <div class="span12size8 gray-medium">
+            <%= link_to @user.followers.count.to_s, [@user, "followers"], :class => "green" %> <%= t('follow.followers') %>
+              / <%= link_to @user.following_actor_objects.includes(:actor).count.to_s, [@user, "followings"], :class => 'green' %> <%= t('follow.followings') %>
           </div>
         </div>
+
       </div>
     </div>
   </article>
@@ -71,13 +72,27 @@
       <div class="tab-content">
         <div id="excursions" class="tab-pane">
           <div class="row-fluid">
-            <div class="span12">
-              <ul class="nav nav-pills">
-                <li class=""><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
-                <li class="active"><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
-                <li class="" id="star"><a data-toggle="tab" href="#ex-4"><%= image_tag "star-MENU-active.png" %></a>
-                </li>
-              </ul>
+            <div class="radiobuttons ">
+              <div class="span12 ">
+                <ul class="nav nav-pills ">
+                  <li class="active"><a data-toggle="tab" href="#ex-1"></a>
+
+                    <div class="text-radiobuttons size16"><%= t('excursion.net') %></div>
+                  </li>
+                  <li class=""><a data-toggle="tab" href="#ex-2"></a>
+
+                    <div class="text-radiobuttons size16"><%= t('excursion.my') %></div>
+                  </li>
+                  <li class=""><a data-toggle="tab" href="#ex-3"></a>
+
+                    <div class="text-radiobuttons size16"><%= t('excursion.top') %></div>
+                  </li>
+                  <li class=""><a data-toggle="tab" href="#ex-4"></a>
+
+                    <div class="text-radiobuttons size16"><%= image_tag("star-on.png") %></div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="tab-content">
