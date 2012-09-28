@@ -1,3 +1,42 @@
+<% unless profile_or_current_subject.nil? %>
+  <% content_for :title do %>
+    <%= profile_or_current_subject.name+" | "+t('follow.followers') %>
+  <% end %>
+
+  <% content_for :description do %>
+    <% if profile_or_current_subject.profile.description? %>
+      <%= profile_or_current_subject.profile.description %>
+    <% else %>
+      <%= profile_or_current_subject.name+" "+t('profile.is_on') + " "+ t('site.name') %>
+    <% end %>
+  <% end %>
+
+  <% content_for :keywords do %>
+    <%= profile_or_current_subject.profile.subject.tag_list %>
+  <% end %>
+
+
+  <section id="wall">
+    <article class="row-fluid ">
+      <div class="span12">
+        <div class="span2">
+          <%= image_tag(profile_or_current_subject.logo.url(:profile), :alt => profile_or_current_subject.name, :id => "current_avatar_img") %>
+        </div>
+        <div class="span8 padding_10">
+          <div class="size24 ellipsis"><%= profile_or_current_subject.name %></div>
+
+          <div class="margin-top10 size14 ellipsis percent95 ">
+            <% profile_or_current_subject.tag_list.each do |t| %>
+              <a href="#"><%= t.to_s %></a>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </article>
+  </section>
+<% end %>
+<div class="space_center"></div>
 <section>
     <nav>
         <article class="article ">
@@ -5,10 +44,10 @@
                 <div class="span12 ">
 
                     <ul class="nav nav-tabs">
-                        <li class="">
+                        <li class="active">
                             <a data-toggle="tab" href="#excursions"><%= t('excursion.other')%></a>
                         </li>
-                        <li class="active">
+                        <li class="">
                             <a data-toggle="tab" href="#timeline"><%= t('activity.timeline')%></a>
                         </li>
                     </ul>
@@ -17,7 +56,7 @@
         </article>
         <article class="article">
             <div class="tab-content">
-                <div id="excursions" class="tab-pane">
+                <div id="excursions" class="tab-pane active">
 
                   <div class="row-fluid">
                     <div class="radiobuttons ">
@@ -58,7 +97,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="timeline" class="tab-pane active">
+                <div id="timeline" class="tab-pane ">
                     <%= render :partial => 'activities/wall', :locals  => { :activities => @activities_net, :is_active_wall => true } %>
                 </div>
             </div>
