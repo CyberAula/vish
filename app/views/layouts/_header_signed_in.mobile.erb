@@ -31,10 +31,19 @@
           <ul class="nav pull-right">
             <li class="divider-vertical"></li>
             <li class="">
-              <div class="btn-group btn-languaje clearfloat">
+              <div class="btn-group  btn-languaje clearfloat">
                 <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
                   <span class="gray-medium"><%= t('lang.title') %></span>
+
                 </button>
+                <ul class="dropdown-menu ">
+                  <% for locale in (I18n.available_locales) -%>
+                    <% next if locale.to_s == "pt" %>
+                    <li class="textonleft unmargin">
+                      <%= link_to image_tag("flags/" + locale.to_s + ".png", :title => locale.to_s, :class => "unborder") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+                    </li>
+                  <% end -%>
+                </ul>
               </div>
             </li>
             <li><%= link_to t('conditions.other'), '/legal_notice', :target => '_blank' %></li>

@@ -22,7 +22,7 @@
         <div class="span2">
           <%= image_tag(profile_or_current_subject.logo.url(:profile), :alt => profile_or_current_subject.name, :id => "current_avatar_img") %>
         </div>
-        <div class="span8 padding_10">
+        <div class="span10 padding_10">
           <div class="size24 ellipsis"><%= profile_or_current_subject.name %></div>
 
           <div class="margin-top10 size14 ellipsis percent95 ">
@@ -42,7 +42,6 @@
     <article class="article ">
       <div class="row-fluid">
         <div class="span12 ">
-
           <ul class="nav nav-tabs">
             <li class="active">
               <a data-toggle="tab" href="#excursions"><%= t('excursion.other') %></a>
@@ -57,7 +56,6 @@
     <article class="article">
       <div class="tab-content">
         <div id="excursions" class="tab-pane active">
-
           <div class="row-fluid">
             <div class="radiobuttons ">
               <div class="span12 ">
