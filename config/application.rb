@@ -52,6 +52,7 @@ module Vish
       NotificationsController.layout "9x3"
     end
     config.to_prepare do
+      FrontpageController.layout "frontpage"
       MessagesController.layout "3x9"
       ConversationsController.layout "3x9"
       DocumentsController.layout "3x9"
