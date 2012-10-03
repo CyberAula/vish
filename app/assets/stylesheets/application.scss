@@ -1,5 +1,6 @@
-// base
-@import "vish/base/frontpage";
+
+
+
 
 // Core variables and mixins
 @import "vish/bootstrap-rewrite/variables"; // Modify this for custom colors, font-sizes, etc
@@ -56,3 +57,7 @@
 
 // original bootstrap
 @import "bootstrap";
+
+// frontpage
+@import "vish/base/frontpage";
+

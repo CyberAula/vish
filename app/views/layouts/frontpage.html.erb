@@ -3,41 +3,37 @@
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
 <body>
-<div class="wrapper">
-<div class="container">
-  <header id="headerFront" class="row span7 offset5">
-    <%= render :partial => "layouts/header_frontpage" %>
-  </header>
-  <section id="main" class="row span12">
-    <div class="space_center"></div>
-    <div id="flash">
+
+  <section id="contenido">
+    <section class="index2">
+    <header class="headerfront">
+      <%= render :partial => "layouts/header_frontpage" %>
+    </header>
+
+    <p class="flash">
       <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
-    </div>
-    <%= yield %>
-    <div class="space_center"></div>
+    </p>
+
+    <article class="logo-search_frontpage">
+      <%= yield %>
+    </article>
+
+    <article class="top">
+      <p class="top-10">
+        <%=t('top10')%>
+      </p>
+      <% self.class.send :include, FrontpageHelper  %>
+      <% for excursion in current_top_actor_excursions %>
+      <%= render :partial => "excursions/top10",:locals => { :excursion => excursion} %>
+      <% end %>
+    </article>
+ 
   </section>
-</div>
-<section id="top" class="white">
-  <div class="container">
-    <div class="row span12">
-      <div id="top-10" class="rotate-90 inline-block gray ">
-            <%=t('top10')%>
-      </div>
-        <% self.class.send :include, FrontpageHelper  %>
-        <% for excursion in current_top_actor_excursions %>
-          <%= render :partial => "excursions/top10",
-                     :locals => { :excursion => excursion} %>
-        <% end %>
-    </div>
-  </div>
 </section>
-<div class="push"></div>
-</div>
-<div class="container">
-  <footer class="row span12">
+  <footer class="footer">
     <%= render :partial => "layouts/footer" %>
   </footer>
-  </div>
+
 
 </body>
 </html>
