@@ -53,7 +53,10 @@ gem 'composite_primary_keys'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano', '2.12.0'
+group :development do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end
 
 # Use god for its own purpose
 gem 'god'
