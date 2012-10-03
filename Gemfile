@@ -36,10 +36,6 @@ end
 # Force the first version of avatars_for_rails that does not collide with bootstrap
 gem 'avatars_for_rails', '~> 0.2.6'
 
-# Responders 0.9.2 breaks bundle update
-gem 'responders', '0.9.1'
-gem 'railties', '3.2.6'
-
 # Composite keys for vish-recsys
 gem 'composite_primary_keys'
 
