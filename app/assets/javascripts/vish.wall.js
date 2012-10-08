@@ -235,7 +235,7 @@ Vish.Wall = (function(V, $, undefined){
 
   var modalFollowBtn = function(signed_in, contact_link){
     if(signed_in) {
-      return '<div class="send_message size10 red-2 upfoll">' + $("<div/>").html(contact_link).text() + '</div>'
+      return '<div class="send_message size10 red-2 upfoll">' + $("<div/>").html(contact_link).html() + '</div>'
     } else {
       return ""; /* TODO: add button that leads to login? */
     }
