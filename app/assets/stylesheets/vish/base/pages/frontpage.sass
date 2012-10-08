@@ -2,6 +2,7 @@
 	margin-top: 15px
 	@include makeColumn(6,6)
 
+
 	.Sign-up
 		display: inline-block
 			
@@ -20,23 +21,21 @@
 .agrupation-search-frontpage
 	@include makeColumn(12,0)
 	
+	
 
 	.logo-frontpage
-		@include makeColumn(6,3)
-		background: transparent url(corporative/VISH_frontpage.png)
+		@include center-block()
+		background: transparent url(corporative/VISH_frontpage.png) no-repeat center center
 		width: 342px 
 		height: 98px
-
+		
 	.name-frontpage
-		@include makeColumn(6,3)
+		margin-top: 10px
+		letter-spacing: 3pt
+		text-align: center
 		color: $gray-vish
-
-	#search-frontpage
-		@include makeColumn(6,3)
-
-		#search-frontpage
-			background-color: #000000	
-			
+		font-family: $fistFontFamily
+		font-size: 28pt
 
 .top
 	@include makeColumn(12,0)

@@ -1,6 +1,7 @@
-<div class="footersticky">
-<nav class="menu pagination-centered">
-  <ul class="link_gray btn-group dropup ">
+
+
+<nav class="menu_h">
+  <ul>
     <li><%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %></li>
     <li><%= link_to t('conditions.other'), '/legal_notice', :target=>'_blank' %></li>
     <li><%= link_to t('help'), '/help' %></li>
@@ -25,6 +26,9 @@
     <li><%= link_to image_tag("icons/global.png",  :class=> "imgnoradio" ), url_for("http://www.globalexcursion-project.eu"), :target=> "_blanck"  %></li>
   </ul>
 </nav>
-</div>
+
+
+
+
 
 <%= render :partial => 'layouts/init_modals' %>

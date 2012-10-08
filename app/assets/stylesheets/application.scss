@@ -1,6 +1,8 @@
+// typography (adjuntar)
+@import "vish/base/fonts";
 
-
-
+// original bootstrap
+@import "bootstrap";
 
 // Core variables and mixins
 @import "vish/bootstrap-rewrite/variables"; // Modify this for custom colors, font-sizes, etc
@@ -55,9 +57,22 @@
 // Utility classes
 @import "vish/bootstrap-rewrite/utilities"; // Has to be last to override when necessary
 
-// original bootstrap
-@import "bootstrap";
+// -----------------------------------------------------
+// -----------------------------------------------------
+// -----------------------------------------------------
+
+
+// vish mixins
+@import "mixins";
+
+// layout
+@import "vish/base/layout";
 
 // frontpage
-@import "vish/base/frontpage";
+@import "vish/base/pages/frontpage";
+
+// search
+@import "vish/base/search";
+
+
 

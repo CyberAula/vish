@@ -1,0 +1,48 @@
+// linkgray
+// ----------------------------------
+@mixin linkGrayVish {
+a {
+  color: $grayLink;
+  text-decoration: none;
+}
+a:hover{
+  color: $grayLinkHover;
+  text-decoration: none;
+}
+
+  }
+
+// menu horizontal
+// ----------------------------------
+@mixin menuHorizontal {
+  
+  padding: 0;
+  text-align: center; 
+
+ul{
+  list-style-type: none;
+  margin-left: 4em;
+}
+
+li{
+  display: inline-block; 
+  } 
+
+li a{
+  text-decoration: none;  
+  margin-left: 40px;
+  color: $grayLink;  
+  }
+
+li a:hover {  
+  color: $grayLinkHover; 
+} 
+
+  }
+
+// margin left span
+// ----------------------------------
+@mixin nomargin-left {
+  
+  margin-left: 0px;
+  } 

@@ -8,9 +8,10 @@
 
 // Core
 .btn {
+  margin-top: -9px;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
   display: inline-block;
   @include ie7-inline-block();
-  padding: 4px 14px;
+  padding: 6px 14px ; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
   margin-bottom: 0; // For input.btn
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
@@ -19,10 +20,12 @@
   vertical-align: middle;
   cursor: pointer;
   @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark, 0 1px 1px rgba(255,255,255,.75));
-  border: 1px solid $btnBorder;
+  border: none ;
   *border: 0; // Remove the border to prevent IE7's black border on input:focus
   border-bottom-color: darken($btnBorder, 10%);
-  @include border-radius(4px);
+
+  @include border-radius(15px);  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  
   @include ie7-restore-left-whitespace(); // Give IE7 some love
   @include box-shadow(#{inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)});
 
@@ -133,8 +136,8 @@
   border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
 }
 .btn-primary {
-  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
-}
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackground);
+}     // -**--changed--changed--changed--changed--**-//
 // Warning appears are orange
 .btn-warning {
   @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);

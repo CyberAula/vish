@@ -28,24 +28,37 @@ $yellow:                #ffc40d !default;
 $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;
+
+// ViSH Colors
+// -------------------------
 $background:            #f9f9f9 ;
+$red-1:					        #ff005d ;
+$linkgray:              #6e6e6e ;
+$blue-1:                #3366ff ;
+$gray-vish:             #CCCCCC ;
+$gray-search:           #A1A1A1 ;
+
 
 
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        $background !default;
+$bodyBackground:        $background ;
 $textColor:             $grayDark !default;
 
 
 // Links
 // -------------------------
+$grayLink:              $linkgray ;
+$grayLinkHover:         $blue-1 ;
+
 $linkColor:             $blue !default;
 $linkColorHover:        $gray !default;
 
 
 // Typography
 // -------------------------
+$fistFontFamily:        DsignesLight ;             
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
@@ -74,7 +87,7 @@ $btnBackground:                     $white !default;
 $btnBackgroundHighlight:            darken($white, 10%) !default;
 $btnBorder:                         #bbb !default;
 
-$btnPrimaryBackground:              $linkColor !default;
+$btnPrimaryBackground:              $red-1 ;
 $btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) !default;
 
 $btnInfoBackground:                 #5bc0de !default;
@@ -97,9 +110,10 @@ $btnInverseBackgroundHighlight:     $grayDarker !default;
 // -------------------------
 $inputBackground:               $white !default;
 $inputBorder:                   #ccc !default;
-$inputBorderRadius:             3px !default;
+$inputBorderRadius:             15px ;
 $inputDisabledBackground:       $grayLighter !default;
 $formActionsBackground:         #f5f5f5 !default;
+$inputFrontPage:				160px;
 
 // Dropdowns
 // -------------------------
