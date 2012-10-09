@@ -4,10 +4,10 @@
 <%= render :partial => 'layouts/head' %>
 <body>
   <div class="wrapper">
-    <section class="container">
-      <div class="row">
+    <div class="row"> 
+      <section class="container">
         <header class="headerfront">
-         <%= render :partial => "layouts/header_frontpage" %>
+          <%= render :partial => "layouts/header_frontpage" %>
         </header>
         <article class="flash">
           <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
@@ -15,21 +15,23 @@
         <article class="agrupation-search-frontpage">
           <%= yield %>
         </article>
-        <article class="top">
-          <p class="top-10">
-            <%=t('top10')%>
-          </p>
+    </section>
+    <section id="top" class="white"> 
+      <div class="container">
+        <div class="top-10">
+          <%=t('top10')%>
+        </div>
           <% self.class.send :include, FrontpageHelper  %>
           <% for excursion in current_top_actor_excursions %>
           <%= render :partial => "excursions/top10",:locals => { :excursion => excursion} %>
           <% end %>
-        </article>       
-        <div class="push"></div> 
       </div>
-    </section>
-     <footer class="footer">
-      <%= render :partial => "layouts/footer" %>
-    </footer>
-</div>
+    </section> 
+    <div class="push"></div> 
+    </div>      
+  </div>
+  <footer class="footer">
+    <%= render :partial => "layouts/footer" %>
+  </footer>
 </body>
 </html>

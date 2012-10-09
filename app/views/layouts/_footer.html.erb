@@ -1,15 +1,14 @@
 
-
+<div class="container">
 <nav class="menu_h">
   <ul>
-    <li><%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %></li>
+    <li class="site_name"><%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %></li>
     <li><%= link_to t('conditions.other'), '/legal_notice', :target=>'_blank' %></li>
     <li><%= link_to t('help'), '/help' %></li>
     <li>
-      <div class="footer_btn">
       <div class="btn-group dropup ">
-        <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
-          <span class="gray size12"><%=t('lang.title')%></span>
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="idioma"><%=t('lang.title')%></span>
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu pull-right">
@@ -21,11 +20,11 @@
           <% end -%>
         </ul>
       </div>
-      </div>
     </li>
     <li><%= link_to image_tag("icons/global.png",  :class=> "imgnoradio" ), url_for("http://www.globalexcursion-project.eu"), :target=> "_blanck"  %></li>
   </ul>
 </nav>
+</div>
 
 
 

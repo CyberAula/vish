@@ -10,24 +10,18 @@
 #header_search_nosession
   float: right
 
-
-#espacio_busqueda 
-  display: inline-block
-  float: left
-  height: 45px
-  margin-bottom: 0px
-  margin-left: 20px
-  width: 230px
-
-
 #header_search_form
-  margin: 0px
+  @include center-block()
+  margin-left: -40px
 
+.input-frontpage
+  width: 500px
 
 #header_search_input,
 #global_search_input,
 #main_search_input, 
   /*padding: 0 22px 0 22px;*/
+  @include center-block()
   background-image: url('btn/search_icon.png')
   background-repeat: no-repeat
   background-position: 96%
@@ -44,10 +38,10 @@
 #header_search_display 
 
   /*width: 225px;*/
-  margin-top: 0px
-  position: absolute
+  @include center-block()
+  margin-top: -10px
+  padding-right: 62px
   clear: both
-  margin: auto
   display: none
   border-top: none
   overflow: hidden
@@ -63,11 +57,12 @@
     font-weight: bold
 
   ul
-    margin: 0px 0px 9px 0px
+
 
   li
     .warning 
       background: #f89406
+
 
   li 
     height: 35px

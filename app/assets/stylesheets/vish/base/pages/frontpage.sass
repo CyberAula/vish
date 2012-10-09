@@ -1,7 +1,9 @@
+li
+	list-style-type: none
+
 .headerfront
 	margin-top: 15px
 	@include makeColumn(6,6)
-
 
 	.Sign-up
 		display: inline-block
@@ -20,8 +22,6 @@
 
 .agrupation-search-frontpage
 	@include makeColumn(12,0)
-	
-	
 
 	.logo-frontpage
 		@include center-block()
@@ -37,9 +37,100 @@
 		font-family: $fistFontFamily
 		font-size: 28pt
 
-.top
+.search-frontpage
 	@include makeColumn(12,0)
-	background-color: #000000
+
+#cloud_tags
+	margin-top: 90px
+	font-family: $fistFontFamily
+	@include linkGrayVish
+	font-weight: lighter
+
+	.repositories-tags
+
+		font-size: 5.5em
+		@include makeColumn(4,8)
+		text-align: left
+		
+	.excursion-tags
+		margin-top: 10px
+		@include makeColumn(6,0)
+		text-align: right
+		font-size: 8.5em
+		
+	.users-tags
+		margin-top: 25px		
+		@include makeColumn(3,6)
+		font-size: 3.5em
+		text-align: right
+		
+	.organization-tags
+		margin-top: 25px
+		@include makeColumn(3,3)
+		font-size: 4.5em
+
+#top
+	height: 130px
+	margin-left: auto
+	margin-right: auto
+	@include makeRow
+
+.top-10
+	@include rotate(-90deg)
+	font-family: DsignesBold
+	height: 10px
+	margin: 40px 0px 0px -4px
+	padding: 0px
+	color: $linkgray
+	float: left
+
+.white
+	background-color: #FFFFFF
+	margin-top: 40px
+	padding-bottom: 5px
+	padding-top: 10px
+	color: $white
+
+.caption-box-top10
+	margin-left: 20px
+
+.box-top10
+	
+	li
+		
+		@include makeColumn(1,0)
+		width: 68px
+
+		.thumbnail
+			display: inline-block
+			
+			.number_pages
+				background-color: $white
+				border-radius: 15px 15px 15px 15px
+				color: $grayDark
+				font-size: 10pt
+				height: 20px
+				line-height: 150%
+				margin-left: 48px
+				margin-top: -26px
+				position: relative
+				text-align: center
+				width: 20px
+			.text-excursion-top
+				list-style-type: none
+				@include linkGrayVish
+				text-align: center
+				padding-top: 10px
+				width: 75px
+				font-size: 12px
+				line-height: 16px
+
+
+
+
+
+
+
 
 
 
