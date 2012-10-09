@@ -173,6 +173,14 @@ en:
     unread: " unread"
   officedoc:
     confirm_delete: "Delete document?"
+    title: "Office Documents"
+    mine: "My documents"
+    name: "document"
+    not_mine: "Documents"
+    one: "a document"
+    title:
+      one: "Document"
+      other: "Documents"
   options:
     add: "add"
     new: "new"
