@@ -2,6 +2,6 @@
 require 'recsys'
 
 Actor.class_eval do
-  include RecSys::Actor
+  include RecSys::ActorRecSys
 end
 
