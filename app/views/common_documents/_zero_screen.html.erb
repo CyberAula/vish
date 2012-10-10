@@ -1,7 +1,7 @@
 <% link = Link.first %>
 <% link = Link.find(42) if Rails.env == "production" %>
 <%= javascript_tag do %>
-  <%= modal_for(link) %>
+  <%= modal_for(link) unless link.blank? %>
 <%end%>
 <div class="picture span3">
 	<ul class="thumbnails">
