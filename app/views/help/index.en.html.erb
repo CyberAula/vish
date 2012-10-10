@@ -28,7 +28,7 @@ ViSH will be using Social Stream as a social networking library and it is enteri
   <% link = Link.first %>
   <% link = Link.find(42) if Rails.env == "production" %>
   <%= javascript_tag do %>
-    <%= modal_for(link) %>
+    <%= modal_for(link) unless link.blank? %>
   <%end%>
   <div class="span3">
     <div id="margin-resources">
