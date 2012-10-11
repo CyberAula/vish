@@ -15,10 +15,16 @@ Vish::Application.routes.draw do
   match 'excursions/:id/clone' => 'excursions#clone'
 
   resources :excursions
-
   resources :slides
-
   resources :embeds
+  resources :swfs
+  resources :officedocs
+  SocialStream.subjects.each do |actor|
+    resources actor.to_s.pluralize do
+      resources :swfs
+      resources :officedocs
+    end
+  end
 
   match 'embeds/:id/modal' => 'modals#embed'
   match 'links/:id/modal' => 'modals#link'

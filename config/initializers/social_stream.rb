@@ -14,7 +14,7 @@ SocialStream.setup do |config|
   # Type of activities managed by actors
   # Remember you must add an "activity_object_id" foreign key column to your migration!
   #
-  config.objects = [ :post, :comment, :document, :link, :excursion, :slide, :embed ]
+  config.objects = [ :post, :comment, :document, :link, :excursion, :slide, :embed, :swf, :officedoc ]
 
   # Form for activity objects to be loaded 
   # You can write your own activity objects
