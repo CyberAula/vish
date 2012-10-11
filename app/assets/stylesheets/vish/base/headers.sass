@@ -1,0 +1,80 @@
+.header
+  @include makeColumn(12,0) 
+  @include nomargin-left
+//sign out
+
+#graphic_identity
+  margin-top: 15px
+  @include makeColumn(5,0)
+  display: inline-block
+  @include nomargin-left
+
+  .logo-home
+    display: inline-block
+
+  .site-name
+    @include linkGrayVish
+    font-family: $secondFontFamily
+    float: right
+    font-size: 19pt
+    display: inline-block
+    margin-top: 36px
+
+    a
+      display: inline-block
+
+
+
+
+
+
+#headerfront
+  margin-top: 15px
+  @include makeColumn(6,0)
+  float: right
+  display: inline-block
+
+
+  .Sign-up
+    display: inline-block
+      
+    input
+      width: $inputFrontPage
+      margin-right: 15px
+
+  .text_link_gray
+    text-align: right
+    @include linkGrayVish
+
+  .flash
+    @include makeColumn(12,0)
+    display: block
+    float: right
+
+//frontpage
+
+#nomargin-left
+  margin-left: -20px
+  
+  .headerfront
+    margin-top: 15px
+    @include makeColumn(6,6)
+
+    .Sign-up
+      display: inline-block
+        
+      input
+        width: $inputFrontPage
+        margin-right: 15px
+
+    .text_link_gray
+      text-align: right
+      @include linkGrayVish
+
+    .flash
+      @include makeColumn(12,0)
+      display: block
+      float: right
+
+
+

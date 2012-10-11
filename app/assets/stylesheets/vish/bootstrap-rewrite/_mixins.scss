@@ -82,13 +82,13 @@
 // -------------------------
 @mixin placeholder($color: $placeholderText) {
   &:-moz-placeholder {
-    color: $color;
+    color: $gray-vish;
   }
   &:-ms-input-placeholder {
-    color: $color;
+    color: $gray-vish;
   }
   &::-webkit-input-placeholder {
-    color: $color;
+    color: $gray-vish;
   }
 }
 

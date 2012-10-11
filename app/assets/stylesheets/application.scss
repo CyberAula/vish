@@ -65,17 +65,28 @@
 // vish mixins
 @import "mixins";
 
+// base
+@import "vish/base/base";
+
 // layout
 @import "vish/base/layout";
 
-// frontpage
-@import "vish/base/pages/frontpage";
+// tags
+@import "vish/base/tags";
 
 // search
 @import "vish/base/search";
 
-// base
-@import "vish/base/base";
+
+
+// headers
+@import "vish/base/headers";
+
+// devise
+@import "vish/base/pages/devise";
+
+// frontpage
+@import "vish/base/pages/frontpage";
 
 
 

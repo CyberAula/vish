@@ -1,98 +1,101 @@
-<div class="container body-height">
-  <div class="row span3  right">
-    <p class="devise_title"><span class="dark-gray"><%= t('sign_up').capitalize %></span></p>
-  </div>
-  <div class="row span6 offset4">
-    <div class="title_sentences">
-      <%= t('vish.sentence1') %>
-      <p class="size18"><%= t('vish.sentence2') %></p>
+<h1 class="menssage-devise">
+  <%= t('sign_up').capitalize %>
+</h1>
+<h2 class="sentence">
+  <small>
+    <%= t('vish.sentence1') %>
+  </br>
+    <%= t('vish.sentence2') %>
+  </small>
+</h2>
+<div id="formulate">
+  <div class="box_gray1 ">
+    <div class="box_gray2">
+      <div class="box_gray3">
+        <div class="box_white">
+          <div class="campos">
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => ""}) do |f| %>
+            <%= devise_error_messages! %>
+            <label class="text-tittle" for="name">
+              <%= f.label :name %>
+            </label>
+            <%= f.text_field :name, :class => "", :id => "name", :placeholder => "Homo Sapiens apiens" %>
+            <div class="line"></div>
+            <label class="text-tittle" for="email">
+              <%= f.label :email %>
+            </label>
+             <%= f.text_field :email, :class => "", :id => "email", :placeholder => "user@vish.org"  %>
+            <div class="line"></div>
+            <label class="text-tittle" for="password">
+              <%= f.label :password %>
+            </label>
+            <%= f.password_field :password, :class => "", :id => "password", :placeholder => "********" %>
+            <div class="line"></div>
+            <label class="text-tittle" for="password_confirmation">
+              <%= f.label :password_confirmation %>
+            </label>
+
+            <%= f.password_field :password, :class => "", :id => "password_confirmation", :placeholder =>"********"  %>
+            <div class="line"></div>
+
+            
+            <label class="text-tittle margin-top10" for="tags">
+              <%= t('activerecord.attributes.user.tag') %>
+            </label>
+
+            <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
+
+
+
+
+
+  				  <!-- Tags -->
+  		      <!-- Preload tags -->
+
+
+            
+            
+
+
+            <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+            <ul id="preloadTagList" style="display:none">
+              <%@tags.each do |tag| %>
+              <li>
+                <%=tag.name%>
+              </li>
+             <%end%>
+            </ul>
+
+  			<div class="tagBoxNew">
+  			  <ul class="tagList"></ul>
+      </div>
+      </div>
+      </div>
+          <ul class="tagit-suggestions">
+            <li class="tagit-choice">Nanotechnology</li>
+            <li class="tagit-choice">Biotechnology</li>
+            <li class="tagit-choice">Life-Sciences</li>
+            <li class="tagit-choice">Grid-Computing</li>
+          </ul>
+
+        
+
+      </div>
     </div>
   </div>
-
-  <div class="row span6 offset4 boxy_gray">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "form-horizontal2"}) do |f| %>
-      <fieldset>
-        <div class="row space_center"></div>
-        <div class="control-group">
-          <div class="size12 red-1"><%= devise_error_messages! %> </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="name"><%= f.label :name %></label>
-
-          <div class="controls">
-            <%= f.text_field :name, :class => "input-xlarge", :id => "name" %>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="email"><%= f.label :email %></label>
-
-          <div class="controls">
-            <%= f.text_field :email, :class => "input-xlarge", :id => "email" %>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="password"><%= f.label :password %></label>
-
-          <div class="controls">
-            <%= f.password_field :password, :class => "input-xlarge", :id => "password" %>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="password_confirmation"><%= f.label :password_confirmation %></label>
-
-          <div class="controls">
-            <%= f.password_field :password, :class => "input-xlarge", :id => "password_confirmation" %>
-          </div>
-        </div>
-
-				<!-- Tags -->
-			  <!-- Preload tags -->
-			  <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
-			  <ul id="preloadTagList" style="display:none">
-			    <%@tags.each do |tag| %>
-			      <li><%=tag.name%></li>
-			    <%end%>
-			  </ul>
-
-			  <div class="control-group">
-			    <label class="control-label" for="tags"><%= t('activerecord.attributes.user.tag') %></label>
-			    <div class="controls">
-			      <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
-			      <div class="tagBoxNew span5">
-			        <ul class="tagList"></ul>
-              <ul class="tagit-suggestions">
-                <li class="tagit-choice">Nanotechnology</li>
-                <li class="tagit-choice">Biotechnology</li>
-                <li class="tagit-choice">Life-Sciences</li>
-                <li class="tagit-choice">Grid-Computing</li>
-              </ul>
-			      </div>
-			    </div>
-			  </div>
-
-        <div class="control-group">
-          <div class="controls">
-            <%= t('conditions.check_message') %> <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
-          </div>
-        </div>
-
-        <div class="row">
-          <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-            <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
-          <% end -%>
-        </div>
-        <div class="btn_devise">
-          <div class="form-actions pagination-right space_right">
-            <%= f.submit t('action.accept').capitalize, :id => "submit_new_user_button" %>
-          </div>
-        </div>
-      </fieldset>
-    <% end %>
-  </div>
-
-
-
 </div>
+<div class="sentence-rules">
+  <%= t('conditions.check_message') %> 
+  <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
+  <% end -%>
+</div>
+<%= f.submit t('action.accept').capitalize, :class => "btn btn-primary " %>
+<% end %>
+
+
+
 
 <%= content_for :javascript do %>
   $(document).ready(function() {

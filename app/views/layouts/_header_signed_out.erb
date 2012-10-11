@@ -1,51 +1,27 @@
-<div class="row">
-  <div class="space_center"></div>
-  <div class="span6">
-
-    <div class="logo-home ">
-      <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
-    </div>
-
-    <span class="link_virtual size24 virtualsciencehub span3 ">
-      <%= link_to(t('site.name'), '/', :class => "brand"); %>
-    </span>
+<div id="graphic_identity">
+  <div class="logo-home">
+    <%= link_to(image_tag('corporative/logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
   </div>
-
-
-
-
-  <% unless params[:controller].eql? 'devise/sessions' and params[:action].eql? 'new' %>
-
-
-    <div class="span6 pull-right">
-      <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
-        <div class="pagination-right">
-          <%= f.email_field :email, :id => "username" %>
-          <%= f.password_field :password, :id => "password"  %>
-          <%= f.submit t(:sign_in), :class => 'btn btn-primary storePassz margin-negative-btn'%>
-        </div>
-
-          <#% unless controller.class == SearchController %>
-            <div id="header_search_nosession  " class="pull-right margin_search_no_session span ">
-              <#%= render :partial => 'layouts/search', :locals => { :sizeFieldSearch => "input-searchlarge" ,  } %>
-            </div>
-          <% end %>
-
-          <div class="tools-log-out">
-
-          <div class="link_gray pagination-right span2">
-          <%= link_to t('forgot_password'), new_user_password_path %>
-        </div>
-
-        <div class="link_gray pagination-right span2 ">
-          <%= link_to t('sign_up'), new_user_registration_path %>
-        </div>
-
-          </div>
-
-      <% end -%>
-    </div>
-  <% end %>
+  <div class="site-name">
+    <%= link_to(t('site.name'), '/', :class => "brand"); %>
+  </div>
+</div>
+<% unless params[:controller].eql? 'devise/sessions' and params[:action].eql? 'new' %>
+<div id="headerfront">
+  <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
+<div class="Sign-up">
+  <%= f.email_field :email, :id => "username" %>
+  <%= f.password_field :password, :id => "password"  %>
+</div>
+  <%= f.submit t(:sign_in), :class => 'btn btn-primary storePass'%>
+<div class="text_link_gray">
+  <%= link_to t('forgot_password'), new_user_password_path %>
+</div>
+<div class="text_link_gray">
+  <%= link_to t('sign_up'), new_user_registration_path %>
+</div>
+<% end -%>
+<% end %>
 
   <%= javascript_tag do %>
     $(function() {
@@ -57,24 +33,7 @@
     $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
     });
   <% end %>
-
-
-
-
-
-
-
-
-
-  <div class="space_center"></div>
-
-
-</div>
-
-<div class="space_center"></div>
-
+  </div>
 <div id="flash">
   <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
 </div>
-
-<div class="space_center"></div>

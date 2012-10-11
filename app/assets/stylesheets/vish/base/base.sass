@@ -1,3 +1,25 @@
+li
+	list-style-type: none
+
+ul
+	margin: none
+
+.no_display
+	display: none
+	
+#error_explanation
+	h2
+		font-size: $tittleFontSize
+		color: $red-1
+		line-height: 20px
+	li
+		color: $gray
+		font-size: $baseFontSize
+
+form
+	margin: 0px
+
+
 //********margin-top**********/
 
 .margin-top5 
@@ -128,7 +150,7 @@
 
 //*********box*********/
 
-.boxy_white_wall
+.box_gray1
 	border-radius: 15px 15px 15px 15px
 	border-top: 1px solid #F2F2F2
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
@@ -137,16 +159,37 @@
 	z-index: 1
 	margin-left: 1%
 
+	.box_gray2
+		border: medium non
+		border-radius: 100% 100% 100% 100% / 33px
+		box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02)
 
-.boxy_white_wall2
-	border: medium non
-	border-radius: 100% 100% 100% 100% / 33px
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02)
+		.box_gray3 
+			background: -moz-linear-gradient(center top , #F9F9F9 50%, #F0F0F0 100%) repeat scroll 0 0 transparent
+			border-radius: 15px 15px 15px 15px
+			box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset
+			cursor: pointer
+			display: block
+			padding: 15px
 
+.box_white
+	display: inline-block
+	padding: 5px
+	background-color: $white
+	@include border-radius($radius)
+	@include box-shadow 
 
-.boxy_white_wall3 
-	background: -moz-linear-gradient(center top , #F9F9F9 50%, #F0F0F0 100%) repeat scroll 0 0 transparent
-	border-radius: 15px 15px 15px 15px
-	box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset
-	cursor: pointer
+.line
+	border-bottom: 1px solid $grayLighter
 	display: block
+	margin-left: auto
+	margin-right: auto
+	width: 95%
+
+	
+
+
+
+
+
+

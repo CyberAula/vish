@@ -58,7 +58,9 @@ $linkColorHover:        $gray !default;
 
 // Typography
 // -------------------------
-$fistFontFamily:        DsignesLight ;             
+$fistFontFamily:        DsignesLight ;
+$secondFontFamily:      DsignesRegular ;
+$thirdFontFamily:       DsignesBold ;             
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
@@ -67,10 +69,13 @@ $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
+$tittleFontSize:        18px;
 
-$headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
-$headingsFontWeight:    bold !default;    // instead of browser default, bold
-$headingsColor:         inherit !default; // empty to use BS default, $textColor
+$headingsFontFamily:    $fistFontFamily ;
+$headingsFontWeight:    normal ;   
+$headingsColor:         $gray-vish; 
+
+
 
 
 // Tables
@@ -114,6 +119,9 @@ $inputBorderRadius:             15px ;
 $inputDisabledBackground:       $grayLighter !default;
 $formActionsBackground:         #f5f5f5 !default;
 $inputFrontPage:				        156px;
+$inputFormulate:                240px;
+$radius:                        15px;
+
 
 // Dropdowns
 // -------------------------
