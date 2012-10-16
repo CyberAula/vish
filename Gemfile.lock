@@ -78,7 +78,7 @@ GEM
     ancestry (1.2.5)
       activerecord (>= 2.2.2)
     arel (3.0.2)
-    avatars_for_rails (0.2.6)
+    avatars_for_rails (0.2.8)
       foreigner (>= 0.9.1)
       jquery-rails (>= 1.0.9)
       paperclip (>= 2.3.4)
