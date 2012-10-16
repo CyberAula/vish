@@ -35,6 +35,10 @@ es:
     pending:
       other: "Te siguen"
   devise:
+    email: "Email"
+    name: "Nombre"
+    password: "Contraseña"
+    passwordconfirmation: "Confirmar contraseña"
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
   disjunction:
     or: "or"

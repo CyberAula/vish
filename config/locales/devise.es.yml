@@ -8,6 +8,11 @@ es:
         one: "Se ha producido un error que impide guardar este %{resource}:"
         other: "Se han producido %{count} errores que impiden guardar este %{resource}:"
   devise:
+    email: "Email"
+    name: "Nombre"
+    password: "Contraseña"
+    passwordconfirmation: "Confirmar contraseña"
+    tags: "Áreas de interés"
     sessions:
       link: 'Ingresar'
       signed_in: 'Has ingresado correctamente.'
