@@ -1,6 +1,7 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: fae925601a5b2eea180ac9209f4b4e6c4341ce70
+  revision: 4de5555565c17ae4bcbf47f1139a41936ddf5a2d
+  branch: vish
   specs:
     social_stream-base (0.23.0)
       acts-as-taggable-on (~> 2.2.2)
@@ -38,7 +39,7 @@ GIT
       social_stream-base (~> 0.23.0)
     social_stream-ostatus (0.1.0)
       nokogiri (> 1.4.4)
-      proudhon (>= 0.3.5)
+      proudhon (>= 0.3.6)
       social_stream-base (~> 0.23.0)
 
 GEM
@@ -236,7 +237,7 @@ GEM
       paperclip (>= 2.5.2)
     pg (0.14.1)
     polyglot (0.3.3)
-    proudhon (0.3.5)
+    proudhon (0.3.6)
       jeweler
       json
       nokogiri
