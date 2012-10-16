@@ -1,4 +1,6 @@
 Vish::Application.routes.draw do
+  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
+
   # Blatant redirections
   match '/users/:id/links' => redirect('/users/%{id}/documents')
   match '/users/:id/embeds' => redirect('/users/%{id}/documents')
@@ -43,8 +45,6 @@ Vish::Application.routes.draw do
 
   match 'followers/search' => 'followers#search_followers'
   match 'followings/search' => 'followers#search_followings'
-
-  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   SocialStream.subjects.each do |actor|
     resources actor.to_s.pluralize do
