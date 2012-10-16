@@ -1,12 +1,12 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 4de5555565c17ae4bcbf47f1139a41936ddf5a2d
+  revision: c74dfa4fa3f8832859450bcbfc34906c4d84db14
   branch: vish
   specs:
     social_stream-base (0.23.0)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
-      avatars_for_rails (~> 0.2.5)
+      avatars_for_rails (~> 0.2.8)
       cancan (= 1.6.7)
       deep_merge
       devise (~> 1.5.3)
@@ -84,7 +84,7 @@ GEM
       paperclip (>= 2.3.4)
       rmagick (>= 2.13.1)
     bcrypt-ruby (3.0.1)
-    builder (3.0.3)
+    builder (3.0.4)
     cancan (1.6.7)
     capistrano (2.13.4)
       highline
