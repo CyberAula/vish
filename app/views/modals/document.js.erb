@@ -3,7 +3,7 @@
   $("#swf-modal-<%= @document.id.to_s%> .modal-body").html("<iframe src='<%= @document.file %>' width='545px' height='385px'>...</iframe>");
 <% elsif @document.is_a? Officedoc %>
   $("#officedoc-modal-<%= @document.id.to_s%> .modal-body").css('padding', '0');
-  $("#officedoc-modal-<%= @document.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=<%= CGI::escapeHTML( 'http://' + request.env['HTTP_HOST'] + download_document_path(@document)) %>&embedded=true' width='545px' height='385px' style='border: none;'></iframe>");
+  $("#officedoc-modal-<%= @document.id.to_s%> .modal-body").html("<iframe src='http://docs.google.com/viewer?url=http%3A%2F%2Fresearch.google.com%2Farchive%2Fbigtable-osdi06.pdf&embedded=true' id= 'gdoc'  style='border: none;'></iframe>");
 <% elsif @document.is_a? Picture %>
   $("#picture-modal-<%= @document.id.to_s%> .modal-body").html("<%= raw j (thumb_for(@document, 500)) %>");
 <% elsif @document.is_a? Audio %>
@@ -34,4 +34,5 @@
           cssSelectorAncestor: "#jp_interface_<%=@document.id%>"
      });
 <% end %>
+
 

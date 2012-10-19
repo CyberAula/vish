@@ -813,6 +813,13 @@ cursor: text;
 
 .height-tabs-home{min-height: 50 px; height:auto }
 
+
+
+
+.ajuste {
+    margin-left: -250px !important;
+}
+
 /****************** WALL - ACTIVITIES *********************/
 
 #wall, #wall-me{text-align:center;overflow-x: hidden;}
@@ -879,6 +886,7 @@ form.example input.file.hidden {
   padding: 3px;
   width: 78%;
 }
+
 
 /******************* WALL - ACTIVITY ***************/
 .activity { text-align:left;  display: block; vertical-align: top;  padding: 10px 0px 0px 0px; margin-bottom: 5px}
@@ -2193,6 +2201,35 @@ select {
 
 
 /**** modal ***/
+
+.sticky{
+  position: absolute !important;
+  width: 97.6% !important;
+}
+
+.resize{
+  height: 90% !important;
+  left: 5% !important;
+  right: 5% !important;
+  top: 5% !important;
+  width: 90% !important;
+  margin: 0 !important;
+  overflow-y: hidden;
+  overflow-x: hidden !important; 
+}
+
+.footar{
+height: 100% !important;
+    margin: 0 auto -103px !important;
+    min-height: 100% !important;
+    overflow-y: hidden !important;
+    max-height: 0 !important;
+
+}
+
+#gdoc{
+  width: 90% !important; 
+}
 
 .modal-space{
   margin-bottom: 10px;
