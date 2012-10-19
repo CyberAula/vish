@@ -1,6 +1,6 @@
 module RecSys
-  module Actor
-    def suggestions(size=1)
+  module ActorRecSys
+    def contact_suggestions(size=1)
       sgs = (
        RecsysUser.
          find_all_by_id(id).
@@ -10,10 +10,10 @@ module RecSys
          map{ |u| u.actor }.
          compact &
        Actor.
-         where(Actor.arel_table[:id].not_in(sent_active_contact_ids + [id]))
+         where('id NOT IN (?)', (sent_active_contact_ids + [id]))
       ).first(size).map { |a| contact_to! a }
 
-      candidates = Actor.where(Actor.arel_table[:id].not_in(sent_active_contact_ids + [id]))
+      candidates = Actor.where('id NOT IN (?)', (sent_active_contact_ids + [id]))
 
       sgs + (size - sgs.size).times.map {
         candidates.delete_at rand(candidates.size)
