@@ -25,19 +25,14 @@ ViSH will be using Social Stream as a social networking library and it is enteri
 </div>
 <div class="row space_double_center"></div>
 <div class="picture span7" id="picture_1">
-  <% link = Link.first %>
-  <% link = Link.find(42) if Rails.env == "production" %>
-  <%= javascript_tag do %>
-    <%= modal_for(link) unless link.blank? %>
-  <%end%>
   <div class="span3">
     <div id="margin-resources">
-      <a data-toggle="modal" href="#link-modal-<%= link.id.to_s %>" class="iconx-video link-modal-button-<%= link.id.to_s %> modal-no-trigger" alt="<%= t('document.screencast') %>"></a>
+      <%= link_to  "", "/videos/49/download", :class => "iconx-video", :alt => t('document.screencast') %>
     </div>
   </div>
   <div class="span9">
     <div class="caption inline-block size16">
-      <a data-toggle="modal" href="#link-modal-<%= link.id.to_s %>" class="link-modal-button-<%= link.id.to_s %> modal-no-trigger"><%= truncate_name(t('document.screencast'), :length => 20) %></a>
+      <%= link_to truncate_name(t('document.screencast'), :length => 20), "/videos/49/download" %>
       <span class="blue-opacity">by <%= t('site.name') %>
       </span>
     </div>
