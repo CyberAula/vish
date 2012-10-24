@@ -1,4 +1,6 @@
 Vish::Application.routes.draw do
+  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
+
   # Blatant redirections
   match '/users/:id/links' => redirect('/users/%{id}/documents')
   match '/users/:id/embeds' => redirect('/users/%{id}/documents')
@@ -15,10 +17,16 @@ Vish::Application.routes.draw do
   match 'excursions/:id/clone' => 'excursions#clone'
 
   resources :excursions
-
   resources :slides
-
   resources :embeds
+  resources :swfs
+  resources :officedocs
+  SocialStream.subjects.each do |actor|
+    resources actor.to_s.pluralize do
+      resources :swfs
+      resources :officedocs
+    end
+  end
 
   match 'embeds/:id/modal' => 'modals#embed'
   match 'links/:id/modal' => 'modals#link'
@@ -37,8 +45,6 @@ Vish::Application.routes.draw do
 
   match 'followers/search' => 'followers#search_followers'
   match 'followings/search' => 'followers#search_followings'
-
-  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   SocialStream.subjects.each do |actor|
     resources actor.to_s.pluralize do

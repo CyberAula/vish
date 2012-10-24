@@ -177,6 +177,14 @@ es:
     unread: " sin leer"
   officedoc:
     confirm_delete: "¿Borrar documento?"
+    title: "Documentos"
+    mine: "Mis documentos"
+    name: "documento"
+    not_mine: "Documents"
+    one: "un documento"
+    title:
+      one: "Documento"
+      other: "Documentos"
   options:
     add: "añadir"
     new: "nuevo"

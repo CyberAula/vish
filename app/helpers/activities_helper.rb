@@ -2,7 +2,7 @@ module ActivitiesHelper
   # Javascript line to fetch or create the modal dialog
   def modal_for(object)
     if object.acts_as_actor?
-      "m = Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', '#{ raw j contact_to(object)}');
+     raw "m = Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', '#{ raw j contact_to(object)}');
       if(m.length) {
          m.on('show', function(){
            $.ajax('/users/#{ object.actor.slug }/modal');
@@ -11,7 +11,7 @@ module ActivitiesHelper
          });
        };"
     else
-      "m = Vish.Wall.getModal('#{object.class.to_s.downcase}', '#{object.id.to_s}', #{ user_signed_in? ? "true" : "false" }, #{object.post_activity.id.to_s}, #{ user_signed_in? and object.post_activity.liked_by?(current_subject) ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');
+      raw "m = Vish.Wall.getModal('#{object.class.to_s.downcase}', '#{object.id.to_s}', #{ user_signed_in? ? "true" : "false" }, #{object.post_activity.id.to_s}, #{ user_signed_in? and object.post_activity.liked_by?(current_subject) ? "true" : "false" }, '#{ raw j truncate_name(object.title , :length => 75) }');
        if(m.length) {
          m.on('show', function(){
            $.ajax('/#{ object.class.to_s.pluralize.underscore }/#{ object.id.to_s }/modal');

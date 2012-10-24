@@ -235,7 +235,7 @@ Vish.Wall = (function(V, $, undefined){
 
   var modalFollowBtn = function(signed_in, contact_link){
     if(signed_in) {
-      return '<div class="send_message size10 red-2 upfoll">' + $("<div/>").html(contact_link).text() + '</div>'
+      return '<div class="send_message size10 red-2 upfoll">' + $("<div/>").html(contact_link).html() + '</div>'
     } else {
       return ""; /* TODO: add button that leads to login? */
     }
@@ -246,7 +246,7 @@ Vish.Wall = (function(V, $, undefined){
     if (modal.length) {
       return "";
     } else {
-      return $('<div class="modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="modal-body text-center">'+ modalPayload(klass, id) +'</div><div class="modal-footer"><div class="pull-left">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="pull-right">' + modalNavBtns() + '<a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="resize ajuste modal hide" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" class="footar modal-body text-center">'+ modalPayload(klass, id) +'</div><div id="modyfooter" class="sticky modal-footer" ><div class="pull-left">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="pull-right">' + modalNavBtns() + '<a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 

@@ -38,6 +38,7 @@ module HomeHelper
   def subject_content(subject, klass, options = {})
     options[:limit] ||= 4
     options[:scope] ||= :net
+    options[:offset] ||= 0
 
     following_ids = subject.following_actor_ids
     #following_ids |= [ subject.actor_id ]
@@ -64,7 +65,8 @@ module HomeHelper
     query = query.where(:draft => false) if (klass == Excursion) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
 
     query = query.order('updated_at DESC')
-    query = query.first(options[:limit]) if options[:limit] > 0
+    query = query.limit(options[:limit]) if options[:limit] > 0
+    query = query.offset(options[:offset]) if options[:offset] > 0
 
     if options[:scope] == :like
       query = query.map { |a| a.activity_objects.first }

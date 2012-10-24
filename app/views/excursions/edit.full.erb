@@ -34,7 +34,7 @@
 	options["developping"] = false;
 
 	options["username"] = "<%= current_user.name %>";
-	options["userId"] = "<%= current_user.id %>";
+	options["userId"] = "<%= Actor.normalize_id(current_user) %>";
 	options["token"] = "<%= form_authenticity_token %>";
 
 	options["draft"] = <%= @excursion.draft.to_s %>;

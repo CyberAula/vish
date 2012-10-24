@@ -37,10 +37,6 @@ end
 # Force the first version of avatars_for_rails that does not collide with bootstrap
 gem 'avatars_for_rails', '~> 0.2.6'
 
-# Responders 0.9.2 breaks bundle update
-gem 'responders', '0.9.1'
-gem 'railties', '3.2.6'
-
 # Composite keys for vish-recsys
 gem 'composite_primary_keys'
 
@@ -54,7 +50,10 @@ gem 'composite_primary_keys'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano', '2.12.0'
+group :development do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end
 
 # Use god for its own purpose
 gem 'god'
