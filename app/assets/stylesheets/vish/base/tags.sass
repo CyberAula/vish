@@ -1,49 +1,40 @@
-ul
-  .tagit-suggestions 
-    list-style: none
+ul.tagit-suggestions 
+  list-style: none
 
-ul
-  .single-line-tags
-    height: 23px
-    overflow: hidden
+ul.single-line-tags
+  height: 23px
+  overflow: hidden
 
-ul
-  .tagit-suggestions 
-    li
-      .tagit-choice
-        float: left
-        background-color: #0066ff
-        opacity: 0.5
-        color: #fff
-        padding: 2px 4px 3px 4px
-        font-size: 13px
-        font-family: Helvetica
-        margin-bottom: 5px
-        margin-right: 5px
-        display: block
-        @include border-radius(5px)
+ul.tagit-suggestions 
+  li.tagit-choice
+    float: left
+    background-color: #0066ff
+    opacity: 0.5
+    color: #fff
+    padding: 2px 4px 3px 4px
+    font-size: 13px
+    font-family: Helvetica
+    margin-bottom: 5px
+    margin-right: 5px
+    display: block
+    @include border-radius(5px)
 
-ul
-  .tagit-suggestions 
-    li
-      .tagit-choice
-        &:hover
-          background-color: #0066ff
-          opacity: 0.7
-          border-color: #6d95e0
+ul.tagit-suggestions 
+  li.tagit-choice
+    &:hover
+      background-color: #0066ff
+      opacity: 0.7
+      border-color: #6d95e0
 
 
-ul
-  .tagit-suggestions 
-    li
-      .tagit-choice 
-        a,
-        ul
-          .tagit-suggestions 
-            li
-              .tagit-choice 
-                a:hover
-                  color: #fff
+ul.tagit-suggestions 
+  li.tagit-choice 
+    a,
+    ul.tagit-suggestions 
+      li.tagit-choice 
+        a
+          &:hover
+            color: #fff
 
 
 .tagBoxDocument
@@ -63,10 +54,9 @@ ul
   .tagBoxDocument
     margin-right: 0px !important 
 
-div
-  .tagBoxDocument 
-    .tagit
-      width: 280px
+div.tagBoxDocument 
+  .tagit
+    width: 280px
 
 .tagBoxEdit
   padding: 0px
@@ -84,8 +74,7 @@ div
   width: 100%
 
 
-div
-.tagBoxEdit 
+div.tagBoxEdit 
   .tagit
     width: 403px
 
@@ -101,25 +90,21 @@ div
   width: 100%
 
 
-div
-  .tagBoxNew 
-    .tagit
-      width: 258px
-      @include border-radius(15px) 
+div.tagBoxNew 
+  .tagit
+    width: auto
+    margin
+    @include border-radius(5px) 
 
-div
-  .tagBoxNew 
-    ul
-      .tagit
-        li
-          .tagit-choice
-            font-size: 13px
+div.tagBoxNew 
+  ul.tagit
+    li.tagit-choice
+      font-size: 13px
 
 
 
-select
-  .tagit-hiddenSelect
-    display: inline-block !important
+select.tagit-hiddenSelect
+  display: inline-block !important
 
 
 
@@ -160,124 +145,110 @@ select
 
 .ui-autocomplete 
   .ui-menu-item 
-    a
-      .ui-state-hover,
+    a.ui-state-hover,
       .ui-autocomplete 
         .ui-menu-item 
-          a
-            .ui-state-active
-              background-color: #c0d1e2
-              color: #555
-              border-color: #a6cef7
+          a.ui-state-active
+            background-color: #c0d1e2
+            color: #555
+            border-color: #a6cef7
 
 .ui-autocomplete-loading 
 
-ul
-  .tagit
-    cursor: text
-    overflow: auto
-    background-color: #FFFFFF
-    border: 1px solid #CCCCCC
-    @include border-radius(15px) 
-    display: inline-block
-    font-size: 13px
-    height: auto
-    line-height: 18px
-    margin-bottom: 9px
-    padding: 3px
+ul.tagit
+  cursor: text
+  overflow: auto
+  background-color: #FFFFFF
+  border: none
+  @include border-radius(15px) 
+  display: inline-block
+  font-size: 13px
+  height: auto
+  line-height: 18px
+  margin-bottom: 9px
+  padding: 3px
 
-    li
-      @include border-radius(15px) 
+  li
+    @include border-radius(5px) 
+    display: block
+    float: left
+    margin: 2px 5px 2px 0
+    position: relative
+    
+  li.tagit-choice 
+    background-color: #0066ff
+    opacity: 0.5
+    color: #fff
+    padding: 0px 4px 0px 8px
+    font-size: 15px
+    font-family: Helvetica
+    margin-bottom: 5px
+
+ul.tagit
+  .ui-sortable 
+    li.tagit-choice 
+      a.ui-icon
+        .ui-icon-grip-dotted-vertical
+          float: left
+          width: 12px
+          margin-left: -5px
+          cursor: move
+                
+ul.tagit 
+  li.tagit-choice
+    .selected
+      background-color: #f5b0b0
+      border-color: #f76464
+
+ul.tagit 
+  li.tagit-choice
+    &:hover
+      background-color: #0066ff
+      opacity: 0.7
+      border-color: #6d95e0
+
+ul.tagit 
+  li.tagit-new
+    padding: 2px 4px 1px 0px
+
+ul.tagit 
+  li.tagit-choice 
+    input
       display: block
       float: left
-      margin: 2px 5px 2px 0
-      position: relative
-      .tagit-choice 
-        background-color: #0066ff
-        opacity: 0.5
-        color: #fff
-        padding: 2px 13px 3px 4px
-        font-size: 15px
-        font-family: Helvetica
-        margin-bottom: 5px
-
-ul
-  .tagit
-    .ui-sortable 
-      li
-        .tagit-choice 
-          a
-            .ui-icon
-              .ui-icon-grip-dotted-vertical
-                float: left
-                width: 12px
-                margin-left: -5px
-                cursor: move
-0
-
-ul
-  .tagit 
-    li
-      .tagit-choice
-        .selected
-    background-color: #f5b0b0
-    border-color: #f76464
-
-ul
-  .tagit 
-    li
-      .tagit-choice
-        &:hover
-          background-color: #0066ff
-          opacity: 0.7
-          border-color: #6d95e0
-
-ul
-  .tagit 
-    li
-      .tagit-new
-        padding: 2px 4px 3px
-        padding: 2px 4px 1px
-        padding: 2px 4px 1px 0px
-
-ul
-  .tagit 
-    li
-      .tagit-choice 
-        input
-          display: block
-          float: left
-          margin: 0 5px 0 0
-          padding-top: 2px
-          padding-bottom: 2px
+      margin: 0 5px 0 0
+      padding-top: 2px
+      padding-bottom: 2px
 
 
 .tagit-close
-  color: #000c6e
+  background-color: white
+  @include border-radius(11px)
+  color: #3366ff
   cursor: pointer
-  font-size: 12px
-  font-weight: bold
-  outline: medium none
-  padding: 2px 0 2px 3px
-  text-decoration: none
-
   display: inline-block
+  font-size: 16px
+  height: 100%
+  margin-left: 5px
+  outline: medium none
+  text-align: center
+  text-decoration: none
+  vertical-align: middle
+  width: 20px
 
 
 
-ul
-  .tagit 
-    li
-      .tagit-choice 
-        a
-          .tagit-close
-            &:hover
-              color: #535353
 
 
-ul
-  .tagit 
-    input[type="text"]
+ul.tagit 
+  li.tagit-choice 
+    a.tagit-close
+      &:hover
+        color: #535353
+
+
+ul.tagit 
+  input[type="text"]
     -moz-box-sizing: border-box
     border: none !important
     margin: 0 !important
@@ -309,30 +280,31 @@ ul
 
 .ui-menu 
   .ui-menu-item
-  margin: 0px
-  padding: 0px
-  zoom: 1
-  float: left
-  clear: left
-  width: 100%
+    margin: 0px
+    padding: 0px
+    zoom: 1
+    float: left
+    clear: left
+    width: 100%
 
 .ui-menu 
   .ui-menu-item 
     a
-  text-decoration: none
-  display: block
-  padding: .2em .4em
-  line-height: 1.5
-  zoom: 1
+      text-decoration: none
+      display: block
+      padding: .2em .4em
+      line-height: 1.5
+      zoom: 1
 
 .ui-menu 
   .ui-menu-item 
-    a
-    .ui-state-hover,
+    a.ui-state-hover,
     .ui-menu 
       .ui-menu-item 
-        a
-          .ui-state-active 
-            font-weight: normal
-            margin: -1px
+        a.ui-state-active 
+          font-weight: normal
+          margin: -1px
 
+
+ul.devisetags
+  margin-left: 5px
