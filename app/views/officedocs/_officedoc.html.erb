@@ -4,12 +4,12 @@
   <% end %>
   <ul class="thumbnails">
     <li class="span3">
-      <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><i class='icon75-pdf'  onclick = "redim(); googdoc(); redimensiona();"></i></a>
+      <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><i class='icon75-pdf' onclick = "Vish.Officedoc.redim(this); Vish.Officedoc.googdoc(); Vish.Officedoc.rwindow();"></i></a>
     </li>
     <li class="span9">
       <div class="title">
         <h4 class="bold ellipsis w190px">
-          <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" onclick = "redim(); googdoc(); redimensiona();" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><%= officedoc.title %></a>
+          <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" onclick = "Vish.Officedoc.redim(this); Vish.Officedoc.googdoc(); Vish.Officedoc.rwindow();" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><%= officedoc.title %></a>
         </h4>
       </div>
       <p><%= simple_format officedoc.description %></p>
@@ -19,47 +19,4 @@
 <% end %>
 
 <div class="clearfloat"></div>
-
-<%= javascript_tag do %>
-    function redim() {
-      return -($(this).width() / 2);
-    }
-    $('.resize').css({
-        width: 'auto',
-        'margin-left': redim()
-    });
-<% end %>
-
-<%= javascript_tag do %>
-  function googdoc() {
-  var altura = ($('.resize').height())*(8/10);
-  console.log("googdoc called")
-  setTimeout(function(){
-  $('#gdoc').css("height", altura);
-},500);
-}
-<% end %>
-
-<%= javascript_tag do %>
-
-function prueba(){
-
-var altura = ($('.resize').height())*(9/10);
- console.log("he entrado");
-
-  $(window).resize(function () {
-  var altura = ($('.resize').height())*(8/10);
-  $('#gdoc').css("height", altura);
-  console.log("La altura es: ");
-  console.log($('#gdoc').height());
-});
-}
-function redimensiona() {
-setTimeout( "prueba();" , 500);
-}
-
-<% end %>
-
-
-
 
