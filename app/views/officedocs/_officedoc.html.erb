@@ -4,12 +4,12 @@
   <% end %>
   <ul class="thumbnails">
     <li class="span3">
-      <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><i class='icon75-pdf' onclick = "Vish.Officedoc.redim(this); Vish.Officedoc.googdoc(); Vish.Officedoc.rwindow();"></i></a>
+      <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><i class='icon75-pdf' onclick = " Vish.Officedoc.redim(); Vish.Officedoc.googdoc(); Vish.Officedoc.rwindow();"></i></a>
     </li>
     <li class="span9">
       <div class="title">
         <h4 class="bold ellipsis w190px">
-          <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" onclick = "Vish.Officedoc.redim(this); Vish.Officedoc.googdoc(); Vish.Officedoc.rwindow();" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><%= officedoc.title %></a>
+          <a data-toggle="modal" href="#officedoc-modal-<%= officedoc.id.to_s%>" onclick = " Vish.Officedoc.redim(); Vish.Officedoc.googdoc(); Vish.Officedoc.rwindow();" class="officedoc-modal-button-<%= officedoc.id.to_s%> modal-trigger"><%= officedoc.title %></a>
         </h4>
       </div>
       <p><%= simple_format officedoc.description %></p>
