@@ -1,0 +1,14 @@
+CACHE MANIFEST
+#generar esta linea dinamicamente, este fichero debería ser un erb y que se entregue cada vez?
+# 2012-10-22:v1.1
+
+CACHE:
+icons/favicon.ico
+
+
+FALLBACK:
+/ /offline.html
+
+NETWORK:
+/assets/blank.png
+*

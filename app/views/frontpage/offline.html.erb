@@ -1,0 +1,83 @@
+<!-- HTML5 DOCTYPE -->
+<!DOCTYPE html>
+<html manifest="/cache2.manifest">
+<head>
+    <%= javascript_include_tag "jquery" %>
+
+    <%= favicon_link_tag "icons/favicon.ico" %>
+    <%= stylesheet_link_tag "bootstrap" %>
+    <%= stylesheet_link_tag "application" %>
+
+	<script type="text/javascript">
+		function start(){
+			if(typeof(Storage)!=="undefined")
+			{
+				// Yes! localStorage and sessionStorage support!
+			 	//get the array of presentations with their ids, i.e. {[1], [6], [78]}
+			 	var list = localStorage.getItem("presentation_list");
+			 	var pres = null;
+			 	var div_to_add = null;
+			 	if(list){
+			 		list.each(function(index,id){
+			 			pres = localStorage.getItem("presentation_"+id);
+			 			if(pres){
+			 				div_to_add = $('#div_for_excursion').clone();
+			 				$(div_to_add).attr("id", "presentation_"+id);
+							$(div_to_add).find(".excursion_title").html(pres.title);
+
+			 				$("#excursion_list").append(div_to_add);
+			 			}
+			 		});
+			 	}
+			 	else{
+			 		$("#excursion_list").html("<div>No cached excursions.</div>");
+			 	}
+			 	//save the presentation, we save the full json in case we need info about the slides in the future
+			 	localStorage.setItem("presentation_"+presentation.id, JSON.stringify(presentation));
+
+			}
+			else
+			{
+				// Sorry! No web storage support..
+			  	console.log("Sorry! No web storage support.");
+			}
+		}
+	</script>
+</head>
+<body onload="start()">
+
+<div class="span6 ">
+	<div class="logo-home ">
+	  <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
+	</div>
+	<span class="link_virtual size24 virtualsciencehub span3 ">
+	  <%= link_to(t('site.name'), '/', :class => "brand"); %>
+	</span>
+</div>
+<div id="excursion_list">
+
+</div>
+<div class="excursion span3" id="div_for_excursion" style="display:none">
+    <ul class="thumbnails ">
+        <li class="span1">
+          <a href="/excursions/36" class="container"><img alt="Excursion-00" src="/assets/logos/original/excursion-00.png"></a>
+          <div class="number_pages">8</div>
+        </li>
+        <li class="span2">
+          <div class="caption inline-block">
+            <h4 class="ellipsis w150px">
+              <a href="/excursions/36" class="excursion_title">eu magna</a>
+            </h4>
+            <h5 class="blue-opacity ellipsis w150px">by <a data-toggle="modal" href="#user-modal-carol-jordan" class="user-modal-button-carol-jordan modal-no-trigger">Carol Jordan</a></h5>
+            <h5 class=""><span class="green">13</span> views </h5>
+              <h5 class="">
+                <span class="green like_count_activity_103">0</span>
+                <div class="verb_like" id="like_activity_103"><a href="/activities/103/like" class="verb_like like_size_small like_activity_103" data-method="post" data-remote="true" rel="nofollow"><img alt="Star-off10" class="menu_icon" src="/assets/star-off10.png"></a></div>
+              </h5>
+          </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

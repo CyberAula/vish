@@ -20,15 +20,48 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", "i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", 
 "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.objectContent":"Contenido Flash", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Video":"Video", "i.Videos":"Videos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", 
 "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.SearchVideosVimeo":"Buscar videos en Vimeo", "i.SearchVideosVish":"Buscar videos en el repositorio del ViSH", 
-"i.SearchVideosYoutube":"Buscar videos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.SeeVideoBefore":"Puedes ver el video antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", 
-"i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenido al ViSH editor!", "i.Url":"Enlace", "i.url":"enlace", "i.Upload":"Subir", "i.upload":"subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", 
-"i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, 
-"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.SearchVideosYoutube":"Buscar videos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.SeeVideoBefore":"Puedes ver el video antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", 
+"i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenido al ViSH editor!", "i.Url":"Enlace", "i.url":"enlace", "i.Upload":"Subir", "i.upload":"subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", 
+"i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", 
+"i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, 
+"default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
 VISH.AUTHORS = "GING";
 VISH.Editing = false;
+VISH.Constant = {};
+VISH.Constant.Edit = "Edit";
+VISH.Constant.Viewer = "Viewer";
+VISH.Constant.AnyMode = "Both";
+VISH.Constant.UA_IE = "Microsoft Internet Explorer";
+VISH.Constant.UA_NETSCAPE = "Netscape";
+VISH.Constant.IE = "Internet Explorer";
+VISH.Constant.FIREFOX = "Mozilla Firefox";
+VISH.Constant.CHROME = "Google Chrome";
+VISH.Constant.UNKNOWN = "Unknown";
+VISH.Constant.NOSERVER = "noserver";
+VISH.Constant.VISH = "vish";
+VISH.Constant.STANDALONE = "node";
+VISH.Constant.SMALL = "small";
+VISH.Constant.MEDIUM = "medium";
+VISH.Constant.LARGE = "large";
+VISH.Constant.PRESENTATION = "presentation";
+VISH.Constant.FLASHCARD = "flashcard";
+VISH.Constant.GAME = "game";
+VISH.Constant.THUMBNAIL = "thumbnail";
+VISH.Constant.NONE = "none";
+VISH.Constant.Video = {};
+VISH.Constant.Video.HTML5 = "HTML5";
+VISH.Constant.Video.Youtube = "Youtube";
+VISH.Constant.Event = {};
+VISH.Constant.Event.onMessage = "onMessage";
+VISH.Constant.Event.onGoToSlide = "onGoToSlide";
+VISH.Constant.Event.onPlayVideo = "onPlayVideo";
+VISH.Constant.Event.onPauseVideo = "onPauseVideo";
+VISH.Constant.Event.onSeekVideo = "onSeekVideo";
+VISH.Constant.Event.onSetSlave = "onSetSlave";
+VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 (function(a, b) {
   function cy(a) {
     return f.isWindow(a) ? a : a.nodeType === 9 ? a.defaultView || a.parentWindow : !1
@@ -9446,6 +9479,493 @@ jQuery.cookie = function(key, value, options) {
     return this.unbind("mousewheel", a)
   }})
 })(jQuery);
+(function(r) {
+  r.fn.qrcode = function(h) {
+    var s;
+    function u(a) {
+      this.mode = s;
+      this.data = a
+    }
+    function o(a, c) {
+      this.typeNumber = a;
+      this.errorCorrectLevel = c;
+      this.modules = null;
+      this.moduleCount = 0;
+      this.dataCache = null;
+      this.dataList = []
+    }
+    function q(a, c) {
+      if(void 0 == a.length) {
+        throw Error(a.length + "/" + c);
+      }
+      for(var d = 0;d < a.length && 0 == a[d];) {
+        d++
+      }
+      this.num = Array(a.length - d + c);
+      for(var b = 0;b < a.length - d;b++) {
+        this.num[b] = a[b + d]
+      }
+    }
+    function p(a, c) {
+      this.totalCount = a;
+      this.dataCount = c
+    }
+    function t() {
+      this.buffer = [];
+      this.length = 0
+    }
+    u.prototype = {getLength:function() {
+      return this.data.length
+    }, write:function(a) {
+      for(var c = 0;c < this.data.length;c++) {
+        a.put(this.data.charCodeAt(c), 8)
+      }
+    }};
+    o.prototype = {addData:function(a) {
+      this.dataList.push(new u(a));
+      this.dataCache = null
+    }, isDark:function(a, c) {
+      if(0 > a || this.moduleCount <= a || 0 > c || this.moduleCount <= c) {
+        throw Error(a + "," + c);
+      }
+      return this.modules[a][c]
+    }, getModuleCount:function() {
+      return this.moduleCount
+    }, make:function() {
+      if(1 > this.typeNumber) {
+        for(var a = 1, a = 1;40 > a;a++) {
+          for(var c = p.getRSBlocks(a, this.errorCorrectLevel), d = new t, b = 0, e = 0;e < c.length;e++) {
+            b += c[e].dataCount
+          }
+          for(e = 0;e < this.dataList.length;e++) {
+            c = this.dataList[e], d.put(c.mode, 4), d.put(c.getLength(), j.getLengthInBits(c.mode, a)), c.write(d)
+          }
+          if(d.getLengthInBits() <= 8 * b) {
+            break
+          }
+        }
+        this.typeNumber = a
+      }
+      this.makeImpl(!1, this.getBestMaskPattern())
+    }, makeImpl:function(a, c) {
+      this.moduleCount = 4 * this.typeNumber + 17;
+      this.modules = Array(this.moduleCount);
+      for(var d = 0;d < this.moduleCount;d++) {
+        this.modules[d] = Array(this.moduleCount);
+        for(var b = 0;b < this.moduleCount;b++) {
+          this.modules[d][b] = null
+        }
+      }
+      this.setupPositionProbePattern(0, 0);
+      this.setupPositionProbePattern(this.moduleCount - 7, 0);
+      this.setupPositionProbePattern(0, this.moduleCount - 7);
+      this.setupPositionAdjustPattern();
+      this.setupTimingPattern();
+      this.setupTypeInfo(a, c);
+      7 <= this.typeNumber && this.setupTypeNumber(a);
+      null == this.dataCache && (this.dataCache = o.createData(this.typeNumber, this.errorCorrectLevel, this.dataList));
+      this.mapData(this.dataCache, c)
+    }, setupPositionProbePattern:function(a, c) {
+      for(var d = -1;7 >= d;d++) {
+        if(!(-1 >= a + d || this.moduleCount <= a + d)) {
+          for(var b = -1;7 >= b;b++) {
+            -1 >= c + b || this.moduleCount <= c + b || (this.modules[a + d][c + b] = 0 <= d && 6 >= d && (0 == b || 6 == b) || 0 <= b && 6 >= b && (0 == d || 6 == d) || 2 <= d && 4 >= d && 2 <= b && 4 >= b ? !0 : !1)
+          }
+        }
+      }
+    }, getBestMaskPattern:function() {
+      for(var a = 0, c = 0, d = 0;8 > d;d++) {
+        this.makeImpl(!0, d);
+        var b = j.getLostPoint(this);
+        if(0 == d || a > b) {
+          a = b, c = d
+        }
+      }
+      return c
+    }, createMovieClip:function(a, c, d) {
+      a = a.createEmptyMovieClip(c, d);
+      this.make();
+      for(c = 0;c < this.modules.length;c++) {
+        for(var d = 1 * c, b = 0;b < this.modules[c].length;b++) {
+          var e = 1 * b;
+          this.modules[c][b] && (a.beginFill(0, 100), a.moveTo(e, d), a.lineTo(e + 1, d), a.lineTo(e + 1, d + 1), a.lineTo(e, d + 1), a.endFill())
+        }
+      }
+      return a
+    }, setupTimingPattern:function() {
+      for(var a = 8;a < this.moduleCount - 8;a++) {
+        null == this.modules[a][6] && (this.modules[a][6] = 0 == a % 2)
+      }
+      for(a = 8;a < this.moduleCount - 8;a++) {
+        null == this.modules[6][a] && (this.modules[6][a] = 0 == a % 2)
+      }
+    }, setupPositionAdjustPattern:function() {
+      for(var a = j.getPatternPosition(this.typeNumber), c = 0;c < a.length;c++) {
+        for(var d = 0;d < a.length;d++) {
+          var b = a[c], e = a[d];
+          if(null == this.modules[b][e]) {
+            for(var f = -2;2 >= f;f++) {
+              for(var i = -2;2 >= i;i++) {
+                this.modules[b + f][e + i] = -2 == f || 2 == f || -2 == i || 2 == i || 0 == f && 0 == i ? !0 : !1
+              }
+            }
+          }
+        }
+      }
+    }, setupTypeNumber:function(a) {
+      for(var c = j.getBCHTypeNumber(this.typeNumber), d = 0;18 > d;d++) {
+        var b = !a && 1 == (c >> d & 1);
+        this.modules[Math.floor(d / 3)][d % 3 + this.moduleCount - 8 - 3] = b
+      }
+      for(d = 0;18 > d;d++) {
+        b = !a && 1 == (c >> d & 1), this.modules[d % 3 + this.moduleCount - 8 - 3][Math.floor(d / 3)] = b
+      }
+    }, setupTypeInfo:function(a, c) {
+      for(var d = j.getBCHTypeInfo(this.errorCorrectLevel << 3 | c), b = 0;15 > b;b++) {
+        var e = !a && 1 == (d >> b & 1);
+        6 > b ? this.modules[b][8] = e : 8 > b ? this.modules[b + 1][8] = e : this.modules[this.moduleCount - 15 + b][8] = e
+      }
+      for(b = 0;15 > b;b++) {
+        e = !a && 1 == (d >> b & 1), 8 > b ? this.modules[8][this.moduleCount - b - 1] = e : 9 > b ? this.modules[8][15 - b - 1 + 1] = e : this.modules[8][15 - b - 1] = e
+      }
+      this.modules[this.moduleCount - 8][8] = !a
+    }, mapData:function(a, c) {
+      for(var d = -1, b = this.moduleCount - 1, e = 7, f = 0, i = this.moduleCount - 1;0 < i;i -= 2) {
+        for(6 == i && i--;;) {
+          for(var g = 0;2 > g;g++) {
+            if(null == this.modules[b][i - g]) {
+              var n = !1;
+              f < a.length && (n = 1 == (a[f] >>> e & 1));
+              j.getMask(c, b, i - g) && (n = !n);
+              this.modules[b][i - g] = n;
+              e--;
+               -1 == e && (f++, e = 7)
+            }
+          }
+          b += d;
+          if(0 > b || this.moduleCount <= b) {
+            b -= d;
+            d = -d;
+            break
+          }
+        }
+      }
+    }};
+    o.PAD0 = 236;
+    o.PAD1 = 17;
+    o.createData = function(a, c, d) {
+      for(var c = p.getRSBlocks(a, c), b = new t, e = 0;e < d.length;e++) {
+        var f = d[e];
+        b.put(f.mode, 4);
+        b.put(f.getLength(), j.getLengthInBits(f.mode, a));
+        f.write(b)
+      }
+      for(e = a = 0;e < c.length;e++) {
+        a += c[e].dataCount
+      }
+      if(b.getLengthInBits() > 8 * a) {
+        throw Error("code length overflow. (" + b.getLengthInBits() + ">" + 8 * a + ")");
+      }
+      for(b.getLengthInBits() + 4 <= 8 * a && b.put(0, 4);0 != b.getLengthInBits() % 8;) {
+        b.putBit(!1)
+      }
+      for(;!(b.getLengthInBits() >= 8 * a);) {
+        b.put(o.PAD0, 8);
+        if(b.getLengthInBits() >= 8 * a) {
+          break
+        }
+        b.put(o.PAD1, 8)
+      }
+      return o.createBytes(b, c)
+    };
+    o.createBytes = function(a, c) {
+      for(var d = 0, b = 0, e = 0, f = Array(c.length), i = Array(c.length), g = 0;g < c.length;g++) {
+        var n = c[g].dataCount, h = c[g].totalCount - n, b = Math.max(b, n), e = Math.max(e, h);
+        f[g] = Array(n);
+        for(var k = 0;k < f[g].length;k++) {
+          f[g][k] = 255 & a.buffer[k + d]
+        }
+        d += n;
+        k = j.getErrorCorrectPolynomial(h);
+        n = (new q(f[g], k.getLength() - 1)).mod(k);
+        i[g] = Array(k.getLength() - 1);
+        for(k = 0;k < i[g].length;k++) {
+          h = k + n.getLength() - i[g].length, i[g][k] = 0 <= h ? n.get(h) : 0
+        }
+      }
+      for(k = g = 0;k < c.length;k++) {
+        g += c[k].totalCount
+      }
+      d = Array(g);
+      for(k = n = 0;k < b;k++) {
+        for(g = 0;g < c.length;g++) {
+          k < f[g].length && (d[n++] = f[g][k])
+        }
+      }
+      for(k = 0;k < e;k++) {
+        for(g = 0;g < c.length;g++) {
+          k < i[g].length && (d[n++] = i[g][k])
+        }
+      }
+      return d
+    };
+    s = 4;
+    for(var j = {PATTERN_POSITION_TABLE:[[], [6, 18], [6, 22], [6, 26], [6, 30], [6, 34], [6, 22, 38], [6, 24, 42], [6, 26, 46], [6, 28, 50], [6, 30, 54], [6, 32, 58], [6, 34, 62], [6, 26, 46, 66], [6, 26, 48, 70], [6, 26, 50, 74], [6, 30, 54, 78], [6, 30, 56, 82], [6, 30, 58, 86], [6, 34, 62, 90], [6, 28, 50, 72, 94], [6, 26, 50, 74, 98], [6, 30, 54, 78, 102], [6, 28, 54, 80, 106], [6, 32, 58, 84, 110], [6, 30, 58, 86, 114], [6, 34, 62, 90, 118], [6, 26, 50, 74, 98, 122], [6, 30, 54, 78, 102, 126], 
+    [6, 26, 52, 78, 104, 130], [6, 30, 56, 82, 108, 134], [6, 34, 60, 86, 112, 138], [6, 30, 58, 86, 114, 142], [6, 34, 62, 90, 118, 146], [6, 30, 54, 78, 102, 126, 150], [6, 24, 50, 76, 102, 128, 154], [6, 28, 54, 80, 106, 132, 158], [6, 32, 58, 84, 110, 136, 162], [6, 26, 54, 82, 110, 138, 166], [6, 30, 58, 86, 114, 142, 170]], G15:1335, G18:7973, G15_MASK:21522, getBCHTypeInfo:function(a) {
+      for(var c = a << 10;0 <= j.getBCHDigit(c) - j.getBCHDigit(j.G15);) {
+        c ^= j.G15 << j.getBCHDigit(c) - j.getBCHDigit(j.G15)
+      }
+      return(a << 10 | c) ^ j.G15_MASK
+    }, getBCHTypeNumber:function(a) {
+      for(var c = a << 12;0 <= j.getBCHDigit(c) - j.getBCHDigit(j.G18);) {
+        c ^= j.G18 << j.getBCHDigit(c) - j.getBCHDigit(j.G18)
+      }
+      return a << 12 | c
+    }, getBCHDigit:function(a) {
+      for(var c = 0;0 != a;) {
+        c++, a >>>= 1
+      }
+      return c
+    }, getPatternPosition:function(a) {
+      return j.PATTERN_POSITION_TABLE[a - 1]
+    }, getMask:function(a, c, d) {
+      switch(a) {
+        case 0:
+          return 0 == (c + d) % 2;
+        case 1:
+          return 0 == c % 2;
+        case 2:
+          return 0 == d % 3;
+        case 3:
+          return 0 == (c + d) % 3;
+        case 4:
+          return 0 == (Math.floor(c / 2) + Math.floor(d / 3)) % 2;
+        case 5:
+          return 0 == c * d % 2 + c * d % 3;
+        case 6:
+          return 0 == (c * d % 2 + c * d % 3) % 2;
+        case 7:
+          return 0 == (c * d % 3 + (c + d) % 2) % 2;
+        default:
+          throw Error("bad maskPattern:" + a);
+      }
+    }, getErrorCorrectPolynomial:function(a) {
+      for(var c = new q([1], 0), d = 0;d < a;d++) {
+        c = c.multiply(new q([1, l.gexp(d)], 0))
+      }
+      return c
+    }, getLengthInBits:function(a, c) {
+      if(1 <= c && 10 > c) {
+        switch(a) {
+          case 1:
+            return 10;
+          case 2:
+            return 9;
+          case s:
+            return 8;
+          case 8:
+            return 8;
+          default:
+            throw Error("mode:" + a);
+        }
+      }else {
+        if(27 > c) {
+          switch(a) {
+            case 1:
+              return 12;
+            case 2:
+              return 11;
+            case s:
+              return 16;
+            case 8:
+              return 10;
+            default:
+              throw Error("mode:" + a);
+          }
+        }else {
+          if(41 > c) {
+            switch(a) {
+              case 1:
+                return 14;
+              case 2:
+                return 13;
+              case s:
+                return 16;
+              case 8:
+                return 12;
+              default:
+                throw Error("mode:" + a);
+            }
+          }else {
+            throw Error("type:" + c);
+          }
+        }
+      }
+    }, getLostPoint:function(a) {
+      for(var c = a.getModuleCount(), d = 0, b = 0;b < c;b++) {
+        for(var e = 0;e < c;e++) {
+          for(var f = 0, i = a.isDark(b, e), g = -1;1 >= g;g++) {
+            if(!(0 > b + g || c <= b + g)) {
+              for(var h = -1;1 >= h;h++) {
+                0 > e + h || c <= e + h || 0 == g && 0 == h || i == a.isDark(b + g, e + h) && f++
+              }
+            }
+          }
+          5 < f && (d += 3 + f - 5)
+        }
+      }
+      for(b = 0;b < c - 1;b++) {
+        for(e = 0;e < c - 1;e++) {
+          if(f = 0, a.isDark(b, e) && f++, a.isDark(b + 1, e) && f++, a.isDark(b, e + 1) && f++, a.isDark(b + 1, e + 1) && f++, 0 == f || 4 == f) {
+            d += 3
+          }
+        }
+      }
+      for(b = 0;b < c;b++) {
+        for(e = 0;e < c - 6;e++) {
+          a.isDark(b, e) && !a.isDark(b, e + 1) && a.isDark(b, e + 2) && a.isDark(b, e + 3) && a.isDark(b, e + 4) && !a.isDark(b, e + 5) && a.isDark(b, e + 6) && (d += 40)
+        }
+      }
+      for(e = 0;e < c;e++) {
+        for(b = 0;b < c - 6;b++) {
+          a.isDark(b, e) && !a.isDark(b + 1, e) && a.isDark(b + 2, e) && a.isDark(b + 3, e) && a.isDark(b + 4, e) && !a.isDark(b + 5, e) && a.isDark(b + 6, e) && (d += 40)
+        }
+      }
+      for(e = f = 0;e < c;e++) {
+        for(b = 0;b < c;b++) {
+          a.isDark(b, e) && f++
+        }
+      }
+      a = Math.abs(100 * f / c / c - 50) / 5;
+      return d + 10 * a
+    }}, l = {glog:function(a) {
+      if(1 > a) {
+        throw Error("glog(" + a + ")");
+      }
+      return l.LOG_TABLE[a]
+    }, gexp:function(a) {
+      for(;0 > a;) {
+        a += 255
+      }
+      for(;256 <= a;) {
+        a -= 255
+      }
+      return l.EXP_TABLE[a]
+    }, EXP_TABLE:Array(256), LOG_TABLE:Array(256)}, m = 0;8 > m;m++) {
+      l.EXP_TABLE[m] = 1 << m
+    }
+    for(m = 8;256 > m;m++) {
+      l.EXP_TABLE[m] = l.EXP_TABLE[m - 4] ^ l.EXP_TABLE[m - 5] ^ l.EXP_TABLE[m - 6] ^ l.EXP_TABLE[m - 8]
+    }
+    for(m = 0;255 > m;m++) {
+      l.LOG_TABLE[l.EXP_TABLE[m]] = m
+    }
+    q.prototype = {get:function(a) {
+      return this.num[a]
+    }, getLength:function() {
+      return this.num.length
+    }, multiply:function(a) {
+      for(var c = Array(this.getLength() + a.getLength() - 1), d = 0;d < this.getLength();d++) {
+        for(var b = 0;b < a.getLength();b++) {
+          c[d + b] ^= l.gexp(l.glog(this.get(d)) + l.glog(a.get(b)))
+        }
+      }
+      return new q(c, 0)
+    }, mod:function(a) {
+      if(0 > this.getLength() - a.getLength()) {
+        return this
+      }
+      for(var c = l.glog(this.get(0)) - l.glog(a.get(0)), d = Array(this.getLength()), b = 0;b < this.getLength();b++) {
+        d[b] = this.get(b)
+      }
+      for(b = 0;b < a.getLength();b++) {
+        d[b] ^= l.gexp(l.glog(a.get(b)) + c)
+      }
+      return(new q(d, 0)).mod(a)
+    }};
+    p.RS_BLOCK_TABLE = [[1, 26, 19], [1, 26, 16], [1, 26, 13], [1, 26, 9], [1, 44, 34], [1, 44, 28], [1, 44, 22], [1, 44, 16], [1, 70, 55], [1, 70, 44], [2, 35, 17], [2, 35, 13], [1, 100, 80], [2, 50, 32], [2, 50, 24], [4, 25, 9], [1, 134, 108], [2, 67, 43], [2, 33, 15, 2, 34, 16], [2, 33, 11, 2, 34, 12], [2, 86, 68], [4, 43, 27], [4, 43, 19], [4, 43, 15], [2, 98, 78], [4, 49, 31], [2, 32, 14, 4, 33, 15], [4, 39, 13, 1, 40, 14], [2, 121, 97], [2, 60, 38, 2, 61, 39], [4, 40, 18, 2, 41, 19], [4, 40, 
+    14, 2, 41, 15], [2, 146, 116], [3, 58, 36, 2, 59, 37], [4, 36, 16, 4, 37, 17], [4, 36, 12, 4, 37, 13], [2, 86, 68, 2, 87, 69], [4, 69, 43, 1, 70, 44], [6, 43, 19, 2, 44, 20], [6, 43, 15, 2, 44, 16], [4, 101, 81], [1, 80, 50, 4, 81, 51], [4, 50, 22, 4, 51, 23], [3, 36, 12, 8, 37, 13], [2, 116, 92, 2, 117, 93], [6, 58, 36, 2, 59, 37], [4, 46, 20, 6, 47, 21], [7, 42, 14, 4, 43, 15], [4, 133, 107], [8, 59, 37, 1, 60, 38], [8, 44, 20, 4, 45, 21], [12, 33, 11, 4, 34, 12], [3, 145, 115, 1, 146, 116], 
+    [4, 64, 40, 5, 65, 41], [11, 36, 16, 5, 37, 17], [11, 36, 12, 5, 37, 13], [5, 109, 87, 1, 110, 88], [5, 65, 41, 5, 66, 42], [5, 54, 24, 7, 55, 25], [11, 36, 12], [5, 122, 98, 1, 123, 99], [7, 73, 45, 3, 74, 46], [15, 43, 19, 2, 44, 20], [3, 45, 15, 13, 46, 16], [1, 135, 107, 5, 136, 108], [10, 74, 46, 1, 75, 47], [1, 50, 22, 15, 51, 23], [2, 42, 14, 17, 43, 15], [5, 150, 120, 1, 151, 121], [9, 69, 43, 4, 70, 44], [17, 50, 22, 1, 51, 23], [2, 42, 14, 19, 43, 15], [3, 141, 113, 4, 142, 114], [3, 
+    70, 44, 11, 71, 45], [17, 47, 21, 4, 48, 22], [9, 39, 13, 16, 40, 14], [3, 135, 107, 5, 136, 108], [3, 67, 41, 13, 68, 42], [15, 54, 24, 5, 55, 25], [15, 43, 15, 10, 44, 16], [4, 144, 116, 4, 145, 117], [17, 68, 42], [17, 50, 22, 6, 51, 23], [19, 46, 16, 6, 47, 17], [2, 139, 111, 7, 140, 112], [17, 74, 46], [7, 54, 24, 16, 55, 25], [34, 37, 13], [4, 151, 121, 5, 152, 122], [4, 75, 47, 14, 76, 48], [11, 54, 24, 14, 55, 25], [16, 45, 15, 14, 46, 16], [6, 147, 117, 4, 148, 118], [6, 73, 45, 14, 
+    74, 46], [11, 54, 24, 16, 55, 25], [30, 46, 16, 2, 47, 17], [8, 132, 106, 4, 133, 107], [8, 75, 47, 13, 76, 48], [7, 54, 24, 22, 55, 25], [22, 45, 15, 13, 46, 16], [10, 142, 114, 2, 143, 115], [19, 74, 46, 4, 75, 47], [28, 50, 22, 6, 51, 23], [33, 46, 16, 4, 47, 17], [8, 152, 122, 4, 153, 123], [22, 73, 45, 3, 74, 46], [8, 53, 23, 26, 54, 24], [12, 45, 15, 28, 46, 16], [3, 147, 117, 10, 148, 118], [3, 73, 45, 23, 74, 46], [4, 54, 24, 31, 55, 25], [11, 45, 15, 31, 46, 16], [7, 146, 116, 7, 147, 
+    117], [21, 73, 45, 7, 74, 46], [1, 53, 23, 37, 54, 24], [19, 45, 15, 26, 46, 16], [5, 145, 115, 10, 146, 116], [19, 75, 47, 10, 76, 48], [15, 54, 24, 25, 55, 25], [23, 45, 15, 25, 46, 16], [13, 145, 115, 3, 146, 116], [2, 74, 46, 29, 75, 47], [42, 54, 24, 1, 55, 25], [23, 45, 15, 28, 46, 16], [17, 145, 115], [10, 74, 46, 23, 75, 47], [10, 54, 24, 35, 55, 25], [19, 45, 15, 35, 46, 16], [17, 145, 115, 1, 146, 116], [14, 74, 46, 21, 75, 47], [29, 54, 24, 19, 55, 25], [11, 45, 15, 46, 46, 16], [13, 
+    145, 115, 6, 146, 116], [14, 74, 46, 23, 75, 47], [44, 54, 24, 7, 55, 25], [59, 46, 16, 1, 47, 17], [12, 151, 121, 7, 152, 122], [12, 75, 47, 26, 76, 48], [39, 54, 24, 14, 55, 25], [22, 45, 15, 41, 46, 16], [6, 151, 121, 14, 152, 122], [6, 75, 47, 34, 76, 48], [46, 54, 24, 10, 55, 25], [2, 45, 15, 64, 46, 16], [17, 152, 122, 4, 153, 123], [29, 74, 46, 14, 75, 47], [49, 54, 24, 10, 55, 25], [24, 45, 15, 46, 46, 16], [4, 152, 122, 18, 153, 123], [13, 74, 46, 32, 75, 47], [48, 54, 24, 14, 55, 25], 
+    [42, 45, 15, 32, 46, 16], [20, 147, 117, 4, 148, 118], [40, 75, 47, 7, 76, 48], [43, 54, 24, 22, 55, 25], [10, 45, 15, 67, 46, 16], [19, 148, 118, 6, 149, 119], [18, 75, 47, 31, 76, 48], [34, 54, 24, 34, 55, 25], [20, 45, 15, 61, 46, 16]];
+    p.getRSBlocks = function(a, c) {
+      var d = p.getRsBlockTable(a, c);
+      if(void 0 == d) {
+        throw Error("bad rs block @ typeNumber:" + a + "/errorCorrectLevel:" + c);
+      }
+      for(var b = d.length / 3, e = [], f = 0;f < b;f++) {
+        for(var h = d[3 * f + 0], g = d[3 * f + 1], j = d[3 * f + 2], l = 0;l < h;l++) {
+          e.push(new p(g, j))
+        }
+      }
+      return e
+    };
+    p.getRsBlockTable = function(a, c) {
+      switch(c) {
+        case 1:
+          return p.RS_BLOCK_TABLE[4 * (a - 1) + 0];
+        case 0:
+          return p.RS_BLOCK_TABLE[4 * (a - 1) + 1];
+        case 3:
+          return p.RS_BLOCK_TABLE[4 * (a - 1) + 2];
+        case 2:
+          return p.RS_BLOCK_TABLE[4 * (a - 1) + 3]
+      }
+    };
+    t.prototype = {get:function(a) {
+      return 1 == (this.buffer[Math.floor(a / 8)] >>> 7 - a % 8 & 1)
+    }, put:function(a, c) {
+      for(var d = 0;d < c;d++) {
+        this.putBit(1 == (a >>> c - d - 1 & 1))
+      }
+    }, getLengthInBits:function() {
+      return this.length
+    }, putBit:function(a) {
+      var c = Math.floor(this.length / 8);
+      this.buffer.length <= c && this.buffer.push(0);
+      a && (this.buffer[c] |= 128 >>> this.length % 8);
+      this.length++
+    }};
+    "string" === typeof h && (h = {text:h});
+    h = r.extend({}, {render:"canvas", width:256, height:256, typeNumber:-1, correctLevel:2, background:"#ffffff", foreground:"#000000"}, h);
+    return this.each(function() {
+      var a;
+      if("canvas" == h.render) {
+        a = new o(h.typeNumber, h.correctLevel);
+        a.addData(h.text);
+        a.make();
+        var c = document.createElement("canvas");
+        c.width = h.width;
+        c.height = h.height;
+        for(var d = c.getContext("2d"), b = h.width / a.getModuleCount(), e = h.height / a.getModuleCount(), f = 0;f < a.getModuleCount();f++) {
+          for(var i = 0;i < a.getModuleCount();i++) {
+            d.fillStyle = a.isDark(f, i) ? h.foreground : h.background;
+            var g = Math.ceil((i + 1) * b) - Math.floor(i * b), j = Math.ceil((f + 1) * b) - Math.floor(f * b);
+            d.fillRect(Math.round(i * b), Math.round(f * e), g, j)
+          }
+        }
+      }else {
+        a = new o(h.typeNumber, h.correctLevel);
+        a.addData(h.text);
+        a.make();
+        c = r("<table></table>").css("width", h.width + "px").css("height", h.height + "px").css("border", "0px").css("border-collapse", "collapse").css("background-color", h.background);
+        d = h.width / a.getModuleCount();
+        b = h.height / a.getModuleCount();
+        for(e = 0;e < a.getModuleCount();e++) {
+          f = r("<tr></tr>").css("height", b + "px").appendTo(c);
+          for(i = 0;i < a.getModuleCount();i++) {
+            r("<td></td>").css("width", d + "px").css("background-color", a.isDark(e, i) ? h.foreground : h.background).appendTo(f)
+          }
+        }
+      }
+      a = c;
+      jQuery(a).appendTo(this)
+    })
+  }
+})(jQuery);
 var Hashtable = function() {
   function c(b) {
     var d;
@@ -12320,6 +12840,644 @@ var nicEditorSaveButton = nicEditorButton.extend({init:function() {
   onSave(selectedInstance.getContent(), selectedInstance.elm.id, selectedInstance)
 }});
 nicEditors.registerPlugin(nicPlugin, nicSaveOptions);
+var swfobject = function() {
+  var D = "undefined", r = "object", S = "Shockwave Flash", W = "ShockwaveFlash.ShockwaveFlash", q = "application/x-shockwave-flash", R = "SWFObjectExprInst", x = "onreadystatechange", O = window, j = document, t = navigator, T = false, U = [h], o = [], N = [], I = [], l, Q, E, B, J = false, a = false, n, G, m = true, M = function() {
+    var aa = typeof j.getElementById != D && typeof j.getElementsByTagName != D && typeof j.createElement != D, ah = t.userAgent.toLowerCase(), Y = t.platform.toLowerCase(), ae = Y ? /win/.test(Y) : /win/.test(ah), ac = Y ? /mac/.test(Y) : /mac/.test(ah), af = /webkit/.test(ah) ? parseFloat(ah.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false, X = !+"\v1", ag = [0, 0, 0], ab = null;
+    if(typeof t.plugins != D && typeof t.plugins[S] == r) {
+      ab = t.plugins[S].description;
+      if(ab && !(typeof t.mimeTypes != D && t.mimeTypes[q] && !t.mimeTypes[q].enabledPlugin)) {
+        T = true;
+        X = false;
+        ab = ab.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
+        ag[0] = parseInt(ab.replace(/^(.*)\..*$/, "$1"), 10);
+        ag[1] = parseInt(ab.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
+        ag[2] = /[a-zA-Z]/.test(ab) ? parseInt(ab.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10) : 0
+      }
+    }else {
+      if(typeof O.ActiveXObject != D) {
+        try {
+          var ad = new ActiveXObject(W);
+          if(ad) {
+            ab = ad.GetVariable("$version");
+            if(ab) {
+              X = true;
+              ab = ab.split(" ")[1].split(",");
+              ag = [parseInt(ab[0], 10), parseInt(ab[1], 10), parseInt(ab[2], 10)]
+            }
+          }
+        }catch(Z) {
+        }
+      }
+    }
+    return{w3:aa, pv:ag, wk:af, ie:X, win:ae, mac:ac}
+  }(), k = function() {
+    if(!M.w3) {
+      return
+    }
+    if(typeof j.readyState != D && j.readyState == "complete" || typeof j.readyState == D && (j.getElementsByTagName("body")[0] || j.body)) {
+      f()
+    }
+    if(!J) {
+      if(typeof j.addEventListener != D) {
+        j.addEventListener("DOMContentLoaded", f, false)
+      }
+      if(M.ie && M.win) {
+        j.attachEvent(x, function() {
+          if(j.readyState == "complete") {
+            j.detachEvent(x, arguments.callee);
+            f()
+          }
+        });
+        if(O == top) {
+          (function() {
+            if(J) {
+              return
+            }
+            try {
+              j.documentElement.doScroll("left")
+            }catch(X) {
+              setTimeout(arguments.callee, 0);
+              return
+            }
+            f()
+          })()
+        }
+      }
+      if(M.wk) {
+        (function() {
+          if(J) {
+            return
+          }
+          if(!/loaded|complete/.test(j.readyState)) {
+            setTimeout(arguments.callee, 0);
+            return
+          }
+          f()
+        })()
+      }
+      s(f)
+    }
+  }();
+  function f() {
+    if(J) {
+      return
+    }
+    try {
+      var Z = j.getElementsByTagName("body")[0].appendChild(C("span"));
+      Z.parentNode.removeChild(Z)
+    }catch(aa) {
+      return
+    }
+    J = true;
+    var X = U.length;
+    for(var Y = 0;Y < X;Y++) {
+      U[Y]()
+    }
+  }
+  function K(X) {
+    if(J) {
+      X()
+    }else {
+      U[U.length] = X
+    }
+  }
+  function s(Y) {
+    if(typeof O.addEventListener != D) {
+      O.addEventListener("load", Y, false)
+    }else {
+      if(typeof j.addEventListener != D) {
+        j.addEventListener("load", Y, false)
+      }else {
+        if(typeof O.attachEvent != D) {
+          i(O, "onload", Y)
+        }else {
+          if(typeof O.onload == "function") {
+            var X = O.onload;
+            O.onload = function() {
+              X();
+              Y()
+            }
+          }else {
+            O.onload = Y
+          }
+        }
+      }
+    }
+  }
+  function h() {
+    if(T) {
+      V()
+    }else {
+      H()
+    }
+  }
+  function V() {
+    var X = j.getElementsByTagName("body")[0];
+    var aa = C(r);
+    aa.setAttribute("type", q);
+    var Z = X.appendChild(aa);
+    if(Z) {
+      var Y = 0;
+      (function() {
+        if(typeof Z.GetVariable != D) {
+          var ab = Z.GetVariable("$version");
+          if(ab) {
+            ab = ab.split(" ")[1].split(",");
+            M.pv = [parseInt(ab[0], 10), parseInt(ab[1], 10), parseInt(ab[2], 10)]
+          }
+        }else {
+          if(Y < 10) {
+            Y++;
+            setTimeout(arguments.callee, 10);
+            return
+          }
+        }
+        X.removeChild(aa);
+        Z = null;
+        H()
+      })()
+    }else {
+      H()
+    }
+  }
+  function H() {
+    var ag = o.length;
+    if(ag > 0) {
+      for(var af = 0;af < ag;af++) {
+        var Y = o[af].id;
+        var ab = o[af].callbackFn;
+        var aa = {success:false, id:Y};
+        if(M.pv[0] > 0) {
+          var ae = c(Y);
+          if(ae) {
+            if(F(o[af].swfVersion) && !(M.wk && M.wk < 312)) {
+              w(Y, true);
+              if(ab) {
+                aa.success = true;
+                aa.ref = z(Y);
+                ab(aa)
+              }
+            }else {
+              if(o[af].expressInstall && A()) {
+                var ai = {};
+                ai.data = o[af].expressInstall;
+                ai.width = ae.getAttribute("width") || "0";
+                ai.height = ae.getAttribute("height") || "0";
+                if(ae.getAttribute("class")) {
+                  ai.styleclass = ae.getAttribute("class")
+                }
+                if(ae.getAttribute("align")) {
+                  ai.align = ae.getAttribute("align")
+                }
+                var ah = {};
+                var X = ae.getElementsByTagName("param");
+                var ac = X.length;
+                for(var ad = 0;ad < ac;ad++) {
+                  if(X[ad].getAttribute("name").toLowerCase() != "movie") {
+                    ah[X[ad].getAttribute("name")] = X[ad].getAttribute("value")
+                  }
+                }
+                P(ai, ah, Y, ab)
+              }else {
+                p(ae);
+                if(ab) {
+                  ab(aa)
+                }
+              }
+            }
+          }
+        }else {
+          w(Y, true);
+          if(ab) {
+            var Z = z(Y);
+            if(Z && typeof Z.SetVariable != D) {
+              aa.success = true;
+              aa.ref = Z
+            }
+            ab(aa)
+          }
+        }
+      }
+    }
+  }
+  function z(aa) {
+    var X = null;
+    var Y = c(aa);
+    if(Y && Y.nodeName == "OBJECT") {
+      if(typeof Y.SetVariable != D) {
+        X = Y
+      }else {
+        var Z = Y.getElementsByTagName(r)[0];
+        if(Z) {
+          X = Z
+        }
+      }
+    }
+    return X
+  }
+  function A() {
+    return!a && F("6.0.65") && (M.win || M.mac) && !(M.wk && M.wk < 312)
+  }
+  function P(aa, ab, X, Z) {
+    a = true;
+    E = Z || null;
+    B = {success:false, id:X};
+    var ae = c(X);
+    if(ae) {
+      if(ae.nodeName == "OBJECT") {
+        l = g(ae);
+        Q = null
+      }else {
+        l = ae;
+        Q = X
+      }
+      aa.id = R;
+      if(typeof aa.width == D || !/%$/.test(aa.width) && parseInt(aa.width, 10) < 310) {
+        aa.width = "310"
+      }
+      if(typeof aa.height == D || !/%$/.test(aa.height) && parseInt(aa.height, 10) < 137) {
+        aa.height = "137"
+      }
+      j.title = j.title.slice(0, 47) + " - Flash Player Installation";
+      var ad = M.ie && M.win ? "ActiveX" : "PlugIn", ac = "MMredirectURL=" + O.location.toString().replace(/&/g, "%26") + "&MMplayerType=" + ad + "&MMdoctitle=" + j.title;
+      if(typeof ab.flashvars != D) {
+        ab.flashvars += "&" + ac
+      }else {
+        ab.flashvars = ac
+      }
+      if(M.ie && M.win && ae.readyState != 4) {
+        var Y = C("div");
+        X += "SWFObjectNew";
+        Y.setAttribute("id", X);
+        ae.parentNode.insertBefore(Y, ae);
+        ae.style.display = "none";
+        (function() {
+          if(ae.readyState == 4) {
+            ae.parentNode.removeChild(ae)
+          }else {
+            setTimeout(arguments.callee, 10)
+          }
+        })()
+      }
+      u(aa, ab, X)
+    }
+  }
+  function p(Y) {
+    if(M.ie && M.win && Y.readyState != 4) {
+      var X = C("div");
+      Y.parentNode.insertBefore(X, Y);
+      X.parentNode.replaceChild(g(Y), X);
+      Y.style.display = "none";
+      (function() {
+        if(Y.readyState == 4) {
+          Y.parentNode.removeChild(Y)
+        }else {
+          setTimeout(arguments.callee, 10)
+        }
+      })()
+    }else {
+      Y.parentNode.replaceChild(g(Y), Y)
+    }
+  }
+  function g(ab) {
+    var aa = C("div");
+    if(M.win && M.ie) {
+      aa.innerHTML = ab.innerHTML
+    }else {
+      var Y = ab.getElementsByTagName(r)[0];
+      if(Y) {
+        var ad = Y.childNodes;
+        if(ad) {
+          var X = ad.length;
+          for(var Z = 0;Z < X;Z++) {
+            if(!(ad[Z].nodeType == 1 && ad[Z].nodeName == "PARAM") && !(ad[Z].nodeType == 8)) {
+              aa.appendChild(ad[Z].cloneNode(true))
+            }
+          }
+        }
+      }
+    }
+    return aa
+  }
+  function u(ai, ag, Y) {
+    var X, aa = c(Y);
+    if(M.wk && M.wk < 312) {
+      return X
+    }
+    if(aa) {
+      if(typeof ai.id == D) {
+        ai.id = Y
+      }
+      if(M.ie && M.win) {
+        var ah = "";
+        for(var ae in ai) {
+          if(ai[ae] != Object.prototype[ae]) {
+            if(ae.toLowerCase() == "data") {
+              ag.movie = ai[ae]
+            }else {
+              if(ae.toLowerCase() == "styleclass") {
+                ah += ' class="' + ai[ae] + '"'
+              }else {
+                if(ae.toLowerCase() != "classid") {
+                  ah += " " + ae + '="' + ai[ae] + '"'
+                }
+              }
+            }
+          }
+        }
+        var af = "";
+        for(var ad in ag) {
+          if(ag[ad] != Object.prototype[ad]) {
+            af += '<param name="' + ad + '" value="' + ag[ad] + '" />'
+          }
+        }
+        aa.outerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"' + ah + ">" + af + "</object>";
+        N[N.length] = ai.id;
+        X = c(ai.id)
+      }else {
+        var Z = C(r);
+        Z.setAttribute("type", q);
+        for(var ac in ai) {
+          if(ai[ac] != Object.prototype[ac]) {
+            if(ac.toLowerCase() == "styleclass") {
+              Z.setAttribute("class", ai[ac])
+            }else {
+              if(ac.toLowerCase() != "classid") {
+                Z.setAttribute(ac, ai[ac])
+              }
+            }
+          }
+        }
+        for(var ab in ag) {
+          if(ag[ab] != Object.prototype[ab] && ab.toLowerCase() != "movie") {
+            e(Z, ab, ag[ab])
+          }
+        }
+        aa.parentNode.replaceChild(Z, aa);
+        X = Z
+      }
+    }
+    return X
+  }
+  function e(Z, X, Y) {
+    var aa = C("param");
+    aa.setAttribute("name", X);
+    aa.setAttribute("value", Y);
+    Z.appendChild(aa)
+  }
+  function y(Y) {
+    var X = c(Y);
+    if(X && X.nodeName == "OBJECT") {
+      if(M.ie && M.win) {
+        X.style.display = "none";
+        (function() {
+          if(X.readyState == 4) {
+            b(Y)
+          }else {
+            setTimeout(arguments.callee, 10)
+          }
+        })()
+      }else {
+        X.parentNode.removeChild(X)
+      }
+    }
+  }
+  function b(Z) {
+    var Y = c(Z);
+    if(Y) {
+      for(var X in Y) {
+        if(typeof Y[X] == "function") {
+          Y[X] = null
+        }
+      }
+      Y.parentNode.removeChild(Y)
+    }
+  }
+  function c(Z) {
+    var X = null;
+    try {
+      X = j.getElementById(Z)
+    }catch(Y) {
+    }
+    return X
+  }
+  function C(X) {
+    return j.createElement(X)
+  }
+  function i(Z, X, Y) {
+    Z.attachEvent(X, Y);
+    I[I.length] = [Z, X, Y]
+  }
+  function F(Z) {
+    var Y = M.pv, X = Z.split(".");
+    X[0] = parseInt(X[0], 10);
+    X[1] = parseInt(X[1], 10) || 0;
+    X[2] = parseInt(X[2], 10) || 0;
+    return Y[0] > X[0] || Y[0] == X[0] && Y[1] > X[1] || Y[0] == X[0] && Y[1] == X[1] && Y[2] >= X[2] ? true : false
+  }
+  function v(ac, Y, ad, ab) {
+    if(M.ie && M.mac) {
+      return
+    }
+    var aa = j.getElementsByTagName("head")[0];
+    if(!aa) {
+      return
+    }
+    var X = ad && typeof ad == "string" ? ad : "screen";
+    if(ab) {
+      n = null;
+      G = null
+    }
+    if(!n || G != X) {
+      var Z = C("style");
+      Z.setAttribute("type", "text/css");
+      Z.setAttribute("media", X);
+      n = aa.appendChild(Z);
+      if(M.ie && M.win && typeof j.styleSheets != D && j.styleSheets.length > 0) {
+        n = j.styleSheets[j.styleSheets.length - 1]
+      }
+      G = X
+    }
+    if(M.ie && M.win) {
+      if(n && typeof n.addRule == r) {
+        n.addRule(ac, Y)
+      }
+    }else {
+      if(n && typeof j.createTextNode != D) {
+        n.appendChild(j.createTextNode(ac + " {" + Y + "}"))
+      }
+    }
+  }
+  function w(Z, X) {
+    if(!m) {
+      return
+    }
+    var Y = X ? "visible" : "hidden";
+    if(J && c(Z)) {
+      c(Z).style.visibility = Y
+    }else {
+      v("#" + Z, "visibility:" + Y)
+    }
+  }
+  function L(Y) {
+    var Z = /[\\\"<>\.;]/;
+    var X = Z.exec(Y) != null;
+    return X && typeof encodeURIComponent != D ? encodeURIComponent(Y) : Y
+  }
+  var d = function() {
+    if(M.ie && M.win) {
+      window.attachEvent("onunload", function() {
+        var ac = I.length;
+        for(var ab = 0;ab < ac;ab++) {
+          I[ab][0].detachEvent(I[ab][1], I[ab][2])
+        }
+        var Z = N.length;
+        for(var aa = 0;aa < Z;aa++) {
+          y(N[aa])
+        }
+        for(var Y in M) {
+          M[Y] = null
+        }
+        M = null;
+        for(var X in swfobject) {
+          swfobject[X] = null
+        }
+        swfobject = null
+      })
+    }
+  }();
+  return{registerObject:function(ab, X, aa, Z) {
+    if(M.w3 && ab && X) {
+      var Y = {};
+      Y.id = ab;
+      Y.swfVersion = X;
+      Y.expressInstall = aa;
+      Y.callbackFn = Z;
+      o[o.length] = Y;
+      w(ab, false)
+    }else {
+      if(Z) {
+        Z({success:false, id:ab})
+      }
+    }
+  }, getObjectById:function(X) {
+    if(M.w3) {
+      return z(X)
+    }
+  }, embedSWF:function(ab, ah, ae, ag, Y, aa, Z, ad, af, ac) {
+    var X = {success:false, id:ah};
+    if(M.w3 && !(M.wk && M.wk < 312) && ab && ah && ae && ag && Y) {
+      w(ah, false);
+      K(function() {
+        ae += "";
+        ag += "";
+        var aj = {};
+        if(af && typeof af === r) {
+          for(var al in af) {
+            aj[al] = af[al]
+          }
+        }
+        aj.data = ab;
+        aj.width = ae;
+        aj.height = ag;
+        var am = {};
+        if(ad && typeof ad === r) {
+          for(var ak in ad) {
+            am[ak] = ad[ak]
+          }
+        }
+        if(Z && typeof Z === r) {
+          for(var ai in Z) {
+            if(typeof am.flashvars != D) {
+              am.flashvars += "&" + ai + "=" + Z[ai]
+            }else {
+              am.flashvars = ai + "=" + Z[ai]
+            }
+          }
+        }
+        if(F(Y)) {
+          var an = u(aj, am, ah);
+          if(aj.id == ah) {
+            w(ah, true)
+          }
+          X.success = true;
+          X.ref = an
+        }else {
+          if(aa && A()) {
+            aj.data = aa;
+            P(aj, am, ah, ac);
+            return
+          }else {
+            w(ah, true)
+          }
+        }
+        if(ac) {
+          ac(X)
+        }
+      })
+    }else {
+      if(ac) {
+        ac(X)
+      }
+    }
+  }, switchOffAutoHideShow:function() {
+    m = false
+  }, ua:M, getFlashPlayerVersion:function() {
+    return{major:M.pv[0], minor:M.pv[1], release:M.pv[2]}
+  }, hasFlashPlayerVersion:F, createSWF:function(Z, Y, X) {
+    if(M.w3) {
+      return u(Z, Y, X)
+    }else {
+      return undefined
+    }
+  }, showExpressInstall:function(Z, aa, X, Y) {
+    if(M.w3 && A()) {
+      P(Z, aa, X, Y)
+    }
+  }, removeSWF:function(X) {
+    if(M.w3) {
+      y(X)
+    }
+  }, createCSS:function(aa, Z, Y, X) {
+    if(M.w3) {
+      v(aa, Z, Y, X)
+    }
+  }, addDomLoadEvent:K, addLoadEvent:s, getQueryParamValue:function(aa) {
+    var Z = j.location.search || j.location.hash;
+    if(Z) {
+      if(/\?/.test(Z)) {
+        Z = Z.split("?")[1]
+      }
+      if(aa == null) {
+        return L(Z)
+      }
+      var Y = Z.split("&");
+      for(var X = 0;X < Y.length;X++) {
+        if(Y[X].substring(0, Y[X].indexOf("=")) == aa) {
+          return L(Y[X].substring(Y[X].indexOf("=") + 1))
+        }
+      }
+    }
+    return""
+  }, expressInstallCallback:function() {
+    if(a) {
+      var X = c(R);
+      if(X && l) {
+        X.parentNode.replaceChild(l, X);
+        if(Q) {
+          w(Q, true);
+          if(M.ie && M.win) {
+            l.style.display = "block"
+          }
+        }
+        if(E) {
+          E(B)
+        }
+      }
+      a = false
+    }
+  }}
+}();
 (function($) {
   $.widget("ui.tagit", {options:{tagSource:[], triggerKeys:["enter", "space", "comma", "tab"], initialTags:[], minLength:1, select:false, allowNewTags:true, caseSensitive:false, sortable:false, highlightOnExistColor:"#0F0", emptySearch:true, watermarkAllowMessage:"Add tags", watermarkDenyMessage:"Tags limit reached", tagsChanged:function(tagValue, action, element) {
   }}, _splitAt:/\ |,/g, _existingAtIndex:0, _pasteMetaKeyPressed:false, _keys:{backspace:[8], enter:[13], space:[32], comma:[44, 188], tab:[9]}, _sortable:{sorting:-1}, _create:function() {
@@ -12692,22 +13850,11 @@ VISH.Renderer = function(V, $, undefined) {
                       content = _renderFlashcard(slide.elements[el], slide.template);
                       classes += "flashcard"
                     }else {
-                      if(slide.elements[el].type === "openquestion") {
-                        content += V.Quiz.Renderer.renderQuiz("openquestion", slide.elements[el], slide.template);
-                        classes += "openquestion"
+                      if(slide.elements[el].type === "quiz") {
+                        content += V.Quiz.Renderer.renderQuiz(slide.elements[el].quiztype, slide.elements[el], slide.template + "_" + slide.elements[el].areaid, slide.id, slide.elements[el].id);
+                        classes += "quiz"
                       }else {
-                        if(slide.elements[el].type === "mcquestion") {
-                          var quizId = parseInt(slide.quiz_id);
-                          content += V.Quiz.Renderer.renderQuiz("mcquestion", slide.elements[el], slide.template, slide.id);
-                          classes += "mcquestion"
-                        }else {
-                          if(slide.elements[el].type === "truefalsequestion") {
-                            content += V.Quiz.Renderer.renderQuiz("truefalsequestion", slide.elements[el], slide.template, slide.id);
-                            classes += "truefalsequestion"
-                          }else {
-                            content += _renderEmpty(slide.elements[el], slide.template)
-                          }
-                        }
+                        content += _renderEmpty(slide.elements[el], slide.template)
                       }
                     }
                   }
@@ -12722,9 +13869,6 @@ VISH.Renderer = function(V, $, undefined) {
       buttons = "<div class='close_slide' id='close" + slide.id + "'></div>"
     }
     var article = $("<article class='" + classes + "' id='" + slide.id + "'>" + buttons + content + "</article>");
-    if(quizId) {
-      $(article).attr("quizId", quizId)
-    }
     SLIDE_CONTAINER.append(article)
   };
   var _renderText = function(element, template) {
@@ -12753,10 +13897,11 @@ VISH.Renderer = function(V, $, undefined) {
     var poster = element["poster"] ? "poster='" + element["poster"] + "' " : "";
     var loop = element["loop"] ? "loop='loop' " : "";
     var sources = element["sources"];
+    var videoId = VISH.Utils.getId();
     if(typeof sources == "string") {
       sources = JSON.parse(sources)
     }
-    rendered = rendered + "<video class='" + template + "_video' preload='metadata' " + style + controls + autoplay + poster + loop + ">";
+    rendered = rendered + "<video id='" + videoId + "' class='" + template + "_video' preload='metadata' " + style + controls + autoplay + poster + loop + ">";
     $.each(sources, function(index, source) {
       var type = source.type ? "type='" + source.type + "' " : "";
       rendered = rendered + "<source src='" + source.src + "' " + type + ">"
@@ -12768,10 +13913,26 @@ VISH.Renderer = function(V, $, undefined) {
     return rendered
   };
   var _renderObject = function(element, template) {
+    var objectInfo = VISH.Object.getObjectInfo(element.body);
+    switch(objectInfo.type) {
+      case "youtube":
+        return _renderYoutubeVideo(element, template, objectInfo.source);
+        break;
+      default:
+        var style = element["style"] ? element["style"] : "";
+        var body = element["body"];
+        var zoomInStyle = element["zoomInStyle"] ? element["zoomInStyle"] : "";
+        return"<div id='" + element["id"] + "' class='objectelement " + template + "_" + element["areaid"] + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + body + "'>" + "" + "</div>";
+        break
+    }
+  };
+  var _renderYoutubeVideo = function(element, template, source) {
+    var ytVideoId = VISH.Utils.getId();
     var style = element["style"] ? element["style"] : "";
     var body = element["body"];
     var zoomInStyle = element["zoomInStyle"] ? element["zoomInStyle"] : "";
-    return"<div id='" + element["id"] + "' class='objectelement " + template + "_" + element["areaid"] + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' objectWrapper='" + body + "'>" + "" + "</div>"
+    source = source.replace("http://www.youtube.com/embed/", "http://www.youtube.com/v/");
+    return"<div id='" + element["id"] + "' class='objectelement youtubeelement " + template + "_" + element["areaid"] + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' source='" + source + "' ytVideoId='" + ytVideoId + "'>" + "</div>"
   };
   var _renderSnapshot = function(element, template) {
     var style = element["style"] ? element["style"] : "";
@@ -12791,13 +13952,25 @@ VISH.Renderer = function(V, $, undefined) {
 VISH.Status = function(V, $, undefined) {
   var device;
   var isInIframe;
+  var isOnline;
+  var isSlave;
+  var isPreventDefault;
   var init = function() {
     device = {};
     device.browser = {};
     device.features = {};
     fillBrowser();
     fillUserAgent();
-    fillFeatures()
+    fillFeatures();
+    _checkOnline()
+  };
+  var _checkOnline = function() {
+    $.ajax({async:true, cache:false, error:function(req, status, ex) {
+      console.log("Error: " + ex);
+      isOnline = false
+    }, success:function(data, status, req) {
+      isOnline = true
+    }, timeout:5E3, type:"GET", url:VISH.ImagesPath + "blank.png"})
   };
   var fillFeatures = function() {
     setIsInIframe(window.location != window.parent.location ? true : false);
@@ -12925,13 +14098,64 @@ VISH.Status = function(V, $, undefined) {
   var setIsInIframe = function(isIframe) {
     isInIframe = isIframe
   };
+  var getIframe = function() {
+    if(isInIframe) {
+      return window.frameElement
+    }else {
+      return null
+    }
+  };
   var getDevice = function() {
     return device
   };
-  return{init:init, getIsInIframe:getIsInIframe, getDevice:getDevice}
+  var getOnline = function() {
+    return isOnline
+  };
+  var setSlaveMode = function(slaveMode) {
+    if(slaveMode !== isSlave) {
+      if(slaveMode === true) {
+        VISH.Events.unbindAllEventListeners();
+        VISH.VideoPlayer.HTML5.showControls(false);
+        isSlave = true
+      }else {
+        VISH.Events.bindAllEventListeners();
+        VISH.VideoPlayer.HTML5.showControls(true);
+        isSlave = false
+      }
+    }
+  };
+  var isSlaveMode = function() {
+    if(typeof isSlave !== "undefined") {
+      return isSlave
+    }else {
+      return false
+    }
+  };
+  var setPreventDefaultMode = function(preventDefault) {
+    if(preventDefault !== isPreventDefault) {
+      if(preventDefault === true) {
+        isPreventDefault = true
+      }else {
+        isPreventDefault = false
+      }
+    }
+  };
+  var isPreventDefaultMode = function() {
+    if(typeof isPreventDefault !== "undefined") {
+      return isPreventDefault
+    }else {
+      return false
+    }
+  };
+  return{init:init, getIsInIframe:getIsInIframe, getIframe:getIframe, getDevice:getDevice, getOnline:getOnline, setSlaveMode:setSlaveMode, isSlaveMode:isSlaveMode, setPreventDefaultMode:setPreventDefaultMode, isPreventDefaultMode:isPreventDefaultMode}
 }(VISH, jQuery);
 VISH.Utils = function(V, undefined) {
   var init = function() {
+  };
+  var domId = 0;
+  var getId = function() {
+    domId = domId + 1;
+    return"unicID_" + domId
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -12939,6 +14163,33 @@ VISH.Utils = function(V, undefined) {
     }else {
       return $(tag)[0].outerHTML
     }
+  };
+  var loadDeviceCSS = function() {
+    if(VISH.Status.getDevice().desktop) {
+      loadCSS("device/desktop.css")
+    }else {
+      if(VISH.Status.getDevice().mobile) {
+        loadCSS("device/mobile.css")
+      }else {
+        if(VISH.Status.getDevice().tablet) {
+          loadCSS("device/tablet.css")
+        }
+      }
+    }
+    switch(VISH.Status.getDevice().browser.name) {
+      case VISH.Constant.FIREFOX:
+        loadCSS("browser/firefox.css");
+        break;
+      case VISH.Constant.IE:
+        loadCSS("browser/ie.css");
+        break;
+      case VISH.Constant.CHROME:
+        loadCSS("browser/chrome.css");
+        break
+    }
+  };
+  var loadCSS = function(path) {
+    $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + path + '" type="text/css" />')
   };
   var generateTable = function(author, title, description) {
     if(!author) {
@@ -13063,14 +14314,72 @@ VISH.Utils = function(V, undefined) {
     });
     return zoom
   };
-  return{init:init, getOuterHTML:getOuterHTML, generateTable:generateTable, checkMiniumRequirements:checkMiniumRequirements, convertToTagsArray:convertToTagsArray, getURLParameter:getURLParameter, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath}
+  var loadTab = function(tab_id) {
+    V.Debugging.log("load tab id: " + tab_id);
+    $(".joyride-close-tip").click();
+    $(".fancy_tab_content").hide();
+    $("#" + tab_id + "_content").show();
+    $(".fancy_tab").removeClass("fancy_selected");
+    $("#" + tab_id).addClass("fancy_selected");
+    $(".help_in_fancybox").hide();
+    $("#" + tab_id + "_help").show();
+    switch(tab_id) {
+      case "tab_pic_from_url":
+        V.Editor.Image.onLoadTab("url");
+        break;
+      case "tab_pic_upload":
+        V.Editor.Image.onLoadTab("upload");
+        break;
+      case "tab_pic_repo":
+        V.Editor.Image.Repository.onLoadTab();
+        break;
+      case "tab_pic_flikr":
+        V.Editor.Image.Flikr.onLoadTab();
+        break;
+      case "tab_video_from_url":
+        VISH.Editor.Video.onLoadTab();
+        break;
+      case "tab_video_repo":
+        VISH.Editor.Video.Repository.onLoadTab();
+        break;
+      case "tab_video_youtube":
+        VISH.Editor.Video.Youtube.onLoadTab();
+        break;
+      case "tab_video_vimeo":
+        VISH.Editor.Video.Vimeo.onLoadTab();
+        break;
+      case "tab_object_from_url":
+        VISH.Editor.Object.onLoadTab("url");
+        break;
+      case "tab_object_from_web":
+        VISH.Editor.Object.Web.onLoadTab();
+        break;
+      case "tab_object_snapshot":
+        VISH.Editor.Object.Snapshot.onLoadTab();
+        break;
+      case "tab_object_upload":
+        VISH.Editor.Object.onLoadTab("upload");
+        break;
+      case "tab_object_repo":
+        VISH.Editor.Object.Repository.onLoadTab();
+        break;
+      case "tab_live_webcam":
+        VISH.Editor.Object.Live.onLoadTab("webcam");
+        break;
+      case "tab_live_micro":
+        VISH.Editor.Object.Live.onLoadTab("micro");
+        break;
+      default:
+        break
+    }
+  };
+  return{init:init, getId:getId, getOuterHTML:getOuterHTML, generateTable:generateTable, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, convertToTagsArray:convertToTagsArray, getURLParameter:getURLParameter, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initialPresentation = false;
   var initOptions;
   var currentZone;
   var eventsLoaded = false;
-  var domId = 0;
   var confirmOnExit;
   var draftPresentation = null;
   var savedPresentation = null;
@@ -13090,20 +14399,10 @@ VISH.Editor = function(V, $, undefined) {
     if(!VISH.Utils.checkMiniumRequirements()) {
       return
     }
+    VISH.Utils.loadDeviceCSS();
     VISH.Dummies.init();
     VISH.Slides.init();
     VISH.User.init(options);
-    if(VISH.Status.getDevice().desktop) {
-      $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/desktop.css" type="text/css" />')
-    }else {
-      if(VISH.Status.getDevice().mobile) {
-        $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/mobile.css" type="text/css" />')
-      }else {
-        if(VISH.Status.getDevice().tablet) {
-          $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/tablet.css" type="text/css" />')
-        }
-      }
-    }
     if(VISH.Debugging.isDevelopping()) {
       if(options["configuration"]["mode"] == "noserver" && VISH.Debugging.getActionInit() == "loadSamples" && !presentation) {
         presentation = VISH.Debugging.getPresentationSamples()
@@ -13118,10 +14417,13 @@ VISH.Editor = function(V, $, undefined) {
         VISH.Editor.Flashcard.loadFlashcard(presentation)
       }
     }
-    $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
+    $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":640, "height":350, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
-      currentZone = $("#" + clickedZoneId);
-      VISH.Editor.Utils.loadTab("tab_templates")
+      setCurrentArea($("#" + clickedZoneId));
+      VISH.Utils.loadTab("tab_templates")
+    }});
+    $("a#addQuizFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
+      VISH.Utils.loadTab("tab_quizes")
     }});
     if(!eventsLoaded) {
       eventsLoaded = true;
@@ -13155,19 +14457,13 @@ VISH.Editor = function(V, $, undefined) {
     VISH.Editor.AvatarPicker.init();
     VISH.Editor.Quiz.init();
     VISH.Editor.Tools.init();
-    VISH.Editor.Filter.init()
-  };
-  var getId = function() {
-    domId = domId + 1;
-    return"unicID_" + domId
+    VISH.Editor.Filter.init();
+    if(options.addons) {
+      VISH.Addons.init(options.addons)
+    }
   };
   var getOptions = function() {
     return initOptions
-  };
-  var _loadCSS = function(path) {
-    $("head").append("<link>");
-    css = $("head").children(":last");
-    css.attr({rel:"stylesheet", type:"text/css", href:path})
   };
   var addDeleteButton = function(element) {
     element.append("<div class='delete_content'></div>")
@@ -13184,6 +14480,13 @@ VISH.Editor = function(V, $, undefined) {
     });
     $(document).on("click", "#help_template_image", function() {
       VISH.Editor.Tour.startTourWithId("template_help", "bottom")
+    });
+    $(document).on("click", "#tab_quizes_help", function() {
+      V.Debugging.log("click tab_quizes_help detected");
+      VISH.Editor.Tour.startTourWithId("help_quiz_selection_help", "bottom")
+    });
+    $(document).on("click", "#help_themes_selection", function() {
+      VISH.Editor.Tour.startTourWithId("themes_help", "bottom")
     });
     $(document).on("click", "#help_template_selection", function() {
       VISH.Editor.Tour.startTourWithId("help_template_selection_help", "bottom")
@@ -13203,11 +14506,17 @@ VISH.Editor = function(V, $, undefined) {
     $(document).on("click", "#tab_object_from_url_help", function() {
       VISH.Editor.Tour.startTourWithId("object_fancy_tabs_id_help", "top")
     });
+    $(document).on("click", "#tab_object_from_web_help", function() {
+      VISH.Editor.Tour.startTourWithId("object_fancy_tabs_web_help", "top")
+    });
     $(document).on("click", "#tab_object_upload_help", function() {
       VISH.Editor.Tour.startTourWithId("upload_object_form_help", "top")
     });
     $(document).on("click", "#tab_object_repo_help", function() {
       VISH.Editor.Tour.startTourWithId("search_object_help", "bottom")
+    });
+    $(document).on("click", "#tab_object_snapshot_help", function() {
+      VISH.Editor.Tour.startTourWithId("object_fancy_tabs_websnapshot_help", "bottom")
     });
     $(document).on("click", "#tab_video_from_url_help", function() {
       VISH.Editor.Tour.startTourWithId("video_fancy_tabs_id_help", "top")
@@ -13249,41 +14558,47 @@ VISH.Editor = function(V, $, undefined) {
   var _onEditableClicked = function(event) {
     $(this).removeClass("editable");
     setCurrentArea($(this));
-    var content = null;
-    if($(this).attr("areaid") === "header" || $(this).attr("areaid") === "subheader") {
-      content = $("#menuselect_for_header").clone().attr("id", "")
-    }else {
-      content = $("#menuselect").clone().attr("id", "")
+    var content = $("#menuselect").clone().attr("id", "current_menu");
+    $(content).find("a").css("display", "none");
+    $(content).find("a.all").css("display", "inline");
+    switch($(this).attr("size")) {
+      case VISH.Constant.SMALL:
+        $(content).find("a.small").css("display", "inline");
+        $(content).find("a > div").addClass("thumb_small");
+        break;
+      case VISH.Constant.MEDIUM:
+        $(content).find("a.medium").css("display", "inline");
+        $(content).find("a > div").addClass("thumb_medium");
+        break;
+      case VISH.Constant.LARGE:
+        $(content).find("a.large").css("display", "inline");
+        $(content).find("a > div").addClass("thumb_large");
+        break
     }
-    content.find("a").each(function(index, domElem) {
-      $(domElem).attr("zone", getCurrentArea().attr("id"))
-    });
     $(this).html(content);
     $("a.addpicture").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      VISH.Editor.Utils.loadTab("tab_pic_from_url")
+      VISH.Utils.loadTab("tab_pic_from_url")
     }});
     $("a.addobject").fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      VISH.Editor.Utils.loadTab("tab_object_from_url")
+      VISH.Utils.loadTab("tab_object_from_url")
     }});
     $("a.addvideo").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      VISH.Editor.Utils.loadTab("tab_video_from_url")
+      VISH.Utils.loadTab("tab_video_from_url")
     }});
     $("a.addLive").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      VISH.Editor.Utils.loadTab("tab_live_webcam")
+      VISH.Utils.loadTab("tab_live_webcam")
     }});
-    $("a.addQuiz").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
-      var clickedZoneId = $(data).attr("zone");
-      setCurrentArea($("#" + clickedZoneId));
-      VISH.Editor.Utils.loadTab("tab_quiz_mchoice")
-    }})
+    $("a.addQuiz").click(function(event) {
+      $("a#addQuizFancybox").trigger("click")
+    })
   };
   var _onDeleteItemClicked = function() {
     setCurrentArea($(this).parent());
@@ -13357,10 +14672,12 @@ VISH.Editor = function(V, $, undefined) {
       presentation.title = draftPresentation.title;
       presentation.description = draftPresentation.description;
       presentation.avatar = draftPresentation.avatar;
-      presentation.tags = draftPresentation.tags
+      presentation.tags = draftPresentation.tags;
+      presentation.theme = draftPresentation.theme
     }
     presentation.author = "";
     presentation.slides = [];
+    presentation.contain_quiz = false;
     var slide = {};
     $(".slides > article").each(function(index, s) {
       slide.id = $(s).attr("id");
@@ -13410,45 +14727,62 @@ VISH.Editor = function(V, $, undefined) {
                     element.zoomInStyle = VISH.Utils.getZoomInStyle(zoom)
                   }
                 }else {
-                  if(element.type == "openquestion") {
-                    element.title = $(div).find(".title_openquestion").val();
-                    element.question = $(div).find(".value_openquestion").val()
-                  }else {
-                    if(element.type == "mcquestion") {
-                      element.question = $(div).find(".value_multiplechoice_question").val();
+                  if(element.type == "quiz") {
+                    presentation.contain_quiz = true;
+                    V.Debugging.log("div value:" + $(div));
+                    element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance").parent().find("div > div"));
+                    if($(div).find(".multiplechoice_text_in_zone")) {
+                      element.quiztype = "multiplechoice";
                       element.options = [];
-                      $(div).find(".multiplechoice_text").each(function(i, input_text) {
+                      $(div).find(".multiplechoice_text_in_zone").each(function(i, input_text) {
                         if(input_text && input_text.value != "") {
                           element.options.push(input_text.value)
                         }
-                      });
-                      slide.type = "quiz"
+                      })
                     }else {
-                      if(element.type == "truefalsequestion") {
-                        element.questions = [];
-                        var question = {};
-                        $(div).find(".true_false_question").each(function(i, input_text) {
-                          question.id = i;
-                          question.text_question = input_text.value;
-                          if($(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val() == undefined) {
-                            question.answer = "null"
-                          }else {
-                            question.answer = $(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val()
+                      V.Debugging.log("another kind of quiz detected")
+                    }
+                  }else {
+                    if(element.type == "openquestion") {
+                      element.title = $(div).find(".title_openquestion").val();
+                      element.question = $(div).find(".value_openquestion").val()
+                    }else {
+                      if(element.type == "mcquestion") {
+                        element.question = $(div).find(".value_multiplechoice_question").val();
+                        element.options = [];
+                        $(div).find(".multiplechoice_text").each(function(i, input_text) {
+                          if(input_text && input_text.value != "") {
+                            element.options.push(input_text.value)
                           }
-                          element.questions.push(question);
-                          question = {}
                         })
                       }else {
-                        if(element.type === "snapshot") {
-                          var snapshotWrapper = $(div).find(".snapshot_wrapper");
-                          var snapshotIframe = $(snapshotWrapper).children()[0];
-                          $(snapshotIframe).removeAttr("style");
-                          element.body = VISH.Utils.getOuterHTML(snapshotIframe);
-                          element.style = VISH.Editor.Utils.getStylesInPercentages($(div), snapshotWrapper);
-                          element.scrollTop = $(snapshotWrapper).scrollTop();
-                          element.scrollLeft = $(snapshotWrapper).scrollLeft()
+                        if(element.type == "truefalsequestion") {
+                          V.Debugging.log("element type truefalsequestion detected");
+                          element.questions = [];
+                          var question = {};
+                          $(div).find(".true_false_question").each(function(i, input_text) {
+                            question.id = i;
+                            question.text_question = input_text.value;
+                            if($(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val() == undefined) {
+                              question.answer = "null"
+                            }else {
+                              question.answer = $(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val()
+                            }
+                            element.questions.push(question);
+                            question = {}
+                          })
                         }else {
-                          if(typeof element.type == "undefined") {
+                          if(element.type === "snapshot") {
+                            var snapshotWrapper = $(div).find(".snapshot_wrapper");
+                            var snapshotIframe = $(snapshotWrapper).children()[0];
+                            $(snapshotIframe).removeAttr("style");
+                            element.body = VISH.Utils.getOuterHTML(snapshotIframe);
+                            element.style = VISH.Editor.Utils.getStylesInPercentages($(div), snapshotWrapper);
+                            element.scrollTop = $(snapshotWrapper).scrollTop();
+                            element.scrollLeft = $(snapshotWrapper).scrollLeft()
+                          }else {
+                            if(typeof element.type == "undefined") {
+                            }
                           }
                         }
                       }
@@ -13478,6 +14812,7 @@ VISH.Editor = function(V, $, undefined) {
       $(s).removeClass("temp_shown")
     });
     savedPresentation = presentation;
+    console.log(JSON.stringify(presentation));
     return savedPresentation
   };
   var afterSavePresentation = function(presentation, order) {
@@ -13504,7 +14839,7 @@ VISH.Editor = function(V, $, undefined) {
         var draft = order === "draft";
         var jsonPresentation = JSON.stringify(presentation);
         VISH.Debugging.log(jsonPresentation);
-        var params = {"excursion[json]":jsonPresentation, "authenticity_token":initOptions["token"], "draft":draft};
+        var params = {"excursion[json]":jsonPresentation, "authenticity_token":initOptions["token"], "draft":draft, "contain_quiz":presentation.contain_quiz};
         $.ajax({type:send_type, url:VISH.UploadPresentationPath, data:params, success:function(data) {
           allowExitWithoutConfirmation();
           window.top.location.href = data.url
@@ -13637,7 +14972,7 @@ VISH.Editor = function(V, $, undefined) {
   var allowExitWithoutConfirmation = function() {
     confirmOnExit = false
   };
-  return{init:init, addDeleteButton:addDeleteButton, getId:getId, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getPresentationType:getPresentationType, getOptions:getOptions, loadFancyBox:loadFancyBox, getPresentation:getPresentation, setPresentation:setPresentation, isPresentationStandard:isPresentationStandard, isPresentationDraft:isPresentationDraft, getSavedPresentation:getSavedPresentation, hasInitialPresentation:hasInitialPresentation, savePresentation:savePresentation, afterSavePresentation:afterSavePresentation, 
+  return{init:init, addDeleteButton:addDeleteButton, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getPresentationType:getPresentationType, getOptions:getOptions, loadFancyBox:loadFancyBox, getPresentation:getPresentation, setPresentation:setPresentation, isPresentationStandard:isPresentationStandard, isPresentationDraft:isPresentationDraft, getSavedPresentation:getSavedPresentation, hasInitialPresentation:hasInitialPresentation, savePresentation:savePresentation, afterSavePresentation:afterSavePresentation, 
   setPresentationType:setPresentationType, allowExitWithoutConfirmation:allowExitWithoutConfirmation}
 }(VISH, jQuery);
 VISH.Editor.Video = function(V, $, undefined) {
@@ -13670,10 +15005,10 @@ VISH.Editor.Video = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.Image = function(V, $, undefined) {
   var contentToAdd = null;
+  var contentAddMode = VISH.Constant.NONE;
   var uploadDivId = "tab_pic_upload_content";
   var urlDivId = "tab_pic_from_url_content";
   var urlInputId = "picture_url";
-  var flashcard_background_mode = false;
   var init = function() {
     VISH.Editor.Image.Flikr.init();
     VISH.Editor.Image.Repository.init();
@@ -13777,19 +15112,24 @@ VISH.Editor.Image = function(V, $, undefined) {
     }catch(e) {
     }
   };
-  var drawPreviewElement = function(divId) {
-    VISH.Editor.Object.drawPreviewObject(contentToAdd)
+  var addContent = function(content) {
+    if(content) {
+      contentToAdd = content
+    }
+    switch(contentAddMode) {
+      case VISH.Constant.FLASHCARD:
+        VISH.Editor.Flashcard.onBackgroundSelected(contentToAdd);
+        break;
+      case VISH.Constant.THUMBNAIL:
+        VISH.Editor.AvatarPicker.onCustomThumbnailSelected(contentToAdd);
+        break;
+      default:
+        VISH.Editor.Object.drawPreviewObject(contentToAdd)
+    }
+    contentAddMode = VISH.Constant.NONE
   };
   var drawImage = function(image_url, area, style, hyperlink) {
-    if(flashcard_background_mode) {
-      _drawImageAsFlashcardBackground(image_url);
-      $("#fc_change_bg_big").hide()
-    }else {
-      _drawImageInArea(image_url, area, style, hyperlink)
-    }
-  };
-  var _drawImageAsFlashcardBackground = function(image_url) {
-    $("#flashcard-background").css("background-image", "url(" + image_url + ")")
+    _drawImageInArea(image_url, area, style, hyperlink)
   };
   var _drawImageInArea = function(image_url, area, style, hyperlink) {
     var current_area;
@@ -13806,7 +15146,7 @@ VISH.Editor.Image = function(V, $, undefined) {
       image_width = V.Editor.Utils.getWidthFromStyle(style, current_area)
     }
     var template = VISH.Editor.getTemplate();
-    var nextImageId = VISH.Editor.getId();
+    var nextImageId = VISH.Utils.getId();
     var idToDragAndResize = "draggable" + nextImageId;
     current_area.attr("type", "image");
     if(hyperlink) {
@@ -13832,10 +15172,10 @@ VISH.Editor.Image = function(V, $, undefined) {
       $(this).parent().click()
     }})
   };
-  var setFlashcardMode = function(is_flashcard) {
-    flashcard_background_mode = is_flashcard
+  var setAddContentMode = function(mode) {
+    contentAddMode = mode
   };
-  return{init:init, onLoadTab:onLoadTab, drawImage:drawImage, drawPreviewElement:drawPreviewElement, setFlashcardMode:setFlashcardMode}
+  return{init:init, onLoadTab:onLoadTab, drawImage:drawImage, addContent:addContent, setAddContentMode:setAddContentMode}
 }(VISH, jQuery);
 VISH.Editor.Object = function(V, $, undefined) {
   var contentToAdd = null;
@@ -14096,7 +15436,6 @@ VISH.Editor.Object = function(V, $, undefined) {
       object_style = style
     }
     var objectInfo = VISH.Object.getObjectInfo(object);
-    V.Debugging.log("objectInfo.type: " + objectInfo.type);
     switch(objectInfo.wrapper) {
       case null:
         switch(objectInfo.type) {
@@ -14139,7 +15478,7 @@ VISH.Editor.Object = function(V, $, undefined) {
   };
   var drawObjectWithWrapper = function(wrapper, current_area, style, zoomInStyle) {
     var template = V.Editor.getTemplate(current_area);
-    var nextWrapperId = V.Editor.getId();
+    var nextWrapperId = V.Utils.getId();
     var idToDrag = "draggable" + nextWrapperId;
     var idToResize = "resizable" + nextWrapperId;
     current_area.attr("type", "object");
@@ -14180,34 +15519,50 @@ VISH.Editor.Object = function(V, $, undefined) {
   return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject}
 }(VISH, jQuery);
 VISH.Samples = function(V, undefined) {
-  var samples = {"id":"", "type":"presentation", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"articlevish4", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, 
-  {"id":"zone5", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  var samples = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", 
+  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
+  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
-  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, 
-  {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"article__4", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
+  var samples_sync = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", 
+  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
+  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"article__4", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/bT2yo3_R51o?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}, {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", 
+  "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
+  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", 
+  "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
   "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"4", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"5", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
+  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"6", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"7", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"8", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
+  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"9", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
-  var samples_game = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/assets/logos/original/excursion-10.png", "author":"", "type":"game", "game":{"src":"games/sokoban/sokoban.html", "actions":{"devil":{"slide_id":"1", "when":"after"}, "diamond":{"slide_id":"2", "when":"before"}}}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", 
-  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  var samples_game = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"game", "game":{"src":"games/sokoban/sokoban.html", "actions":{"devil":{"slide_id":"1", "when":"after"}, "diamond":{"slide_id":"2", "when":"before"}}}, "slides":[{"id":"1", "template":"t1", 
+  "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
   "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
-  var full_samples = {"id":"1", "type":"presentation", "title":"Nanoyou", "description":"This excursion is about nanotechnology", "avatar":"/assets/logos/original/excursion-02.png", "author":"Enrique Barra", "slides":[{"id":"vish1", "author":"John Doe", "template":"t1", "elements":[{"id":"315", "type":"text", "areaid":"header", "body":"Ejemplo de flora"}, {"id":"316", "type":"text", "areaid":"left", "body":'<div><ol><li>lolo<br></li><li>perrito<br></li></ol><div><font size="6">gato</font></div></div>'}, 
+  var full_samples = {"id":"1", "type":"presentation", "title":"Nanoyou", "description":"This excursion is about nanotechnology", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-02.png", "author":"Enrique Barra", "slides":[{"id":"vish1", "author":"John Doe", "template":"t1", "elements":[{"id":"315", "type":"text", "areaid":"header", "body":"Ejemplo de flora"}, {"id":"316", "type":"text", "areaid":"left", "body":'<div><ol><li>lolo<br></li><li>perrito<br></li></ol><div><font size="6">gato</font></div></div>'}, 
   {"id":"317", "type":"image", "areaid":"right", "body":"http://www.asturtalla.com/arbol.jpg"}]}, {"id":"vish2", "template":"t2", "elements":[{"id":"318", "type":"text", "areaid":"header", "body":"Ejemplo de fauna..."}, {"id":"319", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}, {"id":"vish3", "template":"t1", "elements":[{"id":"320", "type":"text", "areaid":"header", "body":"Sensores"}, {"id":"321", "type":"text", 
   "areaid":"left", "body":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas orci nisl, euismod a posuere ac, commodo quis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sollicitudin risus laoreet velit dapibus bibendum. Nullam cursus sollicitudin hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ullamcorper tempor bibendum. Morbi gravida pretium leo, vitae scelerisque quam mattis eu. Sed hendrerit molestie magna, sit amet porttitor nulla facilisis in. Donec vel massa mauris, sit amet condimentum lacus.</p>"}, 
   {"id":"322", "type":"image", "areaid":"right", "body":"http://www.satec.es/es-ES/NuestraActividad/CasosdeExito/PublishingImages/IMG%20Do%C3%B1ana/do%C3%B1ana_fig2.png"}]}, {"id":"vish4", "template":"t2", "elements":[{"id":"323", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"324", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", 
-  "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"vish6", "template":"t2", "elements":[{"id":"327", "type":"flashcard", "areaid":"left", "canvasid":"myCanvas", "jsoncontent":'{"name": "myFirstFlashcard","description": "flashcard explanation","type": "flashcard","backgroundSrc": "contents/images/background.jpg","pois": [{"id": 1,"x": 200,"y": 325,"templateNumber": 0,"zonesContent": [{"type": "text","content": "El tantalio o t\ufffdntalo es un elemento qu\ufffdmico de n\ufffdmero at\ufffdmico 73, que se sit\ufffda en el grupo 5 de la tabla peri\ufffddica de los elementos. Su s\ufffdmbolo es Ta. Se trata de un metal de transici\ufffdn raro, azul gris\ufffdceo, duro, que presenta brillo met\ufffdlico y resiste muy bien la corrosi\ufffdn. Se encuentra en el mineral tantalita. Es fisiol\ufffdgicamente inerte, por lo que, entre sus variadas aplicaciones, se puede emplear para la fabricaci\ufffdn de instrumentos quir\ufffdrgicos y en implantes. En ocasiones se le llama t\ufffdntalo, pero el \ufffdnico nombre reconocido por la Real Academia Espa\ufffdola es tantalio."}]},{"id": 2,"x": 458,"y": 285,"templateNumber": 1,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "image","content": "contents/images/3.jpg"}]},{"id": 3,"x": 658,"y": 285,"templateNumber": 0,"zonesContent": [{"type": "video","content": [{"mimetype": "video/webm","src": "contents/videos/video1.webm"},{"mimetype": "video/mp4","src": "http://video-js.zencoder.com/oceans-clip.mp4"}]}]},{"id": 4,"x": 458,"y": 457,"templateNumber": 2,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "empty","content": ""},{"type": "text","content": "El tantalio o t\ufffdntalo es un elemento qu\ufffdmico de n\ufffdmero at\ufffdmico 73, que se sit\ufffda en el grupo 5 de la tabla peri\ufffddica de los elementos. Su s\ufffdmbolo es Ta. Se trata de un metal de transici\ufffdn raro, azul gris\ufffdceo, duro, que presenta brillo met\ufffdlico y resiste muy bien la corrosi\ufffdn. Se encuentra en el mineral tantalita. Es fisiol\ufffdgicamente inerte, por lo que, entre sus variadas aplicaciones, se puede emplear para la fabricaci\ufffdn de instrumentos quir\ufffdrgicos y en implantes. En ocasiones se le llama t\ufffdntalo, pero el \ufffdnico nombre reconocido por la Real Academia Espa\ufffdola es tantalio."}]}]}', 
-  "js":"js/mods/fc/VISH.Mods.fc.js"}]}, {"id":"vish7", "template":"t2", "elements":[{"id":"328", "type":"flashcard", "areaid":"left", "canvasid":"myCanvas2", "jsoncontent":'{"name": "myFirstFlashcard","description": "flashcard explanation","type": "flashcard","backgroundSrc": "contents/images/background2.png","pois": [{"id": 1,"x": 200,"y": 325,"templateNumber": 0,"zonesContent": [{"type": "text","content": "texto texto texto"}]},{"id": 2,"x": 458,"y": 285,"templateNumber": 1,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "image","content": "contents/images/plata.jpg"}]},{"id": 3,"x": 658,"y": 285,"templateNumber": 0,"zonesContent": [{"type": "video","content": [{"mimetype": "video/webm","src": "contents/videos/video1.webm"},{"mimetype": "video/mp4","src": "http://video-js.zencoder.com/oceans-clip.mp4"}]}]},{"id": 4,"x": 458,"y": 457,"templateNumber": 2,"zonesContent": [{"type": "text","content": "Image shows silver rock"},{"type": "empty","content": ""},{"type": "text","content": "texto 2 texto 2."}]}]}', 
-  "js":"js/mods/fc/VISH.Mods.fc.js"}]}, {"id":"vish8", "template":"t2", "elements":[{"id":"329", "type":"openquestion", "areaid":"header", "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf"}]}, {"id":"vish9", "template":"t2", "elements":[{"id":"330", "type":"mcquestion", "areaid":"header", "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf", "options":["yes", "no", "maybe"], "rightanswer":0}]}, {"id":"vish10", "template":"t2", "elements":[{"id":"331", 
-  "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}, {"id":"vish11", 
-  "template":"t1", "elements":[{"id":"333", "type":"text", "areaid":"header", "body":"Example of HTML5 video with autostart"}, {"id":"334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
+  "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"vish8", "template":"t2", "elements":[{"id":"329", "type":"openquestion", "areaid":"header", "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf"}]}, {"id":"vish9", "template":"t2", "elements":[{"id":"330", "type":"mcquestion", "areaid":"header", 
+  "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf", "options":["yes", "no", "maybe"], "rightanswer":0}]}, {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}, 
+  {"id":"vish11", "template":"t1", "elements":[{"id":"333", "type":"text", "areaid":"header", "body":"Example of HTML5 video with autostart"}, {"id":"334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"335", "type":"video", "areaid":"right", "controls":true, "autoplay":true, "sources":'[{ "type": "video/webm", "src": "videos/kids.webm"},{"type": "video/mp4","src": "videos/kids.mp4"}]'}]}, {"id":"vish12", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video"}, {"id":"394", "type":"object", "areaid":"left", "body":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns" frameborder="0" allowfullscreen></iframe>'}]}, 
   {"id":"vish13", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video with style param"}, {"id":"335", "type":"object", "areaid":"left", "body":'<iframe width="324" height="243" src="http://www.youtube.com/embed/_jvDzfTRP4E" frameborder="0" allowfullscreen></iframe>', "style":"position: relative; left: 163px; top: 110px; width: 325px; height: 215px;"}]}, {"id":"vish14", "template":"t1", "elements":[{"id":"7393", "type":"text", "areaid":"header", 
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
@@ -14215,7 +15570,12 @@ VISH.Samples = function(V, undefined) {
   var quizes_samples = {"type":"presentation", "id":12313, "author":"", "slides":[{"id":"article1", "type":"quiz", "quiz_id":"1112", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}]};
   var quizes_samples_2 = {"type":"presentation", "id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "quiz_id":"1112", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"], "quiz_simple_json":{"type":"quiz_simple", "id":12313, "author":"", "slides":[{"id":"article1", "type":"quiz", "template":"t11", 
   "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}]}}]}]};
-  return{full_samples:full_samples, samples:samples, samples_flashcard:samples_flashcard, samples_game:samples_game, quizes_samples:quizes_samples, quizes_samples_2:quizes_samples_2}
+  var quizes_samples_3 = {"id":12314, "type":"presentation", "author":"V. Hugo", "slides":[{"id":"article12312", "type":"standard", "template":"t8", "elements":[{"id":"zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u><i><b>Testing Quiz Inside Template</b></i></u></span></div>'}, {"id":"zone2", "type":"image", "areaid":"left", 
+  "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quizid":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":["Something", "Nothing", "Everything", "Option D"]}, {"id":"zone4", "areaid":"right"}]}, {"id":"article_12314_1", 
+  "type":"standard", "template":"t7", "elements":[{"id":"zone5", "type":"text", "areaid":"header", "body":'<div style="text-align: center; font-weight: normal; " class="vish-parent-font6"><i><b><span class="vish-font6 vish-fontgeorgia" style="color:undefined;undefined;">Titling ... one two three</span></b></i></div><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"zone6", "type":"text", "areaid":"left", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div>'}, 
+  {"id":"zone7", "type":"quiz", "quizid":13, "areaid":"center", "question":'<b style="font-weight: normal; "><i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz quiz ... ?</span></i></b>', "quiztype":"multiplechoice", "options":["aaa ... mucha a ", "bbb ... mucha b ", "ccc ... mucha c"]}, 
+  {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
+  return{full_samples:full_samples, samples:samples, samples_flashcard:samples_flashcard, samples_game:samples_game, samples_sync:samples_sync, quizes_samples:quizes_samples, quizes_samples_2:quizes_samples_2, quizes_samples_3:quizes_samples_3}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var imageList = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, 
@@ -14463,7 +15823,17 @@ VISH.Slides = function(V, $, undefined) {
   var lastSlide = function() {
     goToSlide(slideEls.length)
   };
-  var goToSlide = function(no) {
+  var goToSlide = function(no, triggeredByUser) {
+    if(no === getCurrentSlideNumber()) {
+      return
+    }
+    triggeredByUser = !(triggeredByUser === false);
+    if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
+      var params = new Object;
+      params.slideNumber = no;
+      VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onGoToSlide, params);
+      return
+    }
     if(no > slideEls.length || no <= 0) {
       return
     }else {
@@ -14486,6 +15856,9 @@ VISH.Slides = function(V, $, undefined) {
     }else {
       V.SlideManager.updateSlideCounter()
     }
+    var params = new Object;
+    params.slideNumber = no;
+    VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onGoToSlide, params, triggeredByUser)
   };
   var backwardOneSlide = function() {
     goToSlide(curSlideIndex)
@@ -14559,46 +15932,17 @@ VISH.Slides = function(V, $, undefined) {
   goToSlide:goToSlide, lastSlide:lastSlide, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, showSlide:showSlide}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
-  var addedEventListeners = false;
+  var bindedEventListeners = false;
   var PM_TOUCH_SENSITIVITY = 200;
   var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
   var registeredEvents = [];
   var init = function() {
-    addEventListeners();
+    bindAllEventListeners();
     if(!V.Editing) {
       if(typeof V.Events.Mashme != "undefined") {
         window.addEventListener("message", V.Events.Mashme.onMashmeHello, false)
       }
     }
-  };
-  var addEventListeners = function() {
-    if(!addedEventListeners) {
-      if(V.SlideManager.getPresentationType() === "presentation") {
-        $(document).bind("keydown", handleBodyKeyDown);
-        $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
-        $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-        _registerEvent("mobile_back_arrow");
-        $(document).on("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
-        _registerEvent("mobile_forward_arrow");
-        $(document).on("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
-        _registerEvent("closeButton");
-        _registerEvent("closeButtonImg");
-        $(document).on("click", "#closeButton", function() {
-          window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
-        });
-        $(document).bind("touchstart", handleTouchStart)
-      }else {
-        if(V.SlideManager.getPresentationType() === "flashcard") {
-          var presentation = V.SlideManager.getCurrentPresentation();
-          for(index in presentation.background.pois) {
-            var poi = presentation.background.pois[index];
-            $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
-          }
-          $(document).on("click", ".close_slide", _onFlashcardCloseSlideClicked)
-        }
-      }
-    }
-    addedEventListeners = true
   };
   var _registerEvent = function(eventTargetId) {
     if(registeredEvents.indexOf(eventTargetId) == -1) {
@@ -14701,31 +16045,81 @@ VISH.Events = function(V, $, undefined) {
     V.Debugging.log("Close slide " + close_slide);
     V.Slides.closeSlide(close_slide)
   };
-  var unbindAll = function() {
-    if(V.SlideManager.getPresentationType() === "presentation") {
-      $(document).unbind("keydown", handleBodyKeyDown);
-      $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
-      $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-      _unregisterEvent("mobile_back_arrow");
-      $(document).off("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
-      _unregisterEvent("mobile_forward_arrow");
-      $(document).off("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
-      _unregisterEvent("closeButton");
-      _unregisterEvent("closeButtonImg");
-      $(document).off("click", "#closeButton");
-      $(document).unbind("touchstart", handleTouchStart)
-    }else {
-      if(V.SlideManager.getPresentationType() === "flashcard") {
-        var presentation = V.SlideManager.getCurrentPresentation();
-        for(index in presentation.background.pois) {
-          var poi = presentation.background.pois[index];
-          $(document).off("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
+  var bindAllEventListeners = function() {
+    if(!bindedEventListeners) {
+      if(V.SlideManager.getPresentationType() === "presentation") {
+        $(document).bind("keydown", handleBodyKeyDown);
+        $(document).on("click", "#page-switcher-start", isActiveQuizSessionBackward);
+        $(document).on("click", "#page-switcher-end", isActiveQuizSessionForward);
+        _registerEvent("mobile_back_arrow");
+        $(document).on("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
+        _registerEvent("mobile_forward_arrow");
+        $(document).on("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
+        _registerEvent("closeButton");
+        _registerEvent("closeButtonImg");
+        $(document).on("click", "#closeButton", function() {
+          window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
+        });
+        $(document).bind("touchstart", handleTouchStart)
+      }else {
+        if(V.SlideManager.getPresentationType() === "flashcard") {
+          var presentation = V.SlideManager.getCurrentPresentation();
+          for(index in presentation.background.pois) {
+            var poi = presentation.background.pois[index];
+            $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
+          }
+          $(document).on("click", ".close_slide", _onFlashcardCloseSlideClicked)
         }
-        $(document).off("click", ".close_slide", _onFlashcardCloseSlideClicked)
       }
     }
+    bindedEventListeners = true
   };
-  return{init:init, unbindAll:unbindAll}
+  var unbindAllEventListeners = function() {
+    if(bindedEventListeners) {
+      if(V.SlideManager.getPresentationType() === "presentation") {
+        $(document).unbind("keydown", handleBodyKeyDown);
+        $(document).off("click", "#page-switcher-start", isActiveQuizSessionBackward);
+        $(document).off("click", "#page-switcher-end", isActiveQuizSessionForward);
+        $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+        $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+        _unregisterEvent("mobile_back_arrow");
+        $(document).off("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
+        _unregisterEvent("mobile_forward_arrow");
+        $(document).off("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
+        _unregisterEvent("closeButton");
+        _unregisterEvent("closeButtonImg");
+        $(document).off("click", "#closeButton");
+        $(document).unbind("touchstart", handleTouchStart)
+      }else {
+        if(V.SlideManager.getPresentationType() === "flashcard") {
+          var presentation = V.SlideManager.getCurrentPresentation();
+          for(index in presentation.background.pois) {
+            var poi = presentation.background.pois[index];
+            $(document).off("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
+          }
+          $(document).off("click", ".close_slide", _onFlashcardCloseSlideClicked)
+        }
+      }
+      bindedEventListeners = false
+    }
+  };
+  var isActiveQuizSessionBackward = function() {
+    if(V.Quiz.getIsQuizSessionStarted()) {
+      VISH.Quiz.setIsWaitingBackwardOneSlide(true);
+      VISH.Quiz.onStopMcQuizButtonClicked()
+    }else {
+      V.Slides.backwardOneSlide()
+    }
+  };
+  var isActiveQuizSessionForward = function() {
+    if(V.Quiz.getIsQuizSessionStarted()) {
+      VISH.Quiz.setIsWaitingForwardOneSlide(true);
+      VISH.Quiz.onStopMcQuizButtonClicked()
+    }else {
+      V.Slides.forwardOneSlide()
+    }
+  };
+  return{init:init, bindAllEventListeners:bindAllEventListeners, unbindAllEventListeners:unbindAllEventListeners}
 }(VISH, jQuery);
 VISH.Flashcard = function(V, $, undefined) {
   var init = function(presentation) {
@@ -14746,6 +16140,7 @@ VISH.Flashcard = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
+  var quizSessionStarted = false;
   var mcOptionsHash = new Array;
   mcOptionsHash["a"] = 0;
   mcOptionsHash["b"] = 1;
@@ -14753,9 +16148,17 @@ VISH.Quiz = function(V, $, undefined) {
   mcOptionsHash["d"] = 3;
   mcOptionsHash["e"] = 4;
   mcOptionsHash["f"] = 5;
-  var startButtonClass = "mcquestion_start_button";
-  var stopButtonClass = "mcquestion_stop_button";
+  var startButtonClass = "quiz_session_start_button";
+  var optionsButtonClass = "quiz_session_options_button";
+  var stopSessionButtonClass = "quiz_session_stop_button";
   var statisticsButtonClass = "mch_statistics_icon";
+  var tabQuizSessionContent = "tab_quiz_session_content";
+  var tabQuizStatsBarsContentId = "quiz_stats_bars_content_id";
+  var tabQuizStatsPieContentId = "quiz_stats_pie_content_id";
+  var getResultsPeriod = 3E3;
+  var getResultsTimeOut;
+  var isWaitingBackwardOneSlide = false;
+  var isWaitingForwardOneSlide = false;
   var init = function(presentation) {
     if(presentation.type == "quiz_simple") {
       quizMode = "answer";
@@ -14765,13 +16168,15 @@ VISH.Quiz = function(V, $, undefined) {
       _loadEvents()
     }
     VISH.Quiz.Renderer.init();
-    VISH.Quiz.API.init()
+    VISH.Quiz.API.init();
+    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"80%", "height":"80%", "padding":0, "onStart":function(data) {
+      VISH.Utils.loadTab("tab_quiz_session")
+    }})
   };
   var getQuizMode = function() {
     return quizMode
   };
   var prepareQuiz = function() {
-    $("." + statisticsButtonClass).hide();
     if(quizMode == "answer") {
       $("." + startButtonClass).show();
       $("." + startButtonClass).val("Send")
@@ -14785,76 +16190,158 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }
   };
-  var _loadEvents = function() {
-    $(document).on("click", "." + startButtonClass, _startMcQuizButtonClicked);
-    $(document).on("click", "." + stopButtonClass, _onStopMcQuizButtonClicked);
-    $(document).on("click", "." + statisticsButtonClass, _statisticsMcQuizButtonClicked)
+  var showQuizStats = function() {
+    $("a#addQuizSessionFancybox").trigger("click")
   };
-  var _startMcQuizButtonClicked = function() {
+  var _loadEvents = function() {
+    $(document).on("click", "." + startButtonClass, startMcQuizButtonClicked);
+    $(document).on("click", "." + stopSessionButtonClass, onStopMcQuizButtonClicked);
+    $(document).on("click", "." + optionsButtonClass, showQuizStats);
+    $(document).on("click", "#mask_stop_quiz", _hideStopQuizPopup);
+    $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
+    $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
+    $(document).on("click", ".quiz_stop_session_dont_save", _stopAndDontSaveQuiz);
+    $(document).on("click", "#quiz_full_screen", VISH.SlideManager.toggleFullScreen);
+    $(document).on("click", ".hide_qrcode", _hideQRCode);
+    $(document).on("click", ".show_qrcode", _showQRCode)
+  };
+  var startMcQuizButtonClicked = function() {
     if(V.User.isLogged()) {
-      var quizId = $(VISH.Slides.getCurrentSlide()).attr("quizid");
-      V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError)
+      V.Debugging.log("User logged");
+      var quizId = $(VISH.Slides.getCurrentSlide()).find(".quizId").val();
+      $("a#addQuizSessionFancybox").trigger("click");
+      V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
+      _startStats();
+      _updateBarsStats()
+    }else {
+      V.Debugging.log("User not logged")
     }
+  };
+  var _startStats = function() {
+    if($("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").contents()) {
+      $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").children().remove()
+    }
+    if($("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").contents()) {
+      $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").children().remove()
+    }
+    if($("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children()) {
+      $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children().remove()
+    }
+    $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".question"));
+    $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".question"));
+    $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form"));
+    $("#" + tabQuizStatsBarsContentId).find("div.mcquestion_body").addClass("quiz_in_satistics");
+    $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
+    $("#tab_quiz_stats_pie_content").addClass("resized_fancybox_for_stats");
+    $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
+  };
+  var _updateBarsStats = function(data) {
+    if(data) {
+      V.Debugging.log("_updateBarsStats with  data: " + JSON.stringify(data))
+    }else {
+      V.Debugging.log("_updateBarsStats with no data params");
+      $("#" + tabQuizStatsBarsContentId).find(".mc_meter").css("display", "block");
+      $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").css("display", "block");
+      $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").text("0%");
+      $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span").css("width", "0%");
+      _getResults();
+      getResultsTimeOut = setInterval(_getResults, getResultsPeriod)
+    }
+  };
+  var _getResults = function(quiz_session_active_id) {
+    if(quiz_session_active_id) {
+      var quizSessionActiveId = quiz_session_active_id
+    }else {
+      var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").val()
+    }
+    V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _showResults, _onQuizSessionResultsReceivedError)
   };
   var _onQuizSessionReceived = function(quiz_session_id) {
     V.Debugging.log("_onQuizSessionReceived with  quiz_session_id: " + quiz_session_id);
     var quizUrlForSession = "http://" + window.location.host.toString() + "/quiz_sessions/";
     var url = quizUrlForSession + quiz_session_id;
     var current_slide = V.Slides.getCurrentSlide();
-    var header = $(current_slide).find(".t11_header");
+    var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
     var divURLShare = "<div class='url_share'><span><a target='blank_' href=" + url + ">" + url + "</a></span></div>";
     $(header).html(divURLShare);
-    $(header).show();
-    _hideResultsUI();
-    var startButton = $(current_slide).find("." + startButtonClass);
-    $(startButton).val("Stop Quiz");
-    $(startButton).removeClass().addClass(stopButtonClass);
-    $("." + statisticsButtonClass).show();
-    $(current_slide).find("div.multiplechoicequestion").attr("quizSessionId", quiz_session_id)
+    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").children().remove();
+    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").qrcode(url.toString());
+    $(current_slide).find("input." + startButtonClass).hide();
+    $(current_slide).find("input." + optionsButtonClass).show();
+    quizSessionStarted = true;
+    $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value", quiz_session_id);
+    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='/vishEditor/images/VISH_frontpage.png' />")
   };
   var _OnQuizSessionReceivedError = function(error) {
     var received = JSON.stringify(error);
     V.Debugging.log("_OnQuizSessionReceivedError:  " + received)
   };
-  var _onStopMcQuizButtonClicked = function() {
-    _stopAndSaveQuiz()
+  var onStopMcQuizButtonClicked = function() {
+    V.Debugging.log("onStopMcQuizButtonClicked");
+    var id = $("a[name=modal_fancybox]").attr("href");
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+    $("#mask_stop_quiz").css({"width":maskWidth, "height":maskHeight});
+    $("#mask_stop_quiz").fadeTo("slow", 0.6);
+    $(id).css("top", maskHeight / 2 - $(id).height() / 2);
+    $(id).css("left", maskWidth / 2 - $(id).width() / 2);
+    $(id).show();
+    $(id).children().show();
+    var date = new Date;
+    var date_string = date.getFullYear().toString() + (date.getMonth() + 1).toString() + date.getDate().toString() + "_" + date.getHours().toString() + date.getMinutes().toString();
+    $(id).find(".quiz_saved_session_name").val(date_string);
+    $(id).fadeIn(2E3)
   };
-  var _stopAndSaveQuiz = function(quizName) {
+  var _stopAndSaveQuiz = function() {
     var current_slide = VISH.Slides.getCurrentSlide();
-    var header = $(current_slide).find(".t11_header");
-    var quizSessionActiveId = $(current_slide).find("div.multiplechoicequestion").attr("quizSessionId");
+    quizName = $("#stop_quiz_fancybox").find(".quiz_saved_session_name").val();
+    var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
+    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
     if(!quizName) {
       quizName = "Unknown"
     }
-    $(header).hide();
-    var stopButton = $(current_slide).find("." + stopButtonClass);
-    $(stopButton).val("Start Quiz");
-    $(stopButton).removeClass().addClass(startButtonClass);
-    V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName)
+    _hideStopQuizPopup();
+    $.fancybox.close();
+    $(current_slide).find("input." + optionsButtonClass).hide();
+    $(current_slide).find("input." + startButtonClass).show();
+    V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
+    clearInterval(getResultsTimeOut);
+    quizSessionStarted = false;
+    if(isWaitingForwardOneSlide) {
+      V.Slides.forwardOneSlide()
+    }else {
+      if(isWaitingBackwardOneSlide) {
+        V.Slides.backwardOneSlide()
+      }
+    }
   };
   var _onQuizSessionCloseReceived = function(results) {
-    var quizSessionActiveId = $(VISH.Slides.getCurrentSlide()).find("div.multiplechoicequestion").attr("quizSessionId");
-    V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _showResults, _onQuizSessionResultsReceivedError)
+    V.Debugging.log("_onQuizSessionCloseReceived");
+    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value")
   };
   var _onQuizSessionCloseReceivedError = function(error) {
     var received = JSON.stringify(error);
     V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + received)
   };
-  var _statisticsMcQuizButtonClicked = function() {
-    if($(VISH.Slides.getCurrentSlide()).find(".mc_meter").css("display") == "block") {
-      _hideResultsUI()
+  var _stopAndDontSaveQuiz = function() {
+    V.Debugging.log("_stopAndDontSaveQuiz detected");
+    var current_slide = VISH.Slides.getCurrentSlide();
+    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
+    _hideStopQuizPopup();
+    $.fancybox.close();
+    quizName = false;
+    $(current_slide).find("input." + optionsButtonClass).hide();
+    $(current_slide).find("input." + startButtonClass).show();
+    V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
+    clearInterval(getResultsTimeOut);
+    quizSessionStarted = false;
+    if(isWaitingForwardOneSlide) {
+      V.Slides.forwardOneSlide()
     }else {
-      var quizSessionActiveId = $(VISH.Slides.getCurrentSlide()).find("div.multiplechoicequestion").attr("quizSessionId");
-      V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
+      if(isWaitingBackwardOneSlide) {
+        V.Slides.backwardOneSlide()
+      }
     }
-  };
-  var _hideResultsUI = function() {
-    $(VISH.Slides.getCurrentSlide()).find(".mc_meter").css("display", "none");
-    $(VISH.Slides.getCurrentSlide()).find(".mcoption_label").css("display", "none")
-  };
-  var _showResultsUI = function() {
-    $(VISH.Slides.getCurrentSlide()).find(".mc_meter").css("display", "block");
-    $(VISH.Slides.getCurrentSlide()).find(".mcoption_label").css("display", "block")
   };
   var _loadAnswerEvents = function() {
     $(document).on("click", "." + startButtonClass, _sendVote)
@@ -14869,6 +16356,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _onQuizVotingSuccessReceived = function(data) {
     var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
+    V.Debugging.log("_onQuizVotingSuccessReceived, and quizSessionActiveId is:  " + quizSessionActiveId);
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
   };
   var _OnQuizVotingReceivedError = function(error) {
@@ -14876,18 +16364,46 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + received)
   };
   var _onQuizSessionResultsReceived = function(data) {
-    _showResults(data)
+    _displayResults(data.results)
   };
   var _onQuizSessionResultsReceivedError = function(error) {
     var received = JSON.stringify(error);
     V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + received)
   };
+  var _displayResults = function(data) {
+    var url = "http://chart.apis.google.com/chart?cht=p3&chs=300x200&chd=t:";
+    var lenght_array = 0;
+    $.each(data, function(clave, valor) {
+      lenght_array += 1
+    });
+    var counter = 0;
+    $.each(data, function(clave, valor) {
+      url += valor;
+      counter++;
+      if(counter == lenght_array) {
+        url += "&chl="
+      }else {
+        url += ","
+      }
+    });
+    var counter = 0;
+    $.each(data, function(clave, valor) {
+      url += clave;
+      counter++;
+      if(counter == lenght_array) {
+        url += "&chtt=testedVish"
+      }else {
+        url += "|"
+      }
+    });
+    V.Debugging.log("chart url :  " + url);
+    $(".quiz_statistics_content").find(".img_chart").attr("src", url)
+  };
   var _showResults = function(data) {
+    var received = JSON.stringify(data);
+    V.Debugging.log("_displayResults, and value received is:  " + received);
     var maxWidth = 70;
-    var scaleFactor = maxWidth / 100;
     var totalVotes = 0;
-    $(VISH.Slides.getCurrentSlide()).find(".mc_meter").css("width", "0%");
-    $(VISH.Slides.getCurrentSlide()).find(".mcoption_label").text("0%");
     for(option in data.results) {
       if(option in mcOptionsHash) {
         var votes = data.results[option];
@@ -14900,19 +16416,69 @@ VISH.Quiz = function(V, $, undefined) {
           var index = mcOptionsHash[option];
           var votes = data.results[option];
           var percent = votes / totalVotes * 100;
-          var percentString = (percent * scaleFactor).toString() + "%";
+          var percentString = percent.toString() + "%";
           var roundedNumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-          if(typeof $(VISH.Slides.getCurrentSlide()).find(".mc_meter")[index] != "undefined") {
-            $($(VISH.Slides.getCurrentSlide()).find(".mc_meter")[index]).css("width", percentString);
-            $($(VISH.Slides.getCurrentSlide()).find(".mcoption_label")[index]).text(roundedNumber + "%");
-            $($(VISH.Slides.getCurrentSlide()).find(".mc_meter")[index]).addClass("mcoption_" + option)
+          if(typeof $("#" + tabQuizStatsBarsContentId).find(".mc_meter")[index] != "undefined") {
+            $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index].style.width = percentString;
+            $($("#" + tabQuizStatsBarsContentId).find(".mcoption_label")[index]).text(roundedNumber + "%");
+            $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("mcoption_" + option)
           }
         }
       }
     }
-    _showResultsUI()
+    google.load("visualization", "1.0", {"packages":["corechart"]}, {"callback":VISH.Quiz.drawPieChart(data.results)})
   };
-  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode}
+  var drawPieChart = function(data) {
+    V.Debugging.log("drawPieChart called");
+    var data_for_chart = new google.visualization.DataTable;
+    data_for_chart.addColumn("string", "Question");
+    data_for_chart.addColumn("number", "Slices");
+    for(option in data) {
+      if(option in mcOptionsHash) {
+        var votes = data[option];
+        data_for_chart.addRow([option, votes])
+      }
+    }
+    var question = $(VISH.Slides.getCurrentSlide()).find(".question").text();
+    var options = {"title":"", "width":400, "height":300};
+    var chart = new google.visualization.PieChart(document.getElementById("quiz_chart_container_id"));
+    chart.draw(data_for_chart, options)
+  };
+  var _hideStopQuizPopup = function() {
+    $("#mask_stop_quiz").fadeTo("slow", 0);
+    $("#mask_stop_quiz").hide();
+    $("#stop_quiz_fancybox").hide()
+  };
+  var _hideQRCode = function() {
+    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > canvas")) {
+      $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > canvas").hide();
+      $("#" + tabQuizSessionContent).find(".hide_qrcode").hide();
+      $("#" + tabQuizSessionContent).find(".show_qrcode").show();
+      if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").attr("src")) {
+        $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").show()
+      }else {
+        $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='/vishEditor/images/VISH_frontpage.png' />")
+      }
+    }
+  };
+  var _showQRCode = function() {
+    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img")) {
+      $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").hide();
+      $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > canvas").show();
+      $("#" + tabQuizSessionContent).find(".show_qrcode").hide();
+      $("#" + tabQuizSessionContent).find(".hide_qrcode").show()
+    }
+  };
+  var getIsQuizSessionStarted = function() {
+    return quizSessionStarted
+  };
+  var setIsWaitingForwardOneSlide = function(val) {
+    isWaitingForwardOneSlide = val
+  };
+  var setIsWaitingBackwardOneSlide = function(val) {
+    isWaitingBackwardOneSlide = val
+  };
+  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, setIsWaitingForwardOneSlide:setIsWaitingForwardOneSlide, setIsWaitingBackwardOneSlide:setIsWaitingBackwardOneSlide}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
@@ -14957,6 +16523,9 @@ VISH.Editor.Tools = function(V, $, undefined) {
         _showSlider($(zone).find(".snapshot_wrapper").attr("id"));
         loadToolbarForElement("snapshot");
         break;
+      case "quiz":
+        loadToolbarForElement("quiz");
+        break;
       case undefined:
         $(zone).find(".menuselect_hide").show();
         return;
@@ -14985,14 +16554,13 @@ VISH.Editor.Tools = function(V, $, undefined) {
     var presentationType = VISH.Editor.getPresentationType();
     switch(presentationType) {
       case "presentation":
+        $("#hidden_button_to_launch_theme_fancybox").fancybox({"autoDimensions":false, "width":600, "scrolling":"no", "height":400, "padding":0});
         $("#toolbar_presentation").find("img.toolbar_presentation").show();
         break;
       case "flashcard":
         $("#hidden_button_to_launch_picture_fancybox_for_flashcard").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
-          V.Editor.Image.setFlashcardMode(true);
-          V.Editor.Utils.loadTab("tab_pic_from_url")
-        }, "onClosed":function(data) {
-          V.Editor.Image.setFlashcardMode(false)
+          V.Editor.Image.setAddContentMode(VISH.Constant.FLASHCARD);
+          V.Utils.loadTab("tab_pic_from_url")
         }});
         $("#toolbar_presentation").find("img.toolbar_flashcard").show();
         break;
@@ -15013,7 +16581,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
   };
   var loadToolbarForElement = function(type) {
     _cleanElementToolbar();
-    if(type == "text") {
+    if(type == "text" || type == "quiz") {
       _loadNiceEditorToolbar();
       return
     }
@@ -15047,10 +16615,9 @@ VISH.Editor.Tools = function(V, $, undefined) {
     }
   };
   var selectTheme = function() {
-    V.Debugging.log("selectTheme called")
+    $("#hidden_button_to_launch_theme_fancybox").trigger("click")
   };
   var changeFlashcardBackground = function() {
-    V.Debugging.log("changeFlashcardBackground called");
     $("#hidden_button_to_launch_picture_fancybox_for_flashcard").trigger("click")
   };
   var zoomMore = function() {
@@ -15126,6 +16693,188 @@ VISH.Editor.Tools = function(V, $, undefined) {
   };
   return{init:init, loadPresentationToolbar:loadPresentationToolbar, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, loadToolbarForElement:loadToolbarForElement, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, selectTheme:selectTheme, changeFlashcardBackground:changeFlashcardBackground, addLink:addLink, addUrl:addUrl, zoomMore:zoomMore, zoomLess:zoomLess}
 }(VISH, jQuery);
+VISH.Addons = function(V, undefined) {
+  var init = function(addons) {
+    if(typeof addons === "object") {
+      for(var i = 0;i < addons.length;i++) {
+        var targeted = VISH.Editing && addons[i].target === VISH.Constant.Edit || !VISH.Editing && addons[i].target === VISH.Constant.Viewer || addons[i].target === VISH.Constant.AnyMode;
+        if(targeted) {
+          if(typeof VISH.Addons[addons[i].id] !== "undefined" && typeof VISH.Addons[addons[i].id].init === "function") {
+            VISH.Addons[addons[i].id].init(addons[i].config)
+          }
+        }
+      }
+    }
+  };
+  return{init:init}
+}(VISH, jQuery);
+VISH.VideoPlayer = function() {
+  var init = function() {
+    VISH.VideoPlayer.CustomPlayer.init();
+    VISH.VideoPlayer.HTML5.init();
+    VISH.VideoPlayer.Youtube.init()
+  };
+  var getTypeVideoWithId = function(videoId) {
+    return getTypeVideo(document.getElementById(videoId))
+  };
+  var getTypeVideo = function(video) {
+    if(!video) {
+      return VISH.Constant.UNKNOWN
+    }else {
+      if(video.tagName === "VIDEO") {
+        return VISH.Constant.Video.HTML5
+      }else {
+        if(video.tagName === "OBJECT") {
+          return VISH.Constant.Video.Youtube
+        }
+      }
+    }
+    return VISH.Constant.UNKNOWN
+  };
+  var playVideo = function(videoId, currentTime, triggeredByUser) {
+    switch(getTypeVideoWithId(videoId)) {
+      case VISH.Constant.Video.HTML5:
+        VISH.VideoPlayer.HTML5.playVideo(videoId, currentTime, triggeredByUser);
+        break;
+      case VISH.Constant.Video.Youtube:
+        VISH.VideoPlayer.Youtube.playVideo(videoId, currentTime, triggeredByUser);
+        break;
+      default:
+        break
+    }
+  };
+  var pauseVideo = function(videoId, currentTime, triggeredByUser) {
+    switch(getTypeVideoWithId(videoId)) {
+      case VISH.Constant.Video.HTML5:
+        VISH.VideoPlayer.HTML5.pauseVideo(videoId, currentTime, triggeredByUser);
+        break;
+      case VISH.Constant.Video.Youtube:
+        VISH.VideoPlayer.Youtube.pauseVideo(videoId, currentTime, triggeredByUser);
+        break;
+      default:
+        break
+    }
+  };
+  var seekVideo = function(videoId, seekTime, triggeredByUser) {
+    switch(getTypeVideoWithId(videoId)) {
+      case VISH.Constant.Video.HTML5:
+        VISH.VideoPlayer.HTML5.seekVideo(videoId, seekTime, triggeredByUser);
+        break;
+      case VISH.Constant.Video.Youtube:
+        VISH.VideoPlayer.Youtube.seekVideo(videoId, seekTime, triggeredByUser);
+        break;
+      default:
+        break
+    }
+  };
+  var getDuration = function(video) {
+    switch(getTypeVideo(video)) {
+      case VISH.Constant.Video.HTML5:
+        return video.getDuration();
+        break;
+      case VISH.Constant.Video.Youtube:
+        return video.getDuration();
+        break;
+      default:
+        break
+    }
+  };
+  var getCurrentTime = function(video) {
+    switch(getTypeVideo(video)) {
+      case VISH.Constant.Video.HTML5:
+        return video.getCurrentTime();
+        break;
+      case VISH.Constant.Video.Youtube:
+        return video.getCurrentTime();
+        break;
+      default:
+        break
+    }
+  };
+  return{init:init, getTypeVideoWithId:getTypeVideoWithId, getTypeVideo:getTypeVideo, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, getDuration:getDuration, getCurrentTime:getCurrentTime}
+}(VISH, jQuery);
+VISH.Messenger = function(V, undefined) {
+  var init = function() {
+    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onGoToSlide, function(params) {
+      notifyEventByMessage(VISH.Constant.Event.onGoToSlide, params)
+    });
+    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onPlayVideo, function(params) {
+      notifyEventByMessage(VISH.Constant.Event.onPlayVideo, params)
+    });
+    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onPauseVideo, function(params) {
+      notifyEventByMessage(VISH.Constant.Event.onPauseVideo, params)
+    });
+    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onSeekVideo, function(params) {
+      notifyEventByMessage(VISH.Constant.Event.onSeekVideo, params)
+    })
+  };
+  var notifyEventByMessage = function(event, params) {
+    if(params.triggeredByUser === false) {
+      return
+    }
+    var VEMessage = VISH.Messenger.Helper.createMessage(event, params);
+    VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onMessage, VEMessage, true)
+  };
+  return{init:init, notifyEventByMessage:notifyEventByMessage}
+}(VISH);
+VISH.Addons.IframeMessenger = function(V, undefined) {
+  var listenerInitialized = false;
+  var init = function(config) {
+    if(!config || !config.enable) {
+      return
+    }
+    if(window.addEventListener) {
+      window.addEventListener("message", _onWebAppMessage, false)
+    }else {
+      if(el.attachEvent) {
+        window.attachEvent("message", _onWebAppMessage)
+      }
+    }
+    VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello"
+  };
+  var _initListener = function() {
+    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onMessage, _onVishEditorMessage);
+    listenerInitialized = true
+  };
+  var _onVishEditorMessage = function(VEMessage) {
+    _sendMessage(VEMessage)
+  };
+  var _onWebAppMessage = function(webAppMessage) {
+    if(webAppMessage) {
+      var VEMessage = webAppMessage.data;
+      var processSelfMessages = VISH.Status.isPreventDefaultMode();
+      if(VISH.Messenger.Helper.validateVEMessage(VEMessage, {allowSelfMessages:processSelfMessages})) {
+        if(_isVEHelloMessage(VEMessage)) {
+          if(!listenerInitialized) {
+            _initListener();
+            if(VISH.Status.getIsInIframe()) {
+              var helloEcho = JSON.parse(VEMessage);
+              helloEcho.origin = VISH.Status.getIframe().id;
+              VEMessage = JSON.stringify(helloEcho)
+            }
+            _sendMessage(VEMessage)
+          }
+        }else {
+          VISH.Messenger.Helper.processVEMessage(VEMessage)
+        }
+      }
+    }
+  };
+  var _isVEHelloMessage = function(VEMessage) {
+    var message = JSON.parse(VEMessage);
+    return message.VEevent === VISH.Constant.Event.onIframeMessengerHello
+  };
+  var _validateWebAppMessage = function(webAppMessage) {
+    if(!webAppMessage) {
+      return false
+    }
+    return VISH.Messenger.Helper.validateVEMessage(webAppMessage.data)
+  };
+  var _sendMessage = function(VEMessage) {
+    window.parent.postMessage(VEMessage, "*")
+  };
+  return{init:init}
+}(VISH, jQuery);
 VISH.AppletPlayer = function() {
   var loadApplet = function(element) {
     $.each(element.children(".appletelement"), function(index, value) {
@@ -15188,19 +16937,6 @@ VISH.Configuration = function(V, $, undefined) {
   };
   return{init:init, applyConfiguration:applyConfiguration, getConfiguration:getConfiguration}
 }(VISH, jQuery);
-VISH.Constant = {};
-VISH.Constant.UA_IE = "Microsoft Internet Explorer";
-VISH.Constant.UA_NETSCAPE = "Netscape";
-VISH.Constant.IE = "Internet Explorer";
-VISH.Constant.FIREFOX = "Mozilla Firefox";
-VISH.Constant.CHROME = "Google Chrome";
-VISH.Constant.UNKNOWN = "Unknown";
-VISH.Constant.NOSERVER = "noserver";
-VISH.Constant.VISH = "vish";
-VISH.Constant.STANDALONE = "node";
-VISH.Constant.SMALL = "small";
-VISH.Constant.MEDIUM = "medium";
-VISH.Constant.LARGE = "large";
 VISH.Debugging = function(V, $, undefined) {
   var developping = false;
   var settings;
@@ -15320,7 +17056,9 @@ VISH.Debugging = function(V, $, undefined) {
 VISH.Dummies = function(VISH, undefined) {
   var nextDivId = 1;
   var nextArticleId = 1;
+  var hashTypeQuiz = {"open":0, "multiplechoice":1, "truefalse":2};
   var dummies = [];
+  var quizDummies = [];
   var init = function() {
     dummies = ["<article id='article_id_to_change' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='large' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' size='small' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t1_subheader editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='large' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
@@ -15330,12 +17068,21 @@ VISH.Dummies = function(VISH, undefined) {
     "<article id='article_id_to_change' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t7_subheader editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='small'  class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='small'     class='t8_right editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t9_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='left' class='t10_left' type='openquestion'><h2 class='header_openquestion'>Open Question:</h2><textarea rows='4' cols='50' class='value_openquestion' placeholder='write open question here'></textarea></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><div id='div_id_to_change' areaid='header' class='t11_header'></div><div id='div_id_to_change' areaid='left' class='t11_left mcquestion' type='mcquestion'><h2 class='header_multiplechoice_question'>Multiple Choice Question:</h2><textarea rows='4' cols='50' class='value_multiplechoice_question' placeholder='write question here'></textarea><ul class='ul_mch_options'><li class='li_mch_option'>a)<input class='multiplechoice_text' type='text' placeholder='write quiz options here' /><a class='add_quiz_option'><img src='" + 
-    VISH.ImagesPath + "add_quiz_option.png' /></a></li></ul></div></article>"]
+    "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='large' class='t10_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t11_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium'  class='t11_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='medium'  class='t11_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t12_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t12_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t12_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t12_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t13_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t13_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='medium' class='t14_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t14_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='left1' size='medium'    class='t14_left1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='left2' size='medium'    class='t14_left2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t15_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t15_right editable grey_background selectable'></div></article>"];
+    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><textarea class='value_multiplechoice_question_in_zone' placeholder='write question here' ><font size='4'>Write question here</font></textarea><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone '><span>a)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>b)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>c)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>d)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>e)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>f)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li></ul></div></div>", 
+    "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"]
   };
   var getDummy = function(template, position, presentation_id, existing_slide) {
     var dum = dummies[parseInt(template, 10) - 1];
     return _replaceIds(dum, position, presentation_id, existing_slide)
+  };
+  var getQuizDummy = function(type_quiz, position) {
+    return quizDummies[hashTypeQuiz[type_quiz]]
   };
   var _replaceIds = function(string, position, presentation_id, existing_slide) {
     var newString = string;
@@ -15357,7 +17104,7 @@ VISH.Dummies = function(VISH, undefined) {
     }
     return newString
   };
-  return{init:init, getDummy:getDummy}
+  return{init:init, getDummy:getDummy, getQuizDummy:getQuizDummy}
 }(VISH);
 VISH.Editor.API = function(V, $, undefined) {
   var init = function() {
@@ -15599,46 +17346,85 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var thumbnailsDetailsId = "thumbnails_in_presentation_details";
   var carrouselDivId = "avatars_carrousel";
   var init = function() {
-    $("#hidden_button_to_launch_picture_fancybox_for_thumbnail").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
-      V.Editor.Utils.loadTab("tab_pic_from_url")
-    }, "onClosed":function(data) {
+    $("#hidden_button_to_uploadThumbnail").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
+      V.Editor.Image.setAddContentMode(VISH.Constant.THUMBNAIL);
+      V.Utils.loadTab("tab_pic_from_url")
     }})
   };
   var onLoadPresentationDetails = function(mySelectedAvatar) {
-    selectedAvatar = mySelectedAvatar;
-    $("#" + thumbnailsDetailsId).hide();
-    VISH.Editor.API.requestThumbnails(_onThumbnailsReceived, _onThumbnailsError)
+    if(mySelectedAvatar) {
+      selectedAvatar = mySelectedAvatar
+    }
+    if(avatars === null) {
+      $("#" + thumbnailsDetailsId).hide();
+      VISH.Editor.API.requestThumbnails(_onThumbnailsReceived, _onThumbnailsError)
+    }else {
+      _selectAvatarInCarrousel(selectedAvatar)
+    }
   };
-  var _selectAvatar = function(event) {
-    var avatar = $(event.target);
+  var onCustomThumbnailSelected = function(thumbnail_url) {
+    VISH.Editor.Tools.Menu.displaySettings();
+    _addCustomThumbnail(thumbnail_url)
+  };
+  var _addCustomThumbnail = function(thumbnail_url) {
+    var element = $("<div class='carrousel_element_single_row_thumbnails'><img class='carrousel_element_single_row_thumbnails carrousel_last_added_element' src='" + thumbnail_url + "'/></div>")[0];
+    VISH.Editor.Carrousel.insertElement(carrouselDivId, element, 1);
+    var element = $(".carrousel_last_added_element");
+    $(element).click(function(event) {
+      _onAvatarSelected(event)
+    });
+    VISH.Editor.Carrousel.goToElement(carrouselDivId, $(element)[0]);
+    $(element).trigger("click");
+    $(element).removeClass("carrousel_last_added_element")
+  };
+  var _onAvatarSelected = function(event) {
+    if($(event.target)[0].tagName !== "IMG") {
+      return
+    }else {
+      var avatar = $(event.target)
+    }
     if($(avatar).hasClass("uploadThumbnail")) {
-      $("#hidden_button_to_launch_picture_fancybox_for_thumbnail").trigger("click");
+      $("#hidden_button_to_uploadThumbnail").trigger("click");
       return
     }
     $(".carrousel_element_single_row_thumbnails").removeClass("selectedThumbnail");
     $(avatar).addClass("selectedThumbnail");
     $("#presentation_avatar").val($(event.target).attr("src"))
   };
-  var selectRandom = function(max) {
+  var _selectRandom = function(max) {
     var randomnumber = Math.ceil(Math.random() * max);
     $("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").addClass("selectedThumbnail");
     $("#presentation_avatar").val($("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").attr("src"))
   };
-  var selectAvatarInCarrousel = function(avatar) {
-    avatar = avatar.split("/").pop();
-    var avatarImages = $("#" + carrouselDivId).find("img.carrousel_element_single_row_thumbnails");
-    $.each(avatarImages, function(i, image) {
-      if($(image).attr("src").split("/").pop() == avatar) {
-        $(image).addClass("selectedThumbnail");
-        VISH.Editor.Carrousel.goToElement(carrouselDivId, $(image))
-      }
-    })
+  var _selectDefaultAvatarInCarrousel = function(avatar) {
+    if(avatar) {
+      var avatarName = avatar.split("/").pop();
+      var avatarImages = $("#" + carrouselDivId).find("img.carrousel_element_single_row_thumbnails");
+      $.each(avatarImages, function(i, image) {
+        if($(image).attr("src").split("/").pop() === avatarName) {
+          $(image).addClass("selectedThumbnail");
+          VISH.Editor.Carrousel.goToElement(carrouselDivId, $(image))
+        }
+      })
+    }
+  };
+  var _selectAvatarInCarrousel = function(avatar) {
+    if(avatar) {
+      var avatarImages = $("#" + carrouselDivId).find("img.carrousel_element_single_row_thumbnails");
+      $.each(avatarImages, function(i, image) {
+        if($(image).attr("src") === avatar) {
+          $(image).addClass("selectedThumbnail");
+          VISH.Editor.Carrousel.goToElement(carrouselDivId, $(image))
+        }
+      })
+    }
   };
   var _onThumbnailsReceived = function(data) {
     avatars = data;
     VISH.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     var content = "";
     var carrouselImages = [];
+    carrouselImages.push($("<img class='uploadThumbnail' src='" + VISH.ImagesPath + "addThumbnail.png'/>")[0]);
     $.each(avatars.pictures, function(i, item) {
       var myImg = $("<img src=" + item.src + " />");
       carrouselImages.push($(myImg)[0])
@@ -15655,18 +17441,34 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     $("#" + thumbnailsDetailsId).show();
     var options = new Array;
     options["rows"] = 1;
-    options["callback"] = _selectAvatar;
+    options["callback"] = _onAvatarSelected;
     options["rowItems"] = 5;
     options["styleClass"] = "thumbnails";
     VISH.Editor.Carrousel.createCarrousel(carrouselDivId, options);
     $(".buttonintro").addClass("buttonintro_extramargin");
     if(selectedAvatar) {
-      selectAvatarInCarrousel(selectedAvatar)
+      if(!_isDefaultAvatar(selectedAvatar)) {
+        _addCustomThumbnail(selectedAvatar)
+      }else {
+        _selectDefaultAvatarInCarrousel(selectedAvatar)
+      }
     }else {
-      selectRandom(5)
+      _selectRandom(5)
     }
   };
-  return{init:init, selectRandom:selectRandom, onLoadPresentationDetails:onLoadPresentationDetails}
+  var _isDefaultAvatar = function(avatar) {
+    if(!avatar) {
+      return false
+    }
+    var namePattern = "(^excursion-)";
+    var avatarName = avatar.split("/").pop();
+    if(avatarName.match(namePattern) === null) {
+      return false
+    }
+    var pathPattern = "(^" + VISH.ImagesPath + ")";
+    return avatar.match(pathPattern) !== null
+  };
+  return{init:init, onLoadPresentationDetails:onLoadPresentationDetails, onCustomThumbnailSelected:onCustomThumbnailSelected, _isDefaultAvatar:_isDefaultAvatar}
 }(VISH, jQuery);
 VISH.Editor.Carrousel = function(V, $, undefined) {
   var createCarrousel = function(containerId, options) {
@@ -15870,7 +17672,10 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
   var backCarrousel = function(carrouselDivId, no) {
     $("#" + carrouselDivId).trigger("prev", no)
   };
-  return{createCarrousel:createCarrousel, cleanCarrousel:cleanCarrousel, goToElement:goToElement, advanceCarrousel:advanceCarrousel, backCarrousel:backCarrousel}
+  var insertElement = function(carrouselDivId, element, posc) {
+    $("#" + carrouselDivId).trigger("insertItem", [element, posc])
+  };
+  return{createCarrousel:createCarrousel, cleanCarrousel:cleanCarrousel, goToElement:goToElement, advanceCarrousel:advanceCarrousel, backCarrousel:backCarrousel, insertElement:insertElement}
 }(VISH, jQuery);
 VISH.Editor.Filter = function(V, $, undefined) {
   var init = function() {
@@ -15903,14 +17708,26 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     V.Editor.Thumbnails.redrawThumbnails();
     VISH.Editor.Tools.init()
   };
+  var onBackgroundSelected = function(contentToAdd) {
+    $("#flashcard-background").css("background-image", "url(" + contentToAdd + ")");
+    $("#fc_change_bg_big").hide();
+    $.fancybox.close()
+  };
   var redrawPois = function() {
     $(".draggable_arrow_div").show();
     _applyStyleToPois();
     $(".draggable_arrow_div").draggable({revert:"invalid", stop:function(event, ui) {
       if($(event.target).offset().top > 50 && $(event.target).offset().top < 600 && $(event.target).offset().left > 55 && $(event.target).offset().left < 805) {
-        $(event.target).attr("moved", "true")
+        $(event.target).attr("moved", "true");
+        var old_pos = $(event.target).offset();
+        $(event.target).css("position", "fixed");
+        $(event.target).css("top", old_pos.top + 30 + "px");
+        $(event.target).css("left", old_pos.left - 16 + "px")
       }else {
-        $(event.target).attr("moved", "false")
+        $(event.target).attr("moved", "false");
+        var old_pos = $(event.target).offset();
+        $(event.target).css("top", old_pos.top + 30 + "px");
+        $(event.target).css("left", old_pos.left - 16 + "px")
       }
     }});
     $(".carrousel_element_single_row_slides").droppable();
@@ -15922,6 +17739,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     var presentation = V.Editor.getPresentation();
     if(presentation && presentation.background && presentation.background.pois) {
       $.each(presentation.background.pois, function(index, val) {
+        $("#" + val.id).css("position", "fixed");
         $("#" + val.id).offset({top:600 * parseInt(val.y) / 100 + 75, left:800 * parseInt(val.x) / 100 + 55});
         $("#" + val.id).attr("moved", "true")
       })
@@ -15951,7 +17769,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
       return true
     }
   };
-  return{hasChangedBackground:hasChangedBackground, hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard}
+  return{hasChangedBackground:hasChangedBackground, hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard, onBackgroundSelected:onBackgroundSelected}
 }(VISH, jQuery);
 VISH.Editor.I18n = function(V, $, undefined) {
   var translations;
@@ -16126,8 +17944,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
   };
   var addImage = function(event) {
     var image_url = $(event.target).attr("src");
-    V.Editor.Image.drawImage(image_url);
-    $.fancybox.close()
+    V.Editor.Image.addContent(image_url)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -16198,8 +18015,8 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     VISH.Debugging.log("API error")
   };
   var _onClickCarrouselElement = function(event) {
-    V.Editor.Image.drawImage($(event.target).attr("src"));
-    $.fancybox.close()
+    var image_url = $(event.target).attr("src");
+    V.Editor.Image.addContent(image_url)
   };
   return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
@@ -16228,7 +18045,7 @@ VISH.Editor.Object.Flash = function(V, $, undefined) {
   var drawFlashObjectWithSource = function(src) {
     var current_area = VISH.Editor.getCurrentArea();
     var template = VISH.Editor.getTemplate();
-    var nextFlashId = VISH.Editor.getId();
+    var nextFlashId = VISH.Utils.getId();
     var idToDrag = "draggable" + nextFlashId;
     var idToResize = "resizable" + nextFlashId;
     current_area.attr("type", "object");
@@ -16572,7 +18389,7 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
       object_style = style
     }
     var template = V.Editor.getTemplate(current_area);
-    var nextWrapperId = V.Editor.getId();
+    var nextWrapperId = V.Utils.getId();
     var idToDrag = "draggable" + nextWrapperId;
     var idToResize = "resizable" + nextWrapperId;
     current_area.attr("type", "snapshot");
@@ -16710,33 +18527,50 @@ VISH.Editor.Preview = function(V, $, undefined) {
 VISH.Editor.Quiz = function(V, $, undefined) {
   var maxNumMultipleChoiceOptions = 6;
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)"];
-  var fancyTabs = false;
   var init = function() {
     $(document).on("click", ".add_quiz_option", _addMultipleChoiceOption);
     $(document).on("click", ".remove_quiz_option", _removeMultipleChoiceOption);
     $(document).on("keydown", ".multiplechoice_text", _onKeyDown)
   };
   var onLoadTab = function(tab) {
-    if(tab == "quiz_mchoice") {
-      _onLoadTabMChoiceQuiz()
-    }else {
-      if(tab == "quiz_open") {
-        V.Debugging.log("quiz open load tab")
-      }
-    }
   };
-  var addMChoiceQuiz = function() {
-    V.Debugging.log("add MChoice Quiz Button clicked");
-    _generateWrapper();
+  var addQuiz = function(quiz_type, area) {
+    switch(quiz_type) {
+      case "open":
+        break;
+      case "multiplechoice":
+        _addMultipleChoiceQuiz(area);
+        VISH.Utils.loadTab("tab_quizes");
+        break;
+      case "truefalse":
+        break;
+      default:
+        break
+    }
     $.fancybox.close()
   };
-  var drawQuiz = function(question, options) {
-    $(".current").find(".value_multiplechoice_question").val(question);
-    for(var i = 0;i <= options.length - 1;i++) {
-      var optionText = options[i];
-      var myInput = $(".current").find(".ul_mch_options > li").last().find("input");
-      var myImg = $(".current").find(".ul_mch_options > li").last().find("img");
-      _addMultipleChoiceOption(null, myInput, myImg, optionText)
+  var drawQuiz = function(quiz_type, zone_id, question, options) {
+    var zone;
+    if(zone_id) {
+      zone = "#" + zone_id
+    }else {
+      zone = ".current"
+    }
+    switch(quiz_type) {
+      case "multiplechoice":
+        $(zone).find(".value_multiplechoice_question_in_zone").parent().find("div > div").children().remove();
+        $(zone).find(".value_multiplechoice_question_in_zone").parent().find("div > div").append(question);
+        var inputs = $(zone).find(".multiplechoice_text_in_zone");
+        for(var i = 0;i <= options.length - 1;i++) {
+          $(inputs[i]).val(options[i])
+        }
+        break;
+      case "open":
+        break;
+      case "truefalse":
+        break;
+      default:
+        break
     }
   };
   var _onKeyDown = function(event) {
@@ -16749,22 +18583,16 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   };
   var _addMultipleChoiceOption = function(event, myInput, myImg, optionText) {
     var img, input;
-    if(fancyTabs) {
-      var optionsLength = $("#tab_quiz_mchoice_content").find(".ul_mch_options > li").length
-    }else {
-      var optionsLength = $(".current").find(".ul_mch_options > li").length
-    }
+    var optionsLength = $(".current").find(".ul_mch_options > li").length;
     if(optionsLength >= maxNumMultipleChoiceOptions) {
       return
     }
     if(event) {
-      V.Debugging.log("event.target.tagName addMultipleChoiceOption: " + event.target.tagName);
       if(event.target.tagName === "INPUT") {
         img = $(event.target).parent().find("img");
         input = event.target
       }else {
         if(event.target.tagName === "IMG") {
-          V.Debugging.log("event.target : " + event.target);
           img = event.target;
           input = $(event.target).parent().parent().find("input")
         }
@@ -16776,15 +18604,8 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     }
     var a = $(img).parent();
     var li = $(input).parent();
-    if(fancyTabs) {
-      V.Debugging.log("enter into fancyTabs true first");
-      var targetChoice = $("#tab_quiz_mchoice_content").find(".ul_mch_options > li").index(li)
-    }else {
-      var targetChoice = $(".current").find(".ul_mch_options > li").index(li)
-    }
-    V.Debugging.log("targetChoice " + targetChoice);
+    var targetChoice = $(".current").find(".ul_mch_options > li").index(li);
     var isLastChoice = targetChoice === optionsLength - 1;
-    V.Debugging.log("isLastChoice " + isLastChoice);
     if(!isLastChoice) {
       return
     }
@@ -16793,14 +18614,8 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     $(input).blur();
     var maxChoicesReached = optionsLength == maxNumMultipleChoiceOptions - 1;
     var newMultipleChoice = _renderDummyMultipleChoice(choicesLetters[optionsLength], !maxChoicesReached);
-    V.Debugging.log("newMultipleChoice" + newMultipleChoice);
-    if(fancyTabs) {
-      $("#tab_quiz_mchoice_content").find(".ul_mch_options").append(newMultipleChoice);
-      $("#tab_quiz_mchoice_content").find(".ul_mch_options > li").last().find("input").focus()
-    }else {
-      $(".current").find(".ul_mch_options").append(newMultipleChoice);
-      $(".current").find(".ul_mch_options > li").last().find("input").focus()
-    }
+    $(".current").find(".ul_mch_options").append(newMultipleChoice);
+    $(".current").find(".ul_mch_options > li").last().find("input").focus()
   };
   var _renderDummyMultipleChoice = function(text, addImage) {
     var li = $("<li class='li_mch_option'></li>");
@@ -16818,44 +18633,44 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     return a
   };
   var _removeMultipleChoiceOption = function(id) {
-    V.Debugging.log("_removeMultipleChoiceOption param id value: " + id);
     var li = $(event.target).parent().parent();
     $(li).remove();
-    if(fancyTabs) {
-      $("#tab_quiz_mchoice_content").find(".ul_mch_options > li").each(function(index, value) {
-        var span = $(value).find("span");
-        $(span).html(choicesLetters[index])
-      });
-      var lastLi = $("#tab_quiz_mchoice_content").find(".ul_mch_options > li").last()
-    }else {
-      $(".current").find(".ul_mch_options > li").each(function(index, value) {
-        var span = $(value).find("span");
-        $(span).html(choicesLetters[index])
-      });
-      var lastLi = $(".current").find(".ul_mch_options > li").last()
-    }
+    $(".current").find(".ul_mch_options > li").each(function(index, value) {
+      var span = $(value).find("span");
+      $(span).html(choicesLetters[index])
+    });
+    var lastLi = $(".current").find(".ul_mch_options > li").last();
     var lastA = $(lastLi).find("a");
     if($(lastA).length == 0 || $(lastA).hasClass("add_quiz_option") === false) {
       $(lastLi).append(_renderAddImg())
     }
   };
-  var _onLoadTabMChoiceQuiz = function() {
-    fancyTabs = true;
-    $("#tab_quiz_mchoice").show();
-    $("#tab_quiz_mchoice_content").find(".add_quiz_option_img").attr("src", VISH.ImagesPath + "add_quiz_option.png")
-  };
-  var _generateWrapper = function() {
-    current_area = VISH.Editor.getCurrentArea();
-    var nextQuizId = VISH.Editor.getId();
+  var _addMultipleChoiceQuiz = function(area) {
+    var quiz = VISH.Dummies.getQuizDummy("multiplechoice", V.Slides.getSlides().length);
+    if(area) {
+      var current_area = $("#" + area)
+    }else {
+      var current_area = VISH.Editor.getCurrentArea();
+      current_area.find(".menuselect_hide").remove()
+    }
     current_area.attr("type", "quiz");
-    var header = "<div id='tab_quiz_mchoice_content_header' areaid='header' class='t11_header'> </div>";
-    var question = "<h2 class='quiz_mch_question' >" + $("#tab_quiz_mchoice_content_container").find(".value_multiplechoice_question").val();
-    +"</h2>";
-    current_area.html(header + question);
+    current_area.append(quiz);
     V.Editor.addDeleteButton(current_area);
-    return current_area
+    launchTextEditorInTextArea(current_area, "multiplechoice")
   };
-  return{drawQuiz:drawQuiz, init:init, onLoadTab:onLoadTab, addMChoiceQuiz:addMChoiceQuiz}
+  var launchTextEditorInTextArea = function(area, type) {
+    if(area) {
+      current_area = area
+    }else {
+      current_area = V.Editor.getCurrentArea()
+    }
+    var textArea = $(current_area).find(".value_" + type + "_question_in_zone");
+    var wysiwygId = "wysiwyg_" + current_area.attr("id");
+    textArea.attr("id", wysiwygId);
+    textArea.addClass("wysiwygInstance");
+    V.Editor.Text.getNicEditor().addInstance(wysiwygId)
+  };
+  return{init:init, onLoadTab:onLoadTab, drawQuiz:drawQuiz, addQuiz:addQuiz}
 }(VISH, jQuery);
 VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
@@ -16863,11 +18678,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     $("#presentation_title").val(presentation.title);
     $("#presentation_description").val(presentation.description);
     $("#presentation_avatar").val(presentation.avatar);
-    $("thumbnails_in_presentation_details .carrousel_element_single_row img").each(function(index, elem) {
-      if(elem.attr("src") === presentation.avatar) {
-      }
-      elem.addClass("carrousel_element_selected")
-    });
+    VISH.Themes.selectTheme(presentation.theme);
     slides = presentation.slides;
     for(var i = 0;i < slides.length;i++) {
       _renderSlide(slides[i], i, presentation.id)
@@ -16906,8 +18717,9 @@ VISH.Editor.Renderer = function(V, $, undefined) {
               if(slide.elements[el].type === "snapshot") {
                 V.Editor.Object.Snapshot.drawSnapShot(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].scrollTop, slide.elements[el].scrollLeft)
               }else {
-                if(slide.elements[el].type === "mcquestion") {
-                  V.Editor.Quiz.drawQuiz(slide.elements[el].question, slide.elements[el].options)
+                if(slide.elements[el].type === "quiz") {
+                  V.Editor.Quiz.addQuiz(slide.elements[el].quiztype, slide.elements[el].id);
+                  V.Editor.Quiz.drawQuiz(slide.elements[el].quiztype, slide.elements[el].id, slide.elements[el].question, slide.elements[el].options)
                 }
               }
             }
@@ -16928,6 +18740,13 @@ VISH.Editor.Text = function(V, $, undefined) {
       nicEditorInit();
       initialized = true
     }
+  };
+  var getNicEditor = function() {
+    if(!myNicEditor) {
+      myNicEditor = new nicEditor;
+      myNicEditor.setPanel("slides_panel")
+    }
+    return myNicEditor
   };
   var launchTextEditor = function(event, area, initial_text) {
     init();
@@ -16950,19 +18769,32 @@ VISH.Editor.Text = function(V, $, undefined) {
         default:
           break
       }
-      initial_text = "<div><font size='" + fontSize + "''>" + VISH.Editor.I18n.getTrans("i.WysiwygInit") + "</font></div>"
+      initial_text = "<div class='initTextDiv'><font size='" + fontSize + "''>" + VISH.Editor.I18n.getTrans("i.WysiwygInit") + "</font></div>"
     }
-    if(myNicEditor == null) {
-      myNicEditor = new nicEditor;
-      myNicEditor.setPanel("slides_panel")
-    }
+    getNicEditor();
     current_area.attr("type", "text");
     var wysiwygId = "wysiwyg_" + current_area.attr("id");
     var wysiwygWidth = current_area.width() - 10;
     var wysiwygHeight = current_area.height() - 10;
     current_area.html("<div class='wysiwygInstance' id=" + wysiwygId + " style='width:" + wysiwygWidth + "px; height:" + wysiwygHeight + "px;'>" + initial_text + "</div>");
     myNicEditor.addInstance(wysiwygId);
-    V.Editor.addDeleteButton(current_area)
+    V.Editor.addDeleteButton(current_area);
+    $(".initTextDiv").click(function(event) {
+      if(event.target.tagName == "FONT") {
+        var font = $(event.target);
+        var div = $(event.target).parent()
+      }else {
+        if(event.target.tagName == "DIV") {
+          var div = $(event.target);
+          var font = $(event.target).find("font")
+        }
+      }
+      if($(font).text() === VISH.Editor.I18n.getTrans("i.WysiwygInit")) {
+        $(font).text("");
+        $(div).removeClass("initTextDiv");
+        $("#" + wysiwygId).trigger("click")
+      }
+    })
   };
   var changeFontPropertiesToSpan = function(zone) {
     _replaceFontTag(zone);
@@ -17051,7 +18883,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     });
     $(myelem).children().unwrap()
   };
-  return{init:init, launchTextEditor:launchTextEditor, changeFontPropertiesToSpan:changeFontPropertiesToSpan}
+  return{init:init, launchTextEditor:launchTextEditor, changeFontPropertiesToSpan:changeFontPropertiesToSpan, getNicEditor:getNicEditor}
 }(VISH, jQuery);
 VISH.Editor.Thumbnails = function(V, $, undefined) {
   var carrouselDivId = "slides_carrousel";
@@ -17403,6 +19235,8 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.Tour = function(V, $, undefined) {
   var startTourWithId = function(helpid, tipLocation) {
+    V.Debugging.log("startTourWithId with help id: " + helpid + " & tipLocation " + tipLocation);
+    clear();
     var loc;
     if(tipLocation === undefined) {
       loc = "top"
@@ -17548,68 +19382,7 @@ VISH.Editor.Utils = function(V, $, undefined) {
     var LeftPercent = element.position().left * 100 / parent.width();
     return"position: relative; width:" + WidthPercent + "%; height:" + HeightPercent + "%; top:" + TopPercent + "%; left:" + LeftPercent + "%;"
   };
-  var loadTab = function(tab_id) {
-    $(".joyride-close-tip").click();
-    $(".fancy_tab_content").hide();
-    $("#" + tab_id + "_content").show();
-    $(".fancy_tab").removeClass("fancy_selected");
-    $("#" + tab_id).addClass("fancy_selected");
-    $(".help_in_fancybox").hide();
-    $("#" + tab_id + "_help").show();
-    switch(tab_id) {
-      case "tab_pic_from_url":
-        V.Editor.Image.onLoadTab("url");
-        break;
-      case "tab_pic_upload":
-        V.Editor.Image.onLoadTab("upload");
-        break;
-      case "tab_pic_repo":
-        V.Editor.Image.Repository.onLoadTab();
-        break;
-      case "tab_pic_flikr":
-        V.Editor.Image.Flikr.onLoadTab();
-        break;
-      case "tab_video_from_url":
-        VISH.Editor.Video.onLoadTab();
-        break;
-      case "tab_video_repo":
-        VISH.Editor.Video.Repository.onLoadTab();
-        break;
-      case "tab_video_youtube":
-        VISH.Editor.Video.Youtube.onLoadTab();
-        break;
-      case "tab_video_vimeo":
-        VISH.Editor.Video.Vimeo.onLoadTab();
-        break;
-      case "tab_object_from_url":
-        VISH.Editor.Object.onLoadTab("url");
-        break;
-      case "tab_object_from_web":
-        VISH.Editor.Object.Web.onLoadTab();
-        break;
-      case "tab_object_snapshot":
-        VISH.Editor.Object.Snapshot.onLoadTab();
-        break;
-      case "tab_object_upload":
-        VISH.Editor.Object.onLoadTab("upload");
-        break;
-      case "tab_object_repo":
-        VISH.Editor.Object.Repository.onLoadTab();
-        break;
-      case "tab_live_webcam":
-        VISH.Editor.Object.Live.onLoadTab("webcam");
-        break;
-      case "tab_live_micro":
-        VISH.Editor.Object.Live.onLoadTab("micro");
-        break;
-      case "tab_quiz_mchoice":
-        VISH.Editor.Quiz.onLoadTab("quiz_mchoice");
-        break;
-      default:
-        break
-    }
-  };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, loadTab:loadTab, showSlides:showSlides}
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -17639,7 +19412,7 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
       }
     }
     var template = VISH.Editor.getTemplate(area);
-    var nextVideoId = VISH.Editor.getId();
+    var nextVideoId = VISH.Utils.getId();
     var idToDragAndResize = "draggable" + nextVideoId;
     current_area.attr("type", "video");
     var videoTag = document.createElement("video");
@@ -18005,13 +19778,11 @@ VISH.Events.Mashme = function(V, $, undefined) {
   var FC_POI_CLICK = "FC_POI_CLICK";
   var FC_CLOSE_SLIDE = "FC_CLOSE_SLIDE";
   var onMashmeHello = function(message) {
-    V.Debugging.log("Recibiendo:" + message.data + " from:" + message.origin);
     if(message.data === MASHME_HELLO) {
       window.removeEventListener("message", V.Slides.onMashmeHello, false);
-      V.Events.unbindAll();
+      V.Events.unbindAllEventListeners();
       init()
     }else {
-      V.Debugging.log("WARNING unknown message received from " + message.origin + " with data: " + message.data)
     }
   };
   var init = function() {
@@ -18085,7 +19856,6 @@ VISH.Events.Mashme = function(V, $, undefined) {
     MASHME.API.iFrame.broadcast("MashMeAPIMessage:" + message + "//" + params)
   };
   var _onMashmeMessage = function(message) {
-    V.Debugging.log("Recibiendo:" + message.data + " from:" + message.origin);
     var command = message.data.substring(message.data.indexOf(":") + 1, message.data.indexOf("//"));
     var data = message.data.substring(message.data.indexOf("//") + 2);
     switch(command) {
@@ -18107,6 +19877,44 @@ VISH.Events.Mashme = function(V, $, undefined) {
     }
   };
   return{init:init, onMashmeHello:onMashmeHello}
+}(VISH, jQuery);
+VISH.Events.Notifier = function(V, $, undefined) {
+  var listeners;
+  var init = function() {
+    listeners = new Array
+  };
+  var registerCallback = function(listenedEvent, callback) {
+    if(listenedEvent in listeners) {
+      listeners[listenedEvent].push(callback)
+    }else {
+      listeners[listenedEvent] = [];
+      listeners[listenedEvent].push(callback);
+      if(listenedEvent == VISH.Constant.Event.onMessage) {
+        VISH.Messenger.init()
+      }
+    }
+  };
+  var unRegisterCallback = function(listenedEvent, callback) {
+    if(listenedEvent in listeners) {
+      if(listeners[listenedEvent].indexOf(callback) !== -1) {
+        listeners[listenedEvent].splice(listeners[listenedEvent].indexOf(callback), 1)
+      }
+    }
+  };
+  var notifyEvent = function(triggeredEvent, params, triggeredByUser) {
+    if(!listeners) {
+      return
+    }
+    params = params || {};
+    params.triggeredByUser = !(triggeredByUser === false);
+    var eventListeners = listeners[triggeredEvent];
+    if(eventListeners) {
+      for(var i = 0;i < eventListeners.length;i++) {
+        eventListeners[i](params)
+      }
+    }
+  };
+  return{init:init, notifyEvent:notifyEvent, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback}
 }(VISH, jQuery);
 VISH.Flashcard.Arrow = function(V, $, undefined) {
   var FPS = 25;
@@ -18136,7 +19944,7 @@ VISH.Flashcard.Arrow = function(V, $, undefined) {
       var id = arrow_ids[index];
       var pos = arrow_positions[index];
       var new_pos = (pos + FRAME_WIDTH) % (TOTAL_FRAMES * FRAME_WIDTH);
-      $("#" + id).css("background-position-x", new_pos + "px");
+      $("#" + id).css("background-position", new_pos + "px" + " 0px");
       arrow_positions[index] = new_pos
     }
     setTimeout(_animateArrows, 1E3 / FPS)
@@ -18154,6 +19962,376 @@ VISH.Game = function(V, $, undefined) {
     }
   };
   return{raiseAction:raiseAction, registerActions:registerActions}
+}(VISH, jQuery);
+var VISH = VISH || {};
+VISH.Constant = {};
+VISH.Constant.Event = {};
+VISH.Constant.Event.onMessage = "onMessage";
+VISH.Constant.Event.onGoToSlide = "onGoToSlide";
+VISH.Constant.Event.onPlayVideo = "onPlayVideo";
+VISH.Constant.Event.onPauseVideo = "onPauseVideo";
+VISH.Constant.Event.onSeekVideo = "onSeekVideo";
+VISH.Constant.Event.onSetSlave = "onSetSlave";
+VISH.Constant.Event.onPreventDefault = "onPreventDefault";
+VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
+VISH.IframeAPI = function(V, undefined) {
+  var helloAttempts;
+  var maxHelloAttempts = 15;
+  var helloTimeout;
+  var options;
+  var listeners;
+  var init = function(initOptions) {
+    options = initOptions;
+    if(window.addEventListener) {
+      window.addEventListener("message", _onWrapperedVEMessage, false)
+    }else {
+      if(el.attachEvent) {
+        window.attachEvent("message", _onWrapperedVEMessage)
+      }
+    }
+    listeners = new Array;
+    _startHelloExchange()
+  };
+  var _startHelloExchange = function() {
+    registerCallback(VISH.Constant.Event.onIframeMessengerHello, function(origin) {
+      if(helloTimeout) {
+        clearTimeout(helloTimeout)
+      }
+      _applyOptions(origin);
+      if(options && typeof options.callback === "function") {
+        options.callback(origin)
+      }
+    });
+    helloAttempts = 0;
+    helloTimeout = setInterval(function() {
+      _sayHello()
+    }, 1E3);
+    _sayHello()
+  };
+  var _sayHello = function() {
+    var helloMessage = _createMessage(VISH.Constant.Event.onIframeMessengerHello);
+    sendMessage(helloMessage, "*");
+    helloAttempts++;
+    if(helloAttempts >= maxHelloAttempts && helloTimeout) {
+      clearTimeout(helloTimeout)
+    }
+  };
+  var _sendPreventDefaults = function(preventDefaults, destination) {
+    var params = {};
+    params.preventDefaults = preventDefaults;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPreventDefault, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var _applyOptions = function(destination) {
+    if(options) {
+      if(options.preventDefault === true) {
+        _sendPreventDefaults(true, destination)
+      }
+    }
+  };
+  var registerCallback = function(listenedEvent, callback) {
+    if(callback) {
+      listeners[listenedEvent] = callback
+    }
+  };
+  var unRegisterCallback = function(listenedEvent) {
+    if(listenedEvent in listeners) {
+      listeners[listenedEvent] = null
+    }
+  };
+  function message(VEevent, params, origin, destination) {
+    this.vishEditor = true;
+    this.VEevent = VEevent;
+    if(params) {
+      this.params = params
+    }
+    if(origin) {
+      this.origin = origin
+    }else {
+      this.origin = "?"
+    }
+    if(destination) {
+      this.destination = destination
+    }else {
+      this.destination = "*"
+    }
+  }
+  var _createMessage = function(VEevent, params, origin, destination) {
+    var VEMessage = new message(VEevent, params, origin, destination);
+    return JSON.stringify(VEMessage)
+  };
+  var _validateVEMessage = function(VEMessage) {
+    if(typeof VEMessage !== "string") {
+      return false
+    }
+    try {
+      var VEMessageObject = JSON.parse(VEMessage);
+      if(typeof VEMessageObject !== "object") {
+        return false
+      }
+      if(VEMessageObject.vishEditor !== true) {
+        return false
+      }
+      if(!VEMessageObject.VEevent) {
+        return false
+      }
+    }catch(e) {
+      return false
+    }
+    return true
+  };
+  var sendMessage = function(VEMessage, destination) {
+    if(typeof destination === "string") {
+      if(destination === "*") {
+        _broadcastMessage(VEMessage)
+      }else {
+        var iframe = document.getElementById(destination);
+        if(iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(VEMessage, "*")
+        }
+      }
+    }else {
+      if(_isArray(destination) && typeof destination[0] == "string") {
+        for(var i = 0;i < destination.length;i++) {
+          var iframe = document.getElementById(destination[i]);
+          if(iframe && iframe.contentWindow) {
+            iframe.contentWindow.postMessage(VEMessage, "*")
+          }
+        }
+      }else {
+        _broadcastMessage(VEMessage)
+      }
+    }
+  };
+  var _broadcastMessage = function(VEMessage) {
+    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
+    for(var i = 0;i < allVEIframes.length;i++) {
+      allVEIframes[i].contentWindow.postMessage(VEMessage, "*")
+    }
+  };
+  var _onWrapperedVEMessage = function(wrapperedVEMessage) {
+    if(wrapperedVEMessage) {
+      if(_validateVEMessage(wrapperedVEMessage.data)) {
+        _processVEMessage(wrapperedVEMessage.data)
+      }
+    }
+  };
+  var _processVEMessage = function(VEMessage) {
+    var VEMessageObject = JSON.parse(VEMessage);
+    if(listeners[VISH.Constant.Event.onMessage]) {
+      listeners[VISH.Constant.Event.onMessage](VEMessage, VEMessageObject.origin)
+    }
+    var callback = listeners[VEMessageObject.VEevent];
+    if(!callback) {
+      return
+    }
+    switch(VEMessageObject.VEevent) {
+      case VISH.Constant.Event.onGoToSlide:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onPlayVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onPauseVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onSeekVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onIframeMessengerHello:
+        callback(VEMessageObject.origin);
+        break;
+      default:
+        _print("VISH.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
+        break
+    }
+  };
+  var goToSlide = function(slideNumber, destination) {
+    var params = {};
+    params.slideNumber = slideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onGoToSlide, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var playVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPlayVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var pauseVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPauseVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var seekVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSeekVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var setSlave = function(slave, destination) {
+    var params = {};
+    params.slave = slave;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var setMaster = function(master) {
+    var params = {};
+    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
+    for(var i = 0;i < allVEIframes.length;i++) {
+      if(allVEIframes[i].id !== master) {
+        params.slave = true
+      }else {
+        params.slave = false
+      }
+      var destination = allVEIframes[i].id;
+      var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
+      sendMessage(VEMessage, destination)
+    }
+  };
+  var _print = function(objectToPrint) {
+    if(console && console.log) {
+      console.log(objectToPrint)
+    }
+  };
+  var _isArray = function(object) {
+    if(typeof object !== "undefined") {
+      return object.constructor === Array
+    }
+    return false
+  };
+  return{init:init, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback, sendMessage:sendMessage, setSlave:setSlave, setMaster:setMaster, goToSlide:goToSlide, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo}
+}(VISH);
+VISH.LocalStorage = function(V, $, undefined) {
+  var addPresentation = function(presentation) {
+    if(typeof Storage !== "undefined") {
+      var list = localStorage.getItem("presentation_list") ? JSON.parse(localStorage.getItem("presentation_list")) : new Array;
+      if($.inArray(presentation.id, list) === -1) {
+        list.push(presentation.id);
+        localStorage.setItem("presentation_list", JSON.stringify(list))
+      }
+      localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation))
+    }else {
+      V.Debugging.log("Sorry! No web storage support.")
+    }
+  };
+  return{addPresentation:addPresentation}
+}(VISH, jQuery);
+VISH.Messenger.Helper = function(V, undefined) {
+  function message(VEevent, params, origin, destination) {
+    this.vishEditor = true;
+    this.VEevent = VEevent;
+    if(params) {
+      this.params = params
+    }
+    if(origin) {
+      this.origin = origin
+    }else {
+      this.origin = "?"
+    }
+    if(destination) {
+      this.destination = destination
+    }else {
+      this.destination = "*"
+    }
+  }
+  var createMessage = function(VEevent, params, origin, destination) {
+    if(!origin) {
+      if(VISH.Status.getIsInIframe()) {
+        origin = VISH.Status.getIframe().id
+      }
+    }
+    var VEMessage = new message(VEevent, params, origin, destination);
+    return JSON.stringify(VEMessage)
+  };
+  var validateVEMessage = function(VEMessage, params) {
+    if(typeof VEMessage !== "string") {
+      return false
+    }
+    try {
+      var VEMessageObject = JSON.parse(VEMessage);
+      if(typeof VEMessageObject !== "object") {
+        return false
+      }
+      if(VEMessageObject.vishEditor !== true) {
+        return false
+      }
+      if(!VEMessageObject.VEevent) {
+        return false
+      }
+      if(VISH.Status.getIsInIframe() && params && params.allowSelfMessages === false) {
+        if(VEMessageObject.origin === VISH.Status.getIframe().id) {
+          return false
+        }
+      }
+    }catch(e) {
+      return false
+    }
+    return true
+  };
+  var processVEMessage = function(VEMessage) {
+    var VEMessageObject = JSON.parse(VEMessage);
+    switch(VEMessageObject.VEevent) {
+      case VISH.Constant.Event.onGoToSlide:
+        if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
+          VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+        }
+        break;
+      case VISH.Constant.Event.onPlayVideo:
+        if(VEMessageObject.params && VEMessageObject.params.videoId) {
+          if(VEMessageObject.params.slideNumber && VISH.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
+            VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+          }
+          VISH.VideoPlayer.playVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
+        }
+        break;
+      case VISH.Constant.Event.onPauseVideo:
+        if(VEMessageObject.params && VEMessageObject.params.videoId) {
+          if(VEMessageObject.params.slideNumber && VISH.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
+            VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+          }
+          VISH.VideoPlayer.pauseVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
+        }
+        break;
+      case VISH.Constant.Event.onSeekVideo:
+        if(VEMessageObject.params && VEMessageObject.params.videoId) {
+          if(VEMessageObject.params.slideNumber && VISH.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
+            VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+          }
+          VISH.VideoPlayer.seekVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
+        }
+        break;
+      case VISH.Constant.Event.onSetSlave:
+        if(VEMessageObject.params && typeof VEMessageObject.params.slave != "undefined") {
+          VISH.Status.setSlaveMode(VEMessageObject.params.slave)
+        }
+        break;
+      case VISH.Constant.Event.onPreventDefault:
+        if(VEMessageObject.params && typeof VEMessageObject.params.preventDefaults != "undefined") {
+          VISH.Status.setPreventDefaultMode(VEMessageObject.params.preventDefaults)
+        }
+        break;
+      default:
+        VISH.Debugging.log("VISH.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
+        break
+    }
+  };
+  return{createMessage:createMessage, processVEMessage:processVEMessage, validateVEMessage:validateVEMessage}
 }(VISH, jQuery);
 VISH.Object = function(V, $, undefined) {
   var init = function() {
@@ -18231,6 +20409,14 @@ VISH.Object = function(V, $, undefined) {
 VISH.ObjectPlayer = function() {
   var loadObject = function(element) {
     $.each(element.children(".objectelement"), function(index, value) {
+      if($(value).hasClass("youtubeelement")) {
+        VISH.VideoPlayer.Youtube.loadYoutubeObject(element, value);
+        return
+      }
+      if($(value).attr("objectWrapper").match("^<iframe") !== null && VISH.Status.getOnline() === false) {
+        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+        return
+      }
       var object = $($(value).attr("objectWrapper"));
       $(object).attr("style", $(value).attr("zoomInStyle"));
       $(value).html("<div style='" + $(value).attr("objectStyle") + "'>" + VISH.Utils.getOuterHTML(object) + "</div>");
@@ -18320,15 +20506,7 @@ VISH.Presentation = function(V, undefined) {
     _finishRenderer()
   };
   var _finishRenderer = function() {
-    for(var i = 0;i < mySlides.length;i++) {
-      for(var num = 0;num < mySlides[i].elements.length;num++) {
-        if(mySlides[i].elements[num].type === "flashcard") {
-          var flashcard = JSON.parse(mySlides[i].elements[num].jsoncontent);
-          V.Mods.fc.loader.init(flashcard)
-        }
-      }
-    }
-    V.VideoPlayer.setVideoTagEvents();
+    V.VideoPlayer.HTML5.setVideoEvents();
     V.SlideManager.addEnterLeaveEvents();
     var evt = document.createEvent("Event");
     evt.initEvent("OURDOMContentLoaded", false, true);
@@ -18355,7 +20533,13 @@ VISH.Quiz.API = function(V, $, undefined) {
     }else {
       if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
         V.Debugging.log("No server case");
-        var quiz_session_id = "quiz_session_id_example";
+        if(quizId == 12) {
+          var quiz_session_id = "98988"
+        }else {
+          if(quizId == 13) {
+            var quiz_session_id = "98955"
+          }
+        }
         if(typeof successCallback == "function") {
           successCallback(quiz_session_id)
         }
@@ -18363,26 +20547,36 @@ VISH.Quiz.API = function(V, $, undefined) {
     }
   };
   var deleteQuizSession = function(quiz_session_id, successCallback, failCallback, quiz_name) {
-    V.Debugging.log("quiz_session_id to delete is: " + quiz_session_id);
-    V.Debugging.log("quiz_name (if save) is: " + quiz_name);
-    var quizName;
-    if(quiz_name) {
-      quizName = quiz_name
-    }else {
-      quizName = ""
-    }
-    var send_type = "DELETE";
-    V.Debugging.log("token is: " + V.User.getToken());
-    var params = {"id":quiz_session_id, "authenticity_token":V.User.getToken(), "name":quizName};
-    $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
-      var results = data;
-      if(typeof successCallback == "function") {
-        successCallback(results)
+    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+      V.Debugging.log("quiz_session_id to delete is: " + quiz_session_id);
+      V.Debugging.log("quiz_name (if save) is: " + quiz_name);
+      var quizName;
+      if(quiz_name) {
+        quizName = quiz_name
+      }else {
+        quizName = ""
       }
-    }, error:function(error) {
-      failCallback(error)
-    }});
-    return null
+      var send_type = "DELETE";
+      V.Debugging.log("token is: " + V.User.getToken());
+      var params = {"id":quiz_session_id, "authenticity_token":V.User.getToken(), "name":quizName};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
+        var results = data;
+        if(typeof successCallback == "function") {
+          successCallback(results)
+        }
+      }, error:function(error) {
+        failCallback(error)
+      }});
+      return null
+    }else {
+      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+        V.Debugging.log("No server case");
+        var results = {"quiz_session_id":19, "quiz_id":3, "results":{"b":4, "a":2, "c":1, "d":1}};
+        if(typeof successCallback == "function") {
+          successCallback(results)
+        }
+      }
+    }
   };
   var putQuizSession = function(answer_selected, quiz_active_session_id, successCallback, failCallback) {
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
@@ -18423,8 +20617,14 @@ VISH.Quiz.API = function(V, $, undefined) {
       return null
     }else {
       if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
-        V.Debugging.log("No server case");
-        var results = {"quiz_session_id":19, "quiz_id":3, "results":{"b":4, "a":2, "c":1, "d":1}};
+        V.Debugging.log("No server case: and quiz session get results: " + quiz_active_session_id);
+        if(quiz_active_session_id == 98988) {
+          var results = {"quiz_session_id":98988, "quiz_id":12, "results":{"b":4, "a":2, "c":1, "d":1}}
+        }else {
+          if(quiz_active_session_id == 98955) {
+            var results = {"quiz_session_id":98955, "quiz_id":13, "results":{"b":8, "a":4, "c":4}}
+          }
+        }
         if(typeof successCallback == "function") {
           successCallback(results)
         }
@@ -18436,10 +20636,10 @@ VISH.Quiz.API = function(V, $, undefined) {
 VISH.Quiz.Renderer = function(V, $, undefined) {
   var init = function() {
   };
-  var renderQuiz = function(quizType, element, template, slide) {
+  var renderQuiz = function(quizType, element, zone_class, slide, zone) {
     switch(quizType) {
-      case "mcquestion":
-        return _renderMcQuestion(element, template, slide);
+      case "multiplechoice":
+        return _renderMcQuestion(element, zone_class, slide, zone);
         break;
       case "openQuestion":
         return _renderOpenquestion(element, template);
@@ -18451,9 +20651,10 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
         break
     }
   };
-  var _renderMcQuestion = function(element, template, slide) {
-    var ret = "<div id='" + element["id"] + "'class='multiplechoicequestion'>";
+  var _renderMcQuestion = function(element, zone_class, slide, zone) {
+    var ret = "<div id='" + element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='mcquestion_container'>";
+    ret += "<div class='mcquestion_header'></div>";
     ret += "<div class='mcquestion_body'><h2 class='question'>" + element["question"] + "</h2>";
     ret += "<form class='mcquestion_form' action='" + element["posturl"] + "' method='post'>";
     for(var i = 0;i < element["options"].length;i++) {
@@ -18463,16 +20664,15 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
       }else {
         ret += "<label class='mc_answer'>" + next_index + ") " + element["options"][i] + "</label>"
       }
-      ret += "<div class='mc_meter'><span style='width:0%'></span></div>";
+      ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
       ret += "<label class='mcoption_label'></label>"
     }
-    ret += "</div>";
-    ret += "<div class='mcquestion_buttons'>";
-    ret += "<div class='mch_statistics_icon_wrapper'>";
-    ret += "<img class='mch_statistics_icon' src='" + VISH.ImagesPath + "quiz/eye.png'/>";
+    ret += "<input type='hidden' value='" + slide + "_" + zone + "' name='zone' />";
+    ret += "<input type='hidden' value='" + element["quizid"] + "' name='quizid' class='quizId' />";
     ret += "</div>";
     ret += "<div class='mch_inputs_wrapper'>";
-    ret += "<input type='button' class='mcquestion_start_button' value='Start Quiz'/>";
+    ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
+    ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
     ret += "</div>";
     ret += "</form>";
     ret += "</div>";
@@ -18588,18 +20788,11 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Quiz.init(presentation);
     V.Slides.init();
     V.Status.init();
-    if(VISH.Status.getDevice().desktop) {
-      $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/desktop.css" type="text/css" />')
-    }else {
-      if(VISH.Status.getDevice().mobile) {
-        $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/mobile.css" type="text/css" />')
-      }else {
-        if(VISH.Status.getDevice().tablet) {
-          $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + 'device/tablet.css" type="text/css" />')
-        }
-      }
-    }
+    V.Utils.loadDeviceCSS();
     V.User.init(options);
+    applicationCache.addEventListener("cached", function() {
+      VISH.LocalStorage.addPresentation(presentation)
+    }, false);
     if(presentation.type === "game") {
       setPresentationType("game");
       VISH.ViewerAdapter.setupGame(presentation);
@@ -18611,6 +20804,9 @@ VISH.SlideManager = function(V, $, undefined) {
       }
     }
     V.Events.init();
+    V.Events.Notifier.init();
+    V.VideoPlayer.init();
+    V.Themes.selectTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
     V.ViewerAdapter.setupSize(false);
@@ -18650,9 +20846,19 @@ VISH.SlideManager = function(V, $, undefined) {
     if(!V.Status.getDevice().desktop && !VISH.Status.getIsInIframe() && options && options["comeBackUrl"]) {
       $("button#closeButton").show()
     }
+    if(options.addons) {
+      VISH.Addons.init(options.addons)
+    }
   };
   var toggleFullScreen = function() {
-    var myElem = myDoc.getElementById("presentation_iframe");
+    if(VISH.Status.isSlaveMode()) {
+      return
+    }
+    if(VISH.Status.getIsInIframe()) {
+      var myElem = VISH.Status.getIframe()
+    }else {
+      var myElem = myDoc.getElementById("presentation_iframe")
+    }
     if(myDoc.fullScreenElement && myDoc.fullScreenElement !== null || !myDoc.mozFullScreen && !myDoc.webkitIsFullScreen) {
       if(myDoc.documentElement.requestFullScreen) {
         myElem.requestFullScreen()
@@ -18711,28 +20917,10 @@ VISH.SlideManager = function(V, $, undefined) {
         }
       }
     }, 500);
-    if($(e.target).hasClass("flashcard")) {
-      slideId = $(e.target).attr("id");
-      fcElem = _getFlashcardFromSlideId(slideId);
-      V.Mods.fc.player.init(fcElem, slideId)
-    }
-    V.VideoPlayer.playVideos(e.target)
-  };
-  var _getFlashcardFromSlideId = function(id) {
-    var fc = null;
-    for(var i = 0;i < mySlides.length;i++) {
-      if(mySlides[i].id === id) {
-        for(var num = 0;num < mySlides[i].elements.length;num++) {
-          if(mySlides[i].elements[num].type === "flashcard") {
-            return mySlides[i].elements[num]
-          }
-        }
-      }
-    }
-    return null
+    V.VideoPlayer.HTML5.playVideos(e.target)
   };
   var _onslideleave = function(e) {
-    V.VideoPlayer.stopVideos(e.target);
+    V.VideoPlayer.HTML5.stopVideos(e.target);
     V.ObjectPlayer.unloadObject();
     V.AppletPlayer.unloadApplet();
     if($(e.target).hasClass("flashcard")) {
@@ -18767,6 +20955,10 @@ VISH.SnapshotPlayer = function() {
       var wrapper_class = "snapshot_wrapper" + "_viewer";
       var content_class = "snapshot_content" + "_viewer";
       var content = $(value).attr("objectWrapper");
+      if(VISH.Status.getOnline() === false) {
+        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+        return
+      }
       var iframe = $(VISH.Utils.getOuterHTML($(content)));
       $(iframe).removeClass();
       $(iframe).addClass(content_class);
@@ -18803,6 +20995,39 @@ VISH.SnapshotPlayer = function() {
     })
   };
   return{loadSnapshot:loadSnapshot, unloadSnapshot:unloadSnapshot, aftersetupSize:aftersetupSize}
+}(VISH, jQuery);
+VISH.Themes = function(V, $, undefined) {
+  var selectTheme = function(theme) {
+    _loadTheme(theme);
+    if(V.Editing) {
+      var draftPresentation = VISH.Editor.getPresentation();
+      if(!draftPresentation) {
+        draftPresentation = {}
+      }
+      draftPresentation.theme = theme;
+      VISH.Editor.setPresentation(draftPresentation);
+      $.fancybox.close()
+    }
+  };
+  var _loadTheme = function(theme) {
+    if(!theme) {
+      theme = "theme1"
+    }
+    _unloadAllThemes();
+    V.Utils.loadCSS("themes/" + theme + ".css")
+  };
+  var _unloadAllThemes = function() {
+    var theme_pattern = "(^" + VISH.StylesheetsPath + "themes/)";
+    $("head").find("link[type='text/css']").each(function(index, link) {
+      var href = $(link).attr("href");
+      if(href) {
+        if(href.match(theme_pattern) !== null) {
+          $(link).remove()
+        }
+      }
+    })
+  };
+  return{selectTheme:selectTheme}
 }(VISH, jQuery);
 VISH.User = function(V, $, undefined) {
   var user;
@@ -19063,15 +21288,176 @@ VISH.Utils.text = function(V, undefined) {
   };
   return{getLines:getLines}
 }(VISH);
-VISH.VideoPlayer = function() {
-  var setVideoTagEvents = function() {
+VISH.VideoPlayer.CustomPlayer = function() {
+  var progressBarTimer;
+  var init = function() {
+  };
+  var addCustomPlayerControls = function(videoId, loadEvents) {
+    var video = document.getElementById(videoId);
+    var customPlayerContainer = $("<div class='customPlayerContainer'>");
+    $(video).parent().append(customPlayerContainer);
+    $(video).remove();
+    $(customPlayerContainer).append(video);
+    $(customPlayerContainer).append($("<div class='customPlayerControls'><div class='customPlayerPlay'></div></div>"));
+    $(customPlayerContainer).append($("<div class='customPlayerProgressBar'><div class='progressBarElapsed'></div></div>"));
+    var customPlayerControls = $(customPlayerContainer).find("div.customPlayerControls");
+    $(customPlayerContainer).attr("style", $(video).attr("style"));
+    $(video).attr("style", "width:98%; height:98%;");
+    $(customPlayerControls).attr("style", "width: 100%; height:100%;");
+    $(video).attr("customPlayerStatus", "ready");
+    if(loadEvents) {
+      loadCustomPlayerControlEvents(video)
+    }
+  };
+  var loadCustomPlayerControlEvents = function(video) {
+    var customPlayerContainer = $(video).parent();
+    var customPlayerControls = $(customPlayerContainer).find("div.customPlayerControls");
+    var progressBar = $(customPlayerContainer).parent().find("div.customPlayerProgressBar");
+    $(customPlayerControls).bind("click", _onClickCustomPlayerControls);
+    $(customPlayerContainer).bind("mouseenter", _onEnterCustomPlayer);
+    $(customPlayerContainer).bind("mouseleave", _onLeaveCustomPlayer);
+    $(progressBar).bind("click", _onClickProgressBar)
+  };
+  var _onClickCustomPlayerControls = function(event) {
+    event.preventDefault();
+    var video = $(this).parent().find("object")[0];
+    onClickVideo(video)
+  };
+  var _onEnterCustomPlayer = function(event) {
+    var video = $(event.target).parent().find("object")[0];
+    if($(video).attr("customPlayerStatus") !== "ready") {
+      var progressBar = $(video).parent().find("div.customPlayerProgressBar");
+      $(progressBar).show()
+    }
+  };
+  var _onLeaveCustomPlayer = function(event) {
+    var progressBar = $(event.target).parent().find("div.customPlayerProgressBar");
+    $(progressBar).hide()
+  };
+  var _startProgressBar = function(video) {
+    var progressBar = $(video).parent().find("div.progressBarElapsed");
+    var timer = progressBarTimer = setInterval(function() {
+      try {
+        var ratio = VISH.VideoPlayer.getCurrentTime(video) / VISH.VideoPlayer.getDuration(video) * 100;
+        $(progressBar).width(ratio + "%");
+        if(ratio === 100) {
+          clearTimeout(timer)
+        }
+      }catch(e) {
+        clearTimeout(timer)
+      }
+    }, 400)
+  };
+  var _onClickProgressBar = function(event) {
+    if(VISH.Status.isSlaveMode()) {
+      return
+    }
+    if($(event.target).hasClass("customPlayerProgressBar")) {
+      var progressBar = event.target;
+      var elapsed = $(progressBar).find("div.progressBarElapsed")[0]
+    }else {
+      if($(event.target).hasClass("progressBarElapsed")) {
+        var elapsed = event.target;
+        var progressBar = $(elapsed).parent()
+      }else {
+        return
+      }
+    }
+    event.preventDefault();
+    event.stopPropagation();
+    var video = $(progressBar).parent().find("object")[0];
+    var ratio = (event.pageX - $(progressBar).offset().left) / $(progressBar).outerWidth();
+    if(!VISH.Status.isPreventDefaultMode()) {
+      $(elapsed).width(ratio * 100 + "%")
+    }
+    var seekToPos = Math.round(VISH.VideoPlayer.getDuration(video) * ratio);
+    VISH.VideoPlayer.seekVideo(video.id, seekToPos, true)
+  };
+  var onClickVideo = function(video) {
+    if(VISH.Status.isSlaveMode()) {
+      return
+    }
+    switch($(video).attr("customPlayerStatus")) {
+      case "ready":
+      ;
+      case "pause":
+        if(!VISH.Status.isPreventDefaultMode()) {
+          onPlayVideo(video)
+        }
+        VISH.VideoPlayer.playVideo(video.id, null, true);
+        break;
+      case "playing":
+        if(!VISH.Status.isPreventDefaultMode()) {
+          onPauseVideo(video)
+        }
+        VISH.VideoPlayer.pauseVideo(video.id, null, true);
+        break;
+      default:
+        break
+    }
+  };
+  var onPlayVideo = function(video) {
+    _startProgressBar(video);
+    var customPlayerControlsButton = $(video).parent().find("div.customPlayerControls").find("div");
+    var progressBar = $(video).parent().find("div.customPlayerProgressBar");
+    $(customPlayerControlsButton).removeClass().addClass("customPlayerPause");
+    $(customPlayerControlsButton).hide();
+    $(video).attr("customPlayerStatus", "playing");
+    $(progressBar).show()
+  };
+  var onPauseVideo = function(video) {
+    var customPlayerControlsButton = $(video).parent().find("div.customPlayerControls").find("div");
+    $(customPlayerControlsButton).removeClass().addClass("customPlayerPlay");
+    $(customPlayerControlsButton).show();
+    $(video).attr("customPlayerStatus", "pause")
+  };
+  var onEndVideo = function(video) {
+    $(video).attr("customPlayerStatus", "pause");
+    var customPlayerControlsButton = $(video).parent().find("div.customPlayerControls").find("div");
+    $(customPlayerControlsButton).removeClass().addClass("customPlayerReplay");
+    $(customPlayerControlsButton).show()
+  };
+  return{init:init, addCustomPlayerControls:addCustomPlayerControls, loadCustomPlayerControlEvents:loadCustomPlayerControlEvents, onPlayVideo:onPlayVideo, onPauseVideo:onPauseVideo, onEndVideo:onEndVideo}
+}(VISH, jQuery);
+VISH.VideoPlayer.HTML5 = function() {
+  var playTriggeredByUser = true;
+  var pauseTriggeredByUser = true;
+  var seekTriggeredByUser = true;
+  var init = function() {
+  };
+  var setVideoEvents = function() {
     var videos = $("video");
     $.each(videos, function(index, video) {
       video.addEventListener("play", function() {
+        var params = new Object;
+        params.type = "HTML5";
+        params.videoId = video.id;
+        params.currentTime = video.currentTime;
+        params.slideNumber = VISH.Slides.getCurrentSlideNumber();
+        VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, playTriggeredByUser);
+        playTriggeredByUser = true
       }, false);
       video.addEventListener("pause", function() {
+        var params = new Object;
+        params.type = "HTML5";
+        params.videoId = video.id;
+        params.currentTime = video.currentTime;
+        params.slideNumber = VISH.Slides.getCurrentSlideNumber();
+        VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, pauseTriggeredByUser);
+        pauseTriggeredByUser = true
       }, false);
       video.addEventListener("ended", function() {
+      }, false);
+      video.addEventListener("error", function(err) {
+      }, false);
+      video.addEventListener("seeked", function(err) {
+        var params = new Object;
+        params.type = "HTML5";
+        params.videoId = video.id;
+        params.currentTime = video.currentTime;
+        params.slideNumber = VISH.Slides.getCurrentSlideNumber();
+        VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, seekTriggeredByUser);
+        seekTriggeredByUser = true
       }, false);
       $(video).focus(function(event) {
         this.blur()
@@ -19105,9 +21491,174 @@ VISH.VideoPlayer = function() {
       }
     })
   };
-  return{setVideoTagEvents:setVideoTagEvents, playVideos:playVideos, stopVideos:stopVideos}
+  var playVideo = function(videoId, currentTime) {
+    var video = $("#" + videoId)[0];
+    if(typeof currentTime === "number" && video.currentTime !== currentTime) {
+      seekTriggeredByUser = false;
+      video.currentTime = currentTime
+    }
+    if(video.paused) {
+      playTriggeredByUser = false;
+      video.play()
+    }
+  };
+  var pauseVideo = function(videoId, currentTime) {
+    var video = $("#" + videoId)[0];
+    if(typeof currentTime === "number" && video.currentTime !== currentTime) {
+      seekTriggeredByUser = false;
+      video.currentTime = currentTime
+    }
+    if(!video.paused) {
+      pauseTriggeredByUser = false;
+      video.pause()
+    }
+  };
+  var seekVideo = function(videoId, currentTime) {
+    var video = $("#" + videoId)[0];
+    if(typeof currentTime === "number" && video.currentTime !== currentTime) {
+      seekTriggeredByUser = false;
+      video.currentTime = currentTime
+    }
+  };
+  var showControls = function(showControls) {
+    var videos = $("video");
+    $.each(videos, function(index, video) {
+      if(!showControls) {
+        $(video).removeAttr("controls")
+      }else {
+        $(video).attr("controls", true)
+      }
+    })
+  };
+  return{init:init, setVideoEvents:setVideoEvents, playVideos:playVideos, stopVideos:stopVideos, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, showControls:showControls}
 }(VISH, jQuery);
-VISH.ViewerAdapter = function(V, $, undefined) {
+VISH.VideoPlayer.Youtube = function() {
+  var init = function() {
+  };
+  var loadYoutubeObject = function(element, value) {
+    if(VISH.Status.getOnline() === false) {
+      $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+      return
+    }
+    var source = $(value).attr("source");
+    var ytVideoId = $(value).attr("ytVideoId");
+    $(value).html("<div id='" + ytVideoId + "' style='" + $(value).attr("objectStyle") + "'></div>");
+    var newYtVideoId = VISH.Utils.getId();
+    var params = {allowScriptAccess:"always"};
+    var atts = {id:newYtVideoId, wmode:"transparent"};
+    source = source.split("?")[0];
+    source = source + "?enablejsapi=1&controls=0&showinfo=0&rel=0&modestbranding=1&wmodetransparent=true&playerapiid=" + newYtVideoId;
+    swfobject.embedSWF(source, ytVideoId, "100%", "100%", "8", null, null, params, atts);
+    $("#" + newYtVideoId).attr("style", $(value).attr("objectStyle"));
+    VISH.VideoPlayer.CustomPlayer.addCustomPlayerControls(newYtVideoId, false)
+  };
+  var onytplayerStateChange = function(playerId, newState) {
+    var player = document.getElementById(playerId);
+    switch(newState) {
+      case -1:
+        VISH.VideoPlayer.CustomPlayer.loadCustomPlayerControlEvents(player);
+        break;
+      case 0:
+        VISH.VideoPlayer.CustomPlayer.onEndVideo(player);
+        break;
+      case 1:
+        VISH.VideoPlayer.CustomPlayer.onPlayVideo(player);
+        break;
+      case 2:
+        VISH.VideoPlayer.CustomPlayer.onPauseVideo(player);
+        break;
+      case 3:
+        break;
+      case 4:
+        break;
+      case 5:
+        break;
+      default:
+        break
+    }
+  };
+  var onytplayerError = function(playerId, error) {
+  };
+  var playVideo = function(videoId, currentTime, triggeredByUser) {
+    var ytPlayer = document.getElementById(videoId);
+    if(ytPlayer && ytPlayer.getPlayerState) {
+      var params = new Object;
+      params.videoId = videoId;
+      params.currentTime = ytPlayer.getCurrentTime();
+      params.slideNumber = VISH.Slides.getCurrentSlideNumber();
+      if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
+        VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onPlayVideo, params);
+        return
+      }
+      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, triggeredByUser);
+      _seekVideo(ytPlayer, currentTime, false);
+      if(ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
+        ytPlayer.playVideo()
+      }
+    }
+  };
+  var pauseVideo = function(videoId, currentTime, triggeredByUser) {
+    var ytPlayer = document.getElementById(videoId);
+    if(ytPlayer && ytPlayer.getPlayerState) {
+      var params = new Object;
+      params.videoId = videoId;
+      params.currentTime = ytPlayer.getCurrentTime();
+      params.slideNumber = VISH.Slides.getCurrentSlideNumber();
+      if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
+        VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onPauseVideo, params);
+        return
+      }
+      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, triggeredByUser);
+      if(ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+        ytPlayer.pauseVideo()
+      }
+      _seekVideo(ytPlayer, currentTime, false)
+    }
+  };
+  var seekVideo = function(videoId, seekTime, triggeredByUser) {
+    var ytPlayer = document.getElementById(videoId);
+    if(ytPlayer && ytPlayer.getPlayerState) {
+      _seekVideo(ytPlayer, seekTime, triggeredByUser)
+    }
+  };
+  var _seekVideo = function(video, seekTime, triggeredByUser) {
+    var changeCurrentTime = typeof seekTime === "number" && video.getCurrentTime() !== seekTime;
+    if(changeCurrentTime) {
+      var params = new Object;
+      params.videoId = video.id;
+      params.currentTime = seekTime;
+      params.slideNumber = VISH.Slides.getCurrentSlideNumber();
+      if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
+        VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onSeekVideo, params);
+        return
+      }
+      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, triggeredByUser);
+      video.seekTo(seekTime)
+    }
+  };
+  return{init:init, loadYoutubeObject:loadYoutubeObject, onytplayerStateChange:onytplayerStateChange, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo}
+}(VISH, jQuery);
+var youtubePlayers = {};
+var YT = YT || {};
+YT.PlayerState = YT.PlayerState || {};
+YT.PlayerState.UNSTARTED = -1;
+YT.PlayerState.ENDED = 0;
+YT.PlayerState.PLAYING = 1;
+YT.PlayerState.PAUSED = 2;
+YT.PlayerState.BUFFERING = 3;
+YT.PlayerState.CUED = 5;
+function onYouTubePlayerReady(playerId) {
+  var ytPlayer = document.getElementById(playerId);
+  var idPlayerParams = "yt_" + playerId;
+  youtubePlayers[idPlayerParams] = {playerId:playerId, onStateChanged:function(state) {
+    VISH.VideoPlayer.Youtube.onytplayerStateChange(playerId, state)
+  }, onError:function(err) {
+    VISH.VideoPlayer.Youtube.onytplayerError(playerId, err)
+  }};
+  ytPlayer.addEventListener("onStateChange", "youtubePlayers." + idPlayerParams + ".onStateChanged");
+  ytPlayer.addEventListener("onError", "youtubePlayers." + idPlayerParams + ".onError")
+}
+;VISH.ViewerAdapter = function(V, $, undefined) {
   var page_is_fullscreen = false;
   var setupSize = function(fullscreen) {
     var reserved_px_for_menubar;
@@ -19228,256 +21779,5 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
   };
   return{decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupGame:setupGame, setupSize:setupSize}
-}(VISH, jQuery);
-VISH.Mods.fc = {};
-VISH.Mods.fc.loader = function(V, undefined) {
-  var init = function(fc) {
-    var tmpVideo;
-    var loaders = [];
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "loading.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "rounded_corners.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "template1.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "play.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "corner.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "corner_small.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "corner_small_text.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "filled.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "closeicon.png"));
-    loaders.push(V.Utils.loader.loadImage(VISH.ImagesPath + "anim.png"));
-    loaders.push(V.Utils.loader.loadImage(fc.backgroundSrc));
-    for(var i = 0;i < fc.pois.length;i++) {
-      for(var p = 0;p < fc.pois[i].zonesContent.length;p++) {
-        if(fc.pois[i].zonesContent[p].type === "image") {
-          loaders.push(V.Utils.loader.loadImage(fc.pois[i].zonesContent[p].content))
-        }else {
-          if(fc.pois[i].zonesContent[p].type === "video") {
-            tmpVideo = document.createElement("video");
-            for(var j = 0;j < fc.pois[i].zonesContent[p].content.length;j++) {
-              if(tmpVideo.canPlayType(fc.pois[i].zonesContent[p].content[j].mimetype)) {
-                loaders.push(V.Utils.loader.loadVideo(fc.pois[i].zonesContent[p].content[j].src, i));
-                break
-              }
-            }
-          }
-        }
-      }
-    }
-    $.when.apply(null, loaders).done(function() {
-    })
-  };
-  return{init:init}
-}(VISH);
-VISH.Mods.fc.player = function(V, $, undefined) {
-  var INTERVAL = 10;
-  var WIDTH = 800;
-  var HEIGHT = 600;
-  var NUMBER_OF_FRAMES = 10;
-  var FRAME_WIDTH = 40;
-  var FRAME_HEIGHT = 40;
-  var canvas = null;
-  var ctx = null;
-  var flashcard = null;
-  var slideId = null;
-  var intervalReturn = null;
-  var stylePaddingLeft = null;
-  var stylePaddingTop = null;
-  var styleBorderLeft = null;
-  var styleBorderTop = null;
-  var htmlTop = null;
-  var htmlLeft = null;
-  var init = function(fcElem, mySlideId) {
-    var loadingImg;
-    var tmpFlashcard = JSON.parse(fcElem.jsoncontent);
-    flashcard = _removeNotPlayableVideos(tmpFlashcard);
-    slideId = mySlideId;
-    canvas = document.getElementById(fcElem.canvasid);
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
-    loadingImg = V.Utils.loader.getImage(VISH.ImagesPath + "loading.png");
-    ctx = canvas.getContext("2d");
-    ctx.drawImage(loadingImg, 0, 0);
-    V.Mods.fc.template.init(ctx, slideId);
-    _initGetMouseVariables();
-    _initListeners();
-    intervalReturn = setInterval(function() {
-      update();
-      draw()
-    }, 1E3 / INTERVAL)
-  };
-  var update = function() {
-    var myState;
-    myState = V.SlideManager.getStatus(slideId);
-    myState.poiFrameNumber = (myState.poiFrameNumber + 1) % NUMBER_OF_FRAMES;
-    V.SlideManager.updateStatus(myState.id, myState)
-  };
-  var draw = function() {
-    var poi, animX;
-    var myState;
-    myState = V.SlideManager.getStatus(slideId);
-    ctx.drawImage(V.Utils.loader.getImage(flashcard.backgroundSrc), 0, 0, WIDTH, HEIGHT);
-    ctx.drawImage(V.Utils.loader.getImage(VISH.ImagesPath + "rounded_corners.png"), 0, 0);
-    for(var i = 0;i < flashcard.pois.length;i++) {
-      poi = flashcard.pois[i];
-      animX = myState.poiFrameNumber * FRAME_WIDTH;
-      ctx.drawImage(V.Utils.loader.getImage(VISH.ImagesPath + "anim.png"), animX, 0, FRAME_WIDTH, FRAME_HEIGHT, poi.x, poi.y, FRAME_WIDTH, FRAME_HEIGHT)
-    }
-    if(myState.drawingPoi > 0) {
-      V.Mods.fc.template.draw(flashcard.pois[myState.drawingPoi - 1])
-    }
-  };
-  var clear = function() {
-    clearInterval(intervalReturn)
-  };
-  var _removeNotPlayableVideos = function(fc) {
-    var poi, zone;
-    var tmpVideo = document.createElement("video");
-    for(var i = 0;i < fc.pois.length;i++) {
-      poi = fc.pois[i];
-      for(var a = 0;a < poi.zonesContent.length;a++) {
-        zone = poi.zonesContent[a];
-        if(zone.type === "video") {
-          for(var t = 0;t < zone.content.length;t++) {
-            if(tmpVideo.canPlayType(zone.content[t].mimetype)) {
-              zone.content = zone.content[t].src
-            }
-          }
-        }
-      }
-    }
-    return fc
-  };
-  var _initGetMouseVariables = function() {
-    var html;
-    if(document.defaultView && document.defaultView.getComputedStyle) {
-      stylePaddingLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)["paddingLeft"], 10) || 0;
-      stylePaddingTop = parseInt(document.defaultView.getComputedStyle(canvas, null)["paddingTop"], 10) || 0;
-      styleBorderLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)["borderLeftWidth"], 10) || 0;
-      styleBorderTop = parseInt(document.defaultView.getComputedStyle(canvas, null)["borderTopWidth"], 10) || 0
-    }
-    html = document.body.parentNode;
-    htmlTop = html.offsetTop;
-    htmlLeft = html.offsetLeft
-  };
-  var _initListeners = function() {
-    var myState;
-    myState = V.SlideManager.getStatus(slideId);
-    canvas.addEventListener("selectstart", function(e) {
-      e.preventDefault();
-      return false
-    }, false);
-    canvas.addEventListener("click", function(e) {
-      var mouse, mx, my, poi;
-      mouse = _getMouse(e);
-      mx = mouse.x;
-      my = mouse.y;
-      if(myState.drawingPoi > 0) {
-        V.Mods.fc.template.update(flashcard.pois[myState.drawingPoi - 1], mx, my)
-      }else {
-        for(var i = 0;i < flashcard.pois.length;i++) {
-          poi = flashcard.pois[i];
-          if(poi.x <= mx && poi.x + FRAME_WIDTH >= mx && poi.y <= my && poi.y + FRAME_HEIGHT >= my) {
-            myState.drawingPoi = poi.id;
-            V.SlideManager.updateStatus(myState.id, myState)
-          }
-        }
-      }
-    })
-  };
-  var _getMouse = function(e) {
-    var element, offsetX, offsetY, mx, my;
-    element = canvas;
-    offsetX = 0;
-    offsetY = 0;
-    if(element.offsetParent !== undefined) {
-      do {
-        offsetX += element.offsetLeft;
-        offsetY += element.offsetTop
-      }while(element = element.offsetParent)
-    }
-    offsetX += stylePaddingLeft + styleBorderLeft + htmlLeft;
-    offsetY += stylePaddingTop + styleBorderTop + htmlTop;
-    mx = e.pageX - offsetX;
-    my = e.pageY - offsetY;
-    return{x:mx, y:my}
-  };
-  return{init:init, clear:clear}
-}(VISH, jQuery);
-VISH.Mods.fc.template = function(V, $, undefined) {
-  var TYPES = [{"x":80, "y":60, "width":642, "height":482, "closingButtonX":672, "closingButtonY":60, "closingButtonWidth":50, "closingButtonHeight":50, "image":VISH.ImagesPath + "template1.png", "zones":[{"x":130, "y":99, "width":536, "height":402, "textstyle":"italic 16px helvetica, arial, sans-serif", "textcolor":"blue", "textlinespacing":40}]}, {"x":80, "y":60, "width":642, "height":482, "closingButtonX":672, "closingButtonY":60, "closingButtonWidth":50, "closingButtonHeight":50, "image":VISH.ImagesPath + 
-  "template1.png", "zones":[{"x":142, "y":99, "width":536, "height":33, "textstyle":"bold 26px Arial", "textcolor":"black", "textlinespacing":20}, {"x":132, "y":175, "width":536, "height":331, "textstyle":"16px Arial", "textcolor":"black", "textlinespacing":20}]}, {"x":80, "y":60, "width":642, "height":482, "closingButtonX":672, "closingButtonY":60, "closingButtonWidth":50, "closingButtonHeight":50, "image":VISH.ImagesPath + "template1.png", "zones":[{"x":142, "y":99, "width":536, "height":33, "textstyle":"bold 26px arial", 
-  "textcolor":"black", "textlinespacing":20}, {"x":122, "y":175, "width":260, "height":331, "textstyle":"italic 9px arial", "textcolor":"black", "textlinespacing":20}, {"x":418, "y":175, "width":260, "height":331, "textstyle":"12px aria", "textcolor":"black", "textlinespacing":20}]}];
-  var ctx = null;
-  var slideId = null;
-  var init = function(context, mySlideId) {
-    ctx = context;
-    slideId = mySlideId
-  };
-  var update = function(poi, mx, my) {
-    var isInsideClosingButton, template, myState, isInsideZone, tmpVideo, zone;
-    template = TYPES[poi.templateNumber];
-    myState = V.SlideManager.getStatus(slideId);
-    isInsideClosingButton = template.closingButtonX <= mx && template.closingButtonX + template.closingButtonWidth >= mx && template.closingButtonY <= my && template.closingButtonY + template.closingButtonHeight >= my;
-    if(isInsideClosingButton) {
-      myState.drawingPoi = 0;
-      for(var i = 0;i < poi.zonesContent.length;i++) {
-        zone = poi.zonesContent[i];
-        if(zone.type === "video") {
-          tmpVideo = V.Utils.loader.getVideo(zone.content);
-          tmpVideo.pause()
-        }
-      }
-    }
-    for(var i = 0;i < poi.zonesContent.length;i++) {
-      zone = poi.zonesContent[i];
-      if(zone.type === "video") {
-        isInsideZone = template.zones[i].x <= mx && template.zones[i].x + template.zones[i].width >= mx && template.zones[i].y <= my && template.zones[i].y + template.zones[i].height >= my;
-        if(isInsideZone) {
-          tmpVideo = V.Utils.loader.getVideo(zone.content);
-          if(tmpVideo.paused) {
-            tmpVideo.play()
-          }else {
-            tmpVideo.pause()
-          }
-        }
-      }
-    }
-  };
-  var draw = function(poi) {
-    var zone, template;
-    var tmpImg, tmpWidth, tmpHeight, tmpVideo, lines, line;
-    template = TYPES[poi.templateNumber];
-    ctx.drawImage(V.Utils.loader.getImage(template.image), template.x, template.y, template.width, template.height);
-    ctx.drawImage(V.Utils.loader.getImage(VISH.ImagesPath + "closeicon.png"), template.closingButtonX, template.closingButtonY, 50, 50);
-    for(var i = 0;i < poi.zonesContent.length;i++) {
-      zone = poi.zonesContent[i];
-      zoneTemplate = template.zones[i];
-      switch(zone.type) {
-        case "text":
-          ctx.fillStyle = "rgba(122, 151, 438, .9)";
-          ctx.fillRect(zoneTemplate.x, zoneTemplate.y, zoneTemplate.width, zoneTemplate.height);
-          ctx.font = zoneTemplate.textstyle;
-          ctx.fillStyle = zoneTemplate.textcolor;
-          ctx.textBaseline = "alphabetic";
-          lines = V.Utils.text.getLines(ctx, zone.content, zoneTemplate.width - 20, ctx.font);
-          for(line = 0;line < lines.length;line++) {
-            ctx.fillText(lines[line], zoneTemplate.x + 10, zoneTemplate.y + 25 + line * zoneTemplate.textlinespacing)
-          }
-          V.Utils.canvas.drawRoundedCorners(ctx, zoneTemplate.x, zoneTemplate.y, zoneTemplate.width, zoneTemplate.height, "text");
-          break;
-        case "image":
-          tmpImg = V.Utils.loader.getImage(zone.content);
-          V.Utils.canvas.drawImageWithAspectRatioAndRoundedCorners(ctx, tmpImg, zoneTemplate.x, zoneTemplate.y, zoneTemplate.width, zoneTemplate.height);
-          break;
-        case "video":
-          tmpVideo = V.Utils.loader.getVideo(zone.content);
-          V.Utils.canvas.drawImageWithAspectRatioAndRoundedCorners(ctx, tmpVideo, zoneTemplate.x, zoneTemplate.y, zoneTemplate.width, zoneTemplate.height);
-          if(tmpVideo.paused) {
-            ctx.drawImage(V.Utils.loader.getImage(VISH.ImagesPath + "play.png"), zoneTemplate.x + zoneTemplate.width / 2 - 128 / 2, zoneTemplate.y + zoneTemplate.height / 2 - 128 / 2, 128, 128)
-          }
-          break
-      }
-    }
-  };
-  return{init:init, update:update, draw:draw}
 }(VISH, jQuery);
 

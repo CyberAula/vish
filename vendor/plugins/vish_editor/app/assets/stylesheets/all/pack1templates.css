@@ -505,6 +505,395 @@
 	border: none;
 }
 
+/*
+	TEMPLATE 10
+*/
+
+.t10_left{
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    float: left;
+    height: 102.6%;
+    margin-left: -8.3%;
+    margin-top: -6.4%;
+    overflow: hidden;
+    position: absolute;
+    width: 102.1%;
+}
+
+.t10_image{
+	border: none;
+	padding: none;
+}
+
+.t10_video{
+	width: 100%;
+	height: 100%;
+	border: none;
+	padding: none;
+}
+
+.t10_object{
+	width: 100%;
+	height: 100%;
+	border: none;
+	padding: none;
+}
+
+.t10_swf{
+	width: 100%;
+	height: 100%;
+	border: none;
+	padding: none;
+}
+
+
+/*
+	TEMPLATE 11
+*/
+
+.t11_header{
+    height: 31%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.t11_left{
+    float: left;
+    height: 31%;
+    margin-top: 3%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.t11_right{
+    float: left;
+    height: 31%;
+    margin-top: 3%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;	
+}
+
+.t11_image{
+	border: none;
+}
+
+.t11_video{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t11_object{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t11_swf{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+/*
+	TEMPLATE 12
+*/
+
+.t12_header{
+	float: left;
+	margin-right: 3%;
+	margin-bottom: 3%;
+    height: 48%;
+    overflow: hidden;
+    position: relative;
+    width: 48%;
+}
+
+.t12_left{
+    float: left;
+    margin-bottom: 3%;
+    height: 48%;
+    overflow: hidden;
+    position: relative;
+    width: 48%;
+}
+
+.t12_right{
+	float: left;
+    height: 48%;
+    overflow: hidden;
+    position: relative;
+    width: 48%;
+}
+
+.t12_center{
+	float: left;
+	margin-right: 3%;
+    height: 48%;
+    overflow: hidden;
+    position: relative;
+    width: 48%;
+}
+
+.t12_image{
+	border: none;
+}
+
+.t12_video{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t12_object{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t12_swf{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+
+
+/*
+	TEMPLATE 13
+*/
+
+.t13_header{
+	height: 10%;
+	width: 100%;
+	margin-bottom: 3%;
+	overflow:hidden;	
+	position: relative;
+	z-index: 10px;
+}
+
+.t13_left{
+    float: left;
+    height: 61%;
+    margin-bottom: 2%;
+    overflow: hidden;
+    position: relative;
+    width: 48%;
+    border-radius: 100% !important;
+    -moz-border-radius: 100% !important;
+    -webkit-border-radius: 100% !important;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.t13_right{
+    float: right;
+    height: 83%;
+    margin-left: 4%;
+    margin-top: -63%;
+    overflow: hidden;
+    position: relative;
+    width: 48%;
+}
+
+.t13_center{
+    height: 16%;
+    margin-top: 54.4%;
+    overflow: hidden;
+    position: relative;
+    width: 48%;
+}
+
+*/
+.t13_image{
+	border: none;
+}
+
+.t13_video{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t13_object{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t13_swf{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+
+
+/*
+	TEMPLATE 14
+*/
+
+.t14_left{
+    float: left;
+    height: 28%;
+    margin-top: 2%;
+    overflow: hidden;
+    position: relative;
+    width: 23%;
+    border-radius: 100% !important;
+    -moz-border-radius: 100% !important;
+    -webkit-border-radius: 100% !important;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.t14_right{
+    float: left;
+    height: 28%;
+    margin-left: 5%;
+    margin-top: 2%;
+    overflow: hidden;
+    position: relative;
+    width: 71.1%;
+}
+
+.t14_left1{
+    float: left;
+    height: 28%;
+    margin-top: 5%;
+    overflow: hidden;
+    position: relative;
+    width: 23%;
+    border-radius: 100% !important;
+    -moz-border-radius: 100% !important;
+    -webkit-border-radius: 100% !important;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.t14_right1{
+    float: left;
+    height: 28%;
+    margin-left: 5%;
+    margin-top: 5%;
+    overflow: hidden;
+    position: relative;
+    width: 71.1%;
+}
+
+
+.t14_left2{
+    float: left;
+    height: 28%;
+    margin-top: 5%;
+    overflow: hidden;
+    position: relative;
+    width: 23%;
+    border-radius: 100% !important;
+    -moz-border-radius: 100% !important;
+    -webkit-border-radius: 100% !important;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.t14_right2{
+    float: left;
+    height: 28%;
+    margin-left: 5%;
+    margin-top: 5%;
+    overflow: hidden;
+    position: relative;
+    width: 71.1%;
+}
+*/
+.t14_image{
+	border: none;
+}
+
+.t14_video{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t14_object{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t14_swf{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+/*
+	TEMPLATE 15
+*/
+
+.t15_header{
+    float: left;
+    height: 35%;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    overflow: hidden;
+    position: relative;
+    width: 32%;
+}
+
+.t15_left{
+    float: left;
+    height: 35%;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    overflow: hidden;
+    position: relative;
+    width: 32%;
+}
+
+.t15_right{
+    float: left;
+    height: 60%;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.t15_center{
+    float: left;
+    height: 35%;
+    overflow: hidden;
+    position: relative;
+    width: 30%;
+}
+
+.t15_image{
+	border: none;
+}
+
+.t15_video{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t15_object{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.t15_swf{
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+
 
 /* 
 	Snapshots 

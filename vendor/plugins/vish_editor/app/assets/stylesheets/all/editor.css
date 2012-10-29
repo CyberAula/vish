@@ -282,8 +282,36 @@ img {
 	background: url(/assets/quiz.png);
 }
 
+.quizthumb:hover {
+	background: url(/assets/hover/quiz_hover.png);
+}
+
 .livethumb:hover {
 	background: url(/assets/hover/live_hover.png);
+}
+
+.thumbicon{
+	float: left;
+    margin-left: 15px;
+    margin-right: 2px;
+    margin-top: 12px;
+	cursor: pointer;
+	background-size: 100%;
+}
+
+.thumb_small {
+	width: 26px;
+	height: 32px;
+}
+
+.thumb_medium {
+	width: 40px;
+	height: 49px;
+}
+
+.thumb_large {
+	width: 44px;
+	height: 55px;
 }
 
 .barbutton {
@@ -312,7 +340,7 @@ img {
 	height: 90px;
 }
 
-.templatethumb{
+.templatethumb, .quizFancythumb {
 	width: 100px;
 	height: 75px;
 	margin: 16px 11px 6px 16px;
@@ -322,7 +350,7 @@ img {
 	opacity: 0.7;
 }
 
-.templatethumb img{
+.templatethumb img, .quizFancythumb img {
 	width:100%;
 	height:100%;
 	border-radius: 9px;
@@ -331,7 +359,7 @@ img {
 	opacity: 0.7;
 }
 
-.templatethumb:hover{
+.templatethumb:hover, .quizFancythumb:hover {
 	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
 	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
 	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
@@ -341,7 +369,7 @@ img {
 	opacity: 1.0;	
 }
 
-.templatethumb:active{
+.templatethumb:active, .quizFancythumb:active {
 	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.0);
 	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.0);
 	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.0);
@@ -366,27 +394,6 @@ img {
 	/*background-color: rgba(217,188,43,0.4);*/
 }
 
-.menuicon{
-	float: left;
-	width: 44px;
-	height: 55px;
-	margin-top: 10px;
-	margin-right: 10px;
-	margin-left: 10px;
-	cursor: pointer;
-	background-size: 100%;
-}
-
-.menuicon_small{
-	float: left;
-	width: 24px;
-	height: 31px;
-	margin-right: 10px;
-	margin-left: 10px;
-	cursor: pointer;
-	background-size: 100%;
-}
-
 .menu{
 	width: 100%;
 	height: 120px;
@@ -403,8 +410,16 @@ img {
 }
 
 #thumbcontent{
-	width: 385px;
+	width: 638px;
 	height: 340px;
+}
+
+#theme_fancybox{
+	background: url(/assets/themebg.png) no-repeat;
+	width: 600px;
+	height: 300px;
+	padding-left: 36px;
+    padding-top: 87px;
 }
 
 /*****fancybox tabs ****************/
@@ -486,6 +501,7 @@ img {
 	height: 22px;
 	cursor:pointer;
 	background: url(/assets/delete_slide.png);
+	z-index: 200000;
 }
 
 .delete_slide:hover{
@@ -837,6 +853,52 @@ div.object_wrapper{
   margin-left: 70px;
 }
 
+.fancybox_quiz_content {
+text-align: center;
+}
+.quiz_fancybox_title {
+	text-align: center;
+}
+
+
+.quiztypethumb{
+	width: 100px;
+	height: 75px;
+	margin: 16px 11px 6px 16px;
+	float: left;
+	color: black;
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+.quiztypethumb img{
+	width:100%;
+	height:100%;
+	border-radius: 9px;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	opacity: 0.7;
+}
+
+.quiztypethumb:hover{
+	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
+	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
+	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
+	border-radius: 9px;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	opacity: 1.0;	
+}
+
+.quiztypethumb:active{
+	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.0);
+	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.0);
+	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.0);
+	border-radius: 9px;
+	-webkit-border-radius: 9px;
+	-moz-border-radius: 9px;
+	opacity: 1.0;	
+}
 
 /************************************
  * EXCURSION DETAILS FANCYBOX
@@ -1039,6 +1101,7 @@ textarea {
 	right: 27px;
 	top: 2px;
 	color: #FF005D;
+	z-index: 200000;
 }
 
 .help_in_template:hover{
@@ -1141,14 +1204,27 @@ textarea {
 	top: 631px;
 }
 
-#help_template_selection {
+#help_template_selection, #help_quiz_selection {
 	background-image:url(/assets/helptutorial_circle_tp.png);
 	position: absolute;
 	margin-top: -43px;
 	right: 21px;
 }
 
-#help_template_selection:hover {
+#help_themes_selection {
+	position: absolute;
+	margin-top: -88px;
+	right: 21px;
+	cursor: pointer;
+}
+
+#help_themes_selection:hover {
+	background-image:url(/assets/hover/helptutorial_circle_hover_tp.png);
+	cursor: pointer;
+}
+
+
+#help_template_selection:hover, #help_quiz_selection:hover {
 	background-image:url(/assets/hover/helptutorial_circle_hover_tp.png);
 	cursor: pointer;
 }
@@ -1227,20 +1303,15 @@ textarea {
 
 .tut_addslide{
 	top: 470px;
-	left: 160px;
+	right: 319px;
 }
-
-.tut_addslide span.joyride-nub{
-  bottom: -28px;
-}
-
 .tut_templatesel {
 	top: 250px;
 	left:255px;
 }
 
 .tut_template{
-	top: 46px;
+	top: 50px;
 	left: 55px;
 	width: 800px;
 }
@@ -1262,9 +1333,9 @@ textarea {
 	margin-top: -50px;
 }
 #videoimagetut {
-	padding-left: 200px;
-	position:absolute;
-	margin-top: -50px;
+    margin-top: -48px;
+    padding-left: 200px;
+    position: absolute;
 }
 
 #deleteimagetut {
@@ -1285,9 +1356,10 @@ textarea {
 }
 
 #contentusetut {
-	top:98px;
-	left:360px;
-	position:absolute;
+    left: 405px;
+    position: absolute;
+    top: 378px;
+    width: 341px;
 }
 
 .tut_fancy_index {
@@ -1463,4 +1535,91 @@ span.mcChoiceSpan{
 
 .change_bg_button_class:hover {
 	background: url(/assets/hover/flashcard_add_img_button_hover.png);
+}
+
+
+.l11 {
+    left: 400px;
+    position: absolute;
+    top: 88px;
+}
+
+#objectimagetut {
+    margin-top: -48px;
+    padding-left: 200px;
+    position: absolute;
+}
+
+.l22 {
+    left: 400px;
+    position: absolute;
+    top: 123px;
+}
+
+#quizimagetut {
+    margin-top: -48px;
+    padding-left: 200px;
+    position: absolute;
+}
+
+.l33 {
+    left: 400px;
+    position: absolute;
+    top: 159px;
+}
+
+#liveimagetut {
+    margin-top: -48px;
+    padding-left: 200px;
+    position: absolute;
+}
+
+.tut_menubuttonpresentation span.joyride-nub {
+    bottom: -28px;
+    left: 37px;
+}
+
+.imagetut {
+	float: left;
+	padding-right: 44px;
+}
+
+.tutaddlink {
+    left: 226px;
+    position: absolute;
+    top: 100px;
+    width: 26px;
+}
+
+.tutresize {
+    left: 246px;
+    position: absolute;
+    top: 136px;
+    width: 25px;
+}
+
+.tutresize2 {
+    left: 212px;
+    position: absolute;
+    top: 136px;
+    width: 25px;
+}
+
+.tuttext {
+    left: 167px;
+    position: absolute;
+    top: 177px;
+    width: 243px;
+}
+
+.tutflashbg {
+    left: 258px;
+    position: absolute;
+    top: 206px;
+}
+
+.tut_themes {
+    left: 250px;
+    position: absolute;
+    top: 265px;
 }

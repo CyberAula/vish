@@ -1,0 +1,38 @@
+CACHE MANIFEST
+#generar esta linea dinamicamente, este fichero debería ser un erb y que se entregue cada vez?
+# 2012-10-22:v1.1
+
+CACHE:
+/assets/icons/favicon.ico
+/assets/vishEditor.js
+/assets/all/joyride-1.0.5.css
+/assets/all/editor.css
+/assets/all/carrousel.css
+/assets/all/fonts.css
+/assets/all/jquery-ui-base-1.8.20.css
+/assets/all/jquery.fancybox-1.3.4.css
+/assets/all/jslider.css
+/assets/all/menu.css
+/assets/all/nicEditor.css
+/assets/all/pack1templates.css
+/assets/all/quiz.css
+/assets/all/styles.css
+/assets/all/tags.css
+/assets/all/toolbar.css
+/assets/vish_editor.css
+/assets/themes/theme1.css
+
+http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono
+
+
+/assets/device/desktop.css
+
+#specific resources for the excursion
+http://s0.geograph.org.uk/geophotos/01/74/36/1743675_513c1a7a.jpg
+
+FALLBACK:
+/ /assets/advert_new_grey.png
+
+NETWORK:
+/assets/blank.png
+*
