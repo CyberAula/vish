@@ -16049,8 +16049,8 @@ VISH.Events = function(V, $, undefined) {
     if(!bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
         $(document).bind("keydown", handleBodyKeyDown);
-        $(document).on("click", "#page-switcher-start", isActiveQuizSessionBackward);
-        $(document).on("click", "#page-switcher-end", isActiveQuizSessionForward);
+        $(document).on("click", "#page-switcher-start", isActiveQuizSession);
+        $(document).on("click", "#page-switcher-end", isActiveQuizSession);
         _registerEvent("mobile_back_arrow");
         $(document).on("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
         _registerEvent("mobile_forward_arrow");
@@ -16078,8 +16078,8 @@ VISH.Events = function(V, $, undefined) {
     if(bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
         $(document).unbind("keydown", handleBodyKeyDown);
-        $(document).off("click", "#page-switcher-start", isActiveQuizSessionBackward);
-        $(document).off("click", "#page-switcher-end", isActiveQuizSessionForward);
+        $(document).off("click", "#page-switcher-start", isActiveQuizSession);
+        $(document).off("click", "#page-switcher-end", isActiveQuizSession);
         $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
         $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
         _unregisterEvent("mobile_back_arrow");
@@ -16103,20 +16103,24 @@ VISH.Events = function(V, $, undefined) {
       bindedEventListeners = false
     }
   };
-  var isActiveQuizSessionBackward = function() {
-    if(V.Quiz.getIsQuizSessionStarted()) {
-      VISH.Quiz.setIsWaitingBackwardOneSlide(true);
-      VISH.Quiz.onStopMcQuizButtonClicked()
+  var isActiveQuizSession = function(event) {
+    V.Debugging.log("event id : " + event.srcElement.id);
+    if(event.srcElement.id == "page-switcher-end") {
+      if(V.Quiz.getIsQuizSessionStarted()) {
+        VISH.Quiz.setIsWaitingForwardOneSlide(true);
+        VISH.Quiz.onStopMcQuizButtonClicked()
+      }else {
+        V.Slides.forwardOneSlide()
+      }
     }else {
-      V.Slides.backwardOneSlide()
-    }
-  };
-  var isActiveQuizSessionForward = function() {
-    if(V.Quiz.getIsQuizSessionStarted()) {
-      VISH.Quiz.setIsWaitingForwardOneSlide(true);
-      VISH.Quiz.onStopMcQuizButtonClicked()
-    }else {
-      V.Slides.forwardOneSlide()
+      if(event.srcElement.id == "page-switcher-start") {
+        if(V.Quiz.getIsQuizSessionStarted()) {
+          VISH.Quiz.setIsWaitingBackwardOneSlide(true);
+          VISH.Quiz.onStopMcQuizButtonClicked()
+        }else {
+          V.Slides.backwardOneSlide()
+        }
+      }
     }
   };
   return{init:init, bindAllEventListeners:bindAllEventListeners, unbindAllEventListeners:unbindAllEventListeners}
