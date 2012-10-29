@@ -59,9 +59,8 @@
   ul
 
 
-  li
-    .warning 
-      background: #f89406
+  li.warning 
+    background: #f89406
 
 
   li 
@@ -82,60 +81,48 @@
     a 
       color: $gray-search
 
-  li 
-    .logo 
-      float: left
-      height: 35px
-      width: 35px
-      margin-right: 5px
+  li.logo 
+    float: left
+    height: 35px
+    width: 35px
+    margin-right: 5px
 
-  li 
-    .logo 
-      img 
-        height: 100%
-        width: 100%
+  li.logo 
+    img 
+      height: 100%
+      width: 100%
 
-  li 
-    .name
-      margin-top: 3px
-      width: 175px
-      overflow: hidden
+  li.name
+    margin-top: 3px
+    width: 175px
+    overflow: hidden
 
-  li 
-    .link
-      display: none
+  li.link
+    display: none
 
-  li
-    .result 
-      padding: 0px
-      height: 45px
-      text-align: left
-      padding: 10px 10px 10px 10px
-      @include border-radius(15px)
+  li.result 
+    padding: 0px
+    height: 45px
+    text-align: left
+    padding: 10px 10px 10px 10px
+    @include border-radius(15px)
 
-  li
-    .loading,
-    #header_search_display
-      li
-        .more,
-        #header_search_display
-          li
-            .none 
-              text-align: center
-
-  li
-    .more
-      padding-top: 10px
-      height: 30px
-
-  li
-  .title:hover,
+  li.loading,
   #header_search_display
-    li
-      .more:hover,
-      #header_search_display
-        li
-          .none:hover 
+    li.more,
+    #header_search_display
+      li.none 
+        text-align: center
+
+  li.more
+    padding-top: 10px
+    height: 30px
+
+  li.title:hover,
+  #header_search_display
+    li.more:hover,
+    #header_search_display
+      li.none:hover 
 
 
   .warning 

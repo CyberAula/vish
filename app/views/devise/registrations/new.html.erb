@@ -12,7 +12,7 @@
   <div class="box_gray1 ">
     <div class="box_gray2">
       <div class="box_gray3">
-        <div class="box_white">
+        <div class="box_white devise-box">
           <div class="campos">
             <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => ""}) do |f| %>
             <%= devise_error_messages! %>
@@ -44,19 +44,8 @@
             </label>
 
             <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
-
-
-
-
-
   				  <!-- Tags -->
   		      <!-- Preload tags -->
-
-
-            
-            
-
-
             <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
             <ul id="preloadTagList" style="display:none">
               <%@tags.each do |tag| %>
@@ -65,35 +54,38 @@
               </li>
              <%end%>
             </ul>
-
-  			<div class="tagBoxNew">
-  			  <ul class="tagList devisetags"></ul>
-      </div>
-      </div>
-      </div>
-          <ul class="tagit-suggestions">
-            <li class="tagit-choice">Nanotechnology</li>
-            <li class="tagit-choice">Biotechnology</li>
-            <li class="tagit-choice">Life-Sciences</li>
-            <li class="tagit-choice">Grid-Computing</li>
-          </ul>
-
-        
-
+            <div class="tagBoxNew">
+              <ul class="tagList devisetags"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="sentence-rules">
+          <%= t('conditions.check_message') %> 
+          <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+          <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+          <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
+          <% end -%>
+        </div>
+        <div class="accept-btn">
+          <%= f.submit t('action.accept').capitalize, :class => "btn btn-primary" %>
+        </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-<div class="sentence-rules">
-  <%= t('conditions.check_message') %> 
-  <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
-  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
-  <% end -%>
-</div>
-<%= f.submit t('action.accept').capitalize, :class => "btn btn-primary " %>
-<% end %>
 
+
+
+<ul class="tagit-suggestions">
+  <div class="sugestions-tags">
+    <a><%= t('devise.suggestion')%> </a>
+    <li class="tagit-choice">Nanotechnology</li>
+    <li class="tagit-choice">Biotechnology</li>
+    <li class="tagit-choice">Life-Sciences</li>
+    <li class="tagit-choice">Grid-Computing</li>
+  </div>
+</ul>
 
 
 

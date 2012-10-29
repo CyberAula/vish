@@ -9,9 +9,10 @@
   line-height: 20px
   margin-top: -20px
 .sentence-rules
-  @include makeColumn(6,4)
+
   line-height: 20px
-  margin-top: 20px
+  margin-top: 10px
+  text-align: center
 
 
 #formulate
@@ -50,6 +51,43 @@
           display: inline-block
           font-family: $thirdFontFamily
           margin-left: 10px
+
+.devise-box
+  width: 98%
+
+.accept-btn
+  margin-top: 15px
+  margin-bottom: 30px
+
+.sugestions-tags
+  width: 150px
+  margin-top: 200px
+  margin-left: -25px
+  @include border-radius($radius)
+  background-color: $white
+  height: 120px
+  padding: 5px
+  float: right
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
+
+
+  a
+    color: gray
+    font-size: 18px
+    float: left
+    display: inline-block
+    margin-left: -30px
+    margin-top: 50px
+    margin-bottom: -68px
+    @include rotate(-90deg)
+
+  a:hover
+    text-decoration: none
+
+  .tagit-choice
+    margin-left: 40px
+
+
 
 
       

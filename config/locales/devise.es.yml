@@ -8,6 +8,7 @@ es:
         one: "Se ha producido un error que impide guardar este %{resource}:"
         other: "Se han producido %{count} errores que impiden guardar este %{resource}:"
   devise:
+    suggestion: "Etiquetas populares"
     email: "Email"
     name: "Nombre"
     password: "Contraseña"

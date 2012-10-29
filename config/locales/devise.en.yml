@@ -12,6 +12,7 @@ en:
         other: "%{count} errors prohibited this %{resource} from being saved:"
 
   devise:
+    suggestion: "Popular tags"
     email: "Email"
     name: "Name"
     password: "Password"

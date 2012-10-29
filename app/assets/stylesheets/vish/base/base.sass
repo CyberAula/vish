@@ -151,7 +151,7 @@ form
 //*********box*********/
 
 .box_gray1
-	border-radius: 15px 15px 15px 15px
+	@include border-radius($radius)
 	border-top: 1px solid #F2F2F2
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
 	position: relative
@@ -171,6 +171,9 @@ form
 			cursor: pointer
 			display: block
 			padding: 15px
+
+			.btn
+				float: right
 
 .box_white
 	display: inline-block
