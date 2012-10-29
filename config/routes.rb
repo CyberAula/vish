@@ -9,12 +9,18 @@ Vish::Application.routes.draw do
   # Explore
   match '/explore' => 'frontpage#explore'
 
+  # Offline
+  match '/offline' => 'frontpage#offline'
+  match '/offline/manifest' => 'frontpage#manifest'
+
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
 
   match 'excursions/preview' => 'excursions#preview'
 
   match 'excursions/:id/clone' => 'excursions#clone'
+
+  match '/excursions/:id/manifest' => 'excursions#manifest'
 
   resources :excursions
   resources :slides

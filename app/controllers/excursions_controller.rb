@@ -20,8 +20,14 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :preview, :clone]
+  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest]
   include SocialStream::Controllers::Objects
+
+  def manifest
+    headers['Last-Modified'] = Time.now.httpdate
+
+    render 'cache.manifest', :layout => false, :content_type => 'text/cache-manifest'
+  end
 
   def clone
     original = Excursion.find_by_id(params[:id])

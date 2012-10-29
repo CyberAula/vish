@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#generar esta linea dinamicamente, este fichero debería ser un erb y que se entregue cada vez?
+#TODO: generate this line according to @excursion.updated_at
 # 2012-10-22:v1.1
 
 CACHE:
@@ -27,7 +27,7 @@ http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italics
 
 /assets/device/desktop.css
 
-#specific resources for the excursion
+#TODO: set specific resources for the excursion
 http://s0.geograph.org.uk/geophotos/01/74/36/1743675_513c1a7a.jpg
 
 FALLBACK:

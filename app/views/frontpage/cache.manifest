@@ -1,6 +1,5 @@
 CACHE MANIFEST
-#generar esta linea dinamicamente, este fichero debería ser un erb y que se entregue cada vez?
-# 2012-10-22:v1.1
+# 2012-10-29:v1.0
 
 CACHE:
 icons/favicon.ico

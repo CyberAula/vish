@@ -11,6 +11,14 @@ class FrontpageController < ApplicationController
     render :layout => 'application'
   end
 
+  def offline
+    render :layout => false
+  end
+
+  def manifest
+    render 'cache.manifest', :layout => false, :content_type => 'text/cache-manifest'
+  end
+
   private
 
   def redirect_user_to_home
