@@ -30,7 +30,7 @@ VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
 VISH.AUTHORS = "GING";
 VISH.Editing = false;
-VISH.Constant = {};
+VISH.Constant = VISH.Constant || {};
 VISH.Constant.Edit = "Edit";
 VISH.Constant.Viewer = "Viewer";
 VISH.Constant.AnyMode = "Both";
@@ -14579,6 +14579,7 @@ VISH.Editor = function(V, $, undefined) {
     $("a.addpicture").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
+      V.Editor.Image.setAddContentMode(VISH.Constant.NONE);
       VISH.Utils.loadTab("tab_pic_from_url")
     }});
     $("a.addobject").fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
@@ -16565,6 +16566,8 @@ VISH.Editor.Tools = function(V, $, undefined) {
         $("#hidden_button_to_launch_picture_fancybox_for_flashcard").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
           V.Editor.Image.setAddContentMode(VISH.Constant.FLASHCARD);
           V.Utils.loadTab("tab_pic_from_url")
+        }, "onClosed":function(data) {
+          V.Editor.Image.setAddContentMode(VISH.Constant.NONE)
         }});
         $("#toolbar_presentation").find("img.toolbar_flashcard").show();
         break;
@@ -17353,6 +17356,8 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     $("#hidden_button_to_uploadThumbnail").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       V.Editor.Image.setAddContentMode(VISH.Constant.THUMBNAIL);
       V.Utils.loadTab("tab_pic_from_url")
+    }, "onClosed":function(data) {
+      V.Editor.Image.setAddContentMode(VISH.Constant.NONE)
     }})
   };
   var onLoadPresentationDetails = function(mySelectedAvatar) {
@@ -17396,7 +17401,7 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     $("#presentation_avatar").val($(event.target).attr("src"))
   };
   var _selectRandom = function(max) {
-    var randomnumber = Math.ceil(Math.random() * max);
+    var randomnumber = 1 + Math.ceil(Math.random() * max);
     $("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").addClass("selectedThumbnail");
     $("#presentation_avatar").val($("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").attr("src"))
   };
@@ -17457,7 +17462,7 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
         _selectDefaultAvatarInCarrousel(selectedAvatar)
       }
     }else {
-      _selectRandom(5)
+      _selectRandom(4)
     }
   };
   var _isDefaultAvatar = function(avatar) {
@@ -19968,7 +19973,7 @@ VISH.Game = function(V, $, undefined) {
   return{raiseAction:raiseAction, registerActions:registerActions}
 }(VISH, jQuery);
 var VISH = VISH || {};
-VISH.Constant = {};
+VISH.Constant = VISH.Constant || {};
 VISH.Constant.Event = {};
 VISH.Constant.Event.onMessage = "onMessage";
 VISH.Constant.Event.onGoToSlide = "onGoToSlide";
