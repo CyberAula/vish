@@ -60,6 +60,8 @@ VISH.Constant.Event.onGoToSlide = "onGoToSlide";
 VISH.Constant.Event.onPlayVideo = "onPlayVideo";
 VISH.Constant.Event.onPauseVideo = "onPauseVideo";
 VISH.Constant.Event.onSeekVideo = "onSeekVideo";
+VISH.Constant.Event.onFlashcardPointClicked = "onFlashcardPointClicked";
+VISH.Constant.Event.onFlashcardSlideClosed = "onFlashcardSlideClosed";
 VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 (function(a, b) {
@@ -13970,7 +13972,7 @@ VISH.Status = function(V, $, undefined) {
       isOnline = false
     }, success:function(data, status, req) {
       isOnline = true
-    }, timeout:5E3, type:"GET", url:VISH.ImagesPath + "blank.png"})
+    }, timeout:5E3, type:"GET", url:VISH.ImagesPath + "blank.gif"})
   };
   var fillFeatures = function() {
     setIsInIframe(window.location != window.parent.location ? true : false);
@@ -14481,9 +14483,8 @@ VISH.Editor = function(V, $, undefined) {
     $(document).on("click", "#help_template_image", function() {
       VISH.Editor.Tour.startTourWithId("template_help", "bottom")
     });
-    $(document).on("click", "#tab_quizes_help", function() {
-      V.Debugging.log("click tab_quizes_help detected");
-      VISH.Editor.Tour.startTourWithId("help_quiz_selection_help", "bottom")
+    $(document).on("click", "#help_quiz_selection", function() {
+      VISH.Editor.Tour.startTourWithId("quiz_help", "bottom")
     });
     $(document).on("click", "#help_themes_selection", function() {
       VISH.Editor.Tour.startTourWithId("themes_help", "bottom")
@@ -14729,8 +14730,6 @@ VISH.Editor = function(V, $, undefined) {
                   }
                 }else {
                   if(element.type == "quiz") {
-                    presentation.contain_quiz = true;
-                    V.Debugging.log("div value:" + $(div));
                     element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance").parent().find("div > div"));
                     if($(div).find(".multiplechoice_text_in_zone")) {
                       element.quiztype = "multiplechoice";
@@ -14744,48 +14743,16 @@ VISH.Editor = function(V, $, undefined) {
                       V.Debugging.log("another kind of quiz detected")
                     }
                   }else {
-                    if(element.type == "openquestion") {
-                      element.title = $(div).find(".title_openquestion").val();
-                      element.question = $(div).find(".value_openquestion").val()
+                    if(element.type === "snapshot") {
+                      var snapshotWrapper = $(div).find(".snapshot_wrapper");
+                      var snapshotIframe = $(snapshotWrapper).children()[0];
+                      $(snapshotIframe).removeAttr("style");
+                      element.body = VISH.Utils.getOuterHTML(snapshotIframe);
+                      element.style = VISH.Editor.Utils.getStylesInPercentages($(div), snapshotWrapper);
+                      element.scrollTop = $(snapshotWrapper).scrollTop();
+                      element.scrollLeft = $(snapshotWrapper).scrollLeft()
                     }else {
-                      if(element.type == "mcquestion") {
-                        element.question = $(div).find(".value_multiplechoice_question").val();
-                        element.options = [];
-                        $(div).find(".multiplechoice_text").each(function(i, input_text) {
-                          if(input_text && input_text.value != "") {
-                            element.options.push(input_text.value)
-                          }
-                        })
-                      }else {
-                        if(element.type == "truefalsequestion") {
-                          V.Debugging.log("element type truefalsequestion detected");
-                          element.questions = [];
-                          var question = {};
-                          $(div).find(".true_false_question").each(function(i, input_text) {
-                            question.id = i;
-                            question.text_question = input_text.value;
-                            if($(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val() == undefined) {
-                              question.answer = "null"
-                            }else {
-                              question.answer = $(".current").find("input:radio[name='answer_" + (i + 1) + "']:checked").val()
-                            }
-                            element.questions.push(question);
-                            question = {}
-                          })
-                        }else {
-                          if(element.type === "snapshot") {
-                            var snapshotWrapper = $(div).find(".snapshot_wrapper");
-                            var snapshotIframe = $(snapshotWrapper).children()[0];
-                            $(snapshotIframe).removeAttr("style");
-                            element.body = VISH.Utils.getOuterHTML(snapshotIframe);
-                            element.style = VISH.Editor.Utils.getStylesInPercentages($(div), snapshotWrapper);
-                            element.scrollTop = $(snapshotWrapper).scrollTop();
-                            element.scrollLeft = $(snapshotWrapper).scrollLeft()
-                          }else {
-                            if(typeof element.type == "undefined") {
-                            }
-                          }
-                        }
+                      if(typeof element.type == "undefined") {
                       }
                     }
                   }
@@ -14794,6 +14761,17 @@ VISH.Editor = function(V, $, undefined) {
             }
           }
           slide.elements.push(element);
+          if(element.type == "quiz") {
+            var quizSlide = $.extend(true, new Object, element);
+            var quizPresentation = new Object;
+            quizPresentation.title = presentation.title;
+            quizPresentation.description = presentation.description;
+            quizPresentation.author = "";
+            quizPresentation.slides = [quizSlide];
+            quizPresentation.type = "quiz_simple";
+            element.quiz_simple_json = quizPresentation;
+            VISH.Debugging.log(JSON.stringify(quizPresentation))
+          }
           element = {}
         }
         if(slide.type == "quiz") {
@@ -15873,16 +15851,36 @@ VISH.Slides = function(V, $, undefined) {
     }
     return true
   };
-  var showSlide = function(slide_id) {
+  var showSlide = function(slide_id, triggeredByUser) {
+    triggeredByUser = !(triggeredByUser === false);
+    if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
+      var params = new Object;
+      params.slideNumber = slide_id;
+      VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onFlashcardPointClicked, params);
+      return
+    }
     if(slideEls.length >= slide_id - 1) {
       $(slideEls[slide_id - 1]).show();
-      triggerEnterEvent(slide_id - 1)
+      triggerEnterEvent(slide_id - 1);
+      var params = new Object;
+      params.slideNumber = slide_id;
+      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
     }
   };
-  var closeSlide = function(slide_id) {
+  var closeSlide = function(slide_id, triggeredByUser) {
+    triggeredByUser = !(triggeredByUser === false);
+    if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
+      var params = new Object;
+      params.slideNumber = slide_id;
+      VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onFlashcardSlideClosed, params);
+      return
+    }
     $("#" + slide_id).hide();
     var slideNumber = $.inArray($("#" + slide_id)[0], slideEls);
-    triggerLeaveEvent(slideNumber)
+    triggerLeaveEvent(slideNumber);
+    var params = new Object;
+    params.slideNumber = slide_id;
+    VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onFlashcardSlideClosed, params, triggeredByUser)
   };
   var closeAllSlides = function() {
     $(".slides > article").hide()
@@ -16038,20 +16036,18 @@ VISH.Events = function(V, $, undefined) {
     document.body.removeEventListener("touchend", handleTouchEnd, true)
   };
   var _onFlashcardPoiClicked = function(event) {
-    V.Debugging.log("Show slide " + event.data.slide_id);
-    V.Slides.showSlide(event.data.slide_id)
+    V.Slides.showSlide(event.data.slide_id, true)
   };
   var _onFlashcardCloseSlideClicked = function(event) {
     var close_slide = event.target.id.substring(5);
-    V.Debugging.log("Close slide " + close_slide);
-    V.Slides.closeSlide(close_slide)
+    V.Slides.closeSlide(close_slide, true)
   };
   var bindAllEventListeners = function() {
     if(!bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
         $(document).bind("keydown", handleBodyKeyDown);
-        $(document).on("click", "#page-switcher-start", isActiveQuizSession);
-        $(document).on("click", "#page-switcher-end", isActiveQuizSession);
+        $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+        $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
         _registerEvent("mobile_back_arrow");
         $(document).on("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
         _registerEvent("mobile_forward_arrow");
@@ -16079,8 +16075,6 @@ VISH.Events = function(V, $, undefined) {
     if(bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
         $(document).unbind("keydown", handleBodyKeyDown);
-        $(document).off("click", "#page-switcher-start", isActiveQuizSession);
-        $(document).off("click", "#page-switcher-end", isActiveQuizSession);
         $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
         $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
         _unregisterEvent("mobile_back_arrow");
@@ -16102,26 +16096,6 @@ VISH.Events = function(V, $, undefined) {
         }
       }
       bindedEventListeners = false
-    }
-  };
-  var isActiveQuizSession = function(event) {
-    V.Debugging.log("event id : " + event.srcElement.id);
-    if(event.srcElement.id == "page-switcher-end") {
-      if(V.Quiz.getIsQuizSessionStarted()) {
-        VISH.Quiz.setIsWaitingForwardOneSlide(true);
-        VISH.Quiz.onStopMcQuizButtonClicked()
-      }else {
-        V.Slides.forwardOneSlide()
-      }
-    }else {
-      if(event.srcElement.id == "page-switcher-start") {
-        if(V.Quiz.getIsQuizSessionStarted()) {
-          VISH.Quiz.setIsWaitingBackwardOneSlide(true);
-          VISH.Quiz.onStopMcQuizButtonClicked()
-        }else {
-          V.Slides.backwardOneSlide()
-        }
-      }
     }
   };
   return{init:init, bindAllEventListeners:bindAllEventListeners, unbindAllEventListeners:unbindAllEventListeners}
@@ -16275,7 +16249,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(current_slide).find("input." + optionsButtonClass).show();
     quizSessionStarted = true;
     $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value", quiz_session_id);
-    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='/vishEditor/images/VISH_frontpage.png' />")
+    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='" + VISH.ImagesPath + "qrcode_background.png' />")
   };
   var _OnQuizSessionReceivedError = function(error) {
     var received = JSON.stringify(error);
@@ -16813,6 +16787,12 @@ VISH.Messenger = function(V, undefined) {
     });
     VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onSeekVideo, function(params) {
       notifyEventByMessage(VISH.Constant.Event.onSeekVideo, params)
+    });
+    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onFlashcardPointClicked, function(params) {
+      notifyEventByMessage(VISH.Constant.Event.onFlashcardPointClicked, params)
+    });
+    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onFlashcardSlideClosed, function(params) {
+      notifyEventByMessage(VISH.Constant.Event.onFlashcardSlideClosed, params)
     })
   };
   var notifyEventByMessage = function(event, params) {
@@ -19980,6 +19960,8 @@ VISH.Constant.Event.onGoToSlide = "onGoToSlide";
 VISH.Constant.Event.onPlayVideo = "onPlayVideo";
 VISH.Constant.Event.onPauseVideo = "onPauseVideo";
 VISH.Constant.Event.onSeekVideo = "onSeekVideo";
+VISH.Constant.Event.onFlashcardPointClicked = "onFlashcardPointClicked";
+VISH.Constant.Event.onFlashcardSlideClosed = "onFlashcardSlideClosed";
 VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
@@ -20155,6 +20137,16 @@ VISH.IframeAPI = function(V, undefined) {
           callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
         }
         break;
+      case VISH.Constant.Event.onFlashcardPointClicked:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onFlashcardSlideClosed:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
       case VISH.Constant.Event.onIframeMessengerHello:
         callback(VEMessageObject.origin);
         break;
@@ -20193,6 +20185,20 @@ VISH.IframeAPI = function(V, undefined) {
     var VEMessage = _createMessage(VISH.Constant.Event.onSeekVideo, params, null, destination);
     sendMessage(VEMessage, destination)
   };
+  var openSlideInFlashcard = function(flashcardSlideNumber, slideNumber, destination) {
+    var params = {};
+    params.flashcardSlideNumber = flashcardSlideNumber;
+    params.slideNumber = slideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onFlashcardPointClicked, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var closeSlideInFlashcard = function(flashcardSlideNumber, slideNumber, destination) {
+    var params = {};
+    params.flashcardSlideNumber = flashcardSlideNumber;
+    params.slideNumber = slideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onFlashcardSlideClosed, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
   var setSlave = function(slave, destination) {
     var params = {};
     params.slave = slave;
@@ -20224,7 +20230,7 @@ VISH.IframeAPI = function(V, undefined) {
     }
     return false
   };
-  return{init:init, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback, sendMessage:sendMessage, setSlave:setSlave, setMaster:setMaster, goToSlide:goToSlide, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo}
+  return{init:init, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback, sendMessage:sendMessage, setSlave:setSlave, setMaster:setMaster, goToSlide:goToSlide, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, openSlideInFlashcard:openSlideInFlashcard, closeSlideInFlashcard:closeSlideInFlashcard}
 }(VISH);
 VISH.LocalStorage = function(V, $, undefined) {
   var addPresentation = function(presentation) {
@@ -20234,9 +20240,25 @@ VISH.LocalStorage = function(V, $, undefined) {
         list.push(presentation.id);
         localStorage.setItem("presentation_list", JSON.stringify(list))
       }
-      localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation))
+      localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation));
+      _saveImage(presentation.avatar)
     }else {
       V.Debugging.log("Sorry! No web storage support.")
+    }
+  };
+  var _saveImage = function(path) {
+    if(localStorage.getItem(path) === null) {
+      var canvas = document.createElement("canvas");
+      var ctx = canvas.getContext("2d");
+      var img = new Image;
+      img.src = path;
+      img.onload = function() {
+        canvas.width = this.width;
+        canvas.height = this.height;
+        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+        var name = img.src.replace(/http:\/\/[^\/]+/i, "");
+        localStorage.setItem(name, canvas.toDataURL())
+      }
     }
   };
   return{addPresentation:addPresentation}
@@ -20323,6 +20345,16 @@ VISH.Messenger.Helper = function(V, undefined) {
             VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
           }
           VISH.VideoPlayer.seekVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
+        }
+        break;
+      case VISH.Constant.Event.onFlashcardPointClicked:
+        if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
+          VISH.Slides.showSlide(VEMessageObject.params.slideNumber, false)
+        }
+        break;
+      case VISH.Constant.Event.onFlashcardSlideClosed:
+        if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
+          VISH.Slides.closeSlide(VEMessageObject.params.slideNumber, false)
         }
         break;
       case VISH.Constant.Event.onSetSlave:
