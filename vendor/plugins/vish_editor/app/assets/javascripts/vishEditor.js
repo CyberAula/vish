@@ -20455,7 +20455,7 @@ VISH.ObjectPlayer = function() {
         return
       }
       if($(value).attr("objectWrapper").match("^<iframe") !== null && VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_iframe.png'/>");
         return
       }
       var object = $($(value).attr("objectWrapper"));
@@ -20997,7 +20997,7 @@ VISH.SnapshotPlayer = function() {
       var content_class = "snapshot_content" + "_viewer";
       var content = $(value).attr("objectWrapper");
       if(VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_iframe.png'/>");
         return
       }
       var iframe = $(VISH.Utils.getOuterHTML($(content)));
@@ -21578,7 +21578,7 @@ VISH.VideoPlayer.Youtube = function() {
   };
   var loadYoutubeObject = function(element, value) {
     if(VISH.Status.getOnline() === false) {
-      $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+      $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_video2.png'/>");
       return
     }
     var source = $(value).attr("source");
