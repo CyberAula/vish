@@ -38,6 +38,18 @@
 	    options["username"] = false;
 	<% end %>
 
+	options.addons = [];
+
+	if(window.parent.loadIframeMessenger===true){
+		var addon = new Object();
+		addon.target = "Viewer";
+		addon.id = "IframeMessenger";
+		addon.url = "";
+		addon.config = {enable: true};
+		options.addons.push(addon);
+		console.log("IframeMessenger addon loaded");
+	}
+
 	function start(){
 		var isPreview = false;
         try {

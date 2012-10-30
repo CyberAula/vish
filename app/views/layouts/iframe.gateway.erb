@@ -1,31 +1,18 @@
 <!DOCTYPE html>
-
-<% if false %> <!-- (not @excursion.blank?) and @excursion.is_a? Excursion -->
-  <html manifest="/excursions/<%= @excursion.id.to_s%>/manifest">
-<% else %>
   <html>
-<% end %>
     <head>
-
     <title>ViSH Excursion</title>
     <%= favicon_link_tag "icons/favicon.ico" %>
-
     <meta charset="UTF-8">  
     <meta name="viewport" content="user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
 	  <%=javascript_include_tag "vishEditor" %>
 	  <%= stylesheet_link_tag "vish_editor" %>
-
 	  <%= yield :headers %>
-	  <!--[if gte IE 7]>
-		<%= stylesheet_link_tag "ie/pack1explorer9" %>
-	  <![endif]-->
-
   </head>
 
-   <body onload="start()" style="display: none" class="loaded">
+   <body style="display: none" class="loaded">
  	 <%= yield %>
    </body>
 

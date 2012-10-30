@@ -105,6 +105,10 @@ class ExcursionsController < ApplicationController
       format.full { render :layout => 'iframe' }
       format.mobile { render :layout => 'iframe' }
       format.json { render :json => resource }
+      format.gateway { 
+        @gateway = params[:gateway]
+        render :layout => 'iframe'
+      }
     end
   end
 
