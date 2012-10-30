@@ -86,13 +86,13 @@ GEM
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     cancan (1.6.8)
-    capistrano (2.13.4)
+    capistrano (2.13.5)
       highline
       net-scp (>= 1.0.0)
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capybara (1.1.2)
+    capybara (1.1.3)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
@@ -111,17 +111,9 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.3.3)
-    columnize (0.3.6)
+    coffee-script-source (1.4.0)
     composite_primary_keys (5.0.9)
       activerecord (~> 3.2.0, >= 3.2.8)
-    debugger (1.1.4)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.1.1)
-      debugger-ruby_core_source (~> 1.1.3)
-    debugger-linecache (1.1.2)
-      debugger-ruby_core_source (>= 1.1.1)
-    debugger-ruby_core_source (1.1.4)
     deep_merge (1.0.0)
     delayed_paperclip (2.4.5.2)
       paperclip (>= 2.4.5)
@@ -142,7 +134,7 @@ GEM
       activesupport (>= 2.3.9)
     faraday (0.8.4)
       multipart-post (~> 1.1)
-    faraday_middleware (0.8.8)
+    faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
     ffi (1.1.5)
     foreigner (1.1.6)
@@ -154,7 +146,6 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
-    git (1.2.5)
     god (0.13.1)
     has_scope (0.5.1)
     hashie (1.2.0)
@@ -168,11 +159,6 @@ GEM
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
-    jeweler (1.8.4)
-      bundler (~> 1.0)
-      git (>= 1.2.5)
-      rake
-      rdoc
     journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -246,12 +232,9 @@ GEM
       paperclip (>= 2.5.2)
     pg (0.14.1)
     polyglot (0.3.3)
-    proudhon (0.3.6)
-      jeweler
+    proudhon (0.3.7)
       json
       nokogiri
-      proudhon
-      rake
       rest-client
     rack (1.4.1)
     rack-cache (1.2)
@@ -356,14 +339,14 @@ GEM
       multi_json (~> 1.0)
       multipart-post (~> 1.1)
       twitter-stream (~> 0.1)
-    treetop (1.4.11)
+    treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
     twitter-stream (0.1.16)
       eventmachine (>= 0.12.8)
       http_parser.rb (~> 0.5.1)
       simple_oauth (~> 0.1.4)
-    tzinfo (0.3.33)
+    tzinfo (0.3.34)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -383,7 +366,6 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.2)
   composite_primary_keys
-  debugger (~> 1.1.1)
   exception_notification
   factory_girl (~> 2.6)
   forgery
