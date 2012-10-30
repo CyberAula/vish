@@ -1,6 +1,5 @@
 CACHE MANIFEST
-#TODO: generate this line according to @excursion.updated_at
-# 2012-10-22:v1.1
+# <%= @excursion.updated_at.to_date.to_s %>:v1.1
 
 CACHE:
 /assets/icons/favicon.ico
@@ -27,7 +26,8 @@ http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italics
 
 /assets/device/desktop.css
 
-#TODO: set specific resources for the excursion
+# Set specific resources for this excursion
+<%= @excursion.offline_manifest %>
 http://s0.geograph.org.uk/geophotos/01/74/36/1743675_513c1a7a.jpg
 
 FALLBACK:

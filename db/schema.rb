@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920142058) do
+ActiveRecord::Schema.define(:version => 20121030131504) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -226,6 +226,7 @@ ActiveRecord::Schema.define(:version => 20120920142058) do
     t.integer  "slide_count",        :default => 1
     t.string   "thumbnail_url",      :default => "/assets/logos/original/excursion-00.png"
     t.boolean  "draft",              :default => false
+    t.text     "offline_manifest"
   end
 
   create_table "groups", :force => true do |t|

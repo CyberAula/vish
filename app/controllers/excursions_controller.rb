@@ -26,6 +26,7 @@ class ExcursionsController < ApplicationController
   def manifest
     headers['Last-Modified'] = Time.now.httpdate
 
+    @excursion = Excursion.find_by_id(params[:id])
     render 'cache.manifest', :layout => false, :content_type => 'text/cache-manifest'
   end
 

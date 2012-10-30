@@ -103,6 +103,16 @@ class Excursion < ActiveRecord::Base
     parsed_json
   end
 
+  def extract_manifest(parsed_json)
+    manifest=[]
+    parsed_json["slides"].each do |slide|
+      slide["elements"].each do |element|
+        manifest << element["body"] if element["type"] == "image"
+      end
+    end
+    manifest.join("\n")
+  end
+
   def parse_for_meta
     parsed_json = JSON(json)
     activity_object.title = parsed_json["title"]
@@ -114,6 +124,8 @@ class Excursion < ActiveRecord::Base
     parsed_json["author"] = author.name
     parsed_json = extract_quizzes(parsed_json) # Fill up quiz_id parameters
     self.update_column :json, parsed_json.to_json
+
+    self.update_column :offline_manifest, extract_manifest(parsed_json)
 
     self.update_column :slide_count, parsed_json["slides"].size
     self.update_column :thumbnail_url, parsed_json["avatar"]
