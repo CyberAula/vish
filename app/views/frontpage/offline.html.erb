@@ -25,8 +25,14 @@
 			 				div_to_add.show(); //remove the display:none
 			 				$(div_to_add).attr("id", "presentation_"+id);
 							$(div_to_add).find(".excursion_title").html(pres.title);
+							if(localStorage.getItem(pres.avatar)){
+								$(div_to_add).find(".excursion_logo").attr("src", localStorage.getItem(pres.avatar));
+							}
+							else{
+								$(div_to_add).find(".excursion_logo").attr("src", "/assets/logos/original/excursion-00.png");
+							}
 							$(div_to_add).find(".excursion_link").attr("href", "/excursions/" + pres.id + ".full");
-							$(div_to_add).find(".excursion_logo").attr("src", pres.avatar);
+							
 							$(div_to_add).find(".number_pages").html(pres.slides.length);
 							$(div_to_add).find(".excursion_author").html("by" + pres.author);
 

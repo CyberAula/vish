@@ -13972,7 +13972,7 @@ VISH.Status = function(V, $, undefined) {
       isOnline = false
     }, success:function(data, status, req) {
       isOnline = true
-    }, timeout:5E3, type:"GET", url:VISH.ImagesPath + "blank.png"})
+    }, timeout:5E3, type:"GET", url:VISH.ImagesPath + "blank.gif"})
   };
   var fillFeatures = function() {
     setIsInIframe(window.location != window.parent.location ? true : false);
@@ -14483,9 +14483,8 @@ VISH.Editor = function(V, $, undefined) {
     $(document).on("click", "#help_template_image", function() {
       VISH.Editor.Tour.startTourWithId("template_help", "bottom")
     });
-    $(document).on("click", "#tab_quizes_help", function() {
-      V.Debugging.log("click tab_quizes_help detected");
-      VISH.Editor.Tour.startTourWithId("help_quiz_selection_help", "bottom")
+    $(document).on("click", "#help_quiz_selection", function() {
+      VISH.Editor.Tour.startTourWithId("quiz_help", "bottom")
     });
     $(document).on("click", "#help_themes_selection", function() {
       VISH.Editor.Tour.startTourWithId("themes_help", "bottom")
@@ -20241,9 +20240,25 @@ VISH.LocalStorage = function(V, $, undefined) {
         list.push(presentation.id);
         localStorage.setItem("presentation_list", JSON.stringify(list))
       }
-      localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation))
+      localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation));
+      _saveImage(presentation.avatar)
     }else {
       V.Debugging.log("Sorry! No web storage support.")
+    }
+  };
+  var _saveImage = function(path) {
+    if(localStorage.getItem(path) === null) {
+      var canvas = document.createElement("canvas");
+      var ctx = canvas.getContext("2d");
+      var img = new Image;
+      img.src = path;
+      img.onload = function() {
+        canvas.width = this.width;
+        canvas.height = this.height;
+        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+        var name = img.src.replace(/http:\/\/[^\/]+/i, "");
+        localStorage.setItem(name, canvas.toDataURL())
+      }
     }
   };
   return{addPresentation:addPresentation}
@@ -20440,7 +20455,7 @@ VISH.ObjectPlayer = function() {
         return
       }
       if($(value).attr("objectWrapper").match("^<iframe") !== null && VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_iframe.png'/>");
         return
       }
       var object = $($(value).attr("objectWrapper"));
@@ -20982,7 +20997,7 @@ VISH.SnapshotPlayer = function() {
       var content_class = "snapshot_content" + "_viewer";
       var content = $(value).attr("objectWrapper");
       if(VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_iframe.png'/>");
         return
       }
       var iframe = $(VISH.Utils.getOuterHTML($(content)));
@@ -21563,7 +21578,7 @@ VISH.VideoPlayer.Youtube = function() {
   };
   var loadYoutubeObject = function(element, value) {
     if(VISH.Status.getOnline() === false) {
-      $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey.png'/>");
+      $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_video2.png'/>");
       return
     }
     var source = $(value).attr("source");
