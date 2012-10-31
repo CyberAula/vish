@@ -35,24 +35,7 @@ Vish.Officedoc = (function(V,undefined){
 
   }
 
-  var removeM = function(){
-    console.log("he entrado en removeM");
-        var divs_tmp2 = $("div[id^='picture-modal-']");  //resize
-        var divs_tmp1 = $("div[id^='picture-modal-body']");     //footar  
-        var divs_tmp3 = $("div[id^='modyfooter']");           //sticky
-        
-            console.log(divs_tmp3); //sticky
-            console.log(divs_tmp2); //resize
-            console.log(divs_tmp1); //footar  
-
-             divs_tmp1.removeClass('footar')
-             divs_tmp2.removeClass('resize')
-             divs_tmp3.removeClass('sticky')
-
-  }
-
   return {
-    removeM : removeM,
     redim : redim,
     rwindow : rwindow,
     googdoc : googdoc
