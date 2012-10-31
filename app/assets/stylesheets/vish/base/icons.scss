@@ -1,0 +1,52 @@
+/*..................icon navigation 22x22....................... */
+
+li
+  list-style-type: none
+
+[class^="iconnav-"],
+[class*="iconnav-"] 
+  background-image: url("icons/icon_nav.png");
+  background-position:22px 22px;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:22px;
+  width:22px;
+  line-height:22px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+
+
+[class^="iconnav-"]:last-child, [class*="iconnav-"]:last-child {
+}
+.iconnav-white {
+  background-image: url("icons/icon_nav.png");
+}
+/* normal*/
+.iconnav-home { background-position:0 0;}
+.iconnav-message {background-position:-32px 0;}
+.iconnav-followers {background-position:-64px 0;}
+.iconnav-notification {background-position:-96px 0;}
+.iconnav-quiz {background-position:-159px 0;}
+.iconnav-tools {background-position:-128px 0;}
+/* alarm*/
+.iconnav-notification_message {background-position:-32px -26px;}
+.iconnav-notification_followers {background-position:-64px -26px;}
+.iconnav-notification_notification {background-position:-96px -26px;}
+/* hover*/
+.iconnav-home:hover {background-position:0px -52px;}
+.iconnav-message:hover {background-position:-32px -52px;}
+.iconnav-followers:hover {background-position:-64px -52px;}
+.iconnav-notification:hover {background-position:-96px -52px;}
+.iconnav-quiz:hover {background-position:-159px -52px;}
+.iconnav-tools:hover {background-position:-128px -52px;}
+
+.iconnav-mashme { background-position: 0 -78px ;}
+.iconnav-mashme:hover { background-position: 0 -104px ;}
+.iconnav-mashmered { background-position: -32px -78px ;}
+.iconnav-star { background-position: -32px -104px ;}
+.iconnav-star:hover { background-position: -64px -78px ;}
+.iconnav-starred { background-position: -64px -78px ;}
+.iconnav-my { background-position: - 96px -104px ;}
+.iconnav-my:hover { background-position: -96px -78px;}
+.iconnav-myred { background-position: -128px -104px;}

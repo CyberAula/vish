@@ -1,14 +1,14 @@
 <div class="row ">
-  <div class="space_center"></div>
-  <div class="space_center"></div>
-  <div class="span6 ">
-    <div class="logo-home ">
-      <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
-    </div>
-    <span class="link_virtual size24 virtualsciencehub span3 ">
-      <%= link_to(t('site.name'), '/', :class => "brand"); %>
-    </span>
+  
+<div id="graphic_identity">
+  <div class="logo-home">
+    <%= link_to(image_tag('corporative/logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
   </div>
+  <div class="site-name">
+    <%= link_to(t('site.name'), '/', :class => "brand"); %>
+  </div>
+</div>
+
   <div class="span6">
     <% if user_signed_in? %>
       <div class="btn-toolbar pull-right inline-block  " id="tooltip_head">
