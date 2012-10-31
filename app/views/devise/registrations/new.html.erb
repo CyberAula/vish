@@ -60,7 +60,8 @@
           </div>
         </div>
         <div class="sentence-rules">
-          <%= t('conditions.check_message') %> 
+          <%= t('conditions.check_message') %>
+          </br> 
           <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
           <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
           <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
@@ -74,12 +75,9 @@
     </div>
   </div>
 </div>
-
-
-
 <ul class="tagit-suggestions">
   <div class="sugestions-tags">
-    <a><%= t('devise.suggestion')%> </a>
+    <a>popular tags<%#= t('devise.suggestion')%> </a>
     <li class="tagit-choice">Nanotechnology</li>
     <li class="tagit-choice">Biotechnology</li>
     <li class="tagit-choice">Life-Sciences</li>

@@ -15,10 +15,11 @@
           <%= devise_error_messages! %>
           <label class="no_display" for="email"><%= f.label :email %></label>
           <%= f.text_field :email, :class => "", :id => "email", :placeholder => t('devise.email') %>
-          </div>
+        </div>
+          <div id="nomargin">
           <%= f.submit t('action.send'), :class => "btn btn-primary " %>
-          <% end %>
-        
+        </div>  
+        <% end %>
       </div>
     </div>
   </div>
