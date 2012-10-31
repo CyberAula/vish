@@ -31,7 +31,7 @@
 							else{
 								$(div_to_add).find(".excursion_logo").attr("src", "/assets/logos/original/excursion-00.png");
 							}
-							$(div_to_add).find(".excursion_link").attr("href", "/excursions/" + pres.id + ".full");
+							$(div_to_add).find(".excursion_link").attr("href", localStorage.getItem("presentation_"+id+"_url"));
 							
 							$(div_to_add).find(".number_pages").html(pres.slides.length);
 							$(div_to_add).find(".excursion_author").html("by" + pres.author);
@@ -69,7 +69,7 @@
 <div class="excursion span3" id="div_for_excursion" style="display:none">
     <ul class="thumbnails ">
         <li class="span1">
-          <a href="/excursions/36" class="container excursion_link"><img class="excursion_logo" alt="Excursion-00" src="/assets/logos/original/excursion-00.png"></a>
+          <a href="" class="container excursion_link"><img class="excursion_logo" alt="Excursion-00" src="/assets/logos/original/excursion-00.png"></a>
           <div class="number_pages">8</div>
         </li>
         <li class="span2">

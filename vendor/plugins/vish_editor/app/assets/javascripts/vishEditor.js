@@ -3349,348 +3349,450 @@ VISH.Constant.Event.onPreventDefault = "onPreventDefault";
     return f
   })
 })(window);
-(function(a, b) {
-  function c(b, c) {
-    var e = b.nodeName.toLowerCase();
-    if("area" === e) {
-      var f = b.parentNode, g = f.name, h;
-      return!b.href || !g || f.nodeName.toLowerCase() !== "map" ? !1 : (h = a("img[usemap=#" + g + "]")[0], !!h && d(h))
-    }
-    return(/input|select|textarea|button|object/.test(e) ? !b.disabled : "a" == e ? b.href || c : c) && d(b)
+(function(e, t) {
+  function i(t, n) {
+    var r, i, o, u = t.nodeName.toLowerCase();
+    return"area" === u ? (r = t.parentNode, i = r.name, !t.href || !i || r.nodeName.toLowerCase() !== "map" ? !1 : (o = e("img[usemap=#" + i + "]")[0], !!o && s(o))) : (/input|select|textarea|button|object/.test(u) ? !t.disabled : "a" === u ? t.href || n : n) && s(t)
   }
-  function d(b) {
-    return!a(b).parents().andSelf().filter(function() {
-      return a.curCSS(this, "visibility") === "hidden" || a.expr.filters.hidden(this)
+  function s(t) {
+    return e.expr.filters.visible(t) && !e(t).parents().andSelf().filter(function() {
+      return e.css(this, "visibility") === "hidden"
     }).length
   }
-  a.ui = a.ui || {};
-  if(a.ui.version) {
+  var n = 0, r = /^ui-id-\d+$/;
+  e.ui = e.ui || {};
+  if(e.ui.version) {
     return
   }
-  a.extend(a.ui, {version:"1.8.20", keyCode:{ALT:18, BACKSPACE:8, CAPS_LOCK:20, COMMA:188, COMMAND:91, COMMAND_LEFT:91, COMMAND_RIGHT:93, CONTROL:17, DELETE:46, DOWN:40, END:35, ENTER:13, ESCAPE:27, HOME:36, INSERT:45, LEFT:37, MENU:93, NUMPAD_ADD:107, NUMPAD_DECIMAL:110, NUMPAD_DIVIDE:111, NUMPAD_ENTER:108, NUMPAD_MULTIPLY:106, NUMPAD_SUBTRACT:109, PAGE_DOWN:34, PAGE_UP:33, PERIOD:190, RIGHT:39, SHIFT:16, SPACE:32, TAB:9, UP:38, WINDOWS:91}}), a.fn.extend({propAttr:a.fn.prop || a.fn.attr, _focus:a.fn.focus, 
-  focus:function(b, c) {
-    return typeof b == "number" ? this.each(function() {
-      var d = this;
+  e.extend(e.ui, {version:"1.9.1", keyCode:{BACKSPACE:8, COMMA:188, DELETE:46, DOWN:40, END:35, ENTER:13, ESCAPE:27, HOME:36, LEFT:37, NUMPAD_ADD:107, NUMPAD_DECIMAL:110, NUMPAD_DIVIDE:111, NUMPAD_ENTER:108, NUMPAD_MULTIPLY:106, NUMPAD_SUBTRACT:109, PAGE_DOWN:34, PAGE_UP:33, PERIOD:190, RIGHT:39, SPACE:32, TAB:9, UP:38}}), e.fn.extend({_focus:e.fn.focus, focus:function(t, n) {
+    return typeof t == "number" ? this.each(function() {
+      var r = this;
       setTimeout(function() {
-        a(d).focus(), c && c.call(d)
-      }, b)
+        e(r).focus(), n && n.call(r)
+      }, t)
     }) : this._focus.apply(this, arguments)
   }, scrollParent:function() {
-    var b;
-    return a.browser.msie && /(static|relative)/.test(this.css("position")) || /absolute/.test(this.css("position")) ? b = this.parents().filter(function() {
-      return/(relative|absolute|fixed)/.test(a.curCSS(this, "position", 1)) && /(auto|scroll)/.test(a.curCSS(this, "overflow", 1) + a.curCSS(this, "overflow-y", 1) + a.curCSS(this, "overflow-x", 1))
-    }).eq(0) : b = this.parents().filter(function() {
-      return/(auto|scroll)/.test(a.curCSS(this, "overflow", 1) + a.curCSS(this, "overflow-y", 1) + a.curCSS(this, "overflow-x", 1))
-    }).eq(0), /fixed/.test(this.css("position")) || !b.length ? a(document) : b
-  }, zIndex:function(c) {
-    if(c !== b) {
-      return this.css("zIndex", c)
+    var t;
+    return e.ui.ie && /(static|relative)/.test(this.css("position")) || /absolute/.test(this.css("position")) ? t = this.parents().filter(function() {
+      return/(relative|absolute|fixed)/.test(e.css(this, "position")) && /(auto|scroll)/.test(e.css(this, "overflow") + e.css(this, "overflow-y") + e.css(this, "overflow-x"))
+    }).eq(0) : t = this.parents().filter(function() {
+      return/(auto|scroll)/.test(e.css(this, "overflow") + e.css(this, "overflow-y") + e.css(this, "overflow-x"))
+    }).eq(0), /fixed/.test(this.css("position")) || !t.length ? e(document) : t
+  }, zIndex:function(n) {
+    if(n !== t) {
+      return this.css("zIndex", n)
     }
     if(this.length) {
-      var d = a(this[0]), e, f;
-      while(d.length && d[0] !== document) {
-        e = d.css("position");
-        if(e === "absolute" || e === "relative" || e === "fixed") {
-          f = parseInt(d.css("zIndex"), 10);
-          if(!isNaN(f) && f !== 0) {
-            return f
+      var r = e(this[0]), i, s;
+      while(r.length && r[0] !== document) {
+        i = r.css("position");
+        if(i === "absolute" || i === "relative" || i === "fixed") {
+          s = parseInt(r.css("zIndex"), 10);
+          if(!isNaN(s) && s !== 0) {
+            return s
           }
         }
-        d = d.parent()
+        r = r.parent()
       }
     }
     return 0
-  }, disableSelection:function() {
-    return this.bind((a.support.selectstart ? "selectstart" : "mousedown") + ".ui-disableSelection", function(a) {
-      a.preventDefault()
+  }, uniqueId:function() {
+    return this.each(function() {
+      this.id || (this.id = "ui-id-" + ++n)
+    })
+  }, removeUniqueId:function() {
+    return this.each(function() {
+      r.test(this.id) && e(this).removeAttr("id")
+    })
+  }}), e("<a>").outerWidth(1).jquery || e.each(["Width", "Height"], function(n, r) {
+    function u(t, n, r, s) {
+      return e.each(i, function() {
+        n -= parseFloat(e.css(t, "padding" + this)) || 0, r && (n -= parseFloat(e.css(t, "border" + this + "Width")) || 0), s && (n -= parseFloat(e.css(t, "margin" + this)) || 0)
+      }), n
+    }
+    var i = r === "Width" ? ["Left", "Right"] : ["Top", "Bottom"], s = r.toLowerCase(), o = {innerWidth:e.fn.innerWidth, innerHeight:e.fn.innerHeight, outerWidth:e.fn.outerWidth, outerHeight:e.fn.outerHeight};
+    e.fn["inner" + r] = function(n) {
+      return n === t ? o["inner" + r].call(this) : this.each(function() {
+        e(this).css(s, u(this, n) + "px")
+      })
+    }, e.fn["outer" + r] = function(t, n) {
+      return typeof t != "number" ? o["outer" + r].call(this, t) : this.each(function() {
+        e(this).css(s, u(this, t, !0, n) + "px")
+      })
+    }
+  }), e.extend(e.expr[":"], {data:e.expr.createPseudo ? e.expr.createPseudo(function(t) {
+    return function(n) {
+      return!!e.data(n, t)
+    }
+  }) : function(t, n, r) {
+    return!!e.data(t, r[3])
+  }, focusable:function(t) {
+    return i(t, !isNaN(e.attr(t, "tabindex")))
+  }, tabbable:function(t) {
+    var n = e.attr(t, "tabindex"), r = isNaN(n);
+    return(r || n >= 0) && i(t, !r)
+  }}), e(function() {
+    var t = document.body, n = t.appendChild(n = document.createElement("div"));
+    n.offsetHeight, e.extend(n.style, {minHeight:"100px", height:"auto", padding:0, borderWidth:0}), e.support.minHeight = n.offsetHeight === 100, e.support.selectstart = "onselectstart" in n, t.removeChild(n).style.display = "none"
+  }), function() {
+    var t = /msie ([\w.]+)/.exec(navigator.userAgent.toLowerCase()) || [];
+    e.ui.ie = t.length ? !0 : !1, e.ui.ie6 = parseFloat(t[1], 10) === 6
+  }(), e.fn.extend({disableSelection:function() {
+    return this.bind((e.support.selectstart ? "selectstart" : "mousedown") + ".ui-disableSelection", function(e) {
+      e.preventDefault()
     })
   }, enableSelection:function() {
     return this.unbind(".ui-disableSelection")
-  }}), a.each(["Width", "Height"], function(c, d) {
-    function h(b, c, d, f) {
-      return a.each(e, function() {
-        c -= parseFloat(a.curCSS(b, "padding" + this, !0)) || 0, d && (c -= parseFloat(a.curCSS(b, "border" + this + "Width", !0)) || 0), f && (c -= parseFloat(a.curCSS(b, "margin" + this, !0)) || 0)
-      }), c
+  }}), e.extend(e.ui, {plugin:{add:function(t, n, r) {
+    var i, s = e.ui[t].prototype;
+    for(i in r) {
+      s.plugins[i] = s.plugins[i] || [], s.plugins[i].push([n, r[i]])
     }
-    var e = d === "Width" ? ["Left", "Right"] : ["Top", "Bottom"], f = d.toLowerCase(), g = {innerWidth:a.fn.innerWidth, innerHeight:a.fn.innerHeight, outerWidth:a.fn.outerWidth, outerHeight:a.fn.outerHeight};
-    a.fn["inner" + d] = function(c) {
-      return c === b ? g["inner" + d].call(this) : this.each(function() {
-        a(this).css(f, h(this, c) + "px")
-      })
-    }, a.fn["outer" + d] = function(b, c) {
-      return typeof b != "number" ? g["outer" + d].call(this, b) : this.each(function() {
-        a(this).css(f, h(this, b, !0, c) + "px")
-      })
-    }
-  }), a.extend(a.expr[":"], {data:function(b, c, d) {
-    return!!a.data(b, d[3])
-  }, focusable:function(b) {
-    return c(b, !isNaN(a.attr(b, "tabindex")))
-  }, tabbable:function(b) {
-    var d = a.attr(b, "tabindex"), e = isNaN(d);
-    return(e || d >= 0) && c(b, !e)
-  }}), a(function() {
-    var b = document.body, c = b.appendChild(c = document.createElement("div"));
-    c.offsetHeight, a.extend(c.style, {minHeight:"100px", height:"auto", padding:0, borderWidth:0}), a.support.minHeight = c.offsetHeight === 100, a.support.selectstart = "onselectstart" in c, b.removeChild(c).style.display = "none"
-  }), a.extend(a.ui, {plugin:{add:function(b, c, d) {
-    var e = a.ui[b].prototype;
-    for(var f in d) {
-      e.plugins[f] = e.plugins[f] || [], e.plugins[f].push([c, d[f]])
-    }
-  }, call:function(a, b, c) {
-    var d = a.plugins[b];
-    if(!d || !a.element[0].parentNode) {
+  }, call:function(e, t, n) {
+    var r, i = e.plugins[t];
+    if(!i || !e.element[0].parentNode || e.element[0].parentNode.nodeType === 11) {
       return
     }
-    for(var e = 0;e < d.length;e++) {
-      a.options[d[e][0]] && d[e][1].apply(a.element, c)
+    for(r = 0;r < i.length;r++) {
+      e.options[i[r][0]] && i[r][1].apply(e.element, n)
     }
-  }}, contains:function(a, b) {
-    return document.compareDocumentPosition ? a.compareDocumentPosition(b) & 16 : a !== b && a.contains(b)
-  }, hasScroll:function(b, c) {
-    if(a(b).css("overflow") === "hidden") {
+  }}, contains:e.contains, hasScroll:function(t, n) {
+    if(e(t).css("overflow") === "hidden") {
       return!1
     }
-    var d = c && c === "left" ? "scrollLeft" : "scrollTop", e = !1;
-    return b[d] > 0 ? !0 : (b[d] = 1, e = b[d] > 0, b[d] = 0, e)
-  }, isOverAxis:function(a, b, c) {
-    return a > b && a < b + c
-  }, isOver:function(b, c, d, e, f, g) {
-    return a.ui.isOverAxis(b, d, f) && a.ui.isOverAxis(c, e, g)
+    var r = n && n === "left" ? "scrollLeft" : "scrollTop", i = !1;
+    return t[r] > 0 ? !0 : (t[r] = 1, i = t[r] > 0, t[r] = 0, i)
+  }, isOverAxis:function(e, t, n) {
+    return e > t && e < t + n
+  }, isOver:function(t, n, r, i, s, o) {
+    return e.ui.isOverAxis(t, r, s) && e.ui.isOverAxis(n, i, o)
   }})
 })(jQuery);
-(function(a, b) {
-  if(a.cleanData) {
-    var c = a.cleanData;
-    a.cleanData = function(b) {
-      for(var d = 0, e;(e = b[d]) != null;d++) {
-        try {
-          a(e).triggerHandler("remove")
-        }catch(f) {
-        }
+(function(e, t) {
+  var n = 0, r = Array.prototype.slice, i = e.cleanData;
+  e.cleanData = function(t) {
+    for(var n = 0, r;(r = t[n]) != null;n++) {
+      try {
+        e(r).triggerHandler("remove")
+      }catch(s) {
       }
-      c(b)
     }
-  }else {
-    var d = a.fn.remove;
-    a.fn.remove = function(b, c) {
-      return this.each(function() {
-        return c || (!b || a.filter(b, [this]).length) && a("*", this).add([this]).each(function() {
-          try {
-            a(this).triggerHandler("remove")
-          }catch(b) {
-          }
-        }), d.call(a(this), b, c)
-      })
+    i(t)
+  }, e.widget = function(t, n, r) {
+    var i, s, o, u, a = t.split(".")[0];
+    t = t.split(".")[1], i = a + "-" + t, r || (r = n, n = e.Widget), e.expr[":"][i.toLowerCase()] = function(t) {
+      return!!e.data(t, i)
+    }, e[a] = e[a] || {}, s = e[a][t], o = e[a][t] = function(e, t) {
+      if(!this._createWidget) {
+        return new o(e, t)
+      }
+      arguments.length && this._createWidget(e, t)
+    }, e.extend(o, s, {version:r.version, _proto:e.extend({}, r), _childConstructors:[]}), u = new n, u.options = e.widget.extend({}, u.options), e.each(r, function(t, i) {
+      e.isFunction(i) && (r[t] = function() {
+        var e = function() {
+          return n.prototype[t].apply(this, arguments)
+        }, r = function(e) {
+          return n.prototype[t].apply(this, e)
+        };
+        return function() {
+          var t = this._super, n = this._superApply, s;
+          return this._super = e, this._superApply = r, s = i.apply(this, arguments), this._super = t, this._superApply = n, s
+        }
+      }())
+    }), o.prototype = e.widget.extend(u, {widgetEventPrefix:u.widgetEventPrefix || t}, r, {constructor:o, namespace:a, widgetName:t, widgetBaseClass:i, widgetFullName:i}), s ? (e.each(s._childConstructors, function(t, n) {
+      var r = n.prototype;
+      e.widget(r.namespace + "." + r.widgetName, o, n._proto)
+    }), delete s._childConstructors) : n._childConstructors.push(o), e.widget.bridge(t, o)
+  }, e.widget.extend = function(n) {
+    var i = r.call(arguments, 1), s = 0, o = i.length, u, a;
+    for(;s < o;s++) {
+      for(u in i[s]) {
+        a = i[s][u], i[s].hasOwnProperty(u) && a !== t && (e.isPlainObject(a) ? n[u] = e.isPlainObject(n[u]) ? e.widget.extend({}, n[u], a) : e.widget.extend({}, a) : n[u] = a)
+      }
     }
-  }
-  a.widget = function(b, c, d) {
-    var e = b.split(".")[0], f;
-    b = b.split(".")[1], f = e + "-" + b, d || (d = c, c = a.Widget), a.expr[":"][f] = function(c) {
-      return!!a.data(c, b)
-    }, a[e] = a[e] || {}, a[e][b] = function(a, b) {
-      arguments.length && this._createWidget(a, b)
-    };
-    var g = new c;
-    g.options = a.extend(!0, {}, g.options), a[e][b].prototype = a.extend(!0, g, {namespace:e, widgetName:b, widgetEventPrefix:a[e][b].prototype.widgetEventPrefix || b, widgetBaseClass:f}, d), a.widget.bridge(b, a[e][b])
-  }, a.widget.bridge = function(c, d) {
-    a.fn[c] = function(e) {
-      var f = typeof e == "string", g = Array.prototype.slice.call(arguments, 1), h = this;
-      return e = !f && g.length ? a.extend.apply(null, [!0, e].concat(g)) : e, f && e.charAt(0) === "_" ? h : (f ? this.each(function() {
-        var d = a.data(this, c), f = d && a.isFunction(d[e]) ? d[e].apply(d, g) : d;
-        if(f !== d && f !== b) {
-          return h = f, !1
+    return n
+  }, e.widget.bridge = function(n, i) {
+    var s = i.prototype.widgetFullName;
+    e.fn[n] = function(o) {
+      var u = typeof o == "string", a = r.call(arguments, 1), f = this;
+      return o = !u && a.length ? e.widget.extend.apply(null, [o].concat(a)) : o, u ? this.each(function() {
+        var r, i = e.data(this, s);
+        if(!i) {
+          return e.error("cannot call methods on " + n + " prior to initialization; " + "attempted to call method '" + o + "'")
+        }
+        if(!e.isFunction(i[o]) || o.charAt(0) === "_") {
+          return e.error("no such method '" + o + "' for " + n + " widget instance")
+        }
+        r = i[o].apply(i, a);
+        if(r !== i && r !== t) {
+          return f = r && r.jquery ? f.pushStack(r.get()) : r, !1
         }
       }) : this.each(function() {
-        var b = a.data(this, c);
-        b ? b.option(e || {})._init() : a.data(this, c, new d(e, this))
-      }), h)
+        var t = e.data(this, s);
+        t ? t.option(o || {})._init() : new i(o, this)
+      }), f
     }
-  }, a.Widget = function(a, b) {
-    arguments.length && this._createWidget(a, b)
-  }, a.Widget.prototype = {widgetName:"widget", widgetEventPrefix:"", options:{disabled:!1}, _createWidget:function(b, c) {
-    a.data(c, this.widgetName, this), this.element = a(c), this.options = a.extend(!0, {}, this.options, this._getCreateOptions(), b);
-    var d = this;
-    this.element.bind("remove." + this.widgetName, function() {
-      d.destroy()
-    }), this._create(), this._trigger("create"), this._init()
-  }, _getCreateOptions:function() {
-    return a.metadata && a.metadata.get(this.element[0])[this.widgetName]
-  }, _create:function() {
-  }, _init:function() {
-  }, destroy:function() {
-    this.element.unbind("." + this.widgetName).removeData(this.widgetName), this.widget().unbind("." + this.widgetName).removeAttr("aria-disabled").removeClass(this.widgetBaseClass + "-disabled " + "ui-state-disabled")
-  }, widget:function() {
+  }, e.Widget = function() {
+  }, e.Widget._childConstructors = [], e.Widget.prototype = {widgetName:"widget", widgetEventPrefix:"", defaultElement:"<div>", options:{disabled:!1, create:null}, _createWidget:function(t, r) {
+    r = e(r || this.defaultElement || this)[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(this.element, {remove:function(e) {
+      e.target === r && this.destroy()
+    }}), this.document = e(r.style ? r.ownerDocument : r.document || r), this.window = e(this.document[0].defaultView || this.document[0].parentWindow)), this._create(), this._trigger("create", null, this._getCreateEventData()), this._init()
+  }, _getCreateOptions:e.noop, _getCreateEventData:e.noop, _create:e.noop, _init:e.noop, destroy:function() {
+    this._destroy(), this.element.unbind(this.eventNamespace).removeData(this.widgetName).removeData(this.widgetFullName).removeData(e.camelCase(this.widgetFullName)), this.widget().unbind(this.eventNamespace).removeAttr("aria-disabled").removeClass(this.widgetFullName + "-disabled " + "ui-state-disabled"), this.bindings.unbind(this.eventNamespace), this.hoverable.removeClass("ui-state-hover"), this.focusable.removeClass("ui-state-focus")
+  }, _destroy:e.noop, widget:function() {
     return this.element
-  }, option:function(c, d) {
-    var e = c;
+  }, option:function(n, r) {
+    var i = n, s, o, u;
     if(arguments.length === 0) {
-      return a.extend({}, this.options)
+      return e.widget.extend({}, this.options)
     }
-    if(typeof c == "string") {
-      if(d === b) {
-        return this.options[c]
+    if(typeof n == "string") {
+      i = {}, s = n.split("."), n = s.shift();
+      if(s.length) {
+        o = i[n] = e.widget.extend({}, this.options[n]);
+        for(u = 0;u < s.length - 1;u++) {
+          o[s[u]] = o[s[u]] || {}, o = o[s[u]]
+        }
+        n = s.pop();
+        if(r === t) {
+          return o[n] === t ? null : o[n]
+        }
+        o[n] = r
+      }else {
+        if(r === t) {
+          return this.options[n] === t ? null : this.options[n]
+        }
+        i[n] = r
       }
-      e = {}, e[c] = d
     }
-    return this._setOptions(e), this
-  }, _setOptions:function(b) {
-    var c = this;
-    return a.each(b, function(a, b) {
-      c._setOption(a, b)
-    }), this
-  }, _setOption:function(a, b) {
-    return this.options[a] = b, a === "disabled" && this.widget()[b ? "addClass" : "removeClass"](this.widgetBaseClass + "-disabled" + " " + "ui-state-disabled").attr("aria-disabled", b), this
+    return this._setOptions(i), this
+  }, _setOptions:function(e) {
+    var t;
+    for(t in e) {
+      this._setOption(t, e[t])
+    }
+    return this
+  }, _setOption:function(e, t) {
+    return this.options[e] = t, e === "disabled" && (this.widget().toggleClass(this.widgetFullName + "-disabled ui-state-disabled", !!t).attr("aria-disabled", t), this.hoverable.removeClass("ui-state-hover"), this.focusable.removeClass("ui-state-focus")), this
   }, enable:function() {
     return this._setOption("disabled", !1)
   }, disable:function() {
     return this._setOption("disabled", !0)
-  }, _trigger:function(b, c, d) {
-    var e, f, g = this.options[b];
-    d = d || {}, c = a.Event(c), c.type = (b === this.widgetEventPrefix ? b : this.widgetEventPrefix + b).toLowerCase(), c.target = this.element[0], f = c.originalEvent;
-    if(f) {
-      for(e in f) {
-        e in c || (c[e] = f[e])
+  }, _on:function(t, n) {
+    var r, i = this;
+    n ? (t = r = e(t), this.bindings = this.bindings.add(t)) : (n = t, t = this.element, r = this.widget()), e.each(n, function(n, s) {
+      function o() {
+        if(i.options.disabled === !0 || e(this).hasClass("ui-state-disabled")) {
+          return
+        }
+        return(typeof s == "string" ? i[s] : s).apply(i, arguments)
+      }
+      typeof s != "string" && (o.guid = s.guid = s.guid || o.guid || e.guid++);
+      var u = n.match(/^(\w+)\s*(.*)$/), a = u[1] + i.eventNamespace, f = u[2];
+      f ? r.delegate(f, a, o) : t.bind(a, o)
+    })
+  }, _off:function(e, t) {
+    t = (t || "").split(" ").join(this.eventNamespace + " ") + this.eventNamespace, e.unbind(t).undelegate(t)
+  }, _delay:function(e, t) {
+    function n() {
+      return(typeof e == "string" ? r[e] : e).apply(r, arguments)
+    }
+    var r = this;
+    return setTimeout(n, t || 0)
+  }, _hoverable:function(t) {
+    this.hoverable = this.hoverable.add(t), this._on(t, {mouseenter:function(t) {
+      e(t.currentTarget).addClass("ui-state-hover")
+    }, mouseleave:function(t) {
+      e(t.currentTarget).removeClass("ui-state-hover")
+    }})
+  }, _focusable:function(t) {
+    this.focusable = this.focusable.add(t), this._on(t, {focusin:function(t) {
+      e(t.currentTarget).addClass("ui-state-focus")
+    }, focusout:function(t) {
+      e(t.currentTarget).removeClass("ui-state-focus")
+    }})
+  }, _trigger:function(t, n, r) {
+    var i, s, o = this.options[t];
+    r = r || {}, n = e.Event(n), n.type = (t === this.widgetEventPrefix ? t : this.widgetEventPrefix + t).toLowerCase(), n.target = this.element[0], s = n.originalEvent;
+    if(s) {
+      for(i in s) {
+        i in n || (n[i] = s[i])
       }
     }
-    return this.element.trigger(c, d), !(a.isFunction(g) && g.call(this.element[0], c, d) === !1 || c.isDefaultPrevented())
-  }}
+    return this.element.trigger(n, r), !(e.isFunction(o) && o.apply(this.element[0], [n].concat(r)) === !1 || n.isDefaultPrevented())
+  }}, e.each({show:"fadeIn", hide:"fadeOut"}, function(t, n) {
+    e.Widget.prototype["_" + t] = function(r, i, s) {
+      typeof i == "string" && (i = {effect:i});
+      var o, u = i ? i === !0 || typeof i == "number" ? n : i.effect || n : t;
+      i = i || {}, typeof i == "number" && (i = {duration:i}), o = !e.isEmptyObject(i), i.complete = s, i.delay && r.delay(i.delay), o && e.effects && (e.effects.effect[u] || e.uiBackCompat !== !1 && e.effects[u]) ? r[t](i) : u !== t && r[u] ? r[u](i.duration, i.easing, s) : r.queue(function(n) {
+        e(this)[t](), s && s.call(r[0]), n()
+      })
+    }
+  }), e.uiBackCompat !== !1 && (e.Widget.prototype._getCreateOptions = function() {
+    return e.metadata && e.metadata.get(this.element[0])[this.widgetName]
+  })
 })(jQuery);
-(function(a, b) {
-  var c = !1;
-  a(document).mouseup(function(a) {
-    c = !1
-  }), a.widget("ui.mouse", {options:{cancel:":input,option", distance:1, delay:0}, _mouseInit:function() {
-    var b = this;
-    this.element.bind("mousedown." + this.widgetName, function(a) {
-      return b._mouseDown(a)
-    }).bind("click." + this.widgetName, function(c) {
-      if(!0 === a.data(c.target, b.widgetName + ".preventClickEvent")) {
-        return a.removeData(c.target, b.widgetName + ".preventClickEvent"), c.stopImmediatePropagation(), !1
+(function(e, t) {
+  var n = !1;
+  e(document).mouseup(function(e) {
+    n = !1
+  }), e.widget("ui.mouse", {version:"1.9.1", options:{cancel:"input,textarea,button,select,option", distance:1, delay:0}, _mouseInit:function() {
+    var t = this;
+    this.element.bind("mousedown." + this.widgetName, function(e) {
+      return t._mouseDown(e)
+    }).bind("click." + this.widgetName, function(n) {
+      if(!0 === e.data(n.target, t.widgetName + ".preventClickEvent")) {
+        return e.removeData(n.target, t.widgetName + ".preventClickEvent"), n.stopImmediatePropagation(), !1
       }
     }), this.started = !1
   }, _mouseDestroy:function() {
-    this.element.unbind("." + this.widgetName), a(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate)
-  }, _mouseDown:function(b) {
-    if(c) {
+    this.element.unbind("." + this.widgetName), this._mouseMoveDelegate && e(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate)
+  }, _mouseDown:function(t) {
+    if(n) {
       return
     }
-    this._mouseStarted && this._mouseUp(b), this._mouseDownEvent = b;
-    var d = this, e = b.which == 1, f = typeof this.options.cancel == "string" && b.target.nodeName ? a(b.target).closest(this.options.cancel).length : !1;
-    if(!e || f || !this._mouseCapture(b)) {
+    this._mouseStarted && this._mouseUp(t), this._mouseDownEvent = t;
+    var r = this, i = t.which === 1, s = typeof this.options.cancel == "string" && t.target.nodeName ? e(t.target).closest(this.options.cancel).length : !1;
+    if(!i || s || !this._mouseCapture(t)) {
       return!0
     }
     this.mouseDelayMet = !this.options.delay, this.mouseDelayMet || (this._mouseDelayTimer = setTimeout(function() {
-      d.mouseDelayMet = !0
+      r.mouseDelayMet = !0
     }, this.options.delay));
-    if(this._mouseDistanceMet(b) && this._mouseDelayMet(b)) {
-      this._mouseStarted = this._mouseStart(b) !== !1;
+    if(this._mouseDistanceMet(t) && this._mouseDelayMet(t)) {
+      this._mouseStarted = this._mouseStart(t) !== !1;
       if(!this._mouseStarted) {
-        return b.preventDefault(), !0
+        return t.preventDefault(), !0
       }
     }
-    return!0 === a.data(b.target, this.widgetName + ".preventClickEvent") && a.removeData(b.target, this.widgetName + ".preventClickEvent"), this._mouseMoveDelegate = function(a) {
-      return d._mouseMove(a)
-    }, this._mouseUpDelegate = function(a) {
-      return d._mouseUp(a)
-    }, a(document).bind("mousemove." + this.widgetName, this._mouseMoveDelegate).bind("mouseup." + this.widgetName, this._mouseUpDelegate), b.preventDefault(), c = !0, !0
-  }, _mouseMove:function(b) {
-    return!a.browser.msie || document.documentMode >= 9 || !!b.button ? this._mouseStarted ? (this._mouseDrag(b), b.preventDefault()) : (this._mouseDistanceMet(b) && this._mouseDelayMet(b) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, b) !== !1, this._mouseStarted ? this._mouseDrag(b) : this._mouseUp(b)), !this._mouseStarted) : this._mouseUp(b)
-  }, _mouseUp:function(b) {
-    return a(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate), this._mouseStarted && (this._mouseStarted = !1, b.target == this._mouseDownEvent.target && a.data(b.target, this.widgetName + ".preventClickEvent", !0), this._mouseStop(b)), !1
-  }, _mouseDistanceMet:function(a) {
-    return Math.max(Math.abs(this._mouseDownEvent.pageX - a.pageX), Math.abs(this._mouseDownEvent.pageY - a.pageY)) >= this.options.distance
-  }, _mouseDelayMet:function(a) {
+    return!0 === e.data(t.target, this.widgetName + ".preventClickEvent") && e.removeData(t.target, this.widgetName + ".preventClickEvent"), this._mouseMoveDelegate = function(e) {
+      return r._mouseMove(e)
+    }, this._mouseUpDelegate = function(e) {
+      return r._mouseUp(e)
+    }, e(document).bind("mousemove." + this.widgetName, this._mouseMoveDelegate).bind("mouseup." + this.widgetName, this._mouseUpDelegate), t.preventDefault(), n = !0, !0
+  }, _mouseMove:function(t) {
+    return!e.ui.ie || document.documentMode >= 9 || !!t.button ? this._mouseStarted ? (this._mouseDrag(t), t.preventDefault()) : (this._mouseDistanceMet(t) && this._mouseDelayMet(t) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, t) !== !1, this._mouseStarted ? this._mouseDrag(t) : this._mouseUp(t)), !this._mouseStarted) : this._mouseUp(t)
+  }, _mouseUp:function(t) {
+    return e(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate), this._mouseStarted && (this._mouseStarted = !1, t.target === this._mouseDownEvent.target && e.data(t.target, this.widgetName + ".preventClickEvent", !0), this._mouseStop(t)), !1
+  }, _mouseDistanceMet:function(e) {
+    return Math.max(Math.abs(this._mouseDownEvent.pageX - e.pageX), Math.abs(this._mouseDownEvent.pageY - e.pageY)) >= this.options.distance
+  }, _mouseDelayMet:function(e) {
     return this.mouseDelayMet
-  }, _mouseStart:function(a) {
-  }, _mouseDrag:function(a) {
-  }, _mouseStop:function(a) {
-  }, _mouseCapture:function(a) {
+  }, _mouseStart:function(e) {
+  }, _mouseDrag:function(e) {
+  }, _mouseStop:function(e) {
+  }, _mouseCapture:function(e) {
     return!0
   }})
 })(jQuery);
-(function(a, b) {
-  a.ui = a.ui || {};
-  var c = /left|center|right/, d = /top|center|bottom/, e = "center", f = {}, g = a.fn.position, h = a.fn.offset;
-  a.fn.position = function(b) {
-    if(!b || !b.of) {
-      return g.apply(this, arguments)
+(function(e, t) {
+  function h(e, t, n) {
+    return[parseInt(e[0], 10) * (l.test(e[0]) ? t / 100 : 1), parseInt(e[1], 10) * (l.test(e[1]) ? n / 100 : 1)]
+  }
+  function p(t, n) {
+    return parseInt(e.css(t, n), 10) || 0
+  }
+  e.ui = e.ui || {};
+  var n, r = Math.max, i = Math.abs, s = Math.round, o = /left|center|right/, u = /top|center|bottom/, a = /[\+\-]\d+%?/, f = /^\w+/, l = /%$/, c = e.fn.position;
+  e.position = {scrollbarWidth:function() {
+    if(n !== t) {
+      return n
     }
-    b = a.extend({}, b);
-    var h = a(b.of), i = h[0], j = (b.collision || "flip").split(" "), k = b.offset ? b.offset.split(" ") : [0, 0], l, m, n;
-    return i.nodeType === 9 ? (l = h.width(), m = h.height(), n = {top:0, left:0}) : i.setTimeout ? (l = h.width(), m = h.height(), n = {top:h.scrollTop(), left:h.scrollLeft()}) : i.preventDefault ? (b.at = "left top", l = m = 0, n = {top:b.of.pageY, left:b.of.pageX}) : (l = h.outerWidth(), m = h.outerHeight(), n = h.offset()), a.each(["my", "at"], function() {
-      var a = (b[this] || "").split(" ");
-      a.length === 1 && (a = c.test(a[0]) ? a.concat([e]) : d.test(a[0]) ? [e].concat(a) : [e, e]), a[0] = c.test(a[0]) ? a[0] : e, a[1] = d.test(a[1]) ? a[1] : e, b[this] = a
-    }), j.length === 1 && (j[1] = j[0]), k[0] = parseInt(k[0], 10) || 0, k.length === 1 && (k[1] = k[0]), k[1] = parseInt(k[1], 10) || 0, b.at[0] === "right" ? n.left += l : b.at[0] === e && (n.left += l / 2), b.at[1] === "bottom" ? n.top += m : b.at[1] === e && (n.top += m / 2), n.left += k[0], n.top += k[1], this.each(function() {
-      var c = a(this), d = c.outerWidth(), g = c.outerHeight(), h = parseInt(a.curCSS(this, "marginLeft", !0)) || 0, i = parseInt(a.curCSS(this, "marginTop", !0)) || 0, o = d + h + (parseInt(a.curCSS(this, "marginRight", !0)) || 0), p = g + i + (parseInt(a.curCSS(this, "marginBottom", !0)) || 0), q = a.extend({}, n), r;
-      b.my[0] === "right" ? q.left -= d : b.my[0] === e && (q.left -= d / 2), b.my[1] === "bottom" ? q.top -= g : b.my[1] === e && (q.top -= g / 2), f.fractions || (q.left = Math.round(q.left), q.top = Math.round(q.top)), r = {left:q.left - h, top:q.top - i}, a.each(["left", "top"], function(c, e) {
-        a.ui.position[j[c]] && a.ui.position[j[c]][e](q, {targetWidth:l, targetHeight:m, elemWidth:d, elemHeight:g, collisionPosition:r, collisionWidth:o, collisionHeight:p, offset:k, my:b.my, at:b.at})
-      }), a.fn.bgiframe && c.bgiframe(), c.offset(a.extend(q, {using:b.using}))
+    var r, i, s = e("<div style='display:block;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>"), o = s.children()[0];
+    return e("body").append(s), r = o.offsetWidth, s.css("overflow", "scroll"), i = o.offsetWidth, r === i && (i = s[0].clientWidth), s.remove(), n = r - i
+  }, getScrollInfo:function(t) {
+    var n = t.isWindow ? "" : t.element.css("overflow-x"), r = t.isWindow ? "" : t.element.css("overflow-y"), i = n === "scroll" || n === "auto" && t.width < t.element[0].scrollWidth, s = r === "scroll" || r === "auto" && t.height < t.element[0].scrollHeight;
+    return{width:i ? e.position.scrollbarWidth() : 0, height:s ? e.position.scrollbarWidth() : 0}
+  }, getWithinInfo:function(t) {
+    var n = e(t || window), r = e.isWindow(n[0]);
+    return{element:n, isWindow:r, offset:n.offset() || {left:0, top:0}, scrollLeft:n.scrollLeft(), scrollTop:n.scrollTop(), width:r ? n.width() : n.outerWidth(), height:r ? n.height() : n.outerHeight()}
+  }}, e.fn.position = function(t) {
+    if(!t || !t.of) {
+      return c.apply(this, arguments)
+    }
+    t = e.extend({}, t);
+    var n, l, d, v, m, g = e(t.of), y = e.position.getWithinInfo(t.within), b = e.position.getScrollInfo(y), w = g[0], E = (t.collision || "flip").split(" "), S = {};
+    return w.nodeType === 9 ? (l = g.width(), d = g.height(), v = {top:0, left:0}) : e.isWindow(w) ? (l = g.width(), d = g.height(), v = {top:g.scrollTop(), left:g.scrollLeft()}) : w.preventDefault ? (t.at = "left top", l = d = 0, v = {top:w.pageY, left:w.pageX}) : (l = g.outerWidth(), d = g.outerHeight(), v = g.offset()), m = e.extend({}, v), e.each(["my", "at"], function() {
+      var e = (t[this] || "").split(" "), n, r;
+      e.length === 1 && (e = o.test(e[0]) ? e.concat(["center"]) : u.test(e[0]) ? ["center"].concat(e) : ["center", "center"]), e[0] = o.test(e[0]) ? e[0] : "center", e[1] = u.test(e[1]) ? e[1] : "center", n = a.exec(e[0]), r = a.exec(e[1]), S[this] = [n ? n[0] : 0, r ? r[0] : 0], t[this] = [f.exec(e[0])[0], f.exec(e[1])[0]]
+    }), E.length === 1 && (E[1] = E[0]), t.at[0] === "right" ? m.left += l : t.at[0] === "center" && (m.left += l / 2), t.at[1] === "bottom" ? m.top += d : t.at[1] === "center" && (m.top += d / 2), n = h(S.at, l, d), m.left += n[0], m.top += n[1], this.each(function() {
+      var o, u, a = e(this), f = a.outerWidth(), c = a.outerHeight(), w = p(this, "marginLeft"), x = p(this, "marginTop"), T = f + w + p(this, "marginRight") + b.width, N = c + x + p(this, "marginBottom") + b.height, C = e.extend({}, m), k = h(S.my, a.outerWidth(), a.outerHeight());
+      t.my[0] === "right" ? C.left -= f : t.my[0] === "center" && (C.left -= f / 2), t.my[1] === "bottom" ? C.top -= c : t.my[1] === "center" && (C.top -= c / 2), C.left += k[0], C.top += k[1], e.support.offsetFractions || (C.left = s(C.left), C.top = s(C.top)), o = {marginLeft:w, marginTop:x}, e.each(["left", "top"], function(r, i) {
+        e.ui.position[E[r]] && e.ui.position[E[r]][i](C, {targetWidth:l, targetHeight:d, elemWidth:f, elemHeight:c, collisionPosition:o, collisionWidth:T, collisionHeight:N, offset:[n[0] + k[0], n[1] + k[1]], my:t.my, at:t.at, within:y, elem:a})
+      }), e.fn.bgiframe && a.bgiframe(), t.using && (u = function(e) {
+        var n = v.left - C.left, s = n + l - f, o = v.top - C.top, u = o + d - c, h = {target:{element:g, left:v.left, top:v.top, width:l, height:d}, element:{element:a, left:C.left, top:C.top, width:f, height:c}, horizontal:s < 0 ? "left" : n > 0 ? "right" : "center", vertical:u < 0 ? "top" : o > 0 ? "bottom" : "middle"};
+        l < f && i(n + s) < l && (h.horizontal = "center"), d < c && i(o + u) < d && (h.vertical = "middle"), r(i(n), i(s)) > r(i(o), i(u)) ? h.important = "horizontal" : h.important = "vertical", t.using.call(this, e, h)
+      }), a.offset(e.extend(C, {using:u}))
     })
-  }, a.ui.position = {fit:{left:function(b, c) {
-    var d = a(window), e = c.collisionPosition.left + c.collisionWidth - d.width() - d.scrollLeft();
-    b.left = e > 0 ? b.left - e : Math.max(b.left - c.collisionPosition.left, b.left)
-  }, top:function(b, c) {
-    var d = a(window), e = c.collisionPosition.top + c.collisionHeight - d.height() - d.scrollTop();
-    b.top = e > 0 ? b.top - e : Math.max(b.top - c.collisionPosition.top, b.top)
-  }}, flip:{left:function(b, c) {
-    if(c.at[0] === e) {
-      return
+  }, e.ui.position = {fit:{left:function(e, t) {
+    var n = t.within, i = n.isWindow ? n.scrollLeft : n.offset.left, s = n.width, o = e.left - t.collisionPosition.marginLeft, u = i - o, a = o + t.collisionWidth - s - i, f;
+    t.collisionWidth > s ? u > 0 && a <= 0 ? (f = e.left + u + t.collisionWidth - s - i, e.left += u - f) : a > 0 && u <= 0 ? e.left = i : u > a ? e.left = i + s - t.collisionWidth : e.left = i : u > 0 ? e.left += u : a > 0 ? e.left -= a : e.left = r(e.left - o, e.left)
+  }, top:function(e, t) {
+    var n = t.within, i = n.isWindow ? n.scrollTop : n.offset.top, s = t.within.height, o = e.top - t.collisionPosition.marginTop, u = i - o, a = o + t.collisionHeight - s - i, f;
+    t.collisionHeight > s ? u > 0 && a <= 0 ? (f = e.top + u + t.collisionHeight - s - i, e.top += u - f) : a > 0 && u <= 0 ? e.top = i : u > a ? e.top = i + s - t.collisionHeight : e.top = i : u > 0 ? e.top += u : a > 0 ? e.top -= a : e.top = r(e.top - o, e.top)
+  }}, flip:{left:function(e, t) {
+    var n = t.within, r = n.offset.left + n.scrollLeft, s = n.width, o = n.isWindow ? n.scrollLeft : n.offset.left, u = e.left - t.collisionPosition.marginLeft, a = u - o, f = u + t.collisionWidth - s - o, l = t.my[0] === "left" ? -t.elemWidth : t.my[0] === "right" ? t.elemWidth : 0, c = t.at[0] === "left" ? t.targetWidth : t.at[0] === "right" ? -t.targetWidth : 0, h = -2 * t.offset[0], p, d;
+    if(a < 0) {
+      p = e.left + l + c + h + t.collisionWidth - s - r;
+      if(p < 0 || p < i(a)) {
+        e.left += l + c + h
+      }
+    }else {
+      if(f > 0) {
+        d = e.left - t.collisionPosition.marginLeft + l + c + h - o;
+        if(d > 0 || i(d) < f) {
+          e.left += l + c + h
+        }
+      }
     }
-    var d = a(window), f = c.collisionPosition.left + c.collisionWidth - d.width() - d.scrollLeft(), g = c.my[0] === "left" ? -c.elemWidth : c.my[0] === "right" ? c.elemWidth : 0, h = c.at[0] === "left" ? c.targetWidth : -c.targetWidth, i = -2 * c.offset[0];
-    b.left += c.collisionPosition.left < 0 ? g + h + i : f > 0 ? g + h + i : 0
-  }, top:function(b, c) {
-    if(c.at[1] === e) {
-      return
+  }, top:function(e, t) {
+    var n = t.within, r = n.offset.top + n.scrollTop, s = n.height, o = n.isWindow ? n.scrollTop : n.offset.top, u = e.top - t.collisionPosition.marginTop, a = u - o, f = u + t.collisionHeight - s - o, l = t.my[1] === "top", c = l ? -t.elemHeight : t.my[1] === "bottom" ? t.elemHeight : 0, h = t.at[1] === "top" ? t.targetHeight : t.at[1] === "bottom" ? -t.targetHeight : 0, p = -2 * t.offset[1], d, v;
+    a < 0 ? (v = e.top + c + h + p + t.collisionHeight - s - r, e.top + c + h + p > a && (v < 0 || v < i(a)) && (e.top += c + h + p)) : f > 0 && (d = e.top - t.collisionPosition.marginTop + c + h + p - o, e.top + c + h + p > f && (d > 0 || i(d) < f) && (e.top += c + h + p))
+  }}, flipfit:{left:function() {
+    e.ui.position.flip.left.apply(this, arguments), e.ui.position.fit.left.apply(this, arguments)
+  }, top:function() {
+    e.ui.position.flip.top.apply(this, arguments), e.ui.position.fit.top.apply(this, arguments)
+  }}}, function() {
+    var t, n, r, i, s, o = document.getElementsByTagName("body")[0], u = document.createElement("div");
+    t = document.createElement(o ? "div" : "body"), r = {visibility:"hidden", width:0, height:0, border:0, margin:0, background:"none"}, o && e.extend(r, {position:"absolute", left:"-1000px", top:"-1000px"});
+    for(s in r) {
+      t.style[s] = r[s]
     }
-    var d = a(window), f = c.collisionPosition.top + c.collisionHeight - d.height() - d.scrollTop(), g = c.my[1] === "top" ? -c.elemHeight : c.my[1] === "bottom" ? c.elemHeight : 0, h = c.at[1] === "top" ? c.targetHeight : -c.targetHeight, i = -2 * c.offset[1];
-    b.top += c.collisionPosition.top < 0 ? g + h + i : f > 0 ? g + h + i : 0
-  }}}, a.offset.setOffset || (a.offset.setOffset = function(b, c) {
-    /static/.test(a.curCSS(b, "position")) && (b.style.position = "relative");
-    var d = a(b), e = d.offset(), f = parseInt(a.curCSS(b, "top", !0), 10) || 0, g = parseInt(a.curCSS(b, "left", !0), 10) || 0, h = {top:c.top - e.top + f, left:c.left - e.left + g};
-    "using" in c ? c.using.call(b, h) : d.css(h)
-  }, a.fn.offset = function(b) {
-    var c = this[0];
-    return!c || !c.ownerDocument ? null : b ? this.each(function() {
-      a.offset.setOffset(this, b)
-    }) : h.call(this)
-  }), function() {
-    var b = document.getElementsByTagName("body")[0], c = document.createElement("div"), d, e, g, h, i;
-    d = document.createElement(b ? "div" : "body"), g = {visibility:"hidden", width:0, height:0, border:0, margin:0, background:"none"}, b && a.extend(g, {position:"absolute", left:"-1000px", top:"-1000px"});
-    for(var j in g) {
-      d.style[j] = g[j]
+    t.appendChild(u), n = o || document.documentElement, n.insertBefore(t, n.firstChild), u.style.cssText = "position: absolute; left: 10.7432222px;", i = e(u).offset().left, e.support.offsetFractions = i > 10 && i < 11, t.innerHTML = "", n.removeChild(t)
+  }(), e.uiBackCompat !== !1 && function(e) {
+    var n = e.fn.position;
+    e.fn.position = function(r) {
+      if(!r || !r.offset) {
+        return n.call(this, r)
+      }
+      var i = r.offset.split(" "), s = r.at.split(" ");
+      return i.length === 1 && (i[1] = i[0]), /^\d/.test(i[0]) && (i[0] = "+" + i[0]), /^\d/.test(i[1]) && (i[1] = "+" + i[1]), s.length === 1 && (/left|center|right/.test(s[0]) ? s[1] = "center" : (s[1] = s[0], s[0] = "center")), n.call(this, e.extend(r, {at:s[0] + i[0] + " " + s[1] + i[1], offset:t}))
     }
-    d.appendChild(c), e = b || document.documentElement, e.insertBefore(d, e.firstChild), c.style.cssText = "position: absolute; left: 10.7432222px; top: 10.432325px; height: 30px; width: 201px;", h = a(c).offset(function(a, b) {
-      return b
-    }).offset(), d.innerHTML = "", e.removeChild(d), i = h.top + h.left + (b ? 2E3 : 0), f.fractions = i > 21 && i < 22
-  }()
+  }(jQuery)
 })(jQuery);
-(function(a, b) {
-  a.widget("ui.draggable", a.ui.mouse, {widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
+(function(e, t) {
+  e.widget("ui.draggable", e.ui.mouse, {version:"1.9.1", widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
     this.options.helper == "original" && !/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative"), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
-  }, destroy:function() {
-    if(!this.element.data("draggable")) {
-      return
-    }
-    return this.element.removeData("draggable").unbind(".draggable").removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled"), this._mouseDestroy(), this
-  }, _mouseCapture:function(b) {
-    var c = this.options;
-    return this.helper || c.disabled || a(b.target).is(".ui-resizable-handle") ? !1 : (this.handle = this._getHandle(b), this.handle ? (c.iframeFix && a(c.iframeFix === !0 ? "iframe" : c.iframeFix).each(function() {
-      a('<div class="ui-draggable-iframeFix" style="background: #fff;"></div>').css({width:this.offsetWidth + "px", height:this.offsetHeight + "px", position:"absolute", opacity:"0.001", zIndex:1E3}).css(a(this).offset()).appendTo("body")
+  }, _destroy:function() {
+    this.element.removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled"), this._mouseDestroy()
+  }, _mouseCapture:function(t) {
+    var n = this.options;
+    return this.helper || n.disabled || e(t.target).is(".ui-resizable-handle") ? !1 : (this.handle = this._getHandle(t), this.handle ? (e(n.iframeFix === !0 ? "iframe" : n.iframeFix).each(function() {
+      e('<div class="ui-draggable-iframeFix" style="background: #fff;"></div>').css({width:this.offsetWidth + "px", height:this.offsetHeight + "px", position:"absolute", opacity:"0.001", zIndex:1E3}).css(e(this).offset()).appendTo("body")
     }), !0) : !1)
-  }, _mouseStart:function(b) {
-    var c = this.options;
-    return this.helper = this._createHelper(b), this._cacheHelperProportions(), a.ui.ddmanager && (a.ui.ddmanager.current = this), this._cacheMargins(), this.cssPosition = this.helper.css("position"), this.scrollParent = this.helper.scrollParent(), this.offset = this.positionAbs = this.element.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, a.extend(this.offset, {click:{left:b.pageX - this.offset.left, top:b.pageY - this.offset.top}, parent:this._getParentOffset(), 
-    relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(b), this.originalPageX = b.pageX, this.originalPageY = b.pageY, c.cursorAt && this._adjustOffsetFromHelper(c.cursorAt), c.containment && this._setContainment(), this._trigger("start", b) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), a.ui.ddmanager && !c.dropBehaviour && a.ui.ddmanager.prepareOffsets(this, b), this.helper.addClass("ui-draggable-dragging"), this._mouseDrag(b, !0), 
-    a.ui.ddmanager && a.ui.ddmanager.dragStart(this, b), !0)
-  }, _mouseDrag:function(b, c) {
-    this.position = this._generatePosition(b), this.positionAbs = this._convertPositionTo("absolute");
-    if(!c) {
-      var d = this._uiHash();
-      if(this._trigger("drag", b, d) === !1) {
+  }, _mouseStart:function(t) {
+    var n = this.options;
+    return this.helper = this._createHelper(t), this.helper.addClass("ui-draggable-dragging"), this._cacheHelperProportions(), e.ui.ddmanager && (e.ui.ddmanager.current = this), this._cacheMargins(), this.cssPosition = this.helper.css("position"), this.scrollParent = this.helper.scrollParent(), this.offset = this.positionAbs = this.element.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, 
+    top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, n.cursorAt && this._adjustOffsetFromHelper(n.cursorAt), n.containment && this._setContainment(), this._trigger("start", t) === !1 ? (this._clear(), !1) : (this._cacheHelperProportions(), e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this._mouseDrag(t, 
+    !0), e.ui.ddmanager && e.ui.ddmanager.dragStart(this, t), !0)
+  }, _mouseDrag:function(t, n) {
+    this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute");
+    if(!n) {
+      var r = this._uiHash();
+      if(this._trigger("drag", t, r) === !1) {
         return this._mouseUp({}), !1
       }
-      this.position = d.position
+      this.position = r.position
     }
     if(!this.options.axis || this.options.axis != "y") {
       this.helper[0].style.left = this.position.left + "px"
@@ -3698,54 +3800,54 @@ VISH.Constant.Event.onPreventDefault = "onPreventDefault";
     if(!this.options.axis || this.options.axis != "x") {
       this.helper[0].style.top = this.position.top + "px"
     }
-    return a.ui.ddmanager && a.ui.ddmanager.drag(this, b), !1
-  }, _mouseStop:function(b) {
-    var c = !1;
-    a.ui.ddmanager && !this.options.dropBehaviour && (c = a.ui.ddmanager.drop(this, b)), this.dropped && (c = this.dropped, this.dropped = !1);
-    var d = this.element[0], e = !1;
-    while(d && (d = d.parentNode)) {
-      d == document && (e = !0)
+    return e.ui.ddmanager && e.ui.ddmanager.drag(this, t), !1
+  }, _mouseStop:function(t) {
+    var n = !1;
+    e.ui.ddmanager && !this.options.dropBehaviour && (n = e.ui.ddmanager.drop(this, t)), this.dropped && (n = this.dropped, this.dropped = !1);
+    var r = this.element[0], i = !1;
+    while(r && (r = r.parentNode)) {
+      r == document && (i = !0)
     }
-    if(!e && this.options.helper === "original") {
+    if(!i && this.options.helper === "original") {
       return!1
     }
-    if(this.options.revert == "invalid" && !c || this.options.revert == "valid" && c || this.options.revert === !0 || a.isFunction(this.options.revert) && this.options.revert.call(this.element, c)) {
-      var f = this;
-      a(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
-        f._trigger("stop", b) !== !1 && f._clear()
+    if(this.options.revert == "invalid" && !n || this.options.revert == "valid" && n || this.options.revert === !0 || e.isFunction(this.options.revert) && this.options.revert.call(this.element, n)) {
+      var s = this;
+      e(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
+        s._trigger("stop", t) !== !1 && s._clear()
       })
     }else {
-      this._trigger("stop", b) !== !1 && this._clear()
+      this._trigger("stop", t) !== !1 && this._clear()
     }
     return!1
-  }, _mouseUp:function(b) {
-    return this.options.iframeFix === !0 && a("div.ui-draggable-iframeFix").each(function() {
+  }, _mouseUp:function(t) {
+    return e("div.ui-draggable-iframeFix").each(function() {
       this.parentNode.removeChild(this)
-    }), a.ui.ddmanager && a.ui.ddmanager.dragStop(this, b), a.ui.mouse.prototype._mouseUp.call(this, b)
+    }), e.ui.ddmanager && e.ui.ddmanager.dragStop(this, t), e.ui.mouse.prototype._mouseUp.call(this, t)
   }, cancel:function() {
     return this.helper.is(".ui-draggable-dragging") ? this._mouseUp({}) : this._clear(), this
-  }, _getHandle:function(b) {
-    var c = !this.options.handle || !a(this.options.handle, this.element).length ? !0 : !1;
-    return a(this.options.handle, this.element).find("*").andSelf().each(function() {
-      this == b.target && (c = !0)
-    }), c
-  }, _createHelper:function(b) {
-    var c = this.options, d = a.isFunction(c.helper) ? a(c.helper.apply(this.element[0], [b])) : c.helper == "clone" ? this.element.clone().removeAttr("id") : this.element;
-    return d.parents("body").length || d.appendTo(c.appendTo == "parent" ? this.element[0].parentNode : c.appendTo), d[0] != this.element[0] && !/(fixed|absolute)/.test(d.css("position")) && d.css("position", "absolute"), d
-  }, _adjustOffsetFromHelper:function(b) {
-    typeof b == "string" && (b = b.split(" ")), a.isArray(b) && (b = {left:+b[0], top:+b[1] || 0}), "left" in b && (this.offset.click.left = b.left + this.margins.left), "right" in b && (this.offset.click.left = this.helperProportions.width - b.right + this.margins.left), "top" in b && (this.offset.click.top = b.top + this.margins.top), "bottom" in b && (this.offset.click.top = this.helperProportions.height - b.bottom + this.margins.top)
+  }, _getHandle:function(t) {
+    var n = !this.options.handle || !e(this.options.handle, this.element).length ? !0 : !1;
+    return e(this.options.handle, this.element).find("*").andSelf().each(function() {
+      this == t.target && (n = !0)
+    }), n
+  }, _createHelper:function(t) {
+    var n = this.options, r = e.isFunction(n.helper) ? e(n.helper.apply(this.element[0], [t])) : n.helper == "clone" ? this.element.clone().removeAttr("id") : this.element;
+    return r.parents("body").length || r.appendTo(n.appendTo == "parent" ? this.element[0].parentNode : n.appendTo), r[0] != this.element[0] && !/(fixed|absolute)/.test(r.css("position")) && r.css("position", "absolute"), r
+  }, _adjustOffsetFromHelper:function(t) {
+    typeof t == "string" && (t = t.split(" ")), e.isArray(t) && (t = {left:+t[0], top:+t[1] || 0}), "left" in t && (this.offset.click.left = t.left + this.margins.left), "right" in t && (this.offset.click.left = this.helperProportions.width - t.right + this.margins.left), "top" in t && (this.offset.click.top = t.top + this.margins.top), "bottom" in t && (this.offset.click.top = this.helperProportions.height - t.bottom + this.margins.top)
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
-    var b = this.offsetParent.offset();
-    this.cssPosition == "absolute" && this.scrollParent[0] != document && a.ui.contains(this.scrollParent[0], this.offsetParent[0]) && (b.left += this.scrollParent.scrollLeft(), b.top += this.scrollParent.scrollTop());
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && a.browser.msie) {
-      b = {top:0, left:0}
+    var t = this.offsetParent.offset();
+    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
+      t = {top:0, left:0}
     }
-    return{top:b.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:b.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
+    return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
   }, _getRelativeOffset:function() {
     if(this.cssPosition == "relative") {
-      var a = this.element.position();
-      return{top:a.top - (parseInt(this.helper.css("top"), 10) || 0) + this.scrollParent.scrollTop(), left:a.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()}
+      var e = this.element.position();
+      return{top:e.top - (parseInt(this.helper.css("top"), 10) || 0) + this.scrollParent.scrollTop(), left:e.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()}
     }
     return{top:0, left:0}
   }, _cacheMargins:function() {
@@ -3753,399 +3855,334 @@ VISH.Constant.Event.onPreventDefault = "onPreventDefault";
   }, _cacheHelperProportions:function() {
     this.helperProportions = {width:this.helper.outerWidth(), height:this.helper.outerHeight()}
   }, _setContainment:function() {
-    var b = this.options;
-    b.containment == "parent" && (b.containment = this.helper[0].parentNode);
-    if(b.containment == "document" || b.containment == "window") {
-      this.containment = [b.containment == "document" ? 0 : a(window).scrollLeft() - this.offset.relative.left - this.offset.parent.left, b.containment == "document" ? 0 : a(window).scrollTop() - this.offset.relative.top - this.offset.parent.top, (b.containment == "document" ? 0 : a(window).scrollLeft()) + a(b.containment == "document" ? document : window).width() - this.helperProportions.width - this.margins.left, (b.containment == "document" ? 0 : a(window).scrollTop()) + (a(b.containment == "document" ? 
+    var t = this.options;
+    t.containment == "parent" && (t.containment = this.helper[0].parentNode);
+    if(t.containment == "document" || t.containment == "window") {
+      this.containment = [t.containment == "document" ? 0 : e(window).scrollLeft() - this.offset.relative.left - this.offset.parent.left, t.containment == "document" ? 0 : e(window).scrollTop() - this.offset.relative.top - this.offset.parent.top, (t.containment == "document" ? 0 : e(window).scrollLeft()) + e(t.containment == "document" ? document : window).width() - this.helperProportions.width - this.margins.left, (t.containment == "document" ? 0 : e(window).scrollTop()) + (e(t.containment == "document" ? 
       document : window).height() || document.body.parentNode.scrollHeight) - this.helperProportions.height - this.margins.top]
     }
-    if(!/^(document|window|parent)$/.test(b.containment) && b.containment.constructor != Array) {
-      var c = a(b.containment), d = c[0];
-      if(!d) {
+    if(!/^(document|window|parent)$/.test(t.containment) && t.containment.constructor != Array) {
+      var n = e(t.containment), r = n[0];
+      if(!r) {
         return
       }
-      var e = c.offset(), f = a(d).css("overflow") != "hidden";
-      this.containment = [(parseInt(a(d).css("borderLeftWidth"), 10) || 0) + (parseInt(a(d).css("paddingLeft"), 10) || 0), (parseInt(a(d).css("borderTopWidth"), 10) || 0) + (parseInt(a(d).css("paddingTop"), 10) || 0), (f ? Math.max(d.scrollWidth, d.offsetWidth) : d.offsetWidth) - (parseInt(a(d).css("borderLeftWidth"), 10) || 0) - (parseInt(a(d).css("paddingRight"), 10) || 0) - this.helperProportions.width - this.margins.left - this.margins.right, (f ? Math.max(d.scrollHeight, d.offsetHeight) : d.offsetHeight) - 
-      (parseInt(a(d).css("borderTopWidth"), 10) || 0) - (parseInt(a(d).css("paddingBottom"), 10) || 0) - this.helperProportions.height - this.margins.top - this.margins.bottom], this.relative_container = c
+      var i = n.offset(), s = e(r).css("overflow") != "hidden";
+      this.containment = [(parseInt(e(r).css("borderLeftWidth"), 10) || 0) + (parseInt(e(r).css("paddingLeft"), 10) || 0), (parseInt(e(r).css("borderTopWidth"), 10) || 0) + (parseInt(e(r).css("paddingTop"), 10) || 0), (s ? Math.max(r.scrollWidth, r.offsetWidth) : r.offsetWidth) - (parseInt(e(r).css("borderLeftWidth"), 10) || 0) - (parseInt(e(r).css("paddingRight"), 10) || 0) - this.helperProportions.width - this.margins.left - this.margins.right, (s ? Math.max(r.scrollHeight, r.offsetHeight) : r.offsetHeight) - 
+      (parseInt(e(r).css("borderTopWidth"), 10) || 0) - (parseInt(e(r).css("paddingBottom"), 10) || 0) - this.helperProportions.height - this.margins.top - this.margins.bottom], this.relative_container = n
     }else {
-      b.containment.constructor == Array && (this.containment = b.containment)
+      t.containment.constructor == Array && (this.containment = t.containment)
     }
-  }, _convertPositionTo:function(b, c) {
-    c || (c = this.position);
-    var d = b == "absolute" ? 1 : -1, e = this.options, f = this.cssPosition == "absolute" && (this.scrollParent[0] == document || !a.ui.contains(this.scrollParent[0], this.offsetParent[0])) ? this.offsetParent : this.scrollParent, g = /(html|body)/i.test(f[0].tagName);
-    return{top:c.top + this.offset.relative.top * d + this.offset.parent.top * d - (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : g ? 0 : f.scrollTop()) * d), left:c.left + this.offset.relative.left * d + this.offset.parent.left * d - (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : g ? 0 : f.scrollLeft()) * 
-    d)}
-  }, _generatePosition:function(b) {
-    var c = this.options, d = this.cssPosition == "absolute" && (this.scrollParent[0] == document || !a.ui.contains(this.scrollParent[0], this.offsetParent[0])) ? this.offsetParent : this.scrollParent, e = /(html|body)/i.test(d[0].tagName), f = b.pageX, g = b.pageY;
+  }, _convertPositionTo:function(t, n) {
+    n || (n = this.position);
+    var r = t == "absolute" ? 1 : -1, i = this.options, s = this.cssPosition != "absolute" || this.scrollParent[0] != document && !!e.contains(this.scrollParent[0], this.offsetParent[0]) ? this.scrollParent : this.offsetParent, o = /(html|body)/i.test(s[0].tagName);
+    return{top:n.top + this.offset.relative.top * r + this.offset.parent.top * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : o ? 0 : s.scrollTop()) * r, left:n.left + this.offset.relative.left * r + this.offset.parent.left * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : o ? 0 : s.scrollLeft()) * r}
+  }, _generatePosition:function(t) {
+    var n = this.options, r = this.cssPosition != "absolute" || this.scrollParent[0] != document && !!e.contains(this.scrollParent[0], this.offsetParent[0]) ? this.scrollParent : this.offsetParent, i = /(html|body)/i.test(r[0].tagName), s = t.pageX, o = t.pageY;
     if(this.originalPosition) {
-      var h;
+      var u;
       if(this.containment) {
         if(this.relative_container) {
-          var i = this.relative_container.offset();
-          h = [this.containment[0] + i.left, this.containment[1] + i.top, this.containment[2] + i.left, this.containment[3] + i.top]
+          var a = this.relative_container.offset();
+          u = [this.containment[0] + a.left, this.containment[1] + a.top, this.containment[2] + a.left, this.containment[3] + a.top]
         }else {
-          h = this.containment
+          u = this.containment
         }
-        b.pageX - this.offset.click.left < h[0] && (f = h[0] + this.offset.click.left), b.pageY - this.offset.click.top < h[1] && (g = h[1] + this.offset.click.top), b.pageX - this.offset.click.left > h[2] && (f = h[2] + this.offset.click.left), b.pageY - this.offset.click.top > h[3] && (g = h[3] + this.offset.click.top)
+        t.pageX - this.offset.click.left < u[0] && (s = u[0] + this.offset.click.left), t.pageY - this.offset.click.top < u[1] && (o = u[1] + this.offset.click.top), t.pageX - this.offset.click.left > u[2] && (s = u[2] + this.offset.click.left), t.pageY - this.offset.click.top > u[3] && (o = u[3] + this.offset.click.top)
       }
-      if(c.grid) {
-        var j = c.grid[1] ? this.originalPageY + Math.round((g - this.originalPageY) / c.grid[1]) * c.grid[1] : this.originalPageY;
-        g = h ? j - this.offset.click.top < h[1] || j - this.offset.click.top > h[3] ? j - this.offset.click.top < h[1] ? j + c.grid[1] : j - c.grid[1] : j : j;
-        var k = c.grid[0] ? this.originalPageX + Math.round((f - this.originalPageX) / c.grid[0]) * c.grid[0] : this.originalPageX;
-        f = h ? k - this.offset.click.left < h[0] || k - this.offset.click.left > h[2] ? k - this.offset.click.left < h[0] ? k + c.grid[0] : k - c.grid[0] : k : k
+      if(n.grid) {
+        var f = n.grid[1] ? this.originalPageY + Math.round((o - this.originalPageY) / n.grid[1]) * n.grid[1] : this.originalPageY;
+        o = u ? f - this.offset.click.top < u[1] || f - this.offset.click.top > u[3] ? f - this.offset.click.top < u[1] ? f + n.grid[1] : f - n.grid[1] : f : f;
+        var l = n.grid[0] ? this.originalPageX + Math.round((s - this.originalPageX) / n.grid[0]) * n.grid[0] : this.originalPageX;
+        s = u ? l - this.offset.click.left < u[0] || l - this.offset.click.left > u[2] ? l - this.offset.click.left < u[0] ? l + n.grid[0] : l - n.grid[0] : l : l
       }
     }
-    return{top:g - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : e ? 0 : d.scrollTop()), left:f - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : e ? 
-    0 : d.scrollLeft())}
+    return{top:o - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : i ? 0 : r.scrollTop()), left:s - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : i ? 0 : r.scrollLeft())}
   }, _clear:function() {
     this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && !this.cancelHelperRemoval && this.helper.remove(), this.helper = null, this.cancelHelperRemoval = !1
-  }, _trigger:function(b, c, d) {
-    return d = d || this._uiHash(), a.ui.plugin.call(this, b, [c, d]), b == "drag" && (this.positionAbs = this._convertPositionTo("absolute")), a.Widget.prototype._trigger.call(this, b, c, d)
-  }, plugins:{}, _uiHash:function(a) {
+  }, _trigger:function(t, n, r) {
+    return r = r || this._uiHash(), e.ui.plugin.call(this, t, [n, r]), t == "drag" && (this.positionAbs = this._convertPositionTo("absolute")), e.Widget.prototype._trigger.call(this, t, n, r)
+  }, plugins:{}, _uiHash:function(e) {
     return{helper:this.helper, position:this.position, originalPosition:this.originalPosition, offset:this.positionAbs}
-  }}), a.extend(a.ui.draggable, {version:"1.8.20"}), a.ui.plugin.add("draggable", "connectToSortable", {start:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options, f = a.extend({}, c, {item:d.element});
-    d.sortables = [], a(e.connectToSortable).each(function() {
-      var c = a.data(this, "sortable");
-      c && !c.options.disabled && (d.sortables.push({instance:c, shouldRevert:c.options.revert}), c.refreshPositions(), c._trigger("activate", b, f))
+  }}), e.ui.plugin.add("draggable", "connectToSortable", {start:function(t, n) {
+    var r = e(this).data("draggable"), i = r.options, s = e.extend({}, n, {item:r.element});
+    r.sortables = [], e(i.connectToSortable).each(function() {
+      var n = e.data(this, "sortable");
+      n && !n.options.disabled && (r.sortables.push({instance:n, shouldRevert:n.options.revert}), n.refreshPositions(), n._trigger("activate", t, s))
     })
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable"), e = a.extend({}, c, {item:d.element});
-    a.each(d.sortables, function() {
-      this.instance.isOver ? (this.instance.isOver = 0, d.cancelHelperRemoval = !0, this.instance.cancelHelperRemoval = !1, this.shouldRevert && (this.instance.options.revert = !0), this.instance._mouseStop(b), this.instance.options.helper = this.instance.options._helper, d.options.helper == "original" && this.instance.currentItem.css({top:"auto", left:"auto"})) : (this.instance.cancelHelperRemoval = !1, this.instance._trigger("deactivate", b, e))
+  }, stop:function(t, n) {
+    var r = e(this).data("draggable"), i = e.extend({}, n, {item:r.element});
+    e.each(r.sortables, function() {
+      this.instance.isOver ? (this.instance.isOver = 0, r.cancelHelperRemoval = !0, this.instance.cancelHelperRemoval = !1, this.shouldRevert && (this.instance.options.revert = !0), this.instance._mouseStop(t), this.instance.options.helper = this.instance.options._helper, r.options.helper == "original" && this.instance.currentItem.css({top:"auto", left:"auto"})) : (this.instance.cancelHelperRemoval = !1, this.instance._trigger("deactivate", t, i))
     })
-  }, drag:function(b, c) {
-    var d = a(this).data("draggable"), e = this, f = function(b) {
-      var c = this.offset.click.top, d = this.offset.click.left, e = this.positionAbs.top, f = this.positionAbs.left, g = b.height, h = b.width, i = b.top, j = b.left;
-      return a.ui.isOver(e + c, f + d, i, j, g, h)
+  }, drag:function(t, n) {
+    var r = e(this).data("draggable"), i = this, s = function(t) {
+      var n = this.offset.click.top, r = this.offset.click.left, i = this.positionAbs.top, s = this.positionAbs.left, o = t.height, u = t.width, a = t.top, f = t.left;
+      return e.ui.isOver(i + n, s + r, a, f, o, u)
     };
-    a.each(d.sortables, function(f) {
-      this.instance.positionAbs = d.positionAbs, this.instance.helperProportions = d.helperProportions, this.instance.offset.click = d.offset.click, this.instance._intersectsWith(this.instance.containerCache) ? (this.instance.isOver || (this.instance.isOver = 1, this.instance.currentItem = a(e).clone().removeAttr("id").appendTo(this.instance.element).data("sortable-item", !0), this.instance.options._helper = this.instance.options.helper, this.instance.options.helper = function() {
-        return c.helper[0]
-      }, b.target = this.instance.currentItem[0], this.instance._mouseCapture(b, !0), this.instance._mouseStart(b, !0, !0), this.instance.offset.click.top = d.offset.click.top, this.instance.offset.click.left = d.offset.click.left, this.instance.offset.parent.left -= d.offset.parent.left - this.instance.offset.parent.left, this.instance.offset.parent.top -= d.offset.parent.top - this.instance.offset.parent.top, d._trigger("toSortable", b), d.dropped = this.instance.element, d.currentItem = d.element, 
-      this.instance.fromOutside = d), this.instance.currentItem && this.instance._mouseDrag(b)) : this.instance.isOver && (this.instance.isOver = 0, this.instance.cancelHelperRemoval = !0, this.instance.options.revert = !1, this.instance._trigger("out", b, this.instance._uiHash(this.instance)), this.instance._mouseStop(b, !0), this.instance.options.helper = this.instance.options._helper, this.instance.currentItem.remove(), this.instance.placeholder && this.instance.placeholder.remove(), d._trigger("fromSortable", 
-      b), d.dropped = !1)
+    e.each(r.sortables, function(s) {
+      var o = !1, u = this;
+      this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this.instance._intersectsWith(this.instance.containerCache) && (o = !0, e.each(r.sortables, function() {
+        return this.instance.positionAbs = r.positionAbs, this.instance.helperProportions = r.helperProportions, this.instance.offset.click = r.offset.click, this != u && this.instance._intersectsWith(this.instance.containerCache) && e.ui.contains(u.instance.element[0], this.instance.element[0]) && (o = !1), o
+      })), o ? (this.instance.isOver || (this.instance.isOver = 1, this.instance.currentItem = e(i).clone().removeAttr("id").appendTo(this.instance.element).data("sortable-item", !0), this.instance.options._helper = this.instance.options.helper, this.instance.options.helper = function() {
+        return n.helper[0]
+      }, t.target = this.instance.currentItem[0], this.instance._mouseCapture(t, !0), this.instance._mouseStart(t, !0, !0), this.instance.offset.click.top = r.offset.click.top, this.instance.offset.click.left = r.offset.click.left, this.instance.offset.parent.left -= r.offset.parent.left - this.instance.offset.parent.left, this.instance.offset.parent.top -= r.offset.parent.top - this.instance.offset.parent.top, r._trigger("toSortable", t), r.dropped = this.instance.element, r.currentItem = r.element, 
+      this.instance.fromOutside = r), this.instance.currentItem && this.instance._mouseDrag(t)) : this.instance.isOver && (this.instance.isOver = 0, this.instance.cancelHelperRemoval = !0, this.instance.options.revert = !1, this.instance._trigger("out", t, this.instance._uiHash(this.instance)), this.instance._mouseStop(t, !0), this.instance.options.helper = this.instance.options._helper, this.instance.currentItem.remove(), this.instance.placeholder && this.instance.placeholder.remove(), r._trigger("fromSortable", 
+      t), r.dropped = !1)
     })
-  }}), a.ui.plugin.add("draggable", "cursor", {start:function(b, c) {
-    var d = a("body"), e = a(this).data("draggable").options;
-    d.css("cursor") && (e._cursor = d.css("cursor")), d.css("cursor", e.cursor)
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable").options;
-    d._cursor && a("body").css("cursor", d._cursor)
-  }}), a.ui.plugin.add("draggable", "opacity", {start:function(b, c) {
-    var d = a(c.helper), e = a(this).data("draggable").options;
-    d.css("opacity") && (e._opacity = d.css("opacity")), d.css("opacity", e.opacity)
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable").options;
-    d._opacity && a(c.helper).css("opacity", d._opacity)
-  }}), a.ui.plugin.add("draggable", "scroll", {start:function(b, c) {
-    var d = a(this).data("draggable");
-    d.scrollParent[0] != document && d.scrollParent[0].tagName != "HTML" && (d.overflowOffset = d.scrollParent.offset())
-  }, drag:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options, f = !1;
-    if(d.scrollParent[0] != document && d.scrollParent[0].tagName != "HTML") {
-      if(!e.axis || e.axis != "x") {
-        d.overflowOffset.top + d.scrollParent[0].offsetHeight - b.pageY < e.scrollSensitivity ? d.scrollParent[0].scrollTop = f = d.scrollParent[0].scrollTop + e.scrollSpeed : b.pageY - d.overflowOffset.top < e.scrollSensitivity && (d.scrollParent[0].scrollTop = f = d.scrollParent[0].scrollTop - e.scrollSpeed)
+  }}), e.ui.plugin.add("draggable", "cursor", {start:function(t, n) {
+    var r = e("body"), i = e(this).data("draggable").options;
+    r.css("cursor") && (i._cursor = r.css("cursor")), r.css("cursor", i.cursor)
+  }, stop:function(t, n) {
+    var r = e(this).data("draggable").options;
+    r._cursor && e("body").css("cursor", r._cursor)
+  }}), e.ui.plugin.add("draggable", "opacity", {start:function(t, n) {
+    var r = e(n.helper), i = e(this).data("draggable").options;
+    r.css("opacity") && (i._opacity = r.css("opacity")), r.css("opacity", i.opacity)
+  }, stop:function(t, n) {
+    var r = e(this).data("draggable").options;
+    r._opacity && e(n.helper).css("opacity", r._opacity)
+  }}), e.ui.plugin.add("draggable", "scroll", {start:function(t, n) {
+    var r = e(this).data("draggable");
+    r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML" && (r.overflowOffset = r.scrollParent.offset())
+  }, drag:function(t, n) {
+    var r = e(this).data("draggable"), i = r.options, s = !1;
+    if(r.scrollParent[0] != document && r.scrollParent[0].tagName != "HTML") {
+      if(!i.axis || i.axis != "x") {
+        r.overflowOffset.top + r.scrollParent[0].offsetHeight - t.pageY < i.scrollSensitivity ? r.scrollParent[0].scrollTop = s = r.scrollParent[0].scrollTop + i.scrollSpeed : t.pageY - r.overflowOffset.top < i.scrollSensitivity && (r.scrollParent[0].scrollTop = s = r.scrollParent[0].scrollTop - i.scrollSpeed)
       }
-      if(!e.axis || e.axis != "y") {
-        d.overflowOffset.left + d.scrollParent[0].offsetWidth - b.pageX < e.scrollSensitivity ? d.scrollParent[0].scrollLeft = f = d.scrollParent[0].scrollLeft + e.scrollSpeed : b.pageX - d.overflowOffset.left < e.scrollSensitivity && (d.scrollParent[0].scrollLeft = f = d.scrollParent[0].scrollLeft - e.scrollSpeed)
+      if(!i.axis || i.axis != "y") {
+        r.overflowOffset.left + r.scrollParent[0].offsetWidth - t.pageX < i.scrollSensitivity ? r.scrollParent[0].scrollLeft = s = r.scrollParent[0].scrollLeft + i.scrollSpeed : t.pageX - r.overflowOffset.left < i.scrollSensitivity && (r.scrollParent[0].scrollLeft = s = r.scrollParent[0].scrollLeft - i.scrollSpeed)
       }
     }else {
-      if(!e.axis || e.axis != "x") {
-        b.pageY - a(document).scrollTop() < e.scrollSensitivity ? f = a(document).scrollTop(a(document).scrollTop() - e.scrollSpeed) : a(window).height() - (b.pageY - a(document).scrollTop()) < e.scrollSensitivity && (f = a(document).scrollTop(a(document).scrollTop() + e.scrollSpeed))
+      if(!i.axis || i.axis != "x") {
+        t.pageY - e(document).scrollTop() < i.scrollSensitivity ? s = e(document).scrollTop(e(document).scrollTop() - i.scrollSpeed) : e(window).height() - (t.pageY - e(document).scrollTop()) < i.scrollSensitivity && (s = e(document).scrollTop(e(document).scrollTop() + i.scrollSpeed))
       }
-      if(!e.axis || e.axis != "y") {
-        b.pageX - a(document).scrollLeft() < e.scrollSensitivity ? f = a(document).scrollLeft(a(document).scrollLeft() - e.scrollSpeed) : a(window).width() - (b.pageX - a(document).scrollLeft()) < e.scrollSensitivity && (f = a(document).scrollLeft(a(document).scrollLeft() + e.scrollSpeed))
+      if(!i.axis || i.axis != "y") {
+        t.pageX - e(document).scrollLeft() < i.scrollSensitivity ? s = e(document).scrollLeft(e(document).scrollLeft() - i.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < i.scrollSensitivity && (s = e(document).scrollLeft(e(document).scrollLeft() + i.scrollSpeed))
       }
     }
-    f !== !1 && a.ui.ddmanager && !e.dropBehaviour && a.ui.ddmanager.prepareOffsets(d, b)
-  }}), a.ui.plugin.add("draggable", "snap", {start:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options;
-    d.snapElements = [], a(e.snap.constructor != String ? e.snap.items || ":data(draggable)" : e.snap).each(function() {
-      var b = a(this), c = b.offset();
-      this != d.element[0] && d.snapElements.push({item:this, width:b.outerWidth(), height:b.outerHeight(), top:c.top, left:c.left})
+    s !== !1 && e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(r, t)
+  }}), e.ui.plugin.add("draggable", "snap", {start:function(t, n) {
+    var r = e(this).data("draggable"), i = r.options;
+    r.snapElements = [], e(i.snap.constructor != String ? i.snap.items || ":data(draggable)" : i.snap).each(function() {
+      var t = e(this), n = t.offset();
+      this != r.element[0] && r.snapElements.push({item:this, width:t.outerWidth(), height:t.outerHeight(), top:n.top, left:n.left})
     })
-  }, drag:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options, f = e.snapTolerance, g = c.offset.left, h = g + d.helperProportions.width, i = c.offset.top, j = i + d.helperProportions.height;
-    for(var k = d.snapElements.length - 1;k >= 0;k--) {
-      var l = d.snapElements[k].left, m = l + d.snapElements[k].width, n = d.snapElements[k].top, o = n + d.snapElements[k].height;
-      if(!(l - f < g && g < m + f && n - f < i && i < o + f || l - f < g && g < m + f && n - f < j && j < o + f || l - f < h && h < m + f && n - f < i && i < o + f || l - f < h && h < m + f && n - f < j && j < o + f)) {
-        d.snapElements[k].snapping && d.options.snap.release && d.options.snap.release.call(d.element, b, a.extend(d._uiHash(), {snapItem:d.snapElements[k].item})), d.snapElements[k].snapping = !1;
+  }, drag:function(t, n) {
+    var r = e(this).data("draggable"), i = r.options, s = i.snapTolerance, o = n.offset.left, u = o + r.helperProportions.width, a = n.offset.top, f = a + r.helperProportions.height;
+    for(var l = r.snapElements.length - 1;l >= 0;l--) {
+      var c = r.snapElements[l].left, h = c + r.snapElements[l].width, p = r.snapElements[l].top, d = p + r.snapElements[l].height;
+      if(!(c - s < o && o < h + s && p - s < a && a < d + s || c - s < o && o < h + s && p - s < f && f < d + s || c - s < u && u < h + s && p - s < a && a < d + s || c - s < u && u < h + s && p - s < f && f < d + s)) {
+        r.snapElements[l].snapping && r.options.snap.release && r.options.snap.release.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = !1;
         continue
       }
-      if(e.snapMode != "inner") {
-        var p = Math.abs(n - j) <= f, q = Math.abs(o - i) <= f, r = Math.abs(l - h) <= f, s = Math.abs(m - g) <= f;
-        p && (c.position.top = d._convertPositionTo("relative", {top:n - d.helperProportions.height, left:0}).top - d.margins.top), q && (c.position.top = d._convertPositionTo("relative", {top:o, left:0}).top - d.margins.top), r && (c.position.left = d._convertPositionTo("relative", {top:0, left:l - d.helperProportions.width}).left - d.margins.left), s && (c.position.left = d._convertPositionTo("relative", {top:0, left:m}).left - d.margins.left)
+      if(i.snapMode != "inner") {
+        var v = Math.abs(p - f) <= s, m = Math.abs(d - a) <= s, g = Math.abs(c - u) <= s, y = Math.abs(h - o) <= s;
+        v && (n.position.top = r._convertPositionTo("relative", {top:p - r.helperProportions.height, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c - r.helperProportions.width}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h}).left - r.margins.left)
       }
-      var t = p || q || r || s;
-      if(e.snapMode != "outer") {
-        var p = Math.abs(n - i) <= f, q = Math.abs(o - j) <= f, r = Math.abs(l - g) <= f, s = Math.abs(m - h) <= f;
-        p && (c.position.top = d._convertPositionTo("relative", {top:n, left:0}).top - d.margins.top), q && (c.position.top = d._convertPositionTo("relative", {top:o - d.helperProportions.height, left:0}).top - d.margins.top), r && (c.position.left = d._convertPositionTo("relative", {top:0, left:l}).left - d.margins.left), s && (c.position.left = d._convertPositionTo("relative", {top:0, left:m - d.helperProportions.width}).left - d.margins.left)
+      var b = v || m || g || y;
+      if(i.snapMode != "outer") {
+        var v = Math.abs(p - a) <= s, m = Math.abs(d - f) <= s, g = Math.abs(c - o) <= s, y = Math.abs(h - u) <= s;
+        v && (n.position.top = r._convertPositionTo("relative", {top:p, left:0}).top - r.margins.top), m && (n.position.top = r._convertPositionTo("relative", {top:d - r.helperProportions.height, left:0}).top - r.margins.top), g && (n.position.left = r._convertPositionTo("relative", {top:0, left:c}).left - r.margins.left), y && (n.position.left = r._convertPositionTo("relative", {top:0, left:h - r.helperProportions.width}).left - r.margins.left)
       }
-      !d.snapElements[k].snapping && (p || q || r || s || t) && d.options.snap.snap && d.options.snap.snap.call(d.element, b, a.extend(d._uiHash(), {snapItem:d.snapElements[k].item})), d.snapElements[k].snapping = p || q || r || s || t
+      !r.snapElements[l].snapping && (v || m || g || y || b) && r.options.snap.snap && r.options.snap.snap.call(r.element, t, e.extend(r._uiHash(), {snapItem:r.snapElements[l].item})), r.snapElements[l].snapping = v || m || g || y || b
     }
-  }}), a.ui.plugin.add("draggable", "stack", {start:function(b, c) {
-    var d = a(this).data("draggable").options, e = a.makeArray(a(d.stack)).sort(function(b, c) {
-      return(parseInt(a(b).css("zIndex"), 10) || 0) - (parseInt(a(c).css("zIndex"), 10) || 0)
+  }}), e.ui.plugin.add("draggable", "stack", {start:function(t, n) {
+    var r = e(this).data("draggable").options, i = e.makeArray(e(r.stack)).sort(function(t, n) {
+      return(parseInt(e(t).css("zIndex"), 10) || 0) - (parseInt(e(n).css("zIndex"), 10) || 0)
     });
-    if(!e.length) {
+    if(!i.length) {
       return
     }
-    var f = parseInt(e[0].style.zIndex) || 0;
-    a(e).each(function(a) {
-      this.style.zIndex = f + a
-    }), this[0].style.zIndex = f + e.length
-  }}), a.ui.plugin.add("draggable", "zIndex", {start:function(b, c) {
-    var d = a(c.helper), e = a(this).data("draggable").options;
-    d.css("zIndex") && (e._zIndex = d.css("zIndex")), d.css("zIndex", e.zIndex)
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable").options;
-    d._zIndex && a(c.helper).css("zIndex", d._zIndex)
+    var s = parseInt(i[0].style.zIndex) || 0;
+    e(i).each(function(e) {
+      this.style.zIndex = s + e
+    }), this[0].style.zIndex = s + i.length
+  }}), e.ui.plugin.add("draggable", "zIndex", {start:function(t, n) {
+    var r = e(n.helper), i = e(this).data("draggable").options;
+    r.css("zIndex") && (i._zIndex = r.css("zIndex")), r.css("zIndex", i.zIndex)
+  }, stop:function(t, n) {
+    var r = e(this).data("draggable").options;
+    r._zIndex && e(n.helper).css("zIndex", r._zIndex)
   }})
 })(jQuery);
-(function(a, b) {
-  a.widget("ui.droppable", {widgetEventPrefix:"drop", options:{accept:"*", activeClass:!1, addClasses:!0, greedy:!1, hoverClass:!1, scope:"default", tolerance:"intersect"}, _create:function() {
-    var b = this.options, c = b.accept;
-    this.isover = 0, this.isout = 1, this.accept = a.isFunction(c) ? c : function(a) {
-      return a.is(c)
-    }, this.proportions = {width:this.element[0].offsetWidth, height:this.element[0].offsetHeight}, a.ui.ddmanager.droppables[b.scope] = a.ui.ddmanager.droppables[b.scope] || [], a.ui.ddmanager.droppables[b.scope].push(this), b.addClasses && this.element.addClass("ui-droppable")
-  }, destroy:function() {
-    var b = a.ui.ddmanager.droppables[this.options.scope];
-    for(var c = 0;c < b.length;c++) {
-      b[c] == this && b.splice(c, 1)
+(function(e, t) {
+  e.widget("ui.droppable", {version:"1.9.1", widgetEventPrefix:"drop", options:{accept:"*", activeClass:!1, addClasses:!0, greedy:!1, hoverClass:!1, scope:"default", tolerance:"intersect"}, _create:function() {
+    var t = this.options, n = t.accept;
+    this.isover = 0, this.isout = 1, this.accept = e.isFunction(n) ? n : function(e) {
+      return e.is(n)
+    }, this.proportions = {width:this.element[0].offsetWidth, height:this.element[0].offsetHeight}, e.ui.ddmanager.droppables[t.scope] = e.ui.ddmanager.droppables[t.scope] || [], e.ui.ddmanager.droppables[t.scope].push(this), t.addClasses && this.element.addClass("ui-droppable")
+  }, _destroy:function() {
+    var t = e.ui.ddmanager.droppables[this.options.scope];
+    for(var n = 0;n < t.length;n++) {
+      t[n] == this && t.splice(n, 1)
     }
-    return this.element.removeClass("ui-droppable ui-droppable-disabled").removeData("droppable").unbind(".droppable"), this
-  }, _setOption:function(b, c) {
-    b == "accept" && (this.accept = a.isFunction(c) ? c : function(a) {
-      return a.is(c)
-    }), a.Widget.prototype._setOption.apply(this, arguments)
-  }, _activate:function(b) {
-    var c = a.ui.ddmanager.current;
-    this.options.activeClass && this.element.addClass(this.options.activeClass), c && this._trigger("activate", b, this.ui(c))
-  }, _deactivate:function(b) {
-    var c = a.ui.ddmanager.current;
-    this.options.activeClass && this.element.removeClass(this.options.activeClass), c && this._trigger("deactivate", b, this.ui(c))
-  }, _over:function(b) {
-    var c = a.ui.ddmanager.current;
-    if(!c || (c.currentItem || c.element)[0] == this.element[0]) {
+    this.element.removeClass("ui-droppable ui-droppable-disabled")
+  }, _setOption:function(t, n) {
+    t == "accept" && (this.accept = e.isFunction(n) ? n : function(e) {
+      return e.is(n)
+    }), e.Widget.prototype._setOption.apply(this, arguments)
+  }, _activate:function(t) {
+    var n = e.ui.ddmanager.current;
+    this.options.activeClass && this.element.addClass(this.options.activeClass), n && this._trigger("activate", t, this.ui(n))
+  }, _deactivate:function(t) {
+    var n = e.ui.ddmanager.current;
+    this.options.activeClass && this.element.removeClass(this.options.activeClass), n && this._trigger("deactivate", t, this.ui(n))
+  }, _over:function(t) {
+    var n = e.ui.ddmanager.current;
+    if(!n || (n.currentItem || n.element)[0] == this.element[0]) {
       return
     }
-    this.accept.call(this.element[0], c.currentItem || c.element) && (this.options.hoverClass && this.element.addClass(this.options.hoverClass), this._trigger("over", b, this.ui(c)))
-  }, _out:function(b) {
-    var c = a.ui.ddmanager.current;
-    if(!c || (c.currentItem || c.element)[0] == this.element[0]) {
+    this.accept.call(this.element[0], n.currentItem || n.element) && (this.options.hoverClass && this.element.addClass(this.options.hoverClass), this._trigger("over", t, this.ui(n)))
+  }, _out:function(t) {
+    var n = e.ui.ddmanager.current;
+    if(!n || (n.currentItem || n.element)[0] == this.element[0]) {
       return
     }
-    this.accept.call(this.element[0], c.currentItem || c.element) && (this.options.hoverClass && this.element.removeClass(this.options.hoverClass), this._trigger("out", b, this.ui(c)))
-  }, _drop:function(b, c) {
-    var d = c || a.ui.ddmanager.current;
-    if(!d || (d.currentItem || d.element)[0] == this.element[0]) {
+    this.accept.call(this.element[0], n.currentItem || n.element) && (this.options.hoverClass && this.element.removeClass(this.options.hoverClass), this._trigger("out", t, this.ui(n)))
+  }, _drop:function(t, n) {
+    var r = n || e.ui.ddmanager.current;
+    if(!r || (r.currentItem || r.element)[0] == this.element[0]) {
       return!1
     }
-    var e = !1;
+    var i = !1;
     return this.element.find(":data(droppable)").not(".ui-draggable-dragging").each(function() {
-      var b = a.data(this, "droppable");
-      if(b.options.greedy && !b.options.disabled && b.options.scope == d.options.scope && b.accept.call(b.element[0], d.currentItem || d.element) && a.ui.intersect(d, a.extend(b, {offset:b.element.offset()}), b.options.tolerance)) {
-        return e = !0, !1
+      var t = e.data(this, "droppable");
+      if(t.options.greedy && !t.options.disabled && t.options.scope == r.options.scope && t.accept.call(t.element[0], r.currentItem || r.element) && e.ui.intersect(r, e.extend(t, {offset:t.element.offset()}), t.options.tolerance)) {
+        return i = !0, !1
       }
-    }), e ? !1 : this.accept.call(this.element[0], d.currentItem || d.element) ? (this.options.activeClass && this.element.removeClass(this.options.activeClass), this.options.hoverClass && this.element.removeClass(this.options.hoverClass), this._trigger("drop", b, this.ui(d)), this.element) : !1
-  }, ui:function(a) {
-    return{draggable:a.currentItem || a.element, helper:a.helper, position:a.position, offset:a.positionAbs}
-  }}), a.extend(a.ui.droppable, {version:"1.8.20"}), a.ui.intersect = function(b, c, d) {
-    if(!c.offset) {
+    }), i ? !1 : this.accept.call(this.element[0], r.currentItem || r.element) ? (this.options.activeClass && this.element.removeClass(this.options.activeClass), this.options.hoverClass && this.element.removeClass(this.options.hoverClass), this._trigger("drop", t, this.ui(r)), this.element) : !1
+  }, ui:function(e) {
+    return{draggable:e.currentItem || e.element, helper:e.helper, position:e.position, offset:e.positionAbs}
+  }}), e.ui.intersect = function(t, n, r) {
+    if(!n.offset) {
       return!1
     }
-    var e = (b.positionAbs || b.position.absolute).left, f = e + b.helperProportions.width, g = (b.positionAbs || b.position.absolute).top, h = g + b.helperProportions.height, i = c.offset.left, j = i + c.proportions.width, k = c.offset.top, l = k + c.proportions.height;
-    switch(d) {
+    var i = (t.positionAbs || t.position.absolute).left, s = i + t.helperProportions.width, o = (t.positionAbs || t.position.absolute).top, u = o + t.helperProportions.height, a = n.offset.left, f = a + n.proportions.width, l = n.offset.top, c = l + n.proportions.height;
+    switch(r) {
       case "fit":
-        return i <= e && f <= j && k <= g && h <= l;
+        return a <= i && s <= f && l <= o && u <= c;
       case "intersect":
-        return i < e + b.helperProportions.width / 2 && f - b.helperProportions.width / 2 < j && k < g + b.helperProportions.height / 2 && h - b.helperProportions.height / 2 < l;
+        return a < i + t.helperProportions.width / 2 && s - t.helperProportions.width / 2 < f && l < o + t.helperProportions.height / 2 && u - t.helperProportions.height / 2 < c;
       case "pointer":
-        var m = (b.positionAbs || b.position.absolute).left + (b.clickOffset || b.offset.click).left, n = (b.positionAbs || b.position.absolute).top + (b.clickOffset || b.offset.click).top, o = a.ui.isOver(n, m, k, i, c.proportions.height, c.proportions.width);
-        return o;
+        var h = (t.positionAbs || t.position.absolute).left + (t.clickOffset || t.offset.click).left, p = (t.positionAbs || t.position.absolute).top + (t.clickOffset || t.offset.click).top, d = e.ui.isOver(p, h, l, a, n.proportions.height, n.proportions.width);
+        return d;
       case "touch":
-        return(g >= k && g <= l || h >= k && h <= l || g < k && h > l) && (e >= i && e <= j || f >= i && f <= j || e < i && f > j);
+        return(o >= l && o <= c || u >= l && u <= c || o < l && u > c) && (i >= a && i <= f || s >= a && s <= f || i < a && s > f);
       default:
         return!1
     }
-  }, a.ui.ddmanager = {current:null, droppables:{"default":[]}, prepareOffsets:function(b, c) {
-    var d = a.ui.ddmanager.droppables[b.options.scope] || [], e = c ? c.type : null, f = (b.currentItem || b.element).find(":data(droppable)").andSelf();
-    g:for(var h = 0;h < d.length;h++) {
-      if(d[h].options.disabled || b && !d[h].accept.call(d[h].element[0], b.currentItem || b.element)) {
+  }, e.ui.ddmanager = {current:null, droppables:{"default":[]}, prepareOffsets:function(t, n) {
+    var r = e.ui.ddmanager.droppables[t.options.scope] || [], i = n ? n.type : null, s = (t.currentItem || t.element).find(":data(droppable)").andSelf();
+    e:for(var o = 0;o < r.length;o++) {
+      if(r[o].options.disabled || t && !r[o].accept.call(r[o].element[0], t.currentItem || t.element)) {
         continue
       }
-      for(var i = 0;i < f.length;i++) {
-        if(f[i] == d[h].element[0]) {
-          d[h].proportions.height = 0;
-          continue g
+      for(var u = 0;u < s.length;u++) {
+        if(s[u] == r[o].element[0]) {
+          r[o].proportions.height = 0;
+          continue e
         }
       }
-      d[h].visible = d[h].element.css("display") != "none";
-      if(!d[h].visible) {
+      r[o].visible = r[o].element.css("display") != "none";
+      if(!r[o].visible) {
         continue
       }
-      e == "mousedown" && d[h]._activate.call(d[h], c), d[h].offset = d[h].element.offset(), d[h].proportions = {width:d[h].element[0].offsetWidth, height:d[h].element[0].offsetHeight}
+      i == "mousedown" && r[o]._activate.call(r[o], n), r[o].offset = r[o].element.offset(), r[o].proportions = {width:r[o].element[0].offsetWidth, height:r[o].element[0].offsetHeight}
     }
-  }, drop:function(b, c) {
-    var d = !1;
-    return a.each(a.ui.ddmanager.droppables[b.options.scope] || [], function() {
+  }, drop:function(t, n) {
+    var r = !1;
+    return e.each(e.ui.ddmanager.droppables[t.options.scope] || [], function() {
       if(!this.options) {
         return
       }
-      !this.options.disabled && this.visible && a.ui.intersect(b, this, this.options.tolerance) && (d = this._drop.call(this, c) || d), !this.options.disabled && this.visible && this.accept.call(this.element[0], b.currentItem || b.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, c))
-    }), d
-  }, dragStart:function(b, c) {
-    b.element.parents(":not(body,html)").bind("scroll.droppable", function() {
-      b.options.refreshPositions || a.ui.ddmanager.prepareOffsets(b, c)
+      !this.options.disabled && this.visible && e.ui.intersect(t, this, this.options.tolerance) && (r = this._drop.call(this, n) || r), !this.options.disabled && this.visible && this.accept.call(this.element[0], t.currentItem || t.element) && (this.isout = 1, this.isover = 0, this._deactivate.call(this, n))
+    }), r
+  }, dragStart:function(t, n) {
+    t.element.parentsUntil("body").bind("scroll.droppable", function() {
+      t.options.refreshPositions || e.ui.ddmanager.prepareOffsets(t, n)
     })
-  }, drag:function(b, c) {
-    b.options.refreshPositions && a.ui.ddmanager.prepareOffsets(b, c), a.each(a.ui.ddmanager.droppables[b.options.scope] || [], function() {
+  }, drag:function(t, n) {
+    t.options.refreshPositions && e.ui.ddmanager.prepareOffsets(t, n), e.each(e.ui.ddmanager.droppables[t.options.scope] || [], function() {
       if(this.options.disabled || this.greedyChild || !this.visible) {
         return
       }
-      var d = a.ui.intersect(b, this, this.options.tolerance), e = !d && this.isover == 1 ? "isout" : d && this.isover == 0 ? "isover" : null;
-      if(!e) {
+      var r = e.ui.intersect(t, this, this.options.tolerance), i = !r && this.isover == 1 ? "isout" : r && this.isover == 0 ? "isover" : null;
+      if(!i) {
         return
       }
-      var f;
+      var s;
       if(this.options.greedy) {
-        var g = this.element.parents(":data(droppable):eq(0)");
-        g.length && (f = a.data(g[0], "droppable"), f.greedyChild = e == "isover" ? 1 : 0)
+        var o = this.options.scope, u = this.element.parents(":data(droppable)").filter(function() {
+          return e.data(this, "droppable").options.scope === o
+        });
+        u.length && (s = e.data(u[0], "droppable"), s.greedyChild = i == "isover" ? 1 : 0)
       }
-      f && e == "isover" && (f.isover = 0, f.isout = 1, f._out.call(f, c)), this[e] = 1, this[e == "isout" ? "isover" : "isout"] = 0, this[e == "isover" ? "_over" : "_out"].call(this, c), f && e == "isout" && (f.isout = 0, f.isover = 1, f._over.call(f, c))
+      s && i == "isover" && (s.isover = 0, s.isout = 1, s._out.call(s, n)), this[i] = 1, this[i == "isout" ? "isover" : "isout"] = 0, this[i == "isover" ? "_over" : "_out"].call(this, n), s && i == "isout" && (s.isout = 0, s.isover = 1, s._over.call(s, n))
     })
-  }, dragStop:function(b, c) {
-    b.element.parents(":not(body,html)").unbind("scroll.droppable"), b.options.refreshPositions || a.ui.ddmanager.prepareOffsets(b, c)
+  }, dragStop:function(t, n) {
+    t.element.parentsUntil("body").unbind("scroll.droppable"), t.options.refreshPositions || e.ui.ddmanager.prepareOffsets(t, n)
   }}
 })(jQuery);
-(function(a, b) {
-  a.widget("ui.selectable", a.ui.mouse, {options:{appendTo:"body", autoRefresh:!0, distance:0, filter:"*", tolerance:"touch"}, _create:function() {
-    var b = this;
-    this.element.addClass("ui-selectable"), this.dragged = !1;
-    var c;
-    this.refresh = function() {
-      c = a(b.options.filter, b.element[0]), c.addClass("ui-selectee"), c.each(function() {
-        var b = a(this), c = b.offset();
-        a.data(this, "selectable-item", {element:this, $element:b, left:c.left, top:c.top, right:c.left + b.outerWidth(), bottom:c.top + b.outerHeight(), startselected:!1, selected:b.hasClass("ui-selected"), selecting:b.hasClass("ui-selecting"), unselecting:b.hasClass("ui-unselecting")})
-      })
-    }, this.refresh(), this.selectees = c.addClass("ui-selectee"), this._mouseInit(), this.helper = a("<div class='ui-selectable-helper'></div>")
-  }, destroy:function() {
-    return this.selectees.removeClass("ui-selectee").removeData("selectable-item"), this.element.removeClass("ui-selectable ui-selectable-disabled").removeData("selectable").unbind(".selectable"), this._mouseDestroy(), this
-  }, _mouseStart:function(b) {
-    var c = this;
-    this.opos = [b.pageX, b.pageY];
-    if(this.options.disabled) {
-      return
-    }
-    var d = this.options;
-    this.selectees = a(d.filter, this.element[0]), this._trigger("start", b), a(d.appendTo).append(this.helper), this.helper.css({left:b.clientX, top:b.clientY, width:0, height:0}), d.autoRefresh && this.refresh(), this.selectees.filter(".ui-selected").each(function() {
-      var d = a.data(this, "selectable-item");
-      d.startselected = !0, !b.metaKey && !b.ctrlKey && (d.$element.removeClass("ui-selected"), d.selected = !1, d.$element.addClass("ui-unselecting"), d.unselecting = !0, c._trigger("unselecting", b, {unselecting:d.element}))
-    }), a(b.target).parents().andSelf().each(function() {
-      var d = a.data(this, "selectable-item");
-      if(d) {
-        var e = !b.metaKey && !b.ctrlKey || !d.$element.hasClass("ui-selected");
-        return d.$element.removeClass(e ? "ui-unselecting" : "ui-selected").addClass(e ? "ui-selecting" : "ui-unselecting"), d.unselecting = !e, d.selecting = e, d.selected = e, e ? c._trigger("selecting", b, {selecting:d.element}) : c._trigger("unselecting", b, {unselecting:d.element}), !1
-      }
-    })
-  }, _mouseDrag:function(b) {
-    var c = this;
-    this.dragged = !0;
-    if(this.options.disabled) {
-      return
-    }
-    var d = this.options, e = this.opos[0], f = this.opos[1], g = b.pageX, h = b.pageY;
-    if(e > g) {
-      var i = g;
-      g = e, e = i
-    }
-    if(f > h) {
-      var i = h;
-      h = f, f = i
-    }
-    return this.helper.css({left:e, top:f, width:g - e, height:h - f}), this.selectees.each(function() {
-      var i = a.data(this, "selectable-item");
-      if(!i || i.element == c.element[0]) {
-        return
-      }
-      var j = !1;
-      d.tolerance == "touch" ? j = !(i.left > g || i.right < e || i.top > h || i.bottom < f) : d.tolerance == "fit" && (j = i.left > e && i.right < g && i.top > f && i.bottom < h), j ? (i.selected && (i.$element.removeClass("ui-selected"), i.selected = !1), i.unselecting && (i.$element.removeClass("ui-unselecting"), i.unselecting = !1), i.selecting || (i.$element.addClass("ui-selecting"), i.selecting = !0, c._trigger("selecting", b, {selecting:i.element}))) : (i.selecting && ((b.metaKey || b.ctrlKey) && 
-      i.startselected ? (i.$element.removeClass("ui-selecting"), i.selecting = !1, i.$element.addClass("ui-selected"), i.selected = !0) : (i.$element.removeClass("ui-selecting"), i.selecting = !1, i.startselected && (i.$element.addClass("ui-unselecting"), i.unselecting = !0), c._trigger("unselecting", b, {unselecting:i.element}))), i.selected && !b.metaKey && !b.ctrlKey && !i.startselected && (i.$element.removeClass("ui-selected"), i.selected = !1, i.$element.addClass("ui-unselecting"), i.unselecting = 
-      !0, c._trigger("unselecting", b, {unselecting:i.element})))
-    }), !1
-  }, _mouseStop:function(b) {
-    var c = this;
-    this.dragged = !1;
-    var d = this.options;
-    return a(".ui-unselecting", this.element[0]).each(function() {
-      var d = a.data(this, "selectable-item");
-      d.$element.removeClass("ui-unselecting"), d.unselecting = !1, d.startselected = !1, c._trigger("unselected", b, {unselected:d.element})
-    }), a(".ui-selecting", this.element[0]).each(function() {
-      var d = a.data(this, "selectable-item");
-      d.$element.removeClass("ui-selecting").addClass("ui-selected"), d.selecting = !1, d.selected = !0, d.startselected = !0, c._trigger("selected", b, {selected:d.element})
-    }), this._trigger("stop", b), this.helper.remove(), !1
-  }}), a.extend(a.ui.selectable, {version:"1.8.20"})
-})(jQuery);
-(function(a, b) {
-  a.widget("ui.sortable", a.ui.mouse, {widgetEventPrefix:"sort", ready:!1, options:{appendTo:"parent", axis:!1, connectWith:!1, containment:!1, cursor:"auto", cursorAt:!1, dropOnEmpty:!0, forcePlaceholderSize:!1, forceHelperSize:!1, grid:!1, handle:!1, helper:"original", items:"> *", opacity:!1, placeholder:!1, revert:!1, scroll:!0, scrollSensitivity:20, scrollSpeed:20, scope:"default", tolerance:"intersect", zIndex:1E3}, _create:function() {
-    var a = this.options;
-    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? a.axis === "x" || /left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display")) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
-  }, destroy:function() {
-    a.Widget.prototype.destroy.call(this), this.element.removeClass("ui-sortable ui-sortable-disabled"), this._mouseDestroy();
-    for(var b = this.items.length - 1;b >= 0;b--) {
-      this.items[b].item.removeData(this.widgetName + "-item")
+(function(e, t) {
+  e.widget("ui.sortable", e.ui.mouse, {version:"1.9.1", widgetEventPrefix:"sort", ready:!1, options:{appendTo:"parent", axis:!1, connectWith:!1, containment:!1, cursor:"auto", cursorAt:!1, dropOnEmpty:!0, forcePlaceholderSize:!1, forceHelperSize:!1, grid:!1, handle:!1, helper:"original", items:"> *", opacity:!1, placeholder:!1, revert:!1, scroll:!0, scrollSensitivity:20, scrollSpeed:20, scope:"default", tolerance:"intersect", zIndex:1E3}, _create:function() {
+    var e = this.options;
+    this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || /left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display")) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
+  }, _destroy:function() {
+    this.element.removeClass("ui-sortable ui-sortable-disabled"), this._mouseDestroy();
+    for(var e = this.items.length - 1;e >= 0;e--) {
+      this.items[e].item.removeData(this.widgetName + "-item")
     }
     return this
-  }, _setOption:function(b, c) {
-    b === "disabled" ? (this.options[b] = c, this.widget()[c ? "addClass" : "removeClass"]("ui-sortable-disabled")) : a.Widget.prototype._setOption.apply(this, arguments)
-  }, _mouseCapture:function(b, c) {
-    var d = this;
+  }, _setOption:function(t, n) {
+    t === "disabled" ? (this.options[t] = n, this.widget().toggleClass("ui-sortable-disabled", !!n)) : e.Widget.prototype._setOption.apply(this, arguments)
+  }, _mouseCapture:function(t, n) {
+    var r = this;
     if(this.reverting) {
       return!1
     }
     if(this.options.disabled || this.options.type == "static") {
       return!1
     }
-    this._refreshItems(b);
-    var e = null, f = this, g = a(b.target).parents().each(function() {
-      if(a.data(this, d.widgetName + "-item") == f) {
-        return e = a(this), !1
+    this._refreshItems(t);
+    var i = null, s = e(t.target).parents().each(function() {
+      if(e.data(this, r.widgetName + "-item") == r) {
+        return i = e(this), !1
       }
     });
-    a.data(b.target, d.widgetName + "-item") == f && (e = a(b.target));
-    if(!e) {
+    e.data(t.target, r.widgetName + "-item") == r && (i = e(t.target));
+    if(!i) {
       return!1
     }
-    if(this.options.handle && !c) {
-      var h = !1;
-      a(this.options.handle, e).find("*").andSelf().each(function() {
-        this == b.target && (h = !0)
+    if(this.options.handle && !n) {
+      var o = !1;
+      e(this.options.handle, i).find("*").andSelf().each(function() {
+        this == t.target && (o = !0)
       });
-      if(!h) {
+      if(!o) {
         return!1
       }
     }
-    return this.currentItem = e, this._removeCurrentsFromItems(), !0
-  }, _mouseStart:function(b, c, d) {
-    var e = this.options, f = this;
-    this.currentContainer = this, this.refreshPositions(), this.helper = this._createHelper(b), this._cacheHelperProportions(), this._cacheMargins(), this.scrollParent = this.helper.scrollParent(), this.offset = this.currentItem.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, this.helper.css("position", "absolute"), this.cssPosition = this.helper.css("position"), a.extend(this.offset, {click:{left:b.pageX - this.offset.left, top:b.pageY - 
-    this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), this.originalPosition = this._generatePosition(b), this.originalPageX = b.pageX, this.originalPageY = b.pageY, e.cursorAt && this._adjustOffsetFromHelper(e.cursorAt), this.domPosition = {prev:this.currentItem.prev()[0], parent:this.currentItem.parent()[0]}, this.helper[0] != this.currentItem[0] && this.currentItem.hide(), this._createPlaceholder(), e.containment && this._setContainment(), e.cursor && (a("body").css("cursor") && 
-    (this._storedCursor = a("body").css("cursor")), a("body").css("cursor", e.cursor)), e.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", e.opacity)), e.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", e.zIndex)), this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset()), this._trigger("start", 
-    b, this._uiHash()), this._preserveHelperProportions || this._cacheHelperProportions();
-    if(!d) {
-      for(var g = this.containers.length - 1;g >= 0;g--) {
-        this.containers[g]._trigger("activate", b, f._uiHash(this))
+    return this.currentItem = i, this._removeCurrentsFromItems(), !0
+  }, _mouseStart:function(t, n, r) {
+    var i = this.options;
+    this.currentContainer = this, this.refreshPositions(), this.helper = this._createHelper(t), this._cacheHelperProportions(), this._cacheMargins(), this.scrollParent = this.helper.scrollParent(), this.offset = this.currentItem.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, e.extend(this.offset, {click:{left:t.pageX - this.offset.left, top:t.pageY - this.offset.top}, parent:this._getParentOffset(), relative:this._getRelativeOffset()}), 
+    this.helper.css("position", "absolute"), this.cssPosition = this.helper.css("position"), this.originalPosition = this._generatePosition(t), this.originalPageX = t.pageX, this.originalPageY = t.pageY, i.cursorAt && this._adjustOffsetFromHelper(i.cursorAt), this.domPosition = {prev:this.currentItem.prev()[0], parent:this.currentItem.parent()[0]}, this.helper[0] != this.currentItem[0] && this.currentItem.hide(), this._createPlaceholder(), i.containment && this._setContainment(), i.cursor && (e("body").css("cursor") && 
+    (this._storedCursor = e("body").css("cursor")), e("body").css("cursor", i.cursor)), i.opacity && (this.helper.css("opacity") && (this._storedOpacity = this.helper.css("opacity")), this.helper.css("opacity", i.opacity)), i.zIndex && (this.helper.css("zIndex") && (this._storedZIndex = this.helper.css("zIndex")), this.helper.css("zIndex", i.zIndex)), this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" && (this.overflowOffset = this.scrollParent.offset()), this._trigger("start", 
+    t, this._uiHash()), this._preserveHelperProportions || this._cacheHelperProportions();
+    if(!r) {
+      for(var s = this.containers.length - 1;s >= 0;s--) {
+        this.containers[s]._trigger("activate", t, this._uiHash(this))
       }
     }
-    return a.ui.ddmanager && (a.ui.ddmanager.current = this), a.ui.ddmanager && !e.dropBehaviour && a.ui.ddmanager.prepareOffsets(this, b), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(b), !0
-  }, _mouseDrag:function(b) {
-    this.position = this._generatePosition(b), this.positionAbs = this._convertPositionTo("absolute"), this.lastPositionAbs || (this.lastPositionAbs = this.positionAbs);
+    return e.ui.ddmanager && (e.ui.ddmanager.current = this), e.ui.ddmanager && !i.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t), this.dragging = !0, this.helper.addClass("ui-sortable-helper"), this._mouseDrag(t), !0
+  }, _mouseDrag:function(t) {
+    this.position = this._generatePosition(t), this.positionAbs = this._convertPositionTo("absolute"), this.lastPositionAbs || (this.lastPositionAbs = this.positionAbs);
     if(this.options.scroll) {
-      var c = this.options, d = !1;
-      this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" ? (this.overflowOffset.top + this.scrollParent[0].offsetHeight - b.pageY < c.scrollSensitivity ? this.scrollParent[0].scrollTop = d = this.scrollParent[0].scrollTop + c.scrollSpeed : b.pageY - this.overflowOffset.top < c.scrollSensitivity && (this.scrollParent[0].scrollTop = d = this.scrollParent[0].scrollTop - c.scrollSpeed), this.overflowOffset.left + this.scrollParent[0].offsetWidth - b.pageX < c.scrollSensitivity ? 
-      this.scrollParent[0].scrollLeft = d = this.scrollParent[0].scrollLeft + c.scrollSpeed : b.pageX - this.overflowOffset.left < c.scrollSensitivity && (this.scrollParent[0].scrollLeft = d = this.scrollParent[0].scrollLeft - c.scrollSpeed)) : (b.pageY - a(document).scrollTop() < c.scrollSensitivity ? d = a(document).scrollTop(a(document).scrollTop() - c.scrollSpeed) : a(window).height() - (b.pageY - a(document).scrollTop()) < c.scrollSensitivity && (d = a(document).scrollTop(a(document).scrollTop() + 
-      c.scrollSpeed)), b.pageX - a(document).scrollLeft() < c.scrollSensitivity ? d = a(document).scrollLeft(a(document).scrollLeft() - c.scrollSpeed) : a(window).width() - (b.pageX - a(document).scrollLeft()) < c.scrollSensitivity && (d = a(document).scrollLeft(a(document).scrollLeft() + c.scrollSpeed))), d !== !1 && a.ui.ddmanager && !c.dropBehaviour && a.ui.ddmanager.prepareOffsets(this, b)
+      var n = this.options, r = !1;
+      this.scrollParent[0] != document && this.scrollParent[0].tagName != "HTML" ? (this.overflowOffset.top + this.scrollParent[0].offsetHeight - t.pageY < n.scrollSensitivity ? this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop + n.scrollSpeed : t.pageY - this.overflowOffset.top < n.scrollSensitivity && (this.scrollParent[0].scrollTop = r = this.scrollParent[0].scrollTop - n.scrollSpeed), this.overflowOffset.left + this.scrollParent[0].offsetWidth - t.pageX < n.scrollSensitivity ? 
+      this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft + n.scrollSpeed : t.pageX - this.overflowOffset.left < n.scrollSensitivity && (this.scrollParent[0].scrollLeft = r = this.scrollParent[0].scrollLeft - n.scrollSpeed)) : (t.pageY - e(document).scrollTop() < n.scrollSensitivity ? r = e(document).scrollTop(e(document).scrollTop() - n.scrollSpeed) : e(window).height() - (t.pageY - e(document).scrollTop()) < n.scrollSensitivity && (r = e(document).scrollTop(e(document).scrollTop() + 
+      n.scrollSpeed)), t.pageX - e(document).scrollLeft() < n.scrollSensitivity ? r = e(document).scrollLeft(e(document).scrollLeft() - n.scrollSpeed) : e(window).width() - (t.pageX - e(document).scrollLeft()) < n.scrollSensitivity && (r = e(document).scrollLeft(e(document).scrollLeft() + n.scrollSpeed))), r !== !1 && e.ui.ddmanager && !n.dropBehaviour && e.ui.ddmanager.prepareOffsets(this, t)
     }
     this.positionAbs = this._convertPositionTo("absolute");
     if(!this.options.axis || this.options.axis != "y") {
@@ -4154,211 +4191,216 @@ VISH.Constant.Event.onPreventDefault = "onPreventDefault";
     if(!this.options.axis || this.options.axis != "x") {
       this.helper[0].style.top = this.position.top + "px"
     }
-    for(var e = this.items.length - 1;e >= 0;e--) {
-      var f = this.items[e], g = f.item[0], h = this._intersectsWithPointer(f);
-      if(!h) {
+    for(var i = this.items.length - 1;i >= 0;i--) {
+      var s = this.items[i], o = s.item[0], u = this._intersectsWithPointer(s);
+      if(!u) {
         continue
       }
-      if(g != this.currentItem[0] && this.placeholder[h == 1 ? "next" : "prev"]()[0] != g && !a.ui.contains(this.placeholder[0], g) && (this.options.type == "semi-dynamic" ? !a.ui.contains(this.element[0], g) : !0)) {
-        this.direction = h == 1 ? "down" : "up";
-        if(this.options.tolerance == "pointer" || this._intersectsWithSides(f)) {
-          this._rearrange(b, f)
-        }else {
+      if(s.instance !== this.currentContainer) {
+        continue
+      }
+      if(o != this.currentItem[0] && this.placeholder[u == 1 ? "next" : "prev"]()[0] != o && !e.contains(this.placeholder[0], o) && (this.options.type == "semi-dynamic" ? !e.contains(this.element[0], o) : !0)) {
+        this.direction = u == 1 ? "down" : "up";
+        if(this.options.tolerance != "pointer" && !this._intersectsWithSides(s)) {
           break
         }
-        this._trigger("change", b, this._uiHash());
+        this._rearrange(t, s), this._trigger("change", t, this._uiHash());
         break
       }
     }
-    return this._contactContainers(b), a.ui.ddmanager && a.ui.ddmanager.drag(this, b), this._trigger("sort", b, this._uiHash()), this.lastPositionAbs = this.positionAbs, !1
-  }, _mouseStop:function(b, c) {
-    if(!b) {
+    return this._contactContainers(t), e.ui.ddmanager && e.ui.ddmanager.drag(this, t), this._trigger("sort", t, this._uiHash()), this.lastPositionAbs = this.positionAbs, !1
+  }, _mouseStop:function(t, n) {
+    if(!t) {
       return
     }
-    a.ui.ddmanager && !this.options.dropBehaviour && a.ui.ddmanager.drop(this, b);
+    e.ui.ddmanager && !this.options.dropBehaviour && e.ui.ddmanager.drop(this, t);
     if(this.options.revert) {
-      var d = this, e = d.placeholder.offset();
-      d.reverting = !0, a(this.helper).animate({left:e.left - this.offset.parent.left - d.margins.left + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollLeft), top:e.top - this.offset.parent.top - d.margins.top + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollTop)}, parseInt(this.options.revert, 10) || 500, function() {
-        d._clear(b)
+      var r = this, i = this.placeholder.offset();
+      this.reverting = !0, e(this.helper).animate({left:i.left - this.offset.parent.left - this.margins.left + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollLeft), top:i.top - this.offset.parent.top - this.margins.top + (this.offsetParent[0] == document.body ? 0 : this.offsetParent[0].scrollTop)}, parseInt(this.options.revert, 10) || 500, function() {
+        r._clear(t)
       })
     }else {
-      this._clear(b, c)
+      this._clear(t, n)
     }
     return!1
   }, cancel:function() {
-    var b = this;
     if(this.dragging) {
       this._mouseUp({target:null}), this.options.helper == "original" ? this.currentItem.css(this._storedCSS).removeClass("ui-sortable-helper") : this.currentItem.show();
-      for(var c = this.containers.length - 1;c >= 0;c--) {
-        this.containers[c]._trigger("deactivate", null, b._uiHash(this)), this.containers[c].containerCache.over && (this.containers[c]._trigger("out", null, b._uiHash(this)), this.containers[c].containerCache.over = 0)
+      for(var t = this.containers.length - 1;t >= 0;t--) {
+        this.containers[t]._trigger("deactivate", null, this._uiHash(this)), this.containers[t].containerCache.over && (this.containers[t]._trigger("out", null, this._uiHash(this)), this.containers[t].containerCache.over = 0)
       }
     }
-    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && this.helper && this.helper[0].parentNode && this.helper.remove(), a.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? a(this.domPosition.prev).after(this.currentItem) : a(this.domPosition.parent).prepend(this.currentItem)), this
-  }, serialize:function(b) {
-    var c = this._getItemsAsjQuery(b && b.connected), d = [];
-    return b = b || {}, a(c).each(function() {
-      var c = (a(b.item || this).attr(b.attribute || "id") || "").match(b.expression || /(.+)[-=_](.+)/);
-      c && d.push((b.key || c[1] + "[]") + "=" + (b.key && b.expression ? c[1] : c[2]))
-    }), !d.length && b.key && d.push(b.key + "="), d.join("&")
-  }, toArray:function(b) {
-    var c = this._getItemsAsjQuery(b && b.connected), d = [];
-    return b = b || {}, c.each(function() {
-      d.push(a(b.item || this).attr(b.attribute || "id") || "")
-    }), d
-  }, _intersectsWith:function(a) {
-    var b = this.positionAbs.left, c = b + this.helperProportions.width, d = this.positionAbs.top, e = d + this.helperProportions.height, f = a.left, g = f + a.width, h = a.top, i = h + a.height, j = this.offset.click.top, k = this.offset.click.left, l = d + j > h && d + j < i && b + k > f && b + k < g;
-    return this.options.tolerance == "pointer" || this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > a[this.floating ? "width" : "height"] ? l : f < b + this.helperProportions.width / 2 && c - this.helperProportions.width / 2 < g && h < d + this.helperProportions.height / 2 && e - this.helperProportions.height / 2 < i
-  }, _intersectsWithPointer:function(b) {
-    var c = this.options.axis === "x" || a.ui.isOverAxis(this.positionAbs.top + this.offset.click.top, b.top, b.height), d = this.options.axis === "y" || a.ui.isOverAxis(this.positionAbs.left + this.offset.click.left, b.left, b.width), e = c && d, f = this._getDragVerticalDirection(), g = this._getDragHorizontalDirection();
-    return e ? this.floating ? g && g == "right" || f == "down" ? 2 : 1 : f && (f == "down" ? 2 : 1) : !1
-  }, _intersectsWithSides:function(b) {
-    var c = a.ui.isOverAxis(this.positionAbs.top + this.offset.click.top, b.top + b.height / 2, b.height), d = a.ui.isOverAxis(this.positionAbs.left + this.offset.click.left, b.left + b.width / 2, b.width), e = this._getDragVerticalDirection(), f = this._getDragHorizontalDirection();
-    return this.floating && f ? f == "right" && d || f == "left" && !d : e && (e == "down" && c || e == "up" && !c)
+    return this.placeholder && (this.placeholder[0].parentNode && this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.options.helper != "original" && this.helper && this.helper[0].parentNode && this.helper.remove(), e.extend(this, {helper:null, dragging:!1, reverting:!1, _noFinalSort:null}), this.domPosition.prev ? e(this.domPosition.prev).after(this.currentItem) : e(this.domPosition.parent).prepend(this.currentItem)), this
+  }, serialize:function(t) {
+    var n = this._getItemsAsjQuery(t && t.connected), r = [];
+    return t = t || {}, e(n).each(function() {
+      var n = (e(t.item || this).attr(t.attribute || "id") || "").match(t.expression || /(.+)[-=_](.+)/);
+      n && r.push((t.key || n[1] + "[]") + "=" + (t.key && t.expression ? n[1] : n[2]))
+    }), !r.length && t.key && r.push(t.key + "="), r.join("&")
+  }, toArray:function(t) {
+    var n = this._getItemsAsjQuery(t && t.connected), r = [];
+    return t = t || {}, n.each(function() {
+      r.push(e(t.item || this).attr(t.attribute || "id") || "")
+    }), r
+  }, _intersectsWith:function(e) {
+    var t = this.positionAbs.left, n = t + this.helperProportions.width, r = this.positionAbs.top, i = r + this.helperProportions.height, s = e.left, o = s + e.width, u = e.top, a = u + e.height, f = this.offset.click.top, l = this.offset.click.left, c = r + f > u && r + f < a && t + l > s && t + l < o;
+    return this.options.tolerance == "pointer" || this.options.forcePointerForContainers || this.options.tolerance != "pointer" && this.helperProportions[this.floating ? "width" : "height"] > e[this.floating ? "width" : "height"] ? c : s < t + this.helperProportions.width / 2 && n - this.helperProportions.width / 2 < o && u < r + this.helperProportions.height / 2 && i - this.helperProportions.height / 2 < a
+  }, _intersectsWithPointer:function(t) {
+    var n = this.options.axis === "x" || e.ui.isOverAxis(this.positionAbs.top + this.offset.click.top, t.top, t.height), r = this.options.axis === "y" || e.ui.isOverAxis(this.positionAbs.left + this.offset.click.left, t.left, t.width), i = n && r, s = this._getDragVerticalDirection(), o = this._getDragHorizontalDirection();
+    return i ? this.floating ? o && o == "right" || s == "down" ? 2 : 1 : s && (s == "down" ? 2 : 1) : !1
+  }, _intersectsWithSides:function(t) {
+    var n = e.ui.isOverAxis(this.positionAbs.top + this.offset.click.top, t.top + t.height / 2, t.height), r = e.ui.isOverAxis(this.positionAbs.left + this.offset.click.left, t.left + t.width / 2, t.width), i = this._getDragVerticalDirection(), s = this._getDragHorizontalDirection();
+    return this.floating && s ? s == "right" && r || s == "left" && !r : i && (i == "down" && n || i == "up" && !n)
   }, _getDragVerticalDirection:function() {
-    var a = this.positionAbs.top - this.lastPositionAbs.top;
-    return a != 0 && (a > 0 ? "down" : "up")
+    var e = this.positionAbs.top - this.lastPositionAbs.top;
+    return e != 0 && (e > 0 ? "down" : "up")
   }, _getDragHorizontalDirection:function() {
-    var a = this.positionAbs.left - this.lastPositionAbs.left;
-    return a != 0 && (a > 0 ? "right" : "left")
-  }, refresh:function(a) {
-    return this._refreshItems(a), this.refreshPositions(), this
+    var e = this.positionAbs.left - this.lastPositionAbs.left;
+    return e != 0 && (e > 0 ? "right" : "left")
+  }, refresh:function(e) {
+    return this._refreshItems(e), this.refreshPositions(), this
   }, _connectWith:function() {
-    var a = this.options;
-    return a.connectWith.constructor == String ? [a.connectWith] : a.connectWith
-  }, _getItemsAsjQuery:function(b) {
-    var c = this, d = [], e = [], f = this._connectWith();
-    if(f && b) {
-      for(var g = f.length - 1;g >= 0;g--) {
-        var h = a(f[g]);
-        for(var i = h.length - 1;i >= 0;i--) {
-          var j = a.data(h[i], this.widgetName);
-          j && j != this && !j.options.disabled && e.push([a.isFunction(j.options.items) ? j.options.items.call(j.element) : a(j.options.items, j.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), j])
+    var e = this.options;
+    return e.connectWith.constructor == String ? [e.connectWith] : e.connectWith
+  }, _getItemsAsjQuery:function(t) {
+    var n = [], r = [], i = this._connectWith();
+    if(i && t) {
+      for(var s = i.length - 1;s >= 0;s--) {
+        var o = e(i[s]);
+        for(var u = o.length - 1;u >= 0;u--) {
+          var a = e.data(o[u], this.widgetName);
+          a && a != this && !a.options.disabled && r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element) : e(a.options.items, a.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), a])
         }
       }
     }
-    e.push([a.isFunction(this.options.items) ? this.options.items.call(this.element, null, {options:this.options, item:this.currentItem}) : a(this.options.items, this.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), this]);
-    for(var g = e.length - 1;g >= 0;g--) {
-      e[g][0].each(function() {
-        d.push(this)
+    r.push([e.isFunction(this.options.items) ? this.options.items.call(this.element, null, {options:this.options, item:this.currentItem}) : e(this.options.items, this.element).not(".ui-sortable-helper").not(".ui-sortable-placeholder"), this]);
+    for(var s = r.length - 1;s >= 0;s--) {
+      r[s][0].each(function() {
+        n.push(this)
       })
     }
-    return a(d)
+    return e(n)
   }, _removeCurrentsFromItems:function() {
-    var a = this.currentItem.find(":data(" + this.widgetName + "-item)");
-    for(var b = 0;b < this.items.length;b++) {
-      for(var c = 0;c < a.length;c++) {
-        a[c] == this.items[b].item[0] && this.items.splice(b, 1)
+    var t = this.currentItem.find(":data(" + this.widgetName + "-item)");
+    this.items = e.grep(this.items, function(e) {
+      for(var n = 0;n < t.length;n++) {
+        if(t[n] == e.item[0]) {
+          return!1
+        }
       }
-    }
-  }, _refreshItems:function(b) {
+      return!0
+    })
+  }, _refreshItems:function(t) {
     this.items = [], this.containers = [this];
-    var c = this.items, d = this, e = [[a.isFunction(this.options.items) ? this.options.items.call(this.element[0], b, {item:this.currentItem}) : a(this.options.items, this.element), this]], f = this._connectWith();
-    if(f && this.ready) {
-      for(var g = f.length - 1;g >= 0;g--) {
-        var h = a(f[g]);
-        for(var i = h.length - 1;i >= 0;i--) {
-          var j = a.data(h[i], this.widgetName);
-          j && j != this && !j.options.disabled && (e.push([a.isFunction(j.options.items) ? j.options.items.call(j.element[0], b, {item:this.currentItem}) : a(j.options.items, j.element), j]), this.containers.push(j))
+    var n = this.items, r = [[e.isFunction(this.options.items) ? this.options.items.call(this.element[0], t, {item:this.currentItem}) : e(this.options.items, this.element), this]], i = this._connectWith();
+    if(i && this.ready) {
+      for(var s = i.length - 1;s >= 0;s--) {
+        var o = e(i[s]);
+        for(var u = o.length - 1;u >= 0;u--) {
+          var a = e.data(o[u], this.widgetName);
+          a && a != this && !a.options.disabled && (r.push([e.isFunction(a.options.items) ? a.options.items.call(a.element[0], t, {item:this.currentItem}) : e(a.options.items, a.element), a]), this.containers.push(a))
         }
       }
     }
-    for(var g = e.length - 1;g >= 0;g--) {
-      var k = e[g][1], l = e[g][0];
-      for(var i = 0, m = l.length;i < m;i++) {
-        var n = a(l[i]);
-        n.data(this.widgetName + "-item", k), c.push({item:n, instance:k, width:0, height:0, left:0, top:0})
+    for(var s = r.length - 1;s >= 0;s--) {
+      var f = r[s][1], l = r[s][0];
+      for(var u = 0, c = l.length;u < c;u++) {
+        var h = e(l[u]);
+        h.data(this.widgetName + "-item", f), n.push({item:h, instance:f, width:0, height:0, left:0, top:0})
       }
     }
-  }, refreshPositions:function(b) {
+  }, refreshPositions:function(t) {
     this.offsetParent && this.helper && (this.offset.parent = this._getParentOffset());
-    for(var c = this.items.length - 1;c >= 0;c--) {
-      var d = this.items[c];
-      if(d.instance != this.currentContainer && this.currentContainer && d.item[0] != this.currentItem[0]) {
+    for(var n = this.items.length - 1;n >= 0;n--) {
+      var r = this.items[n];
+      if(r.instance != this.currentContainer && this.currentContainer && r.item[0] != this.currentItem[0]) {
         continue
       }
-      var e = this.options.toleranceElement ? a(this.options.toleranceElement, d.item) : d.item;
-      b || (d.width = e.outerWidth(), d.height = e.outerHeight());
-      var f = e.offset();
-      d.left = f.left, d.top = f.top
+      var i = this.options.toleranceElement ? e(this.options.toleranceElement, r.item) : r.item;
+      t || (r.width = i.outerWidth(), r.height = i.outerHeight());
+      var s = i.offset();
+      r.left = s.left, r.top = s.top
     }
     if(this.options.custom && this.options.custom.refreshContainers) {
       this.options.custom.refreshContainers.call(this)
     }else {
-      for(var c = this.containers.length - 1;c >= 0;c--) {
-        var f = this.containers[c].element.offset();
-        this.containers[c].containerCache.left = f.left, this.containers[c].containerCache.top = f.top, this.containers[c].containerCache.width = this.containers[c].element.outerWidth(), this.containers[c].containerCache.height = this.containers[c].element.outerHeight()
+      for(var n = this.containers.length - 1;n >= 0;n--) {
+        var s = this.containers[n].element.offset();
+        this.containers[n].containerCache.left = s.left, this.containers[n].containerCache.top = s.top, this.containers[n].containerCache.width = this.containers[n].element.outerWidth(), this.containers[n].containerCache.height = this.containers[n].element.outerHeight()
       }
     }
     return this
-  }, _createPlaceholder:function(b) {
-    var c = b || this, d = c.options;
-    if(!d.placeholder || d.placeholder.constructor == String) {
-      var e = d.placeholder;
-      d.placeholder = {element:function() {
-        var b = a(document.createElement(c.currentItem[0].nodeName)).addClass(e || c.currentItem[0].className + " ui-sortable-placeholder").removeClass("ui-sortable-helper")[0];
-        return e || (b.style.visibility = "hidden"), b
-      }, update:function(a, b) {
-        if(e && !d.forcePlaceholderSize) {
+  }, _createPlaceholder:function(t) {
+    t = t || this;
+    var n = t.options;
+    if(!n.placeholder || n.placeholder.constructor == String) {
+      var r = n.placeholder;
+      n.placeholder = {element:function() {
+        var n = e(document.createElement(t.currentItem[0].nodeName)).addClass(r || t.currentItem[0].className + " ui-sortable-placeholder").removeClass("ui-sortable-helper")[0];
+        return r || (n.style.visibility = "hidden"), n
+      }, update:function(e, i) {
+        if(r && !n.forcePlaceholderSize) {
           return
         }
-        b.height() || b.height(c.currentItem.innerHeight() - parseInt(c.currentItem.css("paddingTop") || 0, 10) - parseInt(c.currentItem.css("paddingBottom") || 0, 10)), b.width() || b.width(c.currentItem.innerWidth() - parseInt(c.currentItem.css("paddingLeft") || 0, 10) - parseInt(c.currentItem.css("paddingRight") || 0, 10))
+        i.height() || i.height(t.currentItem.innerHeight() - parseInt(t.currentItem.css("paddingTop") || 0, 10) - parseInt(t.currentItem.css("paddingBottom") || 0, 10)), i.width() || i.width(t.currentItem.innerWidth() - parseInt(t.currentItem.css("paddingLeft") || 0, 10) - parseInt(t.currentItem.css("paddingRight") || 0, 10))
       }}
     }
-    c.placeholder = a(d.placeholder.element.call(c.element, c.currentItem)), c.currentItem.after(c.placeholder), d.placeholder.update(c, c.placeholder)
-  }, _contactContainers:function(b) {
-    var c = null, d = null;
-    for(var e = this.containers.length - 1;e >= 0;e--) {
-      if(a.ui.contains(this.currentItem[0], this.containers[e].element[0])) {
+    t.placeholder = e(n.placeholder.element.call(t.element, t.currentItem)), t.currentItem.after(t.placeholder), n.placeholder.update(t, t.placeholder)
+  }, _contactContainers:function(t) {
+    var n = null, r = null;
+    for(var i = this.containers.length - 1;i >= 0;i--) {
+      if(e.contains(this.currentItem[0], this.containers[i].element[0])) {
         continue
       }
-      if(this._intersectsWith(this.containers[e].containerCache)) {
-        if(c && a.ui.contains(this.containers[e].element[0], c.element[0])) {
+      if(this._intersectsWith(this.containers[i].containerCache)) {
+        if(n && e.contains(this.containers[i].element[0], n.element[0])) {
           continue
         }
-        c = this.containers[e], d = e
+        n = this.containers[i], r = i
       }else {
-        this.containers[e].containerCache.over && (this.containers[e]._trigger("out", b, this._uiHash(this)), this.containers[e].containerCache.over = 0)
+        this.containers[i].containerCache.over && (this.containers[i]._trigger("out", t, this._uiHash(this)), this.containers[i].containerCache.over = 0)
       }
     }
-    if(!c) {
+    if(!n) {
       return
     }
     if(this.containers.length === 1) {
-      this.containers[d]._trigger("over", b, this._uiHash(this)), this.containers[d].containerCache.over = 1
+      this.containers[r]._trigger("over", t, this._uiHash(this)), this.containers[r].containerCache.over = 1
     }else {
-      if(this.currentContainer != this.containers[d]) {
-        var f = 1E4, g = null, h = this.positionAbs[this.containers[d].floating ? "left" : "top"];
-        for(var i = this.items.length - 1;i >= 0;i--) {
-          if(!a.ui.contains(this.containers[d].element[0], this.items[i].item[0])) {
-            continue
-          }
-          var j = this.items[i][this.containers[d].floating ? "left" : "top"];
-          Math.abs(j - h) < f && (f = Math.abs(j - h), g = this.items[i])
+      var s = 1E4, o = null, u = this.containers[r].floating ? "left" : "top", a = this.containers[r].floating ? "width" : "height", f = this.positionAbs[u] + this.offset.click[u];
+      for(var l = this.items.length - 1;l >= 0;l--) {
+        if(!e.contains(this.containers[r].element[0], this.items[l].item[0])) {
+          continue
         }
-        if(!g && !this.options.dropOnEmpty) {
-          return
+        if(this.items[l].item[0] == this.currentItem[0]) {
+          continue
         }
-        this.currentContainer = this.containers[d], g ? this._rearrange(b, g, null, !0) : this._rearrange(b, null, this.containers[d].element, !0), this._trigger("change", b, this._uiHash()), this.containers[d]._trigger("change", b, this._uiHash(this)), this.options.placeholder.update(this.currentContainer, this.placeholder), this.containers[d]._trigger("over", b, this._uiHash(this)), this.containers[d].containerCache.over = 1
+        var c = this.items[l].item.offset()[u], h = !1;
+        Math.abs(c - f) > Math.abs(c + this.items[l][a] - f) && (h = !0, c += this.items[l][a]), Math.abs(c - f) < s && (s = Math.abs(c - f), o = this.items[l], this.direction = h ? "up" : "down")
       }
+      if(!o && !this.options.dropOnEmpty) {
+        return
+      }
+      this.currentContainer = this.containers[r], o ? this._rearrange(t, o, null, !0) : this._rearrange(t, null, this.containers[r].element, !0), this._trigger("change", t, this._uiHash()), this.containers[r]._trigger("change", t, this._uiHash(this)), this.options.placeholder.update(this.currentContainer, this.placeholder), this.containers[r]._trigger("over", t, this._uiHash(this)), this.containers[r].containerCache.over = 1
     }
-  }, _createHelper:function(b) {
-    var c = this.options, d = a.isFunction(c.helper) ? a(c.helper.apply(this.element[0], [b, this.currentItem])) : c.helper == "clone" ? this.currentItem.clone() : this.currentItem;
-    return d.parents("body").length || a(c.appendTo != "parent" ? c.appendTo : this.currentItem[0].parentNode)[0].appendChild(d[0]), d[0] == this.currentItem[0] && (this._storedCSS = {width:this.currentItem[0].style.width, height:this.currentItem[0].style.height, position:this.currentItem.css("position"), top:this.currentItem.css("top"), left:this.currentItem.css("left")}), (d[0].style.width == "" || c.forceHelperSize) && d.width(this.currentItem.width()), (d[0].style.height == "" || c.forceHelperSize) && 
-    d.height(this.currentItem.height()), d
-  }, _adjustOffsetFromHelper:function(b) {
-    typeof b == "string" && (b = b.split(" ")), a.isArray(b) && (b = {left:+b[0], top:+b[1] || 0}), "left" in b && (this.offset.click.left = b.left + this.margins.left), "right" in b && (this.offset.click.left = this.helperProportions.width - b.right + this.margins.left), "top" in b && (this.offset.click.top = b.top + this.margins.top), "bottom" in b && (this.offset.click.top = this.helperProportions.height - b.bottom + this.margins.top)
+  }, _createHelper:function(t) {
+    var n = this.options, r = e.isFunction(n.helper) ? e(n.helper.apply(this.element[0], [t, this.currentItem])) : n.helper == "clone" ? this.currentItem.clone() : this.currentItem;
+    return r.parents("body").length || e(n.appendTo != "parent" ? n.appendTo : this.currentItem[0].parentNode)[0].appendChild(r[0]), r[0] == this.currentItem[0] && (this._storedCSS = {width:this.currentItem[0].style.width, height:this.currentItem[0].style.height, position:this.currentItem.css("position"), top:this.currentItem.css("top"), left:this.currentItem.css("left")}), (r[0].style.width == "" || n.forceHelperSize) && r.width(this.currentItem.width()), (r[0].style.height == "" || n.forceHelperSize) && 
+    r.height(this.currentItem.height()), r
+  }, _adjustOffsetFromHelper:function(t) {
+    typeof t == "string" && (t = t.split(" ")), e.isArray(t) && (t = {left:+t[0], top:+t[1] || 0}), "left" in t && (this.offset.click.left = t.left + this.margins.left), "right" in t && (this.offset.click.left = this.helperProportions.width - t.right + this.margins.left), "top" in t && (this.offset.click.top = t.top + this.margins.top), "bottom" in t && (this.offset.click.top = this.helperProportions.height - t.bottom + this.margins.top)
   }, _getParentOffset:function() {
     this.offsetParent = this.helper.offsetParent();
-    var b = this.offsetParent.offset();
-    this.cssPosition == "absolute" && this.scrollParent[0] != document && a.ui.contains(this.scrollParent[0], this.offsetParent[0]) && (b.left += this.scrollParent.scrollLeft(), b.top += this.scrollParent.scrollTop());
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && a.browser.msie) {
-      b = {top:0, left:0}
+    var t = this.offsetParent.offset();
+    this.cssPosition == "absolute" && this.scrollParent[0] != document && e.contains(this.scrollParent[0], this.offsetParent[0]) && (t.left += this.scrollParent.scrollLeft(), t.top += this.scrollParent.scrollTop());
+    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && e.ui.ie) {
+      t = {top:0, left:0}
     }
-    return{top:b.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:b.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
+    return{top:t.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:t.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
   }, _getRelativeOffset:function() {
     if(this.cssPosition == "relative") {
-      var a = this.currentItem.position();
-      return{top:a.top - (parseInt(this.helper.css("top"), 10) || 0) + this.scrollParent.scrollTop(), left:a.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()}
+      var e = this.currentItem.position();
+      return{top:e.top - (parseInt(this.helper.css("top"), 10) || 0) + this.scrollParent.scrollTop(), left:e.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()}
     }
     return{top:0, left:0}
   }, _cacheMargins:function() {
@@ -4366,847 +4408,488 @@ VISH.Constant.Event.onPreventDefault = "onPreventDefault";
   }, _cacheHelperProportions:function() {
     this.helperProportions = {width:this.helper.outerWidth(), height:this.helper.outerHeight()}
   }, _setContainment:function() {
-    var b = this.options;
-    b.containment == "parent" && (b.containment = this.helper[0].parentNode);
-    if(b.containment == "document" || b.containment == "window") {
-      this.containment = [0 - this.offset.relative.left - this.offset.parent.left, 0 - this.offset.relative.top - this.offset.parent.top, a(b.containment == "document" ? document : window).width() - this.helperProportions.width - this.margins.left, (a(b.containment == "document" ? document : window).height() || document.body.parentNode.scrollHeight) - this.helperProportions.height - this.margins.top]
+    var t = this.options;
+    t.containment == "parent" && (t.containment = this.helper[0].parentNode);
+    if(t.containment == "document" || t.containment == "window") {
+      this.containment = [0 - this.offset.relative.left - this.offset.parent.left, 0 - this.offset.relative.top - this.offset.parent.top, e(t.containment == "document" ? document : window).width() - this.helperProportions.width - this.margins.left, (e(t.containment == "document" ? document : window).height() || document.body.parentNode.scrollHeight) - this.helperProportions.height - this.margins.top]
     }
-    if(!/^(document|window|parent)$/.test(b.containment)) {
-      var c = a(b.containment)[0], d = a(b.containment).offset(), e = a(c).css("overflow") != "hidden";
-      this.containment = [d.left + (parseInt(a(c).css("borderLeftWidth"), 10) || 0) + (parseInt(a(c).css("paddingLeft"), 10) || 0) - this.margins.left, d.top + (parseInt(a(c).css("borderTopWidth"), 10) || 0) + (parseInt(a(c).css("paddingTop"), 10) || 0) - this.margins.top, d.left + (e ? Math.max(c.scrollWidth, c.offsetWidth) : c.offsetWidth) - (parseInt(a(c).css("borderLeftWidth"), 10) || 0) - (parseInt(a(c).css("paddingRight"), 10) || 0) - this.helperProportions.width - this.margins.left, d.top + 
-      (e ? Math.max(c.scrollHeight, c.offsetHeight) : c.offsetHeight) - (parseInt(a(c).css("borderTopWidth"), 10) || 0) - (parseInt(a(c).css("paddingBottom"), 10) || 0) - this.helperProportions.height - this.margins.top]
+    if(!/^(document|window|parent)$/.test(t.containment)) {
+      var n = e(t.containment)[0], r = e(t.containment).offset(), i = e(n).css("overflow") != "hidden";
+      this.containment = [r.left + (parseInt(e(n).css("borderLeftWidth"), 10) || 0) + (parseInt(e(n).css("paddingLeft"), 10) || 0) - this.margins.left, r.top + (parseInt(e(n).css("borderTopWidth"), 10) || 0) + (parseInt(e(n).css("paddingTop"), 10) || 0) - this.margins.top, r.left + (i ? Math.max(n.scrollWidth, n.offsetWidth) : n.offsetWidth) - (parseInt(e(n).css("borderLeftWidth"), 10) || 0) - (parseInt(e(n).css("paddingRight"), 10) || 0) - this.helperProportions.width - this.margins.left, r.top + 
+      (i ? Math.max(n.scrollHeight, n.offsetHeight) : n.offsetHeight) - (parseInt(e(n).css("borderTopWidth"), 10) || 0) - (parseInt(e(n).css("paddingBottom"), 10) || 0) - this.helperProportions.height - this.margins.top]
     }
-  }, _convertPositionTo:function(b, c) {
-    c || (c = this.position);
-    var d = b == "absolute" ? 1 : -1, e = this.options, f = this.cssPosition == "absolute" && (this.scrollParent[0] == document || !a.ui.contains(this.scrollParent[0], this.offsetParent[0])) ? this.offsetParent : this.scrollParent, g = /(html|body)/i.test(f[0].tagName);
-    return{top:c.top + this.offset.relative.top * d + this.offset.parent.top * d - (a.browser.safari && this.cssPosition == "fixed" ? 0 : (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : g ? 0 : f.scrollTop()) * d), left:c.left + this.offset.relative.left * d + this.offset.parent.left * d - (a.browser.safari && this.cssPosition == "fixed" ? 0 : (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : g ? 0 : f.scrollLeft()) * d)}
-  }, _generatePosition:function(b) {
-    var c = this.options, d = this.cssPosition == "absolute" && (this.scrollParent[0] == document || !a.ui.contains(this.scrollParent[0], this.offsetParent[0])) ? this.offsetParent : this.scrollParent, e = /(html|body)/i.test(d[0].tagName);
+  }, _convertPositionTo:function(t, n) {
+    n || (n = this.position);
+    var r = t == "absolute" ? 1 : -1, i = this.options, s = this.cssPosition != "absolute" || this.scrollParent[0] != document && !!e.contains(this.scrollParent[0], this.offsetParent[0]) ? this.scrollParent : this.offsetParent, o = /(html|body)/i.test(s[0].tagName);
+    return{top:n.top + this.offset.relative.top * r + this.offset.parent.top * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : o ? 0 : s.scrollTop()) * r, left:n.left + this.offset.relative.left * r + this.offset.parent.left * r - (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : o ? 0 : s.scrollLeft()) * r}
+  }, _generatePosition:function(t) {
+    var n = this.options, r = this.cssPosition != "absolute" || this.scrollParent[0] != document && !!e.contains(this.scrollParent[0], this.offsetParent[0]) ? this.scrollParent : this.offsetParent, i = /(html|body)/i.test(r[0].tagName);
     this.cssPosition == "relative" && (this.scrollParent[0] == document || this.scrollParent[0] == this.offsetParent[0]) && (this.offset.relative = this._getRelativeOffset());
-    var f = b.pageX, g = b.pageY;
+    var s = t.pageX, o = t.pageY;
     if(this.originalPosition) {
-      this.containment && (b.pageX - this.offset.click.left < this.containment[0] && (f = this.containment[0] + this.offset.click.left), b.pageY - this.offset.click.top < this.containment[1] && (g = this.containment[1] + this.offset.click.top), b.pageX - this.offset.click.left > this.containment[2] && (f = this.containment[2] + this.offset.click.left), b.pageY - this.offset.click.top > this.containment[3] && (g = this.containment[3] + this.offset.click.top));
-      if(c.grid) {
-        var h = this.originalPageY + Math.round((g - this.originalPageY) / c.grid[1]) * c.grid[1];
-        g = this.containment ? h - this.offset.click.top < this.containment[1] || h - this.offset.click.top > this.containment[3] ? h - this.offset.click.top < this.containment[1] ? h + c.grid[1] : h - c.grid[1] : h : h;
-        var i = this.originalPageX + Math.round((f - this.originalPageX) / c.grid[0]) * c.grid[0];
-        f = this.containment ? i - this.offset.click.left < this.containment[0] || i - this.offset.click.left > this.containment[2] ? i - this.offset.click.left < this.containment[0] ? i + c.grid[0] : i - c.grid[0] : i : i
+      this.containment && (t.pageX - this.offset.click.left < this.containment[0] && (s = this.containment[0] + this.offset.click.left), t.pageY - this.offset.click.top < this.containment[1] && (o = this.containment[1] + this.offset.click.top), t.pageX - this.offset.click.left > this.containment[2] && (s = this.containment[2] + this.offset.click.left), t.pageY - this.offset.click.top > this.containment[3] && (o = this.containment[3] + this.offset.click.top));
+      if(n.grid) {
+        var u = this.originalPageY + Math.round((o - this.originalPageY) / n.grid[1]) * n.grid[1];
+        o = this.containment ? u - this.offset.click.top < this.containment[1] || u - this.offset.click.top > this.containment[3] ? u - this.offset.click.top < this.containment[1] ? u + n.grid[1] : u - n.grid[1] : u : u;
+        var a = this.originalPageX + Math.round((s - this.originalPageX) / n.grid[0]) * n.grid[0];
+        s = this.containment ? a - this.offset.click.left < this.containment[0] || a - this.offset.click.left > this.containment[2] ? a - this.offset.click.left < this.containment[0] ? a + n.grid[0] : a - n.grid[0] : a : a
       }
     }
-    return{top:g - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (a.browser.safari && this.cssPosition == "fixed" ? 0 : this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : e ? 0 : d.scrollTop()), left:f - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (a.browser.safari && this.cssPosition == "fixed" ? 0 : this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : e ? 0 : d.scrollLeft())}
-  }, _rearrange:function(a, b, c, d) {
-    c ? c[0].appendChild(this.placeholder[0]) : b.item[0].parentNode.insertBefore(this.placeholder[0], this.direction == "down" ? b.item[0] : b.item[0].nextSibling), this.counter = this.counter ? ++this.counter : 1;
-    var e = this, f = this.counter;
-    window.setTimeout(function() {
-      f == e.counter && e.refreshPositions(!d)
-    }, 0)
-  }, _clear:function(b, c) {
+    return{top:o - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : i ? 0 : r.scrollTop()), left:s - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : i ? 0 : r.scrollLeft())}
+  }, _rearrange:function(e, t, n, r) {
+    n ? n[0].appendChild(this.placeholder[0]) : t.item[0].parentNode.insertBefore(this.placeholder[0], this.direction == "down" ? t.item[0] : t.item[0].nextSibling), this.counter = this.counter ? ++this.counter : 1;
+    var i = this.counter;
+    this._delay(function() {
+      i == this.counter && this.refreshPositions(!r)
+    })
+  }, _clear:function(t, n) {
     this.reverting = !1;
-    var d = [], e = this;
+    var r = [];
     !this._noFinalSort && this.currentItem.parent().length && this.placeholder.before(this.currentItem), this._noFinalSort = null;
     if(this.helper[0] == this.currentItem[0]) {
-      for(var f in this._storedCSS) {
-        if(this._storedCSS[f] == "auto" || this._storedCSS[f] == "static") {
-          this._storedCSS[f] = ""
+      for(var i in this._storedCSS) {
+        if(this._storedCSS[i] == "auto" || this._storedCSS[i] == "static") {
+          this._storedCSS[i] = ""
         }
       }
       this.currentItem.css(this._storedCSS).removeClass("ui-sortable-helper")
     }else {
       this.currentItem.show()
     }
-    this.fromOutside && !c && d.push(function(a) {
-      this._trigger("receive", a, this._uiHash(this.fromOutside))
-    }), (this.fromOutside || this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0]) && !c && d.push(function(a) {
-      this._trigger("update", a, this._uiHash())
-    });
-    if(!a.ui.contains(this.element[0], this.currentItem[0])) {
-      c || d.push(function(a) {
-        this._trigger("remove", a, this._uiHash())
-      });
-      for(var f = this.containers.length - 1;f >= 0;f--) {
-        a.ui.contains(this.containers[f].element[0], this.currentItem[0]) && !c && (d.push(function(a) {
-          return function(b) {
-            a._trigger("receive", b, this._uiHash(this))
-          }
-        }.call(this, this.containers[f])), d.push(function(a) {
-          return function(b) {
-            a._trigger("update", b, this._uiHash(this))
-          }
-        }.call(this, this.containers[f])))
+    this.fromOutside && !n && r.push(function(e) {
+      this._trigger("receive", e, this._uiHash(this.fromOutside))
+    }), (this.fromOutside || this.domPosition.prev != this.currentItem.prev().not(".ui-sortable-helper")[0] || this.domPosition.parent != this.currentItem.parent()[0]) && !n && r.push(function(e) {
+      this._trigger("update", e, this._uiHash())
+    }), this !== this.currentContainer && (n || (r.push(function(e) {
+      this._trigger("remove", e, this._uiHash())
+    }), r.push(function(e) {
+      return function(t) {
+        e._trigger("receive", t, this._uiHash(this))
       }
-    }
-    for(var f = this.containers.length - 1;f >= 0;f--) {
-      c || d.push(function(a) {
-        return function(b) {
-          a._trigger("deactivate", b, this._uiHash(this))
+    }.call(this, this.currentContainer)), r.push(function(e) {
+      return function(t) {
+        e._trigger("update", t, this._uiHash(this))
+      }
+    }.call(this, this.currentContainer))));
+    for(var i = this.containers.length - 1;i >= 0;i--) {
+      n || r.push(function(e) {
+        return function(t) {
+          e._trigger("deactivate", t, this._uiHash(this))
         }
-      }.call(this, this.containers[f])), this.containers[f].containerCache.over && (d.push(function(a) {
-        return function(b) {
-          a._trigger("out", b, this._uiHash(this))
+      }.call(this, this.containers[i])), this.containers[i].containerCache.over && (r.push(function(e) {
+        return function(t) {
+          e._trigger("out", t, this._uiHash(this))
         }
-      }.call(this, this.containers[f])), this.containers[f].containerCache.over = 0)
+      }.call(this, this.containers[i])), this.containers[i].containerCache.over = 0)
     }
-    this._storedCursor && a("body").css("cursor", this._storedCursor), this._storedOpacity && this.helper.css("opacity", this._storedOpacity), this._storedZIndex && this.helper.css("zIndex", this._storedZIndex == "auto" ? "" : this._storedZIndex), this.dragging = !1;
+    this._storedCursor && e("body").css("cursor", this._storedCursor), this._storedOpacity && this.helper.css("opacity", this._storedOpacity), this._storedZIndex && this.helper.css("zIndex", this._storedZIndex == "auto" ? "" : this._storedZIndex), this.dragging = !1;
     if(this.cancelHelperRemoval) {
-      if(!c) {
-        this._trigger("beforeStop", b, this._uiHash());
-        for(var f = 0;f < d.length;f++) {
-          d[f].call(this, b)
+      if(!n) {
+        this._trigger("beforeStop", t, this._uiHash());
+        for(var i = 0;i < r.length;i++) {
+          r[i].call(this, t)
         }
-        this._trigger("stop", b, this._uiHash())
+        this._trigger("stop", t, this._uiHash())
       }
-      return!1
+      return this.fromOutside = !1, !1
     }
-    c || this._trigger("beforeStop", b, this._uiHash()), this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.helper[0] != this.currentItem[0] && this.helper.remove(), this.helper = null;
-    if(!c) {
-      for(var f = 0;f < d.length;f++) {
-        d[f].call(this, b)
+    n || this._trigger("beforeStop", t, this._uiHash()), this.placeholder[0].parentNode.removeChild(this.placeholder[0]), this.helper[0] != this.currentItem[0] && this.helper.remove(), this.helper = null;
+    if(!n) {
+      for(var i = 0;i < r.length;i++) {
+        r[i].call(this, t)
       }
-      this._trigger("stop", b, this._uiHash())
+      this._trigger("stop", t, this._uiHash())
     }
     return this.fromOutside = !1, !0
   }, _trigger:function() {
-    a.Widget.prototype._trigger.apply(this, arguments) === !1 && this.cancel()
-  }, _uiHash:function(b) {
-    var c = b || this;
-    return{helper:c.helper, placeholder:c.placeholder || a([]), position:c.position, originalPosition:c.originalPosition, offset:c.positionAbs, item:c.currentItem, sender:b ? b.element : null}
-  }}), a.extend(a.ui.sortable, {version:"1.8.20"})
+    e.Widget.prototype._trigger.apply(this, arguments) === !1 && this.cancel()
+  }, _uiHash:function(t) {
+    var n = t || this;
+    return{helper:n.helper, placeholder:n.placeholder || e([]), position:n.position, originalPosition:n.originalPosition, offset:n.positionAbs, item:n.currentItem, sender:t ? t.element : null}
+  }})
 })(jQuery);
-(function(a, b) {
-  var c = 0;
-  a.widget("ui.autocomplete", {options:{appendTo:"body", autoFocus:!1, delay:300, minLength:1, position:{my:"left top", at:"left bottom", collision:"none"}, source:null}, pending:0, _create:function() {
-    var b = this, c = this.element[0].ownerDocument, d;
-    this.isMultiLine = this.element.is("textarea"), this.element.addClass("ui-autocomplete-input").attr("autocomplete", "off").attr({role:"textbox", "aria-autocomplete":"list", "aria-haspopup":"true"}).bind("keydown.autocomplete", function(c) {
-      if(b.options.disabled || b.element.propAttr("readOnly")) {
+(function(e, t) {
+  var n = 0;
+  e.widget("ui.autocomplete", {version:"1.9.1", defaultElement:"<input>", options:{appendTo:"body", autoFocus:!1, delay:300, minLength:1, position:{my:"left top", at:"left bottom", collision:"none"}, source:null, change:null, close:null, focus:null, open:null, response:null, search:null, select:null}, pending:0, _create:function() {
+    var t, n, r;
+    this.isMultiLine = this._isMultiLine(), this.valueMethod = this.element[this.element.is("input,textarea") ? "val" : "text"], this.isNewMenu = !0, this.element.addClass("ui-autocomplete-input").attr("autocomplete", "off"), this._on(this.element, {keydown:function(i) {
+      if(this.element.prop("readOnly")) {
+        t = !0, r = !0, n = !0;
         return
       }
-      d = !1;
-      var e = a.ui.keyCode;
-      switch(c.keyCode) {
-        case e.PAGE_UP:
-          b._move("previousPage", c);
+      t = !1, r = !1, n = !1;
+      var s = e.ui.keyCode;
+      switch(i.keyCode) {
+        case s.PAGE_UP:
+          t = !0, this._move("previousPage", i);
           break;
-        case e.PAGE_DOWN:
-          b._move("nextPage", c);
+        case s.PAGE_DOWN:
+          t = !0, this._move("nextPage", i);
           break;
-        case e.UP:
-          b._keyEvent("previous", c);
+        case s.UP:
+          t = !0, this._keyEvent("previous", i);
           break;
-        case e.DOWN:
-          b._keyEvent("next", c);
+        case s.DOWN:
+          t = !0, this._keyEvent("next", i);
           break;
-        case e.ENTER:
+        case s.ENTER:
         ;
-        case e.NUMPAD_ENTER:
-          b.menu.active && (d = !0, c.preventDefault());
-        case e.TAB:
-          if(!b.menu.active) {
-            return
-          }
-          b.menu.select(c);
+        case s.NUMPAD_ENTER:
+          this.menu.active && (t = !0, i.preventDefault(), this.menu.select(i));
           break;
-        case e.ESCAPE:
-          b.element.val(b.term), b.close(c);
+        case s.TAB:
+          this.menu.active && this.menu.select(i);
+          break;
+        case s.ESCAPE:
+          this.menu.element.is(":visible") && (this._value(this.term), this.close(i), i.preventDefault());
           break;
         default:
-          clearTimeout(b.searching), b.searching = setTimeout(function() {
-            b.term != b.element.val() && (b.selectedItem = null, b.search(null, c))
-          }, b.options.delay)
+          n = !0, this._searchTimeout(i)
       }
-    }).bind("keypress.autocomplete", function(a) {
-      d && (d = !1, a.preventDefault())
-    }).bind("focus.autocomplete", function() {
-      if(b.options.disabled) {
+    }, keypress:function(r) {
+      if(t) {
+        t = !1, r.preventDefault();
         return
       }
-      b.selectedItem = null, b.previous = b.element.val()
-    }).bind("blur.autocomplete", function(a) {
-      if(b.options.disabled) {
+      if(n) {
         return
       }
-      clearTimeout(b.searching), b.closing = setTimeout(function() {
-        b.close(a), b._change(a)
-      }, 150)
-    }), this._initSource(), this.menu = a("<ul></ul>").addClass("ui-autocomplete").appendTo(a(this.options.appendTo || "body", c)[0]).mousedown(function(c) {
-      var d = b.menu.element[0];
-      a(c.target).closest(".ui-menu-item").length || setTimeout(function() {
-        a(document).one("mousedown", function(c) {
-          c.target !== b.element[0] && c.target !== d && !a.ui.contains(d, c.target) && b.close()
+      var i = e.ui.keyCode;
+      switch(r.keyCode) {
+        case i.PAGE_UP:
+          this._move("previousPage", r);
+          break;
+        case i.PAGE_DOWN:
+          this._move("nextPage", r);
+          break;
+        case i.UP:
+          this._keyEvent("previous", r);
+          break;
+        case i.DOWN:
+          this._keyEvent("next", r)
+      }
+    }, input:function(e) {
+      if(r) {
+        r = !1, e.preventDefault();
+        return
+      }
+      this._searchTimeout(e)
+    }, focus:function() {
+      this.selectedItem = null, this.previous = this._value()
+    }, blur:function(e) {
+      if(this.cancelBlur) {
+        delete this.cancelBlur;
+        return
+      }
+      clearTimeout(this.searching), this.close(e), this._change(e)
+    }}), this._initSource(), this.menu = e("<ul>").addClass("ui-autocomplete").appendTo(this.document.find(this.options.appendTo || "body")[0]).menu({input:e(), role:null}).zIndex(this.element.zIndex() + 1).hide().data("menu"), this._on(this.menu.element, {mousedown:function(t) {
+      t.preventDefault(), this.cancelBlur = !0, this._delay(function() {
+        delete this.cancelBlur
+      });
+      var n = this.menu.element[0];
+      e(t.target).closest(".ui-menu-item").length || this._delay(function() {
+        var t = this;
+        this.document.one("mousedown", function(r) {
+          r.target !== t.element[0] && r.target !== n && !e.contains(n, r.target) && t.close()
         })
-      }, 1), setTimeout(function() {
-        clearTimeout(b.closing)
-      }, 13)
-    }).menu({focus:function(a, c) {
-      var d = c.item.data("item.autocomplete");
-      !1 !== b._trigger("focus", a, {item:d}) && /^key/.test(a.originalEvent.type) && b.element.val(d.value)
-    }, selected:function(a, d) {
-      var e = d.item.data("item.autocomplete"), f = b.previous;
-      b.element[0] !== c.activeElement && (b.element.focus(), b.previous = f, setTimeout(function() {
-        b.previous = f, b.selectedItem = e
-      }, 1)), !1 !== b._trigger("select", a, {item:e}) && b.element.val(e.value), b.term = b.element.val(), b.close(a), b.selectedItem = e
-    }, blur:function(a, c) {
-      b.menu.element.is(":visible") && b.element.val() !== b.term && b.element.val(b.term)
-    }}).zIndex(this.element.zIndex() + 1).css({top:0, left:0}).hide().data("menu"), a.fn.bgiframe && this.menu.element.bgiframe(), b.beforeunloadHandler = function() {
-      b.element.removeAttr("autocomplete")
-    }, a(window).bind("beforeunload", b.beforeunloadHandler)
-  }, destroy:function() {
-    this.element.removeClass("ui-autocomplete-input").removeAttr("autocomplete").removeAttr("role").removeAttr("aria-autocomplete").removeAttr("aria-haspopup"), this.menu.element.remove(), a(window).unbind("beforeunload", this.beforeunloadHandler), a.Widget.prototype.destroy.call(this)
-  }, _setOption:function(b, c) {
-    a.Widget.prototype._setOption.apply(this, arguments), b === "source" && this._initSource(), b === "appendTo" && this.menu.element.appendTo(a(c || "body", this.element[0].ownerDocument)[0]), b === "disabled" && c && this.xhr && this.xhr.abort()
-  }, _initSource:function() {
-    var b = this, c, d;
-    a.isArray(this.options.source) ? (c = this.options.source, this.source = function(b, d) {
-      d(a.ui.autocomplete.filter(c, b.term))
-    }) : typeof this.options.source == "string" ? (d = this.options.source, this.source = function(c, e) {
-      b.xhr && b.xhr.abort(), b.xhr = a.ajax({url:d, data:c, dataType:"json", success:function(a, b) {
-        e(a)
-      }, error:function() {
-        e([])
-      }})
-    }) : this.source = this.options.source
-  }, search:function(a, b) {
-    a = a != null ? a : this.element.val(), this.term = this.element.val();
-    if(a.length < this.options.minLength) {
-      return this.close(b)
-    }
-    clearTimeout(this.closing);
-    if(this._trigger("search", b) === !1) {
-      return
-    }
-    return this._search(a)
-  }, _search:function(a) {
-    this.pending++, this.element.addClass("ui-autocomplete-loading"), this.source({term:a}, this._response())
-  }, _response:function() {
-    var a = this, b = ++c;
-    return function(d) {
-      b === c && a.__response(d), a.pending--, a.pending || a.element.removeClass("ui-autocomplete-loading")
-    }
-  }, __response:function(a) {
-    !this.options.disabled && a && a.length ? (a = this._normalize(a), this._suggest(a), this._trigger("open")) : this.close()
-  }, close:function(a) {
-    clearTimeout(this.closing), this.menu.element.is(":visible") && (this.menu.element.hide(), this.menu.deactivate(), this._trigger("close", a))
-  }, _change:function(a) {
-    this.previous !== this.element.val() && this._trigger("change", a, {item:this.selectedItem})
-  }, _normalize:function(b) {
-    return b.length && b[0].label && b[0].value ? b : a.map(b, function(b) {
-      return typeof b == "string" ? {label:b, value:b} : a.extend({label:b.label || b.value, value:b.value || b.label}, b)
-    })
-  }, _suggest:function(b) {
-    var c = this.menu.element.empty().zIndex(this.element.zIndex() + 1);
-    this._renderMenu(c, b), this.menu.deactivate(), this.menu.refresh(), c.show(), this._resizeMenu(), c.position(a.extend({of:this.element}, this.options.position)), this.options.autoFocus && this.menu.next(new a.Event("mouseover"))
-  }, _resizeMenu:function() {
-    var a = this.menu.element;
-    a.outerWidth(Math.max(a.width("").outerWidth() + 1, this.element.outerWidth()))
-  }, _renderMenu:function(b, c) {
-    var d = this;
-    a.each(c, function(a, c) {
-      d._renderItem(b, c)
-    })
-  }, _renderItem:function(b, c) {
-    return a("<li></li>").data("item.autocomplete", c).append(a("<a></a>").text(c.label)).appendTo(b)
-  }, _move:function(a, b) {
-    if(!this.menu.element.is(":visible")) {
-      this.search(null, b);
-      return
-    }
-    if(this.menu.first() && /^previous/.test(a) || this.menu.last() && /^next/.test(a)) {
-      this.element.val(this.term), this.menu.deactivate();
-      return
-    }
-    this.menu[a](b)
-  }, widget:function() {
-    return this.menu.element
-  }, _keyEvent:function(a, b) {
-    if(!this.isMultiLine || this.menu.element.is(":visible")) {
-      this._move(a, b), b.preventDefault()
-    }
-  }}), a.extend(a.ui.autocomplete, {escapeRegex:function(a) {
-    return a.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")
-  }, filter:function(b, c) {
-    var d = new RegExp(a.ui.autocomplete.escapeRegex(c), "i");
-    return a.grep(b, function(a) {
-      return d.test(a.label || a.value || a)
-    })
-  }})
-})(jQuery), function(a) {
-  a.widget("ui.menu", {_create:function() {
-    var b = this;
-    this.element.addClass("ui-menu ui-widget ui-widget-content ui-corner-all").attr({role:"listbox", "aria-activedescendant":"ui-active-menuitem"}).click(function(c) {
-      if(!a(c.target).closest(".ui-menu-item a").length) {
-        return
-      }
-      c.preventDefault(), b.select(c)
-    }), this.refresh()
-  }, refresh:function() {
-    var b = this, c = this.element.children("li:not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role", "menuitem");
-    c.children("a").addClass("ui-corner-all").attr("tabindex", -1).mouseenter(function(c) {
-      b.activate(c, a(this).parent())
-    }).mouseleave(function() {
-      b.deactivate()
-    })
-  }, activate:function(a, b) {
-    this.deactivate();
-    if(this.hasScroll()) {
-      var c = b.offset().top - this.element.offset().top, d = this.element.scrollTop(), e = this.element.height();
-      c < 0 ? this.element.scrollTop(d + c) : c >= e && this.element.scrollTop(d + c - e + b.height())
-    }
-    this.active = b.eq(0).children("a").addClass("ui-state-hover").attr("id", "ui-active-menuitem").end(), this._trigger("focus", a, {item:b})
-  }, deactivate:function() {
-    if(!this.active) {
-      return
-    }
-    this.active.children("a").removeClass("ui-state-hover").removeAttr("id"), this._trigger("blur"), this.active = null
-  }, next:function(a) {
-    this.move("next", ".ui-menu-item:first", a)
-  }, previous:function(a) {
-    this.move("prev", ".ui-menu-item:last", a)
-  }, first:function() {
-    return this.active && !this.active.prevAll(".ui-menu-item").length
-  }, last:function() {
-    return this.active && !this.active.nextAll(".ui-menu-item").length
-  }, move:function(a, b, c) {
-    if(!this.active) {
-      this.activate(c, this.element.children(b));
-      return
-    }
-    var d = this.active[a + "All"](".ui-menu-item").eq(0);
-    d.length ? this.activate(c, d) : this.activate(c, this.element.children(b))
-  }, nextPage:function(b) {
-    if(this.hasScroll()) {
-      if(!this.active || this.last()) {
-        this.activate(b, this.element.children(".ui-menu-item:first"));
-        return
-      }
-      var c = this.active.offset().top, d = this.element.height(), e = this.element.children(".ui-menu-item").filter(function() {
-        var b = a(this).offset().top - c - d + a(this).height();
-        return b < 10 && b > -10
-      });
-      e.length || (e = this.element.children(".ui-menu-item:last")), this.activate(b, e)
-    }else {
-      this.activate(b, this.element.children(".ui-menu-item").filter(!this.active || this.last() ? ":first" : ":last"))
-    }
-  }, previousPage:function(b) {
-    if(this.hasScroll()) {
-      if(!this.active || this.first()) {
-        this.activate(b, this.element.children(".ui-menu-item:last"));
-        return
-      }
-      var c = this.active.offset().top, d = this.element.height(), e = this.element.children(".ui-menu-item").filter(function() {
-        var b = a(this).offset().top - c + d - a(this).height();
-        return b < 10 && b > -10
-      });
-      e.length || (e = this.element.children(".ui-menu-item:first")), this.activate(b, e)
-    }else {
-      this.activate(b, this.element.children(".ui-menu-item").filter(!this.active || this.first() ? ":last" : ":first"))
-    }
-  }, hasScroll:function() {
-    return this.element.height() < this.element[a.fn.prop ? "prop" : "attr"]("scrollHeight")
-  }, select:function(a) {
-    this._trigger("selected", a, {item:this.active})
-  }})
-}(jQuery);
-jQuery.effects || function(a, b) {
-  function c(b) {
-    var c;
-    return b && b.constructor == Array && b.length == 3 ? b : (c = /rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(b)) ? [parseInt(c[1], 10), parseInt(c[2], 10), parseInt(c[3], 10)] : (c = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(b)) ? [parseFloat(c[1]) * 2.55, parseFloat(c[2]) * 2.55, parseFloat(c[3]) * 2.55] : (c = /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(b)) ? [parseInt(c[1], 16), parseInt(c[2], 
-    16), parseInt(c[3], 16)] : (c = /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(b)) ? [parseInt(c[1] + c[1], 16), parseInt(c[2] + c[2], 16), parseInt(c[3] + c[3], 16)] : (c = /rgba\(0, 0, 0, 0\)/.exec(b)) ? e.transparent : e[a.trim(b).toLowerCase()]
-  }
-  function d(b, d) {
-    var e;
-    do {
-      e = a.curCSS(b, d);
-      if(e != "" && e != "transparent" || a.nodeName(b, "body")) {
-        break
-      }
-      d = "backgroundColor"
-    }while(b = b.parentNode);
-    return c(e)
-  }
-  function h() {
-    var a = document.defaultView ? document.defaultView.getComputedStyle(this, null) : this.currentStyle, b = {}, c, d;
-    if(a && a.length && a[0] && a[a[0]]) {
-      var e = a.length;
-      while(e--) {
-        c = a[e], typeof a[c] == "string" && (d = c.replace(/\-(\w)/g, function(a, b) {
-          return b.toUpperCase()
-        }), b[d] = a[c])
-      }
-    }else {
-      for(c in a) {
-        typeof a[c] == "string" && (b[c] = a[c])
-      }
-    }
-    return b
-  }
-  function i(b) {
-    var c, d;
-    for(c in b) {
-      d = b[c], (d == null || a.isFunction(d) || c in g || /scrollbar/.test(c) || !/color/i.test(c) && isNaN(parseFloat(d))) && delete b[c]
-    }
-    return b
-  }
-  function j(a, b) {
-    var c = {_:0}, d;
-    for(d in b) {
-      a[d] != b[d] && (c[d] = b[d])
-    }
-    return c
-  }
-  function k(b, c, d, e) {
-    typeof b == "object" && (e = c, d = null, c = b, b = c.effect), a.isFunction(c) && (e = c, d = null, c = {});
-    if(typeof c == "number" || a.fx.speeds[c]) {
-      e = d, d = c, c = {}
-    }
-    return a.isFunction(d) && (e = d, d = null), c = c || {}, d = d || c.duration, d = a.fx.off ? 0 : typeof d == "number" ? d : d in a.fx.speeds ? a.fx.speeds[d] : a.fx.speeds._default, e = e || c.complete, [b, c, d, e]
-  }
-  function l(b) {
-    return!b || typeof b == "number" || a.fx.speeds[b] ? !0 : typeof b == "string" && !a.effects[b] ? !0 : !1
-  }
-  a.effects = {}, a.each(["backgroundColor", "borderBottomColor", "borderLeftColor", "borderRightColor", "borderTopColor", "borderColor", "color", "outlineColor"], function(b, e) {
-    a.fx.step[e] = function(a) {
-      a.colorInit || (a.start = d(a.elem, e), a.end = c(a.end), a.colorInit = !0), a.elem.style[e] = "rgb(" + Math.max(Math.min(parseInt(a.pos * (a.end[0] - a.start[0]) + a.start[0], 10), 255), 0) + "," + Math.max(Math.min(parseInt(a.pos * (a.end[1] - a.start[1]) + a.start[1], 10), 255), 0) + "," + Math.max(Math.min(parseInt(a.pos * (a.end[2] - a.start[2]) + a.start[2], 10), 255), 0) + ")"
-    }
-  });
-  var e = {aqua:[0, 255, 255], azure:[240, 255, 255], beige:[245, 245, 220], black:[0, 0, 0], blue:[0, 0, 255], brown:[165, 42, 42], cyan:[0, 255, 255], darkblue:[0, 0, 139], darkcyan:[0, 139, 139], darkgrey:[169, 169, 169], darkgreen:[0, 100, 0], darkkhaki:[189, 183, 107], darkmagenta:[139, 0, 139], darkolivegreen:[85, 107, 47], darkorange:[255, 140, 0], darkorchid:[153, 50, 204], darkred:[139, 0, 0], darksalmon:[233, 150, 122], darkviolet:[148, 0, 211], fuchsia:[255, 0, 255], gold:[255, 215, 0], 
-  green:[0, 128, 0], indigo:[75, 0, 130], khaki:[240, 230, 140], lightblue:[173, 216, 230], lightcyan:[224, 255, 255], lightgreen:[144, 238, 144], lightgrey:[211, 211, 211], lightpink:[255, 182, 193], lightyellow:[255, 255, 224], lime:[0, 255, 0], magenta:[255, 0, 255], maroon:[128, 0, 0], navy:[0, 0, 128], olive:[128, 128, 0], orange:[255, 165, 0], pink:[255, 192, 203], purple:[128, 0, 128], violet:[128, 0, 128], red:[255, 0, 0], silver:[192, 192, 192], white:[255, 255, 255], yellow:[255, 255, 0], 
-  transparent:[255, 255, 255]}, f = ["add", "remove", "toggle"], g = {border:1, borderBottom:1, borderColor:1, borderLeft:1, borderRight:1, borderTop:1, borderWidth:1, margin:1, padding:1};
-  a.effects.animateClass = function(b, c, d, e) {
-    return a.isFunction(d) && (e = d, d = null), this.queue(function() {
-      var g = a(this), k = g.attr("style") || " ", l = i(h.call(this)), m, n = g.attr("class") || "";
-      a.each(f, function(a, c) {
-        b[c] && g[c + "Class"](b[c])
-      }), m = i(h.call(this)), g.attr("class", n), g.animate(j(l, m), {queue:!1, duration:c, easing:d, complete:function() {
-        a.each(f, function(a, c) {
-          b[c] && g[c + "Class"](b[c])
-        }), typeof g.attr("style") == "object" ? (g.attr("style").cssText = "", g.attr("style").cssText = k) : g.attr("style", k), e && e.apply(this, arguments), a.dequeue(this)
-      }})
-    })
-  }, a.fn.extend({_addClass:a.fn.addClass, addClass:function(b, c, d, e) {
-    return c ? a.effects.animateClass.apply(this, [{add:b}, c, d, e]) : this._addClass(b)
-  }, _removeClass:a.fn.removeClass, removeClass:function(b, c, d, e) {
-    return c ? a.effects.animateClass.apply(this, [{remove:b}, c, d, e]) : this._removeClass(b)
-  }, _toggleClass:a.fn.toggleClass, toggleClass:function(c, d, e, f, g) {
-    return typeof d == "boolean" || d === b ? e ? a.effects.animateClass.apply(this, [d ? {add:c} : {remove:c}, e, f, g]) : this._toggleClass(c, d) : a.effects.animateClass.apply(this, [{toggle:c}, d, e, f])
-  }, switchClass:function(b, c, d, e, f) {
-    return a.effects.animateClass.apply(this, [{add:c, remove:b}, d, e, f])
-  }}), a.extend(a.effects, {version:"1.8.20", save:function(a, b) {
-    for(var c = 0;c < b.length;c++) {
-      b[c] !== null && a.data("ec.storage." + b[c], a[0].style[b[c]])
-    }
-  }, restore:function(a, b) {
-    for(var c = 0;c < b.length;c++) {
-      b[c] !== null && a.css(b[c], a.data("ec.storage." + b[c]))
-    }
-  }, setMode:function(a, b) {
-    return b == "toggle" && (b = a.is(":hidden") ? "show" : "hide"), b
-  }, getBaseline:function(a, b) {
-    var c, d;
-    switch(a[0]) {
-      case "top":
-        c = 0;
-        break;
-      case "middle":
-        c = 0.5;
-        break;
-      case "bottom":
-        c = 1;
-        break;
-      default:
-        c = a[0] / b.height
-    }
-    switch(a[1]) {
-      case "left":
-        d = 0;
-        break;
-      case "center":
-        d = 0.5;
-        break;
-      case "right":
-        d = 1;
-        break;
-      default:
-        d = a[1] / b.width
-    }
-    return{x:d, y:c}
-  }, createWrapper:function(b) {
-    if(b.parent().is(".ui-effects-wrapper")) {
-      return b.parent()
-    }
-    var c = {width:b.outerWidth(!0), height:b.outerHeight(!0), "float":b.css("float")}, d = a("<div></div>").addClass("ui-effects-wrapper").css({fontSize:"100%", background:"transparent", border:"none", margin:0, padding:0}), e = document.activeElement;
-    return b.wrap(d), (b[0] === e || a.contains(b[0], e)) && a(e).focus(), d = b.parent(), b.css("position") == "static" ? (d.css({position:"relative"}), b.css({position:"relative"})) : (a.extend(c, {position:b.css("position"), zIndex:b.css("z-index")}), a.each(["top", "left", "bottom", "right"], function(a, d) {
-      c[d] = b.css(d), isNaN(parseInt(c[d], 10)) && (c[d] = "auto")
-    }), b.css({position:"relative", top:0, left:0, right:"auto", bottom:"auto"})), d.css(c).show()
-  }, removeWrapper:function(b) {
-    var c, d = document.activeElement;
-    return b.parent().is(".ui-effects-wrapper") ? (c = b.parent().replaceWith(b), (b[0] === d || a.contains(b[0], d)) && a(d).focus(), c) : b
-  }, setTransition:function(b, c, d, e) {
-    return e = e || {}, a.each(c, function(a, c) {
-      var f = b.cssUnit(c);
-      f[0] > 0 && (e[c] = f[0] * d + f[1])
-    }), e
-  }}), a.fn.extend({effect:function(b, c, d, e) {
-    var f = k.apply(this, arguments), g = {options:f[1], duration:f[2], callback:f[3]}, h = g.options.mode, i = a.effects[b];
-    return a.fx.off || !i ? h ? this[h](g.duration, g.callback) : this.each(function() {
-      g.callback && g.callback.call(this)
-    }) : i.call(this, g)
-  }, _show:a.fn.show, show:function(a) {
-    if(l(a)) {
-      return this._show.apply(this, arguments)
-    }
-    var b = k.apply(this, arguments);
-    return b[1].mode = "show", this.effect.apply(this, b)
-  }, _hide:a.fn.hide, hide:function(a) {
-    if(l(a)) {
-      return this._hide.apply(this, arguments)
-    }
-    var b = k.apply(this, arguments);
-    return b[1].mode = "hide", this.effect.apply(this, b)
-  }, __toggle:a.fn.toggle, toggle:function(b) {
-    if(l(b) || typeof b == "boolean" || a.isFunction(b)) {
-      return this.__toggle.apply(this, arguments)
-    }
-    var c = k.apply(this, arguments);
-    return c[1].mode = "toggle", this.effect.apply(this, c)
-  }, cssUnit:function(b) {
-    var c = this.css(b), d = [];
-    return a.each(["em", "px", "%", "pt"], function(a, b) {
-      c.indexOf(b) > 0 && (d = [parseFloat(c), b])
-    }), d
-  }}), a.easing.jswing = a.easing.swing, a.extend(a.easing, {def:"easeOutQuad", swing:function(b, c, d, e, f) {
-    return a.easing[a.easing.def](b, c, d, e, f)
-  }, easeInQuad:function(a, b, c, d, e) {
-    return d * (b /= e) * b + c
-  }, easeOutQuad:function(a, b, c, d, e) {
-    return-d * (b /= e) * (b - 2) + c
-  }, easeInOutQuad:function(a, b, c, d, e) {
-    return(b /= e / 2) < 1 ? d / 2 * b * b + c : -d / 2 * (--b * (b - 2) - 1) + c
-  }, easeInCubic:function(a, b, c, d, e) {
-    return d * (b /= e) * b * b + c
-  }, easeOutCubic:function(a, b, c, d, e) {
-    return d * ((b = b / e - 1) * b * b + 1) + c
-  }, easeInOutCubic:function(a, b, c, d, e) {
-    return(b /= e / 2) < 1 ? d / 2 * b * b * b + c : d / 2 * ((b -= 2) * b * b + 2) + c
-  }, easeInQuart:function(a, b, c, d, e) {
-    return d * (b /= e) * b * b * b + c
-  }, easeOutQuart:function(a, b, c, d, e) {
-    return-d * ((b = b / e - 1) * b * b * b - 1) + c
-  }, easeInOutQuart:function(a, b, c, d, e) {
-    return(b /= e / 2) < 1 ? d / 2 * b * b * b * b + c : -d / 2 * ((b -= 2) * b * b * b - 2) + c
-  }, easeInQuint:function(a, b, c, d, e) {
-    return d * (b /= e) * b * b * b * b + c
-  }, easeOutQuint:function(a, b, c, d, e) {
-    return d * ((b = b / e - 1) * b * b * b * b + 1) + c
-  }, easeInOutQuint:function(a, b, c, d, e) {
-    return(b /= e / 2) < 1 ? d / 2 * b * b * b * b * b + c : d / 2 * ((b -= 2) * b * b * b * b + 2) + c
-  }, easeInSine:function(a, b, c, d, e) {
-    return-d * Math.cos(b / e * (Math.PI / 2)) + d + c
-  }, easeOutSine:function(a, b, c, d, e) {
-    return d * Math.sin(b / e * (Math.PI / 2)) + c
-  }, easeInOutSine:function(a, b, c, d, e) {
-    return-d / 2 * (Math.cos(Math.PI * b / e) - 1) + c
-  }, easeInExpo:function(a, b, c, d, e) {
-    return b == 0 ? c : d * Math.pow(2, 10 * (b / e - 1)) + c
-  }, easeOutExpo:function(a, b, c, d, e) {
-    return b == e ? c + d : d * (-Math.pow(2, -10 * b / e) + 1) + c
-  }, easeInOutExpo:function(a, b, c, d, e) {
-    return b == 0 ? c : b == e ? c + d : (b /= e / 2) < 1 ? d / 2 * Math.pow(2, 10 * (b - 1)) + c : d / 2 * (-Math.pow(2, -10 * --b) + 2) + c
-  }, easeInCirc:function(a, b, c, d, e) {
-    return-d * (Math.sqrt(1 - (b /= e) * b) - 1) + c
-  }, easeOutCirc:function(a, b, c, d, e) {
-    return d * Math.sqrt(1 - (b = b / e - 1) * b) + c
-  }, easeInOutCirc:function(a, b, c, d, e) {
-    return(b /= e / 2) < 1 ? -d / 2 * (Math.sqrt(1 - b * b) - 1) + c : d / 2 * (Math.sqrt(1 - (b -= 2) * b) + 1) + c
-  }, easeInElastic:function(a, b, c, d, e) {
-    var f = 1.70158, g = 0, h = d;
-    if(b == 0) {
-      return c
-    }
-    if((b /= e) == 1) {
-      return c + d
-    }
-    g || (g = e * 0.3);
-    if(h < Math.abs(d)) {
-      h = d;
-      var f = g / 4
-    }else {
-      var f = g / (2 * Math.PI) * Math.asin(d / h)
-    }
-    return-(h * Math.pow(2, 10 * (b -= 1)) * Math.sin((b * e - f) * 2 * Math.PI / g)) + c
-  }, easeOutElastic:function(a, b, c, d, e) {
-    var f = 1.70158, g = 0, h = d;
-    if(b == 0) {
-      return c
-    }
-    if((b /= e) == 1) {
-      return c + d
-    }
-    g || (g = e * 0.3);
-    if(h < Math.abs(d)) {
-      h = d;
-      var f = g / 4
-    }else {
-      var f = g / (2 * Math.PI) * Math.asin(d / h)
-    }
-    return h * Math.pow(2, -10 * b) * Math.sin((b * e - f) * 2 * Math.PI / g) + d + c
-  }, easeInOutElastic:function(a, b, c, d, e) {
-    var f = 1.70158, g = 0, h = d;
-    if(b == 0) {
-      return c
-    }
-    if((b /= e / 2) == 2) {
-      return c + d
-    }
-    g || (g = e * 0.3 * 1.5);
-    if(h < Math.abs(d)) {
-      h = d;
-      var f = g / 4
-    }else {
-      var f = g / (2 * Math.PI) * Math.asin(d / h)
-    }
-    return b < 1 ? -0.5 * h * Math.pow(2, 10 * (b -= 1)) * Math.sin((b * e - f) * 2 * Math.PI / g) + c : h * Math.pow(2, -10 * (b -= 1)) * Math.sin((b * e - f) * 2 * Math.PI / g) * 0.5 + d + c
-  }, easeInBack:function(a, c, d, e, f, g) {
-    return g == b && (g = 1.70158), e * (c /= f) * c * ((g + 1) * c - g) + d
-  }, easeOutBack:function(a, c, d, e, f, g) {
-    return g == b && (g = 1.70158), e * ((c = c / f - 1) * c * ((g + 1) * c + g) + 1) + d
-  }, easeInOutBack:function(a, c, d, e, f, g) {
-    return g == b && (g = 1.70158), (c /= f / 2) < 1 ? e / 2 * c * c * (((g *= 1.525) + 1) * c - g) + d : e / 2 * ((c -= 2) * c * (((g *= 1.525) + 1) * c + g) + 2) + d
-  }, easeInBounce:function(b, c, d, e, f) {
-    return e - a.easing.easeOutBounce(b, f - c, 0, e, f) + d
-  }, easeOutBounce:function(a, b, c, d, e) {
-    return(b /= e) < 1 / 2.75 ? d * 7.5625 * b * b + c : b < 2 / 2.75 ? d * (7.5625 * (b -= 1.5 / 2.75) * b + 0.75) + c : b < 2.5 / 2.75 ? d * (7.5625 * (b -= 2.25 / 2.75) * b + 0.9375) + c : d * (7.5625 * (b -= 2.625 / 2.75) * b + 0.984375) + c
-  }, easeInOutBounce:function(b, c, d, e, f) {
-    return c < f / 2 ? a.easing.easeInBounce(b, c * 2, 0, e, f) * 0.5 + d : a.easing.easeOutBounce(b, c * 2 - f, 0, e, f) * 0.5 + e * 0.5 + d
-  }})
-}(jQuery);
-(function(a, b) {
-  a.effects.blind = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right"], e = a.effects.setMode(c, b.options.mode || "hide"), f = b.options.direction || "vertical";
-      a.effects.save(c, d), c.show();
-      var g = a.effects.createWrapper(c).css({overflow:"hidden"}), h = f == "vertical" ? "height" : "width", i = f == "vertical" ? g.height() : g.width();
-      e == "show" && g.css(h, 0);
-      var j = {};
-      j[h] = e == "show" ? i : 0, g.animate(j, b.duration, b.options.easing, function() {
-        e == "hide" && c.hide(), a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(c[0], arguments), c.dequeue()
       })
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.bounce = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right"], e = a.effects.setMode(c, b.options.mode || "effect"), f = b.options.direction || "up", g = b.options.distance || 20, h = b.options.times || 5, i = b.duration || 250;
-      /show|hide/.test(e) && d.push("opacity"), a.effects.save(c, d), c.show(), a.effects.createWrapper(c);
-      var j = f == "up" || f == "down" ? "top" : "left", k = f == "up" || f == "left" ? "pos" : "neg", g = b.options.distance || (j == "top" ? c.outerHeight({margin:!0}) / 3 : c.outerWidth({margin:!0}) / 3);
-      e == "show" && c.css("opacity", 0).css(j, k == "pos" ? -g : g), e == "hide" && (g = g / (h * 2)), e != "hide" && h--;
-      if(e == "show") {
-        var l = {opacity:1};
-        l[j] = (k == "pos" ? "+=" : "-=") + g, c.animate(l, i / 2, b.options.easing), g = g / 2, h--
-      }
-      for(var m = 0;m < h;m++) {
-        var n = {}, p = {};
-        n[j] = (k == "pos" ? "-=" : "+=") + g, p[j] = (k == "pos" ? "+=" : "-=") + g, c.animate(n, i / 2, b.options.easing).animate(p, i / 2, b.options.easing), g = e == "hide" ? g * 2 : g / 2
-      }
-      if(e == "hide") {
-        var l = {opacity:0};
-        l[j] = (k == "pos" ? "-=" : "+=") + g, c.animate(l, i / 2, b.options.easing, function() {
-          c.hide(), a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(this, arguments)
-        })
-      }else {
-        var n = {}, p = {};
-        n[j] = (k == "pos" ? "-=" : "+=") + g, p[j] = (k == "pos" ? "+=" : "-=") + g, c.animate(n, i / 2, b.options.easing).animate(p, i / 2, b.options.easing, function() {
-          a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(this, arguments)
-        })
-      }
-      c.queue("fx", function() {
-        c.dequeue()
-      }), c.dequeue()
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.clip = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right", "height", "width"], e = a.effects.setMode(c, b.options.mode || "hide"), f = b.options.direction || "vertical";
-      a.effects.save(c, d), c.show();
-      var g = a.effects.createWrapper(c).css({overflow:"hidden"}), h = c[0].tagName == "IMG" ? g : c, i = {size:f == "vertical" ? "height" : "width", position:f == "vertical" ? "top" : "left"}, j = f == "vertical" ? h.height() : h.width();
-      e == "show" && (h.css(i.size, 0), h.css(i.position, j / 2));
-      var k = {};
-      k[i.size] = e == "show" ? j : 0, k[i.position] = e == "show" ? 0 : j / 2, h.animate(k, {queue:!1, duration:b.duration, easing:b.options.easing, complete:function() {
-        e == "hide" && c.hide(), a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(c[0], arguments), c.dequeue()
-      }})
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.drop = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right", "opacity"], e = a.effects.setMode(c, b.options.mode || "hide"), f = b.options.direction || "left";
-      a.effects.save(c, d), c.show(), a.effects.createWrapper(c);
-      var g = f == "up" || f == "down" ? "top" : "left", h = f == "up" || f == "left" ? "pos" : "neg", i = b.options.distance || (g == "top" ? c.outerHeight({margin:!0}) / 2 : c.outerWidth({margin:!0}) / 2);
-      e == "show" && c.css("opacity", 0).css(g, h == "pos" ? -i : i);
-      var j = {opacity:e == "show" ? 1 : 0};
-      j[g] = (e == "show" ? h == "pos" ? "+=" : "-=" : h == "pos" ? "-=" : "+=") + i, c.animate(j, {queue:!1, duration:b.duration, easing:b.options.easing, complete:function() {
-        e == "hide" && c.hide(), a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(this, arguments), c.dequeue()
-      }})
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.explode = function(b) {
-    return this.queue(function() {
-      var c = b.options.pieces ? Math.round(Math.sqrt(b.options.pieces)) : 3, d = b.options.pieces ? Math.round(Math.sqrt(b.options.pieces)) : 3;
-      b.options.mode = b.options.mode == "toggle" ? a(this).is(":visible") ? "hide" : "show" : b.options.mode;
-      var e = a(this).show().css("visibility", "hidden"), f = e.offset();
-      f.top -= parseInt(e.css("marginTop"), 10) || 0, f.left -= parseInt(e.css("marginLeft"), 10) || 0;
-      var g = e.outerWidth(!0), h = e.outerHeight(!0);
-      for(var i = 0;i < c;i++) {
-        for(var j = 0;j < d;j++) {
-          e.clone().appendTo("body").wrap("<div></div>").css({position:"absolute", visibility:"visible", left:-j * (g / d), top:-i * (h / c)}).parent().addClass("ui-effects-explode").css({position:"absolute", overflow:"hidden", width:g / d, height:h / c, left:f.left + j * (g / d) + (b.options.mode == "show" ? (j - Math.floor(d / 2)) * (g / d) : 0), top:f.top + i * (h / c) + (b.options.mode == "show" ? (i - Math.floor(c / 2)) * (h / c) : 0), opacity:b.options.mode == "show" ? 0 : 1}).animate({left:f.left + 
-          j * (g / d) + (b.options.mode == "show" ? 0 : (j - Math.floor(d / 2)) * (g / d)), top:f.top + i * (h / c) + (b.options.mode == "show" ? 0 : (i - Math.floor(c / 2)) * (h / c)), opacity:b.options.mode == "show" ? 1 : 0}, b.duration || 500)
+    }, menufocus:function(t, n) {
+      if(this.isNewMenu) {
+        this.isNewMenu = !1;
+        if(t.originalEvent && /^mouse/.test(t.originalEvent.type)) {
+          this.menu.blur(), this.document.one("mousemove", function() {
+            e(t.target).trigger(t.originalEvent)
+          });
+          return
         }
       }
-      setTimeout(function() {
-        b.options.mode == "show" ? e.css({visibility:"visible"}) : e.css({visibility:"visible"}).hide(), b.callback && b.callback.apply(e[0]), e.dequeue(), a("div.ui-effects-explode").remove()
-      }, b.duration || 500)
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.fade = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = a.effects.setMode(c, b.options.mode || "hide");
-      c.animate({opacity:d}, {queue:!1, duration:b.duration, easing:b.options.easing, complete:function() {
-        b.callback && b.callback.apply(this, arguments), c.dequeue()
+      var r = n.item.data("ui-autocomplete-item") || n.item.data("item.autocomplete");
+      !1 !== this._trigger("focus", t, {item:r}) ? t.originalEvent && /^key/.test(t.originalEvent.type) && this._value(r.value) : this.liveRegion.text(r.value)
+    }, menuselect:function(e, t) {
+      var n = t.item.data("ui-autocomplete-item") || t.item.data("item.autocomplete"), r = this.previous;
+      this.element[0] !== this.document[0].activeElement && (this.element.focus(), this.previous = r, this._delay(function() {
+        this.previous = r, this.selectedItem = n
+      })), !1 !== this._trigger("select", e, {item:n}) && this._value(n.value), this.term = this._value(), this.close(e), this.selectedItem = n
+    }}), this.liveRegion = e("<span>", {role:"status", "aria-live":"polite"}).addClass("ui-helper-hidden-accessible").insertAfter(this.element), e.fn.bgiframe && this.menu.element.bgiframe(), this._on(this.window, {beforeunload:function() {
+      this.element.removeAttr("autocomplete")
+    }})
+  }, _destroy:function() {
+    clearTimeout(this.searching), this.element.removeClass("ui-autocomplete-input").removeAttr("autocomplete"), this.menu.element.remove(), this.liveRegion.remove()
+  }, _setOption:function(e, t) {
+    this._super(e, t), e === "source" && this._initSource(), e === "appendTo" && this.menu.element.appendTo(this.document.find(t || "body")[0]), e === "disabled" && t && this.xhr && this.xhr.abort()
+  }, _isMultiLine:function() {
+    return this.element.is("textarea") ? !0 : this.element.is("input") ? !1 : this.element.prop("isContentEditable")
+  }, _initSource:function() {
+    var t, n, r = this;
+    e.isArray(this.options.source) ? (t = this.options.source, this.source = function(n, r) {
+      r(e.ui.autocomplete.filter(t, n.term))
+    }) : typeof this.options.source == "string" ? (n = this.options.source, this.source = function(t, i) {
+      r.xhr && r.xhr.abort(), r.xhr = e.ajax({url:n, data:t, dataType:"json", success:function(e) {
+        i(e)
+      }, error:function() {
+        i([])
       }})
+    }) : this.source = this.options.source
+  }, _searchTimeout:function(e) {
+    clearTimeout(this.searching), this.searching = this._delay(function() {
+      this.term !== this._value() && (this.selectedItem = null, this.search(null, e))
+    }, this.options.delay)
+  }, search:function(e, t) {
+    e = e != null ? e : this._value(), this.term = this._value();
+    if(e.length < this.options.minLength) {
+      return this.close(t)
+    }
+    if(this._trigger("search", t) === !1) {
+      return
+    }
+    return this._search(e)
+  }, _search:function(e) {
+    this.pending++, this.element.addClass("ui-autocomplete-loading"), this.cancelSearch = !1, this.source({term:e}, this._response())
+  }, _response:function() {
+    var e = this, t = ++n;
+    return function(r) {
+      t === n && e.__response(r), e.pending--, e.pending || e.element.removeClass("ui-autocomplete-loading")
+    }
+  }, __response:function(e) {
+    e && (e = this._normalize(e)), this._trigger("response", null, {content:e}), !this.options.disabled && e && e.length && !this.cancelSearch ? (this._suggest(e), this._trigger("open")) : this._close()
+  }, close:function(e) {
+    this.cancelSearch = !0, this._close(e)
+  }, _close:function(e) {
+    this.menu.element.is(":visible") && (this.menu.element.hide(), this.menu.blur(), this.isNewMenu = !0, this._trigger("close", e))
+  }, _change:function(e) {
+    this.previous !== this._value() && this._trigger("change", e, {item:this.selectedItem})
+  }, _normalize:function(t) {
+    return t.length && t[0].label && t[0].value ? t : e.map(t, function(t) {
+      return typeof t == "string" ? {label:t, value:t} : e.extend({label:t.label || t.value, value:t.value || t.label}, t)
     })
-  }
+  }, _suggest:function(t) {
+    var n = this.menu.element.empty().zIndex(this.element.zIndex() + 1);
+    this._renderMenu(n, t), this.menu.refresh(), n.show(), this._resizeMenu(), n.position(e.extend({of:this.element}, this.options.position)), this.options.autoFocus && this.menu.next()
+  }, _resizeMenu:function() {
+    var e = this.menu.element;
+    e.outerWidth(Math.max(e.width("").outerWidth() + 1, this.element.outerWidth()))
+  }, _renderMenu:function(t, n) {
+    var r = this;
+    e.each(n, function(e, n) {
+      r._renderItemData(t, n)
+    })
+  }, _renderItemData:function(e, t) {
+    return this._renderItem(e, t).data("ui-autocomplete-item", t)
+  }, _renderItem:function(t, n) {
+    return e("<li>").append(e("<a>").text(n.label)).appendTo(t)
+  }, _move:function(e, t) {
+    if(!this.menu.element.is(":visible")) {
+      this.search(null, t);
+      return
+    }
+    if(this.menu.isFirstItem() && /^previous/.test(e) || this.menu.isLastItem() && /^next/.test(e)) {
+      this._value(this.term), this.menu.blur();
+      return
+    }
+    this.menu[e](t)
+  }, widget:function() {
+    return this.menu.element
+  }, _value:function() {
+    return this.valueMethod.apply(this.element, arguments)
+  }, _keyEvent:function(e, t) {
+    if(!this.isMultiLine || this.menu.element.is(":visible")) {
+      this._move(e, t), t.preventDefault()
+    }
+  }}), e.extend(e.ui.autocomplete, {escapeRegex:function(e) {
+    return e.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&")
+  }, filter:function(t, n) {
+    var r = new RegExp(e.ui.autocomplete.escapeRegex(n), "i");
+    return e.grep(t, function(e) {
+      return r.test(e.label || e.value || e)
+    })
+  }}), e.widget("ui.autocomplete", e.ui.autocomplete, {options:{messages:{noResults:"No search results.", results:function(e) {
+    return e + (e > 1 ? " results are" : " result is") + " available, use up and down arrow keys to navigate."
+  }}}, __response:function(e) {
+    var t;
+    this._superApply(arguments);
+    if(this.options.disabled || this.cancelSearch) {
+      return
+    }
+    e && e.length ? t = this.options.messages.results(e.length) : t = this.options.messages.noResults, this.liveRegion.text(t)
+  }})
 })(jQuery);
-(function(a, b) {
-  a.effects.fold = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right"], e = a.effects.setMode(c, b.options.mode || "hide"), f = b.options.size || 15, g = !!b.options.horizFirst, h = b.duration ? b.duration / 2 : a.fx.speeds._default / 2;
-      a.effects.save(c, d), c.show();
-      var i = a.effects.createWrapper(c).css({overflow:"hidden"}), j = e == "show" != g, k = j ? ["width", "height"] : ["height", "width"], l = j ? [i.width(), i.height()] : [i.height(), i.width()], m = /([0-9]+)%/.exec(f);
-      m && (f = parseInt(m[1], 10) / 100 * l[e == "hide" ? 0 : 1]), e == "show" && i.css(g ? {height:0, width:f} : {height:f, width:0});
-      var n = {}, p = {};
-      n[k[0]] = e == "show" ? l[0] : f, p[k[1]] = e == "show" ? l[1] : 0, i.animate(n, h, b.options.easing).animate(p, h, b.options.easing, function() {
-        e == "hide" && c.hide(), a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(c[0], arguments), c.dequeue()
+(function(e, t) {
+  var n = !1;
+  e.widget("ui.menu", {version:"1.9.1", defaultElement:"<ul>", delay:300, options:{icons:{submenu:"ui-icon-carat-1-e"}, menus:"ul", position:{my:"left top", at:"right top"}, role:"menu", blur:null, focus:null, select:null}, _create:function() {
+    this.activeMenu = this.element, this.element.uniqueId().addClass("ui-menu ui-widget ui-widget-content ui-corner-all").toggleClass("ui-menu-icons", !!this.element.find(".ui-icon").length).attr({role:this.options.role, tabIndex:0}).bind("click" + this.eventNamespace, e.proxy(function(e) {
+      this.options.disabled && e.preventDefault()
+    }, this)), this.options.disabled && this.element.addClass("ui-state-disabled").attr("aria-disabled", "true"), this._on({"mousedown .ui-menu-item > a":function(e) {
+      e.preventDefault()
+    }, "click .ui-state-disabled > a":function(e) {
+      e.preventDefault()
+    }, "click .ui-menu-item:has(a)":function(t) {
+      var r = e(t.target).closest(".ui-menu-item");
+      !n && r.not(".ui-state-disabled").length && (n = !0, this.select(t), r.has(".ui-menu").length ? this.expand(t) : this.element.is(":focus") || (this.element.trigger("focus", [!0]), this.active && this.active.parents(".ui-menu").length === 1 && clearTimeout(this.timer)))
+    }, "mouseenter .ui-menu-item":function(t) {
+      var n = e(t.currentTarget);
+      n.siblings().children(".ui-state-active").removeClass("ui-state-active"), this.focus(t, n)
+    }, mouseleave:"collapseAll", "mouseleave .ui-menu":"collapseAll", focus:function(e, t) {
+      var n = this.active || this.element.children(".ui-menu-item").eq(0);
+      t || this.focus(e, n)
+    }, blur:function(t) {
+      this._delay(function() {
+        e.contains(this.element[0], this.document[0].activeElement) || this.collapseAll(t)
       })
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.highlight = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["backgroundImage", "backgroundColor", "opacity"], e = a.effects.setMode(c, b.options.mode || "show"), f = {backgroundColor:c.css("backgroundColor")};
-      e == "hide" && (f.opacity = 0), a.effects.save(c, d), c.show().css({backgroundImage:"none", backgroundColor:b.options.color || "#ffff99"}).animate(f, {queue:!1, duration:b.duration, easing:b.options.easing, complete:function() {
-        e == "hide" && c.hide(), a.effects.restore(c, d), e == "show" && !a.support.opacity && this.style.removeAttribute("filter"), b.callback && b.callback.apply(this, arguments), c.dequeue()
-      }})
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.pulsate = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = a.effects.setMode(c, b.options.mode || "show"), e = (b.options.times || 5) * 2 - 1, f = b.duration ? b.duration / 2 : a.fx.speeds._default / 2, g = c.is(":visible"), h = 0;
-      g || (c.css("opacity", 0).show(), h = 1), (d == "hide" && g || d == "show" && !g) && e--;
-      for(var i = 0;i < e;i++) {
-        c.animate({opacity:h}, f, b.options.easing), h = (h + 1) % 2
-      }
-      c.animate({opacity:h}, f, b.options.easing, function() {
-        h == 0 && c.hide(), b.callback && b.callback.apply(this, arguments)
-      }), c.queue("fx", function() {
-        c.dequeue()
-      }).dequeue()
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.puff = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = a.effects.setMode(c, b.options.mode || "hide"), e = parseInt(b.options.percent, 10) || 150, f = e / 100, g = {height:c.height(), width:c.width()};
-      a.extend(b.options, {fade:!0, mode:d, percent:d == "hide" ? e : 100, from:d == "hide" ? g : {height:g.height * f, width:g.width * f}}), c.effect("scale", b.options, b.duration, b.callback), c.dequeue()
-    })
-  }, a.effects.scale = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = a.extend(!0, {}, b.options), e = a.effects.setMode(c, b.options.mode || "effect"), f = parseInt(b.options.percent, 10) || (parseInt(b.options.percent, 10) == 0 ? 0 : e == "hide" ? 0 : 100), g = b.options.direction || "both", h = b.options.origin;
-      e != "effect" && (d.origin = h || ["middle", "center"], d.restore = !0);
-      var i = {height:c.height(), width:c.width()};
-      c.from = b.options.from || (e == "show" ? {height:0, width:0} : i);
-      var j = {y:g != "horizontal" ? f / 100 : 1, x:g != "vertical" ? f / 100 : 1};
-      c.to = {height:i.height * j.y, width:i.width * j.x}, b.options.fade && (e == "show" && (c.from.opacity = 0, c.to.opacity = 1), e == "hide" && (c.from.opacity = 1, c.to.opacity = 0)), d.from = c.from, d.to = c.to, d.mode = e, c.effect("size", d, b.duration, b.callback), c.dequeue()
-    })
-  }, a.effects.size = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right", "width", "height", "overflow", "opacity"], e = ["position", "top", "bottom", "left", "right", "overflow", "opacity"], f = ["width", "height", "overflow"], g = ["fontSize"], h = ["borderTopWidth", "borderBottomWidth", "paddingTop", "paddingBottom"], i = ["borderLeftWidth", "borderRightWidth", "paddingLeft", "paddingRight"], j = a.effects.setMode(c, b.options.mode || "effect"), k = b.options.restore || !1, l = b.options.scale || 
-      "both", m = b.options.origin, n = {height:c.height(), width:c.width()};
-      c.from = b.options.from || n, c.to = b.options.to || n;
-      if(m) {
-        var p = a.effects.getBaseline(m, n);
-        c.from.top = (n.height - c.from.height) * p.y, c.from.left = (n.width - c.from.width) * p.x, c.to.top = (n.height - c.to.height) * p.y, c.to.left = (n.width - c.to.width) * p.x
-      }
-      var q = {from:{y:c.from.height / n.height, x:c.from.width / n.width}, to:{y:c.to.height / n.height, x:c.to.width / n.width}};
-      if(l == "box" || l == "both") {
-        q.from.y != q.to.y && (d = d.concat(h), c.from = a.effects.setTransition(c, h, q.from.y, c.from), c.to = a.effects.setTransition(c, h, q.to.y, c.to)), q.from.x != q.to.x && (d = d.concat(i), c.from = a.effects.setTransition(c, i, q.from.x, c.from), c.to = a.effects.setTransition(c, i, q.to.x, c.to))
-      }
-      (l == "content" || l == "both") && q.from.y != q.to.y && (d = d.concat(g), c.from = a.effects.setTransition(c, g, q.from.y, c.from), c.to = a.effects.setTransition(c, g, q.to.y, c.to)), a.effects.save(c, k ? d : e), c.show(), a.effects.createWrapper(c), c.css("overflow", "hidden").css(c.from);
-      if(l == "content" || l == "both") {
-        h = h.concat(["marginTop", "marginBottom"]).concat(g), i = i.concat(["marginLeft", "marginRight"]), f = d.concat(h).concat(i), c.find("*[width]").each(function() {
-          var c = a(this);
-          k && a.effects.save(c, f);
-          var d = {height:c.height(), width:c.width()};
-          c.from = {height:d.height * q.from.y, width:d.width * q.from.x}, c.to = {height:d.height * q.to.y, width:d.width * q.to.x}, q.from.y != q.to.y && (c.from = a.effects.setTransition(c, h, q.from.y, c.from), c.to = a.effects.setTransition(c, h, q.to.y, c.to)), q.from.x != q.to.x && (c.from = a.effects.setTransition(c, i, q.from.x, c.from), c.to = a.effects.setTransition(c, i, q.to.x, c.to)), c.css(c.from), c.animate(c.to, b.duration, b.options.easing, function() {
-            k && a.effects.restore(c, f)
-          })
-        })
-      }
-      c.animate(c.to, {queue:!1, duration:b.duration, easing:b.options.easing, complete:function() {
-        c.to.opacity === 0 && c.css("opacity", c.from.opacity), j == "hide" && c.hide(), a.effects.restore(c, k ? d : e), a.effects.removeWrapper(c), b.callback && b.callback.apply(this, arguments), c.dequeue()
-      }})
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.shake = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right"], e = a.effects.setMode(c, b.options.mode || "effect"), f = b.options.direction || "left", g = b.options.distance || 20, h = b.options.times || 3, i = b.duration || b.options.duration || 140;
-      a.effects.save(c, d), c.show(), a.effects.createWrapper(c);
-      var j = f == "up" || f == "down" ? "top" : "left", k = f == "up" || f == "left" ? "pos" : "neg", l = {}, m = {}, n = {};
-      l[j] = (k == "pos" ? "-=" : "+=") + g, m[j] = (k == "pos" ? "+=" : "-=") + g * 2, n[j] = (k == "pos" ? "-=" : "+=") + g * 2, c.animate(l, i, b.options.easing);
-      for(var p = 1;p < h;p++) {
-        c.animate(m, i, b.options.easing).animate(n, i, b.options.easing)
-      }
-      c.animate(m, i, b.options.easing).animate(l, i / 2, b.options.easing, function() {
-        a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(this, arguments)
-      }), c.queue("fx", function() {
-        c.dequeue()
-      }), c.dequeue()
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.slide = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = ["position", "top", "bottom", "left", "right"], e = a.effects.setMode(c, b.options.mode || "show"), f = b.options.direction || "left";
-      a.effects.save(c, d), c.show(), a.effects.createWrapper(c).css({overflow:"hidden"});
-      var g = f == "up" || f == "down" ? "top" : "left", h = f == "up" || f == "left" ? "pos" : "neg", i = b.options.distance || (g == "top" ? c.outerHeight({margin:!0}) : c.outerWidth({margin:!0}));
-      e == "show" && c.css(g, h == "pos" ? isNaN(i) ? "-" + i : -i : i);
-      var j = {};
-      j[g] = (e == "show" ? h == "pos" ? "+=" : "-=" : h == "pos" ? "-=" : "+=") + i, c.animate(j, {queue:!1, duration:b.duration, easing:b.options.easing, complete:function() {
-        e == "hide" && c.hide(), a.effects.restore(c, d), a.effects.removeWrapper(c), b.callback && b.callback.apply(this, arguments), c.dequeue()
-      }})
-    })
-  }
-})(jQuery);
-(function(a, b) {
-  a.effects.transfer = function(b) {
-    return this.queue(function() {
-      var c = a(this), d = a(b.options.to), e = d.offset(), f = {top:e.top, left:e.left, height:d.innerHeight(), width:d.innerWidth()}, g = c.offset(), h = a('<div class="ui-effects-transfer"></div>').appendTo(document.body).addClass(b.options.className).css({top:g.top, left:g.left, height:c.innerHeight(), width:c.innerWidth(), position:"absolute"}).animate(f, b.duration, b.options.easing, function() {
-        h.remove(), b.callback && b.callback.apply(c[0], arguments), c.dequeue()
-      })
-    })
-  }
+    }, keydown:"_keydown"}), this.refresh(), this._on(this.document, {click:function(t) {
+      e(t.target).closest(".ui-menu").length || this.collapseAll(t), n = !1
+    }})
+  }, _destroy:function() {
+    this.element.removeAttr("aria-activedescendant").find(".ui-menu").andSelf().removeClass("ui-menu ui-widget ui-widget-content ui-corner-all ui-menu-icons").removeAttr("role").removeAttr("tabIndex").removeAttr("aria-labelledby").removeAttr("aria-expanded").removeAttr("aria-hidden").removeAttr("aria-disabled").removeUniqueId().show(), this.element.find(".ui-menu-item").removeClass("ui-menu-item").removeAttr("role").removeAttr("aria-disabled").children("a").removeUniqueId().removeClass("ui-corner-all ui-state-hover").removeAttr("tabIndex").removeAttr("role").removeAttr("aria-haspopup").children().each(function() {
+      var t = e(this);
+      t.data("ui-menu-submenu-carat") && t.remove()
+    }), this.element.find(".ui-menu-divider").removeClass("ui-menu-divider ui-widget-content")
+  }, _keydown:function(t) {
+    function a(e) {
+      return e.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&")
+    }
+    var n, r, i, s, o, u = !0;
+    switch(t.keyCode) {
+      case e.ui.keyCode.PAGE_UP:
+        this.previousPage(t);
+        break;
+      case e.ui.keyCode.PAGE_DOWN:
+        this.nextPage(t);
+        break;
+      case e.ui.keyCode.HOME:
+        this._move("first", "first", t);
+        break;
+      case e.ui.keyCode.END:
+        this._move("last", "last", t);
+        break;
+      case e.ui.keyCode.UP:
+        this.previous(t);
+        break;
+      case e.ui.keyCode.DOWN:
+        this.next(t);
+        break;
+      case e.ui.keyCode.LEFT:
+        this.collapse(t);
+        break;
+      case e.ui.keyCode.RIGHT:
+        this.active && !this.active.is(".ui-state-disabled") && this.expand(t);
+        break;
+      case e.ui.keyCode.ENTER:
+      ;
+      case e.ui.keyCode.SPACE:
+        this._activate(t);
+        break;
+      case e.ui.keyCode.ESCAPE:
+        this.collapse(t);
+        break;
+      default:
+        u = !1, r = this.previousFilter || "", i = String.fromCharCode(t.keyCode), s = !1, clearTimeout(this.filterTimer), i === r ? s = !0 : i = r + i, o = new RegExp("^" + a(i), "i"), n = this.activeMenu.children(".ui-menu-item").filter(function() {
+          return o.test(e(this).children("a").text())
+        }), n = s && n.index(this.active.next()) !== -1 ? this.active.nextAll(".ui-menu-item") : n, n.length || (i = String.fromCharCode(t.keyCode), o = new RegExp("^" + a(i), "i"), n = this.activeMenu.children(".ui-menu-item").filter(function() {
+          return o.test(e(this).children("a").text())
+        })), n.length ? (this.focus(t, n), n.length > 1 ? (this.previousFilter = i, this.filterTimer = this._delay(function() {
+          delete this.previousFilter
+        }, 1E3)) : delete this.previousFilter) : delete this.previousFilter
+    }
+    u && t.preventDefault()
+  }, _activate:function(e) {
+    this.active.is(".ui-state-disabled") || (this.active.children("a[aria-haspopup='true']").length ? this.expand(e) : this.select(e))
+  }, refresh:function() {
+    var t, n = this.options.icons.submenu, r = this.element.find(this.options.menus + ":not(.ui-menu)").addClass("ui-menu ui-widget ui-widget-content ui-corner-all").hide().attr({role:this.options.role, "aria-hidden":"true", "aria-expanded":"false"});
+    t = r.add(this.element), t.children(":not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role", "presentation").children("a").uniqueId().addClass("ui-corner-all").attr({tabIndex:-1, role:this._itemRole()}), t.children(":not(.ui-menu-item)").each(function() {
+      var t = e(this);
+      /[^\-\u2014\u2013\s]/.test(t.text()) || t.addClass("ui-widget-content ui-menu-divider")
+    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), r.each(function() {
+      var t = e(this), r = t.prev("a"), i = e("<span>").addClass("ui-menu-icon ui-icon " + n).data("ui-menu-submenu-carat", !0);
+      r.attr("aria-haspopup", "true").prepend(i), t.attr("aria-labelledby", r.attr("id"))
+    }), this.active && !e.contains(this.element[0], this.active[0]) && this.blur()
+  }, _itemRole:function() {
+    return{menu:"menuitem", listbox:"option"}[this.options.role]
+  }, focus:function(e, t) {
+    var n, r;
+    this.blur(e, e && e.type === "focus"), this._scrollIntoView(t), this.active = t.first(), r = this.active.children("a").addClass("ui-state-focus"), this.options.role && this.element.attr("aria-activedescendant", r.attr("id")), this.active.parent().closest(".ui-menu-item").children("a:first").addClass("ui-state-active"), e && e.type === "keydown" ? this._close() : this.timer = this._delay(function() {
+      this._close()
+    }, this.delay), n = t.children(".ui-menu"), n.length && /^mouse/.test(e.type) && this._startOpening(n), this.activeMenu = t.parent(), this._trigger("focus", e, {item:t})
+  }, _scrollIntoView:function(t) {
+    var n, r, i, s, o, u;
+    this._hasScroll() && (n = parseFloat(e.css(this.activeMenu[0], "borderTopWidth")) || 0, r = parseFloat(e.css(this.activeMenu[0], "paddingTop")) || 0, i = t.offset().top - this.activeMenu.offset().top - n - r, s = this.activeMenu.scrollTop(), o = this.activeMenu.height(), u = t.height(), i < 0 ? this.activeMenu.scrollTop(s + i) : i + u > o && this.activeMenu.scrollTop(s + i - o + u))
+  }, blur:function(e, t) {
+    t || clearTimeout(this.timer);
+    if(!this.active) {
+      return
+    }
+    this.active.children("a").removeClass("ui-state-focus"), this.active = null, this._trigger("blur", e, {item:this.active})
+  }, _startOpening:function(e) {
+    clearTimeout(this.timer);
+    if(e.attr("aria-hidden") !== "true") {
+      return
+    }
+    this.timer = this._delay(function() {
+      this._close(), this._open(e)
+    }, this.delay)
+  }, _open:function(t) {
+    var n = e.extend({of:this.active}, this.options.position);
+    clearTimeout(this.timer), this.element.find(".ui-menu").not(t.parents(".ui-menu")).hide().attr("aria-hidden", "true"), t.show().removeAttr("aria-hidden").attr("aria-expanded", "true").position(n)
+  }, collapseAll:function(t, n) {
+    clearTimeout(this.timer), this.timer = this._delay(function() {
+      var r = n ? this.element : e(t && t.target).closest(this.element.find(".ui-menu"));
+      r.length || (r = this.element), this._close(r), this.blur(t), this.activeMenu = r
+    }, this.delay)
+  }, _close:function(e) {
+    e || (e = this.active ? this.active.parent() : this.element), e.find(".ui-menu").hide().attr("aria-hidden", "true").attr("aria-expanded", "false").end().find("a.ui-state-active").removeClass("ui-state-active")
+  }, collapse:function(e) {
+    var t = this.active && this.active.parent().closest(".ui-menu-item", this.element);
+    t && t.length && (this._close(), this.focus(e, t))
+  }, expand:function(e) {
+    var t = this.active && this.active.children(".ui-menu ").children(".ui-menu-item").first();
+    t && t.length && (this._open(t.parent()), this._delay(function() {
+      this.focus(e, t)
+    }))
+  }, next:function(e) {
+    this._move("next", "first", e)
+  }, previous:function(e) {
+    this._move("prev", "last", e)
+  }, isFirstItem:function() {
+    return this.active && !this.active.prevAll(".ui-menu-item").length
+  }, isLastItem:function() {
+    return this.active && !this.active.nextAll(".ui-menu-item").length
+  }, _move:function(e, t, n) {
+    var r;
+    this.active && (e === "first" || e === "last" ? r = this.active[e === "first" ? "prevAll" : "nextAll"](".ui-menu-item").eq(-1) : r = this.active[e + "All"](".ui-menu-item").eq(0));
+    if(!r || !r.length || !this.active) {
+      r = this.activeMenu.children(".ui-menu-item")[t]()
+    }
+    this.focus(n, r)
+  }, nextPage:function(t) {
+    var n, r, i;
+    if(!this.active) {
+      this.next(t);
+      return
+    }
+    if(this.isLastItem()) {
+      return
+    }
+    this._hasScroll() ? (r = this.active.offset().top, i = this.element.height(), this.active.nextAll(".ui-menu-item").each(function() {
+      return n = e(this), n.offset().top - r - i < 0
+    }), this.focus(t, n)) : this.focus(t, this.activeMenu.children(".ui-menu-item")[this.active ? "last" : "first"]())
+  }, previousPage:function(t) {
+    var n, r, i;
+    if(!this.active) {
+      this.next(t);
+      return
+    }
+    if(this.isFirstItem()) {
+      return
+    }
+    this._hasScroll() ? (r = this.active.offset().top, i = this.element.height(), this.active.prevAll(".ui-menu-item").each(function() {
+      return n = e(this), n.offset().top - r + i > 0
+    }), this.focus(t, n)) : this.focus(t, this.activeMenu.children(".ui-menu-item").first())
+  }, _hasScroll:function() {
+    return this.element.outerHeight() < this.element.prop("scrollHeight")
+  }, select:function(t) {
+    this.active = this.active || e(t.target).closest(".ui-menu-item");
+    var n = {item:this.active};
+    this.active.has(".ui-menu").length || this.collapseAll(t, !0), this._trigger("select", t, n)
+  }})
 })(jQuery);
 (function($) {
   if($.fn.carouFredSel) {
@@ -10634,552 +10317,55 @@ var Hashtable = function() {
     b || (this.value.origin = this.parent.prcToValue(a)), this.value.prc = a, this.ptr.css({left:a + "%"}), this.parent.redraw(this)
   }
 }(jQuery);
-(function(a, b) {
-  function d(b) {
-    return!a(b).parents().andSelf().filter(function() {
-      return a.curCSS(this, "visibility") === "hidden" || a.expr.filters.hidden(this)
-    }).length
+(function(b) {
+  b.support.touch = "ontouchend" in document;
+  if(!b.support.touch) {
+    return
   }
-  function c(b, c) {
-    var e = b.nodeName.toLowerCase();
-    if("area" === e) {
-      var f = b.parentNode, g = f.name, h;
-      if(!b.href || !g || f.nodeName.toLowerCase() !== "map") {
-        return!1
-      }
-      h = a("img[usemap=#" + g + "]")[0];
-      return!!h && d(h)
+  var c = b.ui.mouse.prototype, e = c._mouseInit, a;
+  function d(g, h) {
+    if(g.originalEvent.touches.length > 1) {
+      return
     }
-    return(/input|select|textarea|button|object/.test(e) ? !b.disabled : "a" == e ? b.href || c : c) && d(b)
+    g.preventDefault();
+    var i = g.originalEvent.changedTouches[0], f = document.createEvent("MouseEvents");
+    f.initMouseEvent(h, true, true, window, 1, i.screenX, i.screenY, i.clientX, i.clientY, false, false, false, false, 0, null);
+    g.target.dispatchEvent(f)
   }
-  a.ui = a.ui || {};
-  a.ui.version || (a.extend(a.ui, {version:"1.8.18", keyCode:{ALT:18, BACKSPACE:8, CAPS_LOCK:20, COMMA:188, COMMAND:91, COMMAND_LEFT:91, COMMAND_RIGHT:93, CONTROL:17, DELETE:46, DOWN:40, END:35, ENTER:13, ESCAPE:27, HOME:36, INSERT:45, LEFT:37, MENU:93, NUMPAD_ADD:107, NUMPAD_DECIMAL:110, NUMPAD_DIVIDE:111, NUMPAD_ENTER:108, NUMPAD_MULTIPLY:106, NUMPAD_SUBTRACT:109, PAGE_DOWN:34, PAGE_UP:33, PERIOD:190, RIGHT:39, SHIFT:16, SPACE:32, TAB:9, UP:38, WINDOWS:91}}), a.fn.extend({propAttr:a.fn.prop || 
-  a.fn.attr, _focus:a.fn.focus, focus:function(b, c) {
-    return typeof b == "number" ? this.each(function() {
-      var d = this;
-      setTimeout(function() {
-        a(d).focus(), c && c.call(d)
-      }, b)
-    }) : this._focus.apply(this, arguments)
-  }, scrollParent:function() {
-    var b;
-    a.browser.msie && /(static|relative)/.test(this.css("position")) || /absolute/.test(this.css("position")) ? b = this.parents().filter(function() {
-      return/(relative|absolute|fixed)/.test(a.curCSS(this, "position", 1)) && /(auto|scroll)/.test(a.curCSS(this, "overflow", 1) + a.curCSS(this, "overflow-y", 1) + a.curCSS(this, "overflow-x", 1))
-    }).eq(0) : b = this.parents().filter(function() {
-      return/(auto|scroll)/.test(a.curCSS(this, "overflow", 1) + a.curCSS(this, "overflow-y", 1) + a.curCSS(this, "overflow-x", 1))
-    }).eq(0);
-    return/fixed/.test(this.css("position")) || !b.length ? a(document) : b
-  }, zIndex:function(c) {
-    if(c !== b) {
-      return this.css("zIndex", c)
+  c._touchStart = function(g) {
+    var f = this;
+    if(a || !f._mouseCapture(g.originalEvent.changedTouches[0])) {
+      return
     }
-    if(this.length) {
-      var d = a(this[0]), e, f;
-      while(d.length && d[0] !== document) {
-        e = d.css("position");
-        if(e === "absolute" || e === "relative" || e === "fixed") {
-          f = parseInt(d.css("zIndex"), 10);
-          if(!isNaN(f) && f !== 0) {
-            return f
-          }
-        }
-        d = d.parent()
-      }
+    a = true;
+    f._touchMoved = false;
+    d(g, "mouseover");
+    d(g, "mousemove");
+    d(g, "mousedown")
+  };
+  c._touchMove = function(f) {
+    if(!a) {
+      return
     }
-    return 0
-  }, disableSelection:function() {
-    return this.bind((a.support.selectstart ? "selectstart" : "mousedown") + ".ui-disableSelection", function(a) {
-      a.preventDefault()
-    })
-  }, enableSelection:function() {
-    return this.unbind(".ui-disableSelection")
-  }}), a.each(["Width", "Height"], function(c, d) {
-    function h(b, c, d, f) {
-      a.each(e, function() {
-        c -= parseFloat(a.curCSS(b, "padding" + this, !0)) || 0, d && (c -= parseFloat(a.curCSS(b, "border" + this + "Width", !0)) || 0), f && (c -= parseFloat(a.curCSS(b, "margin" + this, !0)) || 0)
-      });
-      return c
+    this._touchMoved = true;
+    d(f, "mousemove")
+  };
+  c._touchEnd = function(f) {
+    if(!a) {
+      return
     }
-    var e = d === "Width" ? ["Left", "Right"] : ["Top", "Bottom"], f = d.toLowerCase(), g = {innerWidth:a.fn.innerWidth, innerHeight:a.fn.innerHeight, outerWidth:a.fn.outerWidth, outerHeight:a.fn.outerHeight};
-    a.fn["inner" + d] = function(c) {
-      if(c === b) {
-        return g["inner" + d].call(this)
-      }
-      return this.each(function() {
-        a(this).css(f, h(this, c) + "px")
-      })
-    }, a.fn["outer" + d] = function(b, c) {
-      if(typeof b != "number") {
-        return g["outer" + d].call(this, b)
-      }
-      return this.each(function() {
-        a(this).css(f, h(this, b, !0, c) + "px")
-      })
+    d(f, "mouseup");
+    d(f, "mouseout");
+    if(!this._touchMoved) {
+      d(f, "click")
     }
-  }), a.extend(a.expr[":"], {data:function(b, c, d) {
-    return!!a.data(b, d[3])
-  }, focusable:function(b) {
-    return c(b, !isNaN(a.attr(b, "tabindex")))
-  }, tabbable:function(b) {
-    var d = a.attr(b, "tabindex"), e = isNaN(d);
-    return(e || d >= 0) && c(b, !e)
-  }}), a(function() {
-    var b = document.body, c = b.appendChild(c = document.createElement("div"));
-    c.offsetHeight, a.extend(c.style, {minHeight:"100px", height:"auto", padding:0, borderWidth:0}), a.support.minHeight = c.offsetHeight === 100, a.support.selectstart = "onselectstart" in c, b.removeChild(c).style.display = "none"
-  }), a.extend(a.ui, {plugin:{add:function(b, c, d) {
-    var e = a.ui[b].prototype;
-    for(var f in d) {
-      e.plugins[f] = e.plugins[f] || [], e.plugins[f].push([c, d[f]])
-    }
-  }, call:function(a, b, c) {
-    var d = a.plugins[b];
-    if(!!d && !!a.element[0].parentNode) {
-      for(var e = 0;e < d.length;e++) {
-        a.options[d[e][0]] && d[e][1].apply(a.element, c)
-      }
-    }
-  }}, contains:function(a, b) {
-    return document.compareDocumentPosition ? a.compareDocumentPosition(b) & 16 : a !== b && a.contains(b)
-  }, hasScroll:function(b, c) {
-    if(a(b).css("overflow") === "hidden") {
-      return!1
-    }
-    var d = c && c === "left" ? "scrollLeft" : "scrollTop", e = !1;
-    if(b[d] > 0) {
-      return!0
-    }
-    b[d] = 1, e = b[d] > 0, b[d] = 0;
-    return e
-  }, isOverAxis:function(a, b, c) {
-    return a > b && a < b + c
-  }, isOver:function(b, c, d, e, f, g) {
-    return a.ui.isOverAxis(b, d, f) && a.ui.isOverAxis(c, e, g)
-  }}))
-})(jQuery);
-(function(a, b) {
-  a.widget("ui.draggable", a.ui.mouse, {widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
-    this.options.helper == "original" && !/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative"), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
-  }, destroy:function() {
-    if(!!this.element.data("draggable")) {
-      this.element.removeData("draggable").unbind(".draggable").removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled"), this._mouseDestroy();
-      return this
-    }
-  }, _mouseCapture:function(b) {
-    var c = this.options;
-    if(this.helper || c.disabled || a(b.target).is(".ui-resizable-handle")) {
-      return!1
-    }
-    this.handle = this._getHandle(b);
-    if(!this.handle) {
-      return!1
-    }
-    c.iframeFix && a(c.iframeFix === !0 ? "iframe" : c.iframeFix).each(function() {
-      a('<div class="ui-draggable-iframeFix" style="background: #fff;"></div>').css({width:this.offsetWidth + "px", height:this.offsetHeight + "px", position:"absolute", opacity:"0.001", zIndex:1E3}).css(a(this).offset()).appendTo("body")
-    });
-    return!0
-  }, _mouseStart:function(b) {
-    var c = this.options;
-    this.helper = this._createHelper(b), this._cacheHelperProportions(), a.ui.ddmanager && (a.ui.ddmanager.current = this), this._cacheMargins(), this.cssPosition = this.helper.css("position"), this.scrollParent = this.helper.scrollParent(), this.offset = this.positionAbs = this.element.offset(), this.offset = {top:this.offset.top - this.margins.top, left:this.offset.left - this.margins.left}, a.extend(this.offset, {click:{left:b.pageX - this.offset.left, top:b.pageY - this.offset.top}, parent:this._getParentOffset(), 
-    relative:this._getRelativeOffset()}), this.originalPosition = this.position = this._generatePosition(b), this.originalPageX = b.pageX, this.originalPageY = b.pageY, c.cursorAt && this._adjustOffsetFromHelper(c.cursorAt), c.containment && this._setContainment();
-    if(this._trigger("start", b) === !1) {
-      this._clear();
-      return!1
-    }
-    this._cacheHelperProportions(), a.ui.ddmanager && !c.dropBehaviour && a.ui.ddmanager.prepareOffsets(this, b), this.helper.addClass("ui-draggable-dragging"), this._mouseDrag(b, !0), a.ui.ddmanager && a.ui.ddmanager.dragStart(this, b);
-    return!0
-  }, _mouseDrag:function(b, c) {
-    this.position = this._generatePosition(b), this.positionAbs = this._convertPositionTo("absolute");
-    if(!c) {
-      var d = this._uiHash();
-      if(this._trigger("drag", b, d) === !1) {
-        this._mouseUp({});
-        return!1
-      }
-      this.position = d.position
-    }
-    if(!this.options.axis || this.options.axis != "y") {
-      this.helper[0].style.left = this.position.left + "px"
-    }
-    if(!this.options.axis || this.options.axis != "x") {
-      this.helper[0].style.top = this.position.top + "px"
-    }
-    a.ui.ddmanager && a.ui.ddmanager.drag(this, b);
-    return!1
-  }, _mouseStop:function(b) {
-    var c = !1;
-    a.ui.ddmanager && !this.options.dropBehaviour && (c = a.ui.ddmanager.drop(this, b)), this.dropped && (c = this.dropped, this.dropped = !1);
-    if((!this.element[0] || !this.element[0].parentNode) && this.options.helper == "original") {
-      return!1
-    }
-    if(this.options.revert == "invalid" && !c || this.options.revert == "valid" && c || this.options.revert === !0 || a.isFunction(this.options.revert) && this.options.revert.call(this.element, c)) {
-      var d = this;
-      a(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
-        d._trigger("stop", b) !== !1 && d._clear()
-      })
-    }else {
-      this._trigger("stop", b) !== !1 && this._clear()
-    }
-    return!1
-  }, _mouseUp:function(b) {
-    this.options.iframeFix === !0 && a("div.ui-draggable-iframeFix").each(function() {
-      this.parentNode.removeChild(this)
-    }), a.ui.ddmanager && a.ui.ddmanager.dragStop(this, b);
-    return a.ui.mouse.prototype._mouseUp.call(this, b)
-  }, cancel:function() {
-    this.helper.is(".ui-draggable-dragging") ? this._mouseUp({}) : this._clear();
-    return this
-  }, _getHandle:function(b) {
-    var c = !this.options.handle || !a(this.options.handle, this.element).length ? !0 : !1;
-    a(this.options.handle, this.element).find("*").andSelf().each(function() {
-      this == b.target && (c = !0)
-    });
-    return c
-  }, _createHelper:function(b) {
-    var c = this.options, d = a.isFunction(c.helper) ? a(c.helper.apply(this.element[0], [b])) : c.helper == "clone" ? this.element.clone().removeAttr("id") : this.element;
-    d.parents("body").length || d.appendTo(c.appendTo == "parent" ? this.element[0].parentNode : c.appendTo), d[0] != this.element[0] && !/(fixed|absolute)/.test(d.css("position")) && d.css("position", "absolute");
-    return d
-  }, _adjustOffsetFromHelper:function(b) {
-    typeof b == "string" && (b = b.split(" ")), a.isArray(b) && (b = {left:+b[0], top:+b[1] || 0}), "left" in b && (this.offset.click.left = b.left + this.margins.left), "right" in b && (this.offset.click.left = this.helperProportions.width - b.right + this.margins.left), "top" in b && (this.offset.click.top = b.top + this.margins.top), "bottom" in b && (this.offset.click.top = this.helperProportions.height - b.bottom + this.margins.top)
-  }, _getParentOffset:function() {
-    this.offsetParent = this.helper.offsetParent();
-    var b = this.offsetParent.offset();
-    this.cssPosition == "absolute" && this.scrollParent[0] != document && a.ui.contains(this.scrollParent[0], this.offsetParent[0]) && (b.left += this.scrollParent.scrollLeft(), b.top += this.scrollParent.scrollTop());
-    if(this.offsetParent[0] == document.body || this.offsetParent[0].tagName && this.offsetParent[0].tagName.toLowerCase() == "html" && a.browser.msie) {
-      b = {top:0, left:0}
-    }
-    return{top:b.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0), left:b.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)}
-  }, _getRelativeOffset:function() {
-    if(this.cssPosition == "relative") {
-      var a = this.element.position();
-      return{top:a.top - (parseInt(this.helper.css("top"), 10) || 0) + this.scrollParent.scrollTop(), left:a.left - (parseInt(this.helper.css("left"), 10) || 0) + this.scrollParent.scrollLeft()}
-    }
-    return{top:0, left:0}
-  }, _cacheMargins:function() {
-    this.margins = {left:parseInt(this.element.css("marginLeft"), 10) || 0, top:parseInt(this.element.css("marginTop"), 10) || 0, right:parseInt(this.element.css("marginRight"), 10) || 0, bottom:parseInt(this.element.css("marginBottom"), 10) || 0}
-  }, _cacheHelperProportions:function() {
-    this.helperProportions = {width:this.helper.outerWidth(), height:this.helper.outerHeight()}
-  }, _setContainment:function() {
-    var b = this.options;
-    b.containment == "parent" && (b.containment = this.helper[0].parentNode);
-    if(b.containment == "document" || b.containment == "window") {
-      this.containment = [b.containment == "document" ? 0 : a(window).scrollLeft() - this.offset.relative.left - this.offset.parent.left, b.containment == "document" ? 0 : a(window).scrollTop() - this.offset.relative.top - this.offset.parent.top, (b.containment == "document" ? 0 : a(window).scrollLeft()) + a(b.containment == "document" ? document : window).width() - this.helperProportions.width - this.margins.left, (b.containment == "document" ? 0 : a(window).scrollTop()) + (a(b.containment == "document" ? 
-      document : window).height() || document.body.parentNode.scrollHeight) - this.helperProportions.height - this.margins.top]
-    }
-    if(!/^(document|window|parent)$/.test(b.containment) && b.containment.constructor != Array) {
-      var c = a(b.containment), d = c[0];
-      if(!d) {
-        return
-      }
-      var e = c.offset(), f = a(d).css("overflow") != "hidden";
-      this.containment = [(parseInt(a(d).css("borderLeftWidth"), 10) || 0) + (parseInt(a(d).css("paddingLeft"), 10) || 0), (parseInt(a(d).css("borderTopWidth"), 10) || 0) + (parseInt(a(d).css("paddingTop"), 10) || 0), (f ? Math.max(d.scrollWidth, d.offsetWidth) : d.offsetWidth) - (parseInt(a(d).css("borderLeftWidth"), 10) || 0) - (parseInt(a(d).css("paddingRight"), 10) || 0) - this.helperProportions.width - this.margins.left - this.margins.right, (f ? Math.max(d.scrollHeight, d.offsetHeight) : d.offsetHeight) - 
-      (parseInt(a(d).css("borderTopWidth"), 10) || 0) - (parseInt(a(d).css("paddingBottom"), 10) || 0) - this.helperProportions.height - this.margins.top - this.margins.bottom], this.relative_container = c
-    }else {
-      b.containment.constructor == Array && (this.containment = b.containment)
-    }
-  }, _convertPositionTo:function(b, c) {
-    c || (c = this.position);
-    var d = b == "absolute" ? 1 : -1, e = this.options, f = this.cssPosition == "absolute" && (this.scrollParent[0] == document || !a.ui.contains(this.scrollParent[0], this.offsetParent[0])) ? this.offsetParent : this.scrollParent, g = /(html|body)/i.test(f[0].tagName);
-    return{top:c.top + this.offset.relative.top * d + this.offset.parent.top * d - (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : (this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : g ? 0 : f.scrollTop()) * d), left:c.left + this.offset.relative.left * d + this.offset.parent.left * d - (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : (this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : g ? 0 : f.scrollLeft()) * 
-    d)}
-  }, _generatePosition:function(b) {
-    var c = this.options, d = this.cssPosition == "absolute" && (this.scrollParent[0] == document || !a.ui.contains(this.scrollParent[0], this.offsetParent[0])) ? this.offsetParent : this.scrollParent, e = /(html|body)/i.test(d[0].tagName), f = b.pageX, g = b.pageY;
-    if(this.originalPosition) {
-      var h;
-      if(this.containment) {
-        if(this.relative_container) {
-          var i = this.relative_container.offset();
-          h = [this.containment[0] + i.left, this.containment[1] + i.top, this.containment[2] + i.left, this.containment[3] + i.top]
-        }else {
-          h = this.containment
-        }
-        b.pageX - this.offset.click.left < h[0] && (f = h[0] + this.offset.click.left), b.pageY - this.offset.click.top < h[1] && (g = h[1] + this.offset.click.top), b.pageX - this.offset.click.left > h[2] && (f = h[2] + this.offset.click.left), b.pageY - this.offset.click.top > h[3] && (g = h[3] + this.offset.click.top)
-      }
-      if(c.grid) {
-        var j = c.grid[1] ? this.originalPageY + Math.round((g - this.originalPageY) / c.grid[1]) * c.grid[1] : this.originalPageY;
-        g = h ? j - this.offset.click.top < h[1] || j - this.offset.click.top > h[3] ? j - this.offset.click.top < h[1] ? j + c.grid[1] : j - c.grid[1] : j : j;
-        var k = c.grid[0] ? this.originalPageX + Math.round((f - this.originalPageX) / c.grid[0]) * c.grid[0] : this.originalPageX;
-        f = h ? k - this.offset.click.left < h[0] || k - this.offset.click.left > h[2] ? k - this.offset.click.left < h[0] ? k + c.grid[0] : k - c.grid[0] : k : k
-      }
-    }
-    return{top:g - this.offset.click.top - this.offset.relative.top - this.offset.parent.top + (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : this.cssPosition == "fixed" ? -this.scrollParent.scrollTop() : e ? 0 : d.scrollTop()), left:f - this.offset.click.left - this.offset.relative.left - this.offset.parent.left + (a.browser.safari && a.browser.version < 526 && this.cssPosition == "fixed" ? 0 : this.cssPosition == "fixed" ? -this.scrollParent.scrollLeft() : e ? 
-    0 : d.scrollLeft())}
-  }, _clear:function() {
-    this.helper.removeClass("ui-draggable-dragging"), this.helper[0] != this.element[0] && !this.cancelHelperRemoval && this.helper.remove(), this.helper = null, this.cancelHelperRemoval = !1
-  }, _trigger:function(b, c, d) {
-    d = d || this._uiHash(), a.ui.plugin.call(this, b, [c, d]), b == "drag" && (this.positionAbs = this._convertPositionTo("absolute"));
-    return a.Widget.prototype._trigger.call(this, b, c, d)
-  }, plugins:{}, _uiHash:function(a) {
-    return{helper:this.helper, position:this.position, originalPosition:this.originalPosition, offset:this.positionAbs}
-  }}), a.extend(a.ui.draggable, {version:"1.8.18"}), a.ui.plugin.add("draggable", "connectToSortable", {start:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options, f = a.extend({}, c, {item:d.element});
-    d.sortables = [], a(e.connectToSortable).each(function() {
-      var c = a.data(this, "sortable");
-      c && !c.options.disabled && (d.sortables.push({instance:c, shouldRevert:c.options.revert}), c.refreshPositions(), c._trigger("activate", b, f))
-    })
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable"), e = a.extend({}, c, {item:d.element});
-    a.each(d.sortables, function() {
-      this.instance.isOver ? (this.instance.isOver = 0, d.cancelHelperRemoval = !0, this.instance.cancelHelperRemoval = !1, this.shouldRevert && (this.instance.options.revert = !0), this.instance._mouseStop(b), this.instance.options.helper = this.instance.options._helper, d.options.helper == "original" && this.instance.currentItem.css({top:"auto", left:"auto"})) : (this.instance.cancelHelperRemoval = !1, this.instance._trigger("deactivate", b, e))
-    })
-  }, drag:function(b, c) {
-    var d = a(this).data("draggable"), e = this, f = function(b) {
-      var c = this.offset.click.top, d = this.offset.click.left, e = this.positionAbs.top, f = this.positionAbs.left, g = b.height, h = b.width, i = b.top, j = b.left;
-      return a.ui.isOver(e + c, f + d, i, j, g, h)
-    };
-    a.each(d.sortables, function(f) {
-      this.instance.positionAbs = d.positionAbs, this.instance.helperProportions = d.helperProportions, this.instance.offset.click = d.offset.click, this.instance._intersectsWith(this.instance.containerCache) ? (this.instance.isOver || (this.instance.isOver = 1, this.instance.currentItem = a(e).clone().removeAttr("id").appendTo(this.instance.element).data("sortable-item", !0), this.instance.options._helper = this.instance.options.helper, this.instance.options.helper = function() {
-        return c.helper[0]
-      }, b.target = this.instance.currentItem[0], this.instance._mouseCapture(b, !0), this.instance._mouseStart(b, !0, !0), this.instance.offset.click.top = d.offset.click.top, this.instance.offset.click.left = d.offset.click.left, this.instance.offset.parent.left -= d.offset.parent.left - this.instance.offset.parent.left, this.instance.offset.parent.top -= d.offset.parent.top - this.instance.offset.parent.top, d._trigger("toSortable", b), d.dropped = this.instance.element, d.currentItem = d.element, 
-      this.instance.fromOutside = d), this.instance.currentItem && this.instance._mouseDrag(b)) : this.instance.isOver && (this.instance.isOver = 0, this.instance.cancelHelperRemoval = !0, this.instance.options.revert = !1, this.instance._trigger("out", b, this.instance._uiHash(this.instance)), this.instance._mouseStop(b, !0), this.instance.options.helper = this.instance.options._helper, this.instance.currentItem.remove(), this.instance.placeholder && this.instance.placeholder.remove(), d._trigger("fromSortable", 
-      b), d.dropped = !1)
-    })
-  }}), a.ui.plugin.add("draggable", "cursor", {start:function(b, c) {
-    var d = a("body"), e = a(this).data("draggable").options;
-    d.css("cursor") && (e._cursor = d.css("cursor")), d.css("cursor", e.cursor)
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable").options;
-    d._cursor && a("body").css("cursor", d._cursor)
-  }}), a.ui.plugin.add("draggable", "opacity", {start:function(b, c) {
-    var d = a(c.helper), e = a(this).data("draggable").options;
-    d.css("opacity") && (e._opacity = d.css("opacity")), d.css("opacity", e.opacity)
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable").options;
-    d._opacity && a(c.helper).css("opacity", d._opacity)
-  }}), a.ui.plugin.add("draggable", "scroll", {start:function(b, c) {
-    var d = a(this).data("draggable");
-    d.scrollParent[0] != document && d.scrollParent[0].tagName != "HTML" && (d.overflowOffset = d.scrollParent.offset())
-  }, drag:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options, f = !1;
-    if(d.scrollParent[0] != document && d.scrollParent[0].tagName != "HTML") {
-      if(!e.axis || e.axis != "x") {
-        d.overflowOffset.top + d.scrollParent[0].offsetHeight - b.pageY < e.scrollSensitivity ? d.scrollParent[0].scrollTop = f = d.scrollParent[0].scrollTop + e.scrollSpeed : b.pageY - d.overflowOffset.top < e.scrollSensitivity && (d.scrollParent[0].scrollTop = f = d.scrollParent[0].scrollTop - e.scrollSpeed)
-      }
-      if(!e.axis || e.axis != "y") {
-        d.overflowOffset.left + d.scrollParent[0].offsetWidth - b.pageX < e.scrollSensitivity ? d.scrollParent[0].scrollLeft = f = d.scrollParent[0].scrollLeft + e.scrollSpeed : b.pageX - d.overflowOffset.left < e.scrollSensitivity && (d.scrollParent[0].scrollLeft = f = d.scrollParent[0].scrollLeft - e.scrollSpeed)
-      }
-    }else {
-      if(!e.axis || e.axis != "x") {
-        b.pageY - a(document).scrollTop() < e.scrollSensitivity ? f = a(document).scrollTop(a(document).scrollTop() - e.scrollSpeed) : a(window).height() - (b.pageY - a(document).scrollTop()) < e.scrollSensitivity && (f = a(document).scrollTop(a(document).scrollTop() + e.scrollSpeed))
-      }
-      if(!e.axis || e.axis != "y") {
-        b.pageX - a(document).scrollLeft() < e.scrollSensitivity ? f = a(document).scrollLeft(a(document).scrollLeft() - e.scrollSpeed) : a(window).width() - (b.pageX - a(document).scrollLeft()) < e.scrollSensitivity && (f = a(document).scrollLeft(a(document).scrollLeft() + e.scrollSpeed))
-      }
-    }
-    f !== !1 && a.ui.ddmanager && !e.dropBehaviour && a.ui.ddmanager.prepareOffsets(d, b)
-  }}), a.ui.plugin.add("draggable", "snap", {start:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options;
-    d.snapElements = [], a(e.snap.constructor != String ? e.snap.items || ":data(draggable)" : e.snap).each(function() {
-      var b = a(this), c = b.offset();
-      this != d.element[0] && d.snapElements.push({item:this, width:b.outerWidth(), height:b.outerHeight(), top:c.top, left:c.left})
-    })
-  }, drag:function(b, c) {
-    var d = a(this).data("draggable"), e = d.options, f = e.snapTolerance, g = c.offset.left, h = g + d.helperProportions.width, i = c.offset.top, j = i + d.helperProportions.height;
-    for(var k = d.snapElements.length - 1;k >= 0;k--) {
-      var l = d.snapElements[k].left, m = l + d.snapElements[k].width, n = d.snapElements[k].top, o = n + d.snapElements[k].height;
-      if(!(l - f < g && g < m + f && n - f < i && i < o + f || l - f < g && g < m + f && n - f < j && j < o + f || l - f < h && h < m + f && n - f < i && i < o + f || l - f < h && h < m + f && n - f < j && j < o + f)) {
-        d.snapElements[k].snapping && d.options.snap.release && d.options.snap.release.call(d.element, b, a.extend(d._uiHash(), {snapItem:d.snapElements[k].item})), d.snapElements[k].snapping = !1;
-        continue
-      }
-      if(e.snapMode != "inner") {
-        var p = Math.abs(n - j) <= f, q = Math.abs(o - i) <= f, r = Math.abs(l - h) <= f, s = Math.abs(m - g) <= f;
-        p && (c.position.top = d._convertPositionTo("relative", {top:n - d.helperProportions.height, left:0}).top - d.margins.top), q && (c.position.top = d._convertPositionTo("relative", {top:o, left:0}).top - d.margins.top), r && (c.position.left = d._convertPositionTo("relative", {top:0, left:l - d.helperProportions.width}).left - d.margins.left), s && (c.position.left = d._convertPositionTo("relative", {top:0, left:m}).left - d.margins.left)
-      }
-      var t = p || q || r || s;
-      if(e.snapMode != "outer") {
-        var p = Math.abs(n - i) <= f, q = Math.abs(o - j) <= f, r = Math.abs(l - g) <= f, s = Math.abs(m - h) <= f;
-        p && (c.position.top = d._convertPositionTo("relative", {top:n, left:0}).top - d.margins.top), q && (c.position.top = d._convertPositionTo("relative", {top:o - d.helperProportions.height, left:0}).top - d.margins.top), r && (c.position.left = d._convertPositionTo("relative", {top:0, left:l}).left - d.margins.left), s && (c.position.left = d._convertPositionTo("relative", {top:0, left:m - d.helperProportions.width}).left - d.margins.left)
-      }
-      !d.snapElements[k].snapping && (p || q || r || s || t) && d.options.snap.snap && d.options.snap.snap.call(d.element, b, a.extend(d._uiHash(), {snapItem:d.snapElements[k].item})), d.snapElements[k].snapping = p || q || r || s || t
-    }
-  }}), a.ui.plugin.add("draggable", "stack", {start:function(b, c) {
-    var d = a(this).data("draggable").options, e = a.makeArray(a(d.stack)).sort(function(b, c) {
-      return(parseInt(a(b).css("zIndex"), 10) || 0) - (parseInt(a(c).css("zIndex"), 10) || 0)
-    });
-    if(!!e.length) {
-      var f = parseInt(e[0].style.zIndex) || 0;
-      a(e).each(function(a) {
-        this.style.zIndex = f + a
-      }), this[0].style.zIndex = f + e.length
-    }
-  }}), a.ui.plugin.add("draggable", "zIndex", {start:function(b, c) {
-    var d = a(c.helper), e = a(this).data("draggable").options;
-    d.css("zIndex") && (e._zIndex = d.css("zIndex")), d.css("zIndex", e.zIndex)
-  }, stop:function(b, c) {
-    var d = a(this).data("draggable").options;
-    d._zIndex && a(c.helper).css("zIndex", d._zIndex)
-  }})
-})(jQuery);
-(function(a, b) {
-  var c = !1;
-  a(document).mouseup(function(a) {
-    c = !1
-  }), a.widget("ui.mouse", {options:{cancel:":input,option", distance:1, delay:0}, _mouseInit:function() {
-    var b = this;
-    this.element.bind("mousedown." + this.widgetName, function(a) {
-      return b._mouseDown(a)
-    }).bind("click." + this.widgetName, function(c) {
-      if(!0 === a.data(c.target, b.widgetName + ".preventClickEvent")) {
-        a.removeData(c.target, b.widgetName + ".preventClickEvent"), c.stopImmediatePropagation();
-        return!1
-      }
-    }), this.started = !1
-  }, _mouseDestroy:function() {
-    this.element.unbind("." + this.widgetName)
-  }, _mouseDown:function(b) {
-    if(!c) {
-      this._mouseStarted && this._mouseUp(b), this._mouseDownEvent = b;
-      var d = this, e = b.which == 1, f = typeof this.options.cancel == "string" && b.target.nodeName ? a(b.target).closest(this.options.cancel).length : !1;
-      if(!e || f || !this._mouseCapture(b)) {
-        return!0
-      }
-      this.mouseDelayMet = !this.options.delay, this.mouseDelayMet || (this._mouseDelayTimer = setTimeout(function() {
-        d.mouseDelayMet = !0
-      }, this.options.delay));
-      if(this._mouseDistanceMet(b) && this._mouseDelayMet(b)) {
-        this._mouseStarted = this._mouseStart(b) !== !1;
-        if(!this._mouseStarted) {
-          b.preventDefault();
-          return!0
-        }
-      }
-      !0 === a.data(b.target, this.widgetName + ".preventClickEvent") && a.removeData(b.target, this.widgetName + ".preventClickEvent"), this._mouseMoveDelegate = function(a) {
-        return d._mouseMove(a)
-      }, this._mouseUpDelegate = function(a) {
-        return d._mouseUp(a)
-      }, a(document).bind("mousemove." + this.widgetName, this._mouseMoveDelegate).bind("mouseup." + this.widgetName, this._mouseUpDelegate), b.preventDefault(), c = !0;
-      return!0
-    }
-  }, _mouseMove:function(b) {
-    if(a.browser.msie && !(document.documentMode >= 9) && !b.button) {
-      return this._mouseUp(b)
-    }
-    if(this._mouseStarted) {
-      this._mouseDrag(b);
-      return b.preventDefault()
-    }
-    this._mouseDistanceMet(b) && this._mouseDelayMet(b) && (this._mouseStarted = this._mouseStart(this._mouseDownEvent, b) !== !1, this._mouseStarted ? this._mouseDrag(b) : this._mouseUp(b));
-    return!this._mouseStarted
-  }, _mouseUp:function(b) {
-    a(document).unbind("mousemove." + this.widgetName, this._mouseMoveDelegate).unbind("mouseup." + this.widgetName, this._mouseUpDelegate), this._mouseStarted && (this._mouseStarted = !1, b.target == this._mouseDownEvent.target && a.data(b.target, this.widgetName + ".preventClickEvent", !0), this._mouseStop(b));
-    return!1
-  }, _mouseDistanceMet:function(a) {
-    return Math.max(Math.abs(this._mouseDownEvent.pageX - a.pageX), Math.abs(this._mouseDownEvent.pageY - a.pageY)) >= this.options.distance
-  }, _mouseDelayMet:function(a) {
-    return this.mouseDelayMet
-  }, _mouseStart:function(a) {
-  }, _mouseDrag:function(a) {
-  }, _mouseStop:function(a) {
-  }, _mouseCapture:function(a) {
-    return!0
-  }})
-})(jQuery);
-(function(a, b) {
-  if(a.cleanData) {
-    var c = a.cleanData;
-    a.cleanData = function(b) {
-      for(var d = 0, e;(e = b[d]) != null;d++) {
-        try {
-          a(e).triggerHandler("remove")
-        }catch(f) {
-        }
-      }
-      c(b)
-    }
-  }else {
-    var d = a.fn.remove;
-    a.fn.remove = function(b, c) {
-      return this.each(function() {
-        c || (!b || a.filter(b, [this]).length) && a("*", this).add([this]).each(function() {
-          try {
-            a(this).triggerHandler("remove")
-          }catch(b) {
-          }
-        });
-        return d.call(a(this), b, c)
-      })
-    }
+    a = false
+  };
+  c._mouseInit = function() {
+    var f = this;
+    f.element.bind("touchstart", b.proxy(f, "_touchStart")).bind("touchmove", b.proxy(f, "_touchMove")).bind("touchend", b.proxy(f, "_touchEnd"));
+    e.call(f)
   }
-  a.widget = function(b, c, d) {
-    var e = b.split(".")[0], f;
-    b = b.split(".")[1], f = e + "-" + b, d || (d = c, c = a.Widget), a.expr[":"][f] = function(c) {
-      return!!a.data(c, b)
-    }, a[e] = a[e] || {}, a[e][b] = function(a, b) {
-      arguments.length && this._createWidget(a, b)
-    };
-    var g = new c;
-    g.options = a.extend(!0, {}, g.options), a[e][b].prototype = a.extend(!0, g, {namespace:e, widgetName:b, widgetEventPrefix:a[e][b].prototype.widgetEventPrefix || b, widgetBaseClass:f}, d), a.widget.bridge(b, a[e][b])
-  }, a.widget.bridge = function(c, d) {
-    a.fn[c] = function(e) {
-      var f = typeof e == "string", g = Array.prototype.slice.call(arguments, 1), h = this;
-      e = !f && g.length ? a.extend.apply(null, [!0, e].concat(g)) : e;
-      if(f && e.charAt(0) === "_") {
-        return h
-      }
-      f ? this.each(function() {
-        var d = a.data(this, c), f = d && a.isFunction(d[e]) ? d[e].apply(d, g) : d;
-        if(f !== d && f !== b) {
-          h = f;
-          return!1
-        }
-      }) : this.each(function() {
-        var b = a.data(this, c);
-        b ? b.option(e || {})._init() : a.data(this, c, new d(e, this))
-      });
-      return h
-    }
-  }, a.Widget = function(a, b) {
-    arguments.length && this._createWidget(a, b)
-  }, a.Widget.prototype = {widgetName:"widget", widgetEventPrefix:"", options:{disabled:!1}, _createWidget:function(b, c) {
-    a.data(c, this.widgetName, this), this.element = a(c), this.options = a.extend(!0, {}, this.options, this._getCreateOptions(), b);
-    var d = this;
-    this.element.bind("remove." + this.widgetName, function() {
-      d.destroy()
-    }), this._create(), this._trigger("create"), this._init()
-  }, _getCreateOptions:function() {
-    return a.metadata && a.metadata.get(this.element[0])[this.widgetName]
-  }, _create:function() {
-  }, _init:function() {
-  }, destroy:function() {
-    this.element.unbind("." + this.widgetName).removeData(this.widgetName), this.widget().unbind("." + this.widgetName).removeAttr("aria-disabled").removeClass(this.widgetBaseClass + "-disabled " + "ui-state-disabled")
-  }, widget:function() {
-    return this.element
-  }, option:function(c, d) {
-    var e = c;
-    if(arguments.length === 0) {
-      return a.extend({}, this.options)
-    }
-    if(typeof c == "string") {
-      if(d === b) {
-        return this.options[c]
-      }
-      e = {}, e[c] = d
-    }
-    this._setOptions(e);
-    return this
-  }, _setOptions:function(b) {
-    var c = this;
-    a.each(b, function(a, b) {
-      c._setOption(a, b)
-    });
-    return this
-  }, _setOption:function(a, b) {
-    this.options[a] = b, a === "disabled" && this.widget()[b ? "addClass" : "removeClass"](this.widgetBaseClass + "-disabled" + " " + "ui-state-disabled").attr("aria-disabled", b);
-    return this
-  }, enable:function() {
-    return this._setOption("disabled", !1)
-  }, disable:function() {
-    return this._setOption("disabled", !0)
-  }, _trigger:function(b, c, d) {
-    var e, f, g = this.options[b];
-    d = d || {}, c = a.Event(c), c.type = (b === this.widgetEventPrefix ? b : this.widgetEventPrefix + b).toLowerCase(), c.target = this.element[0], f = c.originalEvent;
-    if(f) {
-      for(e in f) {
-        e in c || (c[e] = f[e])
-      }
-    }
-    this.element.trigger(c, d);
-    return!(a.isFunction(g) && g.call(this.element[0], c, d) === !1 || c.isDefaultPrevented())
-  }}
 })(jQuery);
 (function(a, h, y) {
   var w = "function", v = "password", j = "maxLength", n = "type", b = "", c = true, u = "placeholder", i = false, t = "watermark", g = t, f = "watermarkClass", q = "watermarkFocus", l = "watermarkSubmit", o = "watermarkMaxLength", e = "watermarkPassword", d = "watermarkText", k = /\r/g, s = "input:data(" + g + "),textarea:data(" + g + ")", m = "input:text,input:password,input[type=search],input:not([type]),textarea", p = ["Page_ClientValidate"], r = i, x = u in document.createElement("input");
@@ -11421,441 +10607,6 @@ var Hashtable = function() {
     })
   }
 })(jQuery, window);
-var JSON;
-if(!JSON) {
-  JSON = {}
-}
-(function() {
-  function f(n) {
-    return n < 10 ? "0" + n : n
-  }
-  if(typeof Date.prototype.toJSON !== "function") {
-    Date.prototype.toJSON = function(key) {
-      return isFinite(this.valueOf()) ? this.getUTCFullYear() + "-" + f(this.getUTCMonth() + 1) + "-" + f(this.getUTCDate()) + "T" + f(this.getUTCHours()) + ":" + f(this.getUTCMinutes()) + ":" + f(this.getUTCSeconds()) + "Z" : null
-    };
-    String.prototype.toJSON = Number.prototype.toJSON = Boolean.prototype.toJSON = function(key) {
-      return this.valueOf()
-    }
-  }
-  var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, gap, indent, meta = {"\b":"\\b", "\t":"\\t", "\n":"\\n", "\f":"\\f", "\r":"\\r", '"':'\\"', "\\":"\\\\"}, rep;
-  function quote(string) {
-    escapable.lastIndex = 0;
-    return escapable.test(string) ? '"' + string.replace(escapable, function(a) {
-      var c = meta[a];
-      return typeof c === "string" ? c : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
-    }) + '"' : '"' + string + '"'
-  }
-  function str(key, holder) {
-    var i, k, v, length, mind = gap, partial, value = holder[key];
-    if(value && typeof value === "object" && typeof value.toJSON === "function") {
-      value = value.toJSON(key)
-    }
-    if(typeof rep === "function") {
-      value = rep.call(holder, key, value)
-    }
-    switch(typeof value) {
-      case "string":
-        return quote(value);
-      case "number":
-        return isFinite(value) ? String(value) : "null";
-      case "boolean":
-      ;
-      case "null":
-        return String(value);
-      case "object":
-        if(!value) {
-          return"null"
-        }
-        gap += indent;
-        partial = [];
-        if(Object.prototype.toString.apply(value) === "[object Array]") {
-          length = value.length;
-          for(i = 0;i < length;i += 1) {
-            partial[i] = str(i, value) || "null"
-          }
-          v = partial.length === 0 ? "[]" : gap ? "[\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "]" : "[" + partial.join(",") + "]";
-          gap = mind;
-          return v
-        }
-        if(rep && typeof rep === "object") {
-          length = rep.length;
-          for(i = 0;i < length;i += 1) {
-            if(typeof rep[i] === "string") {
-              k = rep[i];
-              v = str(k, value);
-              if(v) {
-                partial.push(quote(k) + (gap ? ": " : ":") + v)
-              }
-            }
-          }
-        }else {
-          for(k in value) {
-            if(Object.prototype.hasOwnProperty.call(value, k)) {
-              v = str(k, value);
-              if(v) {
-                partial.push(quote(k) + (gap ? ": " : ":") + v)
-              }
-            }
-          }
-        }
-        v = partial.length === 0 ? "{}" : gap ? "{\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "}" : "{" + partial.join(",") + "}";
-        gap = mind;
-        return v
-    }
-  }
-  if(typeof JSON.stringify !== "function") {
-    JSON.stringify = function(value, replacer, space) {
-      var i;
-      gap = "";
-      indent = "";
-      if(typeof space === "number") {
-        for(i = 0;i < space;i += 1) {
-          indent += " "
-        }
-      }else {
-        if(typeof space === "string") {
-          indent = space
-        }
-      }
-      rep = replacer;
-      if(replacer && typeof replacer !== "function" && (typeof replacer !== "object" || typeof replacer.length !== "number")) {
-        throw new Error("JSON.stringify");
-      }
-      return str("", {"":value})
-    }
-  }
-  if(typeof JSON.parse !== "function") {
-    JSON.parse = function(text, reviver) {
-      var j;
-      function walk(holder, key) {
-        var k, v, value = holder[key];
-        if(value && typeof value === "object") {
-          for(k in value) {
-            if(Object.prototype.hasOwnProperty.call(value, k)) {
-              v = walk(value, k);
-              if(v !== undefined) {
-                value[k] = v
-              }else {
-                delete value[k]
-              }
-            }
-          }
-        }
-        return reviver.call(holder, key, value)
-      }
-      text = String(text);
-      cx.lastIndex = 0;
-      if(cx.test(text)) {
-        text = text.replace(cx, function(a) {
-          return"\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
-        })
-      }
-      if(/^[\],:{}\s]*$/.test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) {
-        j = eval("(" + text + ")");
-        return typeof reviver === "function" ? walk({"":j}, "") : j
-      }
-      throw new SyntaxError("JSON.parse");
-    }
-  }
-})();
-window.Modernizr = function(a, b, c) {
-  function x(a) {
-    j.cssText = a
-  }
-  function y(a, b) {
-    return x(m.join(a + ";") + (b || ""))
-  }
-  function z(a, b) {
-    return typeof a === b
-  }
-  function A(a, b) {
-    return!!~("" + a).indexOf(b)
-  }
-  function B(a, b, d) {
-    for(var e in a) {
-      var f = b[a[e]];
-      if(f !== c) {
-        return d === !1 ? a[e] : z(f, "function") ? f.bind(d || b) : f
-      }
-    }
-    return!1
-  }
-  var d = "2.5.2", e = {}, f = !0, g = b.documentElement, h = "modernizr", i = b.createElement(h), j = i.style, k, l = {}.toString, m = " -webkit- -moz- -o- -ms- ".split(" "), n = {}, o = {}, p = {}, q = [], r = q.slice, s, t = function(a, c, d, e) {
-    var f, i, j, k = b.createElement("div"), l = b.body, m = l ? l : b.createElement("body");
-    if(parseInt(d, 10)) {
-      while(d--) {
-        j = b.createElement("div"), j.id = e ? e[d] : h + (d + 1), k.appendChild(j)
-      }
-    }
-    return f = ["&#173;", "<style>", a, "</style>"].join(""), k.id = h, m.innerHTML += f, m.appendChild(k), l || g.appendChild(m), i = c(k, a), l ? k.parentNode.removeChild(k) : m.parentNode.removeChild(m), !!i
-  }, u = function(b) {
-    var c = a.matchMedia || a.msMatchMedia;
-    if(c) {
-      return c(b).matches
-    }
-    var d;
-    return t("@media " + b + " { #" + h + " { position: absolute; } }", function(b) {
-      d = (a.getComputedStyle ? getComputedStyle(b, null) : b.currentStyle)["position"] == "absolute"
-    }), d
-  }, v = {}.hasOwnProperty, w;
-  !z(v, "undefined") && !z(v.call, "undefined") ? w = function(a, b) {
-    return v.call(a, b)
-  } : w = function(a, b) {
-    return b in a && z(a.constructor.prototype[b], "undefined")
-  }, Function.prototype.bind || (Function.prototype.bind = function(b) {
-    var c = this;
-    if(typeof c != "function") {
-      throw new TypeError;
-    }
-    var d = r.call(arguments, 1), e = function() {
-      if(this instanceof e) {
-        var a = function() {
-        };
-        a.prototype = c.prototype;
-        var f = new a, g = c.apply(f, d.concat(r.call(arguments)));
-        return Object(g) === g ? g : f
-      }
-      return c.apply(b, d.concat(r.call(arguments)))
-    };
-    return e
-  });
-  var C = function(c, d) {
-    var f = c.join(""), g = d.length;
-    t(f, function(c, d) {
-      var f = b.styleSheets[b.styleSheets.length - 1], h = f ? f.cssRules && f.cssRules[0] ? f.cssRules[0].cssText : f.cssText || "" : "", i = c.childNodes, j = {};
-      while(g--) {
-        j[i[g].id] = i[g]
-      }
-      e.touch = "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9
-    }, g, d)
-  }([, ["@media (", m.join("touch-enabled),("), h, ")", "{#touch{top:9px;position:absolute}}"].join("")], [, "touch"]);
-  n.touch = function() {
-    return e.touch
-  };
-  for(var D in n) {
-    w(n, D) && (s = D.toLowerCase(), e[s] = n[D](), q.push((e[s] ? "" : "no-") + s))
-  }
-  return e.addTest = function(a, b) {
-    if(typeof a == "object") {
-      for(var d in a) {
-        w(a, d) && e.addTest(d, a[d])
-      }
-    }else {
-      a = a.toLowerCase();
-      if(e[a] !== c) {
-        return e
-      }
-      b = typeof b == "function" ? b() : b, g.className += " " + (b ? "" : "no-") + a, e[a] = b
-    }
-    return e
-  }, x(""), i = k = null, e._version = d, e._prefixes = m, e.mq = u, e.testStyles = t, g.className = g.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (f ? " js " + q.join(" ") : ""), e
-}(this, this.document), function(a, b, c) {
-  function d(a) {
-    return o.call(a) == "[object Function]"
-  }
-  function e(a) {
-    return typeof a == "string"
-  }
-  function f() {
-  }
-  function g(a) {
-    return!a || a == "loaded" || a == "complete" || a == "uninitialized"
-  }
-  function h() {
-    var a = p.shift();
-    q = 1, a ? a.t ? m(function() {
-      (a.t == "c" ? B.injectCss : B.injectJs)(a.s, 0, a.a, a.x, a.e, 1)
-    }, 0) : (a(), h()) : q = 0
-  }
-  function i(a, c, d, e, f, i, j) {
-    function k(b) {
-      if(!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
-        a != "img" && m(function() {
-          t.removeChild(l)
-        }, 50);
-        for(var d in y[c]) {
-          y[c].hasOwnProperty(d) && y[c][d].onload()
-        }
-      }
-    }
-    var j = j || B.errorTimeout, l = {}, o = 0, r = 0, u = {t:d, s:c, e:f, a:i, x:j};
-    y[c] === 1 && (r = 1, y[c] = [], l = b.createElement(a)), a == "object" ? l.data = c : (l.src = c, l.type = a), l.width = l.height = "0", l.onerror = l.onload = l.onreadystatechange = function() {
-      k.call(this, r)
-    }, p.splice(e, 0, u), a != "img" && (r || y[c] === 2 ? (t.insertBefore(l, s ? null : n), m(k, j)) : y[c].push(l))
-  }
-  function j(a, b, c, d, f) {
-    return q = 0, b = b || "j", e(a) ? i(b == "c" ? v : u, a, b, this.i++, c, d, f) : (p.splice(this.i++, 0, a), p.length == 1 && h()), this
-  }
-  function k() {
-    var a = B;
-    return a.loader = {load:j, i:0}, a
-  }
-  var l = b.documentElement, m = a.setTimeout, n = b.getElementsByTagName("script")[0], o = {}.toString, p = [], q = 0, r = "MozAppearance" in l.style, s = r && !!b.createRange().compareNode, t = s ? l : n.parentNode, l = !!b.attachEvent, u = r ? "object" : l ? "script" : "img", v = l ? "script" : u, w = Array.isArray || function(a) {
-    return o.call(a) == "[object Array]"
-  }, x = [], y = {}, z = {timeout:function(a, b) {
-    return b.length && (a.timeout = b[0]), a
-  }}, A, B;
-  B = function(a) {
-    function b(a) {
-      var a = a.split("!"), b = x.length, c = a.pop(), d = a.length, c = {url:c, origUrl:c, prefixes:a}, e, f, g;
-      for(f = 0;f < d;f++) {
-        g = a[f].split("="), (e = z[g.shift()]) && (c = e(c, g))
-      }
-      for(f = 0;f < b;f++) {
-        c = x[f](c)
-      }
-      return c
-    }
-    function g(a, e, f, g, i) {
-      var j = b(a), l = j.autoCallback;
-      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]] || h), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
-        k(), e && e(j.origUrl, i, g), l && l(j.origUrl, i, g), y[j.url] = 2
-      })))
-    }
-    function i(a, b) {
-      function c(a, c) {
-        if(a) {
-          if(e(a)) {
-            c || (j = function() {
-              var a = [].slice.call(arguments);
-              k.apply(this, a), l()
-            }), g(a, j, b, 0, h)
-          }else {
-            if(Object(a) === a) {
-              for(n in m = function() {
-                var b = 0, c;
-                for(c in a) {
-                  a.hasOwnProperty(c) && b++
-                }
-                return b
-              }(), a) {
-                a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
-                  var a = [].slice.call(arguments);
-                  k.apply(this, a), l()
-                } : j[n] = function(a) {
-                  return function() {
-                    var b = [].slice.call(arguments);
-                    a && a.apply(this, b), l()
-                  }
-                }(k[n])), g(a[n], j, b, n, h))
-              }
-            }
-          }
-        }else {
-          !c && l()
-        }
-      }
-      var h = !!a.test, i = a.load || a.both, j = a.callback || f, k = j, l = a.complete || f, m, n;
-      c(h ? a.yep : a.nope, !!i), i && c(i)
-    }
-    var j, l, m = this.yepnope.loader;
-    if(e(a)) {
-      g(a, 0, m, 0)
-    }else {
-      if(w(a)) {
-        for(j = 0;j < a.length;j++) {
-          l = a[j], e(l) ? g(l, 0, m, 0) : w(l) ? B(l) : Object(l) === l && i(l, m)
-        }
-      }else {
-        Object(a) === a && i(a, m)
-      }
-    }
-  }, B.addPrefix = function(a, b) {
-    z[a] = b
-  }, B.addFilter = function(a) {
-    x.push(a)
-  }, B.errorTimeout = 1E4, b.readyState == null && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
-    b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
-  }, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
-    var k = b.createElement("script"), l, o, e = e || B.errorTimeout;
-    k.src = a;
-    for(o in d) {
-      k.setAttribute(o, d[o])
-    }
-    c = j ? h : c || f, k.onreadystatechange = k.onload = function() {
-      !l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
-    }, m(function() {
-      l || (l = 1, c(1))
-    }, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
-  }, a.yepnope.injectCss = function(a, c, d, e, g, i) {
-    var e = b.createElement("link"), j, c = i ? h : c || f;
-    e.href = a, e.rel = "stylesheet", e.type = "text/css";
-    for(j in d) {
-      e.setAttribute(j, d[j])
-    }
-    g || (n.parentNode.insertBefore(e, n), m(c, 0))
-  }
-}(this, document), Modernizr.load = function() {
-  yepnope.apply(window, [].slice.call(arguments, 0))
-}, Modernizr.addTest("ie8compat", function() {
-  return!window.addEventListener && document.documentMode && document.documentMode === 7
-});
-window.Modernizr = function(a, b, c) {
-  function v(a) {
-    i.cssText = a
-  }
-  function w(a, b) {
-    return v(prefixes.join(a + ";") + (b || ""))
-  }
-  function x(a, b) {
-    return typeof a === b
-  }
-  function y(a, b) {
-    return!!~("" + a).indexOf(b)
-  }
-  function z(a, b, d) {
-    for(var e in a) {
-      var f = b[a[e]];
-      if(f !== c) {
-        return d === !1 ? a[e] : x(f, "function") ? f.bind(d || b) : f
-      }
-    }
-    return!1
-  }
-  var d = "2.5.3", e = {}, f = b.documentElement, g = "modernizr", h = b.createElement(g), i = h.style, j, k = {}.toString, l = {}, m = {}, n = {}, o = [], p = o.slice, q, r = function(a, c, d, e) {
-    var h, i, j, k = b.createElement("div"), l = b.body, m = l ? l : b.createElement("body");
-    if(parseInt(d, 10)) {
-      while(d--) {
-        j = b.createElement("div"), j.id = e ? e[d] : g + (d + 1), k.appendChild(j)
-      }
-    }
-    return h = ["&#173;", "<style>", a, "</style>"].join(""), k.id = g, (l ? k : m).innerHTML += h, m.appendChild(k), l || (m.style.background = "", f.appendChild(m)), i = c(k, a), l ? k.parentNode.removeChild(k) : m.parentNode.removeChild(m), !!i
-  }, s = function(b) {
-    var c = a.matchMedia || a.msMatchMedia;
-    if(c) {
-      return c(b).matches
-    }
-    var d;
-    return r("@media " + b + " { #" + g + " { position: absolute; } }", function(b) {
-      d = (a.getComputedStyle ? getComputedStyle(b, null) : b.currentStyle)["position"] == "absolute"
-    }), d
-  }, t = {}.hasOwnProperty, u;
-  !x(t, "undefined") && !x(t.call, "undefined") ? u = function(a, b) {
-    return t.call(a, b)
-  } : u = function(a, b) {
-    return b in a && x(a.constructor.prototype[b], "undefined")
-  }, Function.prototype.bind || (Function.prototype.bind = function(b) {
-    var c = this;
-    if(typeof c != "function") {
-      throw new TypeError;
-    }
-    var d = p.call(arguments, 1), e = function() {
-      if(this instanceof e) {
-        var a = function() {
-        };
-        a.prototype = c.prototype;
-        var f = new a, g = c.apply(f, d.concat(p.call(arguments)));
-        return Object(g) === g ? g : f
-      }
-      return c.apply(b, d.concat(p.call(arguments)))
-    };
-    return e
-  });
-  for(var A in l) {
-    u(l, A) && (q = A.toLowerCase(), e[q] = l[A](), o.push((e[q] ? "" : "no-") + q))
-  }
-  return v(""), h = j = null, e._version = d, e.mq = s, e.testStyles = r, e
-}(this, this.document);
 var getTrans = function(s) {
   if(typeof VISH !== "undefined" && typeof VISH.Editor !== "undefined" && typeof VISH.Editor.I18n !== "undefined") {
     var translate = VISH.Editor.I18n.getTrans(s);
@@ -17058,8 +15809,8 @@ VISH.Dummies = function(VISH, undefined) {
     "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='large' class='t10_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
     VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t11_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium'  class='t11_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='medium'  class='t11_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
     VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t12_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t12_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t12_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t12_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t13_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t13_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='medium' class='t14_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t14_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='left1' size='medium'    class='t14_left1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='left2' size='medium'    class='t14_left2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='small' class='t13_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t13_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='left' size='small' class='t14_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t14_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='left1' size='small'    class='t14_left1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='left2' size='small'    class='t14_left2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' areaid='header' size='medium' class='t15_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t15_right editable grey_background selectable'></div></article>"];
     quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><textarea class='value_multiplechoice_question_in_zone' placeholder='write question here' ><font size='4'>Write question here</font></textarea><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone '><span>a)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>b)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>c)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>d)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>e)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>f)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li></ul></div></div>", 
     "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"]
@@ -17381,7 +16132,7 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     $("#presentation_avatar").val($(event.target).attr("src"))
   };
   var _selectRandom = function(max) {
-    var randomnumber = 1 + Math.ceil(Math.random() * max);
+    var randomnumber = Math.ceil(Math.random() * max) + 1;
     $("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").addClass("selectedThumbnail");
     $("#presentation_avatar").val($("#" + carrouselDivId + " .carrousel_element_single_row_thumbnails:nth-child(" + randomnumber + ") img").attr("src"))
   };
@@ -20241,13 +18992,14 @@ VISH.LocalStorage = function(V, $, undefined) {
         localStorage.setItem("presentation_list", JSON.stringify(list))
       }
       localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation));
+      localStorage.setItem("presentation_" + presentation.id + "_url", window.location.href);
       _saveImage(presentation.avatar)
     }else {
       V.Debugging.log("Sorry! No web storage support.")
     }
   };
   var _saveImage = function(path) {
-    if(localStorage.getItem(path) === null) {
+    if(localStorage.getItem(path) === null && !path.match(/^http/)) {
       var canvas = document.createElement("canvas");
       var ctx = canvas.getContext("2d");
       var img = new Image;
