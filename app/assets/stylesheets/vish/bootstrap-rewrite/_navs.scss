@@ -15,10 +15,13 @@
 // Make links block level
 .nav > li > a {
   display: block;
+  color: $red-2; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  font-size: $tittleFontSize; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+
 }
 .nav > li > a:hover {
   text-decoration: none;
-  background-color: $grayLighter;
+  background-color: transparent; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
 }
 
 // Redeclare pull classes because of specifity
@@ -102,7 +105,7 @@
 
 // Give the tabs something to sit on
 .nav-tabs {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
 }
 // Make the list-items overlay the bottom border
 .nav-tabs > li {
@@ -116,16 +119,16 @@
   border: 1px solid transparent;
   @include border-radius(4px 4px 0 0);
   &:hover {
-    border-color: $grayLighter $grayLighter #ddd;
+    border-color: $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
   }
 }
 // Active state, and it's :hover to override normal :hover
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
-  color: $gray;
-  background-color: $white;
-  border: 1px solid #ddd;
-  border-bottom-color: transparent;
+  color: $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  background-color: transparent;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  border: 1px solid $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  border-bottom-color: $background;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
   cursor: default;
 }
 

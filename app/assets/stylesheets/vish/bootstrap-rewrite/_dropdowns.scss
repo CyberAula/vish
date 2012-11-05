@@ -21,12 +21,14 @@
 // --------------------
 .caret {
   display: inline-block;
-  width: 0;
-  height: 0;
-  vertical-align: top;
-  border-top:   4px solid $black;
-  border-right: 4px solid transparent;
-  border-left:  4px solid transparent;
+  width: 11px;
+  height: 10px;
+  background-image:url('icons/opcion.png');
+  background-repeat: no-repeat;
+  vertical-align: middle;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  border-top:   none; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  border-right: none;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  border-left:  none; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
   content: "";
 }
 

@@ -1,4 +1,4 @@
-<div class="row ">
+<div class="row">
   
 <div id="graphic_identity">
   <div class="logo-home">
@@ -9,13 +9,13 @@
   </div>
 </div>
 
-  <div class="span6">
+  <div id="nav-and-search">
     <% if user_signed_in? %>
-      <div class="btn-toolbar pull-right inline-block  " id="tooltip_head">
-        <div class="btn-group menu_header inline-block">
-          <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
-          <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
-          <%= link_to(raw("<i class='iconnav-followers'></i> "),
+    <div class="btn-toolbar">
+      <div class="btn-group">
+        <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+        <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
+        <%= link_to(raw("<i class='iconnav-followers'></i> "),
                       followings_path,
                       :class => "btn-header tooltip-header",
                       :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
@@ -23,11 +23,13 @@
           <% unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
             <%= link_to(raw("<i class='iconnav-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
           <% end %>
+
+
           <%= render :partial => 'layouts/header_dropdown_menu' %>
         </div>
       </div>
       <div class="pull-right inline-block">
-        <%= link_to(image_tag(current_subject.logo.url, :size => "22x22", :alt => current_subject.name, :class => "img2"), current_subject, :class => "logo-img margin-logo-img") %>
+        <%= link_to(image_tag(current_subject.logo.url, :size => "22x22", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "logo-img margin-logo-img") %>
         <%= link_to(truncate_name(current_subject.name, :length => 20), current_subject, :class => "title_bold dark-gray size15 dsignesbold name-user") %>
       </div>
       <%= javascript_tag do %>
