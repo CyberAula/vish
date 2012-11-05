@@ -40,9 +40,9 @@ class Video < Document
      :description => description,
      :author => author.name,
      :poster => file(:poster).to_s,
-     :sources => [ { :type => Mime::WEBM.to_s,  :src => file(:webm).to_s },
-                   { :type => Mime::MP4.to_s,   :src => file(:mp4).to_s },
-                   { :type => Mime::FLV.to_s, :src => file(:flv).to_s }
+     :sources => [ { :type => Mime::WEBM.to_s,  :src => documents_hostname + ("/" unless file(:webm).to_s.start_with? '/') + file(:webm).to_s },
+                   { :type => Mime::MP4.to_s,   :src => documents_hostname + ("/" unless file(:mp4).to_s.start_with? '/') + file(:mp4).to_s },
+                   { :type => Mime::FLV.to_s, :src => documents_hostname + ("/" unless file(:flv).to_s.start_with? '/') + file(:flv).to_s }
                  ]
     }
   end
