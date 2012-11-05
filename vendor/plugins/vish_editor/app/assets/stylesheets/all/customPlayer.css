@@ -1,8 +1,8 @@
 div.customPlayerContainer{
 	position: relative;
 	overflow: hidden;
-	border: 1px solid white;
-	outline: 1px solid #AAA;
+	border: none;
+	outline: none;
 }
 
 div.customPlayerControls {

@@ -24,13 +24,11 @@
 	configuration["StylesheetsPath"] = "/assets/";
 	configuration["mode"] = "vish";
 	options["configuration"] = configuration;
-	
+	options["full"] = true;
 	options["developping"] = false;
 
 	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
-
-	options["debugging"] = true
 
 	<% if user_signed_in? %>
 	    options["username"] = "<%= current_user.name %>";
@@ -47,7 +45,6 @@
 		addon.url = "";
 		addon.config = {enable: true};
 		options.addons.push(addon);
-		console.log("IframeMessenger addon loaded");
 	}
 
 	function start(){

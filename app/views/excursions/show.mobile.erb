@@ -30,13 +30,22 @@
 	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
-	options["debugging"] = true
-
 	<% if user_signed_in? %>
 	    options["username"] = "<%= current_user.name %>";
 	<% else %>
 	    options["username"] = false;
 	<% end %>
+
+	options.addons = [];
+
+	if(window.parent.loadIframeMessenger===true){
+		var addon = new Object();
+		addon.target = "Viewer";
+		addon.id = "IframeMessenger";
+		addon.url = "";
+		addon.config = {enable: true};
+		options.addons.push(addon);
+	}
 
 	function start(){
 		var isPreview = false;

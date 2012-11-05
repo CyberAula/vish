@@ -1,9 +1,7 @@
 /*
   Google HTML5 slides template
-
   Authors: Luke Mahé (code)
            Marcin Wichary (code and design)
-           
            Dominic Mazzoni (browser compatibility)
            Charles Chen (ChromeVox support)
 
@@ -251,18 +249,18 @@ this can not be done with show() and hide() because then it remains with display
 }
 
 #page-fullscreen{
-    background-image: url("/assets/fullscreen_all.png");
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    border: medium none;
-    bottom: 0;
-    height: 40px;
-    opacity: 1;
-    position: fixed;
-    right: 0;
-    text-align: center;
-    width: 45px;
-	z-index: 10;
+  background-image: url("/assets/fullscreen_all.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  border: medium none;
+  bottom: 0;
+  height: 40px;
+  opacity: 1;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  width: 45px;
+  z-index: 2610;
 }
 
 #page-fullscreen:hover{
@@ -383,7 +381,7 @@ this can not be done with show() and hide() because then it remains with display
   padding-bottom: 0px;
   color: #CCC;
   width: 8%;
-  z-index:0;
+  z-index: 2600;
 }
 
 #mobile_back_arrow:hover{
@@ -400,7 +398,7 @@ this can not be done with show() and hide() because then it remains with display
 #mobile_forward_arrow{
   padding-bottom: 0px;
   color: #CCC;
-  z-index:0;
+  z-index: 2600;
   right: 0%;
   width: 8%;
 }
@@ -524,7 +522,7 @@ button#closeButton {
   -webkit-border-radius: 10px 0px 0px 10px;
   background-color: rgb(0, 0, 0); 
   opacity: 0.7; 
-  z-index: 12;
+  z-index: 2620;
   cursor: pointer;
 }
 

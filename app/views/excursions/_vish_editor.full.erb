@@ -160,7 +160,7 @@
             <input type="hidden" id="presentation_avatar" value="">
           </div>
         
-          <input id='save_presentation_details' submit='disable' class='button buttonintro' value="Continue" i18n-key="i.continue">
+         <button id='save_presentation_details' submit='disable' class='button buttonintro' i18n-key="i.continue">Continue</button>
           <p id="presentation_details_error" class="error_intro" style='display:none' i18n-key="i.enterTitle">Please, enter a title</p>
         </div>
       </form>
@@ -362,7 +362,7 @@
         <p class="textfancy">Url</p></br>
         <img class="image_add_url" src="/assets/url_img.png"/>
         <input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
-        <button type="button" class="button buttonfancy previewButton" i18n-key="i.Add" 
+        <button type="button" class="addUrlButton" i18n-key="i.Add" 
         onclick="VISH.Editor.Tools.addUrl()">Add</button>
       </div>
       </div>
@@ -954,7 +954,7 @@
               <h1 i18n-key="i.Live">Live</h1> 
               <img id="liveimagetut" src="/assets/live_small.png"/>
             </li>
-            <li class="l33">
+            <li class="l33" display="none">
               <h1 i18n-key="i.Quiz">Quiz</h1> 
               <img id="quizimagetut" src="/assets/quiz_small.png"/>
             </li>

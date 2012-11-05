@@ -1,5 +1,7 @@
-PATH
-  remote: ../social_stream-vish
+GIT
+  remote: git://github.com/ging/social_stream.git
+  revision: 901caa1d6df4ad03362feb927e3115ba754cacee
+  branch: vish
   specs:
     social_stream-base (0.24.0)
       acts-as-taggable-on (~> 2.2.2)
@@ -144,7 +146,6 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
-    git (1.2.5)
     god (0.13.1)
     has_scope (0.5.1)
     hashie (1.2.0)
@@ -158,11 +159,6 @@ GEM
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
-    jeweler (1.8.4)
-      bundler (~> 1.0)
-      git (>= 1.2.5)
-      rake
-      rdoc
     journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -236,12 +232,9 @@ GEM
       paperclip (>= 2.5.2)
     pg (0.14.1)
     polyglot (0.3.3)
-    proudhon (0.3.6)
-      jeweler
+    proudhon (0.3.7)
       json
       nokogiri
-      proudhon
-      rake
       rest-client
     rack (1.4.1)
     rack-cache (1.2)
