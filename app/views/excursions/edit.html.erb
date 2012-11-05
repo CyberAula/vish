@@ -4,7 +4,7 @@
 
 <% if user_signed_in? and can?(:destroy, @excursion) %>
    <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion, :confirm => t('confirm_delete',
-     :scope => @excursion.class.to_s.underscore), :method => :delete ,  :class=>"btn-delete-excursion span11" %>
+     :scope => @excursion.class.to_s.underscore), :method => :delete ,  :class=>"btn btn-primary" %>
    <% end %>
 
 
