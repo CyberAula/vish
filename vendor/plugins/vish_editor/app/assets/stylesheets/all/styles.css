@@ -514,16 +514,16 @@ button#closeButton {
   padding-left: 15px; 
   font-size: 24px; 
   text-align: center; 
-  color: rgb(255, 255, 255); 
   font-family: 'trebuchet ms', verdana, arial, sans-serif; 
   border-radius: 10px 0px 0px 10px;
   -o-border-radius: 10px 0px 0px 10px;
   -moz-border-radius: 10px 0px 0px 10px;
   -webkit-border-radius: 10px 0px 0px 10px;
-  background-color: rgb(0, 0, 0); 
+  background-color: #ffffff; 
   opacity: 0.7; 
   z-index: 2620;
   cursor: pointer;
+  border: none;
 }
 
 .menubarcolor {

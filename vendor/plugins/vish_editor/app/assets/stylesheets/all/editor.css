@@ -105,8 +105,8 @@ img {
 }
 
 .image_add_url {
-  margin-left: 20px;
-  margin-top: 18px;	
+	margin-left: 23px;
+	margin-top: 26px;
 }
 
 .image_add_link {
@@ -180,7 +180,7 @@ img {
 
 .marginsfancy1 {
 	margin-top: 25px;
-	margin-left: 10px;
+	margin-left: 72px;
 }
 
 .formsizefancy2 {
@@ -327,7 +327,7 @@ img {
     margin-right: 2px;
     margin-top: 12px;
 	cursor: pointer;
-	background-size: 100%;
+	background-size: 100% !important;
 
 }
 
@@ -345,7 +345,7 @@ img {
 
 .thumb_medium {
 	width: 40px;
-	height: 49px;
+	height: 50px;
 }
 
 .thumb_large {
@@ -855,9 +855,7 @@ table.metadata td div.height_wrapper_description{
 }
 
 .buttonfancy {
-	position:absolute;
-	margin-left: 560px;
-	margin-top:75px;
+	margin-left: 600px;
 }
 	
 .button:active {
@@ -1311,7 +1309,7 @@ textarea {
 .imagetutflash {
 	position: absolute;
 	top:98px;
-	left:380px;
+	left: 420px;
 }
 
 .imagetutflash2 {

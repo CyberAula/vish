@@ -509,16 +509,17 @@
 */
 
 .t10_center{
-    border-radius: 20px 20px 20px 20px;
-    -moz-border-radius: 20px 20px 20px 20px;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    float: left;
-    height: 102.6%;
-    margin-left: -8.3%;
-    margin-top: -6.4%;
-    overflow: hidden;
-    position: absolute;
-    width: 102.1%;
+	border-radius: 10px !important;
+	-moz-border-radius: 10px !important;
+	-webkit-border-radius: 10px !important;
+	float: left;
+	height: 100%%;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	position: absolute;
+	width: 100%%;
+	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
 .t10_center > div.menuselect_hide {

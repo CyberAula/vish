@@ -1,30 +1,34 @@
 var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk2":'durante las secciones de la aplicaci\u00f3n para servirte de ayuda a la hora de utilizar el "ViSH editor". De esta manera podras aprender a utilizar el programa desde sus funciones b\u00e1sicas hasta la publicaci\u00f3n final de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', "i.walk3":'Este espacio te permite a\u00f1adir el t\u00edtulo de tu excursi\u00f3n.El t\u00edtulo de la excursion es obligatorio ya que gracias a el, otros usuarios podran encontrala mas f\u00e1cilmente dentro del ViSH. Pulsa "Siguiente" para continuar.', 
 "i.walk4":'En este espacio puedes explicar en mas detalle los conceptos e ideas de tu excursi\u00f3n, as\u00ed como los datos que consideres interesantes para que los usuarios sepan el contenido de esta. Pulsa "Siguiente" para continuar.', "i.walk5":'A\u00f1ade palabras que vayan acorde con el tema de tu excursion para que esta aparezca a la hora de que los usuarios busquen temas dentro del ViSH. Pulsa "Siguiente" para continuar.', "i.walk6":'Escoje una de estas imagenes para representar tu excursion dentro del ViSH.Utiliza las flechas de los laterales o los circulos en la parte inferior de la galer\u00eda para ver todas las imagenes y escojer una. Pulsa "Siguiente" para continuar.', 
-"i.walk7":'Una vez que cierres el tutorial pulsando el bot\u00f3n "cerrar", haz click en el boton continuar situado debajo de este. De esta manera salvaras los detalles de tu excursi\u00f3n y podr\u00e1s comenzar a a\u00f1adir contenido a esta.', "i.walk8":'Recuerda que puedes utilizar el icono "tutorial" cada vez que necesites ayuda en la aplicaci\u00f3n. Esta zona, es el escritorio donde crear\u00e1s tus excursiones.Pulsa "Siguiente" para continuar.', "i.walk9":'En esta zona podr\u00e1s ver las opciones principales para crear y editar una excursi\u00f3n virtual dentro de ViSH.Pulsa "Siguiente" para continuar.', 
-"i.walk9":'Haciendo click en este bot\u00f3n, podr\u00e1s volver a ver la pantalla principal donde a\u00f1adiste la informaci\u00f3n a tu excursi\u00f3n.Pulsa "Siguiente" para continuar.', "i.walk10":'Haciendo click en este bot\u00f3n, podr\u00e1s volver a ver la pantalla principal donde a\u00f1adiste la informaci\u00f3n a tu excursi\u00f3n.Pulsa "Siguiente" para continuar.', "i.walk11":'Esta zona se utiliza para definir el paginado de tu excursi\u00f3n, atraves de esta secci\u00f3n podras crear, moverte y editar cualquiera de las paginas de tu excursi\u00f3n.Pulsa "Siguiente" para continuar.', 
-"i.walk12":'Atraves de este bot\u00f3n podr\u00e1s salvar y publicar tus excursiones en ViSH.Pulsa "Siguiente" para continuar.', "i.walk13":'Este icono te llevar\u00e1 a la ventana de selecci\u00f3n de plantillas para a\u00f1adir paginas a tu excursi\u00f3n. Cuando a\u00f1adas una nueva p\u00e1gina te aprecera a modo de icono en la l\u00ednea de tiempo para mostrarte su ubicaci\u00f3n dentro del paginado de la excursi\u00f3n.Pulsa "Cerrar" para continuar.', "i.walk14":'Esta zona te ofrece una variedad de plantillas para a\u00f1adir a tu excursi\u00f3n. Solo tienes que hacer click en la miniatura que mas se ajuste a la informaci\u00f3n que quieras transmitir.Pulsa "Cerrar" para continuar.', 
+"i.walk7":'Una vez que cierres el tutorial pulsando el bot\u00f3n "cerrar", haz click en el boton continuar situado debajo de este. De esta manera salvaras los detalles de tu excursi\u00f3n y podr\u00e1s comenzar a a\u00f1adir contenido a esta.', "i.walk8":'Bienvenido, este es el escritorio de la aplicaci\u00f3n, desde aqu\u00ed, aprender\u00e1s a realizar excursiones paso a paso.Pulsa "Siguiente" para continuar.', "i.walk9":'En esta zona podr\u00e1s ver las opciones principales para crear y editar una excursi\u00f3n virtual dentro de ViSH.Pulsa "Siguiente" para continuar.', 
+"i.walk10":'Haciendo click en este bot\u00f3n, podr\u00e1s volver a ver la pantalla principal donde a\u00f1adiste la informaci\u00f3n a tu excursi\u00f3n.Pulsa "Siguiente" para continuar.', "i.walk11":'Esta zona se utiliza para definir el paginado de tu excursi\u00f3n, atraves de esta secci\u00f3n podras crear, moverte y editar cualquiera de las paginas de tu excursi\u00f3n.Pulsa "Siguiente" para continuar.', "i.walk12":'Atraves de este bot\u00f3n podr\u00e1s salvar y publicar tus excursiones en ViSH.Pulsa "Siguiente" para continuar.', 
+"i.walk13":'Este icono te llevar\u00e1 a la ventana de selecci\u00f3n de plantillas para a\u00f1adir paginas a tu excursi\u00f3n. Cuando a\u00f1adas una nueva p\u00e1gina te aprecera a modo de icono en la l\u00ednea de tiempo para mostrarte su ubicaci\u00f3n dentro del paginado de la excursi\u00f3n.Pulsa "Cerrar" para continuar.', "i.walk14":'Esta zona te ofrece una variedad de plantillas para a\u00f1adir a tu excursi\u00f3n. Solo tienes que hacer click en la miniatura que mas se ajuste a la informaci\u00f3n que quieras transmitir.Pulsa "Cerrar" para continuar.', 
 "i.walk15":"Para rellenar la plantilla que has escojido, solo tienes que hacer click en los espacios grises de esta. Si haces click dentro, te aparecer\u00e1n los siguientes iconos:", "i.walk16":"Si haces click en uno de estos iconos (dependiend de que tipo de contenido quieras a\u00f1adir a esa zona), te aparecer\u00e1 otra ventana que te ayudar\u00e1 en esta tarea, a excepci\u00f3n del icono de texto, que mostrar\u00e1 una barra en zona superior con herramientas para tratar tu tipograf\u00eda y definir el estilo de tu texto.", 
 "i.walk17":"Una vez hayas rellenado una zona gris con contenido, podras editarla volviendo a hacer click en el espacio que contiene el contenido. En caso de que quieras borrar este contenido puedes hacer click en el icono inferior derecho de cada zona gris rellenacon contenido:", "i.walk18":"Si quisieras borrar una plantilla o cerrar ventanas en la aplicaci\u00f3n, deberas usar el icono superior derecho:", "i.walk19":'Si necesitas cualquier otra ayuda con el contenido, siempre puedes utilizar los iconos "tutorial".Pulsa "Cerrar" para continuar.', 
 "i.walk20":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir imagenes. Como puedes ver el la zona superior tienes las siguientes opciones:", "i.walk21":"(a\u00f1adir imagen desde un enlace)", "i.walk22":"(a\u00f1adir imagen subiendola al repositorio)", "i.walk23":"(a\u00f1adir imagen desde el repositorio)", "i.walk24":"(a\u00f1adir imagen desde flickr)", "i.walk25":'Ahora estas en la secci\u00f3n Url.Pulsa "Siguiente" para continuar.', "i.walk26":"Este espacio esta reservardo para escribir o pegar un enlace que contenga una imagen, por ejemplo:", 
 "i.walk27":'Los formatos de imagen soportados por la aplicaci\u00f3n son muy variados (jpg, tiff, png, etc...) Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk28":'Esta zona te mostrar\u00e1 el contenido que has subido antes de a\u00f1adirlo a la presentaci\u00f3n, de esta manera puedes comprobarlo. Una vez estes listo, haz click en el bot\u00f3n de a\u00f1adir contenido (Este bot\u00f3n aparecer\u00e1 cuando pulses el bot\u00f3n previsualizar). Haz click en "cerrar" para terminar este tutorial.', 
 "i.walk29":'Pulsa en examinar para acceder a una nueva ventana y buscar un archivo en tu disco duro.Una vez lo hayas elegido, haz click en el bot\u00f3n "previsualizar.Haz click en "Continuar".', "i.walk30":'En este espacio puedes buscar imagenes dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de imagenes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz click en "cerrar" para terminar este tutorial.', 
-"i.walk31":'En este espacio puedes buscar imagenes en la pagina Flickr. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de imagenes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz click en "cerrar" para terminar este tutorial.', "i.walk32":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenido en Flash. Como puedes ver el la zona superior tienes las siguientes opciones:", "i.walk33":"(a\u00f1adir contenido desde un enlace)", 
-"i.walk34":"(a\u00f1adir contenido subiendolo al repositorio)", "i.walk35":"(a\u00f1adir contenido desde el repositorio)", "i.walk36":'Ahora estas en la secci\u00f3n Url.Haz click en "Continuar".', "i.walk37":"Este espacio esta reservardo para escribir o pegar un enlace que contenga un contenido flash, por ejemplo:", "i.walk38":'Los formatos flash soportados por la aplicaci\u00f3n son .swf.Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk39":'Pulsa en examinar para acceder a una nueva ventana y buscar un archivo en tu disco duro.Una vez lo hayas elegido, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', 
+"i.walk31":'En este espacio puedes buscar imagenes en la pagina Flickr. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de imagenes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz click en "cerrar" para terminar este tutorial.', "i.walk32":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenidos Object. Como puedes ver el la zona superior tienes las siguientes opciones:", "i.walk33":"(a\u00f1adir contenido desde un enlace)", 
+"i.walk34":"(a\u00f1adir contenido subiendolo al repositorio)", "i.walk35":"(a\u00f1adir contenido desde el repositorio)", "i.walk36":'Ahora estas en la secci\u00f3n Embed.Haz click en "Continuar".', "i.walk37":"Este espacio esta reservardo para escribir o pegar un enlace que contenga un contenidos flash, web etc... por ejemplo:", "i.walk38":'Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk39":'Pulsa en examinar para acceder a una nueva ventana y buscar un archivo en tu disco duro.Una vez lo hayas elegido, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', 
 "i.walk40":'En este espacio puedes buscar contenido dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de imagenes de las cuales solo debes pulsar encima de una de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el contenido. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
 "i.walk41":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir imagenes. Como puedes ver el la zona superior tienes las siguientes opciones:", "i.walk42":"(a\u00f1adir video desde un enlace)", "i.walk43":"(a\u00f1adir video desde el repositorio)", "i.walk44":"(a\u00f1adir video desde youtube)", "i.walk45":"(a\u00f1adir video desde vimeo)", "i.walk46":'Ahora estas en la secci\u00f3n Url.Haz click en "Continuar".', "i.walk47":"Este espacio esta reservardo para escribir o pegar un enlace que contenga una imagen, por ejemplo:", 
 "i.walk48":'Los formatos de video soportados por la aplicaci\u00f3n son muy variados (avi, flv, mpg...).Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk49":'En este espacio puedes buscar videos dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
 "i.walk50":'En este espacio puedes buscar videos dentro de youtube. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', "i.walk51":'En este espacio puedes buscar videos dentro de vimeo. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
 "i.walk52":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenido en directo. Como puedes ver el la zona superior tienes de momento la siguiente opci\u00f3n:", "i.walk53":"(a\u00f1adir video desde una camara en directo)", "i.walk54":'Ahora estas en la secci\u00f3n Webcam.Haz click en "Continuar"', "i.walk55":'En este espacio puedes buscar contenido en directo dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda, desde la cual solo debes pulsar encima del contenido para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adirlo. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
-"i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.AddVideoUrl":"a\u00f1adir URL de video", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", 
-"i.AddObjectContent":"A\u00f1adiendo contenido flash", "i.AddObjectContentUpload":"Subiendo contenido flash", "i.AddObjectContentUrl":"A\u00f1adiendo contenido flash por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.AddVideoContent":"A\u00f1adiendo video", "i.AddVideoContentUrl":"A\u00f1adiendo video por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", 
-"i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", "i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", 
-"i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.objectContent":"Contenido Flash", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Video":"Video", "i.Videos":"Videos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", 
-"i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.SearchVideosVimeo":"Buscar videos en Vimeo", "i.SearchVideosVish":"Buscar videos en el repositorio del ViSH", 
-"i.SearchVideosYoutube":"Buscar videos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.SeeVideoBefore":"Puedes ver el video antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", 
-"i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenido al ViSH editor!", "i.Url":"Enlace", "i.url":"enlace", "i.Upload":"Subir", "i.upload":"subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", 
-"i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", 
-"i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, 
-"default":{"i.save":"Standalone"}}};
+"i.walk56":"Una Flashcard es una aplicaci\u00f3n que te ayudar\u00e1 a representar tu excursi\u00f3n como una infograf\u00eda, usando una imagen para representar el concepto de la misma y marcando las zonas para que el usuario interactue con ellas de manera que pueda visualizar las paginas de la excursi\u00f3n.", "i.walk57":"Primero, utiliza estos iconos para a\u00f1adir una imagen de fondo.", "i.walk58":"Puedes a\u00f1adir imagenes por:", "i.walk59":"Una vez hecho esto, puedes arrastrar las flechas de la zona inferior hacia la flashcard para marcar la zona de cada p\u00e1gina dentro de esta", 
+"i.walk60":"Puedes previsualizar la flashcard en cualquier momento utilizando el icono de previsualizar.", "i.walk61":"Si salvas tu presentaci\u00f3n como una flashcard, se mostrar\u00e1 como tal, pero en cualquier momento puedes editarla y mostrasla como una presentaci\u00f3n normal de nuevo.", "i.walk62":"Haciendo click en este bot\u00f3n, podr\u00e1s previsualizar tu excursi\u00f3n como si ya estuviese publicada", "i.walk63":"Este bot\u00f3n te permitir\u00e1 escojer entre varias opciones para tu excursion:", 
+"i.walk64":"Utilizando este menu puedes salvar tu excursi\u00f3n, convertir tu presentaci\u00f3n a flashcard, previsualizar tu excursi\u00f3n antes de publicarla, cambiar los detalles de tu excursi\u00f3n y utilizar este tutorial cada vez que lo necesites", "i.walk65":"Muchas de estas opciones est\u00e1n en el espacio de ViSH Edito, pero siempre podr\u00e1s encontrarlas aqu\u00ed de igual manera.", "i.walk66":"Utilizando este bot\u00f3n  podr\u00e1s visualizar el tutorial principal de la aplicaci\u00f3n ViSH Editor", 
+"i.walk67":"Utilizando este bot\u00f3n accederas a la selecci\u00f3n de un tema visual para representar tu excursi\u00f3n", "i.walk68":"Este espacio contiene todas las opciones para interactuar con tu contenido:", "i.walk69":"Todas las veces en las que a\u00f1adas o selecciones contenido en tu excursi\u00f3n, esta barra de herramientas se activar\u00e1 para que puedas interacturar con tu contenido.", "i.walk70":"Escoje entre los diferentes temas que mas representen tu excursi\u00f3n. La primera linea de themes contiene degradados y colores vibrantes, la segunda linea esta compuesta por texturas suaves, la ultima linea imita los objectos de la vida real y por \u00faltimo, el \u00faltimo theme contiene una suave animaci\u00f3n para darle a tu excursi\u00f3n un toque especial. \u00a1Disfrutalos!", 
+"i.walk71":"(A\u00f1adir p\u00e1gina web)", "i.walk72":"(A\u00f1adir Captura de p\u00e1gina web)", "i.walk73":"A\u00f1adir p\u00e1gina web", "i.walk74":"A\u00f1adir Captura de p\u00e1gina web", "i.link":"A\u00f1adir url", "i.resize":"Redimensionar", "i.flashcardbg":"Fondo de flashcard", "i.text":"Texto", "i.themesButton":"ViSH Editor Themes", "i.toolbarButton":"Barra de herramientas", "i.themes2Button":"Selecci\u00f3n de theme", "i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
+"i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.AddVideoUrl":"a\u00f1adir URL de video", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", "i.AddObjectContent":"A\u00f1adiendo contenido Object", "i.AddObjectContentUpload":"Subiendo contenido Object", "i.AddObjectContentUrl":"A\u00f1adiendo contenido Object por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", 
+"i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.AddVideoContent":"A\u00f1adiendo video", "i.AddVideoContentUrl":"A\u00f1adiendo video por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", "i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", 
+"i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.tutorialButton":"Bot\u00f3n de tutorial", "i.previewButton":"Bot\u00f3n de previsualizaci\u00f3n", "i.menuButton":"Men\u00fa de ViSH Editor", 
+"i.objectContent":"Contenido Flash", "i.slidesmenu":"Este es el menu de slides", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Video":"Video", "i.Videos":"Videos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", 
+"i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.SearchVideosVimeo":"Buscar videos en Vimeo", "i.SearchVideosVish":"Buscar videos en el repositorio del ViSH", "i.SearchVideosYoutube":"Buscar videos en Youtube", 
+"i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.SeeVideoBefore":"Puedes ver el video antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", 
+"i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenido al ViSH editor!", "i.Url":"Enlace", "i.url":"enlace", "i.Upload":"Subir", "i.upload":"subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", 
+"i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, 
+"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
@@ -9652,672 +9656,6 @@ jQuery.cookie = function(key, value, options) {
     })
   }
 })(jQuery);
-var Hashtable = function() {
-  function c(b) {
-    var d;
-    if(typeof b == "string") {
-      return b
-    }
-    if(typeof b.hashCode == a) {
-      return d = b.hashCode(), typeof d == "string" ? d : c(d)
-    }
-    if(typeof b.toString == a) {
-      return b.toString()
-    }
-    try {
-      return String(b)
-    }catch(e) {
-      return Object.prototype.toString.call(b)
-    }
-  }
-  function d(a, b) {
-    return a.equals(b)
-  }
-  function e(b, c) {
-    return typeof c.equals == a ? c.equals(b) : b === c
-  }
-  function f(a) {
-    return function(b) {
-      if(b === null) {
-        throw new Error("null is not a valid " + a);
-      }
-      if(typeof b == "undefined") {
-        throw new Error(a + " must not be undefined");
-      }
-    }
-  }
-  function i(a, b, c, d) {
-    this[0] = a, this.entries = [], this.addEntry(b, c), d !== null && (this.getEqualityFunction = function() {
-      return d
-    })
-  }
-  function m(a) {
-    return function(b) {
-      var c = this.entries.length, d, e = this.getEqualityFunction(b);
-      while(c--) {
-        d = this.entries[c];
-        if(e(b, d[0])) {
-          switch(a) {
-            case j:
-              return!0;
-            case k:
-              return d;
-            case l:
-              return[c, d[1]]
-          }
-        }
-      }
-      return!1
-    }
-  }
-  function n(a) {
-    return function(b) {
-      var c = b.length;
-      for(var d = 0, e = this.entries.length;d < e;++d) {
-        b[c + d] = this.entries[d][a]
-      }
-    }
-  }
-  function o(a, b) {
-    var c = a.length, d;
-    while(c--) {
-      d = a[c];
-      if(b === d[0]) {
-        return c
-      }
-    }
-    return null
-  }
-  function p(a, b) {
-    var c = a[b];
-    return c && c instanceof i ? c : null
-  }
-  function q(d, e) {
-    var f = this, j = [], k = {}, l = typeof d == a ? d : c, m = typeof e == a ? e : null;
-    this.put = function(a, b) {
-      g(a), h(b);
-      var c = l(a), d, e, f = null;
-      return d = p(k, c), d ? (e = d.getEntryForKey(a), e ? (f = e[1], e[1] = b) : d.addEntry(a, b)) : (d = new i(c, a, b, m), j[j.length] = d, k[c] = d), f
-    }, this.get = function(a) {
-      g(a);
-      var b = l(a), c = p(k, b);
-      if(c) {
-        var d = c.getEntryForKey(a);
-        if(d) {
-          return d[1]
-        }
-      }
-      return null
-    }, this.containsKey = function(a) {
-      g(a);
-      var b = l(a), c = p(k, b);
-      return c ? c.containsKey(a) : !1
-    }, this.containsValue = function(a) {
-      h(a);
-      var b = j.length;
-      while(b--) {
-        if(j[b].containsValue(a)) {
-          return!0
-        }
-      }
-      return!1
-    }, this.clear = function() {
-      j.length = 0, k = {}
-    }, this.isEmpty = function() {
-      return!j.length
-    };
-    var n = function(a) {
-      return function() {
-        var b = [], c = j.length;
-        while(c--) {
-          j[c][a](b)
-        }
-        return b
-      }
-    };
-    this.keys = n("keys"), this.values = n("values"), this.entries = n("getEntries"), this.remove = function(a) {
-      g(a);
-      var c = l(a), d, e = null, f = p(k, c);
-      return f && (e = f.removeEntryForKey(a), e !== null && (f.entries.length || (d = o(j, c), b(j, d), delete k[c]))), e
-    }, this.size = function() {
-      var a = 0, b = j.length;
-      while(b--) {
-        a += j[b].entries.length
-      }
-      return a
-    }, this.each = function(a) {
-      var b = f.entries(), c = b.length, d;
-      while(c--) {
-        d = b[c], a(d[0], d[1])
-      }
-    }, this.putAll = function(b, c) {
-      var d = b.entries(), e, g, h, i, j = d.length, k = typeof c == a;
-      while(j--) {
-        e = d[j], g = e[0], h = e[1], k && (i = f.get(g)) && (h = c(g, i, h)), f.put(g, h)
-      }
-    }, this.clone = function() {
-      var a = new q(d, e);
-      return a.putAll(f), a
-    }
-  }
-  var a = "function", b = typeof Array.prototype.splice == a ? function(a, b) {
-    a.splice(b, 1)
-  } : function(a, b) {
-    var c, d, e;
-    if(b === a.length - 1) {
-      a.length = b
-    }else {
-      c = a.slice(b + 1), a.length = b;
-      for(d = 0, e = c.length;d < e;++d) {
-        a[b + d] = c[d]
-      }
-    }
-  }, g = f("key"), h = f("value"), j = 0, k = 1, l = 2;
-  return i.prototype = {getEqualityFunction:function(b) {
-    return typeof b.equals == a ? d : e
-  }, getEntryForKey:m(k), getEntryAndIndexForKey:m(l), removeEntryForKey:function(a) {
-    var c = this.getEntryAndIndexForKey(a);
-    return c ? (b(this.entries, c[0]), c[1]) : null
-  }, addEntry:function(a, b) {
-    this.entries[this.entries.length] = [a, b]
-  }, keys:n(0), values:n(1), getEntries:function(a) {
-    var b = a.length;
-    for(var c = 0, d = this.entries.length;c < d;++c) {
-      a[b + c] = this.entries[c].slice(0)
-    }
-  }, containsKey:m(j), containsValue:function(a) {
-    var b = this.entries.length;
-    while(b--) {
-      if(a === this.entries[b][1]) {
-        return!0
-      }
-    }
-    return!1
-  }}, q
-}();
-(function(a) {
-  function i(a, b, c) {
-    this.dec = a, this.group = b, this.neg = c
-  }
-  function j() {
-    for(var a = 0;a < h.length;a++) {
-      localeGroup = h[a];
-      for(var c = 0;c < localeGroup.length;c++) {
-        b.put(localeGroup[c], a)
-      }
-    }
-  }
-  function k(a) {
-    b.size() == 0 && j();
-    var c = ".", d = ",", e = "-", f = b.get(a);
-    if(f) {
-      var h = g[f];
-      h && (c = h[0], d = h[1])
-    }
-    return new i(c, d, e)
-  }
-  var b = new Hashtable, c = ["ae", "au", "ca", "cn", "eg", "gb", "hk", "il", "in", "jp", "sk", "th", "tw", "us"], d = ["at", "br", "de", "dk", "es", "gr", "it", "nl", "pt", "tr", "vn"], e = ["cz", "fi", "fr", "ru", "se", "pl"], f = ["ch"], g = [[".", ","], [",", "."], [",", " "], [".", "'"]], h = [c, d, e, f];
-  a.fn.formatNumber = function(b, c, d) {
-    return this.each(function() {
-      c == null && (c = !0), d == null && (d = !0);
-      var e;
-      a(this).is(":input") ? e = new String(a(this).val()) : e = new String(a(this).text());
-      var f = a.formatNumber(e, b);
-      c && (a(this).is(":input") ? a(this).val(f) : a(this).text(f));
-      if(d) {
-        return f
-      }
-    })
-  }, a.formatNumber = function(b, c) {
-    var c = a.extend({}, a.fn.formatNumber.defaults, c), d = k(c.locale.toLowerCase()), e = d.dec, f = d.group, g = d.neg, h = "0#-,.", i = "", j = !1;
-    for(var l = 0;l < c.format.length;l++) {
-      if(h.indexOf(c.format.charAt(l)) != -1) {
-        if(l == 0 && c.format.charAt(l) == "-") {
-          j = !0;
-          continue
-        }
-        break
-      }
-      i += c.format.charAt(l)
-    }
-    var m = "";
-    for(var l = c.format.length - 1;l >= 0;l--) {
-      if(h.indexOf(c.format.charAt(l)) != -1) {
-        break
-      }
-      m = c.format.charAt(l) + m
-    }
-    c.format = c.format.substring(i.length), c.format = c.format.substring(0, c.format.length - m.length);
-    var n = new Number(b);
-    return a._formatNumber(n, c, m, i, j)
-  }, a._formatNumber = function(b, c, d, e, f) {
-    var c = a.extend({}, a.fn.formatNumber.defaults, c), g = k(c.locale.toLowerCase()), h = g.dec, i = g.group, j = g.neg, l = !1;
-    if(isNaN(b)) {
-      if(c.nanForceZero != 1) {
-        return null
-      }
-      b = 0, l = !0
-    }
-    d == "%" && (b *= 100);
-    var m = "";
-    if(c.format.indexOf(".") > -1) {
-      var n = h, o = c.format.substring(c.format.lastIndexOf(".") + 1);
-      if(c.round == 1) {
-        b = new Number(b.toFixed(o.length))
-      }else {
-        var p = b.toString();
-        p = p.substring(0, p.lastIndexOf(".") + o.length + 1), b = new Number(p)
-      }
-      var q = b % 1, r = new String(q.toFixed(o.length));
-      r = r.substring(r.lastIndexOf(".") + 1);
-      for(var s = 0;s < o.length;s++) {
-        if(o.charAt(s) == "#" && r.charAt(s) != "0") {
-          n += r.charAt(s);
-          continue
-        }
-        if(o.charAt(s) == "#" && r.charAt(s) == "0") {
-          var t = r.substring(s);
-          if(t.match("[1-9]")) {
-            n += r.charAt(s);
-            continue
-          }
-          break
-        }
-        o.charAt(s) == "0" && (n += r.charAt(s))
-      }
-      m += n
-    }else {
-      b = Math.round(b)
-    }
-    var u = Math.floor(b);
-    b < 0 && (u = Math.ceil(b));
-    var v = "";
-    c.format.indexOf(".") == -1 ? v = c.format : v = c.format.substring(0, c.format.indexOf("."));
-    var w = "";
-    if(u != 0 || v.substr(v.length - 1) != "#" || l) {
-      var x = new String(Math.abs(u)), y = 9999;
-      v.lastIndexOf(",") != -1 && (y = v.length - v.lastIndexOf(",") - 1);
-      var z = 0;
-      for(var s = x.length - 1;s > -1;s--) {
-        w = x.charAt(s) + w, z++, z == y && s != 0 && (w = i + w, z = 0)
-      }
-      if(v.length > w.length) {
-        var A = v.indexOf("0");
-        if(A != -1) {
-          var B = v.length - A;
-          while(w.length < B) {
-            w = "0" + w
-          }
-        }
-      }
-    }
-    return!w && v.indexOf("0", v.length - 1) !== -1 && (w = "0"), m = w + m, b < 0 && f && e.length > 0 ? e = j + e : b < 0 && (m = j + m), c.decimalSeparatorAlwaysShown || m.lastIndexOf(h) == m.length - 1 && (m = m.substring(0, m.length - 1)), m = e + m + d, m
-  }, a.fn.parseNumber = function(b, c, d) {
-    c == null && (c = !0), d == null && (d = !0);
-    var e;
-    a(this).is(":input") ? e = new String(a(this).val()) : e = new String(a(this).text());
-    var f = a.parseNumber(e, b);
-    if(f) {
-      c && (a(this).is(":input") ? a(this).val(f.toString()) : a(this).text(f.toString()));
-      if(d) {
-        return f
-      }
-    }
-  }, a.parseNumber = function(b, c) {
-    var c = a.extend({}, a.fn.parseNumber.defaults, c), d = k(c.locale.toLowerCase()), e = d.dec, f = d.group, g = d.neg, h = "1234567890.-";
-    while(b.indexOf(f) > -1) {
-      b = b.replace(f, "")
-    }
-    b = b.replace(e, ".").replace(g, "-");
-    var i = "", j = !1;
-    b.charAt(b.length - 1) == "%" && (j = !0);
-    for(var l = 0;l < b.length;l++) {
-      h.indexOf(b.charAt(l)) > -1 && (i += b.charAt(l))
-    }
-    var m = new Number(i);
-    return j && (m /= 100, m = m.toFixed(i.length - 1)), m
-  }, a.fn.parseNumber.defaults = {locale:"us", decimalSeparatorAlwaysShown:!1}, a.fn.formatNumber.defaults = {format:"#,###.00", locale:"us", decimalSeparatorAlwaysShown:!1, nanForceZero:!0, round:!0}, Number.prototype.toFixed = function(a) {
-    return $._roundNumber(this, a)
-  }, a._roundNumber = function(a, b) {
-    var c = Math.pow(10, b || 0), d = String(Math.round(a * c) / c);
-    if(b > 0) {
-      var e = d.indexOf(".");
-      e == -1 ? (d += ".", e = 0) : e = d.length - (e + 1);
-      while(e < b) {
-        d += "0", e++
-      }
-    }
-    return d
-  }
-})(jQuery), function() {
-  var a = {};
-  this.tmpl = function b(c, d) {
-    var e = /\W/.test(c) ? new Function("obj", "var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push('" + c.replace(/[\r\t\n]/g, " ").split("<%").join("\t").replace(/((^|%>)[^\t]*)'/g, "$1\r").replace(/\t=(.*?)%>/g, "',$1,'").split("\t").join("');").split("%>").join("p.push('").split("\r").join("\\'") + "');}return p.join('');") : a[c] = a[c] || b(document.getElementById(c).innerHTML);
-    return d ? e(d) : e
-  }
-}(), function(a) {
-  a.baseClass = function(b) {
-    return b = a(b), b.get(0).className.match(/([^ ]+)/)[1]
-  }, a.fn.addDependClass = function(b, c) {
-    var d = {delimiter:c ? c : "-"};
-    return this.each(function() {
-      var c = a.baseClass(this);
-      c && a(this).addClass(c + d.delimiter + b)
-    })
-  }, a.fn.removeDependClass = function(b, c) {
-    var d = {delimiter:c ? c : "-"};
-    return this.each(function() {
-      var c = a.baseClass(this);
-      c && a(this).removeClass(c + d.delimiter + b)
-    })
-  }, a.fn.toggleDependClass = function(b, c) {
-    var d = {delimiter:c ? c : "-"};
-    return this.each(function() {
-      var c = a.baseClass(this);
-      c && (a(this).is("." + c + d.delimiter + b) ? a(this).removeClass(c + d.delimiter + b) : a(this).addClass(c + d.delimiter + b))
-    })
-  }
-}(jQuery), function(a) {
-  function b() {
-    this._init.apply(this, arguments)
-  }
-  b.prototype.oninit = function() {
-  }, b.prototype.events = function() {
-  }, b.prototype.onmousedown = function() {
-    this.ptr.css({position:"absolute"})
-  }, b.prototype.onmousemove = function(a, b, c) {
-    this.ptr.css({left:b, top:c})
-  }, b.prototype.onmouseup = function() {
-  }, b.prototype.isDefault = {drag:!1, clicked:!1, toclick:!0, mouseup:!1}, b.prototype._init = function() {
-    if(arguments.length > 0) {
-      this.ptr = a(arguments[0]), this.outer = a(".draggable-outer"), this.is = {}, a.extend(this.is, this.isDefault);
-      var b = this.ptr.offset();
-      this.d = {left:b.left, top:b.top, width:this.ptr.width(), height:this.ptr.height()}, this.oninit.apply(this, arguments), this._events()
-    }
-  }, b.prototype._getPageCoords = function(a) {
-    return a.targetTouches && a.targetTouches[0] ? {x:a.targetTouches[0].pageX, y:a.targetTouches[0].pageY} : {x:a.pageX, y:a.pageY}
-  }, b.prototype._bindEvent = function(a, b, c) {
-    var d = this;
-    this.supportTouches_ ? a.get(0).addEventListener(this.events_[b], c, !1) : a.bind(this.events_[b], c)
-  }, b.prototype._events = function() {
-    var b = this;
-    this.supportTouches_ = a.browser.webkit && navigator.userAgent.indexOf("Mobile") != -1, this.events_ = {click:this.supportTouches_ ? "touchstart" : "click", down:this.supportTouches_ ? "touchstart" : "mousedown", move:this.supportTouches_ ? "touchmove" : "mousemove", up:this.supportTouches_ ? "touchend" : "mouseup"}, this._bindEvent(a(document), "move", function(a) {
-      b.is.drag && (a.stopPropagation(), a.preventDefault(), b._mousemove(a))
-    }), this._bindEvent(a(document), "down", function(a) {
-      b.is.drag && (a.stopPropagation(), a.preventDefault())
-    }), this._bindEvent(a(document), "up", function(a) {
-      b._mouseup(a)
-    }), this._bindEvent(this.ptr, "down", function(a) {
-      return b._mousedown(a), !1
-    }), this._bindEvent(this.ptr, "up", function(a) {
-      b._mouseup(a)
-    }), this.ptr.find("a").click(function() {
-      b.is.clicked = !0;
-      if(!b.is.toclick) {
-        return b.is.toclick = !0, !1
-      }
-    }).mousedown(function(a) {
-      return b._mousedown(a), !1
-    }), this.events()
-  }, b.prototype._mousedown = function(b) {
-    this.is.drag = !0, this.is.clicked = !1, this.is.mouseup = !1;
-    var c = this.ptr.offset(), d = this._getPageCoords(b);
-    this.cx = d.x - c.left, this.cy = d.y - c.top, a.extend(this.d, {left:c.left, top:c.top, width:this.ptr.width(), height:this.ptr.height()}), this.outer && this.outer.get(0) && this.outer.css({height:Math.max(this.outer.height(), a(document.body).height()), overflow:"hidden"}), this.onmousedown(b)
-  }, b.prototype._mousemove = function(a) {
-    this.is.toclick = !1;
-    var b = this._getPageCoords(a);
-    this.onmousemove(a, b.x - this.cx, b.y - this.cy)
-  }, b.prototype._mouseup = function(b) {
-    var c = this;
-    this.is.drag && (this.is.drag = !1, this.outer && this.outer.get(0) && (a.browser.mozilla ? this.outer.css({overflow:"hidden"}) : this.outer.css({overflow:"visible"}), a.browser.msie && a.browser.version == "6.0" ? this.outer.css({height:"100%"}) : this.outer.css({height:"auto"})), this.onmouseup(b))
-  }, window.Draggable = b
-}(jQuery), function(a) {
-  function b(a) {
-    return typeof a == "undefined" ? !1 : a instanceof Array || !(a instanceof Object) && Object.prototype.toString.call(a) == "[object Array]" || typeof a.length == "number" && typeof a.splice != "undefined" && typeof a.propertyIsEnumerable != "undefined" && !a.propertyIsEnumerable("splice") ? !0 : !1
-  }
-  function d() {
-    return this.init.apply(this, arguments)
-  }
-  function e() {
-    Draggable.apply(this, arguments)
-  }
-  a.slider = function(b, c) {
-    var e = a(b);
-    return e.data("jslider") || e.data("jslider", new d(b, c)), e.data("jslider")
-  }, a.fn.slider = function(c, d) {
-    function g(a) {
-      return a !== undefined
-    }
-    function h(a) {
-      return a != null
-    }
-    var e, f = arguments;
-    return this.each(function() {
-      var i = a.slider(this, c);
-      if(typeof c == "string") {
-        switch(c) {
-          case "value":
-            if(g(f[1]) && g(f[2])) {
-              var j = i.getPointers();
-              h(j[0]) && h(f[1]) && (j[0].set(f[1]), j[0].setIndexOver()), h(j[1]) && h(f[2]) && (j[1].set(f[2]), j[1].setIndexOver())
-            }else {
-              if(g(f[1])) {
-                var j = i.getPointers();
-                h(j[0]) && h(f[1]) && (j[0].set(f[1]), j[0].setIndexOver())
-              }else {
-                e = i.getValue()
-              }
-            }
-            break;
-          case "prc":
-            if(g(f[1]) && g(f[2])) {
-              var j = i.getPointers();
-              h(j[0]) && h(f[1]) && (j[0]._set(f[1]), j[0].setIndexOver()), h(j[1]) && h(f[2]) && (j[1]._set(f[2]), j[1].setIndexOver())
-            }else {
-              if(g(f[1])) {
-                var j = i.getPointers();
-                h(j[0]) && h(f[1]) && (j[0]._set(f[1]), j[0].setIndexOver())
-              }else {
-                e = i.getPrcValue()
-              }
-            }
-            break;
-          case "calculatedValue":
-            var k = i.getValue().split(";");
-            e = "";
-            for(var l = 0;l < k.length;l++) {
-              e += (l > 0 ? ";" : "") + i.nice(k[l])
-            }
-            break;
-          case "skin":
-            i.setSkin(f[1])
-        }
-      }else {
-        !c && !d && (b(e) || (e = []), e.push(slider))
-      }
-    }), b(e) && e.length == 1 && (e = e[0]), e || this
-  };
-  var c = {settings:{from:1, to:10, step:1, smooth:!0, limits:!0, round:0, format:{format:"#,###.##"}, value:"5;7", dimension:""}, className:"jslider", selector:".jslider-", template:tmpl('<span class="<%=className%>"><table><tr><td><div class="<%=className%>-bg"><i class="l"></i><i class="r"></i><i class="v"></i></div><div class="<%=className%>-pointer"></div><div class="<%=className%>-pointer <%=className%>-pointer-to"></div><div class="<%=className%>-label"><span><%=settings.from%></span></div><div class="<%=className%>-label <%=className%>-label-to"><span><%=settings.to%></span><%=settings.dimension%></div><div class="<%=className%>-value"><span></span><%=settings.dimension%></div><div class="<%=className%>-value <%=className%>-value-to"><span></span><%=settings.dimension%></div><div class="<%=className%>-scale"><%=scale%></div></td></tr></table></span>')};
-  d.prototype.init = function(b, d) {
-    this.settings = a.extend(!0, {}, c.settings, d ? d : {}), this.inputNode = a(b).hide(), this.settings.interval = this.settings.to - this.settings.from, this.settings.value = this.inputNode.attr("value"), this.settings.calculate && a.isFunction(this.settings.calculate) && (this.nice = this.settings.calculate), this.settings.onstatechange && a.isFunction(this.settings.onstatechange) && (this.onstatechange = this.settings.onstatechange), this.is = {init:!1}, this.o = {}, this.create()
-  }, d.prototype.onstatechange = function() {
-  }, d.prototype.create = function() {
-    var b = this;
-    this.domNode = a(c.template({className:c.className, settings:{from:this.nice(this.settings.from), to:this.nice(this.settings.to), dimension:this.settings.dimension}, scale:this.generateScale()})), this.inputNode.after(this.domNode), this.drawScale(), this.settings.skin && this.settings.skin.length > 0 && this.setSkin(this.settings.skin), this.sizes = {domWidth:this.domNode.width(), domOffset:this.domNode.offset()}, a.extend(this.o, {pointers:{}, labels:{"0":{o:this.domNode.find(c.selector + "value").not(c.selector + 
-    "value-to")}, 1:{o:this.domNode.find(c.selector + "value").filter(c.selector + "value-to")}}, limits:{"0":this.domNode.find(c.selector + "label").not(c.selector + "label-to"), 1:this.domNode.find(c.selector + "label").filter(c.selector + "label-to")}}), a.extend(this.o.labels[0], {value:this.o.labels[0].o.find("span")}), a.extend(this.o.labels[1], {value:this.o.labels[1].o.find("span")}), b.settings.value.split(";")[1] || (this.settings.single = !0, this.domNode.addDependClass("single")), b.settings.limits || 
-    this.domNode.addDependClass("limitless"), this.domNode.find(c.selector + "pointer").each(function(a) {
-      var c = b.settings.value.split(";")[a];
-      if(c) {
-        b.o.pointers[a] = new e(this, a, b);
-        var d = b.settings.value.split(";")[a - 1];
-        d && new Number(c) < new Number(d) && (c = d), c = c < b.settings.from ? b.settings.from : c, c = c > b.settings.to ? b.settings.to : c, b.o.pointers[a].set(c, !0)
-      }
-    }), this.o.value = this.domNode.find(".v"), this.is.init = !0, a.each(this.o.pointers, function(a) {
-      b.redraw(this)
-    }), function(b) {
-      a(window).resize(function() {
-        b.onresize()
-      })
-    }(this)
-  }, d.prototype.setSkin = function(a) {
-    this.skin_ && this.domNode.removeDependClass(this.skin_, "_"), this.domNode.addDependClass(this.skin_ = a, "_")
-  }, d.prototype.setPointersIndex = function(b) {
-    a.each(this.getPointers(), function(a) {
-      this.index(a)
-    })
-  }, d.prototype.getPointers = function() {
-    return this.o.pointers
-  }, d.prototype.generateScale = function() {
-    if(this.settings.scale && this.settings.scale.length > 0) {
-      var a = "", b = this.settings.scale, c = Math.round(100 / (b.length - 1) * 10) / 10;
-      for(var d = 0;d < b.length;d++) {
-        a += '<span style="left: ' + d * c + '%">' + (b[d] != "|" ? "<ins>" + b[d] + "</ins>" : "") + "</span>"
-      }
-      return a
-    }
-    return""
-  }, d.prototype.drawScale = function() {
-    this.domNode.find(c.selector + "scale span ins").each(function() {
-      a(this).css({marginLeft:-a(this).outerWidth() / 2})
-    })
-  }, d.prototype.onresize = function() {
-    var b = this;
-    this.sizes = {domWidth:this.domNode.width(), domOffset:this.domNode.offset()}, a.each(this.o.pointers, function(a) {
-      b.redraw(this)
-    })
-  }, d.prototype.limits = function(a, b) {
-    if(!this.settings.smooth) {
-      var c = this.settings.step * 100 / this.settings.interval;
-      a = Math.round(a / c) * c
-    }
-    var d = this.o.pointers[1 - b.uid];
-    return d && b.uid && a < d.value.prc && (a = d.value.prc), d && !b.uid && a > d.value.prc && (a = d.value.prc), a < 0 && (a = 0), a > 100 && (a = 100), Math.round(a * 10) / 10
-  }, d.prototype.redraw = function(a) {
-    if(!this.is.init) {
-      return!1
-    }
-    this.setValue(), this.o.pointers[0] && this.o.pointers[1] && this.o.value.css({left:this.o.pointers[0].value.prc + "%", width:this.o.pointers[1].value.prc - this.o.pointers[0].value.prc + "%"}), this.o.labels[a.uid].value.html(this.nice(a.value.origin)), this.redrawLabels(a)
-  }, d.prototype.redrawLabels = function(a) {
-    function b(a, b, d) {
-      return b.margin = -b.label / 2, label_left = b.border + b.margin, label_left < 0 && (b.margin -= label_left), b.border + b.label / 2 > c.sizes.domWidth ? (b.margin = 0, b.right = !0) : b.right = !1, a.o.css({left:d + "%", marginLeft:b.margin, right:"auto"}), b.right && a.o.css({left:"auto", right:0}), b
-    }
-    var c = this, d = this.o.labels[a.uid], e = a.value.prc, f = {label:d.o.outerWidth(), right:!1, border:e * this.sizes.domWidth / 100};
-    if(!this.settings.single) {
-      var g = this.o.pointers[1 - a.uid], h = this.o.labels[g.uid];
-      switch(a.uid) {
-        case 0:
-          f.border + f.label / 2 > h.o.offset().left - this.sizes.domOffset.left ? (h.o.css({visibility:"hidden"}), h.value.html(this.nice(g.value.origin)), d.o.css({visibility:"visible"}), e = (g.value.prc - e) / 2 + e, g.value.prc != a.value.prc && (d.value.html(this.nice(a.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(g.value.origin)), f.label = d.o.outerWidth(), f.border = e * this.sizes.domWidth / 100)) : h.o.css({visibility:"visible"});
-          break;
-        case 1:
-          f.border - f.label / 2 < h.o.offset().left - this.sizes.domOffset.left + h.o.outerWidth() ? (h.o.css({visibility:"hidden"}), h.value.html(this.nice(g.value.origin)), d.o.css({visibility:"visible"}), e = (e - g.value.prc) / 2 + g.value.prc, g.value.prc != a.value.prc && (d.value.html(this.nice(g.value.origin) + "&nbsp;&ndash;&nbsp;" + this.nice(a.value.origin)), f.label = d.o.outerWidth(), f.border = e * this.sizes.domWidth / 100)) : h.o.css({visibility:"visible"})
-      }
-    }
-    f = b(d, f, e);
-    if(h) {
-      var f = {label:h.o.outerWidth(), right:!1, border:g.value.prc * this.sizes.domWidth / 100};
-      f = b(h, f, g.value.prc)
-    }
-    this.redrawLimits()
-  }, d.prototype.redrawLimits = function() {
-    if(this.settings.limits) {
-      var a = [!0, !0];
-      for(key in this.o.pointers) {
-        if(!this.settings.single || key == 0) {
-          var b = this.o.pointers[key], c = this.o.labels[b.uid], d = c.o.offset().left - this.sizes.domOffset.left, e = this.o.limits[0];
-          d < e.outerWidth() && (a[0] = !1);
-          var e = this.o.limits[1];
-          d + c.o.outerWidth() > this.sizes.domWidth - e.outerWidth() && (a[1] = !1)
-        }
-      }
-      for(var f = 0;f < a.length;f++) {
-        a[f] ? this.o.limits[f].fadeIn("fast") : this.o.limits[f].fadeOut("fast")
-      }
-    }
-  }, d.prototype.setValue = function() {
-    var a = this.getValue();
-    this.inputNode.attr("value", a), this.onstatechange.call(this, a)
-  }, d.prototype.getValue = function() {
-    if(!this.is.init) {
-      return!1
-    }
-    var b = this, c = "";
-    return a.each(this.o.pointers, function(a) {
-      this.value.prc != undefined && !isNaN(this.value.prc) && (c += (a > 0 ? ";" : "") + b.prcToValue(this.value.prc))
-    }), c
-  }, d.prototype.getPrcValue = function() {
-    if(!this.is.init) {
-      return!1
-    }
-    var b = this, c = "";
-    return a.each(this.o.pointers, function(a) {
-      this.value.prc != undefined && !isNaN(this.value.prc) && (c += (a > 0 ? ";" : "") + this.value.prc)
-    }), c
-  }, d.prototype.prcToValue = function(a) {
-    if(this.settings.heterogeneity && this.settings.heterogeneity.length > 0) {
-      var b = this.settings.heterogeneity, c = 0, d = this.settings.from;
-      for(var e = 0;e <= b.length;e++) {
-        if(b[e]) {
-          var f = b[e].split("/")
-        }else {
-          var f = [100, this.settings.to]
-        }
-        f[0] = new Number(f[0]), f[1] = new Number(f[1]);
-        if(a >= c && a <= f[0]) {
-          var g = d + (a - c) * (f[1] - d) / (f[0] - c)
-        }
-        c = f[0], d = f[1]
-      }
-    }else {
-      var g = this.settings.from + a * this.settings.interval / 100
-    }
-    return this.round(g)
-  }, d.prototype.valueToPrc = function(a, b) {
-    if(this.settings.heterogeneity && this.settings.heterogeneity.length > 0) {
-      var c = this.settings.heterogeneity, d = 0, e = this.settings.from;
-      for(var f = 0;f <= c.length;f++) {
-        if(c[f]) {
-          var g = c[f].split("/")
-        }else {
-          var g = [100, this.settings.to]
-        }
-        g[0] = new Number(g[0]), g[1] = new Number(g[1]);
-        if(a >= e && a <= g[1]) {
-          var h = b.limits(d + (a - e) * (g[0] - d) / (g[1] - e))
-        }
-        d = g[0], e = g[1]
-      }
-    }else {
-      var h = b.limits((a - this.settings.from) * 100 / this.settings.interval)
-    }
-    return h
-  }, d.prototype.round = function(a) {
-    return a = Math.round(a / this.settings.step) * this.settings.step, this.settings.round ? a = Math.round(a * Math.pow(10, this.settings.round)) / Math.pow(10, this.settings.round) : a = Math.round(a), a
-  }, d.prototype.nice = function(b) {
-    return b = b.toString().replace(/,/gi, ".").replace(/ /gi, ""), a.formatNumber ? a.formatNumber(new Number(b), this.settings.format || {}).replace(/-/gi, "&minus;") : new Number(b)
-  }, e.prototype = new Draggable, e.prototype.oninit = function(a, b, c) {
-    this.uid = b, this.parent = c, this.value = {}, this.settings = this.parent.settings
-  }, e.prototype.onmousedown = function(a) {
-    this._parent = {offset:this.parent.domNode.offset(), width:this.parent.domNode.width()}, this.ptr.addDependClass("hover"), this.setIndexOver()
-  }, e.prototype.onmousemove = function(a, b) {
-    var c = this._getPageCoords(a);
-    this._set(this.calc(c.x))
-  }, e.prototype.onmouseup = function(b) {
-    this.parent.settings.callback && a.isFunction(this.parent.settings.callback) && this.parent.settings.callback.call(this.parent, this.parent.getValue()), this.ptr.removeDependClass("hover")
-  }, e.prototype.setIndexOver = function() {
-    this.parent.setPointersIndex(1), this.index(2)
-  }, e.prototype.index = function(a) {
-    this.ptr.css({zIndex:a})
-  }, e.prototype.limits = function(a) {
-    return this.parent.limits(a, this)
-  }, e.prototype.calc = function(a) {
-    var b = this.limits((a - this._parent.offset.left) * 100 / this._parent.width);
-    return b
-  }, e.prototype.set = function(a, b) {
-    this.value.origin = this.parent.round(a), this._set(this.parent.valueToPrc(a, this), b)
-  }, e.prototype._set = function(a, b) {
-    b || (this.value.origin = this.parent.prcToValue(a)), this.value.prc = a, this.ptr.css({left:a + "%"}), this.parent.redraw(this)
-  }
-}(jQuery);
 (function(b) {
   b.support.touch = "ontouchend" in document;
   if(!b.support.touch) {
@@ -13864,7 +13202,7 @@ VISH.Editor = function(V, $, undefined) {
         var draft = order === "draft";
         var jsonPresentation = JSON.stringify(presentation);
         VISH.Debugging.log(jsonPresentation);
-        var params = {"excursion[json]":jsonPresentation, "authenticity_token":initOptions["token"], "draft":draft, "contain_quiz":presentation.contain_quiz};
+        var params = {"excursion[json]":jsonPresentation, "authenticity_token":initOptions["token"], "draft":draft};
         $.ajax({type:send_type, url:VISH.UploadPresentationPath, data:params, success:function(data) {
           allowExitWithoutConfirmation();
           window.top.location.href = data.url
@@ -14194,20 +13532,6 @@ VISH.Editor.Image = function(V, $, undefined) {
     }
     current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' title='Click to drag' src='" + image_url + "' style='" + style + "'/>");
     V.Editor.addDeleteButton(current_area);
-    var scaleFactor = image_width / reference_width;
-    $("#menubar").before("<div id='sliderId" + nextImageId + "' class='theslider'><input id='imageSlider" + nextImageId + "' type='slider' name='size' value='" + scaleFactor + "' style='display: none; '></div>");
-    $("#imageSlider" + nextImageId).slider({from:1, to:15, step:0.25, round:1, dimension:"x", skin:"blue", onstatechange:function(value) {
-      var originalHeight = $("#" + idToDragAndResize).height();
-      var originalWidth = $("#" + idToDragAndResize).width();
-      var newWidth = reference_width * value;
-      $("#" + idToDragAndResize).width(newWidth);
-      if(originalHeight === $("#" + idToDragAndResize).height()) {
-        var aspectRatio = originalHeight / originalWidth;
-        if(aspectRatio != 0) {
-          $("#" + idToDragAndResize).height(newWidth * aspectRatio)
-        }
-      }
-    }});
     $("#" + idToDragAndResize).draggable({cursor:"move", stop:function() {
       $(this).parent().click()
     }})
@@ -14551,18 +13875,6 @@ VISH.Editor.Object = function(V, $, undefined) {
     $(current_area).append(wrapperDiv);
     VISH.Editor.addDeleteButton($(current_area));
     $(wrapperDiv).append(wrapperTag);
-    var width, value;
-    if(style) {
-      width = V.Editor.Utils.getWidthFromStyle(style, current_area);
-      value = 10 * width / $(current_area).width()
-    }else {
-      value = 10
-    }
-    var mystep = $(current_area).width() / 10;
-    $("#menubar").before("<div id='sliderId" + nextWrapperId + "' class='theslider'><input id='imageSlider" + nextWrapperId + "' type='slider' name='size' value='" + value + "' style='display: none; '></div>");
-    $("#imageSlider" + nextWrapperId).slider({from:1, to:10, step:0.2, round:1, dimension:"x", skin:"blue", onstatechange:function(value) {
-      resizeObject(idToResize, mystep * value)
-    }});
     $("#" + idToDrag).draggable({cursor:"move"});
     _adjustWrapperOfObject(idToResize, current_area);
     VISH.Editor.Tools.loadToolbarForObject(wrapper);
@@ -14577,7 +13889,7 @@ VISH.Samples = function(V, undefined) {
   var samples = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", 
   "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
-  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swfaa" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"article__4", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
@@ -15417,8 +14729,6 @@ VISH.Quiz = function(V, $, undefined) {
     var received = JSON.stringify(error);
     V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + received)
   };
-  var _onQuizSessionResultsReceived = function(data) {
-  };
   var _onQuizSessionResultsReceivedError = function(error) {
     var received = JSON.stringify(error);
     V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + received)
@@ -15452,7 +14762,6 @@ VISH.Quiz = function(V, $, undefined) {
     google.load("visualization", "1.0", {"packages":["corechart"]}, {"callback":VISH.Quiz.drawPieChart(data.results)})
   };
   var drawPieChart = function(data) {
-    var received = JSON.stringify(data);
     var data_for_chart = new google.visualization.DataTable;
     data_for_chart.addColumn("string", "Question");
     data_for_chart.addColumn("number", "Slices");
@@ -15505,6 +14814,7 @@ VISH.Quiz = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
+  var INCREASE_ZOOM = 1.2;
   var init = function() {
     cleanZoneTools();
     cleanToolbar();
@@ -15652,15 +14962,19 @@ VISH.Editor.Tools = function(V, $, undefined) {
     _changeZoom("-")
   };
   var _changeZoom = function(action) {
+    var object, objectInfo, zoom;
     var area = VISH.Editor.getCurrentArea();
     var type = $(area).attr("type");
     switch(type) {
       case "object":
-        var object = area.children()[0].children[0];
-        var objectInfo = VISH.Object.getObjectInfo(object);
+      ;
+      case "snapshot":
+        var parent = area.children(":first");
+        object = parent.children(":first");
+        objectInfo = VISH.Object.getObjectInfo(object);
         if(objectInfo.type === "web") {
           var iframe = $(area).find("iframe");
-          var zoom = VISH.Utils.getZoomFromStyle($(iframe).attr("style"));
+          zoom = VISH.Utils.getZoomFromStyle($(iframe).attr("style"));
           if(action == "+") {
             zoom = zoom + 0.1
           }else {
@@ -15668,9 +14982,56 @@ VISH.Editor.Tools = function(V, $, undefined) {
           }
           $(iframe).attr("style", VISH.Editor.Utils.addZoomToStyle($(iframe).attr("style"), zoom));
           VISH.Editor.Object.autofixWrapperedObjectAfterZoom(iframe, zoom)
+        }else {
+          var newWidth, newHeight;
+          var aspectRatio = parent.width() / parent.height();
+          var originalHeight = object.height();
+          var originalWidth = object.width();
+          var parentoriginalHeight = parent.height();
+          var parentoriginalWidth = parent.width();
+          if(action == "+") {
+            zoom = INCREASE_ZOOM
+          }else {
+            zoom = 1 / INCREASE_ZOOM
+          }
+          $(parent).width(parentoriginalWidth * zoom);
+          $(parent).height(parentoriginalHeight * zoom);
+          var styleZoom = V.Utils.getZoomFromStyle($(object).attr("style"));
+          if(styleZoom != 1) {
+            newWidth = newWidth / styleZoom;
+            newHeight = Math.round(newWidth / aspectRatio);
+            newWidth = Math.round(newWidth)
+          }else {
+            newHeight = parentoriginalHeight * zoom;
+            newWidth = parentoriginalWidth * zoom
+          }
+          $(object).width(newWidth);
+          $(object).height(newHeight)
         }
         break;
-      case "snapshot":
+      case "image":
+        object = $(area).find("img");
+        var originalHeight = object.height();
+        var originalWidth = object.width();
+        if(action == "+") {
+          zoom = INCREASE_ZOOM
+        }else {
+          zoom = 1 / INCREASE_ZOOM
+        }
+        object.width(originalWidth * zoom);
+        object.height(originalHeight * zoom);
+        break;
+      case "video":
+        object = $(area).find("video");
+        var originalHeight = object.height();
+        var originalWidth = object.width();
+        if(action == "+") {
+          zoom = INCREASE_ZOOM
+        }else {
+          zoom = 1 / INCREASE_ZOOM
+        }
+        object.width(originalWidth * zoom);
+        object.height(originalHeight * zoom);
         break;
       default:
         break
@@ -16969,7 +16330,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
         return
       }
       $.each(data.items, function(i, item) {
-        var myImg = $("<img id=img_flkr" + i + " src=" + item.media.m + " imageFlikrId=" + i + "/>");
+        var myImg = $("<img id=img_flkr" + i + " src=" + item.media.m.replace(/_m/i, "") + " imageFlikrId=" + i + "/>");
         carrouselImages.push(myImg)
       });
       VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
@@ -17095,12 +16456,6 @@ VISH.Editor.Object.Flash = function(V, $, undefined) {
     $(current_area).html("");
     $(current_area).append(embedDiv);
     VISH.Editor.addDeleteButton($(current_area));
-    var value = 10;
-    var mystep = $(current_area).width() / 10;
-    $("#menubar").before("<div id='sliderId" + nextFlashId + "' class='theslider'><input id='imageSlider" + nextFlashId + "' type='slider' name='size' value='" + value + "' style='display: none; '></div>");
-    $("#imageSlider" + nextFlashId).slider({from:1, to:10, step:0.2, round:1, dimension:"x", skin:"blue", onstatechange:function(value) {
-      VISH.Editor.Object.resizeObject(idToResize, mystep * value)
-    }});
     $("#" + idToDrag).draggable({cursor:"move"})
   };
   return{drawFlashObjectWithSource:drawFlashObjectWithSource}
@@ -17448,18 +16803,6 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
     if(scrollLeft) {
       $("#" + idToDrag).scrollLeft(scrollLeft)
     }
-    var width, value;
-    if(style) {
-      width = V.Editor.Utils.getWidthFromStyle(style, current_area);
-      value = 10 * width / $(current_area).width()
-    }else {
-      value = 10
-    }
-    var mystep = $(current_area).width() / 10;
-    $("#menubar").before("<div id='sliderId" + nextWrapperId + "' class='theslider'><input id='imageSlider" + nextWrapperId + "' type='slider' name='size' value='" + value + "' style='display: none; '></div>");
-    $("#imageSlider" + nextWrapperId).slider({from:1, to:10, step:0.2, round:1, dimension:"x", skin:"blue", onstatechange:function(value) {
-      _resizeWebIframe(idToDrag, mystep * value)
-    }});
     $("#" + idToDrag).bind("mousedown", function(event) {
       event.preventDefault()
     });
@@ -18434,7 +17777,7 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     }else {
       current_area = VISH.Editor.getCurrentArea()
     }
-    var posterUrl = "https://github.com/ging/vish_editor/raw/master/images/example_poster_image.jpg";
+    var posterUrl = VISH.ImagesPath + "example_poster_image.jpg";
     var autoplay = false;
     if(options) {
       if(options["poster"]) {
@@ -18473,21 +17816,10 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     $(current_area).html("");
     $(current_area).append(videoTag);
     VISH.Editor.addDeleteButton($(current_area));
-    var width, value;
-    if(style) {
-      width = V.Editor.Utils.getWidthFromStyle(style);
-      value = width / 80
-    }else {
-      value = 4
-    }
-    $("#menubar").before("<div id='sliderId" + nextVideoId + "' class='theslider'><input id='imageSlider" + nextVideoId + "' type='slider' name='size' value='" + value + "' style='display: none; '></div>");
-    $("#imageSlider" + nextVideoId).slider({from:1, to:8, step:0.2, round:1, dimension:"x", skin:"blue", onstatechange:function(value) {
-      $("#" + idToDragAndResize).width(80 * value)
-    }});
     $("#" + idToDragAndResize).draggable({cursor:"move"})
   };
   var renderVideoFromSources = function(sources) {
-    var posterUrl = "https://github.com/ging/vish_editor/raw/master/images/example_poster_image.jpg";
+    var posterUrl = VISH.ImagesPath + "example_poster_image.jpg";
     var rendered = "<video class='objectPreview' preload='metadata' controls='controls' poster='" + posterUrl + "' >";
     $.each(sources, function(index, source) {
       rendered = rendered + "<source src='" + source + "' " + _getVideoType(source) + ">"
@@ -19635,8 +18967,6 @@ VISH.Quiz.API = function(V, $, undefined) {
   };
   var deleteQuizSession = function(quiz_session_id, successCallback, failCallback, quiz_name) {
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
-      V.Debugging.log("quiz_session_id to delete is: " + quiz_session_id);
-      V.Debugging.log("quiz_name (if save) is: " + quiz_name);
       var quizName;
       if(quiz_name) {
         quizName = quiz_name
@@ -19666,9 +18996,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }
   };
   var putQuizSession = function(answer_selected, quiz_active_session_id, successCallback, failCallback) {
-    V.Debugging.log("putQuizSession called");
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
-      V.Debugging.log("VISH mode");
       var send_type = "PUT";
       V.Debugging.log("token is: " + V.User.getToken());
       var params = {"id":quiz_active_session_id, "option":answer_selected, "authenticity_token":V.User.getToken()};
@@ -19766,6 +19094,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
     ret += "</div>";
     ret += "</form>";
+    ret += "</div>";
     ret += "</div>";
     return ret
   };
