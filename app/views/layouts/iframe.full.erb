@@ -6,6 +6,7 @@
   <html>
 <% end %>
     <head>
+
       <title>ViSH Excursion</title>
       <%= favicon_link_tag "icons/favicon.ico" %>
       <meta charset="UTF-8">  
@@ -18,6 +19,10 @@
         <%=javascript_include_tag "vishEditor" %>
       <% end %>
   	  <%= stylesheet_link_tag "vish_editor" %>
+      <script type="text/javascript" src="http://www.google.com/jsapi"> </script>
+    <script type="text/javascript">
+     google.load('visualization', '1.0', {'packages':['corechart']});
+    </script>
   	  <%= yield :headers %>
     </head>
 

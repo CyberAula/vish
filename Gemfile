@@ -80,9 +80,9 @@ group :development do
   # use with:
   # $ export VISH_DEBUG=true
 
-  #if ENV['VISH_DEV'] || ENV['VISH_DEBUG']
-  #  gem "debugger", "~> 1.1.1"
-  #end
+if ENV['VISH_DEV'] || ENV['VISH_DEBUG']
+  gem "debugger", "~> 1.1.1"
+end
 
   if ENV['VISH_DEV_ALTERNATIVE']
     gem 'ruby-debug19', :require => 'ruby-debug'

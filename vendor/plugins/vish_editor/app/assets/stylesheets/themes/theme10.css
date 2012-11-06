@@ -1,9 +1,9 @@
 .slides > article {
 	background-color: transparent;
 	border: none;
+	padding: 22px 44px 85px 36px;
 	background: url(/assets/themes/theme10/bg.png) top;
 	background-size: 100% 100%;
-	padding-bottom: 11%;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
   moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
   webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);

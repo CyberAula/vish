@@ -699,21 +699,21 @@
 }
 
 .t13_right{
-    float: right;
-    height: 83%;
-    margin-left: 4%;
-    margin-top: -63%;
-    overflow: hidden;
-    position: relative;
-    width: 48%;
+	position: relative;
+	float: right;
+	height: 15%;
+	width: 48%;
+	left: -52%;
+	top: -15%;
 }
 
 .t13_left{
-    height: 16%;
-    margin-top: 54.4%;
-    overflow: hidden;
-    position: relative;
-    width: 48%;
+	position: relative;
+	float: left;
+	height: 82%;
+	width: 48%;
+	left: 4%;
+	overflow: hidden;
 }
 
 .t13_image{
