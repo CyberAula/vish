@@ -1,10 +1,11 @@
 .header
   @include makeColumn(12,0) 
   @include nomargin-left
+  margin-bottom: 15px
 //sign out
 
 #graphic_identity
-  margin-top: 15px
+  margin-top: 37px
   @include makeColumn(5,0)
   display: inline-block
   @include nomargin-left
@@ -22,11 +23,6 @@
 
     a
       display: inline-block
-
-
-
-
-
 
 #headerfront
   margin-top: 15px
@@ -80,6 +76,7 @@
 //nav icons
 #nav-and-search
   @include makeColumn(6,0)
+  margin-top: 5px
   
   .btn-toolbar
     display: inline-block
@@ -108,18 +105,35 @@
 
       .caret 
         display: inline-block
-        width: 11px
-        height: 10px
-        background-image:url('icons/opcion.png')
+        width: 12px
+        height: 12px
+        background-image: url('icons/opcion.png')
         background-repeat: no-repeat
         vertical-align: middle
         border-top:   none
         border-right: none
         border-left:  none
         content: ""
+        margin-top: 5px
 
     .tooltip-header
       margin-bottom: -10px
+
+.profile-toolbar
+  margin-top: 22px
+  float: right
+  display: inline-block
+  .img-header
+    @include border-radius(2px)
+  .name-user
+    font-family: $fistFontFamily
+    font-size: $tittleFontSize
+    vertical-align: bottom
+    color: $gray
+
+#header_search
+  @include makeColumn(3,3)
+  display: block
 
 
 

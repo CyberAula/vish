@@ -20,18 +20,24 @@
 }
 
 // Wrapper for the tooltip content
+// -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
 .tooltip-inner {
-  max-width: 200px;
+  display: block;
+  max-width: none;
+  height: 20px;
+  overflow: hidden;
   padding: 3px 8px;
   color: $tooltipColor;
   text-align: center;
   text-decoration: none;
   background-color: $tooltipBackground;
-  @include border-radius(4px);
+  @include border-radius($radius);
+  margin-bottom: -20px;
 }
 
 // Arrows
 .tooltip-arrow {
+
   position: absolute;
   width: 0;
   height: 0;
@@ -40,7 +46,9 @@
 }
 .tooltip {
   &.top .tooltip-arrow {
-    bottom: 0;
+    bottom: 1px;
+    margin-bottom: -21px;
+    // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
     left: 50%;
     margin-left: -$tooltipArrowWidth;
     border-width: $tooltipArrowWidth $tooltipArrowWidth 0;
