@@ -2,18 +2,21 @@
   <%= javascript_tag do %>
     <%= modal_for(excursion.author.subject) %>
   <% end %>
-  <%= div_for excursion, :class => 'span3' do %>
-    <ul class="thumbnails ">
-        <li class="span1">
-          <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "container" %>
-          <div class='number_pages'><%= excursion.slide_count %></div>
-        </li>
-        <li class="span2">
-          <div class="caption inline-block">
-            <h4 class="ellipsis w150px">
-              <%= link_to excursion.title, excursion %>
-            </h4>
-            <h5 class="blue-opacity ellipsis w150px">by <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %> modal-no-trigger"><%= excursion.author.name %></a></h5>
+  <%= div_for excursion, :class => 'excursion' do %>
+  <div class="excursion-item">
+    <ul class="thumbnails">
+      <li class="img-excursion">
+        <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "" %>
+        <div class='number_pages'>
+          <%= excursion.slide_count %>
+        </div>
+      </li>
+      <li class="info-excursion">
+        <div class="padding_left5">
+          <h4 class="ellipsis w150px">
+            <%= link_to excursion.title, excursion %>
+          </h4>
+          <h5 class="blue-opacity ellipsis w150px">by <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %> modal-no-trigger"><%= excursion.author.name %></a></h5>
             <h5 class=""><span class="green"><%=excursion.visit_count.to_s%></span> <%= t("follow.views") %> </h5>
             <% unless excursion.draft %>
               <h5 class="">
