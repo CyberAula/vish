@@ -749,7 +749,7 @@ height: 90%;
     display: inline-block;
    text-align: center; 
     width: 100%;
-    height: 60%;
+    height: 70%;
 }
 .quiz_session_qrcode_container {
     height: 100%;
@@ -771,11 +771,12 @@ height: 90%;
     padding-right: 5%;
     display: inline-block;
     width: 10%;
+    height: 70%;
 
 
 }
 
-.quiz_sesssion_inputs_container {
+.quiz_session_inputs_container {
     display: block;
     height:8%;
     width: 100%;

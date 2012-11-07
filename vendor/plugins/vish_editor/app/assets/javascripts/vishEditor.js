@@ -13530,7 +13530,7 @@ VISH.Editor.Image = function(V, $, undefined) {
     if(hyperlink) {
       current_area.attr("hyperlink", hyperlink)
     }
-    current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' title='Click to drag' src='" + image_url + "' style='" + style + "'/>");
+    current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' draggable='true' title='Click to drag' src='" + image_url + "' style='" + style + "'/>");
     V.Editor.addDeleteButton(current_area);
     $("#" + idToDragAndResize).draggable({cursor:"move", stop:function() {
       $(this).parent().click()
@@ -13863,12 +13863,14 @@ VISH.Editor.Object = function(V, $, undefined) {
     current_area.attr("type", "object");
     var wrapperDiv = document.createElement("div");
     wrapperDiv.setAttribute("id", idToDrag);
+    wrapperDiv.setAttribute("draggable", true);
     if(style) {
       wrapperDiv.setAttribute("style", style)
     }
     $(wrapperDiv).addClass("object_wrapper");
     var wrapperTag = $(wrapper);
     $(wrapperTag).attr("id", idToResize);
+    $(wrapperTag).css("pointer-events", "none");
     $(wrapperTag).attr("class", template + "_object");
     $(wrapperTag).attr("wmode", "opaque");
     $(current_area).html("");
@@ -14309,6 +14311,7 @@ VISH.Slides = function(V, $, undefined) {
         return
       }
     }
+    VISH.Editor.Utils.refreshDraggables(article_to_move);
     slideEls = document.querySelectorAll("section.slides > article");
     if(moving_current_slide) {
       curSlideIndex = getNumberOfSlide(article_to_move)
@@ -17758,7 +17761,12 @@ VISH.Editor.Utils = function(V, $, undefined) {
     var LeftPercent = element.position().left * 100 / parent.width();
     return"position: relative; width:" + WidthPercent + "%; height:" + HeightPercent + "%; top:" + TopPercent + "%; left:" + LeftPercent + "%;"
   };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides}
+  var refreshDraggables = function(slide) {
+    $(slide).find("[draggable='true']").draggable({cursor:"move", stop:function() {
+      $(this).parent().click()
+    }})
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides, refreshDraggables:refreshDraggables}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -17793,6 +17801,7 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     current_area.attr("type", "video");
     var videoTag = document.createElement("video");
     videoTag.setAttribute("id", idToDragAndResize);
+    videoTag.setAttribute("draggable", true);
     videoTag.setAttribute("class", template + "_video");
     videoTag.setAttribute("title", "Click to drag");
     videoTag.setAttribute("controls", "controls");
