@@ -871,11 +871,13 @@ height: 90%;
     text-align: center;
     width: 45px;
     z-index: 10;
+    cursor: pointer;
     
 }
 
 #quiz_full_screen:over {
   background-position:0px -41px;
+  cursor:pointer;
 }
 #hide_qrcode_button_id {
 display: block;
@@ -887,19 +889,21 @@ height: 20%;
 
 
 }
-#hide_qrcode_button_img {
+
+.hide_qrcode {
 display: block;
 margin: 5%;
 width: 100%;
 height: 12%;
+cursor:pointer;
 }
 
-#show_qrcode_button_img {
+.show_qrcode {
 display: none;
 margin: 5%;
 width: 100%;
 height: 12%;
-
+cursor:pointer;
 }
 
 .quiz_options_container {

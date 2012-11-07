@@ -805,8 +805,8 @@ table.metadata td div.height_wrapper_description{
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-	margin-left: -75px;
-	margin-top: 25px;
+	margin-left: -85px;
+	margin-top: 30px;
 }
 
 .buttons_together{
@@ -832,7 +832,7 @@ table.metadata td div.height_wrapper_description{
 }
 
 .button220 {
-	margin-left: 220px;
+	margin-left: 200px;
 	margin-top: 25px;
 }
 .button {
