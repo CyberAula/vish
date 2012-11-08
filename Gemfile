@@ -28,8 +28,10 @@ social_stream_gems = lambda {
 }
 
 # Developing Social Stream
-if ENV['VISH_DEV']
-  path '../social_stream-vish', &social_stream_gems
+#if ENV['VISH_DEV']
+if File.exists?("../social_stream-bootstrap")
+#  path '../social_stream-vish', &social_stream_gems
+  path '../social_stream-bootstrap', &social_stream_gems
 else
   git 'git://github.com/ging/social_stream.git', :branch => 'vish', &social_stream_gems
 end
