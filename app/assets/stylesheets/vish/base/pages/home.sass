@@ -29,8 +29,16 @@
   vertical-align: bottom
   margin-left: 0px
 
-.excursion
-  @include makeColumn (3,0)
+.excursion-home
+  .excursion-item
+    ul.thumbnails
+      background-color: #fff
+    ul.thumbnails:after 
+      clear: none !important
+    ul.thumbnails:before, 
+    ul.thumbnails:after
+      display: none
+
 
 .excursion-item
   ul
@@ -38,6 +46,7 @@
     li
       margin-left: 0px
       .img-excursions
+
         background-color: #fff
         height: 79px
         widht: 79px
@@ -58,4 +67,5 @@
       background-color: #333
       margin-left: 0px
       display: inline-block
+      padding-left: 10px
 

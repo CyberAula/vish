@@ -2,7 +2,7 @@
   <%= javascript_tag do %>
     <%= modal_for(excursion.author.subject) %>
   <% end %>
-  <%= div_for excursion, :class => 'excursion' do %>
+  <%= div_for excursion, :class => 'excursion-home' do %>
   <div class="excursion-item">
     <ul class="thumbnails">
       <li class="img-excursion">
@@ -12,21 +12,33 @@
         </div>
       </li>
       <li class="info-excursion">
-        <div class="padding_left5">
-          <h4 class="ellipsis w150px">
-            <%= link_to excursion.title, excursion %>
-          </h4>
-          <h5 class="blue-opacity ellipsis w150px">by <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %> modal-no-trigger"><%= excursion.author.name %></a></h5>
-            <h5 class=""><span class="green"><%=excursion.visit_count.to_s%></span> <%= t("follow.views") %> </h5>
-            <% unless excursion.draft %>
-              <h5 class="">
-                <span class="green like_count_<%= dom_id(excursion.post_activity) %>"><%=excursion.post_activity.likes.count.to_s%></span>
-                <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>"><%= link_like(excursion.post_activity)%></div>
-              </h5>
-            <% end %>
+        <h4 class="ellipsis w150px">
+          <%= link_to excursion.title, excursion %>
+        </h4>
+        <h5 class="blue-opacity ellipsis w150px">by 
+          <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %> modal-no-trigger">
+            <%= excursion.author.name %>
+          </a>
+        </h5>
+        <h5 class="">
+          <span class="green">
+            <%=excursion.visit_count.to_s%>
+          </span>
+          <%= t("follow.views") %> 
+        </h5>
+        <% unless excursion.draft %>
+        <h5 class="">
+          <span class="green like_count_<%= dom_id(excursion.post_activity) %>">
+            <%=excursion.post_activity.likes.count.to_s%>
+          </span>
+          <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>">
+            <%= link_like(excursion.post_activity)%>
           </div>
-        </li>
+        </h5>
+        <% end %>
+      </li>
     </ul>
+  </div>
   <% end %>
 <% end %>
 
