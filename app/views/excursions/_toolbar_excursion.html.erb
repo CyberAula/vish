@@ -1,4 +1,8 @@
-<div class="excursion_tools">
+<% unless excursion.draft %>
+  <div class="excursion_tools">
+<% else %>
+    <div class="excursion_tools draft_excursion_tools">
+<% end %>
   <div class="options inline-block">
     <% unless excursion.draft %>
       <div class="btn-gray">
@@ -7,16 +11,16 @@
       <div class="btn-gray">
         <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= content_tag(:span, image_tag("icons/compartir.png") + t('excursion.actions.share')) %></a>
       </div>
-    <%end%>
-    <% if user_signed_in? and (excursion.author != current_subject.actor) %>
-      <div class="btn-gray">
-        <%= link_to image_tag("icons/clone.png") + t('excursion.actions.clone'),excursion_path(excursion) + '/clone', :confirm => t('excursion.clone.confirm'), :class => :action, :id => :document_clone_action   %>
-      </div>
-    <%end%>
-    <% if user_signed_in? and (can? :update, excursion) %>
-      <div class="btn-gray">
-        <%= link_to raw("<i class='icontool16-tool16_edit'></i> ")+ t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
-      </div>
+      <% if user_signed_in? and (excursion.author != current_subject.actor) %>
+        <div class="btn-gray">
+          <%= link_to image_tag("icons/clone.png") + t('excursion.actions.clone'),excursion_path(excursion) + '/clone', :confirm => t('excursion.clone.confirm'), :class => :action, :id => :document_clone_action   %>
+        </div>
+      <%end%>
+      <% if user_signed_in? and (can? :update, excursion) %>
+        <div class="btn-gray">
+          <%= link_to raw("<i class='icontool16-tool16_edit'></i> ")+ t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
+        </div>
+      <%end%>
     <%end%>
     <% if user_signed_in? and can?(:destroy, @excursion) %>
       <div class="btn-gray">
@@ -58,10 +62,10 @@
             </div>
           </div>
       <% end %>
-    <% else %>
-      <%= t('excursion.is_draft') %>
     <% end %>
   </div>
+
+<% unless excursion.draft %>
 <div id="excursion-share">
   <div id="share" class="collapse in">
     <input class="input-embed-excursion " type="text"  size="30" rows="1" value="<%= shortURL %>" onclick="this.select()" />
@@ -80,9 +84,6 @@
         <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
       </div>
      </div>
-
-
-
   </div>
   <div id="embed" class="collapse in">
     <textarea readonly="readonly" style="width: 500px;" rows="2">
@@ -90,6 +91,7 @@
     </textarea>
   </div>
 </div>
+<% end %>
 
   <style type="text/css">
     .mashme-button {font-family: Helvetica, Arial, sans-serif; cursor: pointer; padding: 0; margin: 0; outline: 0; overflow: visible; font-weight: normal; font-weight: bold; text-decoration: none; text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25); text-align: center; background: transparent; border: none;}
