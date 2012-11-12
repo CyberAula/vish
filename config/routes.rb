@@ -9,6 +9,9 @@ Vish::Application.routes.draw do
   # Explore
   match '/explore' => 'frontpage#explore'
 
+  # Live Session
+  resource :live_session
+
   # Offline
   match '/offline' => 'frontpage#offline'
   match '/offline/manifest' => 'frontpage#manifest'
@@ -59,6 +62,7 @@ Vish::Application.routes.draw do
       match 'followings' => 'followers#index', :as => :followings, :defaults => { :direction => 'sent' }
       match 'followers' => 'followers#index', :as => :followers, :defaults => { :direction => 'received' }
       match 'modal' => 'modals#actor'
+      match 'live' => 'live_sessions#actor'
     end
   end
 

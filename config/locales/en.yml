@@ -181,6 +181,8 @@ en:
     title:
       one: "Document"
       other: "Documents"
+  offline:
+    title: "Offline Mode"
   options:
     add: "add"
     new: "new"
