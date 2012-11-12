@@ -92,7 +92,7 @@ class Excursion < ActiveRecord::Base
             puts "multiplechoice type detected"
             quiz.type="MultipleChoiceQuiz"
             quiz.question = element["question"] 
-            quiz.options  = element["options"].join(",")
+            quiz.options  = element["options"].to_json
           when "truefalse" # True/False
             quiz.type="TrueFalseQuiz"
             # PENDING

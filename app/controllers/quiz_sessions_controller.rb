@@ -19,7 +19,7 @@ class QuizSessionsController < ApplicationController
 
   def show # GET /quiz_sessions/X => render vote page 
     @quiz_session = QuizSession.find(params[:id])
-    debugger
+   #debugger
     if @quiz_session.active
       respond_to do |format|
         format.html { render :layout => 'iframe' }
