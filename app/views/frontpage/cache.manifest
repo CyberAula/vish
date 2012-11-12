@@ -10,6 +10,7 @@ http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js
 
 /assets/logo.png
 /assets/icons/favicon.ico
+/assets/icons/global.png
 #save only the default avatar, we save the rest in localstorage
 /assets/logos/original/excursion-00.png
 

@@ -513,12 +513,12 @@
 	-moz-border-radius: 10px !important;
 	-webkit-border-radius: 10px !important;
 	float: left;
-	height: 100%%;
+	height: 100%;
 	left: 0;
 	top: 0;
 	overflow: hidden;
 	position: absolute;
-	width: 100%%;
+	width: 100%;
 	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
@@ -710,7 +710,7 @@
 .t13_left{
 	position: relative;
 	float: left;
-	height: 82%;
+	height: 86%;
 	width: 48%;
 	left: 4%;
 	overflow: hidden;

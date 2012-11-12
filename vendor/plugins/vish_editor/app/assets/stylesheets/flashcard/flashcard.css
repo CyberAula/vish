@@ -57,6 +57,7 @@
   height: 22px;
   cursor:pointer;
   background: url(/assets/delete_slide.png);
+  z-index: 10;
 }
 .close_slide:hover{
   background: url(/assets/hover/delete_hover.png);

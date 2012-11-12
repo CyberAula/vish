@@ -171,6 +171,8 @@ es:
     makefriend:
       user: "%{sender} está siguiendo a %{who}."
     unread: " sin leer"
+  offline:
+    title: "Modo sin conexión"
   officedoc:
     confirm_delete: "¿Borrar documento?"
     title: "Documentos"
