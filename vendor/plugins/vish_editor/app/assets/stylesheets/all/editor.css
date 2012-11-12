@@ -198,6 +198,7 @@ img {
 	font-size: 16px;
 	background: 5px 50% no-repeat;
 	position:absolute;
+	left: 29px;
 	border: 1px solid #9B999D;
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -555,6 +556,7 @@ img {
 	height: 40px;
 	cursor:pointer;
 	background: url(/assets/delete_content.png);
+	z-index: 10000;
 }
 
 .delete_content:hover{
@@ -1052,7 +1054,7 @@ textarea {
 }
 
 .upload_progress_bar { 
-  background-color: #B4F5B4; 
+  	background-color: #B4F5B4; 
 	width:0%; 
 	height:20px; 
 	border-radius: 3px; 

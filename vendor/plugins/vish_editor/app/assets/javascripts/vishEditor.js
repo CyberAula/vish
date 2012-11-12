@@ -1,34 +1,36 @@
-var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk2":'durante las secciones de la aplicaci\u00f3n para servirte de ayuda a la hora de utilizar el "ViSH Editor". De esta manera podr\u00e1s aprender a utilizar el programa desde sus funciones b\u00e1sicas hasta la publicaci\u00f3n final de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', "i.walk3":'Este espacio te permite a\u00f1adir el t\u00edtulo de tu excursi\u00f3n.El t\u00edtulo de la excursion es obligatorio ya que gracias a el, otros usuarios podran encontrala mas f\u00e1cilmente dentro del ViSH. Pulsa "Siguiente" para continuar.', 
-"i.walk4":'En este espacio puedes explicar en mas detalle los conceptos e ideas de tu excursi\u00f3n, as\u00ed como los datos que consideres interesantes para que los usuarios sepan el contenido de esta. Pulsa "Siguiente" para continuar.', "i.walk5":'A\u00f1ade palabras que vayan acorde con el tema de tu excursion para que esta aparezca a la hora de que los usuarios busquen temas dentro del ViSH. Pulsa "Siguiente" para continuar.', "i.walk6":'Escoje una de estas imagenes para representar tu excursion dentro del ViSH.Utiliza las flechas de los laterales o los circulos en la parte inferior de la galer\u00eda para ver todas las imagenes y escojer una. Pulsa "Siguiente" para continuar.', 
-"i.walk7":'Una vez que cierres el tutorial pulsando el bot\u00f3n "cerrar", haz click en el boton continuar situado debajo de este. De esta manera salvaras los detalles de tu excursi\u00f3n y podr\u00e1s comenzar a a\u00f1adir contenido a esta.', "i.walk8":'Bienvenido, este es el escritorio de la aplicaci\u00f3n, desde aqu\u00ed, aprender\u00e1s a realizar excursiones paso a paso. Pulsa "Siguiente" para continuar.', "i.walk9":'En esta zona podr\u00e1s ver las opciones principales para crear y editar una excursi\u00f3n virtual dentro de ViSH. Pulsa "Siguiente" para continuar.', 
-"i.walk10":'Haciendo click en este bot\u00f3n, podr\u00e1s volver a ver la pantalla principal donde a\u00f1adiste la informaci\u00f3n a tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', "i.walk11":'Esta zona se utiliza para definir el paginado de tu excursi\u00f3n, atraves de esta secci\u00f3n podr\u00e1s crear, moverte y editar cualquiera de las paginas de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', "i.walk12":'Atraves de este bot\u00f3n podr\u00e1s salvar y publicar tus excursiones en ViSH. Pulsa "Siguiente" para continuar.', 
-"i.walk13":'Este icono te llevar\u00e1 a la ventana de selecci\u00f3n de plantillas para a\u00f1adir paginas a tu excursi\u00f3n. Cuando a\u00f1adas una nueva p\u00e1gina te aprecera a modo de icono en la l\u00ednea de tiempo para mostrarte su ubicaci\u00f3n dentro del paginado de la excursi\u00f3n. Pulsa "Cerrar" para continuar.', "i.walk14":'Esta zona te ofrece una variedad de plantillas para a\u00f1adir a tu excursi\u00f3n. Solo tienes que hacer click en la miniatura que m\u00e1s se ajuste a la informaci\u00f3n que quieras transmitir. Pulsa "Cerrar" para continuar.', 
-"i.walk15":"Para rellenar la plantilla que has escojido, solo tienes que hacer click en los espacios grises de esta. Si haces click dentro, te aparecer\u00e1n los siguientes iconos:", "i.walk16":"Si haces click en uno de estos iconos (dependiendo de que tipo de contenido quieras a\u00f1adir a esa zona), te aparecer\u00e1 otra ventana que te ayudar\u00e1 en esta tarea, a excepci\u00f3n del icono de texto, que mostrar\u00e1 una barra en la zona superior con herramientas para tratar tu tipograf\u00eda y definir el estilo de texto.", 
-"i.walk17":"Una vez hayas rellenado una zona gris con contenido, podr\u00e1s editarla volviendo a hacer click en el espacio que contiene el contenido. En caso de que quieras borrar este contenido puedes hacer click en el icono inferior derecho de cada zona gris rellena con contenido:", "i.walk18":"Si quisieras borrar una plantilla o cerrar ventanas en la aplicaci\u00f3n, deberas usar el icono superior derecho:", "i.walk19":'Si necesitas cualquier otra ayuda con el contenido, siempre puedes utilizar los iconos "tutorial".', 
-"i.walk20":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir imagenes. Como puedes ver en la zona superior tienes las siguientes opciones:", "i.walk21":"(a\u00f1adir imagen desde un enlace)", "i.walk22":"(a\u00f1adir imagen subiendola al repositorio)", "i.walk23":"(a\u00f1adir imagen desde el repositorio)", "i.walk24":"(a\u00f1adir imagen desde flickr)", "i.walk25":'Ahora estas en la secci\u00f3n Url. Pulsa "Siguiente" para continuar.', "i.walk26":"Este espacio esta reservardo para escribir o pegar un enlace que contenga una imagen, por ejemplo:", 
-"i.walk27":'Los formatos de imagen soportados por la aplicaci\u00f3n son muy variados (jpg, tiff, png, etc...) Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk28":'Esta zona te mostrar\u00e1 el contenido que has subido antes de a\u00f1adirlo a la presentaci\u00f3n, de esta manera puedes comprobarlo. Una vez estes listo, haz click en el bot\u00f3n de a\u00f1adir contenido (Este bot\u00f3n aparecer\u00e1 cuando pulses el bot\u00f3n previsualizar). Haz click en "cerrar" para terminar este tutorial.', 
-"i.walk29":'Pulsa en examinar para acceder a una nueva ventana y buscar un archivo en tu disco duro.Una vez lo hayas elegido, haz click en el bot\u00f3n "previsualizar.Haz click en "Continuar".', "i.walk30":'En este espacio puedes buscar imagenes dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de imagenes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz click en "cerrar" para terminar este tutorial.', 
-"i.walk31":'En este espacio puedes buscar imagenes en la pagina Flickr. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de imagenes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz click en "cerrar" para terminar este tutorial.', "i.walk32":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenidos Object. Como puedes ver en la zona superior tienes las siguientes opciones:", "i.walk33":"(a\u00f1adir contenido desde un enlace)", 
-"i.walk34":"(a\u00f1adir contenido subiendolo al repositorio)", "i.walk35":"(a\u00f1adir contenido desde el repositorio)", "i.walk36":'Ahora estas en la secci\u00f3n Embed.Haz click en "Continuar".', "i.walk37":"Este espacio esta reservardo para escribir o pegar un enlace que contenga un contenidos flash, web etc... por ejemplo:", "i.walk38":'Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk39":'Pulsa en examinar para acceder a una nueva ventana y buscar un archivo en tu disco duro.Una vez lo hayas elegido, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', 
-"i.walk40":'En este espacio puedes buscar contenido dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de imagenes de las cuales solo debes pulsar encima de una de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el contenido. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
-"i.walk41":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir imagenes. Como puedes ver en la zona superior tienes las siguientes opciones:", "i.walk42":"(a\u00f1adir video desde un enlace)", "i.walk43":"(a\u00f1adir video desde el repositorio)", "i.walk44":"(a\u00f1adir video desde youtube)", "i.walk45":"(a\u00f1adir video desde vimeo)", "i.walk46":'Ahora estas en la secci\u00f3n Url.Haz click en "Continuar".', "i.walk47":"Este espacio esta reservardo para escribir o pegar un enlace que contenga una imagen, por ejemplo:", 
-"i.walk48":'Los formatos de video soportados por la aplicaci\u00f3n son muy variados (avi, flv, mpg...).Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk49":'En este espacio puedes buscar videos dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
-"i.walk50":'En este espacio puedes buscar videos dentro de youtube. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', "i.walk51":'En este espacio puedes buscar videos dentro de vimeo. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de videos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el video. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
-"i.walk52":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenido en directo. Como puedes ver en la zona superior tienes de momento la siguiente opci\u00f3n:", "i.walk53":"(a\u00f1adir video desde una camara en directo)", "i.walk54":'Ahora estas en la secci\u00f3n Webcam.Haz click en "Continuar"', "i.walk55":'En este espacio puedes buscar contenido en directo dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda, desde la cual solo debes pulsar encima del contenido para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adirlo. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
-"i.walk56":"Una Flashcard es una aplicaci\u00f3n que te ayudar\u00e1 a representar tu excursi\u00f3n como una infograf\u00eda, usando una imagen para representar el concepto de la misma y marcando las zonas para que el usuario interactue con ellas de manera que pueda visualizar las paginas de la excursi\u00f3n.", "i.walk57":"Primero, utiliza estos iconos para a\u00f1adir una imagen de fondo.", "i.walk58":"Puedes a\u00f1adir imagenes por:", "i.walk59":"Una vez hecho esto, puedes arrastrar las flechas de la zona inferior hacia la flashcard para marcar la zona de cada p\u00e1gina dentro de esta", 
+var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk2":'durante las secciones de la aplicaci\u00f3n para servirte de ayuda a la hora de utilizar el "ViSH Editor". De esta manera podr\u00e1s aprender a utilizar el programa desde sus funciones b\u00e1sicas hasta la publicaci\u00f3n final de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', "i.walk3":'Este espacio te permite a\u00f1adir el t\u00edtulo de tu excursi\u00f3n.El t\u00edtulo de la excursi\u00f3n es obligatorio ya que gracias a el, otros usuarios podr\u00e1n encontrarla mas f\u00e1cilmente dentro del ViSH. Pulsa "Siguiente" para continuar.', 
+"i.walk4":'En este espacio puedes explicar en mas detalle los conceptos e ideas de tu excursi\u00f3n, as\u00ed como los datos que consideres interesantes para que los usuarios sepan el contenido de esta. Pulsa "Siguiente" para continuar.', "i.walk5":'A\u00f1ade palabras que vayan acorde con el tema de tu excursi\u00f3n para que esta aparezca a la hora de que los usuarios busquen temas dentro del ViSH. Pulsa "Siguiente" para continuar.', "i.walk6":'Escoge una de estas im\u00e1genes para representar tu excursi\u00f3n dentro del ViSH.Utiliza las flechas de los laterales o los circulos en la parte inferior de la galer\u00eda para ver todas las im\u00e1genes y escoger una. Pulsa "Siguiente" para continuar.', 
+"i.walk7":'Una vez que cierres el tutorial pulsando el bot\u00f3n "cerrar", haz clic en el bot\u00f3n continuar situado debajo de este. De esta manera salvaras los detalles de tu excursi\u00f3n y podr\u00e1s comenzar a a\u00f1adir contenido a esta.', "i.walk8":'Bienvenido, este es el escritorio de ViSH Editor, desde aqu\u00ed, aprender\u00e1s a realizar excursiones paso a paso. Pulsa "Siguiente" para continuar.', "i.walk9":'En esta zona podr\u00e1s ver las opciones principales para crear y editar una excursi\u00f3n virtual dentro de ViSH. Pulsa "Siguiente" para continuar.', 
+"i.walk10":'Haciendo clic en este bot\u00f3n, podr\u00e1s volver a ver la pantalla principal donde a\u00f1adiste la informaci\u00f3n a tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', "i.walk11":'Esta zona se utiliza para definir el paginado de tu excursi\u00f3n, a trav\u00e9s de esta secci\u00f3n podr\u00e1s crear, moverte y editar cualquiera de las paginas de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', "i.walk12":'A Trav\u00e9s de este bot\u00f3n podr\u00e1s salvar y publicar tus excursiones en ViSH. Pulsa "Siguiente" para continuar.', 
+"i.walk13":'Este icono te llevar\u00e1 a la ventana de selecci\u00f3n de plantillas para a\u00f1adir paginas a tu excursi\u00f3n. Cuando a\u00f1adas una nueva p\u00e1gina te aparecer\u00e1 a modo de icono en la l\u00ednea de tiempo para mostrarte su ubicaci\u00f3n dentro del paginado de la excursi\u00f3n. Pulsa "Cerrar" para continuar.', "i.walk14":'Esta zona te ofrece una variedad de plantillas para a\u00f1adir a tu excursi\u00f3n. Solo tienes que hacer clic en la miniatura que m\u00e1s se ajuste a la informaci\u00f3n que quieras transmitir. Pulsa "Cerrar" para continuar.', 
+"i.walk15":"Para rellenar la plantilla que has escogido, solo tienes que hacer clic en los espacios grises de esta. Si haces click dentro, te aparecer\u00e1n los siguientes iconos:", "i.walk16":"Si haces clic en uno de estos iconos (dependiendo de que tipo de contenido quieras a\u00f1adir a esa zona), te aparecer\u00e1 otra ventana que te ayudar\u00e1 en esta tarea, a excepci\u00f3n del icono de texto, que mostrar\u00e1 una barra en la zona superior con herramientas para tratar tu tipograf\u00eda y definir el estilo de texto.", 
+"i.walk17":"Una vez hayas rellenado una zona gris con contenido, podr\u00e1s editarla volviendo a hacer clic en el espacio que contiene el contenido. En caso de que quieras borrar este contenido puedes hacer clic en el icono inferior derecho de cada zona gris rellena con contenido:", "i.walk18":"Si quisieras borrar una plantilla o cerrar ventanas en la aplicaci\u00f3n, deber\u00e1s usar el icono superior derecho:", "i.walk19":'Si necesitas cualquier otra ayuda con el contenido, siempre puedes utilizar los iconos "tutorial".', 
+"i.walk20":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir im\u00e1genes. Como puedes ver en la zona superior tienes las siguientes opciones:", "i.walk21":"(a\u00f1adir imagen desde un enlace)", "i.walk22":"(a\u00f1adir imagen subi\u00e9ndola al repositorio)", "i.walk23":"(a\u00f1adir imagen desde el repositorio)", "i.walk24":"(a\u00f1adir imagen desde flickr)", "i.walk25":'Ahora estas en la secci\u00f3n Url. Pulsa "Siguiente" para continuar.', "i.walk26":"Este espacio esta reservado para escribir o pegar un enlace que contenga una imagen, por ejemplo:", 
+"i.walk27":'Los formatos de imagen soportados por la aplicaci\u00f3n son muy variados (jpg, tiff, png, etc...) Una vez hayas rellenado el espacio, haz clic en el bot\u00f3n "previsualizar".Haz clic en "Continuar".', "i.walk28":'Esta zona te mostrar\u00e1 el contenido que has subido antes de a\u00f1adirlo a la presentaci\u00f3n, de esta manera puedes comprobarlo. Una vez est\u00e9s listo, haz clic en el bot\u00f3n de a\u00f1adir contenido (Este bot\u00f3n aparecer\u00e1 cuando pulses el bot\u00f3n previsualizar). Haz clic en "cerrar" para terminar este tutorial.', 
+"i.walk29":'Pulsa en examinar para acceder a una nueva ventana y buscar un archivo en tu disco duro.Una vez lo hayas elegido, haz click en el bot\u00f3n "previsualizar.Haz clic en "Continuar".', "i.walk30":'En este espacio puedes buscar im\u00e1genes dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de im\u00e1genes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz clic en "cerrar" para terminar este tutorial.', 
+"i.walk31":'En este espacio puedes buscar im\u00e1genes en la pagina Flickr. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de im\u00e1genes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz clic en "cerrar" para terminar este tutorial.', "i.walk32":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenidos Object. Como puedes ver en la zona superior tienes las siguientes opciones:", "i.walk33":"(a\u00f1adir contenido desde un enlace)", 
+"i.walk34":"(a\u00f1adir contenido subi\u00e9ndolo al repositorio)", "i.walk35":"(a\u00f1adir contenido desde el repositorio)", "i.walk36":'Ahora estas en la secci\u00f3n Embed.Haz clic en "Continuar".', "i.walk37":"Este espacio esta reservado para escribir o pegar un enlace que contenga un contenidos flash, web etc... por ejemplo:", "i.walk38":'Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk39":'Pulsa en examinar para acceder a una nueva ventana y buscar un archivo en tu disco duro.Una vez lo hayas elegido, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', 
+"i.walk40":'En este espacio puedes buscar contenido dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de im\u00e1genes de las cuales solo debes pulsar encima de una de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecer\u00e1 la posibilidad de a\u00f1adir el contenido. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
+"i.walk41":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir im\u00e1genes. Como puedes ver en la zona superior tienes las siguientes opciones:", "i.walk42":"(a\u00f1adir v\u00eddeo desde un enlace)", "i.walk43":"(a\u00f1adir v\u00eddeo desde el repositorio)", "i.walk44":"(a\u00f1adir v\u00eddeo desde youtube)", "i.walk45":"(a\u00f1adir v\u00eddeo desde vimeo)", "i.walk46":'Ahora estas en la secci\u00f3n Url.Haz click en "Continuar".', "i.walk47":"Este espacio esta reservardo para escribir o pegar un enlace que contenga una imagen, por ejemplo:", 
+"i.walk48":'Los formatos de v\u00eddeo soportados por la aplicaci\u00f3n son muy variados (avi, flv, mpg...).Una vez hayas rellenado el espacio, haz click en el bot\u00f3n "previsualizar".Haz click en "Continuar".', "i.walk49":'En este espacio puedes buscar v\u00eddeos dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de v\u00eddeos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el v\u00eddeo. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
+"i.walk50":'En este espacio puedes buscar v\u00eddeos dentro de youtube. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de v\u00eddeos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el v\u00eddeo. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
+"i.walk51":'En este espacio puedes buscar v\u00eddeos dentro de vimeo. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de v\u00eddeos de las cuales solo debes pulsar encima de uno de ellas para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adir el v\u00eddeo. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
+"i.walk52":"Esta ventana te ayudar\u00e1 a la hora de a\u00f1adir contenido en directo. Como puedes ver en la zona superior tienes de momento la siguiente opci\u00f3n:", "i.walk53":"(a\u00f1adir v\u00eddeo desde una camara en directo)", "i.walk54":'Ahora estas en la secci\u00f3n Webcam. Haz click en "Continuar"', "i.walk55":'En este espacio puedes buscar contenido en directo dentro del repositorio. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda, desde la cual solo debes pulsar encima del contenido para acceder a una peque\u00f1a ventana con t\u00edtulo y descripci\u00f3n mas detallada del contenido que te ofrecera la posibilidad de a\u00f1adirlo. Solo debes pulsar ese bot\u00f3n para realizar esa tarea..Haz click en "cerrar" para terminar este tutorial.', 
+"i.walk56":"Una Flashcard es una aplicaci\u00f3n que te ayudar\u00e1 a representar tu excursi\u00f3n como una infograf\u00eda, usando una imagen para representar el concepto de la misma y marcando las zonas para que el usuario interactue con ellas de manera que pueda visualizar las paginas de la excursi\u00f3n.", "i.walk57":"Primero, utiliza estos iconos para a\u00f1adir una imagen de fondo.", "i.walk58":"Puedes a\u00f1adir im\u00e1genes por:", "i.walk59":"Una vez hecho esto, puedes arrastrar las flechas de la zona inferior hacia la flashcard para marcar la zona de cada p\u00e1gina dentro de esta", 
 "i.walk60":"Puedes previsualizar la flashcard en cualquier momento utilizando el icono de previsualizar.", "i.walk61":"Si salvas tu presentaci\u00f3n como una flashcard, se mostrar\u00e1 como tal, pero en cualquier momento puedes editarla y mostrarla como una presentaci\u00f3n normal de nuevo.", "i.walk62":"Haciendo click en este bot\u00f3n, podr\u00e1s previsualizar tu excursi\u00f3n como si ya estuviese publicada.", "i.walk63":"Este bot\u00f3n te permitir\u00e1 escojer entre varias opciones para tu excursion:", 
 "i.walk64":"Utilizando este menu puedes salvar tu excursi\u00f3n, convertir tu presentaci\u00f3n a flashcard, previsualizar tu excursi\u00f3n antes de publicarla, cambiar los detalles de tu excursi\u00f3n y utilizar este tutorial cada vez que lo necesites", "i.walk65":"Muchas de estas opciones est\u00e1n en el espacio de ViSH Editor, pero siempre podr\u00e1s encontrarlas aqu\u00ed de igual manera.", "i.walk66":"Utilizando este bot\u00f3n  podr\u00e1s visualizar el tutorial principal de la aplicaci\u00f3n ViSH Editor", 
 "i.walk67":"Utilizando este bot\u00f3n acceder\u00e1s a la selecci\u00f3n de un tema visual para representar tu excursi\u00f3n.", "i.walk68":"Este espacio contiene todas las opciones para interactuar con tu contenido:", "i.walk69":"Todas las veces en las que a\u00f1adas o selecciones contenido en tu excursi\u00f3n, esta barra de herramientas se activar\u00e1 para que puedas interacturar con tu contenido.", "i.walk70":"Escoje entre los diferentes temas que m\u00e1s representen tu excursi\u00f3n. La primera linea de temas contiene degradados y colores vibrantes, la segunda linea esta compuesta por texturas suaves, la ultima linea imita los objectos de la vida real y por \u00faltimo, el \u00faltimo tema contiene una suave animaci\u00f3n para darle a tu excursi\u00f3n un toque especial. \u00a1Disfr\u00fatalos!", 
 "i.walk71":"(A\u00f1adir p\u00e1gina web)", "i.walk72":"(A\u00f1adir Captura de p\u00e1gina web)", "i.walk73":"A\u00f1adir p\u00e1gina web", "i.walk74":"A\u00f1adir Captura de p\u00e1gina web", "i.link":"A\u00f1adir url", "i.resize":"Redimensionar", "i.flashcardbg":"Fondo de flashcard", "i.text":"Texto", "i.themesButton":"ViSH Editor Themes", "i.toolbarButton":"Barra de herramientas", "i.themesTitle":"Selecci\u00f3n de temas", "i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
-"i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.AddVideoUrl":"a\u00f1adir URL de video", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", "i.AddObjectContent":"A\u00f1adiendo contenido Object", "i.AddObjectContentUpload":"Subiendo contenido Object", "i.AddObjectContentUrl":"A\u00f1adiendo contenido Object por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", 
-"i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.AddVideoContent":"A\u00f1adiendo video", "i.AddVideoContentUrl":"A\u00f1adiendo video por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", "i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", 
-"i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.tutorialButton":"Bot\u00f3n de tutorial", "i.previewButton":"Bot\u00f3n de previsualizaci\u00f3n", "i.menuButton":"Men\u00fa de ViSH Editor", 
-"i.objectContent":"Contenido Flash", "i.slidesmenu":"Este es el menu de slides", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Video":"Video", "i.Videos":"Videos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", 
-"i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.SearchVideosVimeo":"Buscar videos en Vimeo", "i.SearchVideosVish":"Buscar videos en el repositorio del ViSH", "i.SearchVideosYoutube":"Buscar videos en Youtube", 
-"i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.SeeVideoBefore":"Puedes ver el video antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", 
-"i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenido al ViSH Editor!", "i.Url":"Enlace", "i.url":"enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias imagenes", "i.upload":"subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", 
-"i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, 
-"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.Addv\u00eddeoUrl":"a\u00f1adir URL de v\u00eddeo", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", "i.AddObjectContent":"A\u00f1adiendo contenido Object", "i.AddObjectContentUpload":"Subiendo contenido Object", "i.AddObjectContentUrl":"A\u00f1adiendo contenido Object por url", 
+"i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.Addv\u00eddeoContent":"A\u00f1adiendo v\u00eddeo", "i.Addv\u00eddeoContentUrl":"A\u00f1adiendo v\u00eddeo por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", 
+"i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.tutorialButton":"Bot\u00f3n de tutorial", 
+"i.previewButton":"Bot\u00f3n de previsualizaci\u00f3n", "i.menuButton":"Men\u00fa de ViSH Editor", "i.objectContent":"Contenido Flash", "i.slidesmenu":"Este es el menu de slides", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.v\u00eddeo":"v\u00eddeo", "i.v\u00eddeos":"v\u00eddeos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", 
+"i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", 
+"i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", 
+"i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", 
+"i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", 
+"i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", 
+"i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
@@ -8856,7 +8858,7 @@ jQuery.cookie = function(key, value, options) {
         return
       }
       $(options.tipContent).hide();
-      var bodyOffset = $(options.tipContainer).children("*").first().position(), tipContent = $(options.tipContent + " li"), count = skipCount = 0, prevCount = -1, timerIndicatorInstance, timerIndicatorTemplate = '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>';
+      var bodyOffset = $(options.tipContainer).children("*").first().position(), tipContent = $(options.tipContent + " > li"), count = skipCount = 0, prevCount = -1, timerIndicatorInstance, timerIndicatorTemplate = '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>';
       var tipTemplate = function(tipClass, index, buttonText, self) {
         return'<div class="joyride-tip-guide ' + tipClass + '" id="joyRidePopup' + index + '"><span class="joyride-nub"></span><div class="joyride-content-wrapper">' + $(self).html() + buttonText + '<a href="#close" class="joyride-close-tip"></a>' + timerIndicatorInstance + "</div></div>"
       };
@@ -13128,6 +13130,9 @@ VISH.Editor = function(V, $, undefined) {
                   if(element.type == "quiz") {
                     element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance").parent().find("div > div"));
                     if($(div).find(".multiplechoice_text_in_zone")) {
+                      if($(div).find(".quiz_id")) {
+                        element.quiz_id = $(div).find(".quiz_id").val()
+                      }
                       element.quiztype = "multiplechoice";
                       element.options = [];
                       $(div).find(".multiplechoice_text_in_zone").each(function(i, input_text) {
@@ -13854,6 +13859,7 @@ VISH.Editor.Object = function(V, $, undefined) {
         VISH.Debugging.log("Unrecognized object wrapper: " + objectInfo.wrapper);
         break
     }
+    VISH.Editor.Tools.loadToolsForZone(current_area)
   };
   var drawObjectWithWrapper = function(wrapper, current_area, style, zoomInStyle) {
     var template = V.Editor.getTemplate(current_area);
@@ -13905,8 +13911,8 @@ VISH.Samples = function(V, undefined) {
   "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
   var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", 
   "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t10", "elements":[{"id":"7335", "type":"object", "areaid":"center", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, 
+  {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"4", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
@@ -14539,7 +14545,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
     VISH.Quiz.Renderer.init();
     VISH.Quiz.API.init();
-    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"80%", "height":"80%", "padding":0, "onStart":function(data) {
+    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"90%", "height":"100%", "padding":0, "onStart":function(data) {
       VISH.Utils.loadTab("tab_quiz_session")
     }})
   };
@@ -14627,12 +14633,13 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _showResults, _onQuizSessionResultsReceivedError)
   };
   var _onQuizSessionReceived = function(quiz_session_id) {
+    V.Debugging.log("_onQuizSessionReceived quiz_session_id: " + quiz_session_id);
     var quizUrlForSession = "http://" + window.location.host.toString() + "/quiz_sessions/";
     var url = quizUrlForSession + quiz_session_id;
     var current_slide = V.Slides.getCurrentSlide();
     var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
-    var divURLShare = "<div class='url_share'><span><a target='blank_' href=" + url + ">" + url + "</a></span></div>";
-    $(header).html(divURLShare);
+    $(header).find(".url_share > span > a").attr("href", url);
+    $(header).find(".url_share > span > a").append(url.toString());
     $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").children().remove();
     $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").qrcode(url.toString());
     $(current_slide).find("input." + startButtonClass).hide();
@@ -14964,7 +14971,13 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var zoomLess = function() {
     _changeZoom("-")
   };
-  var _changeZoom = function(action) {
+  var resizeMore = function() {
+    _resize("+")
+  };
+  var resizeLess = function() {
+    _resize("-")
+  };
+  var _resize = function(action) {
     var object, objectInfo, zoom;
     var area = VISH.Editor.getCurrentArea();
     var type = $(area).attr("type");
@@ -14975,42 +14988,30 @@ VISH.Editor.Tools = function(V, $, undefined) {
         var parent = area.children(":first");
         object = parent.children(":first");
         objectInfo = VISH.Object.getObjectInfo(object);
-        if(objectInfo.type === "web") {
-          var iframe = $(area).find("iframe");
-          zoom = VISH.Utils.getZoomFromStyle($(iframe).attr("style"));
-          if(action == "+") {
-            zoom = zoom + 0.1
-          }else {
-            zoom = zoom - 0.1
-          }
-          $(iframe).attr("style", VISH.Editor.Utils.addZoomToStyle($(iframe).attr("style"), zoom));
-          VISH.Editor.Object.autofixWrapperedObjectAfterZoom(iframe, zoom)
+        var newWidth, newHeight;
+        var aspectRatio = parent.width() / parent.height();
+        var originalHeight = object.height();
+        var originalWidth = object.width();
+        var parentoriginalHeight = parent.height();
+        var parentoriginalWidth = parent.width();
+        if(action == "+") {
+          zoom = INCREASE_ZOOM
         }else {
-          var newWidth, newHeight;
-          var aspectRatio = parent.width() / parent.height();
-          var originalHeight = object.height();
-          var originalWidth = object.width();
-          var parentoriginalHeight = parent.height();
-          var parentoriginalWidth = parent.width();
-          if(action == "+") {
-            zoom = INCREASE_ZOOM
-          }else {
-            zoom = 1 / INCREASE_ZOOM
-          }
-          $(parent).width(parentoriginalWidth * zoom);
-          $(parent).height(parentoriginalHeight * zoom);
-          var styleZoom = V.Utils.getZoomFromStyle($(object).attr("style"));
-          if(styleZoom != 1) {
-            newWidth = newWidth / styleZoom;
-            newHeight = Math.round(newWidth / aspectRatio);
-            newWidth = Math.round(newWidth)
-          }else {
-            newHeight = parentoriginalHeight * zoom;
-            newWidth = parentoriginalWidth * zoom
-          }
-          $(object).width(newWidth);
-          $(object).height(newHeight)
+          zoom = 1 / INCREASE_ZOOM
         }
+        $(parent).width(parentoriginalWidth * zoom);
+        $(parent).height(parentoriginalHeight * zoom);
+        var styleZoom = V.Utils.getZoomFromStyle($(object).attr("style"));
+        if(styleZoom != 1) {
+          newWidth = newWidth / styleZoom;
+          newHeight = Math.round(newWidth / aspectRatio);
+          newWidth = Math.round(newWidth)
+        }else {
+          newHeight = parentoriginalHeight * zoom;
+          newWidth = parentoriginalWidth * zoom
+        }
+        $(object).width(newWidth);
+        $(object).height(newHeight);
         break;
       case "image":
         object = $(area).find("img");
@@ -15035,6 +15036,33 @@ VISH.Editor.Tools = function(V, $, undefined) {
         }
         object.width(originalWidth * zoom);
         object.height(originalHeight * zoom);
+        break;
+      default:
+        break
+    }
+  };
+  var _changeZoom = function(action) {
+    var object, objectInfo, zoom;
+    var area = VISH.Editor.getCurrentArea();
+    var type = $(area).attr("type");
+    switch(type) {
+      case "object":
+      ;
+      case "snapshot":
+        var parent = area.children(":first");
+        object = parent.children(":first");
+        objectInfo = VISH.Object.getObjectInfo(object);
+        if(objectInfo.type === "web") {
+          var iframe = $(area).find("iframe");
+          zoom = VISH.Utils.getZoomFromStyle($(iframe).attr("style"));
+          if(action == "+") {
+            zoom = zoom + 0.1
+          }else {
+            zoom = zoom - 0.1
+          }
+          $(iframe).attr("style", VISH.Editor.Utils.addZoomToStyle($(iframe).attr("style"), zoom));
+          VISH.Editor.Object.autofixWrapperedObjectAfterZoom(iframe, zoom)
+        }
         break;
       default:
         break
@@ -15080,7 +15108,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
     }
     $.fancybox.close()
   };
-  return{init:init, loadPresentationToolbar:loadPresentationToolbar, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, loadToolbarForElement:loadToolbarForElement, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, selectTheme:selectTheme, changeFlashcardBackground:changeFlashcardBackground, addLink:addLink, addUrl:addUrl, zoomMore:zoomMore, zoomLess:zoomLess}
+  return{init:init, loadPresentationToolbar:loadPresentationToolbar, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, loadToolbarForElement:loadToolbarForElement, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, selectTheme:selectTheme, changeFlashcardBackground:changeFlashcardBackground, addLink:addLink, addUrl:addUrl, resizeMore:resizeMore, resizeLess:resizeLess, zoomMore:zoomMore, zoomLess:zoomLess}
 }(VISH, jQuery);
 VISH.Addons = function(V, undefined) {
   var init = function(addons) {
@@ -15469,7 +15497,7 @@ VISH.Dummies = function(VISH, undefined) {
     "<article id='article_id_to_change' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle' size='medium' class='t13_circle editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'  class='t13_right editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='circle1' size='small' class='t14_circle1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle2' size='small' class='t14_circle2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle3' size='small' class='t14_circle3 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right3' size='medium' class='t14_right3 editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t15_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='large' class='t15_center2 editable grey_background selectable'></div></article>"];
-    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><textarea class='value_multiplechoice_question_in_zone' placeholder='write question here' ><font size='4'>Write question here</font></textarea><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone '><span>a)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>b)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>c)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>d)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>e)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>f)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li></ul></div></div>", 
+    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><textarea class='value_multiplechoice_question_in_zone' placeholder='write question here' ><font size='4'>Write question here</font></textarea><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone '><span>a)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>b)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>c)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>d)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>e)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>f)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li></ul><input type='hidden' name='quiz_id'/></div></div>", 
     "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"]
   };
   var getDummy = function(template, position, presentation_id, existing_slide) {
@@ -16123,8 +16151,9 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
       }else {
         $(event.target).attr("moved", "false");
         var old_pos = $(event.target).offset();
-        $(event.target).css("top", old_pos.top + 30 + "px");
-        $(event.target).css("left", old_pos.left - 16 + "px")
+        $(event.target).css("position", "relative");
+        $(event.target).css("top", "auto");
+        $(event.target).css("left", "auto")
       }
     }});
     $(".carrousel_element_single_row_slides").droppable();
@@ -16928,7 +16957,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     }
     $.fancybox.close()
   };
-  var drawQuiz = function(quiz_type, zone_id, question, options) {
+  var drawQuiz = function(quiz_type, zone_id, question, options, quiz_id) {
     var zone;
     if(zone_id) {
       zone = "#" + zone_id
@@ -16942,6 +16971,9 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         var inputs = $(zone).find(".multiplechoice_text_in_zone");
         for(var i = 0;i <= options.length - 1;i++) {
           $(inputs[i]).val(options[i])
+        }
+        if(quiz_id) {
+          $(zone).find('input[name="quiz_id"]').val(quiz_id)
         }
         break;
       case "open":
@@ -17047,7 +17079,8 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     var wysiwygId = "wysiwyg_" + current_area.attr("id");
     textArea.attr("id", wysiwygId);
     textArea.addClass("wysiwygInstance");
-    V.Editor.Text.getNicEditor().addInstance(wysiwygId)
+    V.Editor.Text.getNicEditor().addInstance(wysiwygId);
+    $(current_area).find(".value_multiplechoice_question_in_zone").parent().find("div")[0].addClass("mcquestion_header")
   };
   return{init:init, onLoadTab:onLoadTab, drawQuiz:drawQuiz, addQuiz:addQuiz}
 }(VISH, jQuery);
@@ -17097,8 +17130,9 @@ VISH.Editor.Renderer = function(V, $, undefined) {
                 V.Editor.Object.Snapshot.drawSnapShot(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].scrollTop, slide.elements[el].scrollLeft)
               }else {
                 if(slide.elements[el].type === "quiz") {
+                  V.Debugging.log("quiz element quiz id " + slide.elements[el].quiz_id);
                   V.Editor.Quiz.addQuiz(slide.elements[el].quiztype, slide.elements[el].id);
-                  V.Editor.Quiz.drawQuiz(slide.elements[el].quiztype, slide.elements[el].id, slide.elements[el].question, slide.elements[el].options)
+                  V.Editor.Quiz.drawQuiz(slide.elements[el].quiztype, slide.elements[el].id, slide.elements[el].question, slide.elements[el].options, slide.elements[el].quiz_id)
                 }
               }
             }
@@ -18627,7 +18661,9 @@ VISH.LocalStorage = function(V, $, undefined) {
       }
       localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation));
       localStorage.setItem("presentation_" + presentation.id + "_url", window.location.href);
-      _saveImage(presentation.avatar)
+      if(presentation.avatar !== undefined) {
+        _saveImage(presentation.avatar)
+      }
     }else {
       V.Debugging.log("Sorry! No web storage support.")
     }
@@ -19079,11 +19115,10 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
   };
   var _renderMcQuestion = function(quiz_element, zone_class, slide_id, zone) {
     var received = JSON.stringify(quiz_element);
-    V.Debugging.log("_renderMCQuestion : and slide:  " + received);
+    V.Debugging.log("_renderMCQuestion : and quiz_element:  " + received);
     var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_header'></div>";
-    ret += "<div class='mcquestion_body'><h2 class='question'>" + quiz_element["question"] + "</h2>";
+    ret += "<div class='mcquestion_body'><div class='question'>" + quiz_element["question"] + "</div>";
     ret += "<form class='mcquestion_form' action='" + quiz_element["posturl"] + "' method='post'>";
     for(var i = 0;i < quiz_element["options"].length;i++) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
@@ -19221,6 +19256,9 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Utils.loadDeviceCSS();
     V.User.init(options);
     applicationCache.addEventListener("cached", function() {
+      VISH.LocalStorage.addPresentation(presentation)
+    }, false);
+    applicationCache.addEventListener("updateready", function() {
       VISH.LocalStorage.addPresentation(presentation)
     }, false);
     if(presentation.type === "game") {

@@ -10,7 +10,6 @@ CACHE:
 /assets/all/fonts.css?body=1
 /assets/all/jquery-ui-1.9.1.custom.min.css?body=1
 /assets/all/jquery.fancybox-1.3.4.css?body=1
-/assets/all/jslider.css?body=1
 /assets/all/menu.css?body=1
 /assets/all/nicEditor.css?body=1
 /assets/all/pack1templates.css?body=1
@@ -30,7 +29,11 @@ http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italics
 <%= @excursion.offline_manifest %>
 
 FALLBACK:
-/ /assets/advert_new_grey.png
+#BIG PROBLEM: with the fallback, when coming back from an excursion the browser thinks that it is another
+#part of the same cached domain and that it has to show the fallback instead of offline.html
+#/ /assets/advert_new_grey.png
+#but it does not mind, because we will have to do it with javascript, 
+#because what we can't show are iframes, youtube, and external contents
 
 NETWORK:
 /assets/blank.png
