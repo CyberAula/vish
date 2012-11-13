@@ -89,6 +89,7 @@ es:
       ok: "Clonada con éxito"
       owner: "Esta excursión ya es tuya"
     confirm_delete: "¿Borrar excursión?"
+    confirm_delete_offline: "Vas a borrar la excursion de esta lista, pero todavia estará accesible en el servidor. Estás seguro?"
     contributors:
       name: "Con contenido de"
     created: "creadas"

@@ -89,6 +89,7 @@ en:
       ok: "Succesfully cloned"
       owner: "You already own this excursion"
     confirm_delete: "Delete excursion?"
+    confirm_delete_offline: "You are going to remove the excursion from this list, but it will still be accesible on the server. Are you sure?"
     contributors:
       name: "With content from"
     created: "created"
