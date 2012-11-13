@@ -8849,6 +8849,84 @@ jQuery.cookie = function(key, value, options) {
     }
   }
 })(jQuery);
+/*
+     MIT License
+*/
+(function($) {
+  function supportFullScreen() {
+    var doc = document.documentElement;
+    return"requestFullscreen" in doc || "mozRequestFullScreen" in doc && document.mozFullScreenEnabled || "webkitRequestFullScreen" in doc
+  }
+  function requestFullScreen(elem) {
+    if(elem.requestFullscreen) {
+      elem.requestFullscreen()
+    }else {
+      if(elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen()
+      }else {
+        if(elem.webkitRequestFullScreen) {
+          elem.webkitRequestFullScreen()
+        }
+      }
+    }
+  }
+  function fullScreenStatus() {
+    return document.fullscreen || document.mozFullScreen || document.webkitIsFullScreen || false
+  }
+  function cancelFullScreen() {
+    if(document.exitFullscreen) {
+      document.exitFullscreen()
+    }else {
+      if(document.mozCancelFullScreen) {
+        document.mozCancelFullScreen()
+      }else {
+        if(document.webkitCancelFullScreen) {
+          document.webkitCancelFullScreen()
+        }
+      }
+    }
+    $(document).off("fullscreenchange mozfullscreenchange webkitfullscreenchange")
+  }
+  function onFullScreenEvent(callback) {
+    $(document).on("fullscreenchange mozfullscreenchange webkitfullscreenchange", function() {
+      callback(fullScreenStatus())
+    })
+  }
+  $.support.fullscreen = supportFullScreen();
+  $.fn.fullScreen = function(props) {
+    if(!$.support.fullscreen || this.length !== 1) {
+      return this
+    }
+    if(fullScreenStatus()) {
+      cancelFullScreen();
+      return this
+    }
+    var options = $.extend({"background":"#111", "callback":$.noop(), "fullscreenClass":"fullScreen"}, props), elem = this, fs = $("<div>", {"css":{"overflow-y":"auto", "background":options.background, "width":"100%", "height":"100%"}}).insertBefore(elem).append(elem);
+    elem.addClass(options.fullscreenClass);
+    requestFullScreen(fs.get(0));
+    fs.click(function(e) {
+      if(e.target == this) {
+        cancelFullScreen()
+      }
+    });
+    elem.cancel = function() {
+      cancelFullScreen();
+      return elem
+    };
+    onFullScreenEvent(function(fullScreen) {
+      if(!fullScreen) {
+        elem.removeClass(options.fullscreenClass).insertBefore(fs);
+        fs.remove()
+      }
+      options.callback(fullScreen)
+    });
+    return elem
+  };
+  $.fn.cancelFullScreen = function() {
+    cancelFullScreen();
+    return this
+  }
+})(jQuery);
 (function($) {
   $.fn.joyride = function(options) {
     var settings = {"tipLocation":"bottom", "scrollSpeed":300, "timer":0, "startTimerOnClick":false, "nextButton":true, "tipAnimation":"fade", "tipAnimationFadeSpeed":300, "cookieMonster":false, "cookieName":"JoyRide", "cookieDomain":false, "tipContainer":"body", "inline":false, "tipContent":"#joyRideTipContent", "postRideCallback":$.noop, "postStepCallback":$.noop};
@@ -12765,6 +12843,15 @@ VISH.Utils = function(V, undefined) {
       case "tab_live_micro":
         VISH.Editor.Object.Live.onLoadTab("micro");
         break;
+      case "tab_quiz_session":
+        VISH.Quiz.activatePolling(false);
+        break;
+      case "tab_quiz_stats_bars":
+        VISH.Quiz.activatePolling(true);
+        break;
+      case "tab_quiz_stats_pie":
+        VISH.Quiz.activatePolling(true);
+        break;
       default:
         break
     }
@@ -12877,7 +12964,7 @@ VISH.Editor = function(V, $, undefined) {
     $(document).on("click", "#help_template_image", function() {
       VISH.Editor.Tour.startTourWithId("template_help", "bottom")
     });
-    $(document).on("click", "#help_quiz_selection", function() {
+    $(document).on("click", "#tab_quizes_help", function() {
       VISH.Editor.Tour.startTourWithId("quiz_help", "bottom")
     });
     $(document).on("click", "#help_themes_selection", function() {
@@ -13007,7 +13094,6 @@ VISH.Editor = function(V, $, undefined) {
       if($("#prompt_answer").val() === "true") {
         $("#prompt_answer").val("false");
         getCurrentArea().html("");
-        $(".theslider").hide();
         getCurrentArea().removeAttr("type");
         getCurrentArea().addClass("editable")
       }
@@ -13019,7 +13105,6 @@ VISH.Editor = function(V, $, undefined) {
     $.fancybox($("#prompt_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
       if($("#prompt_answer").val() === "true") {
         $("#prompt_answer").val("false");
-        $(".theslider").hide();
         article_to_delete.remove();
         VISH.Slides.onDeleteSlide();
         VISH.Editor.Utils.redrawSlides();
@@ -13077,7 +13162,6 @@ VISH.Editor = function(V, $, undefined) {
     }
     presentation.author = "";
     presentation.slides = [];
-    presentation.contain_quiz = false;
     var slide = {};
     $(".slides > article").each(function(index, s) {
       slide.id = $(s).attr("id");
@@ -13130,14 +13214,16 @@ VISH.Editor = function(V, $, undefined) {
                   if(element.type == "quiz") {
                     element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance").parent().find("div > div"));
                     if($(div).find(".multiplechoice_text_in_zone")) {
-                      if($(div).find(".quiz_id")) {
-                        element.quiz_id = $(div).find(".quiz_id").val()
+                      element.quiz_id = "";
+                      if($(div).find("input[name=quiz_id]").val() != "") {
+                        element.quiz_id = $(div).find("input[name=quiz_id]").val()
                       }
                       element.quiztype = "multiplechoice";
-                      element.options = [];
+                      element.options = {};
+                      element.options.choices = [];
                       $(div).find(".multiplechoice_text_in_zone").each(function(i, input_text) {
                         if(input_text && input_text.value != "") {
-                          element.options.push(input_text.value)
+                          element.options.choices.push(input_text.value)
                         }
                       })
                     }else {
@@ -13685,8 +13771,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     }
     $("#" + divId + " .previewimgbox").append(wrapper);
     $("#" + divId + " .previewimgbox button").show();
-    $("#" + divId + " .documentblank").addClass("documentblank_extraMargin");
-    $("#" + divId + " .buttonaddfancy").addClass("buttonaddfancy_extraMargin")
+    $("#" + divId + " .documentblank").addClass("documentblank_extraMargin")
   };
   var resetPreview = function(divId) {
     $("#" + divId + " .previewimgbox button").hide();
@@ -13695,8 +13780,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     if(previewBackground) {
       $("#" + divId + " .previewimgbox").css("background-image", previewBackground)
     }
-    $("#" + divId + " .documentblank").removeClass("documentblank_extraMargin");
-    $("#" + divId + " .buttonaddfancy").removeClass("buttonaddfancy_extraMargin")
+    $("#" + divId + " .documentblank").removeClass("documentblank_extraMargin")
   };
   var drawPreviewElement = function() {
     drawPreviewObject(contentToAdd)
@@ -13806,6 +13890,8 @@ VISH.Editor.Object = function(V, $, undefined) {
     return wrapperPreview
   };
   var drawObject = function(object, area, style, zoomInStyle) {
+    VISH.Debugging.log("Draw object");
+    VISH.Debugging.log(object);
     if(!VISH.Police.validateObject(object)[0]) {
       return
     }
@@ -13942,15 +14028,13 @@ VISH.Samples = function(V, undefined) {
   {"id":"vish13", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video with style param"}, {"id":"335", "type":"object", "areaid":"left", "body":'<iframe width="324" height="243" src="http://www.youtube.com/embed/_jvDzfTRP4E" frameborder="0" allowfullscreen></iframe>', "style":"position: relative; left: 163px; top: 110px; width: 325px; height: 215px;"}]}, {"id":"vish14", "template":"t1", "elements":[{"id":"7393", "type":"text", "areaid":"header", 
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
-  var quizes_samples = {"type":"presentation", "id":12313, "author":"", "slides":[{"id":"article1", "type":"quiz", "quiz_id":"1112", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}]};
-  var quizes_samples_2 = {"type":"presentation", "id":5555, "author":"V\u00edctor Hugo", "slides":[{"id":"article1", "quiz_id":"1112", "template":"t11", "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"Which is the capital of Brazil", "options":["Lima", "Santiago", "R\u00edo De Janeiro", "Brasilia", "Bogota"], "quiz_simple_json":{"type":"quiz_simple", "id":12313, "author":"", "slides":[{"id":"article1", "type":"quiz", "template":"t11", 
-  "elements":[{"id":"zone1", "areaid":"header"}, {"id":"zone2", "type":"mcquestion", "areaid":"left", "question":"\u00bfFuncionara los Multiple Choice Quiz ?", "options":["Si", "Claro que si", "Siempre", "No"]}]}]}}]}]};
-  var quizes_samples_3 = {"id":12314, "type":"presentation", "author":"V. Hugo", "slides":[{"id":"article12312", "type":"standard", "template":"t8", "elements":[{"id":"zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u><i><b>Testing Quiz Inside Template</b></i></u></span></div>'}, {"id":"zone2", "type":"image", "areaid":"left", 
-  "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":["Something", "Nothing", "Everything", "Option D"]}, {"id":"zone4", "areaid":"right"}]}, {"id":"article_12314_1", 
-  "type":"standard", "template":"t7", "elements":[{"id":"zone5", "type":"text", "areaid":"header", "body":'<div style="text-align: center; font-weight: normal; " class="vish-parent-font6"><i><b><span class="vish-font6 vish-fontgeorgia" style="color:undefined;undefined;">Titling ... one two three</span></b></i></div><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"zone6", "type":"text", "areaid":"left", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div>'}, 
-  {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<b style="font-weight: normal; "><i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz quiz ... ?</span></i></b>', "quiztype":"multiplechoice", "options":["aaa ... mucha a ", "bbb ... mucha b ", "ccc ... mucha c"]}, 
-  {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
-  return{full_samples:full_samples, samples:samples, samples_flashcard:samples_flashcard, samples_game:samples_game, samples_sync:samples_sync, quizes_samples:quizes_samples, quizes_samples_2:quizes_samples_2, quizes_samples_3:quizes_samples_3}
+  var quizes_samples = {"id":12314, "type":"presentation", "author":"V. Hugo", "slides":[{"id":"article12312", "type":"standard", "template":"t8", "elements":[{"id":"zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u><i><b>Testing Quiz Inside Template</b></i></u></span></div>'}, {"id":"zone2", "type":"image", "areaid":"left", 
+  "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":{"choices":["Something", "Nothing", "Everything", "Option D"]}}, {"id":"zone4", "areaid":"right"}]}, 
+  {"id":"article_12314_1", "type":"standard", "template":"t7", "elements":[{"id":"zone5", "type":"text", "areaid":"header", "body":'<div style="text-align: center; font-weight: normal; " class="vish-parent-font6"><i><b><span class="vish-font6 vish-fontgeorgia" style="color:undefined;undefined;">Titling ... one two three</span></b></i></div><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"zone6", "type":"text", "areaid":"left", 
+  "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div>'}, 
+  {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<b style="font-weight: normal; "><i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz quiz ... ?</span></i></b>', "quiztype":"multiplechoice", "options":{"choices":["aaa ... mucha a ", "bbb ... mucha b ", 
+  "ccc ... mucha c"]}}, {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
+  return{full_samples:full_samples, samples:samples, samples_flashcard:samples_flashcard, samples_game:samples_game, samples_sync:samples_sync, quizes_samples:quizes_samples}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var imageList = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, 
@@ -14535,6 +14619,7 @@ VISH.Quiz = function(V, $, undefined) {
   var getResultsTimeOut;
   var isWaitingBackwardOneSlide = false;
   var isWaitingForwardOneSlide = false;
+  var pollingActivated = false;
   var init = function(presentation) {
     if(presentation.type == "quiz_simple") {
       quizMode = "answer";
@@ -14545,7 +14630,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
     VISH.Quiz.Renderer.init();
     VISH.Quiz.API.init();
-    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"90%", "height":"100%", "padding":0, "onStart":function(data) {
+    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"100%", "height":"100%", "padding":0, "autoScale":true, "onStart":function(data) {
       VISH.Utils.loadTab("tab_quiz_session")
     }})
   };
@@ -14577,7 +14662,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
     $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
     $(document).on("click", ".quiz_stop_session_dont_save", _stopAndDontSaveQuiz);
-    $(document).on("click", "#quiz_full_screen", VISH.SlideManager.toggleFullScreen);
+    $(document).on("click", ".quiz_full_screen", VISH.SlideManager.toggleFullScreen);
     $(document).on("click", ".hide_qrcode", _hideQRCode);
     $(document).on("click", ".show_qrcode", _showQRCode)
   };
@@ -14587,8 +14672,7 @@ VISH.Quiz = function(V, $, undefined) {
       var quizId = $(VISH.Slides.getCurrentSlide()).find(".quizId").val();
       $("a#addQuizSessionFancybox").trigger("click");
       V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
-      _startStats();
-      _updateBarsStats()
+      _startStats()
     }else {
       V.Debugging.log("User not logged")
     }
@@ -14610,6 +14694,14 @@ VISH.Quiz = function(V, $, undefined) {
     $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
     $("#tab_quiz_stats_pie_content").addClass("resized_fancybox_for_stats");
     $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
+  };
+  var activatePolling = function(activate_boolean) {
+    pollingActivated = activate_boolean;
+    if(pollingActivated) {
+      _updateBarsStats()
+    }else {
+      clearInterval(getResultsTimeOut)
+    }
   };
   var _updateBarsStats = function(data) {
     if(data) {
@@ -14633,12 +14725,12 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _showResults, _onQuizSessionResultsReceivedError)
   };
   var _onQuizSessionReceived = function(quiz_session_id) {
-    V.Debugging.log("_onQuizSessionReceived quiz_session_id: " + quiz_session_id);
     var quizUrlForSession = "http://" + window.location.host.toString() + "/quiz_sessions/";
     var url = quizUrlForSession + quiz_session_id;
     var current_slide = V.Slides.getCurrentSlide();
     var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
     $(header).find(".url_share > span > a").attr("href", url);
+    $(header).find(".url_share > span > a").text("");
     $(header).find(".url_share > span > a").append(url.toString());
     $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").children().remove();
     $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").qrcode(url.toString());
@@ -14649,11 +14741,9 @@ VISH.Quiz = function(V, $, undefined) {
     $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='" + VISH.ImagesPath + "qrcode_background.png' />")
   };
   var _OnQuizSessionReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_OnQuizSessionReceivedError:  " + received)
+    V.Debugging.log("_OnQuizSessionReceivedError:  " + JSON.stringify(error))
   };
   var onStopMcQuizButtonClicked = function() {
-    V.Debugging.log("onStopMcQuizButtonClicked");
     var id = $("a[name=modal_fancybox]").attr("href");
     var maskHeight = $(document).height();
     var maskWidth = $(window).width();
@@ -14696,11 +14786,9 @@ VISH.Quiz = function(V, $, undefined) {
     var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value")
   };
   var _onQuizSessionCloseReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + received)
+    V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _stopAndDontSaveQuiz = function() {
-    V.Debugging.log("_stopAndDontSaveQuiz detected");
     var current_slide = VISH.Slides.getCurrentSlide();
     var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
     _hideStopQuizPopup();
@@ -14736,12 +14824,10 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
   };
   var _OnQuizVotingReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + received)
+    V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _onQuizSessionResultsReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + received)
+    V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _showResults = function(data) {
     var received = JSON.stringify(data);
@@ -14820,11 +14906,11 @@ VISH.Quiz = function(V, $, undefined) {
   var setIsWaitingBackwardOneSlide = function(val) {
     isWaitingBackwardOneSlide = val
   };
-  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, setIsWaitingForwardOneSlide:setIsWaitingForwardOneSlide, setIsWaitingBackwardOneSlide:setIsWaitingBackwardOneSlide}
+  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, setIsWaitingForwardOneSlide:setIsWaitingForwardOneSlide, setIsWaitingBackwardOneSlide:setIsWaitingBackwardOneSlide}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
-  var INCREASE_ZOOM = 1.2;
+  var INCREASE_SIZE = 1.2;
   var init = function() {
     cleanZoneTools();
     cleanToolbar();
@@ -14844,26 +14930,22 @@ VISH.Editor.Tools = function(V, $, undefined) {
   };
   var loadToolsForZone = function(zone) {
     cleanZoneTools();
-    var type = $(zone).attr("type");
+    var type = $(zone).clone().attr("type");
     switch(type) {
       case "text":
         loadToolbarForElement(type);
         break;
       case "image":
-        _showSlider($(zone).find("img").attr("id"));
         loadToolbarForElement(type);
         break;
       case "video":
-        _showSlider($(zone).find("video").attr("id"));
         loadToolbarForElement(type);
         break;
       case "object":
-        _showSlider($(zone).find(".object_wrapper").attr("id"));
         var object = $(zone).find(".object_wrapper").children()[0];
         loadToolbarForObject(object);
         break;
       case "snapshot":
-        _showSlider($(zone).find(".snapshot_wrapper").attr("id"));
         loadToolbarForElement("snapshot");
         break;
       case "quiz":
@@ -14880,7 +14962,6 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var cleanZoneTools = function(zone) {
     $(".menuselect_hide").hide();
     $(".delete_content").hide();
-    $(".theslider").hide();
     _cleanElementToolbar()
   };
   var cleanToolbar = function() {
@@ -14953,12 +15034,6 @@ VISH.Editor.Tools = function(V, $, undefined) {
     $(".nicEdit-panel").hide();
     $("#toolbar_element").find("img").hide()
   };
-  var _showSlider = function(id) {
-    if(id) {
-      id = id.substring(9);
-      $("#sliderId" + id).show()
-    }
-  };
   var selectTheme = function() {
     $("#hidden_button_to_launch_theme_fancybox").trigger("click")
   };
@@ -14978,13 +15053,23 @@ VISH.Editor.Tools = function(V, $, undefined) {
     _resize("-")
   };
   var _resize = function(action) {
-    var object, objectInfo, zoom;
+    var object, objectInfo, resizeFactor;
     var area = VISH.Editor.getCurrentArea();
     var type = $(area).attr("type");
+    if(action == "+") {
+      resizeFactor = INCREASE_SIZE
+    }else {
+      resizeFactor = 1 / INCREASE_SIZE
+    }
     switch(type) {
-      case "object":
-      ;
       case "snapshot":
+        var snapshot_wrapper = area.children(":first");
+        var proportion = $(snapshot_wrapper).height() / $(snapshot_wrapper).width();
+        var originalWidth = $(snapshot_wrapper).width();
+        snapshot_wrapper.width(originalWidth * resizeFactor);
+        snapshot_wrapper.height(originalWidth * resizeFactor * proportion);
+        break;
+      case "object":
         var parent = area.children(":first");
         object = parent.children(":first");
         objectInfo = VISH.Object.getObjectInfo(object);
@@ -14994,21 +15079,16 @@ VISH.Editor.Tools = function(V, $, undefined) {
         var originalWidth = object.width();
         var parentoriginalHeight = parent.height();
         var parentoriginalWidth = parent.width();
-        if(action == "+") {
-          zoom = INCREASE_ZOOM
-        }else {
-          zoom = 1 / INCREASE_ZOOM
-        }
-        $(parent).width(parentoriginalWidth * zoom);
-        $(parent).height(parentoriginalHeight * zoom);
+        $(parent).width(parentoriginalWidth * resizeFactor);
+        $(parent).height(parentoriginalHeight * resizeFactor);
         var styleZoom = V.Utils.getZoomFromStyle($(object).attr("style"));
         if(styleZoom != 1) {
           newWidth = newWidth / styleZoom;
           newHeight = Math.round(newWidth / aspectRatio);
           newWidth = Math.round(newWidth)
         }else {
-          newHeight = parentoriginalHeight * zoom;
-          newWidth = parentoriginalWidth * zoom
+          newHeight = parentoriginalHeight * resizeFactor;
+          newWidth = parentoriginalWidth * resizeFactor
         }
         $(object).width(newWidth);
         $(object).height(newHeight);
@@ -15017,25 +15097,15 @@ VISH.Editor.Tools = function(V, $, undefined) {
         object = $(area).find("img");
         var originalHeight = object.height();
         var originalWidth = object.width();
-        if(action == "+") {
-          zoom = INCREASE_ZOOM
-        }else {
-          zoom = 1 / INCREASE_ZOOM
-        }
-        object.width(originalWidth * zoom);
-        object.height(originalHeight * zoom);
+        object.width(originalWidth * resizeFactor);
+        object.height(originalHeight * resizeFactor);
         break;
       case "video":
         object = $(area).find("video");
         var originalHeight = object.height();
         var originalWidth = object.width();
-        if(action == "+") {
-          zoom = INCREASE_ZOOM
-        }else {
-          zoom = 1 / INCREASE_ZOOM
-        }
-        object.width(originalWidth * zoom);
-        object.height(originalHeight * zoom);
+        object.width(originalWidth * resizeFactor);
+        object.height(originalHeight * resizeFactor);
         break;
       default:
         break
@@ -15047,8 +15117,6 @@ VISH.Editor.Tools = function(V, $, undefined) {
     var type = $(area).attr("type");
     switch(type) {
       case "object":
-      ;
-      case "snapshot":
         var parent = area.children(":first");
         object = parent.children(":first");
         objectInfo = VISH.Object.getObjectInfo(object);
@@ -16842,7 +16910,8 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
       if(!_isBorderClick(event, idToDrag)) {
         return false
       }
-    }})
+    }});
+    VISH.Editor.Tools.loadToolsForZone(current_area)
   };
   var _isBorderClick = function(event, idToDrag) {
     var accuracy = 6;
@@ -16936,9 +17005,6 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   var maxNumMultipleChoiceOptions = 6;
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)"];
   var init = function() {
-    $(document).on("click", ".add_quiz_option", _addMultipleChoiceOption);
-    $(document).on("click", ".remove_quiz_option", _removeMultipleChoiceOption);
-    $(document).on("keydown", ".multiplechoice_text", _onKeyDown)
   };
   var onLoadTab = function(tab) {
   };
@@ -16982,78 +17048,6 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         break;
       default:
         break
-    }
-  };
-  var _onKeyDown = function(event) {
-    if(event.keyCode == 13) {
-      var target = event.target;
-      if($(target).val() != "" && $(target).val() != "write quiz options here") {
-        _addMultipleChoiceOption(event)
-      }
-    }
-  };
-  var _addMultipleChoiceOption = function(event, myInput, myImg, optionText) {
-    var img, input;
-    var optionsLength = $(".current").find(".ul_mch_options > li").length;
-    if(optionsLength >= maxNumMultipleChoiceOptions) {
-      return
-    }
-    if(event) {
-      if(event.target.tagName === "INPUT") {
-        img = $(event.target).parent().find("img");
-        input = event.target
-      }else {
-        if(event.target.tagName === "IMG") {
-          img = event.target;
-          input = $(event.target).parent().parent().find("input")
-        }
-      }
-    }else {
-      img = myImg;
-      input = myInput;
-      $(input).val(optionText)
-    }
-    var a = $(img).parent();
-    var li = $(input).parent();
-    var targetChoice = $(".current").find(".ul_mch_options > li").index(li);
-    var isLastChoice = targetChoice === optionsLength - 1;
-    if(!isLastChoice) {
-      return
-    }
-    $(img).attr("src", VISH.ImagesPath + "delete.png");
-    $(a).removeClass().addClass("remove_quiz_option");
-    $(input).blur();
-    var maxChoicesReached = optionsLength == maxNumMultipleChoiceOptions - 1;
-    var newMultipleChoice = _renderDummyMultipleChoice(choicesLetters[optionsLength], !maxChoicesReached);
-    $(".current").find(".ul_mch_options").append(newMultipleChoice);
-    $(".current").find(".ul_mch_options > li").last().find("input").focus()
-  };
-  var _renderDummyMultipleChoice = function(text, addImage) {
-    var li = $("<li class='li_mch_option'></li>");
-    $(li).append("<span class='mcChoiceSpan'>" + text + "</span>");
-    $(li).append("<input type='text' class='multiplechoice_text'></input>");
-    if(addImage === true) {
-      $(li).append(_renderAddImg())
-    }
-    return li
-  };
-  var _renderAddImg = function() {
-    var a = $("<a class='add_quiz_option'></a>");
-    var addImg = $("<img src='" + VISH.ImagesPath + "add_quiz_option.png'/>");
-    $(a).append(addImg);
-    return a
-  };
-  var _removeMultipleChoiceOption = function(id) {
-    var li = $(event.target).parent().parent();
-    $(li).remove();
-    $(".current").find(".ul_mch_options > li").each(function(index, value) {
-      var span = $(value).find("span");
-      $(span).html(choicesLetters[index])
-    });
-    var lastLi = $(".current").find(".ul_mch_options > li").last();
-    var lastA = $(lastLi).find("a");
-    if($(lastA).length == 0 || $(lastA).hasClass("add_quiz_option") === false) {
-      $(lastLi).append(_renderAddImg())
     }
   };
   var _addMultipleChoiceQuiz = function(area) {
@@ -17130,9 +17124,9 @@ VISH.Editor.Renderer = function(V, $, undefined) {
                 V.Editor.Object.Snapshot.drawSnapShot(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].scrollTop, slide.elements[el].scrollLeft)
               }else {
                 if(slide.elements[el].type === "quiz") {
-                  V.Debugging.log("quiz element quiz id " + slide.elements[el].quiz_id);
+                  var received = JSON.stringify(slide.elements[el]);
                   V.Editor.Quiz.addQuiz(slide.elements[el].quiztype, slide.elements[el].id);
-                  V.Editor.Quiz.drawQuiz(slide.elements[el].quiztype, slide.elements[el].id, slide.elements[el].question, slide.elements[el].options, slide.elements[el].quiz_id)
+                  V.Editor.Quiz.drawQuiz(slide.elements[el].quiztype, slide.elements[el].id, slide.elements[el].question, slide.elements[el].options["choices"], slide.elements[el].quiz_id)
                 }
               }
             }
@@ -17859,7 +17853,8 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     $(current_area).html("");
     $(current_area).append(videoTag);
     VISH.Editor.addDeleteButton($(current_area));
-    $("#" + idToDragAndResize).draggable({cursor:"move"})
+    $("#" + idToDragAndResize).draggable({cursor:"move"});
+    VISH.Editor.Tools.loadToolsForZone(current_area)
   };
   var renderVideoFromSources = function(sources) {
     var posterUrl = VISH.ImagesPath + "example_poster_image.jpg";
@@ -18981,7 +18976,6 @@ VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
   var postStartQuizSession = function(quizId, successCallback, failCallback) {
-    console.log("postStartQuizSession and quizId : " + quizId);
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
       var send_type = "POST";
       var params = {"quiz_id":quizId, "authenticity_token":V.User.getToken()};
@@ -19019,7 +19013,6 @@ VISH.Quiz.API = function(V, $, undefined) {
         quizName = ""
       }
       var send_type = "DELETE";
-      V.Debugging.log("token is: " + V.User.getToken());
       var params = {"id":quiz_session_id, "authenticity_token":V.User.getToken(), "name":quizName};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
         var results = data;
@@ -19114,30 +19107,30 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     }
   };
   var _renderMcQuestion = function(quiz_element, zone_class, slide_id, zone) {
-    var received = JSON.stringify(quiz_element);
-    V.Debugging.log("_renderMCQuestion : and quiz_element:  " + received);
     var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_body'><div class='question'>" + quiz_element["question"] + "</div>";
+    ret += "<div class='mcquestion_body'>";
+    ret += "<div class='question'>" + quiz_element["question"] + "</div>";
     ret += "<form class='mcquestion_form' action='" + quiz_element["posturl"] + "' method='post'>";
-    for(var i = 0;i < quiz_element["options"].length;i++) {
+    for(var i = 0;i < quiz_element["options"]["choices"].length;i++) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       if(VISH.Quiz.getQuizMode() == "answer") {
-        ret += "<label class='mc_answer'>" + next_index + ") <input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>" + quiz_element["options"][i] + "</label>"
+        ret += "<label class='mc_answer'><input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>";
+        ret += next_index + ") " + quiz_element.options["choices"][i] + "</label>"
       }else {
-        ret += "<label class='mc_answer'>" + next_index + ") " + quiz_element["options"][i] + "</label>"
+        ret += "<label class='mc_answer'><span>" + next_index + ") </span>" + quiz_element.options["choices"][i] + "</label>"
       }
       ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
       ret += "<label class='mcoption_label'></label>"
     }
     ret += "<input type='hidden' value='" + zone + "' name='zone' />";
-    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quizid' class='quizId' />";
-    ret += "</div>";
+    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
     ret += "<div class='mch_inputs_wrapper'>";
     ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
     ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
     ret += "</div>";
     ret += "</form>";
+    ret += "</div>";
     ret += "</div>";
     ret += "</div>";
     return ret
@@ -19328,6 +19321,7 @@ VISH.SlideManager = function(V, $, undefined) {
     }
   };
   var toggleFullScreen = function() {
+    V.Debugging.log("toggleFullScreen detected");
     if(VISH.Status.isSlaveMode()) {
       return
     }
