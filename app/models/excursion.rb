@@ -78,7 +78,8 @@ class Excursion < ActiveRecord::Base
       
       slide["elements"].each do |element| 
        next unless element["type"] == "quiz"
-        if element["quiz_id"].nil?
+       
+        if element["quiz_id"] == ""
           quiz = Quiz.new
         else
           quiz = Quiz.find(element["quiz_id"])
@@ -99,8 +100,8 @@ class Excursion < ActiveRecord::Base
         end
         quiz.simple_json = element["quiz_simple_json"].to_json
         quiz.save!
-       element["quiz_id"]=quiz.id
-         end
+        element["quiz_id"]=quiz.id
+      end
     end
     parsed_json
   end
