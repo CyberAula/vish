@@ -55,7 +55,6 @@
 }
 
 .openQuizContainer {
-
 width: 100%;
 height: 100%;
 
@@ -66,42 +65,13 @@ height: 100%;
 }
 /* Multiple Choice Question Quiz*/
 .multipleChoiceQuizContainer {
-width: 100%;
-height: 100%;
-}
-.value_multiplechoice_question {
-	background: none no-repeat scroll 5px 50% transparent;
-    border: 1px solid #9B999D;
-    border-radius: 10px 10px 10px 10px;
-    font-family: Helvetica;
-    font-size: 1.4em;
-    outline: 0 none;
-    padding: 2% 4%;
-    position: relative;
-    z-index: 1000;
-	max-width: 90%;
-	min-width: 50%;
-    max-height: 40%;
-}
-
-.multiplechoice_text {
-	background: none no-repeat scroll 5px 50% transparent;
-    border: 1px solid #9B999D;
-    border-radius: 10px 10px 10px 10px;
-    font-family: Helvetica;
-    font-size: 16px;
-    outline: 0 none;
-    padding: 5px 7px;
-    position: relative;
-    z-index: 1000;
-    width: 300px;
+    width: 100%;
+    height: 100%;
 }
 
 .li_mch_option {
-	
 	list-style:none;
 }
-
 
 .value_multiplechoice_question_in_zone {
     background: none no-repeat scroll 5px 50% transparent;
@@ -118,10 +88,8 @@ height: 100%;
     max-height: 40%;
 }
 
-
 .ul_mch_options_in_zone {
     padding: 0%;
-
 }
 
 .li_mch_options_in_zone {
@@ -134,7 +102,7 @@ height: 100%;
 .li_mch_options_in_zone > span{
     color: ##000000;
     display: inline-block;
-    font-size: 27px;
+    font-size: 1.1em;
     text-align: center;
     width: 4%;
     padding: 0.5%;
@@ -239,7 +207,7 @@ span.mcChoiceSpan{
  **/
 
  .mcquestion_container {
-    position:relative;
+    /*position:relative; */
     width:100%;
     height:90%;
     
@@ -481,36 +449,6 @@ span.mcChoiceSpan{
     width: 94%;
 }
 
-.tfquestion_button {
-    display:block;
-    position:relative;
-    float:right;
-    color: blue;
-    font-size:1.2em;
-    text-align:center;
-    font-weight:bold;
-    vertical-align:bottom;
-    margin-top:5%; 
-    margin-right:5%;
-    height:9%;
-    width: 20%;
-    -moz-border-radius:2em;
-    -webkit-border-rad.mcquestion_header {
-    padding-left: 0%;
-    margin-top:1.5%;
-    width: 100%;  
-    height: 5%;
-    display: inline-block;  
-    color:#000066;
-    text-align:center;
-    font-size:1.2em;
-    font-weight:bold;
-}ius: 2em;
-    cursor:pointer;
-}
-
-
-
 /*
     OPEN QUESTION SLIDE
     by Enrique Barra
@@ -529,6 +467,7 @@ span.mcChoiceSpan{
     line-height: 105%;
     text-align:left;
     margin-left: 0%;
+    font-size: 1.2em;
 }
     
     
@@ -953,8 +892,8 @@ height: 20%;
 }
 
 #stop_quiz_fancybox {
-    margin-left: 200px;
-    margin-top: 100px;
+    margin-left: 20%;
+    margin-top: 20%;
     position: absolute;
     text-align: center;
 }
@@ -963,14 +902,14 @@ height: 20%;
       background-color: white;
       position:fixed;
       width:40%;
-      height:35%;
+      height:23%;
       display:none;
       z-index:9999;
-      padding:20px;
-      border-radius: 21px 21px 21px 21px;
+      padding:3%;
+      border-radius: 20px;
 }
 .quiz_stop_session {
-    padding: 5px 10px;
+    padding: 2% 5%;
     display: inline;
     text-decoration: none;
     background: #FF005D repeat-x bottom;
@@ -998,6 +937,7 @@ height: 20%;
     margin: 1%;
     color: #CCC;
 }
+
 .nicEdit-mcquestion_header {
     background: url("/assets/background_text3.png") no-repeat scroll 46px center;
     color: #000000;

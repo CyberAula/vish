@@ -28,6 +28,16 @@
                       :confirm => t('confirm_delete', :scope => @excursion.class.to_s.underscore),
                       :method => :delete, :class => :action %>
       </div>
+      <script type="text/javascript">
+        $(document).on('confirm:complete', function(e,answer) {
+          if (answer) {
+            //User confirmed
+          } else {
+            console.log("Cancel");
+            // user canceled!
+          }
+        });
+      </script>
     <% end %>
 
     <% unless excursion.draft %>
