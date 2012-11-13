@@ -32,9 +32,11 @@
         $(document).on('confirm:complete', function(e,answer) {
           if (answer) {
             //User confirmed
+            if ((VISH)&&(VISH.IframeAPI)&&(VISH.IframeAPI.allowExitWithoutConfirmation)) {
+              VISH.IframeAPI.allowExitWithoutConfirmation("*");
+            }
           } else {
-            console.log("Cancel");
-            // user canceled!
+            //User canceled!
           }
         });
       </script>
