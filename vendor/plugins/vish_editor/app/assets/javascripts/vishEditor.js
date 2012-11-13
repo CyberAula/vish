@@ -20,17 +20,17 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.walk60":"Puedes previsualizar la flashcard en cualquier momento utilizando el icono de previsualizar.", "i.walk61":"Si salvas tu presentaci\u00f3n como una flashcard, se mostrar\u00e1 como tal, pero en cualquier momento puedes editarla y mostrarla como una presentaci\u00f3n normal de nuevo.", "i.walk62":"Haciendo click en este bot\u00f3n, podr\u00e1s previsualizar tu excursi\u00f3n como si ya estuviese publicada.", "i.walk63":"Este bot\u00f3n te permitir\u00e1 escojer entre varias opciones para tu excursion:", 
 "i.walk64":"Utilizando este menu puedes salvar tu excursi\u00f3n, convertir tu presentaci\u00f3n a flashcard, previsualizar tu excursi\u00f3n antes de publicarla, cambiar los detalles de tu excursi\u00f3n y utilizar este tutorial cada vez que lo necesites", "i.walk65":"Muchas de estas opciones est\u00e1n en el espacio de ViSH Editor, pero siempre podr\u00e1s encontrarlas aqu\u00ed de igual manera.", "i.walk66":"Utilizando este bot\u00f3n  podr\u00e1s visualizar el tutorial principal de la aplicaci\u00f3n ViSH Editor", 
 "i.walk67":"Utilizando este bot\u00f3n acceder\u00e1s a la selecci\u00f3n de un tema visual para representar tu excursi\u00f3n.", "i.walk68":"Este espacio contiene todas las opciones para interactuar con tu contenido:", "i.walk69":"Todas las veces en las que a\u00f1adas o selecciones contenido en tu excursi\u00f3n, esta barra de herramientas se activar\u00e1 para que puedas interacturar con tu contenido.", "i.walk70":"Escoje entre los diferentes temas que m\u00e1s representen tu excursi\u00f3n. La primera linea de temas contiene degradados y colores vibrantes, la segunda linea esta compuesta por texturas suaves, la ultima linea imita los objectos de la vida real y por \u00faltimo, el \u00faltimo tema contiene una suave animaci\u00f3n para darle a tu excursi\u00f3n un toque especial. \u00a1Disfr\u00fatalos!", 
-"i.walk71":"(A\u00f1adir p\u00e1gina web)", "i.walk72":"(A\u00f1adir Captura de p\u00e1gina web)", "i.walk73":"A\u00f1adir p\u00e1gina web", "i.walk74":"A\u00f1adir Captura de p\u00e1gina web", "i.link":"A\u00f1adir url", "i.resize":"Redimensionar", "i.flashcardbg":"Fondo de flashcard", "i.text":"Texto", "i.themesButton":"ViSH Editor Themes", "i.toolbarButton":"Barra de herramientas", "i.themesTitle":"Selecci\u00f3n de temas", "i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
-"i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.Addv\u00eddeoUrl":"a\u00f1adir URL de v\u00eddeo", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", "i.AddObjectContent":"A\u00f1adiendo contenido Object", "i.AddObjectContentUpload":"Subiendo contenido Object", "i.AddObjectContentUrl":"A\u00f1adiendo contenido Object por url", 
-"i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.Addv\u00eddeoContent":"A\u00f1adiendo v\u00eddeo", "i.Addv\u00eddeoContentUrl":"A\u00f1adiendo v\u00eddeo por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", 
-"i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.tutorialButton":"Bot\u00f3n de tutorial", 
-"i.previewButton":"Bot\u00f3n de previsualizaci\u00f3n", "i.menuButton":"Men\u00fa de ViSH Editor", "i.objectContent":"Contenido Flash", "i.slidesmenu":"Este es el menu de slides", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.v\u00eddeo":"v\u00eddeo", "i.v\u00eddeos":"v\u00eddeos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", 
-"i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", 
-"i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", 
-"i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", 
-"i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", 
-"i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", 
-"i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.walk71":"(A\u00f1adir p\u00e1gina web)", "i.walk72":"(A\u00f1adir Captura de p\u00e1gina web)", "i.walk73":"A\u00f1adir p\u00e1gina web", "i.walk74":"A\u00f1adir Captura de p\u00e1gina web", "i.walk75":'Esta zona te ofrece una variedad de Quizes para a\u00f1adir a tu excursi\u00f3n. Solo tienes que hacer clic en la miniatura que m\u00e1s se ajuste a la informaci\u00f3n que quieras transmitir. Pulsa "Cerrar" para continuar.', "i.link":"A\u00f1adir url", "i.resize":"Redimensionar", "i.flashcardbg":"Fondo de flashcard", 
+"i.text":"Texto", "i.themesButton":"ViSH Editor Themes", "i.toolbarButton":"Barra de herramientas", "i.themesTitle":"Selecci\u00f3n de temas", "i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", 
+"i.Addv\u00eddeoUrl":"a\u00f1adir URL de v\u00eddeo", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", "i.AddObjectContent":"A\u00f1adiendo contenido Object", "i.AddObjectContentUpload":"Subiendo contenido Object", "i.AddObjectContentUrl":"A\u00f1adiendo contenido Object por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", 
+"i.Addv\u00eddeoContent":"A\u00f1adiendo v\u00eddeo", "i.Addv\u00eddeoContentUrl":"A\u00f1adiendo v\u00eddeo por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.continue":"Continuar", "i.Content":"Contenido", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", 
+"i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.tutorialButton":"Bot\u00f3n de tutorial", "i.previewButton":"Bot\u00f3n de previsualizaci\u00f3n", "i.menuButton":"Men\u00fa de ViSH Editor", "i.objectContent":"Contenido Flash", "i.slidesmenu":"Este es el menu de slides", 
+"i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.v\u00eddeo":"v\u00eddeo", "i.v\u00eddeos":"v\u00eddeos", "i.Text":"Texto", "i.Object":"Objeto", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", 
+"i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", "i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", 
+"i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.selectquiz":"Seleccionar Quiz", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", 
+"i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", 
+"i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, 
+"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
@@ -13215,21 +13215,19 @@ VISH.Editor = function(V, $, undefined) {
                   }
                 }else {
                   if(element.type == "quiz") {
-                    element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance").parent().find("div > div"));
-                    if($(div).find(".multiplechoice_text_in_zone")) {
-<<<<<<< HEAD
-=======
+                    element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".value_multiplechoice_question_in_zone"));
+                    if($(div).find(".multiplechoice_option_in_zone")) {
                       element.quiz_id = "";
->>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
                       if($(div).find("input[name=quiz_id]").val() != "") {
                         element.quiz_id = $(div).find("input[name=quiz_id]").val()
                       }
                       element.quiztype = "multiplechoice";
                       element.options = {};
                       element.options.choices = [];
-                      $(div).find(".multiplechoice_text_in_zone").each(function(i, input_text) {
-                        if(input_text && input_text.value != "") {
-                          element.options.choices.push(input_text.value)
+                      $(div).find(".multiplechoice_option_in_zone").each(function(i, option_text) {
+                        V.Debugging.log("option text: " + option_text);
+                        if(option_text && option_text.value != '<font size="4" unselectable="on">Write options here</font>' && option_text.value != "") {
+                          element.options.choices.push(VISH.Editor.Text.changeFontPropertiesToSpan($(option_text)))
                         }
                       })
                     }else {
@@ -13896,8 +13894,6 @@ VISH.Editor.Object = function(V, $, undefined) {
     return wrapperPreview
   };
   var drawObject = function(object, area, style, zoomInStyle) {
-    VISH.Debugging.log("Draw object");
-    VISH.Debugging.log(object);
     if(!VISH.Police.validateObject(object)[0]) {
       return
     }
@@ -14633,7 +14629,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
     VISH.Quiz.Renderer.init();
     VISH.Quiz.API.init();
-    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"100%", "height":"100%", "padding":0, "autoScale":true, "onStart":function(data) {
+    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"90%", "height":"90%", "margin":"10%", "padding":0, "autoScale":true, "onStart":function(data) {
       VISH.Utils.loadTab("tab_quiz_session")
     }})
   };
@@ -14699,14 +14695,7 @@ VISH.Quiz = function(V, $, undefined) {
     $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
   };
   var activatePolling = function(activate_boolean) {
-<<<<<<< HEAD
-    console.log("activatePolling and boolean:" + activate_boolean);
-    V.Debugging.log("activatePolling and boolean:" + activate_boolean);
     pollingActivated = activate_boolean;
-    V.Debugging.log("pollingActivated is :" + pollingActivated);
-=======
-    pollingActivated = activate_boolean;
->>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
     if(pollingActivated) {
       _updateBarsStats()
     }else {
@@ -15575,7 +15564,7 @@ VISH.Dummies = function(VISH, undefined) {
     "<article id='article_id_to_change' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle' size='medium' class='t13_circle editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'  class='t13_right editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='circle1' size='small' class='t14_circle1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle2' size='small' class='t14_circle2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle3' size='small' class='t14_circle3 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right3' size='medium' class='t14_right3 editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t15_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='large' class='t15_center2 editable grey_background selectable'></div></article>"];
-    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><textarea class='value_multiplechoice_question_in_zone' placeholder='write question here' ><font size='4'>Write question here</font></textarea><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone '><span>a)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>b)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>c)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>d)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>e)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li><li class='li_mch_options_in_zone '><span>f)</span><input class='multiplechoice_text_in_zone' type='text' placeholder='write quiz options here' /></li></ul><input type='hidden' name='quiz_id'/></div></div>", 
+    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone' placeholder='write question here' ><font size='4'>Write question here</font></div><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone'><span>a)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>b)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>c)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>d)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>e)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>f)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li></ul><input type='hidden' name='quiz_id'/></div></div>", 
     "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"]
   };
   var getDummy = function(template, position, presentation_id, existing_slide) {
@@ -17044,13 +17033,14 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       case "multiplechoice":
         $(zone).find(".value_multiplechoice_question_in_zone").parent().find("div > div").children().remove();
         $(zone).find(".value_multiplechoice_question_in_zone").parent().find("div > div").append(question);
-        var inputs = $(zone).find(".multiplechoice_text_in_zone");
+        var inputs = $(zone).find(".multiplechoice_option_in_zone");
         for(var i = 0;i <= options.length - 1;i++) {
           $(inputs[i]).val(options[i])
         }
         if(quiz_id) {
           $(zone).find('input[name="quiz_id"]').val(quiz_id)
         }
+        $(zone).find(".multiplechoice_option_in_zone").attr("rows", "1");
         break;
       case "open":
         break;
@@ -17082,9 +17072,17 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     var textArea = $(current_area).find(".value_" + type + "_question_in_zone");
     var wysiwygId = "wysiwyg_" + current_area.attr("id");
     textArea.attr("id", wysiwygId);
-    textArea.addClass("wysiwygInstance");
     V.Editor.Text.getNicEditor().addInstance(wysiwygId);
-    $(current_area).find(".value_multiplechoice_question_in_zone").parent().find("div")[0].addClass("mcquestion_header")
+    $(current_area).find("." + type + "_option_in_zone").each(function(index, option_element) {
+      V.Debugging.log("index: " + index);
+      var optionWysiwygId = "wysiwyg_" + current_area.attr("id") + "_" + index;
+      $(option_element).attr("id", optionWysiwygId);
+      $(option_element).addClass("wysiwygInstance");
+      V.Editor.Text.getNicEditor().addInstance(optionWysiwygId)
+    });
+    $(current_area).find("." + type + "_option_in_zone").parent().each(function(index, element) {
+      $(element).find("div")[0].addClass("mcquestion_options")
+    })
   };
   return{init:init, onLoadTab:onLoadTab, drawQuiz:drawQuiz, addQuiz:addQuiz}
 }(VISH, jQuery);
@@ -17135,10 +17133,6 @@ VISH.Editor.Renderer = function(V, $, undefined) {
               }else {
                 if(slide.elements[el].type === "quiz") {
                   var received = JSON.stringify(slide.elements[el]);
-<<<<<<< HEAD
-                  console.log("element received from server:  " + received);
-=======
->>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
                   V.Editor.Quiz.addQuiz(slide.elements[el].quiztype, slide.elements[el].id);
                   V.Editor.Quiz.drawQuiz(slide.elements[el].quiztype, slide.elements[el].id, slide.elements[el].question, slide.elements[el].options["choices"], slide.elements[el].quiz_id)
                 }
@@ -18568,7 +18562,9 @@ VISH.LocalStorage = function(V, $, undefined) {
       }
       localStorage.setItem("presentation_" + presentation.id, JSON.stringify(presentation));
       localStorage.setItem("presentation_" + presentation.id + "_url", window.location.href);
-      _saveImage(presentation.avatar)
+      if(presentation.avatar !== undefined) {
+        _saveImage(presentation.avatar)
+      }
     }else {
       V.Debugging.log("Sorry! No web storage support.")
     }
@@ -19023,25 +19019,22 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_body'>";
-    ret += "<div class='question'>" + quiz_element["question"] + "</div>";
+    ret += "<div class='nicEdit-mcquestion_header question_in_viewer'>" + quiz_element["question"] + "</div>";
     ret += "<form class='mcquestion_form' action='" + quiz_element["posturl"] + "' method='post'>";
+    ret += "<ul class='ul_mch_options_in_zone'>";
     for(var i = 0;i < quiz_element["options"]["choices"].length;i++) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       if(VISH.Quiz.getQuizMode() == "answer") {
-        ret += "<label class='mc_answer'><input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input>";
-        ret += next_index + ") " + quiz_element.options["choices"][i] + "</label>"
       }else {
-        ret += "<label class='mc_answer'><span>" + next_index + ") </span>" + quiz_element.options["choices"][i] + "</label>"
+        ret += "<li class='li_mch_options_in_zone'>";
+        ret += "<span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i] + "</div>"
       }
       ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
       ret += "<label class='mcoption_label'></label>"
     }
+    ret += "</ul>";
     ret += "<input type='hidden' value='" + zone + "' name='zone' />";
-<<<<<<< HEAD
-    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quizid' class='quizId' />";
-=======
     ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
->>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
     ret += "<div class='mch_inputs_wrapper'>";
     ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
     ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
@@ -19166,6 +19159,9 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Utils.loadDeviceCSS();
     V.User.init(options);
     applicationCache.addEventListener("cached", function() {
+      VISH.LocalStorage.addPresentation(presentation)
+    }, false);
+    applicationCache.addEventListener("updateready", function() {
       VISH.LocalStorage.addPresentation(presentation)
     }, false);
     if(presentation.type === "game") {
@@ -20100,6 +20096,14 @@ function onYouTubePlayerReady(playerId) {
     $(".slides > article").css("line-height", font_size * increase + "px");
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
+    if($("#fancy_content:empty").length === 0) {
+      $("#fancybox-inner").width("80%");
+      $("#fancybox-wrap").width("80%");
+      $("#fancybox-inner").height("80%");
+      $("#fancybox-wrap").height("80%");
+      $("#fancybox-wrap").css("top", "10%");
+      $("#fancybox-wrap").css("left", "10%")
+    }
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
   };

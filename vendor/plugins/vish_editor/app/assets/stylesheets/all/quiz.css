@@ -94,9 +94,9 @@ height: 100%;
 
 .li_mch_options_in_zone {
     display: inline-block;
-    margin-left: 4%;
+    margin-left: 2%;
     margin-top: 1.5%;
-    width: 100%;
+    width: 94%;
 }
 
 .li_mch_options_in_zone > span{
@@ -108,7 +108,7 @@ height: 100%;
     padding: 0.5%;
 }
 
-.multiplechoice_text_in_zone {
+.multiplechoice_option_in_zone, .nicEdit-mcquestion_options { 
     background: url("/assets/background_text3.png") no-repeat scroll 46px center transparent;
     border: 1px solid #666666;
     border-radius: 10px 10px 10px 10px;
@@ -121,8 +121,17 @@ height: 100%;
     padding: 1%;
     position: relative;
     width: 79%;
+    height: 4%;
     z-index: 1000;
 }
+.multiplechoice_option_in_viewer {
+    border: none !important;
+    display:inline-block;
+    position: relative;
+    text-align: left;
+
+}
+
 
 /* True/False Question Quiz*/
 
@@ -947,3 +956,8 @@ height: 20%;
     margin-top: 3%;
     width: 81% !important;
 }
+
+.question_in_viewer {
+    border: none !important;
+}
+
