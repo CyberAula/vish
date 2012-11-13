@@ -6,39 +6,37 @@
   <div class="excursion-item">
     <ul class="thumbnails">
       <li class="img-excursion">
-        <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "" %>
+        <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "img-excursion" %>
         <div class='number_pages'>
           <%= excursion.slide_count %>
         </div>
       </li>
       <li class="info-excursion">
-        <h4 class="ellipsis w150px">
+        <div class="title-excursion">
           <%= link_to excursion.title, excursion %>
-        </h4>
-        <h5 class="blue-opacity ellipsis w150px">by 
+        </div>
+        <div class="by">by 
           <a data-toggle="modal" href="#user-modal-<%= excursion.author.slug %>" class="user-modal-button-<%= excursion.author.slug %> modal-no-trigger">
             <%= excursion.author.name %>
           </a>
-        </h5>
-        <h5 class="">
-          <span class="green">
-            <%=excursion.visit_count.to_s%>
-          </span>
-          <%= t("follow.views") %> 
-        </h5>
+        </div>
+        <span class="visits">
+          <%=excursion.visit_count.to_s%>
+          <a>
+            <%= t("follow.views") %> 
+          </a>
+        </span>
         <% unless excursion.draft %>
-        <h5 class="">
-          <span class="green like_count_<%= dom_id(excursion.post_activity) %>">
-            <%=excursion.post_activity.likes.count.to_s%>
-          </span>
+        <div class="likes like_count_<%= dom_id(excursion.post_activity) %>">
+          <%=excursion.post_activity.likes.count.to_s%>
           <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>">
             <%= link_like(excursion.post_activity)%>
           </div>
-        </h5>
+        </div>
+        
         <% end %>
       </li>
     </ul>
   </div>
   <% end %>
 <% end %>
-

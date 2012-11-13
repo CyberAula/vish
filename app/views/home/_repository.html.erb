@@ -1,0 +1,94 @@
+<!--TAB REPOSITORY-->
+<div class="repository tabbable">
+  <ul class="nav nav-tabs span4" >
+    <li class="active">
+      <a data-toggle="tab" href="#repo-1">
+        <%= t('resource.net') %>
+      </a>
+    </li>
+    <li class="">
+      <a data-toggle="tab" href="#repo-2">
+        <%= t('resource.my') %>
+      </a>
+    </li>
+    <li class="">
+      <a data-toggle="tab" href="#repo-3">
+        <%= t('resource.top') %>
+      </a>
+    </li>
+    <li class="">
+      <a data-toggle="tab" href="#repo-4">
+        <%= image_tag "icons/star-MENU-active.png" %>
+      </a>
+    </li>
+  </ul>
+  <div class="tittle-tabs">
+    <%= t('resource.title.other')%>
+  </div>
+  <div class="clearfloat"></div>
+  
+<!--TAB REPOSITORY CONTENT1-->
+
+  <div class="tab-content">
+    <div id="repo-1" class="tab-pane active">
+      <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-net"} %>
+      <div class="space_center"></div>
+          <div id="home-resources-net" class="repositories row height-tabs-home modal-pivot">
+            <% my_network_resources = current_subject_resources(:limit => 6) %>
+            <% if my_network_resources.size == 0 %>
+              <%= render :partial => "common_documents/zero_screen" %>
+            <% else %>
+              <%= render :partial => "common_documents/filter_results",
+                         :locals => {:documents => my_network_resources} %>
+            <% end %>
+          </div>
+          <div class="pull-right"><%= link_to(t('view_all'), url_for([current_user, Document]), :class => "btn btn-link "  + "?scope=net") %></div>
+        </div>
+
+<!--TAB REPOSITORY CONTENT1-->
+
+        <div id="repo-2" class="tab-pane">
+          <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-me"} %>
+          <div class="space_center"></div>
+          <div id="home-resources-me" class=" repositories row height-tabs-home modal-pivot">
+            <img alt="Loading" class="loading" src="/assets/loading.gif" />
+          </div>
+          <div class="pull-right"><%= link_to(t('view_all'), [current_subject, Document], :class => "btn btn-link " ) %></div>
+        </div>
+
+<!--TAB REPOSITORY CONTENT1-->
+
+        <div id="repo-3" class="tab-pane">
+          <div class="inline profile-excursion-recomended-me"><%= t('recsys.recommended.resources.explain_html') %></div>
+          <div class="pull-right">
+            <div class="btn-gray">
+              <a class="action" href="/documents/new"><i class="icontool16-tool16_arrow_7"></i> <%= t('resource.upload') %></a>
+            </div>
+          </div>
+          <div class="space_center"></div>
+          <div class="space_center"></div>
+          <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
+            <%= render :partial => "common_documents/filter_results",
+                       :locals => {:documents => current_subject.resource_suggestions(6) } %>
+          </div>
+          <div class="pull-right"><%= link_to(t('view_all'), search_path(:type => "resource"), :class => "btn btn-link " ) %></div>
+        </div>
+
+<!--TAB REPOSITORY CONTENT1-->
+
+        <div id="repo-4" class="tab-pane">
+          <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-fav"} %>
+          <div class="space_center"></div>
+          <div id="home-resources-fav" class="repositories row height-tabs-home modal-pivot">
+            <% my_fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
+            <% if my_fav_resources.size == 0 %>
+              <%= render :partial => "common_documents/fav_zero_screen" %>
+            <% else %>
+              <%= render :partial => "common_documents/filter_results",
+                         :locals => {:documents => my_fav_resources} %>
+            <% end %>
+          </div>
+          <div class="pull-right"><%= link_to(t('view_all'), url_for([current_user, Document]), :class => "btn btn-link "  + "?scope=like") %></div>
+        </div>
+      </div>
+    </div>

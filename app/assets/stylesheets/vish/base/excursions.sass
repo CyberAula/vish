@@ -1,0 +1,109 @@
+// FRONTPAGE
+
+.caption-box-top10
+  margin-left: 20px
+
+.box-top10
+  
+  li
+    
+    @include makeColumn(1,0)
+    width: 68px
+
+    .thumbnail
+      display: inline-block
+      
+      .number_pages
+        background-color: $white
+        border-radius: 15px 15px 15px 15px
+        color: $grayDark
+        font-size: 10pt
+        height: 20px
+        line-height: 150%
+        margin-left: 48px
+        margin-top: -26px
+        position: relative
+        text-align: center
+        width: 20px
+      .text-excursion-top
+        list-style-type: none
+        @include linkGrayVish
+        text-align: center
+        padding-top: 10px
+        width: 75px
+        font-size: 12px
+        line-height: 16px
+
+// HOME
+
+.box-home-excursion
+  width: auto
+  .loading
+    margin-left: auto
+    margin-right: auto
+    display: block
+.profile-excursion-recomended-me
+  font-size: 14px
+  color: $blue-1
+
+.excursion-home
+  .excursion-item
+    ul.thumbnails
+      background-color: #fff
+    ul.thumbnails:after 
+      clear: none !important
+    ul.thumbnails:before, 
+    ul.thumbnails:after
+      display: none
+    ul.thumbnails > li
+      margin-bottom: 10px
+
+
+.excursion-item
+  ul
+    margin-left: 0px
+    li
+      margin-left: 0px
+      .img-excursions
+
+        background-color: #fff
+        height: 70px
+        widht: 70px
+      .number_pages
+        font-family: $secondFontFamily
+        position: relative
+        height: 20px
+        width: 20px
+        margin-top: -26px
+        margin-left: 48px
+        text-align: center
+        background-color: #FFF
+        border-radius: 15px
+        color: #333
+        font-size: 10pt
+        line-height: 150%
+    .info-excursion
+      @include makeColumn (2,0)
+      margin-left: 0px
+      display: inline-block
+      padding-left: 5px
+      padding-right: 5px
+      .title-excursion
+        font-size: 16px
+        @include ellipsis
+        
+      .by
+        font-size: 10px
+        color: $grayLight
+        opacity: 0.6
+        a
+          font-family: $secondFontFamily
+          font-size: 16px
+      .visits
+        color: $green-vish
+        a
+          color: $grayLight
+      .likes
+        color: $green-vish
+        .verb_like
+          display: inline-block
