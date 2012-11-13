@@ -12967,7 +12967,7 @@ VISH.Editor = function(V, $, undefined) {
     $(document).on("click", "#help_template_image", function() {
       VISH.Editor.Tour.startTourWithId("template_help", "bottom")
     });
-    $(document).on("click", "#help_quiz_selection", function() {
+    $(document).on("click", "#tab_quizes_help", function() {
       VISH.Editor.Tour.startTourWithId("quiz_help", "bottom")
     });
     $(document).on("click", "#help_themes_selection", function() {
@@ -13217,6 +13217,10 @@ VISH.Editor = function(V, $, undefined) {
                   if(element.type == "quiz") {
                     element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance").parent().find("div > div"));
                     if($(div).find(".multiplechoice_text_in_zone")) {
+<<<<<<< HEAD
+=======
+                      element.quiz_id = "";
+>>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
                       if($(div).find("input[name=quiz_id]").val() != "") {
                         element.quiz_id = $(div).find("input[name=quiz_id]").val()
                       }
@@ -13892,6 +13896,8 @@ VISH.Editor.Object = function(V, $, undefined) {
     return wrapperPreview
   };
   var drawObject = function(object, area, style, zoomInStyle) {
+    VISH.Debugging.log("Draw object");
+    VISH.Debugging.log(object);
     if(!VISH.Police.validateObject(object)[0]) {
       return
     }
@@ -14693,10 +14699,14 @@ VISH.Quiz = function(V, $, undefined) {
     $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
   };
   var activatePolling = function(activate_boolean) {
+<<<<<<< HEAD
     console.log("activatePolling and boolean:" + activate_boolean);
     V.Debugging.log("activatePolling and boolean:" + activate_boolean);
     pollingActivated = activate_boolean;
     V.Debugging.log("pollingActivated is :" + pollingActivated);
+=======
+    pollingActivated = activate_boolean;
+>>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
     if(pollingActivated) {
       _updateBarsStats()
     }else {
@@ -14741,8 +14751,7 @@ VISH.Quiz = function(V, $, undefined) {
     $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='" + VISH.ImagesPath + "qrcode_background.png' />")
   };
   var _OnQuizSessionReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_OnQuizSessionReceivedError:  " + received)
+    V.Debugging.log("_OnQuizSessionReceivedError:  " + JSON.stringify(error))
   };
   var onStopMcQuizButtonClicked = function() {
     var id = $("a[name=modal_fancybox]").attr("href");
@@ -14787,8 +14796,7 @@ VISH.Quiz = function(V, $, undefined) {
     var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value")
   };
   var _onQuizSessionCloseReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + received)
+    V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _stopAndDontSaveQuiz = function() {
     var current_slide = VISH.Slides.getCurrentSlide();
@@ -14826,12 +14834,10 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
   };
   var _OnQuizVotingReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + received)
+    V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _onQuizSessionResultsReceivedError = function(error) {
-    var received = JSON.stringify(error);
-    V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + received)
+    V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _showResults = function(data) {
     var received = JSON.stringify(data);
@@ -17129,7 +17135,10 @@ VISH.Editor.Renderer = function(V, $, undefined) {
               }else {
                 if(slide.elements[el].type === "quiz") {
                   var received = JSON.stringify(slide.elements[el]);
+<<<<<<< HEAD
                   console.log("element received from server:  " + received);
+=======
+>>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
                   V.Editor.Quiz.addQuiz(slide.elements[el].quiztype, slide.elements[el].id);
                   V.Editor.Quiz.drawQuiz(slide.elements[el].quiztype, slide.elements[el].id, slide.elements[el].question, slide.elements[el].options["choices"], slide.elements[el].quiz_id)
                 }
@@ -19028,7 +19037,11 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
       ret += "<label class='mcoption_label'></label>"
     }
     ret += "<input type='hidden' value='" + zone + "' name='zone' />";
+<<<<<<< HEAD
     ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quizid' class='quizId' />";
+=======
+    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
+>>>>>>> 20d36a4894b13005e62a5a3dd525bccc1b8071a8
     ret += "<div class='mch_inputs_wrapper'>";
     ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
     ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";

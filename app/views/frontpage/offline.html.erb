@@ -1,6 +1,7 @@
 <!-- HTML5 DOCTYPE -->
 <!DOCTYPE html>
-<html manifest="/offline/manifest">
+<!--<html manifest="/offline/manifest">-->
+<html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
@@ -49,6 +50,10 @@
 				// Sorry! No web storage support..
 			  	console.log("Sorry! No web storage support.");
 			}
+		};
+
+		function delete_offline_excursion(excursion_id) {
+
 		}
 	</script>
 </head>
@@ -122,6 +127,9 @@
 	              <a href="" class="excursion_title excursion_link">example</a>
 	            </h4>
 	            <h5 class="excursion_author blue-opacity ellipsis w150px">by ebarra</h5>            
+	          </div>
+	          <div class="delete_offline_ex">
+					<a href="#" onclick="alert('hola')" class="action" data-confirm="<%=t("excursion.confirm_delete_offline")%>" rel="nofollow"><i class="icontool16-tool16_symbol_delete"></i></a>
 	          </div>
 	        </li>
 	    </ul>
