@@ -1,7 +1,6 @@
 <!-- HTML5 DOCTYPE -->
 <!DOCTYPE html>
-<!--<html manifest="/offline/manifest">-->
-<html>
+<html > <!--manifest="/offline/manifest">-->
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
@@ -37,6 +36,8 @@
 							$(div_to_add).find(".number_pages").html(pres.slides.length);
 							$(div_to_add).find(".excursion_author").html("by" + pres.author);
 
+							$(div_to_add).find(".delete_offline_ex_link").attr("onClick","delete_offline_excursion("+id+")");
+
 			 				$("#excursion_list").append(div_to_add);
 			 			}
 					});			 		
@@ -53,7 +54,18 @@
 		};
 
 		function delete_offline_excursion(excursion_id) {
+			//first the div
+			$("#presentation_"+excursion_id).remove();
+			//then the localstorage
+			localStorage.removeItem("presentation_"+excursion_id);
+			localStorage.removeItem("presentation_"+excursion_id + "_url");
+			var list = JSON.parse(localStorage.getItem("presentation_list"));
+			var index = $.inArray(excursion_id, list);
+			list.splice(index, 1);
+			localStorage.setItem("presentation_list", JSON.stringify(list));
 
+			//and finally the appcache
+			//amazing, but this can't be done
 		}
 	</script>
 </head>
@@ -129,7 +141,7 @@
 	            <h5 class="excursion_author blue-opacity ellipsis w150px">by ebarra</h5>            
 	          </div>
 	          <div class="delete_offline_ex">
-					<a href="#" onclick="alert('hola')" class="action" data-confirm="<%=t("excursion.confirm_delete_offline")%>" rel="nofollow"><i class="icontool16-tool16_symbol_delete"></i></a>
+					<a href="#" onclick="" class="action delete_offline_ex_link" data-confirm="<%=t("excursion.confirm_delete_offline")%>" rel="nofollow"><i class="icontool16-tool16_symbol_delete"></i></a>
 	          </div>
 	        </li>
 	    </ul>

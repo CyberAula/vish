@@ -13225,8 +13225,9 @@ VISH.Editor = function(V, $, undefined) {
                       element.options = {};
                       element.options.choices = [];
                       $(div).find(".multiplechoice_option_in_zone").each(function(i, option_text) {
-                        V.Debugging.log("option text: " + option_text);
-                        if(option_text && option_text.value != '<font size="4" unselectable="on">Write options here</font>' && option_text.value != "") {
+                        var option = VISH.Editor.Text.changeFontPropertiesToSpan($(option_text));
+                        V.Debugging.log("option" + option);
+                        if(option && option != '<div class="initTextDiv vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Write options here</span></div>' && option != "") {
                           element.options.choices.push(VISH.Editor.Text.changeFontPropertiesToSpan($(option_text)))
                         }
                       })
@@ -15564,7 +15565,7 @@ VISH.Dummies = function(VISH, undefined) {
     "<article id='article_id_to_change' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle' size='medium' class='t13_circle editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'  class='t13_right editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='circle1' size='small' class='t14_circle1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle2' size='small' class='t14_circle2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle3' size='small' class='t14_circle3 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right3' size='medium' class='t14_right3 editable grey_background selectable'></div></article>", 
     "<article id='article_id_to_change' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t15_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='large' class='t15_center2 editable grey_background selectable'></div></article>"];
-    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone' placeholder='write question here' ><font size='4'>Write question here</font></div><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone'><span>a)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>b)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>c)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>d)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>e)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li><li class='li_mch_options_in_zone'><span>f)</span><div class='multiplechoice_option_in_zone' placeholder='write options here'><font size='4'>Write options here</font></div></li></ul><input type='hidden' name='quiz_id'/></div></div>", 
+    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone'><div class='initTextDiv'><font size='4'>Write question here</font></div></div><ul class='ul_mch_options_in_zone'><li class='li_mch_options_in_zone'><span>a)</span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div></li><li class='li_mch_options_in_zone'><span>b)</span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div></li><li class='li_mch_options_in_zone'><span>c)</span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div></li><li class='li_mch_options_in_zone'><span>d)</span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div></li><li class='li_mch_options_in_zone'><span>e)</span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div></li><li class='li_mch_options_in_zone'><span>f)</span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div></li></ul><input type='hidden' name='quiz_id'/></div></div>", 
     "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"]
   };
   var getDummy = function(template, position, presentation_id, existing_slide) {
@@ -17074,14 +17075,25 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     textArea.attr("id", wysiwygId);
     V.Editor.Text.getNicEditor().addInstance(wysiwygId);
     $(current_area).find("." + type + "_option_in_zone").each(function(index, option_element) {
-      V.Debugging.log("index: " + index);
       var optionWysiwygId = "wysiwyg_" + current_area.attr("id") + "_" + index;
       $(option_element).attr("id", optionWysiwygId);
-      $(option_element).addClass("wysiwygInstance");
       V.Editor.Text.getNicEditor().addInstance(optionWysiwygId)
     });
-    $(current_area).find("." + type + "_option_in_zone").parent().each(function(index, element) {
-      $(element).find("div")[0].addClass("mcquestion_options")
+    $(".initTextDiv").click(function(event) {
+      if(event.target.tagName == "FONT") {
+        var font = $(event.target);
+        var div = $(event.target).parent()
+      }else {
+        if(event.target.tagName == "DIV") {
+          var div = $(event.target);
+          var font = $(event.target).find("font")
+        }
+      }
+      if($(font).text() === "Write options here") {
+        $(font).text("");
+        $(div).removeClass("initTextDiv");
+        $(".multiplechoice_option_in_zone").trigger("click")
+      }
     })
   };
   return{init:init, onLoadTab:onLoadTab, drawQuiz:drawQuiz, addQuiz:addQuiz}
@@ -19337,7 +19349,7 @@ VISH.SnapshotPlayer = function() {
       var content_class = "snapshot_content" + "_viewer";
       var content = $(value).attr("objectWrapper");
       if(VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_iframe.png'/>");
+        $(value).html("<img src='" + VISH.ImagesPath + "advert_new_grey_iframe.png'/>");
         return
       }
       var iframe = $(VISH.Utils.getOuterHTML($(content)));
@@ -19918,7 +19930,7 @@ VISH.VideoPlayer.Youtube = function() {
   };
   var loadYoutubeObject = function(element, value) {
     if(VISH.Status.getOnline() === false) {
-      $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_video2.png'/>");
+      $(value).html("<img src='" + VISH.ImagesPath + "advert_new_grey_video2.png'/>");
       return
     }
     var source = $(value).attr("source");
