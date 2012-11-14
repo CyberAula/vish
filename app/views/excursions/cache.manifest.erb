@@ -21,9 +21,22 @@ CACHE:
 http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono
 
 #detect browser! and use firefox.css or chrome.css or ie.css
+<% if /msie/.match(request.env["HTTP_USER_AGENT"].downcase) %>
+/assets/browser/ie.css
+<% elsif /chrome/.match(request.env["HTTP_USER_AGENT"].downcase) %>
 /assets/browser/chrome.css
+<% elsif /gecko/.match(request.env["HTTP_USER_AGENT"].downcase) %>
+/assets/browser/firefox.css
+<% end %>
+
 #detect device and use desktop mobile or tablet
+<% if /iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile/.match(request.env["HTTP_USER_AGENT"].downcase) %>
+/assets/device/mobile.css
+<% elsif /ipad|android|android 3.0|xoom|sch-i800|playbook|tablet|kindle/.match(request.env["HTTP_USER_AGENT"].downcase) %>
+/assets/device/tablet.css
+<% else %>
 /assets/device/desktop.css
+<% end %>
 
 /assets/background1.png 
 /assets/background_text.png  #ask Nestor what is this for?
