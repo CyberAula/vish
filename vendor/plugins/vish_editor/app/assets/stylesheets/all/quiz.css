@@ -641,7 +641,7 @@ span.mcChoiceSpan{
 }
 
 .quiz_session_header {
-    background:  background: url("/assets/quiz_details.png") top;
+    background: url("/assets/quiz_details.png") top;
     display: inline-block;
     font-size: 1.7em;
     height: 10%;
