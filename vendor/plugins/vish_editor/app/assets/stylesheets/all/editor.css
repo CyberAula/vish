@@ -118,10 +118,16 @@ img {
   margin-top: 25px;
 }
 
+
+div.addUrlButtons{
+	margin-top: 85px;
+	display: block;
+	margin-right: 25px;
+}
+
 .addUrlButton {
-  position: absolute;
+  float:right;
   padding: 5px 10px;
-  display: inline;
   text-decoration: none;
   background: #FF005D repeat-x bottom;
   opacity: 0.6;
@@ -131,8 +137,20 @@ img {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  margin-left: 640px;
-  margin-top: 85px;
+}
+
+.removeUrlButton {
+  float:right;
+  padding: 5px 10px;
+  text-decoration: none;
+  background: #FF005D repeat-x bottom;
+  opacity: 0.6;
+  color: #F9F9F9;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 .addUrlButton:hover {

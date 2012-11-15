@@ -100,7 +100,7 @@ height: 100%;
 }
 
 .li_mch_options_in_zone > span{
-    color: #000000;
+    color: ##000000;
     display: inline-block;
     font-size: 1.1em;
     text-align: center;
@@ -641,7 +641,7 @@ span.mcChoiceSpan{
 }
 
 .quiz_session_header {
-    background: url("/assets/quiz_details.png") top;
+    background:  background: url("/assets/quiz_details.png") top;
     display: inline-block;
     font-size: 1.7em;
     height: 10%;

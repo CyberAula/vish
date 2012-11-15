@@ -29,8 +29,8 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", "i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", 
 "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.selectquiz":"Seleccionar Quiz", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", 
 "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", 
-"i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado."}, 
-"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", 
+"i.Remove":"Borrar"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.1";
@@ -6544,12 +6544,17 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
         $(document).bind(cf_e("keyup", conf, false, true, true), function(e) {
           var k = e.keyCode;
           if(k == opts.next.key) {
-            e.preventDefault();
-            $cfs.trigger(cf_e("next", conf))
-          }
-          if(k == opts.prev.key) {
-            e.preventDefault();
-            $cfs.trigger(cf_e("prev", conf))
+            if(VISH && VISH.Editor && VISH.Editor.Carrousel.mustMoveCarrousel("next")) {
+              e.preventDefault();
+              $cfs.trigger(cf_e("next", conf))
+            }
+          }else {
+            if(k == opts.prev.key) {
+              if(VISH && VISH.Editor && VISH.Editor.Carrousel.mustMoveCarrousel("prev")) {
+                e.preventDefault();
+                $cfs.trigger(cf_e("prev", conf))
+              }
+            }
           }
         })
       }
@@ -12442,7 +12447,7 @@ VISH.Status = function(V, $, undefined) {
   };
   var _checkOnline = function() {
     $.ajax({async:true, cache:false, error:function(req, status, ex) {
-      console.log("Error: " + ex);
+      VISH.Debugging.log("Error: " + ex);
       isOnline = false
     }, success:function(data, status, req) {
       isOnline = true
@@ -12590,11 +12595,11 @@ VISH.Status = function(V, $, undefined) {
   var setSlaveMode = function(slaveMode) {
     if(slaveMode !== isSlave) {
       if(slaveMode === true) {
-        VISH.Events.unbindAllEventListeners();
+        VISH.Events.unbindViewerEventListeners();
         VISH.VideoPlayer.HTML5.showControls(false);
         isSlave = true
       }else {
-        VISH.Events.bindAllEventListeners();
+        VISH.Events.bindViewerEventListeners();
         VISH.VideoPlayer.HTML5.showControls(true);
         isSlave = false
       }
@@ -12942,8 +12947,8 @@ VISH.Editor = function(V, $, undefined) {
     VISH.Editor.Quiz.init();
     VISH.Editor.Tools.init();
     VISH.Editor.Filter.init();
-    V.Events.init();
-    V.Events.Notifier.init();
+    VISH.Editor.Events.init();
+    VISH.EventsNotifier.init();
     if(options.addons) {
       VISH.Addons.init(options.addons)
     }
@@ -13225,9 +13230,9 @@ VISH.Editor = function(V, $, undefined) {
                       element.options = {};
                       element.options.choices = [];
                       $(div).find(".multiplechoice_option_in_zone").each(function(i, option_text) {
-                        var option = VISH.Editor.Text.changeFontPropertiesToSpan($(option_text));
-                        V.Debugging.log("option" + option);
+                        var option = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
                         if(option && option != '<div class="initTextDiv vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Write options here</span></div>' && option != "") {
+                          result = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
                           element.options.choices.push(VISH.Editor.Text.changeFontPropertiesToSpan($(option_text)))
                         }
                       })
@@ -14320,7 +14325,7 @@ VISH.Slides = function(V, $, undefined) {
     }
     var params = new Object;
     params.slideNumber = no;
-    VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onGoToSlide, params, triggeredByUser)
+    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onGoToSlide, params, triggeredByUser)
   };
   var backwardOneSlide = function() {
     goToSlide(curSlideIndex)
@@ -14347,7 +14352,7 @@ VISH.Slides = function(V, $, undefined) {
       triggerEnterEvent(slide_id - 1);
       var params = new Object;
       params.slideNumber = slide_id;
-      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
+      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
     }
   };
   var closeSlide = function(slide_id, triggeredByUser) {
@@ -14363,7 +14368,7 @@ VISH.Slides = function(V, $, undefined) {
     triggerLeaveEvent(slideNumber);
     var params = new Object;
     params.slideNumber = slide_id;
-    VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onFlashcardSlideClosed, params, triggeredByUser)
+    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardSlideClosed, params, triggeredByUser)
   };
   var closeAllSlides = function() {
     $(".slides > article").hide()
@@ -14421,7 +14426,7 @@ VISH.Events = function(V, $, undefined) {
   var registeredEvents = [];
   var init = function() {
     if(!V.Editing) {
-      bindAllEventListeners()
+      bindViewerEventListeners()
     }
   };
   var _registerEvent = function(eventTargetId) {
@@ -14523,7 +14528,7 @@ VISH.Events = function(V, $, undefined) {
     var close_slide = event.target.id.substring(5);
     V.Slides.closeSlide(close_slide, true)
   };
-  var bindAllEventListeners = function() {
+  var bindViewerEventListeners = function() {
     if(!bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
         $(document).bind("keydown", handleBodyKeyDown);
@@ -14552,7 +14557,7 @@ VISH.Events = function(V, $, undefined) {
     }
     bindedEventListeners = true
   };
-  var unbindAllEventListeners = function() {
+  var unbindViewerEventListeners = function() {
     if(bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
         $(document).unbind("keydown", handleBodyKeyDown);
@@ -14579,7 +14584,7 @@ VISH.Events = function(V, $, undefined) {
       bindedEventListeners = false
     }
   };
-  return{init:init, bindAllEventListeners:bindAllEventListeners, unbindAllEventListeners:unbindAllEventListeners}
+  return{init:init, bindViewerEventListeners:bindViewerEventListeners, unbindViewerEventListeners:unbindViewerEventListeners}
 }(VISH, jQuery);
 VISH.Flashcard = function(V, $, undefined) {
   var init = function(presentation) {
@@ -15142,9 +15147,13 @@ VISH.Editor.Tools = function(V, $, undefined) {
       var area = VISH.Editor.getCurrentArea();
       var hyperlink = $(area).attr("hyperlink");
       if(hyperlink) {
-        $(".tools_input_addUrl").val(hyperlink)
+        $(".tools_input_addUrl").val(hyperlink);
+        $(".removeUrlButton").show()
+      }else {
+        $(".removeUrlButton").hide()
       }
     }, "onClosed":function() {
+      $(".removeUrlButton").hide()
     }})
   };
   var _addUrlOnKeyDown = function(event) {
@@ -15176,7 +15185,13 @@ VISH.Editor.Tools = function(V, $, undefined) {
     }
     $.fancybox.close()
   };
-  return{init:init, loadPresentationToolbar:loadPresentationToolbar, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, loadToolbarForElement:loadToolbarForElement, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, selectTheme:selectTheme, changeFlashcardBackground:changeFlashcardBackground, addLink:addLink, addUrl:addUrl, resizeMore:resizeMore, resizeLess:resizeLess, zoomMore:zoomMore, zoomLess:zoomLess}
+  var removeUrl = function() {
+    var area = VISH.Editor.getCurrentArea();
+    $(area).removeAttr("hyperlink");
+    $.fancybox.close()
+  };
+  return{init:init, loadPresentationToolbar:loadPresentationToolbar, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, loadToolbarForElement:loadToolbarForElement, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, selectTheme:selectTheme, changeFlashcardBackground:changeFlashcardBackground, addLink:addLink, addUrl:addUrl, removeUrl:removeUrl, resizeMore:resizeMore, resizeLess:resizeLess, zoomMore:zoomMore, 
+  zoomLess:zoomLess}
 }(VISH, jQuery);
 VISH.Addons = function(V, undefined) {
   var init = function(addons) {
@@ -15280,22 +15295,22 @@ VISH.VideoPlayer = function() {
 }(VISH, jQuery);
 VISH.Messenger = function(V, undefined) {
   var init = function() {
-    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onGoToSlide, function(params) {
+    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onGoToSlide, function(params) {
       notifyEventByMessage(VISH.Constant.Event.onGoToSlide, params)
     });
-    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onPlayVideo, function(params) {
+    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onPlayVideo, function(params) {
       notifyEventByMessage(VISH.Constant.Event.onPlayVideo, params)
     });
-    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onPauseVideo, function(params) {
+    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onPauseVideo, function(params) {
       notifyEventByMessage(VISH.Constant.Event.onPauseVideo, params)
     });
-    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onSeekVideo, function(params) {
+    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onSeekVideo, function(params) {
       notifyEventByMessage(VISH.Constant.Event.onSeekVideo, params)
     });
-    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onFlashcardPointClicked, function(params) {
+    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onFlashcardPointClicked, function(params) {
       notifyEventByMessage(VISH.Constant.Event.onFlashcardPointClicked, params)
     });
-    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onFlashcardSlideClosed, function(params) {
+    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onFlashcardSlideClosed, function(params) {
       notifyEventByMessage(VISH.Constant.Event.onFlashcardSlideClosed, params)
     })
   };
@@ -15304,7 +15319,7 @@ VISH.Messenger = function(V, undefined) {
       return
     }
     var VEMessage = VISH.Messenger.Helper.createMessage(event, params);
-    VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onMessage, VEMessage, true)
+    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onMessage, VEMessage, true)
   };
   return{init:init, notifyEventByMessage:notifyEventByMessage}
 }(VISH);
@@ -15324,7 +15339,7 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
     VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello"
   };
   var _initListener = function() {
-    VISH.Events.Notifier.registerCallback(VISH.Constant.Event.onMessage, _onVishEditorMessage);
+    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onMessage, _onVishEditorMessage);
     listenerInitialized = true
   };
   var _onVishEditorMessage = function(VEMessage) {
@@ -16168,7 +16183,72 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
   var insertElement = function(carrouselDivId, element, posc) {
     $("#" + carrouselDivId).trigger("insertItem", [element, posc])
   };
-  return{createCarrousel:createCarrousel, cleanCarrousel:cleanCarrousel, goToElement:goToElement, advanceCarrousel:advanceCarrousel, backCarrousel:backCarrousel, insertElement:insertElement}
+  var mustMoveCarrousel = function(direction) {
+    if(!VISH.Slides.isSlideFocused()) {
+      return false
+    }
+    var visibleThumbnails = VISH.Editor.Thumbnails.getVisibleThumbnails();
+    switch(direction) {
+      case "next":
+        var last = visibleThumbnails[1];
+        var future = VISH.Slides.getCurrentSlideNumber() + 1;
+        if(future > last) {
+          return true
+        }
+        break;
+      case "prev":
+        var first = visibleThumbnails[0];
+        var future = VISH.Slides.getCurrentSlideNumber() - 1;
+        if(future < first) {
+          return true
+        }
+        break;
+      default:
+        return false
+    }
+  };
+  return{createCarrousel:createCarrousel, cleanCarrousel:cleanCarrousel, goToElement:goToElement, advanceCarrousel:advanceCarrousel, backCarrousel:backCarrousel, insertElement:insertElement, mustMoveCarrousel:mustMoveCarrousel}
+}(VISH, jQuery);
+VISH.Editor.Events = function(V, $, undefined) {
+  var bindedEventListeners = false;
+  var init = function() {
+    if(V.Editing) {
+      bindEditorEventListeners()
+    }
+  };
+  var handleBodyKeyDown = function(event) {
+    switch(event.keyCode) {
+      case 39:
+        if(V.Slides.isSlideFocused()) {
+          V.Slides.forwardOneSlide();
+          event.preventDefault()
+        }
+        break;
+      case 37:
+        if(V.Slides.isSlideFocused()) {
+          V.Slides.backwardOneSlide();
+          event.preventDefault()
+        }
+        break
+    }
+  };
+  var bindEditorEventListeners = function() {
+    if(!bindedEventListeners) {
+      if(V.SlideManager.getPresentationType() === "presentation") {
+        $(document).bind("keydown", handleBodyKeyDown)
+      }
+    }
+    bindedEventListeners = true
+  };
+  var unbindEditorEventListeners = function() {
+    if(bindedEventListeners) {
+      if(V.SlideManager.getPresentationType() === "presentation") {
+        $(document).unbind("keydown", handleBodyKeyDown)
+      }
+      bindedEventListeners = false
+    }
+  };
+  return{init:init, bindEditorEventListeners:bindEditorEventListeners, unbindEditorEventListeners:unbindEditorEventListeners}
 }(VISH, jQuery);
 VISH.Editor.Filter = function(V, $, undefined) {
   var init = function() {
@@ -17087,12 +17167,23 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         if(event.target.tagName == "DIV") {
           var div = $(event.target);
           var font = $(event.target).find("font")
+        }else {
+          if(event.target.tagName == "SPAN") {
+            var div = $(event.target).parent();
+            var font = $(event.target)
+          }
         }
       }
       if($(font).text() === "Write options here") {
         $(font).text("");
         $(div).removeClass("initTextDiv");
         $(".multiplechoice_option_in_zone").trigger("click")
+      }else {
+        if($(font).text() === "Write question here") {
+          $(font).text("");
+          $(div).removeClass("initTextDiv");
+          $(div).parent().trigger("click")
+        }
       }
     })
   };
@@ -17446,7 +17537,25 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     $(".image_barbutton").removeClass("selectedSlideThumbnail");
     $(".image_barbutton[slideNumber=" + no + "]").addClass("selectedSlideThumbnail")
   };
-  return{init:init, redrawThumbnails:redrawThumbnails, selectThumbnail:selectThumbnail}
+  var getVisibleThumbnails = function() {
+    var thumbnails = $("div.carrousel_element_single_row_slides").not(".draggable_arrow_div");
+    var first = _getNumberOfThumbnail($(thumbnails[0]));
+    var last = first;
+    $(thumbnails).each(function(index, thumbnail) {
+      var number = _getNumberOfThumbnail(thumbnail);
+      if(isNaN(number)) {
+        return false
+      }else {
+        last = number
+      }
+    });
+    var last = Math.min(last, first + 7);
+    return[first, last]
+  };
+  var _getNumberOfThumbnail = function(thumbnailDiv) {
+    return parseInt($(thumbnailDiv).find("img.carrousel_element_single_row_slides[slidenumber]").attr("slidenumber"))
+  };
+  return{init:init, redrawThumbnails:redrawThumbnails, selectThumbnail:selectThumbnail, getVisibleThumbnails:getVisibleThumbnails}
 }(VISH, jQuery);
 VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var menuEventsLoaded = false;
@@ -18193,7 +18302,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, onClickCarrouselElement:onClickCarrouselElement, requestYoutubeData:requestYoutubeData, addSelectedVideo:addSelectedVideo, generateWrapperForYoutubeVideoUrl:generateWrapperForYoutubeVideoUrl, generatePreviewWrapperForYoutubeVideoUrl:generatePreviewWrapperForYoutubeVideoUrl}
 }(VISH, jQuery);
-VISH.Events.Notifier = function(V, $, undefined) {
+VISH.EventsNotifier = function(V, $, undefined) {
   var listeners;
   var init = function() {
     listeners = new Array
@@ -19031,15 +19140,19 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_body'>";
-    ret += "<div class='nicEdit-mcquestion_header question_in_viewer'>" + quiz_element["question"] + "</div>";
+    ret += "<div class='value_multiplechoice_question_in_zone question_in_viewer'>" + quiz_element["question"] + "</div>";
     ret += "<form class='mcquestion_form' action='" + quiz_element["posturl"] + "' method='post'>";
     ret += "<ul class='ul_mch_options_in_zone'>";
     for(var i = 0;i < quiz_element["options"]["choices"].length;i++) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       if(VISH.Quiz.getQuizMode() == "answer") {
+        ret += "<li class='li_mch_options_in_zone'>";
+        ret += "<input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input><span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i] + "</div>";
+        ret += "</li>"
       }else {
         ret += "<li class='li_mch_options_in_zone'>";
-        ret += "<span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i] + "</div>"
+        ret += "<span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i] + "</div>";
+        ret += "</li>"
       }
       ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
       ret += "<label class='mcoption_label'></label>"
@@ -19187,7 +19300,7 @@ VISH.SlideManager = function(V, $, undefined) {
       }
     }
     V.Events.init();
-    V.Events.Notifier.init();
+    V.EventsNotifier.init();
     V.VideoPlayer.init();
     V.Themes.selectTheme(presentation.theme);
     mySlides = presentation.slides;
@@ -19827,7 +19940,7 @@ VISH.VideoPlayer.HTML5 = function() {
         params.videoId = video.id;
         params.currentTime = video.currentTime;
         params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-        VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, playTriggeredByUser);
+        VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, playTriggeredByUser);
         playTriggeredByUser = true
       }, false);
       video.addEventListener("pause", function() {
@@ -19836,7 +19949,7 @@ VISH.VideoPlayer.HTML5 = function() {
         params.videoId = video.id;
         params.currentTime = video.currentTime;
         params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-        VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, pauseTriggeredByUser);
+        VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, pauseTriggeredByUser);
         pauseTriggeredByUser = true
       }, false);
       video.addEventListener("ended", function() {
@@ -19849,7 +19962,7 @@ VISH.VideoPlayer.HTML5 = function() {
         params.videoId = video.id;
         params.currentTime = video.currentTime;
         params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-        VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, seekTriggeredByUser);
+        VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, seekTriggeredByUser);
         seekTriggeredByUser = true
       }, false);
       $(video).focus(function(event) {
@@ -19983,7 +20096,7 @@ VISH.VideoPlayer.Youtube = function() {
         VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onPlayVideo, params);
         return
       }
-      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, triggeredByUser);
+      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, triggeredByUser);
       _seekVideo(ytPlayer, currentTime, false);
       if(ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
         ytPlayer.playVideo()
@@ -20001,7 +20114,7 @@ VISH.VideoPlayer.Youtube = function() {
         VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onPauseVideo, params);
         return
       }
-      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, triggeredByUser);
+      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, triggeredByUser);
       if(ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
         ytPlayer.pauseVideo()
       }
@@ -20025,7 +20138,7 @@ VISH.VideoPlayer.Youtube = function() {
         VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onSeekVideo, params);
         return
       }
-      VISH.Events.Notifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, triggeredByUser);
+      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, triggeredByUser);
       video.seekTo(seekTime)
     }
   };
