@@ -33,7 +33,7 @@ if File.exists?("../social_stream-bootstrap")
 #  path '../social_stream-vish', &social_stream_gems
   path '../social_stream-bootstrap', &social_stream_gems
 else
-  git 'git://github.com/ging/social_stream.git', :branch => 'vish', &social_stream_gems
+  git 'git://github.com/ging/social_stream.git', :branch => 'bootstrap', &social_stream_gems
 end
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap

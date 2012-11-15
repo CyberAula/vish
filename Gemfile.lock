@@ -1,12 +1,11 @@
-GIT
-  remote: git://github.com/ging/social_stream.git
-  revision: 11ac8d0dcc6c42d4799646b8d4b51b125bce153a
-  branch: vish
+PATH
+  remote: ../social_stream-bootstrap
   specs:
-    social_stream-base (0.23.0)
+    social_stream-base (0.24.0)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 0.2.8)
+      bootstrap-sass (~> 2.1.0.0)
       cancan (~> 1.6.7)
       deep_merge
       devise (~> 2.1.2)
@@ -29,18 +28,18 @@ GIT
       social_cheesecake (~> 0.5.0)
       stringex (~> 1.3.0)
       thinking-sphinx (~> 2.0.8)
-    social_stream-documents (0.17.0)
+    social_stream-documents (0.18.0)
       delayed_paperclip (>= 2.4.5.2)
       paperclip (~> 3.3.0)
       paperclip-ffmpeg (~> 0.9.0)
-      social_stream-base (~> 0.23.0)
-    social_stream-linkser (0.14.0)
+      social_stream-base (~> 0.24.0)
+    social_stream-linkser (0.15.0)
       linkser (~> 0.0.12)
-      social_stream-base (~> 0.23.0)
-    social_stream-ostatus (0.1.0)
+      social_stream-base (~> 0.24.0)
+    social_stream-ostatus (0.2.0)
       nokogiri (> 1.4.4)
       proudhon (>= 0.3.6)
-      social_stream-base (~> 0.23.0)
+      social_stream-base (~> 0.24.0)
 
 GEM
   remote: http://rubygems.org/
@@ -100,7 +99,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    carrierwave (0.7.0)
+    carrierwave (0.7.1)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
     childprocess (0.3.6)
@@ -116,8 +115,8 @@ GEM
     composite_primary_keys (5.0.9)
       activerecord (~> 3.2.0, >= 3.2.8)
     deep_merge (1.0.0)
-    delayed_paperclip (2.4.5.2)
-      paperclip (>= 2.4.5)
+    delayed_paperclip (2.5.0.1)
+      paperclip (>= 3.3.0)
     devise (2.1.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -147,7 +146,6 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
-    git (1.2.5)
     god (0.13.1)
     has_scope (0.5.1)
     hashie (1.2.0)
@@ -161,11 +159,6 @@ GEM
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
       responders (~> 0.6)
-    jeweler (1.8.4)
-      bundler (~> 1.0)
-      git (>= 1.2.5)
-      rake
-      rdoc
     journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -235,16 +228,14 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
-    paperclip-ffmpeg (0.9.1)
+    paperclip-ffmpeg (0.9.4)
+      paperclip (>= 0.9.2)
       paperclip (>= 2.5.2)
     pg (0.14.1)
     polyglot (0.3.3)
-    proudhon (0.3.6)
-      jeweler
+    proudhon (0.3.7)
       json
       nokogiri
-      proudhon
-      rake
       rest-client
     rack (1.4.1)
     rack-cache (1.2)
