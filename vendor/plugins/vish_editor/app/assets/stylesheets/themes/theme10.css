@@ -1,12 +1,22 @@
 .slides > article {
 	background-color: transparent;
 	border: none;
-	padding: 22px 44px 86px 44px;
-	background: #fff url(/assets/themes/theme10/bg.png) top;
+	padding: 17px 40px 86px 40px;;
+	background: url(/assets/themes/theme10/bg.png) top;
 	background-size: 100% 100%;
   	box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
   	moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
  	webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+}
+
+.slides > article[template='t10'] > div.t10_center {
+	margin: 3% 0% 0% 4%;
+	width: 92%;
+	height: 84%;
+}
+
+.slides > article > div.grey_background {
+  background-color: rgba(100, 100, 100, 0.4);
 }
 
 

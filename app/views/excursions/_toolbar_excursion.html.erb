@@ -28,6 +28,18 @@
                       :confirm => t('confirm_delete', :scope => @excursion.class.to_s.underscore),
                       :method => :delete, :class => :action %>
       </div>
+      <script type="text/javascript">
+        $(document).on('confirm:complete', function(e,answer) {
+          if (answer) {
+            //User confirmed
+            if ((VISH)&&(VISH.IframeAPI)&&(VISH.IframeAPI.allowExitWithoutConfirmation)) {
+              VISH.IframeAPI.allowExitWithoutConfirmation("*");
+            }
+          } else {
+            //User canceled!
+          }
+        });
+      </script>
     <% end %>
 
     <% unless excursion.draft %>
@@ -175,7 +187,7 @@
           $.ajax({
             url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
           })
-          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&delay=4000&app=cobrowser&media=<%= request.url + '.mashme' %>");
+          launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&delay=9000&app=cobrowser&media=<%= request.url + '.mashme' %>");
         }
       });
       $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));

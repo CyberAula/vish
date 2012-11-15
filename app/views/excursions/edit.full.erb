@@ -1,9 +1,3 @@
-<% content_for :headers do%>
-  <!--[if gte IE 7]>
-	<%= stylesheet_link_tag "ie/editorexplorer9" %>
-  <![endif]-->
-<%end%>
-
 <%= render :partial => 'vish_editor' %>
 
 <script>	
@@ -40,6 +34,14 @@
 	options["draft"] = <%= @excursion.draft.to_s %>;
 
 	options["lang"] = "<%= I18n.locale.to_s%>";
+
+	options.addons = [];
+
+	var addon = new Object();
+	addon.target = "Editor";
+	addon.id = "IframeMessenger";
+	addon.config = {enable: true};
+	options.addons.push(addon);
 
 	function start(){
 		VISH.Editor.init(options, <%= raw @excursion.to_json%> );

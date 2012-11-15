@@ -95,6 +95,10 @@ width: 100%;
   font-size: 14px;
   line-height: 18px;
 }
+.joyride-tip-guide span {
+  font-size: 14px;
+  line-height: 18px;
+}
 .joyride-tip-guide a {;
   text-decoration: none;
 }
