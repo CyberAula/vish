@@ -1,3 +1,5 @@
+<% receiver ||= current_subject %>
+
 <% if can? :create, new_post(receiver) %>
   <div id="wall-input" class="tab-pane active boxy_gray pagination-right">
     <div id="activities_header" class="content_size pagination-centered">

@@ -1,0 +1,13 @@
+<% if activity.is_root? %>
+  <%= render partial: "activities/root",
+             locals: {
+               activity: activity,
+               root_avatar_thumb: "50"
+             } %>
+<% else %>
+  <%= render partial: "activities/child",
+             locals: {
+               activity: activity,
+               child_avatar_thumb: '25'
+             } %>
+<% end %>

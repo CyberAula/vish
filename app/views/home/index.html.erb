@@ -1,23 +1,19 @@
-<% self.class.send :include, HomeHelper %>
-
-<section id="left" >
-  <%= render :partial => "excursions/zero_screen" %>
-<!-- EXCURSION -->
-  <%= render :partial => "home/excursions" %>
-  <div class="row"></div>
-<!--REPOSITORY-->
-  <%= render :partial => "home/repository" %>
-  <div class="row"></div>
-<!--FOLLOWER-->
-  <%= render :partial => "home/followers" %>
-  <div class="row"></div>
+<section id="home">
+  <section id="left" >
+    <%= render :partial => "excursions/zero_screen" %>
+  <!-- EXCURSION -->
+    <%= render :partial => "home/excursions" %>
+    <div class="row"></div>
+  <!--REPOSITORY-->
+    <%= render :partial => "home/repository" %>
+    <div class="row"></div>
+  <!--FOLLOWER-->
+    <%= render :partial => "home/followers" %>
+    <div class="row"></div>
+  </section>
+  <!--TIME-LINE-->
+  <%= render partial: 'activities/wall',
+             locals: {
+               activities: current_subject.wall(:home).page(params[:page_net])
+             } %>
 </section>
-<!--TIME-LINE-->
-<section name="wall" id="home_wall" class="span5">
-  <%= render :partial => "activities/index",
-             :locals => { :owner => current_subject} %>
-</section>
-
-
-
-
