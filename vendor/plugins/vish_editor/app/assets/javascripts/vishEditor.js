@@ -33,7 +33,7 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.Remove":"Borrar"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
-VISH.VERSION = "0.1";
+VISH.VERSION = "0.2";
 VISH.AUTHORS = "GING";
 VISH.Editing = false;
 VISH.Constant = VISH.Constant || {};
@@ -61,6 +61,8 @@ VISH.Constant.NONE = "none";
 VISH.Constant.Video = {};
 VISH.Constant.Video.HTML5 = "HTML5";
 VISH.Constant.Video.Youtube = "Youtube";
+VISH.Constant.Clipboard = {};
+VISH.Constant.Clipboard.Slide = "slide";
 VISH.Constant.Event = {};
 VISH.Constant.Event.onMessage = "onMessage";
 VISH.Constant.Event.onGoToSlide = "onGoToSlide";
@@ -12947,6 +12949,7 @@ VISH.Editor = function(V, $, undefined) {
     VISH.Editor.Quiz.init();
     VISH.Editor.Tools.init();
     VISH.Editor.Filter.init();
+    VISH.Editor.Clipboard.init();
     VISH.Editor.Events.init();
     VISH.EventsNotifier.init();
     if(options.addons) {
@@ -13113,10 +13116,7 @@ VISH.Editor = function(V, $, undefined) {
     $.fancybox($("#prompt_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
       if($("#prompt_answer").val() === "true") {
         $("#prompt_answer").val("false");
-        article_to_delete.remove();
-        VISH.Slides.onDeleteSlide();
-        VISH.Editor.Utils.redrawSlides();
-        VISH.Editor.Thumbnails.redrawThumbnails()
+        VISH.Slides.removeSlide(VISH.Slides.getCurrentSlideNumber())
       }
     }})
   };
@@ -13146,6 +13146,7 @@ VISH.Editor = function(V, $, undefined) {
   var savePresentation = function(forcePresentation) {
     $(".object_wrapper").show();
     var presentation = {};
+    presentation.VEVersion = VISH.VERSION;
     if(draftPresentation) {
       presentation.id = draftPresentation.id
     }else {
@@ -13231,13 +13232,14 @@ VISH.Editor = function(V, $, undefined) {
                       element.options.choices = [];
                       $(div).find(".multiplechoice_option_in_zone").each(function(i, option_text) {
                         var option = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
-                        if(option && option != '<div class="initTextDiv vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Write options here</span></div>' && option != "") {
+                        if(option && option != '<div class="initTextDiv vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Write options here</span></div>' && option != "") {
                           result = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
-                          element.options.choices.push(VISH.Editor.Text.changeFontPropertiesToSpan($(option_text)))
+                          var choice = new Object;
+                          choice.value = $(option_text).text();
+                          choice.container = VISH.Editor.Text.changeFontPropertiesToSpan($(option_text));
+                          element.options.choices.push(choice)
                         }
                       })
-                    }else {
-                      V.Debugging.log("another kind of quiz detected")
                     }
                   }else {
                     if(element.type === "snapshot") {
@@ -13276,11 +13278,11 @@ VISH.Editor = function(V, $, undefined) {
       $(s).removeClass("temp_shown")
     });
     savedPresentation = presentation;
+    VISH.Debugging.log("\n\nVish Editor save the following presentation:\n");
     VISH.Debugging.log(JSON.stringify(presentation));
     return savedPresentation
   };
   var afterSavePresentation = function(presentation, order) {
-    VISH.Debugging.log("VISH.Configuration.getConfiguration()[mode]: " + VISH.Configuration.getConfiguration()["mode"]);
     switch(VISH.Configuration.getConfiguration()["mode"]) {
       case VISH.Constant.NOSERVER:
         if(VISH.Debugging && VISH.Debugging.isDevelopping()) {
@@ -13302,7 +13304,6 @@ VISH.Editor = function(V, $, undefined) {
         }
         var draft = order === "draft";
         var jsonPresentation = JSON.stringify(presentation);
-        VISH.Debugging.log(jsonPresentation);
         var params = {"excursion[json]":jsonPresentation, "authenticity_token":initOptions["token"], "draft":draft};
         $.ajax({type:send_type, url:VISH.UploadPresentationPath, data:params, success:function(data) {
           allowExitWithoutConfirmation();
@@ -13397,20 +13398,25 @@ VISH.Editor = function(V, $, undefined) {
       draftPresentation.type = "presentation"
     }
   };
-  var isPresentationStandard = function() {
-    var type = getPresentationType();
-    if(type != "presentation") {
+  var isPresentationStandard = function(presentation) {
+    if(presentation) {
+      return _isThisPresentationStandard(presentation)
+    }else {
+      if($("article[template]").length === 0) {
+        return true
+      }
+      return _isThisPresentationStandard(savePresentation())
+    }
+  };
+  var _isThisPresentationStandard = function(presentation) {
+    if(presentation.type != "presentation") {
       return false
     }
-    if($("article[template]").length === 0) {
-      return true
-    }
     var isStandard = true;
-    presentation = savePresentation();
     $.each(presentation.slides, function(index, slide) {
       if(slide.type && slide.type != "standard") {
         isStandard = false;
-        return
+        return false
       }
     });
     return isStandard
@@ -14037,11 +14043,11 @@ VISH.Samples = function(V, undefined) {
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
   var quizes_samples = {"id":12314, "type":"presentation", "author":"V. Hugo", "slides":[{"id":"article12312", "type":"standard", "template":"t8", "elements":[{"id":"zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u><i><b>Testing Quiz Inside Template</b></i></u></span></div>'}, {"id":"zone2", "type":"image", "areaid":"left", 
-  "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":{"choices":["Something", "Nothing", "Everything", "Option D"]}}, {"id":"zone4", "areaid":"right"}]}, 
-  {"id":"article_12314_1", "type":"standard", "template":"t7", "elements":[{"id":"zone5", "type":"text", "areaid":"header", "body":'<div style="text-align: center; font-weight: normal; " class="vish-parent-font6"><i><b><span class="vish-font6 vish-fontgeorgia" style="color:undefined;undefined;">Titling ... one two three</span></b></i></div><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"zone6", "type":"text", "areaid":"left", 
-  "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div>'}, 
-  {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<b style="font-weight: normal; "><i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz quiz ... ?</span></i></b>', "quiztype":"multiplechoice", "options":{"choices":["aaa ... mucha a ", "bbb ... mucha b ", 
-  "ccc ... mucha c"]}}, {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
+  "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":{"choices":[{"value":"Something", "container":"Something"}, {"value":"Nothing", "container":"Nothing"}, 
+  {"value":"Everything", "container":"Everything"}, {"value":"Option D", "container":"Option D"}]}}, {"id":"zone4", "areaid":"right"}]}, {"id":"article_12314_1", "type":"standard", "template":"t7", "elements":[{"id":"zone5", "type":"text", "areaid":"header", "body":'<div style="text-align: center; font-weight: normal; " class="vish-parent-font6"><i><b><span class="vish-font6 vish-fontgeorgia" style="color:undefined;undefined;">Titling ... one two three</span></b></i></div><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"zone6", "type":"text", "areaid":"left", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div>'}, 
+  {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz<b> quiz</b> ... ?</span></i>', "quiztype":"multiplechoice", "options":{"choices":[{"value":"aaaaa... mucha a ", "container":"<b>aaa </b>... mucha a "}, 
+  {"value":"bbb ... mucha b ", "container":"bbb ... <b> mucha b </b>"}, {"value":"ccc ... mucha c", "container":"ccc ... mucha c"}]}}, {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
   return{full_samples:full_samples, samples:samples, samples_flashcard:samples_flashcard, samples_game:samples_game, samples_sync:samples_sync, quizes_samples:quizes_samples}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -14416,8 +14422,49 @@ VISH.Slides = function(V, $, undefined) {
     }
     _updateSlideEls()
   };
-  return{init:init, getCurrentSlide:getCurrentSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, isSlideSelected:isSlideSelected, onDeleteSlide:onDeleteSlide, getNumberOfSlide:getNumberOfSlide, getSlides:getSlides, getSlideWithNumber:getSlideWithNumber, backwardOneSlide:backwardOneSlide, closeSlide:closeSlide, closeAllSlides:closeAllSlides, forwardOneSlide:forwardOneSlide, 
-  goToSlide:goToSlide, lastSlide:lastSlide, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, showSlide:showSlide}
+  var copySlideWithNumber = function(slideNumber) {
+    var slide = getSlideWithNumber(slideNumber);
+    if(slide === null) {
+      return
+    }
+    var newSlide = $(slide).clone();
+    copySlide(newSlide)
+  };
+  var copySlide = function(newSlide) {
+    var currentSlide = getCurrentSlide();
+    if(currentSlide) {
+      $(currentSlide).after(newSlide)
+    }else {
+      $("section#slides_panel").append(newSlide)
+    }
+    VISH.Editor.Utils.refreshDraggables(newSlide);
+    slideEls = document.querySelectorAll("section.slides > article");
+    _updateSlideEls();
+    VISH.Editor.Thumbnails.redrawThumbnails();
+    if(currentSlide) {
+      goToSlide(getCurrentSlideNumber() + 1)
+    }else {
+      goToSlide(1)
+    }
+  };
+  var removeSlide = function(slideNumber) {
+    var slide = getSlideWithNumber(slideNumber);
+    if(slide === null) {
+      return
+    }
+    var removing_current_slide = false;
+    if(getCurrentSlide() === slide) {
+      removing_current_slide = true
+    }
+    $(slide).remove();
+    if(removing_current_slide) {
+      setCurrentSlideNumber(getCurrentSlideNumber() - 1)
+    }
+    VISH.Editor.Utils.redrawSlides();
+    VISH.Editor.Thumbnails.redrawThumbnails()
+  };
+  return{init:init, getCurrentSlide:getCurrentSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, isSlideSelected:isSlideSelected, getNumberOfSlide:getNumberOfSlide, getSlides:getSlides, getSlideWithNumber:getSlideWithNumber, backwardOneSlide:backwardOneSlide, closeSlide:closeSlide, closeAllSlides:closeAllSlides, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, 
+  isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, removeSlide:removeSlide, showSlide:showSlide}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var bindedEventListeners = false;
@@ -14534,10 +14581,10 @@ VISH.Events = function(V, $, undefined) {
         $(document).bind("keydown", handleBodyKeyDown);
         $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
         $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-        _registerEvent("mobile_back_arrow");
-        $(document).on("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
-        _registerEvent("mobile_forward_arrow");
-        $(document).on("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
+        _registerEvent("back_arrow");
+        $(document).on("click", "#back_arrow", V.Slides.backwardOneSlide);
+        _registerEvent("forward_arrow");
+        $(document).on("click", "#forward_arrow", V.Slides.forwardOneSlide);
         _registerEvent("closeButton");
         _registerEvent("closeButtonImg");
         $(document).on("click", "#closeButton", function() {
@@ -14563,10 +14610,10 @@ VISH.Events = function(V, $, undefined) {
         $(document).unbind("keydown", handleBodyKeyDown);
         $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
         $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-        _unregisterEvent("mobile_back_arrow");
-        $(document).off("click", "#mobile_back_arrow", V.Slides.backwardOneSlide);
-        _unregisterEvent("mobile_forward_arrow");
-        $(document).off("click", "#mobile_forward_arrow", V.Slides.forwardOneSlide);
+        _unregisterEvent("back_arrow");
+        $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
+        _unregisterEvent("forward_arrow");
+        $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
         _unregisterEvent("closeButton");
         _unregisterEvent("closeButtonImg");
         $(document).off("click", "#closeButton");
@@ -14692,8 +14739,8 @@ VISH.Quiz = function(V, $, undefined) {
     if($("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children()) {
       $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children().remove()
     }
-    $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".question"));
-    $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".question"));
+    $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone"));
+    $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone"));
     $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form"));
     $("#" + tabQuizStatsBarsContentId).find("div.mcquestion_body").addClass("quiz_in_satistics");
     $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
@@ -14701,11 +14748,16 @@ VISH.Quiz = function(V, $, undefined) {
     $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
   };
   var activatePolling = function(activate_boolean) {
-    pollingActivated = activate_boolean;
-    if(pollingActivated) {
-      _updateBarsStats()
+    if(!pollingActivated && activate_boolean) {
+      pollingActivated = activate_boolean;
+      _updateBarsStats();
+      getResultsTimeOut = setInterval(_getResults, getResultsPeriod)
     }else {
-      clearInterval(getResultsTimeOut)
+      if(pollingActivated && activate_boolean) {
+      }else {
+        pollingActivated = activate_boolean;
+        clearInterval(getResultsTimeOut)
+      }
     }
   };
   var _updateBarsStats = function(data) {
@@ -14717,8 +14769,7 @@ VISH.Quiz = function(V, $, undefined) {
       $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").css("display", "block");
       $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").text("0%");
       $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span").css("width", "0%");
-      _getResults();
-      getResultsTimeOut = setInterval(_getResults, getResultsPeriod)
+      _getResults()
     }
   };
   var _getResults = function(quiz_session_active_id) {
@@ -14776,6 +14827,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(current_slide).find("input." + optionsButtonClass).hide();
     $(current_slide).find("input." + startButtonClass).show();
     V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
+    pollingActivated = false;
     clearInterval(getResultsTimeOut);
     quizSessionStarted = false;
     if(isWaitingForwardOneSlide) {
@@ -14835,7 +14887,6 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _showResults = function(data) {
-    var received = JSON.stringify(data);
     var maxWidth = 70;
     var totalVotes = 0;
     for(option in data.results) {
@@ -14872,7 +14923,7 @@ VISH.Quiz = function(V, $, undefined) {
         data_for_chart.addRow([option, votes])
       }
     }
-    var question = $(VISH.Slides.getCurrentSlide()).find(".question").text();
+    var question = $(VISH.Slides.getCurrentSlide()).find(".value_multiplechoice_question_in_zone").text();
     var options = {"title":"", "width":400, "height":300};
     var chart = new google.visualization.PieChart(document.getElementById("quiz_chart_container_id"));
     chart.draw(data_for_chart, options)
@@ -15517,7 +15568,10 @@ VISH.Debugging = function(V, $, undefined) {
         log("VISH.Debugging Error: Specify presentationOptions");
         return
       }
-      mypresentation = VISH.Editor.savePresentation()
+      mypresentation = VISH.Editor.getSavedPresentation();
+      if(mypresentation === null) {
+        mypresentation = VISH.Editor.savePresentation()
+      }
     }else {
       log("You are already in Vish Viewer");
       return
@@ -15531,7 +15585,6 @@ VISH.Debugging = function(V, $, undefined) {
     VISH.Editor.Tools.cleanZoneTools();
     VISH.Editor.Tools.disableToolbar();
     $("#menubar-viewer").show();
-    log("Init Vish Viewer with presentation: " + JSON.stringify(mypresentation));
     VISH.SlideManager.init(presentationOptions, mypresentation)
   };
   var initVishEditor = function() {
@@ -15554,7 +15607,6 @@ VISH.Debugging = function(V, $, undefined) {
     $("#preview_circle").show();
     VISH.Editor.Tools.enableToolbar();
     $("#menubar-viewer").hide();
-    VISH.Debugging.log("Init Vish Editor with presentation: " + JSON.stringify(mypresentation));
     VISH.Editor.init(presentationOptions, mypresentation)
   };
   return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getPresentationSamples:getPresentationSamples, initVishViewer:initVishViewer, initVishEditor:initVishEditor}
@@ -16209,6 +16261,45 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
   };
   return{createCarrousel:createCarrousel, cleanCarrousel:cleanCarrousel, goToElement:goToElement, advanceCarrousel:advanceCarrousel, backCarrousel:backCarrousel, insertElement:insertElement, mustMoveCarrousel:mustMoveCarrousel}
 }(VISH, jQuery);
+VISH.Editor.Clipboard = function(V, $, undefined) {
+  var stack;
+  var init = function() {
+    stack = [null, null]
+  };
+  var copy = function(element, type) {
+    if(element) {
+      stack[0] = $(element).clone();
+      stack[1] = type
+    }
+  };
+  var paste = function() {
+    if(!stack[0]) {
+      return
+    }
+    switch(stack[1]) {
+      case VISH.Constant.Clipboard.Slide:
+        var slideToCopy = _rewriteIds($(stack[0]).clone());
+        VISH.Slides.copySlide(slideToCopy);
+        break;
+      default:
+        break
+    }
+  };
+  var _rewriteIds = function(parentElement) {
+    var ids_pattern = /unicID_[0-9]+/g;
+    $(parentElement).attr("id", VISH.Utils.getId());
+    $(parentElement).find("[id]").each(function(index, element) {
+      var id = $(element).attr("id");
+      var unicIDToReplace = ids_pattern.exec(id);
+      if(unicIDToReplace != null) {
+        var newId = $(element).attr("id").replace(unicIDToReplace, VISH.Utils.getId());
+        $(element).attr("id", newId)
+      }
+    });
+    return parentElement
+  };
+  return{init:init, copy:copy, paste:paste}
+}(VISH, jQuery);
 VISH.Editor.Events = function(V, $, undefined) {
   var bindedEventListeners = false;
   var init = function() {
@@ -16216,6 +16307,7 @@ VISH.Editor.Events = function(V, $, undefined) {
       bindEditorEventListeners()
     }
   };
+  var ctrlDown = false;
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
       case 39:
@@ -16229,13 +16321,45 @@ VISH.Editor.Events = function(V, $, undefined) {
           V.Slides.backwardOneSlide();
           event.preventDefault()
         }
+        break;
+      case 17:
+        ctrlDown = true;
+        break;
+      case 67:
+        if(V.Slides.isSlideFocused()) {
+          if(ctrlDown) {
+            if(VISH.Slides.getCurrentSlideNumber()) {
+              VISH.Editor.Clipboard.copy(VISH.Slides.getCurrentSlide(), VISH.Constant.Clipboard.Slide)
+            }
+          }
+        }
+        break;
+      case 86:
+        if(V.Slides.isSlideFocused()) {
+          if(ctrlDown) {
+            VISH.Editor.Clipboard.paste()
+          }
+        }
+        break;
+      case 46:
+        if(V.Slides.isSlideFocused()) {
+          VISH.Slides.removeSlide(VISH.Slides.getCurrentSlideNumber())
+        }
+        break
+    }
+  };
+  var handleBodyKeyUp = function(event) {
+    switch(event.keyCode) {
+      case 17:
+        ctrlDown = false;
         break
     }
   };
   var bindEditorEventListeners = function() {
     if(!bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
-        $(document).bind("keydown", handleBodyKeyDown)
+        $(document).bind("keydown", handleBodyKeyDown);
+        $(document).bind("keyup", handleBodyKeyUp)
       }
     }
     bindedEventListeners = true
@@ -16243,7 +16367,8 @@ VISH.Editor.Events = function(V, $, undefined) {
   var unbindEditorEventListeners = function() {
     if(bindedEventListeners) {
       if(V.SlideManager.getPresentationType() === "presentation") {
-        $(document).unbind("keydown", handleBodyKeyDown)
+        $(document).unbind("keydown", handleBodyKeyDown);
+        $(document).unbind("keyup", handleBodyKeyUp)
       }
       bindedEventListeners = false
     }
@@ -17112,11 +17237,12 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     }
     switch(quiz_type) {
       case "multiplechoice":
-        $(zone).find(".value_multiplechoice_question_in_zone").parent().find("div > div").children().remove();
-        $(zone).find(".value_multiplechoice_question_in_zone").parent().find("div > div").append(question);
+        $(zone).find(".value_multiplechoice_question_in_zone").children().remove();
+        $(zone).find(".value_multiplechoice_question_in_zone").append(question);
         var inputs = $(zone).find(".multiplechoice_option_in_zone");
         for(var i = 0;i <= options.length - 1;i++) {
-          $(inputs[i]).val(options[i])
+          $(inputs[i]).children().remove();
+          $(inputs[i]).append(options[i].container)
         }
         if(quiz_id) {
           $(zone).find('input[name="quiz_id"]').val(quiz_id)
@@ -17575,7 +17701,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     switch(presentationType) {
       case "presentation":
         $("ul.menu_option_main").find("a.menu_presentation").parent().show();
-        if(V.Editor.isPresentationStandard()) {
+        if(VISH.Editor.isPresentationStandard(VISH.Editor.getPresentation())) {
           $("ul.menu_option_main").find("a.menu_standard_presentation").parent().show()
         }
         break;
@@ -19147,11 +19273,11 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       if(VISH.Quiz.getQuizMode() == "answer") {
         ret += "<li class='li_mch_options_in_zone'>";
-        ret += "<input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'</input><span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i] + "</div>";
+        ret += "<input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'/><span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
         ret += "</li>"
       }else {
         ret += "<li class='li_mch_options_in_zone'>";
-        ret += "<span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i] + "</div>";
+        ret += "<span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
         ret += "</li>"
       }
       ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
@@ -19262,7 +19388,8 @@ VISH.SlideManager = function(V, $, undefined) {
   var presentationType = "presentation";
   var init = function(options, presentation) {
     VISH.Debugging.init(options);
-    VISH.Debugging.log("SlideManager.init with presentation: " + JSON.stringify(presentation));
+    VISH.Debugging.log("\n\nSlideManager.init with presentation:\n");
+    VISH.Debugging.log(JSON.stringify(presentation));
     VISH.Editing = false;
     if(options) {
       initOptions = options
@@ -19309,7 +19436,7 @@ VISH.SlideManager = function(V, $, undefined) {
     $(window).on("orientationchange", function() {
       V.ViewerAdapter.setupSize()
     });
-    var renderFull = options["full"] === true && !V.Status.getIsInIframe();
+    var renderFull = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true;
     if(!renderFull) {
       if(V.Status.getDevice().features.fullscreen && V.Status.getDevice().desktop) {
         if(V.Status.getIsInIframe()) {
@@ -20267,6 +20394,20 @@ function onYouTubePlayerReady(playerId) {
   };
   var decideIfPageSwitcher = function() {
     if(V.SlideManager.getPresentationType() === "presentation") {
+      if(V.Status.getDevice().desktop) {
+        $("#back_arrow").html("");
+        $("#forward_arrow").html("")
+      }
+      if(VISH.Slides.isCurrentFirstSlide()) {
+        $("#back_arrow").hide()
+      }else {
+        $("#back_arrow").show()
+      }
+      if(VISH.Slides.isCurrentLastSlide()) {
+        $("#forward_arrow").hide()
+      }else {
+        $("#forward_arrow").show()
+      }
       if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
         if(VISH.Slides.isCurrentFirstSlide()) {
           $("#page-switcher-start").hide()
@@ -20277,17 +20418,6 @@ function onYouTubePlayerReady(playerId) {
           $("#page-switcher-end").hide()
         }else {
           $("#page-switcher-end").show()
-        }
-      }else {
-        if(VISH.Slides.isCurrentFirstSlide()) {
-          $("#mobile_back_arrow").hide()
-        }else {
-          $("#mobile_back_arrow").show()
-        }
-        if(VISH.Slides.isCurrentLastSlide()) {
-          $("#mobile_forward_arrow").hide()
-        }else {
-          $("#mobile_forward_arrow").show()
         }
       }
     }

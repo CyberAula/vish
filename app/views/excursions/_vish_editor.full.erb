@@ -369,8 +369,10 @@
         <p class="textfancy">Url</p></br>
         <img class="image_add_link" src="/assets/url_img.png"/>
         <input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
-        <button type="button" class="addUrlButton" i18n-key="i.Add" 
-        onclick="VISH.Editor.Tools.addUrl()">Add</button>
+        <div class="addUrlButtons">
+          <button type="button" class="addUrlButton" i18n-key="i.Add" onclick="VISH.Editor.Tools.addUrl()">Add</button>
+          <button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
+        </div>
       </div>
       </div>
   </div>

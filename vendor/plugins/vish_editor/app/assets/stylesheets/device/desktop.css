@@ -5,14 +5,14 @@
 	display: block;
 }
 
-#mobile_forward_arrow:hover{
+#forward_arrow:hover{
   	cursor: url(right-pointer.png),url(/assets/cursor/right-pointer.png), default;
   	color: transparent;
 	background: transparent;
 	filter: none;
 }
 
-#mobile_back_arrow:hover{
+#back_arrow:hover{
 	cursor: url(left-pointer.png),url(/assets/cursor/left-pointer.png), default;
 	color: transparent;
 	background: transparent;
