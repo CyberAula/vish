@@ -11,6 +11,7 @@
           <%= excursion.slide_count %>
         </div>
       </li>
+
       <li class="info-excursion">
         <div class="title-excursion">
           <%= link_to excursion.title, excursion %>
@@ -32,8 +33,7 @@
           <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>">
             <%= link_like(excursion.post_activity)%>
           </div>
-        </div>
-        
+        </div>    
         <% end %>
       </li>
     </ul>

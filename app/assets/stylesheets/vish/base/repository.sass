@@ -1,0 +1,64 @@
+//home
+
+.box-home-repository
+  width: auto
+  .loading
+    margin-left: auto
+    margin-right: auto
+    display: block
+
+.profile-repository-recomended-me
+  font-size: 14px
+  color: $blue-1
+
+
+.repository-item
+  ul.thumbnails
+    background-color: #fff
+  ul.thumbnails:after 
+    clear: none !important
+  ul.thumbnails:before, 
+  ul.thumbnails:after
+    display: none
+  ul.thumbnails > li
+    margin-bottom: 10px
+
+
+.repository-item
+  @include makeColumn (3,0)
+  margin-left: 0px
+  ul
+    margin-left: 0px
+    li
+      margin-left: 0px
+      .img-resource
+        height: 70px
+        widht: 70px
+    .info-resource
+      @include makeColumn (2,0)
+      margin-left: 0px
+      display: inline-block
+      padding-left: 10px
+      
+      .title-resource
+        font-size: 14px
+        @include ellipsis
+        
+      .by
+        font-size: 10px
+        color: $grayLight
+        opacity: 0.6
+        a
+          font-family: $secondFontFamily
+          font-size: 16px
+      .visits
+        color: $green-vish
+        display: inline-block
+        a
+          color: $grayLight
+          display: inline-block
+      .likes
+        color: $green-vish
+        display: inline-block
+        .verb_like
+          display: inline-block

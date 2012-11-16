@@ -3,32 +3,25 @@
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
 <body>
-<div class="wrapper">
-  <div class="container">
-    <header id="headerFront row span12">
-      <%= render :partial => "layouts/header" %>
-    </header>
-    <div id="main" class="row body-height">
-      <section id="left" class="span2 margin-clear">
-        <%= yield :toolbar %>
-      </section>
-      <section id="right" class="span10">
-
-
-        <section id="content">
-          <%= yield %>
-        </section>
-      </section>
-      <div class="space_double_center"></div>
-    </div>
+  <div class="wrapper">
+    <div class="row"> 
+      <section class="container">
+        <header class="header">
+          <%= render :partial => "layouts/header" %>
+        </header>
+        <article id="main" class="content-page">
+          <section id="left" class="left-content-3x9">
+            <%= yield :toolbar %>
+          </section>
+          <section id="right" class="right-content-3x9">
+            <%= yield %>
+          </section>
+        </article>
+      <div class="push"></div> 
+    </div>      
   </div>
-  <div class="push"></div>
-</div>
-    <div class="container">
-      <footer class="row span12">
-        <%= render :partial => "layouts/footer" %>
-      </footer>
-    </div>
-
+  <footer class="footer">
+    <%= render :partial => "layouts/footer" %>
+  </footer>
 </body>
 </html>

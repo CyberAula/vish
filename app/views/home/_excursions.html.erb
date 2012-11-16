@@ -34,6 +34,7 @@
 <!--TAB EXCURSION  CONTENT1-->
 
   <div class="tab-content">
+
     <div id="ex-1" class="tab-pane active">
       <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-net"} %>     
       <div id="home-excursions-net" class="box-home-excursion">
@@ -105,6 +106,6 @@
       <%= link_to(t('view_all'), url_for([current_subject, Excursion]), :class => "btn btn-link "  + "?scope=like") %>
     </div>
   </div>
- <!--TAB EXCURSION  CONTENT4-->       
+ <!--TAB EXCURSION -->       
 </div>
 

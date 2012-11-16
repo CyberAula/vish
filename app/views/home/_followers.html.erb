@@ -1,57 +1,76 @@
-<div class="repository tabbable">
-      <ul class="nav nav-tabs span4" >
+<!--TAB FOLLOW-->
+<div class="tabbable">
+  <ul class="nav nav-tabs tabs-followers-home" >
+    <li class="active">
+      <a data-toggle="tab" href="#follow-1">
+        <%= t('follow.followings') %>
+      </a>
+    </li>
+    <li class="">
+      <a data-toggle="tab" href="#follow-2">
+        <%= t('follow.followers') %>
+      </a>
+    </li>
+  </ul>
+  <div class="tittle-tabs">
+    <%= t('follow.contacts')%>
+  </div>
+  <div class="clearfloat"></div>
 
-        <li class="active"><a data-toggle="tab" href="#follow-1"><%= t('follow.followings') %></a></li>
-        <li class=""><a data-toggle="tab" href="#follow-2"><%= t('follow.followers') %></a></li>
+  <div class="tab-content">
 
-      </ul>
-      <div class="span2 size40 title_menu_home ">
-        <%= t('follow.contacts')%></div>
+<!--TAB FOLLOW-->     
+
+    <div id="follow-1" class="tab-pane active modal-pivot">
+      <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
+      <div class="box-home-follower">
+        <% current_subject.following_actor_objects.includes(:actor).all.shuffle.first(7).each do |object|  %>
+        <%= javascript_tag do %>
+        <%= modal_for(object.actor.subject) %>
+        <% end %>
+        <%= div_for object.actor, :class => '' do %>
+        <ul class="thumbnails follow-item">
+          <li>
+            <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %>
+            </a>
+          </li>
+        </ul>
+        <% end %>
+        <% end %>
+      </div>
       <div class="clearfloat"></div>
-
-      <div class="tab-content">
-        <div id="follow-1" class="tab-pane active modal-pivot">
-          <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
-
-          <div class="follow-home-box">
-          <% current_subject.following_actor_objects.includes(:actor).all.shuffle.first(6).each do |object|  %>
-            <%= javascript_tag do %>
-              <%= modal_for(object.actor.subject) %>
-            <% end %>
-
-            <%= div_for object.actor, :class => '' do %>
-              <ul class="thumbnails span">
-                <li class="span1">
-  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
-                </li>
-              </ul>
-            <% end %>
-          <% end %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), followings_path, :class => "btn btn-link " ) %></div>
-        </div>
-
-        <div id="follow-2" class="tab-pane modal-pivot">
-          <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
-          <div class="follow-home-box">
-          <% current_subject.followers.all.shuffle.first(6).each do |object|  %>
-            <%= javascript_tag do %>
-              <%= modal_for(object.actor.subject) %>
-            <% end %>
-
-            <%= div_for object.actor, :class => '' do %>
-              <ul class="thumbnails span">
-                <li class="span1">
-                  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
-                </li>
-              </ul>
-            <% end %>
-          <% end %>
-          <div class="pull-right"><%= link_to(t('view_all'), followers_path, :class => "btn btn-link " ) %></div>
-          </div>
-        </div>
+      <div class="view-all">
+        <%= link_to(t('view_all'), followings_path, :class => "btn btn-link " ) %>
       </div>
     </div>
+
+<!--TAB FOLLOWING-->  
+
+    <div id="follow-2" class="tab-pane modal-pivot">
+      <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
+      <div class="box-home-follower">
+        <% current_subject.followers.all.shuffle.first(7).each do |object|  %>
+        <%= javascript_tag do %>
+        <%= modal_for(object.actor.subject) %>
+        <% end %>
+        <%= div_for object.actor, :class => '' do %>
+        <ul class="thumbnails follow-item">
+          <li>
+            <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %>
+            </a>
+          </li>
+        </ul>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="clearfloat"></div>
+      <div class="view-all">
+        <%= link_to(t('view_all'), followers_path, :class => "btn btn-link " ) %>
+      </div>
+    </div>
+  </div>
+</div>
+
     <%= javascript_tag do %>
       $(document).ready(function(){
         $('.follower-tooltip').tooltip({ placement: 'bottom'});
