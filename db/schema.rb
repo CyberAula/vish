@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116143020) do
+ActiveRecord::Schema.define(:version => 20121111211308) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(:version => 20121116143020) do
     t.integer "excursion_id"
     t.string  "type"
     t.string  "question"
-    t.text    "options"
+    t.string  "options"
     t.text    "simple_json"
   end
 

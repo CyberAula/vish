@@ -69,25 +69,6 @@ height: 100%;
     height: 100%;
 }
 
-.li_mch_option {
-	list-style:none;
-}
-/*
-.value_multiplechoice_question_in_zone {
-    background: none no-repeat scroll 5px 50% transparent;
-    border: 1px solid #9B999D;
-    border-radius: 10px 10px 10px 10px;
-    font-family: Helvetica;
-    font-size: 1.2em;
-    outline: 0 none;
-    padding: 2%;
-    position: relative;
-    z-index: 1000;
-    width: 90%;
-    min-width: 50%;
-    max-height: 40%;
-} */
-
 .ul_mch_options_in_zone {
     padding: 0%;
 }
@@ -99,8 +80,12 @@ height: 100%;
     width: 94%;
 }
 
+.li_mch_options_in_zone > input  {
+    float: left;
+}
+
 .li_mch_options_in_zone > span{
-    color: ##000000;
+    color: #000000;
     display: inline-block;
     font-size: 1.1em;
     text-align: center;
@@ -110,21 +95,20 @@ height: 100%;
 }
 
 .multiplechoice_option_in_zone { 
-    background: url("/assets/background_text3.png") no-repeat scroll 46px center transparent;
+background: url("/assets/background_text3.png") no-repeat scroll 46px center transparent;
     border: 1px solid #666666;
     border-radius: 10px 10px 10px 10px;
     color: #000000;
+    float: left;
     font-family: Arial;
     font-size: 1em;
+    height: 21px;
     margin-left: 2%;
-    margin-top: 0.5%;
     outline: 0 none;
     padding: 1%;
     position: relative;
-    width: 79%;
-    height: 4%;
+    width: 83%;
     z-index: 1000;
-    float:left;
 }
 .multiplechoice_option_in_viewer {
     border: none !important;
@@ -641,7 +625,7 @@ span.mcChoiceSpan{
 }
 
 .quiz_session_header {
-    background:  background: url("/assets/quiz_details.png") top;
+     background: url("/assets/quiz_details.png") top;
     display: inline-block;
     font-size: 1.7em;
     height: 10%;
@@ -950,14 +934,15 @@ height: 20%;
 }
 
 .value_multiplechoice_question_in_zone {
-    background: url("/assets/background_text3.png") no-repeat scroll 46px center;
-    color: #000000;
+    background: url("/assets/background_text3.png") no-repeat scroll 46px center transparent;
     border: 1px solid #666666 !important;
     border-radius: 20px 20px 20px 20px;
-    margin-left: 11%;
-    margin-top: 3%;
-    width: 81% !important;
+    color: #000000;
     height: 20%;
+    margin-left: 8%;
+    margin-top: 3%;
+    padding: 2%;
+    width: 78%;
 }
 
 .question_in_viewer {
