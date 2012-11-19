@@ -1,5 +1,5 @@
 <% link = Link.first %>
-<% link = Link.find(42) if Rails.env == "production" %>
+<% link = Link.find_by_id(42) if Rails.env == "production" %>
 <%= javascript_tag do %>
   <%= modal_for(link) unless link.blank? %>
 <%end%>
