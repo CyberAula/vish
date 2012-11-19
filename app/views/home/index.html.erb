@@ -13,7 +13,7 @@
   </section>
   <!--TIME-LINE-->
   <section id="right-home">
-  <#%= render partial: 'activities/wall',
+  <%= render partial: 'activities/wall',
              locals: {
                activities: current_subject.wall(:home).page(params[:page_net])
              } %>
