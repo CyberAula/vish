@@ -95,6 +95,12 @@
 // repository
 @import "vish/base/repository";
 
+// toolbar
+@import "vish/base/toolbar";
+
+// slider
+@import "vish/base/slider";
+
 // ----------------------------pages-------------------------
 
 // devise
@@ -106,7 +112,8 @@
 // home
 @import "vish/base/pages/home";
 
-
+// profile
+@import "vish/base/pages/profile";
 
 // messages
 @import "vish/base/messages";

@@ -20,71 +20,54 @@
 <%= content_for :og_type do %>resource<% end %>
 <%= content_for :og_url do %><%= request.url %><% end %>
 
-<section id="" class=" span5  ">
+<section id="show_document">
   <%= show_view_for document %>
-
-  <section id="" class=" pull-right roundedbox">
-    <div class="">
-      <% if document.is_a? Document %>
-        <div class="btn-gray">
-          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
-        </div>
-      <% end %>
-      <% if can?(:destroy, document) %>
-        <div class="btn-gray">
-          <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete', :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
-        </div>
-      <% end %>
+  <section class="document-options">
+    <% if document.is_a? Document %>
+    <div class="btn-gray">
+    <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_arrow_3'></i> ") + t('document.actions.download'), :class => :action), download_document_path(document) %>
     </div>
-  </section>
+    <% end %>
+    <% if can?(:destroy, document) %>
+    <div class="btn-gray">
+      <%= link_to content_tag(:span, raw("<i class='icontool16-tool16_symbol_delete'></i> ") + t('document.actions.delete'), :class => :action), document.post_activity.direct_object, :confirm => t('confirm_delete', :scope => document.post_activity.direct_object.class.to_s.underscore), :method => :delete %>
+    </div>
+    <% end %>
 
-  <div class="margin-info-coments">
-    <section id="comentss" class="span5">
-      <div id="" class="tabbable  ">
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
-        </ul>
-        <div class="tab-content ">
-          <div id="comment-1" class="tab-pane active row-fluid activity_content comments-resources">
-            <% unless document.post_activity.blank? %>
-              <%= render :partial => 'comments/new', :locals => {:activity => document.post_activity} %>
-              <%= render :partial => 'activities/comments', :locals => {:activity => document.post_activity, :logo_size => ':contact'} %>
-              <%= javascript_tag do %>
+  </section>
+  <section id="coment-resource">
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a data-toggle="tab" href="#comment-1">
+            <%= t('comment.title.other') %>
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content ">
+        <div id="comment-1" class="tab-pane active">
+          <% unless document.post_activity.blank? %>
+          <%= render :partial => 'comments/new', :locals => {:activity => document.post_activity} %>
+          <%= render :partial => 'activities/comments', :locals => {:activity => document.post_activity, :logo_size => ':contact'} %>
+          <%= javascript_tag do %>
                 SocialStream.Comments.initNew();
               <%end%>
-            <% else %>
-              <% unless user_signed_in? %>
-                <%= link_to(t('session.session_start'), new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " + t('comment.input') %>
-              <% end %>
-            <% end %>
-          </div>
+          <% else %>
+          <% unless user_signed_in? %>
+          <%= link_to(t('session.session_start'), new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " + t('comment.input') %>
+          <% end %>
+          <% end %>
         </div>
       </div>
-
-    </section>
-  </div>
+    </div>
+  </section>
 </section>
 
-
-
-
-<section id="" class="span3  ">
-  <div class="margin-info-resources  ">
-    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
-  </div>
+<section id="info-notebook">
+  <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-<!---------end------------------------->
+<!---end->
 
 
 

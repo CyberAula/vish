@@ -62,3 +62,223 @@
         display: inline-block
         .verb_like
           display: inline-block
+
+
+//new file
+
+.box_help
+  @include makeColumn (3,0)
+  float: right
+  color: $red-1
+  font-family: $secondFontFamily
+  font-size: 20px
+
+  .text_help
+    margin-top: 15px
+    a
+    font-size: $baseFontSize
+    color: $grayLight
+    font-family: $secondFontFamily
+
+
+.tabs-resources-new
+  @include makeColumn (7,0)
+  margin-left: 0px
+.box-form-resource
+  @include makeColumn (7,0)
+  margin-left: 0px
+
+#formulate-new
+  @include makeColumn(6,0)
+
+  .box_gray1
+    .box_gray2
+      .box_gray3
+        .campos
+          width: 100%
+          display: inline-block
+          #new_file_only_document_file
+            margin-left: 20px
+            margin-top: 20px
+            margin-bottom: 20px
+  
+            input
+              border: none !important    
+          
+          input
+            width: $inputFormulate
+            display: inline-block
+            margin-right: 15px
+            border: none
+            box-shadow: none
+            margin-top: 8px
+
+          textarea
+            box-shadow: none
+            width: $inputFormulate
+            display: inline-block
+            margin-right: 15px
+            border: none
+          
+          .uneditable-input
+            width: $inputFormulate
+            display: inline-block
+            margin-right: 15px
+            border: none
+
+          select
+            box-shadow: none
+            width: $inputFormulate
+            display: inline-block
+            margin-right: 15px
+            border: none
+          .slide-age
+            input
+              width: 50px
+          input.age
+            width: 50px
+
+
+
+
+
+        li,
+        .tagit-new
+          input
+            width: auto 
+
+        .text-tittle
+          color: $gray
+          display: inline-block
+          font-family: $thirdFontFamily
+          margin-left: 10px
+          float: left
+          margin-top: 5px
+
+.accept-btn,
+.new-file
+  margin-top: 17px !important
+  margin-bottom: 25px
+ 
+
+.new-resource-box
+  width: 98%
+
+.slider-new
+  @include makeColumn(4,0)
+  margin-left: 0px
+  display: inline-block
+
+.slider-new-range
+  @include makeColumn(3,0)
+  float: right
+.position-new
+  margin-left: 10px
+  margin-top: -20px
+
+
+/* show_document */
+
+#show_document
+  @include makeColumn(6,0)
+  margin-left: 0px
+  .document-options
+    @include makeColumn(6,0)
+    margin-top: 20px
+    margin-bottom: 20px
+  .coment-resource
+    @include makeColumn(6,0)
+
+/* details resources/excursion */
+
+#info-notebook
+  @include makeColumn(3,0)
+
+  .all-description
+    #notebook-tabs
+
+
+
+
+
+.notebook
+  display: inline-block
+  @include border-radius(15px)
+  width: 300px
+  .notebook-cabecera
+    background-image: url("notebook/CABECERA.png")
+    background-repeat: no-repeat
+    width: 290px
+    height: 33px
+    display: inline-block
+    margin-bottom: -4px
+    padding-left: 15px
+    padding-top: 10px
+    .like
+      display: inline-block
+      margin-left: 20px
+      font-size: 18px
+      a
+        color: $gray
+
+      .verb_like
+        display: inline-block
+      .number-green
+        color: $green
+        font-family: $secondFontFamily
+        font-size: 16px
+        display: inline-block
+    
+    .favorite-count
+      display: inline-block
+      margin-left: 50px
+      a
+        color: $gray
+      .number-green
+        color: $green
+        font-family: $secondFontFamily
+        font-size: 16px
+        display: inline-block
+  
+.notebook-medio
+  background-image: url("notebook/MEDIO.png")
+  background-repeat: repeat-y
+  width: 290px
+  height: auto
+  display: inline-block
+  padding-top: 20px
+  margin-top: -10px
+
+  .tittle-notebook
+    padding-left: 20px
+    color: $red-1
+    display: inline-block
+    float: left
+    font-size: 17px
+    margin-bottom: 10px
+    text-decoration: underline
+    width: 270px
+  .text-notebook
+    padding-left: 30px
+    color: $gray
+    @incluce ellipsis
+    margin-bottom: 10px
+
+
+
+.notebook-pie
+  background-image: url("notebook/PIE.png")
+  background-repeat: no-repeat
+  width: 290px
+  height: 21px
+  display: block
+  margin-top: -5px
+  width: 290px
+
+.decoration-notebook
+  width: 25px
+  display: inline-block   
+  float: left
+  height: auto
+  background-color: #f1f1f1
+

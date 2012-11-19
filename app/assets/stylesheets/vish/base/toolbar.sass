@@ -1,0 +1,79 @@
+#logo_profiles
+
+/********** Current logo change **********/
+.logo_grid 
+	height: 119px
+	overflow: hidden
+	position: relative
+
+.logo_grid img 
+	position: absolute
+	top: 0
+	border: 0
+
+
+.logo_caption 
+	top: 119px
+	text-aling: center
+	float: left
+	position: absolute
+	background: $background
+	opacity: 0.8
+	width: 119px
+	height: 20px
+/* For IE 5-7 */
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80)
+/* For IE 8 */
+	-MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)"
+
+.logo_full 
+	.logo_caption 
+		top: 119px
+		padding: 5px
+		text-align: center
+		a
+			text-aling: center
+			color: $blue-1
+		a:hover
+			text-align: center
+			color: $blue-1
+
+
+
+.toolbar_user_name
+	margin-top: 15px
+	font-family: $secondFontFamily
+	font-size: 25px
+	margin-bottom: 15px
+
+.toolbar-btn
+	margin-top: 3px
+	margin-bottom: 3px
+
+//follower
+
+#toolbar-follower
+	margin-top: 30px
+	.tittle-follow
+
+		height: 25px
+		@include border-radius($radius)
+		background-color: $white
+		margin-bottom: 5px
+		font-family: $secondFontFamily
+		padding-top: 10px
+		padding-left: 10px
+		a
+
+			color: $red-1
+			font-size: 25px
+		a:hover
+			color: $blue-1
+			font-size: 25px
+		li
+			padding-top: 10px
+
+
+	ul
+		li.logo-toolbar-follower
+			@include makeColumn(1,0)

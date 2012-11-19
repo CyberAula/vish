@@ -4,13 +4,13 @@
 
   <div class="filter-tabs">
     <% filter_id ||= "resource-filter" %>
-    <input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>"  name="filter">
+    <input id="<%= filter_id %>" type="text" class="input-medium " placeholder="<%= t('filter') %>"  name="filter">
   </div>
 
 <!--btn add-->
 
   <div class="btn-gray">
-      <%= link_to  raw("<i class='icontool16-tool16_arrow_7'></i> ") + t('resource.upload'),new_document_path, :class => :action  %>
+    <%= link_to  raw("<i class='icontool16-tool16_arrow_7'></i> ") + t('resource.upload'),new_document_path, :class => :action  %>
   </div>
 </div>
 

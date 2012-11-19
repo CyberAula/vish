@@ -1,4 +1,4 @@
-<div class=" content-notebook" id="document_edit"  >
+<div id="document_edit">
   <%= form_for(document, :html => { :method => :put }) do |f| %>
     <% if document and document.errors.any? %>
       <%= javascript_tag do %>
@@ -6,39 +6,29 @@
           toggleDocumentEdit();
         });
       <% end %>
-      <div class="error">
-        <ul>
-          <% document.errors.full_messages.each do |msg| %>
-          <li>
-            <%= msg %>
-          </li>
-          <% end %>
-        </ul>
-      </div>
+  <div class="error">
+    <ul>
+      <% document.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
     <% end %>
 
-
-    <div class="details_resources">
-      <%= t('document.info.title') %>
-    </div>
-
-    <div class="clearfloat"></div>
-    <div class="form_field_edit_resource">
-      <%= f.text_field :title, :class => "form_tag" %>
-    </div>
-
-    <div class="details_resources">
-      <%=t('document.info.description') %>
-    </div>
-
-
-    <div class="clearfloat"></div>
-
-    <div id="form_field_edit_resource">
-
-      <%= f.text_area :description, :class => "form_tag", :rows => 5 %>
-
-    </div>
+  <div class="tittle-notebook">
+    <%= t('document.info.title') %>
+  </div>
+  <div class="text-notebook">
+      <%= f.text_field :title, :class => "" %>
+  </div>
+  <div class="tittle-notebook">
+    <%=t('document.info.description') %>
+  </div>
+  <div class="text-notebook">
+    <%= f.text_area :description, :class => "", :rows => 5 %>
+  </div>
 
 
   <!-- Tags -->
@@ -49,38 +39,31 @@
       <li><%=tag.name%></li>
     <%end%>
   </ul>
-
-  <div class="details_resources">
+  <div class="tittle-notebook">
     <%= t('document.info.tags.title') %>
   </div>
-
-
-  <div class="form_field_edit_resource">
-    <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
-
+  <div class="block">
+    <%= f.hidden_field :tag_list, :class => "", :id => "input_tag_list" %>
     <div class="tags_edit_resources ">
     <div class="tagBoxEdit ">
       <ul class="tagList"></ul>
     </div>
   </div>
-
-  <div class="details_resources">
+  <div class="tittle-notebook">
     <%= t('lang.title') %>
   </div>
 
-  <div class="form_field_edit_resource">
+  <div class="text-notebook">
     <% languages = [[t('lang.independent'), ''], ['Deutsch', 'de'], ['English', 'en'], ['Español', 'es'],
     ['Français', 'fr'], ['Italiano', 'it'], ['Português', 'pt'], ['Русский', 'ru'],
     [t('lang.others'), 'ot']]
     %>
-    <%= f.select(:language, languages, :class => "form_tag") %>
+    <%= f.select(:language, languages, :class => "") %>
   </div>
-
-  <div class="details_resources">
+  <div class="tittle-notebook">
     <%= t('document.info.age') %>
   </div>
-
-  <div class="form_field_edit_resource">
+  <div class="text-notebook">
     <%= f.hidden_field :age_min, :class => "form_tag", :id => "age_min_field" %>
     <%= f.hidden_field :age_max, :class => "form_tag", :id => "age_max_field" %>
     <input type="text" class="age"/>
@@ -90,7 +73,7 @@
   <div class="clearfloat"></div>
     </br>
 
-  <div class="actions left">
+  <div class="accept-btn">
     <%= f.submit t('button.save'), :class => "btn btn-primary", :id => "edit_resource_save_button" %>
   </div>
   <% end %>
