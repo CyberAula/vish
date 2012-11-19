@@ -2,12 +2,12 @@
   <%= render partial: "activities/root",
              locals: {
                activity: activity,
-               root_avatar_thumb: "50"
+               root_avatar_thumb: :contact
              } %>
 <% else %>
   <%= render partial: "activities/child",
              locals: {
                activity: activity,
-               child_avatar_thumb: '25'
+               child_avatar_thumb: :actor
              } %>
 <% end %>
