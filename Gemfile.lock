@@ -1,11 +1,12 @@
-PATH
-  remote: ../social_stream-bootstrap
+GIT
+  remote: git://github.com/ging/social_stream.git
+  revision: 901caa1d6df4ad03362feb927e3115ba754cacee
+  branch: vish
   specs:
     social_stream-base (0.24.0)
       acts-as-taggable-on (~> 2.2.2)
       ancestry (~> 1.2.3)
       avatars_for_rails (~> 0.2.8)
-      bootstrap-sass (~> 2.1.0.0)
       cancan (~> 1.6.7)
       deep_merge
       devise (~> 2.1.2)
