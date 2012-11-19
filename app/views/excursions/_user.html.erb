@@ -1,6 +1,6 @@
 <% self.class.send :include, HomeHelper  %>
 <section id="profile-excursion">
-  <div class="excursions tabbable">
+  <div class="tabbable">
     <ul class="nav nav-tabs tabs-profile">
       <li class="">
         <a data-toggle="tab" href="#ex-1">
@@ -14,7 +14,7 @@
       </li>
       <li class="">
         <a data-toggle="tab" href="#ex-3">
-          <%= image_tag "star-MENU-active.png", :class => "star" %>
+          <%= image_tag "icons/star-MENU-active.png", :class => "star" %>
         </a>
       </li>
     </ul>
@@ -29,6 +29,7 @@
       <div id="profile-excursions-net" class="box-profile-excursion" >
         <img alt="Loading" class="loading" src="/assets/loading.gif" />
       </div>
+      <div class="clearfloat"></div>
       <div class="view-all">
         <%= link_to(t('view_all'), url_for([@user, Excursion]), :class => "btn btn-link " + "?scope=net") %>
       </div>
@@ -42,6 +43,7 @@
                        :locals => { :excursion => excursion} %>
         <% end %>
       </div>
+      <div class="clearfloat"></div>
       <div class="view-all">
         <%= link_to(t('view_all'), [@user, Excursion], :class => "btn btn-link " ) %>
       </div>
@@ -55,6 +57,7 @@
                        :locals => { :excursion => excursion} %>
           <% end %>
         </div>
+        <div class="clearfloat"></div>
         <div class="view-all">
           <%= link_to(t('view_all'), url_for([@user, Excursion]), :class => "btn btn-link "  + "?scope=like") %>
         </div>

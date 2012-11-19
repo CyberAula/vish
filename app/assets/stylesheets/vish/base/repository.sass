@@ -263,8 +263,33 @@
     color: $gray
     @incluce ellipsis
     margin-bottom: 10px
+    .age
+      @include makeColumn(1,0)
+      @include nomargin-left
+    .slider-range
+      margin-top: 6px
+      @include makeColumn(2,0)
+  .accept-btn
+    margin-top: 15px
+    float: right
+    margin-right: 30px
 
-
+.form_field_edit_resource
+  .tagBoxEdit
+    clear: right
+    color: #7a8fa9
+    font-size: 14px
+    -moz-border-radius: 5px
+    -khtml-border-radius: 5px
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    max-height: 45%
+    overflow-y: auto
+    overflow-x: hidden
+    margin: 0 5px -2px 6px
+    width: 100%
+    .tagit
+      width: 220px
 
 .notebook-pie
   background-image: url("notebook/PIE.png")

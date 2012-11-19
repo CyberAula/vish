@@ -33,6 +33,7 @@
 
   <!-- Tags -->
   <!-- Preload tags -->
+
   <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
   <ul id="preloadTagList" style="display:none">
     <%@tags.each do |tag| %>
@@ -42,17 +43,19 @@
   <div class="tittle-notebook">
     <%= t('document.info.tags.title') %>
   </div>
-  <div class="block">
+  <div class="form_field_edit_resource">
     <%= f.hidden_field :tag_list, :class => "", :id => "input_tag_list" %>
     <div class="tags_edit_resources ">
-    <div class="tagBoxEdit ">
-      <ul class="tagList"></ul>
+      <div class="tagBoxEdit ">
+        <ul class="tagList">
+        </ul>
+      </div>
     </div>
   </div>
+
   <div class="tittle-notebook">
     <%= t('lang.title') %>
   </div>
-
   <div class="text-notebook">
     <% languages = [[t('lang.independent'), ''], ['Deutsch', 'de'], ['English', 'en'], ['Español', 'es'],
     ['Français', 'fr'], ['Italiano', 'it'], ['Português', 'pt'], ['Русский', 'ru'],
@@ -68,16 +71,13 @@
     <%= f.hidden_field :age_max, :class => "form_tag", :id => "age_max_field" %>
     <input type="text" class="age"/>
       <div class="slider-range"></div>
-
   </div>
-  <div class="clearfloat"></div>
-    </br>
 
   <div class="accept-btn">
     <%= f.submit t('button.save'), :class => "btn btn-primary", :id => "edit_resource_save_button" %>
   </div>
   <% end %>
-</div>
+
 
 <%= content_for :javascript do %>
   $(document).ready(function() {

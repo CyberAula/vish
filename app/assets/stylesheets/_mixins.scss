@@ -40,6 +40,34 @@ li a:hover {
 
   }
 
+// menu vertical
+// ----------------------------------
+@mixin menuVertical {
+  
+  padding: 0;
+  text-align: left; 
+
+ul{
+  list-style-type: none;
+  margin-left: 4em;
+}
+
+li{
+  display: block; 
+  } 
+
+li a{
+  text-decoration: none;  
+  color: $grayLink;  
+  }
+
+li a:hover {  
+  color: $grayLinkHover; 
+} 
+
+  }
+
+
 // margin left span
 // ----------------------------------
 @mixin nomargin-left {
@@ -47,7 +75,7 @@ li a:hover {
   margin-left: 0px;
 }
 
-// border radius
+// box shadow
 // ----------------------------------
 @mixin box-shadow {
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -56,7 +84,7 @@ li a:hover {
   }
 
 
-// border radius
+// ellipsis
 // ----------------------------------
 @mixin ellipsis {
 

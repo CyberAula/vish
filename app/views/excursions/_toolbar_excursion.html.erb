@@ -1,5 +1,5 @@
-<div class="excursion_tools">
-  <div class="options inline-block">
+<div class="excursion-tools">
+  <div class="inline-block">
     <% unless excursion.draft %>
       <div class="btn-gray">
         <a class="action" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
@@ -33,7 +33,7 @@
     <% end %>
 
   </div>
-  <div class="views size16 inline-block pagination-right inline-block ">
+  <div class="view-like-mashme">
     <% unless excursion.draft %>
       <span class="green"><%=excursion.visit_count.to_s%></span><span> <%=t('follow.views')%></span>
       <span class="green like_count_<%= dom_id(excursion.post_activity) %>"><%= excursion.post_activity.likes.count.to_s  %></span><span> <%= t('follow.favorites').downcase %></span>

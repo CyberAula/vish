@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<iframe id="presentation_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="910" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
+<iframe class="vishEditorIframe" id="presentation_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="910" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
 
 <% if user_signed_in? and can?(:destroy, @excursion) %>
-   <%= link_to content_tag(:span, t('excursion.actions.delete'), :class => :action), @excursion, :confirm => t('confirm_delete',
-     :scope => @excursion.class.to_s.underscore), :method => :delete ,  :class=>"btn-delete-excursion span11" %>
-   <% end %>
+   <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion, :shortURL => nil} %>
+<% end %>
 
+<%=javascript_include_tag "VISH.IframeAPI" %>
 
 <% content_for :javascript do %>
     function setFavicon() {
-		  var link = $('link[type="image/vnd.microsoft.icon"]').remove().attr("href");
-		  $('<link href="'+ link +'" rel="shortcut icon" type="image/x-icon" />').appendTo('head');
-		}
+      var link = $('link[type="image/vnd.microsoft.icon"]').remove().attr("href");
+      $('<link href="'+ link +'" rel="shortcut icon" type="image/x-icon" />').appendTo('head');
+    }
         
     location.href = "#presentation_iframe";
     setFavicon();
@@ -22,4 +22,11 @@
         return I18n.t("excursion.unload_warning");
       }
     });
+
+    window.onload = function(){
+      VISH.IframeAPI.init({callback: onConnect});
+    };
+    function onConnect(origin){
+      //console.log("Communication stablished with " + origin);
+    } 
 <%end%>

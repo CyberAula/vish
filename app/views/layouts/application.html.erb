@@ -2,8 +2,6 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
-
-
 <body data-offset= "50" data-spy="scroll" data-target="#left" data-twttr-rendered="true" >
   <div class="wrapper">
     <div class="row"> 
@@ -11,39 +9,25 @@
         <header class="header">
           <%= render :partial => "layouts/header" %>
         </header>
-
-
         <article id="main" class="content-page">
-
           <section id="left" class="left-content-application">
             <%= yield :toolbar %>
           </section>
-
           <section id="main" class="center-content-application">
             <%= yield %>
           </section>
-
           <section id="right" class="right-content-application">
             <%= yield :sidebar %>
             <footer class="footer-right">
               <%= render :partial => "layouts/footer-right" %>
             </footer>
           </section>
-
         </article>
       <div class="push"></div> 
     </div>      
   </div>
-
 </body>
-
 </html>
-
-
-
-
-
-
 
 <%= javascript_tag do %>
 var $win = $(window)

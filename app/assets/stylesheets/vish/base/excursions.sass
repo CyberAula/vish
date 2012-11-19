@@ -107,3 +107,121 @@
         color: $green-vish
         .verb_like
           display: inline-block
+
+
+/* details excursion */
+
+#info-notebook
+  @include makeColumn(3,0)
+
+.notebook
+  display: inline-block
+  @include border-radius(15px)
+  width: 300px
+  .notebook-cabecera
+    background-image: url("notebook/CABECERA.png")
+    background-repeat: no-repeat
+    width: 290px
+    height: 33px
+    display: inline-block
+    margin-bottom: -4px
+    padding-left: 15px
+    padding-top: 10px
+
+  
+.notebook-medio
+  background-image: url("notebook/MEDIO.png")
+  background-repeat: repeat-y
+  width: 290px
+  height: auto
+  display: inline-block
+  padding-top: 20px
+  margin-top: -10px
+
+  .tittle-notebook
+    padding-left: 20px
+    color: $red-1
+    display: inline-block
+    float: left
+    font-size: 17px
+    margin-bottom: 10px
+    text-decoration: underline
+    width: 270px
+  .text-notebook
+    font-size: 14px
+    padding-left: 30px
+    color: $gray
+    @incluce ellipsis
+    margin-bottom: 10px
+
+
+
+
+.notebook-pie
+  background-image: url("notebook/PIE.png")
+  background-repeat: no-repeat
+  width: 290px
+  height: 21px
+  display: block
+  margin-top: -5px
+  width: 290px
+
+.decoration-notebook
+  width: 25px
+  display: inline-block   
+  float: left
+  height: auto
+  background-color: #f1f1f1
+
+/* excursion show */
+
+.tabs-excursion-show
+  @include makeColumn (11,0)
+
+/* excursion toolbar */
+
+.excursion-tools
+  background-color: #EDEDED
+  border-radius: 0 0 20px 20px
+  border-top: 1px solid
+  margin: -6px 20px 26px
+  min-height: 40px
+  padding: 10px 0 0 10px
+  vertical-align: middle
+  width: 900px
+  .view-like-mashme
+    display: inline-block
+    float: right
+    padding-right: 20px
+    font-family: $thirdFontFamily
+    font-size: $tittleFontSize
+    margin-bottom: 10px
+    .green
+      color: $green
+      margin-left: 20px
+    .mashme-button
+      margin-left: 20px
+
+.input-embed-excursion
+  cursor: text
+
+#excursion-share
+  margin-top: 10px
+
+.social_toolbar_excursion
+  display: inline-block
+  height: 19px
+
+/* bottom excursion info */
+
+.comments-show
+  @include makeColumn(7,0)
+.info-excursion
+  @include makeColumn(3,0)
+  margin-left: 40px
+
+/* view all excursion*/
+.view-all-excursions
+  @include makeColumn(10,0)
+.box-excursion-view-all
+  margin-left: 20px

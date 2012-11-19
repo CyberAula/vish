@@ -2,11 +2,14 @@
 .content-page
   @include makeColumn (12,0)
 
-
 // HOME
 .home
   @include makeColumn (12,0)
 
+// 12
+.twelve
+  @include makeColumn (12,0)
+  @include nomargin-left
 
 //3x9
 .left-content-3x9
@@ -27,6 +30,7 @@
 
 .right-content-application
   @include makeColumn (3,0)
+  margin-left: 80px
 
 
 
@@ -87,4 +91,31 @@ html, body
 
 .push 
   height: 40px
+
+
+/**************footer-right*************/
+
+.footer-right
+  @include makeColumn (3,0)
+  margin-left: 0px
+  .menu_v
+    @include menuVertical
+    ul
+      .site_name
+        color: $linkgray
+      li
+        .btn-group,
+        .open 
+          background-color: transparent
+        .btn
+          background-color: transparent
+          background-image: none
+          box-shadow: none
+          margin-top: 3px
+          color: $linkgray
+          .caret
+            color: $linkgray
+
+
+
 

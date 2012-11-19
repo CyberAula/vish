@@ -46,6 +46,7 @@
                          :locals => {:excursions => my_network_excursions} %>
           <% end %>
       </div>
+      <div class="clearfloat"></div>
       <div class="view-all">
         <%= link_to(t('view_all') , url_for([current_subject, Excursion]), :class => "btn btn-link " + "?scope=net")%>
       </div>
@@ -58,7 +59,7 @@
     <div id="home-excursions-me" class="box-home-excursion">
       <img alt="Loading" class="loading" src="/assets/loading.gif" />
     </div>
-
+    <div class="clearfloat"></div>
     <div class="view-all">
       <%= link_to(t('view_all'), [current_subject, Excursion], :class => "btn btn-link " ) %>
     </div>
@@ -83,6 +84,7 @@
         <%= render :partial => "excursions/filter_results",
                        :locals => {:excursions => current_subject.excursion_suggestions(4) } %>
     </div>
+    <div class="clearfloat"></div>
     <div class="view-all">
       <%= link_to(t('view_all'), search_path(:type => "excursion"), :class => "btn btn-link " ) %>
     </div>
@@ -102,6 +104,7 @@
                            :locals => {:excursions => fav_excursions} %>
       <% end %>
     </div>
+    <div class="clearfloat"></div>
     <div class="view-all">
       <%= link_to(t('view_all'), url_for([current_subject, Excursion]), :class => "btn btn-link "  + "?scope=like") %>
     </div>
