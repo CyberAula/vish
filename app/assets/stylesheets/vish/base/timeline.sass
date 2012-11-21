@@ -1,16 +1,34 @@
 @import 'chosen'
+.wall
+  @include makeColumn (5,0)
+  @include nomargin-left 
+  ul.tabs
+    width: 63%
+    display: inline-block
+
+  .title
+    @include makeColumn (2,0)
+    font-size: 36px
+    float: right
+    display: inline-block
+    font-family: $fistFontFamily
+    color: #ADADAD
+    font-family: DsignesLight
+    padding-top: 20px
+    text-align: right
+    vertical-align: bottom
+    margin-left: 0px
+
+
 .timeline
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   .avatar
-    @include makeColumn(1, 0)
-    display: inline
-    margin-right: -10px
-    margin-left: 4px
-    margin-top: 13px
+    @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
     img
       @include border-radius(15px) 
 
   .root 
-    @include makeColumn(7, 0)
+
     display: inline-block
     margin-left: 5px
     margin-bottom: 4px
@@ -19,9 +37,8 @@
     @include border-radius(15px) 
 
     h5
-      @include makeColumn(6, 0)
+      @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
       font-size: 16px
-      margin-left: 0px
       text-decoration: none
       &:hover
         text-decoration: none
