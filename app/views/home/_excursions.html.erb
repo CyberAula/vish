@@ -40,7 +40,7 @@
       <div id="home-excursions-net" class="box-home-excursion">
         <% my_network_excursions = current_subject_excursions %>
           <% if my_network_excursions.size == 0 %>
-        <%= render :partial => "excursions/zero_screen" %>
+        <#%= render :partial => "excursions/zero_screen" %>
           <% else %>
         <%= render :partial => "excursions/filter_results",
                          :locals => {:excursions => my_network_excursions} %>

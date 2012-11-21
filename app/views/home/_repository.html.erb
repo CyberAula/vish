@@ -36,7 +36,7 @@
       <div id="home-resources-net" class="box-home-repository">
         <% my_network_resources = current_subject_resources(:limit => 6) %>
           <% if my_network_resources.size == 0 %>
-            <%= render :partial => "common_documents/zero_screen" %>
+            <#%= render :partial => "common_documents/zero_screen" %>
           <% else %>
             <%= render :partial => "common_documents/filter_results",
                          :locals => {:documents => my_network_resources} %>

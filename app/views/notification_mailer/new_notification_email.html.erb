@@ -7,217 +7,84 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
 </head>
 
-<style type="text/css">
-
-  body {
-    font-family: 'helvetica';
-
-  }
-
-    /***********font-size ***********/
-
-  .size10 {
-    font-size: 10px;
-  }
-
-  .size11 {
-    font-size: 11px;
-  }
-
-  .size12 {
-    font-size: 12px;
-  }
-
-  .size14 {
-    font-size: 14px;
-  }
-
-  .size15 {
-    font-size: 15px;
-  }
-
-  .size16 {
-    font-size: 16px;
-  }
-
-  .size18 {
-    font-size: 18px;
-  }
-
-  .size22 {
-    font-size: 22px;
-  }
-
-    /***********COLORS ***********/
-
-  .background {
-    color: #F9F9F9;
-  }
-
-  .white {
-    color: #FFFFFF;
-  }
-
-  .ligth-gray {
-    color: #E6E6E6
-  }
-
-  .gray {
-    color: #6e6e6e;
-  }
-
-  .dark-gray {
-    color: #666666;
-  }
-
-  .blue-cake {
-    color: #3366FF;
-  }
-
-  .blue-opacity {
-    color: #3366FF;
-    opacity: 0.6;
-  }
-
-  .blue-white {
-    color: #C2C9E0;
-  }
-
-  .red-1 {
-    color: #FF005D;
-  }
-
-  .red-2 {
-    color: #FF005D;
-    opacity: 0.6;
-  }
-
-  .border-radius {
-    border: 0px solid #FFFFFF;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
-
-  }
-
-    /***********parte superior***********/
-
-  .box {
+<body>
+<div class="box" 
+  style="
     border: 0px solid #FFFFFF;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
     background-color: #F9F9F9;
     position: static;
-    padding: 5px;
     margin: 10px;
     min-height: 300px;
     width: 650px;
     display: block;
-
-  }
-
-  .header {
-    float: left;
-    width: 600px;
-    height: 110px;
-    display: block;
-    padding: 25px;
-    padding-bottom: 10px
-
-  }
-
-  .hello {
-    float: left;
-    padding-top: 75px;
-    padding-left: 15px;
-    width: 350px;
-    display: inline-block;
-
-  }
-
-  .text-notification {
-    padding-top: 25px
-  }
-
-  .word-break {
-    overflow: inherit;
-    padding-right: 25px;
-    word-wrap: break-word;
-    -moz-binding: url('xbl.xml#wordwrap');
-  }
-
-  .box_logo {
-    float: right;
-    padding-top: 20px;
-    padding-right: 20px;
-    display: inline-block;
-    width: 210px;
-    height: 120px;
-
-  }
-
-    /***********parte inferior ***********/
-
-  .box2 {
-    float: left;
-
-    display: block;
-    padding: 25px;
-    padding-top: 0px
-
-  }
-
-  .photo {
-
-    float: left;
-    margin-right: 20px;
-
-    height: 119px;
-    width: 119px;
-    display: inline-block;
-
-  }
-
-  .boxtext {
-    width: 400px;
-    height: auto;
-    float: right;
-    display: inline-block;
-  }
-
-  .img {
-    float: left;
-    margin-right: 20px;
-
-    height: 119px;
-    width: 119px;
-    display: inline-block;
-  }
-  .boxfooter{
-    float:left;
-    display: block
-  }
-</style>
-
-
-<body>
-<div class="box">
-  <div class="header">
-
-    <div class="hello word-break gray size22">
+    -webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    7px 7px 5px rgba(50, 50, 50, 0.5);
+    box-shadow:         7px 7px 5px rgba(50, 50, 50, 0.5);
+">
+  <div class="header" 
+    style="
+      float: left;
+      width: 650px;
+      height: 150px;
+      display: block;
+      background-image: url(<%= root_url + asset_path('/assets/heard_mail.png') %>);
+      background-repeat: no-repeat;
+    ">
+    <div class="hello"
+      style="
+        color: #6e6e6e;
+        font-size: 26px;
+        padding-left: 40px;
+        padding-top: 86px;
+    ">
       <%= t('notification.hello', :receiver => @receiver.name) %>
     </div>
-    <div class="box_logo">
-      <%= render :partial => "notification_mailer/logo" %>
-    </div>
   </div>
-  <div class="box2">
-    <div class="photo">
-      <img class="border-radius" src="<%= root_url + @notification.notified_object.sender.logo.url(:profile) %>" alt="<%= @notification.notified_object.sender.name %>">
+  <div class="box2"
+  style="
+    float: left;
+    display: block;
+    padding-left: 40px;
+    width: 610px;
+  ">
+<!--photo-->
+    <div class="photo"
+    style="
+      float: left;
+      margin-right: 20px;
+      height: 119px;
+      width: 119px;
+      display: inline-block;
+    ">
+      <img class="border-radius"
+      style="
+        border: 0px solid #FFFFFF;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        background-color: #FFFFFF;
+        height: 119px;
+        width: 119px;
+        display: inline-block;
+        "
+       src="<%= root_url + @notification.notified_object.sender.logo.url(:profile) %>" alt="<%= @notification.notified_object.sender.name %>">
     </div>
-    <div class="boxtext">
-      <div class="name size18 blue-cake ">
+<!--notification-->
+    <div class="boxtext"
+      style="
+        width: 400px;
+        height: auto;
+        padding-left: 40px;
+        display: inline-block;
+      ">
+      <div class="name"
+      style="
+        font-size: 18px;
+        color: #3366FF;
+      ">
         <%= @notification.notified_object.sender.name %>
         <% if @notification.notified_object.sender.profile.organization? %>
           <br/>
@@ -226,21 +93,22 @@
 			</span>
         <% end %>
       </div>
-      <div class="text-notification size15 dark-gray">
+      <div class="text-notification"
+        style="
+          padding-top: 25px;
+          font-size: 15px;
+          color: #666666;
+        ">
         <%= render :partial => "notifications/activities/#{ @notification.notified_object.verb }",
                    :locals => {:activity => @notification.notified_object} %>
       </div>
     </div>
   </div>
 </div>
-  <div class="boxfooter">
-    <div class="size12 blue-opacity " style="padding: 3px 5px 5px 25px;">
-      <p>
-        <%= raw t('notification.config_html', :url => 'http://vishub.org/settings') %>
-      </p>
-    </div>
-  </div>
-
+<!--settings-->
+<span style="color: #3366FF; opacity: 0.6; font-weight: normal; padding-left: 40px;">
+  <%= raw t('notification.config_html', :url => 'http://vishub.org/settings') %>
+</span>
 </body>
 </html>
 
