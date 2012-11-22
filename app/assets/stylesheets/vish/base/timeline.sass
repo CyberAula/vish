@@ -1,5 +1,6 @@
 @import 'chosen'
-.wall
+.wall,
+#wall-me
   @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   @include nomargin-left 
@@ -44,7 +45,7 @@
         @include border-radius($radius)
 
     header
-      @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      
 
       h5
         color: $gray
@@ -79,7 +80,7 @@
       width: 100%
 
     .objects
-      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      
       @include grid-fluid-offset(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
       margin-top: -5px
 
