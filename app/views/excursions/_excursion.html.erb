@@ -1,5 +1,8 @@
-<%= div_for excursion, :class => 'row-fluid' do %>
-  <div class="excursion-item">
+<!--time line-->
+
+<div class="clearfloat"></div>
+<%= div_for excursion, :class => 'timeline-excursion' do %>
+  <div class="item-excursion-wall">
     <ul class="thumbnails">
       <li class="img-excursion">
       <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "container" %>

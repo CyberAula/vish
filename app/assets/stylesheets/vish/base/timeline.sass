@@ -1,10 +1,13 @@
 @import 'chosen'
 .wall
-  @include makeColumn (5,0)
+  @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   @include nomargin-left 
   ul.tabs
     width: 63%
     display: inline-block
+  .box_gray1
+    margin-bottom: 20px
 
   .title
     @include makeColumn (2,0)
@@ -21,46 +24,66 @@
 
 
 .timeline
-  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  .avatar
-    @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    img
-      @include border-radius(15px) 
+  @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
   .root 
-
-    display: inline-block
-    margin-left: 5px
-    margin-bottom: 4px
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-bottom: 15px
     padding-bottom: 5px
-    border-bottom: 3px solid #f5f5f5
-    @include border-radius(15px) 
+    border-bottom: 1px solid #f5f5f5
+    @include border-radius($radius)
+    display: inline-block
+    height: auto
 
-    h5
+    .avatar
+      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      display: inline-block
+    
+      img
+        @include border-radius($radius)
+
+    header
       @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      font-size: 16px
-      text-decoration: none
-      &:hover
-        text-decoration: none
-    .x
-      margin-left: 0px
-      font-size: 12px
-      color: black
-      padding-top: 14px
-      padding-right: 5px
-      a
+
+      h5
+        color: $gray
+        font-size: $baseFontSize
+
+        a
+          font-size: 18px
+          text-decoration: none
+          float: left
+          display: inline-block
+          font-family: $fistFontFamily
+          padding-right: 7px
+          color: $blue-1
+          &:hover
+            text-decoration: none
+
+      .x
         float: right
-        text-decoration: none
-        color: #888
-        &:hover
-          color: red
+        margin-left: 0px
+        font-size: 12px
+        color: $gray
+
+        a
+          float: right
+          text-decoration: none
+          color: #888
+          &:hover
+            color: red
             
     textarea
       resize: none
       width: 100%
 
     .objects
-      margin-left: 67px
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-offset(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-top: -5px
+
+
       .thumb
         @include makeColumn(1, 0)
         margin-left: 0px
@@ -71,20 +94,31 @@
         margin: 0 0 4px
 
     .actions
-      @include makeColumn(6, 0)
-      margin-left: 56px 
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-offset(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      font-size: 11px
+      color: $gray
+      display: inline-block
       .post_time_ago
         display: inline
-        font-size: 12px
-        color: #444
+        font-size: 11px
+        color: $gray
       .to_comment
         display: inline-block
-        font-size: 14px
-        margin-left: 5px
-      .to_like
+        font-size: 11px
+        margin-left: 2px
+        margin-right: 2px
+        color: $red-2 
+
+      .green
+        color: $green
+        font-size: 11px
+
+      .verb_like
         display: inline-block
-        font-size: 14px
-        margin-left: 5px
+        font-size: 11px
+        margin-left: 2px
+        color: $gray
       .audience
         display: inline-block
         font-size: 14px
@@ -92,29 +126,43 @@
     
 
   .child
-    @include makeColumn(6, 1)
-    @include border-radius(5px)
+    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include grid-fluid-offset(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include border-radius($radius)
     display: inline-block
-    margin-left: 55px
     margin-bottom: 6px
-    background: #f5f5f5
-    padding-left: 6px
+    background: #FCFCFC
+    padding: 8px
+    @include box-shadow
 
     .avatar
-      width: 40px 
+      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: inline-block
+      float: left
+      img
+        @include border-radius(5px)
 
-
-    h6
-      @include makeColumn(5, 0)
-      font-size: 15px
-      margin-left: 20px
-      margin-bottom: 3px
-      text-decoration: none
-      &:hover
+    header
+      margin-top: -5px 
+      display: inline-block 
+      height: 30px  
+      h6
+        font-size: 15px
         text-decoration: none
+        &:hover
+          text-decoration: none
 
     .objects
-      margin-left: 60px
+      @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-offset(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+      word-wrap: break-word
+      display: inline-block
+      margin-top: -5px
+
+      p
+        font-size: 12px
+        color: $gray 
       .thumb
         @include makeColumn(1, 0)
         margin-left: 0px
@@ -123,16 +171,18 @@
         font-size: 14px
       .description
         margin: 0 0 4px
-    
+  
     .actions
-      @include makeColumn(6, 0)
-      margin-left: 56px 
-      margin-bottom: 2px
-      margin-top: -5px
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-top: -13px
+      height: 10px
+      float: right
       .post_time_ago
         display: inline
         font-size: 12px
-        color: #444
+        color: $red-2
+        float: right
+        padding-right: 10px
       .to_comment
         display: inline-block
         font-size: 14px
@@ -146,4 +196,41 @@
         font-size: 14px
         margin-left: 7px
 
-   
+
+
+#net_load_more_button
+  background-color: #f7f4fc
+  margin-right: 7px
+  margin-bottom: 5px
+  display: inline-block
+  width: 374px
+  border: 1px solid
+  border-right: #edeaf2
+  border-bottom: #e3e0e8
+  border-color: #ffffff
+  padding: 2px 10px 2px 4px
+  @include border-radius($radius)
+  color: $gray
+  text-align: center
+
+#net_load_more_button:hover
+  background-color: $gray
+  margin-right: 7px
+  margin-bottom: 5px
+  display: inline-block
+  width: 374px
+  border: 1px solid
+  border-right: #edeaf2
+  border-bottom: #e3e0e8
+  border-color: #ffffff
+  padding: 2px 10px 2px 4px
+  @include border-radius($radius)
+  color: $white
+  text-align: center
+
+#wall-input
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+#activities_header
+  input, 
+  textarea
+    width: 95%

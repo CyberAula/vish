@@ -10,10 +10,10 @@
     <h6>
       <%= link_to(activity.sender_subject.name, activity.sender_subject) %>
     </h6>
-    <div class="objects">
-      <%= render activity.activity_objects %>
-    </div>
-    <%= render :partial => 'activities/actions',
-               :locals => { :activity => activity } %>
   </header>
+  <div class="objects">
+    <%= render activity.activity_objects %>
+  </div>
+  <%= render :partial => 'activities/actions',
+               :locals => { :activity => activity } %>
 <% end %>
