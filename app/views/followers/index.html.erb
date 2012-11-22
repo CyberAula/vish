@@ -1,5 +1,7 @@
 <% sidebar %>
+
 <% toolbar :profile, :subject => profile_or_current_subject %>
+
 <div class="followers tabbable">
   <ul class="nav nav-tabs">
     <li class="<%= 'active' if request.path_parameters[:direction] == 'sent' %>">
@@ -9,6 +11,7 @@
       <a data-toggle="tab" href="#follower"><%=t('follow.followers')%></a>
     </li>
   </ul>
+
   <div class="tab-content">
     <div id="following" class="tab-pane <%= 'active' if request.path_parameters[:direction] == 'sent' %>">
       <%= render :partial => "followers/filter", :locals => {:filter_id => "following-filter"}  %>
