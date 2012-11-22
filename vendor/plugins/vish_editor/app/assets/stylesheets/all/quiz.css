@@ -243,17 +243,6 @@ span.mcChoiceSpan{
     width:100%;
     height: 95%;
 }
-.mcquestion_send_vote_button{
-    display:block;
-    position:relative;
-    color: blue;
-    font-size:1.2em;
-    text-align:center;
-    vertical-align:bottom;
-    margin-top:100%;
-    height:9%;
-    width: 80%;
-    }
 
 .mc_answer{
     color: black;
@@ -687,7 +676,7 @@ span.mcChoiceSpan{
     text-align: right;
 }
 /*TODO change class name to start button and remove anoothers styles above*/
-.quiz_session_start_button, .quiz_session_stop_button, .quiz_session_options_button {
+.quiz_session_start_button, .quiz_session_stop_button, .quiz_session_options_button, .quiz_send_vote_button {
     background-color: #EEEEEE;
     border: 1px solid #CBCBCB;
     border-radius: 14px 14px 14px 14px;
@@ -740,6 +729,17 @@ span.mcChoiceSpan{
     -webkit-box-shadow: 10px 10px 5px #888;
     box-shadow: 10px 10px 5px #888;
     }
+.quiz_send_vote_button {
+    display: none;
+    color: black; 
+}
+.quiz_send_vote_button:hover {
+
+    color: blue;
+    -moz-box-shadow: 10px 10px 5px #888;
+    -webkit-box-shadow: 10px 10px 5px #888;
+    box-shadow: 10px 10px 5px #888;
+}
 
 #tab_quiz_statistics_content {
     text-align: center;
@@ -949,3 +949,23 @@ height: 20%;
     border: none !important;
 }
 
+.thanks_div {
+  background-color:#F8EFFB;
+  position:fixed;
+  z-index:9999;
+  padding:3%;
+  text-align: center;
+
+}
+.thanks_div > p {
+    padding: 10%;
+    background-color:white;
+    color: black;
+    z-index:99999;
+    border-radius: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    width: 50%;
+    height: 30%;
+
+}

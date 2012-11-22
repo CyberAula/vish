@@ -687,6 +687,7 @@
     margin-bottom: 2%;
     overflow: hidden;
     position: relative;
+    text-align: center;
     width: 48%;
     border-radius: 100% !important;
     -moz-border-radius: 100% !important;
@@ -710,6 +711,7 @@
 	width: 48%;
 	left: -52%;
 	top: -15%;
+	overflow: hidden;
 }
 
 .t13_left{

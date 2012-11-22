@@ -13232,7 +13232,7 @@ VISH.Editor = function(V, $, undefined) {
                       element.options.choices = [];
                       $(div).find(".multiplechoice_option_in_zone").each(function(i, option_text) {
                         var option = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
-                        if(option && option != '<div class="initTextDiv vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Write options here</span></div>' && option != "") {
+                        if(option && $(option_text).text() != "Write options here" && $(option_text).text() != "") {
                           result = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
                           var choice = new Object;
                           choice.value = $(option_text).text();
@@ -14043,11 +14043,13 @@ VISH.Samples = function(V, undefined) {
   "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
   {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
   var quizes_samples = {"id":12314, "type":"presentation", "author":"V. Hugo", "slides":[{"id":"article12312", "type":"standard", "template":"t8", "elements":[{"id":"zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u><i><b>Testing Quiz Inside Template</b></i></u></span></div>'}, {"id":"zone2", "type":"image", "areaid":"left", 
-  "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":{"choices":[{"value":"Something", "container":"Something"}, {"value":"Nothing", "container":"Nothing"}, 
-  {"value":"Everything", "container":"Everything"}, {"value":"Option D", "container":"Option D"}]}}, {"id":"zone4", "areaid":"right"}]}, {"id":"article_12314_1", "type":"standard", "template":"t7", "elements":[{"id":"zone5", "type":"text", "areaid":"header", "body":'<div style="text-align: center; font-weight: normal; " class="vish-parent-font6"><i><b><span class="vish-font6 vish-fontgeorgia" style="color:undefined;undefined;">Titling ... one two three</span></b></i></div><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":{"choices":[{"value":"Something", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Something</b></span></div>'}, 
+  {"value":"Nothing", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Nothing</b></span></div>'}, {"value":"Everything", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Everything</b></span></div>'}, {"value":"Option D", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Option D</b></span></div>'}]}}, 
+  {"id":"zone4", "areaid":"right"}]}, {"id":"article_12314_1", "type":"standard", "template":"t7", "elements":[{"id":"zone5", "type":"text", "areaid":"header", "body":'<div style="text-align: center; font-weight: normal; " class="vish-parent-font6"><i><b><span class="vish-font6 vish-fontgeorgia" style="color:undefined;undefined;">Titling ... one two three</span></b></i></div><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
   {"id":"zone6", "type":"text", "areaid":"left", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div><div class="initTextDiv vish-parent-font5"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">The code that has</span><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div>'}, 
-  {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz<b> quiz</b> ... ?</span></i>', "quiztype":"multiplechoice", "options":{"choices":[{"value":"aaaaa... mucha a ", "container":"<b>aaa </b>... mucha a "}, 
-  {"value":"bbb ... mucha b ", "container":"bbb ... <b> mucha b </b>"}, {"value":"ccc ... mucha c", "container":"ccc ... mucha c"}]}}, {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
+  {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz<b> quiz</b> ... ?</span></i>', "quiztype":"multiplechoice", "options":{"choices":[{"value":"aaaaa... mucha a ", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>aaaaa</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... mucha a</span></div>'}, 
+  {"value":"bbb ... mucha b ", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>bbb ...</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... mucha b</span></div>'}, {"value":"ccc ... mucha c", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>ccc ...</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>mucha c</b></span></div>'}]}}, 
+  {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
   return{full_samples:full_samples, samples:samples, samples_flashcard:samples_flashcard, samples_game:samples_game, samples_sync:samples_sync, quizes_samples:quizes_samples}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -14662,6 +14664,7 @@ VISH.Quiz = function(V, $, undefined) {
   mcOptionsHash["f"] = 5;
   var startButtonClass = "quiz_session_start_button";
   var optionsButtonClass = "quiz_session_options_button";
+  var voteButtonClass = "quiz_send_vote_button";
   var stopSessionButtonClass = "quiz_session_stop_button";
   var statisticsButtonClass = "mch_statistics_icon";
   var tabQuizSessionContent = "tab_quiz_session_content";
@@ -14691,8 +14694,8 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var prepareQuiz = function() {
     if(quizMode == "answer") {
-      $("." + startButtonClass).show();
-      $("." + startButtonClass).val("Send")
+      $("." + startButtonClass).hide();
+      $("." + voteButtonClass).show()
     }else {
       if(quizMode == "question") {
         if(!VISH.User.isLogged()) {
@@ -14741,7 +14744,9 @@ VISH.Quiz = function(V, $, undefined) {
     }
     $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone"));
     $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone"));
-    $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form"));
+    var options_form = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form");
+    $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append(options_form);
+    $("#" + tabQuizStatsBarsContentId).find(".mch_inputs_wrapper").remove();
     $("#" + tabQuizStatsBarsContentId).find("div.mcquestion_body").addClass("quiz_in_satistics");
     $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
     $("#tab_quiz_stats_pie_content").addClass("resized_fancybox_for_stats");
@@ -14865,7 +14870,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var _loadAnswerEvents = function() {
-    $(document).on("click", "." + startButtonClass, _sendVote)
+    $(document).on("click", "." + voteButtonClass, _sendVote)
   };
   var _sendVote = function(event) {
     var answer = $(VISH.Slides.getCurrentSlide()).find("input:radio[name='mc_radio']:checked'").val();
@@ -14879,6 +14884,20 @@ VISH.Quiz = function(V, $, undefined) {
     var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
     V.Debugging.log("_onQuizVotingSuccessReceived, and quizSessionActiveId is:  " + quizSessionActiveId);
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
+  };
+  var _onQuizSessionResultsReceived = function(data) {
+    V.Debugging.log("_onQuizSessionResultsReceived, and data is:  " + JSON.stringify(data));
+    $(VISH.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
+    $(".thanks_div").show();
+    var id = $("a[name=modal_window]").attr("href");
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+    $("#thanks_div").css({"width":maskWidth, "height":maskHeight});
+    $("#thanks_div").fadeTo("slow", 0.6);
+    $(id).css("top", maskHeight / 2 - $(id).height() / 2);
+    $(id).css("left", maskWidth / 2 - $(id).width() / 2);
+    $(id).show();
+    $(VISH.Slides.getCurrentSlide()).find("." + voteButtonClass).hide()
   };
   var _OnQuizVotingReceivedError = function(error) {
     V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + JSON.stringify(error))
@@ -17279,10 +17298,12 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     var textArea = $(current_area).find(".value_" + type + "_question_in_zone");
     var wysiwygId = "wysiwyg_" + current_area.attr("id");
     textArea.attr("id", wysiwygId);
+    $("#" + wysiwygId).addClass("wysiwygInstance");
     V.Editor.Text.getNicEditor().addInstance(wysiwygId);
     $(current_area).find("." + type + "_option_in_zone").each(function(index, option_element) {
       var optionWysiwygId = "wysiwyg_" + current_area.attr("id") + "_" + index;
       $(option_element).attr("id", optionWysiwygId);
+      $("#" + optionWysiwygId).addClass("wysiwygInstance");
       V.Editor.Text.getNicEditor().addInstance(optionWysiwygId)
     });
     $(".initTextDiv").click(function(event) {
@@ -19263,6 +19284,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     }
   };
   var _renderMcQuestion = function(quiz_element, zone_class, slide_id, zone) {
+    V.Debugging.log("_renderMcQuestion, and quiz choices received is:  " + JSON.stringify(quiz_element["options"]["choices"]));
     var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_body'>";
@@ -19288,6 +19310,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
     ret += "<div class='mch_inputs_wrapper'>";
     ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
+    ret += "<input type='button' class='quiz_send_vote_button' value='Send'/>";
     ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
     ret += "</div>";
     ret += "</form>";
@@ -19388,8 +19411,6 @@ VISH.SlideManager = function(V, $, undefined) {
   var presentationType = "presentation";
   var init = function(options, presentation) {
     VISH.Debugging.init(options);
-    VISH.Debugging.log("\n\nSlideManager.init with presentation:\n");
-    VISH.Debugging.log(JSON.stringify(presentation));
     VISH.Editing = false;
     if(options) {
       initOptions = options
@@ -19404,6 +19425,8 @@ VISH.SlideManager = function(V, $, undefined) {
         presentation = VISH.Debugging.getPresentationSamples()
       }
     }
+    VISH.Debugging.log("\n\nSlideManager.init with presentation:\n");
+    VISH.Debugging.log(JSON.stringify(presentation));
     current_presentation = presentation;
     V.Quiz.init(presentation);
     V.Slides.init();
