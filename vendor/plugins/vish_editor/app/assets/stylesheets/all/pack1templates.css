@@ -753,6 +753,7 @@
 
 .t14_circle1{
     float: left;
+    text-align: center;
     height: 28%;
     margin-top: 2%;
     overflow: hidden;
@@ -766,6 +767,7 @@
 
 .t14_circle2{
     float: left;
+    text-align: center;
     height: 28%;
     margin-top: 5%;
     overflow: hidden;
@@ -779,6 +781,7 @@
 
 .t14_circle3{
     float: left;
+    text-align: center;
     height: 28%;
     margin-top: 5%;
     overflow: hidden;
