@@ -1,12 +1,21 @@
 // typography (adjuntar)
 @import "vish/base/fonts";
 
+
+
 // original bootstrap
 @import "bootstrap";
 
 // Core variables and mixins
-@import "vish/bootstrap-rewrite/variables"; // Modify this for custom colors, font-sizes, etc
+@import "vish/bootstrap-rewrite/variables";
+
+ // Modify this for custom colors, font-sizes, etc
+@import "vish/bootstrap-rewrite/change/variables-vish";
+
 @import "vish/bootstrap-rewrite/mixins";
+
+
+
 
 // CSS Reset
 @import "vish/bootstrap-rewrite/reset";
@@ -61,6 +70,8 @@
 // -----------------------------------------------------
 // -----------------------------------------------------
 
+// change-style
+@import "vish/bootstrap-rewrite/change/all-changes";
 
 // vish mixins
 @import "mixins";

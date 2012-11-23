@@ -20,7 +20,7 @@ $white:                 #fff !default;
 
 // Accent colors
 // -------------------------
-$blue:                  #3366FD !default;
+$blue:                  #049cdb !default;
 $blueDark:              #0064cd !default;
 $green:                 #46a546 !default;
 $red:                   #9d261d !default;
@@ -29,40 +29,21 @@ $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;
 
-// ViSH Colors
-// -------------------------
-$background:            #f9f9f9 ;
-$red-1:					        #ff005d ;
-$red-2:                 #FE99C4 ;
-$linkgray:              #6e6e6e ;
-$blue-1:                #3366ff ;
-$gray-vish:             #CCCCCC ;
-$gray-search:           #A1A1A1 ;
-$green-vish:            #40CC7F ;
-
-
-
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        $background ;
+$bodyBackground:        $white !default;
 $textColor:             $grayDark !default;
 
 
 // Links
 // -------------------------
-$grayLink:              $linkgray ;
-$grayLinkHover:         $blue-1 ;
-
-$linkColor:             $blue !default;
-$linkColorHover:        $gray !default;
+$linkColor:             #08c !default;
+$linkColorHover:        darken($linkColor, 15%) !default;
 
 
 // Typography
 // -------------------------
-$fistFontFamily:        DsignesLight ;
-$secondFontFamily:      DsignesRegular ;
-$thirdFontFamily:       DsignesBold ;             
 $sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
@@ -71,13 +52,27 @@ $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
-$tittleFontSize:        18px;
 
-$headingsFontFamily:    $fistFontFamily ;
-$headingsFontWeight:    normal ;   
-$headingsColor:         $gray-vish; 
+$headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
+$headingsFontWeight:    bold !default;    // instead of browser default, bold
+$headingsColor:         inherit !default; // empty to use BS default, $textColor
 
 
+// Component sizing
+// -------------------------
+// Based on 14px font-size and 20px line-height
+
+$fontSizeLarge:         $baseFontSize * 1.25; // ~18px
+$fontSizeSmall:         $baseFontSize * 0.85; // ~12px
+$fontSizeMini:          $baseFontSize * 0.75; // ~11px
+
+$paddingLarge:          11px 19px; // 44px
+$paddingSmall:          2px 10px;  // 26px
+$paddingMini:           1px 6px;   // 24px
+
+$baseBorderRadius:      4px;
+$borderRadiusLarge:     6px;
+$borderRadiusSmall:     3px;
 
 
 // Tables
@@ -87,14 +82,13 @@ $tableBackgroundAccent:             #f9f9f9 !default; // for striping
 $tableBackgroundHover:              #f5f5f5 !default; // for hover
 $tableBorder:                       #ddd !default; // table and cell border
 
-
 // Buttons
 // -------------------------
 $btnBackground:                     $white !default;
 $btnBackgroundHighlight:            darken($white, 10%) !default;
 $btnBorder:                         #bbb !default;
 
-$btnPrimaryBackground:              $red-1 ;
+$btnPrimaryBackground:              $linkColor !default;
 $btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) !default;
 
 $btnInfoBackground:                 #5bc0de !default;
@@ -117,14 +111,10 @@ $btnInverseBackgroundHighlight:     $grayDarker !default;
 // -------------------------
 $inputBackground:               $white !default;
 $inputBorder:                   #ccc !default;
-$inputBorderRadius:             15px ;
+$inputBorderRadius:             $baseBorderRadius !default;
 $inputDisabledBackground:       $grayLighter !default;
 $formActionsBackground:         #f5f5f5 !default;
-$inputFrontPage:				        156px;
-$inputFormulate:                240px;
-$radius:                        15px;
-
-
+$inputHeight:                   $baseLineHeight + 10px; // base line-height + 8px vertical padding + 2px top/bottom border
 
 
 // Dropdowns
@@ -135,17 +125,17 @@ $dropdownDividerTop:            #e5e5e5 !default;
 $dropdownDividerBottom:         $white !default;
 
 $dropdownLinkColor:             $grayDark !default;
-
-$dropdownLinkColorActive:       $dropdownLinkColor !default;
-$dropdownLinkBackgroundActive:  $linkColor !default;
-
 $dropdownLinkColorHover:        $white !default;
+$dropdownLinkColorActive:       $dropdownLinkColor !default;
+
+$dropdownLinkBackgroundActive:  $linkColor !default;
 $dropdownLinkBackgroundHover:   $dropdownLinkBackgroundActive !default;
 
 
 
 // COMPONENT VARIABLES
 // --------------------------------------------------
+
 
 // Z-index master list
 // -------------------------
@@ -161,8 +151,8 @@ $zindexModal:             1050 !default;
 
 // Sprite icons path
 // -------------------------
-$iconSpritePath:          asset-url("glyphicons-halflings.png", image) !default;
-$iconWhiteSpritePath:     asset-url("glyphicons-halflings-white.png", image) !default;
+$iconSpritePath:          image-path("glyphicons-halflings.png") !default;
+$iconWhiteSpritePath:     image-path("glyphicons-halflings-white.png") !default;
 
 
 // Input placeholder text color
@@ -175,6 +165,11 @@ $placeholderText:         $grayLight !default;
 $hrBorder:                $grayLighter !default;
 
 
+// Horizontal forms & lists
+// -------------------------
+$horizontalComponentOffset:       180px;
+
+
 // Wells
 // -------------------------
 $wellBackground:                  #f5f5f5 !default;
@@ -183,14 +178,15 @@ $wellBackground:                  #f5f5f5 !default;
 // Navbar
 // -------------------------
 $navbarCollapseWidth:             979px !default;
+$navbarCollapseDesktopWidth:      $navbarCollapseWidth + 1;
 
 $navbarHeight:                    40px !default;
 $navbarBackgroundHighlight:       #ffffff !default;
 $navbarBackground:                darken($navbarBackgroundHighlight, 5%) !default;
 $navbarBorder:                    darken($navbarBackground, 12%) !default;
 
-$navbarText:                      $gray !default;
-$navbarLinkColor:                 $gray !default;
+$navbarText:                      #777 !default;
+$navbarLinkColor:                 #777 !default;
 $navbarLinkColorHover:            $grayDark !default;
 $navbarLinkColorActive:           $gray !default;
 $navbarLinkBackgroundHover:       transparent !default;
@@ -253,8 +249,8 @@ $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%) !default;
 
 // Tooltips and popovers
 // -------------------------
-$tooltipColor:            #666666;
-$tooltipBackground:       #e0e0e0;
+$tooltipColor:            #fff !default;
+$tooltipBackground:       #000 !default;
 $tooltipArrowWidth:       5px !default;
 $tooltipArrowColor:       $tooltipBackground !default;
 

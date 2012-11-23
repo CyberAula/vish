@@ -1,67 +1,55 @@
-<div class="tabbable">
-  <ul class="nav nav-tabs  ">
-    <li class="active"><a data-toggle="tab" href="#"><%= conversation.subject %></a></li>
-  </ul>
-</div>
 
+<h3 class=""><%= conversation.subject %></h3>
 <div class="action">
-  <% unless @box.eql? 'trash' %><%= link_to(raw("<i class='icontool16-tool16_close'></i> "),
+  <% unless @box.eql? 'trash' %><%= link_to(image_tag('icons/close.png'),
                                             conversation_path(conversation, :location => 'conversation', :box => @box),
                                             :confirm => t('mailboxer.delete_confirm', :object => conversation.subject),
                                             :method => :delete, :remote => true) %>
   <% end %>
 </div>
-
-<div class="clearfloat"></div>
-
-<div class="participants-row"></div>
-  <div class="participants clearfloat">
-    <h3><%= t("message.participants") %>:</h3>
-
-    <div class="participants-list"></div>
-      <% conversation.recipients.each do |recp| %>
-        <%= link_to image_tag(recp.logo.url(:actor), :title => recp.name, :alt => recp.name), recp.subject %>
-      <% end %>
-  </div>
-
-  <div class="messages">
-    <% @receipts.each do |receipt| %>
-      <%= render receipt.message %>
-    <% end %>
-
-    <% unless @box.eql? 'trash' %>
-      <br>
-      <%= form_tag conversation_path(conversation), :method => :put, :class => "cont_conversation" do %>
-        <% if @receipt and @receipt.errors.any? %>
-          <div class="error">
-          <h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this message from being sent:</h2>
-          <ul>
-            <% @receipt.errors.full_messages.each do |msg| %>
-              <li>
-                <%= msg %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class="new_message">
-        <div class="answer">
-            <%= t("message.answer") %>
-          </div>
-
-          <div class="editor" id="ck_editor">
-            <%= text_area_tag :body, nil, :rows => 6, :cols => 53 %>
-          </div>
-
-          <div class="actions right">
-            <%= submit_tag t('mailboxer.reply'), :name => :reply_all, :class => "button send offset7" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<h4>
+  <%= t("message.participants") %>:
+</h4>
+<div class="participants-list">
+  <% conversation.recipients.each do |recp| %>
+  <%= link_to image_tag(recp.logo.url(:actor), :title => recp.name, :alt => recp.name), recp.subject %>
   <% end %>
 </div>
+<div class="line"></div>
+<div class="messages">
+  <% @receipts.each do |receipt| %>
+  <%= render receipt.message %>
+  <% end %>
+  <% unless @box.eql? 'trash' %>
+    <%= form_tag conversation_path(conversation), :method => :put, :class => "cont_conversation" do %>
+    <% if @receipt and @receipt.errors.any? %>
+  <div class="error">
+    <h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this message from being sent:</h2>
+      <ul>
+        <% @receipt.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+  </div>
+  <% end %>
+</div>
+  <div class="new_message">
+    <div class="answer">
+      <%= t("message.answer") %>
+    </div>
+    <div class="editor" id="ck_editor">
+      <%= text_area_tag :body, nil, :rows => 6, :cols => 53 %>
+    </div>
+    <div class="actions right">
+      <%= submit_tag t('mailboxer.reply'), :name => :reply_all, :class => "button send offset7" %>
+    </div>
+  </div>
+
+    <% end %>
+  <% end %>
+
 
 <%= javascript_tag do %>
   $(document).ready(function(){

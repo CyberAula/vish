@@ -15,13 +15,10 @@
 // Make links block level
 .nav > li > a {
   display: block;
-  color: $red-2; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
-  font-size: $tittleFontSize; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
-
 }
 .nav > li > a:hover {
   text-decoration: none;
-  background-color: transparent; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  background-color: $grayLighter;
 }
 
 // Redeclare pull classes because of specifity
@@ -70,7 +67,8 @@
   text-shadow: 0 -1px 0 rgba(0,0,0,.2);
   background-color: $linkColor;
 }
-.nav-list [class^="icon-"] {
+.nav-list [class^="icon-"],
+.nav-list [class*=" icon-"] {
   margin-right: 2px;
 }
 // Dividers (basically an hr) within the dropdown
@@ -105,7 +103,7 @@
 
 // Give the tabs something to sit on
 .nav-tabs {
-  border-bottom: 1px solid $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  border-bottom: 1px solid #ddd;
 }
 // Make the list-items overlay the bottom border
 .nav-tabs > li {
@@ -119,16 +117,16 @@
   border: 1px solid transparent;
   @include border-radius(4px 4px 0 0);
   &:hover {
-    border-color: $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+    border-color: $grayLighter $grayLighter #ddd;
   }
 }
 // Active state, and it's :hover to override normal :hover
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
-  color: $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
-  background-color: transparent;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
-  border: 1px solid $red-1; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
-  border-bottom-color: $background;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  color: $gray;
+  background-color: $bodyBackground;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
   cursor: default;
 }
 
@@ -252,7 +250,7 @@
 .nav li.dropdown.open a:hover .caret {
   border-top-color: $white;
   border-bottom-color: $white;
-  @include opacity(1);
+  @include opacity(100);
 }
 
 // Dropdowns in stacked tabs

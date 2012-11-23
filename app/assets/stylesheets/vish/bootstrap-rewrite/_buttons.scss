@@ -8,10 +8,9 @@
 
 // Core
 .btn {
-  margin-top: -9px;  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
   display: inline-block;
   @include ie7-inline-block();
-  padding: 6px 14px ; // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
+  padding: 4px 12px;
   margin-bottom: 0; // For input.btn
   font-size: $baseFontSize;
   line-height: $baseLineHeight;
@@ -20,14 +19,12 @@
   vertical-align: middle;
   cursor: pointer;
   @include buttonBackground($btnBackground, $btnBackgroundHighlight, $grayDark, 0 1px 1px rgba(255,255,255,.75));
-  border: none ;
+  border: 1px solid $btnBorder;
   *border: 0; // Remove the border to prevent IE7's black border on input:focus
   border-bottom-color: darken($btnBorder, 10%);
-
-  @include border-radius(15px);  // -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
-  
+  @include border-radius($baseBorderRadius);
   @include ie7-restore-left-whitespace(); // Give IE7 some love
-  @include box-shadow(#{inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05)});
+  @include box-shadow(inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05));
 
   // Hover state
   &:hover {
@@ -54,7 +51,7 @@
     background-color: darken($white, 15%) \9;
     background-image: none;
     outline: 0;
-    @include box-shadow(#{inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)});
+    @include box-shadow(inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05));
   }
 
   // Disabled state
@@ -63,7 +60,7 @@
     cursor: default;
     background-color: darken($white, 10%);
     background-image: none;
-    @include opacity(0.65);
+    @include opacity(65);
     @include box-shadow(none);
   }
 
@@ -76,33 +73,37 @@
 
 // Large
 .btn-large {
-  padding: 9px 14px;
-  font-size: $baseFontSize + 2px;
-  line-height: normal;
-  @include border-radius(5px);
+  padding: $paddingLarge;
+  font-size: $fontSizeLarge;
+  @include border-radius($borderRadiusLarge);
 }
-.btn-large [class^="icon-"] {
+.btn-large [class^="icon-"],
+.btn-large [class*=" icon-"] {
   margin-top: 2px;
 }
 
 // Small
 .btn-small {
-  padding: 3px 9px;
-  font-size: $baseFontSize - 2px;
-  line-height: $baseLineHeight - 2px;
+  padding: $paddingSmall;
+  font-size: $fontSizeSmall;
+  @include border-radius($borderRadiusSmall);
 }
-.btn-small [class^="icon-"] {
+.btn-small [class^="icon-"],
+.btn-small [class*=" icon-"] {
   margin-top: 0;
 }
 
 // Mini
 .btn-mini {
-  padding: 2px 6px;
-  font-size: $baseFontSize - 3px;
-  line-height: $baseLineHeight - 4px;
+  padding: $paddingMini;
+  font-size: $fontSizeMini;
+  @include border-radius($borderRadiusSmall);
 }
 
+
 // Block button
+// -------------------------
+
 .btn-block {
   display: block;
   width: 100%;
@@ -110,9 +111,21 @@
   padding-right: 0;
   @include box-sizing(border-box);
 }
+
+// Vertically space out multiple block buttons
 .btn-block + .btn-block {
   margin-top: 5px;
 }
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
+
 
 
 // Alternate buttons
@@ -136,8 +149,8 @@
   border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.25);
 }
 .btn-primary {
-  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackground);
-}     // -**--changed--changed--changed--changed--**-//
+  @include buttonBackground($btnPrimaryBackground, $btnPrimaryBackgroundHighlight);
+}
 // Warning appears are orange
 .btn-warning {
   @include buttonBackground($btnWarningBackground, $btnWarningBackgroundHighlight);
@@ -191,60 +204,29 @@ input[type="submit"].btn {
 }
 
 
-// Link buttons   // -**--changed--changed--changed--changed--**-//
+// Link buttons
 // --------------------------------------------------
 
 // Make a button look and behave like a link
-
-
-
-.btn-link {
-  background-color:#F4F8FF;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 20px;
-  border-bottom-style: none;
-  border-bottom-width: medium;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-top-style: none;
-  border-top-width: medium;
-  box-shadow: 3px 1px 4px rgba(50, 50, 50, 0.2);
-  color: #3366FF;
-  margin-bottom: 7px;
-  margin-right: 7px;
-  padding-bottom: 1px;
-  padding-left: 10px;
-  padding-right: 15px;
-  padding-top: 1px;
-  vertical-align: middle;
-  width: auto;
-}
-
-.btn-link a {
-  color: #0066FF;
-  font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;
-    -moz-text-blink: none;
-    -moz-text-decoration-color: -moz-use-text-color;
-    -moz-text-decoration-line: none;
-    -moz-text-decoration-style: solid;
-
-}
-
-.btn-link:hover,
+.btn-link,
 .btn-link:active,
-.btn-link.active,
-.btn-link.disabled,
-.btn-[disabled] {
-  background-color: #0066FF;
-  *background-color: #0066FF;
+.btn-link[disabled] {
+  background-color: transparent;
+  background-image: none;
+  @include box-shadow(none);
 }
-
-.btn-link a:hover {
-  background-color:#0066FF;
-  color: #FFFFFF;
-  font-family: "Helvetica",Helvetica Neue,Arial,sans-serif;
-    -moz-text-blink: none;
-    -moz-text-decoration-color: -moz-use-text-color;
-    -moz-text-decoration-line: none;
-    -moz-text-decoration-style: solid;
+.btn-link {
+  border-color: transparent;
+  cursor: pointer;
+  color: $linkColor;
+  @include border-radius(0);
+}
+.btn-link:hover {
+  color: $linkColorHover;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.btn-link[disabled]:hover {
+  color: $grayDark;
+  text-decoration: none;
 }
