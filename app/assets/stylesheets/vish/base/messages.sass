@@ -118,17 +118,16 @@
 
 .messages
   @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
   margin-top: 20px
   .message
-    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
+    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-left: 2%
     display: inline-block
     float: left
     @include border-radius($radius)
     @include box-shadow
     padding: 15px
-    background-color: #FCFFFF
+    background-color: #FfFFFF
     margin-top: 5px
     margin-bottom: 5px
 
@@ -179,8 +178,10 @@
 
 
 .new_message
-  @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  @include grid-fluid-offset(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  margin-bottom: 40px
+  margin-left: 20%
+
   display: inline-block
   float: left
   .answer
@@ -191,10 +192,26 @@
     font-size: 20px
     margin-top: 30px
     margin-bottom: 20px
+  .actions
+    float: right
+    display: inline-block
+    margin-top: 20px
+    margin-right: 82px
 
 
-
-
+.cleditorMain
+  @include border-radius($radius)
+  @include box-shadow
+  border: 1px solid $grayLighter
+.cleditorToolbar
+  background: none
+  background-color: #EFEFEF
+  @include border-radius($radius)
+  margin-left: 1%
+  margin-top: 1%
+  width: 98%
+  .cleditorGroup
+    margin-left: 10px
 
 
 
