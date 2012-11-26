@@ -52,7 +52,8 @@ $headingsColor:         $gray-vish;
 // -------------------------
 
 $btnPrimaryBackground:              $red-1 ;
-
+$btnPrimaryBackgroundHighlight:     $red-1 ;
+$btnBorder:                         $background;
 
 
 // Forms
@@ -75,7 +76,7 @@ $placeholderText:         $grayLight ;
 
 // Tooltips and popovers
 // -------------------------
-$tooltipColor:            #fff !default;
+$tooltipColor:            #000 !default;
 $tooltipBackground:       #000 !default;
 $tooltipArrowWidth:       5px !default;
 $tooltipArrowColor:       $tooltipBackground !default;

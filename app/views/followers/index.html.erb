@@ -2,8 +2,8 @@
 
 <% toolbar :profile, :subject => profile_or_current_subject %>
 
-<div class="followers tabbable">
-  <ul class="nav nav-tabs">
+<div class="tabbable">
+  <ul class="nav nav-tabs tabs-followers-follow">
     <li class="<%= 'active' if request.path_parameters[:direction] == 'sent' %>">
       <a data-toggle="tab" href="#following"><%=t('follow.followings')%></a>
     </li>
@@ -33,7 +33,5 @@
     </div>
   </div>
 </div>
-<div class="users_btn_follow">
 
-</div>
 

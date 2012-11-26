@@ -10,7 +10,8 @@
 .btn {
   margin-top: -9px; 
   padding: 6px 14px ;
-  @include border-radius(15px);  
+  @include border-radius(15px); 
+  border: none; 
 }
 
 //

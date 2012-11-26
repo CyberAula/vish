@@ -11,12 +11,7 @@
   visibility: visible;
   padding: 5px;
   font-size: 11px;
-  @include opacity(0);
-  &.in     { @include opacity(0.8); }
-  &.top    { margin-top:  -3px; }
-  &.right  { margin-left:  3px; }
-  &.bottom { margin-top:   3px; }
-  &.left   { margin-left: -3px; }
+// -**--changed--changed-¡!!!!!!!!!!!!!!!!!!!-changed--changed--**-//
 }
 
 // Wrapper for the tooltip content
@@ -30,7 +25,7 @@
   color: $tooltipColor;
   text-align: center;
   text-decoration: none;
-  background-color: $tooltipBackground;
+  background-color: #000000;
   @include border-radius($radius);
   margin-bottom: -20px;
 }
