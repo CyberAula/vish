@@ -74,7 +74,7 @@ Vish.Wall = (function(V, $, undefined){
 
     $('#attachFileButton').click(function(){
       $('#attachFileButton').toggleClass("selected");
-      $('#wrapper_activities_header form').toggle();
+      $('#activities_header form').toggle();
       var post_text = $('#input_activities').val();
       var document_text = $('#input_activities_document').val();
       $('#input_activities').val(document_text);
