@@ -23,7 +23,6 @@ SocialStream.Comments = (function(SS, $, undefined){
 
     $.each(newElementsToHide, function(i, selector) {
       var e = $(root).find(selector);
-      console.dir(e);
       e.hide();
     });
   };
