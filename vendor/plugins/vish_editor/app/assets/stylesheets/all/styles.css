@@ -263,7 +263,7 @@ this can not be done with show() and hide() because then it remains with display
 }
 
 #page-fullscreen:hover{
-    background-position:0px -41px;
+    background-position:0px -40px;
 }
 
 #slide-counter {
@@ -391,7 +391,7 @@ this can not be done with show() and hide() because then it remains with display
   color: #CCC;
   z-index: 2600;
   left: 0%;
-  width: 8%;
+  width: 6%;
 }
 
 #forward_arrow{
@@ -399,7 +399,7 @@ this can not be done with show() and hide() because then it remains with display
   color: #CCC;
   z-index: 2600;
   right: 0%;
-  width: 8%;
+  width: 6%;
 }
 
 .vish_arrow{
@@ -411,7 +411,7 @@ this can not be done with show() and hide() because then it remains with display
   font-size: 40px;
   margin: 0;
   max-width: 200px;
-  min-width: 90px;
+  min-width: 40px;
   outline: none;
   padding: 0;
   position: absolute;

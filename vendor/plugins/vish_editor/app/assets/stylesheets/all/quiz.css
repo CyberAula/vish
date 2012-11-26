@@ -107,7 +107,7 @@ background: url("/assets/background_text3.png") no-repeat scroll 46px center tra
     outline: 0 none;
     padding: 1%;
     position: relative;
-    width: 83%;
+    width: 80%;
     z-index: 1000;
 }
 .multiplechoice_option_in_viewer {
@@ -438,8 +438,6 @@ span.mcChoiceSpan{
     by Enrique Barra
     css for quiz slide containing only question, name and answer
 */
-
-
 .question {
     border-radius: 0.4em 0.4em 0em 0em;
     color: #212121;
@@ -887,6 +885,7 @@ height: 20%;
 }
 
 #stop_quiz_fancybox {
+    display: none;
     margin-left: 20%;
     margin-top: 20%;
     position: absolute;
@@ -947,6 +946,7 @@ height: 20%;
 
 .question_in_viewer {
     border: none !important;
+    width: 86%;
 }
 
 .thanks_div {

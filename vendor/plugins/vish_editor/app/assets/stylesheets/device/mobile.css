@@ -24,6 +24,19 @@
 	background-size: 50px 50px;
 }
 
+.vish_arrow{
+  max-width: 200px;
+  min-width: 40px;
+}
+
+#back_arrow{
+  width: 10%;
+}
+
+#forward_arrow{
+  width: 10%;
+}
+
 #back_arrow:hover{
   color: rgba(0, 0, 0, 0.5);
   background: -moz-linear-gradient(left,  rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
@@ -45,3 +58,4 @@
   background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.35) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 */
 }
+

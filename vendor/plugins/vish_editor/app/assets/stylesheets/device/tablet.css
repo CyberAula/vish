@@ -1,5 +1,18 @@
 /* Custom CSS for Tablets */
 
+.vish_arrow{
+  max-width: 200px;
+  min-width: 40px;
+}
+
+#back_arrow{
+  width: 10%;
+}
+
+#forward_arrow{
+  width: 10%;
+}
+
 #back_arrow:hover{
   color: rgba(0, 0, 0, 0.5);
   background: -moz-linear-gradient(left,  rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
