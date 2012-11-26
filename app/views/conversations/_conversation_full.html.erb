@@ -35,14 +35,14 @@
   </div>
   <% end %>
 </div>
-  <div class="new_message">
+  <div class="new_message_conversation">
     <div class="answer">
       <%= t("message.answer") %>
     </div>
     <div class="editor" id="ck_editor">
       <%= text_area_tag :body, nil, :rows => 6, :cols => 53 %>
     </div>
-    <div class="actions right">
+    <div class="actions">
       <%= submit_tag t('mailboxer.reply'), :name => :reply_all, :class => "btn btn-primary" %>
     </div>
   </div>

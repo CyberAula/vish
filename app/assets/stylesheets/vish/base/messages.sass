@@ -1,6 +1,7 @@
 @import "jquery.cleditor"
 
 .toolbar_menu
+  margin-top: 14px
 
 
 .conversation
@@ -177,7 +178,7 @@
 
 
 
-.new_message
+.new_message_conversation
   @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
   margin-bottom: 40px
   margin-left: 20%
@@ -212,6 +213,32 @@
   width: 98%
   .cleditorGroup
     margin-left: 10px
+
+
+.new_message
+  @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  display: inline-block
+  float: left
+  
+  label
+    margin-left: 20px
+    color: $gray
+    font-family: $fistFontFamily
+    font-size: 20px
+  .tagit
+    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-left: -3px
+    border: 1px 
+    border-style: solid
+    border-color: #cccccc
+  input
+    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  .actions
+    float: right
+    display: inline-block
+    margin-top: 20px
+
+
 
 
 
