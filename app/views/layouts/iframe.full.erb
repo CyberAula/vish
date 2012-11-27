@@ -14,10 +14,15 @@
       <meta name="viewport" content="user-scalable=yes">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <%if controller.action_name == "show" %>
+        <%js_file = "vishViewer"%>
+      <%else%>
+        <%js_file = "vishEditor"%>
+      <%end%>
       <% if Rails.env == "production" and not request.host == "vishub-test.global.dit.upm.es" %>
-        <%=javascript_include_tag "vishEditor.min" %>
+        <%=javascript_include_tag js_file + ".min" %>
       <% else %>
-        <%=javascript_include_tag "vishEditor" %>
+        <%=javascript_include_tag js_file %>
       <% end %>
   	  <%= stylesheet_link_tag "vish_editor" %>
       <script type="text/javascript" src="http://www.google.com/jsapi"> </script>

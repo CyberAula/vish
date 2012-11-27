@@ -13122,7 +13122,6 @@ VISH.Editor = function(V, $, undefined) {
     }})
   };
   var _onSelectableClicked = function(event) {
-    console.log("_onSelectableClicked");
     setCurrentArea($(this));
     _removeSelectableProperties($(this));
     _addSelectableProperties($(this));
