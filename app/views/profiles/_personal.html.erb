@@ -4,7 +4,7 @@
       <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
       <% if is_owner? %>
         <div class="header_icon_right unborder">
-          <%= link_to (image_tag('edit_icon.png', :class => "unborder")), "javascript:showSettings(\"profile_info\");" %>
+          <%= link_to (image_tag('icons/edit_icon.png', :class => "unborder")), "javascript:showSettings(\"profile_info\");" %>
         </div>
       <% end %>
     </div>

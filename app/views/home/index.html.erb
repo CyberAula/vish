@@ -1,228 +1,25 @@
-<% self.class.send :include, HomeHelper %>
-<section id="left" class="span6">
-  <div class="filtered-tabs">
-    <div class="excursions tabbable">
+<section id="home">
+  <section id="left-home" >
 
-      <ul class="nav nav-tabs span4" >
-        <li class="active"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
-        <li class=""><a data-toggle="tab" href="#ex-2"><%= t('excursion.my') %></a></li>
-        <li class=""><a data-toggle="tab" href="#ex-3"><%= t('excursion.top') %></a></li>
+  <!-- EXCURSION -->
+    <%= render :partial => "home/excursions" %>
+    <div class="row"></div>
+  <!--REPOSITORY-->
+    <%= render :partial => "home/repository" %>
+    <div class="row"></div>
+  <!--FOLLOWER-->
+    <%= render :partial => "home/followers" %>
+    <div class="row"></div>
 
+  </section>
 
-        <%# if star == active%>
-        <li class="" id="star"><a data-toggle="tab" href="#ex-4"><%= image_tag "star-MENU-active.png" %></a></li>
-        <%# else %>
-        <!-- <li class="" id="star"><a data-toggle="tab" href="#ex-4"><#%= image_tag "star-MENU.png" %></a></li> --->
-        <%# end %>
+  </section>
 
-
-
-
-
-      </ul>
-      <div class="span2 size40 title_menu_home ">
-      <%= t('excursion.other')%></div>
-      <div class="clearfloat"></div>
-
-      <div class="tab-content">
-        <div id="ex-1" class="tab-pane active">
-          <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-net"} %>
-          <div class="space_center"></div>
-          <div id="home-excursions-net" class="row height-tabs-home">
-            <% my_network_excursions = current_subject_excursions %>
-            <% if my_network_excursions.size == 0 %>
-              <%= render :partial => "excursions/zero_screen" %>
-            <% else %>
-              <%= render :partial => "excursions/filter_results",
-                         :locals => {:excursions => my_network_excursions} %>
-            <% end %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all') , url_for([current_subject, Excursion]) + "?scope=net", :class => "btn btn-link ")%></div>
-        </div>
-        <div id="ex-2" class="tab-pane">
-          <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-me"} %>
-          <div class="space_center"></div>
-          <div id="home-excursions-me" class="row height-tabs-home">
-            <img alt="Loading" class="loading" src="/assets/loading.gif" />
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), [current_subject, Excursion], :class => "btn btn-link " ) %></div>
-        </div>
-        <div id="ex-3" class="tab-pane">
-          <div class="inline profile-excursion-recomended-me"><%= t('recsys.recommended.excursions.explain_html') %></div>
-          <div class="pull-right">
-            <div class="btn-gray">
-              <a class="action" href="/excursions/new"><i class="icontool16-tool16_more"></i> <%= t('options.add') %></a>
-            </div>
-          </div>
-          <div class="space_center"></div>
-          <div class="space_center"></div>
-          <div id="home-excursions-more" class="row height-tabs-home">
-            <%= render :partial => "excursions/filter_results",
-                       :locals => {:excursions => current_subject.excursion_suggestions(4) } %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), search_path(:type => "excursion"), :class => "btn btn-link " ) %></div>
-        </div>
-        <div id="ex-4" class="tab-pane">
-          <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-fav"} %>
-          <div class="space_center"></div>
-          <div id="home-excursions-fav" class="row height-tabs-home">
-            <% fav_excursions = current_subject_excursions(:scope => :like) %>
-            <% if fav_excursions.size == 0 %>
-              <%= render :partial => "excursions/fav_zero_screen" %>
-            <% else %>
-              <%= render :partial => "excursions/filter_results",
-                         :locals => {:excursions => fav_excursions} %>
-            <% end %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), url_for([current_subject, Excursion]) + "?scope=like", :class => "btn btn-link ") %></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row space_center"></div>
-
-    <div class="repository tabbable">
-      <ul class="nav nav-tabs span4" >
-
-        <li class="active"><a data-toggle="tab" href="#repo-1"><%= t('resource.net') %></a></li>
-        <li class=""><a data-toggle="tab" href="#repo-2"><%= t('resource.my') %></a></li>
-        <li class=""><a data-toggle="tab" href="#repo-3"><%= t('resource.top') %></a></li>
-        <li class=""><a data-toggle="tab" href="#repo-4"><%= image_tag "star-MENU-active.png" %></a></li>
-      </ul>
-      <div class="span2 size40 title_menu_home ">
-        <%= t('resource.title.other')%></div>
-      <div class="clearfloat"></div>
-
-      <div class="tab-content">
-        <div id="repo-1" class="tab-pane active">
-          <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-net"} %>
-          <div class="space_center"></div>
-          <div id="home-resources-net" class="repositories row height-tabs-home modal-pivot">
-            <% my_network_resources = current_subject_resources(:limit => 6) %>
-            <% if my_network_resources.size == 0 %>
-              <%= render :partial => "common_documents/zero_screen" %>
-            <% else %>
-              <%= render :partial => "common_documents/filter_results",
-                         :locals => {:documents => my_network_resources} %>
-            <% end %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=net", :class => "btn btn-link ") %></div>
-        </div>
-        <div id="repo-2" class="tab-pane">
-          <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-me"} %>
-          <div class="space_center"></div>
-          <div id="home-resources-me" class=" repositories row height-tabs-home modal-pivot">
-            <img alt="Loading" class="loading" src="/assets/loading.gif" />
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), [current_subject, Document], :class => "btn btn-link " ) %></div>
-        </div>
-        <div id="repo-3" class="tab-pane">
-          <div class="inline profile-excursion-recomended-me"><%= t('recsys.recommended.resources.explain_html') %></div>
-          <div class="pull-right">
-            <div class="btn-gray">
-              <a class="action" href="/documents/new"><i class="icontool16-tool16_arrow_7"></i> <%= t('resource.upload') %></a>
-            </div>
-          </div>
-          <div class="space_center"></div>
-          <div class="space_center"></div>
-          <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
-            <%= render :partial => "common_documents/filter_results",
-                       :locals => {:documents => current_subject.resource_suggestions(6) } %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), search_path(:type => "resource"), :class => "btn btn-link " ) %></div>
-        </div>
-        <div id="repo-4" class="tab-pane">
-          <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-fav"} %>
-          <div class="space_center"></div>
-          <div id="home-resources-fav" class="repositories row height-tabs-home modal-pivot">
-            <% my_fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
-            <% if my_fav_resources.size == 0 %>
-              <%= render :partial => "common_documents/fav_zero_screen" %>
-            <% else %>
-              <%= render :partial => "common_documents/filter_results",
-                         :locals => {:documents => my_fav_resources} %>
-            <% end %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), url_for([current_user, Document])  + "?scope=like", :class => "btn btn-link ") %></div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="row space_center"></div>
-
-
-    <div class="repository tabbable">
-      <ul class="nav nav-tabs span4" >
-
-        <li class="active"><a data-toggle="tab" href="#follow-1"><%= t('follow.followings') %></a></li>
-        <li class=""><a data-toggle="tab" href="#follow-2"><%= t('follow.followers') %></a></li>
-
-      </ul>
-      <div class="span2 size40 title_menu_home ">
-        <%= t('follow.contacts')%></div>
-      <div class="clearfloat"></div>
-
-      <div class="tab-content">
-        <div id="follow-1" class="tab-pane active modal-pivot">
-          <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
-
-          <div class="follow-home-box">
-          <% current_subject.following_actor_objects.includes(:actor).all.shuffle.first(6).each do |object|  %>
-            <%= javascript_tag do %>
-              <%= modal_for(object.actor.subject) %>
-            <% end %>
-
-            <%= div_for object.actor, :class => '' do %>
-              <ul class="thumbnails span">
-                <li class="span1">
-  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
-                </li>
-              </ul>
-            <% end %>
-          <% end %>
-          </div>
-          <div class="pull-right"><%= link_to(t('view_all'), followings_path, :class => "btn btn-link " ) %></div>
-        </div>
-
-        <div id="follow-2" class="tab-pane modal-pivot">
-          <%= render :partial => "followers/filter", :locals => {:show_add => true} %>
-          <div class="follow-home-box">
-          <% current_subject.followers.all.shuffle.first(6).each do |object|  %>
-            <%= javascript_tag do %>
-              <%= modal_for(object.actor.subject) %>
-            <% end %>
-
-            <%= div_for object.actor, :class => '' do %>
-              <ul class="thumbnails span">
-                <li class="span1">
-                  <a data-toggle="modal" href="#user-modal-<%= object.actor.slug %>" class="user-modal-button-<%= object.actor.slug %> container follower-tooltip modal-trigger" title='<%= truncate(object.actor.name, :length => 20) %>' rel='tooltip'><%= image_tag(object.actor.logo.url(:contact)) %></a>
-                </li>
-              </ul>
-            <% end %>
-          <% end %>
-          <div class="pull-right"><%= link_to(t('view_all'), followers_path, :class => "btn btn-link " ) %></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <%= javascript_tag do %>
-      $(document).ready(function(){
-        $('.follower-tooltip').tooltip({ placement: 'bottom'});
-      });
-      $('.filtered-tabs a[data-toggle="tab"]').on('shown', function(e) {
-        $('#' + e.target.href.split('#')[1]).find('input[name=filter]').keyup();
-      });
-    <% end %>
-  </div>
+  <!--TIME-LINE-->
+  <section id="right-home">
+  <%= render partial: 'activities/wall',
+             locals: {
+               activities: current_subject.wall(:home).page(params[:page_net])
+             } %>
+  </section>
 </section>
-
-<section name="wall" id="home_wall" class="span5">
-  <%= render :partial => "activities/index",
-             :locals => { :owner => current_subject} %>
-</section>
-<div class="space_double_center"></div>
-
-
-

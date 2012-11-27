@@ -8,36 +8,45 @@
 
 <% javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
 
-<div class="excursions tabbable span12">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#ex-1"><%= @excursion.title %></a></li>
+<div class="tabbable">
+  <ul class="nav nav-tabs tabs-excursion-show">
+    <li class="active">
+      <a data-toggle="tab" href="#ex-1">
+        <%= @excursion.title %>
+      </a>
+    </li>
   </ul>
+
   <div class="tab-content">
-    <div id="ex-1" class="tab-pane active">
-
-      <div class="space_center"></div>
-      <div class="pagination-centered">
-        <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
-      </div>
-
-      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion, :shortURL => shortURL} %>
-
-      </div>
+    <div id="ex-1" class="tab-pane active margin-left20">
+     <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;>
+      </iframe>
     </div>
+      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion, :shortURL => shortURL} %>
+  </div>
 </div>
 
+
 <% unless @excursion.draft %>
-<div class=" span12">
-  <section id="left" class="span6 ">
-    <div class="space_center"></div>
-    <div id="" class="tabbable span6 ">
-      <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
-        <% if @excursion.has_quiz_results? and user_signed_in? %>
-          <li class=""><a data-toggle="tab" href="#quiz-results-1"><%= t('quiz.answer.title.other') %></a></li>
-        <% end %>
-      </ul>
-      <div class="tab-content">
+
+<section id="left" class="comments-show">
+  <div id="" class="tabbable comments-show">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a data-toggle="tab" href="#comment-1">
+          <%= t('comment.title.other') %>
+        </a>
+      </li>
+    <% if @excursion.has_quiz_results? and user_signed_in? %>
+      <li class="">
+        <a data-toggle="tab" href="#quiz-results-1">
+          <%= t('quiz.answer.title.other') %>
+        </a>
+      </li>
+    <% end %>
+    </ul>
+      
+    <div class="tab-content">
         <div id="comment-1" class="tab-pane active row-fluid activity_content">
         <% unless @excursion.post_activity.blank? %>
           <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity, :logo_size => ':contact' } %>
@@ -59,7 +68,7 @@
       </div>
     </div>
   </section>
-  <section id="right" class="span3 offset1">
+  <section id="right" class="info-excursion">
       <%= render :partial => "excursions/excursion_info", :locals => {:excursion =>  @excursion } %>
   </section>
 </div>

@@ -1,12 +1,16 @@
-<%= div_for excursion, :class => 'inline-block width-top' do %>
-  <ul class="thumbnails span1">
-    <li class="span1 margin-clear">
+<%= div_for excursion, :class => 'caption-box-top10' do %>
+  <ul class="box-top10">
+    <li >
       <div class="thumbnail">
         <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "container" %>
-          <div class='number_pages'><%= excursion.slide_count %></div>
-        <div class="caption padding-margin-clear">
-          <h5 class="link_gray pagination-centered  "><%= link_to truncate_name(excursion.title, :length => 18 ), excursion %></h5>
-        </div>
+          <div class='number_pages'>
+            <%= excursion.slide_count %>
+          </div>
+        
+          <div class='text-excursion-top'>
+            <%= link_to truncate_name(excursion.title, :length => 18 ), excursion %>
+          </div>
+        
       </div>
     </li>
   </ul>

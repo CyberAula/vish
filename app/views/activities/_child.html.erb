@@ -1,26 +1,19 @@
-<div class="boxy_white_wall">
-  <div class="boxy_white_wall2">
-<%= div_for activity, :class => "subactivity  boxy_white_wall3" do %>
+<% child_avatar_thumb ||= '35' %>
 
-  <ul class="thumbnails ">
-    <li class="span2 pagination-centered">
-      <%= link_to image_tag(activity.sender_subject.logo.url(:actor),
-                            :alt => activity.sender_subject.name, :class => "miniborder"),
-                  activity.sender_subject %>
-    </li>
-    <li class="span9 activity_content">
-      <div class="row-fluid-100">
-        <span><%= link_to(activity.sender_subject.name, activity.sender_subject) %> <%= render activity.activity_objects %></span>
-        <span>
-          <%= render :partial => 'activities/options',
-                       :locals => { :activity => activity } %>
-        </span>
-      </div>
-    </li>
-  </ul>
-<% end %>
-<div class="space_comments"></div>
-
-
+<%= div_for activity, :class => "child" do %>
+  <div class="avatar">
+    <%= link_to image_tag(activity.sender_subject.logo.url(child_avatar_thumb),
+                          :alt => activity.sender_subject.name),
+                 activity.sender_subject %>
   </div>
-</div>
+  <header>
+    <h6>
+      <%= link_to(activity.sender_subject.name, activity.sender_subject) %>
+    </h6>
+  </header>
+  <div class="objects">
+    <%= render activity.activity_objects %>
+  </div>
+  <%= render :partial => 'activities/actions',
+               :locals => { :activity => activity } %>
+<% end %>

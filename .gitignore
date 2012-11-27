@@ -51,3 +51,5 @@ lib/tasks/compile
 
 #Ignore RVM personal config
 .rvmrc
+
+.sass-cache/

@@ -1,0 +1,114 @@
+<!--TAB EXCURSION-->
+<div class="tabbable">
+  <ul class="nav nav-tabs tabs-excursion-home" >
+    <li class="active">
+      <a data-toggle="tab" href="#ex-1">
+        <%= t('excursion.net') %>
+      </a>
+    </li>
+    <li class="">
+      <a data-toggle="tab" href="#ex-2">
+        <%= t('excursion.my') %>
+      </a>
+    </li>
+    <li class="">
+      <a data-toggle="tab" href="#ex-3">
+        <%= t('excursion.top') %>
+      </a>
+    </li>
+    <%# if star == active%>
+    <li class="" id="star">
+      <a data-toggle="tab" href="#ex-4">
+        <%= image_tag "icons/star-MENU-active.png" %>
+      </a>
+    </li>
+    <%# else %>
+    <!-- <li class="" id="star"><a data-toggle="tab" href="#ex-4"><#%= image_tag "star-MENU.png" %></a></li> -->
+    <%# end %>
+  </ul>
+  <div class="tittle-tabs">
+    <%= t('excursion.other')%>
+  </div>
+  <div class="clearfloat"></div>
+
+<!--TAB EXCURSION  CONTENT1-->
+
+  <div class="tab-content">
+
+    <div id="ex-1" class="tab-pane active">
+      <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-net"} %>     
+      <div id="home-excursions-net" class="box-home-excursion">
+        <% my_network_excursions = current_subject_excursions %>
+          <% if my_network_excursions.size == 0 %>
+        <#%= render :partial => "excursions/zero_screen" %>
+          <% else %>
+        <%= render :partial => "excursions/filter_results",
+                         :locals => {:excursions => my_network_excursions} %>
+          <% end %>
+      </div>
+      <div class="clearfloat"></div>
+      <div class="view-all">
+        <%= link_to(t('view_all') , url_for([current_subject, Excursion]) + "?scope=net", :class => "btn btn-link ")%>
+      </div>
+    </div>
+
+<!--TAB EXCURSION  CONTENT2-->
+
+  <div id="ex-2" class="tab-pane">
+    <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-me"} %>
+    <div id="home-excursions-me" class="box-home-excursion">
+      <img alt="Loading" class="loading" src="/assets/loading.gif" />
+    </div>
+    <div class="clearfloat"></div>
+    <div class="view-all">
+      <%= link_to(t('view_all'), [current_subject, Excursion], :class => "btn btn-link " ) %>
+    </div>
+  </div>
+
+<!--TAB EXCURSION  CONTENT3-->
+
+  <div id="ex-3" class="tab-pane">
+    <div class="profile-excursion-recomended-me">
+      <%= t('recsys.recommended.excursions.explain_html') %>
+    </div>
+<!--<div class="pull-right">
+      <div class="btn-gray">
+        <a class="action" href="/excursions/new">
+          <i class="icontool16-tool16_more">
+          </i>
+          <%= t('options.add') %>
+        </a>
+      </div>
+    </div>-->
+    <div id="home-excursions-more" class="box-home-excursion">
+        <%= render :partial => "excursions/filter_results",
+                       :locals => {:excursions => current_subject.excursion_suggestions(4) } %>
+    </div>
+    <div class="clearfloat"></div>
+    <div class="view-all">
+      <%= link_to(t('view_all'), search_path(:type => "excursion"), :class => "btn btn-link " ) %>
+    </div>
+  </div>
+
+<!--TAB EXCURSION  CONTENT4-->
+
+  <div id="ex-4" class="tab-pane">
+    <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-fav"} %>
+  
+    <div id="home-excursions-fav" class="box-home-excursion">
+        <% fav_excursions = current_subject_excursions(:scope => :like) %>
+      <% if fav_excursions.size == 0 %>
+        <%= render :partial => "excursions/fav_zero_screen" %>
+      <% else %>
+        <%= render :partial => "excursions/filter_results",
+                           :locals => {:excursions => fav_excursions} %>
+      <% end %>
+    </div>
+    <div class="clearfloat"></div>
+    <div class="view-all">
+      <%= link_to(t('view_all'), url_for([current_subject, Excursion]) + "?scope=like", :class => "btn btn-link ") %>
+    </div>
+  </div>
+ <!--TAB EXCURSION -->       
+</div>
+

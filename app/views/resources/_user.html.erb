@@ -1,29 +1,47 @@
   <% self.class.send :include, HomeHelper  %>
-<section class="span6">
-  <div class="resources tabbable">
-    <ul class="nav nav-tabs span4">
-      <li class=""><a data-toggle="tab" href="#repo-1"><%=t('resource.net') %></a></li>
-      <li class="active"><a data-toggle="tab" href="#repo-2"><%=t('resource.my') %></a></li>
-      <li class=""><a data-toggle="tab" href="#repo-3"><%= image_tag "star-MENU-active.png", :class => "star" %></a></li>
+<section id="profile-resources">
+  <div class="tabbable">
+    <ul class="nav nav-tabs tabs-profile">
+      <li class="">
+        <a data-toggle="tab" href="#repo-1">
+          <%=t('resource.net') %>
+        </a>
+      </li>
+      <li class="active">
+        <a data-toggle="tab" href="#repo-2">
+          <%=t('resource.my') %>
+        </a>
+      </li>
+      <li class="">
+        <a data-toggle="tab" href="#repo-3">
+          <%= image_tag "icons/star-MENU-active.png", :class => "star" %>
+        </a>
+      </li>
     </ul>
 
-    <div class="span2 size40 title_menu_home ">
-    <%= t('resource.title.other')%></div>
-    <div class="clearfloat"></div>
-
+    <div class="tittle-tabs">
+    <%= t('resource.title.other')%>
+    </div>
     <div class="tab-content">
+
+
       <div id="repo-1" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-net" } %>
-        <div class="space_center"></div>
-        <div id="profile-resources-net" class="modal-pivot row height-tabs-home" >
+
+        <div id="profile-resources-net" class=".box-profile-excursion" >
           <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
-        <div class="pull-right"><%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=net", :class => "btn btn-link " ) %></div>
+        <div class="clearfloat"></div>
+        <div class="view-all">
+          <%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=net", :class => "btn btn-link ") %>
+        </div>
       </div>
+
+
       <div id="repo-2" class="tab-pane active">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-me" } %>
-        <div class="space_center"></div>
-        <div id="profile-resources-me" class="modal-pivot row height-tabs-home" >
+
+        <div id="profile-resources-me" class="box-profile-excursion" >
           <% for document in subject_resources(@user, {:scope => :me}) %>
             <% if document.is_a? Embed %>
                <%= render :partial => "embeds/home",
@@ -40,12 +58,17 @@
             <% end %>
           <% end %>
         </div>
-        <div class="pull-right"><%= link_to(t('view_all'), [@user, Document], :class => "btn btn-link " ) %></div>
+        <div class="clearfloat"></div>
+        <div class="view-all">
+          <%= link_to(t('view_all'), [@user, Document], :class => "btn btn-link " ) %>
+        </div>
       </div>
+
+
       <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-fav" } %>
-        <div class="space_center"></div>
-        <div id="profile-resources-fav" class="modal-pivot row height-tabs-home" >
+
+        <div id="profile-resources-fav" class="box-profile-excursion" >
           <% for document in subject_resources(@user, {:scope => :like}) %>
             <% if document.is_a? Embed %>
                <%= render :partial => "embeds/home",
@@ -62,10 +85,12 @@
             <% end %>
           <% end %>
         </div>
-        <div class="pull-right"><%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=like", :class => "btn btn-link ") %></div>
+        <div class="clearfloat"></div>
+        <div class="pull-right">
+          <%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=like", :class => "btn btn-link ") %>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<div class="row"></div>
-<div class="space_center"></div>
+

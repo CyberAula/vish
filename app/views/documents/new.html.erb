@@ -24,10 +24,10 @@
 <% end %>
 
 <!--tabs-->
-<div id="new_file_only" class=" pull-left span6 inline-block">
+<div id="new_file_only" class=" tabs-resources-new">
 
 	<div class="tabbable">
-		<ul class="nav nav-tabs span6">
+		<ul class="nav nav-tabs ">
 			<li class="active">
 				<a data-toggle="tab" href="#docs-1" id="upload_file"><%= t('document.document') %></a>
 			</li>
@@ -44,13 +44,11 @@
 <!--help-->
 
 
-<div class="span3 pull-right size18 red-1 margin-top15 ">
-
+<div class="box_help">
   <%= t('document.help.title')%>
-  <div class=" row space_center"></div>
-  <div class="gray size12 ">
-    <%= t('document.help.info1_html')%> <br/>
-    <%= t('document.help.info2_html')%> <br/>
+  <div class="text_help">
+    <%= t('document.help.info1_html')%>  <br/>
+    <%= t('document.help.info2_html')%>  <br/>
     <%= t('document.help.info3_html')%>  <br/>
     <%= t('document.help.info4_html')%>  <br/>
     <%= t('document.help.info5_html')%>  <br/>
@@ -60,12 +58,10 @@
   </div>
 </div>
 
-
-<!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
-
+<!--  -->
 
 <!--menu type of resource-->
-<div class="repository tabbable repository_box">
+<div class="repository tabbable ">
   <div class="tab-content">
   	
 		<!-- Tags preloaded -->
@@ -84,383 +80,332 @@
       <%end%>
     </ul>
 
-    <!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
+<!--  -->
 
-    <!-- FILES TAB -->
+<!-- FILES TAB1 -->
+
     <div id="docs-1" class="tab-pane active">
+      <div id="formulate-new">
+        <div class="box_gray1 ">
+          <div class="box_gray2">
+            <div class="box_gray3">
+              <div class="box_white new-resource-box">
+                <div class="campos">
 
-      <div class="boxy_gray span6 padding_15">
-        <div class=" row space_center"></div>
-    	
-		    <!--open file browser-->
-		    <div class="">
-		      <% d = Document.new %>
-		      <% d.owner_id = Actor.normalize_id(current_user) %>
-		      <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-		        <%= f.hidden_field :owner_id %>
-		        <%= f.file_field :file %>
-		    </div>
+<!--open file browser-->
+           
+                  <% d = Document.new %>
+                  <% d.owner_id = Actor.normalize_id(current_user) %>
+                  <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                  <%= f.hidden_field :owner_id %>
+                  <%= f.file_field :file %>
+                  <div id="new_file_only_wrapper">
+        
+<!--title-->
+                    <label class="text-tittle" for="tittle">
+                      <%= f.label t('document.info.title') %>
+                    </label>
+                      <%= f.text_field :title, :class => "" %>
+                    <div class="line"></div>
 
-        <div id="new_file_only_wrapper">
+<!--description-->
 
-	
-	        <!--title-->
-	        <div class="form row ">
-	          <div class="span4">
-	            <%= f.text_field :title, :class => "span4" %>
-	          </div>
-	          <div class="span2 margin-top5">
-	            <%= f.label t('document.info.title') %>
-	          </div>
-	        </div>
+                    <label class="text-tittle" for="description">
+                      <%= f.label t('document.info.description') %>
+                    </label>
+                      <%= f.text_area :description, :cols => 10, :rows => 5, :class => "" %>
+                    <div class="line"></div>
+ 	
+<!--tags-->
+                    <label class="text-tittle" for="tags">
+                      <%= f.label t('document.info.tags.title') %>
+                    </label>
 
-	        <!--description-->
-	        <div class="form row ">
-	          <div class="span4">
-	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "span4" %>
-	          </div>
-            <div class="span2 margin-top5">
-              <%= f.label t('document.info.description') %>
+                    <input type="hidden" name="document[tag_list][]"></input>
+                    <div class="tagBoxDocument span">
+                       <ul class="tagList"></ul>
+                     </div>
+                     <div class="clearfloat"></div>
+                    <div class="line"></div>
+                    <div class="clearfloat"></div>
+
+
+<!--Language-->
+
+                    <label class="text-tittle" for="language">
+                      <%= f.label t('lang.title') %>
+                    </label>
+                    <select class="" name="document[language]">
+      	              <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+      	              <option value="de">Deutsch</option>
+      	              <option value="en">English</option>
+      	              <option value="es">Español</option>
+      	              <option value="fr">Français</option>
+      	              <option value="it">Italiano</option>
+      	              <option value="pt">Português</option>
+      	              <option value="ru">Русский</option>
+      								<option value="ot"><%= t('lang.others') %></option>
+      	            </select>
+                    <div class="line"></div>
+
+<!-- Age (With slider) -->
+                    <div class="form">
+                      <div class="text-tittle">
+                        <%= f.label t('document.info.age')%>
+                      </div>
+                      <div class="slider-new">
+                        <input type="text" class="age"/>
+                        <input type="hidden"  name="document[age_min]"/>
+                        <input type="hidden"  name="document[age_max]"/>
+                        <div class="slider-new-range position-new">
+                          <div class="slider-range"></div>
+                        </div>
+                      </div>
+                    </div>
+      	
+<!--btn-->
+
+                  </div>
+                </div>
+              </div>
+          	<div class="accept-btn new-file">
+          	  <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "file" %>
+          	</div>
+
+      	    <% end %>
+	                
+                
+              
             </div>
-	        </div>
-	
-	        <!--tags-->
-					<input type="hidden" name="document[tag_list][]"></input>
-	
-
-	        <div class="form row upload01 repository_box ">
-            <div class="span4">
-	          <div class="tagBoxDocument span">
-	            <ul class="tagList span4"></ul>
-	          </div>
-
-            </div>
-            <div class="span2 margin-top5">
-              <%= f.label t('document.info.tags.title') %>
-	        </div>
-            </div>
-
-
-	
-	        <!--Language-->
-	        <div class="form row ">
-            <div class="span4">
-	            <select class="span4 " name="document[language]">
-	              <option value="" selected="1">(<%= t('lang.independent') %>)</option>
-	              <option value="de">Deutsch</option>
-	              <option value="en">English</option>
-	              <option value="es">Español</option>
-	              <option value="fr">Français</option>
-	              <option value="it">Italiano</option>
-	              <option value="pt">Português</option>
-	              <option value="ru">Русский</option>
-								<option value="ot"><%= t('lang.others') %></option>
-	            </select>
-            </div>
-
-
-          <div class="span2 margin-top5">
-            <%= f.label t('lang.title') %>
           </div>
-          </div>
-				<!-- Age (With slider) -->
-
-
-
-
-				<div class="form row ">
-
-					<div class="span4">
-
-		        <input type="text" class="age span1 pagination-centered"/>
-						<input type="hidden"  name="document[age_min]"/>
-						<input type="hidden"  name="document[age_max]"/>
-
-            <div class="span3 pull-right">
-            <div class="slider-range"></div>
-            </div>
-          </div>
-            <div class="span2 margin-top5 ">
-               <%= f.label t('document.info.age')%>
-            </div>
-
         </div>
-	
-	      <!--btn-->
-
-	        <div class="span1 offset5">
-	          <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "file" %>
-	        </div>
-
-	      <% end %>
-	    </div>
-	  </div>
+      </div>
+    </div>
 
 
-
-  </div>
-
-
-<!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
+<!--  -->
 
 
+<!--  -->
 
-		
-		<!-- LINKS TAB -->
+<!-- FILES TAB2 -->
     <div id="docs-2" class="tab-pane ">
+      <div id="formulate-new">
+        <div class="box_gray1 ">
+          <div class="box_gray2">
+            <div class="box_gray3">
+              <div class="box_white new-resource-box">
+                <div class="campos">
 
-      <div class="boxy_gray span6 padding_15">
-        <div class=" row space_center"></div>
+<!--open file browser-->
 
+                  <% d = Link.new %>
+                  <% d.owner_id = Actor.normalize_id(current_user) %>
+                  <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                  <%= f.hidden_field :owner_id %>
+                  <%= f.hidden_field :callback_url %>
+                  <%= f.hidden_field :loaded %>
+                  <%= f.hidden_field :image %>
 
-        <div class="">
-          <% d = Link.new %>
-          <% d.owner_id = Actor.normalize_id(current_user) %>
-          <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-            <%= f.hidden_field :owner_id %>
-            <%= f.hidden_field :callback_url %>
-            <%= f.hidden_field :loaded %>
-            <%= f.hidden_field :image %>
-            </div>
+                  <div id="new_file_only_wrapper">
+        
+<!--URL-->
+                    <label class="text-tittle" for="url">
+                      <%= f.label "URL" %> 
+                    </label>
+                      <%= f.text_field :url, :class => "" %>
+                    <div class="line"></div>
 
-            <div id="new_file_only_wrapper">
+<!--title-->
+                    <label class="text-tittle" for="tittle">
+                      <%= f.label t('document.info.title') %>
+                    </label>
+                      <%= f.text_field :title, :class => "" %>
+                    <div class="line"></div>
 
+<!--description-->
 
-	
-	        <!--URL-->
-            <div class="form row ">
-              <div class="span4">
-	            <%= f.text_field :url, :class => "span4" %>
-	          </div>
-              <div class="span2 margin-top5">
-	            <%= f.label "URL" %>
-	          </div>
-	        </div>
-	
-	        <!--title-->
-              <div class="form row ">
-                <div class="span4">
-	          	<%= f.text_field :title, :class => "span4" %>
-	          </div>
-                <div class="span2 margin-top5">
-	            <%= f.label t('document.info.title') %>
-	          </div>
-	        </div>
-	
-	        <!--description-->
-            <div class="form row ">
-              <div class="span4">
-	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "span4" %>
-	          </div>
-              <div class="span2 margin-top5">
-              <%= f.label t('document.info.description') %>
-            </div>
-	        </div>
+                    <label class="text-tittle" for="description">
+                      <%= f.label t('document.info.description') %>
+                    </label>
+                      <%= f.text_area :description, :cols => 10, :rows => 5, :class => "" %>
+                    <div class="line"></div>
 
-	        <!--tags-->
-            <input type="hidden" name="link[tag_list][]"></input>
+<!--tags-->
+                    <label class="text-tittle" for="tags">
+                      <%= f.label t('document.info.tags.title') %>
+                    </label>
 
+                    <input type="hidden" name="link[tag_list][]"></input>
+                    <div class="tagBoxDocument span">
+                       <ul class="tagList"></ul>
+                     </div>
+                     <div class="clearfloat"></div>
+                    <div class="line"></div>
+                    <div class="clearfloat"></div>
 
-            <div class="form row upload01 repository_box ">
-              <div class="span4">
-                <div class="tagBoxDocument span">
-                  <ul class="tagList span4"></ul>
-                </div>
+<!--Language-->
 
-              </div>
-              <div class="span2 margin-top5">
-                <%= f.label t('document.info.tags.title') %>
-              </div>
-            </div>
+                    <label class="text-tittle" for="language">
+                      <%= f.label t('lang.title') %>
+                    </label>
+                    <select class="" name="document[language]">
+                      <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+                      <option value="de">Deutsch</option>
+                      <option value="en">English</option>
+                      <option value="es">Español</option>
+                      <option value="fr">Français</option>
+                      <option value="it">Italiano</option>
+                      <option value="pt">Português</option>
+                      <option value="ru">Русский</option>
+                      <option value="ot"><%= t('lang.others') %></option>
+                    </select>
+                    <div class="line"></div>
 
+<!-- Age (With slider) -->
 
+                    <div class="form">
+                      <div class="text-tittle">
+                        <%= f.label t('document.info.age')%>
+                      </div>
+                      <div class="slider-new">
+                        <input type="text" class="age"/>
+                        <input type="hidden"  name="document[age_min]"/>
+                        <input type="hidden"  name="document[age_max]"/>
+                        <div class="slider-new-range position-new">
+                          <div class="slider-range"></div>
+                        </div>
+                      </div>
+                    </div>
+        
+<!--btn-->
 
-          <!--Language-->
-            <div class="form row ">
-              <div class="span4">
-                <select class="span4 " name="document[language]">
-                  <option value="" selected="1">(<%= t('lang.independent') %>)</option>
-                  <option value="de">Deutsch</option>
-                  <option value="en">English</option>
-                  <option value="es">Español</option>
-                  <option value="fr">Français</option>
-                  <option value="it">Italiano</option>
-                  <option value="pt">Português</option>
-                  <option value="ru">Русский</option>
-                  <option value="ot"><%= t('lang.others') %></option>
-                </select>
-              </div>
-
-
-              <div class="span2 margin-top5">
-                <%= f.label t('lang.title') %>
-              </div>
-            </div>
-
-
-          <!-- Age (With slider) -->
-
-
-
-            <div class="form row ">
-
-              <div class="span4">
-
-                <input type="text" class="age span1 pagination-centered"/>
-                <input type="hidden"  name="document[age_min]"/>
-                <input type="hidden"  name="document[age_max]"/>
-
-                <div class="span3 pull-right">
-                  <div class="slider-range"></div>
+                  </div>
                 </div>
               </div>
-              <div class="span2 margin-top5 ">
-                <%= f.label t('document.info.age')%>
+            <div class="accept-btn new-file">
+              <%= f.submit t('button.save'), :class => "btn btn-primary ", :tab => "link" %>
+            </div>
+
+            <% end %>
+                  
+                
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- EMBED TAB -->
+
+
+<!-- FILES TAB1 -->
+
+    <div id="docs-3" class="tab-pane ">
+      <div id="formulate-new">
+        <div class="box_gray1 ">
+          <div class="box_gray2">
+            <div class="box_gray3">
+              <div class="box_white new-resource-box">
+                <div class="campos">
+                  
+<!--open file browser-->
+	               <% d = Embed.new %>
+	               <% d.owner_id = Actor.normalize_id(current_user) %>
+	               <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+	               <%= f.hidden_field :owner_id %>
+                  <div id="new_file_only_wrapper">
+  
+<!--Embed-->
+
+                    <label class="text-tittle" for="embed">
+                      <%= f.label "Embed" %>
+                    </label>
+                      <%= f.text_field :fulltext, :class => "" %>
+                    <div class="line"></div>
+
+<!--title-->
+
+                    <label class="text-tittle" for="tittle">
+                      <%= f.label t('document.info.title') %>
+                    </label>
+                      <%= f.text_field :title, :class => "" %>
+                    <div class="line"></div>
+
+<!--description-->
+
+                    <label class="text-tittle" for="description">
+                      <%= f.label t('document.info.description') %>
+                    </label>
+                      <%= f.text_area :description, :cols => 10, :rows => 5, :class => "" %>
+                    <div class="line"></div>
+
+<!--tags-->
+                    <label class="text-tittle" for="tags">
+                      <%= f.label t('document.info.tags.title') %>
+                    </label>
+
+                    <input type="hidden" name="document[tag_list][]"></input>
+                    <div class="tagBoxDocument span">
+                       <ul class="tagList"></ul>
+                     </div>
+                     <div class="clearfloat"></div>
+                    <div class="line"></div>
+                    <div class="clearfloat"></div>
+
+
+<!--Language-->
+
+                    <label class="text-tittle" for="language">
+                      <%= f.label t('lang.title') %>
+                    </label>
+                    <select class="" name="document[language]">
+                      <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+                      <option value="de">Deutsch</option>
+                      <option value="en">English</option>
+                      <option value="es">Español</option>
+                      <option value="fr">Français</option>
+                      <option value="it">Italiano</option>
+                      <option value="pt">Português</option>
+                      <option value="ru">Русский</option>
+                      <option value="ot"><%= t('lang.others') %></option>
+                    </select>
+                    <div class="line"></div>
+
+<!-- Age (With slider) -->
+
+                    <div class="form">
+                      <div class="text-tittle">
+                        <%= f.label t('document.info.age')%>
+                      </div>
+                      <div class="slider-new">
+                        <input type="text" class="age"/>
+                        <input type="hidden"  name="document[age_min]"/>
+                        <input type="hidden"  name="document[age_max]"/>
+                        <div class="slider-new-range position-new">
+                          <div class="slider-range"></div>
+                        </div>
+                      </div>
+                    </div>
+        
+<!--btn-->
+
+                  </div>
+                </div>
               </div>
-
+            <div class="accept-btn new file">
+              <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "embed" %>
             </div>
-	
-		      <!--btn-->
-
-            <div class="span1 offset5">
-		          <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "link" %>
-		        </div>
-
-					<% end %>					
-		    </div>
-	    </div>
-
-
-
-	  </div>
-
-<!--  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  ----  -->
-
-
-    <!-- EMBED TAB -->
-    <div id="docs-3" class="tab-pane  ">
-      <div class="boxy_gray span6 padding_15">
-        <div class=" row space_center"></div>
-			
-			  <div class="">
-	        <% d = Embed.new %>
-	        <% d.owner_id = Actor.normalize_id(current_user) %>
-	        <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
-	          <%= f.hidden_field :owner_id %>
-	      </div>
-	
-	      <div id="new_file_only_wrapper">
-	
-	        <!--Embed-->
-          <div class="form row ">
-            <div class="span4">
-	            <%= f.text_field :fulltext, :class => "span4" %>
-	          </div>
-            <div class="span2 margin-top5">
-	            <%= f.label "Embed" %>
-	          </div>
-	        </div>
-	
-	        <!--title-->
-          <div class="form row ">
-            <div class="span4">
-	            <%= f.text_field :title, :class => "span4" %>
-	          </div>
-            <div class="span2 margin-top5">
-	            <%= f.label t('document.info.title') %>
-	          </div>
-	        </div>
-	
-	        <!--description-->
-          <div class="form row ">
-            <div class="span4">
-	            <%= f.text_area :description, :cols => 10, :rows => 5, :class => "span4" %>
-	          </div>
-            <div class="span2 margin-top5">
-              <%= f.label t('document.info.description') %>
-            </div>
-	        </div>
-
-	        <!--tags-->
-          <input type="hidden" name="document[tag_list][]"></input>
-
-          <div class="form row upload01 repository_box ">
-            <div class="span4">
-              <div class="tagBoxDocument span">
-                <ul class="tagList span4"></ul>
-              </div>
-
-            </div>
-            <div class="span2 margin-top5">
-              <%= f.label t('document.info.tags.title') %>
+            <% end %>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
 
-
-          <!--Language-->
-          <div class="form row ">
-            <div class="span4">
-              <select class="span4 " name="document[language]">
-                <option value="" selected="1">(<%= t('lang.independent') %>)</option>
-                <option value="de">Deutsch</option>
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="it">Italiano</option>
-                <option value="pt">Português</option>
-                <option value="ru">Русский</option>
-                <option value="ot"><%= t('lang.others') %></option>
-              </select>
-            </div>
-
-
-            <div class="span2 margin-top5">
-              <%= f.label t('lang.title') %>
-            </div>
-          </div>
-          <!-- Age (With slider) -->
-
-
-
-          <div class="form row ">
-
-            <div class="span4">
-
-              <input type="text" class="age span1 pagination-centered"/>
-              <input type="hidden"  name="document[age_min]"/>
-              <input type="hidden"  name="document[age_max]"/>
-
-              <div class="span3 pull-right">
-                <div class="slider-range"></div>
-              </div>
-            </div>
-            <div class="span2 margin-top5 ">
-              <%= f.label t('document.info.age')%>
-            </div>
-
-          </div>
-		      <!--btn-->
-
-
-
-
-	        <div class="span1">
-
-              <%= f.check_box :live %> <label class ="inline" for="live"><%= t('embed.live') %></label>
-
-
-
-          </div>
-          <div class="span1 offset5">
-            <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "embed" %>
-          </div>
-
-		      <% end %> 	
-				</div>
-		  </div>
-
-
-		</div>
 		
 	<!-- Close tab_content div -->	
   </div>

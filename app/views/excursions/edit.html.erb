@@ -10,9 +10,9 @@
 
 <% content_for :javascript do %>
     function setFavicon() {
-		  var link = $('link[type="image/vnd.microsoft.icon"]').remove().attr("href");
-		  $('<link href="'+ link +'" rel="shortcut icon" type="image/x-icon" />').appendTo('head');
-		}
+      var link = $('link[type="image/vnd.microsoft.icon"]').remove().attr("href");
+      $('<link href="'+ link +'" rel="shortcut icon" type="image/x-icon" />').appendTo('head');
+    }
         
     location.href = "#presentation_iframe";
     setFavicon();

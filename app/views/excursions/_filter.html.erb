@@ -1,17 +1,22 @@
-<div class=" btn-toolbar row">
-  <div class="span2">
+<div id="header-tabs">
+
+<!--filter-->
+
+  <div class="filter-tabs">
     <% filter_id ||= "excursion-filter" %>
-    <div class="inline-block"><input id="<%= filter_id %>" type="text" class="input-medium onmiddle" placeholder="<%= t('filter') %>" name="filter"></div>
+    <input id="<%= filter_id %>" type="text" class="input-medium onmiddle" placeholder="<%= t('filter') %>" name="filter">
   </div>
   <% show_add = false if !defined?(show_add) %>
   <% if user_signed_in? and profile_subject_is_current? or show_add %>
-  <div class="pull-right">
-    <div class="btn-gray">
-      <%= link_to  raw("<i class='icontool16-tool16_more'></i> ") + t('options.add'),new_excursion_path, :class => :action  %>
-    </div>
+
+<!--btn add-->
+
+  <div class="btn-gray">
+    <%= link_to  raw("<i class='icontool16-tool16_more'></i> ") + t('options.add'),new_excursion_path, :class => :action  %>
   </div>
-  <% end %>
 </div>
-<% content_for :javascript do %>
-  if(!Vish.Filter.loaded) Vish.Filter.init();
 <% end %>
+<% content_for :javascript do %>
+    if(!Vish.Filter.loaded) Vish.Filter.init();
+  <% end %>
+

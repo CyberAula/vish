@@ -2,27 +2,27 @@
   <%= t('welcome', :site => t('site.name')) %>
 <%end%>
 <section name="main">
-  <div class="row span12">
-    <div id="logo-frontpage"></div>
-    <div class="pagination-centered name size40" id="tags"><%=t('site.name')%></div>
-
-    <div id="search-frontpage " class="container row span12">
-
-      <div class=" margin-search-frontpage">
-
-      <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "input-xxlarge" } %>
-    </div>
-    </div>
-    </div>
-
-
-  <div class="row span12 space_double_center"></div>
-  <div class="row span12">
-    <div id="repositories"class="link_gray span5 offset6"><%= link_to(t('resource.title.other'),search_path(:type => "resource"), :class => 'size80') %></div>
-    <div id="excursion" class="link_gray span6"><%= link_to(t('excursion.other'),search_path(:type => "excursion"), :class => 'size100') %></div>
-    <!--<div id="organizations"class="link_gray span4 offset7"><%#= link_to(t('organization.other'),search_path(:type => "excursion"), :class => 'size60') %></div>-->
-    <div id="users" class="link_gray span2 offset6"><%= link_to(t('user.other'),search_path(:type => "user"), :class => 'size40') %></div>
+  <div class="logo-frontpage"></div>
+  <p class="name-frontpage"><%=t('site.name')%></p>
+  <div class="search-frontpage">
+    <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "input-frontpage" } %>
   </div>
-  <div class="row space_double_center"></div>
+
+  <div id="cloud_tags">
+
+    <div class="repositories-tags">
+      <%= link_to(t('resource.title.other'),search_path(:type => "resource"),) %>
+    </div>
+    <div class="excursion-tags">
+      <%= link_to(t('excursion.other'),search_path(:type => "excursion"),) %>
+    </div>
+
+    <div class="users-tags">
+      <%= link_to(t('user.other'),search_path(:type => "user"),) %>
+    </div>
+    <div class="organization-tags">
+      <%= link_to(t('organization.other'),search_path(:type => "organization"),) %>
+    </div>
+  </div>
 </section>
 
