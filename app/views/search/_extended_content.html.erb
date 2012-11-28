@@ -1,6 +1,6 @@
-<div id="all" class="tab-pane <%= "active" if params[:type].blank? %> row modal-pivot">
+<div id="all" class="tab-pane <%= "active" if params[:type].blank? %> modal-pivot">
   <% if @search_result.empty? %>
-<div class="margin-left20 gray-medium size18">
+<div class="no_search">
     <%= I18n.t('search.nothing') %>
 </div>
 <% elsif params[:type].blank? %>

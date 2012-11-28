@@ -1,16 +1,18 @@
 
 
-<%= label_tag 'q', t('search.name') + ':  ', :class => ' size35 gray-medium inline pull-right margin-search-title' %>
+<%= label_tag 'q', t('search.name') + ':  ', :class => '' %>
 
-<div class="span2 inline margin-search-toolbar">
-  <div id="menuv">
-    <h4><span class="size16  title-search-advanced">advanced options</span></h4>
-    <ul id="search_toolbar" class="advanced">
-      <%= render :partial => 'toolbar/search_all' %>
-      <% if not params[:type].blank? %>
-        <%= render :partial => "toolbar/search_#{ params[:type] }"%>
-      <% end %>
-    </ul>
-  </div>
+<div id="menuv">
+  <h4>
+    <span class="title_search">
+      advanced options
+    </span>
+  </h4>
+  <ul id="search_toolbar" class="advanced">
+    <%= render :partial => 'toolbar/search_all' %>
+    <% if not params[:type].blank? %>
+    <%= render :partial => "toolbar/search_#{ params[:type] }"%>
+    <% end %>
+  </ul>
 </div>
 
