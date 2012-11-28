@@ -72,6 +72,11 @@ Vish.Wall = (function(V, $, undefined){
 
     }
 
+    $('#masterSubmitButton').click(function(){
+      $('#wall-input form:visible').submit();
+    });
+                
+
     $('#attachFileButton').click(function(){
       $('#attachFileButton').toggleClass("selected");
       $('#activities_header form').toggle();

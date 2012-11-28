@@ -6,11 +6,7 @@ AvatarsForRails.setup do |config|
     :representation => "16x16>",                                 
     :actor => '25x25>',                                        
     :contact => "50x50>",                                      
-    :profile => '119x119',
-    :'16' => "16x16>",
-    :'25' => '25x25>',
-    :'50' => "50x50>",
-    :'119' => '119x119'
+    :profile => '119x119'
   }
 end
 
