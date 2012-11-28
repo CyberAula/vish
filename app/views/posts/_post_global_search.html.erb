@@ -23,9 +23,9 @@
             <%=t "#{post.class.name.underscore}.search_name"  %>
           </span>
             <%= link_to post do%>
-              <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 25) || truncate(post.text, :length => 30) %>
-              <% if text.length < 30 %>
-                <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 30 + (30 - text.length)) || post.text %>
+              <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 25) || truncate(post.text, :length => 40) %>
+              <% if text.length < 40 %>
+                <% text = excerpt(strip_tags(post.text),get_search_query_words.first,:radius => 30 + (40 - text.length)) || post.text %>
               <% end %>
               <%= highlight(text,get_search_query_words) %>
             <% end %>
