@@ -19,10 +19,13 @@ class DocumentsController < ApplicationController
   end
   
   def create
-    super do |format|
-      format.json { render :json => resource }
-      format.js { render }
-      format.all {redirect_to document_path(resource) || home_path}
+    super do |success, failure|
+      success.json { render :json => resource, status: :created }
+      failure.json { render json: { error: resource.errors.full_messages.to_sentence }, status: :unprocessable_entity }
+      success.js
+      failure.js
+      success.all {redirect_to document_path(resource) || home_path}
+      failure.all {redirect_to document_path(resource) || home_path}
     end
   end
 
