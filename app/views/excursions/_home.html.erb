@@ -5,8 +5,8 @@
   <%= div_for excursion, :class => 'excursion-home' do %>
   <div class="excursion-item">
     <ul class="thumbnails">
-      <li class="img-excursion">
-        <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "img-excursion" %>
+      <li id="img-excursion">
+        <%= link_to  excursion_thumb_for(excursion, 130), excursion, :class => "" %>
         <div class='number_pages'>
           <%= excursion.slide_count %>
         </div>
@@ -29,7 +29,7 @@
         </span>
         <% unless excursion.draft %>
         <div class="likes like_count_<%= dom_id(excursion.post_activity) %>">
-          <%=excursion.post_activity.likes.count.to_s%>
+          <%=excursion.post_activity.likes.count.to_s%> /
           <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>">
             <%= link_like(excursion.post_activity)%>
           </div>
