@@ -55,9 +55,15 @@ Vish.Wall = (function(V, $, undefined){
   }
 
   var init = function(){
-    $('section.wall .nav-tabs li a:last').on('show', function(e) { // TODO: Do something better than a:last
+    $('section.wall .nav-tabs li a.load-me-on-show').on('show', function(e) {
       $('#wall-me').empty();
-      $.getScript("/home?active_tab=me&page_me=1");
+      $.getScript("?active_tab=me&page_me=1");
+      $(this).off('show');
+    });
+
+    $('section.wall .nav-tabs li a.load-net-on-show').on('show', function(e) {
+      $('#wall').empty();
+      $.getScript("?active_tab=net&page_net=1");
       $(this).off('show');
     });
 

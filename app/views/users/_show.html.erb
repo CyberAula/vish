@@ -31,7 +31,7 @@
 
 <section name="wall" id="profile_wall">
 <%= render :partial => "activities/profile",
-           :locals  => { :owner => @user } %>
+           :locals  => { :activities =>  @user.wall(:profile).page(params[:page_me]) } %>
 
 </section>
 
