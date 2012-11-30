@@ -1,11 +1,9 @@
 <% if user_signed_in? and (sgs = current_subject.excursion_suggestions(2)).present? %>
-  <div class="span">
-    <div class="header_followers">
-      <div class="header_text">
-        <%= t('excursion.suggestion.other') %>
-      </div>
+  <h3 class="suggestion-title">
+    <%= t('excursion.suggestion.other') %>
+  </h3>
 
-    </div>
+
     <div class="content" > <!-- columna derecha-->
       <div class="users_btn_follow-sugestion">
         <%= render :partial => "excursions/suggestion", :collection => sgs, :locals => { :close_button => true } %>
