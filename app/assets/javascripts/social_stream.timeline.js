@@ -60,11 +60,16 @@ SocialStream.Timeline = (function(SS, $, undefined){
 		$("#"+id).children(".hidden_comments").hide();
 	};
 
+  var cleanWallInput = function() {
+    $('#input_activities').val('');
+  };
+
 
 	addInitCallback(initPrivacyTooltips);
 	addInitCallback(initComments);
 
 	addCreateCallback(initPrivacyTooltips);
+	addCreateCallback(cleanWallInput);
 
 	return {
 		addInitCallback: addInitCallback,

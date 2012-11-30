@@ -76,6 +76,9 @@
 // vish mixins
 @import "mixins";
 
+// excursions
+@import "vish/base/excursions";
+
 // base
 @import "vish/base/base";
 
@@ -97,9 +100,6 @@
 // btn
 @import "vish/base/btn";
 
-// excursions
-@import "vish/base/excursions";
-
 // follower
 @import "vish/base/follower";
 
@@ -115,6 +115,12 @@
 // timeline
 @import "vish/base/timeline";
 
+// messages
+@import "vish/base/messages";
+
+// links
+@import "vish/base/links";
+
 // ----------------------------pages-------------------------
 
 // devise
@@ -129,8 +135,12 @@
 // profile
 @import "vish/base/pages/profile";
 
-// messages
-@import "vish/base/messages";
+// search
+@import "vish/base/pages/search";
+
+
+
+
 
 
 

@@ -1,13 +1,16 @@
-<div id="all" class="tab-pane <%= "active" if params[:type].blank? %> row modal-pivot">
+<% params[:page]="1" if params[:page].blank? %>
+<div id="all" class="tab-pane <%= "active" if params[:type].blank? %> modal-pivot">
   <% if @search_result.empty? %>
-<div class="margin-left20 gray-medium size18">
+<div class="no_search">
     <%= I18n.t('search.nothing') %>
 </div>
 <% elsif params[:type].blank? %>
     <% @search_result.each do |res| %>
       <%= render_global_search_for res  %>
     <% end %>
-    <%= paginate @search_result if @search_result.present? %>
+    <div class = "paginate">
+      <%= link_to(t('activity.more'), {:q => params[:q], :page => (params[:page].to_i + 1), :type => ''}, :id => 'search_load_more_button', :class =>'btn-more', :remote => true) unless @search_result.last_page? %>
+    </div>
   <% end %>
 </div>
 
@@ -17,7 +20,9 @@
       <% @search_result.each do |res| %>
         <%= render_focus_search_for res  %>
       <% end %>
-      <%= paginate @search_result if @search_result.present? %>
+      <div class = "paginate">
+        <%= link_to(t('activity.more'), {:q => params[:q], :page => (params[:page].to_i + 1), :type => key.to_s}, :id => 'search_load_more_button', :class =>'btn-more', :remote => true) unless @search_result.last_page? %>
+      </div>
     <% end %>
   </div>
 <% end %>

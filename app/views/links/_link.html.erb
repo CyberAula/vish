@@ -1,24 +1,22 @@
-<%= div_for link, :class => 'row-fluid' do %>
+<div class="clearfloat"></div>
+<%= div_for link, :class => 'timeline-object ' do %>
   <%= javascript_tag do %>
     <%= modal_for(link) %>
   <% end %>
-
-  <ul class="thumbnails">
-    <li class="span3">
+  <div class="item-object-wall">
+    <ul class="thumbnails">
+      <li class="img-object">
       <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%> modal-trigger"><% else %><a href="<%= link.url %>" target="_blank" class="container"><% end %><% if link.image %><%= image_tag(link.image, :size =>"75x75") %><% else %><i class='icon_repository75-75_link'></i> <% end %></a>
-    </li>
-    <li class="span9">
-        <h4 class="title">
+      </li>
+      <li class="info-object-timeline">
+        <div class="title-object">
           <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%> modal-trigger"><% else %><a href="<%= link.url %>" target="_blank"><% end %><%= (link.title.blank? ? link.url : link.title) %></a>
-        </h4>
-      
-      <div class="vdescription">
-      <p><%= link.description %></p>
-    </div>
-      <p><%= link_to t('details.msg'), link, :class => "attachment_text_link" %></p>
+        </div>
+        <p><%= link.description %></p>
+        <p class="details"><%= link_to t('details.msg'), link, :class => "attachment_text_link" %></p>
+      </li>
+    </ul>
 
-    </li>
-  </ul>
 
 <% end %>
   <%= javascript_tag do %>
@@ -29,6 +27,8 @@
         return text.replace(/\W*\s(\S)*$/, '...');
     });
 }
+</div>
+</div>
   <% end %>
 
-<div class="clearfloat"></div>
+

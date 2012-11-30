@@ -3,13 +3,16 @@
 .toolbar_menu
   margin-top: 14px
 
-
 .conversation
   .box_gray1
     margin-bottom: 10px
+    opacity: 0.4
     .box_gray2
+
       .box_gray3
+
         .content-message
+
           @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           .content_left
@@ -238,7 +241,22 @@
     display: inline-block
     margin-top: 20px
 
+.message_space_menu
+  display: block
+  height: 20px
 
+
+.unread
+  .box_gray1
+    opacity: 1
+    .box_gray2
+      opacity: 1
+      .box_gray3
+        opacity: 1
+
+        .content-message
+          @include border-radius($radius)
+          opacity: 1 !important
 
 
 

@@ -1,12 +1,49 @@
+#img-excursions
+  @include makeColumn (2,0)
+  margin-left: 0px
+  display: inline-block
+
+// excursion toolbar
+
+.excursion_toolbar
+  background-color: #EDEDED
+  border-radius: 0px 0px 20px 20px
+  border-top: 1px solid
+  margin: -6px 20px 26px
+  min-height: 40px
+  padding: 10px 0px 0px 10px
+  vertical-align: middle
+  width: 900px
+  .view-like-mashme
+    display: inline-block
+    float: right
+    padding-right: 20px
+    font-family: $thirdFontFamily
+    font-size: $tittleFontSize
+    margin-bottom: 10px
+    .green
+      color: $green
+      margin-left: 20px
+    .mashme-button
+      margin-left: 20px
+
+.input-embed-excursion
+  cursor: text
+
+#excursion-share
+  margin-top: 10px
+
+.social_toolbar_excursion
+  display: inline-block
+  height: 19px
+
 // FRONTPAGE
 
 .caption-box-top10
   margin-left: 20px
 
 .box-top10
-  
   li
-    
     @include makeColumn(1,0)
     width: 68px
 
@@ -58,40 +95,41 @@
     ul.thumbnails > li
       margin-bottom: 10px
 
-.excursion-search
+
+
+.excursion-item
+
   @include makeColumn (3,0)
-  width: 230px
-  @include nomargin-left
-
-
-.item-excursion-wall
-  @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-.excursion-item,
-.item-excursion-wall
+  margin-left: 0px
+  display: inline-block
   ul
     margin-left: 0px
     li
+      width: 75px
+
+      margin-left: 0px
+      display: inline-block
       margin-bottom: 0px
       margin-left: 0px
       
-      .img-excursions
+    .img-excursions
+      @include makeColumn (1,0)
+      margin-left: 0px
+      display: inline-block
 
-        background-color: #fff
-        height: 70px
-        widht: 70px
-      .number_pages
-        font-family: $secondFontFamily
-        position: relative
-        height: 20px
-        width: 20px
-        margin-top: -26px
-        margin-left: 48px
-        text-align: center
-        background-color: #FFF
-        border-radius: 15px
-        color: #333
-        font-size: 10pt
-        line-height: 150%
+    .number_pages
+      font-family: $secondFontFamily
+      position: relative
+      height: 20px
+      width: 20px
+      margin-top: -26px
+      margin-left: 43px
+      text-align: center
+      background-color: #FFF
+      border-radius: 15px
+      color: #333
+      font-size: 10pt
+      line-height: 180%
 
       .title-excursion
 
@@ -99,7 +137,7 @@
         @include ellipsis
 
       p
-        text-align: justify
+
         font-size: 12px
         margin-top: -10px
         color: $grayLight
@@ -107,18 +145,13 @@
         margin-top: none
         padding-left: -20px
         font-size: 10px
-    .info-excursion-timeline
-      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      margin-left: 5px
-      display: inline-block
-      padding-left: 5px
-      padding-right: 5px
+
     .info-excursion
       @include makeColumn (2,0)
       margin-left: 0px
       display: inline-block
       padding-left: 5px
-      padding-right: 5px
+
       .title-excursion
         font-size: 16px
         @include ellipsis
@@ -131,16 +164,18 @@
           font-family: $secondFontFamily
           font-size: 16px
       .visits
+        display: inline-block
         color: $green-vish
         a
           color: $grayLight
       .likes
+        display: inline-block
         color: $green-vish
         .verb_like
           display: inline-block
 
 
-/* details excursion */
+// details excursion 
 
 #info-notebook
   @include makeColumn(3,0)
@@ -184,6 +219,7 @@
     color: $gray
     @incluce ellipsis
     margin-bottom: 10px
+    padding-right: 10px
 
 
 
@@ -204,44 +240,12 @@
   height: auto
   background-color: #f1f1f1
 
-/* excursion show */
+// excursion show 
 
 .tabs-excursion-show
-  @include makeColumn (11,0)
+  @include makeColumn(11,0)
 
-/* excursion toolbar */
 
-.excursion-tools
-  background-color: #EDEDED
-  border-radius: 0 0 20px 20px
-  border-top: 1px solid
-  margin: -6px 20px 26px
-  min-height: 40px
-  padding: 10px 0 0 10px
-  vertical-align: middle
-  width: 900px
-  .view-like-mashme
-    display: inline-block
-    float: right
-    padding-right: 20px
-    font-family: $thirdFontFamily
-    font-size: $tittleFontSize
-    margin-bottom: 10px
-    .green
-      color: $green
-      margin-left: 20px
-    .mashme-button
-      margin-left: 20px
-
-.input-embed-excursion
-  cursor: text
-
-#excursion-share
-  margin-top: 10px
-
-.social_toolbar_excursion
-  display: inline-block
-  height: 19px
 
 /* bottom excursion info */
 
@@ -296,3 +300,4 @@
 .timeline-excursion
   heigth: auto
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
