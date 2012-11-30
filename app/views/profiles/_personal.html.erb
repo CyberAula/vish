@@ -1,16 +1,17 @@
-<div class="row" id="profile_info">
-  <div class="header">
-    <div class="header_text2">
-      <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
-      <% if is_owner? %>
-        <div class="header_icon_right unborder">
-          <%= link_to (image_tag('icons/edit_icon.png', :class => "unborder")), "javascript:showSettings(\"profile_info\");" %>
-        </div>
-      <% end %>
-    </div>
+<div class="clearfloat"></div>
+<div class="line2"></div>
+<div id="profile_info">
+  <div class="title">
+    <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
   </div>
+      <% if is_owner? %>
+  <div class="action">
+    <%= link_to (image_tag('icons/edit_icon.png', :class => "imgnoradio")), "javascript:showSettings(\"profile_info\");" %>
+  </div>
+      <% end %>
+
   <div class="row span6 boxy_white">
-    <div class="space_center"></div>
+
     <div class="content settings_briefing" id="profile_info_briefing">
       <% if !is_personal_empty? %>
         <div class="sub-block">
@@ -69,7 +70,7 @@
           <% end %>
         </div>
       <% elsif is_owner? %>
-        <div id="field_profile_field_empty">
+        <div id="field_empty">
           <%= t('profile.empty') %>
         </div>
       <% end %>
@@ -132,14 +133,14 @@
                 </div>
                 <div class="form_row needed"><%= t('required') %></div>
               </div>
-                  <div class="space_center"></div>
+
             <% end %>
-            <%= f.submit t('button.update'), :class => "button" %>
+            <%= f.submit t('button.update'), :class => "btn btn-primary pull-right" %>
           <% end %>
         </div>
       </div>
     <% end %>
-    <div class="space_center"></div>
+
   </div>
 </div>
 

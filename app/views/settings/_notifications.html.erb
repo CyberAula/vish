@@ -1,12 +1,15 @@
+<div class="clearfloat"></div>
+<div class="line2"></div>
+
 <div class="block" id="notifications_settings">
-    <div class="header">
-        <div class="header_text">
+
+        <div class="title">
             <%= t('settings.notifications.name')%>
-        	<div class="header_icon_right">
-      			<%= link_to (image_tag('icons/edit_icon.png', :class=>"unborder")),  "javascript:showSettings(\"notifications_settings\");" %>
+          </div>
+        	<div class="action">
+      			<%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"notifications_settings\");" %>
         	</div>
-		</div>        	
-    </div>
+
     <div class="content settings_content" id="notifications_settings_content" style="display:none;">
         <%= form_tag update_all_settings_path, :method => :put do %>
         <ul>
