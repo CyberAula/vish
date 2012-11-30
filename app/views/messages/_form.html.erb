@@ -1,3 +1,4 @@
+
 <div class="repository tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#"><%= t('message.new') %></a></li>
@@ -24,8 +25,7 @@
       </div>
 
       <div class="form_row  ">
-        <ul id= "singleFieldTag"></ul> 
-      </div>
+        <%= select_tag :_recipients, "", :class => "required form_tag leftinline margin-message" %>      </div>
 
       <div class="clearfloat"></div>
 
@@ -46,10 +46,12 @@
       <%= text_area_tag :body, nil, :rows => 6, :cols => 53, :class => "required form_tag leftinline margin-message", :maxlength => 5000 %>
     </div>
     <div class="actions right">
-      <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "button send offset6" %>
+  
+      <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "button send offset6", %>
     </div>
     </div>
   </div>
+
 
 <% end %>
 

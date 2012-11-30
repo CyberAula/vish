@@ -16,71 +16,95 @@
 
 
 
-<!-- User tags -->
-    <%@user_contacts = current_user.sent_contacts %>
-    <ul id="preloadUserContactList" style="display:none">
+<% content_for :javascript do %>
+
+ var recipients = $("#_recipients").fcbkcomplete({
+
+json_url: "<%= contacts_path(:form => true, :format => :json) %>",
+cache: true,
+filter_hide: true,
+newel: false,
+height: 6
+});  
+
+//////////////
+//Contacts
+//////////////
+
+var contactos = [];
+var i = 0;
+
+<%@user_contacts = current_user.sent_contacts %>
       <%@user_contacts.each do |contact| %>
-        <li><%= contact.receiver.name %></li>
-      <%end%>
-    </ul>
-
-<% content_for :javascript do %>	
-			//////////////
-			//Contacts
-			//////////////
-
-			var contactos = [];
-			var i = 0;
-
-			<%@user_contacts = current_user.sent_contacts %>
-     		<%@user_contacts.each do |contact| %>
-      			 contactos[i]= "<%=contact.receiver.name %>";
-      			 i++;
-     		<%end%>
+       contactos[i]= "<%=contact.receiver.name %>";
+       i++;
+<%end%>
 
 
-		$('#singleFieldTag').tagit({
-		<% unless @recipient.nil? %>
-			initialTags:["<%= @recipient.name %>"],		
-		<% end %>
-				allowSpaces: true, 
-			    tagSource: contactos,
-			    availableTags: contactos,
-			    allowNewTags:false, 
-			    // This will make Tag-it submit a single form value, as a comma-delimited field.
-			    singleField: true,
-			     triggerKeys:['enter', 'comma', 'tab'],
-                singleFieldNode: $('#_recipients')
-		    });
-	
+  $(document).keypress(function(e) {
+  if(e.which == 13) {
+  console.log("antes del for");
 
-	
-	function resetFields(){
-	//File input
-	$(".form_tag").val("")
-	//All tagits
-		var contactList = $("#_recipients");
-		$(contactList).tagit("reset");
-	//All input tags
-		$("input[name='document[tag_list][]']").val("")
+    var lista = $("ul.holder li:lt("+ contactos.length + ")");
 
-	}
+	console.log("La lista es" + lista);
+
+	console.log("El tamaño de la lista es:" + lista.size());
+
+	var ultimo = lista.size()-2;
+	var ultimoo = ultimo + 1;
+	console.log("Voy a ocultar el elemento... : " + ultimo);
 
 
-	
+	console.log("ya tendria que haberlo ocultado");
+
+   var rel = $("ul.holder li:nth-child(" + ultimoo + ")").attr("rel");
+   console.log("Rel es : " + rel);
+
+
+
+  for(var j = 0; j<parseInt(ultimo); j++){
+  console.log("hago caso a la pulsacion del enter");
+  var q = j+1;
+  	$("ul.holder li:nth-child(" + ultimoo + ")").hide();
+
+   var comp = parseInt($("ul.holder li:nth-child(" + q + ")").attr("rel"));
+   console.log("Comp es: " + comp);
+   if(comp == rel){
+   		console.log($("ul.holder li:nth-child(" + ultimoo + ")"));
+        $("ul.holder li:nth-child(" + ultimoo + ")").remove();
+        break;
+  }
+  		console.log("he entrado en comp!=rel");
+  		$("ul.holder li:nth-child(" + ultimoo + ")").show();
+  };
+  }
+  });
+
+
+
+
+
+
+
+
+
 	$("#body").cleditor({
-    width:"100%",
-	  controls:  "<%= SocialStream.cleditor_controls %>"   
+	    width:"100%",
+	controls: "<%= SocialStream.cleditor_controls %>"
 	});
 
-	<% unless @recipient.nil? %>
+<% unless @recipient.nil? %>
 	initialTags:["receiver"],
-		$("#_recipients").trigger("addItem",[{"title": "<%= truncate_name @recipient.name %>", "value": "<%= @recipient.id %>"}]);
-	<% end %>
+	$("#_recipients").trigger("addItem",[{"title": "<%= truncate_name @recipient.name %>", "value": "<%= @recipient.id %>"}]);
+<% end %>
 
-  $(".new_message").validate({errorClass: "validation_error"});
+  	$(".new_message").validate({errorClass: "validation_error"});
 
 
 <% end %>
 
+
 <%= render :partial => 'new' %>
+<!-- $('#_recipients').find(".tagit-choice").attr("tagvalue");
+This line returns the name  of the recipient  -->
