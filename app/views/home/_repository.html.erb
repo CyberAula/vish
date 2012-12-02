@@ -36,7 +36,7 @@
       <div id="home-resources-net" class="box-home-repository modal-pivot">
         <% my_network_resources = current_subject_resources(:limit => 6) %>
           <% if my_network_resources.size == 0 %>
-            <#%= render :partial => "common_documents/zero_screen" %>
+            <%#= render :partial => "common_documents/zero_screen" %>
           <% else %>
             <%= render :partial => "common_documents/filter_results",
                          :locals => {:documents => my_network_resources} %>
@@ -79,7 +79,7 @@
       </div>
       -->
 
-      <div id="home-resources-more" class="repositories row height-tabs-home modal-pivot">
+      <div id="home-resources-more" class="box-home-repository modal-pivot">
         <%= render :partial => "common_documents/filter_results",
                        :locals => {:documents => current_subject.resource_suggestions(6) } %>
       </div>
