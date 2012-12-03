@@ -6,7 +6,11 @@
 <%= content_for :og_url do %><%= shortURL %><% end %>
 <%= content_for :og_image do %><%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
 
+<<<<<<< Updated upstream
 <% javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
+=======
+<iframe id="excursion_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="900" height="680" style="border:0" iframeborder="0" iframeElement.frameBorder = 0;></iframe>
+>>>>>>> Stashed changes
 
 <div class="tabbable">
   <ul class="nav nav-tabs tabs-excursion-show">
