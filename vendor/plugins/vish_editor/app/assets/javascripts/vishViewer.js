@@ -9672,13 +9672,12 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
     $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
     $(document).on("click", ".quiz_stop_session_dont_save", _stopAndDontSaveQuiz);
-    $(document).on("click", ".quiz_full_screen", VISH.SlideManager.toggleFullScreen);
+    $(document).on("click", ".quiz_full_screen", _qrFullScreen);
     $(document).on("click", ".hide_qrcode", _hideQRCode);
     $(document).on("click", ".show_qrcode", _showQRCode)
   };
   var startMcQuizButtonClicked = function() {
     if(V.User.isLogged()) {
-      V.Debugging.log("User logged");
       var quizId = $(VISH.Slides.getCurrentSlide()).find(".quizId").val();
       $("a#addQuizSessionFancybox").trigger("click");
       V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
@@ -9748,8 +9747,9 @@ VISH.Quiz = function(V, $, undefined) {
     $(header).find(".url_share > span > a").attr("href", url);
     $(header).find(".url_share > span > a").text("");
     $(header).find(".url_share > span > a").append(url.toString());
-    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").children().remove();
-    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").qrcode(url.toString());
+    $(".hidden_for_qr_quiz").qrcode({width:512, height:512, text:url.toString()});
+    var imageData = $(".hidden_for_qr_quiz > canvas")[0].toDataURL();
+    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").attr("src", imageData);
     $(current_slide).find("input." + startButtonClass).hide();
     $(current_slide).find("input." + optionsButtonClass).show();
     quizSessionStarted = true;
@@ -9908,23 +9908,24 @@ VISH.Quiz = function(V, $, undefined) {
     $("#stop_quiz_fancybox").hide()
   };
   var _hideQRCode = function() {
-    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > canvas")) {
-      $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > canvas").hide();
+    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > .qr_quiz_image")) {
+      $("#" + tabQuizSessionContent).find(".qr_quiz_image").hide();
+      $("#" + tabQuizSessionContent).find(".qr_background").show();
       $("#" + tabQuizSessionContent).find(".hide_qrcode").hide();
-      $("#" + tabQuizSessionContent).find(".show_qrcode").show();
-      if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").attr("src")) {
-        $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").show()
-      }else {
-        $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='/vishEditor/images/VISH_frontpage.png' />")
-      }
+      $("#" + tabQuizSessionContent).find(".show_qrcode").show()
     }
   };
   var _showQRCode = function() {
-    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img")) {
-      $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").hide();
-      $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > canvas").show();
+    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > .qr_background")) {
+      $("#" + tabQuizSessionContent).find(".qr_background").hide();
+      $("#" + tabQuizSessionContent).find(".qr_quiz_image").show();
       $("#" + tabQuizSessionContent).find(".show_qrcode").hide();
       $("#" + tabQuizSessionContent).find(".hide_qrcode").show()
+    }
+  };
+  var _qrFullScreen = function() {
+    if($.support.fullscreen) {
+      $("#qr_quiz_image_id").fullScreen()
     }
   };
   var getIsQuizSessionStarted = function() {
@@ -9939,9 +9940,13 @@ VISH.Quiz = function(V, $, undefined) {
   return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, setIsWaitingForwardOneSlide:setIsWaitingForwardOneSlide, setIsWaitingBackwardOneSlide:setIsWaitingBackwardOneSlide}
 }(VISH, jQuery);
 VISH.Quiz.Renderer = function(V, $, undefined) {
+  var isQuizInPreview = false;
   var init = function() {
   };
   var renderQuiz = function(quizType, quiz_element, zone_class, slide_id, zone) {
+    if(isQuizInPreview) {
+      $(".quiz_session_start_button").unbind("click")
+    }
     switch(quizType) {
       case "multiplechoice":
         return _renderMcQuestion(quiz_element, zone_class, slide_id, zone);
@@ -10028,7 +10033,10 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     VISH.Debugging.log("JSON object answer is: " + trueFalseAnswers);
     return ret
   };
-  return{init:init, renderQuiz:renderQuiz}
+  var setIsQuizInPreview = function(value) {
+    isQuizInPreview = value
+  };
+  return{init:init, renderQuiz:renderQuiz, setIsQuizInPreview:setIsQuizInPreview}
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
