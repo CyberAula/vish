@@ -14,9 +14,10 @@
   <div class="btn-gray">
     <%= link_to  raw("<i class='icontool16-tool16_more'></i> ") + t('options.add'),new_excursion_path, :class => :action  %>
   </div>
-</div>
+
 <% end %>
 <% content_for :javascript do %>
     if(!Vish.Filter.loaded) Vish.Filter.init();
   <% end %>
+  </div>
 

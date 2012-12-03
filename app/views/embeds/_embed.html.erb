@@ -18,7 +18,7 @@
           <%= embed.title %>
         </a>
       </div>
-      <p><%= simple_format (embed.description) %></p>
+      <p><%= truncate_name(embed.description, :length => 120) %></p>
       <p class="details"><%= link_to t('details.msg'), embed, :class => "" %></p>
     </li>
   </ul>
