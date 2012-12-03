@@ -168,14 +168,14 @@
             <input type="hidden" id="presentation_avatar" value="">
           </div>
         
-          <button id='pedagogical_clasification_button' submit='disable' class='button buttonpedagogical' i18n-key="i.pedagogicalClasification">Pedagogical Clasification</button>
+          <button id='pedagogical_clasification_button' submit='disable' class='button buttonpedagogical' i18n-key="i.pedagogicalClasification">Pedagogical Classification</button>
           <button id='save_presentation_details' submit='disable' class='button buttonintro' i18n-key="i.continue">Continue</button>
           <p id="presentation_details_error" class="error_intro" style='display:none' i18n-key="i.enterTitle">Please, enter a title</p>
         </div>
 
         <div id="pedagogical_options_fields" style="display:none">
                     <div id="titlepres2">
-            <p class="titlepresp2">Pedagogical Options*</p>
+            <p class="titlepresp2">Pedagogical Classification*</p>
           </div>
           <div id="pedagogical_first_row">
             <div id="educational_level_box">
@@ -189,7 +189,7 @@
             <option value="Educational administration">Educational administration</option>
             <option value="Higher education">Higher education</option>
             <option value="Library">Library</option>
-            <option value="Other">Other</option>
+            <option value="Other" selected="1">Other</option>
             <option value="Pre-school">Pre-school</option>
             <option value="Professional development">Professional development</option>
             <option value="Special education">Special education</option>
@@ -202,7 +202,6 @@
                 <div id="subject_text" class="textintro1 textintromargin1"><span i18n-key="i.Subject">Subject</span></div>
               </label>
               <select id="subject_tag" class="pedagogical_tab_element">
-            <option value="Unspecified">Unespecified</option>
             <option value="Art">Art</option>
             <option value="Astronomy">Astronomy</option>
             <option value="Biology">Biology</option>
@@ -229,6 +228,7 @@
               <option value="Media Education">Media Education</option>
               <option value="Music">Music</option>
             <option value="Natural Sciences">Natural Sciences</option>
+            <option value="Other" selected="1">Other</option>
             <option value="Philosophy">Philosophy</option>
             <option value="Physical Education">Physical Education</option>
               <option value="Physics">Physics</option>
