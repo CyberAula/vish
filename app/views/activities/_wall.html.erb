@@ -4,10 +4,10 @@
   <%= render partial: 'activities/new' %>
 
   <section class="timeline tab-content">
-    <div id="wall" class="tab-pane active">
+    <div id="wall" class="modal-pivot tab-pane active">
       <%= render partial: 'activities/timeline', locals: { activities: activities } %>
     </div>
-    <div id="wall-me" class="tab-pane">
+    <div id="wall-me" class="modal-pivot tab-pane">
       <%= image_tag('loading.gif', :class => :loading, :alt => "Loading") %>
     </div>
   </section>

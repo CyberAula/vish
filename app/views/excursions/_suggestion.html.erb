@@ -1,16 +1,22 @@
-<%= div_for suggestion, :class => 'row' do %>
-  <ul class="thumbnails span3">
-    <li class="span1">
+<%= div_for suggestion, :class => 'excursion-home' do %>
+  <div class="excursion-item">
+    <ul class="thumbnails">
+      <li id="img-excursion">
       <%= link_to excursion_thumb_for(suggestion, 130), suggestion, :class => "container" %>
-      <div class='number_pages'><%= suggestion.slide_count %></div>
-    </li>
-    <li class="span header_text">
-        <div class="title_suggestion">
-          <h4 class="ellipsis w120px"><%= link_to suggestion.title, suggestion %></h4>
+        <div class='number_pages'>
+          <%= suggestion.slide_count %>
         </div>
-        <p class="w120px size10 gray-medium" style="line-height: 110%;"><%= truncate suggestion.description, :length => 90 %></p>
-    </li>
-  </ul>
+      </li>
+      <li class="info-excursion">
+        <div class="title-excursion">
+          <%= link_to suggestion.title, suggestion %>
+        </div>
+        <p class="by" style="line-height: 110%;">
+          <%= truncate suggestion.description, :length => 90 %>
+        </p>
+      </li>
+    </ul>
+  </div>
 <% end %>
 
 <div class="clearfloat"></div>

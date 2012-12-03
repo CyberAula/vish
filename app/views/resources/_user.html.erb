@@ -28,7 +28,7 @@
       <div id="repo-1" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-net" } %>
 
-        <div id="profile-resources-net" class=".box-profile-excursion" >
+        <div id="profile-resources-net" class=".box-profile-excursion modal-pivot" >
           <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="clearfloat"></div>
@@ -41,7 +41,7 @@
       <div id="repo-2" class="tab-pane active">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-me" } %>
 
-        <div id="profile-resources-me" class="box-profile-excursion" >
+        <div id="profile-resources-me" class="box-profile-excursion modal-pivot" >
           <% for document in subject_resources(@user, {:scope => :me}) %>
             <% if document.is_a? Embed %>
                <%= render :partial => "embeds/home",
@@ -68,7 +68,7 @@
       <div id="repo-3" class="tab-pane">
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-fav" } %>
 
-        <div id="profile-resources-fav" class="box-profile-excursion" >
+        <div id="profile-resources-fav" class="box-profile-excursion modal-pivot" >
           <% for document in subject_resources(@user, {:scope => :like}) %>
             <% if document.is_a? Embed %>
                <%= render :partial => "embeds/home",

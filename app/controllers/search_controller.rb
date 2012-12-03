@@ -42,7 +42,7 @@ class SearchController < ApplicationController
   private
 
   def search mode="extended"
-    results = ThinkingSphinx.search params[:q], vish_search_options(mode, params[:type])
+    results = ThinkingSphinx.search params[:q], vish_search_options(mode, params[:type], RESULTS_SEARCH_PER_PAGE, params[:page])
     results = Kaminari.paginate_array(results).page(1).per(7) if mode.to_s.eql? "quick"
     results
   end

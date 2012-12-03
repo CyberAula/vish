@@ -43,7 +43,8 @@
       .title-resource
         font-size: 14px
         @include ellipsis
-        
+        color: $blue-1
+
       .by
         font-size: 10px
         color: $grayLight
@@ -51,6 +52,7 @@
         a
           font-family: $secondFontFamily
           font-size: 16px
+          @include ellipsis
       .visits
         color: $green-vish
         display: inline-block
@@ -137,10 +139,6 @@
               width: 50px
           input.age
             width: 50px
-
-
-
-
 
         li,
         .tagit-new
