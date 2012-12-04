@@ -5,19 +5,19 @@
 
   <div class="item-object-wall">
     <ul class="thumbnails">
-      <li class="img-object">
-      <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "container" %>
-      <div class='number_pages'>
-        <%= excursion.slide_count %>
-      </div>
+      <li class="img-excursion">
+        <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "img-timeline" %>
+        <div class='number_pages'>
+          <%= excursion.slide_count %>
+        </div>
       </li>
-      <li class="info-object-timeline">
+      <div class="info-object-timeline">
         <div class="title-object">
           <%= link_to excursion.title, excursion %>
         </div>
         <p><%= auto_link truncate_name(excursion.description, :length => 120) %></p>
         <p class="details"><%= link_to t('details.msg'), excursion, :class => "" %></p>
-      </li>
+      </div>
     </ul>
   </div>
 <% end %>

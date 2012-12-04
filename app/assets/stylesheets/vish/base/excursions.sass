@@ -45,12 +45,17 @@
 .box-top10
   li
     @include makeColumn(1,0)
-    width: 68px
-
+    height: 75px
+    width: 75px
+    margin-left: 10px
     .thumbnail
       display: inline-block
       height: 75px
       width: 75px
+      img
+        height: 75px
+        width: 75px
+
       
       .number_pages
         background-color: $white
@@ -99,6 +104,7 @@
 
 
 
+
 .excursion-item
 
   @include makeColumn (3,0)
@@ -109,17 +115,17 @@
     li
       width: 75px
       height: 75px
-
       margin-left: 0px
       display: inline-block
       margin-bottom: 0px
       margin-left: 0px
-      
-    .img-excursions
-      @include makeColumn (1,0)
+    
+    #img-excursion
       margin-left: 0px
       display: inline-block
-
+      img
+        width: 75px
+        height: 75px
     .number_pages
       font-family: $secondFontFamily
       position: relative
@@ -133,6 +139,7 @@
       color: #333
       font-size: 10pt
       line-height: 180%
+      @include box-shadow
 
       .title-excursion
 
@@ -167,7 +174,7 @@
         opacity: 0.6
         a
           font-family: $secondFontFamily
-          font-size: 16px
+          font-size: 14px
       .visits
         display: inline-block
         color: $green-vish

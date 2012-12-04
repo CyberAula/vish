@@ -32,7 +32,7 @@
     text-decoration: none;
     background-color: darken($white, 10%);
     *background-color: darken($white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
-    background-position: 0 -15px;
+    background-position: 0 -30px;
 
     // transition is only when going to hover, otherwise the background
     // behind the gradient (there for IE<=9 fallback) gets mismatched
