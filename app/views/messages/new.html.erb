@@ -40,51 +40,34 @@ var i = 0;
        i++;
 <%end%>
 
+//////////////
+//Function to avoid duplicated names in the sent bar - it only works with intro button
+//////////////
+
+
 
   $(document).keypress(function(e) {
   if(e.which == 13) {
-  console.log("antes del for");
+  
 
     var lista = $("ul.holder li:lt("+ contactos.length + ")");
-
-	console.log("La lista es" + lista);
-
-	console.log("El tamaño de la lista es:" + lista.size());
-
 	var ultimo = lista.size()-2;
 	var ultimoo = ultimo + 1;
-	console.log("Voy a ocultar el elemento... : " + ultimo);
-
-
-	console.log("ya tendria que haberlo ocultado");
-
-   var rel = $("ul.holder li:nth-child(" + ultimoo + ")").attr("rel");
-   console.log("Rel es : " + rel);
-
-
+    var rel = $("ul.holder li:nth-child(" + ultimoo + ")").attr("rel");
 
   for(var j = 0; j<parseInt(ultimo); j++){
-  console.log("hago caso a la pulsacion del enter");
   var q = j+1;
   	$("ul.holder li:nth-child(" + ultimoo + ")").hide();
 
    var comp = parseInt($("ul.holder li:nth-child(" + q + ")").attr("rel"));
-   console.log("Comp es: " + comp);
    if(comp == rel){
-   		console.log($("ul.holder li:nth-child(" + ultimoo + ")"));
         $("ul.holder li:nth-child(" + ultimoo + ")").remove();
         break;
   }
-  		console.log("he entrado en comp!=rel");
   		$("ul.holder li:nth-child(" + ultimoo + ")").show();
   };
   }
   });
-
-
-
-
-
 
 
 
