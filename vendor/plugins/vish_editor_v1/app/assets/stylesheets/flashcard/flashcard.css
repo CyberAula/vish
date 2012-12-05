@@ -1,0 +1,92 @@
+#viewbar{
+  display: none;
+}
+.slides {
+  display: block;
+  z-index: 1000;
+}
+.slides > article {
+  display: none;  
+}
+.slides > article.far-past {
+  display: none;
+  transform: translate(0);
+  -o-transform: translate(0);
+  -ms-transform: translate(0);  /* Added to fix explorer view*/
+  -moz-transform: none; 
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.slides > article.past {
+  display: none;
+  transform: translate(0);
+  -o-transform: translate(0);
+  -ms-transform: translate(0);  /* Added to fix explorer view*/
+  -moz-transform: none; 
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.slides > article.current {
+  display: none;
+  transform: translate(0);
+  -o-transform: translate(0);
+  -ms-transform: translate(0);  /* Added to fix explorer view*/
+  -moz-transform: none; /* REMOVED BY KIKE, BECAUSE IT BROKE FIREFOX SWF PRESENTATION*/
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.slides > article.next {
+  display: none;
+  transform: translate(0);
+  -o-transform: translate(0);
+  -ms-transform: translate(0);  /* Added to fix explorer view*/
+  -moz-transform: none; 
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.slides > article.far-next {
+  display: none;
+  transform: translate(0);
+  -o-transform: translate(0);
+  -ms-transform: translate(0);  /* Added to fix explorer view*/
+  -moz-transform: none; 
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.close_slide{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 22px;
+  cursor:pointer;
+  background: url(/assets/delete_slide.png);
+  z-index: 10;
+}
+.close_slide:hover{
+  background: url(/assets/hover/delete_hover.png);
+}
+
+#flashcard-background {
+  position: relative; /*to position the arrows relative to it*/
+  z-index: 1050; 
+	display: block;
+  left: 50%;
+  top: 50%;
+  position: relative;	
+	background-repeat:no-repeat;
+	/*background-attachment:fixed;*/
+	background-position:center center;
+  background-size: 100%;
+  border-radius: 20px;
+  webkit-border-radius: 20px;
+  moz-border-radius: 20px;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+ 
+}
+
+.fc_poi{
+  width: 50px;
+  height: 50px;
+  background: url(/assets/animation_arrow.png);
+}
+
