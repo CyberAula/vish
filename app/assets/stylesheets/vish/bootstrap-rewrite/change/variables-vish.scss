@@ -7,10 +7,11 @@ $red-2:                 #FE99C4 ;
 $linkgray:              #6e6e6e ;
 $blue-1:                #3366ff ;
 $blue-2:                #6A98E2 ;
+$green-vish:            #40CC7F ;
 
 $gray-vish:             #CCCCCC ;
 $gray-search:           #A1A1A1 ;
-$green-vish:            #40CC7F ;
+
 
 
 // Scaffolding
@@ -33,7 +34,7 @@ $linkColorHover:        $gray ;
 $fistFontFamily:        DsignesLight ;
 $secondFontFamily:      DsignesRegular ;
 $thirdFontFamily:       DsignesBold ;             
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$sansFontFamily:        Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
@@ -89,4 +90,3 @@ $popoverTitleBackground:  darken($popoverBackground, 3%) !default;
 // Special enhancement for popovers
 $popoverArrowOuterWidth:  $popoverArrowWidth + 1 !default;
 $popoverArrowOuterColor:  rgba(0,0,0,.25) !default;
-
