@@ -1,0 +1,27 @@
+/*
+ * Styles for the NicEditor WYSIWYG
+ * @author GING
+ */
+
+.wysiwygInstance {
+	padding: 3px;
+}
+
+
+/**************************************
+ * Style for the panel in which 
+ * the wysiwig buttons are displayed 
+ **************************************/
+
+.nicEdit-panelContain {
+	text-align: center;
+}
+
+.nicEdit-panel {
+	width: 450px;
+	zoom: 1;
+}
+
+.nicEdit-button {
+	background-color: #fff !important;
+}
