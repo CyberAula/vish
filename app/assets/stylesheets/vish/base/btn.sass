@@ -30,7 +30,7 @@
     color: $blue-1
 
 
-.btn-link 
+.btn-view-all
   background-color: $green-vish
   border-bottom-left-radius: 5px
   border-bottom-right-radius: 20px
@@ -62,3 +62,43 @@
 
     a
       color: $white
+
+
+
+.follower-state 
+  .btn
+    padding-top: 1px
+    a
+      text-shadow: none
+.btn-following
+
+  @include gradient-vertical-three-colors($startColor: $white, $midColor: $white, $colorStop: 50%, $endColor: $green)
+  border-bottom: none
+  border-bottom-color: none
+  border-top-style: none
+  color: $green
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15)
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15)
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15)
+
+.btn-unfollow
+  @include buttonBackground($red-1, $red-1, $white)
+
+  border-bottom: none
+  border-bottom-color: none
+  border-top-style: none
+  a
+    color: $white
+.btn-follow
+  @include buttonBackground(#81B4FE, $blue-1, $red-2)
+
+  border-bottom: none
+  border-bottom-color: none
+  border-top-style: none
+  a
+    color: $white
+
+
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15)
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15)
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.15)

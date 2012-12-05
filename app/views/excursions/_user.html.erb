@@ -31,7 +31,7 @@
       </div>
       <div class="clearfloat"></div>
       <div class="view-all">
-        <%= link_to(t('view_all'), url_for([@user, Excursion]) + "?scope=net", :class => "btn btn-link ") %>
+        <%= link_to(t('view_all'), url_for([@user, Excursion]) + "?scope=net", :class => "btn-view-all") %>
       </div>
     </div>
     
@@ -45,7 +45,7 @@
       </div>
       <div class="clearfloat"></div>
       <div class="view-all">
-        <%= link_to(t('view_all'), [@user, Excursion], :class => "btn btn-link " ) %>
+        <%= link_to(t('view_all'), [@user, Excursion], :class => "btn-view-all" ) %>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
         </div>
         <div class="clearfloat"></div>
         <div class="view-all">
-          <%= link_to(t('view_all'), url_for([@user, Excursion]) + "?scope=like", :class => "btn btn-link ") %>
+          <%= link_to(t('view_all'), url_for([@user, Excursion]) + "?scope=like", :class => "btn-view-all") %>
         </div>
       </div>
     </div>

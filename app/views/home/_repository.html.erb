@@ -44,7 +44,7 @@
       </div>
       <div class="clearfloat"></div>
       <div class="view-all">
-        <%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=net", :class => "btn btn-link ") %>
+        <%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=net", :class => "btn-view-all") %>
       </div>
     </div>
 
@@ -57,7 +57,7 @@
       </div>
       <div class="clearfloat"></div>
       <div class="view-all">
-        <%= link_to(t('view_all'), [current_subject, Document], :class => "btn btn-link " ) %>
+        <%= link_to(t('view_all'), [current_subject, Document], :class => "btn-view-all" ) %>
       </div>
     </div>
 
@@ -84,7 +84,7 @@
                        :locals => {:documents => current_subject.resource_suggestions(6) } %>
       </div>
       <div class="view-all">
-        <%= link_to(t('view_all'), search_path(:type => "resource"), :class => "btn btn-link " ) %>
+        <%= link_to(t('view_all'), search_path(:type => "resource"), :class => "btn-view-all" ) %>
       </div>
     </div>
 
@@ -102,7 +102,7 @@
           <% end %>
         </div>
         <div class="view-all">
-          <%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=like", :class => "btn btn-link ") %>
+          <%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=like", :class => "btn-view-all") %>
         </div>
     </div>
   </div>

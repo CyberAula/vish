@@ -6,7 +6,7 @@
   </h3>
   <%= render :partial => "contacts/contact", :collection => sgs, :locals => { :close_button => true } %>
   <div class="view-all">
-    <%=link_to( t('view_all'), search_path(:type => "user"), :class => "btn btn-link" ) %>
+    <%=link_to( t('view_all'), search_path(:type => "user"), :class => "btn-view-all" ) %>
   </div>
 <% end %>
   <div class="line2"></div>

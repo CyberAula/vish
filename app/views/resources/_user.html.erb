@@ -33,7 +33,7 @@
         </div>
         <div class="clearfloat"></div>
         <div class="view-all">
-          <%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=net", :class => "btn btn-link ") %>
+          <%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=net", :class => "btn-view-all") %>
         </div>
       </div>
 
@@ -60,7 +60,7 @@
         </div>
         <div class="clearfloat"></div>
         <div class="view-all">
-          <%= link_to(t('view_all'), [@user, Document], :class => "btn btn-link " ) %>
+          <%= link_to(t('view_all'), [@user, Document], :class => "btn-view-all" ) %>
         </div>
       </div>
 
@@ -86,8 +86,8 @@
           <% end %>
         </div>
         <div class="clearfloat"></div>
-        <div class="pull-right">
-          <%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=like", :class => "btn btn-link ") %>
+        <div class="view-all">
+          <%= link_to(t('view_all'), url_for([@user, Document]) + "?scope=like", :class => "btn-view-all") %>
         </div>
       </div>
     </div>
