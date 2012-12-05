@@ -1,33 +1,26 @@
-<div class="container body-height ">
-  <div class="row span4">
-    <p class="devise_title"><span class="dark-gray"><%= t('devise.passwords.forgot') %></span></p>
-  </div>
-
-  <div class="row span6 offset4">
-    <div class="title_sentences">
-      <%= t('devise.passwords.instructions') %>
+<h1 class="menssage-devise">
+  <%= t('devise.passwords.forgot') %>
+</h1>
+<h2 class="sentence">
+  <small>
+    <%= t('devise.passwords.instructions') %>
+  </small>
+</h2>
+<div id="formulate">
+  <div class="box_gray1">
+    <div class="box_gray2">
+      <div class="box_gray3">
+        <div class="campo">
+          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, }) do |f| %>
+          <%= devise_error_messages! %>
+          <label class="no_display" for="email"><%= f.label :email %></label>
+          <%= f.text_field :email, :class => "", :id => "email", :placeholder => t('devise.email') %>
+        </div>
+          <div id="nomargin">
+          <%= f.submit t('action.send'), :class => "btn btn-primary " %>
+        </div>  
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="row span6 offset4 boxy_gray">
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :class => "form-horizontal2"}) do |f| %>
-      <fieldset>
-        <div class="control-group">
-          <%= devise_error_messages! %>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="email"><%= f.label :email %></label>
-
-          <div class="controls">
-            <%= f.text_field :email, :class => "input-xlarge", :id => "email" %>
-          </div>
-        </div>
-        <div class="btn_devise">
-          <div class="form-actions pagination-right space_right">
-            <%= f.submit t('action.send'), :class => "button" %>
-          </div>
-        </div>
-      </fieldset>
-    <% end %>
-  </div>
-
 </div>

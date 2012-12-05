@@ -6,7 +6,6 @@
 }
 
 .image_carousel>div {
-    margin-bottom: 15px;
 }
 
 .image_carousel_single_row {
@@ -270,7 +269,7 @@ a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
 }
 
 .pagination_single_row_thumbnails{
-	margin-top: 12px;
+	margin-top: 18px;
 	margin-bottom: 10px;
 }
 

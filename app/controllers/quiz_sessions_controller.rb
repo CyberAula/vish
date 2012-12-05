@@ -5,6 +5,7 @@ class QuizSessionsController < ApplicationController
 
   def create # POST /quiz_sessions => open quiz to collect answers => respond with quiz_session id
     return if params[:quiz_id].blank?
+    #debugger
     qs = QuizSession.new
     qs.quiz = Quiz.find(params[:quiz_id])
     qs.owner=current_user
@@ -18,6 +19,7 @@ class QuizSessionsController < ApplicationController
 
   def show # GET /quiz_sessions/X => render vote page 
     @quiz_session = QuizSession.find(params[:id])
+   #debugger
     if @quiz_session.active
       respond_to do |format|
         format.html { render :layout => 'iframe' }

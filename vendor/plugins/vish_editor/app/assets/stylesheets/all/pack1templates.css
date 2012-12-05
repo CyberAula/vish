@@ -1,6 +1,5 @@
 /*
-	TEMPLATE 1: "t1"
-	by Néstor Toribio
+	TEMPLATE 1
 */
 
 .t1_left{
@@ -56,8 +55,7 @@
 }
 
 /*
-	TEMPLATE 2: "Espiritu minimalista"
-	by Víctor Sánchez
+	TEMPLATE 2
 */
 
 .t2_left{
@@ -291,6 +289,7 @@
     position: relative;
     width: 31%;	
 }
+
 .t6_right{
     float: left;
     height: 89%;
@@ -509,17 +508,22 @@
 	TEMPLATE 10
 */
 
-.t10_left{
-    border-radius: 20px 20px 20px 20px;
-    -moz-border-radius: 20px 20px 20px 20px;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    float: left;
-    height: 102.6%;
-    margin-left: -8.3%;
-    margin-top: -6.4%;
-    overflow: hidden;
-    position: absolute;
-    width: 102.1%;
+.t10_center{
+	border-radius: 10px !important;
+	-moz-border-radius: 10px !important;
+	-webkit-border-radius: 10px !important;
+	float: left;
+	height: 100%;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.t10_center > div.menuselect_hide {
+	padding: 5%;
 }
 
 .t10_image{
@@ -553,14 +557,14 @@
 	TEMPLATE 11
 */
 
-.t11_header{
+.t11_center1{
     height: 31%;
     overflow: hidden;
     position: relative;
     width: 100%;
 }
 
-.t11_left{
+.t11_center2{
     float: left;
     height: 31%;
     margin-top: 3%;
@@ -569,7 +573,7 @@
     width: 100%;
 }
 
-.t11_right{
+.t11_center3{
     float: left;
     height: 31%;
     margin-top: 3%;
@@ -604,7 +608,7 @@
 	TEMPLATE 12
 */
 
-.t12_header{
+.t12_left1{
 	float: left;
 	margin-right: 3%;
 	margin-bottom: 3%;
@@ -614,7 +618,7 @@
     width: 48%;
 }
 
-.t12_left{
+.t12_right1{
     float: left;
     margin-bottom: 3%;
     height: 48%;
@@ -623,17 +627,17 @@
     width: 48%;
 }
 
-.t12_right{
+.t12_left2{
 	float: left;
+	margin-right: 3%;
     height: 48%;
     overflow: hidden;
     position: relative;
     width: 48%;
 }
 
-.t12_center{
+.t12_right2{
 	float: left;
-	margin-right: 3%;
     height: 48%;
     overflow: hidden;
     position: relative;
@@ -677,12 +681,13 @@
 	z-index: 10px;
 }
 
-.t13_left{
+.t13_circle{
     float: left;
     height: 61%;
     margin-bottom: 2%;
     overflow: hidden;
     position: relative;
+    text-align: center;
     width: 48%;
     border-radius: 100% !important;
     -moz-border-radius: 100% !important;
@@ -690,22 +695,32 @@
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
-.t13_right{
-    float: right;
-    height: 83%;
-    margin-left: 4%;
-    margin-top: -63%;
-    overflow: hidden;
-    position: relative;
-    width: 48%;
+.t13_circle > div.menuselect_hide {
+	padding: 15%;
 }
 
-.t13_center{
-    height: 16%;
-    margin-top: 54.4%;
-    overflow: hidden;
-    position: relative;
-    width: 48%;
+.t13_circle > .delete_content {
+	bottom: 0%;
+	left: 44%;
+}
+
+.t13_right{
+	position: relative;
+	float: right;
+	height: 15%;
+	width: 48%;
+	left: -52%;
+	top: -15%;
+	overflow: hidden;
+}
+
+.t13_left{
+	position: relative;
+	float: left;
+	height: 86%;
+	width: 48%;
+	left: 4%;
+	overflow: hidden;
 }
 
 .t13_image{
@@ -736,8 +751,9 @@
 	TEMPLATE 14
 */
 
-.t14_left{
+.t14_circle1{
     float: left;
+    text-align: center;
     height: 28%;
     margin-top: 2%;
     overflow: hidden;
@@ -749,18 +765,9 @@
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
 }
 
-.t14_right{
+.t14_circle2{
     float: left;
-    height: 28%;
-    margin-left: 5%;
-    margin-top: 2%;
-    overflow: hidden;
-    position: relative;
-    width: 71.1%;
-}
-
-.t14_left1{
-    float: left;
+    text-align: center;
     height: 28%;
     margin-top: 5%;
     overflow: hidden;
@@ -770,12 +777,70 @@
     -moz-border-radius: 100% !important;
     -webkit-border-radius: 100% !important;
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.t14_circle3{
+    float: left;
+    text-align: center;
+    height: 28%;
+    margin-top: 5%;
+    overflow: hidden;
+    position: relative;
+    width: 23%;
+    border-radius: 100% !important;
+    -moz-border-radius: 100% !important;
+    -webkit-border-radius: 100% !important;
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+.t14_circle1 > div.menuselect_hide {
+	padding: 14%;
+	margin-top: 14%;
+}
+.t14_circle2 > div.menuselect_hide {
+	padding: 14%;
+	margin-top: 14%;
+}
+.t14_circle3 > div.menuselect_hide {
+	padding: 14%;
+	margin-top: 14%;
+}
+.t14_circle1 > .delete_content {
+	bottom: 0%;
+	left: 40%;
+	background-size: 100%;
+	height: 30px;
+	width: 30px;
+}
+.t14_circle2 > .delete_content {
+	bottom: 0%;
+	left: 40%;
+	background-size: 100%;
+	height: 30px;
+	width: 30px;
+}
+.t14_circle3 > .delete_content {
+	bottom: 0%;
+	left: 40%;
+	background-size: 100%;
+	height: 30px;
+	width: 30px;
 }
 
 .t14_right1{
     float: left;
     height: 28%;
     margin-left: 5%;
+    margin-top: 2%;
+    overflow: hidden;
+    position: relative;
+    width: 71.1%;
+}
+
+.t14_right2{
+    float: left;
+    height: 28%;
+    margin-left: 5%;
     margin-top: 5%;
     overflow: hidden;
     position: relative;
@@ -783,20 +848,7 @@
 }
 
 
-.t14_left2{
-    float: left;
-    height: 28%;
-    margin-top: 5%;
-    overflow: hidden;
-    position: relative;
-    width: 23%;
-    border-radius: 100% !important;
-    -moz-border-radius: 100% !important;
-    -webkit-border-radius: 100% !important;
-    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
-}
-
-.t14_right2{
+.t14_right3{
     float: left;
     height: 28%;
     margin-left: 5%;
@@ -828,19 +880,10 @@
 	border: none;
 }
 
+
 /*
 	TEMPLATE 15
 */
-
-.t15_header{
-    float: left;
-    height: 35%;
-    margin-bottom: 3%;
-    margin-right: 3%;
-    overflow: hidden;
-    position: relative;
-    width: 32%;
-}
 
 .t15_left{
     float: left;
@@ -852,7 +895,25 @@
     width: 32%;
 }
 
+.t15_center{
+    float: left;
+    height: 35%;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    overflow: hidden;
+    position: relative;
+    width: 32%;
+}
+
 .t15_right{
+    float: left;
+    height: 35%;
+    overflow: hidden;
+    position: relative;
+    width: 30%;
+}
+
+.t15_center2{
     float: left;
     height: 60%;
     margin-bottom: 3%;
@@ -860,14 +921,6 @@
     overflow: hidden;
     position: relative;
     width: 100%;
-}
-
-.t15_center{
-    float: left;
-    height: 35%;
-    overflow: hidden;
-    position: relative;
-    width: 30%;
 }
 
 .t15_image{

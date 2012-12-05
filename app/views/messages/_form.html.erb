@@ -1,10 +1,6 @@
 
-<div class="repository tabbable">
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#"><%= t('message.new') %></a></li>
-  </ul>
-</div>
-
+<h3 class=""><%= t('message.new') %></h3>
+>>>>>>> 3b22700bb89a393ff49a28e2488ce263fde2f075
 <%= form_tag messages_path, :method => :post, :class => "new_message" do %>
   <% if @receipt and @receipt.errors.any? %>
     <div class="error">
@@ -49,6 +45,8 @@
   
       <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "button send offset6", %>
     </div>
+        <div class="clearfloat"></div>
+      </div>
     </div>
   </div>
 

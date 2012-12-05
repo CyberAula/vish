@@ -55,6 +55,18 @@ Vish.Wall = (function(V, $, undefined){
   }
 
   var init = function(){
+    $('section.wall .nav-tabs li a.load-me-on-show').on('show', function(e) {
+      $('#wall-me').empty();
+      $.getScript("?active_tab=me&page_me=1");
+      $(this).off('show');
+    });
+
+    $('section.wall .nav-tabs li a.load-net-on-show').on('show', function(e) {
+      $('#wall').empty();
+      $.getScript("?active_tab=net&page_net=1");
+      $(this).off('show');
+    });
+
     $("#input_activities_document").watermark(I18n.t('document.input'), "#666");
 
     if($("#new_post").length) {
@@ -66,9 +78,14 @@ Vish.Wall = (function(V, $, undefined){
 
     }
 
+    $('#masterSubmitButton').click(function(){
+      $('#wall-input form:visible').submit();
+    });
+                
+
     $('#attachFileButton').click(function(){
       $('#attachFileButton').toggleClass("selected");
-      $('#wrapper_activities_header form').toggle();
+      $('#activities_header form').toggle();
       var post_text = $('#input_activities').val();
       var document_text = $('#input_activities_document').val();
       $('#input_activities').val(document_text);
@@ -95,11 +112,11 @@ Vish.Wall = (function(V, $, undefined){
       prev_index = my_index;
       while(prev_index >= 0) {
         prev_target = '#' + all_modals[prev_index].href.split('#',2)[1];
-	if(my_target == prev_target) {
-	  prev_index-=1;
-	} else {
-	  break;
-	}
+        if(my_target == prev_target) {
+          prev_index-=1;
+        } else {
+          break;
+        }
       }
 
       $(my_target).attr('data-modal-pivot', my_pivot);
@@ -130,11 +147,11 @@ Vish.Wall = (function(V, $, undefined){
 
       while(next_index < all_modals.length) {
         next_target = '#' + all_modals[next_index].href.split('#',2)[1];
-	if(my_target == next_target) {
-	  next_index+=1;
-	} else {
-	  break;
-	}
+        if(my_target == next_target) {
+          next_index+=1;
+        } else {
+          break;
+        }
       }
 
       $(my_target).attr('data-modal-pivot', my_pivot);
@@ -166,7 +183,7 @@ Vish.Wall = (function(V, $, undefined){
       if(my_pivot == '#') {
         $(my_target + ' .prev_modal').hide();
         $(my_target + ' .next_modal').hide();
-	return;
+        return;
       }
 
       next_target = prev_target = my_target;

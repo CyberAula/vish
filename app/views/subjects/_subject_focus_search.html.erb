@@ -1,14 +1,24 @@
-<div class="model_with_details span3 box-result users_btn_follow">
+<!--page search user-->
+
+<div class="model_with_details follower-item">
   <%= javascript_tag do %>
     <%= modal_for(subject) %>
   <% end %>
   <ul class="thumbnails">
-    <li class="span1 margin-clear">
-      <a data-toggle="modal" href="#<%= subject.class.to_s.underscore %>-modal-<%= subject.slug %>" class="<%= subject.class.to_s.underscore %>-modal-button-<%= subject.slug %> modal-trigger container" alt="<%= subject.name %>"><%= image_tag(subject.logo.url(:profile)) %></a>
+    <li class="avatar">
+      <a data-toggle="modal" href="#<%= subject.class.to_s.underscore %>-modal-<%= subject.slug %>" class="<%= subject.class.to_s.underscore %>-modal-button-<%= subject.slug %> modal-trigger container" alt="<%= subject.name %>">
+        <%= image_tag(subject.logo.url(:profile)) %>
+      </a>
     </li>
-    <li class="span w150px">
-      <div class="caption">
-        <h4><span class="size16"><a data-toggle="modal" href="#<%= subject.class.to_s.underscore %>-modal-<%= subject.slug %>" class="<%= subject.class.to_s.underscore %>-modal-button-<%= subject.slug %> modal-trigger"><%= truncate_name(subject.name, :length => 40) %></a></span></h4>
+    <li class="info_user">
+      <h4>
+        <span class="name">
+          <a data-toggle="modal" href="#<%= subject.class.to_s.underscore %>-modal-<%= subject.slug %>" class="<%= subject.class.to_s.underscore %>-modal-button-<%= subject.slug %> modal-trigger">
+            <%= truncate_name(subject.name, :length => 40) %>
+          </a>
+        </span>
+      </h4>
+      <div class="clearfloat"></div>
         <% unless subject.tag_list.blank? %>
           <ul class="tagit-suggestions nomargin single-line-tags">
             <% subject.tag_list.shuffle.each do |tag| %>
@@ -16,9 +26,9 @@
             <% end %>
           </ul>
         <% end %>
-        <div class="space_center"></div>
-        <div class="send_messag size10 red-2 upfoll"><%=contact_to(subject) %></div>
-      </div>
+
+        <div class="btn_follow_search"><%=contact_to(subject) %></div>
+
     </li>
   </ul>
 </div>

@@ -20,6 +20,11 @@
 	-webkit-animation-iteration-count: infinite;
 }
 
+.slides > article > div.grey_background {
+  background-color: rgba(100, 100, 100, 0.3);
+}
+
+
 .slides {
 background: rgb(63,76,107); /* Old browsers */
 background: -moz-radial-gradient(center, ellipse cover,  rgba(63,76,107,1) 0%, rgba(63,76,107,1) 100%); /* FF3.6+ */

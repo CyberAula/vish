@@ -1,0 +1,127 @@
+// filter
+
+#follower-filter
+  display: inline-block
+  margin-bottom: 15px
+  clear: both
+
+  .filter-tabs
+    float: left
+  .btn-gray
+    float: right
+
+// HOME
+
+.box-home-follower
+  width: auto
+  margin-left: 0px
+
+ul.follow-item
+  @include makeColumn(1,0)
+  margin-left: 0px
+
+// followers page
+
+.tabs-followers-follow
+  @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+.follower-item
+  @include makeColumn(3,0)
+  margin-left: 0px
+
+  ul.thumbnails
+    @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-left: 0px
+    li
+      margin-left: 0px
+    .avatar
+      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-left: 0px
+      diplay: inline-block
+      float: left
+      height: 75px
+      a
+        display: inline-block
+        margin-top: 0
+        width: 75px
+
+    .info_user
+      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      diplay: inline-block
+      float: left
+      .name
+        margin-top: -3px
+        margin-bottom: -3px
+        @include ellipsis 
+        padding-left: 10px
+        width: 86%
+        display: inline-block
+        float: left
+        font-family: $secondFontFamily
+        font-size: $tittleFontSize
+        word-wrap: break-word
+
+      .action
+        display: inline-block
+        float: right
+        margin-top: -4px
+
+      .upfoll
+        font-size: 11px
+        color: $gray
+        padding-left: 10px
+        line-height: 18.5px
+
+        a
+          color: $blue-1
+
+.btn-item-follow
+  padding-left: 10px
+.follow
+  @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  height: 14px
+  margin-top: 3px
+  padding: none
+.follower-state 
+  .btn
+    padding-top: 1px
+    a
+      text-shadow: none
+.btn-following
+  @include buttonBackground(#98F398, $green, $white)
+  background-color: $white
+  border-bottom: none
+  border-bottom-color: none
+  border-top-style: none
+
+.btn-unfollow
+  @include buttonBackground($red-1, $red-1, $white)
+  background-color: $white
+  border-bottom: none
+  border-bottom-color: none
+  border-top-style: none
+  a
+    color: $white
+.btn-follow
+  @include buttonBackground(#81B4FE, $blue-1, $red-2)
+  background-color: $white
+  border-bottom: none
+  border-bottom-color: none
+  border-top-style: none
+  a
+    color: $white
+.suggestion-title
+  clear: both
+  color: $red-1
+  display: inline-block
+  float: right
+  text-align: right
+
+
+
+
+
+
+
+

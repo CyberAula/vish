@@ -1,21 +1,15 @@
-<div class="row" id="experience_info">
-  <div class="header">
-    <div class="header_text2">
-      <%= t('profile.' + @profile.subject.class.to_s.downcase + '.experience') %>
-      <% if is_owner? %>
-
-        <div class="header_icon_right unboder">
-          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), "javascript:showSettings(\"experience_info\");" %>
-        </div>
-      <% end %>
-    </div>
+<div class="clearfloat"></div>
+<div class="line2"></div>
+<div id="experience_info">
+  <div class="title">
+    <%= t('profile.' + @profile.subject.class.to_s.downcase + '.experience') %>
   </div>
-</div>
+    <% if is_owner? %>
+  <div class="action">
+    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"experience_info\");" %>
+  </div>
+      <% end %>
 
-
-
-  <div class="row span6 boxy_white margin-bottom10">
-    <div class="space_center"></div>
     <div class="content settings_briefing word-break" id="experience_info_briefing">
       <% if @profile.experience? %>
         <div class="row">
@@ -24,26 +18,28 @@
           </div>
         </div>
       <% elsif is_owner? %>
-        <div id="field_profile_field_empty">
+
+        <div id="field_empty">
         <%= t('profile.empty') %>
         </div>
+
       <% end %>
-      <div class="space_center"></div>
+
     </div>
     <% if is_owner? %>
       <div class="content settings_content" id="experience_info_content" style="display:none;">
         <div class="field_profile">
           <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
-             <div class="span5 ">
+             <div class="text-experience">
              <%= f.text_area :experience, :maxlength => 246, :rows => 5, :class => "span5" %>
              </div>
-             <%= f.submit t('button.update'), :class => "button" %>
+             <%= f.submit t('button.update'), :class => "btn btn-primary" %>
           <% end %>
         </div>
       </div>
     <% end %>
 
-  </div>
+</div>
+<div class="clearfloat"></div>
 
-<div class="space_center block"></div>
 

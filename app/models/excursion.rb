@@ -75,42 +75,35 @@ class Excursion < ActiveRecord::Base
 
   def extract_quizzes(parsed_json)
     parsed_json["slides"].each do |slide|
-      next unless slide["type"] == "quiz"
-      next unless slide["template"] =~ /^t1[012]$/
-      if slide["quiz_id"].nil?
-        quiz = Quiz.new
-      else
-        quiz = Quiz.find(slide["quiz_id"])
+      
+      slide["elements"].each do |element| 
+       next unless element["type"] == "quiz"
+       
+        if element["quiz_id"] == ""
+          quiz = Quiz.new
+        else
+          quiz = Quiz.find(element["quiz_id"])
+        end
+        quiz.excursion=self
+        case element["quiztype"]
+          when "open" # Open question
+            quiz.type="OpenQuiz"
+            # PENDING
+          when "multiplechoice" # Multiple-choice
+            puts "multiplechoice type detected"
+            quiz.type="MultipleChoiceQuiz"
+            quiz.question = element["question"] 
+            quiz.options  = element["options"].to_json
+          when "truefalse" # True/False
+            quiz.type="TrueFalseQuiz"
+            # PENDING
+        end
+        quiz.simple_json = element["quiz_simple_json"].to_json
+        quiz.save!
+        element["quiz_id"]=quiz.id
       end
-      quiz.excursion=self
-      case slide["template"]
-        when "t10" # Open question
-          quiz.type="OpenQuiz"
-          # PENDING
-        when "t11" # Multiple-choice
-          quiz.type="MultipleChoiceQuiz"
-          qelem = slide["elements"].select { |e| e["type"] == "mcquestion" }.first
-          quiz.question = qelem["question"] unless qelem.nil? or qelem["question"].nil?
-          quiz.options  = qelem["options"].join(",") unless qelem.nil? or qelem["options"].nil?
-        when "t12" # True/False
-          quiz.type="TrueFalseQuiz"
-          # PENDING
-      end
-      quiz.simple_json = slide["quiz_simple_json"].to_json
-      quiz.save!
-      slide["quiz_id"]=quiz.id
     end
     parsed_json
-  end
-
-  def extract_manifest(parsed_json)
-    manifest=[]
-    parsed_json["slides"].each do |slide|
-      slide["elements"].each do |element|
-        manifest << element["body"] if element["type"] == "image"
-      end
-    end
-    manifest.join("\n")
   end
 
   def parse_for_meta
@@ -124,8 +117,6 @@ class Excursion < ActiveRecord::Base
     parsed_json["author"] = author.name
     parsed_json = extract_quizzes(parsed_json) # Fill up quiz_id parameters
     self.update_column :json, parsed_json.to_json
-
-    self.update_column :offline_manifest, extract_manifest(parsed_json)
 
     self.update_column :slide_count, parsed_json["slides"].size
     self.update_column :thumbnail_url, parsed_json["avatar"]

@@ -1,22 +1,15 @@
-<section id="wrapper_activities" class="tabbable" >
-  <ul class="nav nav-tabs span4">
-    <li class=""><a data-toggle="tab" href="#wall"><%= t('resource.net') %></a></li>
-    <li class="active"><a data-toggle="tab" href="#wall-me"><%= t('resource.my') %></a></li>
-  </ul>
-  <div class="span2 size40 title_menu_home ">
-    <%= t('activity.timeline')%></div>
-  <div class="clearfloat"></div>
-  <div class="tab-content" id="wrapper_activities_header">
-    <%= render :partial => 'activities/new', :locals => { :receiver => owner } %>
-  </div>
-  <div class="row space_center"></div>
-  <div class="tab-content">
-  <%= render :partial => 'activities/wall',
-             :locals  => { :activities => owner.wall(:home).page(params[:page_net]),
-                           :is_active_wall => false } %>
-  <%= render :partial => 'activities/wall_me',
-             :locals  => { :activities => owner.wall(:profile, :for => owner). page(params[:page_me]),
-                           :is_active_wall => true } %>
-  </div>
+<section class="wall">
+  <%= render partial: 'activities/profile_tabs' %>
+
+  <%= render partial: 'activities/new' %>
+
+  <section class="timeline tab-content">
+    <div id="wall" class="tab-pane">
+      <%= image_tag('loading.gif', :class => :loading, :alt => "Loading") %>
+    </div>
+    <div id="wall-me" class="tab-pane active">
+      <%= render partial: 'activities/timeline_me', locals: { activities: activities } %>
+    </div>
+  </section>
 </section>
 

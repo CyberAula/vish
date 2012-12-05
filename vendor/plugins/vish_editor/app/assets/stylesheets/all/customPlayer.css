@@ -1,8 +1,8 @@
 div.customPlayerContainer{
 	position: relative;
 	overflow: hidden;
-	border: 1px solid white;
-	outline: 1px solid #AAA;
+	border: none;
+	outline: none;
 }
 
 div.customPlayerControls {
@@ -14,11 +14,11 @@ div.customPlayerControls {
 
 div.customPlayerPlay {
 	position: absolute;
-	width: 50%;
-	height: 50%;
+	width: 40%;
+	height: 40%;
 	cursor: pointer;
-	top: 25%;
-	left: 25%;
+	top: 30%;
+	left: 30%;
 	background-size: 70%;
 	background: url('/assets/customPlayer/play.png') no-repeat center center;
 }

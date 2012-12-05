@@ -1,0 +1,320 @@
+#img-excursions
+  @include makeColumn (2,0)
+  margin-left: 0px
+  display: inline-block
+
+// excursion toolbar
+
+.excursion_toolbar
+  background-color: #EDEDED
+  border-radius: 0px 0px 20px 20px
+  border-top: 1px solid
+  margin: -6px 20px 26px
+  min-height: 40px
+  padding: 10px 0px 0px 10px
+  vertical-align: middle
+  width: 900px
+  .view-like-mashme
+    display: inline-block
+    float: right
+    padding-right: 20px
+    font-family: $thirdFontFamily
+    font-size: $tittleFontSize
+    margin-bottom: 10px
+    .green
+      color: $green
+      margin-left: 20px
+    .mashme-button
+      margin-left: 20px
+
+.input-embed-excursion
+  cursor: text
+
+#excursion-share
+  margin-top: 10px
+
+.social_toolbar_excursion
+  display: inline-block
+  height: 19px
+
+// FRONTPAGE
+
+.caption-box-top10
+  margin-left: 20px
+
+.box-top10
+  li
+    @include makeColumn(1,0)
+    height: 75px
+    width: 75px
+    margin-left: 10px
+    .thumbnail
+      display: inline-block
+      height: 75px
+      width: 75px
+      img
+        height: 75px
+        width: 75px
+
+      
+      .number_pages
+        background-color: $white
+        border-radius: 15px 15px 15px 15px
+        color: $grayDark
+        font-size: 10pt
+        height: 20px
+        line-height: 150%
+        margin-left: 48px
+        margin-top: -26px
+        position: relative
+        text-align: center
+        width: 20px
+      .text-excursion-top
+        list-style-type: none
+        @include linkGrayVish
+        text-align: center
+        padding-top: 10px
+        width: 75px
+        font-size: 12px
+        line-height: 16px
+
+// HOME
+
+.box-home-excursion
+  width: auto
+  .loading
+    margin-left: auto
+    margin-right: auto
+    display: block
+.profile-excursion-recomended-me
+  font-size: 14px
+  color: $blue-1
+
+.excursion-home
+  .excursion-item
+    ul.thumbnails
+      background-color: #fff
+    ul.thumbnails:after 
+      clear: none !important
+    ul.thumbnails:before, 
+    ul.thumbnails:after
+      display: none
+    ul.thumbnails > li
+      margin-bottom: 10px
+
+
+
+
+.excursion-item
+
+  @include makeColumn (3,0)
+  margin-left: 0px
+  display: inline-block
+  ul
+    margin-left: 0px
+    li
+      width: 75px
+      height: 75px
+      margin-left: 0px
+      display: inline-block
+      margin-bottom: 0px
+      margin-left: 0px
+    
+    #img-excursion
+      margin-left: 0px
+      display: inline-block
+      img
+        width: 75px
+        height: 75px
+    .number_pages
+      font-family: $secondFontFamily
+      position: relative
+      height: 20px
+      width: 20px
+      margin-top: -26px
+      margin-left: 43px
+      text-align: center
+      background-color: #FFF
+      border-radius: 15px
+      color: #333
+      font-size: 10pt
+      line-height: 180%
+      @include box-shadow
+
+      .title-excursion
+
+        font-size: 18px
+        @include ellipsis
+
+      p
+
+        font-size: 12px
+        margin-top: -10px
+        color: $grayLight
+      .details
+        margin-top: none
+        padding-left: -20px
+        font-size: 10px
+
+    .info-excursion
+      @include makeColumn (2,0)
+      margin-left: 0px
+      display: inline-block
+      padding-left: 5px
+
+      .title-excursion
+        font-size: 16px
+        @include ellipsis
+      .title-excursion-help
+        font-size: 16px
+        
+      .by
+        font-size: 10px
+        color: $grayLight
+        opacity: 0.6
+        a
+          font-family: $secondFontFamily
+          font-size: 14px
+      .visits
+        display: inline-block
+        color: $green-vish
+        a
+          color: $grayLight
+      .likes
+        display: inline-block
+        color: $green-vish
+        .verb_like
+          display: inline-block
+
+
+// details excursion 
+
+#info-notebook
+  @include makeColumn(3,0)
+
+.notebook
+  display: inline-block
+  @include border-radius(15px)
+  width: 300px
+  .notebook-cabecera
+    background-image: url("notebook/CABECERA.png")
+    background-repeat: no-repeat
+    width: 290px
+    height: 33px
+    display: inline-block
+    margin-bottom: -4px
+    padding-left: 15px
+    padding-top: 10px
+
+  
+.notebook-medio
+  background-image: url("notebook/MEDIO.png")
+  background-repeat: repeat-y
+  width: 290px
+  height: auto
+  display: inline-block
+  padding-top: 20px
+  margin-top: -10px
+
+  .tittle-notebook
+    padding-left: 20px
+    color: $red-1
+    display: inline-block
+    float: left
+    font-size: 17px
+    margin-bottom: 10px
+    text-decoration: underline
+    width: 270px
+  .text-notebook
+    font-size: 14px
+    padding-left: 30px
+    color: $gray
+    @incluce ellipsis
+    margin-bottom: 10px
+    padding-right: 10px
+
+
+
+
+.notebook-pie
+  background-image: url("notebook/PIE.png")
+  background-repeat: no-repeat
+  width: 290px
+  height: 21px
+  display: block
+  margin-top: -5px
+  width: 290px
+
+.decoration-notebook
+  width: 25px
+  display: inline-block   
+  float: left
+  height: auto
+  background-color: #f1f1f1
+
+// excursion show 
+
+.tabs-excursion-show
+  @include makeColumn(11,0)
+
+
+
+/* bottom excursion info */
+
+.comments-show
+  @include makeColumn(7,0)
+.info-excursion
+  @include makeColumn(3,0)
+  margin-left: 40px
+
+/* view all excursion*/
+.view-all-excursions
+  @include makeColumn(10,0)
+.box-excursion-view-all
+  margin-left: 20px
+
+
+/* search results*/
+.result
+  .row-fluid
+    .thumbnails
+      height: 30px
+      .img-excursion
+      .info-excursion
+
+        .title-excursion
+          a
+            font-size: $tittleFontSize
+            color: $white
+            font-family: $thirdFontFamily
+        .by
+          margin-top: -5px
+          font-size: 12x
+          color: #F2FAFF
+
+        .autor
+          margin-top: -5px
+          font-size: 12px
+          a
+            font-size: 14px
+            color: #CDE9FF
+            font-family: $fistFontFamily
+.img-excursion-search
+  img
+    heigth: 45px
+    width: 45px
+    margin-left: auto
+    margin-right: auto
+    display: block
+    @include border-radius(5px)
+    margin-top: 3px
+
+.timeline-excursion
+  heigth: auto
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+
+
+//sugestion
+
+

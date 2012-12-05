@@ -2,32 +2,24 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
+
 <body>
-<div class="wrapper">
-<div class="container">
-  <header id="headerFront row span12">
-    <%= render :partial => "layouts/header" %>
-  </header>
-  <section id="main" class="row span12">
-    <div class="space_double_center"></div>
-
-    <section id="content">
-      <%= yield %>
-    </section>
-  </section>
-  <div class="space_double_center"></div>
-</div>
-  <div class="push"></div>
-</div>
-  <div class="container">
-    <footer class="row span12">
-      <%= render :partial => "layouts/footer" %>
-    </footer>
+  <div class="wrapper">
+    <div class="row"> 
+      <section class="container">
+        <header class="header">
+          <%= render :partial => "layouts/header" %>
+        </header>
+        <article id="main" class="devise">
+          <%= yield %>
+        </article>
+      </section>
+      <div class="push"></div> 
+    </div>      
   </div>
-
-
-
+  <footer class="footer">
+    <%= render :partial => "layouts/footer" %>
+  </footer>
 </body>
 </html>
-
 

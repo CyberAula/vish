@@ -1,16 +1,22 @@
-<div class="row btn-toolbar">
-  <div class="span2">
+<div id="header-tabs">
+<!--filter-->
+  <div class="filter-tabs">
     <% filter_id ||= "document-filter" %>
-    <div class="inline-block"><input id="<%= filter_id %>" type="text" class="input-medium inline-block ontop" placeholder="<%= t('filter') %>"  name="filter"></div>
+    <input id="<%= filter_id %>" type="text" class="input-medium " placeholder="<%= t('filter') %>"  name="filter">
   </div>
-  <div class="pull-right">
+
+
+<!--btn add-->
+
+  <div class="">
     <%if profile_subject_is_current?%>
-      <div class="btn-gray">
-        <%= link_to  raw("<i class='icontool16-tool16_arrow_7'></i> ") + t('resource.upload'),new_document_path, :class => :action  %>
+    <div class="btn-gray">
+      <%= link_to  raw("<i class='icontool16-tool16_arrow_7'></i> ") + t('resource.upload'),new_document_path, :class => :action  %>
       </div>
     <% end %>
   </div>
-</div>
+
 <%= content_for :javascript do %>
   if(!Vish.Filter.loaded) Vish.Filter.init();
 <% end %>
+</div>

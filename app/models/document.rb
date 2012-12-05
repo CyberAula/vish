@@ -86,7 +86,7 @@ class Document < ActiveRecord::Base
      :title => title,
      :description => description,
      :author => author.name,
-     :src => file.to_s.downcase
+     :src => documents_hostname + file.to_s.downcase
     }
   end
   
@@ -94,6 +94,10 @@ class Document < ActiveRecord::Base
 
   def set_title
     self.title = file_file_name if self.title.blank?
+  end
+
+  def documents_hostname
+    Site.current.config[:documents_hostname].to_s
   end
 end
 

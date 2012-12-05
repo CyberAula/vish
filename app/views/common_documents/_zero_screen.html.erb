@@ -1,9 +1,4 @@
-<% link = Link.first %>
-<% link = Link.find(42) if Rails.env == "production" %>
-<%= javascript_tag do %>
-  <%= modal_for(link) unless link.blank? %>
-<%end%>
-<% unless link.blank? %>
+
   <div class="picture span3">
 	  <ul class="thumbnails">
     	  <li class="span">
@@ -38,8 +33,8 @@
 		  </div>			    				
 	   </ul>
   </div>
-<% end %>
 
-<div class="alert alert-info alert-block span5">
+
+<div class="alert alert-info alert-block ">
         <%=t('resource.newnet_html')%>
 </div>

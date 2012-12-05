@@ -1,4 +1,6 @@
 Vish::Application.routes.draw do
+  get "rec_sys/los"
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   # Blatant redirections
@@ -8,6 +10,9 @@ Vish::Application.routes.draw do
 
   # Explore
   match '/explore' => 'frontpage#explore'
+
+  # Live Session
+  resource :live_session
 
   # Offline
   match '/offline' => 'frontpage#offline'
@@ -21,6 +26,8 @@ Vish::Application.routes.draw do
   match 'excursions/:id/clone' => 'excursions#clone'
 
   match '/excursions/:id/manifest' => 'excursions#manifest'
+
+  match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
 
   resources :excursions
   resources :slides
@@ -57,6 +64,7 @@ Vish::Application.routes.draw do
       match 'followings' => 'followers#index', :as => :followings, :defaults => { :direction => 'sent' }
       match 'followers' => 'followers#index', :as => :followers, :defaults => { :direction => 'received' }
       match 'modal' => 'modals#actor'
+      match 'live' => 'live_sessions#actor'
     end
   end
 
@@ -70,6 +78,11 @@ Vish::Application.routes.draw do
 
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
+
+  # Get the recommended Learning Objects (LOs) for current user
+  match 'recSys/data' => 'rec_sys#data'
+  match 'recSys/timestamp' => 'rec_sys#timestamp'
+  match 'recSys/onSocialContextGenerated' => 'rec_sys#onSocialContextGenerated'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

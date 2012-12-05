@@ -1,0 +1,75 @@
+<section class="slides layout-regular template-default">
+    <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
+    <div id="flashcard-background"></div>
+</section>
+
+<div id="viewbar" class="viewbar" style="display:none">   
+	<button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
+    <div id="slide-counter"></div>
+  <button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
+</div>
+
+<iframe id="my_game_iframe" src="" style="border:0" width="890" height="740" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
+
+<div style="display:none" id="viewerpreview">Preview</div>
+<button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/back_icon.png"/></button>
+<button id="mobile_back_arrow" class="vish_arrow" tabindex="2" style="display:none"><</button>
+<button id="mobile_forward_arrow" class="vish_arrow" tabindex="2" style="display:none">></button>
+
+<script>	
+	options = {};
+	var configuration = {};
+
+	configuration["ImagesPath"] = "/assets/";
+	configuration["StylesheetsPath"] = "/assets/";
+	configuration["mode"] = "vish";
+	options["configuration"] = configuration;
+	options["full"] = true;
+	options["developping"] = false;
+
+	options["token"] = "<%= form_authenticity_token %>";
+	options["lang"] = "<%= I18n.locale.to_s%>";
+
+	<% if user_signed_in? %>
+	    options["username"] = "<%= current_user.name %>";
+	<% else %>
+	    options["username"] = false;
+	<% end %>
+
+	options.addons = [];
+
+	if(window.parent.loadIframeMessenger===true){
+		var addon = new Object();
+		addon.target = "Viewer";
+		addon.id = "IframeMessenger";
+		addon.url = "";
+		addon.config = {enable: true};
+		options.addons.push(addon);
+	}
+
+	function start(){
+		var isPreview = false;
+        try {
+            isPreview = window.parent.VISH && 
+            			window.parent.VISH.Editor && 
+            			(typeof window.parent.VISH.Editor.Preview.getPreview == "function") && 
+            			(typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined');
+        } catch(exception) {
+            isPreview = false;
+        }
+        
+		var myexcursion;
+
+		if(isPreview){
+			options["preview"] = true;
+        	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
+      	} else {
+      		<% if @excursion %>
+      			myexcursion = <%= raw @excursion.json %>;
+      		<%else%>
+      			myexcursion = null;
+      		<%end%>
+      	}
+		VISH.SlideManager.init(options , myexcursion);
+	}
+</script>

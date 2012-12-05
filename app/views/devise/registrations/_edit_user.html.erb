@@ -1,15 +1,20 @@
 <% content_for :javascript do %>
 $(".user_edit").validate({errorClass: "validation_error"});
 <%end%>
+
+<div class="clearfloat"></div>
+
+
 <div class="block" id="password_form">
-  <div class="header">
-    <div class="header_text">
+
+    <div class="title">
       <%= t("account.password.change")%>
-      <div class="header_icon_right">
-      	<%= link_to (image_tag('edit_icon.png', :class=>"unborder")),  "javascript:showSettings(\"password_form\");" %>
-      </div>      	
     </div>
-  </div>
+    <div class="action">
+      <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"password_form\");" %>
+    </div>      	
+
+
   <div class="content settings_content" id="password_form_content" style="display:none;">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <div class="form_row">
@@ -42,15 +47,21 @@ $(".user_edit").validate({errorClass: "validation_error"});
     <% end%>
   </div>
 </div>
+
+
+<div class="clearfloat"></div>
+<div class="line2"></div>
+
 <div class="block" id="email_form">
-  <div class="header">
-    <div class="header_text">
+
+    <div class="title">
       <%= t("account.email.change")%>
-	  <div class="header_icon_right">
-      	<%= link_to (image_tag('edit_icon.png', :class=>"unborder")),  "javascript:showSettings(\"email_form\");" %>
-    	</div>
-    </div>    	
-  </div>
+    </div> 
+	  <div class="action">
+      	<%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"email_form\");" %>
+    </div>
+       	
+
   <div class="content settings_content" id="email_form_content" style="display:none;">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <div class="form_row">

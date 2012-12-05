@@ -1,21 +1,24 @@
-<div class="row" id="contact_info">
-  <div class="header">
-    <div class="header_text2">
-      <%= t('profile.contact') %>
-      <% if is_owner? %>
-        <div class="header_icon_right">
-          <%= link_to (image_tag('edit_icon.png', :class=>"unborder")), "javascript:showSettings(\"contact_info\");" %>
-        </div>
-      <% end %>
-    </div>
+<div class="clearfloat"></div>
+<div class="line2"></div>
+<div id="contact_info">
+  <div class="title">
+    <%= t('profile.contact') %>
   </div>
+  <% if is_owner? %>
+  <div class="action">
+    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"contact_info\");" %>
+  </div>
+  <% end %>
 
-  <div class="row span6 boxy_white">
-    <div class="space_center"></div>
-    <div class="content settings_briefing" id="contact_info_briefing">
-      <% if !is_contact_empty? %>
-        <div class="sub-block">
+
+  <div id="contact_info_briefing">
+
+    <% if !is_contact_empty? %>
+
+      <div class="sub-block">
+
           <% if @profile.phone? %>
+
             <div class="row">
               <div class="title_sub_profile">
                 <%= t('profile.phone') %>
@@ -24,8 +27,10 @@
                 <%= h @profile.phone %>
               </div>
             </div>
+
           <% end %>
           <% if @profile.mobile? %>
+            
             <div class="row">
               <div class="title_sub_profile">
                 <%= t('profile.mobile') %>
@@ -34,8 +39,10 @@
                 <%= h @profile.mobile %>
               </div>
             </div>
+
           <% end %>
           <% if @profile.fax? %>
+
             <div class="row">
               <div class="title_sub_profile">
                 <%= t('profile.fax') %>
@@ -44,8 +51,10 @@
                 <%= h @profile.fax %>
               </div>
             </div>
+
           <% end %>
           <% if @profile.address? %>
+            
             <div class="row">
               <div class="title_sub_profile">
                 <%= t('profile.address') %>
@@ -54,8 +63,10 @@
                 <%= h @profile.address %>
               </div>
             </div>
+
           <% end %>
           <% if @profile.website? %>
+            
             <div class="row">
               <div class="title_sub_profile">
                 <%= t('profile.website') %>
@@ -63,17 +74,21 @@
               <div class="field_profile">
                 <a href="<%= h @profile.website %>"><%= h @profile.website %></a>
               </div>
+            
             </div>
           <% end %>
         </div>
+
       <% elsif is_owner? %>
-        <div id="field_profile_field_empty">
+
+        <div id="field_empty">
         <%= t('profile.empty') %>
         </div>
+
       <% end %>
     </div>
-    <div class="space_center"></div>
-  </div>
+
+
 
     <% if is_owner? %>
 
@@ -133,12 +148,13 @@
               </div>
               </div>
             <% end %>
-            <%= f.submit t('button.update'), :class => "button" %>
+            <%= f.submit t('button.update'), :class => "btn btn-primary" %>
           <% end %>
         </div>
       </div>
     <% end %>
   </div>
-  <div class="space_center"></div>
+
 </div>
+
 

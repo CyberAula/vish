@@ -1,18 +1,24 @@
-<%= div_for excursion, :class => 'row-fluid' do %>
-  <ul class="thumbnails">
-    <li class="span3">
-      <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "container" %>
-      <div class='number_pages'><%= excursion.slide_count %></div>
-    </li>
-    <li class="span9">
-        <div class="title">
-          <h4 class="bold ellipsis w190px"><%= link_to excursion.title, excursion %></h4>
-        </div>
-        
-        <p><%= simple_format auto_link(excursion.description) %></p>
-        <p><%= link_to t('details.msg'), excursion, :class => "attachment_text_link" %></p>
-    </li>
-  </ul>
-<% end %>
+<!--time line-->
 
 <div class="clearfloat"></div>
+<%= div_for excursion, :class => 'timeline-object' do %>
+
+  <div class="item-object-wall">
+    <ul class="thumbnails">
+      <li class="img-excursion">
+        <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "img-timeline" %>
+        <div class='number_pages'>
+          <%= excursion.slide_count %>
+        </div>
+      </li>
+      <div class="info-object-timeline">
+        <div class="title-object">
+          <%= link_to excursion.title, excursion %>
+        </div>
+        <p><%= auto_link truncate_name(excursion.description, :length => 120) %></p>
+        <p class="details"><%= link_to t('details.msg'), excursion, :class => "" %></p>
+      </div>
+    </ul>
+  </div>
+<% end %>
+

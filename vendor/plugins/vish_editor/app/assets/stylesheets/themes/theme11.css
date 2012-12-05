@@ -12,6 +12,17 @@
   	padding-right: 7%;
 }
 
+.slides > article > div.grey_background {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+
+.slides > article[template='t10'] > div.t10_center {
+  margin: 8% 0% 0% 6%;
+  width: 88%;
+  height: 83%;
+}
 
 .slides {
 background: rgb(181,189,200); /* Old browsers */

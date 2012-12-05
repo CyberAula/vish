@@ -7,6 +7,8 @@ VISH_EDITOR_PATH = "../vish_editor/public/vishEditor";
 # configure these defaults based on Your needs :
 JS_FILES_AND_DIRS = ['app/assets/js_to_compile/lang','app/assets/js_to_compile/VISH.js', 'app/assets/js_to_compile/VISH.Constant.js', 'app/assets/js_to_compile/libs','app/assets/js_to_compile/VISH.Renderer.js', 'app/assets/js_to_compile/VISH.Status.js', 'app/assets/js_to_compile/VISH.Utils.js', 'app/assets/js_to_compile/VISH.Editor.js', 'app/assets/js_to_compile/VISH.Editor.Video.js', 'app/assets/js_to_compile/VISH.Editor.Image.js', 'app/assets/js_to_compile/VISH.Editor.Object.js', 'app/assets/js_to_compile/VISH.Samples.js', 'app/assets/js_to_compile/VISH.Samples.API.js', 'app/assets/js_to_compile/VISH.Slides.js', 'app/assets/js_to_compile/VISH.Events.js', 'app/assets/js_to_compile/VISH.Flashcard.js', 'app/assets/js_to_compile/VISH.Quiz.js', 'app/assets/js_to_compile/VISH.Editor.Tools.js', 'app/assets/js_to_compile/VISH.Addons.js', 'app/assets/js_to_compile/VISH.VideoPlayer.js', 'app/assets/js_to_compile/VISH.Messenger.js', 'app/assets/js_to_compile']
 
+ONLY_VIEWER = ['libs/jquery-1.7.2.min.js', 'VISH.js', 'VISH.Constant.js', 'VISH.Configuration.js', 'libs/jquery-ui-1.9.1.custom.min.js', 'libs/jquery.fancybox-1.3.4.js', 'libs/jquery.qrcode.min.js', 'libs/swfobject.js', 'VISH.User.js', 'VISH.Object.js', 'VISH.Renderer.js', 'VISH.Renderer.Filter.js', 'VISH.Debugging.js', 'VISH.Presentation.js', 'VISH.VideoPlayer.js', 'VISH.VideoPlayer.CustomPlayer.js', 'VISH.VideoPlayer.HTML5.js', 'VISH.VideoPlayer.Youtube.js', 'VISH.ObjectPlayer.js', 'VISH.SnapshotPlayer.js', 'VISH.AppletPlayer.js', 'VISH.SlideManager.js', 'VISH.Utils.js', 'VISH.Status.js', 'VISH.ViewerAdapter.js', 'VISH.Game.js', 'VISH.Flashcard.js', 'VISH.Flashcard.Arrow.js',  'VISH.Themes.js', 'VISH.Messenger.js', 'VISH.Messenger.Helper.js', 'VISH.Addons.js', 'VISH.Addons.IframeMessenger.js', 'VISH.LocalStorage.js', 'VISH.Utils.loader.js',  'VISH.Utils.canvas.js',  'VISH.Utils.text.js',  'VISH.Slides.js', 'VISH.Events.js', 'VISH.EventsNotifier.js', 'VISH.Quiz.js', 'VISH.Quiz.Renderer.js', 'VISH.Quiz.API.js']
+
 
 COMPILER_JAR_PATH = "lib/tasks/compile"
 COMPILER_JAR_FILE = COMPILER_JAR_PATH + "/compiler.jar"
@@ -27,7 +29,7 @@ namespace :vish_editor do
     system "cp -r " + VISH_EDITOR_PATH + "/stylesheets/ " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/"
     system "cp -r " + VISH_EDITOR_PATH + "/js/ " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile/"
 
-
+    system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
 
     puts "Task prepare do finishs"
@@ -109,10 +111,27 @@ namespace :vish_editor do
     puts "----------------------------------------------------"
     puts "compiled #{files.size} javascript file(s) into vishEditor.js and vishEditor.min.js"
     puts ""
+
+    puts "AND NOW THE VIEWER..."
+    ONLY_VIEWER.collect! {|x| "vendor/plugins/vish_editor/app/assets/js_to_compile/" + x }
+    compiler_options['--js'] = ONLY_VIEWER.join(' ')
+    compiler_options['--js_output_file'] = "vishViewer.min.js"
+    compiler_options2['--js'] = ONLY_VIEWER.join(' ')
+    compiler_options2['--js_output_file'] = "vishViewer.js"
+    
+    system "java -jar #{COMPILER_JAR_FILE} #{compiler_options.to_a.join(' ')}"
+    system "java -jar #{COMPILER_JAR_FILE} #{compiler_options2.to_a.join(' ')}"
+    puts "DONE"
+    puts "----------------------------------------------------"
+ 
+    puts "compiled #{ONLY_VIEWER.size} javascript file(s) into vishViewer.js and vishViewer.min.js"
+    puts ""
     system "mkdir -p " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts"
     system "mv vishEditor.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishEditor.js"
     system "mv vishEditor.min.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishEditor.min.js"
 
+    system "mv vishViewer.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishViewer.js"
+    system "mv vishViewer.min.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishViewer.min.js"
   end
 
 end

@@ -52,6 +52,7 @@ module Vish
       NotificationsController.layout "9x3"
     end
     config.to_prepare do
+      FrontpageController.layout "frontpage"
       MessagesController.layout "3x9"
       ConversationsController.layout "3x9"
       DocumentsController.layout "3x9"
@@ -63,7 +64,7 @@ module Vish
       LinksController.layout "3x9"
       ExcursionsController.layout "12"
       QuizSessionsController.layout "3x9"
-      SearchController.layout "search"
+      SearchController.layout "3x9"
       LegalNoticeController.layout "12"
       HelpController.layout "12"
 

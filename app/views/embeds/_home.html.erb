@@ -1,24 +1,42 @@
-<%= div_for embed, :class => 'span3' do %>
+<%= div_for embed, :class => 'repository-home' do %>
   <%= javascript_tag do %>
     <%= modal_for(embed) %>
     <%= modal_for(embed.author.subject) %>
   <% end %>
-  <ul class="thumbnails">
-    <li class="span">
-      <div id="margin-resources">
-      <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="<%= icon_class_for(embed) %> embed-modal-button-<%= embed.id.to_s%> modal-trigger"></a>
-      </div>
-    </li>
-    <div class="row-fluid-100">
-      <h4 class="link_gray size15 ellipsis w150px">
-        <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%> modal-trigger"><%= embed.title %></a>
-      </h4>
-        <div class="rw-words rw-words-1">
-          <span><h5 class="green inline">by </h5><h5 class="link_gray inline ellipsis w120px"><a data-toggle="modal" href="#user-modal-<%= embed.author.slug %>" class="user-modal-button-<%= embed.author.slug %> modal-no-trigger"><%= embed.author.name %></a></h5></span>
-          <div class="clearfloat"></div>
-          <span><h5 class="green inline margin-home-resource-view"><%=embed.visit_count.to_s%> </h5><%= t("follow.views") %> / <h5 class="green inline like_count_<%= dom_id(embed.post_activity) %>"><%=embed.post_activity.likes.count.to_s%></h5> <div class="verb_like" id="like_<%= dom_id(embed.post_activity) %>"><%= link_like(embed.post_activity)%></div></span>
+  <div class="repository-item">
+    <ul class="thumbnails">
+      <li class="img-resource">
+        <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="<%= icon_class_for(embed) %> embed-modal-button-<%= embed.id.to_s%> modal-trigger"></a>
+      </li>
 
+      <li class="info-resource">
+        <div class="title-resource">
+          <a data-toggle="modal" href="#embed-modal-<%= embed.id.to_s%>" class="embed-modal-button-<%= embed.id.to_s%> modal-trigger">
+            <%= embed.title %>
+          </a>
         </div>
-    </div>
-  </ul>
+
+        <div class="by">by
+          <a data-toggle="modal" href="#user-modal-<%= embed.author.slug %>" class="user-modal-button-<%= embed.author.slug %> modal-no-trigger">
+            <%= embed.author.name %>
+          </a>
+        </div>
+
+        <span class="visits">
+          <%=embed.visit_count.to_s%> 
+          <a>
+            <%= t("follow.views") %> / 
+          </a>
+
+          <div class="likes like_count_<%= dom_id(embed.post_activity) %>">
+            <%=embed.post_activity.likes.count.to_s%>
+          
+            <div class="verb_like" id="like_<%= dom_id(embed.post_activity) %>">
+              <%= link_like(embed.post_activity)%>
+            </div>
+          </div>
+        </span>
+      </li>
+    </ul>
+  </div>
 <% end %>

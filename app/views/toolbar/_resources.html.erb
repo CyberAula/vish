@@ -1,4 +1,3 @@
-<div class="space_center"></div>
 <div class="header_text">
   <%= t('resource.title.other') %>
 </div>
@@ -7,12 +6,12 @@
     <%=link_to(t('go.repository'),[subject, Document.new])%>
   </a>
 </div>
-<div class=" row space_center"></div>
+
 <% for r in subject_resources(subject, :scope => :me) %>
   <% if r.is_a? Embed %>
-    <%= render :partial => "embeds/profile", :locals => { :embed => r, :div_class => 'row' } %>
+    <%= render :partial => "embeds/profile", :locals => { :embed => r, :div_class => '' } %>
   <% else %>
-    <%= render :partial => "common_documents/profile", :locals => { :document => r, :div_class => 'row' } %>
+    <%= render :partial => "common_documents/profile", :locals => { :document => r, :div_class => '' } %>
   <% end %>
 <% end %>
-<div class="row space_center"></div>
+

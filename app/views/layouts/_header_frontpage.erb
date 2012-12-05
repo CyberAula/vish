@@ -1,24 +1,22 @@
 <% unless params[:controller].eql? 'devise/sessions' and params[:action].eql? 'new' %>
-
-  <div class="space_center"></div>
-  <div class="pull-right">
-  <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
-    <div class="pagination-right">
+<%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
+<div id="nomargin-left">
+  <div class="headerfront">
+    <div class="Sign-up">
       <%= f.email_field :email, :id => "username" %>
       <%= f.password_field :password, :id => "password"  %>
-      <%= f.submit t(:sign_in), :class => 'btn btn-primary storePass margin-negative-btn'%>
     </div>
-  <div class="link_gray pagination-right span3 offset9">
-    <%= link_to t('forgot_password'), new_user_password_path %>
+    <%= f.submit t(:sign_in), :class => 'btn btn-primary storePass '%>
+    <div class="text_link_gray">
+      <%= link_to t('forgot_password'), new_user_password_path %>
+    </div>
+    <div class="text_link_gray">
+      <%= link_to t('sign_up'), new_user_registration_path %>
+    </div>
+    <% end -%>
+    <% end %>
   </div>
-
-  <div class="link_gray pagination-right span3 offset9">
-    <%= link_to t('sign_up'), new_user_registration_path %>
-  </div>
-
-  <% end -%>
 </div>
-<% end %>
 
 <%= javascript_tag do %>
   $(function() {

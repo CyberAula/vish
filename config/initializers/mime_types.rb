@@ -12,3 +12,4 @@ Mime::Type.register_alias "text/html", :full
 Mime::Type.register_alias "text/html", :mobile
 Mime::Type.register_alias "text/javascript", :jsmobile
 Mime::Type.register_alias "text/html", :gateway
+Mime::Type.register_alias "text/html", :live

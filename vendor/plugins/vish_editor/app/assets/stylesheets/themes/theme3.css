@@ -9,6 +9,9 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c9c9c9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
+.slides > article > div.grey_background {
+  background-color: rgba(100, 100, 100, 0.4);
+}
 
 .slides {
 	background: rgb(125,126,125); /* Old browsers */

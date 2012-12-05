@@ -89,6 +89,7 @@ en:
       ok: "Succesfully cloned"
       owner: "You already own this excursion"
     confirm_delete: "Delete excursion?"
+    confirm_delete_offline: "You are going to remove the excursion from this list, but it will still be accesible on the server. Are you sure?"
     contributors:
       name: "With content from"
     created: "created"
@@ -107,7 +108,7 @@ en:
     network2: "my network"
     newmy_html: "You have not created any excursions yet. You can add a new one by clicking on the add button or on this "    
     newnet_html: "Here you will see the excursions created by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
-    newfav_html: "You have no favorite excursions yet. Mark any excursion as favorite by clicking the star icon <img src='/assets/star-off.png'>"
+    newfav_html: "You have no favorite excursions yet. Mark any excursion as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
     one: "excursion"
     other: "excursions"
     others: "others excursions"
@@ -181,6 +182,8 @@ en:
     title:
       one: "Document"
       other: "Documents"
+  offline:
+    title: "Offline Mode"
   options:
     add: "add"
     new: "new"
@@ -231,7 +234,7 @@ en:
     network: "my network resources"
     newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "    
     newnet_html: "Here you will see the resources uploaded by users you are following. Find some users to follow <a href='/search?type=user'>here</a>."
-    newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/star-off.png'>"
+    newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
     my: "my"
     net: "network"
     title:

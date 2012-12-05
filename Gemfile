@@ -11,9 +11,10 @@ gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
-  gem 'sass-rails', '~> 3.2.4'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier', '>= 1.2.3'
+gem 'sass-rails', '~> 3.2.4'
+gem 'bootstrap-sass', '~> 2.1.0.0'
+gem 'coffee-rails', '~> 3.2.2'
+gem 'uglifier', '>= 1.2.3'
 
 gem 'jquery-rails', '2.0.2'
 gem 'json', '1.7.4'
@@ -80,9 +81,9 @@ group :development do
   # use with:
   # $ export VISH_DEBUG=true
 
-  #if ENV['VISH_DEV'] || ENV['VISH_DEBUG']
-  #  gem "debugger", "~> 1.1.1"
-  #end
+  if ENV['VISH_DEV'] || ENV['VISH_DEBUG']
+    gem "debugger", "~> 1.1.1"
+  end
 
   if ENV['VISH_DEV_ALTERNATIVE']
     gem 'ruby-debug19', :require => 'ruby-debug'

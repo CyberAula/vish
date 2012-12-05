@@ -1,30 +1,34 @@
-<div class="footersticky">
-<nav class="menu pagination-centered">
-  <ul class="link_gray btn-group dropup ">
-    <li><%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %></li>
-    <li><%= link_to t('conditions.other'), '/legal_notice', :target=>'_blank' %></li>
-    <li><%= link_to t('help'), '/help' %></li>
-    <li>
-      <div class="footer_btn">
-      <div class="btn-group dropup ">
-        <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
-          <span class="gray size12"><%=t('lang.title')%></span>
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu pull-right">
-          <% for locale in (I18n.available_locales) -%>
-            <% next if locale.to_s == "pt" %>
-            <li class="unmargin link_white">
-              <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
-            </li>
-          <% end -%>
-        </ul>
-      </div>
-      </div>
-    </li>
-    <li><%= link_to image_tag("icons/global.png",  :class=> "imgnoradio" ), url_for("http://www.globalexcursion-project.eu"), :target=> "_blanck"  %></li>
-  </ul>
-</nav>
-</div>
+<div class="container">
+  <nav class="menu_h">
+    <ul>
+      <li class="site_name">
+        <%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %>
+      </li>
+      <li>
+        <%= link_to t('conditions.other'), '/legal_notice', :target=>'_blank' %>
+      </li>
+      <li>
+        <%= link_to t('help'), '/help' %>
+      </li>
+      <li>
+        <div class="btn-group dropup ">
+          <button data-toggle="dropdown" class="btn dropdown-toggle">
+            <span class="idioma"><%=t('lang.title')%></span>
+            <span class="caret"></span>
+          </button>     
+          <ul class="dropdown-menu">
+            <% for locale in (I18n.available_locales) -%>
+              <% next if locale.to_s == "pt" %>
+              <li class="">
+                <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+              </li>
+            <% end -%>
+          </ul>
 
+        </div>
+      </li>
+      <li><%= link_to image_tag("icons/global.png",  :class=> "imgnoradio" ), url_for("http://www.globalexcursion-project.eu"), :target=> "_blanck"  %></li>
+    </ul>
+  </nav>
+</div>
 <%= render :partial => 'layouts/init_modals' %>

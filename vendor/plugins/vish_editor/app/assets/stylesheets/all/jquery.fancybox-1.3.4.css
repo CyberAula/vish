@@ -109,17 +109,21 @@
 #fancybox-close {
 	position: absolute;
 	top: 2px;
-	right: 2px;
+	right: -3px;
 	width: 22px;
 	height: 22px;
-	background: transparent url('/assets/delete_slide.png');
+	background: transparent url('/assets/delete_slide.png') no-repeat center top;
+	background-size: 62%;
+	padding: 10px;
+	padding-left: 4px;
 	cursor: pointer;
 	z-index: 1103;
 	display: none;
 }
 
 #fancybox-close:hover{
-	background: transparent url('/assets/hover/delete_hover.png');
+	background: transparent url('/assets/hover/delete_hover.png') no-repeat center top;
+	background-size: 62%;
 }
 
 #fancybox-error {

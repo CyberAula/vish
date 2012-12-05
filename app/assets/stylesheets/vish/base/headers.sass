@@ -1,0 +1,143 @@
+.header
+  @include makeColumn(12,0) 
+  @include nomargin-left
+  margin-bottom: 15px
+//sign out
+
+#graphic_identity
+  margin-top: 37px
+  @include makeColumn(5,0)
+  display: inline-block
+
+
+  .logo-home
+    display: inline-block
+
+  .site-name
+    @include linkGrayVish
+    font-family: $secondFontFamily
+    float: right
+    font-size: 19pt
+    display: inline-block
+    margin-top: 36px
+
+    a
+      display: inline-block
+
+#headerfront
+  margin-top: 15px
+  @include makeColumn(6,0)
+  float: right
+  display: inline-block
+
+
+  .Sign-up
+    display: inline-block
+      
+    input
+      width: $inputFrontPage
+      margin-right: 15px
+
+  .text_link_gray
+    text-align: right
+    @include linkGrayVish
+
+  .flash
+    @include makeColumn(12,0)
+    display: block
+    float: right
+
+//frontpage
+
+#nomargin-left
+  margin-left: -20px
+  
+  .headerfront
+    margin-top: 15px
+    @include makeColumn(6,6)
+
+    .Sign-up
+      display: inline-block
+        
+      input
+        width: $inputFrontPage
+        margin-right: 15px
+
+    .text_link_gray
+      text-align: right
+      @include linkGrayVish
+
+    .flash
+      @include makeColumn(12,0)
+      display: block
+      float: right
+
+
+//nav icons
+#nav-and-search
+  @include makeColumn(6,0)
+  float: right
+  margin-top: 5px
+  
+  .btn-toolbar
+    display: inline-block
+    float: right
+    margin-bottom: 10px
+    margin-top: 10px
+    margin-left: 20px
+
+    .btn-header
+      cursor: pointer
+      display: inline-block
+      line-height: 18px
+      margin-bottom: 0
+      padding: 4px 8px 10px 9px
+      text-align: center
+      vertical-align: middle
+
+    .btn-caret-dropdonw
+      cursor: pointer
+      display: inline-block
+      line-height: 18px
+      margin-bottom: 0
+      padding: 0px 8px 0px 9px
+      text-align: center
+      vertical-align: bottom
+
+      .caret 
+        display: inline-block
+        width: 12px
+        height: 12px
+        background-image: url('icons/opcion.png')
+        background-repeat: no-repeat
+        vertical-align: middle
+        border-top:   none
+        border-right: none
+        border-left:  none
+        content: ""
+        margin-top: 5px
+
+    .tooltip-header
+      margin-bottom: -10px
+
+.profile-toolbar
+  margin-top: 22px
+  float: right
+  display: inline-block
+  .img-header
+    @include border-radius(2px)
+  .name-user
+    font-family: $fistFontFamily
+    font-size: $tittleFontSize
+    vertical-align: bottom
+    color: $gray
+
+#header_search
+  @include makeColumn(3,3)
+  display: block
+
+#header_search-sign-in
+  margin-left: 50px
+
+
+

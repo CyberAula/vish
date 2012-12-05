@@ -3,6 +3,9 @@
 	background-size: 100% 100%;
 }
 
+.slides > article > div.grey_background {
+  background-color: rgba(100, 100, 100, 0.5);
+}
 
 .slides {
 background: rgb(254,254,254); /* Old browsers */
