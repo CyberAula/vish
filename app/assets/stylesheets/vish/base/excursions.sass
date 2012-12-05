@@ -188,84 +188,91 @@
 
 
 // details excursion 
+.info-excursion
+  #info-notebook
+    @include makeColumn(3,0)
 
-#info-notebook
-  @include makeColumn(3,0)
+    .notebook
+      display: inline-block
+      @include border-radius(15px)
+      width: 300px
+      .notebook-cabecera
+        background-image: url("notebook/CABECERA.png")
+        background-repeat: no-repeat
+        width: 290px
+        height: 33px
+        display: inline-block
+        margin-bottom: -4px
+        padding-left: 15px
+        padding-top: 10px
 
-.notebook
-  display: inline-block
-  @include border-radius(15px)
-  width: 300px
-  .notebook-cabecera
-    background-image: url("notebook/CABECERA.png")
+      
+    .notebook-medio
+      background-image: url("notebook/MEDIO.png")
+      background-repeat: repeat-y
+      width: 290px
+      height: auto
+      display: inline-block
+      margin-top: -10px
+
+      .tittle-notebook
+        padding-left: 20px
+        color: $red-1
+        display: inline-block
+        float: left
+        font-size: 17px
+        margin-bottom: 10px
+        text-decoration: underline
+        width: 270px
+      .text-notebook
+        font-size: 14px
+        padding-left: 30px
+        color: $gray
+        @incluce ellipsis
+        margin-bottom: 10px
+        padding-right: 10px
+
+
+
+
+  .notebook-pie
+    background-image: url("notebook/PIE.png")
     background-repeat: no-repeat
     width: 290px
-    height: 33px
-    display: inline-block
-    margin-bottom: -4px
-    padding-left: 15px
-    padding-top: 10px
+    height: 21px
+    display: block
+    margin-top: -5px
+    width: 290px
 
-  
-.notebook-medio
-  background-image: url("notebook/MEDIO.png")
-  background-repeat: repeat-y
-  width: 290px
-  height: auto
-  display: inline-block
-  padding-top: 20px
-  margin-top: -10px
-
-  .tittle-notebook
-    padding-left: 20px
-    color: $red-1
-    display: inline-block
+  .decoration-notebook
+    width: 25px
+    display: inline-block   
     float: left
-    font-size: 17px
-    margin-bottom: 10px
-    text-decoration: underline
-    width: 270px
-  .text-notebook
-    font-size: 14px
-    padding-left: 30px
-    color: $gray
-    @incluce ellipsis
-    margin-bottom: 10px
-    padding-right: 10px
-
-
-
-
-.notebook-pie
-  background-image: url("notebook/PIE.png")
-  background-repeat: no-repeat
-  width: 290px
-  height: 21px
-  display: block
-  margin-top: -5px
-  width: 290px
-
-.decoration-notebook
-  width: 25px
-  display: inline-block   
-  float: left
-  height: auto
-  background-color: #f1f1f1
+    height: auto
+    background-color: #f1f1f1
 
 // excursion show 
 
 .tabs-excursion-show
   @include makeColumn(11,0)
 
+#presentation_iframe
+  margin-left: 20px
 
 
 /* bottom excursion info */
 
 .comments-show
-  @include makeColumn(7,0)
+  @include makeColumn(6,0)
+  display: inline-block
+  float: left
+
 .info-excursion
-  @include makeColumn(3,0)
-  margin-left: 40px
+  @include makeColumn(5,0)
+  display: inline-block
+  float: left
+
+
 
 /* view all excursion*/
 .view-all-excursions
@@ -315,6 +322,14 @@
 
 
 
-//sugestion
-
+//evaluation
+.evaluate
+  label
+    display: inline-block
+    
+    input
+      display: inline-block
+      float: left
+      width: 30px
+      height: 30px
 

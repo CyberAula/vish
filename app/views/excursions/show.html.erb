@@ -19,7 +19,7 @@
   </ul>
 
   <div class="tab-content">
-    <div id="ex-1" class="tab-pane active margin-left20">
+    <div id="ex-1" class="tab-pane active ">
      <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;>
       </iframe>
     </div>
@@ -38,6 +38,15 @@
           <%= t('comment.title.other') %>
         </a>
       </li>
+
+<!--tab pegagogical-->
+      <li class="">
+        <a data-toggle="tab" href="#evaluation">
+          <%= t('comment.title.other') %>
+        </a>
+      </li>
+<!---->
+
     <% if @excursion.has_quiz_results? and user_signed_in? %>
       <li class="">
         <a data-toggle="tab" href="#quiz-results-1">
@@ -61,11 +70,90 @@
           <%end%>
          <%end%>
         </div>
+
+
+
+
         <% if @excursion.has_quiz_results? and user_signed_in? %>
-          <div id="quiz-results-1" class="tab-pane row-fluid activity_content">
+          <div id="ex-1" class="tab-pane active ">
             <%= render :partial => 'excursions/quiz_results', :locals => { :excursion => @excursion } %>
           </div>
         <% end %>
+<!--tab evaluation-->
+        <div id="evaluation" class="tab-pane ">
+          
+
+          <div class="title">
+            <%= t('evaluation.teaching') %>
+          </div>
+          <div class="google-developers">
+
+          </div>
+          <div class="">
+            <%= t('evaluation.contribute') %>
+
+          </div>
+
+          <!-- Button to trigger modal -->
+          <a href="#myModal" role="button" class="btn-gray" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+           
+          <!-- Modal -->
+          <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
+              </div>
+              <div class="modal-body">
+
+                
+                <div class="evaluate">
+                  <p>1<%= t('evaluation.phrase1') %></p>
+                
+                  <%= t('evaluation.disagree') %>
+
+                  <label class="radio">
+                    <input type="radio" name="optionsRadios" id="" value="">
+                  </label>
+
+                  <label class="radio">
+                    <input type="radio" name="optionsRadios" id="" value="">
+                  </label>
+
+                  <label class="radio">
+                    <input type="radio" name="optionsRadios" id="" value="">
+                  </label>
+
+                  <label class="radio">
+                    <input type="radio" name="optionsRadios" id="" value="">
+                  </label>
+
+                  <label class="radio">
+                    <input type="radio" name="optionsRadios" id="" value="">
+                  </label>
+                  <%= t('evaluation.agree') %>
+                </div>
+
+
+
+
+
+              </div>
+              <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+<!---->
+
       </div>
     </div>
   </section>
