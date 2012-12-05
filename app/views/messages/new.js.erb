@@ -17,58 +17,14 @@ json_url: "<%= contacts_path(:form => true, :format => :json) %>",
 cache: true,
 filter_hide: true,
 newel: false,
-height: 6
+height: 6,
+filter_selected : true
 });  
-
-
- //////////////
-//Contacts
-//////////////
-
-var contactos = [];
-var i = 0;
-
-<%@user_contacts = current_user.sent_contacts %>
-      <%@user_contacts.each do |contact| %>
-       contactos[i]= "<%=contact.receiver.name %>";
-       i++;
-<%end%>
-	var lista = $("ul.holder li:lt("+ contactos.length + ")");
-
-	console.log(lista);
-
-	console.log(lista.size());
-
-	var ultimo = lista.size()-2;
-
-
-	$("ul.holder li:nth-child(" + ultimo + ")").hide();
-
-
-  $(document).keypress(function(e) {
-  if(e.which == 13) {
-    hideshow();
-  }
-  });
-
-   var rel = parseInt($("ul.holder li:nth-child(" + ultimo + ")").attr("rel"));
-
-  function hideshow(){
-  for(var j = 0; j<parseInt(ultimo)-1; j++){
-   var comp = parseInt($("ul.holder li:nth-child(" + j + ")").attr("rel"));
-   if(comp == rel){
-        $("ul.holder li:nth-child(" + ultimo + ")").remove();
-  }
-          $("ul.holder li:nth-child(" + ultimo + ")").show();
-  }
-
-}
-
 
 
 
   $("#body").cleditor({
-    width:"100%",
+    width:"100%", 
     controls: "<%= SocialStream.cleditor_controls %>"
   });
 

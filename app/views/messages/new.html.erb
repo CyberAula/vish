@@ -24,52 +24,9 @@ json_url: "<%= contacts_path(:form => true, :format => :json) %>",
 cache: true,
 filter_hide: true,
 newel: false,
-height: 6
+height: 6,
+filter_selected : true
 });  
-
-//////////////
-//Contacts
-//////////////
-
-var contactos = [];
-var i = 0;
-
-<%@user_contacts = current_user.sent_contacts %>
-      <%@user_contacts.each do |contact| %>
-       contactos[i]= "<%=contact.receiver.name %>";
-       i++;
-<%end%>
-
-//////////////
-//Function to avoid duplicated names in the sent bar - it only works with intro button
-//////////////
-
-
-
-  $(document).keypress(function(e) {
-  if(e.which == 13) {
-  
-
-    var lista = $("ul.holder li:lt("+ contactos.length + ")");
-	var ultimo = lista.size()-2;
-	var ultimoo = ultimo + 1;
-    var rel = $("ul.holder li:nth-child(" + ultimoo + ")").attr("rel");
-
-  for(var j = 0; j<parseInt(ultimo); j++){
-  var q = j+1;
-  	$("ul.holder li:nth-child(" + ultimoo + ")").hide();
-
-   var comp = parseInt($("ul.holder li:nth-child(" + q + ")").attr("rel"));
-   if(comp == rel){
-        $("ul.holder li:nth-child(" + ultimoo + ")").remove();
-        break;
-  }
-  		$("ul.holder li:nth-child(" + ultimoo + ")").show();
-  };
-  }
-  });
-
-
 
 
 	$("#body").cleditor({
