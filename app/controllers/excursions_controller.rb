@@ -127,8 +127,13 @@ class ExcursionsController < ApplicationController
   def search_options
     opts = search_scope_options
 
+    # Allow  me to search only (e.g.) Flashcards
+    opts.deep_merge!({
+      :conditions => { :excursion_type => params[:type] }
+    }) unless params[:type].blank?
+
     # Pagination
-    opts.merge!({
+    opts.deep_merge!({
       :order => :created_at,
       :sort_mode => :desc,
       :per_page => params[:per_page] || 20,

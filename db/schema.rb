@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121165716) do
+ActiveRecord::Schema.define(:version => 20121207100642) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -227,6 +227,7 @@ ActiveRecord::Schema.define(:version => 20121121165716) do
     t.string   "thumbnail_url",      :default => "/assets/logos/original/excursion-00.png"
     t.boolean  "draft",              :default => false
     t.text     "offline_manifest"
+    t.string   "excursion_type",     :default => "presentation"
   end
 
   create_table "groups", :force => true do |t|
