@@ -23,7 +23,7 @@ RSpec::Core::RakeTask.new(:spec) do |s|
                 bsp('./controllers/frontpage_controller_spec.rb'),
                 bsp('./controllers/posts_controller_spec.rb'),
                 bsp('./controllers/representations_spec.rb'),
-                bsp('./controllers/groups_controller_spec.rb'),
+                # bsp('./controllers/groups_controller_spec.rb'),
                 bsp('./controllers/settings_controller_spec.rb'),
                 bsp('./models/profile_spec.rb'),
                 bsp('./models/user_spec.rb'),
