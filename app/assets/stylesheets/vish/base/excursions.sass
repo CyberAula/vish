@@ -324,12 +324,58 @@
 
 //evaluation
 .evaluate
-  label
-    display: inline-block
-    
-    input
+
+  p
+    color: $gray
+    a
+      color: $grayLighter
+      font-size: 50px
+      font-weight: bold
+      line-height: 39px
+  .escale
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    label,
       display: inline-block
-      float: left
-      width: 30px
-      height: 30px
+      margin-left: 30px
+      margin-right: 30px
+      margin-bottom: -5px
+    .value1
+      background-color: #ff0000
+      @include border-radius($radius)
+      padding-left: 25px
+      padding-top: 5px
+    .value2
+      background-color: #ff7f00
+      @include border-radius($radius)
+      padding-left: 25px
+      padding-top: 5px
+    .value3
+      background-color: #ffe000
+      @include border-radius($radius)
+      padding-left: 25px
+      padding-top: 5px
+    .value4
+      background-color: #ceff00
+      @include border-radius($radius)
+      padding-left: 25px
+      padding-top: 5px
+    .value5
+      background-color: #45ff00
+      @include border-radius($radius)
+      padding-left: 25px
+      padding-top: 5px
+
+
+      input
+        display: inline-block
+        float: left
+        width: 30px
+        height: 30px
+    div
+      display: inline-block
+      color: $grayLight
+      font-size: 15px
+      font-family: $fistFontFamily
+
+
 
