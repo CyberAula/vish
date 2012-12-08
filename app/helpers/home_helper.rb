@@ -8,7 +8,7 @@ module HomeHelper
   # * :net  subject and followings
   # * :more everybody except subject and followings
   def subject_excursions(subject, options = {})
-    subject_content subject, [Excursion], options
+    subject_content subject, Excursion, options
   end
 
   def current_subject_documents(options = {})
@@ -16,7 +16,7 @@ module HomeHelper
   end
 
   def subject_documents(subject, options = {})
-    subject_content subject, [Document], options
+    subject_content subject, Document, options
   end
 
   def current_subject_links(options = {})
@@ -24,7 +24,7 @@ module HomeHelper
   end
 
   def subject_links(subject, options = {})
-    subject_content subject, [Link], options
+    subject_content subject, Link, options
   end
 
   def current_subject_resources(options = {})
@@ -43,7 +43,12 @@ module HomeHelper
     following_ids = subject.following_actor_ids
     #following_ids |= [ subject.actor_id ]
 
-    query = ActivityObject.where(:object_type => klass.map{|t| t.to_s})
+    query = klass
+    if klass.is_a?(Array)
+      query = ActivityObject.where(:object_type => klass.map{|t| t.to_s})
+    else
+      query = query.includes(:activity_object)
+    end
 
     case options[:scope]
     when :me
@@ -51,25 +56,37 @@ module HomeHelper
     when :net
       query = query.authored_by(following_ids)
     when :like
-      Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+      query = if klass.is_a?(Array)
+        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+      else
+        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type = (?)", klass.to_s)
+      end
     when :more
       following_ids |= [ subject.actor_id ]
       query = query.not_authored_by(following_ids)
     end
 
-    # WARNING: if klass includes Excursion, well.... just don't do it :)
-    query = query.joins(:excursion).where("excursions.draft is false") if (klass.include?(Excursion)) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
+    query = query.where("draft is false") if (klass == Excursion) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
 
     query = query.order('activity_objects.updated_at DESC')
     query = query.limit(options[:limit]) if options[:limit] > 0
     query = query.offset(options[:offset]) if options[:offset] > 0
 
-    query = query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}])
+    # Do not optimize likes. They should go anyways....
+    if options[:scope] == :like
+      query = query.map { |a| a.activity_objects.first }
+      query = query.map { |ao| ao.object } if klass.is_a?(Array)
+      return query
+    end
 
-    #if options[:scope] == :like
-    #  query = query.map { |a| a.activity_objects.first }
-    #end
+    # This is the optimization code. It's ugly and *BAD*
+    query = if klass.is_a?(Array)
+              query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}]) 
+            else
+              query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
+            end
 
-    query.map{|ao| ao.object}
+    return query.map{|ao| ao.object} if klass.is_a?(Array)
+    query
   end
 end
