@@ -22,9 +22,6 @@
         <%= image_tag "icons/star-MENU-active.png" %>
       </a>
     </li>
-    <%# else %>
-    <!-- <li class="" id="star"><a data-toggle="tab" href="#ex-4"><#%= image_tag "star-MENU.png" %></a></li> -->
-    <%# end %>
   </ul>
   <div class="tittle-tabs">
     <%= t('excursion.other')%>
@@ -96,13 +93,7 @@
     <%= render :partial => "excursions/filter", :locals => {:show_add => true, :filter_id => "home-excursion-filter-fav"} %>
   
     <div id="home-excursions-fav" class="box-home-excursion">
-        <% fav_excursions = current_subject_excursions(:scope => :like) %>
-      <% if fav_excursions.size == 0 %>
-        <%= render :partial => "excursions/fav_zero_screen" %>
-      <% else %>
-        <%= render :partial => "excursions/filter_results",
-                           :locals => {:excursions => fav_excursions} %>
-      <% end %>
+      <img alt="Loading" class="loading" src="/assets/loading.gif" />
     </div>
     <div class="clearfloat"></div>
     <div class="view-all">

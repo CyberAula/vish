@@ -22,6 +22,7 @@ class ExcursionsController < ApplicationController
   before_filter :hack_auth, :only => [ :new, :create]
   skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest]
   include SocialStream::Controllers::Objects
+  include HomeHelper
 
   def manifest
     headers['Last-Modified'] = Time.now.httpdate
@@ -115,9 +116,20 @@ class ExcursionsController < ApplicationController
   def search
     headers['Last-Modified'] = Time.now.httpdate
 
-    @found_excursions = Excursion.search params[:q], search_options
+    @found_excursions = if params[:scope].present? and params[:scope] == "like"
+                          subject_excursions search_subject, { :scope => :like, :limit => params[:per_page].to_i } # This WON'T search... it's a scam
+                        else
+                          Excursion.search params[:q], search_options
+                        end
+
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html {
+        if @found_excursions.size == 0 and params[:scope].present? and params[:scope] == "like"
+          render :partial => "excursions/fav_zero_screen"
+        else
+          render :layout => false
+        end
+      }
       format.json { render :json => @found_excursions }
     end
   end
@@ -144,6 +156,7 @@ class ExcursionsController < ApplicationController
   end
 
   def search_subject
+    return current_subject if request.referer.blank?
     @search_subject ||=
       ( Actor.find_by_slug(URI(request.referer).path.split("/")[2]) || current_subject )
   end
@@ -155,7 +168,11 @@ class ExcursionsController < ApplicationController
 
     case params[:scope]
     when "me"
-      { :with => { :author_id => [ search_subject.id ] } }
+      if user_signed_in? and (search_subject == current_subject)
+        { :with => { :author_id => [ search_subject.id ] } }
+      else
+        { :with => { :author_id => [ search_subject.id ], :draft => false } }
+      end
     when "net"
       { :with => { :author_id => search_subject.following_actor_ids, :draft => false } }
     when "other"

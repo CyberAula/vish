@@ -52,10 +52,7 @@
       <div id="ex-3" class="tab-pane">
         <%= render :partial => "excursions/filter", :locals => { :filter_id => "profile-excursion-filter-fav" } %>
         <div id="profile-excursions-fav" class="box-profile-excursion" >
-          <% for excursion in subject_excursions(@user, {:scope => :like}) %>
-            <%= render :partial => "excursions/home",
-                       :locals => { :excursion => excursion} %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="clearfloat"></div>
         <div class="view-all">

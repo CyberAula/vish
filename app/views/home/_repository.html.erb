@@ -53,7 +53,7 @@
     <div id="repo-2" class="tab-pane">
       <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-me"} %>
       <div id="home-resources-me" class=" box-home-repository modal-pivot">
-          <img alt="Loading" class="loading" src="/assets/loading.gif" />
+        <img alt="Loading" class="loading" src="/assets/loading.gif" />
       </div>
       <div class="clearfloat"></div>
       <div class="view-all">
@@ -93,13 +93,7 @@
     <div id="repo-4" class="tab-pane">
       <%= render :partial => "common_documents/home_filter", :locals => {:filter_id => "home-resource-filter-fav"} %>
         <div id="home-resources-fav" class="box-home-repository modal-pivot">
-          <% my_fav_resources = current_subject_resources({:scope => :like, :limit => 6}) %>
-          <% if my_fav_resources.size == 0 %>
-            <%= render :partial => "common_documents/fav_zero_screen" %>
-          <% else %>
-            <%= render :partial => "common_documents/filter_results",
-                         :locals => {:documents => my_fav_resources} %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="view-all">
           <%= link_to(t('view_all'), url_for([current_user, Document]) + "?scope=like", :class => "btn-view-all") %>

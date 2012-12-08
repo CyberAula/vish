@@ -69,21 +69,7 @@
         <%= render :partial => "common_documents/filter", :locals => { :filter_id => "profile-resource-filter-fav" } %>
 
         <div id="profile-resources-fav" class="box-profile-excursion modal-pivot" >
-          <% for document in subject_resources(@user, {:scope => :like}) %>
-            <% if document.is_a? Embed %>
-               <%= render :partial => "embeds/home",
-                          :locals => {:embed => document,
-                                      :div_class => 'content_size'} %>
-            <% elsif document.is_a? Link %>
-               <%= render :partial => "links/home",
-                          :locals => {:link => document,
-                                      :div_class => 'content_size'} %>
-            <% elsif document.is_a? Document %>
-               <%= render :partial => "common_documents/home",
-                          :locals => {:document => document,
-                                      :div_class => 'content_size'} %>
-            <% end %>
-          <% end %>
+          <img alt="Loading" class="loading" src="/assets/loading.gif" />
         </div>
         <div class="clearfloat"></div>
         <div class="view-all">
