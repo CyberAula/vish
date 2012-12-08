@@ -74,9 +74,7 @@ module HomeHelper
 
     # Do not optimize likes. They should go anyways....
     if options[:scope] == :like
-      query = query.map { |a| a.activity_objects.first }
-      query = query.map { |ao| ao.object } if klass.is_a?(Array)
-      return query
+      return query.map { |a| a.direct_object }
     end
 
     # This is the optimization code. It's ugly and *BAD*
