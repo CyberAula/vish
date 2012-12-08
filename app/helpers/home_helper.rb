@@ -58,7 +58,7 @@ module HomeHelper
     end
 
     # WARNING: if klass includes Excursion, well.... just don't do it :)
-    query = query.joins(:excursion).where("excursions.draft == false") if (klass.include?(Excursion)) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
+    query = query.joins(:excursion).where("excursions.draft == '0'") if (klass.include?(Excursion)) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
 
     query = query.order('activity_objects.updated_at DESC')
     query = query.limit(options[:limit]) if options[:limit] > 0
