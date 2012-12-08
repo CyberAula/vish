@@ -57,7 +57,8 @@ module HomeHelper
       query = query.not_authored_by(following_ids)
     end
 
-    query = query.where(:draft => false) if (klass == Excursion) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
+    # WARNING: if klass includes Excursion, well.... just don't do it :)
+    query = query.where(:draft => false) if (klass.include?(Excursion)) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
 
     query = query.order('activity_objects.updated_at DESC')
     query = query.limit(options[:limit]) if options[:limit] > 0
