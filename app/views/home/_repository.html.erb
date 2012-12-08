@@ -64,24 +64,13 @@
 <!--TAB REPOSITORY CONTENT3-->
 
     <div id="repo-3" class="tab-pane">
+      <input type="hidden" name="filter" onkeyup="$('#home-resources-more').load('/resources/recommended');" />
       <div class="profile-repository-recomended-me">
         <%= t('recsys.recommended.resources.explain_html') %>
       </div>
 
-      <!--<div class="pull-right">
-        <div class="btn-gray">
-          <a class="action" href="/documents/new">
-            <i class="icontool16-tool16_arrow_7">
-            </i> 
-            <%= t('resource.upload') %>
-          </a>
-        </div>
-      </div>
-      -->
-
       <div id="home-resources-more" class="box-home-repository modal-pivot">
-        <%= render :partial => "common_documents/filter_results",
-                       :locals => {:documents => current_subject.resource_suggestions(6) } %>
+        <img alt="Loading" class="loading" src="/assets/loading.gif" />
       </div>
       <div class="view-all">
         <%= link_to(t('view_all'), search_path(:type => "resource"), :class => "btn-view-all" ) %>

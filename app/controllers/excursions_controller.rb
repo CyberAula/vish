@@ -20,7 +20,7 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest]
+  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended]
   include SocialStream::Controllers::Objects
   include HomeHelper
 
@@ -132,6 +132,10 @@ class ExcursionsController < ApplicationController
       }
       format.json { render :json => @found_excursions }
     end
+  end
+
+  def recommended
+    render :partial => "excursions/filter_results", :locals => {:excursions => current_subject.excursion_suggestions(4) }
   end
 
   private

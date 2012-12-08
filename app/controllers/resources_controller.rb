@@ -48,6 +48,10 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def recommended
+    render :partial => "common_documents/filter_results", :locals => {:documents => current_subject.resource_suggestions(6) }
+  end
+
   private
   def search_options
     opts = search_scope_options

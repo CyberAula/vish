@@ -20,6 +20,7 @@ Vish::Application.routes.draw do
 
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
+  match 'excursions/recommended' => 'excursions#recommended'
 
   match 'excursions/preview' => 'excursions#preview'
 
@@ -55,6 +56,7 @@ Vish::Application.routes.draw do
   end
 
   match 'resources/search' => 'resources#search'
+  match 'resources/recommended' => 'resources#recommended'
 
   match 'followers/search' => 'followers#search_followers'
   match 'followings/search' => 'followers#search_followings'

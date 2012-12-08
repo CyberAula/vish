@@ -16,7 +16,6 @@
         <%= t('excursion.top') %>
       </a>
     </li>
-    <%# if star == active%>
     <li class="" id="star">
       <a data-toggle="tab" href="#ex-4">
         <%= image_tag "icons/star-MENU-active.png" %>
@@ -65,21 +64,12 @@
 <!--TAB EXCURSION  CONTENT3-->
 
   <div id="ex-3" class="tab-pane">
+    <input type="hidden" name="filter" onkeyup="$('#home-excursions-more').load('/excursions/recommended');" />
     <div class="profile-excursion-recomended-me">
       <%= t('recsys.recommended.excursions.explain_html') %>
     </div>
-<!--<div class="pull-right">
-      <div class="btn-gray">
-        <a class="action" href="/excursions/new">
-          <i class="icontool16-tool16_more">
-          </i>
-          <%= t('options.add') %>
-        </a>
-      </div>
-    </div>-->
     <div id="home-excursions-more" class="box-home-excursion">
-        <%= render :partial => "excursions/filter_results",
-                       :locals => {:excursions => current_subject.excursion_suggestions(4) } %>
+      <img alt="Loading" class="loading" src="/assets/loading.gif" />
     </div>
     <div class="clearfloat"></div>
     <div class="view-all">
