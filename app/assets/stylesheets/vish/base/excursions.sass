@@ -187,33 +187,42 @@
           display: inline-block
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // details excursion 
 .info-excursion
+  @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  @include grid-fluid-offset(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
   #info-notebook
-    @include makeColumn(3,0)
+
 
     .notebook
       display: inline-block
       @include border-radius(15px)
-      width: 300px
+
       .notebook-cabecera
-        background-image: url("notebook/CABECERA.png")
-        background-repeat: no-repeat
-        width: 290px
+
         height: 33px
         display: inline-block
         margin-bottom: -4px
         padding-left: 15px
         padding-top: 10px
-
-      
     .notebook-medio
-      background-image: url("notebook/MEDIO.png")
-      background-repeat: repeat-y
-      width: 290px
-      height: auto
       display: inline-block
-      margin-top: -10px
+
 
       .tittle-notebook
         padding-left: 20px
@@ -221,9 +230,9 @@
         display: inline-block
         float: left
         font-size: 17px
-        margin-bottom: 10px
+
         text-decoration: underline
-        width: 270px
+
       .text-notebook
         font-size: 14px
         padding-left: 30px
@@ -231,19 +240,9 @@
         @incluce ellipsis
         margin-bottom: 10px
         padding-right: 10px
-
-
-
-
   .notebook-pie
-    background-image: url("notebook/PIE.png")
-    background-repeat: no-repeat
-    width: 290px
-    height: 21px
     display: block
     margin-top: -5px
-    width: 290px
-
   .decoration-notebook
     width: 25px
     display: inline-block   
@@ -323,8 +322,30 @@
 
 
 //evaluation
-.evaluate
+#evaluation
+  .title
+    font-family: $thirdFontFamily
+    font-size: 30px
+    color: $gray-vish
+  .google-developers
+    @include box-shadow
+    @include border-radius($radius)
+    background-color: $white
+    display: block
+    float: left
+    height: 196px
+    margin-bottom: 10px
+    margin-top: 10px
+    width: 100%
+  .btn-evalue
+    float: right
+    color: $gray
+    .btn-gray
+      clear: both
+      margin-top: 10px
 
+
+.evaluate
   p
     color: $gray
     a

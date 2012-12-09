@@ -57,7 +57,7 @@
     </ul>
       
     <div class="tab-content">
-        <div id="comment-1" class="tab-pane active row-fluid activity_content">
+        <div id="comment-1" class="tab-pane active activity_content comment-excursion">
         <% unless @excursion.post_activity.blank? %>
           <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity, :logo_size => ':contact' } %>
           <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity  } %>
@@ -89,14 +89,14 @@
           <div class="google-developers">
 
           </div>
-          <div class="">
+          <div class="btn-evalue">
             <%= t('evaluation.contribute') %>
-
-          </div>
+          </br>
+          
 
           <!-- Button to trigger modal -->
           <a href="#myModal" role="button" class="btn-gray" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-           
+           </div>
           <!-- Modal -->
           <%= render :partial => "excursions/excursion_evaluate" %>
 
