@@ -18,7 +18,7 @@
                   <div class="box_basic span12 margin-bottom5">
 
                     <!-----div class="thumbnails"---->
-                       <div class="span3 inline-block">
+                       <div class="span3 inline-block excursion_box">
                           <%= link_to excursion_thumb_for(excursion, 130), excursion %>
                         </div>
                     <!-----/div--->
@@ -38,11 +38,11 @@
                           <span class="green inline size14">
                             <%= excursion.post_activity.likes.count.to_s %>
                           </span>
-                            <img src="/assets/star-MENU-active.png" width="12" height="12">
+                            <img src="/assets/icons/star-MENU-active.png" width="12" height="12">
 
                           <span class="green inline-block size14">
                           <%= excursion.post_activity.comments.count.to_s %>
-                            <img src="/assets/view2.png" width="auto" height="auto">
+                            <img src="/assets/icons/view2.png" width="auto" height="auto">
                           </span>
                           </h3>
                         <%end%>
