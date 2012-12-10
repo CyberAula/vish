@@ -148,3 +148,28 @@
     color: $blue-1
 
 
+//search
+.follower-state 
+  input
+    @include gradient-vertical-three-colors($startColor: #f2fbf6, $midColor: #fafdfc, $colorStop: 50%, $endColor: #e2f7ec)
+    border-bottom: none
+    border-bottom-color: none
+    border-top-style: none
+    -moz-box-shadow: inset 0px 1px 2px $green
+    -webkit-box-shadow: inset 0px 1px 2px $green
+    box-shadow: inset 0px 1px 2px $green
+    color: $green
+    height: 20px
+    width: 90%
+    display: inline-block
+    @include ie7-inline-block()
+    padding: 4px 12px
+    margin-bottom: 0 // For input.btn
+    font-size: $baseFontSize
+    line-height: $baseLineHeight
+    *line-height: $baseLineHeight
+    text-align: center
+    vertical-align: middle
+    cursor: pointer
+    @include border-radius(15px)
+    @include ie7-restore-left-whitespace() // Give IE7 some love

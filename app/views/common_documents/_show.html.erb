@@ -45,7 +45,7 @@
         </li>
       </ul>
       <div class="tab-content ">
-        <div id="comment-1" class="tab-pane active">
+        <div id="comment-1" class="tab-pane active comment-resource">
           <% unless document.post_activity.blank? %>
           <%= render :partial => 'comments/new', :locals => {:activity => document.post_activity} %>
           <%= render :partial => 'activities/comments', :locals => {:activity => document.post_activity, :logo_size => ':contact'} %>

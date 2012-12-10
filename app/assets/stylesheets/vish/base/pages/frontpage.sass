@@ -3,23 +3,26 @@
 
   .logo-frontpage
     @include center-block()
-    background: transparent url(corporative/VISH_frontpage.png) no-repeat center center
-    width: 342px 
-    height: 98px
-    
+    background: transparent url(corporative/ilustration.png) no-repeat center center
+    background-size: 450px
+    width: 450px 
+    height: 225px
+    background-size: 450px auto
+    background-position: -13px -93px
+    margin-top: -55px
   .name-frontpage
+    font-size: 31pt
+    letter-spacing: 5pt
     margin-top: 10px
-    letter-spacing: 3pt
     text-align: center
     color: $gray-vish
     font-family: $fistFontFamily
-    font-size: 28pt
 
 .search-frontpage
   @include makeColumn(12,0)
 
 #cloud_tags
-  margin-top: 90px
+  margin-top: 60px
   font-family: $fistFontFamily
   @include linkGrayVish
   font-weight: lighter
