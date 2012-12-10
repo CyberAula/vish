@@ -78,6 +78,17 @@ es:
     embed: "embed"
     input: "Pega aquí el recurso a insertar"
     name: "embed"
+  evaluation:
+    teaching: "teaching experience results..."
+    contribute: "¿quieres contribuir?"
+    experience: "teaching experience whit this excursion"
+    evaluation: "evalua"
+    phrase1: "bla bla bla bla bla"
+    phrase2: "bla bla bla bla bla"
+    phrase3: "bla bla bla bla bla"
+    phrase4: "bla bla bla bla bla"
+    disagree: "disagree"
+    agree: "agree"
   excursion:
     actions:
       bookmark: "marcardor"      

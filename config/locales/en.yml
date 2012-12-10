@@ -74,6 +74,17 @@ en:
     embed: "embed"
     input: "Paste your embed here"
     name: "embed"
+  evaluation:
+    teaching: "teaching experience results..."
+    contribute: "want to contribute?"
+    evaluation: "evalue it"
+    experience: "teaching experience whit this excursion"
+    phrase1: "bla bla bla bla bla"
+    phrase2: "bla bla bla bla bla"
+    phrase3: "bla bla bla bla bla"
+    phrase4: "bla bla bla bla bla"
+    disagree: "disagree"
+    agree: "agree"
   excursion:
     actions:
       bookmark: "bookmark"

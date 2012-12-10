@@ -18,38 +18,22 @@
     </div>
   <% end %>
   <div class="block">
-    <div class="boxy_gray_message">
-      <div class="form_row leftinline messages_margin span1">
-        <%= label_tag t('mailboxer.form.recipients') %>
-      </div>
-
-      <div class="form_row  ">
-        <%= select_tag :_recipients, "", :class => "required form_tag leftinline margin-message" %>
-  
-      </div>
-
-      <div class="clearfloat"></div>
-
-      <div class="form_row leftinline messages_margin span1">
-        <%= label_tag t('mailboxer.form.subject') %>
-      </div>
-
-      <div class="form_row span7 ">
-        <%= text_field_tag :subject, nil, :class => "required form_tag_message leftinline margin-message" %>
-      </div>
-
+    <%= label_tag t('mailboxer.form.recipients') %>
+    <%= select_tag :_recipients, "", :class => "required form_tag" %>
     <div class="clearfloat"></div>
+    <%= label_tag t('mailboxer.form.subject') %>
+    <%= text_field_tag :subject, nil, :class => "required form_tag_message " %>
+    <div class="clearfloat"></div>
+    <%= label_tag t('mailboxer.form.body') %>
 
-    <div class="form_row leftinline messages_margin span1">
-      <%= label_tag t('mailboxer.form.body') %>
+    <div class="" id="ck_editor">
+      <%= text_area_tag :body, nil, :rows => 6, :cols => 5, :class => "required form_tag  ", :maxlength => 5000 %>
     </div>
-    <div class="form_row span7" id="ck_editor">
-      <%= text_area_tag :body, nil, :rows => 6, :cols => 53, :class => "required form_tag leftinline margin-message", :maxlength => 5000 %>
+
+    <div class="actions ">
+      <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "btn btn-primary" %>
     </div>
-    <div class="actions right">
-      <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "button send offset6" %>
-    </div>
-    </div>
+
   </div>
 
 <% end %>
