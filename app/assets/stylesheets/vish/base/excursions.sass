@@ -204,51 +204,8 @@
 
 // details excursion 
 .info-excursion
-  @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  @include grid-fluid-offset(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  #info-notebook
+  margin-left: 40px
 
-
-    .notebook
-      display: inline-block
-      @include border-radius(15px)
-
-      .notebook-cabecera
-
-        height: 33px
-        display: inline-block
-        margin-bottom: -4px
-        padding-left: 15px
-        padding-top: 10px
-    .notebook-medio
-      display: inline-block
-
-
-      .tittle-notebook
-        padding-left: 20px
-        color: $red-1
-        display: inline-block
-        float: left
-        font-size: 17px
-
-        text-decoration: underline
-
-      .text-notebook
-        font-size: 14px
-        padding-left: 30px
-        color: $gray
-        @incluce ellipsis
-        margin-bottom: 10px
-        padding-right: 10px
-  .notebook-pie
-    display: block
-    margin-top: -5px
-  .decoration-notebook
-    width: 25px
-    display: inline-block   
-    float: left
-    height: auto
-    background-color: #f1f1f1
 
 // excursion show 
 
@@ -324,7 +281,7 @@
 //evaluation
 #evaluation
   .title
-    font-family: $thirdFontFamily
+    font-family: $secondFontFamily
     font-size: 30px
     color: $gray-vish
   .google-developers
@@ -343,6 +300,7 @@
     .btn-gray
       clear: both
       margin-top: 10px
+      float: right
 
 
 .evaluate
@@ -357,7 +315,7 @@
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     label,
       display: inline-block
-      margin-left: 30px
+      margin-left: 23px
       margin-right: 30px
       margin-bottom: -5px
     .value1

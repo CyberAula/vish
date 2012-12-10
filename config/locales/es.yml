@@ -83,12 +83,12 @@ es:
     contribute: "¿quieres contribuir?"
     experience: "teaching experience whit this excursion"
     evaluation: "evalua"
-    phrase1: "bla bla bla bla bla"
-    phrase2: "bla bla bla bla bla"
-    phrase3: "bla bla bla bla bla"
-    phrase4: "bla bla bla bla bla"
-    disagree: "disagree"
-    agree: "agree"
+    phrase1: "¿los alumnos estan motivados con las actividades de la excursion?"
+    phrase2: "¿Contribuye la excursion a la participacion de los estudiantes y a su aprendizaje?"
+    phrase3: "¿Incluyo actividades interdisciplinarias y fueron utiles?"
+    phrase4: "¿Recuririas a esta excursion para tus clases?"
+    disagree: "desacuerdo"
+    agree: "acuerdo"
   excursion:
     actions:
       bookmark: "marcardor"      
@@ -288,6 +288,8 @@ es:
     time_constraint: "fecha de creación"
     type: "tipo"
     video: "vídeos"
+  send:
+    send: "Enviar"
   share: "Enviar"
   site:
     name: "Virtual Science Hub"
