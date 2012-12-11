@@ -1,5 +1,5 @@
 <!--TAB FOLLOW-->
-<div class="tabbable">
+<div class="tabbable filtered-tabs">
   <ul class="nav nav-tabs tabs-followers-home" >
     <li class="active">
       <a data-toggle="tab" href="#follow-1">
@@ -40,7 +40,7 @@
       </div>
       <div class="clearfloat"></div>
       <div class="view-all">
-        <%= link_to(t('view_all'), followings_path, :class => "btn btn-link " ) %>
+        <%= link_to(t('view_all'), followings_path, :class => "btn-view-all" ) %>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
       </div>
       <div class="clearfloat"></div>
       <div class="view-all">
-        <%= link_to(t('view_all'), followers_path, :class => "btn btn-link " ) %>
+        <%= link_to(t('view_all'), followers_path, :class => "btn-view-all" ) %>
       </div>
     </div>
   </div>

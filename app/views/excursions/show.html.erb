@@ -8,6 +8,7 @@
 
 <% javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
 
+
 <div class="tabbable">
   <ul class="nav nav-tabs tabs-excursion-show">
     <li class="active">
@@ -18,7 +19,7 @@
   </ul>
 
   <div class="tab-content">
-    <div id="ex-1" class="tab-pane active margin-left20">
+    <div id="ex-1" class="tab-pane active ">
      <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;>
       </iframe>
     </div>
@@ -37,6 +38,15 @@
           <%= t('comment.title.other') %>
         </a>
       </li>
+
+<!--tab pegagogical-->
+      <li class="">
+        <a data-toggle="tab" href="#evaluation">
+          <%= t('evaluation.contribute') %>
+        </a>
+      </li>
+<!---->
+
     <% if @excursion.has_quiz_results? and user_signed_in? %>
       <li class="">
         <a data-toggle="tab" href="#quiz-results-1">
@@ -47,7 +57,7 @@
     </ul>
       
     <div class="tab-content">
-        <div id="comment-1" class="tab-pane active row-fluid activity_content">
+        <div id="comment-1" class="tab-pane active activity_content comment-excursion">
         <% unless @excursion.post_activity.blank? %>
           <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity, :logo_size => ':contact' } %>
           <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity  } %>
@@ -60,11 +70,39 @@
           <%end%>
          <%end%>
         </div>
+
+
+
+
         <% if @excursion.has_quiz_results? and user_signed_in? %>
-          <div id="quiz-results-1" class="tab-pane row-fluid activity_content">
+          <div id="ex-1" class="tab-pane active ">
             <%= render :partial => 'excursions/quiz_results', :locals => { :excursion => @excursion } %>
           </div>
         <% end %>
+<!--tab evaluation-->
+        <div id="evaluation" class="tab-pane ">
+          
+
+          <div class="title">
+            <%= t('evaluation.teaching') %>
+          </div>
+          <div class="google-developers">
+
+          </div>
+          <div class="btn-evalue">
+            <%= t('evaluation.contribute') %>
+          </br>
+          
+
+          <!-- Button to trigger modal -->
+          <a href="#myModal" role="button" class="btn-gray" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+           </div>
+          <!-- Modal -->
+          <%= render :partial => "excursions/excursion_evaluate" %>
+
+        </div>
+<!---->
+
       </div>
     </div>
   </section>

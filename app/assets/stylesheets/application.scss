@@ -119,7 +119,10 @@
 @import "vish/base/messages";
 
 // links
-@import "vish/base/links";
+@import "vish/base/objects";
+
+// jplayer
+@import "jplayer.blue.monday";
 
 // ----------------------------pages-------------------------
 
@@ -138,10 +141,12 @@
 // search
 @import "vish/base/pages/search";
 
+// profile-edit
+@import "vish/base/pages/profile_edit";
+
+// settings
+@import "vish/base/pages/settings";
 
 
-
-
-
-
-
+// FcbkComplete for new messages
+@import "vish/base/fcbkcomplete_messages";

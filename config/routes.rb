@@ -1,4 +1,6 @@
 Vish::Application.routes.draw do
+  get "rec_sys/los"
+
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   # Blatant redirections
@@ -18,6 +20,7 @@ Vish::Application.routes.draw do
 
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
+  match 'excursions/recommended' => 'excursions#recommended'
 
   match 'excursions/preview' => 'excursions#preview'
 
@@ -53,6 +56,7 @@ Vish::Application.routes.draw do
   end
 
   match 'resources/search' => 'resources#search'
+  match 'resources/recommended' => 'resources#recommended'
 
   match 'followers/search' => 'followers#search_followers'
   match 'followings/search' => 'followers#search_followings'
@@ -76,6 +80,11 @@ Vish::Application.routes.draw do
 
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
+
+  # Get the recommended Learning Objects (LOs) for current user
+  match 'recSys/data' => 'rec_sys#data'
+  match 'recSys/timestamp' => 'rec_sys#timestamp'
+  match 'recSys/onSocialContextGenerated' => 'rec_sys#onSocialContextGenerated'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

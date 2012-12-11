@@ -204,6 +204,7 @@
 
 
 .cleditorMain
+  @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
   @include border-radius($radius)
   @include box-shadow
   border: 1px solid $grayLighter
@@ -224,22 +225,35 @@
   float: left
   
   label
-    margin-left: 20px
+    margin-bottom: 20px
+    @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
     color: $gray
     font-family: $fistFontFamily
     font-size: 20px
-  .tagit
-    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    float: left
+    display: inline-block
+
+  .holder
+    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
     margin-left: -3px
     border: 1px 
     border-style: solid
     border-color: #cccccc
+    @include border-radius($radius)
+    padding: 2px
   input
-    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: inline-block
+    float: left
+  #ck_editor
+    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-left: 15%
+
   .actions
-    float: right
+    float: left
     display: inline-block
     margin-top: 20px
+    @include grid-fluid-offset(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
 .message_space_menu
   display: block

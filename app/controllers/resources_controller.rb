@@ -16,18 +16,28 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class ResourcesController < ApplicationController
+  include HomeHelper
+
   def search
     headers['Last-Modified'] = Time.now.httpdate
 
-    if params[:live].present?
-      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed] } )
+    @found_resources = if params[:scope].present? and params[:scope] == "like"
+      subject_resources search_subject, { :scope => :like, :limit => params[:per_page].to_i } # This WON'T search... it's a scam
+    elsif params[:live].present?
+      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed] } )
     elsif params[:object].present?
-      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc] } )
+      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Embed, Swf, Officedoc] } )
     else
-      @found_resources = ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
+      ThinkingSphinx.search params[:q], search_options.deep_merge!( { :classes => [Document, Embed, Link] } )
     end
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html {
+         if @found_resources.size == 0 and params[:scope].present? and params[:scope] == "like"
+           render :partial => "common_documents/fav_zero_screen"
+         else
+           render :layout => false
+         end
+      }
       format.json {
         if params[:object].present?
           render :partial => 'objects/object_search_result'
@@ -36,6 +46,10 @@ class ResourcesController < ApplicationController
         end
       }
     end
+  end
+
+  def recommended
+    render :partial => "common_documents/filter_results", :locals => {:documents => current_subject.resource_suggestions(6) }
   end
 
   private
@@ -59,6 +73,7 @@ class ResourcesController < ApplicationController
   end
 
   def search_subject
+    return current_subject if request.referer.blank?
     @search_subject ||=
       ( Actor.find_by_slug(URI(request.referer).path.split("/")[2]) || current_subject )
   end

@@ -40,6 +40,12 @@ ul.follow-item
       margin-left: 0px
       diplay: inline-block
       float: left
+      height: 75px
+      a
+        display: inline-block
+        margin-top: 0
+        width: 75px
+
     .info_user
       @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
       diplay: inline-block
@@ -52,6 +58,9 @@ ul.follow-item
         width: 86%
         display: inline-block
         float: left
+        font-family: $secondFontFamily
+        font-size: $tittleFontSize
+        word-wrap: break-word
 
       .action
         display: inline-block
@@ -62,8 +71,8 @@ ul.follow-item
         font-size: 11px
         color: $gray
         padding-left: 10px
-        margin-bottom: -3px
-        margin-top: -5px
+        line-height: 18.5px
+
         a
           color: $blue-1
 
@@ -74,37 +83,13 @@ ul.follow-item
   height: 14px
   margin-top: 3px
   padding: none
-.follower-state 
-  .btn
-    padding-top: 1px
-    a
-      text-shadow: none
-.btn-following
-  @include buttonBackground(#98F398, $green, $white)
-  background-color: $white
-  border-bottom: none
-  border-bottom-color: none
-  border-top-style: none
 
-.btn-unfollow
-  @include buttonBackground($red-1, $red-1, $white)
-  background-color: $white
-  border-bottom: none
-  border-bottom-color: none
-  border-top-style: none
-  a
-    color: $white
-.btn-follow
-  @include buttonBackground(#81B4FE, $blue-1, $red-2)
-  background-color: $white
-  border-bottom: none
-  border-bottom-color: none
-  border-top-style: none
-  a
-    color: $white
 .suggestion-title
-  text-align: right
+  clear: both
   color: $red-1
+  display: inline-block
+  float: right
+  text-align: right
 
 
 

@@ -74,7 +74,7 @@
                   </li>
                   <li class=""><a data-toggle="tab" href="#ex-4"></a>
 
-                    <div class="text-radiobuttons size16"><%= image_tag("star-on.png") %></div>
+                    <div class="text-radiobuttons size16"><%= image_tag("/assets/icons/star-on.png") %></div>
                   </li>
                 </ul>
               </div>
@@ -120,7 +120,7 @@
           </div>
         </div>
         <div id="timeline" class="tab-pane ">
-          <%= render :partial => 'activities/wall', :locals => {:activities => @activities_net, :is_active_wall => true} %>
+          <%= render :partial => 'activities/wall', :locals => {:activities => current_subject.wall(:home).page(params[:page_net]), :is_active_wall => true} %>
         </div>
       </div>
     </article>

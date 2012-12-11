@@ -12,7 +12,7 @@
         <div class="title-object">
           <% if link.callback_url %><a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%> modal-trigger"><% else %><a href="<%= link.url %>" target="_blank"><% end %><%= (link.title.blank? ? link.url : link.title) %></a>
         </div>
-        <p><%= link.description %></p>
+        <p><%= truncate_name(link.description, :length => 120) %></p>
         <p class="details"><%= link_to t('details.msg'), link, :class => "attachment_text_link" %></p>
       </li>
     </ul>
@@ -28,7 +28,7 @@
     });
 }
 </div>
-</div>
+
   <% end %>
 
 

@@ -1,3 +1,6 @@
+
+
+
 .no_search
   color: $red-1
   font-size: 18px
@@ -7,7 +10,7 @@
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
 .title_search
-  color: $red-1
+  color: $gray
   font-size: 18px
 .tabs-search-search
   @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -101,6 +104,7 @@
       .title-resource
         font-size: 14px
         @include ellipsis
+        color: $blue-1
         
       .by
         font-size: 10px
@@ -120,6 +124,26 @@
         display: inline-block
         .verb_like
           display: inline-block
+      ul.single-line-tags
+        margin-left: 10px
+      ul.tagit-suggestions
+        li.tagit-choice
+          @include border-radius(5px)
+          display: inline-block
+          float: left
+          font-family: Helvetica
+          font-size: 13px
+          margin-bottom: 0px
+          margin-right: 5px
+          opacity: 1
+          padding: 0px
+          background-color: transparent
+          a
+            color: $green
+          a:after
+            content: ", "
+
+
 
 
 

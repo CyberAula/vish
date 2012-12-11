@@ -1,12 +1,18 @@
+<div class="clearfloat"></div>
+<div class="line2"></div>
+
+
+
 <div class="block" id="api_key_settings">
-    <div class="header">
-        <div class="header_text">
+
+        <div class="title">
             <%= t('settings.api_key.name')%>
-        	<div class="header_icon_right">
-      			<%= link_to (image_tag('icons/edit_icon.png', :class=>"unborder")),  "javascript:showSettings(\"api_key_settings\");" %>
+        </div>
+        	<div class="action">
+      			<%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"api_key_settings\");" %>
         	</div>
-        </div>        	
-    </div>
+               	
+
     <div class="content settings_content" id="api_key_settings_content" style="display:none;">
         <div class="settings_block">
             <div class="form_row">

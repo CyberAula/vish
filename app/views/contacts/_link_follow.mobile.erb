@@ -1,11 +1,11 @@
 <div class="<%= follow_link_class contact %>">
   <% if contact.sent? %>
     <div class="btn btn-primary">
-      <%= link_to image_tag("phone/unfollow.png", :class =>"imgnoradio"), follower_path(contact), :method => :delete, :remote => true %>
+      <%= link_to image_tag("/assets/phone/unfollow.png", :class =>"imgnoradio"), follower_path(contact), :method => :delete, :remote => true %>
     </div>
   <% else %>
     <div class="btn btn-primary ">
-      <%= link_to image_tag("phone/follow.png", :class =>"imgnoradio"), follower_path(contact), :method => :put, :remote => true %>
+      <%= link_to image_tag("/assets/phone/follow.png", :class =>"imgnoradio"), follower_path(contact), :method => :put, :remote => true %>
     </div>
   <% end %>
 </div>

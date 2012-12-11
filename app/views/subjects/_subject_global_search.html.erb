@@ -23,7 +23,7 @@
       </span>
 
       <% unless subject.tag_list.blank? %>
-      <ul class="tagit-suggestions nomargin single-line-tags">
+      <ul class="tagit-suggestions  single-line-tags">
         <% subject.tag_list.shuffle.each do |tag| %>
         <li class="tagit-choice">
           <%= link_to tag, search_path(:q => tag) %>
@@ -31,7 +31,7 @@
         <% end %>
       </ul>
         <% end %>
-      <div class="btn_follow_search"><%=contact_to(subject) %></div>
+      <div class="margin-left10 follower-state"><%=contact_to(subject) %></div>
 
     </li>
   </ul>

@@ -35,7 +35,7 @@
         height: 70px
         widht: 70px
     .info-resource
-      @include makeColumn (2,0)
+      width: 170px
       margin-left: 0px
       display: inline-block
       padding-left: 10px
@@ -43,14 +43,20 @@
       .title-resource
         font-size: 14px
         @include ellipsis
-        color: $blue-1
+        color: $gray
+        height: 18px
+
       .by
         font-size: 10px
         color: $grayLight
         opacity: 0.6
+
         a
           font-family: $secondFontFamily
           font-size: 16px
+          @include ellipsis
+          width: 170px
+
       .visits
         color: $green-vish
         display: inline-block
@@ -137,10 +143,6 @@
               width: 50px
           input.age
             width: 50px
-
-
-
-
 
         li,
         .tagit-new
@@ -255,14 +257,16 @@
     display: inline-block
     float: left
     font-size: 17px
-    margin-bottom: 10px
+
     text-decoration: underline
     width: 270px
   .text-notebook
     padding-left: 30px
     color: $gray
     @incluce ellipsis
-    margin-bottom: 10px
+    margin-bottom: 5px
+    word-wrap: break-word
+    padding-right: 15px
     .age
       @include makeColumn(1,0)
       @include nomargin-left

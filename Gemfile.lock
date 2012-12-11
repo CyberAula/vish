@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 12020061415f7b4734c6a806d8b0b092eafe79d7
+  revision: 7cdbceda9e808f2bc8c26627acee4a335150ed4b
   branch: vish
   specs:
     social_stream-base (0.24.0)
@@ -174,7 +174,7 @@ GEM
       railties (>= 3.0.0)
     libwebsocket (0.1.5)
       addressable
-    linkser (0.0.12)
+    linkser (0.0.13)
       ging-opengraph (~> 0.0.4)
       nokogiri (>= 1.4.0)
       rake

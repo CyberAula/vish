@@ -44,7 +44,11 @@ module HomeHelper
     #following_ids |= [ subject.actor_id ]
 
     query = klass
-    query = ActivityObject.where(:object_type => klass.map{|t| t.to_s}) if klass.is_a?(Array)
+    if klass.is_a?(Array)
+      query = ActivityObject.where(:object_type => klass.map{|t| t.to_s})
+    else
+      query = query.includes(:activity_object)
+    end
 
     case options[:scope]
     when :me
@@ -53,7 +57,7 @@ module HomeHelper
       query = query.authored_by(following_ids)
     when :like
       query = if klass.is_a?(Array)
-        Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
+        Activity.joins(:activity_objects).includes(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type IN (?)", klass.map{|k| k.to_s})
       else
         Activity.joins(:activity_objects).where({:activity_verb_id => ActivityVerb["like"].id, :author_id => subject.id}).where("activity_objects.object_type = (?)", klass.to_s)
       end
@@ -62,16 +66,23 @@ module HomeHelper
       query = query.not_authored_by(following_ids)
     end
 
-    query = query.where(:draft => false) if (klass == Excursion) and (options[:scope] == :net or options[:scope] == :more or (subject != current_subject and options[:scope] == :me))
+    query = query.where("draft is false") if (klass == Excursion) and (options[:scope] == :net or options[:scope] == :more or (options[:scope] == :me and subject != current_subject))
 
-    query = query.order('updated_at DESC')
+    query = query.order('activity_objects.updated_at DESC')
     query = query.limit(options[:limit]) if options[:limit] > 0
     query = query.offset(options[:offset]) if options[:offset] > 0
 
+    # Do not optimize likes. They should go anyways....
     if options[:scope] == :like
-      query = query.map { |a| a.activity_objects.first }
-      query = query.map { |ao| ao.object } unless klass.is_a?(Array)
+      return query.map { |a| a.direct_object }
     end
+
+    # This is the optimization code. It's ugly and *BAD*
+    query = if klass.is_a?(Array)
+              query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}]) 
+            else
+              query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
+            end
 
     return query.map{|ao| ao.object} if klass.is_a?(Array)
     query

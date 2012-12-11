@@ -29,11 +29,11 @@
         </a>
       </div>
       <span class="visits">
-        <span class="likes like_count_<%= dom_id(link.post_activity) %>">
+        <div class="likes like_count_<%= dom_id(link.post_activity) %>">
           <%=link.post_activity.likes.count.to_s%>
-        </span>
         <div class="verb_like" id="like_<%= dom_id(link.post_activity) %>">
           <%= link_like(link.post_activity)%>
+        </div>
         </div>
       </span>
     </li>

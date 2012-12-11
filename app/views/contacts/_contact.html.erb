@@ -9,11 +9,11 @@
         </a>
       </li>
       <li class="info_user">
-        <h4 class="name">
+        <div class="name">
           <a data-toggle="modal" href="#user-modal-<%= contact.receiver.slug %>" class="user-modal-button-<%= contact.receiver.slug %> contact_link modal-trigger">
               <%= contact.receiver_subject.name %>
           </a>
-        </h4>
+        </div>
         <% if defined? close_button %>
           <a class="action"> 
             <%= link_to(image_tag('icons/close.png'), contact, :method => :delete, :remote => true, :class =>"action" )%>
@@ -27,7 +27,6 @@
         <div class="btn-item-follow">
           <%=contact_to(contact.receiver) %>
         </div>
-
       </li>
     </ul>
 

@@ -30,6 +30,7 @@ class Excursion < ActiveRecord::Base
   define_index do
     activity_object_index
 
+    indexes excursion_type
     has slide_count
     has draft
     has activity_object.like_count, :as => :like_count
@@ -118,6 +119,7 @@ class Excursion < ActiveRecord::Base
     parsed_json = extract_quizzes(parsed_json) # Fill up quiz_id parameters
     self.update_column :json, parsed_json.to_json
 
+    self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
     self.update_column :thumbnail_url, parsed_json["avatar"]
 

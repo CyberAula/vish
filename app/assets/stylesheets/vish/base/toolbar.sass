@@ -43,9 +43,15 @@
 .toolbar_user_name
 	margin-top: 15px
 	font-family: $secondFontFamily
-	font-size: 25px
+	font-size: 20px
 	margin-bottom: 15px
 	display: block
+	float: left
+	@include makeColumn(2,0)
+	margin-left: 0px
+	clear: both
+	word-wrap: break-word
+
 
 .toolbar-btn
 	margin-top: 3px
@@ -90,6 +96,17 @@
 	li
 		margin-top: 5px
 		margin-bottom: 5px
+		color: $blue-1
+		ol
+			margin-left: 10px
+			li
+				a
+					color: $grayLight
+					font-size: 12px
+				a:hover
+					color: $red-1
+				a:active
+					color: $red-1
 
 
 .title_search

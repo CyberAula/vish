@@ -20,8 +20,9 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest]
+  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended]
   include SocialStream::Controllers::Objects
+  include HomeHelper
 
   def manifest
     headers['Last-Modified'] = Time.now.httpdate
@@ -115,11 +116,26 @@ class ExcursionsController < ApplicationController
   def search
     headers['Last-Modified'] = Time.now.httpdate
 
-    @found_excursions = Excursion.search params[:q], search_options
+    @found_excursions = if params[:scope].present? and params[:scope] == "like"
+                          subject_excursions search_subject, { :scope => :like, :limit => params[:per_page].to_i } # This WON'T search... it's a scam
+                        else
+                          Excursion.search params[:q], search_options
+                        end
+
     respond_to do |format|
-      format.html { render :layout => false }
+      format.html {
+        if @found_excursions.size == 0 and params[:scope].present? and params[:scope] == "like"
+          render :partial => "excursions/fav_zero_screen"
+        else
+          render :layout => false
+        end
+      }
       format.json { render :json => @found_excursions }
     end
+  end
+
+  def recommended
+    render :partial => "excursions/filter_results", :locals => {:excursions => current_subject.excursion_suggestions(4) }
   end
 
   private
@@ -127,8 +143,13 @@ class ExcursionsController < ApplicationController
   def search_options
     opts = search_scope_options
 
+    # Allow  me to search only (e.g.) Flashcards
+    opts.deep_merge!({
+      :conditions => { :excursion_type => params[:type] }
+    }) unless params[:type].blank?
+
     # Pagination
-    opts.merge!({
+    opts.deep_merge!({
       :order => :created_at,
       :sort_mode => :desc,
       :per_page => params[:per_page] || 20,
@@ -139,6 +160,7 @@ class ExcursionsController < ApplicationController
   end
 
   def search_subject
+    return current_subject if request.referer.blank?
     @search_subject ||=
       ( Actor.find_by_slug(URI(request.referer).path.split("/")[2]) || current_subject )
   end
@@ -150,7 +172,11 @@ class ExcursionsController < ApplicationController
 
     case params[:scope]
     when "me"
-      { :with => { :author_id => [ search_subject.id ] } }
+      if user_signed_in? and (search_subject == current_subject)
+        { :with => { :author_id => [ search_subject.id ] } }
+      else
+        { :with => { :author_id => [ search_subject.id ], :draft => false } }
+      end
     when "net"
       { :with => { :author_id => search_subject.following_actor_ids, :draft => false } }
     when "other"
