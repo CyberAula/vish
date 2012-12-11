@@ -33,6 +33,11 @@
 
     <body onload="start()" style="display: none" class="loaded">
       <%= yield %>
+      <!-- for Quiz QR code fullScreen  -->
+      <div id='qr_quiz_fullscreen' style='display:none; background-color: white; width: 90%; height: 90%; text-align:center; '>
+      <img class='qr_quiz_fullscreen_img' style='z-index: 99999999; height: 90%; padding:2.5%;'/>
+      <img class='quiz_cancel_full_screen' style='width: 45px; height: 45px; background-image:url("/vishEditor/images/fullscreen_all.png"); background-position: -45px 0px; background-color:transparent; border:none;' />
+    </div>
     </body>
 
 </html>
