@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
 <%= render :partial => 'layouts/head' %>
-<body data-spy="scroll" data-target=".subnav" data-offset="50" class="visible-phone">
-  <header id="navbar">
+<body data-spy="scroll" data-target=".bs-docs-sidebar" data-offset="50" class="visible-phone">
+  <header id="">
     <%= render :partial => "layouts/header" %>
   </header>
-  <div class=" body-height" >
+  <div class="row-fluid" >
 
   <section id="content">
     <%= yield %>
   </section>
-    </div>
+  </div>
 </body>
 </html>
 

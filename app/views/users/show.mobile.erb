@@ -28,7 +28,7 @@
         <div class="pull-right span2 ">
           <%= contact_to(@user) %>
         </div>
-        <div class="margin-top10 size14 ellipsis ">
+        <div class="tag-profile-mobile">
             <% @user.profile.subject.tag_list.each do |t| %>
               <a href="#"><%= t.to_s %></a>
             <% end %>
