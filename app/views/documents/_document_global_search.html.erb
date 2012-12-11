@@ -15,12 +15,11 @@
         </a>
       </div>
 
-
       <div class="by">by
         <a data-toggle="modal" href="#user-modal-<%=document.author.slug %>" class="user-modal-button-<%=document.author.slug %> modal-no-trigger">
           <%= truncate_name(document.author.name, :length => 20)%>
         </a>
-      </span>
+      </div>
 
       <span class="visits">
         <%=document.visit_count.to_s%>

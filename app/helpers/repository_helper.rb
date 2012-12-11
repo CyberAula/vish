@@ -4,6 +4,9 @@ module RepositoryHelper
     return 'icon_repository32-32_link' if document.is_a? Link
     return 'icon_repository32-32_embed' if document.is_a? Embed
     case document.file.url.to_s.split('.').last.downcase
+        
+    when "embed"
+      return 'icon_repository32-32_embed'
     when "pdf"
       return 'icon_repository32-32_pdf'
     when "mathml"  
@@ -55,8 +58,10 @@ module RepositoryHelper
 
   def icon75_class_for(document)
     return 'icon_repository75-75_link' if document.is_a? Link
-    return 'icon_repository75-75_file' if document.is_a? Embed
+    return 'icon_repository75-75_embed' if document.is_a? Embed
     case document.file.url.to_s.split('.').last.downcase
+    when "embed"
+      return 'icon_repository75-75_embed'
     when "pdf"
       return 'icon_repository75-75_pdf'
     when "mathml"  
