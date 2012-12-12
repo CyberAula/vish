@@ -1,10 +1,21 @@
-<div class="row-fluid">
-  <div class="span2 pagination-centered link_white">
-    <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
-  </div>
-  <div class="span10 link_white">
-    <h4><%= link_to truncate_name(document.title, :length => 40), document %></h4>
-    <h5><%=document.visit_count.to_s%> <%= t('follow.views') %></h5>
+<div id="item-search-bar">
+  <div class="thumbnails">
+    <div class="img">
+      <%= link_to  "", document, :class => icon_class_for(document), :alt => document.title %>
+    </div>
+    <div class="info">
+      <div class="title">
+        <%= link_to truncate_name(document.title, :length => 40), document %>
+      </div>
+
+      <div class="autor">
+        <a>
+          <%=document.visit_count.to_s%> 
+        </a>
+        <%= t('follow.views') %>
+      
+      </div>
+    </div>
   </div>
 </div>
 

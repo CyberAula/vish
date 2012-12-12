@@ -72,13 +72,14 @@
 
 #header_search_display a:hover {
   text-decoration: none;
-  font-weight: bold;
+
 }
 #header_search_display ul{
   margin: 0 0 9px 0px;
 }
 #header_search_display  li.warning {
   background: #ff005d !important;
+  z-index: 1050;
   
 }
 #header_search_display  li {
@@ -91,11 +92,14 @@
   background: #6E6E6E;
   color: #fff;
   opacity: 0.96;
+  z-index: 1050;
 }
 
 #header_search_display  li:hover {
-  background: #E6E6E6;
+  background: $gray;
   color: #A1A1A1;
+  opacity:1;
+  z-index: 106010;
 }
 #header_search_display  li:hover a {
   color: #A1A1A1 !important;

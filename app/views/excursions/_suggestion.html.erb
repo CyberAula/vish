@@ -12,11 +12,11 @@
         <div class="title-excursion">
           <%= link_to suggestion.title, suggestion %>
         </div>
-        <% if defined? close_button %>
-          <a class="action"> 
-            <%= link_to(image_tag('icons/close.png'), suggestion, :method => :delete, :remote => true, :class =>"action" )%>
-          </a>
-        <% end %>
+
+        <a class="action"> 
+          <%= link_to(image_tag('icons/close.png') )%>
+        </a>
+
         <p class="by" style="line-height: 110%;">
           <%= truncate suggestion.description, :length => 90 %>
         </p>

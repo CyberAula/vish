@@ -1,10 +1,19 @@
-<div class="row-fluid">
-  <div class="span2 pagination-centered link_white">
-    <%= link_to(image_tag(subject.logo.url(:contact)), subject, :class => "container") %>
-  </div>
-  <div class="span10 link_white">
-    <h4><%= link_to truncate_name(subject.name, :length => 40), subject %></h4>
-    <h5 class="blue-white"><span class="size13"><%=t "#{subject.class.name.underscore}.one"  %></span></h5>
-    <h5><%=t('follow.followers')%>: <%=subject.follower_count%></h5>
+<div id="item-search-bar">
+  <div class="thumbnails">
+    <div class="img">
+    <%= link_to(image_tag(subject.logo.url(:contact)), subject, :class => "") %>
+    </div>
+    <div class="info">
+      <div class="title">
+        <%= link_to truncate_name(subject.name, :length => 40), subject %>
+      </div>
+
+      <div class="by user">
+        <%=t "#{subject.class.name.underscore}.one"  %>
+      </div>
+      <div class="autor">
+        <a><%=t('follow.followers')%></a>: <%=subject.follower_count%>
+      </div>
+    </div>
   </div>
 </div>
