@@ -95,57 +95,29 @@
             margin-left: 0px !important
             display: inline
             margin-top: 5px
+    .headerfront,
+    #headerfront
+      @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: right
+      display: inline-block
+      .Sign-up
+        display: inline-block
+        clear: right
 
-
-
-#headerfront
-  margin-top: 15px
-  @include makeColumn(6,0)
-  float: right
-  display: inline-block
-
-
-  .Sign-up
-    display: inline-block
-      
-    input
-      width: $inputFrontPage
-      margin-right: 15px
-
-  .text_link_gray
-    text-align: right
-    @include linkGrayVish
-
-  .flash
-    @include makeColumn(12,0)
-    display: block
-    float: right
+        input
+          width: $inputFrontPage
+          margin-right: 15px
+      .btn-primary
+        margin-top: -7px
+      a
+        float: right
+        text-align: right
+        @include linkGrayVish
+        color: $grayLight
+        clear: right
+        @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
 //frontpage
-
-#nomargin-left
-  margin-left: -20px
-  
-  .headerfront
-    margin-top: 15px
-    @include makeColumn(6,6)
-
-    .Sign-up
-      display: inline-block
-        
-      input
-        width: $inputFrontPage
-        margin-right: 15px
-
-    .text_link_gray
-      text-align: right
-      @include linkGrayVish
-
-    .flash
-      @include makeColumn(12,0)
-      display: block
-      float: right
-
 
 //nav icons
 
@@ -158,6 +130,7 @@
 
 #header_search-sign-in
   margin-left: 50px
+
 
 
 

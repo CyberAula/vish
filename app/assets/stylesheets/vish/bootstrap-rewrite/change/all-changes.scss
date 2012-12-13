@@ -107,7 +107,7 @@
 .alert {
   @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth);
   font-family: $fistFontFamily;
-  padding: 5px 0px 5px;
+
   margin-bottom: none;
   text-shadow: 0 1px 0 rgba(255,255,255,.5);
   background-color: $warningBackground;
@@ -116,6 +116,7 @@
   color: $warningText;
   font-size: 20px;
   float: right;
+  clear: right;
 }
 .alert h4 {
   margin: 0;
