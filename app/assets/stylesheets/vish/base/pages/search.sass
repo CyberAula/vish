@@ -179,10 +179,11 @@
     @include nomargin-left
     .img
 
-      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: inline-block
       float: left
       img
+
         @include center-block()
         heigth: 45px
         width: 45px
@@ -190,11 +191,10 @@
         margin-top: 3px
       a
         display: inline-block
-        margin-left: 20px
+
     .info
       display: inline-block
       float: left
-      margin-left: 10px
       @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .title
         @include ellipsis

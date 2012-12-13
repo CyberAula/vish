@@ -7,13 +7,17 @@
 // -------------------------
 
 .alert {
-  padding: 8px 35px 8px 14px;
-  margin-bottom: $baseLineHeight;
+  @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth);
+  font-family: $fistFontFamily;
+  padding: 5px 0px 5px;
+  margin-bottom: none;
   text-shadow: 0 1px 0 rgba(255,255,255,.5);
   background-color: $warningBackground;
-  border: 1px solid $warningBorder;
+  border: none;
   @include border-radius($baseBorderRadius);
   color: $warningText;
+  font-size: 20px;
+  float: right;
 }
 .alert h4 {
   margin: 0;
@@ -32,19 +36,19 @@
 // -------------------------
 
 .alert-success {
-  background-color: $successBackground;
-  border-color: $successBorder;
+  background-color: transparent;
+  border-color: none;
   color: $successText;
 }
 .alert-danger,
 .alert-error {
-  background-color: $errorBackground;
-  border-color: $errorBorder;
+  background-color: transparent;
+  border-color: none;
   color: $errorText;
 }
 .alert-info {
-  background-color: $infoBackground;
-  border-color: $infoBorder;
+  background-color: transparent;
+  border-color: none;
   color: $infoText;
 }
 
@@ -53,8 +57,8 @@
 // -------------------------
 
 .alert-block {
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 .alert-block > p,
 .alert-block > ul {
