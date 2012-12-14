@@ -4,8 +4,8 @@
   <div id="headerfront">
     <%= form_for User.new, :as => :user, :url => user_session_path do |f| -%>
     <div class="Sign-up">
-      <%= f.email_field :email, :id => "username" %>
-      <%= f.password_field :password, :id => "password"  %>
+      <%= f.email_field :email, :id => "username", :placeholder => "username" %>
+      <%= f.password_field :password, :id => "password", :placeholder => "password"  %>
     
       
     </div>
