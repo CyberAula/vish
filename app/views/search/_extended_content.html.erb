@@ -1,10 +1,10 @@
 <% params[:page]="1" if params[:page].blank? %>
 <div id="all" class="tab-pane <%= "active" if params[:type].blank? %> modal-pivot">
   <% if @search_result.empty? %>
-<div class="no_search">
-    <%= I18n.t('search.nothing') %>
-</div>
-<% elsif params[:type].blank? %>
+    <div class="no_search">
+      <%= I18n.t('search.nothing') %>
+    </div>
+  <% elsif params[:type].blank? %>
     <% @search_result.each do |res| %>
       <%= render_global_search_for res  %>
     <% end %>
