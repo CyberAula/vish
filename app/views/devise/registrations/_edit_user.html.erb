@@ -5,7 +5,7 @@ $(".user_edit").validate({errorClass: "validation_error"});
   <div class="title">
     <%= t("account.password.change")%>
   </div>
-  <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"password_form\");" , :class => "action"%>
+  <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"password_form\");" , :class => "action" %>
   <div class="content settings_content" id="password_form_content" style="display:none;">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= f.label t('account.password.new'), :class => "text" %>
