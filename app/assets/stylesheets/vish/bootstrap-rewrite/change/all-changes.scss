@@ -79,3 +79,90 @@
     background-position: 0 -32px;
     }
 }
+
+// Inner for background effects
+// Gradient is applied to its own element because overflow visible is not honored by IE when filter is present
+.navbar-inner {
+  min-height: $navbarHeight;
+  padding-left:  none;
+  padding-right: none;
+  background: none;
+  border: none;
+  @include border-radius($baseBorderRadius);
+  box-shadow: none;
+
+  // Prevent floats from breaking the navbar
+  @include clearfix();
+}
+
+
+//
+// Alerts
+// --------------------------------------------------
+
+
+// Base styles
+// -------------------------
+
+.alert {
+  @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth);
+  font-family: $fistFontFamily;
+
+  margin-bottom: none;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  background-color: $warningBackground;
+  border: none;
+  @include border-radius($baseBorderRadius);
+  color: $warningText;
+  font-size: 20px;
+  float: right;
+  clear: right;
+}
+.alert h4 {
+  margin: 0;
+}
+
+// Adjust close link position
+.alert .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  line-height: $baseLineHeight;
+}
+
+
+// Alternate styles
+// -------------------------
+
+.alert-success {
+  background-color: transparent;
+  border-color: none;
+  color: $successText;
+}
+.alert-danger,
+.alert-error {
+  background-color: transparent;
+  border-color: none;
+  color: $errorText;
+}
+.alert-info {
+  background-color: transparent;
+  border-color: none;
+  color: $infoText;
+}
+
+
+// Block alerts
+// -------------------------
+
+.alert-block {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.alert-block > p,
+.alert-block > ul {
+  margin-bottom: 0;
+}
+.alert-block p + p {
+  margin-top: 5px;
+}

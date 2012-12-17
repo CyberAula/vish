@@ -20,21 +20,21 @@
   ) %>
 <%end%>
 
-<section id="" class=" span5  ">
-
-
+<section id="show_document">
 <%= show_view_for document %>
 
 
-<!---------end------------------------->
-<div class="margin-info-coments">
-  <section id="comentss" class="span5">
-    <div id="" class="tabbable  ">
+  <section id="coment-resource">
+    <div class="tabbable">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#comment-1"><%= t('comment.title.other') %></a></li>
+        <li class="active">
+          <a data-toggle="tab" href="#comment-1">
+            <%= t('comment.title.other') %>
+          </a>
+        </li>
       </ul>
       <div class="tab-content ">
-        <div id="comment-1" class="tab-pane active row-fluid activity_content comments-resources">
+        <div id="comment-1" class="tab-pane active comment-resource">
           <% unless document.post_activity.blank? %>
             <%= render :partial => 'comments/new', :locals => { :activity =>  document.post_activity  } %>
             <%= render :partial => 'activities/comments', :locals => { :activity =>  document.post_activity, :logo_size => ':contact' } %>
@@ -50,16 +50,12 @@
         </div>
       </div>
     </div>
-
   </section>
-</div>
+</section>
+
+<section id="info-notebook">
+  <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
 </section>
 
 
 
-
-<section id="" class="span3  ">
-  <div class="margin-info-resources  " >
-    <%= render :partial => "common_documents/document_info", :locals => {:document => document} %>
-  </div>
-</section>

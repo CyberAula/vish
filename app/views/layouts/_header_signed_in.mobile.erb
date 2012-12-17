@@ -1,24 +1,22 @@
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-     <a href="/">
-        <img src="/assets/corporative/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
-      </a>
 
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar collapsed" data-target=".navbar-responsive-collapse" data-toggle="collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a href="/">
+          <img src="/assets/corporative/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
+        </a>
+        <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
+          <input type="text" class="search-query" placeholder="Search">
+        </form>
 
-      <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
-        <input type="text" class="search-query" placeholder="Search">
-      </form>
-   
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <div style="height: 0px;" class="nav-collapse collapse in">
-        <hr class="soften"/>
+        <div class="nav-collapse navbar-responsive-collapse collapse" style="height: 0px;">
           <ul class="nav">
-            <li class="size20 active"><%= link_to current_user.name, current_user%></li>
+            <li class="active"><%= link_to current_user.name, current_user%></li>
             <li><a href="/home"><%= t('home') %></a></li>
             <li><a href="/followers"><%= current_subject.followers.count.to_s + ' ' + t('follow.followers') %></a></li>
             <li><a href="/followings"><%= current_user.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings') %></a></li>
@@ -26,35 +24,23 @@
             <li class="active"><a href="#"><%= t('settings.one') %></a></li>
             <li><a href="/help"><%= t('help').capitalize %></a></li>
             <li class="active"><%= link_to t('sign_out'), destroy_user_session_path, :method => :delete %></li>
-          </ul>
-          <div class="space"></div>
-          <ul class="nav pull-right">
-            <li class="divider-vertical"></li>
-            <li class="">
-              
-              <div class="btn-group  btn-languaje clearfloat">
-                <button data-toggle="dropdown" class="btn dropdown-toggle link_gray ">
-                  <span class="gray-medium"><%= t('lang.title') %></span>
+            <li>
+              <%= t('lang.title') %>
 
-                </button>
-                <ul class="dropdown-menu ">
-                  <% for locale in (I18n.available_locales) -%>
-                    <% next if locale.to_s == "pt" %>
-                    <li class="textonleft unmargin">
-                      <%= link_to image_tag("flags/" + locale.to_s + ".png", :title => locale.to_s, :class => "unborder") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
-                    </li>
-                  <% end -%>
-                </ul>
-              </div>
+                <% for locale in (I18n.available_locales) -%>
+                  <% next if locale.to_s == "pt" %>
+                
+                  <%= link_to image_tag("flags/" + locale.to_s + ".png", :title => locale.to_s, :class => "unborder") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+                
+                <% end -%>
             </li>
             <li><%= link_to t('conditions.other'), '/legal_notice', :target => '_blank' %></li>
             <li class="divider"></li>
             <li>Virtual Science Hub &copy; 2012</li>
-          </ul> 
-        <div class="space"></div>
+          </ul>
+
+
+        </div>
       </div>
     </div>
-  </div><!-- /navbar-inner -->
-</div><!-- /navbar -->
-
-
+  </div>

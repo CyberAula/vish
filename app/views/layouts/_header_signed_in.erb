@@ -1,53 +1,44 @@
-<div class="row">
-  
-  <div id="graphic_identity">
-    <div class="logo-home">
-      <%= link_to(image_tag('corporative/logo.png', :alt => t('site.name')), '/', :class => "brand "); %>
-    </div>
-    <div class="site-name">
-      <%= link_to(t('site.name'), '/', :class => "brand"); %>
-    </div>
-  </div>
+<nav class="navbar">
+  <%= link_to(image_tag('corporative/logo.png', :alt => t('site.name')), '/', :class => "logo-home"); %>
+  <%= link_to(t('site.name'), '/', :class => "site-name"); %>
+  <% if user_signed_in? %>
+  <nav class="navbar-inner">
+    <div class="btn-group">
+      <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+      <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
+      <%= link_to(raw("<i class='iconnav-followers'></i> "),
+                        followings_path,
+                        :class => "btn-header tooltip-header",
+                        :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
+                        :rel => 'tooltip') %>
 
-  <div id="nav-and-search">
-    <% if user_signed_in? %>
-    <div class="btn-toolbar">
-      <div class="btn-group">
-        <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
-        <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
-        <%= link_to(raw("<i class='iconnav-followers'></i> "),
-                      followings_path,
-                      :class => "btn-header tooltip-header",
-                      :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
-                      :rel => 'tooltip') %>
-        <% unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
-        <%= link_to(raw("<i class='iconnav-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
-        <% end %>
-        <%= render :partial => 'layouts/header_dropdown_menu' %>
-      </div>
+      <% unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
+      <%= link_to(raw("<i class='iconnav-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
+      <% end %>
+      <%= render :partial => 'layouts/header_dropdown_menu' %>
     </div>
+
     <div class="profile-toolbar">
-      <%= link_to(image_tag(current_subject.logo.url, :size => "22x22", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "name-img") %>
+      <%= link_to(image_tag(current_subject.logo.url, :size => "22x22", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
       <%= link_to(truncate_name(current_subject.name, :length => 20), current_subject, :class => "name-user") %>
     </div>
-    <%= javascript_tag do %>
-        $(document).ready(function(){
-        $('.tooltip-header').tooltip({ placement: 'top'});
-        });
-    <% end %>
-    <% end %>
-    <% unless controller.class == SearchController %>
-    <div id="header_search-sign-in">
-      <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-large"} %>
-    </div>
-    <% end %>
-  </div>
-</div>
 
-<div class="row">
-  <div id="flash">
-    <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
-  </div>
-</div>
+    <div class="header_search-sign-in">
+      <%= javascript_tag do %>
+            $(document).ready(function(){
+            $('.tooltip-header').tooltip({ placement: 'top'});
+            });
+      <% end %>
+      <% end %>
+      <% unless controller.class == SearchController %>
+        <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-large"} %>
+      <% end %>
+    </div>
+  </nav>
+  <div class="clearfloat"></div>
+   <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+</nav>
+
+
 
 

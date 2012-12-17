@@ -1,14 +1,14 @@
-<div class="row-fluid">
-  <div class="thumbnails span12">
-    <div class="span2 img-excursion-search ">
-      <%= link_to  excursion_thumb_for(excursion, 50), excursion, :class => "img-excursion-search" %>
+<div id="item-search-bar">
+  <div class="thumbnails">
+    <div class="img">
+      <%= link_to  excursion_thumb_for(excursion, 50), excursion, :class => "" %>
     </div>
-    <div class="info-excursion span10">
-      <div class="title-excursion">
-        <%= link_to truncate_name(excursion.title, :length => 40), excursion %>
+    <div class="info">
+      <div class="title">
+        <%= link_to truncate_name(excursion.title, :length => 30), excursion %>
       </div>
-    <% unless excursion.draft %>
-      <div class="by">
+      <% unless excursion.draft %>
+      <div class="by excursion">
         <%=t "#{excursion.class.name.underscore}.one" %>
       </div>   
       <div class="autor">by 

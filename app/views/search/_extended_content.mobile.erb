@@ -1,11 +1,3 @@
-<ul class="nav nav-pills">
-  <li class="active"><a data-toggle="tab" href="#ex-1"></a> <div class="text-radiobuttons ">all</div></li>
-	<li class=""><a data-toggle="tab" href="#ex-2"></a><div class="text-radiobuttons ">excursions</div></li>
-  <li class=""><a data-toggle="tab" href="#ex-3"></a><div class="text-radiobuttons ">users</div></li>
-  <li class=""><a  data-toggle="tab" href="#ex-4"></a><div class="text-radiobuttons ">resources</div></li>
-  <li class=""><a  data-toggle="tab" href="#ex-4"></a><div class="text-radiobuttons ">activity</div></li>
-</ul>
-
 <div id="all" class="tab-pane <%= "active" if params[:type].blank? %>">
   <% if @search_result.empty? %>
     <%= I18n.t('search.nothing') %>

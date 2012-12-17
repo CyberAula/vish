@@ -15,12 +15,11 @@
         </a>
       </div>
 
-
       <div class="by">by
         <a data-toggle="modal" href="#user-modal-<%=document.author.slug %>" class="user-modal-button-<%=document.author.slug %> modal-no-trigger">
           <%= truncate_name(document.author.name, :length => 20)%>
         </a>
-      </span>
+      </div>
 
       <span class="visits">
         <%=document.visit_count.to_s%>
@@ -35,15 +34,13 @@
           </div>
         </div>
       </span>
-      
-        <% unless document.tag_list.blank? %>
-          <ul class="tagit-suggestions nomargin single-line-tags">
-            <% document.tag_list.shuffle.each do |tag| %>
-              <li class="tagit-choice"><%= link_to tag, search_path(:q => tag) %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+      <% unless document.tag_list.blank? %>
+        <ul class="tagit-suggestions nomargin single-line-tags">
+          <% document.tag_list.shuffle.each do |tag| %>
+            <li class="tagit-choice"><%= link_to tag, search_path(:q => tag) %></li>
+          <% end %>
+        </ul>
+      <% end %>
     </li>
   </ul>
 </div>

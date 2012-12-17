@@ -6,7 +6,6 @@
   font-size: 18px
 
 .Search-container
-  @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
 .title_search
@@ -34,16 +33,11 @@
 
 .btn_follow_search
   padding-left: 10px
-
-
-
-
-
 .model_with_details
   @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
   display: inline-block
   margin-bottom: 10px
-  height: 79px
+  height: 85px
   .thumbnails
     li
       margin-bottom: 0px
@@ -166,3 +160,68 @@
     background-color: $gray
     color: $white
 
+//search mini
+
+#item-search-bar
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+  .thumbnails
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    height: 30px
+    display: inline-block
+    float: left
+    @include nomargin-left
+    .img
+
+      @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: inline-block
+      float: left
+      img
+
+        @include center-block()
+        heigth: 40px
+        width: 40px
+        @include border-radius(5px)
+        margin-top: 3px
+      a
+        display: inline-block
+
+    .info
+      display: inline-block
+      float: left
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .title
+        @include ellipsis
+        a
+          font-size: $tittleFontSize
+          color: $white
+          font-family: $secondFontFamily
+        &:hover
+          font-size: $tittleFontSize
+          color: $grayLighter
+          font-family: $secondFontFamily
+
+      .by
+        margin-top: -5px
+        font-size: 12x
+        color: #CDE9FF
+        a
+          font-size: 14px
+          color: #F2FAFF
+          font-family: $fistFontFamily
+      .excursion
+        color: #CDE9FF
+      .post
+        color: #d2f3e1
+      .user
+        color: #fec1d8
+
+
+
+      .autor
+        margin-top: -5px
+        font-size: 12px
+        a
+          font-size: 14px
+          color: #CDE9FF
+          font-family: $fistFontFamily

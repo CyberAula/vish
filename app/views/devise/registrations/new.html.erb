@@ -44,8 +44,7 @@
             </label>
 
             <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
-  				  <!-- Tags -->
-  		      <!-- Preload tags -->
+
             <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
             <ul id="preloadTagList" style="display:none">
               <%@tags.each do |tag| %>

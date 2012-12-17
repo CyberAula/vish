@@ -25,7 +25,7 @@
         <div class="span9 padding_10">
           <div class="size22 ellipsis"><%= profile_or_current_subject.name %></div>
 
-          <div class="margin-top10 size14 ellipsis ">
+          <div class="tag-profile-mobile">
             <% profile_or_current_subject.tag_list.each do |t| %>
               <a href="#"><%= t.to_s %></a>
             <% end %>

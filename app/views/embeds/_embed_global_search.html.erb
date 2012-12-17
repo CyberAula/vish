@@ -23,15 +23,19 @@
 
           <span class="visits">
             <%=embed.visit_count.to_s%>
-          </span> 
+          <a>
           <%= t("follow.views") %>
            / 
-           <span class="likes like_count_<%= dom_id(embed.post_activity) %>">
+           </a>
+           <div class="likes like_count_<%= dom_id(embed.post_activity) %>">
             <%=embed.post_activity.likes.count.to_s%>
-          </span>
-          <div class="verb_like" id="like_<%= dom_id(embed.post_activity) %>">
-            <%= link_like(embed.post_activity)%>
+          
+            <div class="verb_like" id="like_<%= dom_id(embed.post_activity) %>">
+              <%= link_like(embed.post_activity)%>
+            </div>
           </div>
+        </span> 
+
 
         <% unless embed.tag_list.blank? %>
           <ul class="tagit-suggestions nomargin single-line-tags">
@@ -45,3 +49,6 @@
   </ul>
 </div>
 
+
+
+   

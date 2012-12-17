@@ -238,7 +238,7 @@ Vish.Wall = (function(V, $, undefined){
 
   var modalLikeBtn = function(signed_in, activity_id, is_fav){
     if(signed_in) {
-      return '<div class="btn-gray"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/assets/star-'+ (is_fav?'on':'off') +'.png" /></a></div></div>';
+      return '<div class="btn-gray"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/icons/star-'+ (is_fav?'on':'off') +'.png" /></a></div></div>';
     } else {
       return ""; /* TODO: add button that leads to login? */
     }
@@ -276,7 +276,7 @@ Vish.Wall = (function(V, $, undefined){
         var2= '';
         var3= '';
       }
-      return $('<div class="' + var1 +  ' ajuste modal hide' + '" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" <div class="' + var2 +  ' modal-body text-center' + '">'+ modalPayload(klass, id) +'</div><div id="' + klass + '-footer-' + id + '"    <div class="' + var3 +  ' modal-footer' + '">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="pull-right">' + modalNavBtns() + '<a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="' + var1 +  ' ajuste modal hide' + '" id="' + klass + '-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + title + '</h3></div><div id="'+klass+'-modal-body-'+id+'" <div class="' + var2 +  ' modal-body text-center' + '">'+ modalPayload(klass, id) +'</div><div id="' + klass + '-footer-' + id + '"    <div class="' + var3 +  ' modal-footer' + '">' + modalLikeBtn(signed_in, activity_id, is_fav) + '</div><div class="btn-modal-footer">' + modalNavBtns() + '<a href="#" class="btn btn-danger ' + klass + '-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/' + klass + 's/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 
@@ -285,7 +285,7 @@ Vish.Wall = (function(V, $, undefined){
     if (modal.length) {
       return "";
     } else {
-      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center"><img alt="Loading" class="loading" src="/assets/loading.gif" /></div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="pull-right">' + modalNavBtns() + '<a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
+      return $('<div class="modal hide" id="user-modal-' + id + '"><div class="modal-header"><h3 class="text-center">' + name + '</h3></div><div id="user-modal-body-'+id+'" class="modal-body text-center"><img alt="Loading" class="loading" src="/assets/loading.gif" /></div><div class="modal-footer"><div class="pull-left">' + modalFollowBtn(signed_in, contact_link) + '</div><div class="btn-modal-footer">' + modalNavBtns() + '<a href="#" class="btn btn-danger user-modal-close-' + id + '" data-dismiss="modal">'+ I18n.t('close') +'</a><a href="/users/' + id + '" class="btn btn-success">' + I18n.t('details.msg') + '</a></div></div></div>').appendTo($('body'));
     }
   }
 
