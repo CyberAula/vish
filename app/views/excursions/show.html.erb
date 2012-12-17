@@ -20,7 +20,7 @@
 
   <div class="tab-content">
     <div id="ex-1" class="tab-pane active ">
-     <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;>
+     <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
       </iframe>
     </div>
       <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion, :shortURL => shortURL} %>
