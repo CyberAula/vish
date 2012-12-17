@@ -1,89 +1,36 @@
 <% content_for :javascript do %>
 $(".user_edit").validate({errorClass: "validation_error"});
 <%end%>
-
-<div class="clearfloat"></div>
-
-
-<div class="block" id="password_form">
-
-    <div class="title">
-      <%= t("account.password.change")%>
-    </div>
-    <div class="action">
-      <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"password_form\");" %>
-    </div>      	
-
-
+<div class="setting-box" id="password_form">
+  <div class="title">
+    <%= t("account.password.change")%>
+  </div>
+  <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"password_form\");" , :class => "action"%>
   <div class="content settings_content" id="password_form_content" style="display:none;">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-    <div class="form_row">
-      <div class="form_label">
-        <%= f.label t('account.password.new') %>
-      </div>
-      <div class="form_field">
-        <%= f.password_field :password, :class => "form_tag" %>
-      </div>
-    </div>
-    <div class="form_row">
-      <div class="form_label">
-        <%= f.label t('account.password.retype') %>
-      </div>
-      <div class="form_field">
-        <%= f.password_field :password_confirmation, :class => "form_tag" %>
-      </div>
-    </div>
-    <div class="form_row">
-      <div class="form_label">
-        <%= f.label :current_password %>
-      </div>
-      <div class="form_field">
-        <%= f.password_field :current_password, :class => "form_tag" %>
-      </div>
-    </div>
-    <div class="form_row space_center">
-      <%= f.submit t('button.update'), :class => "button" %>
-    </div>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= f.label t('account.password.new'), :class => "text" %>
+    <%= f.password_field :password, :class => "input_settings" %>
+    <%= f.label t('account.password.retype'), :class => "text"  %>
+    <%= f.password_field :password_confirmation, :class => "input_settings" %>
+    <%= f.label :current_password, :class => "text"  %>
+    <%= f.password_field :current_password, :class => "input_settings" %>
+    <%= f.submit t('button.update'), :class => "btn btn-primary" %>
     <% end%>
   </div>
 </div>
 
-
-<div class="clearfloat"></div>
-<div class="line2"></div>
-
-<div class="block" id="email_form">
-
-    <div class="title">
-      <%= t("account.email.change")%>
-    </div> 
-	  <div class="action">
-      	<%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"email_form\");" %>
-    </div>
-       	
-
+<div class="setting-box" id="email_form">
+  <div class="title">
+    <%= t("account.email.change")%>
+  </div> 
+  <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"email_form\");" , :class => "action" %>
   <div class="content settings_content" id="email_form_content" style="display:none;">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-    <div class="form_row">
-      <div class="form_label">
-        <%= f.label :email %>
-      </div>
-      <div class="form_field">
-        <%= f.email_field :email, :class => "required form_tag" %>
-      </div>
-    </div>
-    <div class="form_row">
-      <div class="form_label">
-        <%= f.label :current_password %>
-      </div>
-      <div class="form_field">
-        <%= f.password_field :current_password, :class => "required form_tag" %>
-      </div>
-    </div>
-    <div class="form_row space_center">
-      <%= f.submit t('button.update'), :class => "button" %>
-    </div>
-    <% end%>
+      <%= f.label :email, :class => "text" %>
+      <%= f.email_field :email, :class => "input_settings" %>
+      <%= f.label :current_password, :class => "text" %>
+      <%= f.password_field :current_password, :class => "input_settings" %>
+      <%= f.submit t('button.update'), :class => "btn-primary" %>
+   <% end%>
   </div>
 </div>
-

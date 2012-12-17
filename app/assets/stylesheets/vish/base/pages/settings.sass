@@ -1,11 +1,21 @@
+.setting-box
+  display: block
 #api_key_settings,
 #language_settings,
 #cancel_account,
 #notifications_settings,
 #email_form,
 #password_form
-
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  border-bottom: 1px solid $gray-vish
+  display: block
+  margin-left: auto
+  margin-right: auto
+  width: 100%
+  margin-top: 10px
+  margin-bottom: 10px
+  float: left
+
   .title
     @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
     color: $blue-1
@@ -13,12 +23,30 @@
     display: inline-block
     float: left
     font-family: $fistFontFamily
+    margin-bottom: 10px
 
   .action
     float: right
     @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: inline-block
     float: left
+  .content
+    label
+      float: left
+      display: inline-block
+    .text
+      color: $gray
+      @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    
+      
+    input.input_settings
+      @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .btn-primary
+      float: right
+      margin-right: 35px
+      margin-bottom: 5px
+      margin-top: 1px
+
 #cancel_account
   .title
     color: $red-1
