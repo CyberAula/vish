@@ -7,7 +7,7 @@
   <% end %>
   <div class="content field_profile" id="tags_info_briefing">
     <% if @profile.subject.tag_list.count > 0 %>
-      <%= @profile.subject.tag_list %>
+      <small><%= @profile.subject.tag_list %></small>
     <% else %>
     <div id="field_empty">
       <%= t('profile.empty') %>
