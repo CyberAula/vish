@@ -1,160 +1,59 @@
-<div class="clearfloat"></div>
-<div class="line2"></div>
-<div id="contact_info">
+<div class="setting-box" id="contact_info">
   <div class="title">
     <%= t('profile.contact') %>
   </div>
   <% if is_owner? %>
-  <div class="action">
-    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"contact_info\");" %>
-  </div>
+  <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"contact_info\");", :class => "action" %>
   <% end %>
-
-
-  <div id="contact_info_briefing">
-
+  <div class="content">
     <% if !is_contact_empty? %>
-
-      <div class="sub-block">
-
-          <% if @profile.phone? %>
-
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.phone') %>
-              </div>
-              <div class="field_profile">
-                <%= h @profile.phone %>
-              </div>
-            </div>
-
-          <% end %>
-          <% if @profile.mobile? %>
-            
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.mobile') %>
-              </div>
-              <div class="field_profile">
-                <%= h @profile.mobile %>
-              </div>
-            </div>
-
-          <% end %>
-          <% if @profile.fax? %>
-
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.fax') %>
-              </div>
-              <div class="field_profile">
-                <%= h @profile.fax %>
-              </div>
-            </div>
-
-          <% end %>
-          <% if @profile.address? %>
-            
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.address') %>
-              </div>
-              <div class="field_profile">
-                <%= h @profile.address %>
-              </div>
-            </div>
-
-          <% end %>
-          <% if @profile.website? %>
-            
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.website') %>
-              </div>
-              <div class="field_profile">
-                <a href="<%= h @profile.website %>"><%= h @profile.website %></a>
-              </div>
-            
-            </div>
-          <% end %>
-        </div>
-
-      <% elsif is_owner? %>
-
-        <div id="field_empty">
+    <% if @profile.phone? %>
+      <%= t('profile.phone') %>
+      <%= h @profile.phone %>
+    <% end %>
+    <% if @profile.mobile? %>
+      <%= t('profile.mobile') %>
+      <%= h @profile.mobile %>
+    <% end %>
+    <% if @profile.fax? %>
+      <%= t('profile.fax')%>
+      <%= h @profile.fax %>
+    <% end %>
+    <% if @profile.address? %>
+      <%= t('profile.address') %>
+      <%= h @profile.address %>
+    <% end %>
+    <% if @profile.website? %>
+      <%= t('profile.website') %>
+      <a href="<%= h @profile.website %>"><%= h @profile.website %></a>
+    <% end %>
+    <% elsif is_owner? %>
+      <div id="field_empty">
         <%= t('profile.empty') %>
-        </div>
-
-      <% end %>
-    </div>
-
-
-
-    <% if is_owner? %>
-
-      <div class="content settings_content boxy_white" id="contact_info_content" style="display:none;">
-        <div class="field_profile">
-          <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
-            <%= f.fields_for :actor do |actor_form| %>
-              <div class="form_row">
-              <div class="row padding_left">
-              <div class="space_center"></div>
-              <div class="title_sub_profile">
-              <%= f.label t('profile.phone') %>
-              </div>
-              <div class="form_field">
-              <%= f.text_field :phone, :class => "phone form_tag" %>
-              </div>
-              <div class="form_row">
-              <div class="title_sub_profile">
-              <%= f.label t('profile.mobile') %>
-              </div>
-              <div class="form_field">
-              <%= f.text_field :mobile, :class => "phone form_tag" %>
-              </div>
-              </div>
-              <div class="form_row">
-              <div class="title_sub_profile">
-              <%= f.label t('profile.fax') %>
-              </div>
-              <div class="form_field">
-              <%= f.text_field :fax, :class => "phone form_tag" %>
-              </div>
-              </div>
-              <div class="form_row">
-              <div class="title_sub_profile">
-              <%= f.label t('profile.address') %>
-              </div>
-              <div class="form_field">
-              <%= f.text_field :address, :class => "form_tag" %>
-              </div>
-              </div>
-              <div class="form_row">
-              <div class="title_sub_profile">
-              <%= actor_form.label t('profile.email') %>
-              </div>
-              <div class="form_field">
-              <%= actor_form.text_field :email, :class => "email form_tag" %>
-              </div>
-              </div>
-              <div class="form_row">
-              <div class="title_sub_profile">
-              <%= f.label t('profile.website') %>
-              </div>
-              <div class="form_field">
-              <%= f.text_field :website, :class => "url form_tag" %>
-              </div>
-              <div class="space_center"></div>
-              </div>
-              </div>
-            <% end %>
-            <%= f.submit t('button.update'), :class => "btn btn-primary" %>
-          <% end %>
-        </div>
       </div>
     <% end %>
   </div>
-
+  <% if is_owner? %>
+    <div class="content " id="contact_info_content" style="display:none;">
+      <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
+        <%= f.fields_for :actor do |actor_form| %>
+        <%= f.label t('profile.phone'), :class => "text" %>
+        <%= f.text_field :phone, :class => "input_settings" %>
+        <%= f.label t('profile.mobile'), :class => "text" %>
+        <%= f.text_field :mobile, :class => "input_settings" %>
+        <%= f.label t('profile.fax'), :class => "text" %>
+        <%= f.text_field :fax, :class => "input_settings" %>
+        <%= f.label t('profile.address'), :class => "text" %>
+        <%= f.text_field :address, :class => "input_settings" %>
+        <%= actor_form.label t('profile.email'), :class => "text" %>
+        <%= actor_form.text_field :email, :class => "input_settings" %>
+        <%= f.label t('profile.website'), :class => "text" %>
+        <%= f.text_field :website, :class => "input_settings" %>
+      <% end %>
+      <%= f.submit t('button.update'), :class => "btn btn-primary" %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 
