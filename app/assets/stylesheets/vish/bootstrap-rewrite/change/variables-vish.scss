@@ -31,10 +31,11 @@ $linkColorHover:        $gray ;
 
 // Typography
 // -------------------------
+
 $fistFontFamily:        DsignesLight ;
 $secondFontFamily:      DsignesRegular ;
 $thirdFontFamily:       DsignesBold ;             
-$sansFontFamily:        Helvetica, Arial, sans-serif !default;
+$sansFontFamily:        "Arial" Helvetica, Arial, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 

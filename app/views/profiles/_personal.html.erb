@@ -1,148 +1,76 @@
-<div class="clearfloat"></div>
-<div class="line2"></div>
-<div id="profile_info">
+<div class="setting-box" id="tags_info">
   <div class="title">
     <%= t('profile.' + @profile.subject.class.to_s.downcase + '.info') %>
   </div>
-      <% if is_owner? %>
-  <div class="action">
-    <%= link_to (image_tag('icons/edit_icon.png', :class => "imgnoradio")), "javascript:showSettings(\"profile_info\");" %>
-  </div>
+  <% if is_owner? %>
+  <%= link_to (image_tag('icons/edit_icon.png', :class => "imgnoradio")), "javascript:showSettings(\"profile_info\");", :class => "action" %>
+  <% end %>
+  <div class="content" id="profile_info_briefing">
+    <% if !is_personal_empty? %>
+
+      <% if @profile.organization? %>
+        <%= f.label t('profile.organization'), :class => "text"  %>
+        <%= h @profile.organization %>
+      <% end %>
+      
+      <% if @profile.birthday? %>
+        <%= f.label t('profile.' + @profile.subject.class.to_s.downcase + '.birthday'), :class => "text"   %>:
+        <%= h I18n.l @profile.birthday, :format => :long %>
       <% end %>
 
-  <div class="row span6 boxy_white">
+      <% if @profile.subject.class.eql?(User) %>
+        <%= f.label t('profile.age'), :class => "text" %>:
+        <%= h @profile.age %>
+      <% end %>
 
-    <div class="content settings_briefing" id="profile_info_briefing">
-      <% if !is_personal_empty? %>
-        <div class="sub-block">
-          <% if @profile.organization? %>
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.organization') %>
-              </div>
-              <div class="field_profile">
-                <%= h @profile.organization %>
-              </div>
-            </div>
-          <% end %>
-          <% if @profile.birthday? %>
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.' + @profile.subject.class.to_s.downcase + '.birthday') %>:
-              </div>
-              <div class="field_profile">
-                <%= h I18n.l @profile.birthday, :format => :long %>
-              </div>
-            </div>
-            <% if @profile.subject.class.eql?(User) %>
-              <div class="row">
-                <div class="title_sub_profile">
-                  <%= t('profile.age') %>:
-                </div>
-                <div class="field_profile">
-                  <%= h @profile.age %>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-          <% if @profile.city? %>
-            <div class="row">
-              <div class="title_sub_profile">
-                <%= t('profile.actualcity') %>:
-              </div>
-              <div class="field_profile">
-                <%= h @profile.city %>
-                <% if @profile.country? %>
-                  , <%= @profile.country %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-          <% if @profile.description? %>
-            <div class="row">
-              <div class="title_sub_profile ">
-                <%= t('profile.' + @profile.subject.class.to_s.downcase + '.about') %>:
-              </div>
-              <div class="field_profile word-break">
-                <%= h @profile.description %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+      <% if @profile.city? %>
+        <%= f.label t('profile.actualcity') , :class => "text" %>:
+        <%= h @profile.city %>
+      <% end %>
+
+      <% if @profile.country? %>
+        , <%= @profile.country %>
+      <% end %>
+
+      <% if @profile.description? %>
+        <%= f.label t('profile.' + @profile.subject.class.to_s.downcase + '.about'), :class => "text" %>:
+        <%= h @profile.description %>
+      <% end %>
+
       <% elsif is_owner? %>
         <div id="field_empty">
           <%= t('profile.empty') %>
         </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
+
     <% if is_owner? %>
       <div class="content settings_content" id="profile_info_content" style="display:none;">
         <div class="field_profile">
           <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
             <%= f.fields_for :actor do |actor_form| %>
-              <div class="block">
-                <div class="form_row">
-                  <div class="title_sub_profile">
-                    <%= f.label t('actor.name') %>
-                    <span class="needed"></span>
-                  </div>
-                  <div class="form_field">
-                    <%= actor_form.text_field :name, :class => "required form_tag" %>
-                  </div>
-                </div>
-                <div class="form_row">
-                  <div class="title_sub_profile">
-                    <%= f.label t('profile.organization') %>
-                  </div>
-                  <div class="form_field">
-                    <%= f.text_field :organization, :class => "form_tag" %>
-                  </div>
-                  <div class="space_center"></div>
-                </div>
-                <div class="form_row">
-                  <div class="title_sub_profile">
-                    <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday') %>
-                  </div>
-                  <div class="form_field" id="form_select">
-                    <%= date_select "profile", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
-                  </div>
-                  <div class="form_row">
-                    <div class="title_sub_profile">
-                      <%= f.label t('profile.actualcity') %>
-                    </div>
-                    <div class="form_field">
-                      <%= f.text_field :city, :class => "form_tag" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="form_row">
-                  <div class="title_sub_profile">
-                    <%= f.label t('profile.country') %>
-                  </div>
-                  <div class="form_field">
-                    <%= f.text_field :country, :class => "form_tag" %>
-                  </div>
-                </div>
-                <div class="form_row">
-                  <div class="title_sub_profile">
-                    <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.about') %>
-                  </div>
-                </div>
-                <div class="form_row ">
-                  <%= f.text_area :description, :maxlength => 200, :rows => 10, :class => "form_tag_long" %>
-                </div>
-                <div class="form_row needed"><%= t('required') %></div>
-              </div>
-
-            <% end %>
-            <%= f.submit t('button.update'), :class => "btn btn-primary pull-right" %>
-          <% end %>
+            <%= f.label t('actor.name'), :class => "text" %>
+            <span class="needed"></span>
+            <%= actor_form.text_field :name, :class => "input_settings" %>
+            <%= f.label t('profile.organization'), :class => "text" %>
+            <%= f.text_field :organization, :class => "input_settings" %>
+            <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday'), :class => "text" %>
+            <%= date_select "profile", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
+            <%= f.label t('profile.actualcity'), :class => "text" %>
+            <%= f.text_field :city, :class => "input_settings" %>
+            <%= f.label t('profile.country'), :class => "text" %>
+            <%= f.text_field :country, :class => "input_settings" %>
+            <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.about'), :class => "text" %>
+            <%= f.text_area :description, :maxlength => 500, :rows => 5, :class => "input_settings" %>
+            <div class="needed"><%= t('required') %></div>
         </div>
-      </div>
-    <% end %>
-
-  </div>
+        <% end %>
+        <%= f.submit t('button.update'), :class => "btn btn-primary" %>
+        <% end %>
+    </div>
+  <% end %>
 </div>
+    
 
 
 

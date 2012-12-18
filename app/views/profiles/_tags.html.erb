@@ -1,72 +1,47 @@
-<div class="clearfloat"></div>
-<div class="line2"></div>
-<div id="tags_info">
+<div class="setting-box" id="password_form">
   <div class="title">
     <%= t('profile.tags.other') %>
   </div>
-    <% if is_owner? %>
-  <div class="action">
-    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"tags_info\");" %>
-  </div>
+  <% if is_owner? %>
+    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"tags_info\");", :class => "action"  %>
   <% end %>
-
-  <div class=" span6 boxy_white">
-
-    <div class="content field_profile" id="tags_info_briefing">
-
-
-        <% if @profile.subject.tag_list.count > 0 %>
-
-          <%= @profile.subject.tag_list %>
-
-        <% else %>
-
-          <div id="field_empty">
-            <%= t('profile.empty') %>
-          </div>
-
-        <% end %>
-
-
-
-
-
+  <div class="content field_profile" id="tags_info_briefing">
+    <% if @profile.subject.tag_list.count > 0 %>
+      <%= @profile.subject.tag_list %>
+    <% else %>
+    <div id="field_empty">
+      <%= t('profile.empty') %>
     </div>
-    <% if is_owner? %>
-      <div class="content settings_content" id="tags_info_content" style="display:none;">
-        <div class="field_profile">
-        <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
-          <div class="block">
-            <%= f.fields_for :actor do |actor_form| %>
-              <div class="form_row">
-                 <!-- Tags -->
-                 <!-- Preload tags -->
-                 <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
-                 <ul id="preloadTagList" style="display:none">
-                   <%@tags.each do |tag| %>
-                      <li><%=tag.name%></li>
-                   <%end%>
-                 </ul>
-
-                 <div class="control-group">
-                    <div class="controls">
-                       <%= actor_form.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
-                       <div class="tagBoxNew span5">
-                          <ul class="tagList"></ul>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-            <% end %>
-            <%= f.submit t('button.update'), :class => "btn btn-primary", :id => "submit_update_tags_button" %>
-          </div>
-        <% end %>
-        </div>
-      </div>
     <% end %>
- </div>
   </div>
+  <% if is_owner? %>
+    <div class="content settings_content" id="tags_info_content" style="display:none;">
+      <%= form_for(@profile, :url => [current_subject, :profile], :remote => false) do |f| %>
+        <%= f.fields_for :actor do |actor_form| %>
+        <!-- Tags -->
+        <!-- Preload tags -->
+        <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+        <ul id="preloadTagList" style="display:none">
+          <%@tags.each do |tag| %>
+          <li><%=tag.name%></li>
+          <%end%>
+        </ul>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= actor_form.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
+            <div class="tagBoxNew ">
+              <ul class="tagList"></ul>
+            </div>
+          </div>
+        </div>
+        <% end %>
+          <%= f.submit t('button.update'), :class => "btn btn-primary", :id => "submit_update_tags_button" %>
+      <% end %>
+    </div>
 </div>
+<% end %>
+
 <%= content_for :javascript do %>
   $(document).ready(function() {
     var tagList = $(".tagList");
