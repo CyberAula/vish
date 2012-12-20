@@ -34,10 +34,11 @@
 }
 
 #toolbar_element {
-    padding-right: 20px;
-    padding-left: 30px;
+    padding-right: 5px;
+    padding-left: 5px;
     min-width: 425px;
     text-align: left;
+    max-width: 620px;
 }
 
 
@@ -59,3 +60,5 @@
   border: none;
   margin-bottom: 2px;
 }
+
+

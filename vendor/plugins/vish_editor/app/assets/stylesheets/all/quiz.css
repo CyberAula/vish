@@ -80,12 +80,8 @@ height: 100%;
     margin-top: 1.5%;
     width: 94%;
 }
-
-.li_mch_options_in_zone > input  {
-    float: left;
-}
-
-.li_mch_options_in_zone > span{
+/*.li_mch_options_in_zone > span{ */
+.quiz_option_index {
     color: #000000;
     display: inline-block;
     font-size: 1.1em;
@@ -93,6 +89,11 @@ height: 100%;
     float: left;
     width: 4%;
     padding: 0.5%;
+}
+
+.mc_radio {
+    float: left;
+    display: inline-block;
 }
 
 .multiplechoice_option_in_zone { 
@@ -116,6 +117,9 @@ height: 100%;
     display:inline-block;
     position: relative;
     text-align: left;
+
+}
+.option_in_stats {
 
 }
 
@@ -517,7 +521,7 @@ span.mcChoiceSpan{
     
     }
 
-.url_share {
+.url_share_container {
     width: 100%;
     height: 100%;   
     text-align:center;
@@ -526,7 +530,7 @@ span.mcChoiceSpan{
     text-decoration: none;
 }
 
-.url_share > span {
+.url_share_container > span {
     background-color: #FFFFFF;
     border-radius: 16px 16px 16px 16px;
     left: 0;
@@ -636,7 +640,7 @@ span.mcChoiceSpan{
 
 
 .resized_fancybox_for_stats {
-    width: 100%;
+    width: 94%;
 }
 
 .quiz_session_body{
@@ -653,9 +657,7 @@ span.mcChoiceSpan{
 }
 
 .qr_quiz_image {
-    height: 60%;
-    width: 60%;
-
+   width: 70%;
 }
 
 .qr_background {
@@ -684,23 +686,23 @@ span.mcChoiceSpan{
 }
 /*TODO change class name to start button and remove anoothers styles above*/
 .quiz_session_start_button, .quiz_session_stop_button, .quiz_session_options_button, .quiz_send_vote_button {
-    background-color: #EEEEEE;
-    border: 1px solid #CBCBCB;
-    border-radius: 14px 14px 14px 14px;
-    bottom: 3%;
-    color: #3C3C3C;
-    cursor: pointer;
-    display: block;
-    float: right;
-    font-family: arial;
-    font-size: 1.2em;
-    font-weight: bold;
-    height: 8%;
-    margin-right: 4%;
-    margin-top: 0.5%;
-    position: absolute;
-    right: -1%;
-    text-align: center;
+background-color: #EEE;
+border: 1px solid #CBCBCB;
+border-radius: 14px 14px 14px 14px;
+bottom: 15%;
+color: #3C3C3C;
+cursor: pointer;
+display: block;
+float: right;
+font-family: arial;
+font-size: 1.2em;
+font-weight: bold;
+height: 8%;
+margin-right: 4%;
+margin-top: 0.5%;
+position: absolute;
+right: 9%;
+text-align: center;
 }
 .quiz_session_start_button {
 
@@ -882,10 +884,6 @@ height: 20%;
 
 }
 
-.quiz_in_satistics { /* for all quiz types */
-      text-align: center;  
-      margin: 3%;
-}
 #mask_stop_quiz {
       position:absolute;
       z-index:9000;
@@ -958,6 +956,11 @@ height: 20%;
     width: 86%;
 }
 
+.question_in_stats {
+
+
+}
+
 .thanks_div {
   background-color:#F8EFFB;
   position:fixed;
@@ -976,5 +979,13 @@ height: 20%;
     font-weight: bold;
     width: 50%;
     height: 30%;
+}
 
+.quiz_cancel_full_screen {
+    height: 40px;
+    width:45px;
+}
+.full-screen {
+    width: 100%;
+    height: auto;
 }

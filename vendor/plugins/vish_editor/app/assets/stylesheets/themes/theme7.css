@@ -9,15 +9,262 @@
 
 .slides {
 background: rgb(229,235,238); /* Old browsers */
-background: -moz-linear-gradient(top,  rgba(229,235,238,1) 0%, rgba(215,222,227,1) 7%, rgba(255,255,255,1) 50%, rgba(229,235,238,1) 92%, rgba(215,222,227,1) 96%, rgba(215,222,227,1) 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(229,235,238,1)), color-stop(7%,rgba(215,222,227,1)), color-stop(50%,rgba(255,255,255,1)), color-stop(92%,rgba(229,235,238,1)), color-stop(96%,rgba(215,222,227,1)), color-stop(100%,rgba(215,222,227,1))); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* IE10+ */
-background: linear-gradient(to bottom,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* W3C */
+background: url(/assets/background1.png) no-repeat 255px, -moz-linear-gradient(top,  rgba(229,235,238,1) 0%, rgba(215,222,227,1) 7%, rgba(255,255,255,1) 50%, rgba(229,235,238,1) 92%, rgba(215,222,227,1) 96%, rgba(215,222,227,1) 100%); /* FF3.6+ */
+background: url(/assets/background1.png) no-repeat 255px, -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(229,235,238,1)), color-stop(7%,rgba(215,222,227,1)), color-stop(50%,rgba(255,255,255,1)), color-stop(92%,rgba(229,235,238,1)), color-stop(96%,rgba(215,222,227,1)), color-stop(100%,rgba(215,222,227,1))); /* Chrome,Safari4+ */
+background: url(/assets/background1.png) no-repeat 255px, -webkit-linear-gradient(top,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* Chrome10+,Safari5.1+ */
+background: url(/assets/background1.png) no-repeat 255px, -o-linear-gradient(top,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* Opera 11.10+ */
+background: url(/assets/background1.png) no-repeat 255px, -ms-linear-gradient(top,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* IE10+ */
+background: url(/assets/background1.png) no-repeat 255px, linear-gradient(to bottom,  rgba(229,235,238,1) 0%,rgba(215,222,227,1) 7%,rgba(255,255,255,1) 50%,rgba(229,235,238,1) 92%,rgba(215,222,227,1) 96%,rgba(215,222,227,1) 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5ebee', endColorstr='#d7dee3',GradientType=0 ); /* IE6-9 */
 }
 
 /*.wysiwygInstance span {
 	color: white;
 }*/
+
+/*Templates typography colors*/
+/*t1*/
+
+.slides > article[template='t1'] > div.t1_left {
+	color: #fff ;
+}
+.slides > article > div.t1_text {
+	color: #fff ;
+}
+.slides > article[template='t1'] > div.t1_header {
+	color: #fff;
+}
+.slides > article[template='t1'] > div.t1_subheader {
+	color: #fff;
+}
+
+/*t2*/
+
+.slides > article[template='t2'] > div.t2_left {
+	color: #fff ;
+}
+.slides > article > div.t2_text {
+	color: #fff ;
+}
+
+/*t3*/
+
+.slides > article[template='t3'] > div.t3_header {
+	color: #fff ;
+}
+.slides > article[template='t3'] > div.t3_left {
+	color: #fff ;
+}
+.slides > article > div.t3_text {
+	color: #fff ;
+}
+
+/*t4*/
+
+.slides > article[template='t4'] > div.t4_header {
+	color: #fff ;
+}
+.slides > article[template='t4'] > div.t4_left {
+	color: #fff ;
+}
+.slides > article[template='t4'] > div.t4_right {
+	color: #fff ;
+}
+.slides > article > div.t4_text {
+	color: #fff ;
+}
+
+/*t5*/
+
+.slides > article[template='t5'] > div.t5_header {
+	color: #fff ;
+}
+.slides > article[template='t5'] > div.t5_left {
+	color: #fff ;
+}
+.slides > article[template='t5'] > div.t5_right {
+	color: #fff ;
+}
+.slides > article > div.t3_text {
+	color: #fff ;
+}
+
+
+/*t6*/
+
+.slides > article[template='t6'] > div.t6_header {
+	color: #fff ;
+}
+.slides > article[template='t6'] > div.t6_left {
+	color: #fff ;
+}
+.slides > article[template='t6'] > div.t6_center {
+	color: #fff ;
+}
+.slides > article[template='t6'] > div.t6_right {
+	color: #fff ;
+}
+.slides > article > div.t6_text {
+	color: #fff ;
+}
+
+
+/*t7*/
+
+.slides > article[template='t7'] > div.t7_header {
+	color: #fff ;
+}
+.slides > article[template='t7'] > div.t7_left {
+	color: #fff ;
+}
+.slides > article[template='t7'] > div.t7_center {
+	color: #fff ;
+}
+.slides > article[template='t7'] > div.t7_right {
+	color: #fff ;
+}
+.slides > article > div.t7_text {
+	color: #fff ;
+}
+
+/*t8*/
+
+.slides > article[template='t8'] > div.t8_header {
+	color: #fff ;
+}
+.slides > article[template='t8'] > div.t8_left {
+	color: #fff ;
+}
+.slides > article[template='t8'] > div.t8_center {
+	color: #fff ;
+}
+.slides > article[template='t8'] > div.t8_right {
+	color: #fff ;
+}
+.slides > article > div.t8_text {
+	color: #fff ;
+}
+
+
+/*t9*/
+
+.slides > article[template='t9'] > div.t9_header {
+	color: #fff ;
+}
+.slides > article[template='t9'] > div.t9_left {
+	color: #fff ;
+}
+.slides > article[template='t9'] > div.t9_center {
+	color: #fff ;
+}
+.slides > article[template='t9'] > div.t9_right {
+	color: #fff ;
+}
+.slides > article > div.t9_text {
+	color: #fff ;
+}
+
+
+/*t10*/
+
+.slides > article[template='t10'] > div.t10_center {
+	color: #fff ;
+}
+.slides > article > div.t10_text {
+	color: #fff ;
+}
+
+
+/*t11*/
+
+.slides > article[template='t11'] > div.t11_center1 {
+	color: #fff ;
+}
+.slides > article[template='t11'] > div.t11_center2 {
+	color: #fff ;
+}
+.slides > article[template='t11'] > div.t11_center3 {
+	color: #fff ;
+}
+.slides > article > div.t11_text {
+	color: #fff ;
+}
+
+/*t12*/
+
+.slides > article[template='t12'] > div.t12_left1 {
+	color: #fff ;
+}
+.slides > article[template='t12'] > div.t12_right1 {
+	color: #fff ;
+}
+.slides > article[template='t12'] > div.t12_left2 {
+	color: #fff ;
+}
+.slides > article[template='t12'] > div.t12_right2 {
+	color: #fff ;
+}
+.slides > article > div.t12_text {
+	color: #fff ;
+}
+
+
+/*t13*/
+
+.slides > article[template='t13'] > div.t13_left {
+	color: #fff ;
+}
+.slides > article[template='t13'] > div.t13_right {
+	color: #fff ;
+}
+.slides > article[template='t13'] > div.t13_header {
+	color: #fff ;
+}
+.slides > article[template='t13'] > div.t13_circle {
+	color: #fff ;
+}
+.slides > article > div.t13_text {
+	color: #fff ;
+}
+
+/*t14*/
+
+.slides > article[template='t14'] > div.t14_circle1 {
+	color: #fff ;
+}
+.slides > article[template='t14'] > div.t14_circle2 {
+	color: #fff ;
+}
+.slides > article[template='t14'] > div.t14_circle3 {
+	color: #fff ;
+}
+.slides > article[template='t14'] > div.t14_right1 {
+	color: #fff ;
+}
+.slides > article[template='t14'] > div.t14_right2 {
+	color: #fff ;
+}
+.slides > article[template='t14'] > div.t14_right3 {
+	color: #fff ;
+}
+.slides > article > div.t14_text {
+	color: #fff ;
+}
+
+/*t15*/
+
+.slides > article[template='t15'] > div.t15_left {
+	color: #fff ;
+}
+.slides > article[template='t15'] > div.t15_right {
+	color: #fff ;
+}
+.slides > article[template='t15'] > div.t15_center {
+	color: #fff ;
+}
+.slides > article[template='t15'] > div.t15_center2 {
+	color: #fff ;
+}
+.slides > article > div.t15_text {
+	color: #fff ;
+}

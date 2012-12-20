@@ -221,6 +221,11 @@ div.addUrlButtons{
 	margin-left: 430px;
 }
 
+.marginsfancy3 {
+	margin-top: 30px;
+	margin-left: 330px;
+}
+
 .input_text_fancy {
 	font-family:Helvetica;
 	font-size: 16px;
@@ -403,9 +408,9 @@ div.addUrlButtons{
 	margin: 0px;
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	width: 95%;
-	height: 90px;
+	-moz-border-radius: 10px;	
+	width: 638px;
+	height: 340px;
 }
 
 .templatethumb, .quizFancythumb {
@@ -455,7 +460,7 @@ div.addUrlButtons{
 }
 
 .editable{
-	cursor: pointer;
+	cursor: pointer !important;
 }
 
 .editable:hover{
@@ -465,11 +470,6 @@ div.addUrlButtons{
 .menu{
 	width: 100%;
 	height: 120px;
-}
-
-#thumbcontent{
-	width: 638px;
-	height: 340px;
 }
 
 #theme_fancybox{
@@ -559,7 +559,7 @@ div.addUrlButtons{
 	height: 22px;
 	cursor:pointer;
 	background: url(/assets/delete_slide.png);
-	z-index: 200000;
+	z-index: 1074;
 }
 
 .delete_slide:hover{
@@ -1480,6 +1480,10 @@ textarea {
 	top:-29px;
 }
 	
+iframe {
+	width: 100%;
+	height: 100%;
+}
 	
 /** Slides bar **/
 
@@ -1494,7 +1498,6 @@ textarea {
 	outline: 0;
 	opacity: 0.8;	
 }
-
 
 /* Remove outline */
 :focus {outline:none;}
@@ -1740,52 +1743,32 @@ span.mcChoiceSpan{
 #pedagogical_first_row {
 	width: 100%;
 	overflow: hidden;
-	padding-top: 45px;
+	padding-top: 20px;
 }
 
 .pedagogical_new_row{
-	padding-top: 30px;
+	padding-top: 17px;
 }
 
-#educational_level_box{
+#age_range_box{
 	float: left;
-	width: 260px;
+	width: 210px;
 }
 
 #subject_tag_box{
 	float: left;
-	width: 260px;
+	width: 240px;
+	margin-left: 40px;
 }
 
 #language_tag_box{
 	float: left;
 	width: 260px;
-}
-
-#educational_objectives_tag_box{
-}
-
-#acquired_competencies_tag_box{
-}
-
-#educational_level {
-	margin-left: 68px;
-}
-
-#subject_tag{
-	margin-left: 68px;
-}
-
-#language_tag{
-	margin-left: 68px;
+	margin-left: 9px;
 }
 
 #done_in_pedagogical{
 	margin-top: -17px;
-}
-
-.pedagogical_select {
-	
 }
 
 #educational_objectives_tag{
@@ -1832,4 +1815,20 @@ margin: 0px;
 
 .fixbottom {
 	margin-bottom: 32px;
+}
+
+.textmarginbottom {
+	margin-bottom: 10px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: none; background: url(/assets/opcion.png) no-repeat; font-weight: normal; color: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: none; background: url(/assets/opcion.png) no-repeat; font-weight: normal; color: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: none; background: url(/assets/opcion.png) no-repeat; font-weight: normal; color: none; }
+.ui-widget-header { border: 1px solid #e78f08; background: #eeeeed  50% 50% repeat-x; color: #ffffff; font-weight: bold; }
+.ui-widget-content { border: 1px solid #dddddd; background: #eeeeee; }
+
+.fc_repo_content {
+	width: 638px;
+	height: 230px;
+	position: absolute;
 }
