@@ -12586,7 +12586,7 @@ VISH.Editor = function(V, $, undefined) {
     $(document).on("click", "#help_flashcard", function() {
       VISH.Editor.Tour.startTourWithId("fc_help", "top")
     });
-    $(document).on("click", "#help_template_image", function() {
+    $(document).on("click", ".help_in_template", function() {
       VISH.Editor.Tour.startTourWithId("template_help", "bottom")
     });
     $(document).on("click", "#tab_quizes_help", function() {
