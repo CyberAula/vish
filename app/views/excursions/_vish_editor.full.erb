@@ -1,4 +1,4 @@
-<section class="slides layout-regular template-default" id="slides_panel">
+  <section class="slides layout-regular template-default" id="slides_panel">
     
     <div id="flashcard-background" style="display:none">
     <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/helptutorial_circle.png"/>
@@ -50,7 +50,7 @@
                 <a class="menu_option menu_action menu_all" action="onSaveButtonClicked" i18n-key="i.Save">Save</a>
               </li>
               <li>
-                <a class="menu_option" i18n-key="i.ExportAs">Export as</a>
+                <a style="display:none" class="menu_option menu_all" i18n-key="i.ExportAs">Export as</a>
                 <ul>
                   <li>
                     <a class="menu_option menu_action menu_all" i18n-key="i.File">File</a>
@@ -64,25 +64,25 @@
                 </ul>
               </li>
               <li>
-                <a class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
+                <a style="display:none" class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
                 <ul>
                   <li>
-                    <a class="menu_option menu_action menu_all" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
+                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action" i18n-key="i.File">File</a>
+                    <a style="display:none" class="menu_option menu_action" i18n-key="i.File">File</a>
                   </li>
                   <li>
-                    <a style="display:none" class="menu_option menu_action menu_all" i18n-key="i.Presentation">Presentation</a>
+                    <a style="display:none" class="menu_option menu_action" i18n-key="i.Presentation">Presentation</a>
                   </li>
                   <li>
                     <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
                   </li>
                   <li>
-                    <a style="display:none" class="menu_option menu_action menu_presentation menu_standard_presentation" i18n-key="i.Game">Game</a>
+                    <a style="display:none" class="menu_option menu_action" i18n-key="i.Game">Game</a>
                   </li>
                   <li>
-                    <a style="display:none" class="menu_option menu_action menu_presentation menu_standard_presentation" i18n-key="i.vExperiment">Virtual Experiment</a>
+                    <a style="display:none" class="menu_option menu_action" i18n-key="i.vExperiment">Virtual Experiment</a>
                   </li>
                 </ul>
               </li>             
@@ -306,7 +306,7 @@
             <a href="#" onclick="VISH.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
           </li>
           <li>
-            <a href="#" onclick="VISH.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
+            <a style="display:none" href="#" onclick="VISH.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
           </li>
         </ul>
       </div> 
@@ -366,7 +366,6 @@
           <div class="search_container">
             <input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy3" > </input>
           </div>
-            
           <div id="tab_flashcards_repo_content_carrousel"></div>          
               </div>  
       </div>
@@ -403,7 +402,7 @@
   </div>
 
 
-      <div style='display:none'>
+  <div style='display:none'>
       
     <div id='menuselect' class="menuselect_hide">
       <a class='all' href="#">
@@ -418,11 +417,8 @@
       <a class="addvideo medium large" href="#video_fancybox">
         <div class='thumbicon videothumb' i18n-key="i.Video" title="Video"></div>
       </a>
-      <a style="display:none" class="addLive medium large" href="#live_fancybox">
+      <a class="addLive medium large" href="#live_fancybox">
         <div class='thumbicon livethumb' i18n-key="i.Live" title="Live"></div>
-      </a>
-      <a style="display:none" class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
-        <div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
       </a>
     </div>
       
@@ -927,7 +923,7 @@
         <div class="fancy_tabs" id="live_fancy_tabs_id">    
           <ul>
             <li><a href="#" onclick="VISH.Utils.loadTab('tab_live_webcam')" id="tab_live_webcam" class="fancy_tab">Webcams</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
+            <li><a style="display:none" href="#" onclick="VISH.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_live_webcam_help' src='/assets/helptutorial_circle_blank.png'/> 
         </div>
@@ -1429,4 +1425,4 @@
         <h2 i18n-key="i.SearchLiveContent">Search Live Content</h2>
      <p i18n-key="i.walk55">Just write inside a word (press Enter)and a gallery will appear to show you the results, If you want to add one from the results you just have to click on it, then, the content will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
     </li>
-  </ol> 
+  </ol>
