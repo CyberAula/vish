@@ -80,7 +80,8 @@ class Excursion < ActiveRecord::Base
       next if slide["elements"].nil?
 
       slide["elements"].each do |element| 
-       next unless element["type"] == "quiz"
+        next if element["type"].nil?
+        next unless element["type"] == "quiz"
        
         if element["quiz_id"] == ""
           quiz = Quiz.new
