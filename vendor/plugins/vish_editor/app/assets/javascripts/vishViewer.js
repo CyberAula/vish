@@ -7434,6 +7434,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Status.init();
     V.Utils.loadDeviceCSS();
     V.User.init(options);
+    V.Utils.init();
     switch(presentation.type) {
       case VISH.Constant.GAME:
         VISH.ViewerAdapter.setupGame(presentation);

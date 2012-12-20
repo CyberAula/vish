@@ -13838,6 +13838,7 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
     VISH.Editor.API.requestFlashcards(text, _onDataReceived, _onAPIError)
   };
   var _onDataReceived = function(data) {
+    VISH.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     currentFlashcards = new Array;
     var carrouselImages = [];
@@ -13851,7 +13852,8 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
       var myImg = $("<img flashcardid ='" + fc.id + "'' src=" + V.Utils.getSrcFromCSS(fc.slides[0].background) + " >");
       carrouselImages.push(myImg);
       currentFlashcards[fc.id] = fc
-    })
+    });
+    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -13859,7 +13861,8 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
     options["rows"] = 1;
     options["callback"] = _onClickCarrouselElement;
     options["rowItems"] = 4;
-    options["scrollItems"] = 4
+    options["scrollItems"] = 4;
+    VISH.Editor.Carrousel.createCarrousel(carrouselDivId, options)
   };
   var _onAPIError = function() {
     VISH.Debugging.log("API error")
@@ -19742,6 +19745,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Status.init();
     V.Utils.loadDeviceCSS();
     V.User.init(options);
+    V.Utils.init();
     switch(presentation.type) {
       case VISH.Constant.GAME:
         VISH.ViewerAdapter.setupGame(presentation);
