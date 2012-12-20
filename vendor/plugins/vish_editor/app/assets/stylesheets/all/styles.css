@@ -56,12 +56,7 @@ body {
   display: none;
 }
 .slides {
-	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, -moz-radial-gradient(center, ellipse cover, rgba(249,249,249,1) 20%, rgba(237,237,237,1) 100%);
-	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(249,249,249,1)), color-stop(100%,rgba(237,237,237,1)));
-	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, -webkit-radial-gradient(center, ellipse cover, rgba(249,249,249,1) 20%,rgba(237,237,237,1) 100%);;
-	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, -o-radial-gradient(center, ellipse cover, rgba(249,249,249,1) 20%,rgba(237,237,237,1) 100%);
-	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, -ms-radial-gradient(center, ellipse cover, rgba(249,249,249,1) 20%,rgba(237,237,237,1) 100%);
-	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.png) no-repeat 300px, radial-gradient(center, ellipse cover, rgba(249,249,249,1) 20%,rgba(237,237,237,1) 100%);
+	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.jpg) repeat 300px;
 	background-position: center; 
   width: 100%;
   height: 100%;
@@ -74,7 +69,7 @@ body {
   
 }
 
-.slides > article {
+.slides > article, .subslide {
   /*Next six parameters will be changed by javascript depending on the window size*/
   left: 50%;
   top: 50%;
@@ -108,15 +103,17 @@ body {
   -ms-transition: -ms-transform .3s ease-out;
   -moz-transition: -moz-transform .3s ease-out;
   -webkit-transition: -webkit-transform .3s ease-out;
-}
 
-
-/* Slides */
-
-.slides > article {
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
   display: none;
   z-index: 1075;
 }
+
+.subslide{
+  margin-top: -300px;
+}
+
 /*class used to show a slide to get width and height and after that remove the class
 this can not be done with show() and hide() because then it remains with display:none*/
 .slides > article.temp_shown {
@@ -181,26 +178,10 @@ this can not be done with show() and hide() because then it remains with display
 
 /* Styles for slides */
 
-.slides > article {
-  font-family: helvetica, Arial, sans-serif;
-
-  color: rgb(102, 102, 102);
-  text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
-  /*Next three parameters will be changed by javascript depending on the window size, only in the viewer, in the editor the font size is relative
-  font-size: 30px;
-  line-height: 36px;
-  letter-spacing: -1px;
-  */
-}
-
-
-
 /*added by KIKE to put the flashcard in the full slide*/
 .slides > article.flashcard{
   padding: 0;
 }
-
-
 
 /* buttons next and previous */
 .page-switcher {
@@ -527,4 +508,38 @@ button#closeButton {
   background: -ms-linear-gradient(top,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* IE10+ */
   background: linear-gradient(to bottom,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+}
+
+.close_subslide{
+  position: absolute;
+  top: -11px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  background: transparent url('/assets/delete_slide.png') no-repeat center;
+  background-size: 45%;
+  padding: 13px;
+  cursor: pointer;
+  z-index: 1103;
+}
+
+.close_subslide:hover{
+  /*background: url(/assets/hover/delete_hover.png);*/
+  background: transparent url('/assets/hover/delete_hover.png') no-repeat center;
+  background-size: 45%;
+}
+
+
+.fc_poi{
+  width: 50px;
+  height: 50px;
+  background: url(/assets/animation_arrow.png);
+}
+
+.subslide{
+  display: none;
+}
+
+.flashcard_slide{
+  display: block;
 }

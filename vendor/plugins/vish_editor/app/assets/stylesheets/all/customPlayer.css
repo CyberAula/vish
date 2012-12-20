@@ -12,36 +12,25 @@ div.customPlayerControls {
 	cursor: pointer;
 }
 
-div.customPlayerPlay {
+div.customPlayerButton {
 	position: absolute;
 	width: 40%;
 	height: 40%;
 	cursor: pointer;
 	top: 30%;
 	left: 30%;
-	background-size: 70%;
+	background-size: 50%;
+}
+
+div.customPlayerPlay {
 	background: url('/assets/customPlayer/play.png') no-repeat center center;
 }
 
 div.customPlayerPause {
-	position: absolute;
-	width: 50%;
-	height: 50%;
-	cursor: pointer;
-	top: 25%;
-	left: 25%;
-	background-size: 70%;
 	background: url('/assets/customPlayer/pause.png') no-repeat center center;
 }
 
 div.customPlayerReplay {
-	position: absolute;
-	width: 50%;
-	height: 50%;
-	cursor: pointer;
-	top: 25%;
-	left: 25%;
-	background-size: 70%;
 	background: url('/assets/customPlayer/replay.png') no-repeat center center;
 }
 

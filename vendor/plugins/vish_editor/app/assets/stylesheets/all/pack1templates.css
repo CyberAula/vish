@@ -356,7 +356,7 @@
 	margin-top: 2%;
 	position:relative;
 	width: 63%;
-	height: 11%;
+	height: 12%;
 	float: right;
 	overflow:hidden;	
 }
@@ -416,7 +416,7 @@
 	margin-top: 2%;
 	position:relative;
 	width: 33%;
-	height: 44%;
+	height: 45%;
 	float: left;
 	overflow:hidden;	
 }
@@ -477,7 +477,7 @@
 	margin-top: 2%;
 	position:relative;
 	width: 62%;
-	height: 44%;
+	height: 45%;
 	float: left;
 	overflow:hidden;	
 }
@@ -527,6 +527,11 @@
 }
 
 .t10_image{
+	border: none;
+	padding: none;
+}
+
+.t10_iframe{
 	border: none;
 	padding: none;
 }

@@ -6,7 +6,7 @@
 /* Default styles for the container */
 .joyride-tip-guide {
   position: absolute;
-  background: url(/assets/tutorial_bg.png) #FFF;
+  background: url(/assets/tutorial_bg.jpg) #FFF;
   animation-direction: alternate;
   color: #000;
   width: 400px;

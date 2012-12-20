@@ -1,4 +1,4 @@
-  <section class="slides layout-regular template-default" id="slides_panel">
+<section class="slides layout-regular template-default" id="slides_panel">
     
     <div id="flashcard-background" style="display:none">
     <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/helptutorial_circle.png"/>
@@ -64,25 +64,28 @@
                 </ul>
               </li>
               <li>
-                <a class="menu_option" href="#" i18n-key="i.Import">Import</a>
+                <a class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
                 <ul>
                   <li>
-                    <a class="menu_option menu_action menu_all" i18n-key="i.File">File</a>
+                    <a class="menu_option menu_action menu_all" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_all" i18n-key="i.Presentation">Presentation</a>
+                    <a class="menu_option menu_action" i18n-key="i.File">File</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_presentation menu_standard_presentation">Flashcard</a>
+                    <a style="display:none" class="menu_option menu_action menu_all" i18n-key="i.Presentation">Presentation</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" i18n-key="i.Game">Game</a>
+                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" i18n-key="i.vExperiment">Virtual Experiment</a>
+                    <a style="display:none" class="menu_option menu_action menu_presentation menu_standard_presentation" i18n-key="i.Game">Game</a>
+                  </li>
+                  <li>
+                    <a style="display:none" class="menu_option menu_action menu_presentation menu_standard_presentation" i18n-key="i.vExperiment">Virtual Experiment</a>
                   </li>
                 </ul>
-              </li>
+              </li>             
               <li>
                 <a class="menu_option menu_all" i18n-key="i.ConvertTo">Convert to</a>
                 <ul>
@@ -90,7 +93,7 @@
                     <a class="menu_option menu_action menu_flashcard menu_game" action="switchToPresentation" i18n-key="i.Presentation">Presentation</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_standard_presentation menu_game" action="switchToFlashcard">Flashcard</a>
+                    <a class="menu_option menu_action menu_standard_presentation menu_game" action="switchToFlashcard" i18n-key="i.Flashcard">Flashcard</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" action="switchToGame" i18n-key="i.Game">Game</a>
@@ -128,7 +131,8 @@
         src="/assets/toolbar/zoomMore.png"/>
         <img class="toolbar_icon toolbar_web" style="display:none" action="zoomLess" 
         src="/assets/toolbar/zoomLess.png"/>
-        
+        <div id="toolbar_text">
+        </div>
       </div>
     </div>
     
@@ -156,9 +160,13 @@
           <label for="presentation_description">
             <div class="textintro1 textintromargin2"><span i18n-key="i.Description">Description</span></div>
           </label>
-          <textarea id='presentation_description' class="description1 formsizefancy4" name="presentation_description" placeholder="Describe the presentation in a few words..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
-          <div class="tagBoxIntro">
-            <ul id="tagindex" class="tagList"></ul>
+          <textarea id='presentation_description' class="description1 formsizefancy4" name="presentation_description" placeholder="Please describe in a few words what your excursion is about..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
+          
+          <div id="attachment_and_tag">
+            <div class="tagBoxIntro">
+              <ul id="tagindex" class="tagList"></ul>
+            </div>
+            
           </div>
           <div id="thumbnails_in_presentation_details">
             <label for="presentation_avatar">
@@ -168,40 +176,32 @@
             <input type="hidden" id="presentation_avatar" value="">
           </div>
         
-          <button id='pedagogical_clasification_button' submit='disable' class='button buttonpedagogical' i18n-key="i.pedagogicalClasification">Pedagogical Classification</button>
+          <button id='pedagogical_clasification_button' submit='disable' class='button buttonpedagogical' i18n-key="i.pedagogicalClasification">Pedagogical Aspects</button>
           <button id='save_presentation_details' submit='disable' class='button buttonintro' i18n-key="i.continue">Continue</button>
           <p id="presentation_details_error" class="error_intro" style='display:none' i18n-key="i.enterTitle">Please, enter a title</p>
         </div>
 
-        <div id="pedagogical_options_fields" style="display:none">
-                    <div id="titlepres2">
-            <p class="titlepresp2">Pedagogical Classification*</p>
+         <div id="pedagogical_options_fields" style="display:none">
+            <div id="titlepres2">
+            <p class="titlepresp2">Pedagogical Aspects*</p>
           </div>
-          <div id="pedagogical_first_row">
-            <div id="educational_level_box">
-              <label for="educational_level">
-                <div id="educational_level_text" class="textintro1 textintromargin1"><span i18n-key="i.EducationalLevel">Educational Level</span></div>
-              </label>
-              <select id="educational_level" class="pedagogical_tab_element">
-            <option value="Compulsory education">Compulsory education</option>
-            <option value="Continuing education">Continuing education</option>
-            <option value="Distance education">Distance education</option>
-            <option value="Educational administration">Educational administration</option>
-            <option value="Higher education">Higher education</option>
-            <option value="Library">Library</option>
-            <option value="Other" selected="1">Other</option>
-            <option value="Pre-school">Pre-school</option>
-            <option value="Professional development">Professional development</option>
-            <option value="Special education">Special education</option>
-            <option value="Vocational education">Vocational education</option>
-          </select>
-        </div>
+          <div id="pedagogical_first_row" class="pedagogical_tab_element">
+           
+           <div id="age_range_box">
+            <label for="age_range">
+              <div id="age_range_text" class="textintro1 textmarginbottom"><span i18n-key="i.age_range">Age range:</span></div>
+            </label>
+            <input type="text" id="age_range" style="border: 0; color: #005580; font-weight: bold;" />
+   
+        <div id="slider-range"></div>
+      </div>
 
             <div id="subject_tag_box">      
               <label for="subject_tag">
-                <div id="subject_text" class="textintro1 textintromargin1"><span i18n-key="i.Subject">Subject</span></div>
+                <div id="subject_text" class="textintro1 textmarginbottom"><span i18n-key="i.Subject">Subject</span></div>
               </label>
-              <select id="subject_tag" class="pedagogical_tab_element">
+              <select id="subject_tag" class="" size="4" multiple="multiple">
+            <option value="Unspecified" selected="1">Unespecified</option>
             <option value="Art">Art</option>
             <option value="Astronomy">Astronomy</option>
             <option value="Biology">Biology</option>
@@ -228,7 +228,6 @@
               <option value="Media Education">Media Education</option>
               <option value="Music">Music</option>
             <option value="Natural Sciences">Natural Sciences</option>
-            <option value="Other" selected="1">Other</option>
             <option value="Philosophy">Philosophy</option>
             <option value="Physical Education">Physical Education</option>
               <option value="Physics">Physics</option>
@@ -244,11 +243,12 @@
           </select>
         </div>
 
+
         <div id="language_tag_box">
               <label for="language_tag">
-                <div id="language_text" class="textintro1 textintromargin1"><span i18n-key="i.language">Language</span></div>
+                <div id="language_text" class="textintro1 textmarginbottom"><span i18n-key="i.language">Language</span></div>
               </label>
-          <select id="language_tag" class="pedagogical_tab_element">
+          <select id="language_tag" class="">
                       <option value="independent" selected="1">(Language independent)</option>
                       <option value="de">Deutsch</option>
                       <option value="en">English</option>
@@ -266,21 +266,35 @@
         <label for="educational_objectives_tag">
               <div class="textintro1 pedagogical_tab_element"><span i18n-key="i.Educational">Educational Objectives</span></div>
             </label>
-            <textarea id='educational_objectives_tag' class="description1 formsizefancy4 pedagogical_tab_element" name="educational_objectives" placeholder="Describe the educational objectives of this excursion..." i18n-key="i.EducationalPlaceholder"></textarea>
+            <textarea id='educational_objectives_tag' class="description1 formsizefancy4 pedagogical_tab_element" name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalPlaceholder"></textarea>
       </div>
           
       <div id="acquired_competencies_tag_box" class="pedagogical_new_row">
             <label for="acquired_competencies_tag ">
-              <div class="textintro1 pedagogical_tab_element"><span i18n-key="i.Competencies">Acquired Competencies</span></div>
+              <div class="textintro1 pedagogical_tab_element"><span i18n-key="i.Competencies">Skills & competencies</span></div>
             </label>
-            <textarea id='acquired_competencies_tag' class="description1 formsizefancy4 pedagogical_tab_element fixbottom" name="acquired_competencies" placeholder="Describe the competencies that students will acquire with this excursion..." i18n-key="i.CompetenciesPlaceholder"></textarea>
+            <textarea id='acquired_competencies_tag' class="description1 formsizefancy4 pedagogical_tab_element fixbottom" name="acquired_competencies" placeholder="Skills & competencies that students will acquire and develop by using this excursion..." i18n-key="i.CompetenciesPlaceholder"></textarea>
         </div>
 
         <i id="based_on_lom" class="" i18n-key="i.basedOnLOM">*based on LOM standard</i>
       <button id='done_in_pedagogical' submit='disable' class='button buttonintro' i18n-key="i.done">Done</button>
         </div>
       </form>
-    </div> 
+    </div>  
+      
+      <!--
+    <div class="attachmentIntro">
+        <span id="attachmentIntroSpan" i18n-key="i.TeachingGuidelines">Teaching guidelines</span>
+        <form  id="attachment_intro_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+                  <input type="file" name="document[file]" class="upload_file_input">
+                  <input type="hidden" name="document[title]">
+                  <input type="hidden" name="document[description]">
+                  <input type="hidden" name="document[owner_id]">
+                  <input type="hidden" name="authenticity_token">           
+                  <input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+        </form>
+      </div>
+      -->
       
     <!-- Thumbnails fancybox -->
   <div style='display:none'>
@@ -289,12 +303,15 @@
       <div class='fancy_tabs' id='thumcontent_tabs'>
         <ul>
           <li>
-            <a href="#" onclick="VISH.Editor.loadFancyBox('templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
+            <a href="#" onclick="VISH.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
+          </li>
+          <li>
+            <a href="#" onclick="VISH.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
           </li>
         </ul>
       </div> 
 
-      <div id='tab_templates_content' class="fancy_tab_content" style='display:inline' > 
+      <div id='tab_templates_content' class="fancy_tab_content" style='display:none' > 
         <img id='help_template_selection' src='/assets/helptutorial_circle_blank.png'/>
         <div class='templatethumb' template='1'>
           <img src='/assets/templatesthumbs/t1.png' />
@@ -342,6 +359,18 @@
           <img src='/assets/templatesthumbs/t15.png' />
         </div>
       </div>
+
+      <div id='tab_flashcards_repo_content' class="fancy_tab_content" style='display:none' > 
+        <div class="fc_repo_content">
+                <img src="/assets/repositoryimg.png" class="imagelogotab"/>                
+          <div class="search_container">
+            <input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy3" > </input>
+          </div>
+            
+          <div id="tab_flashcards_repo_content_carrousel"></div>          
+              </div>  
+      </div>
+
     </div>
   </div>
 
@@ -389,11 +418,11 @@
       <a class="addvideo medium large" href="#video_fancybox">
         <div class='thumbicon videothumb' i18n-key="i.Video" title="Video"></div>
       </a>
-      <a class="addLive medium large" href="#live_fancybox">
+      <a style="display:none" class="addLive medium large" href="#live_fancybox">
         <div class='thumbicon livethumb' i18n-key="i.Live" title="Live"></div>
       </a>
-      <a class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
-        <div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz" ></div>
+      <a style="display:none" class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
+        <div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
       </a>
     </div>
       
@@ -480,9 +509,12 @@
         <img class="image_add_link" src="/assets/url_img.png"/>
         <input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
         <div class="addUrlButtons">
-          <button type="button" class="addUrlButton" i18n-key="i.Add" onclick="VISH.Editor.Tools.addUrl()">Add</button>
-          <button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
+          <button type="button" class="addUrlButton" i18n-key="i.Add" 
+          onclick="VISH.Editor.Tools.addUrl()">Add</button>
+          <button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
+          onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
         </div>
+
       </div>
       </div>
   </div>
@@ -603,7 +635,7 @@
         </div>            
         <div id='tab_pic_repo_content' class="fancy_tab_content">
           <div class="box1 box1fancy2">
-            <img src="/assets/repositoryimg.png" class="imagelogotab">               
+            <img src="/assets/repositoryimg.png" class="imagelogotab"/>                
             <div class="search_container">
               <input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
             </div>
@@ -761,7 +793,7 @@
         
         <div id='tab_object_repo_content' class="fancy_tab_content">  
           <div class="box1 box1fancy2">
-            <img src="/assets/repositoryimg.png" class="imagelogotab">         
+            <img src="/assets/repositoryimg.png" class="imagelogotab"/>          
             <div class="search_container">
               <input id="search_object" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
             </div>
@@ -825,7 +857,7 @@
        </div>
         <div id='tab_video_repo_content' class="fancy_tab_content">   
             <div class="box1 box1fancy2"> 
-              <img src="/assets/repositoryimg.png" class="imagelogotab">   
+              <img src="/assets/repositoryimg.png" class="imagelogotab"/>    
               <div class="search_container">
                 <input id="search_video" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
               </div>
@@ -902,7 +934,7 @@
         
         <div id='tab_live_webcam_content' class="fancy_tab_content"> 
           <div class="box1 box1fancy2">
-            <img src="/assets/repositoryimg.png" class="imagelogotab">         
+            <img src="/assets/repositoryimg.png" class="imagelogotab"/>         
             <div class="search_container">
               <input id="search_webcam" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
             </div>
@@ -1397,4 +1429,4 @@
         <h2 i18n-key="i.SearchLiveContent">Search Live Content</h2>
      <p i18n-key="i.walk55">Just write inside a word (press Enter)and a gallery will appear to show you the results, If you want to add one from the results you just have to click on it, then, the content will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
     </li>
-  </ol>
+  </ol> 

@@ -23,15 +23,16 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.walk71":"(A\u00f1adir p\u00e1gina web)", "i.walk72":"(A\u00f1adir Captura de p\u00e1gina web)", "i.walk73":"A\u00f1adir p\u00e1gina web", "i.walk74":"A\u00f1adir Captura de p\u00e1gina web", "i.walk75":'Esta zona te ofrece una variedad de Quizes para a\u00f1adir a tu excursi\u00f3n. Solo tienes que hacer clic en la miniatura que m\u00e1s se ajuste a la informaci\u00f3n que quieras transmitir. Pulsa "Cerrar" para continuar.', "i.link":"A\u00f1adir url", "i.resize":"Redimensionar", "i.flashcardbg":"Fondo de flashcard", 
 "i.text":"Texto", "i.themesButton":"ViSH Editor Themes", "i.toolbarButton":"Barra de herramientas", "i.themesTitle":"Selecci\u00f3n de temas", "i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", 
 "i.Addv\u00eddeoUrl":"a\u00f1adir URL de v\u00eddeo", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", "i.AddObjectContent":"A\u00f1adiendo contenido Object", "i.AddObjectContentUpload":"Subiendo contenido Object", "i.AddObjectContentUrl":"A\u00f1adiendo contenido Object por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", 
-"i.Addv\u00eddeoContent":"A\u00f1adiendo v\u00eddeo", "i.Addv\u00eddeoContentUrl":"A\u00f1adiendo v\u00eddeo por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.Competencies":"Competencias adquiridas", "i.CompetenciesPlaceholder":"Describa aqu\u00ed las competencias que los estudiantes adquirir\u00e1n con esta excursi\u00f3n", "i.continue":"Continuar", 
-"i.Content":"Contenido", "i.done":"Hecho", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.Educational":"Objetivos educacionales", "i.EducationalLevel":"Nivel educativo", 
-"i.EducationalPlaceholder":"Describa aqu\u00ed los objetivos educacionales de la excursi\u00f3n", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.tutorialButton":"Bot\u00f3n de tutorial", "i.previewButton":"Bot\u00f3n de previsualizaci\u00f3n", "i.menuButton":"Men\u00fa de ViSH Editor", "i.objectContent":"Contenido Flash", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.v\u00eddeo":"v\u00eddeo", "i.v\u00eddeos":"v\u00eddeos", "i.Text":"Texto", "i.Object":"Objeto", "i.language":"Idioma", "i.Live":"Contenidos en directo", 
-"i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", 
-"i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", "i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", 
-"i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", 
-"i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", 
-"i.Import":"Importar", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar"}, "default":{"i.Author":"Author", 
-"i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.Addv\u00eddeoContent":"A\u00f1adiendo v\u00eddeo", "i.Addv\u00eddeoContentUrl":"A\u00f1adiendo v\u00eddeo por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", "i.age_range":"Rango de edad", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.Competencies":"Competencias adquiridas", "i.CompetenciesPlaceholder":"Describa aqu\u00ed las competencias que los estudiantes adquirir\u00e1n con esta excursi\u00f3n", 
+"i.continue":"Continuar", "i.Content":"Contenido", "i.done":"Hecho", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa la excursi\u00f3n en unas palabras", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.Educational":"Objetivos educacionales", 
+"i.EducationalPlaceholder":"Describa aqu\u00ed los objetivos educacionales de la excursi\u00f3n", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.tutorialButton":"Bot\u00f3n de tutorial", "i.previewButton":"Bot\u00f3n de previsualizaci\u00f3n", "i.menuButton":"Men\u00fa de ViSH Editor", "i.objectContent":"Contenido Flash", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Insert":"Insertar", "i.v\u00eddeo":"v\u00eddeo", "i.v\u00eddeos":"v\u00eddeos", 
+"i.Text":"Texto", "i.Object":"Objeto", "i.language":"Idioma", "i.Live":"Contenidos en directo", "i.writeTitle":"Escribamos un t\u00edtulo (obligatorio)", "i.no":"no", "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", 
+"i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", "i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", 
+"i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo", 
+"i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", 
+"i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Game":"Juego", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", 
+"i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, 
+"standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.Mods || (VISH.Mods = {});
 VISH.VERSION = "0.2";
@@ -54,9 +55,19 @@ VISH.Constant.EXTRA_SMALL = "extra-small";
 VISH.Constant.SMALL = "small";
 VISH.Constant.MEDIUM = "medium";
 VISH.Constant.LARGE = "large";
+VISH.Constant.AGE_RANGE = "4 - 20";
 VISH.Constant.PRESENTATION = "presentation";
 VISH.Constant.FLASHCARD = "flashcard";
 VISH.Constant.GAME = "game";
+VISH.Constant.QUIZ = "quiz";
+VISH.Constant.QUIZ_SIMPLE = "quiz_simple";
+VISH.Constant.VTOUR = "virtualTour";
+VISH.Constant.STANDARD = "standard";
+VISH.Constant.IMAGE = "image";
+VISH.Constant.TEXT = "text";
+VISH.Constant.VIDEO = "video";
+VISH.Constant.OBJECT = "object";
+VISH.Constant.SNAPSHOT = "snapshot";
 VISH.Constant.THUMBNAIL = "thumbnail";
 VISH.Constant.NONE = "none";
 VISH.Constant.Video = {};
@@ -3375,7 +3386,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
   if(e.ui.version) {
     return
   }
-  e.extend(e.ui, {version:"1.9.1", keyCode:{BACKSPACE:8, COMMA:188, DELETE:46, DOWN:40, END:35, ENTER:13, ESCAPE:27, HOME:36, LEFT:37, NUMPAD_ADD:107, NUMPAD_DECIMAL:110, NUMPAD_DIVIDE:111, NUMPAD_ENTER:108, NUMPAD_MULTIPLY:106, NUMPAD_SUBTRACT:109, PAGE_DOWN:34, PAGE_UP:33, PERIOD:190, RIGHT:39, SPACE:32, TAB:9, UP:38}}), e.fn.extend({_focus:e.fn.focus, focus:function(t, n) {
+  e.extend(e.ui, {version:"1.9.2", keyCode:{BACKSPACE:8, COMMA:188, DELETE:46, DOWN:40, END:35, ENTER:13, ESCAPE:27, HOME:36, LEFT:37, NUMPAD_ADD:107, NUMPAD_DECIMAL:110, NUMPAD_DIVIDE:111, NUMPAD_ENTER:108, NUMPAD_MULTIPLY:106, NUMPAD_SUBTRACT:109, PAGE_DOWN:34, PAGE_UP:33, PERIOD:190, RIGHT:39, SPACE:32, TAB:9, UP:38}}), e.fn.extend({_focus:e.fn.focus, focus:function(t, n) {
     return typeof t == "number" ? this.each(function() {
       var r = this;
       setTimeout(function() {
@@ -3415,7 +3426,21 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
     return this.each(function() {
       r.test(this.id) && e(this).removeAttr("id")
     })
-  }}), e("<a>").outerWidth(1).jquery || e.each(["Width", "Height"], function(n, r) {
+  }}), e.extend(e.expr[":"], {data:e.expr.createPseudo ? e.expr.createPseudo(function(t) {
+    return function(n) {
+      return!!e.data(n, t)
+    }
+  }) : function(t, n, r) {
+    return!!e.data(t, r[3])
+  }, focusable:function(t) {
+    return i(t, !isNaN(e.attr(t, "tabindex")))
+  }, tabbable:function(t) {
+    var n = e.attr(t, "tabindex"), r = isNaN(n);
+    return(r || n >= 0) && i(t, !r)
+  }}), e(function() {
+    var t = document.body, n = t.appendChild(n = document.createElement("div"));
+    n.offsetHeight, e.extend(n.style, {minHeight:"100px", height:"auto", padding:0, borderWidth:0}), e.support.minHeight = n.offsetHeight === 100, e.support.selectstart = "onselectstart" in n, t.removeChild(n).style.display = "none"
+  }), e("<a>").outerWidth(1).jquery || e.each(["Width", "Height"], function(n, r) {
     function u(t, n, r, s) {
       return e.each(i, function() {
         n -= parseFloat(e.css(t, "padding" + this)) || 0, r && (n -= parseFloat(e.css(t, "border" + this + "Width")) || 0), s && (n -= parseFloat(e.css(t, "margin" + this)) || 0)
@@ -3431,21 +3456,11 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
         e(this).css(s, u(this, t, !0, n) + "px")
       })
     }
-  }), e.extend(e.expr[":"], {data:e.expr.createPseudo ? e.expr.createPseudo(function(t) {
+  }), e("<a>").data("a-b", "a").removeData("a-b").data("a-b") && (e.fn.removeData = function(t) {
     return function(n) {
-      return!!e.data(n, t)
+      return arguments.length ? t.call(this, e.camelCase(n)) : t.call(this)
     }
-  }) : function(t, n, r) {
-    return!!e.data(t, r[3])
-  }, focusable:function(t) {
-    return i(t, !isNaN(e.attr(t, "tabindex")))
-  }, tabbable:function(t) {
-    var n = e.attr(t, "tabindex"), r = isNaN(n);
-    return(r || n >= 0) && i(t, !r)
-  }}), e(function() {
-    var t = document.body, n = t.appendChild(n = document.createElement("div"));
-    n.offsetHeight, e.extend(n.style, {minHeight:"100px", height:"auto", padding:0, borderWidth:0}), e.support.minHeight = n.offsetHeight === 100, e.support.selectstart = "onselectstart" in n, t.removeChild(n).style.display = "none"
-  }), function() {
+  }(e.fn.removeData)), function() {
     var t = /msie ([\w.]+)/.exec(navigator.userAgent.toLowerCase()) || [];
     e.ui.ie = t.length ? !0 : !1, e.ui.ie6 = parseFloat(t[1], 10) === 6
   }(), e.fn.extend({disableSelection:function() {
@@ -3510,7 +3525,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
           return this._super = e, this._superApply = r, s = i.apply(this, arguments), this._super = t, this._superApply = n, s
         }
       }())
-    }), o.prototype = e.widget.extend(u, {widgetEventPrefix:u.widgetEventPrefix || t}, r, {constructor:o, namespace:a, widgetName:t, widgetBaseClass:i, widgetFullName:i}), s ? (e.each(s._childConstructors, function(t, n) {
+    }), o.prototype = e.widget.extend(u, {widgetEventPrefix:s ? u.widgetEventPrefix : t}, r, {constructor:o, namespace:a, widgetName:t, widgetBaseClass:i, widgetFullName:i}), s ? (e.each(s._childConstructors, function(t, n) {
       var r = n.prototype;
       e.widget(r.namespace + "." + r.widgetName, o, n._proto)
     }), delete s._childConstructors) : n._childConstructors.push(o), e.widget.bridge(t, o)
@@ -3523,7 +3538,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
     }
     return n
   }, e.widget.bridge = function(n, i) {
-    var s = i.prototype.widgetFullName;
+    var s = i.prototype.widgetFullName || n;
     e.fn[n] = function(o) {
       var u = typeof o == "string", a = r.call(arguments, 1), f = this;
       return o = !u && a.length ? e.widget.extend.apply(null, [o].concat(a)) : o, u ? this.each(function() {
@@ -3540,12 +3555,12 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
         }
       }) : this.each(function() {
         var t = e.data(this, s);
-        t ? t.option(o || {})._init() : new i(o, this)
+        t ? t.option(o || {})._init() : e.data(this, s, new i(o, this))
       }), f
     }
   }, e.Widget = function() {
   }, e.Widget._childConstructors = [], e.Widget.prototype = {widgetName:"widget", widgetEventPrefix:"", defaultElement:"<div>", options:{disabled:!1, create:null}, _createWidget:function(t, r) {
-    r = e(r || this.defaultElement || this)[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(this.element, {remove:function(e) {
+    r = e(r || this.defaultElement || this)[0], this.element = e(r), this.uuid = n++, this.eventNamespace = "." + this.widgetName + this.uuid, this.options = e.widget.extend({}, this.options, this._getCreateOptions(), t), this.bindings = e(), this.hoverable = e(), this.focusable = e(), r !== this && (e.data(r, this.widgetName, this), e.data(r, this.widgetFullName, this), this._on(!0, this.element, {remove:function(e) {
       e.target === r && this.destroy()
     }}), this.document = e(r.style ? r.ownerDocument : r.document || r), this.window = e(this.document[0].defaultView || this.document[0].parentWindow)), this._create(), this._trigger("create", null, this._getCreateEventData()), this._init()
   }, _getCreateOptions:e.noop, _getCreateEventData:e.noop, _create:e.noop, _init:e.noop, destroy:function() {
@@ -3589,18 +3604,18 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
     return this._setOption("disabled", !1)
   }, disable:function() {
     return this._setOption("disabled", !0)
-  }, _on:function(t, n) {
-    var r, i = this;
-    n ? (t = r = e(t), this.bindings = this.bindings.add(t)) : (n = t, t = this.element, r = this.widget()), e.each(n, function(n, s) {
-      function o() {
-        if(i.options.disabled === !0 || e(this).hasClass("ui-state-disabled")) {
+  }, _on:function(t, n, r) {
+    var i, s = this;
+    typeof t != "boolean" && (r = n, n = t, t = !1), r ? (n = i = e(n), this.bindings = this.bindings.add(n)) : (r = n, n = this.element, i = this.widget()), e.each(r, function(r, o) {
+      function u() {
+        if(!t && (s.options.disabled === !0 || e(this).hasClass("ui-state-disabled"))) {
           return
         }
-        return(typeof s == "string" ? i[s] : s).apply(i, arguments)
+        return(typeof o == "string" ? s[o] : o).apply(s, arguments)
       }
-      typeof s != "string" && (o.guid = s.guid = s.guid || o.guid || e.guid++);
-      var u = n.match(/^(\w+)\s*(.*)$/), a = u[1] + i.eventNamespace, f = u[2];
-      f ? r.delegate(f, a, o) : t.bind(a, o)
+      typeof o != "string" && (u.guid = o.guid = o.guid || u.guid || e.guid++);
+      var a = r.match(/^(\w+)\s*(.*)$/), f = a[1] + s.eventNamespace, l = a[2];
+      l ? i.delegate(l, f, u) : n.bind(f, u)
     })
   }, _off:function(e, t) {
     t = (t || "").split(" ").join(this.eventNamespace + " ") + this.eventNamespace, e.unbind(t).undelegate(t)
@@ -3647,7 +3662,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
   var n = !1;
   e(document).mouseup(function(e) {
     n = !1
-  }), e.widget("ui.mouse", {version:"1.9.1", options:{cancel:"input,textarea,button,select,option", distance:1, delay:0}, _mouseInit:function() {
+  }), e.widget("ui.mouse", {version:"1.9.2", options:{cancel:"input,textarea,button,select,option", distance:1, delay:0}, _mouseInit:function() {
     var t = this;
     this.element.bind("mousedown." + this.widgetName, function(e) {
       return t._mouseDown(e)
@@ -3782,7 +3797,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
   }(jQuery)
 })(jQuery);
 (function(e, t) {
-  e.widget("ui.draggable", e.ui.mouse, {version:"1.9.1", widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
+  e.widget("ui.draggable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"drag", options:{addClasses:!0, appendTo:"parent", axis:!1, connectToSortable:!1, containment:!1, cursor:"auto", cursorAt:!1, grid:!1, handle:!1, helper:"original", iframeFix:!1, opacity:!1, refreshPositions:!1, revert:!1, revertDuration:500, scope:"default", scroll:!0, scrollSensitivity:20, scrollSpeed:20, snap:!1, snapMode:"both", snapTolerance:20, stack:!1, zIndex:!1}, _create:function() {
     this.options.helper == "original" && !/^(?:r|a|f)/.test(this.element.css("position")) && (this.element[0].style.position = "relative"), this.options.addClasses && this.element.addClass("ui-draggable"), this.options.disabled && this.element.addClass("ui-draggable-disabled"), this._mouseInit()
   }, _destroy:function() {
     this.element.removeClass("ui-draggable ui-draggable-dragging ui-draggable-disabled"), this._mouseDestroy()
@@ -4018,7 +4033,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
   }})
 })(jQuery);
 (function(e, t) {
-  e.widget("ui.droppable", {version:"1.9.1", widgetEventPrefix:"drop", options:{accept:"*", activeClass:!1, addClasses:!0, greedy:!1, hoverClass:!1, scope:"default", tolerance:"intersect"}, _create:function() {
+  e.widget("ui.droppable", {version:"1.9.2", widgetEventPrefix:"drop", options:{accept:"*", activeClass:!1, addClasses:!0, greedy:!1, hoverClass:!1, scope:"default", tolerance:"intersect"}, _create:function() {
     var t = this.options, n = t.accept;
     this.isover = 0, this.isout = 1, this.accept = e.isFunction(n) ? n : function(e) {
       return e.is(n)
@@ -4136,7 +4151,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
   }}
 })(jQuery);
 (function(e, t) {
-  e.widget("ui.sortable", e.ui.mouse, {version:"1.9.1", widgetEventPrefix:"sort", ready:!1, options:{appendTo:"parent", axis:!1, connectWith:!1, containment:!1, cursor:"auto", cursorAt:!1, dropOnEmpty:!0, forcePlaceholderSize:!1, forceHelperSize:!1, grid:!1, handle:!1, helper:"original", items:"> *", opacity:!1, placeholder:!1, revert:!1, scroll:!0, scrollSensitivity:20, scrollSpeed:20, scope:"default", tolerance:"intersect", zIndex:1E3}, _create:function() {
+  e.widget("ui.sortable", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"sort", ready:!1, options:{appendTo:"parent", axis:!1, connectWith:!1, containment:!1, cursor:"auto", cursorAt:!1, dropOnEmpty:!0, forcePlaceholderSize:!1, forceHelperSize:!1, grid:!1, handle:!1, helper:"original", items:"> *", opacity:!1, placeholder:!1, revert:!1, scroll:!0, scrollSensitivity:20, scrollSpeed:20, scope:"default", tolerance:"intersect", zIndex:1E3}, _create:function() {
     var e = this.options;
     this.containerCache = {}, this.element.addClass("ui-sortable"), this.refresh(), this.floating = this.items.length ? e.axis === "x" || /left|right/.test(this.items[0].item.css("float")) || /inline|table-cell/.test(this.items[0].item.css("display")) : !1, this.offset = this.element.offset(), this._mouseInit(), this.ready = !0
   }, _destroy:function() {
@@ -4521,7 +4536,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
 })(jQuery);
 (function(e, t) {
   var n = 0;
-  e.widget("ui.autocomplete", {version:"1.9.1", defaultElement:"<input>", options:{appendTo:"body", autoFocus:!1, delay:300, minLength:1, position:{my:"left top", at:"left bottom", collision:"none"}, source:null, change:null, close:null, focus:null, open:null, response:null, search:null, select:null}, pending:0, _create:function() {
+  e.widget("ui.autocomplete", {version:"1.9.2", defaultElement:"<input>", options:{appendTo:"body", autoFocus:!1, delay:300, minLength:1, position:{my:"left top", at:"left bottom", collision:"none"}, source:null, change:null, close:null, focus:null, open:null, response:null, search:null, select:null}, pending:0, _create:function() {
     var t, n, r;
     this.isMultiLine = this._isMultiLine(), this.valueMethod = this.element[this.element.is("input,textarea") ? "val" : "text"], this.isNewMenu = !0, this.element.addClass("ui-autocomplete-input").attr("autocomplete", "off"), this._on(this.element, {keydown:function(i) {
       if(this.element.prop("readOnly")) {
@@ -4726,7 +4741,7 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
 })(jQuery);
 (function(e, t) {
   var n = !1;
-  e.widget("ui.menu", {version:"1.9.1", defaultElement:"<ul>", delay:300, options:{icons:{submenu:"ui-icon-carat-1-e"}, menus:"ul", position:{my:"left top", at:"right top"}, role:"menu", blur:null, focus:null, select:null}, _create:function() {
+  e.widget("ui.menu", {version:"1.9.2", defaultElement:"<ul>", delay:300, options:{icons:{submenu:"ui-icon-carat-1-e"}, menus:"ul", position:{my:"left top", at:"right top"}, role:"menu", blur:null, focus:null, select:null}, _create:function() {
     this.activeMenu = this.element, this.element.uniqueId().addClass("ui-menu ui-widget ui-widget-content ui-corner-all").toggleClass("ui-menu-icons", !!this.element.find(".ui-icon").length).attr({role:this.options.role, tabIndex:0}).bind("click" + this.eventNamespace, e.proxy(function(e) {
       this.options.disabled && e.preventDefault()
     }, this)), this.options.disabled && this.element.addClass("ui-state-disabled").attr("aria-disabled", "true"), this._on({"mousedown .ui-menu-item > a":function(e) {
@@ -4805,14 +4820,14 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
   }, _activate:function(e) {
     this.active.is(".ui-state-disabled") || (this.active.children("a[aria-haspopup='true']").length ? this.expand(e) : this.select(e))
   }, refresh:function() {
-    var t, n = this.options.icons.submenu, r = this.element.find(this.options.menus + ":not(.ui-menu)").addClass("ui-menu ui-widget ui-widget-content ui-corner-all").hide().attr({role:this.options.role, "aria-hidden":"true", "aria-expanded":"false"});
-    t = r.add(this.element), t.children(":not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role", "presentation").children("a").uniqueId().addClass("ui-corner-all").attr({tabIndex:-1, role:this._itemRole()}), t.children(":not(.ui-menu-item)").each(function() {
-      var t = e(this);
-      /[^\-\u2014\u2013\s]/.test(t.text()) || t.addClass("ui-widget-content ui-menu-divider")
-    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), r.each(function() {
+    var t, n = this.options.icons.submenu, r = this.element.find(this.options.menus);
+    r.filter(":not(.ui-menu)").addClass("ui-menu ui-widget ui-widget-content ui-corner-all").hide().attr({role:this.options.role, "aria-hidden":"true", "aria-expanded":"false"}).each(function() {
       var t = e(this), r = t.prev("a"), i = e("<span>").addClass("ui-menu-icon ui-icon " + n).data("ui-menu-submenu-carat", !0);
       r.attr("aria-haspopup", "true").prepend(i), t.attr("aria-labelledby", r.attr("id"))
-    }), this.active && !e.contains(this.element[0], this.active[0]) && this.blur()
+    }), t = r.add(this.element), t.children(":not(.ui-menu-item):has(a)").addClass("ui-menu-item").attr("role", "presentation").children("a").uniqueId().addClass("ui-corner-all").attr({tabIndex:-1, role:this._itemRole()}), t.children(":not(.ui-menu-item)").each(function() {
+      var t = e(this);
+      /[^\-\u2014\u2013\s]/.test(t.text()) || t.addClass("ui-widget-content ui-menu-divider")
+    }), t.children(".ui-state-disabled").attr("aria-disabled", "true"), this.active && !e.contains(this.element[0], this.active[0]) && this.blur()
   }, _itemRole:function() {
     return{menu:"menuitem", listbox:"option"}[this.options.role]
   }, focus:function(e, t) {
@@ -4900,6 +4915,206 @@ VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation
     this.active = this.active || e(t.target).closest(".ui-menu-item");
     var n = {item:this.active};
     this.active.has(".ui-menu").length || this.collapseAll(t, !0), this._trigger("select", t, n)
+  }})
+})(jQuery);
+(function(e, t) {
+  var n = 5;
+  e.widget("ui.slider", e.ui.mouse, {version:"1.9.2", widgetEventPrefix:"slide", options:{animate:!1, distance:0, max:100, min:0, orientation:"horizontal", range:!1, step:1, value:0, values:null}, _create:function() {
+    var t, r, i = this.options, s = this.element.find(".ui-slider-handle").addClass("ui-state-default ui-corner-all"), o = "<a class='ui-slider-handle ui-state-default ui-corner-all' href='#'></a>", u = [];
+    this._keySliding = !1, this._mouseSliding = !1, this._animateOff = !0, this._handleIndex = null, this._detectOrientation(), this._mouseInit(), this.element.addClass("ui-slider ui-slider-" + this.orientation + " ui-widget" + " ui-widget-content" + " ui-corner-all" + (i.disabled ? " ui-slider-disabled ui-disabled" : "")), this.range = e([]), i.range && (i.range === !0 && (i.values || (i.values = [this._valueMin(), this._valueMin()]), i.values.length && i.values.length !== 2 && (i.values = [i.values[0], 
+    i.values[0]])), this.range = e("<div></div>").appendTo(this.element).addClass("ui-slider-range ui-widget-header" + (i.range === "min" || i.range === "max" ? " ui-slider-range-" + i.range : ""))), r = i.values && i.values.length || 1;
+    for(t = s.length;t < r;t++) {
+      u.push(o)
+    }
+    this.handles = s.add(e(u.join("")).appendTo(this.element)), this.handle = this.handles.eq(0), this.handles.add(this.range).filter("a").click(function(e) {
+      e.preventDefault()
+    }).mouseenter(function() {
+      i.disabled || e(this).addClass("ui-state-hover")
+    }).mouseleave(function() {
+      e(this).removeClass("ui-state-hover")
+    }).focus(function() {
+      i.disabled ? e(this).blur() : (e(".ui-slider .ui-state-focus").removeClass("ui-state-focus"), e(this).addClass("ui-state-focus"))
+    }).blur(function() {
+      e(this).removeClass("ui-state-focus")
+    }), this.handles.each(function(t) {
+      e(this).data("ui-slider-handle-index", t)
+    }), this._on(this.handles, {keydown:function(t) {
+      var r, i, s, o, u = e(t.target).data("ui-slider-handle-index");
+      switch(t.keyCode) {
+        case e.ui.keyCode.HOME:
+        ;
+        case e.ui.keyCode.END:
+        ;
+        case e.ui.keyCode.PAGE_UP:
+        ;
+        case e.ui.keyCode.PAGE_DOWN:
+        ;
+        case e.ui.keyCode.UP:
+        ;
+        case e.ui.keyCode.RIGHT:
+        ;
+        case e.ui.keyCode.DOWN:
+        ;
+        case e.ui.keyCode.LEFT:
+          t.preventDefault();
+          if(!this._keySliding) {
+            this._keySliding = !0, e(t.target).addClass("ui-state-active"), r = this._start(t, u);
+            if(r === !1) {
+              return
+            }
+          }
+      }
+      o = this.options.step, this.options.values && this.options.values.length ? i = s = this.values(u) : i = s = this.value();
+      switch(t.keyCode) {
+        case e.ui.keyCode.HOME:
+          s = this._valueMin();
+          break;
+        case e.ui.keyCode.END:
+          s = this._valueMax();
+          break;
+        case e.ui.keyCode.PAGE_UP:
+          s = this._trimAlignValue(i + (this._valueMax() - this._valueMin()) / n);
+          break;
+        case e.ui.keyCode.PAGE_DOWN:
+          s = this._trimAlignValue(i - (this._valueMax() - this._valueMin()) / n);
+          break;
+        case e.ui.keyCode.UP:
+        ;
+        case e.ui.keyCode.RIGHT:
+          if(i === this._valueMax()) {
+            return
+          }
+          s = this._trimAlignValue(i + o);
+          break;
+        case e.ui.keyCode.DOWN:
+        ;
+        case e.ui.keyCode.LEFT:
+          if(i === this._valueMin()) {
+            return
+          }
+          s = this._trimAlignValue(i - o)
+      }
+      this._slide(t, u, s)
+    }, keyup:function(t) {
+      var n = e(t.target).data("ui-slider-handle-index");
+      this._keySliding && (this._keySliding = !1, this._stop(t, n), this._change(t, n), e(t.target).removeClass("ui-state-active"))
+    }}), this._refreshValue(), this._animateOff = !1
+  }, _destroy:function() {
+    this.handles.remove(), this.range.remove(), this.element.removeClass("ui-slider ui-slider-horizontal ui-slider-vertical ui-slider-disabled ui-widget ui-widget-content ui-corner-all"), this._mouseDestroy()
+  }, _mouseCapture:function(t) {
+    var n, r, i, s, o, u, a, f, l = this, c = this.options;
+    return c.disabled ? !1 : (this.elementSize = {width:this.element.outerWidth(), height:this.element.outerHeight()}, this.elementOffset = this.element.offset(), n = {x:t.pageX, y:t.pageY}, r = this._normValueFromMouse(n), i = this._valueMax() - this._valueMin() + 1, this.handles.each(function(t) {
+      var n = Math.abs(r - l.values(t));
+      i > n && (i = n, s = e(this), o = t)
+    }), c.range === !0 && this.values(1) === c.min && (o += 1, s = e(this.handles[o])), u = this._start(t, o), u === !1 ? !1 : (this._mouseSliding = !0, this._handleIndex = o, s.addClass("ui-state-active").focus(), a = s.offset(), f = !e(t.target).parents().andSelf().is(".ui-slider-handle"), this._clickOffset = f ? {left:0, top:0} : {left:t.pageX - a.left - s.width() / 2, top:t.pageY - a.top - s.height() / 2 - (parseInt(s.css("borderTopWidth"), 10) || 0) - (parseInt(s.css("borderBottomWidth"), 10) || 
+    0) + (parseInt(s.css("marginTop"), 10) || 0)}, this.handles.hasClass("ui-state-hover") || this._slide(t, o, r), this._animateOff = !0, !0))
+  }, _mouseStart:function() {
+    return!0
+  }, _mouseDrag:function(e) {
+    var t = {x:e.pageX, y:e.pageY}, n = this._normValueFromMouse(t);
+    return this._slide(e, this._handleIndex, n), !1
+  }, _mouseStop:function(e) {
+    return this.handles.removeClass("ui-state-active"), this._mouseSliding = !1, this._stop(e, this._handleIndex), this._change(e, this._handleIndex), this._handleIndex = null, this._clickOffset = null, this._animateOff = !1, !1
+  }, _detectOrientation:function() {
+    this.orientation = this.options.orientation === "vertical" ? "vertical" : "horizontal"
+  }, _normValueFromMouse:function(e) {
+    var t, n, r, i, s;
+    return this.orientation === "horizontal" ? (t = this.elementSize.width, n = e.x - this.elementOffset.left - (this._clickOffset ? this._clickOffset.left : 0)) : (t = this.elementSize.height, n = e.y - this.elementOffset.top - (this._clickOffset ? this._clickOffset.top : 0)), r = n / t, r > 1 && (r = 1), r < 0 && (r = 0), this.orientation === "vertical" && (r = 1 - r), i = this._valueMax() - this._valueMin(), s = this._valueMin() + r * i, this._trimAlignValue(s)
+  }, _start:function(e, t) {
+    var n = {handle:this.handles[t], value:this.value()};
+    return this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("start", e, n)
+  }, _slide:function(e, t, n) {
+    var r, i, s;
+    this.options.values && this.options.values.length ? (r = this.values(t ? 0 : 1), this.options.values.length === 2 && this.options.range === !0 && (t === 0 && n > r || t === 1 && n < r) && (n = r), n !== this.values(t) && (i = this.values(), i[t] = n, s = this._trigger("slide", e, {handle:this.handles[t], value:n, values:i}), r = this.values(t ? 0 : 1), s !== !1 && this.values(t, n, !0))) : n !== this.value() && (s = this._trigger("slide", e, {handle:this.handles[t], value:n}), s !== !1 && this.value(n))
+  }, _stop:function(e, t) {
+    var n = {handle:this.handles[t], value:this.value()};
+    this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("stop", e, n)
+  }, _change:function(e, t) {
+    if(!this._keySliding && !this._mouseSliding) {
+      var n = {handle:this.handles[t], value:this.value()};
+      this.options.values && this.options.values.length && (n.value = this.values(t), n.values = this.values()), this._trigger("change", e, n)
+    }
+  }, value:function(e) {
+    if(arguments.length) {
+      this.options.value = this._trimAlignValue(e), this._refreshValue(), this._change(null, 0);
+      return
+    }
+    return this._value()
+  }, values:function(t, n) {
+    var r, i, s;
+    if(arguments.length > 1) {
+      this.options.values[t] = this._trimAlignValue(n), this._refreshValue(), this._change(null, t);
+      return
+    }
+    if(!arguments.length) {
+      return this._values()
+    }
+    if(!e.isArray(arguments[0])) {
+      return this.options.values && this.options.values.length ? this._values(t) : this.value()
+    }
+    r = this.options.values, i = arguments[0];
+    for(s = 0;s < r.length;s += 1) {
+      r[s] = this._trimAlignValue(i[s]), this._change(null, s)
+    }
+    this._refreshValue()
+  }, _setOption:function(t, n) {
+    var r, i = 0;
+    e.isArray(this.options.values) && (i = this.options.values.length), e.Widget.prototype._setOption.apply(this, arguments);
+    switch(t) {
+      case "disabled":
+        n ? (this.handles.filter(".ui-state-focus").blur(), this.handles.removeClass("ui-state-hover"), this.handles.prop("disabled", !0), this.element.addClass("ui-disabled")) : (this.handles.prop("disabled", !1), this.element.removeClass("ui-disabled"));
+        break;
+      case "orientation":
+        this._detectOrientation(), this.element.removeClass("ui-slider-horizontal ui-slider-vertical").addClass("ui-slider-" + this.orientation), this._refreshValue();
+        break;
+      case "value":
+        this._animateOff = !0, this._refreshValue(), this._change(null, 0), this._animateOff = !1;
+        break;
+      case "values":
+        this._animateOff = !0, this._refreshValue();
+        for(r = 0;r < i;r += 1) {
+          this._change(null, r)
+        }
+        this._animateOff = !1;
+        break;
+      case "min":
+      ;
+      case "max":
+        this._animateOff = !0, this._refreshValue(), this._animateOff = !1
+    }
+  }, _value:function() {
+    var e = this.options.value;
+    return e = this._trimAlignValue(e), e
+  }, _values:function(e) {
+    var t, n, r;
+    if(arguments.length) {
+      return t = this.options.values[e], t = this._trimAlignValue(t), t
+    }
+    n = this.options.values.slice();
+    for(r = 0;r < n.length;r += 1) {
+      n[r] = this._trimAlignValue(n[r])
+    }
+    return n
+  }, _trimAlignValue:function(e) {
+    if(e <= this._valueMin()) {
+      return this._valueMin()
+    }
+    if(e >= this._valueMax()) {
+      return this._valueMax()
+    }
+    var t = this.options.step > 0 ? this.options.step : 1, n = (e - this._valueMin()) % t, r = e - n;
+    return Math.abs(n) * 2 >= t && (r += n > 0 ? t : -t), parseFloat(r.toFixed(5))
+  }, _valueMin:function() {
+    return this.options.min
+  }, _valueMax:function() {
+    return this.options.max
+  }, _refreshValue:function() {
+    var t, n, r, i, s, o = this.options.range, u = this.options, a = this, f = this._animateOff ? !1 : u.animate, l = {};
+    this.options.values && this.options.values.length ? this.handles.each(function(r) {
+      n = (a.values(r) - a._valueMin()) / (a._valueMax() - a._valueMin()) * 100, l[a.orientation === "horizontal" ? "left" : "bottom"] = n + "%", e(this).stop(1, 1)[f ? "animate" : "css"](l, u.animate), a.options.range === !0 && (a.orientation === "horizontal" ? (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({left:n + "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({width:n - t + "%"}, {queue:!1, duration:u.animate})) : (r === 0 && a.range.stop(1, 1)[f ? "animate" : "css"]({bottom:n + 
+      "%"}, u.animate), r === 1 && a.range[f ? "animate" : "css"]({height:n - t + "%"}, {queue:!1, duration:u.animate}))), t = n
+    }) : (r = this.value(), i = this._valueMin(), s = this._valueMax(), n = s !== i ? (r - i) / (s - i) * 100 : 0, l[this.orientation === "horizontal" ? "left" : "bottom"] = n + "%", this.handle.stop(1, 1)[f ? "animate" : "css"](l, u.animate), o === "min" && this.orientation === "horizontal" && this.range.stop(1, 1)[f ? "animate" : "css"]({width:n + "%"}, u.animate), o === "max" && this.orientation === "horizontal" && this.range[f ? "animate" : "css"]({width:100 - n + "%"}, {queue:!1, duration:u.animate}), 
+    o === "min" && this.orientation === "vertical" && this.range.stop(1, 1)[f ? "animate" : "css"]({height:n + "%"}, u.animate), o === "max" && this.orientation === "vertical" && this.range[f ? "animate" : "css"]({height:100 - n + "%"}, {queue:!1, duration:u.animate}))
   }})
 })(jQuery);
 (function($) {
@@ -8858,84 +9073,6 @@ jQuery.cookie = function(key, value, options) {
     }
   }
 })(jQuery);
-/*
-     MIT License
-*/
-(function($) {
-  function supportFullScreen() {
-    var doc = document.documentElement;
-    return"requestFullscreen" in doc || "mozRequestFullScreen" in doc && document.mozFullScreenEnabled || "webkitRequestFullScreen" in doc
-  }
-  function requestFullScreen(elem) {
-    if(elem.requestFullscreen) {
-      elem.requestFullscreen()
-    }else {
-      if(elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen()
-      }else {
-        if(elem.webkitRequestFullScreen) {
-          elem.webkitRequestFullScreen()
-        }
-      }
-    }
-  }
-  function fullScreenStatus() {
-    return document.fullscreen || document.mozFullScreen || document.webkitIsFullScreen || false
-  }
-  function cancelFullScreen() {
-    if(document.exitFullscreen) {
-      document.exitFullscreen()
-    }else {
-      if(document.mozCancelFullScreen) {
-        document.mozCancelFullScreen()
-      }else {
-        if(document.webkitCancelFullScreen) {
-          document.webkitCancelFullScreen()
-        }
-      }
-    }
-    $(document).off("fullscreenchange mozfullscreenchange webkitfullscreenchange")
-  }
-  function onFullScreenEvent(callback) {
-    $(document).on("fullscreenchange mozfullscreenchange webkitfullscreenchange", function() {
-      callback(fullScreenStatus())
-    })
-  }
-  $.support.fullscreen = supportFullScreen();
-  $.fn.fullScreen = function(props) {
-    if(!$.support.fullscreen || this.length !== 1) {
-      return this
-    }
-    if(fullScreenStatus()) {
-      cancelFullScreen();
-      return this
-    }
-    var options = $.extend({"background":"#111", "callback":$.noop(), "fullscreenClass":"fullScreen"}, props), elem = this, fs = $("<div>", {"css":{"overflow-y":"auto", "background":options.background, "width":"100%", "height":"100%"}}).insertBefore(elem).append(elem);
-    elem.addClass(options.fullscreenClass);
-    requestFullScreen(fs.get(0));
-    fs.click(function(e) {
-      if(e.target == this) {
-        cancelFullScreen()
-      }
-    });
-    elem.cancel = function() {
-      cancelFullScreen();
-      return elem
-    };
-    onFullScreenEvent(function(fullScreen) {
-      if(!fullScreen) {
-        elem.removeClass(options.fullscreenClass).insertBefore(fs);
-        fs.remove()
-      }
-      options.callback(fullScreen)
-    });
-    return elem
-  };
-  $.fn.cancelFullScreen = function() {
-    cancelFullScreen();
-    return this
-  }
-})(jQuery);
 (function($) {
   $.fn.joyride = function(options) {
     var settings = {"tipLocation":"bottom", "scrollSpeed":300, "timer":0, "startTimerOnClick":false, "nextButton":true, "tipAnimation":"fade", "tipAnimationFadeSpeed":300, "cookieMonster":false, "cookieName":"JoyRide", "cookieDomain":false, "tipContainer":"body", "inline":false, "tipContent":"#joyRideTipContent", "postRideCallback":$.noop, "postStepCallback":$.noop};
@@ -11319,644 +11456,6 @@ var nicEditorSaveButton = nicEditorButton.extend({init:function() {
   onSave(selectedInstance.getContent(), selectedInstance.elm.id, selectedInstance)
 }});
 nicEditors.registerPlugin(nicPlugin, nicSaveOptions);
-var swfobject = function() {
-  var D = "undefined", r = "object", S = "Shockwave Flash", W = "ShockwaveFlash.ShockwaveFlash", q = "application/x-shockwave-flash", R = "SWFObjectExprInst", x = "onreadystatechange", O = window, j = document, t = navigator, T = false, U = [h], o = [], N = [], I = [], l, Q, E, B, J = false, a = false, n, G, m = true, M = function() {
-    var aa = typeof j.getElementById != D && typeof j.getElementsByTagName != D && typeof j.createElement != D, ah = t.userAgent.toLowerCase(), Y = t.platform.toLowerCase(), ae = Y ? /win/.test(Y) : /win/.test(ah), ac = Y ? /mac/.test(Y) : /mac/.test(ah), af = /webkit/.test(ah) ? parseFloat(ah.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false, X = !+"\v1", ag = [0, 0, 0], ab = null;
-    if(typeof t.plugins != D && typeof t.plugins[S] == r) {
-      ab = t.plugins[S].description;
-      if(ab && !(typeof t.mimeTypes != D && t.mimeTypes[q] && !t.mimeTypes[q].enabledPlugin)) {
-        T = true;
-        X = false;
-        ab = ab.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
-        ag[0] = parseInt(ab.replace(/^(.*)\..*$/, "$1"), 10);
-        ag[1] = parseInt(ab.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
-        ag[2] = /[a-zA-Z]/.test(ab) ? parseInt(ab.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10) : 0
-      }
-    }else {
-      if(typeof O.ActiveXObject != D) {
-        try {
-          var ad = new ActiveXObject(W);
-          if(ad) {
-            ab = ad.GetVariable("$version");
-            if(ab) {
-              X = true;
-              ab = ab.split(" ")[1].split(",");
-              ag = [parseInt(ab[0], 10), parseInt(ab[1], 10), parseInt(ab[2], 10)]
-            }
-          }
-        }catch(Z) {
-        }
-      }
-    }
-    return{w3:aa, pv:ag, wk:af, ie:X, win:ae, mac:ac}
-  }(), k = function() {
-    if(!M.w3) {
-      return
-    }
-    if(typeof j.readyState != D && j.readyState == "complete" || typeof j.readyState == D && (j.getElementsByTagName("body")[0] || j.body)) {
-      f()
-    }
-    if(!J) {
-      if(typeof j.addEventListener != D) {
-        j.addEventListener("DOMContentLoaded", f, false)
-      }
-      if(M.ie && M.win) {
-        j.attachEvent(x, function() {
-          if(j.readyState == "complete") {
-            j.detachEvent(x, arguments.callee);
-            f()
-          }
-        });
-        if(O == top) {
-          (function() {
-            if(J) {
-              return
-            }
-            try {
-              j.documentElement.doScroll("left")
-            }catch(X) {
-              setTimeout(arguments.callee, 0);
-              return
-            }
-            f()
-          })()
-        }
-      }
-      if(M.wk) {
-        (function() {
-          if(J) {
-            return
-          }
-          if(!/loaded|complete/.test(j.readyState)) {
-            setTimeout(arguments.callee, 0);
-            return
-          }
-          f()
-        })()
-      }
-      s(f)
-    }
-  }();
-  function f() {
-    if(J) {
-      return
-    }
-    try {
-      var Z = j.getElementsByTagName("body")[0].appendChild(C("span"));
-      Z.parentNode.removeChild(Z)
-    }catch(aa) {
-      return
-    }
-    J = true;
-    var X = U.length;
-    for(var Y = 0;Y < X;Y++) {
-      U[Y]()
-    }
-  }
-  function K(X) {
-    if(J) {
-      X()
-    }else {
-      U[U.length] = X
-    }
-  }
-  function s(Y) {
-    if(typeof O.addEventListener != D) {
-      O.addEventListener("load", Y, false)
-    }else {
-      if(typeof j.addEventListener != D) {
-        j.addEventListener("load", Y, false)
-      }else {
-        if(typeof O.attachEvent != D) {
-          i(O, "onload", Y)
-        }else {
-          if(typeof O.onload == "function") {
-            var X = O.onload;
-            O.onload = function() {
-              X();
-              Y()
-            }
-          }else {
-            O.onload = Y
-          }
-        }
-      }
-    }
-  }
-  function h() {
-    if(T) {
-      V()
-    }else {
-      H()
-    }
-  }
-  function V() {
-    var X = j.getElementsByTagName("body")[0];
-    var aa = C(r);
-    aa.setAttribute("type", q);
-    var Z = X.appendChild(aa);
-    if(Z) {
-      var Y = 0;
-      (function() {
-        if(typeof Z.GetVariable != D) {
-          var ab = Z.GetVariable("$version");
-          if(ab) {
-            ab = ab.split(" ")[1].split(",");
-            M.pv = [parseInt(ab[0], 10), parseInt(ab[1], 10), parseInt(ab[2], 10)]
-          }
-        }else {
-          if(Y < 10) {
-            Y++;
-            setTimeout(arguments.callee, 10);
-            return
-          }
-        }
-        X.removeChild(aa);
-        Z = null;
-        H()
-      })()
-    }else {
-      H()
-    }
-  }
-  function H() {
-    var ag = o.length;
-    if(ag > 0) {
-      for(var af = 0;af < ag;af++) {
-        var Y = o[af].id;
-        var ab = o[af].callbackFn;
-        var aa = {success:false, id:Y};
-        if(M.pv[0] > 0) {
-          var ae = c(Y);
-          if(ae) {
-            if(F(o[af].swfVersion) && !(M.wk && M.wk < 312)) {
-              w(Y, true);
-              if(ab) {
-                aa.success = true;
-                aa.ref = z(Y);
-                ab(aa)
-              }
-            }else {
-              if(o[af].expressInstall && A()) {
-                var ai = {};
-                ai.data = o[af].expressInstall;
-                ai.width = ae.getAttribute("width") || "0";
-                ai.height = ae.getAttribute("height") || "0";
-                if(ae.getAttribute("class")) {
-                  ai.styleclass = ae.getAttribute("class")
-                }
-                if(ae.getAttribute("align")) {
-                  ai.align = ae.getAttribute("align")
-                }
-                var ah = {};
-                var X = ae.getElementsByTagName("param");
-                var ac = X.length;
-                for(var ad = 0;ad < ac;ad++) {
-                  if(X[ad].getAttribute("name").toLowerCase() != "movie") {
-                    ah[X[ad].getAttribute("name")] = X[ad].getAttribute("value")
-                  }
-                }
-                P(ai, ah, Y, ab)
-              }else {
-                p(ae);
-                if(ab) {
-                  ab(aa)
-                }
-              }
-            }
-          }
-        }else {
-          w(Y, true);
-          if(ab) {
-            var Z = z(Y);
-            if(Z && typeof Z.SetVariable != D) {
-              aa.success = true;
-              aa.ref = Z
-            }
-            ab(aa)
-          }
-        }
-      }
-    }
-  }
-  function z(aa) {
-    var X = null;
-    var Y = c(aa);
-    if(Y && Y.nodeName == "OBJECT") {
-      if(typeof Y.SetVariable != D) {
-        X = Y
-      }else {
-        var Z = Y.getElementsByTagName(r)[0];
-        if(Z) {
-          X = Z
-        }
-      }
-    }
-    return X
-  }
-  function A() {
-    return!a && F("6.0.65") && (M.win || M.mac) && !(M.wk && M.wk < 312)
-  }
-  function P(aa, ab, X, Z) {
-    a = true;
-    E = Z || null;
-    B = {success:false, id:X};
-    var ae = c(X);
-    if(ae) {
-      if(ae.nodeName == "OBJECT") {
-        l = g(ae);
-        Q = null
-      }else {
-        l = ae;
-        Q = X
-      }
-      aa.id = R;
-      if(typeof aa.width == D || !/%$/.test(aa.width) && parseInt(aa.width, 10) < 310) {
-        aa.width = "310"
-      }
-      if(typeof aa.height == D || !/%$/.test(aa.height) && parseInt(aa.height, 10) < 137) {
-        aa.height = "137"
-      }
-      j.title = j.title.slice(0, 47) + " - Flash Player Installation";
-      var ad = M.ie && M.win ? "ActiveX" : "PlugIn", ac = "MMredirectURL=" + O.location.toString().replace(/&/g, "%26") + "&MMplayerType=" + ad + "&MMdoctitle=" + j.title;
-      if(typeof ab.flashvars != D) {
-        ab.flashvars += "&" + ac
-      }else {
-        ab.flashvars = ac
-      }
-      if(M.ie && M.win && ae.readyState != 4) {
-        var Y = C("div");
-        X += "SWFObjectNew";
-        Y.setAttribute("id", X);
-        ae.parentNode.insertBefore(Y, ae);
-        ae.style.display = "none";
-        (function() {
-          if(ae.readyState == 4) {
-            ae.parentNode.removeChild(ae)
-          }else {
-            setTimeout(arguments.callee, 10)
-          }
-        })()
-      }
-      u(aa, ab, X)
-    }
-  }
-  function p(Y) {
-    if(M.ie && M.win && Y.readyState != 4) {
-      var X = C("div");
-      Y.parentNode.insertBefore(X, Y);
-      X.parentNode.replaceChild(g(Y), X);
-      Y.style.display = "none";
-      (function() {
-        if(Y.readyState == 4) {
-          Y.parentNode.removeChild(Y)
-        }else {
-          setTimeout(arguments.callee, 10)
-        }
-      })()
-    }else {
-      Y.parentNode.replaceChild(g(Y), Y)
-    }
-  }
-  function g(ab) {
-    var aa = C("div");
-    if(M.win && M.ie) {
-      aa.innerHTML = ab.innerHTML
-    }else {
-      var Y = ab.getElementsByTagName(r)[0];
-      if(Y) {
-        var ad = Y.childNodes;
-        if(ad) {
-          var X = ad.length;
-          for(var Z = 0;Z < X;Z++) {
-            if(!(ad[Z].nodeType == 1 && ad[Z].nodeName == "PARAM") && !(ad[Z].nodeType == 8)) {
-              aa.appendChild(ad[Z].cloneNode(true))
-            }
-          }
-        }
-      }
-    }
-    return aa
-  }
-  function u(ai, ag, Y) {
-    var X, aa = c(Y);
-    if(M.wk && M.wk < 312) {
-      return X
-    }
-    if(aa) {
-      if(typeof ai.id == D) {
-        ai.id = Y
-      }
-      if(M.ie && M.win) {
-        var ah = "";
-        for(var ae in ai) {
-          if(ai[ae] != Object.prototype[ae]) {
-            if(ae.toLowerCase() == "data") {
-              ag.movie = ai[ae]
-            }else {
-              if(ae.toLowerCase() == "styleclass") {
-                ah += ' class="' + ai[ae] + '"'
-              }else {
-                if(ae.toLowerCase() != "classid") {
-                  ah += " " + ae + '="' + ai[ae] + '"'
-                }
-              }
-            }
-          }
-        }
-        var af = "";
-        for(var ad in ag) {
-          if(ag[ad] != Object.prototype[ad]) {
-            af += '<param name="' + ad + '" value="' + ag[ad] + '" />'
-          }
-        }
-        aa.outerHTML = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"' + ah + ">" + af + "</object>";
-        N[N.length] = ai.id;
-        X = c(ai.id)
-      }else {
-        var Z = C(r);
-        Z.setAttribute("type", q);
-        for(var ac in ai) {
-          if(ai[ac] != Object.prototype[ac]) {
-            if(ac.toLowerCase() == "styleclass") {
-              Z.setAttribute("class", ai[ac])
-            }else {
-              if(ac.toLowerCase() != "classid") {
-                Z.setAttribute(ac, ai[ac])
-              }
-            }
-          }
-        }
-        for(var ab in ag) {
-          if(ag[ab] != Object.prototype[ab] && ab.toLowerCase() != "movie") {
-            e(Z, ab, ag[ab])
-          }
-        }
-        aa.parentNode.replaceChild(Z, aa);
-        X = Z
-      }
-    }
-    return X
-  }
-  function e(Z, X, Y) {
-    var aa = C("param");
-    aa.setAttribute("name", X);
-    aa.setAttribute("value", Y);
-    Z.appendChild(aa)
-  }
-  function y(Y) {
-    var X = c(Y);
-    if(X && X.nodeName == "OBJECT") {
-      if(M.ie && M.win) {
-        X.style.display = "none";
-        (function() {
-          if(X.readyState == 4) {
-            b(Y)
-          }else {
-            setTimeout(arguments.callee, 10)
-          }
-        })()
-      }else {
-        X.parentNode.removeChild(X)
-      }
-    }
-  }
-  function b(Z) {
-    var Y = c(Z);
-    if(Y) {
-      for(var X in Y) {
-        if(typeof Y[X] == "function") {
-          Y[X] = null
-        }
-      }
-      Y.parentNode.removeChild(Y)
-    }
-  }
-  function c(Z) {
-    var X = null;
-    try {
-      X = j.getElementById(Z)
-    }catch(Y) {
-    }
-    return X
-  }
-  function C(X) {
-    return j.createElement(X)
-  }
-  function i(Z, X, Y) {
-    Z.attachEvent(X, Y);
-    I[I.length] = [Z, X, Y]
-  }
-  function F(Z) {
-    var Y = M.pv, X = Z.split(".");
-    X[0] = parseInt(X[0], 10);
-    X[1] = parseInt(X[1], 10) || 0;
-    X[2] = parseInt(X[2], 10) || 0;
-    return Y[0] > X[0] || Y[0] == X[0] && Y[1] > X[1] || Y[0] == X[0] && Y[1] == X[1] && Y[2] >= X[2] ? true : false
-  }
-  function v(ac, Y, ad, ab) {
-    if(M.ie && M.mac) {
-      return
-    }
-    var aa = j.getElementsByTagName("head")[0];
-    if(!aa) {
-      return
-    }
-    var X = ad && typeof ad == "string" ? ad : "screen";
-    if(ab) {
-      n = null;
-      G = null
-    }
-    if(!n || G != X) {
-      var Z = C("style");
-      Z.setAttribute("type", "text/css");
-      Z.setAttribute("media", X);
-      n = aa.appendChild(Z);
-      if(M.ie && M.win && typeof j.styleSheets != D && j.styleSheets.length > 0) {
-        n = j.styleSheets[j.styleSheets.length - 1]
-      }
-      G = X
-    }
-    if(M.ie && M.win) {
-      if(n && typeof n.addRule == r) {
-        n.addRule(ac, Y)
-      }
-    }else {
-      if(n && typeof j.createTextNode != D) {
-        n.appendChild(j.createTextNode(ac + " {" + Y + "}"))
-      }
-    }
-  }
-  function w(Z, X) {
-    if(!m) {
-      return
-    }
-    var Y = X ? "visible" : "hidden";
-    if(J && c(Z)) {
-      c(Z).style.visibility = Y
-    }else {
-      v("#" + Z, "visibility:" + Y)
-    }
-  }
-  function L(Y) {
-    var Z = /[\\\"<>\.;]/;
-    var X = Z.exec(Y) != null;
-    return X && typeof encodeURIComponent != D ? encodeURIComponent(Y) : Y
-  }
-  var d = function() {
-    if(M.ie && M.win) {
-      window.attachEvent("onunload", function() {
-        var ac = I.length;
-        for(var ab = 0;ab < ac;ab++) {
-          I[ab][0].detachEvent(I[ab][1], I[ab][2])
-        }
-        var Z = N.length;
-        for(var aa = 0;aa < Z;aa++) {
-          y(N[aa])
-        }
-        for(var Y in M) {
-          M[Y] = null
-        }
-        M = null;
-        for(var X in swfobject) {
-          swfobject[X] = null
-        }
-        swfobject = null
-      })
-    }
-  }();
-  return{registerObject:function(ab, X, aa, Z) {
-    if(M.w3 && ab && X) {
-      var Y = {};
-      Y.id = ab;
-      Y.swfVersion = X;
-      Y.expressInstall = aa;
-      Y.callbackFn = Z;
-      o[o.length] = Y;
-      w(ab, false)
-    }else {
-      if(Z) {
-        Z({success:false, id:ab})
-      }
-    }
-  }, getObjectById:function(X) {
-    if(M.w3) {
-      return z(X)
-    }
-  }, embedSWF:function(ab, ah, ae, ag, Y, aa, Z, ad, af, ac) {
-    var X = {success:false, id:ah};
-    if(M.w3 && !(M.wk && M.wk < 312) && ab && ah && ae && ag && Y) {
-      w(ah, false);
-      K(function() {
-        ae += "";
-        ag += "";
-        var aj = {};
-        if(af && typeof af === r) {
-          for(var al in af) {
-            aj[al] = af[al]
-          }
-        }
-        aj.data = ab;
-        aj.width = ae;
-        aj.height = ag;
-        var am = {};
-        if(ad && typeof ad === r) {
-          for(var ak in ad) {
-            am[ak] = ad[ak]
-          }
-        }
-        if(Z && typeof Z === r) {
-          for(var ai in Z) {
-            if(typeof am.flashvars != D) {
-              am.flashvars += "&" + ai + "=" + Z[ai]
-            }else {
-              am.flashvars = ai + "=" + Z[ai]
-            }
-          }
-        }
-        if(F(Y)) {
-          var an = u(aj, am, ah);
-          if(aj.id == ah) {
-            w(ah, true)
-          }
-          X.success = true;
-          X.ref = an
-        }else {
-          if(aa && A()) {
-            aj.data = aa;
-            P(aj, am, ah, ac);
-            return
-          }else {
-            w(ah, true)
-          }
-        }
-        if(ac) {
-          ac(X)
-        }
-      })
-    }else {
-      if(ac) {
-        ac(X)
-      }
-    }
-  }, switchOffAutoHideShow:function() {
-    m = false
-  }, ua:M, getFlashPlayerVersion:function() {
-    return{major:M.pv[0], minor:M.pv[1], release:M.pv[2]}
-  }, hasFlashPlayerVersion:F, createSWF:function(Z, Y, X) {
-    if(M.w3) {
-      return u(Z, Y, X)
-    }else {
-      return undefined
-    }
-  }, showExpressInstall:function(Z, aa, X, Y) {
-    if(M.w3 && A()) {
-      P(Z, aa, X, Y)
-    }
-  }, removeSWF:function(X) {
-    if(M.w3) {
-      y(X)
-    }
-  }, createCSS:function(aa, Z, Y, X) {
-    if(M.w3) {
-      v(aa, Z, Y, X)
-    }
-  }, addDomLoadEvent:K, addLoadEvent:s, getQueryParamValue:function(aa) {
-    var Z = j.location.search || j.location.hash;
-    if(Z) {
-      if(/\?/.test(Z)) {
-        Z = Z.split("?")[1]
-      }
-      if(aa == null) {
-        return L(Z)
-      }
-      var Y = Z.split("&");
-      for(var X = 0;X < Y.length;X++) {
-        if(Y[X].substring(0, Y[X].indexOf("=")) == aa) {
-          return L(Y[X].substring(Y[X].indexOf("=") + 1))
-        }
-      }
-    }
-    return""
-  }, expressInstallCallback:function() {
-    if(a) {
-      var X = c(R);
-      if(X && l) {
-        X.parentNode.replaceChild(l, X);
-        if(Q) {
-          w(Q, true);
-          if(M.ie && M.win) {
-            l.style.display = "block"
-          }
-        }
-        if(E) {
-          E(B)
-        }
-      }
-      a = false
-    }
-  }}
-}();
 (function($) {
   $.widget("ui.tagit", {options:{tagSource:[], triggerKeys:["enter", "space", "comma", "tab"], initialTags:[], minLength:1, select:false, allowNewTags:true, caseSensitive:false, sortable:false, highlightOnExistColor:"#0F0", emptySearch:true, watermarkAllowMessage:"Add tags", watermarkDenyMessage:"Tags limit reached", tagsChanged:function(tagValue, action, element) {
   }}, _splitAt:/\ |,/g, _existingAtIndex:0, _pasteMetaKeyPressed:false, _keys:{backspace:[8], enter:[13], space:[32], comma:[44, 188], tab:[9]}, _sortable:{sorting:-1}, _create:function() {
@@ -12290,17 +11789,58 @@ var swfobject = function() {
     return{label:label, value:value === undefined ? label : value, element:element, index:self.tagsArray.length}
   }})
 })(jQuery);
-VISH.Renderer = function(V, $, undefined) {
+if(!window["YT"]) {
+  var YT = {}
+}
+if(!YT.Player) {
+  (function() {
+    var s = "http:" + "//s.ytimg.com/yts/jsbin/www-widgetapi-vfl3iLqI8.js";
+    var a = document.createElement("script");
+    a.src = s;
+    a.async = true;
+    var b = document.getElementsByTagName("script")[0];
+    b.parentNode.insertBefore(a, b);
+    YT.embed_template = '<iframe width="425" height="344" src="" frameborder="0" allowfullscreen></iframe>'
+  })()
+}
+;VISH.Renderer = function(V, $, undefined) {
   var SLIDE_CONTAINER = null;
   var init = function() {
     SLIDE_CONTAINER = $(".slides");
     VISH.Renderer.Filter.init()
   };
-  var renderSlide = function(slide) {
+  var renderSlide = function(slide, extra_classes, extra_buttons) {
+    var article;
+    if(!extra_classes) {
+      var extra_classes = ""
+    }
+    if(!extra_buttons) {
+      var extra_buttons = ""
+    }
+    switch(slide.type) {
+      case undefined:
+      ;
+      case VISH.Constant.STANDARD:
+        article = _renderStandardSlide(slide, extra_classes, extra_buttons);
+        break;
+      case VISH.Constant.FLASHCARD:
+        article = _renderFlashcardSlide(slide, extra_classes, extra_buttons);
+        break;
+      case VISH.Constant.VTOUR:
+        article = _renderVirtualTourSlide(slide, extra_classes, extra_buttons);
+        break;
+      default:
+        article = null;
+        break
+    }
+    if(article) {
+      SLIDE_CONTAINER.append($(article));
+      _afterDrawSlide(slide)
+    }
+  };
+  var _renderStandardSlide = function(slide, extra_classes, extra_buttons) {
     var content = "";
     var classes = "";
-    var buttons = "";
-    var received = JSON.stringify(slide);
     for(el in slide.elements) {
       if(!VISH.Renderer.Filter.allowElement(slide.elements[el])) {
         content += VISH.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template)
@@ -12326,16 +11866,11 @@ VISH.Renderer = function(V, $, undefined) {
                     content += _renderApplet(slide.elements[el], slide.template);
                     classes += "applet "
                   }else {
-                    if(slide.elements[el].type === "flashcard") {
-                      content = _renderFlashcard(slide.elements[el], slide.template);
-                      classes += "flashcard"
+                    if(slide.elements[el].type === VISH.Constant.QUIZ) {
+                      content += V.Quiz.Renderer.renderQuiz(slide.elements[el].quiztype, slide.elements[el], slide.template + "_" + slide.elements[el].areaid, slide.id, slide.elements[el].id);
+                      classes += VISH.Constant.QUIZ
                     }else {
-                      if(slide.elements[el].type === "quiz") {
-                        content += V.Quiz.Renderer.renderQuiz(slide.elements[el].quiztype, slide.elements[el], slide.template + "_" + slide.elements[el].areaid, slide.id, slide.elements[el].id);
-                        classes += "quiz"
-                      }else {
-                        content += _renderEmpty(slide.elements[el], slide.template)
-                      }
+                      content += _renderEmpty(slide.elements[el], slide.template)
                     }
                   }
                 }
@@ -12345,15 +11880,49 @@ VISH.Renderer = function(V, $, undefined) {
         }
       }
     }
-    if(V.SlideManager.getPresentationType() === "flashcard") {
-      buttons = "<div class='close_slide' id='close" + slide.id + "'></div>"
-    }
-    if(slide.type == "quiz") {
+    if(slide.type == VISH.Constant.QUIZ) {
       content += V.Quiz.Renderer.renderQuiz(slide.quiztype, slide, slide.template + "_" + slide.areaid, null, slide.id);
-      classes += "quiz"
+      classes += VISH.Constant.QUIZ
     }
-    var article = $("<article class='" + classes + "' id='" + slide.id + "'>" + buttons + content + "</article>");
-    SLIDE_CONTAINER.append(article)
+    return"<article class='" + extra_classes + " " + classes + "' id='" + slide.id + "'>" + extra_buttons + content + "</article>"
+  };
+  var _renderFlashcardSlide = function(slide, extra_classes, extra_buttons) {
+    var all_slides = "";
+    for(index in slide.slides) {
+      var subslide = slide.slides[index];
+      all_slides += _renderStandardSlide(subslide, "subslide", "<div class='close_subslide' id='close" + subslide.id + "'></div>")
+    }
+    var div_for_slides_hidden = "<div class='subslides' >" + all_slides + "</div>";
+    return $("<article class='" + extra_classes + " flashcard_slide' type='flashcard' avatar='" + slide.background + "' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
+  };
+  var _renderVirtualTourSlide = function(slide, extra_classes, extra_buttons) {
+    var all_slides = "";
+    for(index in slide.slides) {
+      var subslide = slide.slides[index];
+      all_slides += _renderStandardSlide(subslide, "subslide", "<div class='close_subslide' id='close" + subslide.id + "'></div>")
+    }
+    var div_for_slides_hidden = "<div class='subslides' >" + all_slides + "</div>";
+    return $("<article class='" + extra_classes + " virtualTour_slide' type='virtualTour' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
+  };
+  var _afterDrawSlide = function(slide) {
+    switch(slide.type) {
+      case undefined:
+      ;
+      case VISH.Constant.STANDARD:
+        break;
+      case VISH.Constant.FLASHCARD:
+        $("#" + slide.id).css("background-image", slide.background);
+        for(index in slide.pois) {
+          var poi = slide.pois[index];
+          V.Flashcard.addArrow(slide.id, poi, true)
+        }
+        break;
+      case VISH.Constant.VTOUR:
+        VISH.VirtualTour.drawMap(slide);
+        break;
+      default:
+        break
+    }
   };
   var _renderText = function(element, template) {
     return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'>" + element["body"] + "</div>"
@@ -12411,12 +11980,11 @@ VISH.Renderer = function(V, $, undefined) {
     }
   };
   var _renderYoutubeVideo = function(element, template, source) {
-    var ytVideoId = VISH.Utils.getId();
+    var ytContainerId = VISH.Utils.getId();
     var style = element["style"] ? element["style"] : "";
     var body = element["body"];
     var zoomInStyle = element["zoomInStyle"] ? element["zoomInStyle"] : "";
-    source = source.replace("http://www.youtube.com/embed/", "http://www.youtube.com/v/");
-    return"<div id='" + element["id"] + "' class='objectelement youtubeelement " + template + "_" + element["areaid"] + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' source='" + source + "' ytVideoId='" + ytVideoId + "'>" + "</div>"
+    return"<div id='" + element["id"] + "' class='objectelement youtubeelement " + template + "_" + element["areaid"] + "' objectStyle='" + style + "' zoomInStyle='" + zoomInStyle + "' source='" + source + "' ytContainerId='" + ytContainerId + "'>" + "</div>"
   };
   var _renderSnapshot = function(element, template) {
     var style = element["style"] ? element["style"] : "";
@@ -12634,12 +12202,34 @@ VISH.Status = function(V, $, undefined) {
   return{init:init, getIsInIframe:getIsInIframe, getIframe:getIframe, getDevice:getDevice, getOnline:getOnline, setSlaveMode:setSlaveMode, isSlaveMode:isSlaveMode, setPreventDefaultMode:setPreventDefaultMode, isPreventDefaultMode:isPreventDefaultMode}
 }(VISH, jQuery);
 VISH.Utils = function(V, undefined) {
+  var domIds;
   var init = function() {
+    if(!domIds) {
+      domIds = new Array
+    }
   };
-  var domId = 0;
-  var getId = function() {
-    domId = domId + 1;
-    return"unicID_" + domId
+  var getId = function(full_id_prefix, justCheck, separator) {
+    if(!justCheck) {
+      if(typeof full_id_prefix !== "string") {
+        full_id_prefix = "unicID"
+      }
+      if(typeof separator !== "string") {
+        separator = ""
+      }
+      if(typeof domIds[full_id_prefix] === "undefined") {
+        domIds[full_id_prefix] = 0
+      }
+      domIds[full_id_prefix] = domIds[full_id_prefix] + 1;
+      var full_id = full_id_prefix + separator + domIds[full_id_prefix]
+    }else {
+      var full_id = full_id_prefix;
+      full_id_prefix = full_id_prefix.replace(full_id_prefix[full_id_prefix.length - 1], "")
+    }
+    if($("#" + full_id).length === 0) {
+      return full_id
+    }else {
+      return getId(full_id_prefix, false, separator)
+    }
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -12742,6 +12332,13 @@ VISH.Utils = function(V, undefined) {
   var filterFilePath = function(path) {
     return path.replace("C:\\fakepath\\", "")
   };
+  var getSrcFromCSS = function(css) {
+    if(css.indexOf("url") === 0) {
+      return css.substring(4, css.length - 1)
+    }else {
+      return css
+    }
+  };
   var getZoomInStyle = function(zoom) {
     var style = "";
     style = style + "-ms-transform: scale(" + zoom + "); ";
@@ -12807,6 +12404,11 @@ VISH.Utils = function(V, undefined) {
     $(".help_in_fancybox").hide();
     $("#" + tab_id + "_help").show();
     switch(tab_id) {
+      case "tab_templates":
+        break;
+      case "tab_flashcards_repo":
+        V.Editor.Flashcard.Repository.onLoadTab();
+        break;
       case "tab_pic_from_url":
         V.Editor.Image.onLoadTab("url");
         break;
@@ -12865,7 +12467,7 @@ VISH.Utils = function(V, undefined) {
         break
     }
   };
-  return{init:init, getId:getId, getOuterHTML:getOuterHTML, generateTable:generateTable, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, convertToTagsArray:convertToTagsArray, getURLParameter:getURLParameter, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab}
+  return{init:init, getId:getId, getOuterHTML:getOuterHTML, generateTable:generateTable, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, convertToTagsArray:convertToTagsArray, getURLParameter:getURLParameter, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initialPresentation = false;
@@ -12887,12 +12489,16 @@ VISH.Editor = function(V, $, undefined) {
     }else {
       initOptions = {}
     }
+    VISH.Utils.init();
     VISH.Status.init();
     if(!VISH.Utils.checkMiniumRequirements()) {
       return
     }
     VISH.Utils.loadDeviceCSS();
-    VISH.Dummies.init();
+    VISH.Editor.Dummies.init();
+    VISH.Flashcard.init();
+    VISH.Editor.Flashcard.init();
+    VISH.Renderer.init();
     VISH.Slides.init();
     VISH.User.init(options);
     if(VISH.Debugging.isDevelopping()) {
@@ -12900,14 +12506,18 @@ VISH.Editor = function(V, $, undefined) {
         presentation = VISH.Debugging.getPresentationSamples()
       }
     }
+    $("#slider-range").slider({range:true, min:0, max:30, values:[4, 20], slide:function(event, ui) {
+      $("#age_range").val(ui.values[0] + " - " + ui.values[1])
+    }});
+    $("#age_range").val(VISH.Constant.AGE_RANGE);
     if(presentation) {
+      if(typeof presentation.VEVersion === "undefined") {
+        presentation.VEVersion = "0.1"
+      }
       initialPresentation = true;
       setPresentation(presentation);
       VISH.Editor.Renderer.init(presentation);
-      _removeSelectableProperties();
-      if(presentation.type === "flashcard") {
-        VISH.Editor.Flashcard.loadFlashcard(presentation)
-      }
+      _removeSelectableProperties()
     }
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":640, "height":350, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
@@ -13038,16 +12648,56 @@ VISH.Editor = function(V, $, undefined) {
   var _onslideenterEditor = function(e) {
     setTimeout(function() {
       $(e.target).find(".object_wrapper").show()
-    }, 500)
+    }, 500);
+    if($(e.target).hasClass("flashcard_slide")) {
+      V.Flashcard.startAnimation(e.target.id)
+    }
+    if($(e.target).hasClass("subslide")) {
+      setTimeout(function() {
+        if($(e.target).hasClass("object")) {
+          V.ObjectPlayer.loadObject($(e.target))
+        }else {
+          if($(e.target).hasClass("applet")) {
+            V.AppletPlayer.loadApplet($(e.target))
+          }else {
+            if($(e.target).hasClass("snapshot")) {
+              V.SnapshotPlayer.loadSnapshot($(e.target))
+            }
+          }
+        }
+      }, 500);
+      V.VideoPlayer.HTML5.playVideos(e.target);
+      if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
+        $("#forward_arrow").css("top", "15%")
+      }
+      if($(e.target).hasClass("flashcard_slide")) {
+        V.Flashcard.startAnimation(e.target.id)
+      }
+    }
   };
-  var _onslideleaveEditor = function() {
-    $(".object_wrapper").hide()
+  var _onslideleaveEditor = function(e) {
+    $(".object_wrapper").hide();
+    if($(e.target).hasClass("flashcard_slide")) {
+      V.Flashcard.stopAnimation(e.target.id)
+    }
+    if($(e.target).hasClass("subslide")) {
+      V.VideoPlayer.HTML5.stopVideos(e.target);
+      V.ObjectPlayer.unloadObject(e.target);
+      V.AppletPlayer.unloadApplet();
+      if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
+        $("#forward_arrow").css("top", "0%")
+      }
+      if($(e.target).hasClass("flashcard_slide")) {
+        V.Flashcard.stopAnimation(e.target.id)
+      }
+    }
   };
   var _onTemplateThumbClicked = function(event) {
     var theid = draftPresentation ? draftPresentation.id : "";
-    var slide = VISH.Dummies.getDummy($(this).attr("template"), VISH.Slides.getSlides().length, theid, false);
+    var slide = VISH.Editor.Dummies.getDummy($(this).attr("template"), VISH.Slides.getSlidesQuantity() + 1);
     VISH.Editor.Utils.addSlide(slide);
     $.fancybox.close();
+    V.Slides.setCurrentSlideNumber(V.Slides.getCurrentSlideNumber() + 1);
     VISH.Editor.Utils.redrawSlides();
     VISH.Editor.Thumbnails.redrawThumbnails();
     setTimeout("VISH.Slides.lastSlide()", 300)
@@ -13125,19 +12775,31 @@ VISH.Editor = function(V, $, undefined) {
     }})
   };
   var _onSelectableClicked = function(event) {
-    setCurrentArea($(this));
-    _removeSelectableProperties($(this));
-    _addSelectableProperties($(this));
-    VISH.Editor.Tools.loadToolsForZone($(this));
+    selectArea($(this));
     event.stopPropagation();
     event.preventDefault()
+  };
+  var selectArea = function(area) {
+    setCurrentArea(area);
+    _removeSelectableProperties(area);
+    _addSelectableProperties(area);
+    VISH.Editor.Tools.loadToolsForZone(area)
   };
   var _onNoSelectableClicked = function(event) {
     if(!$(event.target).hasClass("noSelectableElement")) {
       if($("#fancybox-content").is(":visible")) {
         return
       }
-      if($(event.target).hasClass("toolbar_icon")) {
+      if($(event.target).parent().hasClass("selectable")) {
+        return
+      }
+      if(jQuery.contains($("#toolbar_wrapper")[0], event.target)) {
+        return
+      }
+      if(event.target.id === "toolbar_wrapper") {
+        return
+      }
+      if(event.target.tagName === "FONT") {
         return
       }
     }
@@ -13175,18 +12837,13 @@ VISH.Editor = function(V, $, undefined) {
     }else {
       presentation.type = getPresentationType()
     }
-    if(presentation.type === "flashcard") {
-      presentation.background = {};
-      presentation.background.src = $("#flashcard-background").css("background-image");
-      presentation.background.pois = VISH.Editor.Flashcard.savePois()
-    }
     if(draftPresentation) {
       presentation.title = draftPresentation.title;
       presentation.description = draftPresentation.description;
       presentation.avatar = draftPresentation.avatar;
       presentation.tags = draftPresentation.tags;
       presentation.theme = draftPresentation.theme;
-      presentation.educational_level = draftPresentation.educational_level;
+      presentation.age_range = draftPresentation.age_range;
       presentation.subject = draftPresentation.subject;
       presentation.language = draftPresentation.language;
       presentation.educational_objectives = draftPresentation.educational_objectives;
@@ -13195,9 +12852,24 @@ VISH.Editor = function(V, $, undefined) {
     presentation.author = "";
     presentation.slides = [];
     var slide = {};
+    if(presentation.type === "flashcard") {
+      slide.id = $("#flashcard-background").attr("flashcard_id");
+      slide.type = "flashcard";
+      slide.background = $("#flashcard-background").css("background-image");
+      slide.pois = VISH.Editor.Flashcard.savePois();
+      slide.slides = [];
+      presentation.slides.push(slide)
+    }
+    slide = {};
     $(".slides > article").each(function(index, s) {
       slide.id = $(s).attr("id");
-      slide.type = "standard";
+      slide.type = $(s).attr("type");
+      if(slide.type === V.Constant.FLASHCARD) {
+        var fc = VISH.Editor.Flashcard.getFlashcard(slide.id);
+        presentation.slides.push(fc);
+        slide = {};
+        return true
+      }
       slide.template = $(s).attr("template");
       slide.elements = [];
       var element = {};
@@ -13207,17 +12879,17 @@ VISH.Editor = function(V, $, undefined) {
           element.id = $(div).attr("id");
           element.type = $(div).attr("type");
           element.areaid = $(div).attr("areaid");
-          if(element.type == "text") {
+          if(element.type == VISH.Constant.TEXT) {
             element.body = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance"))
           }else {
-            if(element.type == "image") {
+            if(element.type == VISH.Constant.IMAGE) {
               element.body = $(div).find("img").attr("src");
               element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(div).find("img"));
               if($(div).attr("hyperlink")) {
                 element.hyperlink = $(div).attr("hyperlink")
               }
             }else {
-              if(element.type == "video") {
+              if(element.type == VISH.Constant.VIDEO) {
                 var video = $(div).find("video");
                 element.poster = $(video).attr("poster");
                 element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(video));
@@ -13232,7 +12904,7 @@ VISH.Editor = function(V, $, undefined) {
                 sources = "[" + sources + "]";
                 element.sources = sources
               }else {
-                if(element.type == "object") {
+                if(element.type === VISH.Constant.OBJECT) {
                   var object = $(div).find(".object_wrapper").children()[0];
                   var myObject = $(object).clone();
                   $(myObject).removeAttr("style");
@@ -13243,7 +12915,7 @@ VISH.Editor = function(V, $, undefined) {
                     element.zoomInStyle = VISH.Utils.getZoomInStyle(zoom)
                   }
                 }else {
-                  if(element.type == "quiz") {
+                  if(element.type === VISH.Constant.QUIZ) {
                     var quizQuestion = $(div).find(".value_multiplechoice_question_in_zone");
                     element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(quizQuestion));
                     if($(div).find(".multiplechoice_option_in_zone")) {
@@ -13266,7 +12938,7 @@ VISH.Editor = function(V, $, undefined) {
                       })
                     }
                   }else {
-                    if(element.type === "snapshot") {
+                    if(element.type === VISH.Constant.SNAPSHOT) {
                       var snapshotWrapper = $(div).find(".snapshot_wrapper");
                       var snapshotIframe = $(snapshotWrapper).children()[0];
                       $(snapshotIframe).removeAttr("style");
@@ -13284,20 +12956,25 @@ VISH.Editor = function(V, $, undefined) {
             }
           }
           slide.elements.push(element);
-          if(element.type == "quiz") {
+          if(element.type == VISH.Constant.QUIZ) {
             var quizSlide = $.extend(true, new Object, element);
             var quizPresentation = new Object;
             quizPresentation.title = presentation.title;
             quizPresentation.description = presentation.description;
             quizPresentation.author = "";
             quizPresentation.slides = [quizSlide];
-            quizPresentation.type = "quiz_simple";
+            quizPresentation.type = VISH.Constant.QUIZ_SIMPLE;
             element.quiz_simple_json = quizPresentation
           }
           element = {}
         }
       });
-      presentation.slides.push(slide);
+      if(presentation.type === VISH.Constant.FLASHCARD) {
+        slide = VISH.Editor.Flashcard.prepareToNestInFlashcard(slide);
+        presentation.slides[0].slides.push(slide)
+      }else {
+        presentation.slides.push(slide)
+      }
       slide = {};
       $(s).removeClass("temp_shown")
     });
@@ -13397,7 +13074,7 @@ VISH.Editor = function(V, $, undefined) {
     return initialPresentation
   };
   var loadFancyBox = function(fancy) {
-    var fancyBoxes = {1:"templates", 2:"quizes"};
+    var fancyBoxes = {1:"templates", 2:"flashcards"};
     for(tab in fancyBoxes) {
       $("#tab_" + fancyBoxes[tab] + "_content").hide();
       $("#tab_" + fancyBoxes[tab]).attr("class", "");
@@ -13419,7 +13096,7 @@ VISH.Editor = function(V, $, undefined) {
     if(type) {
       draftPresentation.type = type
     }else {
-      draftPresentation.type = "presentation"
+      draftPresentation.type = VISH.Constant.PRESENTATION
     }
   };
   var isPresentationStandard = function(presentation) {
@@ -13429,16 +13106,20 @@ VISH.Editor = function(V, $, undefined) {
       if($("article[template]").length === 0) {
         return true
       }
-      return _isThisPresentationStandard(savePresentation())
+      if(VISH.Editor.Flashcard.hasFlascards()) {
+        return false
+      }
+      return true
     }
+    return true
   };
   var _isThisPresentationStandard = function(presentation) {
-    if(presentation.type != "presentation") {
+    if(presentation.type !== "presentation") {
       return false
     }
     var isStandard = true;
     $.each(presentation.slides, function(index, slide) {
-      if(slide.type && slide.type != "standard") {
+      if(slide.type && slide.type !== "standard") {
         isStandard = false;
         return false
       }
@@ -13467,7 +13148,7 @@ VISH.Editor = function(V, $, undefined) {
     confirmOnExit = false
   };
   return{init:init, addDeleteButton:addDeleteButton, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getPresentationType:getPresentationType, getOptions:getOptions, loadFancyBox:loadFancyBox, getPresentation:getPresentation, setPresentation:setPresentation, isPresentationStandard:isPresentationStandard, isPresentationDraft:isPresentationDraft, getSavedPresentation:getSavedPresentation, hasInitialPresentation:hasInitialPresentation, savePresentation:savePresentation, afterSavePresentation:afterSavePresentation, 
-  setPresentationType:setPresentationType, allowExitWithoutConfirmation:allowExitWithoutConfirmation, setCurrentArea:setCurrentArea}
+  setPresentationType:setPresentationType, allowExitWithoutConfirmation:allowExitWithoutConfirmation, setCurrentArea:setCurrentArea, selectArea:selectArea}
 }(VISH, jQuery);
 VISH.Editor.Video = function(V, $, undefined) {
   var urlDivId = "tab_video_from_url_content";
@@ -14017,55 +13698,287 @@ VISH.Editor.Object = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject}
 }(VISH, jQuery);
+VISH.Editor.Flashcard = function(V, $, undefined) {
+  var flashcardId;
+  var myFlashcards;
+  var init = function() {
+    VISH.Editor.Flashcard.Repository.init();
+    flashcardId = null;
+    myFlashcards = new Array
+  };
+  var addFlashcard = function(fc) {
+    if(typeof myFlashcards !== "undefined") {
+      myFlashcards[fc.id] = fc
+    }
+  };
+  var getFlashcard = function(id) {
+    if(typeof myFlashcards !== "undefined") {
+      return myFlashcards[id]
+    }
+  };
+  var loadFlashcard = function(presentation) {
+    V.Editor.setPresentationType(VISH.Constant.FLASHCARD);
+    V.Editor.Utils.hideSlides();
+    $("#flashcard-background").show();
+    if(presentation) {
+      $("#flashcard-background").css("background-image", presentation.slides[0].background);
+      $("#fc_change_bg_big").hide();
+      $("#flashcard-background").attr("flashcard_id", presentation.slides[0].id)
+    }else {
+      if(!getCurrentFlashcardId()) {
+        flashcardId = VISH.Utils.getId("article")
+      }
+      $("#flashcard-background").attr("flashcard_id", getCurrentFlashcardId())
+    }
+    $("#flashcard-background").droppable()
+  };
+  var switchToFlashcard = function() {
+    loadFlashcard();
+    V.Editor.Thumbnails.redrawThumbnails();
+    VISH.Editor.Tools.init()
+  };
+  var onBackgroundSelected = function(contentToAdd) {
+    $("#flashcard-background").css("background-image", "url(" + contentToAdd + ")");
+    $("#fc_change_bg_big").hide();
+    $.fancybox.close()
+  };
+  var redrawPois = function() {
+    $(".draggable_arrow_div").show();
+    _applyStyleToPois();
+    $(".draggable_arrow_div").draggable({revert:"invalid", stop:function(event, ui) {
+      if($(event.target).offset().top > 50 && $(event.target).offset().top < 600 && $(event.target).offset().left > 55 && $(event.target).offset().left < 805) {
+        $(event.target).attr("moved", "true");
+        var old_pos = $(event.target).offset();
+        $(event.target).css("position", "fixed");
+        $(event.target).css("top", old_pos.top + 30 + "px");
+        $(event.target).css("left", old_pos.left - 16 + "px")
+      }else {
+        $(event.target).attr("moved", "false");
+        var old_pos = $(event.target).offset();
+        $(event.target).css("position", "relative");
+        $(event.target).css("top", "auto");
+        $(event.target).css("left", "auto")
+      }
+    }});
+    $(".carrousel_element_single_row_slides").droppable();
+    $(".image_carousel").css("overflow", "visible");
+    $("#menubar").css("z-index", "1075");
+    $(".draggable_arrow_div").css("z-index", "1075")
+  };
+  var _applyStyleToPois = function() {
+    var presentation = V.Editor.getPresentation();
+    if(presentation && presentation.slides && presentation.slides[0] && presentation.slides[0].pois) {
+      $.each(presentation.slides[0].pois, function(index, val) {
+        $("#" + val.id).css("position", "fixed");
+        $("#" + val.id).offset({top:600 * parseInt(val.y) / 100 + 75, left:800 * parseInt(val.x) / 100 + 55});
+        $("#" + val.id).attr("moved", "true")
+      })
+    }
+  };
+  var savePois = function() {
+    var pois = [];
+    $(".draggable_arrow_div[moved='true']").each(function(index, s) {
+      pois[index] = {};
+      pois[index].id = VISH.Utils.getId(getCurrentFlashcardId() + "_" + s.id, true);
+      pois[index].x = 100 * ($(s).offset().left - 55) / 800;
+      pois[index].y = 100 * ($(s).offset().top - 75) / 600;
+      pois[index].slide_id = VISH.Utils.getId(getCurrentFlashcardId() + "_" + $(s).attr("slide_id"), true)
+    });
+    return pois
+  };
+  var removePois = function() {
+    $(".draggable_arrow_div").hide()
+  };
+  var hasPoiInBackground = function() {
+    return $(".draggable_arrow_div[moved='true']").length > 0
+  };
+  var hasChangedBackground = function() {
+    if($("#flashcard-background").css("background-image").indexOf("flashcard_initial_background.jpg") != -1) {
+      return false
+    }else {
+      return true
+    }
+  };
+  var getCurrentFlashcardId = function() {
+    return flashcardId
+  };
+  var prepareToNestInFlashcard = function(slide) {
+    return VISH.Editor.Utils.prepareSlideToNest(getCurrentFlashcardId(), slide)
+  };
+  var hasFlascards = function() {
+    return $("section.slides > .flashcard_slide[type='flashcard']").length > 0
+  };
+  return{init:init, addFlashcard:addFlashcard, getFlashcard:getFlashcard, getCurrentFlashcardId:getCurrentFlashcardId, prepareToNestInFlashcard:prepareToNestInFlashcard, hasChangedBackground:hasChangedBackground, hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard, onBackgroundSelected:onBackgroundSelected, hasFlascards:hasFlascards}
+}(VISH, jQuery);
+VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
+  var carrouselDivId = "tab_flashcards_repo_content_carrousel";
+  var previewDivId = "tab_flashcards_repo_content_preview";
+  var currentFlashcards = new Array;
+  var selectedFlashcard = null;
+  var init = function() {
+    var myInput = $("#tab_flashcards_repo_content").find("input[type='search']");
+    $(myInput).watermark(VISH.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).keydown(function(event) {
+      if(event.keyCode == 13) {
+        _requestData($(myInput).val());
+        $(myInput).blur()
+      }
+    })
+  };
+  var onLoadTab = function() {
+    var previousSearch = $("#tab_flashcards_repo_content").find("input[type='search']").val() != "";
+    if(!previousSearch) {
+      _requestInitialData()
+    }
+  };
+  var _requestInitialData = function() {
+    VISH.Editor.API.requestRecomendedFlashcards(_onDataReceived, _onAPIError)
+  };
+  var _requestData = function(text) {
+    VISH.Editor.API.requestFlashcards(text, _onDataReceived, _onAPIError)
+  };
+  var _onDataReceived = function(data) {
+    VISH.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+    $("#" + carrouselDivId).hide();
+    currentFlashcards = new Array;
+    var carrouselImages = [];
+    var content = "";
+    if(!data.flashcards || data.flashcards.length == 0) {
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
+      $("#" + carrouselDivId).show();
+      return
+    }
+    $.each(data.flashcards, function(index, fc) {
+      var myImg = $("<img flashcardid ='" + fc.id + "'' src=" + V.Utils.getSrcFromCSS(fc.slides[0].background) + " >");
+      carrouselImages.push(myImg);
+      currentFlashcards[fc.id] = fc
+    });
+    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+  };
+  var _onImagesLoaded = function() {
+    $("#" + carrouselDivId).show();
+    var options = new Array;
+    options["rows"] = 1;
+    options["callback"] = _onClickCarrouselElement;
+    options["rowItems"] = 4;
+    options["scrollItems"] = 4;
+    VISH.Editor.Carrousel.createCarrousel(carrouselDivId, options)
+  };
+  var _onAPIError = function() {
+    VISH.Debugging.log("API error")
+  };
+  var _onClickCarrouselElement = function(event) {
+    var flashcardid = $(event.target).attr("flashcardid");
+    if(flashcardid) {
+      var the_flashcard_excursion = currentFlashcards[flashcardid];
+      var selectedFc = _changeFlashcardIds(the_flashcard_excursion.slides[0]);
+      VISH.Editor.Flashcard.addFlashcard(selectedFc);
+      V.Renderer.renderSlide(selectedFc, "", "<div class='delete_slide'></div>");
+      V.Slides.setCurrentSlideNumber(V.Slides.getCurrentSlideNumber() + 1);
+      V.Editor.Utils.redrawSlides();
+      VISH.Editor.Thumbnails.redrawThumbnails();
+      V.Editor.Events.bindEventsForFlashcard(selectedFc);
+      V.Slides.lastSlide();
+      $.fancybox.close()
+    }
+  };
+  var _changeFlashcardIds = function(flashcard) {
+    var hash_subslide_new_ids = {};
+    var old_id;
+    flashcard.id = V.Utils.getId("article");
+    for(var ind in flashcard.slides) {
+      old_id = flashcard.slides[ind].id;
+      flashcard.slides[ind].id = V.Utils.getId(flashcard.id + "_article");
+      hash_subslide_new_ids[old_id] = flashcard.slides[ind].id
+    }
+    for(var num in flashcard.pois) {
+      flashcard.pois[num].id = V.Utils.getId(flashcard.id + "_poi");
+      flashcard.pois[num].slide_id = hash_subslide_new_ids[flashcard.pois[num].slide_id]
+    }
+    return flashcard
+  };
+  return{init:init, onLoadTab:onLoadTab}
+}(VISH, jQuery);
 VISH.Samples = function(V, undefined) {
-  var samples = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "educational_level":"Distance education", "subject":"Media Education", "language":"en", 
-  "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
+  var samples = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":["Art", "Astronomy"], "language":"en", "educational_objectives":"bla bla bla 3", 
+  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article2", "template":"t3", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
+  {"id":"article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article3", "template":"t6", "elements":[{"id":"article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"article4", "type":"standard", "template":"t2", "elements":[{"id":"article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
+  var samplesv01 = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":["Art", "Astronomy"], "language":"en", "educational_objectives":"bla bla bla 3", 
+  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article2", "template":"t3", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
   {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"article__4", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
-  var samples_sync = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "slides":[{"id":"articlearticle1", "template":"t1", "elements":[{"id":"zone1", 
-  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
-  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"article__4", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/bT2yo3_R51o?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}, {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", 
-  "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
-  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "background":{"src":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", 
-  "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}]}, "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t10", "elements":[{"id":"7335", "type":"object", "areaid":"center", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, 
-  {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article_5", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
+  var samples_vtour = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with Vish Editor", "author":"Aldo", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"virtualTour", "theme":"theme1", "language":"en", "slides":[{"id":"article1", "type":"virtualTour", 
+  "map_service":"Google Maps", "center":{"lat":"41.23315032959268", "lng":"-366.3451357421875"}, "zoom":5, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article1_poi1", "lat":"40.245991504199026", "lng":"-3.6474609375", "slide_id":"article1_article1"}, {"id":"article1_poi2", "lat":"41.27780646738183", "lng":"2.1533203125", "slide_id":"article1_article2"}, {"id":"article1_poi3", "lat":"37.26530995561875", "lng":"-5.9765625", "slide_id":"article1_article3"}, {"id":"article1_poi4", 
+  "lat":"43.26120612479979", "lng":"-5.9765625", "slide_id":"article1_article4"}], "tours":[{"id":"article1_tour1", "path":["article1_poi1", "article1_poi2", "article1_poi3"]}], "slides":[{"id":"article1_article1", "template":"t1", "elements":[{"id":"article1_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, 
+  {"id":"article1_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"article1_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
+  {"id":"article1_article2", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article1_article3", "template":"t6", "elements":[{"id":"article1_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article1_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article1_article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"article1_article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
+  {"id":"article1_article4", "type":"standard", "template":"t2", "elements":[{"id":"article1_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}]};
+  var samples_vtour_toledo = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with Vish Editor", "author":"Aldo", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"virtualTour", "theme":"theme1", "language":"en", "slides":[{"id":"article1", 
+  "type":"virtualTour", "map_service":"Google Maps", "center":{"lat":"39.858684807927226", "lng":"-4.024515151977539"}, "zoom":15, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article1_poi1", "lat":"39.858808", "lng":"-4.020706", "slide_id":"article1_article1"}, {"id":"article1_poi2", "lat":"39.85710791823466", "lng":"-4.02348518371582", "slide_id":"article1_article2"}, {"id":"article1_poi3", "lat":"39.86267518700749", "lng":"-4.02498722076416", "slide_id":"article1_article3"}, 
+  {"id":"poi4", "lat":"39.85586400561856", "lng":"-4.029305577278137", "slide_id":"article1_article4"}], "tours":[{"id":"article1_tour1", "path":["article1_poi1", "article1_poi2", "article1_poi3"]}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t7", "elements":[{"id":"article1_article1_zone1", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-1.2893982808022924%;"}, 
+  {"id":"article1_article1_zone2", "type":"image", "areaid":"left", "body":"http://farm1.staticflickr.com/122/284114887_5e4eca03fd_z.jpg", "style":"position: relative; width:260.8695652173913%; height:96.98275862068965%; top:1.0775862068965518%; left:-53.91304347826087%;"}, {"id":"article1_article1_zone3", "type":"text", "areaid":"center", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Alcazar:&nbsp;</span></span></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This outstanding castle is one of Toledo\'s most emblematic monuments and was used as a fortress by Romans, Visigods, Arabs and Christians. King Alfonso VI built his residence here and some of Spain\'s most prestigious artists and architects intervened in the construction of the royal palace.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It was destroyed in the 18th century during the War of Succession, reconstructed only to be badly damaged a few years later in a fire and rebuilt yet again.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The last time the palace was destroyed was during the outbreak of the Spanish Civil War and it was repaired when the War ended.</span></span><br></div></div>'}, 
+  {"id":"article1_article1_zone4", "areaid":"subheader"}]}, {"id":"article1_article2", "type":"standard", "template":"t7", "elements":[{"id":"article1_article2_zone5", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-0.4297994269340974%;"}, {"id":"article1_article2_zone6", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><span style="line-height: 110%;"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Cathedral of Toledo:</span></span></b></span></div><div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><br></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Founded in the 1st Century by San Eugenio, the first Bishop of Toledo. It was changed into a mosque by the Arabs during Moorish occupation of Spain, and then converted back into a cathedral by Alfonso VI.&nbsp;</span></span></span></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">In the 13th Century it was destroyed and the impressive Gothic building which can be seen today was built on the old cathedral\'s foundations.</span></span></span><br></div>'}, 
+  {"id":"article1_article2_zone3", "type":"object", "areaid":"center", "body":'<iframe src="http://www.youtube.com/embed/TxbJY9SPC-A?wmode=opaque" frameborder="0" id="resizableunicID_1" class="t7_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:85.45454545454545%; top:0%; left:0%;"}, {"id":"article1_article2_zone8", "areaid":"subheader"}]}, {"id":"article1_article3", "type":"standard", "template":"t13", "elements":[{"id":"article1_article3_zone9", "type":"image", 
+  "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-7.547169811320755%; left:-0.5730659025787965%;"}, {"id":"article1_article3_zone10", "type":"image", "areaid":"circle", "body":"http://farm7.staticflickr.com/6151/6182498256_8b0585790e_o.jpg", "style":"position: relative; width:152.53731343283582%; height:128.2608695652174%; top:-11.102486841426874%; left:-26.26865671641791%;"}, 
+  {"id":"article1_article3_zone11", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><b><span class="vish-font4 vish-fontHelvetica"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Puerta Bisagra:&nbsp;</span></span></span></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><b><u><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></u></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The main entrance to the old City of Toledo.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">What appears to be one amazing stone gateway is infact two: the old gate which was built during the Moorish occupation of Toledo in the 6th and 7th centuries, and the new gate which extended the original and was built in the 16th century.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This is the best way to start a visit to Toledo since there is ample car parking space on both sides of the Puerta and a very good Tourist Info just opposite on the other side of the main road.</span></span><br></div>'}, 
+  {"id":"article1_article3_zone12", "areaid":"right"}]}, {"id":"article1_article4", "type":"standard", "template":"t5", "elements":[{"id":"article1_article4_zone13", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-5.660377358490566%; left:0%;"}, {"id":"article1_article4_zone14", "type":"text", "areaid":"left", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The Museo del Greco</span></span></div><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Currently the only one in Spain dedicated to the painter and its fundamental purpose is to convey and help gain an understanding of the figure of El Greco as well as the influence his work and personality had on early 17th century Toledo.</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It also includes an evocation of the museum\'s past through the figure of the marquis of Vega-Incl\u00e1n, the genuine promoter of the institution and indisputable leader of the recovery and promotion of El Greco\'s painting.</span></span></div></div>'}, 
+  {"id":"article1_article4_zone15", "type":"image", "areaid":"right", "body":"http://en.museodelgreco.mcu.es/web/img/logo-museo-greco.jpg", "style":"position: relative; width:50.74626865671642%; height:42.731277533039645%; top:16.483111948693903%; left:23.582089552238806%;"}]}]}]};
+  var samples_full_tour = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with Vish Editor", "author":"Aldo", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"virtualTour", "theme":"theme1", "language":"en", "slides":[{"id":"article1", 
+  "type":"standard", "template":"t1", "elements":[{"id":"article1_zone5", "type":"image", "areaid":"left", "body":"http://hoteles4you.com/guias-viaje/wp-content/uploads/2011/04/Toledo.jpg", "style":"position: relative; width:137.13080168776372%; height:81.05263157894737%; top:21.315791481419613%; left:0%;"}, {"id":"article1_zone6", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font7 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font7 vish-fonttrebuchet"><b><span class="vish-fontundefined vish-fontHelvetica" style="color:#4a72b1;undefined;">TOLEDO</span></b></span></div>'}, 
+  {"id":"article1_zone7", "type":"text", "areaid":"subheader", "body":'<div class="initTextDiv vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><i><span class="vish-fontundefined vish-fontHelvetica"><span class="vish-fontundefined vish-fonttrebuchet" style="color:#86858a;undefined;">smart city guide</span></span></i></div>'}]}, {"id":"article2", "type":"standard", "template":"t11", "elements":[{"id":"article2_zone8", "type":"image", "areaid":"center1", "body":"http://www.habitsofmind.org/sites/default/files/helpful-tips-image-web-design-sydney.jpg", 
+  "style":"position: relative; width:24.785100286532952%; height:104.8780487804878%; top:2.642273321384337%; left:-1.7191977077363896%;"}, {"id":"article2_zone9", "type":"text", "areaid":"center2", "body":'<div class="initTextDiv vish-parent-fontundefined" style="font-weight: normal;"><span class="vish-fontundefined vish-fonttrebuchet"><span style="color: rgb(62, 61, 61); line-height: 18px;"><b>Clothing/Shoes/Weather Gear:</b></span></span></div><div class="initTextDiv vish-parent-fontundefined"><span class="vish-fontundefined vish-fonttrebuchet"><span style="color: rgb(62, 61, 61); line-height: 18px;"><b><br></b></span></span></div><div class="initTextDiv vish-parent-fontundefined" style="font-weight: normal;"><span class="vish-fontundefined vish-fonttrebuchet" style="color:undefined;undefined;"><span style="color: rgb(62, 61, 61); line-height: 110%;">Forget about wearing high heels in Toledo - the small cobblestone streets are very charming but slightly uneven, and as the entire portion of the city within the walls is built up on hill, you\'ll spend the entire day either going down or climbing up some more or less steep hills. And as there is no denying that this city is best seen on foot, if you want to make the most of your time there, I\'d highly recommend bringing a pair of comfortable walking shoes.</span></span><br></div>'}, 
+  {"id":"article2_zone10", "type":"text", "areaid":"center3", "body":'<div class="initTextDiv vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fonttrebuchet"><span style="color: rgb(62, 61, 61); line-height: 18px;"><b>Miscellaneous:&nbsp;</b></span></span></div><div class="initTextDiv vish-parent-font4"><span class="vish-font4 vish-fonttrebuchet" style="color:undefined;undefined;"><span style="color: rgb(62, 61, 61); line-height: 18px;"><br></span></span></div><div class="initTextDiv vish-parent-fontundefined"><span class="vish-fontundefined vish-fonttrebuchet" style="color:undefined;undefined;"><span style="color: rgb(62, 61, 61); line-height: 18px;">Toledo must have been designed originally to confuse its enemies from successfully invading the City. There are a confusing series of streets with names of streets changing frequently.</span></span><br></div>'}]}, 
+  {"id":"article3", "type":"virtualTour", "map_service":"Google Maps", "center":{"lat":"39.858684807927226", "lng":"-4.024515151977539"}, "zoom":15, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article3_poi1", "lat":"39.858808", "lng":"-4.020706", "slide_id":"article3_article1"}, {"id":"article3_poi2", "lat":"39.85710791823466", "lng":"-4.02348518371582", "slide_id":"article3_article2"}, {"id":"article3_poi3", "lat":"39.86267518700749", "lng":"-4.02498722076416", "slide_id":"article3_article3"}, 
+  {"id":"article3_poi4", "lat":"39.85586400561856", "lng":"-4.029305577278137", "slide_id":"article3_article4"}], "tours":[{"id":"article3_tour1", "path":["poi1", "poi2", "poi3"]}], "slides":[{"id":"article3_article1", "type":"standard", "template":"t7", "elements":[{"id":"article3_article1_zone1", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-1.2893982808022924%;"}, 
+  {"id":"article3_article1_zone2", "type":"image", "areaid":"left", "body":"http://farm1.staticflickr.com/122/284114887_5e4eca03fd_z.jpg", "style":"position: relative; width:260.8695652173913%; height:96.98275862068965%; top:1.0775862068965518%; left:-53.91304347826087%;"}, {"id":"article3_article1_zone3", "type":"text", "areaid":"center", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Alcazar:&nbsp;</span></span></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This outstanding castle is one of Toledo\'s most emblematic monuments and was used as a fortress by Romans, Visigods, Arabs and Christians. King Alfonso VI built his residence here and some of Spain\'s most prestigious artists and architects intervened in the construction of the royal palace.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It was destroyed in the 18th century during the War of Succession, reconstructed only to be badly damaged a few years later in a fire and rebuilt yet again.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The last time the palace was destroyed was during the outbreak of the Spanish Civil War and it was repaired when the War ended.</span></span><br></div></div>'}, 
+  {"id":"article3_article1_zone4", "areaid":"subheader"}]}, {"id":"article3_article2", "type":"standard", "template":"t7", "elements":[{"id":"article3_article2_zone5", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-0.4297994269340974%;"}, {"id":"article3_article2_zone6", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><span style="line-height: 110%;"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Cathedral of Toledo:</span></span></b></span></div><div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><br></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Founded in the 1st Century by San Eugenio, the first Bishop of Toledo. It was changed into a mosque by the Arabs during Moorish occupation of Spain, and then converted back into a cathedral by Alfonso VI.&nbsp;</span></span></span></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">In the 13th Century it was destroyed and the impressive Gothic building which can be seen today was built on the old cathedral\'s foundations.</span></span></span><br></div>'}, 
+  {"id":"article3_article2_zone3", "type":"object", "areaid":"center", "body":'<iframe src="http://www.youtube.com/embed/TxbJY9SPC-A?wmode=opaque" frameborder="0" id="resizableunicID_1" class="t7_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:85.45454545454545%; top:0%; left:0%;"}, {"id":"article3_article2_zone8", "areaid":"subheader"}]}, {"id":"article3_article3", "type":"standard", "template":"t13", "elements":[{"id":"article3_article3_zone9", "type":"image", 
+  "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-7.547169811320755%; left:-0.5730659025787965%;"}, {"id":"article3_article3_zone10", "type":"image", "areaid":"circle", "body":"http://farm7.staticflickr.com/6151/6182498256_8b0585790e_o.jpg", "style":"position: relative; width:152.53731343283582%; height:128.2608695652174%; top:-11.102486841426874%; left:-26.26865671641791%;"}, 
+  {"id":"article3_article3_zone11", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><b><span class="vish-font4 vish-fontHelvetica"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Puerta Bisagra:&nbsp;</span></span></span></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><b><u><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></u></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The main entrance to the old City of Toledo.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">What appears to be one amazing stone gateway is infact two: the old gate which was built during the Moorish occupation of Toledo in the 6th and 7th centuries, and the new gate which extended the original and was built in the 16th century.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This is the best way to start a visit to Toledo since there is ample car parking space on both sides of the Puerta and a very good Tourist Info just opposite on the other side of the main road.</span></span><br></div>'}, 
+  {"id":"article3_article3_zone12", "areaid":"right"}]}, {"id":"article3_article4", "type":"standard", "template":"t5", "elements":[{"id":"article3_article4_zone13", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-5.660377358490566%; left:0%;"}, {"id":"article3_article4_zone14", "type":"text", "areaid":"left", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The Museo del Greco</span></span></div><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Currently the only one in Spain dedicated to the painter and its fundamental purpose is to convey and help gain an understanding of the figure of El Greco as well as the influence his work and personality had on early 17th century Toledo.</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It also includes an evocation of the museum\'s past through the figure of the marquis of Vega-Incl\u00e1n, the genuine promoter of the institution and indisputable leader of the recovery and promotion of El Greco\'s painting.</span></span></div></div>'}, 
+  {"id":"article3_article4_zone15", "type":"image", "areaid":"right", "body":"http://en.museodelgreco.mcu.es/web/img/logo-museo-greco.jpg", "style":"position: relative; width:50.74626865671642%; height:42.731277533039645%; top:16.483111948693903%; left:23.582089552238806%;"}]}]}, {"id":"article__2", "type":"standard", "template":"t14", "elements":[{"id":"zone11", "type":"image", "areaid":"circle1", "body":"http://media-cdn.tripadvisor.com/media/photo-s/02/8b/b9/15/getlstd-property-photo.jpg", "style":"position: relative; width:164.59627329192546%; height:133.78378378378378%; top:-1.5540509610562712%; left:-39.75155279503105%;"}, 
+  {"id":"zone12", "type":"text", "areaid":"right1", "body":'<div class="initTextDiv" style="font-weight: normal;"><div id="headingWrapper" class="headerWrapPadding" style="margin: 0px; padding: 0px; position: relative; z-index: 2; font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; background-color: rgb(255, 255, 255); font-size: 12px; color: rgb(44, 44, 44);"><h1 property="v:name" style="margin: 0px; padding: 0px; font-size: 2.5835em; line-height: 34px; color: rgb(0, 0, 0); display: inline; width: auto; word-wrap: break-word;" id="HEADING">Alqahira Rincon de Oriente</h1><div class="savesWrap" style="margin: 0px; padding: 0px;"><div id="default_3170073" class="savesContainer headerListing" style="margin: 0px; padding: 0px; position: absolute; right: -8px; top: 0px;"><div class="savesHover savesHover-3170073" style="margin: 0px 4px 0px 28px; padding: 0px; position: relative; float: right;"><div class="saveOptions" style="margin: 21px 0px 0px; padding: 10px; visibility: hidden; position: absolute; background-color: rgb(242, 246, 235); height: auto; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 175px; z-index: 301; line-height: 16px;"><div class="contentDelete" style="margin: 0px; padding: 0px; color: rgb(0, 102, 153); outline: none medium; cursor: pointer;"></div><div class="allContent" style="margin: 0px; padding: 0px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div></div></div></div><div id="SAVES_ALERT" class="saveAlert" style="margin: 0px; padding: 0px 0px 0px 14px; visibility: hidden; float: right; background-color: rgb(242, 246, 235); height: 69px; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 315px; position: absolute; z-index: 300;"><div id="SAVES_ALERT_CONTENT" style="margin: 0px; padding: 0px;"><span class="saveAlertClose sprite-greenX" style="background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 11px; height: 11px; display: inline-block; float: right; margin: 3px; cursor: pointer; background-position: 0% -4758px;"></span><div class="allContent" style="margin: 0px 17px 0px 0px; padding: 0px; position: absolute; bottom: 8px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div><div class="contentAdded" style="margin: 10px 17px 0px 0px; padding: 0px; position: relative;"></div></div></div></div></div><div class="wrap infoBox" style="margin: 0px; padding: 0px; height: 40px; overflow: hidden; clear: left; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><address style="font-style: normal; display: inline; margin-right: 8px;"><span rel="v:address"><span class="format_address" dir="ltr"><span class="street-address" property="v:street-address">C/La Ciudad, N0 7 - Toledo</span>,&nbsp;<span class="locality"><span property="v:postal-code">45002</span>&nbsp;<span property="v:locality">Toledo</span></span>,&nbsp;<span class="country-name" property="v:country-name">Espa\u00f1a</span></span></span></address><div class="odcHotel blDetails" style="margin: 2px 0px 7px; padding: 0px; overflow: hidden; clear: both; float: none; height: 16px; line-height: 16px;"><div class="fl notLast" style="margin: 0px 15px 0px 0px; padding: 0px; float: left;"><div class="sprite-greenPhone fl icnLink" style="margin: 0px 5px 0px 0px; padding: 0px; background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 9px; height: 15px; float: left; overflow: hidden; background-position: 0% -4474px;"></div><div class="fl" style="margin: 0px; padding: 0px; float: left;">925 673 260</div></div></div></div></div>'}, 
+  {"id":"zone13", "type":"image", "areaid":"circle2", "body":"http://media-cdn.tripadvisor.com/media/photo-s/02/86/d0/12/filename-img-6037-jpg.jpg", "style":"position: relative; width:137.26708074534162%; height:100%; top:-0.33783783783783783%; left:-2.484472049689441%;"}, {"id":"zone14", "type":"text", "areaid":"right2", "body":'<div class="initTextDiv" style="font-weight: normal;"><div id="headingWrapper" class="headerWrapPadding" style="margin: 0px; padding: 0px; position: relative; z-index: 2; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><h1 id="HEADING" property="v:name" style="margin: 0px; padding: 0px; font-size: 2.5835em; line-height: 34px; color: rgb(0, 0, 0); display: inline; width: auto; word-wrap: break-word;">El Embrujo</h1><div class="savesWrap" style="margin: 0px; padding: 0px;"><div id="default_2384802" class="savesContainer headerListing" style="margin: 0px; padding: 0px; position: absolute; right: -8px; top: 0px;"><div class="savesHover savesHover-2384802" style="margin: 0px 4px 0px 28px; padding: 0px; position: relative; float: right;"><div class="saveOptions" style="margin: 21px 0px 0px; padding: 10px; visibility: hidden; position: absolute; background-color: rgb(242, 246, 235); height: auto; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 175px; z-index: 301; line-height: 16px;"><div class="contentDelete" style="margin: 0px; padding: 0px; color: rgb(0, 102, 153); outline: none medium; cursor: pointer;"></div><div class="allContent" style="margin: 0px; padding: 0px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div></div></div></div><div id="SAVES_ALERT" class="saveAlert" style="margin: 0px; padding: 0px 0px 0px 14px; visibility: hidden; float: right; background-color: rgb(242, 246, 235); height: 69px; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 315px; position: absolute; z-index: 300;"><div id="SAVES_ALERT_CONTENT" style="margin: 0px; padding: 0px;"><span class="saveAlertClose sprite-greenX" style="background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 11px; height: 11px; display: inline-block; float: right; margin: 3px; cursor: pointer; background-position: 0% -4758px;"></span><div class="allContent" style="margin: 0px 17px 0px 0px; padding: 0px; position: absolute; bottom: 8px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div><div class="contentAdded" style="margin: 10px 17px 0px 0px; padding: 0px; position: relative;"></div></div></div></div></div><div class="wrap infoBox" style="margin: 0px; padding: 0px; height: 40px; overflow: hidden; clear: left; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><address style="font-style: normal; display: inline; margin-right: 8px;"><span rel="v:address"><span class="format_address" dir="ltr"><span class="street-address" property="v:street-address">Santa Leocadia, 6</span>,&nbsp;<span class="locality"><span property="v:postal-code">45002&nbsp;</span><span property="v:locality">Toledo</span></span>,&nbsp;<span class="country-name" property="v:country-name">Espa\u00f1a</span></span></span></address><div class="odcHotel blDetails" style="margin: 2px 0px 7px; padding: 0px; overflow: hidden; clear: both; float: none; height: 16px; line-height: 16px;"><div class="fl notLast" style="margin: 0px 15px 0px 0px; padding: 0px; float: left;"><div class="sprite-greenPhone fl icnLink" style="margin: 0px 5px 0px 0px; padding: 0px; background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 9px; height: 15px; float: left; overflow: hidden; background-position: 0% -4474px;"></div><div class="fl" style="margin: 0px; padding: 0px; float: left;">925 210 706</div></div></div></div></div>'}, 
+  {"id":"zone15", "type":"image", "areaid":"circle3", "body":"http://media-cdn.tripadvisor.com/media/photo-s/01/e8/73/e6/meson-de-la-orza.jpg", "style":"position: relative; width:137.26708074534162%; height:110.8108108108108%; top:-7.0045058791701855%; left:-19.875776397515526%;"}, {"id":"zone16", "type":"text", "areaid":"right3", "body":'<div class="initTextDiv" style="font-weight: normal;"><div id="headingWrapper" class="headerWrapPadding" style="margin: 0px; padding: 0px; position: relative; z-index: 2; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><h1 id="HEADING" property="v:name" style="margin: 0px; padding: 0px; font-size: 2.5835em; line-height: 34px; color: rgb(0, 0, 0); display: inline; width: auto; word-wrap: break-word;">Meson de la Orza</h1><div class="savesWrap" style="margin: 0px; padding: 0px;"><div id="default_1117085" class="savesContainer headerListing" style="margin: 0px; padding: 0px; position: absolute; right: -8px; top: 0px;"><div class="savesHover savesHover-1117085" style="margin: 0px 4px 0px 28px; padding: 0px; position: relative; float: right;"><div class="saveOptions" style="margin: 21px 0px 0px; padding: 10px; visibility: hidden; position: absolute; background-color: rgb(242, 246, 235); height: auto; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 175px; z-index: 301; line-height: 16px;"><div class="contentDelete" style="margin: 0px; padding: 0px; color: rgb(0, 102, 153); outline: none medium; cursor: pointer;"></div><div class="allContent" style="margin: 0px; padding: 0px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div></div></div></div><div id="SAVES_ALERT" class="saveAlert" style="margin: 0px; padding: 0px 0px 0px 14px; visibility: hidden; float: right; background-color: rgb(242, 246, 235); height: 69px; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 315px; position: absolute; z-index: 300;"><div id="SAVES_ALERT_CONTENT" style="margin: 0px; padding: 0px;"><span class="saveAlertClose sprite-greenX" style="background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 11px; height: 11px; display: inline-block; float: right; margin: 3px; cursor: pointer; background-position: 0% -4758px;"></span><div class="allContent" style="margin: 0px 17px 0px 0px; padding: 0px; position: absolute; bottom: 8px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div><div class="contentAdded" style="margin: 10px 17px 0px 0px; padding: 0px; position: relative;"></div></div></div></div></div><div class="wrap infoBox" style="margin: 0px; padding: 0px; height: 40px; overflow: hidden; clear: left; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><address style="font-style: normal; display: inline; margin-right: 8px;"><span rel="v:address"><span class="format_address" dir="ltr"><span class="street-address" property="v:street-address">C/ Descalzos 5</span>,&nbsp;<span class="locality"><span property="v:postal-code">45002</span>&nbsp;<span property="v:locality">Toledo</span></span>,&nbsp;<span class="country-name" property="v:country-name">Espa\u00f1a</span></span></span></address><div class="odcHotel blDetails" style="margin: 2px 0px 7px; padding: 0px; overflow: hidden; clear: both; float: none; height: 16px; line-height: 16px;"><div class="fl notLast" style="margin: 0px 15px 0px 0px; padding: 0px; float: left;"><div class="sprite-greenPhone fl icnLink" style="margin: 0px 5px 0px 0px; padding: 0px; background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 9px; height: 15px; float: left; overflow: hidden; background-position: 0% -4474px;"></div><div class="fl" style="margin: 0px; padding: 0px; float: left;">+34 925 223 011</div></div></div></div></div>'}]}]};
+  var samples_fc = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"presentation", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
+  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t3", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article31", "template":"t3", "elements":[{"id":"article31_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
+  {"id":"article31_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article331", "template":"t3", "elements":[{"id":"article331_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article331_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, 
+  {"id":"article4331", "template":"t3", "elements":[{"id":"article4331_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article4331_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article2", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"article2_poi1", "x":"11", "y":"4.5", "slide_id":"article2_article1"}, 
+  {"id":"article2_poi2", "x":"47", "y":"34", "slide_id":"article2_article2"}, {"id":"article2_poi3", "x":"84", "y":"81", "slide_id":"article2_article3"}], "slides":[{"id":"article2_article1", "template":"t1", "elements":[{"id":"article2_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article2_article1_zone2", 
+  "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"article2_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
+  {"id":"article2_article2", "template":"t2", "elements":[{"id":"article2_article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article2_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article2_article3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article2_article3_zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article2_article3_zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"article2_article3_zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}, 
+  {"id":"article3", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"article3_poi1", "x":"11", "y":"4.5", "slide_id":"article3_article1"}, {"id":"article3_poi2", "x":"47", "y":"34", "slide_id":"article3_article2"}, {"id":"article3_poi3", "x":"84", "y":"81", "slide_id":"article3_article3"}], "slides":[{"id":"article3_article1", "template":"t1", "elements":[{"id":"article3_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
+  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article3_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"article3_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article3_article2", "template":"t2", "elements":[{"id":"article3_article2_zone1", "type":"text", 
+  "areaid":"header", "body":"Experimento virtual1"}, {"id":"article3_article2_zone1", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article3_article3", "template":"t6", "elements":[{"id":"article3_article3_zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article3_article3_zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article3_article3_zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"article3_article3_zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}, 
+  {"id":"article4", "template":"t5", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":"Sensores"}, {"id":"article4_zone2", "type":"text", "areaid":"left", "body":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas orci nisl, euismod a posuere ac, commodo quis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sollicitudin risus laoreet velit dapibus bibendum. Nullam cursus sollicitudin hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ullamcorper tempor bibendum. Morbi gravida pretium leo, vitae scelerisque quam mattis eu. Sed hendrerit molestie magna, sit amet porttitor nulla facilisis in. Donec vel massa mauris, sit amet condimentum lacus.</p>"}, 
+  {"id":"article4_zone3", "type":"image", "areaid":"right", "body":"http://www.satec.es/es-ES/NuestraActividad/CasosdeExito/PublishingImages/IMG%20Do%C3%B1ana/do%C3%B1ana_fig2.png"}]}, {"id":"article5", "template":"t3", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"article5_zone2", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}]};
+  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
+  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"27", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
+  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"4", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"5", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
-  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"6", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"7", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"8", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
-  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"9", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]};
   var samples_game = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"game", "game":{"src":"games/sokoban/sokoban.html", "actions":{"devil":{"slide_id":"1", "when":"after"}, "diamond":{"slide_id":"2", "when":"before"}}}, "slides":[{"id":"1", "template":"t1", 
   "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
   "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
-  var full_samples = {"id":"1", "type":"presentation", "title":"Nanoyou", "description":"This excursion is about nanotechnology", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-02.png", "author":"Enrique Barra", "slides":[{"id":"vish1", "author":"John Doe", "template":"t1", "elements":[{"id":"315", "type":"text", "areaid":"header", "body":"Ejemplo de flora"}, {"id":"316", "type":"text", "areaid":"left", "body":'<div><ol><li>lolo<br></li><li>perrito<br></li></ol><div><font size="6">gato</font></div></div>'}, 
-  {"id":"317", "type":"image", "areaid":"right", "body":"http://www.asturtalla.com/arbol.jpg"}]}, {"id":"vish2", "template":"t2", "elements":[{"id":"318", "type":"text", "areaid":"header", "body":"Ejemplo de fauna..."}, {"id":"319", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}, {"id":"vish3", "template":"t1", "elements":[{"id":"320", "type":"text", "areaid":"header", "body":"Sensores"}, {"id":"321", "type":"text", 
-  "areaid":"left", "body":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas orci nisl, euismod a posuere ac, commodo quis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sollicitudin risus laoreet velit dapibus bibendum. Nullam cursus sollicitudin hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ullamcorper tempor bibendum. Morbi gravida pretium leo, vitae scelerisque quam mattis eu. Sed hendrerit molestie magna, sit amet porttitor nulla facilisis in. Donec vel massa mauris, sit amet condimentum lacus.</p>"}, 
-  {"id":"322", "type":"image", "areaid":"right", "body":"http://www.satec.es/es-ES/NuestraActividad/CasosdeExito/PublishingImages/IMG%20Do%C3%B1ana/do%C3%B1ana_fig2.png"}]}, {"id":"vish4", "template":"t2", "elements":[{"id":"323", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"324", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}, {"id":"vish5", "template":"t2", "elements":[{"id":"325", "type":"text", 
-  "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"vish8", "template":"t2", "elements":[{"id":"329", "type":"openquestion", "areaid":"header", "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf"}]}, {"id":"vish9", "template":"t2", "elements":[{"id":"330", "type":"mcquestion", "areaid":"header", 
-  "body":"Do you like this slide?", "posturl":"http://localhost/quiz/adfklkdf", "options":["yes", "no", "maybe"], "rightanswer":0}]}, {"id":"vish10", "template":"t2", "elements":[{"id":"331", "type":"text", "areaid":"header", "body":"Sublime HTML5 video!"}, {"id":"332", "type":"video", "areaid":"left", "controls":true, "autoplay":false, "loop":false, "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{"type": "video/mp4","src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}, 
-  {"id":"vish11", "template":"t1", "elements":[{"id":"333", "type":"text", "areaid":"header", "body":"Example of HTML5 video with autostart"}, {"id":"334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
-  {"id":"335", "type":"video", "areaid":"right", "controls":true, "autoplay":true, "sources":'[{ "type": "video/webm", "src": "videos/kids.webm"},{"type": "video/mp4","src": "videos/kids.mp4"}]'}]}, {"id":"vish12", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video"}, {"id":"394", "type":"object", "areaid":"left", "body":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns" frameborder="0" allowfullscreen></iframe>'}]}, 
-  {"id":"vish13", "template":"t2", "elements":[{"id":"393", "type":"text", "areaid":"header", "body":"Example of Youtube video with style param"}, {"id":"335", "type":"object", "areaid":"left", "body":'<iframe width="324" height="243" src="http://www.youtube.com/embed/_jvDzfTRP4E" frameborder="0" allowfullscreen></iframe>', "style":"position: relative; left: 163px; top: 110px; width: 325px; height: 215px;"}]}, {"id":"vish14", "template":"t1", "elements":[{"id":"7393", "type":"text", "areaid":"header", 
-  "body":"Example of generic Object visualization"}, {"id":"7334", "type":"text", "areaid":"left", "body":"<p> HTML5 is a language for structuring and presenting content for the World Wide Web, and is a core technology of the Internet originally proposed by Opera Software. It is the fifth revision of the HTML standard (created in 1990 and standardized as HTML4 as of 1997) and as of March 2012 is still under development. Its core aims have been to improve the language with support for the latest multimedia while keeping it easily readable by humans and consistently understood by computers and devices (web browsers, parsers, etc.). HTML5 is intended to subsume not only HTML 4, but XHTML 1 and DOM Level 2 HTML as well.</p>"}, 
-  {"id":"7335", "type":"object", "areaid":"right", "body":'<embed width="100%" height="80%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}]};
   var quizes_samples = {"id":12314, "type":"presentation", "author":"V. Hugo", "slides":[{"id":"article12312", "type":"standard", "template":"t8", "elements":[{"id":"zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u><i><b>Testing Quiz Inside Template</b></i></u></span></div>'}, {"id":"zone2", "type":"image", "areaid":"left", 
   "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":{"choices":[{"value":"Something", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Something</b></span></div>'}, 
   {"value":"Nothing", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Nothing</b></span></div>'}, {"value":"Everything", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Everything</b></span></div>'}, {"value":"Option D", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Option D</b></span></div>'}]}}, 
@@ -14074,9 +13987,58 @@ VISH.Samples = function(V, undefined) {
   {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz<b> quiz</b> ... ?</span></i>', "quiztype":"multiplechoice", "options":{"choices":[{"value":"aaaaa... mucha a ", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>aaaaa</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... mucha a</span></div>'}, 
   {"value":"bbb ... mucha b ", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>bbb ...</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... mucha b</span></div>'}, {"value":"ccc ... mucha c", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>ccc ...</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>mucha c</b></span></div>'}]}}, 
   {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
-  return{full_samples:full_samples, samples:samples, samples_flashcard:samples_flashcard, samples_game:samples_game, samples_sync:samples_sync, quizes_samples:quizes_samples}
+  var quizzes__samples2 = {"VEVersion":"0.2", "id":12314, "type":"presentation", "author":"", "slides":[{"id":"article_12314_0", "type":"standard", "template":"t3", "elements":[{"id":"zone9", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font6 vish-parent-fontundefined" style="text-align: center; font-weight: normal;"><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><b><u>Multiple Choice Quiz Example</u></b></span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"zone10", "type":"quiz", "areaid":"left", "question":'Has aprendido a <span class="vish-fontundefined vish-fontHelvetica" style="color: rgb(112, 167, 58); font-weight: normal;"><b>programar </b></span>en <b><span class="vish-font6 vish-fontHelvetica" style="color:#840e5a;undefined;">Ruby</span></b>?<div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>', "quiz_id":"12", "quiztype":"multiplechoice", "options":{"choices":[{"value":"S\u00ed", 
+  "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">S\u00ed</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"No", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">No</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"value":"Un poco", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Un poco</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"Nada", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Nada</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
+  "quiz_simple_json":{"author":"", "slides":[{"id":"zone10", "type":"quiz", "areaid":"left", "question":'Has aprendido a <span class="vish-fontundefined vish-fontHelvetica" style="color: rgb(112, 167, 58); font-weight: normal;"><b>programar </b></span>en <b><span class="vish-font6 vish-fontHelvetica" style="color:#840e5a;undefined;">Ruby</span></b>?<div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>', "quiz_id":"", "quiztype":"multiplechoice", 
+  "options":{"choices":[{"value":"S\u00ed", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">S\u00ed</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"No", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">No</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"value":"Un poco", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Un poco</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"Nada", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Nada</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}}], 
+  "type":"quiz_simple"}}]}]};
+  return{samples:samples, samplesv01:samplesv01, samples_fc:samples_fc, samples_flashcard:samples_flashcard, samples_full_tour:samples_full_tour, samples_game:samples_game, samples_vtour:samples_vtour, samples_vtour_toledo:samples_vtour_toledo, quizes_samples:quizes_samples, quizzes__samples2:quizzes__samples2}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
+  var flashcardList = {"flashcards":[{"id":"111", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
+  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"27", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
+  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
+  {"id":"222", "title":"Curiosity", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
+  "slides":[{"id":"28", "type":"flashcard", "background":"url(http://images.freshnessmag.com/wp-content/uploads//2012/08/nasa-NASA-curiosity-mars-rover-00.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
+  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
+  {"id":"333", "title":"fly", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
+  "slides":[{"id":"27", "type":"flashcard", "background":"url(http://1.bp.blogspot.com/_Y_4eV9-N0NY/SeToztTkalI/AAAAAAAAAe0/zpSf85grpW8/s400/small+fly.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
+  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
+  {"id":"444", "title":"dogs", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
+  "slides":[{"id":"28", "type":"flashcard", "background":"url(http://images5.fanpop.com/image/photos/31900000/Doggie-3-all-small-dogs-31936880-500-348.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
+  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
+  {"id":"555", "title":"cats", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
+  "slides":[{"id":"27", "type":"flashcard", "background":"url(http://25.media.tumblr.com/tumblr_m6utxcoA7y1qdortwo1_1280.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, 
+  {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
+  {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
+  {"id":"666", "title":"nature", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
+  "slides":[{"id":"28", "type":"flashcard", "background":"url(http://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bachalpseeflowers.jpg/300px-Bachalpseeflowers.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
+  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}]};
   var imageList = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, 
   {"id":57, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.granadablogs.com/pateandoelmundo/wp-content/uploads/2009/10/_061.jpg"}, {"id":58, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.revistaintime.com/wp-content/uploads/2012/03/el-padrino-2.jpg"}, {"id":59, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://cinealdesnudo.files.wordpress.com/2011/12/el-indomable-will-hunting.jpg"}, {"id":60, 
   "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://politicamenteconservador.blogia.com/upload/20060818041914-el-senor-de-los-anillos2.jpg"}, {"id":61, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://despertando.me/wp-content/uploads/2012/04/el-se%C3%B1or-de-los-anillos.jpg"}, {"id":62, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://4.bp.blogspot.com/-Fh_v8PYbVg0/TyGdKEiYmKI/AAAAAAAAAPI/MKdfZ224aEQ/s1600/el_senor_de_los_anillos_la_batalla_por_la_tierra_media_2_the_rise_of_the_witchking-181035.jpg"}, 
@@ -14132,7 +14094,7 @@ VISH.Samples.API = function(V, undefined) {
   {"title":"Thumbnail 20", "description":"Sample excursion thumbnail 20", "src":"/vishEditor/images/excursion_thumbnails/excursion-20.png"}, {"title":"Thumbnail 21", "description":"Sample excursion thumbnail 21", "src":"/vishEditor/images/excursion_thumbnails/excursion-21.png"}, {"title":"Thumbnail 22", "description":"Sample excursion thumbnail 22", "src":"/vishEditor/images/excursion_thumbnails/excursion-22.png"}, {"title":"Thumbnail 23", "description":"Sample excursion thumbnail 23", "src":"/vishEditor/images/excursion_thumbnails/excursion-23.png"}, 
   {"title":"Thumbnail 24", "description":"Sample excursion thumbnail 24", "src":"/vishEditor/images/excursion_thumbnails/excursion-24.png"}, {"title":"Thumbnail 25", "description":"Sample excursion thumbnail 25", "src":"/vishEditor/images/excursion_thumbnails/excursion-25.png"}, {"title":"Thumbnail 26", "description":"Sample excursion thumbnail 26", "src":"/vishEditor/images/excursion_thumbnails/excursion-26.png"}, {"title":"Thumbnail 27", "description":"Sample excursion thumbnail 27", "src":"/vishEditor/images/excursion_thumbnails/excursion-27.png"}, 
   {"title":"Thumbnail 28", "description":"Sample excursion thumbnail 28", "src":"/vishEditor/images/excursion_thumbnails/excursion-28.png"}, {"title":"Thumbnail 29", "description":"Sample excursion thumbnail 29", "src":"/vishEditor/images/excursion_thumbnails/excursion-29.png"}, {"title":"Thumbnail 30", "description":"Sample excursion thumbnail 30", "src":"/vishEditor/images/excursion_thumbnails/excursion-30.png"}]};
-  return{imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, objectListDummy:objectListDummy, tagsList:tagsList, thumbnailsList:thumbnailsList}
+  return{flashcardList:flashcardList, imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, objectListDummy:objectListDummy, tagsList:tagsList, thumbnailsList:thumbnailsList}
 }(VISH);
 VISH.Slides = function(V, $, undefined) {
   var slideEls;
@@ -14145,7 +14107,10 @@ VISH.Slides = function(V, $, undefined) {
   var handleDomLoaded = function() {
     slideEls = document.querySelectorAll("section.slides > article");
     addFontStyle();
-    updateSlides();
+    if(V.SlideManager.getPresentationType() === V.Constant.FLASHCARD) {
+      curSlideIndex = 0
+    }
+    updateSlides(true);
     $("body").addClass("loaded")
   };
   var getCurrentSlide = function() {
@@ -14264,27 +14229,33 @@ VISH.Slides = function(V, $, undefined) {
     if(!el) {
       return
     }
-    var onEnter = el.getAttribute("onslideenter");
-    if(onEnter) {
-      (new Function(onEnter)).call(el)
-    }
-    var evt = document.createEvent("Event");
-    evt.initEvent("slideenter", true, true);
-    evt.slideNumber = no + 1;
-    el.dispatchEvent(evt)
+    _triggerEnterEventById(el.id)
   };
   var triggerLeaveEvent = function(no) {
     var el = _getSlide(no);
     if(!el) {
       return
     }
+    _triggerLeaveEventById(el.id)
+  };
+  var _triggerEnterEventById = function(slide_id) {
+    var el = $("#" + slide_id)[0];
+    var onEnter = el.getAttribute("onslideenter");
+    if(onEnter) {
+      (new Function(onEnter)).call(el)
+    }
+    var evt = document.createEvent("Event");
+    evt.initEvent("slideenter", true, true);
+    el.dispatchEvent(evt)
+  };
+  var _triggerLeaveEventById = function(slide_id) {
+    var el = $("#" + slide_id)[0];
     var onLeave = el.getAttribute("onslideleave");
     if(onLeave) {
       (new Function(onLeave)).call(el)
     }
     var evt = document.createEvent("Event");
     evt.initEvent("slideleave", true, true);
-    evt.slideNumber = no + 1;
     el.dispatchEvent(evt)
   };
   var getcurSlideIndexFromHash = function() {
@@ -14375,12 +14346,12 @@ VISH.Slides = function(V, $, undefined) {
     if($("input").is(":focus")) {
       return false
     }
-    if(VISH.Editor.getCurrentArea() !== null) {
+    if(VISH.Editor && VISH.Editor.getCurrentArea() !== null) {
       return false
     }
     return true
   };
-  var showSlide = function(slide_id, triggeredByUser) {
+  var showFlashcardSlide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
     if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
       var params = new Object;
@@ -14388,15 +14359,13 @@ VISH.Slides = function(V, $, undefined) {
       VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onFlashcardPointClicked, params);
       return
     }
-    if(slideEls.length >= slide_id - 1) {
-      $(slideEls[slide_id - 1]).show();
-      triggerEnterEvent(slide_id - 1);
-      var params = new Object;
-      params.slideNumber = slide_id;
-      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
-    }
+    $("#" + slide_id).show();
+    _triggerEnterEventById(slide_id);
+    var params = new Object;
+    params.slideNumber = slide_id;
+    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
   };
-  var closeSlide = function(slide_id, triggeredByUser) {
+  var closeFlashcardSlide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
     if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
       var params = new Object;
@@ -14405,8 +14374,7 @@ VISH.Slides = function(V, $, undefined) {
       return
     }
     $("#" + slide_id).hide();
-    var slideNumber = $.inArray($("#" + slide_id)[0], slideEls);
-    triggerLeaveEvent(slideNumber);
+    _triggerLeaveEventById(slide_id);
     var params = new Object;
     params.slideNumber = slide_id;
     VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardSlideClosed, params, triggeredByUser)
@@ -14487,19 +14455,30 @@ VISH.Slides = function(V, $, undefined) {
     if(slide === null) {
       return
     }
+    var standardSlide = slide.type === VISH.Constant.STANDARD;
     var removing_current_slide = false;
     if(getCurrentSlide() === slide) {
       removing_current_slide = true
     }
     $(slide).remove();
     if(removing_current_slide) {
-      setCurrentSlideNumber(getCurrentSlideNumber() - 1)
+      if(getCurrentSlideNumber() === 1 && getSlidesQuantity() > 1) {
+        setCurrentSlideNumber(1)
+      }else {
+        setCurrentSlideNumber(getCurrentSlideNumber() - 1)
+      }
     }
     VISH.Editor.Utils.redrawSlides();
-    VISH.Editor.Thumbnails.redrawThumbnails()
+    VISH.Editor.Thumbnails.redrawThumbnails();
+    if(!standardSlide) {
+      VISH.Editor.Tools.Menu.init()
+    }
   };
-  return{init:init, getCurrentSlide:getCurrentSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, isSlideSelected:isSlideSelected, getNumberOfSlide:getNumberOfSlide, getSlides:getSlides, getSlideWithNumber:getSlideWithNumber, backwardOneSlide:backwardOneSlide, closeSlide:closeSlide, closeAllSlides:closeAllSlides, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, 
-  isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, removeSlide:removeSlide, showSlide:showSlide}
+  var getSlidesQuantity = function() {
+    return getSlides().length
+  };
+  return{init:init, getCurrentSlide:getCurrentSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, isSlideSelected:isSlideSelected, getNumberOfSlide:getNumberOfSlide, getSlides:getSlides, getSlideWithNumber:getSlideWithNumber, backwardOneSlide:backwardOneSlide, closeFlashcardSlide:closeFlashcardSlide, closeAllSlides:closeAllSlides, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, 
+  lastSlide:lastSlide, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, removeSlide:removeSlide, showFlashcardSlide:showFlashcardSlide, getSlidesQuantity:getSlidesQuantity}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var bindedEventListeners = false;
@@ -14553,114 +14532,137 @@ VISH.Events = function(V, $, undefined) {
     }
   };
   var handleTouchStart = function(event) {
-    if(V.SlideManager.getPresentationType() === "presentation") {
-      var touches = getTouches(event);
-      if(touches.length === 1) {
-        touchDX = 0;
-        touchDY = 0;
-        touchStartX = touches[0].pageX;
-        touchStartY = touches[0].pageY;
-        document.body.addEventListener("touchmove", handleTouchMove, true);
-        document.body.addEventListener("touchend", handleTouchEnd, true);
-        var zoom = document.documentElement.clientWidth / window.innerWidth;
-        var eventNotRegister = registeredEvents.indexOf(event.target.id) == -1;
-        if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && eventNotRegister) {
-          event.preventDefault()
-        }
+    var touches = getTouches(event);
+    if(touches.length === 1) {
+      touchDX = 0;
+      touchDY = 0;
+      touchStartX = touches[0].pageX;
+      touchStartY = touches[0].pageY;
+      document.body.addEventListener("touchmove", handleTouchMove, true);
+      document.body.addEventListener("touchend", handleTouchEnd, true);
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      var eventNotRegister = registeredEvents.indexOf(event.target.id) == -1 && registeredEvents.indexOf($(event.target).attr("class")) == -1;
+      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && eventNotRegister) {
+        event.preventDefault()
       }
     }
   };
   var handleTouchMove = function(event) {
-    if(V.SlideManager.getPresentationType() === "presentation") {
-      var touches = getTouches(event);
-      if(touches.length > 1) {
-        cancelTouch()
-      }else {
-        touchDX = touches[0].pageX - touchStartX;
-        touchDY = touches[0].pageY - touchStartY;
-        var zoom = document.documentElement.clientWidth / window.innerWidth;
-        if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
-          event.preventDefault()
-        }
+    var touches = getTouches(event);
+    if(touches.length > 1) {
+      cancelTouch()
+    }else {
+      touchDX = touches[0].pageX - touchStartX;
+      touchDY = touches[0].pageY - touchStartY;
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+        event.preventDefault()
       }
     }
   };
   var handleTouchEnd = function(event) {
-    if(V.SlideManager.getPresentationType() === "presentation") {
-      var dx = Math.abs(touchDX);
-      var dy = Math.abs(touchDY);
-      if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
-        if(touchDX > 0) {
-          V.Slides.backwardOneSlide()
-        }else {
-          V.Slides.forwardOneSlide()
-        }
+    var dx = Math.abs(touchDX);
+    var dy = Math.abs(touchDY);
+    if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
+      if(touchDX > 0) {
+        V.Slides.backwardOneSlide()
+      }else {
+        V.Slides.forwardOneSlide()
       }
-      cancelTouch()
     }
+    cancelTouch()
   };
   var cancelTouch = function() {
     document.body.removeEventListener("touchmove", handleTouchMove, true);
     document.body.removeEventListener("touchend", handleTouchEnd, true)
   };
   var _onFlashcardPoiClicked = function(event) {
-    V.Slides.showSlide(event.data.slide_id, true)
+    V.Slides.showFlashcardSlide(event.data.slide_id, true)
   };
   var _onFlashcardCloseSlideClicked = function(event) {
     var close_slide = event.target.id.substring(5);
-    V.Slides.closeSlide(close_slide, true)
+    V.Slides.closeFlashcardSlide(close_slide, true)
   };
   var bindViewerEventListeners = function() {
     if(!bindedEventListeners) {
-      if(V.SlideManager.getPresentationType() === "presentation") {
-        $(document).bind("keydown", handleBodyKeyDown);
-        $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
-        $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-        _registerEvent("back_arrow");
-        $(document).on("click", "#back_arrow", V.Slides.backwardOneSlide);
-        _registerEvent("forward_arrow");
-        $(document).on("click", "#forward_arrow", V.Slides.forwardOneSlide);
-        _registerEvent("closeButton");
-        _registerEvent("closeButtonImg");
-        $(document).on("click", "#closeButton", function() {
-          window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
-        });
-        $(document).bind("touchstart", handleTouchStart)
-      }else {
-        if(V.SlideManager.getPresentationType() === "flashcard") {
-          var presentation = V.SlideManager.getCurrentPresentation();
-          for(index in presentation.background.pois) {
-            var poi = presentation.background.pois[index];
-            $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
-          }
-          $(document).on("click", ".close_slide", _onFlashcardCloseSlideClicked)
+      $(document).bind("keydown", handleBodyKeyDown);
+      $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+      $(document).on("click", "#back_arrow", V.Slides.backwardOneSlide);
+      _registerEvent("back_arrow");
+      $(document).on("click", "#forward_arrow", V.Slides.forwardOneSlide);
+      _registerEvent("forward_arrow");
+      _registerEvent("closeButton");
+      _registerEvent("closeButtonImg");
+      $(document).on("click", "#closeButton", function() {
+        window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
+      });
+      $(document).bind("touchstart", handleTouchStart);
+      $(document).on("click", ".close_subslide", _onFlashcardCloseSlideClicked);
+      _registerEvent("close_subslide");
+      var presentation = V.SlideManager.getCurrentPresentation();
+      for(index in presentation.slides) {
+        var slide = presentation.slides[index];
+        switch(slide.type) {
+          case VISH.Constant.FLASHCARD:
+            for(ind in slide.pois) {
+              var poi = slide.pois[ind];
+              $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked);
+              _registerEvent(poi.id)
+            }
+            break;
+          case VISH.Constant.VTOUR:
+            break
         }
+      }
+      if(applicationCache) {
+        applicationCache.addEventListener("cached", function() {
+          VISH.LocalStorage.addPresentation(presentation)
+        }, false);
+        applicationCache.addEventListener("updateready", function() {
+          VISH.LocalStorage.addPresentation(presentation)
+        }, false)
+      }
+      if(!V.Status.getDevice().desktop) {
+        bindMobileViewerEventListeners()
       }
     }
     bindedEventListeners = true
   };
+  var bindMobileViewerEventListeners = function() {
+    window.addEventListener("load", function() {
+      _hideAddressBar()
+    });
+    window.addEventListener("orientationchange", function() {
+      _hideAddressBar()
+    });
+    $(window).on("orientationchange", function() {
+      V.ViewerAdapter.setupSize()
+    })
+  };
+  var _hideAddressBar = function() {
+  };
   var unbindViewerEventListeners = function() {
     if(bindedEventListeners) {
-      if(V.SlideManager.getPresentationType() === "presentation") {
-        $(document).unbind("keydown", handleBodyKeyDown);
-        $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
-        $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-        _unregisterEvent("back_arrow");
-        $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
-        _unregisterEvent("forward_arrow");
-        $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
-        _unregisterEvent("closeButton");
-        _unregisterEvent("closeButtonImg");
-        $(document).off("click", "#closeButton");
-        $(document).unbind("touchstart", handleTouchStart)
-      }else {
-        if(V.SlideManager.getPresentationType() === "flashcard") {
-          var presentation = V.SlideManager.getCurrentPresentation();
-          for(index in presentation.background.pois) {
-            var poi = presentation.background.pois[index];
+      $(document).unbind("keydown", handleBodyKeyDown);
+      $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+      _unregisterEvent("back_arrow");
+      $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
+      _unregisterEvent("forward_arrow");
+      $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
+      _unregisterEvent("closeButton");
+      _unregisterEvent("closeButtonImg");
+      $(document).off("click", "#closeButton");
+      $(document).unbind("touchstart", handleTouchStart);
+      var presentation = V.SlideManager.getCurrentPresentation();
+      for(index in presentation.slides) {
+        if(presentation.slides[index].type === "flashcard") {
+          for(ind in presentation.slides[index].pois) {
+            var poi = presentation.slides[index].pois[ind];
             $(document).off("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
           }
-          $(document).off("click", ".close_slide", _onFlashcardCloseSlideClicked)
+          $(document).off("click", ".close_subslide", _onFlashcardCloseSlideClicked)
         }
       }
       bindedEventListeners = false
@@ -14669,21 +14671,57 @@ VISH.Events = function(V, $, undefined) {
   return{init:init, bindViewerEventListeners:bindViewerEventListeners, unbindViewerEventListeners:unbindViewerEventListeners}
 }(VISH, jQuery);
 VISH.Flashcard = function(V, $, undefined) {
+  var flashcards;
+  var FPS = 25;
+  var TOTAL_FRAMES = 20;
+  var FRAME_WIDTH = 50;
   var init = function(presentation) {
-    var fileref = document.createElement("link");
-    fileref.setAttribute("rel", "stylesheet");
-    fileref.setAttribute("type", "text/css");
-    fileref.setAttribute("href", VISH.StylesheetsPath + "flashcard/flashcard.css");
-    document.getElementsByTagName("body")[0].appendChild(fileref);
-    var flashcard_div = $("#flashcard-background");
-    flashcard_div.css("background-image", presentation.background.src);
-    for(index in presentation.background.pois) {
-      var poi = presentation.background.pois[index];
-      V.Flashcard.Arrow.addArrow(poi, false)
+    if(!flashcards) {
+      flashcards = new Array
     }
-    V.Flashcard.Arrow.init()
   };
-  return{init:init}
+  var startAnimation = function(slideId) {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined") {
+      flashcards[slideId].timer = setInterval(function() {
+        animateArrows(slideId)
+      }, 1E3 / FPS)
+    }
+  };
+  var stopAnimation = function(slideId) {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined") {
+      clearTimeout(flashcards[slideId].timer)
+    }
+  };
+  var addArrow = function(slideId, poi, sync) {
+    var flashcard_div = $("#" + slideId);
+    var div_to_add = "<div class='fc_poi' id='" + poi.id + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'></div>";
+    flashcard_div.append(div_to_add);
+    if(typeof flashcards[slideId] === "undefined") {
+      flashcards[slideId] = new Object;
+      flashcards[slideId].arrows = []
+    }
+    var arrow = new Object;
+    arrow.id = poi.id;
+    if(sync) {
+      arrow.position = 0
+    }else {
+      var rand_pos = Math.floor(Math.random() * TOTAL_FRAMES + 1) * FRAME_WIDTH;
+      arrow.position = rand_pos
+    }
+    flashcards[slideId].arrows.push(arrow)
+  };
+  var animateArrows = function(slideId) {
+    if(!slideId || typeof flashcards[slideId] === "undefined") {
+      return
+    }
+    $(flashcards[slideId].arrows).each(function(index, value) {
+      var new_pos = (value.position + FRAME_WIDTH) % (TOTAL_FRAMES * FRAME_WIDTH);
+      var arrow_dom_el = $("#" + value.id);
+      $(arrow_dom_el).css("background-position", new_pos + "px" + " 0px");
+      flashcards[slideId].arrows[index].position = new_pos
+    })
+  };
+  return{init:init, addArrow:addArrow, startAnimation:startAnimation, stopAnimation:stopAnimation, animateArrows:animateArrows}
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
@@ -14705,9 +14743,8 @@ VISH.Quiz = function(V, $, undefined) {
   var tabQuizStatsPieContentId = "quiz_stats_pie_content_id";
   var getResultsPeriod = 3E3;
   var getResultsTimeOut;
-  var isWaitingBackwardOneSlide = false;
-  var isWaitingForwardOneSlide = false;
   var pollingActivated = false;
+  var addedFullScreenListener = false;
   var init = function(presentation) {
     if(presentation.type == "quiz_simple") {
       quizMode = "answer";
@@ -14719,7 +14756,8 @@ VISH.Quiz = function(V, $, undefined) {
     VISH.Quiz.Renderer.init();
     VISH.Quiz.API.init();
     $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"90%", "height":"90%", "margin":"10%", "padding":0, "autoScale":true, "onStart":function(data) {
-      VISH.Utils.loadTab("tab_quiz_session")
+      VISH.Utils.loadTab("tab_quiz_session");
+      _enableFullScreenQRButton()
     }})
   };
   var getQuizMode = function() {
@@ -14750,7 +14788,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
     $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
     $(document).on("click", ".quiz_stop_session_dont_save", _stopAndDontSaveQuiz);
-    $(document).on("click", ".quiz_full_screen", _qrFullScreen);
+    $(document).on("click", ".quiz_full_screen", qrToggleFullScreen);
     $(document).on("click", ".hide_qrcode", _hideQRCode);
     $(document).on("click", ".show_qrcode", _showQRCode)
   };
@@ -14765,6 +14803,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var _startStats = function() {
+    var question;
     if($("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").contents()) {
       $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").children().remove()
     }
@@ -14774,12 +14813,14 @@ VISH.Quiz = function(V, $, undefined) {
     if($("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children()) {
       $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children().remove()
     }
-    $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone"));
-    $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append($(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone"));
+    question = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone");
+    question.addClass("question_in_stats");
+    $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append(question.clone());
+    $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append(question.clone());
     var options_form = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form");
+    options_form.find(".multiplechoice_option_in_viewer").addClass("option_in_stats");
     $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append(options_form);
     $("#" + tabQuizStatsBarsContentId).find(".mch_inputs_wrapper").remove();
-    $("#" + tabQuizStatsBarsContentId).find("div.mcquestion_body").addClass("quiz_in_satistics");
     $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
     $("#tab_quiz_stats_pie_content").addClass("resized_fancybox_for_stats");
     $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
@@ -14822,20 +14863,79 @@ VISH.Quiz = function(V, $, undefined) {
     var url = quizUrlForSession + quiz_session_id;
     var current_slide = V.Slides.getCurrentSlide();
     var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
-    $(header).find(".url_share > span > a").attr("href", url);
-    $(header).find(".url_share > span > a").text("");
-    $(header).find(".url_share > span > a").append(url.toString());
+    $(header).find(".url_share_link").attr("href", url);
+    $(header).find(".url_share_link").text("");
+    $(header).find(".url_share_link").append(url.toString());
+    $(".hidden_for_qr_quiz > canvas").remove();
     $(".hidden_for_qr_quiz").qrcode({width:512, height:512, text:url.toString()});
     var imageData = $(".hidden_for_qr_quiz > canvas")[0].toDataURL();
-    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > img").attr("src", imageData);
+    $("#" + tabQuizSessionContent).find(".qr_quiz_image").attr("src", imageData);
     $(current_slide).find("input." + startButtonClass).hide();
     $(current_slide).find("input." + optionsButtonClass).show();
     quizSessionStarted = true;
     $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value", quiz_session_id);
-    $("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container").append(" <img class='qr_background' src='" + VISH.ImagesPath + "qrcode_background.png' />")
+    _showQRCode();
+    if(addedFullScreenListener === false) {
+      _addToggleFullScreenListener()
+    }
   };
   var _OnQuizSessionReceivedError = function(error) {
     V.Debugging.log("_OnQuizSessionReceivedError:  " + JSON.stringify(error))
+  };
+  var _addToggleFullScreenListener = function() {
+    addedFullScreenListener = true;
+    if(V.Status.getIsInIframe()) {
+      var myDoc = parent.document
+    }else {
+      var myDoc = document
+    }
+    var myElem = document.getElementById("qr_quiz_fullscreen");
+    if(myElem.requestFullscreen) {
+      myDoc.addEventListener("fullscreenchange", function() {
+        if(document.fullScreen) {
+          $(document.getElementById("qr_quiz_image_id")).addClass("full-screen")
+        }else {
+          $(document.getElementById("qr_quiz_image_id")).removeClass("full-screen")
+        }
+        if($(myElem).css("display") === "none") {
+          $(myElem).show()
+        }else {
+          $(myElem).hide()
+        }
+      }, false)
+    }else {
+      if(myElem.webkitRequestFullScreen) {
+        myDoc.addEventListener("webkitfullscreenchange", function() {
+          if(document.webkitIsFullScreen) {
+            $(document.getElementById("qr_quiz_image_id")).addClass("full-screen")
+          }else {
+            $(document.getElementById("qr_quiz_image_id")).removeClass("full-screen")
+          }
+          if($(myElem).css("display") === "none") {
+            $(myElem).show()
+          }else {
+            $(myElem).hide()
+          }
+        }, false)
+      }else {
+        if(myElem.mozRequestFullScreen) {
+          myDoc.addEventListener("mozfullscreenchange", function() {
+            if(document.mozFullScreen) {
+              $(document.getElementById("qr_quiz_image_id")).addClass("full-screen")
+            }else {
+              $(document.getElementById("qr_quiz_image_id")).removeClass("full-screen")
+            }
+            if($(myElem).css("display") === "none") {
+              $(myElem).show()
+            }else {
+              $(myElem).hide()
+            }
+          }, false)
+        }else {
+          V.Debugging.log("Other Browser does not support FUll Screen Mode")
+        }
+      }
+    }
   };
   var onStopMcQuizButtonClicked = function() {
     var id = $("a[name=modal_fancybox]").attr("href");
@@ -14867,14 +14967,7 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
     pollingActivated = false;
     clearInterval(getResultsTimeOut);
-    quizSessionStarted = false;
-    if(isWaitingForwardOneSlide) {
-      V.Slides.forwardOneSlide()
-    }else {
-      if(isWaitingBackwardOneSlide) {
-        V.Slides.backwardOneSlide()
-      }
-    }
+    quizSessionStarted = false
   };
   var _onQuizSessionCloseReceived = function(results) {
     V.Debugging.log("_onQuizSessionCloseReceived");
@@ -14893,14 +14986,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(current_slide).find("input." + startButtonClass).show();
     V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
     clearInterval(getResultsTimeOut);
-    quizSessionStarted = false;
-    if(isWaitingForwardOneSlide) {
-      V.Slides.forwardOneSlide()
-    }else {
-      if(isWaitingBackwardOneSlide) {
-        V.Slides.backwardOneSlide()
-      }
-    }
+    quizSessionStarted = false
   };
   var _loadAnswerEvents = function() {
     $(document).on("click", "." + voteButtonClass, _sendVote)
@@ -14919,7 +15005,6 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
   };
   var _onQuizSessionResultsReceived = function(data) {
-    V.Debugging.log("_onQuizSessionResultsReceived, and data is:  " + JSON.stringify(data));
     $(VISH.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
     $(".thanks_div").show();
     var id = $("a[name=modal_window]").attr("href");
@@ -15001,21 +15086,50 @@ VISH.Quiz = function(V, $, undefined) {
       $("#" + tabQuizSessionContent).find(".hide_qrcode").show()
     }
   };
-  var _qrFullScreen = function() {
-    if($.support.fullscreen) {
-      $("#qr_quiz_image_id").fullScreen()
+  var _enableFullScreenQRButton = function() {
+    if(V.Status.getDevice().features.fullscreen) {
+      $(".quiz_full_screen").show()
+    }else {
+      $(".quiz_full_screen").hide()
+    }
+  };
+  var qrToggleFullScreen = function(event) {
+    if(V.Status.getIsInIframe()) {
+      var myDoc = parent.document
+    }else {
+      var myDoc = document
+    }
+    var myElem = document.getElementById("qr_quiz_image_id");
+    if(myDoc.fullScreenElement && myDoc.fullScreenElement !== null || !myDoc.mozFullScreen && !myDoc.webkitIsFullScreen) {
+      if(myDoc.documentElement.requestFullScreen) {
+        myElem.requestFullScreen()
+      }else {
+        if(myDoc.documentElement.mozRequestFullScreen) {
+          myElem.mozRequestFullScreen()
+        }else {
+          if(myDoc.documentElement.webkitRequestFullScreen) {
+            myElem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
+          }
+        }
+      }
+    }else {
+      if(myDoc.cancelFullScreen) {
+        myDoc.cancelFullScreen()
+      }else {
+        if(myDoc.mozCancelFullScreen) {
+          myDoc.mozCancelFullScreen()
+        }else {
+          if(myDoc.webkitCancelFullScreen) {
+            myDoc.webkitCancelFullScreen()
+          }
+        }
+      }
     }
   };
   var getIsQuizSessionStarted = function() {
     return quizSessionStarted
   };
-  var setIsWaitingForwardOneSlide = function(val) {
-    isWaitingForwardOneSlide = val
-  };
-  var setIsWaitingBackwardOneSlide = function(val) {
-    isWaitingBackwardOneSlide = val
-  };
-  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, setIsWaitingForwardOneSlide:setIsWaitingForwardOneSlide, setIsWaitingBackwardOneSlide:setIsWaitingBackwardOneSlide}
+  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, qrToggleFullScreen:qrToggleFullScreen}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
@@ -15117,15 +15231,16 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var loadToolbarForElement = function(type) {
     _cleanElementToolbar();
     if(type == "text" || type == "quiz") {
-      _loadNiceEditorToolbar();
+      _loadTextToolbar();
       return
     }
     var toolbarClass = "toolbar_" + type;
     $("#toolbar_element").find("img").hide();
     $("#toolbar_element").find("img." + toolbarClass).show()
   };
-  var _loadNiceEditorToolbar = function() {
+  var _loadTextToolbar = function() {
     $("#toolbar_element").find("img").hide();
+    $("#toolbar_text").show();
     $(".nicEdit-panel").show()
   };
   var loadToolbarForObject = function(object) {
@@ -15141,6 +15256,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
   };
   var _cleanElementToolbar = function() {
     $(".nicEdit-panel").hide();
+    $("#toolbar_text").hide();
     $("#toolbar_element").find("img").hide()
   };
   var selectTheme = function() {
@@ -15328,7 +15444,7 @@ VISH.VideoPlayer = function() {
       if(video.tagName === "VIDEO") {
         return VISH.Constant.Video.HTML5
       }else {
-        if(video.tagName === "OBJECT") {
+        if(video.tagName === "OBJECT" || video.tagName === "IFRAME") {
           return VISH.Constant.Video.Youtube
         }
       }
@@ -15377,7 +15493,7 @@ VISH.VideoPlayer = function() {
         return video.getDuration();
         break;
       case VISH.Constant.Video.Youtube:
-        return video.getDuration();
+        return youtubePlayers[video.id].getDuration();
         break;
       default:
         break
@@ -15389,7 +15505,7 @@ VISH.VideoPlayer = function() {
         return video.getCurrentTime();
         break;
       case VISH.Constant.Video.Youtube:
-        return video.getCurrentTime();
+        return youtubePlayers[video.id].getCurrentTime();
         break;
       default:
         break
@@ -15427,6 +15543,232 @@ VISH.Messenger = function(V, undefined) {
   };
   return{init:init, notifyEventByMessage:notifyEventByMessage}
 }(VISH);
+VISH.Editor.Quiz = function(V, $, undefined) {
+  var maxNumMultipleChoiceOptions = 6;
+  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)"];
+  var addQuizOptionButtonClass = "add_quiz_option_button";
+  var deleteQuizOptionButtonClass = "delete_quiz_option_button";
+  var init = function() {
+    $(document).on("click", "." + "multipleChoiceQuizContainer", _clickOnQuizArea);
+    $(document).on("click", "." + deleteQuizOptionButtonClass, _removeOptionInQuiz)
+  };
+  var onLoadTab = function(tab) {
+  };
+  var addQuiz = function(quiz_type, area, num_options) {
+    var current_area;
+    var current_num_options;
+    if(area) {
+      current_area = area
+    }else {
+      current_area = VISH.Editor.getCurrentArea()
+    }
+    if(num_options) {
+      current_num_options = num_options
+    }else {
+      current_num_options = 0
+    }
+    switch(quiz_type) {
+      case "open":
+        break;
+      case "multiplechoice":
+        _addMultipleChoiceQuiz(current_area, current_num_options);
+        VISH.Utils.loadTab("tab_quizes");
+        break;
+      case "truefalse":
+        break;
+      default:
+        break
+    }
+    $.fancybox.close()
+  };
+  var drawQuiz = function(quiz_type, area, question, options, quiz_id) {
+    var current_area;
+    if(area) {
+      current_area = area
+    }else {
+      current_area = V.Editor.getCurrentArea()
+    }
+    switch(quiz_type) {
+      case "multiplechoice":
+        if(question) {
+          $(current_area).find(".value_multiplechoice_question_in_zone").children().remove();
+          $(current_area).find(".value_multiplechoice_question_in_zone").append(question)
+        }
+        if(options) {
+          var inputs = $(current_area).find(".multiplechoice_option_in_zone");
+          for(var i = 0;i <= options.length - 1;i++) {
+            $(inputs[i]).children().remove();
+            $(inputs[i]).append(options[i].container)
+          }
+        }
+        if(quiz_id) {
+          $(current_area).find('input[name="quiz_id"]').val(quiz_id)
+        }
+        $(current_area).find(".multiplechoice_option_in_zone").attr("rows", "1");
+        break;
+      case "open":
+        break;
+      case "truefalse":
+        break;
+      default:
+        break
+    }
+  };
+  var _clickOnQuizArea = function(event) {
+    switch(event.target.classList[0]) {
+      case "multipleChoiceQuizContainer":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.id));
+        break;
+      case "add_quiz_option_button":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
+        addOptionInQuiz("multiplechoice", V.Editor.getCurrentArea());
+        break;
+      case "multiplechoice_option_in_zone":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
+        break;
+      case "li_mch_options_in_zone":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.id));
+        break;
+      default:
+        break
+    }
+  };
+  var _addMultipleChoiceQuiz = function(area, num_options) {
+    var current_area = area;
+    var current_num_options = num_options;
+    var quiz = VISH.Editor.Quiz.Dummies.getQuizDummy("multiplechoice", V.Slides.getSlides().length);
+    current_area.find(".menuselect_hide").remove();
+    current_area.attr("type", "quiz");
+    current_area.attr("quiztype", "multiplechoice");
+    current_area.append(quiz);
+    launchTextEditorInTextArea(current_area, "multiplechoice");
+    V.Editor.addDeleteButton(current_area);
+    var i = 0;
+    for(i = 0;i <= current_num_options;i++) {
+      addOptionInQuiz("multiplechoice", current_area)
+    }
+  };
+  var addOptionInQuiz = function(quiz_type, area) {
+    var setKeyDownListener = false;
+    var current_area = area;
+    var current_quiz_type;
+    if(typeof quiz_type == "string") {
+      current_quiz_type = quiz_type
+    }else {
+      if(typeof quiz_type == "object") {
+        current_quiz_type = $(current_area).attr("quiztype")
+      }else {
+        V.Debugging("another type ")
+      }
+    }
+    switch(current_quiz_type) {
+      case "multiplechoice":
+        var quiz_option = VISH.Editor.Quiz.Dummies.getQuizOptionDummy(current_quiz_type);
+        var current_options = $(current_area).find(".li_mch_options_in_zone").size();
+        $(current_area).find(".ul_mch_options_in_zone").append(quiz_option);
+        _addKeyDownListener(current_area, $(current_area).find(".multiplechoice_option_in_zone:last"));
+        $(current_area).find(".quiz_option_index:last").text(choicesLetters[current_options]);
+        $(current_area).find("." + deleteQuizOptionButtonClass + ":last").attr("id", current_area.attr("id") + "_delete_option_button_" + current_options + "_id");
+        $(current_area).find("." + addQuizOptionButtonClass + ":last").attr("id", current_area.attr("id") + "_add_option_button_" + current_options + "_id");
+        launchTextEditorInTextArea(current_area, "multiplechoice", current_options);
+        if(current_options > 0) {
+          $($(current_area).find("." + addQuizOptionButtonClass)[parseInt(current_options) - 1]).hide();
+          $($(current_area).find("." + deleteQuizOptionButtonClass)[parseInt(current_options) - 1]).show();
+          $("#wysiwyg_" + current_area.attr("id") + "_" + current_options).focus();
+          $(current_area).find(".initTextDiv :last").trigger("click")
+        }
+        if(current_options + 1 === maxNumMultipleChoiceOptions) {
+          $($(current_area).find("." + addQuizOptionButtonClass)[parseInt(current_options)]).hide();
+          $($(current_area).find("." + deleteQuizOptionButtonClass)[parseInt(current_options)]).show()
+        }
+        break;
+      default:
+        break
+    }
+  };
+  var _addKeyDownListener = function(area, input) {
+    var current_area = area;
+    var current_input = input;
+    $(current_input).keydown(function(event) {
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        event.stopPropagation();
+        if($(current_input).attr("id") === $(current_area).find(".multiplechoice_option_in_zone:last").attr("id") && $(current_area).find(".li_mch_options_in_zone").size() < maxNumMultipleChoiceOptions) {
+          addOptionInQuiz("multiplechoice", current_area)
+        }
+      }
+    })
+  };
+  var _removeOptionInQuiz = function(event) {
+    if(event.target.attributes["class"].value === deleteQuizOptionButtonClass) {
+      V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
+      var current_area = V.Editor.getCurrentArea();
+      var option_number = event.target.id.substring(27, 28);
+      $(current_area).find("#" + event.target.attributes["id"].value).parent().remove();
+      $(current_area).find(".li_mch_options_in_zone").each(function(index, option_element) {
+        $(option_element).find(".quiz_option_index").text(choicesLetters[index]);
+        $(option_element).find("." + deleteQuizOptionButtonClass).attr("id", current_area.attr("id") + "_delete_option_button_" + index + "_id");
+        $(option_element).find("." + addQuizOptionButtonClass).attr("id", current_area.attr("id") + "_add_option_button_" + index + "_id");
+        $(option_element).find(".multiplechoice_option_in_zone").attr("id", "wysiwyg_" + current_area.attr("id") + "_" + index);
+        if(index >= option_number) {
+          launchTextEditorInTextArea(current_area, "multiplechoice", option_number)
+        }
+      });
+      if($(current_area).find(".li_mch_options_in_zone").size() === maxNumMultipleChoiceOptions - 1) {
+        _addKeyDownListener(current_area, $(current_area).find(".multiplechoice_option_in_zone:last"));
+        $($(current_area).find("." + deleteQuizOptionButtonClass)[maxNumMultipleChoiceOptions - 2]).hide();
+        $($(current_area).find("." + addQuizOptionButtonClass)[maxNumMultipleChoiceOptions - 2]).show()
+      }
+    }else {
+      V.Debugging.log("other event  handler")
+    }
+  };
+  var launchTextEditorInTextArea = function(area, type_quiz, option_number) {
+    var current_area = area;
+    if(option_number != undefined) {
+      var optionWysiwygId = "wysiwyg_" + current_area.attr("id") + "_" + option_number;
+      $($(current_area).find("." + type_quiz + "_option_in_zone")[option_number]).attr("id", optionWysiwygId);
+      if($($(current_area).find(".li_mch_options_in_zone")[option_number]).find(".wysiwygInstance").val() === undefined) {
+        $("#" + optionWysiwygId).addClass("wysiwygInstance");
+        V.Editor.Text.getNicEditor().addInstance(optionWysiwygId)
+      }
+    }else {
+      var textArea = $(current_area).find(".value_" + type_quiz + "_question_in_zone");
+      var wysiwygId = "wysiwyg_" + current_area.attr("id");
+      textArea.attr("id", wysiwygId);
+      $("#" + wysiwygId).addClass("wysiwygInstance");
+      VISH.Editor.Text.getNicEditor().addInstance(wysiwygId)
+    }
+    $(".initTextDiv").click(function(event) {
+      if(event.target.tagName == "FONT") {
+        var font = $(event.target);
+        var div = $(event.target).parent()
+      }else {
+        if(event.target.tagName == "DIV") {
+          var div = $(event.target);
+          var font = $(event.target).find("font")
+        }else {
+          if(event.target.tagName == "SPAN") {
+            var div = $(event.target).parent();
+            var font = $(event.target)
+          }
+        }
+      }
+      if($(font).text() === "Write options here") {
+        $(font).text("");
+        $(div).removeClass("initTextDiv");
+        $(".multiplechoice_option_in_zone :last").trigger("click")
+      }else {
+        if($(font).text() === "Write question here") {
+          $(font).text("");
+          $(div).removeClass("initTextDiv");
+          $(div).parent().trigger("click")
+        }
+      }
+    })
+  };
+  return{init:init, onLoadTab:onLoadTab, drawQuiz:drawQuiz, addQuiz:addQuiz, addOptionInQuiz:addOptionInQuiz}
+}(VISH, jQuery);
 VISH.Addons.IframeMessenger = function(V, undefined) {
   var listenerInitialized = false;
   var init = function(config) {
@@ -15664,65 +16006,28 @@ VISH.Debugging = function(V, $, undefined) {
   };
   return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getPresentationSamples:getPresentationSamples, initVishViewer:initVishViewer, initVishEditor:initVishEditor}
 }(VISH, jQuery);
-VISH.Dummies = function(VISH, undefined) {
-  var nextDivId = 1;
-  var nextArticleId = 1;
-  var hashTypeQuiz = {"open":0, "multiplechoice":1, "truefalse":2};
-  var dummies = [];
-  var quizDummies = [];
-  var quizOptionsDummies = [];
-  var init = function() {
-    dummies = ["<article id='article_id_to_change' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' size='small' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='extra-small' class='t1_subheader editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='small'  class='t4_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='medium' class='t5_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t6_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t7_subheader editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='small'  class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='small'     class='t8_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t9_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center'  size='large' class='t10_center editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center1' size='medium' class='t11_center1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='medium'  class='t11_center2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center3'  size='medium'  class='t11_center3 editable grey_background selectable'></div></article>", "<article id='article_id_to_change' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left1'   size='medium' class='t12_left1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t12_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='left2' size='medium' class='t12_left2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium'  class='t12_right2 editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle' size='medium' class='t13_circle editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'  class='t13_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='circle1' size='small' class='t14_circle1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle2' size='small' class='t14_circle2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle3' size='small' class='t14_circle3 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right3' size='medium' class='t14_right3 editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t15_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='large' class='t15_center2 editable grey_background selectable'></div></article>"];
-    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone'><div class='initTextDiv'><font size='4'>Write question here</font></div></div><ul class='ul_mch_options_in_zone'></ul><input type='hidden' name='quiz_id'/></div></div>", "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"];
-    quizOptionDummies = ["", "<li class='li_mch_options_in_zone'><span></span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div><img src='" + VISH.ImagesPath + "add.png' class='add_quiz_option_button'/><img src='" + VISH.ImagesPath + "delete.png' class='delete_quiz_option_button'/></li>", ""]
-  };
-  var getDummy = function(template, position, presentation_id, existing_slide) {
-    var dum = dummies[parseInt(template, 10) - 1];
-    return _replaceIds(dum, position, presentation_id, existing_slide)
-  };
-  var getQuizDummy = function(type_quiz, position) {
-    return quizDummies[hashTypeQuiz[type_quiz]]
-  };
-  var getQuizOptionDummy = function(type_quiz) {
-    return quizOptionDummies[hashTypeQuiz[type_quiz]]
-  };
-  var _replaceIds = function(string, position, presentation_id, existing_slide) {
-    var newString = string;
-    while(newString.indexOf("div_id_to_change") != -1) {
-      newString = newString.replace("div_id_to_change", "zone" + nextDivId);
-      nextDivId++
-    }
-    while(newString.indexOf("article_id_to_change") != -1) {
-      if(!presentation_id) {
-        presentation_id = ""
-      }
-      newString = newString.replace("article_id_to_change", "article_" + presentation_id + "_" + position)
-    }
-    while(newString.indexOf("slidenumber_to_change") != -1) {
-      newString = newString.replace("slidenumber_to_change", position)
-    }
-    if(existing_slide) {
-      newString = newString.replace(/editable /g, "")
-    }
-    return newString
-  };
-  return{init:init, getDummy:getDummy, getQuizDummy:getQuizDummy, getQuizOptionDummy:getQuizOptionDummy}
-}(VISH);
 VISH.Editor.API = function(V, $, undefined) {
   var init = function() {
+  };
+  var requestFlashcards = function(text, successCallback, failCallback) {
+    if(VISH.Debugging.isDevelopping()) {
+      if(typeof successCallback == "function") {
+        var result = VISH.Samples.API.flashcardList;
+        successCallback(result)
+      }
+      return
+    }
+    _requestByType("flashcard", text, successCallback, failCallback)
+  };
+  var requestRecomendedFlashcards = function(successCallback, failCallback) {
+    if(VISH.Debugging.isDevelopping()) {
+      if(typeof successCallback == "function") {
+        var result = VISH.Samples.API.flashcardList;
+        successCallback(result)
+      }
+      return
+    }
+    _requestByType("flashcard", "", successCallback, failCallback)
   };
   var requestVideos = function(text, successCallback, failCallback) {
     if(VISH.Debugging.isDevelopping()) {
@@ -15953,7 +16258,8 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
-  return{init:init, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails}
+  return{init:init, requestFlashcards:requestFlashcards, requestRecomendedFlashcards:requestRecomendedFlashcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, 
+  requestTags:requestTags, requestThumbnails:requestThumbnails}
 }(VISH, jQuery);
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;
@@ -16358,6 +16664,69 @@ VISH.Editor.Clipboard = function(V, $, undefined) {
   };
   return{init:init, copy:copy, paste:paste}
 }(VISH, jQuery);
+VISH.Editor.Dummies = function(VISH, undefined) {
+  var dummies = [];
+  var init = function() {
+    dummies = ["<article id='article_id_to_change' type='standard' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' size='small' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='extra-small' class='t1_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + 
+    "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='small'  class='t4_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='medium' class='t5_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t6_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t7_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='small'  class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='small'     class='t8_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t9_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center'  size='large' class='t10_center editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center1' size='medium' class='t11_center1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='medium'  class='t11_center2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center3'  size='medium'  class='t11_center3 editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left1'   size='medium' class='t12_left1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t12_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='left2' size='medium' class='t12_left2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium'  class='t12_right2 editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle' size='medium' class='t13_circle editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'  class='t13_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='circle1' size='small' class='t14_circle1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle2' size='small' class='t14_circle2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle3' size='small' class='t14_circle3 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right3' size='medium' class='t14_right3 editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t15_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='large' class='t15_center2 editable grey_background selectable'></div></article>"];
+    VISH.Editor.Quiz.Dummies.init()
+  };
+  var getDummy = function(template, slideNumber) {
+    var dummy = dummies[parseInt(template, 10) - 1];
+    return _replaceIds(dummy, slideNumber)
+  };
+  var getScaffold = function(template, slideNumber, articleId, zoneIds) {
+    var dummy = dummies[parseInt(template, 10) - 1];
+    return _removeEditable(_replaceIds(dummy, slideNumber, articleId, zoneIds))
+  };
+  var getScaffoldForSlide = function(template, slideNumber, slide) {
+    var zoneIds = [];
+    for(el in slide.elements) {
+      zoneIds.push(slide.elements[el].id)
+    }
+    return getScaffold(template, slideNumber, slide.id, zoneIds)
+  };
+  var _replaceIds = function(dummy, slideNumber, articleId, zoneIds) {
+    var newDummy = dummy;
+    var nextZoneId = 0;
+    if(!articleId) {
+      articleId = VISH.Utils.getId("article")
+    }
+    if(newDummy.indexOf("article_id_to_change") != -1) {
+      newDummy = newDummy.replace("article_id_to_change", articleId)
+    }
+    while(newDummy.indexOf("slidenumber_to_change") != -1) {
+      newDummy = newDummy.replace("slidenumber_to_change", slideNumber)
+    }
+    while(newDummy.indexOf("div_id_to_change") != -1) {
+      if(zoneIds) {
+        var newZoneId = zoneIds[nextZoneId];
+        nextZoneId++
+      }else {
+        var newZoneId = VISH.Utils.getId(articleId + "_zone")
+      }
+      newDummy = newDummy.replace("div_id_to_change", newZoneId)
+    }
+    return newDummy
+  };
+  var _removeEditable = function(dummy) {
+    return dummy.replace(/editable /g, "")
+  };
+  return{init:init, getDummy:getDummy, getScaffold:getScaffold, getScaffoldForSlide:getScaffoldForSlide}
+}(VISH);
 VISH.Editor.Events = function(V, $, undefined) {
   var bindedEventListeners = false;
   var init = function() {
@@ -16381,7 +16750,6 @@ VISH.Editor.Events = function(V, $, undefined) {
         }
         break;
       case 17:
-        console.log("ctrl key");
         ctrlDown = true;
         break;
       case 67:
@@ -16414,25 +16782,60 @@ VISH.Editor.Events = function(V, $, undefined) {
         break
     }
   };
+  var _onFlashcardPoiClicked = function(event) {
+    V.Slides.showFlashcardSlide(event.data.slide_id, true)
+  };
+  var _onFlashcardCloseSlideClicked = function(event) {
+    var close_slide = event.target.id.substring(5);
+    V.Slides.closeFlashcardSlide(close_slide, true)
+  };
   var bindEditorEventListeners = function() {
     if(!bindedEventListeners) {
-      if(V.SlideManager.getPresentationType() === "presentation") {
-        $(document).bind("keydown", handleBodyKeyDown);
-        $(document).bind("keyup", handleBodyKeyUp)
+      var presentation = V.Editor.getPresentation();
+      $(document).bind("keydown", handleBodyKeyDown);
+      $(document).bind("keyup", handleBodyKeyUp);
+      $(document).on("click", ".close_subslide", _onFlashcardCloseSlideClicked);
+      if(VISH.Editing && presentation) {
+        for(index in presentation.slides) {
+          var slide = presentation.slides[index];
+          switch(slide.type) {
+            case VISH.Constant.FLASHCARD:
+              bindEventsForFlashcard(slide);
+              break;
+            case VISH.Constant.VTOUR:
+              break
+          }
+        }
       }
     }
     bindedEventListeners = true
   };
+  var bindEventsForFlashcard = function(slide) {
+    for(ind in slide.pois) {
+      var poi = slide.pois[ind];
+      $(document).on("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
+    }
+  };
   var unbindEditorEventListeners = function() {
     if(bindedEventListeners) {
-      if(V.SlideManager.getPresentationType() === "presentation") {
+      var presentation = V.Editor.getPresentation();
+      if(presentation.type === "presentation") {
         $(document).unbind("keydown", handleBodyKeyDown);
         $(document).unbind("keyup", handleBodyKeyUp)
+      }
+      for(index in presentation.slides) {
+        if(presentation.slides[index].type === "flashcard") {
+          for(ind in presentation.slides[index].pois) {
+            var poi = presentation.slides[index].pois[ind];
+            $(document).off("click", "#" + poi.id, {slide_id:poi.slide_id}, _onFlashcardPoiClicked)
+          }
+          $(document).off("click", ".close_subslide", _onFlashcardCloseSlideClicked)
+        }
       }
       bindedEventListeners = false
     }
   };
-  return{init:init, bindEditorEventListeners:bindEditorEventListeners, unbindEditorEventListeners:unbindEditorEventListeners}
+  return{init:init, bindEditorEventListeners:bindEditorEventListeners, bindEventsForFlashcard:bindEventsForFlashcard, unbindEditorEventListeners:unbindEditorEventListeners}
 }(VISH, jQuery);
 VISH.Editor.Filter = function(V, $, undefined) {
   var init = function() {
@@ -16448,86 +16851,6 @@ VISH.Editor.Filter = function(V, $, undefined) {
     }
   };
   return{init:init}
-}(VISH, jQuery);
-VISH.Editor.Flashcard = function(V, $, undefined) {
-  var loadFlashcard = function(presentation) {
-    V.Editor.setPresentationType("flashcard");
-    V.Editor.Utils.hideSlides();
-    $("#flashcard-background").show();
-    if(presentation) {
-      $("#flashcard-background").css("background-image", presentation.background.src);
-      $("#fc_change_bg_big").hide()
-    }
-    $("#flashcard-background").droppable()
-  };
-  var switchToFlashcard = function() {
-    loadFlashcard();
-    V.Editor.Thumbnails.redrawThumbnails();
-    VISH.Editor.Tools.init()
-  };
-  var onBackgroundSelected = function(contentToAdd) {
-    $("#flashcard-background").css("background-image", "url(" + contentToAdd + ")");
-    $("#fc_change_bg_big").hide();
-    $.fancybox.close()
-  };
-  var redrawPois = function() {
-    $(".draggable_arrow_div").show();
-    _applyStyleToPois();
-    $(".draggable_arrow_div").draggable({revert:"invalid", stop:function(event, ui) {
-      if($(event.target).offset().top > 50 && $(event.target).offset().top < 600 && $(event.target).offset().left > 55 && $(event.target).offset().left < 805) {
-        $(event.target).attr("moved", "true");
-        var old_pos = $(event.target).offset();
-        $(event.target).css("position", "fixed");
-        $(event.target).css("top", old_pos.top + 30 + "px");
-        $(event.target).css("left", old_pos.left - 16 + "px")
-      }else {
-        $(event.target).attr("moved", "false");
-        var old_pos = $(event.target).offset();
-        $(event.target).css("position", "relative");
-        $(event.target).css("top", "auto");
-        $(event.target).css("left", "auto")
-      }
-    }});
-    $(".carrousel_element_single_row_slides").droppable();
-    $(".image_carousel").css("overflow", "visible");
-    $("#menubar").css("z-index", "1075");
-    $(".draggable_arrow_div").css("z-index", "1075")
-  };
-  var _applyStyleToPois = function() {
-    var presentation = V.Editor.getPresentation();
-    if(presentation && presentation.background && presentation.background.pois) {
-      $.each(presentation.background.pois, function(index, val) {
-        $("#" + val.id).css("position", "fixed");
-        $("#" + val.id).offset({top:600 * parseInt(val.y) / 100 + 75, left:800 * parseInt(val.x) / 100 + 55});
-        $("#" + val.id).attr("moved", "true")
-      })
-    }
-  };
-  var savePois = function() {
-    var pois = [];
-    $(".draggable_arrow_div[moved='true']").each(function(index, s) {
-      pois[index] = {};
-      pois[index].id = $(s).attr("id");
-      pois[index].x = 100 * ($(s).offset().left - 55) / 800;
-      pois[index].y = 100 * ($(s).offset().top - 75) / 600;
-      pois[index].slide_id = $(s).attr("slide_id")
-    });
-    return pois
-  };
-  var removePois = function() {
-    $(".draggable_arrow_div").hide()
-  };
-  var hasPoiInBackground = function() {
-    return $(".draggable_arrow_div[moved='true']").length > 0
-  };
-  var hasChangedBackground = function() {
-    if($("#flashcard-background").css("background-image").indexOf("flashcard_initial_background.jpg") != -1) {
-      return false
-    }else {
-      return true
-    }
-  };
-  return{hasChangedBackground:hasChangedBackground, hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard, onBackgroundSelected:onBackgroundSelected}
 }(VISH, jQuery);
 VISH.Editor.I18n = function(V, $, undefined) {
   var translations;
@@ -17265,318 +17588,75 @@ VISH.Editor.Preview = function(V, $, undefined) {
   };
   return{prepare:prepare, getPreview:getPreview, setForcePresentation:setForcePresentation}
 }(VISH, jQuery);
-VISH.Editor.Quiz = function(V, $, undefined) {
-  var maxNumMultipleChoiceOptions = 6;
-  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)"];
-  var addQuizOptionButtonClass = "add_quiz_option_button";
-  var deleteQuizOptionButtonClass = "delete_quiz_option_button";
+VISH.Editor.Quiz.Dummies = function(VISH, undefined) {
+  var quizDummies = [];
+  var quizOptionsDummies = [];
   var init = function() {
-    $(document).on("click", "." + "multipleChoiceQuizContainer", _clickOnQuizArea);
-    $(document).on("click", "." + deleteQuizOptionButtonClass, _removeOptionInQuiz)
+    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone'><div class='initTextDiv'><font size='4'>Write question here</font></div></div><ul class='ul_mch_options_in_zone'></ul><input type='hidden' name='quiz_id'/></div></div>", "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"];
+    quizOptionDummies = ["", "<li class='li_mch_options_in_zone'><span class='quiz_option_index'></span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div><img src='" + VISH.ImagesPath + "add.png' class='add_quiz_option_button'/><img src='" + VISH.ImagesPath + "delete.png' class='delete_quiz_option_button'/></li>", ""]
   };
-  var onLoadTab = function(tab) {
+  var hashTypeQuiz = {"open":0, "multiplechoice":1, "truefalse":2};
+  var getQuizDummy = function(type_quiz, position) {
+    return quizDummies[hashTypeQuiz[type_quiz]]
   };
-  var addQuiz = function(quiz_type, area, num_options) {
-    var current_area;
-    var current_num_options;
-    if(area) {
-      current_area = area
-    }else {
-      current_area = VISH.Editor.getCurrentArea()
-    }
-    if(num_options) {
-      current_num_options = num_options
-    }else {
-      current_num_options = 0
-    }
-    switch(quiz_type) {
-      case "open":
-        break;
-      case "multiplechoice":
-        _addMultipleChoiceQuiz(current_area, current_num_options);
-        VISH.Utils.loadTab("tab_quizes");
-        break;
-      case "truefalse":
-        break;
-      default:
-        break
-    }
-    $.fancybox.close()
+  var getQuizOptionDummy = function(type_quiz) {
+    return quizOptionDummies[hashTypeQuiz[type_quiz]]
   };
-  var drawQuiz = function(quiz_type, area, question, options, quiz_id) {
-    var current_area;
-    if(area) {
-      current_area = area
-    }else {
-      current_area = V.Editor.getCurrentArea()
-    }
-    switch(quiz_type) {
-      case "multiplechoice":
-        if(question) {
-          $(current_area).find(".value_multiplechoice_question_in_zone").children().remove();
-          $(current_area).find(".value_multiplechoice_question_in_zone").append(question)
-        }
-        if(options) {
-          var inputs = $(current_area).find(".multiplechoice_option_in_zone");
-          for(var i = 0;i <= options.length - 1;i++) {
-            $(inputs[i]).children().remove();
-            $(inputs[i]).append(options[i].container)
-          }
-        }
-        if(quiz_id) {
-          $(current_area).find('input[name="quiz_id"]').val(quiz_id)
-        }
-        $(current_area).find(".multiplechoice_option_in_zone").attr("rows", "1");
-        break;
-      case "open":
-        break;
-      case "truefalse":
-        break;
-      default:
-        break
-    }
-  };
-  var _clickOnQuizArea = function(event) {
-    switch(event.target.classList[0]) {
-      case "multipleChoiceQuizContainer":
-        V.Editor.setCurrentArea($("#" + event.target.parentElement.id));
-        break;
-      case "add_quiz_option_button":
-        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
-        addOptionInQuiz("multiplechoice");
-        break;
-      case "multiplechoice_option_in_zone":
-        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
-        break;
-      case "li_mch_options_in_zone":
-        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.id));
-        break;
-      default:
-        break
-    }
-  };
-  var _addMultipleChoiceQuiz = function(area, num_options) {
-    var current_area;
-    var current_num_options;
-    if(area) {
-      current_area = area
-    }else {
-      current_area = VISH.Editor.getCurrentArea()
-    }
-    if(num_options) {
-      current_num_options = num_options
-    }else {
-      current_num_options = 0
-    }
-    var quiz = VISH.Dummies.getQuizDummy("multiplechoice", V.Slides.getSlides().length);
-    current_area.find(".menuselect_hide").remove();
-    current_area.attr("type", "quiz");
-    current_area.attr("quiztype", "multiplechoice");
-    current_area.append(quiz);
-    launchTextEditorInTextArea(current_area, "multiplechoice");
-    V.Editor.addDeleteButton(current_area);
-    var i = 0;
-    if(current_num_options === 0) {
-      addOptionInQuiz("multiplechoice", current_area, "filling");
-      input = $(current_area).find(".multiplechoice_option_in_zone:last");
-      _addKeyDownListener(current_area, input)
-    }else {
-      for(i = 0;i <= current_num_options;i++) {
-        addOptionInQuiz("multiplechoice", current_area, "filling");
-        if(i === current_num_options) {
-          input = $(current_area).find(".multiplechoice_option_in_zone:last");
-          _addKeyDownListener(current_area, input)
-        }
-      }
-    }
-  };
-  var addOptionInQuiz = function(quiz_type, area, event) {
-    var setKeyDownListener = false;
-    var current_area;
-    var current_quiz_type;
-    if(area) {
-      current_area = area
-    }else {
-      current_area = V.Editor.getCurrentArea()
-    }
-    if(typeof quiz_type == "string") {
-      current_quiz_type = quiz_type
-    }else {
-      if(typeof quiz_type == "object") {
-        current_quiz_type = $(current_area).attr("quiztype")
-      }else {
-        V.Debugging("another type ")
-      }
-    }
-    if(event === "enter" || event == "add_button") {
-      setKeyDownListener = true
-    }else {
-      if(event === "filling") {
-        setKeyDownListener = false
-      }else {
-        setKeyDownListener = false
-      }
-    }
-    switch(current_quiz_type) {
-      case "multiplechoice":
-        var quiz_option = VISH.Dummies.getQuizOptionDummy(current_quiz_type);
-        var current_options = $(current_area).find(".li_mch_options_in_zone").size();
-        $(current_area).find(".ul_mch_options_in_zone").append(quiz_option);
-        if(setKeyDownListener) {
-          _addKeyDownListener(current_area, $(current_area).find(".multiplechoice_option_in_zone:last"))
-        }
-        $(current_area).find(".li_mch_options_in_zone:last-child > span").text(choicesLetters[current_options]);
-        $(current_area).find(".li_mch_options_in_zone:last-child > ." + deleteQuizOptionButtonClass).attr("id", current_area.attr("id") + "_delete_option_button_" + current_options + "_id");
-        $(current_area).find(".li_mch_options_in_zone:last-child > ." + addQuizOptionButtonClass).attr("id", current_area.attr("id") + "_add_option_button_" + current_options + "_id");
-        launchTextEditorInTextArea(current_area, "multiplechoice", current_options);
-        if(current_options + 1 === maxNumMultipleChoiceOptions) {
-          $($(current_area).find(".li_mch_options_in_zone")[parseInt(current_options)]).find("." + addQuizOptionButtonClass).hide();
-          $($(current_area).find(".li_mch_options_in_zone")[parseInt(current_options)]).find("." + deleteQuizOptionButtonClass).show();
-          $("#" + "wysiwyg_" + current_area.attr("id") + "_" + current_options).unbind("keydown");
-          _addKeydownEnterDisabled("wysiwyg_" + current_area.attr("id") + "_" + current_options)
-        }
-        if(current_options > 0) {
-          $($(current_area).find(".li_mch_options_in_zone")[parseInt(current_options) - 1]).find(".add_quiz_option_button").hide();
-          $($(current_area).find(".li_mch_options_in_zone")[parseInt(current_options) - 1]).find("." + deleteQuizOptionButtonClass).show();
-          $("#wysiwyg_" + current_area.attr("id") + "_" + current_options).focus();
-          $(current_area).find(".initTextDiv :last").trigger("click")
-        }
-        break;
-      default:
-        break
-    }
-  };
-  var _addKeyDownListener = function(area, input) {
-    var current_area;
-    var current_input;
-    if(area) {
-      current_area = area
-    }else {
-      current_area = V.Editor.getCurrentArea()
-    }
-    if(input) {
-      current_input = input
-    }else {
-      V.Debugging.log("no element id!!")
-    }
-    var current_input = $(current_area).find(".multiplechoice_option_in_zone:last");
-    $(current_input).keydown(function(event) {
-      if(event.keyCode == 13) {
-        _addKeydownEnterDisabled(event.target.id);
-        event.preventDefault();
-        event.stopPropagation();
-        addOptionInQuiz("multiplechoice", current_area, "enter")
-      }
-    })
-  };
-  var _addKeydownEnterDisabled = function(input_id) {
-    $("#" + input_id).unbind("keydown");
-    $("#" + input_id).keydown(function(event) {
-      if(event.keyCode == 13) {
-        event.preventDefault();
-        event.stopPropagation()
-      }
-    })
-  };
-  var _removeOptionInQuiz = function(event) {
-    if(event.target.attributes["class"].value === deleteQuizOptionButtonClass) {
-      V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
-      var current_area = V.Editor.getCurrentArea();
-      var option_number = event.target.id.substring(27, 28);
-      $(current_area).find("#" + event.target.attributes["id"].value).parent().remove();
-      $(current_area).find(".li_mch_options_in_zone").each(function(index, option_element) {
-        $(option_element).find(">span:first-child").text(choicesLetters[index]);
-        $(option_element).find("." + deleteQuizOptionButtonClass).attr("id", current_area.attr("id") + "_delete_option_button_" + index + "_id");
-        $(option_element).find("." + addQuizOptionButtonClass).attr("id", current_area.attr("id") + "_add_option_button_" + index + "_id");
-        $(option_element).find(".multiplechoice_option_in_zone").attr("id", "wysiwyg_" + current_area.attr("id") + "_" + index);
-        if(index >= option_number) {
-          launchTextEditorInTextArea(current_area, "multiplechoice", option_number)
-        }
-      });
-      if($(current_area).find(".li_mch_options_in_zone").size() === maxNumMultipleChoiceOptions - 1) {
-        _addKeyDownListener(current_area, $(current_area).find(".multiplechoice_option_in_zone:last"));
-        $($(current_area).find(".li_mch_options_in_zone")[maxNumMultipleChoiceOptions - 2]).find("." + deleteQuizOptionButtonClass).hide();
-        $($(current_area).find(".li_mch_options_in_zone")[maxNumMultipleChoiceOptions - 2]).find("." + addQuizOptionButtonClass).show()
-      }
-    }else {
-      V.Debugging.log("other event  handler")
-    }
-  };
-  var launchTextEditorInTextArea = function(area, type_quiz, option_number) {
-    if(area) {
-      current_area = area
-    }else {
-      current_area = V.Editor.getCurrentArea()
-    }
-    if(option_number != undefined) {
-      var optionWysiwygId = "wysiwyg_" + current_area.attr("id") + "_" + option_number;
-      $($(current_area).find("." + type_quiz + "_option_in_zone")[option_number]).attr("id", optionWysiwygId);
-      if($($(current_area).find(".li_mch_options_in_zone")[option_number]).find(".wysiwygInstance").val() === undefined) {
-        $("#" + optionWysiwygId).addClass("wysiwygInstance");
-        V.Editor.Text.getNicEditor().addInstance(optionWysiwygId)
-      }
-    }else {
-      var textArea = $(current_area).find(".value_" + type_quiz + "_question_in_zone");
-      var wysiwygId = "wysiwyg_" + current_area.attr("id");
-      textArea.attr("id", wysiwygId);
-      $("#" + wysiwygId).addClass("wysiwygInstance");
-      V.Editor.Text.getNicEditor().addInstance(wysiwygId)
-    }
-    $(".initTextDiv").click(function(event) {
-      if(event.target.tagName == "FONT") {
-        var font = $(event.target);
-        var div = $(event.target).parent()
-      }else {
-        if(event.target.tagName == "DIV") {
-          var div = $(event.target);
-          var font = $(event.target).find("font")
-        }else {
-          if(event.target.tagName == "SPAN") {
-            var div = $(event.target).parent();
-            var font = $(event.target)
-          }
-        }
-      }
-      if($(font).text() === "Write options here") {
-        $(font).text("");
-        $(div).removeClass("initTextDiv");
-        $(".multiplechoice_option_in_zone :last").trigger("click")
-      }else {
-        if($(font).text() === "Write question here") {
-          $(font).text("");
-          $(div).removeClass("initTextDiv");
-          $(div).parent().trigger("click")
-        }
-      }
-    })
-  };
-  return{init:init, onLoadTab:onLoadTab, drawQuiz:drawQuiz, addQuiz:addQuiz, addOptionInQuiz:addOptionInQuiz}
-}(VISH, jQuery);
+  return{init:init, getQuizDummy:getQuizDummy, getQuizOptionDummy:getQuizOptionDummy}
+}(VISH);
 VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
   var init = function(presentation) {
     $("#presentation_title").val(presentation.title);
     $("#presentation_description").val(presentation.description);
     $("#presentation_avatar").val(presentation.avatar);
-    $("#educational_level").val(presentation.educational_level);
+    if(presentation.age_range) {
+      var start_range = presentation.age_range.substring(0, presentation.age_range.indexOf("-") - 1);
+      var end_range = presentation.age_range.substring(presentation.age_range.indexOf("-") + 2);
+      $("#slider-range").slider("values", [start_range, end_range]);
+      $("#age_range").val(start_range + " - " + end_range);
+      $("#age_range").val(presentation.age_range)
+    }else {
+      $("#age_range").val(VISH.Constant.AGE_RANGE)
+    }
     $("#subject_tag").val(presentation.subject);
     $("#language_tag").val(presentation.language);
     $("#educational_objectives_tag").val(presentation.educational_objectives);
     $("#acquired_competencies_tag").val(presentation.adquired_competencies);
     VISH.Themes.selectTheme(presentation.theme);
-    slides = presentation.slides;
-    for(var i = 0;i < slides.length;i++) {
-      _renderSlide(slides[i], i, presentation.id)
+    switch(presentation.type) {
+      case V.Constant.FLASHCARD:
+        slides = presentation.slides[0].slides;
+        for(var i = 0;i < slides.length;i++) {
+          _renderSlide(slides[i], i + 1)
+        }
+        VISH.Editor.Flashcard.loadFlashcard(presentation);
+        break;
+      case V.Constant.VTOUR:
+        break;
+      case VISH.Constant.PRESENTATION:
+      ;
+      default:
+        slides = presentation.slides;
+        for(var i = 0;i < slides.length;i++) {
+          if(slides[i].type === V.Constant.FLASHCARD) {
+            _renderFlashcard(slides[i], i + 1)
+          }else {
+            _renderSlide(slides[i], i + 1)
+          }
+        }
+        break
     }
   };
-  var _renderSlide = function(slide, position, presentation_id) {
+  var _renderSlide = function(slide, slideNumber) {
     var template = slide.template.substring(1);
-    var scaffold = V.Dummies.getDummy(template, position, presentation_id, true);
+    var scaffold = V.Editor.Dummies.getScaffoldForSlide(template, slideNumber, slide);
     V.Editor.Utils.addSlide(scaffold);
     V.Editor.Utils.redrawSlides();
     V.Slides.lastSlide();
     for(el in slide.elements) {
-      var area = $("#article_" + presentation_id + "_" + position + " div[areaid='" + slide.elements[el].areaid + "']");
+      var areaId = slide.elements[el].id;
+      var area = $("div#" + areaId + "[areaid='" + slide.elements[el].areaid + "']");
       if(area.length === 0) {
         continue
       }
@@ -17614,6 +17694,10 @@ VISH.Editor.Renderer = function(V, $, undefined) {
       }
     }
     $("div.selectable:empty").addClass("editable")
+  };
+  var _renderFlashcard = function(slide, slideNumber) {
+    VISH.Editor.Flashcard.addFlashcard(slide);
+    V.Renderer.renderSlide(slide, "", "<div class='delete_slide'></div>")
   };
   return{init:init}
 }(VISH, jQuery);
@@ -17781,11 +17865,26 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     var carrouselImages = [];
     var carrouselImagesTitles = [];
     var carrouselElements = 0;
-    $("article").each(function(index, s) {
-      var template = $(s).attr("template");
-      carrouselElements += 1;
-      carrouselImages.push($("<img class='image_barbutton fill_slide_button' slideNumber='" + carrouselElements + "' action='goToSlide' src='" + VISH.ImagesPath + "templatesthumbs/" + template + ".png' />"));
-      carrouselImagesTitles.push(carrouselElements)
+    $(".slides > article").each(function(index, s) {
+      switch($(s).attr("type")) {
+        case undefined:
+        ;
+        case VISH.Constant.STANDARD:
+          var template = $(s).attr("template");
+          carrouselElements += 1;
+          carrouselImages.push($("<img class='image_barbutton fill_slide_button' slideNumber='" + carrouselElements + "' action='goToSlide' src='" + VISH.ImagesPath + "templatesthumbs/" + template + ".png' />"));
+          carrouselImagesTitles.push(carrouselElements);
+          break;
+        case VISH.Constant.FLASHCARD:
+          carrouselElements += 1;
+          carrouselImages.push($("<img class='image_barbutton fill_slide_button' slideNumber='" + carrouselElements + "' action='goToSlide' src='" + V.Utils.getSrcFromCSS($(s).attr("avatar")) + "' />"));
+          carrouselImagesTitles.push(carrouselElements);
+          break;
+        case VISH.Constant.VTOUR:
+          break;
+        default:
+          break
+      }
     });
     carrouselImages.push($("<img class='image_barbutton add_slide_button' action='plus' id='addslidebutton' src='" + VISH.ImagesPath + "templatesthumbs/add_slide.png' />"));
     carrouselElements += 1;
@@ -17807,8 +17906,9 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     $(".barbutton").css("background-color", "transparent");
     var options = new Array;
     options["rows"] = 1;
-    if(V.Editor.getPresentationType() === "flashcard") {
-      options["callback"] = _onClickCarrouselElementInFlashcard
+    if(V.Editor.getPresentationType() === VISH.Constant.FLASHCARD) {
+      options["callback"] = _onClickCarrouselElementInFlashcard;
+      options["afterCreateCarruselFunction"] = VISH.Editor.Flashcard.redrawPois
     }else {
       options["callback"] = _onClickCarrouselElement
     }
@@ -17818,15 +17918,12 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     options["width"] = 900;
     options["startAtLastElement"] = true;
     options["pagination"] = false;
-    if(V.Editor.getPresentationType() === "flashcard") {
-      options["afterCreateCarruselFunction"] = VISH.Editor.Flashcard.redrawPois
-    }
     $("#" + carrouselDivId).show();
     VISH.Editor.Carrousel.createCarrousel(carrouselDivId, options);
     if(VISH.Slides.getCurrentSlideNumber() > 0) {
       selectThumbnail(VISH.Slides.getCurrentSlideNumber())
     }
-    if(V.Editor.getPresentationType() === "presentation") {
+    if(V.Editor.getPresentationType() === VISH.Constant.PRESENTATION) {
       var firstCarrouselNumber;
       $("#" + carrouselDivId).sortable({items:'div.carrousel_element_single_row_slides:has(img[action="goToSlide"])', change:function(event, ui) {
       }, start:function(event, ui) {
@@ -17941,19 +18038,19 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     $("ul.menu_option_main").find("li").hide();
     $("ul.menu_option_main").find("a.menu_all").parent().show();
     switch(presentationType) {
-      case "presentation":
+      case VISH.Constant.PRESENTATION:
         $("ul.menu_option_main").find("a.menu_presentation").parent().show();
-        if(VISH.Editor.isPresentationStandard(VISH.Editor.getPresentation())) {
+        if(VISH.Editor.isPresentationStandard()) {
           $("ul.menu_option_main").find("a.menu_standard_presentation").parent().show()
         }
         break;
-      case "flashcard":
+      case VISH.Constant.FLASHCARD:
         $("ul.menu_option_main").find("a.menu_flashcard").parent().show();
         break;
-      case "game":
+      case VISH.Constant.GAME:
         $("ul.menu_option_main").find("a.menu_game").parent().show();
         break;
-      case "quiz_simple":
+      case VISH.Constant.QUIZ_SIMPLE:
         break;
       default:
         break
@@ -18062,7 +18159,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     draftPresentation.description = $("#presentation_description").val();
     draftPresentation.avatar = $("#presentation_avatar").val();
     draftPresentation.tags = VISH.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
-    draftPresentation.educational_level = $("#educational_level").val();
+    draftPresentation.age_range = $("#age_range").val();
     draftPresentation.subject = $("#subject_tag").val();
     draftPresentation.language = $("#language_tag").val();
     draftPresentation.educational_objectives = $("#educational_objectives_tag").val();
@@ -18154,7 +18251,15 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.Thumbnails.redrawThumbnails();
     VISH.Editor.Tools.init()
   };
-  return{init:init, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, switchToFlashcard:switchToFlashcard, switchToPresentation:switchToPresentation}
+  var insertFlashcard = function() {
+    $("#addSlideFancybox").trigger("click");
+    VISH.Utils.loadTab("tab_flashcards")
+  };
+  var insertSlide = function() {
+    $("#addSlideFancybox").trigger("click");
+    VISH.Utils.loadTab("tab_templates")
+  };
+  return{init:init, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertFlashcard:insertFlashcard, insertSlide:insertSlide, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, switchToFlashcard:switchToFlashcard, switchToPresentation:switchToPresentation}
 }(VISH, jQuery);
 VISH.Editor.Tour = function(V, $, undefined) {
   var startTourWithId = function(helpid, tipLocation) {
@@ -18309,7 +18414,22 @@ VISH.Editor.Utils = function(V, $, undefined) {
       $(this).parent().click()
     }})
   };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides, refreshDraggables:refreshDraggables}
+  var prepareSlideToNest = function(parentId, slide) {
+    if(typeof parentId !== "string") {
+      return slide
+    }
+    if(slide.type === VISH.Constant.FLASHCARD || slide.type === VISH.Constant.VTOUR) {
+      return
+    }
+    slide.id = VISH.Utils.getId(parentId + "_" + slide.id, true);
+    if(slide.elements) {
+      $.each(slide.elements, function(index, element) {
+        slide.elements[index].id = VISH.Utils.getId(parentId + "_" + slide.elements[index].id, true)
+      })
+    }
+    return slide
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, addSlide:addSlide, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides, refreshDraggables:refreshDraggables, prepareSlideToNest:prepareSlideToNest}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -18604,27 +18724,6 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     options["rowItems"] = 5;
     VISH.Editor.Carrousel.createCarrousel(carrouselDivId, options)
   };
-  var _getYoutubeIdFromURL = function(url) {
-    var youtube_video_pattern_1 = /https?:\/\/?youtu.be\/([aA-zZ0-9]+)/g;
-    var youtube_video_pattern_2 = /(https?:\/\/)?(www.youtube.com\/watch\?v=|embed\/)([aA-z0-9Z]+)[&=.]*/g;
-    var id = null;
-    if(url.match(youtube_video_pattern_1) != null) {
-      var result = youtube_video_pattern_1.exec(url);
-      if(result && result[1]) {
-        id = result[1]
-      }
-      return id
-    }
-    if(url.match(youtube_video_pattern_2) != null) {
-      var result = url.split("&")[0];
-      var result = youtube_video_pattern_2.exec(url);
-      if(result && result[3]) {
-        id = result[3]
-      }
-      return id
-    }
-    return id
-  };
   var addSelectedVideo = function() {
     if(selectedVideo != null) {
       VISH.Editor.Object.drawObject(_generateWrapper(selectedVideo.id));
@@ -18666,7 +18765,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     return wrapper
   };
   var generateWrapperForYoutubeVideoUrl = function(url) {
-    var videoId = _getYoutubeIdFromURL(url);
+    var videoId = VISH.VideoPlayer.Youtube.getYoutubeIdFromURL(url);
     if(videoId != null) {
       return _generateWrapper(videoId)
     }else {
@@ -18679,7 +18778,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     return wrapper
   };
   var generatePreviewWrapperForYoutubeVideoUrl = function(url) {
-    var videoId = _getYoutubeIdFromURL(url);
+    var videoId = VISH.VideoPlayer.Youtube.getYoutubeIdFromURL(url);
     if(videoId != null) {
       return _generatePreviewWrapper(videoId)
     }else {
@@ -18725,41 +18824,6 @@ VISH.EventsNotifier = function(V, $, undefined) {
     }
   };
   return{init:init, notifyEvent:notifyEvent, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback}
-}(VISH, jQuery);
-VISH.Flashcard.Arrow = function(V, $, undefined) {
-  var FPS = 25;
-  var TOTAL_FRAMES = 20;
-  var FRAME_WIDTH = 50;
-  var arrow_ids = [];
-  var arrow_positions = [];
-  var init = function() {
-    setTimeout(_animateArrows, 1E3 / FPS)
-  };
-  var addArrow = function(poi, sync) {
-    var flashcard_div = $("#flashcard-background");
-    var div_to_add = "<div class='fc_poi' id='" + poi.id + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'></div>";
-    flashcard_div.append(div_to_add);
-    if(arrow_ids.indexOf(poi.id) == -1) {
-      arrow_ids.push(poi.id);
-      if(sync) {
-        arrow_positions.push(0)
-      }else {
-        var rand_pos = Math.floor(Math.random() * TOTAL_FRAMES + 1) * FRAME_WIDTH;
-        arrow_positions.push(rand_pos)
-      }
-    }
-  };
-  var _animateArrows = function() {
-    for(index in arrow_ids) {
-      var id = arrow_ids[index];
-      var pos = arrow_positions[index];
-      var new_pos = (pos + FRAME_WIDTH) % (TOTAL_FRAMES * FRAME_WIDTH);
-      $("#" + id).css("background-position", new_pos + "px" + " 0px");
-      arrow_positions[index] = new_pos
-    }
-    setTimeout(_animateArrows, 1E3 / FPS)
-  };
-  return{init:init, addArrow:addArrow}
 }(VISH, jQuery);
 VISH.Game = function(V, $, undefined) {
   var actions = {};
@@ -19179,12 +19243,12 @@ VISH.Messenger.Helper = function(V, undefined) {
         break;
       case VISH.Constant.Event.onFlashcardPointClicked:
         if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
-          VISH.Slides.showSlide(VEMessageObject.params.slideNumber, false)
+          VISH.Slides.showFlashcardSlide(VEMessageObject.params.slideNumber, false)
         }
         break;
       case VISH.Constant.Event.onFlashcardSlideClosed:
         if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
-          VISH.Slides.closeSlide(VEMessageObject.params.slideNumber, false)
+          VISH.Slides.closeFlashcardSlide(VEMessageObject.params.slideNumber, false)
         }
         break;
       case VISH.Constant.Event.onSetSlave:
@@ -19250,7 +19314,7 @@ VISH.Object = function(V, $, undefined) {
   var _getTypeFromSource = function(source) {
     var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
     var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
-    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9]+))|((www.youtube.com\/((watch\?v=)|(embed\/)))([aA-z0-9Z&=.])+))/g;
+    var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
     var html5VideoFormats = ["mp4", "webm", "ogg"];
     var imageFormats = ["jpg", "jpeg", "png", "gif", "bmp"];
     if(typeof source != "string") {
@@ -19297,9 +19361,8 @@ VISH.ObjectPlayer = function() {
       adjustDimensionsAfterZoom($($(value).children()[0]).children()[0])
     })
   };
-  var unloadObject = function() {
-    var element = $(".past, .next");
-    $.each(element.children(".objectelement"), function(index, value) {
+  var unloadObject = function(element) {
+    $.each($(element).children(".objectelement"), function(index, value) {
       $(value).html("")
     })
   };
@@ -19538,11 +19601,11 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
       if(VISH.Quiz.getQuizMode() == "answer") {
         ret += "<li class='li_mch_options_in_zone'>";
-        ret += "<input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'/><span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
+        ret += "<input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'/><span class='quiz_option_index'>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
         ret += "</li>"
       }else {
         ret += "<li class='li_mch_options_in_zone'>";
-        ret += "<span>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
+        ret += "<span class='quiz_option_index'>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
         ret += "</li>"
       }
       ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
@@ -19674,26 +19737,23 @@ VISH.SlideManager = function(V, $, undefined) {
     VISH.Debugging.log("\n\nSlideManager.init with presentation:\n");
     VISH.Debugging.log(JSON.stringify(presentation));
     current_presentation = presentation;
+    setPresentationType(presentation.type);
     V.Quiz.init(presentation);
+    V.Flashcard.init();
+    V.Renderer.init();
     V.Slides.init();
     V.Status.init();
     V.Utils.loadDeviceCSS();
     V.User.init(options);
-    applicationCache.addEventListener("cached", function() {
-      VISH.LocalStorage.addPresentation(presentation)
-    }, false);
-    applicationCache.addEventListener("updateready", function() {
-      VISH.LocalStorage.addPresentation(presentation)
-    }, false);
-    if(presentation.type === "game") {
-      setPresentationType("game");
-      VISH.ViewerAdapter.setupGame(presentation);
-      VISH.Game.registerActions(presentation)
-    }else {
-      if(presentation.type === "flashcard") {
-        setPresentationType("flashcard");
-        VISH.Flashcard.init(presentation)
-      }
+    V.Utils.init();
+    switch(presentation.type) {
+      case VISH.Constant.GAME:
+        VISH.ViewerAdapter.setupGame(presentation);
+        VISH.Game.registerActions(presentation);
+        break;
+      case VISH.Constant.VTOUR:
+        VISH.VirtualTour.init();
+        break
     }
     V.Events.init();
     V.EventsNotifier.init();
@@ -19701,38 +19761,10 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Themes.selectTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
-    V.ViewerAdapter.setupSize(false);
-    $(window).on("orientationchange", function() {
-      V.ViewerAdapter.setupSize()
-    });
-    var renderFull = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true;
-    if(!renderFull) {
-      if(V.Status.getDevice().features.fullscreen && V.Status.getDevice().desktop) {
-        if(V.Status.getIsInIframe()) {
-          myDoc = parent.document
-        }else {
-          myDoc = document
-        }
-        $(document).on("click", "#page-fullscreen", toggleFullScreen);
-        $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
-          V.ViewerAdapter.setupElements();
-          setTimeout(function() {
-            V.ViewerAdapter.setupSize(true);
-            V.ViewerAdapter.decideIfPageSwitcher()
-          }, 400)
-        })
-      }else {
-        $("#page-fullscreen").hide()
-      }
-    }
-    if(V.Status.getDevice().desktop) {
-      $("#viewbar").show();
-      updateSlideCounter()
-    }else {
-      window.addEventListener("load", function() {
-        hideAddressBar()
-      });
-      window.addEventListener("orientationchange", hideAddressBar)
+    V.ViewerAdapter.init();
+    V.Quiz.prepareQuiz(presentation);
+    if(options.addons) {
+      VISH.Addons.init(options.addons)
     }
     if(options && options["preview"]) {
       $("div#viewerpreview").show()
@@ -19740,21 +19772,43 @@ VISH.SlideManager = function(V, $, undefined) {
     if(!V.Status.getDevice().desktop && !VISH.Status.getIsInIframe() && options && options["comeBackUrl"]) {
       $("button#closeButton").show()
     }
-    V.Quiz.prepareQuiz(presentation);
-    if(options.addons) {
-      VISH.Addons.init(options.addons)
-    }
-    if(renderFull) {
+    var renderFull = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true;
+    if(!renderFull) {
+      if(V.Status.getDevice().desktop && options && !options["preview"]) {
+        _enableFullScreen()
+      }else {
+        $("#page-fullscreen").hide()
+      }
+    }else {
       $("#page-fullscreen").hide();
       V.ViewerAdapter.setupElements();
       V.ViewerAdapter.setupSize(true);
       V.ViewerAdapter.decideIfPageSwitcher()
     }
   };
+  var _enableFullScreen = function() {
+    if(V.Status.getDevice().features.fullscreen && V.Status.getIsInIframe()) {
+      var myDoc = parent.document
+    }else {
+      var myDoc = document
+    }
+    $(document).on("click", "#page-fullscreen", toggleFullScreen);
+    $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
+      V.ViewerAdapter.setupElements();
+      setTimeout(function() {
+        V.ViewerAdapter.setupSize(true);
+        V.ViewerAdapter.decideIfPageSwitcher()
+      }, 400)
+    })
+  };
   var toggleFullScreen = function() {
-    V.Debugging.log("toggleFullScreen detected");
     if(VISH.Status.isSlaveMode()) {
       return
+    }
+    if(V.Status.getIsInIframe()) {
+      var myDoc = parent.document
+    }else {
+      var myDoc = document
     }
     if(VISH.Status.getIsInIframe()) {
       var myElem = VISH.Status.getIframe()
@@ -19819,14 +19873,23 @@ VISH.SlideManager = function(V, $, undefined) {
         }
       }
     }, 500);
-    V.VideoPlayer.HTML5.playVideos(e.target)
+    V.VideoPlayer.HTML5.playVideos(e.target);
+    if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
+      $("#forward_arrow").css("top", "15%")
+    }
+    if($(e.target).hasClass("flashcard_slide")) {
+      V.Flashcard.startAnimation(e.target.id)
+    }
   };
   var _onslideleave = function(e) {
     V.VideoPlayer.HTML5.stopVideos(e.target);
-    V.ObjectPlayer.unloadObject();
+    V.ObjectPlayer.unloadObject(e.target);
     V.AppletPlayer.unloadApplet();
-    if($(e.target).hasClass("flashcard")) {
-      V.Mods.fc.player.clear()
+    if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
+      $("#forward_arrow").css("top", "0%")
+    }
+    if($(e.target).hasClass("flashcard_slide")) {
+      V.Flashcard.stopAnimation(e.target.id)
     }
   };
   var updateSlideCounter = function() {
@@ -19837,9 +19900,6 @@ VISH.SlideManager = function(V, $, undefined) {
     }
     $("#slide-counter").html(slide_number + "/" + number_of_slides)
   };
-  var hideAddressBar = function() {
-    VISH.Debugging.log("TODO method hideAddressBar in slides.js")
-  };
   var getCurrentPresentation = function() {
     return current_presentation
   };
@@ -19847,9 +19907,12 @@ VISH.SlideManager = function(V, $, undefined) {
     return presentationType
   };
   var setPresentationType = function(type) {
+    if(!type) {
+      type = VISH.Constant.STANDARD
+    }
     presentationType = type
   };
-  return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, hideAddressBar:hideAddressBar, toggleFullScreen:toggleFullScreen, getOptions:getOptions, updateSlideCounter:updateSlideCounter, getCurrentPresentation:getCurrentPresentation, getPresentationType:getPresentationType, setPresentationType:setPresentationType}
+  return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, toggleFullScreen:toggleFullScreen, getOptions:getOptions, updateSlideCounter:updateSlideCounter, getCurrentPresentation:getCurrentPresentation, getPresentationType:getPresentationType, setPresentationType:setPresentationType}
 }(VISH, jQuery);
 VISH.SnapshotPlayer = function() {
   var loadSnapshot = function(element) {
@@ -20159,8 +20222,10 @@ VISH.Utils.loader = function(V, undefined) {
   var _insertElementsWithOrder = function(imagesArray, carrouselDivId, titleArray) {
     $.each(imagesArray, function(i, image) {
       if(titleArray && titleArray[imagesArray.indexOf(image)]) {
-        $("#" + carrouselDivId).append("<div><div class='draggable_arrow_div' slide_id='" + titleArray[imagesArray.indexOf(image)] + "' id='poi" + titleArray[imagesArray.indexOf(image)] + "'><img src='" + VISH.ImagesPath + "flashcard_button.png'  class='fc_draggable_arrow'/><p class='draggable_number'>" + titleArray[imagesArray.indexOf(image)] + "</p></div><p slidenumber='" + titleArray[imagesArray.indexOf(image)] + "' action='goToSlide'>" + titleArray[imagesArray.indexOf(image)] + "</p>" + VISH.Utils.getOuterHTML(image) + 
-        "</div>")
+        var slideNumber = titleArray[imagesArray.indexOf(image)];
+        var slideId = VISH.Slides.getSlideWithNumber(slideNumber).id;
+        var poiId = "poi" + slideNumber;
+        $("#" + carrouselDivId).append("<div><div class='draggable_arrow_div' slide_id='" + slideId + "' id='" + poiId + "'><img src='" + VISH.ImagesPath + "flashcard_button.png'  class='fc_draggable_arrow'/><p class='draggable_number'>" + slideNumber + "</p></div><p slidenumber='" + slideNumber + "' action='goToSlide'>" + slideNumber + "</p>" + VISH.Utils.getOuterHTML(image) + "</div>")
       }else {
         $("#" + carrouselDivId).append("<div>" + VISH.Utils.getOuterHTML(image) + "</div>")
       }
@@ -20200,16 +20265,36 @@ VISH.VideoPlayer.CustomPlayer = function() {
     $(video).parent().append(customPlayerContainer);
     $(video).remove();
     $(customPlayerContainer).append(video);
-    $(customPlayerContainer).append($("<div class='customPlayerControls'><div class='customPlayerPlay'></div></div>"));
+    $(customPlayerContainer).append($("<div class='customPlayerControls'><div class='customPlayerButton customPlayerPlay'></div></div>"));
     $(customPlayerContainer).append($("<div class='customPlayerProgressBar'><div class='progressBarElapsed'></div></div>"));
     var customPlayerControls = $(customPlayerContainer).find("div.customPlayerControls");
     $(customPlayerContainer).attr("style", $(video).attr("style"));
-    $(video).attr("style", "width:98%; height:98%;");
+    $(video).attr("style", "width:100%; height:100%;");
     $(customPlayerControls).attr("style", "width: 100%; height:100%;");
+    _adjustPlayerControls(customPlayerControls);
     $(video).attr("customPlayerStatus", "ready");
     if(loadEvents) {
       loadCustomPlayerControlEvents(video)
     }
+  };
+  var _adjustPlayerControls = function(customPlayerControls) {
+    var width = $(customPlayerControls).width();
+    var height = $(customPlayerControls).height();
+    var min_width = 70;
+    var originalBackgroundSize = 0.5;
+    var icon_width = originalBackgroundSize * width;
+    if(icon_width > height) {
+      _applyBackgroundSize(customPlayerControls, height / width)
+    }else {
+      if(icon_width < min_width) {
+        _applyBackgroundSize(customPlayerControls, Math.min(1, min_width / width))
+      }else {
+        _applyBackgroundSize(customPlayerControls, originalBackgroundSize)
+      }
+    }
+  };
+  var _applyBackgroundSize = function(customPlayerControls, bs) {
+    $(customPlayerControls).find("div.customPlayerButton").css("background-size", bs * 100 + "%")
   };
   var loadCustomPlayerControlEvents = function(video) {
     var customPlayerContainer = $(video).parent();
@@ -20222,11 +20307,11 @@ VISH.VideoPlayer.CustomPlayer = function() {
   };
   var _onClickCustomPlayerControls = function(event) {
     event.preventDefault();
-    var video = $(this).parent().find("object")[0];
+    var video = $(this).parent().children()[0];
     onClickVideo(video)
   };
   var _onEnterCustomPlayer = function(event) {
-    var video = $(event.target).parent().find("object")[0];
+    var video = $(event.target).parent().children()[0];
     if($(video).attr("customPlayerStatus") !== "ready") {
       var progressBar = $(video).parent().find("div.customPlayerProgressBar");
       $(progressBar).show()
@@ -20267,11 +20352,8 @@ VISH.VideoPlayer.CustomPlayer = function() {
     }
     event.preventDefault();
     event.stopPropagation();
-    var video = $(progressBar).parent().find("object")[0];
+    var video = $(progressBar).parent().children()[0];
     var ratio = (event.pageX - $(progressBar).offset().left) / $(progressBar).outerWidth();
-    if(!VISH.Status.isPreventDefaultMode()) {
-      $(elapsed).width(ratio * 100 + "%")
-    }
     var seekToPos = Math.round(VISH.VideoPlayer.getDuration(video) * ratio);
     VISH.VideoPlayer.seekVideo(video.id, seekToPos, true)
   };
@@ -20302,21 +20384,21 @@ VISH.VideoPlayer.CustomPlayer = function() {
     _startProgressBar(video);
     var customPlayerControlsButton = $(video).parent().find("div.customPlayerControls").find("div");
     var progressBar = $(video).parent().find("div.customPlayerProgressBar");
-    $(customPlayerControlsButton).removeClass().addClass("customPlayerPause");
+    $(customPlayerControlsButton).removeClass().addClass("customPlayerButton customPlayerPause");
     $(customPlayerControlsButton).hide();
     $(video).attr("customPlayerStatus", "playing");
     $(progressBar).show()
   };
   var onPauseVideo = function(video) {
     var customPlayerControlsButton = $(video).parent().find("div.customPlayerControls").find("div");
-    $(customPlayerControlsButton).removeClass().addClass("customPlayerPlay");
+    $(customPlayerControlsButton).removeClass().addClass("customPlayerButton customPlayerPlay");
     $(customPlayerControlsButton).show();
     $(video).attr("customPlayerStatus", "pause")
   };
   var onEndVideo = function(video) {
     $(video).attr("customPlayerStatus", "pause");
     var customPlayerControlsButton = $(video).parent().find("div.customPlayerControls").find("div");
-    $(customPlayerControlsButton).removeClass().addClass("customPlayerReplay");
+    $(customPlayerControlsButton).removeClass().addClass("customPlayerButton customPlayerReplay");
     $(customPlayerControlsButton).show()
   };
   return{init:init, addCustomPlayerControls:addCustomPlayerControls, loadCustomPlayerControlEvents:loadCustomPlayerControlEvents, onPlayVideo:onPlayVideo, onPauseVideo:onPauseVideo, onEndVideo:onEndVideo}
@@ -20434,40 +20516,61 @@ VISH.VideoPlayer.HTML5 = function() {
   };
   return{init:init, setVideoEvents:setVideoEvents, playVideos:playVideos, stopVideos:stopVideos, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, showControls:showControls}
 }(VISH, jQuery);
+var youtubePlayers = {};
+var YT = YT || {};
+YT.PlayerState = YT.PlayerState || {};
+YT.PlayerState.UNSTARTED = -1;
+YT.PlayerState.ENDED = 0;
+YT.PlayerState.PLAYING = 1;
+YT.PlayerState.PAUSED = 2;
+YT.PlayerState.BUFFERING = 3;
+YT.PlayerState.CUED = 5;
+function onYouTubeIframeAPIReady() {
+}
 VISH.VideoPlayer.Youtube = function() {
   var init = function() {
   };
-  var loadYoutubeObject = function(element, value) {
+  var _isYouTubeIframeAPIReady = function() {
+    if(window["YT"]) {
+      return true
+    }else {
+      return false
+    }
+  };
+  var loadYoutubeObject = function(article, zone) {
     if(VISH.Status.getOnline() === false) {
-      $(value).html("<img src='" + VISH.ImagesPath + "advert_new_grey_video2.png'/>");
+      $(zone).html("<img src='" + VISH.ImagesPath + "advert_new_grey_video2.png'/>");
       return
     }
-    var source = $(value).attr("source");
-    var ytVideoId = $(value).attr("ytVideoId");
-    $(value).html("<div id='" + ytVideoId + "' style='" + $(value).attr("objectStyle") + "'></div>");
-    var newYtVideoId = VISH.Utils.getId();
-    var params = {allowScriptAccess:"always"};
-    var atts = {id:newYtVideoId, wmode:"transparent"};
-    source = source.split("?")[0];
-    source = source + "?enablejsapi=1&controls=0&showinfo=0&rel=0&modestbranding=1&wmodetransparent=true&playerapiid=" + newYtVideoId;
-    swfobject.embedSWF(source, ytVideoId, "100%", "100%", "8", null, null, params, atts);
-    $("#" + newYtVideoId).attr("style", $(value).attr("objectStyle"));
-    VISH.VideoPlayer.CustomPlayer.addCustomPlayerControls(newYtVideoId, false)
+    if(!_isYouTubeIframeAPIReady()) {
+      return
+    }
+    var youtubeVideoId = getYoutubeIdFromURL($(zone).attr("source"));
+    if(youtubeVideoId === null) {
+      return
+    }
+    var iframeId = $(zone).attr("ytContainerId");
+    $(zone).html("<div id='" + iframeId + "' style='" + $(zone).attr("objectStyle") + "'></div>");
+    youtubePlayers[iframeId] = new YT.Player(iframeId, {height:"100%", width:"100%", videoId:youtubeVideoId, playerVars:{"autoplay":0, "controls":0, "enablejsapi":1, "showinfo":0, wmode:"opaque", "rel":0}, events:{"onReady":onPlayerReady, "onStateChange":onPlayerStateChange, "onError":onPlayerError}});
+    VISH.VideoPlayer.CustomPlayer.addCustomPlayerControls(iframeId, false)
   };
-  var onytplayerStateChange = function(playerId, newState) {
-    var player = document.getElementById(playerId);
+  var onPlayerReady = function(event) {
+  };
+  var onPlayerStateChange = function(event) {
+    var newState = event.data;
+    var iframe = event.target.getIframe();
     switch(newState) {
       case -1:
-        VISH.VideoPlayer.CustomPlayer.loadCustomPlayerControlEvents(player);
+        VISH.VideoPlayer.CustomPlayer.loadCustomPlayerControlEvents(iframe);
         break;
       case 0:
-        VISH.VideoPlayer.CustomPlayer.onEndVideo(player);
+        VISH.VideoPlayer.CustomPlayer.onEndVideo(iframe);
         break;
       case 1:
-        VISH.VideoPlayer.CustomPlayer.onPlayVideo(player);
+        VISH.VideoPlayer.CustomPlayer.onPlayVideo(iframe);
         break;
       case 2:
-        VISH.VideoPlayer.CustomPlayer.onPauseVideo(player);
+        VISH.VideoPlayer.CustomPlayer.onPauseVideo(iframe);
         break;
       case 3:
         break;
@@ -20479,13 +20582,14 @@ VISH.VideoPlayer.Youtube = function() {
         break
     }
   };
-  var onytplayerError = function(playerId, error) {
+  var onPlayerError = function(event) {
+    VISH.Debugging.log("onPlayerError with error type " + event.data)
   };
-  var playVideo = function(videoId, currentTime, triggeredByUser) {
-    var ytPlayer = document.getElementById(videoId);
+  var playVideo = function(iframeId, currentTime, triggeredByUser) {
+    var ytPlayer = youtubePlayers[iframeId];
     if(ytPlayer && ytPlayer.getPlayerState) {
       var params = new Object;
-      params.videoId = videoId;
+      params.videoId = iframeId;
       params.currentTime = ytPlayer.getCurrentTime();
       params.slideNumber = VISH.Slides.getCurrentSlideNumber();
       if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
@@ -20493,17 +20597,17 @@ VISH.VideoPlayer.Youtube = function() {
         return
       }
       VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, triggeredByUser);
-      _seekVideo(ytPlayer, currentTime, false);
+      _seekVideo(ytPlayer, iframeId, currentTime, false);
       if(ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
         ytPlayer.playVideo()
       }
     }
   };
-  var pauseVideo = function(videoId, currentTime, triggeredByUser) {
-    var ytPlayer = document.getElementById(videoId);
+  var pauseVideo = function(iframeId, currentTime, triggeredByUser) {
+    var ytPlayer = youtubePlayers[iframeId];
     if(ytPlayer && ytPlayer.getPlayerState) {
       var params = new Object;
-      params.videoId = videoId;
+      params.videoId = iframeId;
       params.currentTime = ytPlayer.getCurrentTime();
       params.slideNumber = VISH.Slides.getCurrentSlideNumber();
       if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
@@ -20514,20 +20618,20 @@ VISH.VideoPlayer.Youtube = function() {
       if(ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
         ytPlayer.pauseVideo()
       }
-      _seekVideo(ytPlayer, currentTime, false)
+      _seekVideo(ytPlayer, iframeId, currentTime, false)
     }
   };
-  var seekVideo = function(videoId, seekTime, triggeredByUser) {
-    var ytPlayer = document.getElementById(videoId);
+  var seekVideo = function(iframeId, seekTime, triggeredByUser) {
+    var ytPlayer = youtubePlayers[iframeId];
     if(ytPlayer && ytPlayer.getPlayerState) {
-      _seekVideo(ytPlayer, seekTime, triggeredByUser)
+      _seekVideo(ytPlayer, iframeId, seekTime, triggeredByUser)
     }
   };
-  var _seekVideo = function(video, seekTime, triggeredByUser) {
-    var changeCurrentTime = typeof seekTime === "number" && video.getCurrentTime() !== seekTime;
+  var _seekVideo = function(ytPlayer, iframeId, seekTime, triggeredByUser) {
+    var changeCurrentTime = typeof seekTime === "number" && ytPlayer.getCurrentTime() !== seekTime;
     if(changeCurrentTime) {
       var params = new Object;
-      params.videoId = video.id;
+      params.videoId = iframeId;
       params.currentTime = seekTime;
       params.slideNumber = VISH.Slides.getCurrentSlideNumber();
       if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
@@ -20535,33 +20639,59 @@ VISH.VideoPlayer.Youtube = function() {
         return
       }
       VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, triggeredByUser);
-      video.seekTo(seekTime)
+      ytPlayer.seekTo(seekTime)
     }
   };
-  return{init:init, loadYoutubeObject:loadYoutubeObject, onytplayerStateChange:onytplayerStateChange, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo}
+  var getYoutubeIdFromURL = function(url) {
+    var id = null;
+    if(!url) {
+      return id
+    }
+    var youtube_video_pattern_1 = /https?:\/\/?youtu.be\/([aA-zZ0-9-]+)/g;
+    var youtube_video_pattern_2 = /(https?:\/\/)?(www.youtube.com\/watch\?v=|embed\/)([aA-zZ0-9-]+)[&=.]*/g;
+    var youtube_video_pattern_3 = /(https?:\/\/)?(www.youtube.com\/v\/)([aA-zZ0-9-]+)/g;
+    var youtube_video_pattern_4 = /(https?:\/\/)?(www.youtube.com\/embed\/)([aA-zZ0-9-]+)/g;
+    if(url.match(youtube_video_pattern_1) != null) {
+      var result = youtube_video_pattern_1.exec(url);
+      if(result && result[1]) {
+        id = result[1]
+      }
+      return id
+    }
+    if(url.match(youtube_video_pattern_2) != null) {
+      var result = url.split("&")[0];
+      var result = youtube_video_pattern_2.exec(url);
+      if(result && result[3]) {
+        id = result[3]
+      }
+      return id
+    }
+    if(url.match(youtube_video_pattern_3) != null) {
+      var result = url.split("&")[0];
+      var result = youtube_video_pattern_3.exec(url);
+      if(result && result[3]) {
+        id = result[3]
+      }
+      return id
+    }
+    if(url.match(youtube_video_pattern_4) != null) {
+      var result = url.split("&")[0];
+      var result = youtube_video_pattern_4.exec(url);
+      if(result && result[3]) {
+        id = result[3]
+      }
+      return id
+    }
+    return id
+  };
+  return{init:init, loadYoutubeObject:loadYoutubeObject, onPlayerReady:onPlayerReady, onPlayerStateChange:onPlayerStateChange, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, getYoutubeIdFromURL:getYoutubeIdFromURL}
 }(VISH, jQuery);
-var youtubePlayers = {};
-var YT = YT || {};
-YT.PlayerState = YT.PlayerState || {};
-YT.PlayerState.UNSTARTED = -1;
-YT.PlayerState.ENDED = 0;
-YT.PlayerState.PLAYING = 1;
-YT.PlayerState.PAUSED = 2;
-YT.PlayerState.BUFFERING = 3;
-YT.PlayerState.CUED = 5;
-function onYouTubePlayerReady(playerId) {
-  var ytPlayer = document.getElementById(playerId);
-  var idPlayerParams = "yt_" + playerId;
-  youtubePlayers[idPlayerParams] = {playerId:playerId, onStateChanged:function(state) {
-    VISH.VideoPlayer.Youtube.onytplayerStateChange(playerId, state)
-  }, onError:function(err) {
-    VISH.VideoPlayer.Youtube.onytplayerError(playerId, err)
-  }};
-  ytPlayer.addEventListener("onStateChange", "youtubePlayers." + idPlayerParams + ".onStateChanged");
-  ytPlayer.addEventListener("onError", "youtubePlayers." + idPlayerParams + ".onError")
-}
-;VISH.ViewerAdapter = function(V, $, undefined) {
+VISH.ViewerAdapter = function(V, $, undefined) {
   var page_is_fullscreen = false;
+  var init = function() {
+    _initPager();
+    setupSize(false)
+  };
   var setupSize = function(fullscreen) {
     var reserved_px_for_menubar;
     var margin_height;
@@ -20578,7 +20708,7 @@ function onYouTubePlayerReady(playerId) {
         margin_width = 0
       }else {
         page_is_fullscreen = false;
-        if(V.SlideManager.getPresentationType() === "presentation") {
+        if(VISH.Slides.getSlidesQuantity() > 1) {
           reserved_px_for_menubar = 40
         }else {
           reserved_px_for_menubar = 0
@@ -20602,19 +20732,20 @@ function onYouTubePlayerReady(playerId) {
     }
     $(".slides > article").css("height", finalH);
     $(".slides > article").css("width", finalW);
-    $("#flashcard-background").css("height", finalH);
-    $("#flashcard-background").css("width", finalW);
-    $("#flashcard-background").css("background-size", "" + finalW + "px " + finalH + "px");
+    $(".subslide").css("height", finalH);
+    $(".subslide").css("width", finalW);
     var marginTop = finalH / 2 + reserved_px_for_menubar / 2;
     var marginLeft = finalW / 2;
     $(".slides > article").css("margin-top", "-" + marginTop + "px");
     $(".slides > article").css("margin-left", "-" + marginLeft + "px");
-    $("#flashcard-background").css("margin-top", "-" + marginTop + "px");
-    $("#flashcard-background").css("margin-left", "-" + marginLeft + "px");
+    $(".subslide").css("margin-top", "-" + finalH / 2 + "px");
+    $(".subslide").css("margin-left", "-" + marginLeft + "px");
     var increase = finalH / 600;
     var font_size = V.Status.getDevice().mobile ? 15 : 16;
     $(".slides > article").css("font-size", font_size * increase + "px");
     $(".slides > article").css("line-height", font_size * increase + "px");
+    $(".subslide").css("font-size", font_size * increase + "px");
+    $(".subslide").css("line-height", font_size * increase + "px");
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
     if($("#fancy_content:empty").length === 0) {
@@ -20630,27 +20761,35 @@ function onYouTubePlayerReady(playerId) {
   };
   var setupElements = function() {
     if(page_is_fullscreen) {
-      $("#page-fullscreen").css("background-position", "0px 0px");
-      $("#page-fullscreen").hover(function() {
-        $("#page-fullscreen").css("background-position", "0px -40px")
-      }, function() {
-        $("#page-fullscreen").css("background-position", "0px 0px")
-      });
-      if(V.SlideManager.getPresentationType() === "presentation") {
-        $("#viewbar").show();
-        $(".vish_arrow").hide()
-      }
+      _onLeaveFullScreen()
     }else {
-      $("#page-fullscreen").css("background-position", "-45px 0px");
-      $("#page-fullscreen").hover(function() {
-        $("#page-fullscreen").css("background-position", "-45px -40px")
-      }, function() {
-        $("#page-fullscreen").css("background-position", "-45px 0px")
-      });
-      if(V.SlideManager.getPresentationType() === "presentation") {
-        $("#viewbar").hide();
-        $(".vish_arrow").show()
-      }
+      _onEnterFullScreen()
+    }
+  };
+  var _onEnterFullScreen = function() {
+    $("#page-fullscreen").css("background-position", "-45px 0px");
+    $("#page-fullscreen").hover(function() {
+      $("#page-fullscreen").css("background-position", "-45px -40px")
+    }, function() {
+      $("#page-fullscreen").css("background-position", "-45px 0px")
+    });
+    if(VISH.Slides.getSlidesQuantity() > 1) {
+      $("#viewbar").show()
+    }else {
+      $("#viewbar").hide()
+    }
+  };
+  var _onLeaveFullScreen = function() {
+    $("#page-fullscreen").css("background-position", "0px 0px");
+    $("#page-fullscreen").hover(function() {
+      $("#page-fullscreen").css("background-position", "0px -40px")
+    }, function() {
+      $("#page-fullscreen").css("background-position", "0px 0px")
+    });
+    if(VISH.Slides.getSlidesQuantity() > 1) {
+      $("#viewbar").show()
+    }else {
+      $("#viewbar").hide()
     }
   };
   var setupGame = function(presentation) {
@@ -20661,36 +20800,88 @@ function onYouTubePlayerReady(playerId) {
     fileref.setAttribute("href", "stylesheets/game/game.css");
     document.getElementsByTagName("body")[0].appendChild(fileref)
   };
-  var decideIfPageSwitcher = function() {
-    if(V.SlideManager.getPresentationType() === "presentation") {
-      if(V.Status.getDevice().desktop) {
-        $("#back_arrow").html("");
-        $("#forward_arrow").html("")
-      }
-      if(VISH.Slides.isCurrentFirstSlide()) {
-        $("#back_arrow").hide()
+  var _initPager = function() {
+    if(V.Status.getDevice().desktop) {
+      $("#back_arrow").html("");
+      $("#forward_arrow").html("");
+      if(VISH.Slides.getSlidesQuantity() > 1) {
+        $("#viewbar").show();
+        VISH.SlideManager.updateSlideCounter()
       }else {
-        $("#back_arrow").show()
+        $("#viewbar").hide()
+      }
+    }else {
+      $("#viewbar").hide()
+    }
+  };
+  var decideIfPageSwitcher = function() {
+    if(VISH.Slides.isCurrentFirstSlide()) {
+      $("#back_arrow").hide()
+    }else {
+      $("#back_arrow").show()
+    }
+    if(VISH.Slides.isCurrentLastSlide()) {
+      $("#forward_arrow").hide()
+    }else {
+      $("#forward_arrow").show()
+    }
+    if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
+      if(VISH.Slides.isCurrentFirstSlide()) {
+        $("#page-switcher-start").hide()
+      }else {
+        $("#page-switcher-start").show()
       }
       if(VISH.Slides.isCurrentLastSlide()) {
-        $("#forward_arrow").hide()
+        $("#page-switcher-end").hide()
       }else {
-        $("#forward_arrow").show()
-      }
-      if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
-        if(VISH.Slides.isCurrentFirstSlide()) {
-          $("#page-switcher-start").hide()
-        }else {
-          $("#page-switcher-start").show()
-        }
-        if(VISH.Slides.isCurrentLastSlide()) {
-          $("#page-switcher-end").hide()
-        }else {
-          $("#page-switcher-end").show()
-        }
+        $("#page-switcher-end").show()
       }
     }
   };
-  return{decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupGame:setupGame, setupSize:setupSize}
+  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupGame:setupGame, setupSize:setupSize}
+}(VISH, jQuery);
+VISH.VirtualTour = function(V, $, undefined) {
+  var virtualTours;
+  var init = function(presentation) {
+    virtualTours = new Array
+  };
+  var drawMap = function(vt) {
+    if(!vt.type === VISH.Constant.VTOUR) {
+      return
+    }
+    V.Debugging.log("drawMap : " + JSON.stringify(vt));
+    var canvas_id = "canvas_" + vt.id;
+    var canvas = $("<div id='" + canvas_id + "' class='map_canvas' style='height:" + "100%" + "; width:" + "100%" + "'></div>");
+    $("#" + vt.id).append(canvas);
+    var latlng = new google.maps.LatLng(vt.center.lat, vt.center.lng);
+    var myOptions = {zoom:vt.zoom, center:latlng, mapTypeId:vt.mapType};
+    if(typeof virtualTours[vt.id] === "undefined") {
+      virtualTours[vt.id] = new Object;
+      virtualTours[vt.id].pois = new Array;
+      virtualTours[vt.id].paths = []
+    }
+    virtualTours[vt.id].map = new google.maps.Map(document.getElementById(canvas_id), myOptions);
+    $(vt.pois).each(function(index, poi) {
+      virtualTours[vt.id].pois[poi.id] = poi;
+      addMarkerToCoordinates(vt, poi.lat, poi.lng, poi.id)
+    })
+  };
+  var addMarkerToCoordinates = function(vt, lat, lng, poi_id) {
+    return addMarkerToPosition(vt, new google.maps.LatLng(lat, lng), poi_id)
+  };
+  var addMarkerToPosition = function(vt, myLatlng, poi_id) {
+    var marker = new google.maps.Marker({position:myLatlng, map:virtualTours[vt.id].map, draggable:false, poi_id:poi_id, title:"(" + myLatlng.lat() + "," + myLatlng.lng() + ")"});
+    google.maps.event.addListener(marker, "click", function(event) {
+      var poi = getPoi(vt, marker.poi_id);
+      V.Slides.showFlashcardSlide(poi.slide_id, true)
+    });
+    return marker
+  };
+  var getPoi = function(vt, poiId) {
+    if(typeof virtualTours[vt.id] !== "undefined" && typeof virtualTours[vt.id].pois[poiId] !== "undefined") {
+      return virtualTours[vt.id].pois[poiId]
+    }
+  };
+  return{init:init, drawMap:drawMap}
 }(VISH, jQuery);
 
