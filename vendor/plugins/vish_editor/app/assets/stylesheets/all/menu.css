@@ -39,7 +39,7 @@
 #menu ul li:hover a, #menu li:hover li a {
 	background: none;
 	border: none;
-	color: #666;
+	color: #333;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 }
@@ -199,4 +199,14 @@ html[xmlns] #menu {
 
 a.menu_option{
 	cursor: pointer !important;
+}
+
+.menu_item_enabled > a {
+
+}
+
+.menu_item_disabled > a {
+	color: #9e9e9e !important;
+	pointer-events: none !important;
+   	cursor: default !important;
 }

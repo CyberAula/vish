@@ -15,7 +15,7 @@ module Drafts
       end
 
       def create_update_activity
-        return if object.acts_as_actor?
+        return if object.nil? or object.acts_as_actor?
         if object.respond_to? :draft and (not object.draft) and (not self.notified_after_draft)
           self.notified_after_draft = true
           save!

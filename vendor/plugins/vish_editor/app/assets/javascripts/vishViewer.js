@@ -8158,11 +8158,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }, function() {
       $("#page-fullscreen").css("background-position", "-45px 0px")
     });
-    if(VISH.Slides.getSlidesQuantity() > 1) {
-      $("#viewbar").show()
-    }else {
-      $("#viewbar").hide()
-    }
+    _decideIfViewBarShow(true)
   };
   var _onLeaveFullScreen = function() {
     $("#page-fullscreen").css("background-position", "0px 0px");
@@ -8171,8 +8167,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }, function() {
       $("#page-fullscreen").css("background-position", "0px 0px")
     });
-    if(VISH.Slides.getSlidesQuantity() > 1) {
-      $("#viewbar").show()
+    _decideIfViewBarShow(false)
+  };
+  var _decideIfViewBarShow = function(fullScreen) {
+    if(!fullScreen) {
+      if(VISH.Slides.getSlidesQuantity() > 1) {
+        $("#viewbar").show()
+      }else {
+        $("#viewbar").hide()
+      }
     }else {
       $("#viewbar").hide()
     }
@@ -9138,6 +9141,9 @@ VISH.Slides = function(V, $, undefined) {
       goToSlide(1)
     }
   };
+  var addSlide = function(slide) {
+    $(".slides").append(slide)
+  };
   var removeSlide = function(slideNumber) {
     var slide = getSlideWithNumber(slideNumber);
     if(slide === null) {
@@ -9166,7 +9172,7 @@ VISH.Slides = function(V, $, undefined) {
     return getSlides().length
   };
   return{init:init, getCurrentSlide:getCurrentSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, isSlideSelected:isSlideSelected, getNumberOfSlide:getNumberOfSlide, getSlides:getSlides, getSlideWithNumber:getSlideWithNumber, backwardOneSlide:backwardOneSlide, closeFlashcardSlide:closeFlashcardSlide, closeAllSlides:closeAllSlides, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, 
-  lastSlide:lastSlide, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, removeSlide:removeSlide, showFlashcardSlide:showFlashcardSlide, getSlidesQuantity:getSlidesQuantity}
+  lastSlide:lastSlide, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, addSlide:addSlide, removeSlide:removeSlide, showFlashcardSlide:showFlashcardSlide, getSlidesQuantity:getSlidesQuantity}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var bindedEventListeners = false;

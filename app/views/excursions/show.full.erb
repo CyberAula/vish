@@ -1,25 +1,21 @@
 <section class="slides layout-regular template-default">
-    <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
-    <div id="flashcard-background"></div>
-</section>
-
-<div id="viewbar" class="viewbar" style="display:none">   
-	<button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
-    <div id="slide-counter"></div>
-  <button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
-</div>
- 
-
-<div id='mask_stop_quiz' style='display:none,'></div>
-<iframe id="my_game_iframe" src="" style="border:0" width="890" height="740" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
+      <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
+    </section>
+    
+    <div id="viewbar" class="viewbar" style="display:none">   
+    <button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
+      <div id="slide-counter"></div>
+    <button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
+    </div>
+    
+    <iframe id="my_game_iframe" src="" style="border:0" width="890" height="740" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
 
     <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
     <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>    
     <!-- Hidden link to open fancybox when stop a quiz session  -->
     <a id="stopQuizSessionFancybox" href="#stop_quiz_fancybox" style="display: none;" name='modal_fancybox'></a>    
-
     
-    <!-- quiz Session Fancybox -->
+    <!-- quiz Session Fancybox fancybox -->
     <div style='display:none'>
         <div id="start_quiz_fancybox" class="outer_box">
              <div class="fancy_tabs" id="start_quiz_fancy_tabs_id">      
@@ -34,23 +30,22 @@
                 </div>
             <div id='tab_quiz_session_content' class="fancy_tab_content" style='display:none;'>
                 <div class='quiz_session_header'>
-                     <div class='url_share_container'>
+                    <div class='url_share_container'>
                         <span><a target="blank_" href="#" class='url_share_link'></a></span>
                     </div>
-                  </div>
+                </div>
                 <div class='quiz_session_body'>
                     <div id='hidden_for_qr_quiz' class='hidden_for_qr_quiz' style='display:none;'></div>
                     <div class='quiz_session_qrcode_container'>
                         <img id='qr_quiz_image_id' class="qr_quiz_image" src=""/>
-                         <img class='qr_background' src='/assets/quiz/qrcode_background.png' />
+                        <img class='qr_background'/>
                     </div>
-                <div class='buttons_container'>
+                    <div class='buttons_container'>
                          <img id="qr_quiz_fullscreen" class='quiz_full_screen' src='/assets/quiz/fullscreen_gofull.png' />
                          <img id="qr_quiz_fullscreen_close" class='quiz_full_screen_back' src='/assets/quiz/fullscreen_goback.png' />
                          <img class='hide_qrcode' src='/assets/quiz/hide_eye.png' />
                          <img class='show_qrcode' src='/assets/quiz/eye.png' />
-                    </div>    
-               
+                    </div>
                 </div>
                 <div class='quiz_session_inputs_container'>
                         <input type='hidden' class='quiz_session_id' name='quiz_session_id' />
@@ -84,7 +79,7 @@
                 
          </div>       
     </div>
-
+    <!-- second fancybox over fancybox -->
       <div id='stop_quiz_fancybox' class='outer_box' style='diplay:none;'>
             <div id='stop_quiz_fancybox_content' class='window'>
                  <p class='stop_quiz_text'> Are you sure to stop the quiz?</p>
@@ -93,15 +88,14 @@
                 <input type='button' class='quiz_stop_session quiz_stop_session_dont_save' value='Dont save'/>
                 <input type='button' class='quiz_stop_session quiz_stop_session_save' value='Save'/>
             </div>    
-         </div>        
-      
+         </div>       
+    <div id='mask_stop_quiz' style='display:none;'></div>
 
-<div id='mask_stop_quiz' style='display:none,'></div>
+    <div style="display:none" id="viewerpreview">Preview</div>
+    <button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/back_icon.png"/></button>
+    <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
+    <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
 
-<div style="display:none" id="viewerpreview">Preview</div>
-<button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/back_icon.png"/></button>
-<button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
-<button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
 
 <script>	
 	options = {};

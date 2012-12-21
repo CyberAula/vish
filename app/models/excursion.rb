@@ -75,10 +75,13 @@ class Excursion < ActiveRecord::Base
   private
 
   def extract_quizzes(parsed_json)
+    return if parsed_json["slides"].nil?
     parsed_json["slides"].each do |slide|
-      
+      next if slide["elements"].nil?
+
       slide["elements"].each do |element| 
-       next unless element["type"] == "quiz"
+        next if element["type"].nil?
+        next unless element["type"] == "quiz"
        
         if element["quiz_id"] == ""
           quiz = Quiz.new
