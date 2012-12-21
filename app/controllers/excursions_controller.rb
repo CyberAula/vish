@@ -36,9 +36,9 @@ class ExcursionsController < ApplicationController
     if original.blank?
       flash[:error] = t('excursion.clone.not_found')
       redirect_to home_path if original.blank? # Bad parameter
-    elsif original.author == current_subject.actor
-      flash[:warning] = t('excursion.clone.owner')
-      redirect_to excursion_path(original)
+    #elsif original.author == current_subject.actor
+      #flash[:warning] = t('excursion.clone.owner')
+      #redirect_to excursion_path(original)
     else
       # Do clone
       excursion = original.clone_for current_subject.actor
