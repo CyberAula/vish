@@ -244,7 +244,7 @@ this can not be done with show() and hide() because then it remains with display
 }
 
 #page-fullscreen:hover{
-    background-position:0px -40px;
+    background-position:0px -41px;
 }
 
 #slide-counter {

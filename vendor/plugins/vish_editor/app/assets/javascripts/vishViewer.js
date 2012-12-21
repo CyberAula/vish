@@ -6287,7 +6287,21 @@ VISH.Configuration = function(V, $, undefined) {
     })
   }
 })(jQuery);
-VISH.User = function(V, $, undefined) {
+if(!window["YT"]) {
+  var YT = {}
+}
+if(!YT.Player) {
+  (function() {
+    var s = "http:" + "//s.ytimg.com/yts/jsbin/www-widgetapi-vfl3iLqI8.js";
+    var a = document.createElement("script");
+    a.src = s;
+    a.async = true;
+    var b = document.getElementsByTagName("script")[0];
+    b.parentNode.insertBefore(a, b);
+    YT.embed_template = '<iframe width="425" height="344" src="" frameborder="0" allowfullscreen></iframe>'
+  })()
+}
+;VISH.User = function(V, $, undefined) {
   var user;
   var init = function(options) {
     user = new Object;
@@ -6436,6 +6450,9 @@ VISH.Renderer = function(V, $, undefined) {
         break;
       case VISH.Constant.VTOUR:
         article = _renderVirtualTourSlide(slide, extra_classes, extra_buttons);
+        break;
+      case VISH.Constant.QUIZ:
+        article = _renderStandardSlide(slide, extra_classes, extra_buttons);
         break;
       default:
         article = null;

@@ -11829,6 +11829,9 @@ if(!YT.Player) {
       case VISH.Constant.VTOUR:
         article = _renderVirtualTourSlide(slide, extra_classes, extra_buttons);
         break;
+      case VISH.Constant.QUIZ:
+        article = _renderStandardSlide(slide, extra_classes, extra_buttons);
+        break;
       default:
         article = null;
         break
