@@ -13724,7 +13724,8 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     if(presentation) {
       $("#flashcard-background").css("background-image", presentation.slides[0].background);
       $("#fc_change_bg_big").hide();
-      $("#flashcard-background").attr("flashcard_id", presentation.slides[0].id)
+      flashcardId = presentation.slides[0].id;
+      $("#flashcard-background").attr("flashcard_id", flashcardId)
     }else {
       if(!getCurrentFlashcardId()) {
         flashcardId = VISH.Utils.getId("article")
@@ -13806,10 +13807,28 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
   var prepareToNestInFlashcard = function(slide) {
     return VISH.Editor.Utils.prepareSlideToNest(getCurrentFlashcardId(), slide)
   };
+  var undoNestedSlidesInFlashcard = function(fc) {
+    fc.slides = _undoNestedSlides(fc.id, fc.slides);
+    fc.pois = _undoNestedPois(fc.id, fc.pois);
+    return fc
+  };
+  var _undoNestedSlides = function(fcId, slides) {
+    for(var j = 0;j < slides.length;j++) {
+      slides[j] = VISH.Editor.Utils.undoNestedSlide(fcId, slides[j])
+    }
+    return slides
+  };
+  var _undoNestedPois = function(fcId, pois) {
+    for(var k = 0;k < pois.length;k++) {
+      pois[k].id = pois[k].id.replace(fcId + "_", "");
+      pois[k].slide_id = pois[k].slide_id.replace(fcId + "_", "")
+    }
+    return pois
+  };
   var hasFlascards = function() {
     return $("section.slides > .flashcard_slide[type='flashcard']").length > 0
   };
-  return{init:init, addFlashcard:addFlashcard, getFlashcard:getFlashcard, getCurrentFlashcardId:getCurrentFlashcardId, prepareToNestInFlashcard:prepareToNestInFlashcard, hasChangedBackground:hasChangedBackground, hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard, onBackgroundSelected:onBackgroundSelected, hasFlascards:hasFlascards}
+  return{init:init, addFlashcard:addFlashcard, getFlashcard:getFlashcard, getCurrentFlashcardId:getCurrentFlashcardId, prepareToNestInFlashcard:prepareToNestInFlashcard, undoNestedSlidesInFlashcard:undoNestedSlidesInFlashcard, hasChangedBackground:hasChangedBackground, hasPoiInBackground:hasPoiInBackground, loadFlashcard:loadFlashcard, redrawPois:redrawPois, removePois:removePois, savePois:savePois, switchToFlashcard:switchToFlashcard, onBackgroundSelected:onBackgroundSelected, hasFlascards:hasFlascards}
 }(VISH, jQuery);
 VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
   var carrouselDivId = "tab_flashcards_repo_content_carrousel";
@@ -13978,6 +13997,11 @@ VISH.Samples = function(V, undefined) {
   "type":"image", "areaid":"header", "body":"http://www.nasa.gov/images/content/351657main_curiosity_bn.jpg", "style":"position: relative; width:176.99115044247787%; height:323.0769230769231%; top:-180.76923076923077%; left:-74.48377581120944%;"}, {"id":"zone13", "type":"image", "areaid":"left", "body":"http://www.nasa.gov/images/content/685406main_pia16134-full_full.jpg", "style":"position: relative; width:150%; height:203.3816425120773%; top:-50.24154589371981%; left:-31.666666666666668%;"}, {"id":"zone14", 
   "type":"text", "areaid":"center", "body":'<div style="font-weight: 400;" class="vish-parent-font2"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">In the distance is the lower slope of Mount Sharp.</span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">The camera is located in the turret of tools at the end of Curiosity\'s \nrobotic arm. The Sol 34 imaging by MAHLI was part of a week-long set of \nactivities for characterizing the movement of the arm in Mars \nconditions. </span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">The main purpose of Curiosity\'s MAHLI camera is to acquire close-up, \nhigh-resolution views of rocks and soil at the rover\'s Gale Crater field\n site. The camera is capable of focusing on any target at distances of \nabout 0.8 inch (2.1 centimeters) to infinity, providing versatility for \nother uses, such as views of the rover itself from different angles. </span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span> </div>'}, 
   {"id":"zone15", "type":"image", "areaid":"right", "body":"http://www.nasa.gov/images/content/685666main_pia16137-full_full.jpg", "style":"position: relative; width:119.04761904761905%; height:100%; top:-0.43859649122807015%; left:-7.619047619047619%;"}]}, {"id":"article__5", "type":"standard", "template":"t2", "elements":[{"id":"zone16", "type":"image", "areaid":"left", "body":"http://www.nasa.gov/images/content/684452main_Robinson-3-pia16145-full_full.jpg", "style":"position: relative; width:100.29498525073747%; height:86.1003861003861%; top:7.335907335907336%; left:-0.4424778761061947%;"}]}]}]};
+  var samples_flashcard_new = {"VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://farm9.staticflickr.com/8215/8258609986_a01a9824f9.jpg)", "pois":[{"id":"article4_poi1", "x":14.5, "y":55.166666666666664, "slide_id":"article4_article6"}, {"id":"article4_poi2", "x":45.625, "y":13.333333333333334, "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":76.375, "y":40.166666666666664, "slide_id":"article4_article5"}], "slides":[{"id":"article4_article6", 
+  "type":"standard", "template":"t2", "elements":[{"id":"article4_article6_zone1", "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8353/8292749475_52c22f8e4d.jpg", "style":"position: relative; width:123.78223495702005%; height:108.52272727272727%; top:-1.3257575757575757%; left:-5.730659025787966%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t12", "elements":[{"id":"article4_article2_zone1", "type":"text", "areaid":"left1", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}, 
+  {"id":"article4_article2_zone2", "type":"text", "areaid":"right1", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}, {"id":"article4_article2_zone3", "type":"text", "areaid":"left2", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}, 
+  {"id":"article4_article2_zone4", "type":"text", "areaid":"right2", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}]}, {"id":"article4_article5", "type":"standard", "template":"t10", "elements":[{"id":"article4_article5_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://www.youtube.com/embed/iv1Z7bf4jXY?wmode=opaque" frameborder="0" id="resizableunicID1" class="t10_object" wmode="opaque" unselectable="on"></iframe>', 
+  "style":"position: relative; width:100%; height:99.66555183946488%; top:0%; left:0%;"}]}]}]};
   var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
   "adquired_competencies":"pupils will be smarter", "slides":[{"id":"27", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
@@ -14007,7 +14031,7 @@ VISH.Samples = function(V, undefined) {
   "options":{"choices":[{"value":"S\u00ed", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">S\u00ed</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"No", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">No</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
   {"value":"Un poco", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Un poco</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"Nada", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Nada</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}}], 
   "type":"quiz_simple"}}]}]};
-  return{samples:samples, samplesv01:samplesv01, samples_fc:samples_fc, samples_flashcard:samples_flashcard, samples_full_tour:samples_full_tour, samples_game:samples_game, samples_vtour:samples_vtour, samples_vtour_toledo:samples_vtour_toledo, quizes_samples:quizes_samples, quizzes__samples2:quizzes__samples2}
+  return{samples:samples, samplesv01:samplesv01, samples_fc:samples_fc, samples_flashcard:samples_flashcard, samples_flashcard_new:samples_flashcard_new, samples_full_tour:samples_full_tour, samples_game:samples_game, samples_vtour:samples_vtour, samples_vtour_toledo:samples_vtour_toledo, quizes_samples:quizes_samples, quizzes__samples2:quizzes__samples2}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var flashcardList = {"flashcards":[{"id":"111", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
@@ -17677,7 +17701,8 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     VISH.Themes.selectTheme(presentation.theme);
     switch(presentation.type) {
       case V.Constant.FLASHCARD:
-        slides = presentation.slides[0].slides;
+        var flashcard = VISH.Editor.Flashcard.undoNestedSlidesInFlashcard(presentation.slides[0]);
+        slides = flashcard.slides;
         for(var i = 0;i < slides.length;i++) {
           _renderSlide(slides[i], i + 1)
         }
@@ -18477,7 +18502,22 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     return slide
   };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides, refreshDraggables:refreshDraggables, prepareSlideToNest:prepareSlideToNest}
+  var undoNestedSlide = function(parentId, slide) {
+    if(typeof parentId !== "string") {
+      return slide
+    }
+    if(slide.type === VISH.Constant.FLASHCARD || slide.type === VISH.Constant.VTOUR) {
+      return
+    }
+    slide.id = slide.id.replace(parentId + "_", "");
+    if(slide.elements) {
+      $.each(slide.elements, function(index, element) {
+        slide.elements[index].id = slide.elements[index].id.replace(parentId + "_", "")
+      })
+    }
+    return slide
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides, refreshDraggables:refreshDraggables, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
