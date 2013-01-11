@@ -1,5 +1,7 @@
-<article name="main">
+<article>
   <img class="img-frontpage" src="/assets/corporative/vish.png">
-  <div class="name-frontpage"><%=t('site.name')%></div>
-    <div class="name-frontpage2"><%=t('site.name')%></div>
+  <div class="level5 name-frontpage"><%=t('site.name')%></div>
+  <form class="search-mobile" action="<%=search_path%>" method="get">
+    <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => ""} %>
+	</form>
 </article>

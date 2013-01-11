@@ -1,3 +1,37 @@
+body
+	background-color: $background
+
+.level1
+	line-height: 120%
+.level2
+	line-height: 120%
+.level3
+	line-height: 120%
+.level4
+	line-height: 120%
+.level5
+	line-height: 120%
+.level6
+	line-height: 120%
+.level7
+	line-height: 120%
+.level8
+	line-height: 120%
+.level9
+	line-height: 120%
+.level10
+	line-height: 120%
+.level11
+	line-height: 120%
+.level12
+	line-height: 120%
+.level13
+	line-height: 120%
+.level14
+	line-height: 120%
+.level15
+	line-height: 120%
+
 .content
 	.img-frontpage
 		@include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -9,6 +43,56 @@
 		text-align: center
 		color: $gray-vish
 		font-weight: lighter
+		font-family: $fistFontFamily
+		line-height: 120%
+	.search-mobile
+		@include center-block()
+		input
+			@include center-block()
+			@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+			border-radius: $radius
+	.tagsHome
+		font-family: "Helvetica"
+		@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+		display: block
+		float: left
+		a
+			display: inline-block
+			clear: both
+			float: left
+		.nanotechnology
+			width: 100%
+			text-align: right
+		.gridComputing
+			width: 100%
+		.excursion
+			width: 100%
+			text-align: center
+			margin-top: -5px
+		.user
+			width: 80%
+			text-align: right
+			padding-right: 20%
+			margin-top: -5px
+		.lifeSciences
+			width: 90%
+			margin-top: -5px
+			padding-left: 10%
+		.biotechnology
+			width: 80%
+			text-align: right
+			padding-right: 20%
+footer
+	@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+	.btn-group
+		padding-top: 10px
+		display: inline-block
+		clear: both
+		margin-left
+		margin-bottom: 10px
+		.btn
+			@include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
 
 
 
