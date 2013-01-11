@@ -9,6 +9,7 @@
 //= require jquery.tipsy
 //= require jquery.jplayer
 //= require jquery.ae.image.resize
+//= require jquery.fittext
 //= require social_stream-base
 //= require social_stream-documents
 //= require social_stream.audio

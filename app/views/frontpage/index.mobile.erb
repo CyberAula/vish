@@ -1,70 +1,19 @@
 <% content_for :title do %>
   <%= t('welcome', :site => t('site.name')) %>
 <% end %>
+<article class="tagsHome">
+  <%= link_to(t('frontpage.nanotechnology'), search_path(:q => "nanotechnology"), :class => 'nanotechnology level6') %>
+  <%= link_to(t('frontpage.gridComputing'), search_path(:q => "grid computing"), :class => 'gridComputing level7') %>
+  <%= link_to(t('excursion.other'), search_path(:type => "excursion"), :class => 'excursion level3') %>
+  <%= link_to(t('user.other'), search_path(:type => "user"), :class => 'user level7') %>
+  <%= link_to(t('frontpage.lifesciences'), search_path(:q => "life sciences"), :class => 'lifeSciences level6') %>
+  <%= link_to(t('frontpage.biotechnology'), search_path(:q => "biotechnology"), :class => 'biotechnology level8') %>
+</article>
 
-
-<div class="padding-center ">
-<section id="">
-  <article class="row-fluid ">
-
-
-
-      <div class="pagination-centered ">
-        <form action="<%=search_path%>" method="get">
-          <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => "input-resize percent80"} %>
-
-        </form>
-      </div>
-
-
-    <div class="DsignesLight  span12 ">
-
-      <div class="span11 pagination-right link_gray2 ">
-        <%= link_to(t('frontpage.nanotechnology'), search_path(:q => "nanotechnology"), :class => 'size_medium') %>
-      </div>
-
-      <div class="span7 pagination-right margin_user link_gray3 ">
-        <%= link_to(t('frontpage.gridComputing'), search_path(:q => "grid computing"), :class => 'size_x-large') %>
-      </div>
-
-      <div class="span9  pagination-right link_gray4  ">
-        <%= link_to(t('excursion.other'), search_path(:type => "excursion"), :class => 'size_xx-large') %>
-      </div>
-
-      <div class="span12 pagination-right margin_user link_gray3">
-        <%= link_to(t('user.other'), search_path(:type => "user"), :class => 'size_x-large') %>
-      </div>
-
-      <div class="span7 margin_life_sciences link_gray2 ">
-        <%= link_to(t('frontpage.lifesciences'), search_path(:q => "life sciences"), :class => 'size_largue') %>
-      </div>
-
-
-      <div class="span8 pagination-right margin_user  link_gray1 ">
-        <%= link_to(t('frontpage.biotechnology'), search_path(:q => "biotechnology"), :class => 'size_small') %>
-      </div>
-
-    </div>
-
-  </article>
-</section>
-
-
-
-
-<footer id=" ">
-  <article class="row-fluid ">
-    <div class=" pagination-centered  span12 ">
-        <div class="btn btn-primary btn_frontpage">
-          <%= link_to t('sign_up'), new_user_registration_path %>
-        </div>
-        <div class="btn btn-success btn_frontpage btn_explore">
-          <a href="/explore"><%= t('explore') %></a>
-        </div>
-        <div class="btn btn-primary btn_frontpage">
-          <%= link_to t('devise.links.sign_in'), new_user_session_path %>
-        </div>
-      </div>
-  </article>
-</footer>
+<footer>
+  <div class="btn-group">
+    <%= link_to t('sign_up'), new_user_registration_path, :class => 'btn btn-primary ' %>
+    <a class="btn btn-primary " href="/explore"><%= t('explore') %></a>
+    <%= link_to t('devise.links.sign_in'), new_user_session_path, :class => 'btn btn-primary '  %>
   </div>
+</footer>      

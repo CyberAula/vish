@@ -1,11 +1,7 @@
-<article class=" container-frontpage row-fluid ">
-  <div class="span12 pagination-centered ">
-    <div class="logo">
-      <a href="/">
-        <img class=" imgnoradio" src="/assets/corporative/logo.png">
-      </a>
-    </div>
-    <div class="DsignesLight size-responsive gray name">Virtual Science Hub</div>
-  </div>
+<article>
+  <img class="img-frontpage" src="/assets/corporative/vish.png">
+  <div class="level5 name-frontpage"><%=t('site.name')%></div>
+  <form class="search-mobile" action="<%=search_path%>" method="get">
+    <%= render :partial => 'layouts/search', :locals => {:sizeFieldSearch => ""} %>
+	</form>
 </article>
-

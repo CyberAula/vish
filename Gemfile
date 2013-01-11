@@ -21,17 +21,17 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 
 social_stream_gems = lambda {
-  gem 'social_stream-base'
-  gem 'social_stream-documents'
-  gem 'social_stream-linkser'
-  gem 'social_stream-ostatus'
+  gem 'social_stream-base', '~> 1.0.0'
+  gem 'social_stream-documents', '~> 1.0.0'
+  gem 'social_stream-linkser', '~> 1.0.0'
+  gem 'social_stream-ostatus', '~> 1.0.0'
 }
 
 # Developing Social Stream
 if ENV['VISH_DEV']
   path '../social_stream-vish', &social_stream_gems
 else
-  git 'git://github.com/ging/social_stream.git', :branch => 'vish', &social_stream_gems
+  git 'git://github.com/ging/social_stream.git', :branch => '1-0-stable', &social_stream_gems
 end
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap

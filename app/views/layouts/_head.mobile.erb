@@ -6,20 +6,8 @@
   <meta name="generator" content="SocialStream" />
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
   <%= favicon_link_tag "icons/favicon.ico" %>
-
-  <%= stylesheet_link_tag "mobile/bootstrap-responsive" %>
-  <%= stylesheet_link_tag "mobile/bootstrap" %>
-  <%= stylesheet_link_tag "mobile/search" %>
-  <%= stylesheet_link_tag "mobile/docs" %>
-  <%= stylesheet_link_tag "mobile/tags" %>
-  <%= stylesheet_link_tag "mobile/application" %>
-  <%= stylesheet_link_tag "mobile/jquery.selectbox" %>
-  <%= stylesheet_link_tag "mobile/mobile" %>
-  <%= stylesheet_link_tag "mobile/button" %>
-  <%= stylesheet_link_tag "vish/base/icons" %>
+  <%= stylesheet_link_tag "mobile" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "bootstrap" %>
-
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
@@ -34,7 +22,28 @@
     $(document).ready(function() {
       <%= yield :javascript%>
     });
+  
+    $(function() {
+      $(".level1").fitText(0.2);
+      $(".level2").fitText(0.4);
+      $(".level3").fitText(0.6);
+      $(".level4").fitText(0.8);
+      $(".level5").fitText(1);
+      $(".level6").fitText(1.2);
+      $(".level7").fitText(1.4);
+      $(".level8").fitText(1.6);
+      $(".level9").fitText(1.8);
+      $(".level10").fitText(2);
+      $(".level11").fitText(2.2);
+      $(".level12").fitText(2.4);
+      $(".level13").fitText(2.6);
+      $(".level14").fitText(2.8);
+      $(".level15").fitText(3);
+
+    });
   </script>
+
+
   <%= yield :headers %>
   <%= render :partial => 'layouts/google_analytics' %>
   <%= render :partial => 'layouts/mixpanel' %>
