@@ -84,14 +84,25 @@ body
 			padding-right: 20%
 footer
 	@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-	.btn-group
-		padding-top: 10px
-		display: inline-block
-		clear: both
-		margin-left
-		margin-bottom: 10px
+	display: block
+	float: left
+	.group
+		margin-top: 20px
+		@include center-block()
+		@include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
 		.btn
-			@include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+			@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+		.register
+			background-color: $red-1
+			background-image: none
+		.explore
+			background-color: $green-vish
+			background-image: none
+		.sign_in
+			background-color: $red-1
+			background-image: none
+
+
 
 
 

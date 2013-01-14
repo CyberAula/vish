@@ -1,8 +1,6 @@
 // typography (adjuntar)
 @import "vish/base/fonts";
 
-
-
 // original bootstrap
 @import "bootstrap";
 
@@ -11,10 +9,30 @@
 
 // Core variables and mixins
 @import "vish/bootstrap-rewrite/variables";
+@import "vish/bootstrap-rewrite/change/variables-vish";
 
  // Modify this for custom colors, font-sizes, etc
-@import "vish/bootstrap-rewrite/change/variables-vish";
-@import "vish/bootstrap-rewrite/mixins";
+@import "vish/bootstrap-rewrite/change/all-changes";
+
+
+
+
+
+
+
+
+
+
+
+
+
+// vish mixins
+@import "mixins";
+
+// base
+@import "vish/mobile/base";
+
+
 
 // search
 @import "vish/base/search";
@@ -22,5 +40,17 @@
 // icons
 @import "vish/base/icons";
 
-// index
+// app
 @import "vish/mobile/app";
+
+// devise
+@import "vish/mobile/devise";
+
+// base
+@import "vish/mobile/base";
+
+
+
+
+
+
