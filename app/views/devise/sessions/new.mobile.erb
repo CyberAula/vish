@@ -1,36 +1,45 @@
-<div class="container-device">
-<div class="pagination-centered ">
-  <span class="dark-gray size20"><%= t('sign_in') %></span>
-</div>
-<div class="pagination-centered gray-medium margin-bottom10">
+<h1 class="menssage-devise">
+  <%= t('sign_in') %>
+</h1>
+<h2 class="sentence">
+  <small>
+<%= t('devise.invalid_login') %>
+  </small>
+</h2>
+<div id="formulate">
+  <div class="box_gray1 ">
+    <div class="box_gray2">
+      <div class="box_gray3">
+        <div class="box_white devise-box">
+          <div class="campos">
+            <%= form_for(resource, :as => resource_name, :url => user_session_path,  :html => { :method => :post, :class=>"" }) do |f| %>
 
-    <%= t('devise.invalid_login') %>
-
-
-</div>
-<section id="">
-    <article class="row-fluid ">
-      <div class="span12 box_basic form">
-        <div class="span12 border_bottom ">
-          <%= form_for(resource, :as => resource_name, :url => user_session_path, :html => {:method => :post, :class => "form-horizontal2"}) do |f| %>
-            <%= f.text_field :email, :class => "span12 input_nude", :id => "email", :placeholder => "e-mail" %>
-            </div>
-            <div class="span12 margin-top10">
-            <%= f.password_field :password, :class => "span12 input_nude", :id => "password", :placeholder => "password" %>
-            </div>
-            </div>
-            <%= hidden_field :remember_me, true %>
-
-            <div class="row "></div>
-            <div class="space_center"></div>
-            <%= f.submit t('action.send'), :class => " margin-top10 btn btn-primary span12" %>
-            <div class="span12 margin-top10">
-              <ul class="span12 pagination-right pull-right">
-                <%= render :partial => "devise/shared/links" %>
-              </ul>
-          <% end %>
+            <%= devise_error_messages! %>
+            <label class="text-tittle" for="email" style="display: none;">
+              <%= f.label :email %>
+            </label>
+            <%= f.text_field :email, :class => "", :id => "email", :placeholder => "email" %>
+            <div class="line"></div>
+            <label class="text-tittle" for="password" style="display: none;">
+              <%= f.label :password %>
+            </label>
+            <%= f.password_field :password, :class => "", :id => "password", :placeholder => "password" %>
           </div>
-          </article>
-  </section>
+        </div>
+        <div class="remenber">
+          <% if devise_mapping.rememberable? -%>
+          <%= f.check_box :remember_me %> <%= f.label :remember_me, :class => "check-remenber " %>
+          <% end -%>
+        </div>
+        <div class="accept-btn">
+          <%= f.submit t('action.send'), :class =>"btn btn-primary" %>
+        </div>
+        <% end %>
+      </br>
+      </div>
+    </div>
+  </div>
 </div>
-
+<ul class="links-devise">
+  <%= render :partial => "devise/shared/links" %>
+</ul>

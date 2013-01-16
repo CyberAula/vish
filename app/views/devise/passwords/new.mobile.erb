@@ -1,38 +1,28 @@
-<div class="container-device ">
-  <div class="pagination-centered ">
-    <span class="dark-gray size20"><%= t('devise.passwords.forgot') %></span>
-  </div>
-  <div class="pagination-centered gray-medium margin-bottom10">
+<h1 class="menssage-devise">
+  <%= t('devise.passwords.forgot') %>
+</h1>
+<h2 class="sentence">
+  <small>
     <%= t('devise.passwords.instructions') %>
-  </div>
-
-
-  <section id="">
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, :class => "form-horizontal2"}) do |f| %>
-      <article class="row-fluid">
-        <div class="span12 box_basic">
+  </small>
+</h2>
+<div id="formulate">
+  <div class="box_gray1">
+    <div class="box_gray2">
+      <div class="box_gray3">
+        <div class="campo">
+          <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, }) do |f| %>
           <%= devise_error_messages! %>
-
-          <div class=" span12 border_bottom ">
-            <%= f.label :email, :class => "span3 text_imput_center" %>
-
-            <%= f.text_field :email, :class => "span8 input_nude", :id => "email", :placeholder => "email" %>
-          </div>
-
-
+          <label class="no_display" for="email"><%= f.label :email %></label>
+          <%= f.text_field :email, :class => "", :id => "email", :placeholder => t('devise.email') %>
+        </div>
+          <div class="accept-btn">
+          <%= f.submit t('action.send'), :class => "btn btn-primary " %>
+        </div>  
+        <% end %>
+      </div>
     </div>
-        <div class="row "></div>
-        <div class="space_center"></div>
-        <%= f.submit t('action.send').capitalize, :class => " margin-top10 btn btn-primary span12" %>
-
-
-    </article>
-    <% end %>
-  </section>
+  </div>
 </div>
-
-
-
-
 
 

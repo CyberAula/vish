@@ -63,35 +63,45 @@ body
 		.nanotechnology
 			width: 100%
 			text-align: right
+			color: $grayLight
 		.gridComputing
 			width: 100%
+			color: $gray
 		.excursion
 			width: 100%
 			text-align: center
 			margin-top: -5px
+			color: $grayLight
 		.user
 			width: 80%
 			text-align: right
 			padding-right: 20%
 			margin-top: -5px
+			color: $gray
 		.lifeSciences
 			width: 90%
 			margin-top: -5px
 			padding-left: 10%
+			color: $grayLight
 		.biotechnology
 			width: 80%
 			text-align: right
 			padding-right: 20%
+			color: $gray
+
 footer
 	@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 	display: block
 	float: left
-	.group
+	.group-index
 		margin-top: 20px
 		@include center-block()
-		@include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+		@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+		margin-bottom: 20px
 		.btn
-			@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+			width: 28%
+		.btn-primary
+			padding: 6px 6px
 		.register
 			background-color: $red-1
 			background-image: none
@@ -101,6 +111,15 @@ footer
 		.sign_in
 			background-color: $red-1
 			background-image: none
+
+.navbar-search
+	input,
+	textarea
+		width: auto
+.navbar-search
+	width: 75%
+
+
 
 
 

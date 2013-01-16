@@ -8,8 +8,9 @@
 @import "vish/bootstrap-rewrite/responsive";
 
 // Core variables and mixins
-@import "vish/bootstrap-rewrite/variables";
 @import "vish/bootstrap-rewrite/change/variables-vish";
+@import "vish/bootstrap-rewrite/variables";
+
 
  // Modify this for custom colors, font-sizes, etc
 @import "vish/bootstrap-rewrite/change/all-changes";
