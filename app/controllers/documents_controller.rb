@@ -69,6 +69,10 @@ class DocumentsController < ApplicationController
 
   private
 
+  def allowed_params
+    [:file]
+  end
+
   class << self
     def index_object_type
       [ :Audio, :Video, :Picture, :Swf, :Officedoc, :Document ]
