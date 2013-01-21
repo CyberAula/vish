@@ -5,14 +5,11 @@
               </div>
               <div class="modal-body">
           
-                <% 8.times do |ind| %>
+                <% 5.times do |ind| %>
                   <div class="evaluate">
                     <p>
                       <a><%= (ind+1).to_s %></a>
                       <%= t('evaluation.phrase'+ind.to_s) %>
-                      <a href="#" rel="tooltip" title="<%= t('evaluation.phrase'+ind.to_s+'_detail') %>">
-                        (?)
-                      </a>
                     </p>
                     <div class="escale">
                       <div><%= t('evaluation.disagree') %></div>
