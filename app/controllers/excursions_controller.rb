@@ -140,6 +140,10 @@ class ExcursionsController < ApplicationController
 
   private
 
+  def allowed_params
+    [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest, :excursion_type]
+  end
+
   def search_options
     opts = search_scope_options
 
