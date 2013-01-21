@@ -2,7 +2,6 @@
   <% content_for :title do %>
     <%= profile_or_current_subject.name+" | "+t('follow.followers') %>
   <% end %>
-
   <% content_for :description do %>
     <% if profile_or_current_subject.profile.description? %>
       <%= profile_or_current_subject.profile.description %>
@@ -16,27 +15,17 @@
   <% end %>
 
 
-  <section id="wall-e">
-    <article class="row-fluid ">
-      <div class="span12">
-        <div class="span2">
-          <%= image_tag(profile_or_current_subject.logo.url(:profile), :alt => profile_or_current_subject.name, :id => "current_avatar_img") %>
-        </div>
-        <div class="span10 padding_10">
-          <div class="size24 ellipsis"><%= profile_or_current_subject.name %></div>
+<header id="profile-header">
+  <%= image_tag(profile_or_current_subject.logo.url(:profile), :alt => profile_or_current_subject.name, :class => "avatar") %>
 
-          <div class="tag-profile-mobile ">
-            <% profile_or_current_subject.tag_list.each do |t| %>
-              <a href="#"><%= t.to_s %></a>
-            <% end %>
-          </div>
-        </div>
+  <%= profile_or_current_subject.name%>
+  
+  <% profile_or_current_subject.tag_list.each do |t| %>
+  <a href="#"><%= t.to_s %></a>
+  <% end %>
+  <% end %>
+</header>
 
-      </div>
-    </article>
-  </section>
-<% end %>
-<div class="space_center"></div>
 <section>
   <nav>
     <article class="article ">
