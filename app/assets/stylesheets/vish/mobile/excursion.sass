@@ -1,0 +1,76 @@
+#slider3
+	@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+	float: left
+	display: inline-block
+	.box_gray1
+		@include border-radius($radius)
+		border-top: 1px solid #F2F2F2
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
+		position: relative
+		width: 97%
+		z-index: 1
+
+		margin-left: 1%
+
+		.box_gray2
+			border: medium non
+			border-radius: 100% 100% 100% 100% / 33px
+			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02)
+
+			.box_gray3 
+
+				@include gradient-vertical($startColor: #F9F9F9, $endColor: #F0F0F0)
+				border-radius: 15px 15px 15px 15px
+				box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset
+				cursor: pointer
+				display: block
+				padding: 5px
+
+				.box_white
+					width: 98% 
+					display: inline-block
+					padding: 5px
+					background-color: $white
+					@include border-radius($radius)
+					@include box-shadow
+
+					.excursion img
+						float: left
+						@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						display: inline-block
+					.title
+						
+						float: left
+						@include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						display: inline-block
+						padding: 5px
+						@include text-overflow()
+						a
+							color: $blue-1
+							font-size: 16px
+					.by
+						@include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						color: $green-vish
+						font-size: 10px
+						@include text-overflow()
+						margin-left: 5px
+						display: inline-block
+						float: left
+
+						.autor
+							a
+								color: $blue-2
+								font-size: 14px
+								font-family: $fistFontFamily
+					.count
+						@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						display: inline-block
+						float: left
+						color: $green-vish
+						font-size: 10px
+							
+
+
+
+
+
