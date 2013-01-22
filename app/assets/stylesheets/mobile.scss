@@ -15,24 +15,11 @@
  // Modify this for custom colors, font-sizes, etc
 @import "vish/bootstrap-rewrite/change/all-changes";
 
-
-
-
-
-
-
-
-
-
-
-
-
 // vish mixins
 @import "mixins";
 
 // base
 @import "vish/mobile/base";
-
 
 
 // search
@@ -52,6 +39,9 @@
 
 // base
 @import "vish/mobile/items";
+
+// base
+@import "vish/mobile/excursion";
 
 
 
