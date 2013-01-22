@@ -72,6 +72,7 @@ class ExcursionsController < ApplicationController
   end
 
   def update
+    params[:excursion].permit!
     @excursion = Excursion.find(params[:id])
     if(@excursion.draft and params[:draft] and params[:draft] == "true")
       @excursion.draft = true
