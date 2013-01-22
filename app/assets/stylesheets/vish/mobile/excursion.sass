@@ -1,18 +1,19 @@
-#slider3
+.swipe
 	@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-	float: left
-	display: inline-block
+	ul
+		width: 100%
 	.box_gray1
 		@include border-radius($radius)
 		border-top: 1px solid #F2F2F2
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
 		position: relative
-		width: 97%
+		@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 		z-index: 1
 
 		margin-left: 1%
 
 		.box_gray2
+
 			border: medium non
 			border-radius: 100% 100% 100% 100% / 33px
 			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02)
@@ -27,19 +28,18 @@
 				padding: 5px
 
 				.box_white
-					width: 98% 
+					width: 96% 
 					display: inline-block
 					padding: 5px
 					background-color: $white
 					@include border-radius($radius)
 					@include box-shadow
-
 					.excursion img
 						float: left
 						@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
 						display: inline-block
+
 					.title
-						
 						float: left
 						@include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
 						display: inline-block
@@ -47,27 +47,58 @@
 						@include text-overflow()
 						a
 							color: $blue-1
-							font-size: 16px
+							
 					.by
 						@include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-						color: $green-vish
-						font-size: 10px
-						@include text-overflow()
-						margin-left: 5px
 						display: inline-block
 						float: left
-
+						color: $green-vish
+						font-size: 12px
+						@include text-overflow()
+						margin-left: 5px
 						.autor
+							display: inline-block
 							a
-								color: $blue-2
 								font-size: 14px
+								color: $blue-2
 								font-family: $fistFontFamily
 					.count
 						@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
 						display: inline-block
-						float: left
+						float: right
 						color: $green-vish
-						font-size: 10px
+						font-size: 12px
+					.tags
+						display: inline-block
+						float: left
+						margin-left: 10px
+						@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						@include text-overflow()
+						a
+							color: $blue-2
+						a:after
+							content: ", " 
+							font-size: 12px
+						a:last-child
+							content: ". " 
+							font-size: 12px
+
+
+.arrow-left
+	@include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+	display: inline-block
+	z-index: 2
+	float: left
+	opacity: 0.1
+
+.arrow-right
+	@include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+	display: inline-block
+	z-index: 2
+	float: right
+	opacity: 0.1
+
+
 							
 
 

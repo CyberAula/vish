@@ -13,10 +13,9 @@
 		@include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
 		display: inline-block
 		float: left
-		margin-top: 10px
+		margin-top: -3px
 		margin-left: 10px
 		color: $gray
-		font-size: 18px
 		font-family: $fistFontFamily
 	.tags
 		display: inline-block
@@ -28,17 +27,24 @@
 			color: $blue-2
 		a:after
 			content: ", " 
-			
+			font-size: 12px
+		a:last-child
+			content: ". " 
 			font-size: 12px
 .subnav
 	@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 	@include center-block()
-	ul
-		margin: 0px 0px 10px 0px
-	.btn-group 
+
+	.btn-group
+		.btn.active, 
+		.btn:active
+			background-color: $blue-1 
+			a
+				color: $white
 		.btn
 			padding: 3px 0px
 			@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
 			a
 				color: $gray
+
 

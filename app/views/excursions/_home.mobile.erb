@@ -1,6 +1,7 @@
 <% unless excursion.blank? %>
-<div id='slider3' class='swipe'>
-  <ul>
+<div id='slider<%= excursion.id.to_s %>' class='swipe'>
+  <ul >
+  <!--item 1-->
     <li style='display:block'>
       <div class="box_gray1 ">
         <div class="box_gray2">
@@ -12,7 +13,8 @@
               <div class="title">
                 <%= link_to excursion.title, excursion %>
               </div>
-              <%#= link_to(raw("<i class='iconnav-notification'></i> "), :class => "btn pull-right") %>
+              <a class="arrow-right" href='#' onclick='slider<%= excursion.id.to_s %>.next();return false;'><i class='icontool16-tool16_arrow_1'></i></a>
+
               <div class="by">by
                 <span class="autor">
                   <%= link_to excursion.author.name, excursion.author.user %> 
@@ -31,87 +33,63 @@
                 <%end%>
               </div>
 
-
-                    
             </div>
           </div>
         </div>
       </div>
     </li>
+  <!--item 2-->
+    <li style='display:none'>
 
-    <li style='display:none'><div>2</div></li>
-    <li style='display:none'><div>3</div></li>
+
+
+
+      <div class="box_gray1 ">
+        <div class="box_gray2">
+          <div class="box_gray3">
+            <div class="box_white">
+              <a class="arrow-left" href='#' onclick='slider<%= excursion.id.to_s %>.prev();return false;'><i class='icontool16-tool16_arrow_5'></i></a> 
+
+              <a class="arrow-right" href='#' onclick='slider<%= excursion.id.to_s %>.next();return false;'><i class='icontool16-tool16_arrow_1'></i></a>
+              <div class="tags">   
+                <% excursion.tags.each do |t| %>
+                <a href="#"><%= t.to_s %></a>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </li>
+
+<!--item 3-->
+
+    <li style='display:none'>
+      <div class="box_gray1 ">
+        <div class="box_gray2">
+          <div class="box_gray3">
+            <div class="box_white">
+              <a class="arrow-left" href='#' onclick='slider<%= excursion.id.to_s %>.prev();return false;'><i class='icontool16-tool16_arrow_5'></i></a> 
+              <% unless excursion.description.blank? %>
+              <%= truncate excursion.description, :length => 90 %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </li>
 
   </ul>
 </div>
 
-<a href='#' onclick='slider3.prev();return false;'>prev</a> 
-<a href='#' onclick='slider3.next();return false;'>next</a>
-<br><br>
-
-
-
-
-
-<article class="">
-  <div class="row-fluid">
-    <div class="span12">
-
- 
-                     
-          <!------item 2-----
-
-          <div class="item">
-            <div class="caption">
-              <div class="row-fluid">
-                <div class="span12">
-
-                  <h2>
-                    <span class="green">
-                      <#%= excursion.visit_count %>
-                    </span>
-                    <#%= t('follow.views') %>
-                  </h2>
-
-                  <h3 class="span8 blue-opacity article ellipsis w400px">
-                    <#% excursion.tags.each do |t| %>
-                      <a href="#"><#%= t.to_s %></a>,
-                    <#% end %>
-                  </h3>
-
-                </div>
-                  <#% unless excursion.description.blank? %>
-              </div>
-            </div>
-          </div>
-
-          <!------item 3-----
-
-          <div class="item">
-            <p class="size15">
-              <#%= truncate excursion.description, :length => 90 %>
-            </p>
-          </div>
-            <#% end %>
-
-
-
-
-        </div>
-      </div>
-
-      -->
-
-    </div>
-  </div>
-</article>
 
 <% end %>
 <script src='swipe.js'></script>
 <script>
-new Swipe(document.getElementById('slider'));
-new Swipe(document.getElementById('slider2'));
-var slider3 = new Swipe(document.getElementById('slider3'));
+var slider<%= excursion.id.to_s %> = new Swipe(document.getElementById('slider<%= excursion.id.to_s %>'));
 
 </script>
 
