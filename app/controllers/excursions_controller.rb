@@ -60,6 +60,7 @@ class ExcursionsController < ApplicationController
   end
 
   def create
+    params[:excursion].permit!
     @excursion = Excursion.new(params[:excursion])
     if(params[:draft] and params[:draft] == "true")
       @excursion.draft = true
@@ -194,5 +195,7 @@ class ExcursionsController < ApplicationController
     params["excursion"] ||= {}
     params["excursion"]["relation_ids"] = [Relation::Public.instance.id]
     params["excursion"]["owner_id"] = current_subject.actor_id
+    params["excursion"]["author_id"] = current_subject.actor_id
+    params["excursion"]["user_author_id"] = current_subject.actor_id
   end
 end
