@@ -21,6 +21,10 @@ class EmbedsController < ApplicationController
 
   private
 
+  def allowed_params
+    [:fulltext, :width, :height, :live]
+  end
+
   def hack_auth
     params["embed"] ||= {}
     params["embed"]["relation_ids"] = [Relation::Public.instance.id]

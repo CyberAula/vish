@@ -1,68 +1,64 @@
 <% unless excursion.blank? %>
+<div id='slider3' class='swipe'>
+  <ul>
+    <li style='display:block'>
+      <div class="box_gray1 ">
+        <div class="box_gray2">
+          <div class="box_gray3">
+            <div class="box_white">
+              <div class="excursion">
+                <%= link_to excursion_thumb_for(excursion, 130), excursion %>
+              </div>
+              <div class="title">
+                <%= link_to excursion.title, excursion %>
+              </div>
+              <%#= link_to(raw("<i class='iconnav-notification'></i> "), :class => "btn pull-right") %>
+              <div class="by">by
+                <span class="autor">
+                  <%= link_to excursion.author.name, excursion.author.user %> 
+                </span>
+              </div>
+              <div class="count">
+                <% unless excursion.draft %>
+                <span class="">
+                  <%= excursion.post_activity.likes.count.to_s %>
+                </span>
+                <img src="/assets/icons/star-MENU-active.png" width="12px" height="12px">
+                <span class="">
+                  <%= excursion.post_activity.comments.count.to_s %>
+                  <img src="/assets/icons/view2.png" width="12px" height="12px">
+                </span>
+                <%end%>
+              </div>
+
+
+                    
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li style='display:none'><div>2</div></li>
+    <li style='display:none'><div>3</div></li>
+
+  </ul>
+</div>
+
+<a href='#' onclick='slider3.prev();return false;'>prev</a> 
+<a href='#' onclick='slider3.next();return false;'>next</a>
+<br><br>
+
+
+
+
 
 <article class="">
   <div class="row-fluid">
     <div class="span12">
 
-      <!--
-
-      <div id="excursion-mobile-carousel-<#%= excursion.id %>" class="carousel slide" data-interval="false">
-        <div class="carousel-inner">
-
-          <!------item 1-----
-
-          <div class="active item">
-            <div class="caption">
-              <div class="row-fluid">
-                <div class="span12">    -->
-                  <div class="box_basic span12 margin-bottom5">
-
-                    <!-----div class="thumbnails"---->
-                       <div class=" span2 excursion_box">
-                          <%= link_to excursion_thumb_for(excursion, 130), excursion %>
-                        </div>
-                    <!-----/div--->
-
-                    <div class="span9  margin-left5 margin-top5 ellipsis size18">
-                      <%= link_to excursion.title, excursion %>
-                    </div>
-                      <!------info-------div class="">
-                        <#%= link_to(raw("<i class='iconnav-notification'></i> "), :class => "btn pull-right") %>
-                       </div-->
-                    <div class="span10 margin-left5 green ellipsis size16">by
-                      <span class="link_blue"><%= link_to excursion.author.name, excursion.author.user %> </span>
-
-                      <div class="pull-right ">
-                        <% unless excursion.draft %>
-                          <h3>
-                          <span class="green inline size14">
-                            <%= excursion.post_activity.likes.count.to_s %>
-                          </span>
-                            <img src="/assets/icons/star-MENU-active.png" width="12" height="12">
-
-                          <span class="green inline-block size14">
-                          <%= excursion.post_activity.comments.count.to_s %>
-                            <img src="/assets/icons/view2.png" width="auto" height="auto">
-                          </span>
-                          </h3>
-                        <%end%>
-                      </div>
-
-
-                    </div>
-
-
-                  </div>
-                <!--
-
-                </div>
-              </div>
-
-
-
-            </div>
-          </div>
-                     -->
+ 
+                     
           <!------item 2-----
 
           <div class="item">
@@ -111,4 +107,11 @@
 </article>
 
 <% end %>
+<script src='swipe.js'></script>
+<script>
+new Swipe(document.getElementById('slider'));
+new Swipe(document.getElementById('slider2'));
+var slider3 = new Swipe(document.getElementById('slider3'));
+
+</script>
 

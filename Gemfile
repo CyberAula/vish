@@ -21,10 +21,10 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 
 social_stream_gems = lambda {
-  gem 'social_stream-base', '~> 1.0.0'
-  gem 'social_stream-documents', '~> 1.0.0'
-  gem 'social_stream-linkser', '~> 1.0.0'
-  gem 'social_stream-ostatus', '~> 1.0.0'
+  gem 'social_stream-base', '~> 1.1.0'
+  gem 'social_stream-documents', '~> 1.1.0'
+  gem 'social_stream-linkser', '~> 1.1.0'
+  gem 'social_stream-ostatus', '~> 1.1.0'
 }
 
 # Developing Social Stream

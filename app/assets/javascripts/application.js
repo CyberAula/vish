@@ -18,5 +18,7 @@
 //= require social_stream.comments
 //= require tagit
 //= require vish
+//= require swipe
+//= require swipe.min
 //= require_tree .
 

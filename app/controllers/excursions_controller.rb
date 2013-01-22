@@ -60,6 +60,7 @@ class ExcursionsController < ApplicationController
   end
 
   def create
+    params[:excursion].permit!
     @excursion = Excursion.new(params[:excursion])
     if(params[:draft] and params[:draft] == "true")
       @excursion.draft = true
@@ -71,6 +72,7 @@ class ExcursionsController < ApplicationController
   end
 
   def update
+    params[:excursion].permit!
     @excursion = Excursion.find(params[:id])
     if(@excursion.draft and params[:draft] and params[:draft] == "true")
       @excursion.draft = true
@@ -140,6 +142,10 @@ class ExcursionsController < ApplicationController
 
   private
 
+  def allowed_params
+    [:json, :slide_count, :thumbnail_url, :draft, :offline_manifest, :excursion_type]
+  end
+
   def search_options
     opts = search_scope_options
 
@@ -190,5 +196,7 @@ class ExcursionsController < ApplicationController
     params["excursion"] ||= {}
     params["excursion"]["relation_ids"] = [Relation::Public.instance.id]
     params["excursion"]["owner_id"] = current_subject.actor_id
+    params["excursion"]["author_id"] = current_subject.actor_id
+    params["excursion"]["user_author_id"] = current_subject.actor_id
   end
 end
