@@ -1,39 +1,34 @@
 .swipe
-	@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+	display: block
 	ul
-		width: 100%
-	.box_gray1
+	.box1
+		@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 		@include border-radius($radius)
 		border-top: 1px solid #F2F2F2
 		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
 		position: relative
-		@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 		z-index: 1
 
-		margin-left: 1%
 
-		.box_gray2
-
+		.box2
 			border: medium non
 			border-radius: 100% 100% 100% 100% / 33px
 			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02)
 
-			.box_gray3 
+
+			.box3
 
 				@include gradient-vertical($startColor: #F9F9F9, $endColor: #F0F0F0)
 				border-radius: 15px 15px 15px 15px
 				box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset
 				cursor: pointer
-				display: block
-				padding: 5px
+				display: inline-block
 
-				.box_white
-					width: 96% 
-					display: inline-block
-					padding: 5px
+				.boxwhite
+					display: inline-block					
 					background-color: $white
 					@include border-radius($radius)
-					@include box-shadow
+
 					.excursion img
 						float: left
 						@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -82,6 +77,11 @@
 						a:last-child
 							content: ". " 
 							font-size: 12px
+					.description
+						color: $green-vish
+						text-align: center
+						font-family: $fistFontFamily
+
 
 
 .arrow-left

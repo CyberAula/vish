@@ -3,10 +3,10 @@
   <ul >
   <!--item 1-->
     <li style='display:block'>
-      <div class="box_gray1 ">
-        <div class="box_gray2">
-          <div class="box_gray3">
-            <div class="box_white">
+      <div class="box1">
+        <div class="box2">
+          <div class="box3">
+            <div class="boxwhite">
               <div class="excursion">
                 <%= link_to excursion_thumb_for(excursion, 130), excursion %>
               </div>
@@ -44,10 +44,10 @@
 
 
 
-      <div class="box_gray1 ">
-        <div class="box_gray2">
-          <div class="box_gray3">
-            <div class="box_white">
+      <div class="box1 ">
+        <div class="box2">
+          <div class="box3">
+            <div class="boxwhite">
               <a class="arrow-left" href='#' onclick='slider<%= excursion.id.to_s %>.prev();return false;'><i class='icontool16-tool16_arrow_5'></i></a> 
 
               <a class="arrow-right" href='#' onclick='slider<%= excursion.id.to_s %>.next();return false;'><i class='icontool16-tool16_arrow_1'></i></a>
@@ -67,13 +67,15 @@
 <!--item 3-->
 
     <li style='display:none'>
-      <div class="box_gray1 ">
-        <div class="box_gray2">
-          <div class="box_gray3">
-            <div class="box_white">
+      <div class="box1 ">
+        <div class="box2">
+          <div class="box3">
+            <div class="boxwhite">
               <a class="arrow-left" href='#' onclick='slider<%= excursion.id.to_s %>.prev();return false;'><i class='icontool16-tool16_arrow_5'></i></a> 
               <% unless excursion.description.blank? %>
-              <%= truncate excursion.description, :length => 90 %>
+              <div class="description">
+                <%= truncate excursion.description, :length => 100 %>
+              </div>
               <% end %>
             </div>
           </div>
