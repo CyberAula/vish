@@ -1,0 +1,107 @@
+.swipe
+	display: block
+	ul
+	.box1
+		@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+		@include border-radius($radius)
+		border-top: 1px solid #F2F2F2
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
+		position: relative
+		z-index: 1
+
+
+		.box2
+			border: medium non
+			border-radius: 100% 100% 100% 100% / 33px
+			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02)
+
+
+			.box3
+
+				@include gradient-vertical($startColor: #F9F9F9, $endColor: #F0F0F0)
+				border-radius: 15px 15px 15px 15px
+				box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset
+				cursor: pointer
+				display: inline-block
+
+				.boxwhite
+					display: inline-block					
+					background-color: $white
+					@include border-radius($radius)
+
+					.excursion img
+						float: left
+						@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						display: inline-block
+
+					.title
+						float: left
+						@include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						display: inline-block
+						padding: 5px
+						@include text-overflow()
+						a
+							color: $blue-1
+							
+					.by
+						@include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						display: inline-block
+						float: left
+						color: $green-vish
+						font-size: 12px
+						@include text-overflow()
+						margin-left: 5px
+						.autor
+							display: inline-block
+							a
+								font-size: 14px
+								color: $blue-2
+								font-family: $fistFontFamily
+					.count
+						@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						display: inline-block
+						float: right
+						color: $green-vish
+						font-size: 12px
+					.tags
+						display: inline-block
+						float: left
+						margin-left: 10px
+						@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+						@include text-overflow()
+						a
+							color: $blue-2
+						a:after
+							content: ", " 
+							font-size: 12px
+						a:last-child
+							content: ". " 
+							font-size: 12px
+					.description
+						color: $green-vish
+						text-align: center
+						font-family: $fistFontFamily
+
+
+
+.arrow-left
+	@include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+	display: inline-block
+	z-index: 2
+	float: left
+	opacity: 0.1
+
+.arrow-right
+	@include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+	display: inline-block
+	z-index: 2
+	float: right
+	opacity: 0.1
+
+
+							
+
+
+
+
+

@@ -1,114 +1,97 @@
 <% unless excursion.blank? %>
-
-<article class="">
-  <div class="row-fluid">
-    <div class="span12">
-
-      <!--
-
-      <div id="excursion-mobile-carousel-<#%= excursion.id %>" class="carousel slide" data-interval="false">
-        <div class="carousel-inner">
-
-          <!------item 1-----
-
-          <div class="active item">
-            <div class="caption">
-              <div class="row-fluid">
-                <div class="span12">    -->
-                  <div class="box_basic span12 margin-bottom5">
-
-                    <!-----div class="thumbnails"---->
-                       <div class=" span2 excursion_box">
-                          <%= link_to excursion_thumb_for(excursion, 130), excursion %>
-                        </div>
-                    <!-----/div--->
-
-                    <div class="span9  margin-left5 margin-top5 ellipsis size18">
-                      <%= link_to excursion.title, excursion %>
-                    </div>
-                      <!------info-------div class="">
-                        <#%= link_to(raw("<i class='iconnav-notification'></i> "), :class => "btn pull-right") %>
-                       </div-->
-                    <div class="span10 margin-left5 green ellipsis size16">by
-                      <span class="link_blue"><%= link_to excursion.author.name, excursion.author.user %> </span>
-
-                      <div class="pull-right ">
-                        <% unless excursion.draft %>
-                          <h3>
-                          <span class="green inline size14">
-                            <%= excursion.post_activity.likes.count.to_s %>
-                          </span>
-                            <img src="/assets/icons/star-MENU-active.png" width="12" height="12">
-
-                          <span class="green inline-block size14">
-                          <%= excursion.post_activity.comments.count.to_s %>
-                            <img src="/assets/icons/view2.png" width="auto" height="auto">
-                          </span>
-                          </h3>
-                        <%end%>
-                      </div>
-
-
-                    </div>
-
-
-                  </div>
-                <!--
-
-                </div>
+<div id='slider<%= excursion.id.to_s %>' class='swipe'>
+  <ul >
+  <!--item 1-->
+    <li style='display:block'>
+      <div class="box1">
+        <div class="box2">
+          <div class="box3">
+            <div class="boxwhite">
+              <div class="excursion">
+                <%= link_to excursion_thumb_for(excursion, 130), excursion %>
               </div>
+              <div class="title">
+                <%= link_to excursion.title, excursion %>
+              </div>
+              <a class="arrow-right" href='#' onclick='slider<%= excursion.id.to_s %>.next();return false;'><i class='icontool16-tool16_arrow_1'></i></a>
 
-
+              <div class="by">by
+                <span class="autor">
+                  <%= link_to excursion.author.name, excursion.author.user %> 
+                </span>
+              </div>
+              <div class="count">
+                <% unless excursion.draft %>
+                <span class="">
+                  <%= excursion.post_activity.likes.count.to_s %>
+                </span>
+                <img src="/assets/icons/star-MENU-active.png" width="12px" height="12px">
+                <span class="">
+                  <%= excursion.post_activity.comments.count.to_s %>
+                  <img src="/assets/icons/view2.png" width="12px" height="12px">
+                </span>
+                <%end%>
+              </div>
 
             </div>
           </div>
-                     -->
-          <!------item 2-----
+        </div>
+      </div>
+    </li>
+  <!--item 2-->
+    <li style='display:none'>
 
-          <div class="item">
-            <div class="caption">
-              <div class="row-fluid">
-                <div class="span12">
 
-                  <h2>
-                    <span class="green">
-                      <#%= excursion.visit_count %>
-                    </span>
-                    <#%= t('follow.views') %>
-                  </h2>
 
-                  <h3 class="span8 blue-opacity article ellipsis w400px">
-                    <#% excursion.tags.each do |t| %>
-                      <a href="#"><#%= t.to_s %></a>,
-                    <#% end %>
-                  </h3>
 
-                </div>
-                  <#% unless excursion.description.blank? %>
+      <div class="box1 ">
+        <div class="box2">
+          <div class="box3">
+            <div class="boxwhite">
+              <a class="arrow-left" href='#' onclick='slider<%= excursion.id.to_s %>.prev();return false;'><i class='icontool16-tool16_arrow_5'></i></a> 
+
+              <a class="arrow-right" href='#' onclick='slider<%= excursion.id.to_s %>.next();return false;'><i class='icontool16-tool16_arrow_1'></i></a>
+              <div class="tags">   
+                <% excursion.tags.each do |t| %>
+                <a href="#"><%= t.to_s %></a>
+                <% end %>
               </div>
             </div>
           </div>
-
-          <!------item 3-----
-
-          <div class="item">
-            <p class="size15">
-              <#%= truncate excursion.description, :length => 90 %>
-            </p>
-          </div>
-            <#% end %>
-
-
-
-
         </div>
       </div>
 
-      -->
 
-    </div>
-  </div>
-</article>
+    </li>
+
+<!--item 3-->
+
+    <li style='display:none'>
+      <div class="box1 ">
+        <div class="box2">
+          <div class="box3">
+            <div class="boxwhite">
+              <a class="arrow-left" href='#' onclick='slider<%= excursion.id.to_s %>.prev();return false;'><i class='icontool16-tool16_arrow_5'></i></a> 
+              <% unless excursion.description.blank? %>
+              <div class="description">
+                <%= truncate excursion.description, :length => 100 %>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </li>
+
+  </ul>
+</div>
+
 
 <% end %>
+<script src='swipe.js'></script>
+<script>
+var slider<%= excursion.id.to_s %> = new Swipe(document.getElementById('slider<%= excursion.id.to_s %>'));
+
+</script>
 

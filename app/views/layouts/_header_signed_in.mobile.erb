@@ -1,22 +1,22 @@
-
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar collapsed" data-target=".navbar-responsive-collapse" data-toggle="collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a href="/">
-          <img src="/assets/corporative/logo.png"  class="pull-left" width="120" height="36" alt="vish logo mobile">
-        </a>
-        <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
-          <input type="text" class="search-query" placeholder="Search">
-        </form>
-
-        <div class="nav-collapse navbar-responsive-collapse collapse" style="height: 0px;">
-          <ul class="nav">
-            <li class="active"><%= link_to current_user.name, current_user%></li>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <form class="navbar-search pull-rigth" action="<%=search_path%>" method="get">
+        <input type="text" class="search-query" placeholder="Search">
+      </form>
+      </a>
+      <div class="nav-collapse collapse navbar-responsive-collapse">
+        <ul class="nav">
+          <li class="">
+            <a href="/">
+              <img src="/assets/corporative/logo.png"  class="imgnoradio " width="150" >
+            </a>
+                      <li class="active"><%= link_to current_user.name, current_user%></li>
             <li><a href="/home"><%= t('home') %></a></li>
             <li><a href="/followers"><%= current_subject.followers.count.to_s + ' ' + t('follow.followers') %></a></li>
             <li><a href="/followings"><%= current_user.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings') %></a></li>
@@ -37,10 +37,8 @@
             <li><%= link_to t('conditions.other'), '/legal_notice', :target => '_blank' %></li>
             <li class="divider"></li>
             <li>Virtual Science Hub &copy; 2012</li>
-          </ul>
-
-
-        </div>
-      </div>
+        </ul>        
+      </div><!-- /.nav-collapse -->
     </div>
-  </div>
+  </div><!-- /navbar-inner -->
+</div><!-- /navbar -->
