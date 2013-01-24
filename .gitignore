@@ -37,6 +37,9 @@ public/images/tmp
 public/system
 public/assets
 
+# scorm zip files
+public/scorm/excursions/*
+
 #temporal files
 app/views/layouts/_grid.html.erb
 

@@ -14,6 +14,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
+require 'builder'
 
 class Excursion < ActiveRecord::Base
   include SocialStream::Models::Object
@@ -40,6 +41,42 @@ class Excursion < ActiveRecord::Base
   def to_json(options=nil)
     json
   end
+
+
+  def to_scorm(controller)
+    if true #self.scorm_needs_generate    
+      require 'zip/zip'
+      require 'zip/zipfilesystem'  
+      t = File.open("#{Rails.root}/public/scorm/excursions/#{self.id}.zip", 'w')
+      Zip::ZipOutputStream.open(t.path) do |zos|
+        xml_manifest = self.generate_scorm_manifest
+        zos.put_next_entry("imsmanifest.xml")
+        zos.print xml_manifest.target!()
+
+        zos.put_next_entry("excursion.html")
+        zos.print controller.render_to_string "show.embed.erb", :locals => {:excursion=>self}, :layout => false        
+      end    
+      t.close
+    end
+  end
+
+
+  def generate_scorm_manifest
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+    myxml.manifest('xsi:schemaLocation'=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd", 'identifier'=>"MANIFEST-A2F3004F6186AC9480285D4AEDCD6BAF", 'xmlns:adlcp'=>"http://www.adlnet.org/xsd/adlcp_rootv1p2", 'xmlns:xsi'=>"http://www.w3.org/2001/XMLSchema-instance", 'xmlns:imsmd'=>"http://www.imsglobal.org/xsd/imsmd_rootv1p2p1", 'xmlns'=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2") do
+      myxml.organizations('default'=>"ITEM") do       
+        
+      end
+      myxml.resources do         
+        myxml.resource('identifier'=>"RES-" + self.id.to_s, 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
+          myxml.file('href'=> "excursion.html")
+        end
+      end       
+    end    
+    return myxml 
+  end
+
 
   def clone_for sbj
     return nil if sbj.blank?

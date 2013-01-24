@@ -112,6 +112,11 @@ class ExcursionsController < ApplicationController
         @gateway = params[:gateway]
         render :layout => 'iframe'
       }
+      format.scorm {
+        @excursion.to_scorm(self)
+        send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
+
+      }
     end
   end
 
