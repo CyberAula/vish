@@ -95,6 +95,7 @@ en:
       edit: "edit"
       show: "show"
       share: "share"
+      scorm: "scorm"
     clone:
       confirm: "This will clone this excursion to your own repository"
       not_found: "Excursion not found"

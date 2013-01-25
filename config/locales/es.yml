@@ -99,6 +99,7 @@ es:
       edit: "Editar"
       show: "Visualizar"
       share: "compartir"
+      scorm: "scorm"
     clone:
       confirm: "Esto clonará la excursión en tu propio repositorio"
       not_found: "Excursion no encontrada"

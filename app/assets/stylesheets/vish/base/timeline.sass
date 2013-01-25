@@ -4,7 +4,7 @@
 
 .wall,
 #wall-me
-  @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   @include nomargin-left 
   ul.tabs
@@ -33,7 +33,7 @@
     display: none
 
 .timeline
-  @include grid-fluid-span-x(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
   .root 
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)

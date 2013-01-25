@@ -43,7 +43,7 @@
 
 <!--timeline-->       
 
-    <div id="timeline" class="tab-pane ">
+    <div id="timeline" class="tab-pane timeline">
       <%= render :partial => 'activities/wall', :locals => {:activities => current_subject.wall(:home).page(params[:page_net]), :is_active_wall => true} %>
     </div>
 
@@ -95,7 +95,7 @@
           <%= link_to(t('activity.more'), {:page_excursions_fav => (params[:page_excursions_fav].to_i + 1), :active_tab => 'excursions-fav'}, :id => 'excursions_fav_load_more_button', :class => '', :remote => true) unless fav_excursions.count < 10 %>
         </div>
       </div>
-      
+
     </div>
   </div>
  </section>

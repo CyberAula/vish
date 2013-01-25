@@ -1,33 +1,30 @@
-<article>
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="box_basic span12 margin-bottom5">
-        <div class="span3 inline-block">
-          <%= link_to image_tag(activity.sender_subject.logo.url(:profile), :alt => activity.sender_subject.name), activity.sender_subject %>
-        </div>
-        <div class="span9 inline-block padding_10">
-        <div class="span12 margin-top5 gray-medium size16">
-          <%= activity.title(self) %>
-        </div>
-        <% unless activity.activity_objects.empty? %>
-          <span class="gray-activity margin-left10 size16"><%= render activity.activity_objects %></span>
-        <%end%>
-          <div class="span12 ellipsis size14 inline-block ">
-            <div class="red-2 inline-block  "><%= t('time.ago', :time => time_ago_in_words(activity.created_at)) %></div>
-            <div class="pull-right inline-block  ">
-                        <div class="green inline size14">
-                          <%= activity.likes.count.to_s %>
-                        </div>
-              <img src="/assets/icons/star-MENU-active.png" width="12" height="12">
-                         <div class="green inline-block size14">
-                        <%= activity.comments.count.to_s %>
-                          <img class="imgnoradio" src="/assets/icons/mensajes.png" width="auto" height="auto">
-                        </div>
-             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="timeline">
+<div class="root">
+  <div class="avatar">
+    <%= link_to image_tag(activity.sender_subject.logo.url(:profile), :alt => activity.sender_subject.name), activity.sender_subject %>
   </div>
-</article>
-<div class="clearfloat"></div>
+  <header>
+    <h5>
+      <%= activity.title(self) %>
+    </h5>
+
+  </header>
+  <section class="objects">
+    <% unless activity.activity_objects.empty? %>
+
+      <%= render activity.activity_objects %>
+    <%end%>
+  </section>
+
+  
+
+<%= t('time.ago', :time => time_ago_in_words(activity.created_at)) %>
+
+<%= activity.likes.count.to_s %>
+
+<img src="/assets/icons/star-MENU-active.png" width="12px" height="12px">
+
+<%= activity.comments.count.to_s %>
+<img class="imgnoradio" src="/assets/icons/mensajes.png" width="12px" height="12px">
+</div>
+</div>
