@@ -1,28 +1,24 @@
-<%= div_for contact, :class => 'row-fluid' do %>
-  <div class="box_basic span12 margin-bottom5">
-    <ul class="thumbnails">
-      <li class="span3 ">
+<%= div_for contact, :class => 'follower-item' do %>
+<div class="follower-item">
+  <ul class="thumbnails">
+      <li class="avatar">
         <%= link_to image_tag(contact.receiver.logo.url(:profile)), contact.receiver.user %>
       </li>
-      <li class="span8 margin-left10 ">
-        <div class="caption">
-          <div class="size20 ellipsis">
-
+      <li class="info_user">
+        <div class="name">
               <%= link_to contact.receiver.name, contact.receiver.user %>
-
-          </div>
-          <div class="follwrs-ing size16 margin-top5">
-            <%= t('follow.followers') %>: <%= link_to contact.receiver_subject.followers.count, [contact.receiver_subject, "followers"] %>  </br>
-            <%= t('follow.followings') %>: <%= link_to contact.receiver.following_actor_objects.includes(:actor).count, [contact.receiver_subject, "followings"] %>
-          </div>
-
         </div>
+        <div class="btn-item-follow">
+          <%=contact_to(contact.receiver) %>
+        </div>
+        <div class="follwrs-ing">
+          <div class="follwrs upfoll"><%= t('follow.followers') %>: <%= link_to contact.receiver_subject.followers.count, [contact.receiver_subject, "followers"] %></div>
+          <div class="folling upfoll"><%= t('follow.followings') %>: <%= link_to contact.receiver.following_actor_objects.includes(:actor).count, [contact.receiver_subject, "followings"] %></div>
+        </div>
+
       </li>
-      <div class="pull-right margin-top-negative_25"><%=contact_to(contact.receiver) %></div>
     </ul>
-  </div>
-  <div class="space_center">
-  </div>
+</div>
 <% end %>
 
 

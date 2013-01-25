@@ -12,7 +12,7 @@ gem 'mysql2'
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'sass-rails', '~> 3.2.4'
-gem 'bootstrap-sass', '~> 2.1.0.0'
+gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 3.2.2'
 gem 'uglifier', '>= 1.2.3'
 
