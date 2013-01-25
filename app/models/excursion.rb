@@ -27,6 +27,7 @@ class Excursion < ActiveRecord::Base
   validates_presence_of :json
   after_save :parse_for_meta
   before_save :fix_relation_ids_drafts
+  after_destroy :remove_scorm
 
   define_index do
     activity_object_index
@@ -44,7 +45,7 @@ class Excursion < ActiveRecord::Base
 
 
   def to_scorm(controller)
-    if true #self.scorm_needs_generate    
+    if self.scorm_needs_generate
       require 'zip/zip'
       require 'zip/zipfilesystem'  
       t = File.open("#{Rails.root}/public/scorm/excursions/#{self.id}.zip", 'w')
@@ -54,12 +55,22 @@ class Excursion < ActiveRecord::Base
         zos.print xml_manifest.target!()
 
         zos.put_next_entry("excursion.html")
-        zos.print controller.render_to_string "show.embed.erb", :locals => {:excursion=>self}, :layout => false        
+        zos.print controller.render_to_string "show.embed.erb", :locals => {:excursion=>self}, :layout => false  
+
+        self.scorm_timestamp = Time.now
+        self.save!
       end    
       t.close
     end
   end
 
+  def scorm_needs_generate
+    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp
+      return true;
+    else
+      return false;
+    end
+  end
 
   def generate_scorm_manifest
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -77,6 +88,11 @@ class Excursion < ActiveRecord::Base
     return myxml 
   end
 
+  def remove_scorm
+    if File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
+      File.delete("#{Rails.root}/public/scorm/excursions/#{self.id}.zip") 
+    end
+  end
 
   def clone_for sbj
     return nil if sbj.blank?
