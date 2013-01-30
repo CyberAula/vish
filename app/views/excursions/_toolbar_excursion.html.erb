@@ -7,24 +7,24 @@
     <% unless excursion.draft %>
 
       <div class="btn-gray">
-     <%= link_to raw("<i class='icontool16-tool16_arrow_3'></i> ")+ t('excursion.scorm')%>
-      </div>
-
-      <div class="btn-gray">
-        <a class="action" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
+        <a class="action excursion_toolbar_icon" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
       </div>
       <div class="btn-gray">
-        <a class="action" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= content_tag(:span, image_tag("icons/compartir.png") + t('excursion.actions.share')) %></a>
+        <a class="action excursion_toolbar_icon" data-toggle="collapse" data-target="#share" data-parent="#excursion-share"><%= content_tag(:span, image_tag("icons/compartir.png") + t('excursion.actions.share')) %></a>
       </div>
       <% if user_signed_in? %>
         <div class="btn-gray">
-          <%= link_to image_tag("icons/clone.png") + t('excursion.actions.clone'),excursion_path(excursion) + '/clone', :confirm => t('excursion.clone.confirm'), :class => :action, :id => :document_clone_action   %>
+          <%= link_to image_tag("icons/clone.png") + t('excursion.actions.clone'),excursion_path(excursion) + '/clone', :confirm => t('excursion.clone.confirm'), :class => 'action excursion_toolbar_icon', :id => :document_clone_action   %>
         </div>
       <%end%>
 
+      <div class="btn-gray">
+        <%= link_to raw("<i class='icontool16-tool16_arrow_3'></i> ")+ 'scorm',excursion_path(excursion) + '.scorm', :class => 'excursion_toolbar_icon' %>
+      </div>
+
       <% if user_signed_in? and (can? :update, excursion) %>
         <div class="btn-gray">
-          <%= link_to raw("<i class='icontool16-tool16_edit'></i> ")+ t('excursion.actions.edit'),edit_excursion_path(excursion), :class => :action, :id => :document_edit_action   %>
+          <%= link_to raw("<i class='icontool16-tool16_edit'></i> ")+ t('excursion.actions.edit'),edit_excursion_path(excursion), :class => 'action excursion_toolbar_icon', :id => :document_edit_action   %>
         </div>
       <%end%>
     <%end%>
@@ -32,7 +32,7 @@
       <div class="btn-gray">
           <%= link_to raw("<i class='icontool16-tool16_symbol_delete'></i> ") +  t('excursion.actions.delete'),  excursion,
                       :confirm => t('confirm_delete', :scope => @excursion.class.to_s.underscore),
-                      :method => :delete, :class => :action %>
+                      :method => :delete, :class => 'action excursion_toolbar_icon' %>
       </div>
 
       <script type="text/javascript">
