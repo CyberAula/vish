@@ -9,7 +9,7 @@
 
       <title>ViSH Excursion</title>
       <%= favicon_link_tag "icons/favicon.ico" %>
-      <meta charset="UTF-8">  
+      <meta charset="UTF-8">
       <meta name="viewport" content="user-scalable=yes">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -17,6 +17,7 @@
         <%js_file = "vishViewer"%>
       <%else%>
         <%js_file = "vishEditor"%>
+        <%=javascript_include_tag "ckeditor/ckeditor" %>
       <%end%>
       <% if Rails.env == "production" and not request.host == "vishub-test.global.dit.upm.es" %>
         <%=javascript_include_tag js_file + ".min" %>
@@ -25,9 +26,9 @@
       <% end %>
   	  <%= stylesheet_link_tag "vish_editor" %>
       <script type="text/javascript" src="http://www.google.com/jsapi"> </script>
-    <script type="text/javascript">
-     google.load('visualization', '1.0', {'packages':['corechart']});
-    </script>
+      <script type="text/javascript">
+        google.load('visualization', '1.0', {'packages':['corechart']});
+      </script>
   	  <%= yield :headers %>
     </head>
 

@@ -13207,6 +13207,281 @@ VISH.Editor = function(V, $, undefined) {
   return{init:init, addDeleteButton:addDeleteButton, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getPresentationType:getPresentationType, getOptions:getOptions, loadFancyBox:loadFancyBox, getPresentation:getPresentation, setPresentation:setPresentation, isPresentationStandard:isPresentationStandard, isPresentationDraft:isPresentationDraft, getSavedPresentation:getSavedPresentation, hasInitialPresentation:hasInitialPresentation, savePresentation:savePresentation, afterSavePresentation:afterSavePresentation, 
   setPresentationType:setPresentationType, allowExitWithoutConfirmation:allowExitWithoutConfirmation, setCurrentArea:setCurrentArea, selectArea:selectArea}
 }(VISH, jQuery);
+VISH.Editor.Utils = function(V, $, undefined) {
+  var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
+    var dimentions_for_drawing = {width:w_content, height:h_content};
+    var aspect_ratio_zone = w_zone / h_zone;
+    var aspect_ratio_content = w_content / h_content;
+    if(aspect_ratio_zone > aspect_ratio_content) {
+      dimentions_for_drawing.width = aspect_ratio_content * h_zone;
+      dimentions_for_drawing.height = h_zone;
+      return dimentions_for_drawing
+    }else {
+      dimentions_for_drawing.width = w_zone;
+      dimentions_for_drawing.height = w_zone / aspect_ratio_content;
+      return dimentions_for_drawing
+    }
+  };
+  var getWidthFromStyle = function(style, area) {
+    return getPixelDimensionsFromStyle(style, area)[0]
+  };
+  var getHeightFromStyle = function(style, area) {
+    return getPixelDimensionsFromStyle(style, area)[1]
+  };
+  var getPixelDimensionsFromStyle = function(style, area) {
+    var dimensions = [];
+    var width = null;
+    var height = null;
+    var width_percent_pattern = /width:\s?([0-9]+(\.[0-9]+)?)%/g;
+    var width_px_pattern = /width:\s?([0-9]+(\.?[0-9]+)?)px/g;
+    var height_percent_pattern = /height:\s?([0-9]+(\.[0-9]+)?)%/g;
+    var height_px_pattern = /height:\s?([0-9]+(\.?[0-9]+)?)px/g;
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("width") !== -1) {
+        if(property.match(width_px_pattern)) {
+          var result = width_px_pattern.exec(property);
+          if(result[1]) {
+            width = result[1]
+          }
+        }else {
+          if(property.match(width_percent_pattern)) {
+            var result = width_percent_pattern.exec(property);
+            if(result[1]) {
+              var percent = result[1];
+              if(area) {
+                width = $(area).width() * percent / 100
+              }
+            }
+          }
+        }
+      }else {
+        if(property.indexOf("height") !== -1) {
+          if(property.match(height_px_pattern)) {
+            var result = height_px_pattern.exec(property);
+            if(result[1]) {
+              height = result[1]
+            }
+          }else {
+            if(property.match(height_percent_pattern)) {
+              var result = height_percent_pattern.exec(property);
+              if(result[1]) {
+                var percent = result[1];
+                if(area) {
+                  height = $(area).height() * percent / 100
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+    dimensions.push(width);
+    dimensions.push(height);
+    return dimensions
+  };
+  var setStyleInPixels = function(style, area) {
+    var filterStyle = "";
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("width") === -1 && property.indexOf("height") === -1) {
+        filterStyle = filterStyle + property + "; "
+      }
+    });
+    var dimensions = getPixelDimensionsFromStyle(style, area);
+    if(dimensions && dimensions[0]) {
+      filterStyle = filterStyle + "width: " + dimensions[0] + "px; ";
+      if(dimensions[1]) {
+        filterStyle = filterStyle + "height: " + dimensions[1] + "px; "
+      }
+    }
+    return filterStyle
+  };
+  var addZoomToStyle = function(style, zoom) {
+    if(!style) {
+      return null
+    }
+    var filterStyle = "";
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("-ms-transform") === -1 && property.indexOf("-moz-transform") === -1 && property.indexOf("-o-transform") === -1 && property.indexOf("-webkit-transform") === -1 && property.indexOf("-moz-transform-origin") === -1 && property.indexOf("-webkit-transform-origin") === -1 && property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1) {
+        filterStyle = filterStyle + property + "; "
+      }
+    });
+    if(zoom) {
+      filterStyle = filterStyle + "-ms-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-ms-transform-origin: 0 0; ";
+      filterStyle = filterStyle + "-moz-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-moz-transform-origin: 0 0; ";
+      filterStyle = filterStyle + "-o-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-o-transform-origin: 0 0; ";
+      filterStyle = filterStyle + "-webkit-transform: scale(" + zoom + "); ";
+      filterStyle = filterStyle + "-webkit-transform-origin: 0 0; "
+    }
+    return filterStyle
+  };
+  var getStylesInPercentages = function(parent, element) {
+    var WidthPercent = element.width() * 100 / parent.width();
+    var HeightPercent = element.height() * 100 / parent.height();
+    var TopPercent = element.position().top * 100 / parent.height();
+    var LeftPercent = element.position().left * 100 / parent.width();
+    return"position: relative; width:" + WidthPercent + "%; height:" + HeightPercent + "%; top:" + TopPercent + "%; left:" + LeftPercent + "%;"
+  };
+  var refreshDraggables = function(slide) {
+    $(slide).find("[draggable='true']").draggable({cursor:"move", stop:function() {
+      $(this).parent().click()
+    }})
+  };
+  var generateTable = function(author, title, description) {
+    if(!author) {
+      author = ""
+    }
+    if(!title) {
+      title = ""
+    }
+    if(!description) {
+      description = ""
+    }
+    return'<table class="metadata">' + '<tr class="even">' + '<td class="title header_left">' + VISH.Editor.I18n.getTrans("i.Title") + "</td>" + '<td class="title header_right"><div class="height_wrapper">' + title + "</div></td>" + "</tr>" + '<tr class="odd">' + '<td class="title">' + VISH.Editor.I18n.getTrans("i.Author") + "</td>" + '<td class="info"><div class="height_wrapper">' + author + "</div></td>" + "</tr>" + '<tr class="even">' + '<td colspan="2" class="title_description">' + VISH.Editor.I18n.getTrans("i.Description") + 
+    "</td>" + "</tr>" + '<tr class="odd">' + '<td colspan="2" class="info_description"><div class="height_wrapper_description">' + description + "</div></td>" + "</tr>" + "</table>"
+  };
+  var convertToTagsArray = function(tags) {
+    var tagsArray = [];
+    if(!tags || tags.length == 0) {
+      return tagsArray
+    }
+    $.each(tags, function(index, tag) {
+      tagsArray.push(tag.value)
+    });
+    return tagsArray
+  };
+  var autocompleteUrls = function(input) {
+    var http_urls_pattern = /(^http(s)?:\/\/)/g;
+    var objectInfo = VISH.Object.getObjectInfo();
+    if(objectInfo.wrapper == null && input.match(http_urls_pattern) == null) {
+      return"http://" + input
+    }else {
+      return input
+    }
+  };
+  var filterFilePath = function(path) {
+    return path.replace("C:\\fakepath\\", "")
+  };
+  var prepareSlideToNest = function(parentId, slide) {
+    if(typeof parentId !== "string") {
+      return slide
+    }
+    if(slide.type === VISH.Constant.FLASHCARD || slide.type === VISH.Constant.VTOUR) {
+      return
+    }
+    slide.id = VISH.Utils.getId(parentId + "_" + slide.id, true);
+    if(slide.elements) {
+      $.each(slide.elements, function(index, element) {
+        slide.elements[index].id = VISH.Utils.getId(parentId + "_" + slide.elements[index].id, true)
+      })
+    }
+    return slide
+  };
+  var undoNestedSlide = function(parentId, slide) {
+    if(typeof parentId !== "string") {
+      return slide
+    }
+    if(slide.type === VISH.Constant.FLASHCARD || slide.type === VISH.Constant.VTOUR) {
+      return
+    }
+    slide.id = slide.id.replace(parentId + "_", "");
+    if(slide.elements) {
+      $.each(slide.elements, function(index, element) {
+        slide.elements[index].id = slide.elements[index].id.replace(parentId + "_", "")
+      })
+    }
+    return slide
+  };
+  var replaceIdsForSlide = function(slide) {
+    var slideId = V.Utils.getId("article");
+    $(slide).attr("id", slideId);
+    var slideType = VISH.Slides.getSlideType(slide);
+    switch(slideType) {
+      case VISH.Constant.STANDARD:
+        slide = _replaceIdsForStandardSlide(slide, slideId);
+        break;
+      case VISH.Constant.FLASHCARD:
+        slide = _replaceIdsForFlashcardSlide(slide, slideId);
+        break;
+      default:
+        return
+    }
+    return slide
+  };
+  var _replaceIdsForStandardSlide = function(slide, slideId) {
+    $(slide).children("div[id][areaid]").each(function(index, zone) {
+      zone = _replaceIdsForZone(zone, slideId)
+    });
+    return slide
+  };
+  var _replaceIdsForFlashcardSlide = function(flashcard, flashcardId) {
+    var pois = $(flashcard).find("div.fc_poi");
+    $(pois).each(function(index, poi) {
+      var poiId = V.Utils.getId(flashcardId + "_poi");
+      $(poi).attr("id", poiId)
+    });
+    var subslides = $(flashcard).find(".subslides > article.subslide");
+    $(subslides).each(function(index, subSlide) {
+      subSlide = _replaceIdsForSubSlide(subSlide, flashcardId)
+    });
+    return flashcard
+  };
+  var _replaceIdsForSubSlide = function(subSlide, parentId) {
+    var slideId = V.Utils.getId(parentId + "_article");
+    $(subSlide).attr("id", slideId);
+    $(subSlide).children(".close_subslide").attr("id", "close" + slideId);
+    var zones = $(subSlide).children("div[id]").not(".close_subslide");
+    $(zones).each(function(index, zone) {
+      zone = _replaceIdsForZone(zone, slideId)
+    })
+  };
+  var _replaceIdsForZone = function(zone, slideId) {
+    var zoneId = V.Utils.getId(slideId + "_zone");
+    $(zone).attr("id", zoneId);
+    $(zone).find("[id]").each(function(index, el) {
+      el = _replaceIdsForEl(el, zoneId)
+    });
+    return zone
+  };
+  var _replaceIdsForEl = function(el, zoneId) {
+    var elName = _getNameOfEl(el);
+    var elId = V.Utils.getId(zoneId + "_" + elName);
+    $(el).attr("id", elId);
+    return el
+  };
+  var _getNameOfEl = function(el) {
+    var elName = $($(el).attr("id").split("_")).last()[0];
+    if(elName.length > 1) {
+      return elName.substring(0, elName.length - 1)
+    }else {
+      return elName
+    }
+  };
+  var replaceIdsForFlashcardJSON = function(flashcard, forceId) {
+    var hash_subslide_new_ids = {};
+    var old_id;
+    var fc = jQuery.extend(true, {}, flashcard);
+    if(forceId) {
+      fc.id = forceId
+    }else {
+      fc.id = V.Utils.getId("article")
+    }
+    for(var ind in fc.slides) {
+      old_id = fc.slides[ind].id;
+      fc.slides[ind].id = V.Utils.getId(fc.id + "_article" + (parseInt(ind) + 1), true);
+      hash_subslide_new_ids[old_id] = fc.slides[ind].id
+    }
+    for(var num in fc.pois) {
+      fc.pois[num].id = V.Utils.getId(fc.id + "_poi" + (parseInt(num) + 1), true);
+      fc.pois[num].slide_id = hash_subslide_new_ids[fc.pois[num].slide_id]
+    }
+    return fc
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, dimentionToDraw:dimentionToDraw, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForFlashcardJSON:replaceIdsForFlashcardJSON, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide, generateTable:generateTable, 
+  convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath}
+}(VISH, jQuery);
 VISH.Editor.Text = function(V, $, undefined) {
   var initialized = false;
   var init = function() {
@@ -18674,281 +18949,6 @@ VISH.Editor.Utils.Loader = function(V, $, undefined) {
     _unloadSnapshotsInEditor($(".snapshot_wrapper"))
   };
   return{loadObjectsInEditorSlide:loadObjectsInEditorSlide, unloadObjectsInEditorSlide:unloadObjectsInEditorSlide, loadAllObjects:loadAllObjects, unloadAllObjects:unloadAllObjects}
-}(VISH, jQuery);
-VISH.Editor.Utils = function(V, $, undefined) {
-  var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
-    var dimentions_for_drawing = {width:w_content, height:h_content};
-    var aspect_ratio_zone = w_zone / h_zone;
-    var aspect_ratio_content = w_content / h_content;
-    if(aspect_ratio_zone > aspect_ratio_content) {
-      dimentions_for_drawing.width = aspect_ratio_content * h_zone;
-      dimentions_for_drawing.height = h_zone;
-      return dimentions_for_drawing
-    }else {
-      dimentions_for_drawing.width = w_zone;
-      dimentions_for_drawing.height = w_zone / aspect_ratio_content;
-      return dimentions_for_drawing
-    }
-  };
-  var getWidthFromStyle = function(style, area) {
-    return getPixelDimensionsFromStyle(style, area)[0]
-  };
-  var getHeightFromStyle = function(style, area) {
-    return getPixelDimensionsFromStyle(style, area)[1]
-  };
-  var getPixelDimensionsFromStyle = function(style, area) {
-    var dimensions = [];
-    var width = null;
-    var height = null;
-    var width_percent_pattern = /width:\s?([0-9]+(\.[0-9]+)?)%/g;
-    var width_px_pattern = /width:\s?([0-9]+(\.?[0-9]+)?)px/g;
-    var height_percent_pattern = /height:\s?([0-9]+(\.[0-9]+)?)%/g;
-    var height_px_pattern = /height:\s?([0-9]+(\.?[0-9]+)?)px/g;
-    $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("width") !== -1) {
-        if(property.match(width_px_pattern)) {
-          var result = width_px_pattern.exec(property);
-          if(result[1]) {
-            width = result[1]
-          }
-        }else {
-          if(property.match(width_percent_pattern)) {
-            var result = width_percent_pattern.exec(property);
-            if(result[1]) {
-              var percent = result[1];
-              if(area) {
-                width = $(area).width() * percent / 100
-              }
-            }
-          }
-        }
-      }else {
-        if(property.indexOf("height") !== -1) {
-          if(property.match(height_px_pattern)) {
-            var result = height_px_pattern.exec(property);
-            if(result[1]) {
-              height = result[1]
-            }
-          }else {
-            if(property.match(height_percent_pattern)) {
-              var result = height_percent_pattern.exec(property);
-              if(result[1]) {
-                var percent = result[1];
-                if(area) {
-                  height = $(area).height() * percent / 100
-                }
-              }
-            }
-          }
-        }
-      }
-    });
-    dimensions.push(width);
-    dimensions.push(height);
-    return dimensions
-  };
-  var setStyleInPixels = function(style, area) {
-    var filterStyle = "";
-    $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("width") === -1 && property.indexOf("height") === -1) {
-        filterStyle = filterStyle + property + "; "
-      }
-    });
-    var dimensions = getPixelDimensionsFromStyle(style, area);
-    if(dimensions && dimensions[0]) {
-      filterStyle = filterStyle + "width: " + dimensions[0] + "px; ";
-      if(dimensions[1]) {
-        filterStyle = filterStyle + "height: " + dimensions[1] + "px; "
-      }
-    }
-    return filterStyle
-  };
-  var addZoomToStyle = function(style, zoom) {
-    if(!style) {
-      return null
-    }
-    var filterStyle = "";
-    $.each(style.split(";"), function(index, property) {
-      if(property.indexOf("-ms-transform") === -1 && property.indexOf("-moz-transform") === -1 && property.indexOf("-o-transform") === -1 && property.indexOf("-webkit-transform") === -1 && property.indexOf("-moz-transform-origin") === -1 && property.indexOf("-webkit-transform-origin") === -1 && property.indexOf("-o-transform-origin") === -1 && property.indexOf("-ms-transform-origin") === -1) {
-        filterStyle = filterStyle + property + "; "
-      }
-    });
-    if(zoom) {
-      filterStyle = filterStyle + "-ms-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-ms-transform-origin: 0 0; ";
-      filterStyle = filterStyle + "-moz-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-moz-transform-origin: 0 0; ";
-      filterStyle = filterStyle + "-o-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-o-transform-origin: 0 0; ";
-      filterStyle = filterStyle + "-webkit-transform: scale(" + zoom + "); ";
-      filterStyle = filterStyle + "-webkit-transform-origin: 0 0; "
-    }
-    return filterStyle
-  };
-  var getStylesInPercentages = function(parent, element) {
-    var WidthPercent = element.width() * 100 / parent.width();
-    var HeightPercent = element.height() * 100 / parent.height();
-    var TopPercent = element.position().top * 100 / parent.height();
-    var LeftPercent = element.position().left * 100 / parent.width();
-    return"position: relative; width:" + WidthPercent + "%; height:" + HeightPercent + "%; top:" + TopPercent + "%; left:" + LeftPercent + "%;"
-  };
-  var refreshDraggables = function(slide) {
-    $(slide).find("[draggable='true']").draggable({cursor:"move", stop:function() {
-      $(this).parent().click()
-    }})
-  };
-  var generateTable = function(author, title, description) {
-    if(!author) {
-      author = ""
-    }
-    if(!title) {
-      title = ""
-    }
-    if(!description) {
-      description = ""
-    }
-    return'<table class="metadata">' + '<tr class="even">' + '<td class="title header_left">' + VISH.Editor.I18n.getTrans("i.Title") + "</td>" + '<td class="title header_right"><div class="height_wrapper">' + title + "</div></td>" + "</tr>" + '<tr class="odd">' + '<td class="title">' + VISH.Editor.I18n.getTrans("i.Author") + "</td>" + '<td class="info"><div class="height_wrapper">' + author + "</div></td>" + "</tr>" + '<tr class="even">' + '<td colspan="2" class="title_description">' + VISH.Editor.I18n.getTrans("i.Description") + 
-    "</td>" + "</tr>" + '<tr class="odd">' + '<td colspan="2" class="info_description"><div class="height_wrapper_description">' + description + "</div></td>" + "</tr>" + "</table>"
-  };
-  var convertToTagsArray = function(tags) {
-    var tagsArray = [];
-    if(!tags || tags.length == 0) {
-      return tagsArray
-    }
-    $.each(tags, function(index, tag) {
-      tagsArray.push(tag.value)
-    });
-    return tagsArray
-  };
-  var autocompleteUrls = function(input) {
-    var http_urls_pattern = /(^http(s)?:\/\/)/g;
-    var objectInfo = VISH.Object.getObjectInfo();
-    if(objectInfo.wrapper == null && input.match(http_urls_pattern) == null) {
-      return"http://" + input
-    }else {
-      return input
-    }
-  };
-  var filterFilePath = function(path) {
-    return path.replace("C:\\fakepath\\", "")
-  };
-  var prepareSlideToNest = function(parentId, slide) {
-    if(typeof parentId !== "string") {
-      return slide
-    }
-    if(slide.type === VISH.Constant.FLASHCARD || slide.type === VISH.Constant.VTOUR) {
-      return
-    }
-    slide.id = VISH.Utils.getId(parentId + "_" + slide.id, true);
-    if(slide.elements) {
-      $.each(slide.elements, function(index, element) {
-        slide.elements[index].id = VISH.Utils.getId(parentId + "_" + slide.elements[index].id, true)
-      })
-    }
-    return slide
-  };
-  var undoNestedSlide = function(parentId, slide) {
-    if(typeof parentId !== "string") {
-      return slide
-    }
-    if(slide.type === VISH.Constant.FLASHCARD || slide.type === VISH.Constant.VTOUR) {
-      return
-    }
-    slide.id = slide.id.replace(parentId + "_", "");
-    if(slide.elements) {
-      $.each(slide.elements, function(index, element) {
-        slide.elements[index].id = slide.elements[index].id.replace(parentId + "_", "")
-      })
-    }
-    return slide
-  };
-  var replaceIdsForSlide = function(slide) {
-    var slideId = V.Utils.getId("article");
-    $(slide).attr("id", slideId);
-    var slideType = VISH.Slides.getSlideType(slide);
-    switch(slideType) {
-      case VISH.Constant.STANDARD:
-        slide = _replaceIdsForStandardSlide(slide, slideId);
-        break;
-      case VISH.Constant.FLASHCARD:
-        slide = _replaceIdsForFlashcardSlide(slide, slideId);
-        break;
-      default:
-        return
-    }
-    return slide
-  };
-  var _replaceIdsForStandardSlide = function(slide, slideId) {
-    $(slide).children("div[id][areaid]").each(function(index, zone) {
-      zone = _replaceIdsForZone(zone, slideId)
-    });
-    return slide
-  };
-  var _replaceIdsForFlashcardSlide = function(flashcard, flashcardId) {
-    var pois = $(flashcard).find("div.fc_poi");
-    $(pois).each(function(index, poi) {
-      var poiId = V.Utils.getId(flashcardId + "_poi");
-      $(poi).attr("id", poiId)
-    });
-    var subslides = $(flashcard).find(".subslides > article.subslide");
-    $(subslides).each(function(index, subSlide) {
-      subSlide = _replaceIdsForSubSlide(subSlide, flashcardId)
-    });
-    return flashcard
-  };
-  var _replaceIdsForSubSlide = function(subSlide, parentId) {
-    var slideId = V.Utils.getId(parentId + "_article");
-    $(subSlide).attr("id", slideId);
-    $(subSlide).children(".close_subslide").attr("id", "close" + slideId);
-    var zones = $(subSlide).children("div[id]").not(".close_subslide");
-    $(zones).each(function(index, zone) {
-      zone = _replaceIdsForZone(zone, slideId)
-    })
-  };
-  var _replaceIdsForZone = function(zone, slideId) {
-    var zoneId = V.Utils.getId(slideId + "_zone");
-    $(zone).attr("id", zoneId);
-    $(zone).find("[id]").each(function(index, el) {
-      el = _replaceIdsForEl(el, zoneId)
-    });
-    return zone
-  };
-  var _replaceIdsForEl = function(el, zoneId) {
-    var elName = _getNameOfEl(el);
-    var elId = V.Utils.getId(zoneId + "_" + elName);
-    $(el).attr("id", elId);
-    return el
-  };
-  var _getNameOfEl = function(el) {
-    var elName = $($(el).attr("id").split("_")).last()[0];
-    if(elName.length > 1) {
-      return elName.substring(0, elName.length - 1)
-    }else {
-      return elName
-    }
-  };
-  var replaceIdsForFlashcardJSON = function(flashcard, forceId) {
-    var hash_subslide_new_ids = {};
-    var old_id;
-    var fc = jQuery.extend(true, {}, flashcard);
-    if(forceId) {
-      fc.id = forceId
-    }else {
-      fc.id = V.Utils.getId("article")
-    }
-    for(var ind in fc.slides) {
-      old_id = fc.slides[ind].id;
-      fc.slides[ind].id = V.Utils.getId(fc.id + "_article" + (parseInt(ind) + 1), true);
-      hash_subslide_new_ids[old_id] = fc.slides[ind].id
-    }
-    for(var num in fc.pois) {
-      fc.pois[num].id = V.Utils.getId(fc.id + "_poi" + (parseInt(num) + 1), true);
-      fc.pois[num].slide_id = hash_subslide_new_ids[fc.pois[num].slide_id]
-    }
-    return fc
-  };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, dimentionToDraw:dimentionToDraw, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForFlashcardJSON:replaceIdsForFlashcardJSON, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide, generateTable:generateTable, 
-  convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
