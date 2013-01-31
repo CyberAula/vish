@@ -148,8 +148,8 @@ width: 100%;
   top: 10px;
   height: 22px;
   width: 22px;
-  background-image:url(/assets/icons/delete.png);
+  background-image:url(/assets/icons/ve_delete.png);
 }
 .joyride-close-tip:hover {
-  background-image: url(/assets/icons/delete_hover.png);
+  background-image: url(/assets/icons/ve_delete_hover.png);
 }

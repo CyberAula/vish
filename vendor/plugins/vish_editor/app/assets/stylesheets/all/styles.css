@@ -478,7 +478,7 @@ button#closeButton {
   right: -8px;
   width: 22px;
   height: 22px;
-  background: transparent url('/assets/icons/delete.png') no-repeat center;
+  background: transparent url('/assets/icons/ve_delete.png') no-repeat center;
   background-size: 45%;
   padding: 13px;
   cursor: pointer;
@@ -486,7 +486,7 @@ button#closeButton {
 }
 
 .close_subslide:hover{
-  background: transparent url('/assets/icons/delete_hover.png') no-repeat center;
+  background: transparent url('/assets/icons/ve_delete_hover.png') no-repeat center;
   background-size: 45%;
 }
 

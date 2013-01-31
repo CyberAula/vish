@@ -76,7 +76,7 @@
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.Presentation">Presentation</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
+                    <a style="display:none" class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.Game">Game</a>
@@ -304,7 +304,7 @@
             <a href="#" onclick="VISH.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
           </li>
           <li>
-            <a href="#" onclick="VISH.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
+            <a style="display:none" href="#" onclick="VISH.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
           </li>
         </ul>
       </div> 
@@ -388,7 +388,10 @@
       </a>
       <a class="addvideo medium large" href="#video_fancybox">
         <div class='thumbicon videothumb' i18n-key="i.Video" title="Video"></div>
-      </a>      
+      </a>
+      <a class="addLive medium large" href="#live_fancybox">
+        <div class='thumbicon livethumb' i18n-key="i.Live" title="Live"></div>
+      </a>
     </div>
       
     </div>
@@ -398,7 +401,7 @@
       <input type="hidden" id="prompt_answer" value="false"></input>
       <div id='prompt_form'>        
         <img id="image_template_prompt" class="delete_img" src="/assets/templatesthumbs/default.png"/>
-        <img id="delimg" class="delimg" src="/assets/icons/delete_border.png">
+        <img id="delimg" class="delimg" src="/assets/icons/ve_delete_border.png">
         <span i18n-key="i.sure" class="deltext">are you sure?</span>
         <div class="buttons_together">
           <a href="#" onclick="$('#prompt_answer').val('true'); $.fancybox.close();" class="prompt_button button button220" i18n-key="i.delete">delete</a>
@@ -892,7 +895,7 @@
         <div class="fancy_tabs" id="live_fancy_tabs_id">    
           <ul>
             <li><a href="#" onclick="VISH.Utils.loadTab('tab_live_webcam')" id="tab_live_webcam" class="fancy_tab">Webcams</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
+            <li style="display:none"><a href="#" onclick="VISH.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_live_webcam_help' src='/assets/icons/helptutorial_circle_blank.png'/> 
         </div>
@@ -1098,7 +1101,7 @@
         </li>
         <li>
           <h1 i18n-key="i.closeOrDelete">Close or Delete</h1>
-          <img id="delimagetut" src="/assets/icons/delete.png"/>
+          <img id="delimagetut" src="/assets/icons/ve_delete.png"/>
         </li>
       </ul>
     </p>

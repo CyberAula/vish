@@ -28,7 +28,7 @@
 }
 
 .close_subslide:hover{
-  background: transparent url('/assets/icons/delete_hover.png') no-repeat center;
+  background: transparent url('/assets/icons/ve_delete_hover.png') no-repeat center;
   background-size: 32% 32% !important;
 }
 
