@@ -17,27 +17,29 @@
   display: none;
 }
 
-.close_slide{
-	width: 50px !important;
-	height: 50px !important;
-	background-repeat: no-repeat;
-	background-size: 50px 50px;
+.close_subslide{
+  top: -30px;
+  right: -30px;
+  background-repeat: no-repeat;
+  background-size: 32% 32% !important;
+  padding: 30px 30px 30px 30px;
+  min-width: 50px;
+  min-height: 50px;
 }
 
-.vish_arrow{
-  max-width: 200px;
-  min-width: 40px;
+.close_subslide:hover{
+  background: transparent url('/assets/icons/delete_hover.png') no-repeat center;
+  background-size: 32% 32% !important;
 }
 
-#back_arrow{
-  width: 10%;
+
+/** Arrows **/
+
+#back_arrow, #forward_arrow{
+  width: 6% !important;
 }
 
-#forward_arrow{
-  width: 10%;
-}
-
-#back_arrow:hover{
+#back_arrow:hover {
   color: rgba(0, 0, 0, 0.5);
   background: -moz-linear-gradient(left,  rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.35)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
@@ -48,7 +50,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
 }
 
-#forward_arrow:hover{
+#forward_arrow:hover {
   color: rgba(0, 0, 0, 0.5);
   background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.35))); /* Chrome,Safari4+ */

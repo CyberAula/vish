@@ -253,7 +253,7 @@ div.addUrlButtons{
 
 	
 #config_div {
-	background: url(/assets/config.png);
+	background: url(/assets/icons/config.png);
 	position: absolute;
   left: 1%;
   top: 8%;
@@ -261,98 +261,98 @@ div.addUrlButtons{
 }
 
 #config_div:hover {
-	background: url(/assets/hover/config_hover.png);
+	background: url(/assets/icons/config_hover.png);
 }
 
 #arrow_left_div {
-	background: url(/assets/arrow_left.png);
+	background: url(/assets/carrousel/arrow_left.png);
 }
 
 #arrow_left_div:hover {
-	background: url(/assets/hover/arrow_left_hover.png);
+	background: url(/assets/carrousel/arrow_left_hover.png);
 }
 
 #arrow_right_div {
-	background: url(/assets/arrow_right.png);
+	background: url(/assets/carrousel/arrow_right.png);
 }
 
 #arrow_right_div:hover {
-	background: url(/assets/hover/arrow_right_hover.png);
+	background: url(/assets/carrousel/arrow_right_hover.png);
 }
 
 #save_div{
-	background: url(/assets/save.png);
+	background: url(/assets/icons/save.png);
 	position: absolute;
   left: 90%;
   top: 8%;
 	z-index: 600;
 }
 #save_div:hover{
-	background: url(/assets/hover/save_hover.png);
+	background: url(/assets/icons/save_hover.png);
 }
 
 .textthumb {
-	background: url(/assets/text.png);
+	background: url(/assets/zonethumbs/text.png);
 }
 
 .textthumb:hover {
-	background: url(/assets/hover/text_hover.png);
+	background: url(/assets/zonethumbs/text_hover.png);
 }
 
 .textthumb_small {
-	background: url(/assets/text_small.png);
+	background: url(/assets/zonethumbs/text_small.png);
 }
 
 .textthumb_small:hover {
-	background: url(/assets/hover/text_small_hover.png);
+	background: url(/assets/zonethumbs/text_small_hover.png);
 }
 
 .picthumb {
-	background: url(/assets/image.png);
+	background: url(/assets/zonethumbs/image.png);
 }
 
 .picthumb:hover {
-	background: url(/assets/hover/image_hover.png);
+	background: url(/assets/zonethumbs/image_hover.png);
 }
 
 .picthumb_small {
-	background: url(/assets/image_small.png);
+	background: url(/assets/zonethumbs/image_small.png);
 }
 
 .picthumb_small:hover {
-	background: url(/assets/hover/image_small_hover.png);
+	background: url(/assets/zonethumbs/image_small_hover.png);
 }
 
 .objectthumb {
-	background: url(/assets/flash.png);
+	background: url(/assets/zonethumbs/object.png);
 }
 
 .objectthumb:hover {
-	background: url(/assets/hover/flash_hover.png);
+	background: url(/assets/zonethumbs/object_hover.png);
 }
 
 .videothumb {
-	background: url(/assets/video.png);
+	background: url(/assets/zonethumbs/video.png);
 }
 
 .videothumb:hover {
-	background: url(/assets/hover/video_hover.png);
+	background: url(/assets/zonethumbs/video_hover.png);
 }
 
 .livethumb {
-	background: url(/assets/live.png);
+	background: url(/assets/zonethumbs/live.png);
 }
 
 .quizthumb {
-	background: url(/assets/quiz.png);
+	background: url(/assets/zonethumbs/quiz.png);
 }
 
 .quizthumb:hover {
-	background: url(/assets/hover/quiz_hover.png);
+	background: url(/assets/zonethumbs/quiz_hover.png);
 }
 
 .livethumb:hover {
-	background: url(/assets/hover/live_hover.png);
+	background: url(/assets/zonethumbs/live_hover.png);
 }
 
 .thumbicon{
@@ -543,6 +543,10 @@ div.addUrlButtons{
 	text-align:left;
 }
 
+a#tab_pic_flikr > img {
+	max-width: 47px;
+}
+
 .delete_icon{
 	position: absolute;
 	bottom: 0px;
@@ -558,12 +562,12 @@ div.addUrlButtons{
 	width: 22px;
 	height: 22px;
 	cursor:pointer;
-	background: url(/assets/delete_slide.png);
+	background: url(/assets/icons/delete.png);
 	z-index: 1074;
 }
 
 .delete_slide:hover{
-	background: url(/assets/hover/delete_hover.png);
+	background: url(/assets/icons/delete_hover.png);
 }
 
 .delete_content{
@@ -573,12 +577,12 @@ div.addUrlButtons{
 	width: 40px;
 	height: 40px;
 	cursor:pointer;
-	background: url(/assets/delete_content.png);
+	background: url(/assets/icons/delete_content.png);
 	z-index: 10000;
 }
 
 .delete_content:hover{
-	background: url(/assets/hover/delete_content_hover.png);
+	background: url(/assets/icons/delete_content_hover.png);
 }
 
 .addpicture{
@@ -699,7 +703,7 @@ input.rounded:focus {
 
 
 .okButton {
-    background: url('/assets/carrousel_sprite.png') 0 -150px no-repeat transparent;
+    background: url('/assets/carrousel/carrousel_sprite.png') 0 -150px no-repeat transparent;
     cursor:pointer;
     width: 150px;
     height: 50px;
@@ -715,7 +719,7 @@ input.rounded:focus {
 }
 
 .okButton:hover {
-    background: url('/assets/carrousel_sprite.png') 0 -200px no-repeat transparent;
+    background: url('/assets/carrousel/carrousel_sprite.png') 0 -200px no-repeat transparent;
 }
 
 .okButton::-moz-focus-inner {
@@ -1067,7 +1071,7 @@ textarea {
 }
 
 #start_tutorial {
-	background-image: url(/assets/tutorial_image.png);
+	background-image: url(/assets/tutorial/tutorial_image.png);
 	background-position: 0px -120px;
 	position: absolute;
 	margin-left: 384px;
@@ -1166,31 +1170,31 @@ textarea {
 }
 
 #help_right{
-	background-image:url(/assets/helptutorial_circle_bg.png);
+	background-image:url(/assets/icons/helptutorial_circle_bg.png);
 	position: absolute;
 	left: 2px;
 	top: 642px;
 }
 
 #help_right:hover {
-	background-image:url(/assets/hover/helptutorial_circle_hover_bg.png);
+	background-image:url(/assets/icons/helptutorial_circle_hover_bg.png);
 	cursor: pointer;
 }
 
 #preview_circle{
-	background-image:url(/assets/preview_circle.png);
+	background-image:url(/assets/icons/preview_circle.png);
 	position: absolute;
 	right: -2px;
 	top: 642px;
 }
 
 #preview_circle:hover {
-	background-image:url(/assets/hover/preview_circle_bg.png);
+	background-image:url(/assets/icons/preview_circle_bg.png);
 	cursor: pointer;
 }
 
 .help_in_template{
-	background-image:url(/assets/helptutorial_circle.png);
+	background-image:url(/assets/icons/helptutorial_circle.png);
 	position: absolute;
 	top: 2px;
 	right: 24px;
@@ -1202,12 +1206,12 @@ textarea {
 }
 
 .help_in_template:hover{
-	background-image:url(/assets/hover/helptutorial_circle_hover.png);
+	background-image:url(/assets/icons/helptutorial_circle_hover.png);
 	cursor: pointer;
 }
 
 .help_in_fancybox{
-	background-image:url(/assets/helptutorial_circle.png);
+	background-image:url(/assets/icons/helptutorial_circle.png);
 	position: absolute;
 	margin-top: -1px;
 	margin-right: -5px;
@@ -1218,7 +1222,7 @@ textarea {
 }
 
 .help_in_fancybox:hover{
-	background-image:url(/assets/hover/helptutorial_circle_hover.png);
+	background-image:url(/assets/icons/helptutorial_circle_hover.png);
 	cursor: pointer;
 }
 
@@ -1302,7 +1306,7 @@ textarea {
 }
 
 #help_template_selection, #help_quiz_selection {
-	background-image:url(/assets/helptutorial_circle_tp.png);
+	background-image:url(/assets/icons/helptutorial_circle_tp.png);
 	position: absolute;
 	margin-top: -43px;
 	right: 21px;
@@ -1316,13 +1320,13 @@ textarea {
 }
 
 #help_themes_selection:hover {
-	background-image:url(/assets/hover/helptutorial_circle_hover_tp.png);
+	background-image:url(/assets/icons/helptutorial_circle_hover_tp.png);
 	cursor: pointer;
 }
 
 
 #help_template_selection:hover, #help_quiz_selection:hover {
-	background-image:url(/assets/hover/helptutorial_circle_hover_tp.png);
+	background-image:url(/assets/icons/helptutorial_circle_hover_tp.png);
 	cursor: pointer;
 }
 
@@ -1582,7 +1586,7 @@ iframe.snapshot_content{
 	left: 50%;
 	top: 50%;
 	position: absolute;
-	background-image: url(/assets/flashcard_initial_background.jpg);
+	background-image: url(/assets/flashcard/flashcard_initial_background.jpg);
 	background-repeat:no-repeat;
 	/*background-attachment:fixed;*/
 	background-position:center center;
@@ -1629,14 +1633,14 @@ span.mcChoiceSpan{
 	position: absolute;
 	left: 325px;
 	top: 225px;
-	background: url(/assets/flashcard_add_img_button.png);
+	background: url(/assets/flashcard/flashcard_add_img_button.png);
 	width: 150px;
 	height: 150px;
 	cursor: pointer;
 }
 
 .change_bg_button_class:hover {
-	background: url(/assets/hover/flashcard_add_img_button_hover.png);
+	background: url(/assets/flashcard/flashcard_add_img_button_hover.png);
 }
 
 
@@ -1821,9 +1825,9 @@ margin: 0px;
 	margin-bottom: 10px;
 }
 
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: none; background: url(/assets/opcion.png) no-repeat; font-weight: normal; color: none; }
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: none; background: url(/assets/opcion.png) no-repeat; font-weight: normal; color: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: none; background: url(/assets/opcion.png) no-repeat; font-weight: normal; color: none; }
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: none; background: url(/assets/icons/opcion.png) no-repeat; font-weight: normal; color: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: none; background: url(/assets/icons/opcion.png) no-repeat; font-weight: normal; color: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: none; background: url(/assets/icons/opcion.png) no-repeat; font-weight: normal; color: none; }
 .ui-widget-header { border: 1px solid #e78f08; background: #eeeeed  50% 50% repeat-x; color: #ffffff; font-weight: bold; }
 .ui-widget-content { border: 1px solid #dddddd; background: #eeeeee; }
 

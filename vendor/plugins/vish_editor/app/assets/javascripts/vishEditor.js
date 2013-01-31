@@ -34,47 +34,50 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, 
 "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.Mods || (VISH.Mods = {});
-VISH.VERSION = "0.2";
+VISH.VERSION = "0.3";
 VISH.AUTHORS = "GING";
-VISH.Editing = false;
+VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
 VISH.Constant.Edit = "Editor";
 VISH.Constant.Viewer = "Viewer";
 VISH.Constant.AnyMode = "Both";
+VISH.Constant.NOSERVER = "noserver";
+VISH.Constant.VISH = "vish";
+VISH.Constant.STANDALONE = "node";
 VISH.Constant.UA_IE = "Microsoft Internet Explorer";
 VISH.Constant.UA_NETSCAPE = "Netscape";
 VISH.Constant.IE = "Internet Explorer";
 VISH.Constant.FIREFOX = "Mozilla Firefox";
 VISH.Constant.CHROME = "Google Chrome";
-VISH.Constant.UNKNOWN = "Unknown";
-VISH.Constant.NOSERVER = "noserver";
-VISH.Constant.VISH = "vish";
-VISH.Constant.STANDALONE = "node";
+VISH.Constant.SAFARI = "Safari";
 VISH.Constant.EXTRA_SMALL = "extra-small";
 VISH.Constant.SMALL = "small";
 VISH.Constant.MEDIUM = "medium";
 VISH.Constant.LARGE = "large";
+VISH.Constant.THUMBNAIL = "thumbnail";
+VISH.Constant.NONE = "none";
+VISH.Constant.UNKNOWN = "Unknown";
 VISH.Constant.AGE_RANGE = "4 - 20";
 VISH.Constant.PRESENTATION = "presentation";
-VISH.Constant.FLASHCARD = "flashcard";
-VISH.Constant.GAME = "game";
-VISH.Constant.QUIZ = "quiz";
-VISH.Constant.QUIZ_SIMPLE = "quiz_simple";
-VISH.Constant.VTOUR = "virtualTour";
 VISH.Constant.STANDARD = "standard";
+VISH.Constant.FLASHCARD = "flashcard";
+VISH.Constant.QUIZ_SIMPLE = "quiz_simple";
+VISH.Constant.GAME = "game";
+VISH.Constant.VTOUR = "virtualTour";
 VISH.Constant.IMAGE = "image";
 VISH.Constant.TEXT = "text";
 VISH.Constant.VIDEO = "video";
 VISH.Constant.OBJECT = "object";
 VISH.Constant.SNAPSHOT = "snapshot";
-VISH.Constant.THUMBNAIL = "thumbnail";
-VISH.Constant.NONE = "none";
+VISH.Constant.QUIZ = "quiz";
+VISH.Constant.TextDefault = 12;
+VISH.Constant.TextBase = 12;
 VISH.Constant.Video = {};
 VISH.Constant.Video.HTML5 = "HTML5";
 VISH.Constant.Video.Youtube = "Youtube";
 VISH.Constant.Clipboard = {};
 VISH.Constant.Clipboard.Slide = "slide";
+VISH.Constant.Clipboard.LocalStorageStack = "VishEditorClipboardStack";
 VISH.Constant.Event = {};
 VISH.Constant.Event.onMessage = "onMessage";
 VISH.Constant.Event.onGoToSlide = "onGoToSlide";
@@ -11827,7 +11830,7 @@ if(!YT.Player) {
       case VISH.Constant.VTOUR:
         article = _renderVirtualTourSlide(slide, extra_classes, extra_buttons);
         break;
-      case VISH.Constant.QUIZ:
+      case VISH.Constant.QUIZ_SIMPLE:
         article = _renderStandardSlide(slide, extra_classes, extra_buttons);
         break;
       default:
@@ -11881,7 +11884,7 @@ if(!YT.Player) {
         }
       }
     }
-    if(slide.type == VISH.Constant.QUIZ) {
+    if(slide.type == VISH.Constant.QUIZ_SIMPLE) {
       content += V.Quiz.Renderer.renderQuiz(slide.quiztype, slide, slide.template + "_" + slide.areaid, null, slide.id);
       classes += VISH.Constant.QUIZ
     }
@@ -12041,7 +12044,8 @@ VISH.Status = function(V, $, undefined) {
         }
       }
     }
-    device.features.touchScreen = !!("ontouchstart" in window)
+    device.features.touchScreen = !!("ontouchstart" in window);
+    device.features.localStorage = typeof Storage !== "undefined"
   };
   var fillUserAgent = function() {
     device.pixelRatio = window.devicePixelRatio || 1;
@@ -12109,6 +12113,12 @@ VISH.Status = function(V, $, undefined) {
       device.browser.version = version;
       return
     }
+    version = _getSafariVersion();
+    if(version != -1) {
+      device.browser.name = VISH.Constant.SAFARI;
+      device.browser.version = version;
+      return
+    }
     device.browser.name = VISH.Constant.UNKNOWN;
     device.browser.name = -1
   };
@@ -12141,6 +12151,20 @@ VISH.Status = function(V, $, undefined) {
       var re = new RegExp(".* Chrome/([0-9.]+)");
       if(re.exec(ua) != null) {
         rv = parseFloat(RegExp.$1)
+      }
+    }
+    return rv
+  };
+  var _getSafariVersion = function() {
+    var rv = -1;
+    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+      var ua = navigator.userAgent;
+      if(ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1) {
+        var rv = -2;
+        var re = new RegExp(".* Version/([0-9.]+)");
+        if(re.exec(ua) != null) {
+          rv = parseFloat(RegExp.$1)
+        }
       }
     }
     return rv
@@ -12263,21 +12287,11 @@ VISH.Utils = function(V, undefined) {
         break
     }
   };
+  var sendParentToURL = function(the_url) {
+    window.parent.location = the_url
+  };
   var loadCSS = function(path) {
     $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + path + '" type="text/css" />')
-  };
-  var generateTable = function(author, title, description) {
-    if(!author) {
-      author = ""
-    }
-    if(!title) {
-      title = ""
-    }
-    if(!description) {
-      description = ""
-    }
-    return'<table class="metadata">' + '<tr class="even">' + '<td class="title header_left">' + VISH.Editor.I18n.getTrans("i.Author") + "</td>" + '<td class="title header_right"><div class="height_wrapper">' + author + "</div></td>" + "</tr>" + '<tr class="odd">' + '<td class="title">' + VISH.Editor.I18n.getTrans("i.Title") + "</td>" + '<td class="info"><div class="height_wrapper">' + title + "</div></td>" + "</tr>" + '<tr class="even">' + '<td colspan="2" class="title_description">' + VISH.Editor.I18n.getTrans("i.Description") + 
-    "</td>" + "</tr>" + '<tr class="odd">' + '<td colspan="2" class="info_description"><div class="height_wrapper_description">' + description + "</div></td>" + "</tr>" + "</table>"
   };
   var checkMiniumRequirements = function() {
     var browserRequirements = true;
@@ -12307,31 +12321,6 @@ VISH.Utils = function(V, undefined) {
       return false
     }
     return true
-  };
-  var convertToTagsArray = function(tags) {
-    var tagsArray = [];
-    if(!tags || tags.length == 0) {
-      return tagsArray
-    }
-    $.each(tags, function(index, tag) {
-      tagsArray.push(tag.value)
-    });
-    return tagsArray
-  };
-  var getURLParameter = function(name) {
-    return decodeURIComponent((location.search.match(RegExp("[?|&]" + name + "=(.+?)(&|$)")) || [, null])[1])
-  };
-  var autocompleteUrls = function(input) {
-    var http_urls_pattern = /(^http(s)?:\/\/)/g;
-    var objectInfo = VISH.Object.getObjectInfo();
-    if(objectInfo.wrapper == null && input.match(http_urls_pattern) == null) {
-      return"http://" + input
-    }else {
-      return input
-    }
-  };
-  var filterFilePath = function(path) {
-    return path.replace("C:\\fakepath\\", "")
   };
   var getSrcFromCSS = function(css) {
     if(css.indexOf("url") === 0) {
@@ -12364,28 +12353,28 @@ VISH.Utils = function(V, undefined) {
     $.each(style.split(";"), function(index, property) {
       if(property.match(moz_zoom_pattern) != null) {
         var result = moz_zoom_pattern.exec(property);
-        if(result[1]) {
+        if(result !== null && result[1]) {
           zoom = parseFloat(result[1]);
           return false
         }
       }else {
         if(property.match(webkit_zoom_pattern) != null) {
           var result = webkit_zoom_pattern.exec(property);
-          if(result[1]) {
+          if(result !== null && result[1]) {
             zoom = parseFloat(result[1]);
             return false
           }
         }else {
           if(property.match(opera_zoom_pattern) != null) {
             var result = opera_zoom_pattern.exec(property);
-            if(result[1]) {
+            if(result !== null && result[1]) {
               zoom = parseFloat(result[1]);
               return false
             }
           }else {
             if(property.match(ie_zoom_pattern) != null) {
               var result = ie_zoom_pattern.exec(property);
-              if(result[1]) {
+              if(result !== null && result[1]) {
                 zoom = parseFloat(result[1]);
                 return false
               }
@@ -12468,7 +12457,51 @@ VISH.Utils = function(V, undefined) {
         break
     }
   };
-  return{init:init, getId:getId, getOuterHTML:getOuterHTML, generateTable:generateTable, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, convertToTagsArray:convertToTagsArray, getURLParameter:getURLParameter, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab}
+  var getFontSizeFromStyle = function(style) {
+    if(!style) {
+      return
+    }
+    var ft = null;
+    $.each(style.split(";"), function(index, property) {
+      var font_style_pattern = /font-size:\s?([0-9]+)px/g;
+      if(property.match(font_style_pattern) != null) {
+        var result = font_style_pattern.exec(property);
+        if(result !== null && result[1] !== null) {
+          ft = parseFloat(result[1]);
+          return false
+        }
+      }
+    });
+    return ft
+  };
+  var addFontSizeToStyle = function(style, fontSize) {
+    if(typeof style !== "string") {
+      return null
+    }
+    var filterStyle = "";
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("font-size") === -1 && property !== "") {
+        filterStyle = filterStyle + property + "; "
+      }
+    });
+    if(fontSize) {
+      filterStyle = filterStyle + "font-size:" + fontSize + ";"
+    }
+    return filterStyle
+  };
+  var removeFontSizeInStyle = function(style) {
+    if(typeof style !== "string") {
+      return null
+    }
+    var filterStyle = "";
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("font-size") === -1 && property !== "") {
+        filterStyle = filterStyle + property + "; "
+      }
+    });
+    return filterStyle
+  };
+  return{init:init, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, loadTab:loadTab, sendParentToURL:sendParentToURL}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initialPresentation = false;
@@ -12479,12 +12512,12 @@ VISH.Editor = function(V, $, undefined) {
   var draftPresentation = null;
   var savedPresentation = null;
   var init = function(options, presentation) {
-    VISH.Debugging.init(options);
     VISH.Editing = true;
+    VISH.Debugging.init(options);
     if(options) {
       initOptions = options;
-      if(options["configuration"] && VISH.Configuration) {
-        VISH.Configuration.init(options["configuration"]);
+      if(options.configuration && VISH.Configuration) {
+        VISH.Configuration.init(options.configuration);
         VISH.Configuration.applyConfiguration()
       }
     }else {
@@ -12503,7 +12536,7 @@ VISH.Editor = function(V, $, undefined) {
     VISH.Slides.init();
     VISH.User.init(options);
     if(VISH.Debugging.isDevelopping()) {
-      if(options["configuration"]["mode"] == "noserver" && VISH.Debugging.getActionInit() == "loadSamples" && !presentation) {
+      if(options.configuration.mode == "noserver" && VISH.Debugging.getActionInit() == "loadSamples" && !presentation) {
         presentation = VISH.Debugging.getPresentationSamples()
       }
     }
@@ -12545,7 +12578,7 @@ VISH.Editor = function(V, $, undefined) {
       $(document).on("click", "#arrow_right_div", _onArrowRightClicked);
       $(document).on("click", "#fc_change_bg_big", V.Editor.Tools.changeFlashcardBackground);
       _addEditorEnterLeaveEvents();
-      VISH.Editor.Utils.redrawSlides();
+      VISH.Editor.Slides.redrawSlides();
       VISH.Editor.Thumbnails.redrawThumbnails();
       _addTutorialEvents();
       window.onbeforeunload = exitConfirmation;
@@ -12554,7 +12587,7 @@ VISH.Editor = function(V, $, undefined) {
     if(presentation) {
       $(".object_wrapper").hide()
     }
-    VISH.Editor.I18n.init(options["lang"]);
+    VISH.Editor.I18n.init(options.lang);
     VISH.Editor.Text.init();
     VISH.Editor.Image.init();
     VISH.Editor.Video.init();
@@ -12643,10 +12676,10 @@ VISH.Editor = function(V, $, undefined) {
     })
   };
   var _addEditorEnterLeaveEvents = function() {
-    $("article").live("slideenter", _onslideenterEditor);
-    $("article").live("slideleave", _onslideleaveEditor)
+    $("article").live("slideenter", _onSlideEnterEditor);
+    $("article").live("slideleave", _onSlideLeaveEditor)
   };
-  var _onslideenterEditor = function(e) {
+  var _onSlideEnterEditor = function(e) {
     setTimeout(function() {
       $(e.target).find(".object_wrapper").show()
     }, 500);
@@ -12667,16 +12700,12 @@ VISH.Editor = function(V, $, undefined) {
           }
         }
       }, 500);
-      V.VideoPlayer.HTML5.playVideos(e.target);
-      if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
-        $("#forward_arrow").css("top", "15%")
-      }
-      if($(e.target).hasClass("flashcard_slide")) {
-        V.Flashcard.startAnimation(e.target.id)
-      }
+      V.VideoPlayer.HTML5.playVideos(e.target)
+    }else {
+      VISH.Editor.Utils.Loader.loadObjectsInEditorSlide(e.target)
     }
   };
-  var _onslideleaveEditor = function(e) {
+  var _onSlideLeaveEditor = function(e) {
     $(".object_wrapper").hide();
     if($(e.target).hasClass("flashcard_slide")) {
       V.Flashcard.stopAnimation(e.target.id)
@@ -12684,24 +12713,22 @@ VISH.Editor = function(V, $, undefined) {
     if($(e.target).hasClass("subslide")) {
       V.VideoPlayer.HTML5.stopVideos(e.target);
       V.ObjectPlayer.unloadObject(e.target);
-      V.AppletPlayer.unloadApplet();
-      if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
-        $("#forward_arrow").css("top", "0%")
-      }
-      if($(e.target).hasClass("flashcard_slide")) {
-        V.Flashcard.stopAnimation(e.target.id)
-      }
+      V.AppletPlayer.unloadApplet()
+    }else {
+      VISH.Editor.Utils.Loader.unloadObjectsInEditorSlide(e.target)
     }
   };
   var _onTemplateThumbClicked = function(event) {
     var theid = draftPresentation ? draftPresentation.id : "";
     var slide = VISH.Editor.Dummies.getDummy($(this).attr("template"), VISH.Slides.getSlidesQuantity() + 1);
-    VISH.Slides.addSlide(slide);
+    VISH.Editor.Slides.addSlide(slide);
     $.fancybox.close();
     V.Slides.setCurrentSlideNumber(V.Slides.getCurrentSlideNumber() + 1);
-    VISH.Editor.Utils.redrawSlides();
+    VISH.Editor.Slides.redrawSlides();
     VISH.Editor.Thumbnails.redrawThumbnails();
-    setTimeout("VISH.Slides.lastSlide()", 300)
+    setTimeout(function() {
+      VISH.Slides.lastSlide()
+    }, 300)
   };
   var _onEditableClicked = function(event) {
     $(this).removeClass("editable");
@@ -12755,7 +12782,7 @@ VISH.Editor = function(V, $, undefined) {
   };
   var _onDeleteItemClicked = function() {
     setCurrentArea($(this).parent());
-    $("#image_template_prompt").attr("src", VISH.ImagesPath + getCurrentArea().attr("type") + ".png");
+    $("#image_template_prompt").attr("src", VISH.ImagesPath + "zonethumbs/" + getCurrentArea().attr("type") + ".png");
     $.fancybox($("#prompt_form").html(), {"autoDimensions":false, "scrolling":"no", "width":350, "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
       if($("#prompt_answer").val() === "true") {
         $("#prompt_answer").val("false");
@@ -12766,12 +12793,26 @@ VISH.Editor = function(V, $, undefined) {
     }})
   };
   var _onDeleteSlideClicked = function() {
-    var article_to_delete = $(this).parent();
-    $("#image_template_prompt").attr("src", VISH.ImagesPath + "templatesthumbs/" + article_to_delete.attr("template") + ".png");
+    var article_to_delete = $(this).parent()[0];
+    var thumb;
+    switch(VISH.Slides.getSlideType(article_to_delete)) {
+      case VISH.Constant.STANDARD:
+        thumb = VISH.ImagesPath + "templatesthumbs/" + $(article_to_delete).attr("template") + ".png";
+        break;
+      case VISH.Constant.FLASHCARD:
+        thumb = VISH.Utils.getSrcFromCSS($(article_to_delete).attr("avatar"));
+        break;
+      case VISH.Constant.VTOUR:
+        break;
+      default:
+        thumb = VISH.ImagesPath + "templatesthumbs/" + "default.png";
+        break
+    }
+    $("#image_template_prompt").attr("src", thumb);
     $.fancybox($("#prompt_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
       if($("#prompt_answer").val() === "true") {
         $("#prompt_answer").val("false");
-        VISH.Slides.removeSlide(VISH.Slides.getCurrentSlideNumber())
+        VISH.Editor.Slides.removeSlide(VISH.Slides.getCurrentSlideNumber())
       }
     }})
   };
@@ -12800,9 +12841,6 @@ VISH.Editor = function(V, $, undefined) {
       if(event.target.id === "toolbar_wrapper") {
         return
       }
-      if(event.target.tagName === "FONT") {
-        return
-      }
     }
     setCurrentArea(null);
     VISH.Editor.Tools.cleanZoneTools()
@@ -12813,8 +12851,7 @@ VISH.Editor = function(V, $, undefined) {
     $(zone).css("-webkit-box-shadow", "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6)");
     $(zone).css("-moz-box-shadow", "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6)");
     $(zone).css("box-shadow", "inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 100, 100, 0.6)");
-    $(zone).css("outline", "0");
-    $(zone).css("outline", "thin dotted 9")
+    $(zone).css("outline", "0")
   };
   var _removeSelectableProperties = function(zone) {
     $(".selectable").css("border-color", "none");
@@ -12824,8 +12861,9 @@ VISH.Editor = function(V, $, undefined) {
     $(".selectable").css("outline", "0");
     $(".selectable").css("cursor", "pointer")
   };
-  var savePresentation = function(forcePresentation) {
-    $(".object_wrapper").show();
+  var savePresentation = function(options) {
+    VISH.Editor.Utils.Loader.loadAllObjects();
+    $(".object_wrapper, .snapshot_wrapper").show();
     var presentation = {};
     presentation.VEVersion = VISH.VERSION;
     if(draftPresentation) {
@@ -12833,7 +12871,11 @@ VISH.Editor = function(V, $, undefined) {
     }else {
       presentation.id = ""
     }
-    if(forcePresentation) {
+    var saveForPreview = false;
+    if(options && options.preview === true) {
+      saveForPreview = true
+    }
+    if(saveForPreview && options && options.forcePresentation) {
       presentation.type = "presentation"
     }else {
       presentation.type = getPresentationType()
@@ -12855,7 +12897,7 @@ VISH.Editor = function(V, $, undefined) {
     var slide = {};
     if(presentation.type === "flashcard") {
       slide.id = $("#flashcard-background").attr("flashcard_id");
-      slide.type = "flashcard";
+      slide.type = VISH.Constant.FLASHCARD;
       slide.background = $("#flashcard-background").css("background-image");
       slide.pois = VISH.Editor.Flashcard.savePois();
       slide.slides = [];
@@ -12881,7 +12923,12 @@ VISH.Editor = function(V, $, undefined) {
           element.type = $(div).attr("type");
           element.areaid = $(div).attr("areaid");
           if(element.type == VISH.Constant.TEXT) {
-            element.body = VISH.Editor.Text.changeFontPropertiesToSpan($(div).find(".wysiwygInstance"))
+            var CKEditor = VISH.Editor.Text.getCKEditorFromZone(div);
+            if(CKEditor !== null) {
+              element.body = CKEditor.getData()
+            }else {
+              element.body = ""
+            }
           }else {
             if(element.type == VISH.Constant.IMAGE) {
               element.body = $(div).find("img").attr("src");
@@ -12896,7 +12943,7 @@ VISH.Editor = function(V, $, undefined) {
                 element.style = VISH.Editor.Utils.getStylesInPercentages($(div), $(video));
                 var sources = "";
                 $(video).find("source").each(function(index, source) {
-                  if(index != 0) {
+                  if(index !== 0) {
                     sources = sources + ","
                   }
                   var type = typeof $(source).attr("type") != "undefined" ? ' "type": "' + $(source).attr("type") + '", ' : "";
@@ -12906,7 +12953,8 @@ VISH.Editor = function(V, $, undefined) {
                 element.sources = sources
               }else {
                 if(element.type === VISH.Constant.OBJECT) {
-                  var object = $(div).find(".object_wrapper").children()[0];
+                  var wrapper = $(div).find(".object_wrapper")[0];
+                  var object = $(wrapper).children()[0];
                   var myObject = $(object).clone();
                   $(myObject).removeAttr("style");
                   element.body = VISH.Utils.getOuterHTML(myObject);
@@ -12921,7 +12969,7 @@ VISH.Editor = function(V, $, undefined) {
                     element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(quizQuestion));
                     if($(div).find(".multiplechoice_option_in_zone")) {
                       element.quiz_id = "";
-                      if($(div).find("input[name=quiz_id]").val() != "") {
+                      if($(div).find("input[name=quiz_id]").val() !== "") {
                         element.quiz_id = $(div).find("input[name=quiz_id]").val()
                       }
                       element.quiztype = "multiplechoice";
@@ -12929,9 +12977,9 @@ VISH.Editor = function(V, $, undefined) {
                       element.options.choices = [];
                       $(div).find(".multiplechoice_option_in_zone").each(function(i, option_text) {
                         var option = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
-                        if(option && $(option_text).text() != "Write options here" && $(option_text).text() != "") {
+                        if(option && $(option_text).text() !== "Write options here" && $(option_text).text() !== "") {
                           result = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
-                          var choice = new Object;
+                          var choice = {};
                           choice.value = $(option_text).text();
                           choice.container = VISH.Editor.Text.changeFontPropertiesToSpan($(option_text));
                           element.options.choices.push(choice)
@@ -12945,8 +12993,14 @@ VISH.Editor = function(V, $, undefined) {
                       $(snapshotIframe).removeAttr("style");
                       element.body = VISH.Utils.getOuterHTML(snapshotIframe);
                       element.style = VISH.Editor.Utils.getStylesInPercentages($(div), snapshotWrapper);
-                      element.scrollTop = $(snapshotWrapper).scrollTop();
-                      element.scrollLeft = $(snapshotWrapper).scrollLeft()
+                      var scrollTopAttr = $(snapshotWrapper).attr("scrollTop");
+                      if(typeof scrollTopAttr !== "undefined") {
+                        element.scrollTop = scrollTopAttr;
+                        element.scrollLeft = $(snapshotWrapper).attr("scrollLeft")
+                      }else {
+                        element.scrollTop = $(snapshotWrapper).scrollTop();
+                        element.scrollLeft = $(snapshotWrapper).scrollLeft()
+                      }
                     }else {
                       if(typeof element.type == "undefined") {
                       }
@@ -12958,11 +13012,12 @@ VISH.Editor = function(V, $, undefined) {
           }
           slide.elements.push(element);
           if(element.type == VISH.Constant.QUIZ) {
-            var quizSlide = $.extend(true, new Object, element);
-            var quizPresentation = new Object;
+            var quizSlide = $.extend(true, {}, element);
+            var quizPresentation = {};
             quizPresentation.title = presentation.title;
             quizPresentation.description = presentation.description;
             quizPresentation.author = "";
+            quizSlide.type = VISH.Constant.QUIZ_SIMPLE;
             quizPresentation.slides = [quizSlide];
             quizPresentation.type = VISH.Constant.QUIZ_SIMPLE;
             element.quiz_simple_json = quizPresentation
@@ -12980,12 +13035,13 @@ VISH.Editor = function(V, $, undefined) {
       $(s).removeClass("temp_shown")
     });
     savedPresentation = presentation;
+    VISH.Editor.Utils.Loader.unloadAllObjects();
+    VISH.Editor.Utils.Loader.loadObjectsInEditorSlide(VISH.Slides.getCurrentSlide());
     VISH.Debugging.log("\n\nVish Editor save the following presentation:\n");
-    VISH.Debugging.log(JSON.stringify(presentation));
     return savedPresentation
   };
   var afterSavePresentation = function(presentation, order) {
-    switch(VISH.Configuration.getConfiguration()["mode"]) {
+    switch(VISH.Configuration.getConfiguration().mode) {
       case VISH.Constant.NOSERVER:
         if(VISH.Debugging && VISH.Debugging.isDevelopping()) {
           if(VISH.Debugging.getActionSave() == "view") {
@@ -13006,7 +13062,7 @@ VISH.Editor = function(V, $, undefined) {
         }
         var draft = order === "draft";
         var jsonPresentation = JSON.stringify(presentation);
-        var params = {"excursion[json]":jsonPresentation, "authenticity_token":initOptions["token"], "draft":draft};
+        var params = {"excursion[json]":jsonPresentation, "authenticity_token":initOptions.token, "draft":draft};
         $.ajax({type:send_type, url:VISH.UploadPresentationPath, data:params, success:function(data) {
           allowExitWithoutConfirmation();
           window.top.location.href = data.url
@@ -13076,7 +13132,7 @@ VISH.Editor = function(V, $, undefined) {
   };
   var loadFancyBox = function(fancy) {
     var fancyBoxes = {1:"templates", 2:"flashcards"};
-    for(tab in fancyBoxes) {
+    for(var tab in fancyBoxes) {
       $("#tab_" + fancyBoxes[tab] + "_content").hide();
       $("#tab_" + fancyBoxes[tab]).attr("class", "");
       $("#tab_" + fancyBoxes[tab]).attr("class", "fancy_tab")
@@ -13092,7 +13148,7 @@ VISH.Editor = function(V, $, undefined) {
   };
   var setPresentationType = function(type) {
     if(!draftPresentation) {
-      draftPresentation = new Object
+      draftPresentation = {}
     }
     if(type) {
       draftPresentation.type = type
@@ -13129,8 +13185,8 @@ VISH.Editor = function(V, $, undefined) {
   };
   var isPresentationDraft = function() {
     if(initialPresentation) {
-      if(initOptions["draft"] && typeof initOptions["draft"] === "boolean") {
-        return initOptions["draft"]
+      if(initOptions.draft && typeof initOptions.draft === "boolean") {
+        return initOptions.draft
       }else {
         return false
       }
@@ -13139,7 +13195,7 @@ VISH.Editor = function(V, $, undefined) {
     }
   };
   var exitConfirmation = function() {
-    if(VISH.Configuration.getConfiguration()["mode"] === VISH.Constant.VISH && confirmOnExit) {
+    if(VISH.Configuration.getConfiguration().mode === VISH.Constant.VISH && confirmOnExit) {
       return VISH.Editor.I18n.getTrans("i.exitConfirmation")
     }else {
       return
@@ -13163,7 +13219,7 @@ VISH.Editor.Video = function(V, $, undefined) {
     $(urlInput).watermark("Paste video URL");
     $("#tab_video_from_url_content .previewButton").click(function(event) {
       if(VISH.Police.validateObject($(urlInput).val())[0]) {
-        contentToAdd = VISH.Utils.autocompleteUrls($("#" + urlInputId).val());
+        contentToAdd = VISH.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
         VISH.Editor.Object.drawPreview("tab_video_from_url_content", contentToAdd)
       }else {
         contentToAdd = null
@@ -13190,7 +13246,7 @@ VISH.Editor.Image = function(V, $, undefined) {
     VISH.Editor.Image.Repository.init();
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(VISH.Police.validateObject($("#" + urlInputId).val())[0]) {
-        contentToAdd = VISH.Utils.autocompleteUrls($("#" + urlInputId).val());
+        contentToAdd = VISH.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
         VISH.Editor.Object.drawPreview(urlDivId, contentToAdd)
       }
     });
@@ -13199,7 +13255,7 @@ VISH.Editor.Image = function(V, $, undefined) {
     var bar = $("#" + uploadDivId + " .upload_progress_bar");
     var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
     $("#" + uploadDivId + " input[name='document[file]']").change(function() {
-      var filterFilePath = VISH.Utils.filterFilePath($("#" + uploadDivId + " input:file").val());
+      var filterFilePath = VISH.Editor.Utils.filterFilePath($("#" + uploadDivId + " input:file").val());
       $("#" + uploadDivId + " input[name='document[title]']").val(filterFilePath);
       _resetUploadFields();
       $(tagList).parent().show();
@@ -13216,7 +13272,7 @@ VISH.Editor.Image = function(V, $, undefined) {
           $("#" + uploadDivId + " input[name='document[owner_id]']").val(VISH.User.getId());
           $("#" + uploadDivId + " input[name='authenticity_token']").val(VISH.User.getToken());
           $("#" + uploadDivId + " .documentsForm").attr("action", VISH.UploadImagePath);
-          $("#" + uploadDivId + " input[name='tags']").val(VISH.Utils.convertToTagsArray($(tagList).tagit("tags")));
+          $("#" + uploadDivId + " input[name='tags']").val(VISH.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
           $(tagList).parent().hide();
           $("#" + uploadDivId + " .upload_progress_bar_wrapper").show()
@@ -13324,17 +13380,17 @@ VISH.Editor.Image = function(V, $, undefined) {
   };
   var _drawImageInArea = function(image_url, area, style, hyperlink) {
     var current_area;
-    var reference_width = 100;
-    var image_width = 300;
-    var image_height = null;
     if(area) {
       current_area = area
     }else {
       current_area = VISH.Editor.getCurrentArea()
     }
+    var newStyle;
     if(style) {
-      style = V.Editor.Utils.setStyleInPixels(style, current_area);
-      image_width = V.Editor.Utils.getWidthFromStyle(style, current_area)
+      newStyle = V.Editor.Utils.setStyleInPixels(style, current_area)
+    }else {
+      var image_width = $(current_area).width();
+      newStyle = "width:" + image_width + "px;"
     }
     var template = VISH.Editor.getTemplate();
     var nextImageId = VISH.Utils.getId();
@@ -13343,7 +13399,13 @@ VISH.Editor.Image = function(V, $, undefined) {
     if(hyperlink) {
       current_area.attr("hyperlink", hyperlink)
     }
-    current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' draggable='true' title='Click to drag' src='" + image_url + "' style='" + style + "'/>");
+    current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' draggable='true' title='Click to drag' src='" + image_url + "' style='" + newStyle + "'/>");
+    if(!style) {
+      var theImg = $("#" + idToDragAndResize);
+      var dimentionsToDraw = VISH.Editor.Utils.dimentionToDraw($(current_area).width(), $(current_area).height(), $(theImg).width(), $(theImg).height());
+      $(theImg).height(dimentionsToDraw.height);
+      $(theImg).width(dimentionsToDraw.width)
+    }
     V.Editor.addDeleteButton(current_area);
     $("#" + idToDragAndResize).draggable({cursor:"move", stop:function() {
       $(this).parent().click()
@@ -13369,7 +13431,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     $(urlInput).watermark("Paste SWF file URL");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(VISH.Police.validateObject($("#" + urlInputId).val())[0]) {
-        contentToAdd = VISH.Utils.autocompleteUrls($("#" + urlInputId).val());
+        contentToAdd = VISH.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
         drawPreview(urlDivId, contentToAdd)
       }
     });
@@ -13378,7 +13440,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     var bar = $("#" + uploadDivId + " .upload_progress_bar");
     var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
     $("#" + uploadDivId + " input[name='document[file]']").change(function() {
-      var filterFilePath = VISH.Utils.filterFilePath($("#" + uploadDivId + " input:file").val());
+      var filterFilePath = VISH.Editor.Utils.filterFilePath($("#" + uploadDivId + " input:file").val());
       $("#" + uploadDivId + " input[name='document[title]']").val(filterFilePath);
       _resetUploadFields();
       $(tagList).parent().show();
@@ -13395,7 +13457,7 @@ VISH.Editor.Object = function(V, $, undefined) {
           $("#" + uploadDivId + " input[name='document[owner_id]']").val(VISH.User.getId());
           $("#" + uploadDivId + " input[name='authenticity_token']").val(VISH.User.getToken());
           $("#" + uploadDivId + " .documentsForm").attr("action", VISH.UploadObjectPath);
-          $("#" + uploadDivId + " input[name='tags']").val(VISH.Utils.convertToTagsArray($(tagList).tagit("tags")));
+          $("#" + uploadDivId + " input[name='tags']").val(VISH.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
           $(tagList).parent().hide();
           $("#" + uploadDivId + " .upload_progress_bar_wrapper").show()
@@ -13719,7 +13781,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
   };
   var loadFlashcard = function(presentation) {
     V.Editor.setPresentationType(VISH.Constant.FLASHCARD);
-    V.Editor.Utils.hideSlides();
+    V.Editor.Slides.hideSlides();
     $("#flashcard-background").show();
     if(presentation) {
       $("#flashcard-background").css("background-image", presentation.slides[0].background);
@@ -13782,8 +13844,8 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     $(".draggable_arrow_div[moved='true']").each(function(index, s) {
       pois[index] = {};
       pois[index].id = VISH.Utils.getId(getCurrentFlashcardId() + "_" + s.id, true);
-      pois[index].x = 100 * ($(s).offset().left - 55) / 800;
-      pois[index].y = 100 * ($(s).offset().top - 75) / 600;
+      pois[index].x = (100 * ($(s).offset().left - 48) / 800).toString();
+      pois[index].y = (100 * ($(s).offset().top - 38) / 600).toString();
       pois[index].slide_id = VISH.Utils.getId(getCurrentFlashcardId() + "_" + $(s).attr("slide_id"), true)
     });
     return pois
@@ -13813,15 +13875,21 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     return fc
   };
   var _undoNestedSlides = function(fcId, slides) {
-    for(var j = 0;j < slides.length;j++) {
-      slides[j] = VISH.Editor.Utils.undoNestedSlide(fcId, slides[j])
+    if(slides) {
+      var sl = slides.length;
+      for(var j = 0;j < sl;j++) {
+        slides[j] = VISH.Editor.Utils.undoNestedSlide(fcId, slides[j])
+      }
     }
     return slides
   };
   var _undoNestedPois = function(fcId, pois) {
-    for(var k = 0;k < pois.length;k++) {
-      pois[k].id = pois[k].id.replace(fcId + "_", "");
-      pois[k].slide_id = pois[k].slide_id.replace(fcId + "_", "")
+    if(pois) {
+      var lp = pois.length;
+      for(var k = 0;k < lp;k++) {
+        pois[k].id = pois[k].id.replace(fcId + "_", "");
+        pois[k].slide_id = pois[k].slide_id.replace(fcId + "_", "")
+      }
     }
     return pois
   };
@@ -13873,7 +13941,7 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
       carrouselImages.push(myImg);
       currentFlashcards[fc.id] = fc
     });
-    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+    VISH.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -13882,6 +13950,8 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
     options["callback"] = _onClickCarrouselElement;
     options["rowItems"] = 4;
     options["scrollItems"] = 4;
+    options["width"] = 650;
+    options["styleClass"] = "flashcard_repository";
     VISH.Editor.Carrousel.createCarrousel(carrouselDivId, options)
   };
   var _onAPIError = function() {
@@ -13891,11 +13961,11 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
     var flashcardid = $(event.target).attr("flashcardid");
     if(flashcardid) {
       var the_flashcard_excursion = currentFlashcards[flashcardid];
-      var selectedFc = _changeFlashcardIds(the_flashcard_excursion.slides[0]);
+      var selectedFc = VISH.Editor.Utils.replaceIdsForFlashcardJSON(the_flashcard_excursion.slides[0]);
       VISH.Editor.Flashcard.addFlashcard(selectedFc);
       V.Renderer.renderSlide(selectedFc, "", "<div class='delete_slide'></div>");
       V.Slides.setCurrentSlideNumber(V.Slides.getCurrentSlideNumber() + 1);
-      V.Editor.Utils.redrawSlides();
+      V.Editor.Slides.redrawSlides();
       VISH.Editor.Thumbnails.redrawThumbnails();
       V.Editor.Events.bindEventsForFlashcard(selectedFc);
       V.Slides.lastSlide();
@@ -13903,118 +13973,49 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
       $.fancybox.close()
     }
   };
-  var _changeFlashcardIds = function(flashcard) {
-    var hash_subslide_new_ids = {};
-    var old_id;
-    flashcard.id = V.Utils.getId("article");
-    for(var ind in flashcard.slides) {
-      old_id = flashcard.slides[ind].id;
-      flashcard.slides[ind].id = V.Utils.getId(flashcard.id + "_article");
-      hash_subslide_new_ids[old_id] = flashcard.slides[ind].id
-    }
-    for(var num in flashcard.pois) {
-      flashcard.pois[num].id = V.Utils.getId(flashcard.id + "_poi");
-      flashcard.pois[num].slide_id = hash_subslide_new_ids[flashcard.pois[num].slide_id]
-    }
-    return flashcard
-  };
   return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
 VISH.Samples = function(V, undefined) {
-  var samples = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":["Art", "Astronomy"], "language":"en", "educational_objectives":"bla bla bla 3", 
-  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article2", "template":"t3", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
-  {"id":"article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article3", "template":"t6", "elements":[{"id":"article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"article4", "type":"standard", "template":"t2", "elements":[{"id":"article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
-  var samplesv01 = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":["Art", "Astronomy"], "language":"en", "educational_objectives":"bla bla bla 3", 
-  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  var basic_samples = {"id":"1", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by Vish Editor.", "author":"Vish Editor Team", "language":"en", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00f1ana", "Lynx", "Biology"], "age_range":"4 - 20", "subject":["Biology"], "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", "VEVersion":"0.2", 
+  "type":"presentation", "theme":"theme1", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpg", "style":"position: relative; width:117.0886075949367%; height:109.47368421052632%; top:-4.7368421052631575%; left:-2.5316455696202533%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>'}, 
+  {"id":"article1_zone3", "areaid":"subheader"}]}, {"id":"article2", "type":"standard", "template":"t8", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6 vish-parent-fontundefined" style="font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;"> Lynx &nbsp; &nbsp; &nbsp;</span><span class="vish-fontundefined vish-fontHelvetica" style="color:#5ea099;undefined;">Description and habitat</span></div>'}, 
+  {"id":"article2_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/73.jpeg", "style":"position: relative; width:130.4%; height:106.6%; top:0.5%; left:-25.2%;"}, {"id":"article2_zone3", "type":"text", "areaid":"center", "body":'In most respects, the Iberian Lynx resembles other species of lynx, with a short tail,tufted ears and a ruff of fur beneath the chin. ...<div class="vish-parent-font7" style="font-weight: normal; "><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"article2_zone4", "type":"image", "areaid":"right", "body":"http://vishub.org/pictures/313.png", "style":"position: relative; width:119.5%; height:88.6%; top:3.4%; left:-2.6%;"}]}, {"id":"article3", "type":"standard", "template":"t3", "elements":[{"id":"article3_zone1", "type":"text", "areaid":"header", "body":'<span class="vish-font6 vish-fontHelvetica" style="color: rgb(219, 150, 0); font-weight: normal; ">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">Lynx</span><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"article3_zone2", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/8t29CZcGAbs?wmode=opaque" frameborder="0" id="resizableunicID9" class="t3_object" wmode="opaque"></iframe>', "style":"position: relative; width:85.81661891117479%; height:100%; top:0.22321428571428573%; left:6.446991404011461%;"}]}, {"id":"article4", "type":"standard", "template":"t6", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;Lynx</span><br></div>'}, 
+  {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.6111111111111%; height:217.9%; top:-34.97%; left:-42.13%;"}, {"id":"article4_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.1%; height:217.7%; top:-46.9%; left:-199.1%;"}, {"id":"article4_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: center; font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">During the mating season the female leaves her territory...</span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
+  {"id":"article5", "type":"standard", "template":"t10", "elements":[{"id":"article5_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Do%C3%B1ana_National_Park?wmode=transparent" id="resizableunicID15" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article6", "type":"standard", "template":"t12", "elements":[{"id":"article6_zone1", "areaid":"left1"}, {"id":"article6_zone2", 
+  "areaid":"right1"}, {"id":"article6_zone3", "areaid":"left2"}, {"id":"article6_zone4", "type":"image", "areaid":"right2", "body":"http://vishub.org/pictures/312.jpg", "style":"position: relative; width:114.6%; height:113.8%; top:0%; left:0%;"}]}]};
+  var samplesv01 = {"id":"2", "type":"presentation", "title":"Chess: The Art of Learning2", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"http://static.betazeta.com/www.veoverde.com/wp-content/uploads/2011/07/fotos-gatos.jpg", "tags":["Samples", "Test", "Development"], "author":"Vish Editor Team", "theme":"theme1", "age_range":"4 - 14", "subject":["Art", "Astronomy"], "language":"en", 
+  "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article2", "template":"t3", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
-  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"articlearticle4", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"article_5", "type":"standard", "template":"t2", "elements":[{"id":"zone11", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]};
-  var samples_vtour = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with Vish Editor", "author":"Aldo", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"virtualTour", "theme":"theme1", "language":"en", "slides":[{"id":"article1", "type":"virtualTour", 
-  "map_service":"Google Maps", "center":{"lat":"41.23315032959268", "lng":"-366.3451357421875"}, "zoom":5, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article1_poi1", "lat":"40.245991504199026", "lng":"-3.6474609375", "slide_id":"article1_article1"}, {"id":"article1_poi2", "lat":"41.27780646738183", "lng":"2.1533203125", "slide_id":"article1_article2"}, {"id":"article1_poi3", "lat":"37.26530995561875", "lng":"-5.9765625", "slide_id":"article1_article3"}, {"id":"article1_poi4", 
-  "lat":"43.26120612479979", "lng":"-5.9765625", "slide_id":"article1_article4"}], "tours":[{"id":"article1_tour1", "path":["article1_poi1", "article1_poi2", "article1_poi3"]}], "slides":[{"id":"article1_article1", "template":"t1", "elements":[{"id":"article1_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, 
-  {"id":"article1_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"article1_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
-  {"id":"article1_article2", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article1_article3", "template":"t6", "elements":[{"id":"article1_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"article1_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article1_article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"article1_article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
-  {"id":"article1_article4", "type":"standard", "template":"t2", "elements":[{"id":"article1_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}]};
-  var samples_vtour_toledo = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with Vish Editor", "author":"Aldo", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"virtualTour", "theme":"theme1", "language":"en", "slides":[{"id":"article1", 
-  "type":"virtualTour", "map_service":"Google Maps", "center":{"lat":"39.858684807927226", "lng":"-4.024515151977539"}, "zoom":15, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article1_poi1", "lat":"39.858808", "lng":"-4.020706", "slide_id":"article1_article1"}, {"id":"article1_poi2", "lat":"39.85710791823466", "lng":"-4.02348518371582", "slide_id":"article1_article2"}, {"id":"article1_poi3", "lat":"39.86267518700749", "lng":"-4.02498722076416", "slide_id":"article1_article3"}, 
-  {"id":"poi4", "lat":"39.85586400561856", "lng":"-4.029305577278137", "slide_id":"article1_article4"}], "tours":[{"id":"article1_tour1", "path":["article1_poi1", "article1_poi2", "article1_poi3"]}], "slides":[{"id":"article1_article1", "type":"standard", "template":"t7", "elements":[{"id":"article1_article1_zone1", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-1.2893982808022924%;"}, 
-  {"id":"article1_article1_zone2", "type":"image", "areaid":"left", "body":"http://farm1.staticflickr.com/122/284114887_5e4eca03fd_z.jpg", "style":"position: relative; width:260.8695652173913%; height:96.98275862068965%; top:1.0775862068965518%; left:-53.91304347826087%;"}, {"id":"article1_article1_zone3", "type":"text", "areaid":"center", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Alcazar:&nbsp;</span></span></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This outstanding castle is one of Toledo\'s most emblematic monuments and was used as a fortress by Romans, Visigods, Arabs and Christians. King Alfonso VI built his residence here and some of Spain\'s most prestigious artists and architects intervened in the construction of the royal palace.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It was destroyed in the 18th century during the War of Succession, reconstructed only to be badly damaged a few years later in a fire and rebuilt yet again.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The last time the palace was destroyed was during the outbreak of the Spanish Civil War and it was repaired when the War ended.</span></span><br></div></div>'}, 
-  {"id":"article1_article1_zone4", "areaid":"subheader"}]}, {"id":"article1_article2", "type":"standard", "template":"t7", "elements":[{"id":"article1_article2_zone5", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-0.4297994269340974%;"}, {"id":"article1_article2_zone6", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><span style="line-height: 110%;"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Cathedral of Toledo:</span></span></b></span></div><div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><br></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Founded in the 1st Century by San Eugenio, the first Bishop of Toledo. It was changed into a mosque by the Arabs during Moorish occupation of Spain, and then converted back into a cathedral by Alfonso VI.&nbsp;</span></span></span></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">In the 13th Century it was destroyed and the impressive Gothic building which can be seen today was built on the old cathedral\'s foundations.</span></span></span><br></div>'}, 
-  {"id":"article1_article2_zone3", "type":"object", "areaid":"center", "body":'<iframe src="http://www.youtube.com/embed/TxbJY9SPC-A?wmode=opaque" frameborder="0" id="resizableunicID_1" class="t7_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:85.45454545454545%; top:0%; left:0%;"}, {"id":"article1_article2_zone8", "areaid":"subheader"}]}, {"id":"article1_article3", "type":"standard", "template":"t13", "elements":[{"id":"article1_article3_zone9", "type":"image", 
-  "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-7.547169811320755%; left:-0.5730659025787965%;"}, {"id":"article1_article3_zone10", "type":"image", "areaid":"circle", "body":"http://farm7.staticflickr.com/6151/6182498256_8b0585790e_o.jpg", "style":"position: relative; width:152.53731343283582%; height:128.2608695652174%; top:-11.102486841426874%; left:-26.26865671641791%;"}, 
-  {"id":"article1_article3_zone11", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><b><span class="vish-font4 vish-fontHelvetica"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Puerta Bisagra:&nbsp;</span></span></span></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><b><u><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></u></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The main entrance to the old City of Toledo.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">What appears to be one amazing stone gateway is infact two: the old gate which was built during the Moorish occupation of Toledo in the 6th and 7th centuries, and the new gate which extended the original and was built in the 16th century.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This is the best way to start a visit to Toledo since there is ample car parking space on both sides of the Puerta and a very good Tourist Info just opposite on the other side of the main road.</span></span><br></div>'}, 
-  {"id":"article1_article3_zone12", "areaid":"right"}]}, {"id":"article1_article4", "type":"standard", "template":"t5", "elements":[{"id":"article1_article4_zone13", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-5.660377358490566%; left:0%;"}, {"id":"article1_article4_zone14", "type":"text", "areaid":"left", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The Museo del Greco</span></span></div><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Currently the only one in Spain dedicated to the painter and its fundamental purpose is to convey and help gain an understanding of the figure of El Greco as well as the influence his work and personality had on early 17th century Toledo.</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It also includes an evocation of the museum\'s past through the figure of the marquis of Vega-Incl\u00e1n, the genuine promoter of the institution and indisputable leader of the recovery and promotion of El Greco\'s painting.</span></span></div></div>'}, 
-  {"id":"article1_article4_zone15", "type":"image", "areaid":"right", "body":"http://en.museodelgreco.mcu.es/web/img/logo-museo-greco.jpg", "style":"position: relative; width:50.74626865671642%; height:42.731277533039645%; top:16.483111948693903%; left:23.582089552238806%;"}]}]}]};
-  var samples_full_tour = {"id":"1987", "title":"Toledo Virtual Tour", "description":"Virtual Tour example with Vish Editor", "author":"Aldo", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Samples", "Test", "Development", "Virtual Tour"], "age_range":"4 - 14", "subject":"Media Education", "educational_objectives":"Amazing educational Virtual Tour", "adquired_competencies":"Pupils will be smarter", "type":"virtualTour", "theme":"theme1", "language":"en", "slides":[{"id":"article1", 
-  "type":"standard", "template":"t1", "elements":[{"id":"article1_zone5", "type":"image", "areaid":"left", "body":"http://hoteles4you.com/guias-viaje/wp-content/uploads/2011/04/Toledo.jpg", "style":"position: relative; width:137.13080168776372%; height:81.05263157894737%; top:21.315791481419613%; left:0%;"}, {"id":"article1_zone6", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font7 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font7 vish-fonttrebuchet"><b><span class="vish-fontundefined vish-fontHelvetica" style="color:#4a72b1;undefined;">TOLEDO</span></b></span></div>'}, 
-  {"id":"article1_zone7", "type":"text", "areaid":"subheader", "body":'<div class="initTextDiv vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><i><span class="vish-fontundefined vish-fontHelvetica"><span class="vish-fontundefined vish-fonttrebuchet" style="color:#86858a;undefined;">smart city guide</span></span></i></div>'}]}, {"id":"article2", "type":"standard", "template":"t11", "elements":[{"id":"article2_zone8", "type":"image", "areaid":"center1", "body":"http://www.habitsofmind.org/sites/default/files/helpful-tips-image-web-design-sydney.jpg", 
-  "style":"position: relative; width:24.785100286532952%; height:104.8780487804878%; top:2.642273321384337%; left:-1.7191977077363896%;"}, {"id":"article2_zone9", "type":"text", "areaid":"center2", "body":'<div class="initTextDiv vish-parent-fontundefined" style="font-weight: normal;"><span class="vish-fontundefined vish-fonttrebuchet"><span style="color: rgb(62, 61, 61); line-height: 18px;"><b>Clothing/Shoes/Weather Gear:</b></span></span></div><div class="initTextDiv vish-parent-fontundefined"><span class="vish-fontundefined vish-fonttrebuchet"><span style="color: rgb(62, 61, 61); line-height: 18px;"><b><br></b></span></span></div><div class="initTextDiv vish-parent-fontundefined" style="font-weight: normal;"><span class="vish-fontundefined vish-fonttrebuchet" style="color:undefined;undefined;"><span style="color: rgb(62, 61, 61); line-height: 110%;">Forget about wearing high heels in Toledo - the small cobblestone streets are very charming but slightly uneven, and as the entire portion of the city within the walls is built up on hill, you\'ll spend the entire day either going down or climbing up some more or less steep hills. And as there is no denying that this city is best seen on foot, if you want to make the most of your time there, I\'d highly recommend bringing a pair of comfortable walking shoes.</span></span><br></div>'}, 
-  {"id":"article2_zone10", "type":"text", "areaid":"center3", "body":'<div class="initTextDiv vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fonttrebuchet"><span style="color: rgb(62, 61, 61); line-height: 18px;"><b>Miscellaneous:&nbsp;</b></span></span></div><div class="initTextDiv vish-parent-font4"><span class="vish-font4 vish-fonttrebuchet" style="color:undefined;undefined;"><span style="color: rgb(62, 61, 61); line-height: 18px;"><br></span></span></div><div class="initTextDiv vish-parent-fontundefined"><span class="vish-fontundefined vish-fonttrebuchet" style="color:undefined;undefined;"><span style="color: rgb(62, 61, 61); line-height: 18px;">Toledo must have been designed originally to confuse its enemies from successfully invading the City. There are a confusing series of streets with names of streets changing frequently.</span></span><br></div>'}]}, 
-  {"id":"article3", "type":"virtualTour", "map_service":"Google Maps", "center":{"lat":"39.858684807927226", "lng":"-4.024515151977539"}, "zoom":15, "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"id":"article3_poi1", "lat":"39.858808", "lng":"-4.020706", "slide_id":"article3_article1"}, {"id":"article3_poi2", "lat":"39.85710791823466", "lng":"-4.02348518371582", "slide_id":"article3_article2"}, {"id":"article3_poi3", "lat":"39.86267518700749", "lng":"-4.02498722076416", "slide_id":"article3_article3"}, 
-  {"id":"article3_poi4", "lat":"39.85586400561856", "lng":"-4.029305577278137", "slide_id":"article3_article4"}], "tours":[{"id":"article3_tour1", "path":["poi1", "poi2", "poi3"]}], "slides":[{"id":"article3_article1", "type":"standard", "template":"t7", "elements":[{"id":"article3_article1_zone1", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-1.2893982808022924%;"}, 
-  {"id":"article3_article1_zone2", "type":"image", "areaid":"left", "body":"http://farm1.staticflickr.com/122/284114887_5e4eca03fd_z.jpg", "style":"position: relative; width:260.8695652173913%; height:96.98275862068965%; top:1.0775862068965518%; left:-53.91304347826087%;"}, {"id":"article3_article1_zone3", "type":"text", "areaid":"center", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Alcazar:&nbsp;</span></span></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This outstanding castle is one of Toledo\'s most emblematic monuments and was used as a fortress by Romans, Visigods, Arabs and Christians. King Alfonso VI built his residence here and some of Spain\'s most prestigious artists and architects intervened in the construction of the royal palace.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It was destroyed in the 18th century during the War of Succession, reconstructed only to be badly damaged a few years later in a fire and rebuilt yet again.&nbsp;</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The last time the palace was destroyed was during the outbreak of the Spanish Civil War and it was repaired when the War ended.</span></span><br></div></div>'}, 
-  {"id":"article3_article1_zone4", "areaid":"subheader"}]}, {"id":"article3_article2", "type":"standard", "template":"t7", "elements":[{"id":"article3_article2_zone5", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-9.433962264150944%; left:-0.4297994269340974%;"}, {"id":"article3_article2_zone6", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><span style="line-height: 110%;"><b><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Cathedral of Toledo:</span></span></b></span></div><div class="vish-parent-font5 vish-parent-fontundefined" style="font-weight: normal;"><br></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Founded in the 1st Century by San Eugenio, the first Bishop of Toledo. It was changed into a mosque by the Arabs during Moorish occupation of Spain, and then converted back into a cathedral by Alfonso VI.&nbsp;</span></span></span></div><div style="font-weight: normal;" class="vish-parent-fontundefined vish-parent-font4"><span style="line-height: 110%;"><span class="vish-fontundefined vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">In the 13th Century it was destroyed and the impressive Gothic building which can be seen today was built on the old cathedral\'s foundations.</span></span></span><br></div>'}, 
-  {"id":"article3_article2_zone3", "type":"object", "areaid":"center", "body":'<iframe src="http://www.youtube.com/embed/TxbJY9SPC-A?wmode=opaque" frameborder="0" id="resizableunicID_1" class="t7_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:85.45454545454545%; top:0%; left:0%;"}, {"id":"article3_article2_zone8", "areaid":"subheader"}]}, {"id":"article3_article3", "type":"standard", "template":"t13", "elements":[{"id":"article3_article3_zone9", "type":"image", 
-  "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-7.547169811320755%; left:-0.5730659025787965%;"}, {"id":"article3_article3_zone10", "type":"image", "areaid":"circle", "body":"http://farm7.staticflickr.com/6151/6182498256_8b0585790e_o.jpg", "style":"position: relative; width:152.53731343283582%; height:128.2608695652174%; top:-11.102486841426874%; left:-26.26865671641791%;"}, 
-  {"id":"article3_article3_zone11", "type":"text", "areaid":"left", "body":'<div class="vish-parent-font4 vish-parent-font5 vish-parent-fontundefined" style="text-align: right; font-weight: normal;"><b><span class="vish-font4 vish-fontHelvetica"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Puerta Bisagra:&nbsp;</span></span></span></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><b><u><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></u></b></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The main entrance to the old City of Toledo.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">What appears to be one amazing stone gateway is infact two: the old gate which was built during the Moorish occupation of Toledo in the 6th and 7th centuries, and the new gate which extended the original and was built in the 16th century.&nbsp;</span></span></div><div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">This is the best way to start a visit to Toledo since there is ample car parking space on both sides of the Puerta and a very good Tourist Info just opposite on the other side of the main road.</span></span><br></div>'}, 
-  {"id":"article3_article3_zone12", "areaid":"right"}]}, {"id":"article3_article4", "type":"standard", "template":"t5", "elements":[{"id":"article3_article4_zone13", "type":"image", "areaid":"header", "body":"http://www.toledo-turismo.com/turismo/img/logo_toledo_turismo_es.gif", "style":"position: relative; width:59.45558739255014%; height:115.09433962264151%; top:-5.660377358490566%; left:0%;"}, {"id":"article3_article4_zone14", "type":"text", "areaid":"left", "body":'<div class="initTextDiv" style="font-weight: normal;"><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">The Museo del Greco</span></span></div><div class="initTextDiv vish-parent-font6 vish-parent-fontundefined"><span class="vish-font6 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">Currently the only one in Spain dedicated to the painter and its fundamental purpose is to convey and help gain an understanding of the figure of El Greco as well as the influence his work and personality had on early 17th century Toledo.</span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;"><br></span></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined"><span class="vish-font4 vish-fontHelvetica"><span class="vish-fontundefined vish-fontarial" style="color:undefined;undefined;">It also includes an evocation of the museum\'s past through the figure of the marquis of Vega-Incl\u00e1n, the genuine promoter of the institution and indisputable leader of the recovery and promotion of El Greco\'s painting.</span></span></div></div>'}, 
-  {"id":"article3_article4_zone15", "type":"image", "areaid":"right", "body":"http://en.museodelgreco.mcu.es/web/img/logo-museo-greco.jpg", "style":"position: relative; width:50.74626865671642%; height:42.731277533039645%; top:16.483111948693903%; left:23.582089552238806%;"}]}]}, {"id":"article__2", "type":"standard", "template":"t14", "elements":[{"id":"zone11", "type":"image", "areaid":"circle1", "body":"http://media-cdn.tripadvisor.com/media/photo-s/02/8b/b9/15/getlstd-property-photo.jpg", "style":"position: relative; width:164.59627329192546%; height:133.78378378378378%; top:-1.5540509610562712%; left:-39.75155279503105%;"}, 
-  {"id":"zone12", "type":"text", "areaid":"right1", "body":'<div class="initTextDiv" style="font-weight: normal;"><div id="headingWrapper" class="headerWrapPadding" style="margin: 0px; padding: 0px; position: relative; z-index: 2; font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; background-color: rgb(255, 255, 255); font-size: 12px; color: rgb(44, 44, 44);"><h1 property="v:name" style="margin: 0px; padding: 0px; font-size: 2.5835em; line-height: 34px; color: rgb(0, 0, 0); display: inline; width: auto; word-wrap: break-word;" id="HEADING">Alqahira Rincon de Oriente</h1><div class="savesWrap" style="margin: 0px; padding: 0px;"><div id="default_3170073" class="savesContainer headerListing" style="margin: 0px; padding: 0px; position: absolute; right: -8px; top: 0px;"><div class="savesHover savesHover-3170073" style="margin: 0px 4px 0px 28px; padding: 0px; position: relative; float: right;"><div class="saveOptions" style="margin: 21px 0px 0px; padding: 10px; visibility: hidden; position: absolute; background-color: rgb(242, 246, 235); height: auto; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 175px; z-index: 301; line-height: 16px;"><div class="contentDelete" style="margin: 0px; padding: 0px; color: rgb(0, 102, 153); outline: none medium; cursor: pointer;"></div><div class="allContent" style="margin: 0px; padding: 0px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div></div></div></div><div id="SAVES_ALERT" class="saveAlert" style="margin: 0px; padding: 0px 0px 0px 14px; visibility: hidden; float: right; background-color: rgb(242, 246, 235); height: 69px; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 315px; position: absolute; z-index: 300;"><div id="SAVES_ALERT_CONTENT" style="margin: 0px; padding: 0px;"><span class="saveAlertClose sprite-greenX" style="background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 11px; height: 11px; display: inline-block; float: right; margin: 3px; cursor: pointer; background-position: 0% -4758px;"></span><div class="allContent" style="margin: 0px 17px 0px 0px; padding: 0px; position: absolute; bottom: 8px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div><div class="contentAdded" style="margin: 10px 17px 0px 0px; padding: 0px; position: relative;"></div></div></div></div></div><div class="wrap infoBox" style="margin: 0px; padding: 0px; height: 40px; overflow: hidden; clear: left; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><address style="font-style: normal; display: inline; margin-right: 8px;"><span rel="v:address"><span class="format_address" dir="ltr"><span class="street-address" property="v:street-address">C/La Ciudad, N0 7 - Toledo</span>,&nbsp;<span class="locality"><span property="v:postal-code">45002</span>&nbsp;<span property="v:locality">Toledo</span></span>,&nbsp;<span class="country-name" property="v:country-name">Espa\u00f1a</span></span></span></address><div class="odcHotel blDetails" style="margin: 2px 0px 7px; padding: 0px; overflow: hidden; clear: both; float: none; height: 16px; line-height: 16px;"><div class="fl notLast" style="margin: 0px 15px 0px 0px; padding: 0px; float: left;"><div class="sprite-greenPhone fl icnLink" style="margin: 0px 5px 0px 0px; padding: 0px; background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 9px; height: 15px; float: left; overflow: hidden; background-position: 0% -4474px;"></div><div class="fl" style="margin: 0px; padding: 0px; float: left;">925 673 260</div></div></div></div></div>'}, 
-  {"id":"zone13", "type":"image", "areaid":"circle2", "body":"http://media-cdn.tripadvisor.com/media/photo-s/02/86/d0/12/filename-img-6037-jpg.jpg", "style":"position: relative; width:137.26708074534162%; height:100%; top:-0.33783783783783783%; left:-2.484472049689441%;"}, {"id":"zone14", "type":"text", "areaid":"right2", "body":'<div class="initTextDiv" style="font-weight: normal;"><div id="headingWrapper" class="headerWrapPadding" style="margin: 0px; padding: 0px; position: relative; z-index: 2; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><h1 id="HEADING" property="v:name" style="margin: 0px; padding: 0px; font-size: 2.5835em; line-height: 34px; color: rgb(0, 0, 0); display: inline; width: auto; word-wrap: break-word;">El Embrujo</h1><div class="savesWrap" style="margin: 0px; padding: 0px;"><div id="default_2384802" class="savesContainer headerListing" style="margin: 0px; padding: 0px; position: absolute; right: -8px; top: 0px;"><div class="savesHover savesHover-2384802" style="margin: 0px 4px 0px 28px; padding: 0px; position: relative; float: right;"><div class="saveOptions" style="margin: 21px 0px 0px; padding: 10px; visibility: hidden; position: absolute; background-color: rgb(242, 246, 235); height: auto; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 175px; z-index: 301; line-height: 16px;"><div class="contentDelete" style="margin: 0px; padding: 0px; color: rgb(0, 102, 153); outline: none medium; cursor: pointer;"></div><div class="allContent" style="margin: 0px; padding: 0px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div></div></div></div><div id="SAVES_ALERT" class="saveAlert" style="margin: 0px; padding: 0px 0px 0px 14px; visibility: hidden; float: right; background-color: rgb(242, 246, 235); height: 69px; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 315px; position: absolute; z-index: 300;"><div id="SAVES_ALERT_CONTENT" style="margin: 0px; padding: 0px;"><span class="saveAlertClose sprite-greenX" style="background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 11px; height: 11px; display: inline-block; float: right; margin: 3px; cursor: pointer; background-position: 0% -4758px;"></span><div class="allContent" style="margin: 0px 17px 0px 0px; padding: 0px; position: absolute; bottom: 8px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div><div class="contentAdded" style="margin: 10px 17px 0px 0px; padding: 0px; position: relative;"></div></div></div></div></div><div class="wrap infoBox" style="margin: 0px; padding: 0px; height: 40px; overflow: hidden; clear: left; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><address style="font-style: normal; display: inline; margin-right: 8px;"><span rel="v:address"><span class="format_address" dir="ltr"><span class="street-address" property="v:street-address">Santa Leocadia, 6</span>,&nbsp;<span class="locality"><span property="v:postal-code">45002&nbsp;</span><span property="v:locality">Toledo</span></span>,&nbsp;<span class="country-name" property="v:country-name">Espa\u00f1a</span></span></span></address><div class="odcHotel blDetails" style="margin: 2px 0px 7px; padding: 0px; overflow: hidden; clear: both; float: none; height: 16px; line-height: 16px;"><div class="fl notLast" style="margin: 0px 15px 0px 0px; padding: 0px; float: left;"><div class="sprite-greenPhone fl icnLink" style="margin: 0px 5px 0px 0px; padding: 0px; background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 9px; height: 15px; float: left; overflow: hidden; background-position: 0% -4474px;"></div><div class="fl" style="margin: 0px; padding: 0px; float: left;">925 210 706</div></div></div></div></div>'}, 
-  {"id":"zone15", "type":"image", "areaid":"circle3", "body":"http://media-cdn.tripadvisor.com/media/photo-s/01/e8/73/e6/meson-de-la-orza.jpg", "style":"position: relative; width:137.26708074534162%; height:110.8108108108108%; top:-7.0045058791701855%; left:-19.875776397515526%;"}, {"id":"zone16", "type":"text", "areaid":"right3", "body":'<div class="initTextDiv" style="font-weight: normal;"><div id="headingWrapper" class="headerWrapPadding" style="margin: 0px; padding: 0px; position: relative; z-index: 2; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><h1 id="HEADING" property="v:name" style="margin: 0px; padding: 0px; font-size: 2.5835em; line-height: 34px; color: rgb(0, 0, 0); display: inline; width: auto; word-wrap: break-word;">Meson de la Orza</h1><div class="savesWrap" style="margin: 0px; padding: 0px;"><div id="default_1117085" class="savesContainer headerListing" style="margin: 0px; padding: 0px; position: absolute; right: -8px; top: 0px;"><div class="savesHover savesHover-1117085" style="margin: 0px 4px 0px 28px; padding: 0px; position: relative; float: right;"><div class="saveOptions" style="margin: 21px 0px 0px; padding: 10px; visibility: hidden; position: absolute; background-color: rgb(242, 246, 235); height: auto; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 175px; z-index: 301; line-height: 16px;"><div class="contentDelete" style="margin: 0px; padding: 0px; color: rgb(0, 102, 153); outline: none medium; cursor: pointer;"></div><div class="allContent" style="margin: 0px; padding: 0px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div></div></div></div><div id="SAVES_ALERT" class="saveAlert" style="margin: 0px; padding: 0px 0px 0px 14px; visibility: hidden; float: right; background-color: rgb(242, 246, 235); height: 69px; border-style: solid; border-color: rgb(98, 157, 42); border-width: 1px 2px 2px 1px; width: 315px; position: absolute; z-index: 300;"><div id="SAVES_ALERT_CONTENT" style="margin: 0px; padding: 0px;"><span class="saveAlertClose sprite-greenX" style="background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 11px; height: 11px; display: inline-block; float: right; margin: 3px; cursor: pointer; background-position: 0% -4758px;"></span><div class="allContent" style="margin: 0px 17px 0px 0px; padding: 0px; position: absolute; bottom: 8px;"><a href="http://www.tripadvisor.es/Saves" style="color: rgb(0, 102, 153); text-decoration: initial; outline: none;"></a></div><div class="contentAdded" style="margin: 10px 17px 0px 0px; padding: 0px; position: relative;"></div></div></div></div></div><div class="wrap infoBox" style="margin: 0px; padding: 0px; height: 40px; overflow: hidden; clear: left; color: rgb(44, 44, 44); font-family: Arial, Tahoma, \'Bitstream Vera Sans\', sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);"><address style="font-style: normal; display: inline; margin-right: 8px;"><span rel="v:address"><span class="format_address" dir="ltr"><span class="street-address" property="v:street-address">C/ Descalzos 5</span>,&nbsp;<span class="locality"><span property="v:postal-code">45002</span>&nbsp;<span property="v:locality">Toledo</span></span>,&nbsp;<span class="country-name" property="v:country-name">Espa\u00f1a</span></span></span></address><div class="odcHotel blDetails" style="margin: 2px 0px 7px; padding: 0px; overflow: hidden; clear: both; float: none; height: 16px; line-height: 16px;"><div class="fl notLast" style="margin: 0px 15px 0px 0px; padding: 0px; float: left;"><div class="sprite-greenPhone fl icnLink" style="margin: 0px 5px 0px 0px; padding: 0px; background-image: url(http://c1.tacdn.com/sprites/global_pack-v2764cf6911e3185e8882a4b1c0921e8d.png); width: 9px; height: 15px; float: left; overflow: hidden; background-position: 0% -4474px;"></div><div class="fl" style="margin: 0px; padding: 0px; float: left;">+34 925 223 011</div></div></div></div></div>'}]}]};
-  var samples_fc = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"presentation", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
-  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "template":"t3", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article31", "template":"t3", "elements":[{"id":"article31_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, 
-  {"id":"article31_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article331", "template":"t3", "elements":[{"id":"article331_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article331_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, 
-  {"id":"article4331", "template":"t3", "elements":[{"id":"article4331_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article4331_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article2", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"article2_poi1", "x":"11", "y":"4.5", "slide_id":"article2_article1"}, 
-  {"id":"article2_poi2", "x":"47", "y":"34", "slide_id":"article2_article2"}, {"id":"article2_poi3", "x":"84", "y":"81", "slide_id":"article2_article3"}], "slides":[{"id":"article2_article1", "template":"t1", "elements":[{"id":"article2_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article2_article1_zone2", 
-  "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"article2_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
-  {"id":"article2_article2", "template":"t2", "elements":[{"id":"article2_article2_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"article2_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article2_article3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"article2_article3_zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article2_article3_zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"article2_article3_zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}, 
-  {"id":"article3", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"article3_poi1", "x":"11", "y":"4.5", "slide_id":"article3_article1"}, {"id":"article3_poi2", "x":"47", "y":"34", "slide_id":"article3_article2"}, {"id":"article3_poi3", "x":"84", "y":"81", "slide_id":"article3_article3"}], "slides":[{"id":"article3_article1", "template":"t1", "elements":[{"id":"article3_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article3_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"article3_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article3_article2", "template":"t2", "elements":[{"id":"article3_article2_zone1", "type":"text", 
-  "areaid":"header", "body":"Experimento virtual1"}, {"id":"article3_article2_zone1", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article3_article3", "template":"t6", "elements":[{"id":"article3_article3_zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"article3_article3_zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article3_article3_zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"article3_article3_zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}, 
-  {"id":"article4", "template":"t5", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":"Sensores"}, {"id":"article4_zone2", "type":"text", "areaid":"left", "body":"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas orci nisl, euismod a posuere ac, commodo quis ipsum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sollicitudin risus laoreet velit dapibus bibendum. Nullam cursus sollicitudin hendrerit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc ullamcorper tempor bibendum. Morbi gravida pretium leo, vitae scelerisque quam mattis eu. Sed hendrerit molestie magna, sit amet porttitor nulla facilisis in. Donec vel massa mauris, sit amet condimentum lacus.</p>"}, 
-  {"id":"article4_zone3", "type":"image", "areaid":"right", "body":"http://www.satec.es/es-ES/NuestraActividad/CasosdeExito/PublishingImages/IMG%20Do%C3%B1ana/do%C3%B1ana_fig2.png"}]}, {"id":"article5", "template":"t3", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"article5_zone2", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg"}]}]};
-  var curiosity_flashcard = {"id":"418", "type":"flashcard", "title":"Curiosity Flashcard", "description":'A Flashcard about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "avatar":"/assets/logos/original/excursion-12.png", "tags":["Space", "science", "LifeSciences", "Mars"], "author":"N\u00e9stor Toribio Ruiz", "slides":[{"id":"418", "type":"flashcard", "background":'url("http://blogs.vanguardia.com/tecnologiaviva/files/2012/08/Curiosity.jpg")', "pois":[{"id":"poi1", "x":7, 
-  "y":3, "slide_id":"1"}, {"id":"poi2", "x":12, "y":33, "slide_id":"2"}, {"id":"poi3", "x":88, "y":61, "slide_id":"3"}, {"id":"poi4", "x":39, "y":14, "slide_id":"4"}, {"id":"poi5", "x":33, "y":65, "slide_id":"5"}, {"id":"poi6", "x":44.375, "y":40.73333231608073, "slide_id":"6"}], "slides":[{"id":"article__0", "type":"standard", "template":"t2", "elements":[{"id":"zone1", "type":"object", "areaid":"left", "body":'<iframe unselectable="on" wmode="opaque" class="t2_object" id="resizableunicID_1" src="http://www.youtube.com/embed/waEiMKdNgGU?wmode=opaque" frameborder="0"></iframe>', 
-  "style":"position: relative; width:100.01966666666667%; height:97.9021891891892%; top:0%; left:0%;"}]}, {"id":"article__1", "type":"standard", "template":"t2", "elements":[{"id":"zone2", "type":"object", "areaid":"left", "body":'<object unselectable="on" wmode="opaque" class="t2_object" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" id="resizableunicID_7" name="_360_krpano_name_156391" height="500" width="700"><param unselectable="on" name="movie" value="http://www.360cities.net/javascripts/krpano/krpano.swf"><param unselectable="on" name="quality" value="autohigh"><param unselectable="on" name="allowScriptAccess" value="always"><param unselectable="on" name="flashvars" value="pano=http://www.360cities.net/krpano/external_embed/curiosity-rover-martian-solar-day-2.xml&amp;epd=http://www.360cities.net/data/embed/plugin_data/curiosity-rover-martian-solar-day-2"><param unselectable="on" name="allowFullScreen" value="true"><embed unselectable="on" src="http://www.360cities.net/javascripts/krpano/krpano.swf" pluginspage="http://www.macromedia.com/go/getflashplayer" allowfullscreen="true" allowscriptaccess="always" quality="autohigh" flashvars="pano=http://www.360cities.net/krpano/external_embed/curiosity-rover-martian-solar-day-2.xml&amp;epd=http://www.360cities.net/data/embed/plugin_data/curiosity-rover-martian-solar-day-2" height="500" width="700"></object>', 
-  "style":"position: relative; width:103.26450442477876%; height:3.693694980694981%; top:0%; left:0%;"}]}, {"id":"article__2", "type":"standard", "template":"t4", "elements":[{"id":"zone5", "type":"image", "areaid":"header", "body":"http://www.nasa.gov/images/content/351657main_curiosity_bn.jpg", "style":"position: relative; width:100.29498525073747%; height:182.69230769230768%; top:-69.23076923076923%; left:-0.14749262536873156%;"}, {"id":"zone6", "type":"image", "areaid":"left", "body":"http://www.nasa.gov/images/content/683195main_pia15695-full_full.jpg", 
-  "style":"position: relative; width:103.2448377581121%; height:101.20845921450152%; top:-0.6042296072507553%; left:-1.9174041297935103%;"}, {"id":"zone7", "type":"text", "areaid":"right", "body":'<div style="font-weight: 400;" align="center">The Chemistry and Camera (ChemCam) instrument on NASA\'s Mars rover \nCuriosity used its laser to examine side-by-side points in a target \npatch of soil, leaving the marks apparent in this before-and-after \ncomparison. <br> The two images were taken by ChemCam\'s Remote \nMicro-Imager from a distance of about 11.5 feet (3.5 meters). The \ndiameter of the circular field of view is about 3.1 inches (7.9 \ncentimeters). </div>'}]}, 
-  {"id":"article__3", "type":"standard", "template":"t7", "elements":[{"id":"zone8", "type":"image", "areaid":"header", "body":"http://www.nasa.gov/images/content/351657main_curiosity_bn.jpg", "style":"position: relative; width:137.16814159292036%; height:250%; top:-94.23076923076923%; left:-23.746312684365783%;"}, {"id":"zone9", "type":"text", "areaid":"left", "body":'<div style="font-weight: 400;" class="vish-parent-font2"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">This image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s \nCuriosity rover, with the Martian landscape in the background. The image\n was taken by Curiosity\'s Mast Camera on the 32nd Martian day, or sol, \nof operations on the surface (Sept. 7, 2012, PDT or Sept. 8, 2012, UTC).\n APXS can be seen in the middle of the picture.</span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">This image let researchers know that the APXS instrument had not become caked with dust during Curiosity\'s dusty landing. </span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">\n Scientists enhanced the color in this version to show the Martian scene\n as it would appear under the lighting conditions we have on Earth, \nwhich helps in analyzing the terrain. </span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span></div>'}, 
-  {"id":"zone10", "type":"image", "areaid":"center", "body":"http://www.nasa.gov/images/content/686475main_pia16160-full_full.jpg", "style":"position: relative; width:124.12177985948477%; height:105.55555555555556%; top:-1.0582010582010581%; left:-9.836065573770492%;"}, {"id":"zone11", "type":"text", "areaid":"subheader", "body":'<div style="font-weight: 400;"><i>Image credit: NASA/JPL-Caltech/MSSS</i></div>'}]}, {"id":"article__4", "type":"standard", "template":"t9", "elements":[{"id":"zone12", 
-  "type":"image", "areaid":"header", "body":"http://www.nasa.gov/images/content/351657main_curiosity_bn.jpg", "style":"position: relative; width:176.99115044247787%; height:323.0769230769231%; top:-180.76923076923077%; left:-74.48377581120944%;"}, {"id":"zone13", "type":"image", "areaid":"left", "body":"http://www.nasa.gov/images/content/685406main_pia16134-full_full.jpg", "style":"position: relative; width:150%; height:203.3816425120773%; top:-50.24154589371981%; left:-31.666666666666668%;"}, {"id":"zone14", 
-  "type":"text", "areaid":"center", "body":'<div style="font-weight: 400;" class="vish-parent-font2"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">In the distance is the lower slope of Mount Sharp.</span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">The camera is located in the turret of tools at the end of Curiosity\'s \nrobotic arm. The Sol 34 imaging by MAHLI was part of a week-long set of \nactivities for characterizing the movement of the arm in Mars \nconditions. </span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;">The main purpose of Curiosity\'s MAHLI camera is to acquire close-up, \nhigh-resolution views of rocks and soil at the rover\'s Gale Crater field\n site. The camera is capable of focusing on any target at distances of \nabout 0.8 inch (2.1 centimeters) to infinity, providing versatility for \nother uses, such as views of the rover itself from different angles. </span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><br></span> </div>'}, 
-  {"id":"zone15", "type":"image", "areaid":"right", "body":"http://www.nasa.gov/images/content/685666main_pia16137-full_full.jpg", "style":"position: relative; width:119.04761904761905%; height:100%; top:-0.43859649122807015%; left:-7.619047619047619%;"}]}, {"id":"article__5", "type":"standard", "template":"t2", "elements":[{"id":"zone16", "type":"image", "areaid":"left", "body":"http://www.nasa.gov/images/content/684452main_Robinson-3-pia16145-full_full.jpg", "style":"position: relative; width:100.29498525073747%; height:86.1003861003861%; top:7.335907335907336%; left:-0.4424778761061947%;"}]}]}]};
-  var samples_flashcard_new = {"VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://farm9.staticflickr.com/8215/8258609986_a01a9824f9.jpg)", "pois":[{"id":"article4_poi1", "x":14.5, "y":55.166666666666664, "slide_id":"article4_article6"}, {"id":"article4_poi2", "x":45.625, "y":13.333333333333334, "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":76.375, "y":40.166666666666664, "slide_id":"article4_article5"}], "slides":[{"id":"article4_article6", 
-  "type":"standard", "template":"t2", "elements":[{"id":"article4_article6_zone1", "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8353/8292749475_52c22f8e4d.jpg", "style":"position: relative; width:123.78223495702005%; height:108.52272727272727%; top:-1.3257575757575757%; left:-5.730659025787966%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t12", "elements":[{"id":"article4_article2_zone1", "type":"text", "areaid":"left1", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}, 
-  {"id":"article4_article2_zone2", "type":"text", "areaid":"right1", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}, {"id":"article4_article2_zone3", "type":"text", "areaid":"left2", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}, 
-  {"id":"article4_article2_zone4", "type":"text", "areaid":"right2", "body":'<div class="initTextDiv vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;">Insert text here</span></div>'}]}, {"id":"article4_article5", "type":"standard", "template":"t10", "elements":[{"id":"article4_article5_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://www.youtube.com/embed/iv1Z7bf4jXY?wmode=opaque" frameborder="0" id="resizableunicID1" class="t10_object" wmode="opaque" unselectable="on"></iframe>', 
-  "style":"position: relative; width:100%; height:99.66555183946488%; top:0%; left:0%;"}]}]}]};
-  var samples_flashcard = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
-  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"27", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]};
-  var samples_game = {"id":"", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"game", "game":{"src":"games/sokoban/sokoban.html", "actions":{"devil":{"slide_id":"1", "when":"after"}, "diamond":{"slide_id":"2", "when":"before"}}}, "slides":[{"id":"1", "template":"t1", 
-  "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t3", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":"Puesta de sol..."}, {"id":"zone5", 
-  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:44.31314623338257%; height:50.90909090909091%; top:0%; left:0%;"}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]};
+  var fc_sample = {"id":"3", "VEVersion":"0.2", "type":"flashcard", "title":"Curiosity Flashcard", "description":'A Flashcard about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "avatar":"http://vishub.org/pictures/311.jpg", "tags":["Science", "Space", "Mars"], "age_range":"12 - 30", "subject":["Astronomy"], "language":"independent", "educational_objectives":'Know about "Curiosity", the car-sized robotic rover exploring Gale Crater on Mars.', "adquired_competencies":"Pupils will be smarter", 
+  "author":"Vish Editor Team", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://vishub.org/pictures/311.jpg)", "pois":[{"id":"article4_poi1", "x":"88.88", "y":"50.83", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"45.5", "y":"2.5", "slide_id":"article4_article3"}, {"id":"article4_poi3", "x":"13.5", "y":"63.17", "slide_id":"article4_article4"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", 
+  "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/P4boyXQuUIw?wmode=opaque" frameborder="0" id="resizableunicID3" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:98.7%; top:0%; left:0%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t7", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"header", "body":"http://vishub.org/pictures/315.jpeg", "style":"position: relative; width:101.9%; height:190.4%; top:-69.2%; left:-0.1%;"}, 
+  {"id":"article4_article3_zone2", "type":"text", "areaid":"left", "body":'The image shows the Alpha Particle X-Ray Spectrometer (APXS) on NASA\'s Curiosity rover, with the Martian landscape in the background.<div class="vish-parent-font5" style="font-weight: normal; "><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article4_article3_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/316.jpeg", "style":"position: relative; width:129.1%; height:110.6%; top:-5.2%; left:-10.9%;"}, 
+  {"id":"article4_article3_zone4", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font4" style="font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Image credit: NASA/JPL-Caltech/MSSS</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article4_article4", "type":"standard", "template":"t10", "elements":[{"id":"article4_article4_zone1", "type":"object", "areaid":"center", 
+  "body":'<iframe src="http://en.wikipedia.org/wiki/Curiosity_rover?wmode=transparent" id="resizableunicID6" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]}]};
+  var full_samples = {"id":"4", "VEVersion":"0.2", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by Vish Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "age_range":"4 - 20", "subject":["Biology"], "language":"en", "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", 
+  "author":"Vish Editor Team", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:117.0886075949367%; height:109.47368421052632%; top:-4.7368421052631575%; left:-2.320675105485232%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>'}, 
+  {"id":"article1_zone3", "areaid":"subheader"}]}, {"id":"article2", "type":"standard", "template":"t8", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6 vish-parent-fontundefined" style="font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;"> Lynx &nbsp; &nbsp; &nbsp;</span><span class="vish-fontundefined vish-fontHelvetica" style="color:#5ea099;undefined;">Description and habitat</span></div>'}, 
+  {"id":"article2_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/73.jpeg", "style":"position: relative; width:130.43478260869566%; height:106.63507109004739%; top:0%; left:-25.217391304347824%;"}, {"id":"article2_zone3", "type":"text", "areaid":"center", "body":'In most respects, the Iberian Lynx resembles other species of lynx, with a short tail,tufted ears and a ruff of fur beneath the chin. ...<div class="vish-parent-font7" style="font-weight: normal; "><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"article2_zone4", "type":"image", "areaid":"right", "body":"http://vishub.org/pictures/313.png", "style":"position: relative; width:119.56521739130434%; height:88.60759493670886%; top:2.9535864978902953%; left:-2.608695652173913%;"}]}, {"id":"article12", "template":"t3", "elements":[{"id":"article12_zone1", "type":"text", "areaid":"header", "body":"Experimento virtual"}, {"id":"article12_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, 
+  {"id":"article8", "type":"flashcard", "background":"url(http://vishub.org/pictures/317.png)", "pois":[{"id":"article8_poi1", "x":"36.9", "y":"67.3", "slide_id":"article8_article1"}, {"id":"article8_poi2", "x":"55.4", "y":"68.16", "slide_id":"article8_article2"}, {"id":"article8_poi3", "x":"45.875", "y":"5.5", "slide_id":"article8_article3"}], "slides":[{"id":"article8_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/318.jpeg", 
+  "style":"position: relative; width:110.31518624641834%; height:97.1590909090909%; top:2.0833333333333335%; left:-1.146131805157593%;"}]}, {"id":"article8_article2", "type":"standard", "template":"t2", "elements":[{"id":"article4_article2_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/327.jpeg", "style":"position: relative; width:103.15186246418338%; height:90.53030303030303%; top:3.0303030303030303%; left:-0.5730659025787965%;"}]}, {"id":"article8_article3", "type":"standard", 
+  "template":"t2", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/319.jpeg", "style":"position: relative; width:119.05444126074498%; height:129.54545454545453%; top:-2.6515151515151514%; left:-3.5816618911174785%;"}]}]}, {"id":"article9", "type":"standard", "template":"t3", "elements":[{"id":"article9_zone1", "type":"text", "areaid":"header", "body":'<span class="vish-font6 vish-fontHelvetica" style="color: rgb(219, 150, 0); font-weight: normal; ">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">Lynx</span><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"article9_zone2", "type":"video", "areaid":"left", "poster":"https://raw.github.com/ging/vish_editor/master/public/vishEditor/images/example_poster_image.jpg", "style":"position: relative; width:100%; height:100%; top:-3.125%; left:0.14326647564469913%;", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/325.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/325.mp4"}]'}]}, {"id":"article3", "type":"standard", "template":"t3", "elements":[{"id":"article3_zone1", 
+  "type":"text", "areaid":"header", "body":'<span class="vish-font6 vish-fontHelvetica" style="color: rgb(219, 150, 0); font-weight: normal; ">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">Lynx</span><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"id":"article3_zone2", 
+  "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/8t29CZcGAbs?wmode=opaque" frameborder="0" id="resizableunicID4" class="t3_object" wmode="opaque"></iframe>', "style":"position: relative; width:85.81661891117479%; height:100%; top:0%; left:6.446991404011461%;"}]}, {"id":"article4", "type":"standard", "template":"t6", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;Lynx</span><br></div>'}, 
+  {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.6111111111111%; height:217.91044776119404%; top:-34.9680170575693%; left:-42.129629629629626%;"}, {"id":"article4_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.14814814814815%; height:217.69722814498934%; top:-46.695095948827294%; left:-199.07407407407408%;"}, {"id":"article4_zone4", 
+  "type":"text", "areaid":"right", "body":'<div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: center; font-weight: normal; "><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">During the mating season the female leaves her territory...</span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, {"id":"article5", "type":"standard", "template":"t10", "elements":[{"id":"article5_zone1", "type":"object", 
+  "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Do%C3%B1ana_National_Park?wmode=transparent" id="resizableunicID7" class="t10_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article7", "type":"flashcard", "background":"url(http://vishub.org/pictures/320.jpeg)", "pois":[{"id":"article7_poi1", "x":"15.63", "y":"8.5", "slide_id":"article7_article1"}, {"id":"article7_poi2", "x":"77.75", "y":"11.5", "slide_id":"article7_article2"}, 
+  {"id":"article7_poi3", "x":"17.125", "y":"58.83", "slide_id":"article7_article3"}], "slides":[{"id":"article7_article1", "type":"standard", "template":"t10", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/321.jpeg", "style":"position: relative; width:49.62406015037594%; height:66.22073578595318%; top:15.719063545150501%; left:24.18546365914787%;"}]}, {"id":"article7_article2", "type":"standard", "template":"t10", "elements":[{"id":"article4_article1_zone1", 
+  "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/322.jpeg", "style":"position: relative; width:60.526315789473685%; height:67.3913043478261%; top:15.719063545150501%; left:20.17543859649123%;"}]}, {"id":"article7_article3", "type":"standard", "template":"t10", "elements":[{"id":"article4_article2_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/323.jpeg", "style":"position: relative; width:115.91478696741855%; height:116.05351170568562%; top:-2.842809364548495%; left:-0.7518796992481203%;"}]}]}, 
+  {"id":"article6", "type":"standard", "template":"t12", "elements":[{"id":"article6_zone1", "areaid":"left1"}, {"id":"article6_zone2", "areaid":"right1"}, {"id":"article6_zone3", "areaid":"left2"}, {"id":"article6_zone4", "type":"image", "areaid":"right2", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:114.6268656716418%; height:113.83399209486166%; top:0%; left:0%;"}]}, {"id":"article13", "type":"standard", "template":"t2", "elements":[{"id":"article13_zone1", 
+  "type":"snapshot", "areaid":"left", "body":'<iframe src="http://en.wikipedia.org" id="resizableunicID10" class="snapshot_content" scrolling="no" wmode="transparent"></iframe>', "style":"position: relative; width:61.46131805157593%; height:61.17424242424242%; top:40.15151515151515%; left:-15.759312320916905%;", "scrollTop":417, "scrollLeft":129}]}]};
   var quizes_samples = {"id":12314, "type":"presentation", "author":"V. Hugo", "slides":[{"id":"article12312", "type":"standard", "template":"t8", "elements":[{"id":"zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u><i><b>Testing Quiz Inside Template</b></i></u></span></div>'}, {"id":"zone2", "type":"image", "areaid":"left", 
   "body":"http://farm9.staticflickr.com/8309/8039451611_e4bb74e963_m.jpg", "style":"position: relative; width:135.13513513513513%; height:97.0873786407767%; top:0%; left:0%;"}, {"id":"zone3", "type":"quiz", "quiz_id":12, "areaid":"center", "question":"What are <b> you  <u>talking</u> <i> <font size='7'> about </font> bla bla bla bla ... large textttttt </i></b> ?", "quiztype":"multiplechoice", "options":{"choices":[{"value":"Something", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Something</b></span></div>'}, 
   {"value":"Nothing", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Nothing</b></span></div>'}, {"value":"Everything", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Everything</b></span></div>'}, {"value":"Option D", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>Option D</b></span></div>'}]}}, 
@@ -14031,48 +14032,71 @@ VISH.Samples = function(V, undefined) {
   "options":{"choices":[{"value":"S\u00ed", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">S\u00ed</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"No", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">No</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
   {"value":"Un poco", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Un poco</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"Nada", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Nada</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}}], 
   "type":"quiz_simple"}}]}]};
-  return{samples:samples, samplesv01:samplesv01, samples_fc:samples_fc, samples_flashcard:samples_flashcard, samples_flashcard_new:samples_flashcard_new, samples_full_tour:samples_full_tour, samples_game:samples_game, samples_vtour:samples_vtour, samples_vtour_toledo:samples_vtour_toledo, quizes_samples:quizes_samples, quizzes__samples2:quizzes__samples2}
+  var magnetic_gifs = {"id":405, "type":"presentation", "title":"Magnetic Resonance Imaging of Foods (Mobile)", "description":"Images of magnetic resonance: Food series.\nhttp://insideinsides.blogspot.com.es/", "avatar":"http://vishub.org/assets/logos/original/excursion-35.png", "tags":["Art", "Mobile", "LifeSciences", "Life-Sciences", "EarthScience", "e-learning"], "author":"N\u00e9stor Toribio Ruiz", "slides":[{"id":"article_405_0", "type":"standard", "template":"t1", "elements":[{"id":"zone1", 
+  "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/-QLfceEKHmis/TijNAXnjwLI/AAAAAAAACSA/LWzvgAAy4YI/s840/insideinsides.jpg", "style":"position: relative; width:97.61388286334056%; height:60.85790884718499%; top:23.288651126319536%; left:1.0773698057890455%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" class="vish-parent-font7 vish-parent-font2 vish-parent-font4" align="center"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font2 vish-fontHelvetica" style="color:#201815;undefined;"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;">Magnetic Resonance</span></span></span></div>'}, 
+  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div style="font-weight: 400;" class="vish-parent-font5 vish-parent-font2" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><i>Imaging of Foods</i></span></span></div>'}]}, {"id":"article_405_1", "type":"standard", "template":"t5", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Broccoli</span></span></div>'}, 
+  {"id":"zone5", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/150.gif", "style":"position: relative; width:123.07692307692308%; height:70.78651685393258%; top:12.142323697550912%; left:-17.887178861177883%;"}, {"id":"zone6", "type":"image", "areaid":"right", "body":"http://www.tarot-josnell.com/imagenes/brocoli.jpg", "style":"position: relative; width:107.6923076923077%; height:75.50561797752809%; top:9.438202247191011%; left:-3.6923076923076925%;"}]}, {"id":"article_405_2", 
+  "type":"standard", "template":"t5", "elements":[{"id":"zone7", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" class="vish-parent-font2" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Corn</span></span><br></div>'}, {"id":"zone8", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/146.gif", "style":"position: relative; width:70.76923076923077%; height:101.79775280898876%; top:0%; left:15.097430889423077%;"}, 
+  {"id":"zone9", "type":"image", "areaid":"right", "body":"http://www.scientificamerican.com/media/inline/that-burger-youre-eating-is-mostly-corn_1.jpg", "style":"position: relative; width:169.23076923076923%; height:123.59550561797752%; top:-13.730335021286868%; left:-36.68716195913461%;"}]}, {"id":"article_405_3", "type":"standard", "template":"t5", "elements":[{"id":"zone10", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Garlic</span></span></div>'}, 
+  {"id":"zone11", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/149.gif", "style":"position: relative; width:132.30769230769232%; height:97.52808988764045%; top:6.29962706833743%; left:-16.041053185096153%;"}, {"id":"zone12", "type":"image", "areaid":"right", "body":"http://www.planetmattersandmore.com/wp-content/uploads/2012/04/garlic_bulb.jpg", "style":"position: relative; width:153.84615384615384%; height:84.9438202247191%; top:7.872660776202598%; left:-28.369290865384617%;"}]}, 
+  {"id":"article_405_4", "type":"standard", "template":"t5", "elements":[{"id":"zone13", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Tomato</span></span></div>'}, {"id":"zone14", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/148.gif", "style":"position: relative; width:107.6923076923077%; height:78.65168539325843%; top:8.546818079573384%; left:-7.405127892127404%;"}, 
+  {"id":"zone15", "type":"image", "areaid":"right", "body":"http://www.lacocinadeinma.com/wp-content/uploads/Tomate.jpg", "style":"position: relative; width:123.07692307692308%; height:89.88764044943821%; top:4.943820224719101%; left:-9.866671048677885%;"}]}, {"id":"article_405_5", "type":"standard", "template":"t5", "elements":[{"id":"zone16", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Pineapple</span></span></div>'}, 
+  {"id":"zone17", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/156.gif?1347543540", "style":"position: relative; width:200%; height:81.57303370786516%; top:12.36329496576545%; left:-48.05127892127404%;"}, {"id":"zone18", "type":"image", "areaid":"right", "body":"http://www.floridahillnursery.com/images/gold%20pineapple%20.jpg", "style":"position: relative; width:123.07692307692308%; height:165.8426966292135%; top:-69.93258358387465%; left:-10.784621018629808%;"}]}, {"id":"article_405_6", 
+  "type":"standard", "template":"t5", "elements":[{"id":"zone19", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Apple</span></span></div>'}, {"id":"zone20", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/151.gif", "style":"position: relative; width:163.07692307692307%; height:119.10112359550561%; top:-8.771533751755618%; left:-32.65127798227164%;"}, 
+  {"id":"zone21", "type":"image", "areaid":"right", "body":"http://appleadayproject.files.wordpress.com/2011/03/apple-full2.jpg", "style":"position: relative; width:138.46153846153845%; height:101.79775280898876%; top:-8.996252852879213%; left:-14.4769287109375%;"}]}, {"id":"article_405_7", "type":"standard", "template":"t2", "elements":[{"id":"zone22", "type":"text", "areaid":"left", "body":'<div style="font-weight: 400;" class="vish-parent-font7 vish-parent-font2 vish-parent-fontundefined" align="center"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"><br></span><span class="vish-fontundefined vish-fontHelvetica" style="color:#717175;undefined;"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;">http://insideinsides.blogspot.com.es/</span></span></span></div>'}]}]};
+  var new_wysiwyg = {"VEVersion":"0.3", "id":"4", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by Vish Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "age_range":"4 - 20", "subject":["Biology"], "language":"en", "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", 
+  "author":"", "slides":[{"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"left", "body":'<p>\n\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>\n<p>\n\tbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>\n<p>\n\t<span style="font-size:10px;">10cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc</span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;">16ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;">26eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</span></span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;"><span style="font-size:48px;">48ffffffffffffffffffffffffffffffffffffffffffffffff</span></span></span></span></p>\n<p>\n\t<span style="font-size: 10px;"><span style="font-size:16px;"><span style="font-size:26px;"><span style="font-size:48px;"><span style="font-size:72px;">72ggggggggggggggg</span></span></span></span></span></p>\n<p>\n\t&nbsp;</p>\n'}]}, 
+  {"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align: center;">\n\t<span style="color:#ff0000;"><span style="font-size:48px;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">Hello World</span></span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="color: rgb(255, 0, 0); font-family: \'trebuchet ms\', helvetica, sans-serif; font-size: 48px;">Hello World</span></p>\n'}]}, 
+  {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;<span style="font-size:20px;">1</span></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">2</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">3</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">4</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">5</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">6</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">7</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">8</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">9</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">10</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">11</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">12</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">13</span></p>\n<p style="text-align:left;">\n\t<span style="font-size:20px;">14</span></p>\n'}]}, 
+  {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "areaid":"left"}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}]};
+  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, full_samples:full_samples, quizes_samples:quizes_samples, quizzes__samples2:quizzes__samples2, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
-  var flashcardList = {"flashcards":[{"id":"111", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
+  var flashcardList = {"flashcards":[{"id":"1120", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://4.bp.blogspot.com/-fsV8poJXoJc/ULe8nkVbaVI/AAAAAAAAA-M/Q2vW16z6Ivc/s1600/Imagen16.png)", "pois":[{"id":"article4_poi1", "x":"36.875", "y":"67.33333333333333", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"55.375", "y":"68.16666666666667", "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":"45.875", "y":"5.5", 
+  "slide_id":"article4_article3"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", "type":"image", "areaid":"left", "body":"http://1.bp.blogspot.com/_KaMLeO20q1Q/TGk8gfWkp7I/AAAAAAAAAHI/80bTifiIk6M/s1600/24+Do%C3%B1ana.JPG", "style":"position: relative; width:110.31518624641834%; height:97.1590909090909%; top:2.0833333333333335%; left:-1.146131805157593%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t2", "elements":[{"id":"article4_article2_zone1", 
+  "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8504/8367119464_f8ff09456d.jpg", "style":"position: relative; width:103.15186246418338%; height:90.53030303030303%; top:3.0303030303030303%; left:-0.5730659025787965%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t2", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"left", "body":"http://cabeceras.eldiariomontanes.es/imagenes-municipios/galerias/5348/mf01z4411811x1492-452.jpg", "style":"position: relative; width:119.05444126074498%; height:129.54545454545453%; top:-2.6515151515151514%; left:-3.5816618911174785%;"}]}]}]}, 
+  {"id":"1115", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://www.exploringnature.org/graphics/endangered_species/endangered_animals200.jpg)", "pois":[{"id":"article4_poi1", "x":"15.625", "y":"8.5", "slide_id":"article4_article3"}, {"id":"article4_poi2", "x":"77.75", "y":"11.5", "slide_id":"article4_article1"}, {"id":"article4_poi3", "x":"17.125", "y":"58.833333333333336", "slide_id":"article4_article2"}], "slides":[{"id":"article4_article3", 
+  "type":"standard", "template":"t10", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"center", "body":"http://d30mmglg94tqnw.cloudfront.net/wp-content/plugins/magic-gallery/uploads/12/komodo-dragon_6771_600x450.jpg", "style":"position: relative; width:49.62406015037594%; height:66.22073578595318%; top:15.719063545150501%; left:24.18546365914787%;"}]}, {"id":"article4_article1", "type":"standard", "template":"t10", "elements":[{"id":"article4_article1_zone1", "type":"image", 
+  "areaid":"center", "body":"http://www.golden-gate-park.com/wp-content/uploads/2011/03/bison_bufflo_in_golden_gate_park.jpg", "style":"position: relative; width:60.526315789473685%; height:67.3913043478261%; top:15.719063545150501%; left:20.17543859649123%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t10", "elements":[{"id":"article4_article2_zone1", "type":"image", "areaid":"center", "body":"http://wfiles.brothersoft.com/e/elephant_88059-1600x1200.jpg", "style":"position: relative; width:115.91478696741855%; height:116.05351170568562%; top:-2.842809364548495%; left:-0.7518796992481203%;"}]}]}]}, 
+  {"id":"111", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
   "adquired_competencies":"pupils will be smarter", "slides":[{"id":"27", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
   {"id":"222", "title":"Curiosity", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
   "slides":[{"id":"28", "type":"flashcard", "background":"url(http://images.freshnessmag.com/wp-content/uploads//2012/08/nasa-NASA-curiosity-mars-rover-00.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
   {"id":"333", "title":"fly", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
   "slides":[{"id":"27", "type":"flashcard", "background":"url(http://1.bp.blogspot.com/_Y_4eV9-N0NY/SeToztTkalI/AAAAAAAAAe0/zpSf85grpW8/s400/small+fly.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
   {"id":"444", "title":"dogs", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
   "slides":[{"id":"28", "type":"flashcard", "background":"url(http://images5.fanpop.com/image/photos/31900000/Doggie-3-all-small-dogs-31936880-500-348.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
   {"id":"555", "title":"cats", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
   "slides":[{"id":"27", "type":"flashcard", "background":"url(http://25.media.tumblr.com/tumblr_m6utxcoA7y1qdortwo1_1280.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, 
   {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
-  {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
   {"id":"666", "title":"nature", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
   "slides":[{"id":"28", "type":"flashcard", "background":"url(http://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bachalpseeflowers.jpg/300px-Bachalpseeflowers.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
   "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}]};
   var imageList = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, 
@@ -14100,12 +14124,12 @@ VISH.Samples.API = function(V, undefined) {
   "poster":"http://d1p69vb2iuddhr.cloudfront.net/assets/www/demo/midnight_sun_800-e460322294501e1d5db9ab3859dd859a.jpg", "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}, {"id":"1536", "title":"Otro paisaje bonito", "description":"Awesome HTML5 video example", "author":"Aldo Gordillo", "poster":"http://1.bp.blogspot.com/-DFj9INluj80/TfiNl7q3DbI/AAAAAAAAAws/hVJu13VbKEY/s1600/paisaje.jpg", 
   "sources":"[" + '{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},' + '{ "type": "video/mp4",  "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4" }' + "]"}]};
   var videoListDummy = {"videos":[]};
-  var flashList = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, 
-  {"id":"1536", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "content":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, {"id":"1537", "title":"Image", "description":"Image Embed", "author":"Globedia", "content":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, {"id":"1538", "title":"Profe Demo", "description":"Flash Object Test 2", 
-  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1539", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", 
-  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1541", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1542", "title":"Profe Demo", "description":"Flash Object Test 2", 
-  "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1543", "title":"Youtube video", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns" frameborder="0" allowfullscreen></iframe>'}]};
-  var flashListLittle = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", 
+  var flashList = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", 
+  "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1536", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "content":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, {"id":"1537", "title":"Image", "description":"Image Embed", "author":"Globedia", "content":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, 
+  {"id":"1538", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1539", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
+  {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1541", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, 
+  {"id":"1542", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1543", "title":"Youtube video", "description":"Flash Object Test 2", "author":"FlashMan", "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns" frameborder="0" allowfullscreen></iframe>'}]};
+  var flashListLittle = {"flashes":[{"id":"1534", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "content":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1535", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", "author":"W3C", 
   "content":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1536", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "content":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}]};
   var flashListDummy = {"flashes":[]};
   var liveList = [{"id":"1534", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1535", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1536", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, 
@@ -14115,10 +14139,10 @@ VISH.Samples.API = function(V, undefined) {
   {"id":"1546", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1547", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
   var liveListLittle = [{"id":"1534", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1535", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}, {"id":"1548", "title":"Do\u00f1ana Test", "description":"Parque Nacional de Do\u00f1ana (Spain) ", "author":"Demo", "fulltext":"http://www.youtube.com/watch?v=5TVrUFxzOk8"}];
   var liveListDummy = [];
-  var objectList = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
+  var objectList = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}, {"id":"1538", "title":"Global excursion", "description":"Iframe example", "author":"Vish", "object":'<iframe width="100%" height="100%" src="http://www.globalexcursion-project.eu"></iframe>'}, {"id":"1539", "title":"Image", "description":"Image Embed", "author":"Globedia", "object":'<embed width="100%" src="http://globedia.com/imagenes/noticias/2011/2/10/encuentran-octava-maravilla-mundo-destruida-125-anos_2_585286.jpg"></embed>'}, 
-  {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}];
-  var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="contents/swf/virtualexperiment_1.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
+  {"id":"1540", "title":"Profe Demo", "description":"Flash Object Test 2", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}];
+  var objectListLittle = [{"id":"1534", "title":"Game Strauss", "description":"Fichero PDF", "author":"Conspirazzi", "object":"http://www.conspirazzi.com/e-books/game-strauss.pdf"}, {"id":"1536", "title":"Profe", "description":"Flash Object Test", "author":"FlashMan", "object":'<embed width="100%" height="100%" id="player_api" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" wmode="opaque"></embed>'}, {"id":"1537", "title":"Youtube video about HTML5", "description":"HTML5 (HyperText Markup Language, version 5) es la quinta revision importante del lenguaje basico de la World Wide Web, HTML.", 
   "author":"W3C", "object":'<iframe width="560" height="315" src="http://www.youtube.com/embed/1hR7EtD6Bns?wmode=opaque" frameborder="0" allowfullscreen></iframe>'}];
   var objectListDummy = [];
   var tagsList = {"tags":["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure", "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript", "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"]};
@@ -14136,95 +14160,51 @@ VISH.Slides = function(V, $, undefined) {
   var slideEls;
   var curSlideIndex;
   var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
+  var curSubSlideId = null;
   var init = function() {
-    getcurSlideIndexFromHash();
+    _getcurSlideIndexFromHash();
     $(document).bind("OURDOMContentLoaded", handleDomLoaded)
   };
   var handleDomLoaded = function() {
     slideEls = document.querySelectorAll("section.slides > article");
-    addFontStyle();
     if(V.SlideManager.getPresentationType() === V.Constant.FLASHCARD) {
       curSlideIndex = 0
     }
     updateSlides(true);
     $("body").addClass("loaded")
   };
-  var getCurrentSlide = function() {
-    return slideEls[curSlideIndex]
-  };
-  var getCurrentSlideNumber = function() {
-    return curSlideIndex + 1
-  };
-  var setCurrentSlideNumber = function(currentSlideNumber) {
-    curSlideIndex = currentSlideNumber - 1
+  var _getcurSlideIndexFromHash = function() {
+    var slideNo = parseInt(location.hash.substr(1));
+    if(slideNo) {
+      curSlideIndex = slideNo - 1
+    }else {
+      if(VISH.Editing) {
+        curSlideIndex = -1
+      }else {
+        curSlideIndex = 0
+      }
+    }
   };
   var getSlides = function() {
     return slideEls
   };
-  var isCurrentFirstSlide = function() {
-    return curSlideIndex === 0
-  };
-  var isCurrentLastSlide = function() {
-    return curSlideIndex === slideEls.length - 1
-  };
-  var isSlideSelected = function() {
-    if(curSlideIndex > -1) {
-      return true
-    }
-  };
-  var onDeleteSlide = function() {
-    setCurrentSlideNumber(getCurrentSlideNumber() - 1)
-  };
-  var getNumberOfSlide = function(slide) {
-    if(slideEls) {
-      var result = 0;
-      $.each(slideEls, function(index, value) {
-        if($(value).attr("id") == $(slide).attr("id")) {
-          result = index;
-          return
-        }
-      });
-      return result
-    }else {
-      return 0
-    }
-  };
-  var _getSlide = function(no) {
-    return getSlideWithNumber(no + 1)
-  };
-  var getSlideWithNumber = function(slideNumber) {
-    var no = slideNumber - 1;
-    if(no < 0 || no >= slideEls.length) {
-      return null
-    }else {
-      return slideEls[no]
-    }
-  };
-  var updateSlideClass = function(slideNo, className) {
-    var el = _getSlide(slideNo);
-    if(!el) {
-      return
-    }
-    if(className) {
-      $(el).addClass(className)
-    }
-    for(var i in SLIDE_CLASSES) {
-      if(className != SLIDE_CLASSES[i]) {
-        $(el).removeClass(SLIDE_CLASSES[i])
-      }
-    }
+  var setSlides = function(newSlideEls) {
+    slideEls = newSlideEls
   };
   var updateSlides = function(goingRight) {
-    _updateSlideEls();
+    updateSlideEls();
     if(goingRight) {
       triggerLeaveEvent(curSlideIndex - 1)
     }else {
       triggerLeaveEvent(curSlideIndex + 1)
     }
     triggerEnterEvent(curSlideIndex);
-    updateHash()
+    _updateHash()
   };
-  var _updateSlideEls = function() {
+  var _updateHash = function() {
+    location.replace("#" + (curSlideIndex + 1))
+  };
+  var updateSlideEls = function() {
     for(var i = 0;i < slideEls.length;i++) {
       switch(i) {
         case curSlideIndex - 2:
@@ -14248,17 +14228,100 @@ VISH.Slides = function(V, $, undefined) {
       }
     }
   };
-  var _prevSlide = function() {
-    if(curSlideIndex > 0) {
-      curSlideIndex--;
-      updateSlides(false)
+  var updateSlideClass = function(slideNo, className) {
+    var el = _getSlide(slideNo);
+    if(!el) {
+      return
+    }
+    if(className) {
+      $(el).addClass(className)
+    }
+    for(var i in SLIDE_CLASSES) {
+      if(className != SLIDE_CLASSES[i]) {
+        $(el).removeClass(SLIDE_CLASSES[i])
+      }
     }
   };
-  var _nextSlide = function() {
-    if(curSlideIndex < slideEls.length - 1) {
-      curSlideIndex++;
-      updateSlides(true)
+  var setCurrentSlideIndex = function(newCurSlideIndex) {
+    curSlideIndex = newCurSlideIndex
+  };
+  var getCurrentSlide = function() {
+    return slideEls[curSlideIndex]
+  };
+  var getCurrentSubSlide = function() {
+    if(curSubSlideId === null) {
+      return null
+    }else {
+      return $("#" + curSubSlideId)
     }
+  };
+  var getCurrentSlideNumber = function() {
+    return curSlideIndex + 1
+  };
+  var setCurrentSlideNumber = function(currentSlideNumber) {
+    curSlideIndex = currentSlideNumber - 1
+  };
+  var _getSlide = function(no) {
+    return getSlideWithNumber(no + 1)
+  };
+  var getSlideWithNumber = function(slideNumber) {
+    var no = slideNumber - 1;
+    if(no < 0 || no >= slideEls.length) {
+      return null
+    }else {
+      return slideEls[no]
+    }
+  };
+  var getNumberOfSlide = function(slide) {
+    if(slideEls) {
+      var result = 0;
+      $.each(slideEls, function(index, value) {
+        if($(value).attr("id") == $(slide).attr("id")) {
+          result = index;
+          return
+        }
+      });
+      return result
+    }else {
+      return 0
+    }
+  };
+  var getSlidesQuantity = function() {
+    return getSlides().length
+  };
+  var getSlideType = function(slideEl) {
+    if(slideEl && slideEl.tagName === "ARTICLE") {
+      switch($(slideEl).attr("type")) {
+        case undefined:
+        ;
+        case VISH.Constant.STANDARD:
+          return VISH.Constant.STANDARD;
+          break;
+        case VISH.Constant.FLASHCARD:
+          return VISH.Constant.FLASHCARD;
+          break;
+        case VISH.Constant.QUIZ_SIMPLE:
+          return VISH.Constant.QUIZ_SIMPLE;
+          break;
+        case VISH.Constant.GAME:
+          return VISH.Constant.GAME;
+          break;
+        case VISH.Constant.VTOUR:
+          return VISH.Constant.VTOUR;
+          break;
+        default:
+          return VISH.Constant.UNKNOWN;
+          break
+      }
+    }else {
+      return null
+    }
+  };
+  var isCurrentFirstSlide = function() {
+    return curSlideIndex === 0
+  };
+  var isCurrentLastSlide = function() {
+    return curSlideIndex === slideEls.length - 1
   };
   var triggerEnterEvent = function(no) {
     var el = _getSlide(no);
@@ -14294,40 +14357,23 @@ VISH.Slides = function(V, $, undefined) {
     evt.initEvent("slideleave", true, true);
     el.dispatchEvent(evt)
   };
-  var getcurSlideIndexFromHash = function() {
-    var slideNo = parseInt(location.hash.substr(1));
-    if(slideNo) {
-      curSlideIndex = slideNo - 1
-    }else {
-      if(VISH.Editing) {
-        curSlideIndex = -1
-      }else {
-        curSlideIndex = 0
-      }
+  var _prevSlide = function() {
+    if(curSlideIndex > 0) {
+      curSlideIndex--;
+      updateSlides(false)
     }
   };
-  var updateHash = function() {
-    location.replace("#" + (curSlideIndex + 1))
+  var _nextSlide = function() {
+    if(curSlideIndex < slideEls.length - 1) {
+      curSlideIndex++;
+      updateSlides(true)
+    }
   };
-  var addFontStyle = function() {
-    var el = document.createElement("link");
-    el.rel = "stylesheet";
-    el.type = "text/css";
-    el.href = "http://fonts.googleapis.com/css?family=" + "Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono";
-    document.body.appendChild(el)
+  var forwardOneSlide = function(event) {
+    goToSlide(curSlideIndex + 2)
   };
-  var addGeneralStyle = function() {
-    var el = document.createElement("meta");
-    el.name = "viewport";
-    el.content = "width=900,height=750";
-    document.querySelector("head").appendChild(el);
-    var el = document.createElement("meta");
-    el.name = "apple-mobile-web-app-capable";
-    el.content = "yes";
-    document.querySelector("head").appendChild(el)
-  };
-  var lastSlide = function() {
-    goToSlide(slideEls.length)
+  var backwardOneSlide = function() {
+    goToSlide(curSlideIndex)
   };
   var goToSlide = function(no, triggeredByUser) {
     if(no === getCurrentSlideNumber()) {
@@ -14366,28 +14412,10 @@ VISH.Slides = function(V, $, undefined) {
     params.slideNumber = no;
     VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onGoToSlide, params, triggeredByUser)
   };
-  var backwardOneSlide = function() {
-    goToSlide(curSlideIndex)
+  var lastSlide = function() {
+    goToSlide(slideEls.length)
   };
-  var forwardOneSlide = function() {
-    goToSlide(curSlideIndex + 2)
-  };
-  var isSlideFocused = function() {
-    if($(".wysiwygInstance").is(":focus")) {
-      return false
-    }
-    if($("#fancybox-content").is(":visible")) {
-      return false
-    }
-    if($("input").is(":focus")) {
-      return false
-    }
-    if(VISH.Editor && VISH.Editor.getCurrentArea() !== null) {
-      return false
-    }
-    return true
-  };
-  var showFlashcardSlide = function(slide_id, triggeredByUser) {
+  var openSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
     if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
       var params = new Object;
@@ -14395,13 +14423,14 @@ VISH.Slides = function(V, $, undefined) {
       VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onFlashcardPointClicked, params);
       return
     }
+    _onOpenSubslide(slide_id);
     $("#" + slide_id).show();
     _triggerEnterEventById(slide_id);
     var params = new Object;
     params.slideNumber = slide_id;
     VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
   };
-  var closeFlashcardSlide = function(slide_id, triggeredByUser) {
+  var closeSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
     if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
       var params = new Object;
@@ -14409,115 +14438,33 @@ VISH.Slides = function(V, $, undefined) {
       VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onFlashcardSlideClosed, params);
       return
     }
+    _onCloseSubslide(slide_id);
     $("#" + slide_id).hide();
     _triggerLeaveEventById(slide_id);
     var params = new Object;
     params.slideNumber = slide_id;
     VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardSlideClosed, params, triggeredByUser)
   };
+  var _onOpenSubslide = function(subSlideId) {
+    curSubSlideId = subSlideId;
+    $("#closeButton").hide()
+  };
+  var _onCloseSubslide = function() {
+    curSubSlideId = null;
+    if(VISH.Status.getDevice().mobile) {
+      setTimeout(function() {
+        $("#closeButton").show();
+        VISH.ViewerAdapter.decideIfPageSwitcher()
+      }, 800)
+    }else {
+      VISH.ViewerAdapter.decideIfPageSwitcher()
+    }
+  };
   var closeAllSlides = function() {
     $(".slides > article").hide()
   };
-  var moveSlideTo = function(slide_to_move, reference_slide, movement) {
-    if(typeof slide_to_move === "undefined" || typeof reference_slide === "undefined") {
-      return
-    }
-    if(typeof slide_to_move.length !== undefined) {
-      slide_to_move = $(slide_to_move)[0];
-      if(typeof slide_to_move === "undefined") {
-        return
-      }
-    }
-    if(typeof reference_slide.length !== undefined) {
-      reference_slide = $(reference_slide)[0];
-      if(typeof reference_slide === "undefined") {
-        return
-      }
-    }
-    if(slide_to_move.tagName != "ARTICLE" || reference_slide.tagName != "ARTICLE" || slide_to_move == reference_slide) {
-      return
-    }
-    var article_to_move = slide_to_move;
-    var article_reference = reference_slide;
-    var moving_current_slide = false;
-    if(getCurrentSlide() === article_to_move) {
-      moving_current_slide = true
-    }
-    $(article_to_move).remove();
-    if(movement == "after") {
-      $(article_reference).after(article_to_move)
-    }else {
-      if(movement == "before") {
-        $(article_reference).before(article_to_move)
-      }else {
-        VISH.Debugging.log("VISH.Slides: Error. Movement not defined... !");
-        return
-      }
-    }
-    VISH.Editor.Utils.refreshDraggables(article_to_move);
-    slideEls = document.querySelectorAll("section.slides > article");
-    if(moving_current_slide) {
-      curSlideIndex = getNumberOfSlide(article_to_move)
-    }
-    _updateSlideEls()
-  };
-  var copySlideWithNumber = function(slideNumber) {
-    var slide = getSlideWithNumber(slideNumber);
-    if(slide === null) {
-      return
-    }
-    var newSlide = $(slide).clone();
-    copySlide(newSlide)
-  };
-  var copySlide = function(newSlide) {
-    var currentSlide = getCurrentSlide();
-    if(currentSlide) {
-      $(currentSlide).after(newSlide)
-    }else {
-      $("section#slides_panel").append(newSlide)
-    }
-    VISH.Editor.Utils.refreshDraggables(newSlide);
-    slideEls = document.querySelectorAll("section.slides > article");
-    _updateSlideEls();
-    VISH.Editor.Thumbnails.redrawThumbnails();
-    if(currentSlide) {
-      goToSlide(getCurrentSlideNumber() + 1)
-    }else {
-      goToSlide(1)
-    }
-  };
-  var addSlide = function(slide) {
-    $(".slides").append(slide)
-  };
-  var removeSlide = function(slideNumber) {
-    var slide = getSlideWithNumber(slideNumber);
-    if(slide === null) {
-      return
-    }
-    var standardSlide = slide.type === VISH.Constant.STANDARD;
-    var removing_current_slide = false;
-    if(getCurrentSlide() === slide) {
-      removing_current_slide = true
-    }
-    $(slide).remove();
-    if(removing_current_slide) {
-      if(getCurrentSlideNumber() === 1 && getSlidesQuantity() > 1) {
-        setCurrentSlideNumber(1)
-      }else {
-        setCurrentSlideNumber(getCurrentSlideNumber() - 1)
-      }
-    }
-    VISH.Editor.Utils.redrawSlides();
-    VISH.Editor.Thumbnails.redrawThumbnails();
-    if(!standardSlide) {
-      VISH.Editor.Tools.Menu.init()
-    }
-  };
-  var getSlidesQuantity = function() {
-    return getSlides().length
-  };
-  return{init:init, getCurrentSlide:getCurrentSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, isSlideSelected:isSlideSelected, getNumberOfSlide:getNumberOfSlide, getSlides:getSlides, getSlideWithNumber:getSlideWithNumber, backwardOneSlide:backwardOneSlide, closeFlashcardSlide:closeFlashcardSlide, closeAllSlides:closeAllSlides, forwardOneSlide:forwardOneSlide, goToSlide:goToSlide, 
-  lastSlide:lastSlide, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, addSlide:addSlide, removeSlide:removeSlide, showFlashcardSlide:showFlashcardSlide, getSlidesQuantity:getSlidesQuantity}
+  return{init:init, getSlides:getSlides, setSlides:setSlides, updateSlides:updateSlides, updateSlideEls:updateSlideEls, setCurrentSlideIndex:setCurrentSlideIndex, getCurrentSlide:getCurrentSlide, getCurrentSubSlide:getCurrentSubSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, 
+  isCurrentLastSlide:isCurrentLastSlide, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var bindedEventListeners = false;
@@ -14541,21 +14488,17 @@ VISH.Events = function(V, $, undefined) {
   };
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
-      case 39:
+      case 38:
       ;
-      case 40:
-        if(V.Slides.isSlideFocused()) {
-          V.Slides.forwardOneSlide();
-          event.preventDefault()
-        }
+      case 39:
+        V.Slides.forwardOneSlide();
+        event.preventDefault();
         break;
       case 37:
       ;
-      case 38:
-        if(V.Slides.isSlideFocused()) {
-          V.Slides.backwardOneSlide();
-          event.preventDefault()
-        }
+      case 40:
+        V.Slides.backwardOneSlide();
+        event.preventDefault();
         break
     }
   };
@@ -14585,7 +14528,7 @@ VISH.Events = function(V, $, undefined) {
       if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && eventNotRegister) {
         event.preventDefault()
       }else {
-        if(VISH.Status.getDevice().iPhone) {
+        if(VISH.Status.getDevice().iPhone && VISH.Status.getDevice().browser.name === VISH.Constant.SAFARI) {
           if($(event.target).hasClass("fc_poi")) {
             var poiId = event.target.id;
             _onFlashcardPoiClicked(poiId)
@@ -14615,6 +14558,10 @@ VISH.Events = function(V, $, undefined) {
     var dx = Math.abs(touchDX);
     var dy = Math.abs(touchDY);
     if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
+      var subslide = V.Slides.getCurrentSubSlide();
+      if(subslide !== null) {
+        V.Slides.closeSubslide($(subslide).attr("id"))
+      }
       if(touchDX > 0) {
         V.Slides.backwardOneSlide()
       }else {
@@ -14639,12 +14586,12 @@ VISH.Events = function(V, $, undefined) {
     }
     var poi = VISH.Flashcard.getPoiData(poiId);
     if(poi !== null) {
-      V.Slides.showFlashcardSlide(poi.slide_id, true)
+      V.Slides.openSubslide(poi.slide_id, true)
     }
   };
   var _onFlashcardCloseSlideClicked = function(event) {
-    var close_slide = event.target.id.substring(5);
-    V.Slides.closeFlashcardSlide(close_slide, true)
+    var close_slide_id = event.target.id.substring(5);
+    V.Slides.closeSubslide(close_slide_id, true)
   };
   var bindViewerEventListeners = function() {
     if(!bindedEventListeners) {
@@ -14853,7 +14800,8 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var showQuizStats = function() {
-    $("a#addQuizSessionFancybox").trigger("click")
+    $("a#addQuizSessionFancybox").trigger("click");
+    testFullScreen()
   };
   var _loadEvents = function() {
     $(document).on("click", "." + startButtonClass, startMcQuizButtonClicked);
@@ -14865,14 +14813,16 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", ".quiz_stop_session_dont_save", _stopAndDontSaveQuiz);
     $(document).on("click", ".quiz_full_screen", qrToggleFullScreen);
     $(document).on("click", ".hide_qrcode", _hideQRCode);
-    $(document).on("click", ".show_qrcode", _showQRCode)
+    $(document).on("click", ".show_qrcode", _showQRCode);
+    $(document).on("click", ".quiz_cancel_full_screen", qrToggleFullScreen)
   };
   var startMcQuizButtonClicked = function() {
     if(V.User.isLogged()) {
       var quizId = $(VISH.Slides.getCurrentSlide()).find(".quizId").val();
       $("a#addQuizSessionFancybox").trigger("click");
       V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
-      _startStats()
+      _startStats();
+      testFullScreen()
     }else {
       V.Debugging.log("User not logged")
     }
@@ -14958,52 +14908,53 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_OnQuizSessionReceivedError:  " + JSON.stringify(error))
   };
   var _addToggleFullScreenListener = function() {
+    V.Debugging.log("toggle FS detected");
+    var qrImgID = "quiz_session_qrcode_container_id";
     addedFullScreenListener = true;
     if(V.Status.getIsInIframe()) {
       var myDoc = parent.document
     }else {
       var myDoc = document
     }
-    var myElem = document.getElementById("qr_quiz_fullscreen");
+    var myElem = $(document).find(".quiz_full_screen")[0];
     if(myElem.requestFullscreen) {
       myDoc.addEventListener("fullscreenchange", function() {
         if(document.fullScreen) {
-          $(document.getElementById("qr_quiz_image_id")).addClass("full-screen")
+          $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
+          $(document.getElementById(qrImgID)).addClass("full-screen")
         }else {
-          $(document.getElementById("qr_quiz_image_id")).removeClass("full-screen")
-        }
-        if($(myElem).css("display") === "none") {
-          $(myElem).show()
-        }else {
-          $(myElem).hide()
+          $(document.getElementById(qrImgID)).removeClass("full-screen");
+          $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container")
         }
       }, false)
     }else {
       if(myElem.webkitRequestFullScreen) {
         myDoc.addEventListener("webkitfullscreenchange", function() {
           if(document.webkitIsFullScreen) {
-            $(document.getElementById("qr_quiz_image_id")).addClass("full-screen")
+            if($(document.getElementById(qrImgID)).hasClass("quiz_session_qrcode_container")) {
+              $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
+              $(document.getElementById(qrImgID)).addClass("full-screen");
+              $(".quiz_cancel_full_screen").show()
+            }
           }else {
-            $(document.getElementById("qr_quiz_image_id")).removeClass("full-screen")
-          }
-          if($(myElem).css("display") === "none") {
-            $(myElem).show()
-          }else {
-            $(myElem).hide()
+            if($(document.getElementById(qrImgID)).hasClass("full-screen")) {
+              $(document.getElementById(qrImgID)).removeClass("full-screen");
+              $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container");
+              $(".quiz_cancel_full_screen").hide()
+            }
           }
         }, false)
       }else {
         if(myElem.mozRequestFullScreen) {
           myDoc.addEventListener("mozfullscreenchange", function() {
             if(document.mozFullScreen) {
-              $(document.getElementById("qr_quiz_image_id")).addClass("full-screen")
+              $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
+              $(document.getElementById(qrImgID)).addClass("full-screen");
+              $(".quiz_cancel_full_screen").show()
             }else {
-              $(document.getElementById("qr_quiz_image_id")).removeClass("full-screen")
-            }
-            if($(myElem).css("display") === "none") {
-              $(myElem).show()
-            }else {
-              $(myElem).hide()
+              $(document.getElementById(qrImgID)).removeClass("full-screen");
+              $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container");
+              $(".quiz_cancel_full_screen").hide()
             }
           }, false)
         }else {
@@ -15169,12 +15120,8 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var qrToggleFullScreen = function(event) {
-    if(V.Status.getIsInIframe()) {
-      var myDoc = parent.document
-    }else {
-      var myDoc = document
-    }
-    var myElem = document.getElementById("qr_quiz_image_id");
+    var myDoc = document;
+    var myElem = document.getElementById("quiz_session_qrcode_container_id");
     if(myDoc.fullScreenElement && myDoc.fullScreenElement !== null || !myDoc.mozFullScreen && !myDoc.webkitIsFullScreen) {
       if(myDoc.documentElement.requestFullScreen) {
         myElem.requestFullScreen()
@@ -15204,11 +15151,26 @@ VISH.Quiz = function(V, $, undefined) {
   var getIsQuizSessionStarted = function() {
     return quizSessionStarted
   };
-  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, qrToggleFullScreen:qrToggleFullScreen}
+  var testFullScreen = function() {
+    var myDoc;
+    if(V.Status.getIsInIframe()) {
+      myDoc = parent.document
+    }else {
+      myDoc = document
+    }
+    if(myDoc.fullScreen || myDoc.mozFullScreen || myDoc.webkitIsFullScreen) {
+      var myElem = $(document).find(".quiz_full_screen");
+      myElem.hide()
+    }
+  };
+  var UnbindStartQuizEvents = function() {
+    $(document).off("click", "." + startButtonClass, startMcQuizButtonClicked)
+  };
+  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, qrToggleFullScreen:qrToggleFullScreen, showQuizStats:showQuizStats, testFullScreen:testFullScreen, UnbindStartQuizEvents:UnbindStartQuizEvents}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
-  var INCREASE_SIZE = 1.2;
+  var INCREASE_SIZE = 1.05;
   var init = function() {
     cleanZoneTools();
     cleanToolbar();
@@ -15316,7 +15278,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var _loadTextToolbar = function() {
     $("#toolbar_element").find("img").hide();
     $("#toolbar_text").show();
-    $(".nicEdit-panel").show()
+    $("#toolbar_text").show()
   };
   var loadToolbarForObject = function(object) {
     var objectInfo = VISH.Object.getObjectInfo(object);
@@ -15330,7 +15292,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
     }
   };
   var _cleanElementToolbar = function() {
-    $(".nicEdit-panel").hide();
+    $("#toolbar_text").hide();
     $("#toolbar_text").hide();
     $("#toolbar_element").find("img").hide()
   };
@@ -15468,7 +15430,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
       }
     });
     if(url) {
-      url = VISH.Utils.autocompleteUrls(url);
+      url = VISH.Editor.Utils.autocompleteUrls(url);
       var area = VISH.Editor.getCurrentArea();
       switch($(area).attr("type")) {
         case "image":
@@ -15743,13 +15705,13 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         $(current_area).find(".ul_mch_options_in_zone").append(quiz_option);
         _addKeyDownListener(current_area, $(current_area).find(".multiplechoice_option_in_zone:last"));
         $(current_area).find(".quiz_option_index:last").text(choicesLetters[current_options]);
-        $(current_area).find("." + deleteQuizOptionButtonClass + ":last").attr("id", current_area.attr("id") + "_delete_option_button_" + current_options + "_id");
-        $(current_area).find("." + addQuizOptionButtonClass + ":last").attr("id", current_area.attr("id") + "_add_option_button_" + current_options + "_id");
+        $(current_area).find("." + deleteQuizOptionButtonClass + ":last").attr("delete_option", current_options);
+        $(current_area).find("." + addQuizOptionButtonClass + ":last").attr("add_option", current_options);
         launchTextEditorInTextArea(current_area, "multiplechoice", current_options);
         if(current_options > 0) {
           $($(current_area).find("." + addQuizOptionButtonClass)[parseInt(current_options) - 1]).hide();
           $($(current_area).find("." + deleteQuizOptionButtonClass)[parseInt(current_options) - 1]).show();
-          $("#wysiwyg_" + current_area.attr("id") + "_" + current_options).focus();
+          $($(current_area).find(".multiplechoice_option_in_zone")[current_options]).focus();
           $(current_area).find(".initTextDiv :last").trigger("click")
         }
         if(current_options + 1 === maxNumMultipleChoiceOptions) {
@@ -15778,13 +15740,13 @@ VISH.Editor.Quiz = function(V, $, undefined) {
     if(event.target.attributes["class"].value === deleteQuizOptionButtonClass) {
       V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.id));
       var current_area = V.Editor.getCurrentArea();
-      var option_number = event.target.id.substring(27, 28);
-      $(current_area).find("#" + event.target.attributes["id"].value).parent().remove();
+      var option_number = $(event.target).attr("delete_option");
+      VISH.Debugging.log("option number:" + option_number);
+      $($(current_area).find(".li_mch_options_in_zone")[option_number]).remove();
       $(current_area).find(".li_mch_options_in_zone").each(function(index, option_element) {
         $(option_element).find(".quiz_option_index").text(choicesLetters[index]);
-        $(option_element).find("." + deleteQuizOptionButtonClass).attr("id", current_area.attr("id") + "_delete_option_button_" + index + "_id");
-        $(option_element).find("." + addQuizOptionButtonClass).attr("id", current_area.attr("id") + "_add_option_button_" + index + "_id");
-        $(option_element).find(".multiplechoice_option_in_zone").attr("id", "wysiwyg_" + current_area.attr("id") + "_" + index);
+        $(option_element).find("." + deleteQuizOptionButtonClass).attr("delete_option", index);
+        $(option_element).find("." + addQuizOptionButtonClass).attr("add_option", index);
         if(index >= option_number) {
           launchTextEditorInTextArea(current_area, "multiplechoice", option_number)
         }
@@ -15801,7 +15763,8 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   var launchTextEditorInTextArea = function(area, type_quiz, option_number) {
     var current_area = area;
     if(option_number != undefined) {
-      var optionWysiwygId = "wysiwyg_" + current_area.attr("id") + "_" + option_number;
+      var optionWysiwygId = V.Utils.getId();
+      V.Debugging.log("id got it: " + optionWysiwygId);
       $($(current_area).find("." + type_quiz + "_option_in_zone")[option_number]).attr("id", optionWysiwygId);
       if($($(current_area).find(".li_mch_options_in_zone")[option_number]).find(".wysiwygInstance").val() === undefined) {
         $("#" + optionWysiwygId).addClass("wysiwygInstance");
@@ -15809,7 +15772,7 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       }
     }else {
       var textArea = $(current_area).find(".value_" + type_quiz + "_question_in_zone");
-      var wysiwygId = "wysiwyg_" + current_area.attr("id");
+      var wysiwygId = V.Utils.getId();
       textArea.attr("id", wysiwygId);
       $("#" + wysiwygId).addClass("wysiwygInstance");
       VISH.Editor.Text.getNicEditor().addInstance(wysiwygId)
@@ -16422,12 +16385,12 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     VISH.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     var content = "";
     var carrouselImages = [];
-    carrouselImages.push($("<img class='uploadThumbnail' src='" + VISH.ImagesPath + "addThumbnail.png'/>")[0]);
+    carrouselImages.push($("<img class='uploadThumbnail' src='" + VISH.ImagesPath + "icons/addThumbnail.png'/>")[0]);
     $.each(avatars.pictures, function(i, item) {
       var myImg = $("<img src=" + item.src + " />");
       carrouselImages.push($(myImg)[0])
     });
-    VISH.Utils.loader.loadImagesOnCarrouselOrder(carrouselImages, _onImagesLoaded, carrouselDivId)
+    VISH.Utils.Loader.loadImagesOnCarrouselOrder(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onThumbnailsError = function(xhr, ajaxOptions, thrownError) {
     VISH.Debugging.log("_onThumbnailsError");
@@ -16675,7 +16638,7 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
     $("#" + carrouselDivId).trigger("insertItem", [element, posc])
   };
   var mustMoveCarrousel = function(direction) {
-    if(!VISH.Slides.isSlideFocused()) {
+    if(!VISH.Editor.Slides.isSlideFocused()) {
       return false
     }
     var visibleThumbnails = VISH.Editor.Thumbnails.getVisibleThumbnails();
@@ -16702,61 +16665,104 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.Clipboard = function(V, $, undefined) {
   var stack;
+  var _lastTimestamp;
   var init = function() {
-    stack = [null, null]
+    stack = [null, null, null]
   };
   var copy = function(element, type) {
     if(element) {
-      stack[0] = $(element).clone();
-      stack[1] = type
+      var params = {};
+      switch(type) {
+        case VISH.Constant.Clipboard.Slide:
+          var slideType = VISH.Slides.getSlideType(element);
+          switch(slideType) {
+            case VISH.Constant.STANDARD:
+              break;
+            case VISH.Constant.FLASHCARD:
+              params.flashcardExcursionJSON = jQuery.extend(true, {}, VISH.Editor.Flashcard.getFlashcard(element.id));
+              break;
+            default:
+              break
+          }
+          break;
+        default:
+          return
+      }
+      stack[0] = VISH.Utils.getOuterHTML($(element).clone()[0]);
+      stack[1] = type;
+      stack[2] = params;
+      if(VISH.Status.getDevice().features.localStorage) {
+        localStorage.setItem(VISH.Constant.Clipboard.LocalStorageStack, JSON.stringify(stack))
+      }
     }
   };
   var paste = function() {
-    if(!stack[0]) {
-      return
+    if(_lastTimestamp) {
+      var elapsed = (new Date).getTime() - _lastTimestamp;
+      if(elapsed < 500) {
+        return
+      }
     }
-    switch(stack[1]) {
+    _lastTimestamp = (new Date).getTime();
+    if(VISH.Status.getDevice().features.localStorage) {
+      var storedStack = localStorage.getItem(VISH.Constant.Clipboard.LocalStorageStack);
+      if(storedStack !== null) {
+        var myStack = JSON.parse(storedStack)
+      }
+    }
+    if(!myStack) {
+      myStack = stack
+    }
+    if(!myStack[0]) {
+      return
+    }else {
+      myStack[0] = $(myStack[0])[0]
+    }
+    switch(myStack[1]) {
       case VISH.Constant.Clipboard.Slide:
-        var slideToCopy = _rewriteIds($(stack[0]).clone());
-        VISH.Slides.copySlide(slideToCopy);
+        var slideToCopy = VISH.Editor.Utils.replaceIdsForSlide($(myStack[0]).clone()[0]);
+        if(typeof slideToCopy != "undefined") {
+          if(VISH.Slides.getSlideType(slideToCopy) === VISH.Constant.FLASHCARD) {
+            var flashcardId = $(slideToCopy).attr("id");
+            if(!myStack[2] || !myStack[2].flashcardExcursionJSON) {
+              return
+            }
+            var the_flashcard_excursion = myStack[2].flashcardExcursionJSON;
+            var selectedFc = VISH.Editor.Utils.replaceIdsForFlashcardJSON(the_flashcard_excursion, flashcardId);
+            VISH.Editor.Flashcard.addFlashcard(selectedFc);
+            for(index in selectedFc.pois) {
+              var poi = selectedFc.pois[index];
+              V.Flashcard.addArrow(selectedFc.id, poi, true)
+            }
+            VISH.Editor.Events.bindEventsForFlashcard(selectedFc)
+          }
+          VISH.Editor.Slides.copySlide(slideToCopy)
+        }
         break;
       default:
         break
     }
-  };
-  var _rewriteIds = function(parentElement) {
-    var ids_pattern = /unicID_[0-9]+/g;
-    $(parentElement).attr("id", VISH.Utils.getId());
-    $(parentElement).find("[id]").each(function(index, element) {
-      var id = $(element).attr("id");
-      var unicIDToReplace = ids_pattern.exec(id);
-      if(unicIDToReplace != null) {
-        var newId = $(element).attr("id").replace(unicIDToReplace, VISH.Utils.getId());
-        $(element).attr("id", newId)
-      }
-    });
-    return parentElement
   };
   return{init:init, copy:copy, paste:paste}
 }(VISH, jQuery);
 VISH.Editor.Dummies = function(VISH, undefined) {
   var dummies = [];
   var init = function() {
-    dummies = ["<article id='article_id_to_change' type='standard' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' size='small' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='extra-small' class='t1_subheader editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + 
-    "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='small'  class='t4_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='medium' class='t5_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t6_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t7_subheader editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='small'  class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='small'     class='t8_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t9_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center'  size='large' class='t10_center editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center1' size='medium' class='t11_center1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='medium'  class='t11_center2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center3'  size='medium'  class='t11_center3 editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
-    VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left1'   size='medium' class='t12_left1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t12_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='left2' size='medium' class='t12_left2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium'  class='t12_right2 editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle' size='medium' class='t13_circle editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'  class='t13_right editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='circle1' size='small' class='t14_circle1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle2' size='small' class='t14_circle2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle3' size='small' class='t14_circle3 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right3' size='medium' class='t14_right3 editable grey_background selectable'></div></article>", 
-    "<article id='article_id_to_change' type='standard' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t15_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='large' class='t15_center2 editable grey_background selectable'></div></article>"];
+    dummies = ["<article id='article_id_to_change' type='standard' template='t1' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t1_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='header' size='small' class='t1_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='extra-small' class='t1_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t2' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='large' class='t2_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t3' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t3_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t3_left editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t4' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t4_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='large'  class='t4_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='small'  class='t4_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t5' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t5_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t5_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right'  size='medium' class='t5_right editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t6' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t6_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t6_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t6_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t6_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t7' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t7_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t7_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t7_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='subheader' size='small' class='t7_subheader editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t8' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t8_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='small'  class='t8_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='large'  class='t8_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='small'     class='t8_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t9' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t9_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t9_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t9_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'    class='t9_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t10' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center'  size='large' class='t10_center editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t11' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='center1' size='medium' class='t11_center1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='medium'  class='t11_center2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='center3'  size='medium'  class='t11_center3 editable grey_background selectable'></div></article>", "<article id='article_id_to_change' type='standard' template='t12' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + 
+    VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left1'   size='medium' class='t12_left1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t12_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='left2' size='medium' class='t12_left2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium'  class='t12_right2 editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t13' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='header'  size='small' class='t13_header editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle' size='medium' class='t13_circle editable grey_background selectable'></div><div id='div_id_to_change' areaid='left' size='medium' class='t13_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium'  class='t13_right editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t14' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='circle1' size='small' class='t14_circle1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right1' size='medium' class='t14_right1 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle2' size='small' class='t14_circle2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right2' size='medium' class='t14_right2 editable grey_background selectable'></div><div id='div_id_to_change' areaid='circle3' size='small' class='t14_circle3 editable grey_background selectable'></div><div id='div_id_to_change' areaid='right3' size='medium' class='t14_right3 editable grey_background selectable'></div></article>", 
+    "<article id='article_id_to_change' type='standard' template='t15' slidenumber='slidenumber_to_change'><div class='delete_slide'></div><img class='help_in_template' id='help_template_image' src='" + VISH.ImagesPath + "icons/helptutorial_circle_blank.png'/><div id='div_id_to_change' \tareaid='left' \t size='medium' class='t15_left editable grey_background selectable'></div><div id='div_id_to_change' areaid='center' size='medium' class='t15_center editable grey_background selectable'></div><div id='div_id_to_change' areaid='right' size='medium' class='t15_right editable grey_background selectable'></div><div id='div_id_to_change' areaid='center2' size='large' class='t15_center2 editable grey_background selectable'></div></article>"];
     VISH.Editor.Quiz.Dummies.init()
   };
   var getDummy = function(template, slideNumber) {
@@ -16813,13 +16819,13 @@ VISH.Editor.Events = function(V, $, undefined) {
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
       case 39:
-        if(V.Slides.isSlideFocused()) {
+        if(V.Editor.Slides.isSlideFocused()) {
           V.Slides.forwardOneSlide();
           event.preventDefault()
         }
         break;
       case 37:
-        if(V.Slides.isSlideFocused()) {
+        if(V.Editor.Slides.isSlideFocused()) {
           V.Slides.backwardOneSlide();
           event.preventDefault()
         }
@@ -16828,7 +16834,7 @@ VISH.Editor.Events = function(V, $, undefined) {
         ctrlDown = true;
         break;
       case 67:
-        if(V.Slides.isSlideFocused()) {
+        if(V.Editor.Slides.isSlideFocused()) {
           if(ctrlDown) {
             if(VISH.Slides.getCurrentSlideNumber()) {
               VISH.Editor.Clipboard.copy(VISH.Slides.getCurrentSlide(), VISH.Constant.Clipboard.Slide)
@@ -16837,15 +16843,15 @@ VISH.Editor.Events = function(V, $, undefined) {
         }
         break;
       case 86:
-        if(V.Slides.isSlideFocused()) {
+        if(V.Editor.Slides.isSlideFocused()) {
           if(ctrlDown) {
             VISH.Editor.Clipboard.paste()
           }
         }
         break;
       case 46:
-        if(V.Slides.isSlideFocused()) {
-          VISH.Slides.removeSlide(VISH.Slides.getCurrentSlideNumber())
+        if(V.Editor.Slides.isSlideFocused()) {
+          VISH.Editor.Slides.removeSlide(VISH.Slides.getCurrentSlideNumber())
         }
         break
     }
@@ -16858,11 +16864,11 @@ VISH.Editor.Events = function(V, $, undefined) {
     }
   };
   var _onFlashcardPoiClicked = function(event) {
-    V.Slides.showFlashcardSlide(event.data.slide_id, true)
+    V.Slides.openSubslide(event.data.slide_id, true)
   };
   var _onFlashcardCloseSlideClicked = function(event) {
     var close_slide = event.target.id.substring(5);
-    V.Slides.closeFlashcardSlide(close_slide, true)
+    V.Slides.closeSubslide(close_slide, true)
   };
   var bindEditorEventListeners = function() {
     if(!bindedEventListeners) {
@@ -17095,7 +17101,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
         var myImg = $("<img id=img_flkr" + i + " src=" + item.media.m.replace(/_m/i, "") + " imageFlikrId=" + i + "/>");
         carrouselImages.push(myImg)
       });
-      VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+      VISH.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
     })
   };
   var addImage = function(event) {
@@ -17156,7 +17162,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
       carrouselImages.push(myImg);
       currentImages[image.id] = image
     });
-    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+    VISH.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -17294,7 +17300,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
       carrouselImagesTitles.push(object.title);
       currentObject[object.id] = object
     });
-    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
+    VISH.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -17323,7 +17329,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
     $(metadataArea).html("");
     if(renderedObject && object) {
       $(objectArea).append(renderedObject);
-      var table = VISH.Utils.generateTable(object.author, object.title, object.description);
+      var table = VISH.Editor.Utils.generateTable(object.author, object.title, object.description);
       $(metadataArea).html(table);
       $("#" + footId).find(".okButton").show()
     }
@@ -17423,7 +17429,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
       carrouselImagesTitles.push(objectItem.title);
       currentObject[objectItem.id] = objectItem
     });
-    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
+    VISH.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -17452,7 +17458,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
     $(metadataArea).html("");
     if(renderedObject && object) {
       $(objectArea).append(renderedObject);
-      var table = VISH.Utils.generateTable(object.author, object.title, object.description);
+      var table = VISH.Editor.Utils.generateTable(object.author, object.title, object.description);
       $(metadataArea).html(table);
       $("#" + footId).find(".okButton").show()
     }
@@ -17481,7 +17487,7 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
     $(urlInput).watermark("Paste website URL");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(VISH.Police.validateObject($("#" + urlInputId).val())[0]) {
-        contentToAdd = VISH.Utils.autocompleteUrls($("#" + urlInputId).val());
+        contentToAdd = VISH.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
         VISH.Editor.Object.drawPreview(urlDivId, contentToAdd)
       }
     })
@@ -17565,6 +17571,8 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
     if(scrollLeft) {
       $("#" + idToDrag).scrollLeft(scrollLeft)
     }
+    $(wrapperDiv).attr("scrollTop", scrollTop);
+    $(wrapperDiv).attr("scrollLeft", scrollLeft);
     $("#" + idToDrag).bind("mousedown", function(event) {
       event.preventDefault()
     });
@@ -17615,7 +17623,7 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
     $(urlInput).watermark("Paste website URL");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(VISH.Police.validateObject($("#" + urlInputId).val())[0]) {
-        contentToAdd = VISH.Utils.autocompleteUrls($("#" + urlInputId).val());
+        contentToAdd = VISH.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
         VISH.Editor.Object.drawPreview(urlDivId, contentToAdd)
       }
     })
@@ -17637,11 +17645,42 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
 }(VISH, jQuery);
 VISH.Editor.Preview = function(V, $, undefined) {
-  var presentation_preview;
-  var forcePresentation = false;
-  var prepare = function(slideNumberToPreview) {
-    if(!slideNumberToPreview) {
+  var presentation_preview = null;
+  var init = function() {
+    setTimeout(function() {
+      _realInit()
+    }, 2E3)
+  };
+  var _realInit = function() {
+    $("img#preview_circle").fancybox({"width":875, "height":656, "padding":0, "autoScale":false, "transitionIn":"none", "transitionOut":"none", "type":"iframe", "onStart":function() {
+      if(presentation_preview === null) {
+        _prepare()
+      }
+      VISH.Editor.Utils.Loader.unloadObjectsInEditorSlide(VISH.Slides.getCurrentSlide())
+    }, "onClosed":function() {
+      presentation_preview = null;
+      VISH.Editor.Utils.Loader.loadObjectsInEditorSlide(VISH.Slides.getCurrentSlide())
+    }, "onComplete":function() {
+      $("#fancybox-wrap").css("top", "60px");
+      $("#fancybox-wrap").css("left", "-2px")
+    }})
+  };
+  var preview = function(options) {
+    _prepare(options);
+    $("img#preview_circle").trigger("click")
+  };
+  var _prepare = function(options) {
+    var slideNumberToPreview;
+    var forcePresentation;
+    if(!options || !options["slideNumberToPreview"] || typeof options["slideNumberToPreview"] !== "number") {
       slideNumberToPreview = V.Slides.getCurrentSlideNumber()
+    }else {
+      slideNumberToPreview = options["slideNumberToPreview"]
+    }
+    if(!options || !options["forcePresentation"] || typeof options["forcePresentation"] !== "boolean") {
+      forcePresentation = false
+    }else {
+      forcePresentation = options["forcePresentation"]
     }
     if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
       $("#preview_circle").attr("href", "/excursions/preview#" + slideNumberToPreview)
@@ -17653,22 +17692,19 @@ VISH.Editor.Preview = function(V, $, undefined) {
         }
       }
     }
-    presentation_preview = V.Editor.savePresentation(forcePresentation)
-  };
-  var setForcePresentation = function(force) {
-    forcePresentation = force
+    presentation_preview = V.Editor.savePresentation({preview:true, forcePresentation:forcePresentation})
   };
   var getPreview = function() {
     return presentation_preview
   };
-  return{prepare:prepare, getPreview:getPreview, setForcePresentation:setForcePresentation}
+  return{init:init, preview:preview, getPreview:getPreview}
 }(VISH, jQuery);
 VISH.Editor.Quiz.Dummies = function(VISH, undefined) {
   var quizDummies = [];
   var quizOptionsDummies = [];
   var init = function() {
     quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone'><div class='initTextDiv'><font size='4'>Write question here</font></div></div><ul class='ul_mch_options_in_zone'></ul><input type='hidden' name='quiz_id'/></div></div>", "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"];
-    quizOptionDummies = ["", "<li class='li_mch_options_in_zone'><span class='quiz_option_index'></span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div><img src='" + VISH.ImagesPath + "add.png' class='add_quiz_option_button'/><img src='" + VISH.ImagesPath + "delete.png' class='delete_quiz_option_button'/></li>", ""]
+    quizOptionDummies = ["", "<li class='li_mch_options_in_zone'><span class='quiz_option_index'></span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div><img src='" + VISH.ImagesPath + "icons/add.png' class='add_quiz_option_button'/><img src='" + VISH.ImagesPath + "icons/delete.png' class='delete_quiz_option_button'/></li>", ""]
   };
   var hashTypeQuiz = {"open":0, "multiplechoice":1, "truefalse":2};
   var getQuizDummy = function(type_quiz, position) {
@@ -17702,9 +17738,12 @@ VISH.Editor.Renderer = function(V, $, undefined) {
     switch(presentation.type) {
       case V.Constant.FLASHCARD:
         var flashcard = VISH.Editor.Flashcard.undoNestedSlidesInFlashcard(presentation.slides[0]);
-        slides = flashcard.slides;
-        for(var i = 0;i < slides.length;i++) {
-          _renderSlide(slides[i], i + 1)
+        if(flashcard && flashcard.slides) {
+          slides = flashcard.slides;
+          var sL = slides.length;
+          for(var i = 0;i < sL;i++) {
+            _renderSlide(slides[i], i + 1)
+          }
         }
         VISH.Editor.Flashcard.loadFlashcard(presentation);
         break;
@@ -17727,8 +17766,8 @@ VISH.Editor.Renderer = function(V, $, undefined) {
   var _renderSlide = function(slide, slideNumber) {
     var template = slide.template.substring(1);
     var scaffold = V.Editor.Dummies.getScaffoldForSlide(template, slideNumber, slide);
-    V.Slides.addSlide(scaffold);
-    V.Editor.Utils.redrawSlides();
+    V.Editor.Slides.addSlide(scaffold);
+    V.Editor.Slides.redrawSlides();
     V.Slides.lastSlide();
     for(el in slide.elements) {
       var areaId = slide.elements[el].id;
@@ -17777,7 +17816,129 @@ VISH.Editor.Renderer = function(V, $, undefined) {
   };
   return{init:init}
 }(VISH, jQuery);
-VISH.Editor.Text = function(V, $, undefined) {
+VISH.Editor.Slides = function(V, $, undefined) {
+  var showSlides = function() {
+    $(".slides > article").removeClass("temp_hidden")
+  };
+  var hideSlides = function() {
+    $(".slides > article").addClass("temp_hidden")
+  };
+  var redrawSlides = function() {
+    $(document).trigger("OURDOMContentLoaded")
+  };
+  var isSlideFocused = function() {
+    if($(".wysiwygInstance").is(":focus")) {
+      return false
+    }
+    if($("#fancybox-content").is(":visible")) {
+      return false
+    }
+    if($("input").is(":focus")) {
+      return false
+    }
+    if(VISH.Editor && VISH.Editor.getCurrentArea() !== null) {
+      return false
+    }
+    return true
+  };
+  var moveSlideTo = function(slide_to_move, reference_slide, movement) {
+    if(typeof slide_to_move === "undefined" || typeof reference_slide === "undefined") {
+      return
+    }
+    if(typeof slide_to_move.length !== undefined) {
+      slide_to_move = $(slide_to_move)[0];
+      if(typeof slide_to_move === "undefined") {
+        return
+      }
+    }
+    if(typeof reference_slide.length !== undefined) {
+      reference_slide = $(reference_slide)[0];
+      if(typeof reference_slide === "undefined") {
+        return
+      }
+    }
+    if(slide_to_move.tagName != "ARTICLE" || reference_slide.tagName != "ARTICLE" || slide_to_move == reference_slide) {
+      return
+    }
+    var article_to_move = slide_to_move;
+    var article_reference = reference_slide;
+    var moving_current_slide = false;
+    if(VISH.Slides.getCurrentSlide() === article_to_move) {
+      moving_current_slide = true
+    }
+    $(article_to_move).remove();
+    if(movement == "after") {
+      $(article_reference).after(article_to_move)
+    }else {
+      if(movement == "before") {
+        $(article_reference).before(article_to_move)
+      }else {
+        VISH.Debugging.log("VISH.Slides: Error. Movement not defined... !");
+        return
+      }
+    }
+    VISH.Editor.Utils.refreshDraggables(article_to_move);
+    VISH.Slides.setSlides(document.querySelectorAll("section.slides > article"));
+    if(moving_current_slide) {
+      VISH.Slides.setCurrentSlideIndex(VISH.Slides.getNumberOfSlide(article_to_move))
+    }
+    VISH.Slides.updateSlideEls()
+  };
+  var copySlideWithNumber = function(slideNumber) {
+    var slide = VISH.Slides.getSlideWithNumber(slideNumber);
+    if(slide === null) {
+      return
+    }
+    var newSlide = $(slide).clone();
+    copySlide(newSlide)
+  };
+  var copySlide = function(newSlide) {
+    var currentSlide = VISH.Slides.getCurrentSlide();
+    if(currentSlide) {
+      $(currentSlide).after(newSlide)
+    }else {
+      $("section#slides_panel").append(newSlide)
+    }
+    VISH.Editor.Utils.refreshDraggables(newSlide);
+    VISH.Slides.setSlides(document.querySelectorAll("section.slides > article"));
+    VISH.Slides.updateSlideEls();
+    VISH.Editor.Thumbnails.redrawThumbnails();
+    if(currentSlide) {
+      VISH.Slides.goToSlide(VISH.Slides.getCurrentSlideNumber() + 1)
+    }else {
+      VISH.Slides.goToSlide(1)
+    }
+  };
+  var addSlide = function(slide) {
+    $(".slides").append(slide)
+  };
+  var removeSlide = function(slideNumber) {
+    var slide = VISH.Slides.getSlideWithNumber(slideNumber);
+    if(slide === null) {
+      return
+    }
+    var standardSlide = slide.type === VISH.Constant.STANDARD;
+    var removing_current_slide = false;
+    if(VISH.Slides.getCurrentSlide() === slide) {
+      removing_current_slide = true
+    }
+    $(slide).remove();
+    if(removing_current_slide) {
+      if(VISH.Slides.getCurrentSlideNumber() === 1 && VISH.Slides.getSlidesQuantity() > 1) {
+        VISH.Slides.setCurrentSlideNumber(1)
+      }else {
+        VISH.Slides.setCurrentSlideNumber(VISH.Slides.getCurrentSlideNumber() - 1)
+      }
+    }
+    redrawSlides();
+    VISH.Editor.Thumbnails.redrawThumbnails();
+    if(!standardSlide) {
+      VISH.Editor.Tools.Menu.init()
+    }
+  };
+  return{showSlides:showSlides, hideSlides:hideSlides, redrawSlides:redrawSlides, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, copySlideWithNumber:copySlideWithNumber, addSlide:addSlide, removeSlide:removeSlide}
+}(VISH, jQuery);
+VISH.Editor.Text.NiceEditor = function(V, $, undefined) {
   var myNicEditor;
   var initialized = false;
   var init = function() {
@@ -17931,6 +18092,119 @@ VISH.Editor.Text = function(V, $, undefined) {
   };
   return{init:init, launchTextEditor:launchTextEditor, changeFontPropertiesToSpan:changeFontPropertiesToSpan, getNicEditor:getNicEditor}
 }(VISH, jQuery);
+VISH.Editor.Text = function(V, $, undefined) {
+  var initialized = false;
+  var init = function() {
+    if(!initialized) {
+      $(document).on("click", ".textthumb", launchTextEditor);
+      initialized = true
+    }
+  };
+  var launchTextEditor = function(event, area, initial_text) {
+    init();
+    var current_area;
+    if(area) {
+      current_area = area
+    }else {
+      current_area = $(this).parents(".selectable")
+    }
+    current_area.attr("type", "text");
+    var newInstance = !(typeof initial_text === "string");
+    var wysiwygContainerId = VISH.Utils.getId();
+    var wysiwygContainer = $("<div id='" + wysiwygContainerId + "'></div>");
+    $(wysiwygContainer).attr("style", "width: 100%; height: 100%");
+    $(current_area).append(wysiwygContainer);
+    var config = {};
+    config.toolbar = "Basic";
+    config.toolbar_Basic = [["Bold", "Italic", "Underline", "-", "Subscript", "Superscript"], ["NumberedList", "BulletedList", "Table"], ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"], ["Link"], ["Font", "FontSize"], ["TextColor", "BGColor"]];
+    config.sharedSpaces = {top:"toolbar_text"};
+    config.toolbarCanCollapse = false;
+    config.resize_enabled = false;
+    config.removePlugins = "elementspath";
+    config.width = "100%";
+    config.height = $(current_area).height();
+    config.fontSize_defaultLabel = "12px";
+    var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
+    config.skin = "vEditor," + ckeditorBasePath + "editor/skins/vEditor/";
+    var ckeditor = CKEDITOR.appendTo(wysiwygContainerId, config);
+    var myWidth = $(current_area).width();
+    var myHeight = $(current_area).height();
+    if(newInstance) {
+      var defaultFontSize = 12;
+      var defaultAlignment = "left";
+      switch($(current_area).attr("size")) {
+        case VISH.Constant.EXTRA_SMALL:
+          defaultFontSize = 18;
+          break;
+        case VISH.Constant.SMALL:
+          defaultFontSize = 18;
+          break;
+        case VISH.Constant.MEDIUM:
+          defaultFontSize = 26;
+          break;
+        case VISH.Constant.LARGE:
+          defaultFontSize = 36;
+          break;
+        default:
+          break
+      }
+      var isCircleArea = $(current_area).attr("areaid").indexOf("circle") !== -1;
+      if(isCircleArea) {
+        defaultAlignment = "center"
+      }
+      initial_text = "<p style='text-align:" + defaultAlignment + ";'><span style='font-size:" + defaultFontSize + "px;'>&shy;</span></p>"
+    }
+    ckeditor.on("instanceReady", function() {
+      if(initial_text) {
+        ckeditor.setData(initial_text, function() {
+          ckeditor.resize(myWidth, myHeight);
+          _fixCKEDITORBug(ckeditor)
+        });
+        if(newInstance) {
+          ckeditor.focus()
+        }
+      }
+    });
+    ckeditor.on("focus", function(event) {
+      var area = $("div[type='text']").has(event.editor.container.$);
+      VISH.Editor.selectArea(area)
+    });
+    ckeditor.on("blur", function(event) {
+      var area = $("div[type='text']").has(event.editor.container.$)
+    });
+    V.Editor.addDeleteButton(current_area)
+  };
+  var getCKEditorFromZone = function(zone) {
+    if(!zone || typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined") {
+      return null
+    }
+    var CKEditorInstance = null;
+    jQuery.each(CKEDITOR.instances, function(name, CKinstance) {
+      var CKzone = $(CKinstance.container.$).parent().parent();
+      if($(CKzone).attr("id") === $(zone).attr("id")) {
+        CKEditorInstance = CKinstance;
+        return
+      }
+    });
+    return CKEditorInstance
+  };
+  var getCKEditorIframeContentFromZone = function(zone) {
+    var editor = getCKEditorFromZone(zone);
+    if(!editor) {
+      return null
+    }
+    var iframe = $(document.getElementById("cke_contents_" + editor.name)).find("iframe")[0];
+    return $(iframe).contents()[0]
+  };
+  var _fixCKEDITORBug = function(editor) {
+    if(CKEDITOR.env.webkit) {
+      var iframe = $(document.getElementById("cke_contents_" + editor.name)).find("iframe")[0];
+      iframe.style.display = "none";
+      iframe.style.display = "block"
+    }
+  };
+  return{init:init, launchTextEditor:launchTextEditor, getCKEditorFromZone:getCKEditorFromZone, getCKEditorIframeContentFromZone:getCKEditorIframeContentFromZone}
+}(VISH, jQuery);
 VISH.Editor.Thumbnails = function(V, $, undefined) {
   var carrouselDivId = "slides_carrousel";
   var init = function() {
@@ -17971,7 +18245,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         carrouselElements += 1
       }
     }
-    VISH.Utils.loader.loadImagesOnCarrouselOrder(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
+    VISH.Utils.Loader.loadImagesOnCarrouselOrder(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
   };
   var _onImagesLoaded = function() {
     $(".add_slide_button").hover(function() {
@@ -18029,7 +18303,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         var slideOrg = VISH.Slides.getSlideWithNumber(orgPosition);
         var slideDst = VISH.Slides.getSlideWithNumber(destPosition);
         if(slideOrg != null && slideDst != null && movement != null) {
-          VISH.Slides.moveSlideTo(slideOrg, slideDst, movement);
+          VISH.Editor.Slides.moveSlideTo(slideOrg, slideDst, movement);
           var carrouselVisibleElements = 8;
           $.each($("div.carrousel_element_single_row_slides:has(img[slidenumber])"), function(index, value) {
             var slideNumber = $(value).find("img.carrousel_element_single_row_slides").attr("slidenumber");
@@ -18066,9 +18340,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         $.fancybox($("#message2_form").html(), {"autoDimensions":false, "scrolling":"no", "width":550, "height":200, "showCloseButton":false, "padding":5});
         break;
       case "goToSlide":
-        V.Slides.setCurrentSlideNumber($(event.target).attr("slideNumber"));
-        V.Editor.Preview.setForcePresentation(true);
-        $("img#preview_circle").trigger("click");
+        V.Editor.Preview.preview({forcePresentation:true, slideNumberToPreview:parseInt($(event.target).attr("slideNumber"))});
         break;
       default:
         break
@@ -18145,7 +18417,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       });
       menuEventsLoaded = true;
       _initSettings();
-      _initPreview()
+      VISH.Editor.Preview.init()
     }
     $("#menu").show()
   };
@@ -18233,7 +18505,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     draftPresentation.title = $("#presentation_title").val();
     draftPresentation.description = $("#presentation_description").val();
     draftPresentation.avatar = $("#presentation_avatar").val();
-    draftPresentation.tags = VISH.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
+    draftPresentation.tags = VISH.Editor.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
     draftPresentation.age_range = $("#age_range").val();
     draftPresentation.subject = $("#subject_tag").val();
     draftPresentation.language = $("#language_tag").val();
@@ -18296,16 +18568,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     }
   };
   var preview = function() {
-    $("img#preview_circle").trigger("click")
-  };
-  var _initPreview = function() {
-    $("img#preview_circle").fancybox({"width":"8", "height":"6", "autoScale":false, "transitionIn":"none", "transitionOut":"none", "type":"iframe", "onStart":function() {
-      V.Quiz.Renderer.setIsQuizInPreview(true);
-      VISH.Editor.Preview.prepare(V.Slides.getCurrentSlideNumber())
-    }, "onClosed":function() {
-      V.Quiz.Renderer.setIsQuizInPreview(false);
-      V.Editor.Preview.setForcePresentation(false)
-    }})
+    VISH.Editor.Preview.preview()
   };
   var help = function() {
     $("#help_right").trigger("click")
@@ -18321,14 +18584,14 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     var presentation = V.Editor.savePresentation();
     V.Editor.setPresentation(presentation);
     V.Editor.setPresentationType("presentation");
-    V.Editor.Utils.showSlides();
+    V.Editor.Slides.showSlides();
     $("#flashcard-background").hide();
     V.Editor.Thumbnails.redrawThumbnails();
     VISH.Editor.Tools.init()
   };
   var insertFlashcard = function() {
     $("#addSlideFancybox").trigger("click");
-    VISH.Utils.loadTab("tab_flashcards")
+    VISH.Utils.loadTab("tab_flashcards_repo")
   };
   var insertSlide = function() {
     $("#addSlideFancybox").trigger("click");
@@ -18355,19 +18618,66 @@ VISH.Editor.Tour = function(V, $, undefined) {
   };
   return{clear:clear, startTourWithId:startTourWithId}
 }(VISH, jQuery);
+VISH.Editor.Utils.Loader = function(V, $, undefined) {
+  var _loadObjectsInEditor = function(objects) {
+    $.each(objects, function(index, object) {
+      var htmlContent = $(object).attr("htmlContent");
+      if(typeof htmlContent !== "undefined") {
+        $(object).html(htmlContent);
+        $(object).removeAttr("htmlContent")
+      }
+    })
+  };
+  var _unloadObjectsInEditor = function(objects) {
+    $.each(objects, function(index, object) {
+      $(object).attr("htmlContent", $(object).html());
+      $(object).html("")
+    })
+  };
+  var _loadSnapshotsInEditor = function(snapshots) {
+    $.each(snapshots, function(index, snapshot) {
+      var htmlContent = $(snapshot).attr("htmlContent");
+      if(typeof htmlContent !== "undefined") {
+        $(snapshot).html(htmlContent);
+        $(snapshot).removeAttr("htmlContent");
+        var scrollTop = parseInt($(snapshot).attr("scrollTop"));
+        var scrollLeft = parseInt($(snapshot).attr("scrollLeft"));
+        $(snapshot).scrollTop(scrollTop);
+        $(snapshot).scrollLeft(scrollLeft)
+      }
+    })
+  };
+  var _unloadSnapshotsInEditor = function(snapshots, updateScrolls) {
+    $.each(snapshots, function(index, snapshot) {
+      if(updateScrolls === true) {
+        $(snapshot).attr("scrollTop", $(snapshot).scrollTop());
+        $(snapshot).attr("scrollLeft", $(snapshot).scrollLeft())
+      }
+      $(snapshot).attr("htmlContent", $(snapshot).html());
+      $(snapshot).html("")
+    })
+  };
+  var loadObjectsInEditorSlide = function(slide) {
+    _loadObjectsInEditor($(slide).find(".object_wrapper"));
+    _loadSnapshotsInEditor($(slide).find(".snapshot_wrapper"))
+  };
+  var unloadObjectsInEditorSlide = function(slide) {
+    _unloadObjectsInEditor($(slide).find(".object_wrapper"));
+    _unloadSnapshotsInEditor($(slide).find(".snapshot_wrapper"), true)
+  };
+  var loadAllObjects = function() {
+    _loadObjectsInEditor($(".object_wrapper"));
+    _loadSnapshotsInEditor($(".snapshot_wrapper"))
+  };
+  var unloadAllObjects = function() {
+    _unloadObjectsInEditor($(".object_wrapper"));
+    _unloadSnapshotsInEditor($(".snapshot_wrapper"))
+  };
+  return{loadObjectsInEditorSlide:loadObjectsInEditorSlide, unloadObjectsInEditorSlide:unloadObjectsInEditorSlide, loadAllObjects:loadAllObjects, unloadAllObjects:unloadAllObjects}
+}(VISH, jQuery);
 VISH.Editor.Utils = function(V, $, undefined) {
-  var redrawSlides = function() {
-    $(document).trigger("OURDOMContentLoaded")
-  };
-  var hideSlides = function() {
-    $(".slides > article").addClass("temp_hidden")
-  };
-  var showSlides = function() {
-    $(".slides > article").removeClass("temp_hidden")
-  };
   var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
-    var element_type;
-    var dimentions_for_drawing = {width:350, height:195};
+    var dimentions_for_drawing = {width:w_content, height:h_content};
     var aspect_ratio_zone = w_zone / h_zone;
     var aspect_ratio_content = w_content / h_content;
     if(aspect_ratio_zone > aspect_ratio_content) {
@@ -18487,6 +18797,41 @@ VISH.Editor.Utils = function(V, $, undefined) {
       $(this).parent().click()
     }})
   };
+  var generateTable = function(author, title, description) {
+    if(!author) {
+      author = ""
+    }
+    if(!title) {
+      title = ""
+    }
+    if(!description) {
+      description = ""
+    }
+    return'<table class="metadata">' + '<tr class="even">' + '<td class="title header_left">' + VISH.Editor.I18n.getTrans("i.Title") + "</td>" + '<td class="title header_right"><div class="height_wrapper">' + title + "</div></td>" + "</tr>" + '<tr class="odd">' + '<td class="title">' + VISH.Editor.I18n.getTrans("i.Author") + "</td>" + '<td class="info"><div class="height_wrapper">' + author + "</div></td>" + "</tr>" + '<tr class="even">' + '<td colspan="2" class="title_description">' + VISH.Editor.I18n.getTrans("i.Description") + 
+    "</td>" + "</tr>" + '<tr class="odd">' + '<td colspan="2" class="info_description"><div class="height_wrapper_description">' + description + "</div></td>" + "</tr>" + "</table>"
+  };
+  var convertToTagsArray = function(tags) {
+    var tagsArray = [];
+    if(!tags || tags.length == 0) {
+      return tagsArray
+    }
+    $.each(tags, function(index, tag) {
+      tagsArray.push(tag.value)
+    });
+    return tagsArray
+  };
+  var autocompleteUrls = function(input) {
+    var http_urls_pattern = /(^http(s)?:\/\/)/g;
+    var objectInfo = VISH.Object.getObjectInfo();
+    if(objectInfo.wrapper == null && input.match(http_urls_pattern) == null) {
+      return"http://" + input
+    }else {
+      return input
+    }
+  };
+  var filterFilePath = function(path) {
+    return path.replace("C:\\fakepath\\", "")
+  };
   var prepareSlideToNest = function(parentId, slide) {
     if(typeof parentId !== "string") {
       return slide
@@ -18517,7 +18862,93 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     return slide
   };
-  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, hideSlides:hideSlides, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, redrawSlides:redrawSlides, dimentionToDraw:dimentionToDraw, showSlides:showSlides, refreshDraggables:refreshDraggables, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide}
+  var replaceIdsForSlide = function(slide) {
+    var slideId = V.Utils.getId("article");
+    $(slide).attr("id", slideId);
+    var slideType = VISH.Slides.getSlideType(slide);
+    switch(slideType) {
+      case VISH.Constant.STANDARD:
+        slide = _replaceIdsForStandardSlide(slide, slideId);
+        break;
+      case VISH.Constant.FLASHCARD:
+        slide = _replaceIdsForFlashcardSlide(slide, slideId);
+        break;
+      default:
+        return
+    }
+    return slide
+  };
+  var _replaceIdsForStandardSlide = function(slide, slideId) {
+    $(slide).children("div[id][areaid]").each(function(index, zone) {
+      zone = _replaceIdsForZone(zone, slideId)
+    });
+    return slide
+  };
+  var _replaceIdsForFlashcardSlide = function(flashcard, flashcardId) {
+    var pois = $(flashcard).find("div.fc_poi");
+    $(pois).each(function(index, poi) {
+      var poiId = V.Utils.getId(flashcardId + "_poi");
+      $(poi).attr("id", poiId)
+    });
+    var subslides = $(flashcard).find(".subslides > article.subslide");
+    $(subslides).each(function(index, subSlide) {
+      subSlide = _replaceIdsForSubSlide(subSlide, flashcardId)
+    });
+    return flashcard
+  };
+  var _replaceIdsForSubSlide = function(subSlide, parentId) {
+    var slideId = V.Utils.getId(parentId + "_article");
+    $(subSlide).attr("id", slideId);
+    $(subSlide).children(".close_subslide").attr("id", "close" + slideId);
+    var zones = $(subSlide).children("div[id]").not(".close_subslide");
+    $(zones).each(function(index, zone) {
+      zone = _replaceIdsForZone(zone, slideId)
+    })
+  };
+  var _replaceIdsForZone = function(zone, slideId) {
+    var zoneId = V.Utils.getId(slideId + "_zone");
+    $(zone).attr("id", zoneId);
+    $(zone).find("[id]").each(function(index, el) {
+      el = _replaceIdsForEl(el, zoneId)
+    });
+    return zone
+  };
+  var _replaceIdsForEl = function(el, zoneId) {
+    var elName = _getNameOfEl(el);
+    var elId = V.Utils.getId(zoneId + "_" + elName);
+    $(el).attr("id", elId);
+    return el
+  };
+  var _getNameOfEl = function(el) {
+    var elName = $($(el).attr("id").split("_")).last()[0];
+    if(elName.length > 1) {
+      return elName.substring(0, elName.length - 1)
+    }else {
+      return elName
+    }
+  };
+  var replaceIdsForFlashcardJSON = function(flashcard, forceId) {
+    var hash_subslide_new_ids = {};
+    var old_id;
+    var fc = jQuery.extend(true, {}, flashcard);
+    if(forceId) {
+      fc.id = forceId
+    }else {
+      fc.id = V.Utils.getId("article")
+    }
+    for(var ind in fc.slides) {
+      old_id = fc.slides[ind].id;
+      fc.slides[ind].id = V.Utils.getId(fc.id + "_article" + (parseInt(ind) + 1), true);
+      hash_subslide_new_ids[old_id] = fc.slides[ind].id
+    }
+    for(var num in fc.pois) {
+      fc.pois[num].id = V.Utils.getId(fc.id + "_poi" + (parseInt(num) + 1), true);
+      fc.pois[num].slide_id = hash_subslide_new_ids[fc.pois[num].slide_id]
+    }
+    return fc
+  };
+  return{getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, dimentionToDraw:dimentionToDraw, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForFlashcardJSON:replaceIdsForFlashcardJSON, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide, generateTable:generateTable, 
+  convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath}
 }(VISH, jQuery);
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
@@ -18637,7 +19068,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
         currentVideos[video.id] = video
       }
     });
-    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+    VISH.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -18663,7 +19094,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     $(metadataArea).html("");
     if(renderedVideo && video) {
       $(videoArea).append(renderedVideo);
-      var table = VISH.Utils.generateTable(video.author, video.title, video.description);
+      var table = VISH.Editor.Utils.generateTable(video.author, video.title, video.description);
       $(metadataArea).html(table);
       $(button).show()
     }
@@ -18802,7 +19233,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
       var myImg = $("<img videoID=" + videoID + " src=" + image_url + " />");
       carrouselImages.push(myImg)
     });
-    VISH.Utils.loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+    VISH.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
@@ -18832,7 +19263,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     $(metadataArea).html("");
     if(renderedIframe && video) {
       $(videoArea).append(renderedIframe);
-      var table = VISH.Utils.generateTable(video.author, video.title, video.description);
+      var table = VISH.Editor.Utils.generateTable(video.author, video.title, video.description);
       $(metadataArea).html(table);
       $(button).show()
     }
@@ -19211,6 +19642,18 @@ VISH.IframeAPI = function(V, undefined) {
   };
   return{init:init, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback, sendMessage:sendMessage, setSlave:setSlave, setMaster:setMaster, allowExitWithoutConfirmation:allowExitWithoutConfirmation, goToSlide:goToSlide, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, openSlideInFlashcard:openSlideInFlashcard, closeSlideInFlashcard:closeSlideInFlashcard}
 }(VISH);
+VISH.ImagePlayer = function() {
+  var reloadGifs = function(slide) {
+    var imgs = $(slide).find("img");
+    $.each(imgs, function(index, img) {
+      var ext = VISH.Object.getExtensionFromSrc($(img).attr("src"));
+      if(ext === "gif") {
+        $(img).attr("src", $(img).attr("src"))
+      }
+    })
+  };
+  return{reloadGifs:reloadGifs}
+}(VISH, jQuery);
 VISH.LocalStorage = function(V, $, undefined) {
   var addPresentation = function(presentation) {
     if(typeof Storage !== "undefined") {
@@ -19331,12 +19774,12 @@ VISH.Messenger.Helper = function(V, undefined) {
         break;
       case VISH.Constant.Event.onFlashcardPointClicked:
         if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
-          VISH.Slides.showFlashcardSlide(VEMessageObject.params.slideNumber, false)
+          VISH.Slides.openSubslide(VEMessageObject.params.slideNumber, false)
         }
         break;
       case VISH.Constant.Event.onFlashcardSlideClosed:
         if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
-          VISH.Slides.closeFlashcardSlide(VEMessageObject.params.slideNumber, false)
+          VISH.Slides.closeSubslide(VEMessageObject.params.slideNumber, false)
         }
         break;
       case VISH.Constant.Event.onSetSlave:
@@ -19412,7 +19855,7 @@ VISH.Object = function(V, $, undefined) {
       return"youtube"
     }
     source = source.split("?")[0];
-    var extension = source.split(".").pop().toLowerCase();
+    var extension = getExtensionFromSrc(source);
     if(imageFormats.indexOf(extension) != "-1") {
       return"image"
     }
@@ -19430,17 +19873,20 @@ VISH.Object = function(V, $, undefined) {
     }
     return extension
   };
-  return{init:init, getObjectInfo:getObjectInfo}
+  var getExtensionFromSrc = function(source) {
+    return source.split(".").pop().toLowerCase()
+  };
+  return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
 }(VISH, jQuery);
 VISH.ObjectPlayer = function() {
-  var loadObject = function(element) {
-    $.each(element.children(".objectelement"), function(index, value) {
+  var loadObject = function(slide) {
+    $.each(slide.children(".objectelement"), function(index, value) {
       if($(value).hasClass("youtubeelement")) {
-        VISH.VideoPlayer.Youtube.loadYoutubeObject(element, value);
+        VISH.VideoPlayer.Youtube.loadYoutubeObject(slide, value);
         return
       }
       if($(value).attr("objectWrapper").match("^<iframe") !== null && VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "/advert_new_grey_iframe.png'/>");
+        $(value).html("<img src='" + VISH.ImagesPath + "/adverts/advert_new_grey_iframe.png'/>");
         return
       }
       var object = $($(value).attr("objectWrapper"));
@@ -19449,8 +19895,8 @@ VISH.ObjectPlayer = function() {
       adjustDimensionsAfterZoom($($(value).children()[0]).children()[0])
     })
   };
-  var unloadObject = function(element) {
-    $.each($(element).children(".objectelement"), function(index, value) {
+  var unloadObject = function(slide) {
+    $.each($(slide).children(".objectelement"), function(index, value) {
       $(value).html("")
     })
   };
@@ -19660,9 +20106,6 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
   var init = function() {
   };
   var renderQuiz = function(quizType, quiz_element, zone_class, slide_id, zone) {
-    if(isQuizInPreview) {
-      $(".quiz_session_start_button").unbind("click")
-    }
     switch(quizType) {
       case "multiplechoice":
         return _renderMcQuestion(quiz_element, zone_class, slide_id, zone);
@@ -19749,10 +20192,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     VISH.Debugging.log("JSON object answer is: " + trueFalseAnswers);
     return ret
   };
-  var setIsQuizInPreview = function(value) {
-    isQuizInPreview = value
-  };
-  return{init:init, renderQuiz:renderQuiz, setIsQuizInPreview:setIsQuizInPreview}
+  return{init:init, renderQuiz:renderQuiz}
 }(VISH, jQuery);
 VISH.Renderer.Filter = function(V, $, undefined) {
   var init = function() {
@@ -19795,7 +20235,7 @@ VISH.Renderer.Filter = function(V, $, undefined) {
     return true
   };
   var renderContentFiltered = function(element, template) {
-    return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + VISH.ImagesPath + "advert_new_grey.png'/></div>"
+    return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + VISH.ImagesPath + "adverts/advert_new_grey.png'/></div>"
   };
   return{init:init, allowElement:allowElement, renderContentFiltered:renderContentFiltered}
 }(VISH, jQuery);
@@ -19807,8 +20247,8 @@ VISH.SlideManager = function(V, $, undefined) {
   var current_presentation;
   var presentationType = "presentation";
   var init = function(options, presentation) {
-    VISH.Debugging.init(options);
     VISH.Editing = false;
+    VISH.Debugging.init(options);
     if(options) {
       initOptions = options
     }else {
@@ -19850,44 +20290,12 @@ VISH.SlideManager = function(V, $, undefined) {
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
     V.ViewerAdapter.init();
+    V.Text.init();
     V.Quiz.prepareQuiz(presentation);
     if(options.addons) {
-      VISH.Addons.init(options.addons)
+      V.Addons.init(options.addons)
     }
-    if(options && options["preview"]) {
-      $("div#viewerpreview").show()
-    }
-    if(!V.Status.getDevice().desktop && !VISH.Status.getIsInIframe() && options && options["comeBackUrl"]) {
-      $("button#closeButton").show()
-    }
-    var renderFull = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true;
-    if(!renderFull) {
-      if(V.Status.getDevice().desktop && options && !options["preview"]) {
-        _enableFullScreen()
-      }else {
-        $("#page-fullscreen").hide()
-      }
-    }else {
-      $("#page-fullscreen").hide();
-      V.ViewerAdapter.setupElements();
-      V.ViewerAdapter.setupSize(true);
-      V.ViewerAdapter.decideIfPageSwitcher()
-    }
-  };
-  var _enableFullScreen = function() {
-    if(V.Status.getDevice().features.fullscreen && V.Status.getIsInIframe()) {
-      var myDoc = parent.document
-    }else {
-      var myDoc = document
-    }
-    $(document).on("click", "#page-fullscreen", toggleFullScreen);
-    $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
-      V.ViewerAdapter.setupElements();
-      setTimeout(function() {
-        V.ViewerAdapter.setupSize(true);
-        V.ViewerAdapter.decideIfPageSwitcher()
-      }, 400)
-    })
+    V.ViewerAdapter.setupInterface(options)
   };
   var toggleFullScreen = function() {
     if(VISH.Status.isSlaveMode()) {
@@ -19946,36 +20354,30 @@ VISH.SlideManager = function(V, $, undefined) {
     return initOptions
   };
   var _onslideenter = function(e) {
+    var slide = e.target;
     V.ViewerAdapter.decideIfPageSwitcher();
-    var fcElem, slideId;
     setTimeout(function() {
-      if($(e.target).hasClass("object")) {
-        V.ObjectPlayer.loadObject($(e.target))
-      }else {
-        if($(e.target).hasClass("applet")) {
-          V.AppletPlayer.loadApplet($(e.target))
-        }else {
-          if($(e.target).hasClass("snapshot")) {
-            V.SnapshotPlayer.loadSnapshot($(e.target))
-          }
-        }
+      if($(slide).hasClass("object")) {
+        V.ObjectPlayer.loadObject($(slide))
+      }
+      if($(e.target).hasClass("snapshot")) {
+        V.SnapshotPlayer.loadSnapshot($(slide))
       }
     }, 500);
     V.VideoPlayer.HTML5.playVideos(e.target);
-    if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
-      $("#forward_arrow").css("top", "15%")
-    }
     if($(e.target).hasClass("flashcard_slide")) {
       V.Flashcard.startAnimation(e.target.id)
     }
   };
   var _onslideleave = function(e) {
-    V.VideoPlayer.HTML5.stopVideos(e.target);
-    V.ObjectPlayer.unloadObject(e.target);
-    V.AppletPlayer.unloadApplet();
-    if($(e.target).hasClass("flashcard_slide") || $(e.target).hasClass("virtualTour_slide")) {
-      $("#forward_arrow").css("top", "0%")
+    var slide = e.target;
+    if($(slide).hasClass("object")) {
+      V.ObjectPlayer.unloadObject($(slide))
     }
+    if($(slide).hasClass("snapshot")) {
+      V.SnapshotPlayer.unloadSnapshot($(slide))
+    }
+    V.VideoPlayer.HTML5.stopVideos(slide);
     if($(e.target).hasClass("flashcard_slide")) {
       V.Flashcard.stopAnimation(e.target.id)
     }
@@ -20009,7 +20411,7 @@ VISH.SnapshotPlayer = function() {
       var content_class = "snapshot_content" + "_viewer";
       var content = $(value).attr("objectWrapper");
       if(VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "advert_new_grey_iframe.png'/>");
+        $(value).html("<img src='" + VISH.ImagesPath + "adverts/advert_new_grey_iframe.png'/>");
         return
       }
       var iframe = $(VISH.Utils.getOuterHTML($(content)));
@@ -20025,7 +20427,7 @@ VISH.SnapshotPlayer = function() {
       $(value).find("." + wrapper_class).scrollLeft(scrollLeft)
     })
   };
-  var unloadSnapshot = function() {
+  var unloadSnapshot = function(element) {
     var element = $(".past, .next");
     $.each(element.children(".snapshotelement"), function(index, value) {
       $(value).html("")
@@ -20048,6 +20450,116 @@ VISH.SnapshotPlayer = function() {
     })
   };
   return{loadSnapshot:loadSnapshot, unloadSnapshot:unloadSnapshot, aftersetupSize:aftersetupSize}
+}(VISH, jQuery);
+VISH.Text = function(V, $, undefined) {
+  var init = function() {
+    $("article > div > p").each(function(index, p) {
+      if($(p).children().length === 0) {
+        _setStyleInEm(p);
+        return
+      }
+      var oldStyle = null;
+      var newStyle = null;
+      var lastFontSizeCandidate = null;
+      var lastFontSize = null;
+      $(p).find("span").each(function(index, span) {
+        oldStyle = $(span).attr("style");
+        lastFontSizeCandidate = parseInt(VISH.Utils.getFontSizeFromStyle(oldStyle));
+        if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
+          lastFontSize = lastFontSizeCandidate
+        }
+        if($(span).children().length !== 0) {
+          newStyle = VISH.Utils.removeFontSizeInStyle(oldStyle);
+          if(newStyle === null || newStyle === "; ") {
+            $(span).removeAttr("style")
+          }else {
+            $(span).attr("style", newStyle)
+          }
+        }else {
+          var fontSize;
+          if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
+            fontSize = lastFontSizeCandidate
+          }else {
+            if(lastFontSize !== null) {
+              fontSize = lastFontSize
+            }else {
+              fontSize = VISH.Constant.TextDefault
+            }
+          }
+          var em = fontSize / VISH.Constant.TextBase + "em";
+          newStyle = VISH.Utils.addFontSizeToStyle(oldStyle, em);
+          $(span).attr("style", newStyle)
+        }
+      })
+    })
+  };
+  var _setStyleInEm = function(el) {
+    var oldStyle = $(el).attr("style");
+    var fontSize;
+    if(typeof oldStyle !== "string") {
+      oldStyle = ""
+    }else {
+      fontSize = VISH.Utils.getFontSizeFromStyle(oldStyle)
+    }
+    if(typeof fontSize !== "number" || isNaN(fontSize)) {
+      fontSize = VISH.Constant.TextDefault
+    }
+    var em = fontSize / VISH.Constant.TextBase + "em";
+    var newStyle = VISH.Utils.addFontSizeToStyle(oldStyle, em);
+    $(el).attr("style", newStyle)
+  };
+  var aftersetupSize = function(increase) {
+    increase = increase * _correctionFactor(increase);
+    var reference_font_size = VISH.Constant.TextBase;
+    var texts = $("article");
+    $(texts).css("font-size", reference_font_size * increase + "px")
+  };
+  var _correctionFactor = function(factor) {
+    if(factor < 0.25) {
+      return 0.5
+    }else {
+      if(_isInRange(factor, 0.25, 0.3)) {
+        return 0.55
+      }else {
+        if(_isInRange(factor, 0.3, 0.35)) {
+          return 0.65
+        }else {
+          if(_isInRange(factor, 0.35, 0.4)) {
+            return 0.7
+          }else {
+            if(_isInRange(factor, 0.4, 0.5)) {
+              return 0.8
+            }else {
+              if(_isInRange(factor, 0.5, 0.6)) {
+                return 0.85
+              }else {
+                if(_isInRange(factor, 0.6, 0.75)) {
+                  return 0.9
+                }else {
+                  if(_isInRange(factor, 0.75, 0.95)) {
+                    return 0.95
+                  }else {
+                    if(_isInRange(factor, 0.95, 1.5)) {
+                      return 1
+                    }else {
+                      if(factor > 1.5) {
+                        return 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return 1
+  };
+  var _isInRange = function(number, min, max) {
+    return number > min && number < max
+  };
+  return{init:init, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Themes = function(V, $, undefined) {
   var selectTheme = function(theme) {
@@ -20133,91 +20645,7 @@ VISH.User = function(V, $, undefined) {
   };
   return{init:init, isLogged:isLogged, getUser:getUser, getName:getName, getId:getId, getToken:getToken}
 }(VISH, jQuery);
-VISH.Utils.canvas = function(V, undefined) {
-  var drawImageWithAspectRatio = function(ctx, content, dx, dy, dw, dh) {
-    var ratio, tmpHeight, tmpWidth, finalx, finaly, finalw, finalh;
-    if(content.constructor === Image || content.constructor == HTMLImageElement) {
-      ratio = content.width / content.height;
-      tmpHeight = dw * content.height / content.width;
-      tmpWidth = dh * content.width / content.height
-    }else {
-      ratio = content.videoWidth / content.videoHeight;
-      tmpHeight = dw * content.videoHeight / content.videoWidth;
-      tmpWidth = dh * content.videoWidth / content.videoHeight
-    }
-    if(ratio > dw / dh) {
-      finalx = dx;
-      finaly = dy + dh / 2 - tmpHeight / 2;
-      finalw = dw;
-      finalh = tmpHeight
-    }else {
-      finalx = dx + dw / 2 - tmpWidth / 2;
-      finaly = dy;
-      finalw = tmpWidth;
-      finalh = dh
-    }
-    ctx.drawImage(content, finalx, finaly, finalw, finalh)
-  };
-  var drawImageWithAspectRatioAndRoundedCorners = function(ctx, content, dx, dy, dw, dh) {
-    var ratio, tmpHeight, tmpWidth, finalx, finaly, finalw, finalh;
-    if(content.constructor === Image || content.constructor == HTMLImageElement) {
-      ratio = content.width / content.height;
-      tmpHeight = dw * content.height / content.width;
-      tmpWidth = dh * content.width / content.height
-    }else {
-      ratio = content.videoWidth / content.videoHeight;
-      tmpHeight = dw * content.videoHeight / content.videoWidth;
-      tmpWidth = dh * content.videoWidth / content.videoHeight
-    }
-    if(ratio > dw / dh) {
-      finalx = dx;
-      finaly = dy + dh / 2 - tmpHeight / 2;
-      finalw = dw;
-      finalh = tmpHeight
-    }else {
-      finalx = dx + dw / 2 - tmpWidth / 2;
-      finaly = dy;
-      finalw = tmpWidth;
-      finalh = dh
-    }
-    ctx.drawImage(content, finalx, finaly, finalw, finalh);
-    drawRoundedCorners(ctx, finalx, finaly, finalw, finalh)
-  };
-  var drawRoundedCorners = function(ctx, dx, dy, dw, dh, type) {
-    var cornerFile, finalx, finaly, finalw, finalh;
-    finalx = dx - 1;
-    finaly = dy - 1;
-    finalw = dw + 2;
-    finalh = dh + 2;
-    if(type === "text") {
-      cornerFile = V.Utils.loader.getImage(VISH.ImagesPath + "corner_small_text.png")
-    }else {
-      if(finalw > 300 && finalh > 300) {
-        cornerFile = V.Utils.loader.getImage(VISH.ImagesPath + "corner.png")
-      }else {
-        cornerFile = V.Utils.loader.getImage(VISH.ImagesPath + "corner_small.png")
-      }
-    }
-    ctx.save();
-    ctx.drawImage(cornerFile, finalx, finaly);
-    ctx.translate(finalx + finalw, finaly);
-    ctx.rotate(Math.PI / 2);
-    ctx.drawImage(cornerFile, 0, 0);
-    ctx.restore();
-    ctx.save();
-    ctx.translate(finalx + finalw, finaly + finalh);
-    ctx.rotate(Math.PI);
-    ctx.drawImage(cornerFile, 0, 0);
-    ctx.restore();
-    ctx.save();
-    ctx.translate(finalx, finaly + finalh);
-    ctx.rotate(3 * Math.PI / 2);
-    ctx.drawImage(cornerFile, 0, 0);
-    ctx.restore()
-  };
-  return{drawImageWithAspectRatioAndRoundedCorners:drawImageWithAspectRatioAndRoundedCorners, drawImageWithAspectRatio:drawImageWithAspectRatio, drawRoundedCorners:drawRoundedCorners}
-}(VISH);
-VISH.Utils.loader = function(V, undefined) {
+VISH.Utils.Loader = function(V, undefined) {
   var libVideos = {};
   var libImages = {};
   var getImage = function(imagePath) {
@@ -20313,35 +20741,13 @@ VISH.Utils.loader = function(V, undefined) {
         var slideNumber = titleArray[imagesArray.indexOf(image)];
         var slideId = VISH.Slides.getSlideWithNumber(slideNumber).id;
         var poiId = "poi" + slideNumber;
-        $("#" + carrouselDivId).append("<div><div class='draggable_arrow_div' slide_id='" + slideId + "' id='" + poiId + "'><img src='" + VISH.ImagesPath + "flashcard_button.png'  class='fc_draggable_arrow'/><p class='draggable_number'>" + slideNumber + "</p></div><p slidenumber='" + slideNumber + "' action='goToSlide'>" + slideNumber + "</p>" + VISH.Utils.getOuterHTML(image) + "</div>")
+        $("#" + carrouselDivId).append("<div><div class='draggable_arrow_div' slide_id='" + slideId + "' id='" + poiId + "'><img src='" + VISH.ImagesPath + "flashcard/flashcard_button.png'  class='fc_draggable_arrow'/><p class='draggable_number'>" + slideNumber + "</p></div><p slidenumber='" + slideNumber + "' action='goToSlide'>" + slideNumber + "</p>" + VISH.Utils.getOuterHTML(image) + "</div>")
       }else {
         $("#" + carrouselDivId).append("<div>" + VISH.Utils.getOuterHTML(image) + "</div>")
       }
     })
   };
   return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder}
-}(VISH);
-VISH.Utils.text = function(V, undefined) {
-  var getLines = function(ctx, phrase, maxPxLength, textStyle) {
-    var wa = phrase.split(" "), phraseArray = [], lastPhrase = "", l = maxPxLength, measure = 0, i = 0, w = 0;
-    ctx.font = textStyle;
-    for(i = 0;i < wa.length;i++) {
-      w = wa[i];
-      measure = ctx.measureText(lastPhrase + w).width;
-      if(measure < l) {
-        lastPhrase += " " + w
-      }else {
-        phraseArray.push(lastPhrase);
-        lastPhrase = w
-      }
-      if(i === wa.length - 1) {
-        phraseArray.push(lastPhrase);
-        break
-      }
-    }
-    return phraseArray
-  };
-  return{getLines:getLines}
 }(VISH);
 VISH.VideoPlayer.CustomPlayer = function() {
   var progressBarTimer;
@@ -20627,7 +21033,7 @@ VISH.VideoPlayer.Youtube = function() {
   };
   var loadYoutubeObject = function(article, zone) {
     if(VISH.Status.getOnline() === false) {
-      $(zone).html("<img src='" + VISH.ImagesPath + "advert_new_grey_video2.png'/>");
+      $(zone).html("<img src='" + VISH.ImagesPath + "adverts/advert_new_grey_video.png'/>");
       return
     }
     if(!_isYouTubeIframeAPIReady()) {
@@ -20641,21 +21047,17 @@ VISH.VideoPlayer.Youtube = function() {
     $(zone).html("<div id='" + iframeId + "' style='" + $(zone).attr("objectStyle") + "'></div>");
     youtubePlayers[iframeId] = new YT.Player(iframeId, {height:"100%", width:"100%", videoId:youtubeVideoId, playerVars:{"autoplay":0, "controls":0, "enablejsapi":1, "showinfo":0, wmode:"transparent", "rel":0}, events:{"onReady":onPlayerReady, "onStateChange":onPlayerStateChange, "onError":onPlayerError}});
     $("#" + iframeId).attr("wmode", "transparent");
-    if(VISH.Status.getDevice().desktop) {
-      var loadEvents = false
-    }else {
-      var loadEvents = true
-    }
-    VISH.VideoPlayer.CustomPlayer.addCustomPlayerControls(iframeId, loadEvents)
+    VISH.VideoPlayer.CustomPlayer.addCustomPlayerControls(iframeId, false)
   };
   var onPlayerReady = function(event) {
+    var iframe = event.target.getIframe();
+    VISH.VideoPlayer.CustomPlayer.loadCustomPlayerControlEvents(iframe)
   };
   var onPlayerStateChange = function(event) {
     var newState = event.data;
     var iframe = event.target.getIframe();
     switch(newState) {
       case -1:
-        VISH.VideoPlayer.CustomPlayer.loadCustomPlayerControlEvents(iframe);
         break;
       case 0:
         VISH.VideoPlayer.CustomPlayer.onEndVideo(iframe);
@@ -20835,23 +21237,79 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     $(".subslide").css("margin-top", "-" + finalH / 2 + "px");
     $(".subslide").css("margin-left", "-" + marginLeft + "px");
     var increase = finalH / 600;
-    var font_size = V.Status.getDevice().mobile ? 15 : 16;
-    $(".slides > article").css("font-size", font_size * increase + "px");
-    $(".slides > article").css("line-height", font_size * increase + "px");
-    $(".subslide").css("font-size", font_size * increase + "px");
-    $(".subslide").css("line-height", font_size * increase + "px");
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
     if($("#fancy_content:empty").length === 0) {
       $("#fancybox-inner").width("80%");
       $("#fancybox-wrap").width("80%");
+      $("#fancybox-content").width("80%");
+      $("#fancybox-content > div").width("100%");
       $("#fancybox-inner").height("80%");
       $("#fancybox-wrap").height("80%");
       $("#fancybox-wrap").css("top", "10%");
-      $("#fancybox-wrap").css("left", "10%")
+      $("#fancybox-wrap").css("left", "10%");
+      V.Quiz.testFullScreen()
     }
+    VISH.Text.aftersetupSize(increase);
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
+  };
+  var setupInterface = function(options) {
+    if(options && options["preview"]) {
+      $("div#viewerpreview").show();
+      V.Quiz.UnbindStartQuizEvents()
+    }
+    if(!V.Status.getDevice().desktop && !V.Status.getIsInIframe() && options && options["comeBackUrl"]) {
+      $("button#closeButton").show()
+    }
+    var renderFull = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true;
+    if(!renderFull) {
+      if(V.Status.getDevice().desktop && options && !options["preview"]) {
+        _enableFullScreen(options)
+      }else {
+        $("#page-fullscreen").hide()
+      }
+    }else {
+      if(options && options["exitFullscreen"]) {
+        $("#page-fullscreen").css("background-position", "-45px 0px");
+        $("#page-fullscreen").hover(function() {
+          $("#page-fullscreen").css("background-position", "-45px -40px")
+        }, function() {
+          $("#page-fullscreen").css("background-position", "-45px 0px")
+        });
+        $(document).on("click", "#page-fullscreen", function() {
+          window.location = options["exitFullscreen"]
+        })
+      }else {
+        $("#page-fullscreen").hide()
+      }
+      setupElements();
+      setupSize(true);
+      decideIfPageSwitcher()
+    }
+  };
+  var _enableFullScreen = function(options) {
+    if(V.Status.getDevice().features.fullscreen) {
+      if(V.Status.getIsInIframe()) {
+        var myDoc = parent.document
+      }else {
+        var myDoc = document
+      }
+      $(document).on("click", "#page-fullscreen", V.SlideManager.toggleFullScreen);
+      $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
+        V.ViewerAdapter.setupElements();
+        setTimeout(function() {
+          V.ViewerAdapter.setupSize(true);
+          V.ViewerAdapter.decideIfPageSwitcher()
+        }, 400)
+      })
+    }else {
+      if(V.Status.getIsInIframe() && options["fullscreen"]) {
+        $(document).on("click", "#page-fullscreen", function() {
+          VISH.Utils.sendParentToURL(options["fullscreen"])
+        })
+      }
+    }
   };
   var setupElements = function() {
     if(page_is_fullscreen) {
@@ -20912,15 +21370,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
   };
   var decideIfPageSwitcher = function() {
-    if(VISH.Slides.isCurrentFirstSlide()) {
+    if(VISH.Slides.getCurrentSubSlide() !== null) {
+      $("#forward_arrow").hide();
       $("#back_arrow").hide()
     }else {
-      $("#back_arrow").show()
-    }
-    if(VISH.Slides.isCurrentLastSlide()) {
-      $("#forward_arrow").hide()
-    }else {
-      $("#forward_arrow").show()
+      if(VISH.Slides.isCurrentFirstSlide()) {
+        $("#back_arrow").hide()
+      }else {
+        $("#back_arrow").show()
+      }
+      if(VISH.Slides.isCurrentLastSlide()) {
+        $("#forward_arrow").hide()
+      }else {
+        $("#forward_arrow").show()
+      }
     }
     if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
       if(VISH.Slides.isCurrentFirstSlide()) {
@@ -20935,7 +21398,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
     }
   };
-  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupGame:setupGame, setupSize:setupSize}
+  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupGame:setupGame, setupInterface:setupInterface, setupSize:setupSize}
 }(VISH, jQuery);
 VISH.VirtualTour = function(V, $, undefined) {
   var virtualTours;
@@ -20970,7 +21433,7 @@ VISH.VirtualTour = function(V, $, undefined) {
     var marker = new google.maps.Marker({position:myLatlng, map:virtualTours[vt.id].map, draggable:false, poi_id:poi_id, title:"(" + myLatlng.lat() + "," + myLatlng.lng() + ")"});
     google.maps.event.addListener(marker, "click", function(event) {
       var poi = getPoi(vt, marker.poi_id);
-      V.Slides.showFlashcardSlide(poi.slide_id, true)
+      V.Slides.openSubslide(poi.slide_id, true)
     });
     return marker
   };

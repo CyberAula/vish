@@ -52,9 +52,11 @@ body {
   
   -webkit-font-smoothing: antialiased;
 }
+
 #my_game_iframe {
   display: none;
 }
+
 .slides {
 	background: url(/assets/background1.png) no-repeat 300px, url(/assets/background_text.jpg) repeat 300px;
 	background-position: center; 
@@ -112,6 +114,7 @@ body {
 
 .subslide{
   margin-top: -300px;
+  display: none;
 }
 
 /*class used to show a slide to get width and height and after that remove the class
@@ -178,7 +181,6 @@ this can not be done with show() and hide() because then it remains with display
 
 /* Styles for slides */
 
-/*added by KIKE to put the flashcard in the full slide*/
 .slides > article.flashcard{
   padding: 0;
 }
@@ -204,16 +206,14 @@ this can not be done with show() and hide() because then it remains with display
 .page-switcher:hover,
 .page-switcher:focus,
 .page-switcher.drag-target {
-  /*background-color: rgba(0,0,0, 0.06);  /* COLOR_NTP_TEXT */
 	outline: none;
 }
 
-/* remove outline */
-:focus {outline:none;}
-::-moz-focus-inner {border:0;}
+
 
 #page-switcher-end{
 	right: 0px;
+  cursor: pointer;
 }
 
 #page-switcher-start:hover{
@@ -222,6 +222,7 @@ this can not be done with show() and hide() because then it remains with display
 
 #page-switcher-start{
 	left: 0px;
+  cursor: pointer;
 }
 
 #page-switcher-end:hover{
@@ -229,18 +230,19 @@ this can not be done with show() and hide() because then it remains with display
 }
 
 #page-fullscreen{
-  background-image: url("/assets/fullscreen_all.png");
+  background-image: url("/assets/icons/fullscreen_all.png");
   background-position: 0 0;
   background-repeat: no-repeat;
-  border: medium none;
-  bottom: 0;
   height: 40px;
-  opacity: 1;
+  width: 45px;
   position: fixed;
   right: 0;
+  bottom: 0;
   text-align: center;
-  width: 45px;
   z-index: 2610;
+  border: medium none;
+  opacity: 1;
+  cursor: pointer;
 }
 
 #page-fullscreen:hover{
@@ -269,140 +271,100 @@ this can not be done with show() and hide() because then it remains with display
     width: 430px;
 }
 
+/* Style for Texts (CkEditor version) */
+article {
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 12px; /* text-base size */
+}
 
-/*fonts used to replace the ones introduced by the wysiwyg*/
+article > div > p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+
+/* Style for Texts (NicEditor version) */
+/* For old excursions */
+
 .vish-font1{
-	font-size: 0.65em;
-	line-height: 0.9em;
+  font-size: 0.65em;
+  line-height: 0.9em;  
 }
-
-.vish-font2{
-	font-size: 0.813em;
-	line-height: 1.54em;
+    
+.vish-font2{   
+  font-size: 0.813em;   
+  line-height: 1.54em;
 }
-
-.vish-font3{
-	font-size: 1.01em;
-	line-height: 1.24em;
+    
+.vish-font3{   
+  font-size: 1.01em;
+  line-height: 1.24em;
 }
-
-.vish-font4{
-	font-size: 1.125em;
-	line-height: 1.235em;
+    
+.vish-font4{    
+  font-size: 1.125em;
+  line-height: 1.235em;    
 }
-
+     
 .vish-font5{
-	font-size: 1.500em;
-	line-height: 1.32em;
+  font-size: 1.500em;   
+  line-height: 1.32em; 
 }
-
-.vish-font6{
-	font-size: 2em;
-	line-height: 1.18em;
+    
+.vish-font6{    
+ font-size: 2em;
+ line-height: 1.18em;
 }
-
+     
 .vish-font7{
-	font-size: 3.000em;
-	line-height: 1.2em;
+font-size: 3.000em; 
+line-height: 1.2em;  
+}
+    
+.vish-fontarial{  
+  font-family: "arial";   
+}
+    
+.vish-fontcomic{     
+  font-family: "comic sans ms";  
+}
+        
+.vish-fontcourier{ 
+  font-family: "Courier New";    
+}
+     
+.vish-fontgeorgia{    
+  font-family: "georgia";      
+}
+    
+.vish-fonthelvetica{  
+  font-family: "helvetica";     
+}
+   
+.vish-fontimpact{    
+  font-family: "impact";       
 }
 
-.vish-fontarial{
-	font-family: "arial";	
+.vish-fonttimes{  
+  font-family: "times new roman";    
 }
-
-.vish-fontcomic{
-	font-family: "comic sans ms";	
-}
-
-.vish-fontcourier{
-	font-family: "Courier New";	
-}
-
-.vish-fontgeorgia{
-	font-family: "georgia";	
-}
-
-.vish-fonthelvetica{
-	font-family: "helvetica";	
-}
-
-.vish-fontimpact{
-	font-family: "impact";	
-}
-
-.vish-fonttimes{
-	font-family: "times new roman";	
-}
-
+ 
 .vish-fonttrebuchet{
-	font-family: "trebuchet ms";	
+  font-family: "trebuchet ms";      
+}
+    
+.vish-fontverdana{    
+  font-family: "verdana";      
 }
 
-.vish-fontverdana{
-	font-family: "verdana";	
-}
 
-.vish-3d {
-      text-shadow: 0 1px 0 #ccc,
-               0 2px 0 #c9c9c9,
-               0 3px 0 #bbb,
-               0 4px 0 #b9b9b9,
-               0 5px 0 #aaa,
-               0 6px 1px rgba(0,0,0,.1),
-               0 0 5px rgba(0,0,0,.1),
-               0 1px 3px rgba(0,0,0,.3),
-               0 3px 5px rgba(0,0,0,.2),
-               0 5px 10px rgba(0,0,0,.25),
-               0 10px 10px rgba(0,0,0,.2),
-               0 20px 20px rgba(0,0,0,.15);
-}
 
-.vish-rainbow {
-  text-shadow: 0 0 4px white, 0 -5px 4px violet, 
-  2px -10px 6px indigo, 
-  -2px -15px 11px blue, 
-  2px -25px 18px green, -
-  2px -40px 25px yellow, 
-  2px -60px 33px orange, 
-  0px -85px 40px red;
-}
-
-#back_arrow{
-  padding-bottom: 0px;
-  color: #CCC;
-  z-index: 2600;
-  left: 0%;
-  width: 6%;
-}
-
-#forward_arrow{
-  padding-bottom: 0px;
-  color: #CCC;
-  z-index: 2600;
-  right: 0%;
-  width: 6%;
-}
-
-.vish_arrow{
-  color: rgba(0, 0, 0, 0.5);
-  -webkit-transition: width 150ms, right 150ms, background-color 150ms;
-  background-color: transparent;
-  border: none;
-  bottom: 0;
-  font-size: 40px;
-  margin: 0;
-  max-width: 200px;
-  min-width: 40px;
-  outline: none;
-  padding: 0;
-  position: absolute;
-  top: 0;
-}
-
-*:focus  /* To remove Chrome's orange outline related to focused objects */
-{  
-    outline: none;  
-}  
+/* remove outline */
+*:focus
+{  outline: none;  }  
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
 
 
 div.contentfiltered img {
@@ -516,7 +478,7 @@ button#closeButton {
   right: -8px;
   width: 22px;
   height: 22px;
-  background: transparent url('/assets/delete_slide.png') no-repeat center;
+  background: transparent url('/assets/icons/delete.png') no-repeat center;
   background-size: 45%;
   padding: 13px;
   cursor: pointer;
@@ -524,22 +486,51 @@ button#closeButton {
 }
 
 .close_subslide:hover{
-  /*background: url(/assets/hover/delete_hover.png);*/
-  background: transparent url('/assets/hover/delete_hover.png') no-repeat center;
+  background: transparent url('/assets/icons/delete_hover.png') no-repeat center;
   background-size: 45%;
 }
-
 
 .fc_poi{
   width: 50px;
   height: 50px;
-  background: url(/assets/animation_arrow.png);
-}
-
-.subslide{
-  display: none;
+  background: url(/assets/flashcard/animation_arrow.png);
+  cursor: pointer;
 }
 
 .flashcard_slide{
   display: block;
+}
+
+
+/** Arrows **/
+
+.vish_arrow {
+  color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: width 150ms, right 150ms, background-color 150ms;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  font-size: 40px;
+  max-width: 200px;
+  min-width: 40px;
+}
+
+#back_arrow, #forward_arrow{
+  padding-bottom: 0px;
+  z-index: 1100;
+  color: #CCC;
+  width: 6%;
+}
+
+#back_arrow{
+  left: 0%;
+}
+
+#forward_arrow{
+  right: 0%;
 }

@@ -24,20 +24,12 @@
 }
 
 a.prev, a.next {
-    background: url(/assets/carrousel_sprite.png) no-repeat transparent;
+    background: url(/assets/carrousel/carrousel_sprite.png) no-repeat transparent;
     width: 45px;
     height: 50px;
     display: block;
     position: absolute;
 	  outline: none;
-}
-
-a.prev_single_row, a.next_single_row{
-	top: 120px;
-}
-
-a.prev_multiple_row, a.next_multiple_row{
-    top: 245px;
 }
 
 a.prev {
@@ -75,7 +67,7 @@ a.prev span, a.next span {
 }
 
 .pagination a {
-  background: url(/assets/carrousel_sprite.png) 0 -300px no-repeat transparent;
+  background: url(/assets/carrousel/carrousel_sprite.png) 0 -260px no-repeat transparent;
   width: 15px;
   height: 15px;
   margin: 0 5px 0 0;
@@ -84,7 +76,7 @@ a.prev span, a.next span {
 }
 
 .pagination a.selected {
-  background-position: -25px -300px;
+  background-position: -25px -260px;
   cursor: default;
 }
 
@@ -95,6 +87,17 @@ a.prev span, a.next span {
 .clearfix {
     float: none;
     clear: both;
+}
+
+
+/* Default style for single and multiple row */
+
+a.prev_single_row, a.next_single_row{
+  top: 120px;
+}
+
+a.prev_multiple_row, a.next_multiple_row{
+    top: 245px;
 }
 
 div.carrousel_element_single_row{
@@ -115,7 +118,7 @@ img.carrousel_element_single_row{
   margin-top: 15px;
 }
 
-img.carrousel_element_selected{
+img.carrousel_element_selected {
 	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
 	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
 	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
@@ -125,7 +128,7 @@ img.carrousel_element_selected{
 	opacity: 1.0;
 }
 
-img.carrousel_element_selected:active{
+img.carrousel_element_selected:active {
 	-webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
 	-moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
 	box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
@@ -135,7 +138,7 @@ img.carrousel_element_selected:active{
 	opacity: 1.0;
 }
 
-div.carrousel_element_multiple_row{
+div.carrousel_element_multiple_row {
   width: 150px;
   height: 150px;
   max-width: 150px;
@@ -144,7 +147,7 @@ div.carrousel_element_multiple_row{
   margin-left: 10px;
 }
 
-img.carrousel_element_multiple_row{
+img.carrousel_element_multiple_row {
   width: 150px;
   height: 150px;
   max-width: 150px;
@@ -154,8 +157,7 @@ img.carrousel_element_multiple_row{
   margin-top: 20px;
 }
 
-div.carrousel_wrapper_multiple_row{
-  /** margin-top: 20px; */
+div.carrousel_wrapper_multiple_row {
 }
 
 
@@ -277,7 +279,7 @@ a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
 
 /* CSS for Slides Carrousel */
 
-#slides_carrousel{
+#slides_carrousel {
   margin-left: -150px;
 }
 
@@ -329,15 +331,15 @@ a.prev_single_row_slides, a.next_single_row_slides{
 	display: block;
 }
 
-a.prev_single_row_slides{
+a.prev_single_row_slides {
   left: 80px;
 }
 
-a.next_single_row_slides{
+a.next_single_row_slides {
   right: 80px;
 }
 
-p.carrousel_element_single_row_slides{
+p.carrousel_element_single_row_slides {
 	cursor: pointer;
 	background-color: #fff;
   border-radius: 10px 0 5px 0;
@@ -351,4 +353,42 @@ p.carrousel_element_single_row_slides{
   width: 21px;
 	opacity: 0.9;
 	z-index: 10;
+}
+
+
+/* CSS for Flashcard repository carrousel */
+
+.image_carousel_single_row_flashcard_repository {
+  padding: 85px 0 0px 0px;
+  width: 650px;
+}
+
+div.carrousel_element_single_row_flashcard_repository{
+  width: 100px;
+  height: 90px;
+  max-width: 150px;
+  max-height: 150px;
+  float: left;
+  margin-left: 35px;
+}
+
+img.carrousel_element_single_row_flashcard_repository{
+  width: 100px;
+  height: 90px;
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: -21px;
+  margin-top: 15px;
+}
+
+a.prev_single_row_flashcard_repository, a.next_single_row_flashcard_repository {
+  top: 120px;
+}
+
+a.prev_single_row_flashcard_repository{
+  left: 15px;
+}
+
+a.next_single_row_flashcard_repository{
+  right: 15px;
 }
