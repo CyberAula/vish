@@ -13207,6 +13207,119 @@ VISH.Editor = function(V, $, undefined) {
   return{init:init, addDeleteButton:addDeleteButton, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getPresentationType:getPresentationType, getOptions:getOptions, loadFancyBox:loadFancyBox, getPresentation:getPresentation, setPresentation:setPresentation, isPresentationStandard:isPresentationStandard, isPresentationDraft:isPresentationDraft, getSavedPresentation:getSavedPresentation, hasInitialPresentation:hasInitialPresentation, savePresentation:savePresentation, afterSavePresentation:afterSavePresentation, 
   setPresentationType:setPresentationType, allowExitWithoutConfirmation:allowExitWithoutConfirmation, setCurrentArea:setCurrentArea, selectArea:selectArea}
 }(VISH, jQuery);
+VISH.Editor.Text = function(V, $, undefined) {
+  var initialized = false;
+  var init = function() {
+    if(!initialized) {
+      $(document).on("click", ".textthumb", launchTextEditor);
+      initialized = true
+    }
+  };
+  var launchTextEditor = function(event, area, initial_text) {
+    init();
+    var current_area;
+    if(area) {
+      current_area = area
+    }else {
+      current_area = $(this).parents(".selectable")
+    }
+    current_area.attr("type", "text");
+    var newInstance = !(typeof initial_text === "string");
+    var wysiwygContainerId = VISH.Utils.getId();
+    var wysiwygContainer = $("<div id='" + wysiwygContainerId + "'></div>");
+    $(wysiwygContainer).attr("style", "width: 100%; height: 100%");
+    $(current_area).append(wysiwygContainer);
+    var config = {};
+    config.toolbar = "Basic";
+    config.toolbar_Basic = [["Bold", "Italic", "Underline", "-", "Subscript", "Superscript"], ["NumberedList", "BulletedList", "Table"], ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"], ["Link"], ["Font", "FontSize"], ["TextColor", "BGColor"]];
+    config.sharedSpaces = {top:"toolbar_text"};
+    config.toolbarCanCollapse = false;
+    config.resize_enabled = false;
+    config.removePlugins = "elementspath";
+    config.width = "100%";
+    config.height = $(current_area).height();
+    config.fontSize_defaultLabel = "12px";
+    var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
+    config.skin = "vEditor," + ckeditorBasePath + "editor/skins/vEditor/";
+    var ckeditor = CKEDITOR.appendTo(wysiwygContainerId, config);
+    var myWidth = $(current_area).width();
+    var myHeight = $(current_area).height();
+    if(newInstance) {
+      var defaultFontSize = 12;
+      var defaultAlignment = "left";
+      switch($(current_area).attr("size")) {
+        case VISH.Constant.EXTRA_SMALL:
+          defaultFontSize = 18;
+          break;
+        case VISH.Constant.SMALL:
+          defaultFontSize = 18;
+          break;
+        case VISH.Constant.MEDIUM:
+          defaultFontSize = 26;
+          break;
+        case VISH.Constant.LARGE:
+          defaultFontSize = 36;
+          break;
+        default:
+          break
+      }
+      var isCircleArea = $(current_area).attr("areaid").indexOf("circle") !== -1;
+      if(isCircleArea) {
+        defaultAlignment = "center"
+      }
+      initial_text = "<p style='text-align:" + defaultAlignment + ";'><span style='font-size:" + defaultFontSize + "px;'>&shy;</span></p>"
+    }
+    ckeditor.on("instanceReady", function() {
+      if(initial_text) {
+        ckeditor.setData(initial_text, function() {
+          ckeditor.resize(myWidth, myHeight);
+          _fixCKEDITORBug(ckeditor)
+        });
+        if(newInstance) {
+          ckeditor.focus()
+        }
+      }
+    });
+    ckeditor.on("focus", function(event) {
+      var area = $("div[type='text']").has(event.editor.container.$);
+      VISH.Editor.selectArea(area)
+    });
+    ckeditor.on("blur", function(event) {
+      var area = $("div[type='text']").has(event.editor.container.$)
+    });
+    V.Editor.addDeleteButton(current_area)
+  };
+  var getCKEditorFromZone = function(zone) {
+    if(!zone || typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined") {
+      return null
+    }
+    var CKEditorInstance = null;
+    jQuery.each(CKEDITOR.instances, function(name, CKinstance) {
+      var CKzone = $(CKinstance.container.$).parent().parent();
+      if($(CKzone).attr("id") === $(zone).attr("id")) {
+        CKEditorInstance = CKinstance;
+        return
+      }
+    });
+    return CKEditorInstance
+  };
+  var getCKEditorIframeContentFromZone = function(zone) {
+    var editor = getCKEditorFromZone(zone);
+    if(!editor) {
+      return null
+    }
+    var iframe = $(document.getElementById("cke_contents_" + editor.name)).find("iframe")[0];
+    return $(iframe).contents()[0]
+  };
+  var _fixCKEDITORBug = function(editor) {
+    if(CKEDITOR.env.webkit) {
+      var iframe = $(document.getElementById("cke_contents_" + editor.name)).find("iframe")[0];
+      iframe.style.display = "none";
+      iframe.style.display = "block"
+    }
+  };
+  return{init:init, launchTextEditor:launchTextEditor, getCKEditorFromZone:getCKEditorFromZone, getCKEditorIframeContentFromZone:getCKEditorIframeContentFromZone}
+}(VISH, jQuery);
 VISH.Editor.Video = function(V, $, undefined) {
   var urlDivId = "tab_video_from_url_content";
   var urlInputId = "video_url";
@@ -18091,119 +18204,6 @@ VISH.Editor.Text.NiceEditor = function(V, $, undefined) {
     $(myelem).children().unwrap()
   };
   return{init:init, launchTextEditor:launchTextEditor, changeFontPropertiesToSpan:changeFontPropertiesToSpan, getNicEditor:getNicEditor}
-}(VISH, jQuery);
-VISH.Editor.Text = function(V, $, undefined) {
-  var initialized = false;
-  var init = function() {
-    if(!initialized) {
-      $(document).on("click", ".textthumb", launchTextEditor);
-      initialized = true
-    }
-  };
-  var launchTextEditor = function(event, area, initial_text) {
-    init();
-    var current_area;
-    if(area) {
-      current_area = area
-    }else {
-      current_area = $(this).parents(".selectable")
-    }
-    current_area.attr("type", "text");
-    var newInstance = !(typeof initial_text === "string");
-    var wysiwygContainerId = VISH.Utils.getId();
-    var wysiwygContainer = $("<div id='" + wysiwygContainerId + "'></div>");
-    $(wysiwygContainer).attr("style", "width: 100%; height: 100%");
-    $(current_area).append(wysiwygContainer);
-    var config = {};
-    config.toolbar = "Basic";
-    config.toolbar_Basic = [["Bold", "Italic", "Underline", "-", "Subscript", "Superscript"], ["NumberedList", "BulletedList", "Table"], ["JustifyLeft", "JustifyCenter", "JustifyRight", "JustifyBlock"], ["Link"], ["Font", "FontSize"], ["TextColor", "BGColor"]];
-    config.sharedSpaces = {top:"toolbar_text"};
-    config.toolbarCanCollapse = false;
-    config.resize_enabled = false;
-    config.removePlugins = "elementspath";
-    config.width = "100%";
-    config.height = $(current_area).height();
-    config.fontSize_defaultLabel = "12px";
-    var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
-    config.skin = "vEditor," + ckeditorBasePath + "editor/skins/vEditor/";
-    var ckeditor = CKEDITOR.appendTo(wysiwygContainerId, config);
-    var myWidth = $(current_area).width();
-    var myHeight = $(current_area).height();
-    if(newInstance) {
-      var defaultFontSize = 12;
-      var defaultAlignment = "left";
-      switch($(current_area).attr("size")) {
-        case VISH.Constant.EXTRA_SMALL:
-          defaultFontSize = 18;
-          break;
-        case VISH.Constant.SMALL:
-          defaultFontSize = 18;
-          break;
-        case VISH.Constant.MEDIUM:
-          defaultFontSize = 26;
-          break;
-        case VISH.Constant.LARGE:
-          defaultFontSize = 36;
-          break;
-        default:
-          break
-      }
-      var isCircleArea = $(current_area).attr("areaid").indexOf("circle") !== -1;
-      if(isCircleArea) {
-        defaultAlignment = "center"
-      }
-      initial_text = "<p style='text-align:" + defaultAlignment + ";'><span style='font-size:" + defaultFontSize + "px;'>&shy;</span></p>"
-    }
-    ckeditor.on("instanceReady", function() {
-      if(initial_text) {
-        ckeditor.setData(initial_text, function() {
-          ckeditor.resize(myWidth, myHeight);
-          _fixCKEDITORBug(ckeditor)
-        });
-        if(newInstance) {
-          ckeditor.focus()
-        }
-      }
-    });
-    ckeditor.on("focus", function(event) {
-      var area = $("div[type='text']").has(event.editor.container.$);
-      VISH.Editor.selectArea(area)
-    });
-    ckeditor.on("blur", function(event) {
-      var area = $("div[type='text']").has(event.editor.container.$)
-    });
-    V.Editor.addDeleteButton(current_area)
-  };
-  var getCKEditorFromZone = function(zone) {
-    if(!zone || typeof CKEDITOR === "undefined" || typeof CKEDITOR.instances === "undefined") {
-      return null
-    }
-    var CKEditorInstance = null;
-    jQuery.each(CKEDITOR.instances, function(name, CKinstance) {
-      var CKzone = $(CKinstance.container.$).parent().parent();
-      if($(CKzone).attr("id") === $(zone).attr("id")) {
-        CKEditorInstance = CKinstance;
-        return
-      }
-    });
-    return CKEditorInstance
-  };
-  var getCKEditorIframeContentFromZone = function(zone) {
-    var editor = getCKEditorFromZone(zone);
-    if(!editor) {
-      return null
-    }
-    var iframe = $(document.getElementById("cke_contents_" + editor.name)).find("iframe")[0];
-    return $(iframe).contents()[0]
-  };
-  var _fixCKEDITORBug = function(editor) {
-    if(CKEDITOR.env.webkit) {
-      var iframe = $(document.getElementById("cke_contents_" + editor.name)).find("iframe")[0];
-      iframe.style.display = "none";
-      iframe.style.display = "block"
-    }
-  };
-  return{init:init, launchTextEditor:launchTextEditor, getCKEditorFromZone:getCKEditorFromZone, getCKEditorIframeContentFromZone:getCKEditorIframeContentFromZone}
 }(VISH, jQuery);
 VISH.Editor.Thumbnails = function(V, $, undefined) {
   var carrouselDivId = "slides_carrousel";
