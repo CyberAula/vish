@@ -17,8 +17,10 @@
         <%js_file = "vishViewer"%>
       <%else%>
         <%js_file = "vishEditor"%>
+        <script type="text/javascript">
+          var CKEDITOR_BASEPATH = '/assets/ckeditor/';
+        </script>
         <%=javascript_include_tag "ckeditor/ckeditor" %>
-        <%=javascript_include_tag "ckeditor/config" %>
       <%end%>
       <% if Rails.env == "production" and not request.host == "vishub-test.global.dit.upm.es" %>
         <%=javascript_include_tag js_file + ".min" %>
