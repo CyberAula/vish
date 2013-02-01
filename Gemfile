@@ -68,6 +68,8 @@ gem 'net-ssh', '=2.4.0'
 # Shortener
 gem 'shortener'
 
+gem 'rubyzip', '=0.9.9'
+
 group :test do
   # Pretty printed test output
   gem 'factory_girl', '~> 2.6'
