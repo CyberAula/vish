@@ -17,6 +17,7 @@
 
   <!--TIME-LINE-->
   <section id="right-home">
+    <%= render :partial => "news/index" %>
   <%= render partial: 'activities/wall',
              locals: {
                activities: current_subject.wall(:home).page(params[:page_net])

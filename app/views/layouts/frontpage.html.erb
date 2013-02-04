@@ -16,6 +16,7 @@
           <%= yield %>
         </article>
     </section>
+    
     <section id="top" class="white"> 
       <div class="container">
         <div class="top-10">
@@ -27,6 +28,11 @@
           <% end %>
       </div>
     </section> 
+
+    <section class="container"> 
+      <%= render :partial => "news/index" %>
+    </section> 
+
     <div class="push"></div> 
   
   </div>
