@@ -1,22 +1,31 @@
-.image_carousel {
+.okButtonCarrousel{
+  margin-top: 4px;
+}
+
+div.image_carousel {
     position: relative;
     width: 750px;
     overflow: hidden;
     margin-left: -10px;
 }
 
-.image_carousel>div {
+div.image_carousel_single_row > div.caroufredsel_wrapper {
+  margin-left: 55px !important;
 }
 
-.image_carousel_single_row {
-    padding: 85px 0 0px 0px;
+div.image_carousel_multiple_row > div.caroufredsel_wrapper {
+  margin-left: 35px !important;
 }
 
-.image_carousel_multiple_row {
-    padding: 80px 0 60px 0px;
+div.image_carousel_single_row {
+    padding: 85px 0 20px 0px;
 }
 
-.image_carousel img {
+div.image_carousel_multiple_row {
+    padding: 101px 0 60px 0px;
+}
+
+div.image_carousel img {
     background-color: white;
     margin: 6px;
     display: block;
@@ -55,18 +64,17 @@ a.next.disabled {
 a.prev.disabled, a.next.disabled {
     cursor: default;
 }
-   
 a.prev span, a.next span {
   display: none;
 }
 
-.pagination {
+
+div.pagination {
   text-align: center;
 	margin-right: 0px;
-	margin-top: 30px;
+	margin-top: 25px;
 }
-
-.pagination a {
+div.pagination a {
   background: url(/assets/carrousel/carrousel_sprite.png) 0 -260px no-repeat transparent;
   width: 15px;
   height: 15px;
@@ -74,17 +82,15 @@ a.prev span, a.next span {
   display: inline-block;
 	outline: none;
 }
-
-.pagination a.selected {
+div.pagination a.selected {
   background-position: -25px -260px;
   cursor: default;
 }
-
-.pagination a span {
+div.pagination a span {
   display: none;
 }
 
-.clearfix {
+div.clearfix {
     float: none;
     clear: both;
 }
@@ -102,20 +108,19 @@ a.prev_multiple_row, a.next_multiple_row{
 
 div.carrousel_element_single_row{
   width: 100px;
-  height: 90px;
+  height: 100px;
   max-width: 150px;
   max-height: 150px;
   float: left;
   margin-left: 35px;
 }
 
-img.carrousel_element_single_row{
+div.carrousel_element_single_row > img.carrousel_element_single_row{
   width: 100px;
   height: 90px;
   max-width: 150px;
   max-height: 150px;
   margin-left: -21px;
-  margin-top: 15px;
 }
 
 img.carrousel_element_selected {
@@ -163,32 +168,36 @@ div.carrousel_wrapper_multiple_row {
 
 /* CSS for Title Carrousel */
 
-p.carrousel_element_single_row_title{
-  margin: 0px;
-  margin-top: 15px;
-  max-width: 100px;
-  max-height: 20px;
-  overflow: hidden;
-  margin-left: -15px;
-  text-align: center;
-  font-size: 15px;
-  font-family: Helvetica;
+div.image_carousel_single_row_title {
+  padding: 70px 0 0px 0px;
 }
 
-.image_carousel_single_row_title {
-    padding: 80px 0 0px 0px;
+div.image_carousel_single_row_title > div.caroufredsel_wrapper {
+  margin-left: 46px !important;
 }
 
 div.carrousel_element_single_row_title{
   width: 100px;
-  height: 90px;
+  height: 140px;
   max-width: 150px;
   max-height: 150px;
   float: left;
   margin-left: 35px;
 }
 
-img.carrousel_element_single_row_title{
+p.carrousel_element_single_row_title{
+  margin: 0px;
+  margin-top: 15px;
+  max-width: 100px;
+  max-height: 20px;
+  overflow: hidden;
+  margin-left: -20px;
+  text-align: center;
+  font-size: 15px;
+  font-family: Helvetica;
+}
+
+div.carrousel_element_single_row_title > img.carrousel_element_single_row_title{
   margin-left: -10px;
 }
 
@@ -197,38 +206,31 @@ a.prev_single_row_title, a.next_single_row_title{
 }
 
 /** ADD style to pagination class (Optional) */
-.pagination_single_row_title {
-  margin-top: 55px;
-}
-
-.repositoryTitle{
-  margin: 0px;
-  margin-top: 15px;
-  max-width: 100px;
-  max-height: 20px;
-  overflow: hidden;
-  margin-left: -15px;
-  text-align: center;
-  font-size: 15px;
-	font-family: Helvetica;
+div.pagination_single_row_title {
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
 
 
 /* CSS for Thumbnails Carrousel */
 
-.image_carousel_single_row_thumbnails {
-    padding: 10px 0 0px 0px;
-		margin-left: 25px;
+div.image_carousel_single_row_thumbnails {
+  padding: 5px 0 0px 0px;
+	margin-left: 25px;
+}
+
+div.image_carousel_single_row_thumbnails > div.caroufredsel_wrapper {
+  margin-left: 30px !important;
 }
 
 div.carrousel_element_single_row_thumbnails{
   width: 100px;
-  height: 90px;
+  height: 100px;
   max-width: 150px;
   max-height: 150px;
   float: left;
-  margin-left: 35px;
+  margin-left: 27px;
   border-radius: 20px;
 }
 
@@ -247,19 +249,11 @@ img.carrousel_element_single_row_thumbnails{
 }
 
 img.carrousel_element_single_row_thumbnails:hover{
-  max-width: 150px;
-  max-height: 150px;
-  margin-left: -27px;
-  margin-top: -2px;
-  border: none;
   opacity: 0.8;
   cursor: pointer;
   -webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
   -moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
   box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
-  border-radius: 15px;
-  -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
 }
 
 a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
@@ -270,9 +264,9 @@ a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
 	color: #0F9;
 }
 
-.pagination_single_row_thumbnails{
-	margin-top: 18px;
-	margin-bottom: 10px;
+div.pagination_single_row_thumbnails{
+	margin-top: 15px;
+	margin-bottom: 25px;
 }
 
 
@@ -283,8 +277,8 @@ a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
   margin-left: -150px;
 }
 
-.image_carousel_single_row_slides {
-    padding: 10px 0 0px 112px;
+div.image_carousel_single_row_slides {
+    padding: 3px 0 0px 112px;
     margin-left: 25px;
 }
 
@@ -297,12 +291,27 @@ div.carrousel_element_single_row_slides{
   margin-left: 16px;
 }
 
+p.carrousel_element_single_row_slides {
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 10px 0 5px 0;
+  font-family: Helvetica;
+  font-size: 15px;
+  margin: 37px 0 0 46px;
+  max-height: 20px;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  width: 21px;
+  opacity: 0.9;
+  z-index: 10;
+}
+
 img.carrousel_element_single_row_slides{
   width: 62px;
   height: 52px;
   max-width: 150px;
   max-height: 150px;
-  /*margin-left: -140px;*/
   margin-top: 0px;
   background: none;
   border-radius: 6px;
@@ -339,33 +348,22 @@ a.next_single_row_slides {
   right: 80px;
 }
 
-p.carrousel_element_single_row_slides {
-	cursor: pointer;
-	background-color: #fff;
-  border-radius: 10px 0 5px 0;
-  font-family: Helvetica;
-  font-size: 15px;
-  margin: 32px 0 0 46px;
-  max-height: 20px;
-  overflow: hidden;
-  position: absolute;
-  text-align: center;
-  width: 21px;
-	opacity: 0.9;
-	z-index: 10;
-}
-
 
 /* CSS for Flashcard repository carrousel */
 
-.image_carousel_single_row_flashcard_repository {
+
+div.carrousel_element_single_row_flashcard_repository > img.carrousel_element_single_row_flashcard_repository{
+  margin-left: -22px !important;
+}
+
+div.image_carousel_single_row_flashcard_repository {
   padding: 85px 0 0px 0px;
   width: 650px;
 }
 
 div.carrousel_element_single_row_flashcard_repository{
   width: 100px;
-  height: 90px;
+  height: 100px;
   max-width: 150px;
   max-height: 150px;
   float: left;
@@ -378,7 +376,6 @@ img.carrousel_element_single_row_flashcard_repository{
   max-width: 150px;
   max-height: 150px;
   margin-left: -21px;
-  margin-top: 15px;
 }
 
 a.prev_single_row_flashcard_repository, a.next_single_row_flashcard_repository {

@@ -3328,6 +3328,8 @@ VISH.Constant.Video.Youtube = "Youtube";
 VISH.Constant.Clipboard = {};
 VISH.Constant.Clipboard.Slide = "slide";
 VISH.Constant.Clipboard.LocalStorageStack = "VishEditorClipboardStack";
+VISH.Constant.Themes = {};
+VISH.Constant.Themes.Default = "theme1";
 VISH.Constant.Event = {};
 VISH.Constant.Event.onMessage = "onMessage";
 VISH.Constant.Event.onGoToSlide = "onGoToSlide";
@@ -6556,7 +6558,7 @@ VISH.Renderer = function(V, $, undefined) {
     }
   };
   var _renderText = function(element, template) {
-    return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'>" + element["body"] + "</div>"
+    return"<div id='" + element["id"] + "' class='VEtextArea " + template + "_" + element["areaid"] + " " + template + "_text" + "'>" + element["body"] + "</div>"
   };
   var _renderEmpty = function(element, template) {
     return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'></div>"
@@ -6815,44 +6817,93 @@ VISH.Presentation = function(V, undefined) {
 }(VISH);
 VISH.Text = function(V, $, undefined) {
   var init = function() {
-    $("article > div > p").each(function(index, p) {
+    $("article > div.VEtextArea > p").each(function(index, p) {
       if($(p).children().length === 0) {
         _setStyleInEm(p);
         return
       }
-      var oldStyle = null;
-      var newStyle = null;
-      var lastFontSizeCandidate = null;
-      var lastFontSize = null;
-      $(p).find("span").each(function(index, span) {
-        oldStyle = $(span).attr("style");
-        lastFontSizeCandidate = parseInt(VISH.Utils.getFontSizeFromStyle(oldStyle));
-        if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-          lastFontSize = lastFontSizeCandidate
+      _adaptSpans($(p).find("span"))
+    });
+    $("article > div.VEtextArea > table").each(function(index, table) {
+      _adaptSpans($(table).find("caption").find("span"));
+      $(table).find("td").each(function(index, td) {
+        _adaptSpans($(td).find("span"));
+        _adaptFonts($(td).find("font"))
+      });
+      var tableOrgStyle = $(table).attr("style");
+      if(tableOrgStyle) {
+        var tableAreaStyle = $(table).parent().parent().attr("style");
+        var tableStyle = "";
+        var tableWidth = VISH.Utils.getWidthFromStyle(tableOrgStyle);
+        if(tableWidth) {
+          var parentWidth = VISH.Utils.getWidthFromStyle(tableAreaStyle);
+          var percentWidth = tableWidth * 100 / parentWidth;
+          tableStyle += "width:" + percentWidth + "%;"
         }
-        if($(span).children().length !== 0) {
-          newStyle = VISH.Utils.removeFontSizeInStyle(oldStyle);
-          if(newStyle === null || newStyle === "; ") {
-            $(span).removeAttr("style")
-          }else {
-            $(span).attr("style", newStyle)
-          }
+        var tableHeight = VISH.Utils.getHeightFromStyle(tableOrgStyle);
+        if(tableHeight) {
+          var parentHeight = VISH.Utils.getHeightFromStyle(tableAreaStyle);
+          var percentHeight = tableHeight * 100 / parentHeight;
+          tableStyle += "height:" + percentHeight + "%;"
+        }
+        if(tableStyle !== "") {
+          $(table).attr("style", tableStyle)
+        }
+      }
+    })
+  };
+  var _adaptSpans = function(spans) {
+    var oldStyle = null;
+    var newStyle = null;
+    var lastFontSizeCandidate = null;
+    var lastFontSize = null;
+    $(spans).each(function(index, span) {
+      oldStyle = $(span).attr("style");
+      lastFontSizeCandidate = parseInt(VISH.Utils.getFontSizeFromStyle(oldStyle));
+      if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
+        lastFontSize = lastFontSizeCandidate
+      }
+      if($(span).find("span").length !== 0) {
+        newStyle = VISH.Utils.removeFontSizeInStyle(oldStyle);
+        if(newStyle === null || newStyle === "; ") {
+          $(span).removeAttr("style")
         }else {
-          var fontSize;
-          if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-            fontSize = lastFontSizeCandidate
-          }else {
-            if(lastFontSize !== null) {
-              fontSize = lastFontSize
-            }else {
-              fontSize = VISH.Constant.TextDefault
-            }
-          }
-          var em = fontSize / VISH.Constant.TextBase + "em";
-          newStyle = VISH.Utils.addFontSizeToStyle(oldStyle, em);
           $(span).attr("style", newStyle)
         }
-      })
+      }else {
+        var fontSize;
+        if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
+          fontSize = lastFontSizeCandidate
+        }else {
+          if(lastFontSize !== null) {
+            fontSize = lastFontSize
+          }else {
+            fontSize = VISH.Constant.TextDefault
+          }
+        }
+        var em = fontSize / VISH.Constant.TextBase + "em";
+        newStyle = VISH.Utils.addFontSizeToStyle(oldStyle, em);
+        $(span).attr("style", newStyle)
+      }
+    })
+  };
+  var _adaptFonts = function(fonts) {
+    $(fonts).each(function(index, font) {
+      var fSize = $(font).attr("size");
+      if(!fSize) {
+        return
+      }
+      var fontSize = parseInt(fSize);
+      if(isNaN(fontSize)) {
+        return
+      }
+      $(font).hide();
+      var pxfontSize = _font_to_px(fontSize);
+      var em = pxfontSize / VISH.Constant.TextBase + "em";
+      var span = $("<span style='font-size:" + em + "'></span>");
+      $(span).html($(font).html());
+      $(font).parent().prepend(span);
+      $(font).remove()
     })
   };
   var _setStyleInEm = function(el) {
@@ -6920,6 +6971,33 @@ VISH.Text = function(V, $, undefined) {
   };
   var _isInRange = function(number, min, max) {
     return number > min && number < max
+  };
+  var _font_to_px = function(fz) {
+    switch(fz) {
+      case 7:
+        return 48;
+        break;
+      case 6:
+        return 32;
+        break;
+      case 5:
+        return 24;
+        break;
+      case 4:
+        return 18;
+        break;
+      case 3:
+        return 16;
+        break;
+      case 2:
+        return 14;
+        break;
+      case 1:
+        return 12;
+        break;
+      default:
+        break
+    }
   };
   return{init:init, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
@@ -7582,7 +7660,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Events.init();
     V.EventsNotifier.init();
     V.VideoPlayer.init();
-    V.Themes.selectTheme(presentation.theme);
+    V.Themes.loadTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
     V.ViewerAdapter.init();
@@ -7859,6 +7937,63 @@ VISH.Utils = function(V, undefined) {
     });
     return zoom
   };
+  var getWidthFromStyle = function(style, area) {
+    return getPixelDimensionsFromStyle(style, area)[0]
+  };
+  var getHeightFromStyle = function(style, area) {
+    return getPixelDimensionsFromStyle(style, area)[1]
+  };
+  var getPixelDimensionsFromStyle = function(style, area) {
+    var dimensions = [];
+    var width = null;
+    var height = null;
+    var width_percent_pattern = /width:\s?([0-9]+(\.[0-9]+)?)%/g;
+    var width_px_pattern = /width:\s?([0-9]+(\.?[0-9]+)?)px/g;
+    var height_percent_pattern = /height:\s?([0-9]+(\.[0-9]+)?)%/g;
+    var height_px_pattern = /height:\s?([0-9]+(\.?[0-9]+)?)px/g;
+    $.each(style.split(";"), function(index, property) {
+      if(property.indexOf("width") !== -1) {
+        if(property.match(width_px_pattern)) {
+          var result = width_px_pattern.exec(property);
+          if(result[1]) {
+            width = result[1]
+          }
+        }else {
+          if(property.match(width_percent_pattern)) {
+            var result = width_percent_pattern.exec(property);
+            if(result[1]) {
+              var percent = result[1];
+              if(area) {
+                width = $(area).width() * percent / 100
+              }
+            }
+          }
+        }
+      }else {
+        if(property.indexOf("height") !== -1) {
+          if(property.match(height_px_pattern)) {
+            var result = height_px_pattern.exec(property);
+            if(result[1]) {
+              height = result[1]
+            }
+          }else {
+            if(property.match(height_percent_pattern)) {
+              var result = height_percent_pattern.exec(property);
+              if(result[1]) {
+                var percent = result[1];
+                if(area) {
+                  height = $(area).height() * percent / 100
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+    dimensions.push(width);
+    dimensions.push(height);
+    return dimensions
+  };
   var loadTab = function(tab_id) {
     $(".joyride-close-tip").click();
     $(".fancy_tab_content").hide();
@@ -7975,7 +8110,8 @@ VISH.Utils = function(V, undefined) {
     });
     return filterStyle
   };
-  return{init:init, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, loadTab:loadTab, sendParentToURL:sendParentToURL}
+  return{init:init, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
+  loadTab:loadTab, sendParentToURL:sendParentToURL}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
   var device;
@@ -8492,21 +8628,9 @@ VISH.Flashcard = function(V, $, undefined) {
   return{init:init, addArrow:addArrow, startAnimation:startAnimation, stopAnimation:stopAnimation, animateArrows:animateArrows, getPoiData:getPoiData}
 }(VISH, jQuery);
 VISH.Themes = function(V, $, undefined) {
-  var selectTheme = function(theme) {
-    _loadTheme(theme);
-    if(V.Editing) {
-      var draftPresentation = VISH.Editor.getPresentation();
-      if(!draftPresentation) {
-        draftPresentation = {}
-      }
-      draftPresentation.theme = theme;
-      VISH.Editor.setPresentation(draftPresentation);
-      $.fancybox.close()
-    }
-  };
-  var _loadTheme = function(theme) {
+  var loadTheme = function(theme) {
     if(!theme) {
-      theme = "theme1"
+      theme = VISH.Constant.Themes.Default
     }
     _unloadAllThemes();
     V.Utils.loadCSS("themes/" + theme + ".css")
@@ -8522,7 +8646,7 @@ VISH.Themes = function(V, $, undefined) {
       }
     })
   };
-  return{selectTheme:selectTheme}
+  return{loadTheme:loadTheme}
 }(VISH, jQuery);
 VISH.Messenger = function(V, undefined) {
   var init = function() {
@@ -9245,14 +9369,6 @@ VISH.Events = function(V, $, undefined) {
           case VISH.Constant.VTOUR:
             break
         }
-      }
-      if(applicationCache) {
-        applicationCache.addEventListener("cached", function() {
-          VISH.LocalStorage.addPresentation(presentation)
-        }, false);
-        applicationCache.addEventListener("updateready", function() {
-          VISH.LocalStorage.addPresentation(presentation)
-        }, false)
       }
       if(!V.Status.getDevice().desktop) {
         bindMobileViewerEventListeners()

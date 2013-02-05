@@ -283,6 +283,11 @@ article > div > p {
   font-size: 1em;
 }
 
+article > div a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 
 /* Style for Texts (NicEditor version) */
 /* For old excursions */
@@ -500,7 +505,6 @@ button#closeButton {
 .flashcard_slide{
   display: block;
 }
-
 
 /** Arrows **/
 
