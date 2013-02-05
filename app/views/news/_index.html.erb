@@ -1,9 +1,16 @@
+
 <section id="news-vishub">
-  <article class="box-news">
-  	<div class=" Title">Hello Vish</div>
-  	<button class="close" type="button">×</button>
+  <article class="box-news <%=extra_class%>">
+  	<div class="Title">Announce</div>
+  	<button id="close_announce_button" class="close" type="button">×</button>
   	<p>
-  		qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. 
+  		<%= t('announce') %> <a href="www.globalexcursion-project.eu/?p=622">www.globalexcursion-project.eu/?p=622</a>
   	</p>
   </article>
 </section> 
+
+<%= javascript_tag do %>
+    $("#close_announce_button").click(function() {
+  		$("#news-vishub").hide("fold");
+	});
+<% end %>

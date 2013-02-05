@@ -15,8 +15,6 @@
       </br>
       <%= link_to t('sign_up'), new_user_registration_path%>
       <% end -%>
-      <% end %>
-
 
       <%= javascript_tag do %>
         $(function() {
@@ -27,5 +25,9 @@
           }
           $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
         });
+      <% end %>
+    <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
   </div>
+
+</nav>
 <% end %>
