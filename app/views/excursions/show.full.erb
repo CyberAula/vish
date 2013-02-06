@@ -28,6 +28,11 @@
 		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
 		options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
 	<% end %>
+	
+	<% if request && request.referrer %>
+		options["comeBackUrl"] = "<%=request.referrer%>";
+	<% end %>
+
 	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
 

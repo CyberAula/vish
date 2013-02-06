@@ -6970,7 +6970,7 @@ VISH.Text = function(V, $, undefined) {
     return 1
   };
   var _isInRange = function(number, min, max) {
-    return number > min && number < max
+    return number > min && number <= max
   };
   var _font_to_px = function(fz) {
     switch(fz) {
@@ -7640,11 +7640,11 @@ VISH.SlideManager = function(V, $, undefined) {
     VISH.Debugging.log(JSON.stringify(presentation));
     current_presentation = presentation;
     setPresentationType(presentation.type);
+    V.Status.init();
     V.Quiz.init(presentation);
     V.Flashcard.init();
     V.Renderer.init();
     V.Slides.init();
-    V.Status.init();
     V.Utils.loadDeviceCSS();
     V.User.init(options);
     V.Utils.init();
@@ -7663,13 +7663,11 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Themes.loadTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
-    V.ViewerAdapter.init();
-    V.Text.init();
     V.Quiz.prepareQuiz(presentation);
     if(options.addons) {
       V.Addons.init(options.addons)
     }
-    V.ViewerAdapter.setupInterface(options)
+    V.ViewerAdapter.init(options)
   };
   var toggleFullScreen = function() {
     if(VISH.Status.isSlaveMode()) {
@@ -7947,11 +7945,11 @@ VISH.Utils = function(V, undefined) {
     var dimensions = [];
     var width = null;
     var height = null;
-    var width_percent_pattern = /width:\s?([0-9]+(\.[0-9]+)?)%/g;
-    var width_px_pattern = /width:\s?([0-9]+(\.?[0-9]+)?)px/g;
-    var height_percent_pattern = /height:\s?([0-9]+(\.[0-9]+)?)%/g;
-    var height_px_pattern = /height:\s?([0-9]+(\.?[0-9]+)?)px/g;
     $.each(style.split(";"), function(index, property) {
+      var width_percent_pattern = /width:\s?([0-9]+(\.[0-9]+)?)%/g;
+      var width_px_pattern = /width:\s?([0-9]+(\.?[0-9]+)?)px/g;
+      var height_percent_pattern = /height:\s?([0-9]+(\.[0-9]+)?)%/g;
+      var height_px_pattern = /height:\s?([0-9]+(\.?[0-9]+)?)px/g;
       if(property.indexOf("width") !== -1) {
         if(property.match(width_px_pattern)) {
           var result = width_px_pattern.exec(property);
@@ -8165,33 +8163,30 @@ VISH.Status = function(V, $, undefined) {
     device.iOS = device.iPhone || device.iPad;
     device.applePhone = device.iPhone || device.iPhone4;
     device.appleTablet = device.iPad;
+    device.androidPhone = false;
+    device.androidTablet = false;
     device.android = /android/i.test(navigator.userAgent);
     if(device.android) {
-      device.androidPhone = false;
-      device.androidTablet = false;
       if(/tablet/i.test(navigator.userAgent)) {
         device.androidTablet = true
       }else {
-        var maxWidth = 1024 * 1.5;
-        var maxHeight = 720 * 1.5;
+        var maxHeight = 720 * device.pixelRatio;
+        maxWidth = 1024 * device.pixelRatio;
         var landscape = window.screen.availWidth > window.screen.availHeight;
         if(landscape) {
-          if(window.screen.availWidth >= maxWidth && window.screen.availHeight >= maxHeight) {
+          if(window.screen.availHeight >= maxHeight) {
             device.androidTablet = true
           }else {
             device.androidPhone = true
           }
         }else {
-          if(window.screen.availHeight >= maxWidth && window.screen.availWidth >= maxHeight) {
+          if(window.screen.availHeight >= maxWidth) {
             device.androidTablet = true
           }else {
             device.androidPhone = true
           }
         }
       }
-    }else {
-      device.androidPhone = false;
-      device.androidTablet = false
     }
     device.mobile = device.applePhone || device.androidPhone;
     device.tablet = device.appleTablet || device.androidTablet;
@@ -8335,35 +8330,154 @@ VISH.Status = function(V, $, undefined) {
   return{init:init, getIsInIframe:getIsInIframe, getIframe:getIframe, getDevice:getDevice, getOnline:getOnline, setSlaveMode:setSlaveMode, isSlaveMode:isSlaveMode, setPreventDefaultMode:setPreventDefaultMode, isPreventDefaultMode:isPreventDefaultMode}
 }(VISH, jQuery);
 VISH.ViewerAdapter = function(V, $, undefined) {
-  var page_is_fullscreen = false;
-  var init = function() {
-    _initPager();
-    setupSize(false)
+  var render_full;
+  var is_preview;
+  var close_button;
+  var enter_fs_button;
+  var enter_fs_url;
+  var exit_fs_button;
+  var exit_fs_url;
+  var page_is_fullscreen;
+  var isOneSlide;
+  var init = function(options) {
+    if(options) {
+      if(typeof render_full !== "boolean") {
+        render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
+      }
+      if(typeof options["preview"] === "boolean") {
+        is_preview = true
+      }
+      close_button = !V.Status.getDevice().desktop && !V.Status.getIsInIframe() && options["comeBackUrl"];
+      enter_fs_button = V.Status.getIsInIframe() && options["fullscreen"];
+      if(enter_fs_button) {
+        enter_fs_url = options["fullscreen"]
+      }
+      exit_fs_button = typeof options["exitFullscreen"] !== "undefined";
+      if(exit_fs_button) {
+        exit_fs_url = options["exitFullscreen"]
+      }
+    }else {
+      render_full = false;
+      is_preview = false;
+      close_button = false;
+      enter_fs_button = false;
+      exit_fs_button = false
+    }
+    render_full = render_full || V.Status.getDevice().mobile || V.Status.getDevice().tablet;
+    enter_fs_button = enter_fs_button && V.Status.getDevice().desktop;
+    exit_fs_button = exit_fs_button && V.Status.getDevice().desktop;
+    close_button = close_button && V.Status.getDevice().mobile;
+    page_is_fullscreen = false;
+    isOneSlide = !(VISH.Slides.getSlidesQuantity() > 1);
+    _initPager(render_full);
+    updateInterface();
+    V.Text.init()
+  };
+  var _initPager = function(render_full) {
+    if(V.Status.getDevice().desktop) {
+      $("#back_arrow").html("");
+      $("#forward_arrow").html("")
+    }
+    if(render_full) {
+      $("#viewbar").hide()
+    }else {
+      if(!isOneSlide) {
+        $("#viewbar").show();
+        VISH.SlideManager.updateSlideCounter()
+      }else {
+        $("#viewbar").hide()
+      }
+    }
+  };
+  var decideIfPageSwitcher = function() {
+    if(VISH.Slides.getCurrentSubSlide() !== null) {
+      $("#forward_arrow").hide();
+      $("#back_arrow").hide()
+    }else {
+      if(VISH.Slides.isCurrentFirstSlide()) {
+        $("#back_arrow").hide()
+      }else {
+        $("#back_arrow").show()
+      }
+      if(VISH.Slides.isCurrentLastSlide()) {
+        $("#forward_arrow").hide()
+      }else {
+        $("#forward_arrow").show()
+      }
+    }
+    if(!page_is_fullscreen) {
+      if(VISH.Slides.isCurrentFirstSlide()) {
+        $("#page-switcher-start").hide()
+      }else {
+        $("#page-switcher-start").show()
+      }
+      if(VISH.Slides.isCurrentLastSlide()) {
+        $("#page-switcher-end").hide()
+      }else {
+        $("#page-switcher-end").show()
+      }
+    }
+  };
+  var _decideIfViewBarShow = function(fullScreen) {
+    if(!fullScreen) {
+      if(!isOneSlide) {
+        $("#viewbar").show()
+      }else {
+        $("#viewbar").hide()
+      }
+    }else {
+      $("#viewbar").hide()
+    }
+  };
+  var updateInterface = function() {
+    if(is_preview) {
+      $("div#viewerpreview").show();
+      V.Quiz.UnbindStartQuizEvents()
+    }
+    if(close_button) {
+      $("button#closeButton").show()
+    }
+    if(!render_full) {
+      if(!is_preview) {
+        _enableFullScreen()
+      }else {
+        $("#page-fullscreen").hide()
+      }
+    }else {
+      if(exit_fs_button) {
+        $("#page-fullscreen").css("background-position", "-45px 0px");
+        $("#page-fullscreen").hover(function() {
+          $("#page-fullscreen").css("background-position", "-45px -40px")
+        }, function() {
+          $("#page-fullscreen").css("background-position", "-45px 0px")
+        });
+        $(document).on("click", "#page-fullscreen", function() {
+          window.location = exit_fs_url
+        })
+      }else {
+        $("#page-fullscreen").hide()
+      }
+    }
+    setupSize(render_full)
   };
   var setupSize = function(fullscreen) {
     var reserved_px_for_menubar;
     var margin_height;
     var margin_width;
-    if(V.Status.getDevice().mobile) {
+    if(fullscreen) {
+      _onFullscreenEvent(true);
       reserved_px_for_menubar = 0;
       margin_height = 0;
       margin_width = 0
     }else {
-      if(fullscreen && !page_is_fullscreen) {
-        page_is_fullscreen = true;
-        reserved_px_for_menubar = 0;
-        margin_height = 0;
-        margin_width = 0
+      _onFullscreenEvent(false);
+      if(!isOneSlide) {
+        reserved_px_for_menubar = 40
       }else {
-        page_is_fullscreen = false;
-        if(VISH.Slides.getSlidesQuantity() > 1) {
-          reserved_px_for_menubar = 40
-        }else {
-          reserved_px_for_menubar = 0
-        }
-        margin_height = 40;
-        margin_width = 30
+        reserved_px_for_menubar = 0
       }
+      margin_height = 40;
+      margin_width = 30
     }
     var height = $(window).height() - reserved_px_for_menubar;
     var width = $(window).width();
@@ -8402,45 +8516,12 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("#fancybox-wrap").css("left", "10%");
       V.Quiz.testFullScreen()
     }
+    decideIfPageSwitcher();
     VISH.Text.aftersetupSize(increase);
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
   };
-  var setupInterface = function(options) {
-    if(options && options["preview"]) {
-      $("div#viewerpreview").show();
-      V.Quiz.UnbindStartQuizEvents()
-    }
-    if(!V.Status.getDevice().desktop && !V.Status.getIsInIframe() && options && options["comeBackUrl"]) {
-      $("button#closeButton").show()
-    }
-    var renderFull = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true;
-    if(!renderFull) {
-      if(V.Status.getDevice().desktop && options && !options["preview"]) {
-        _enableFullScreen(options)
-      }else {
-        $("#page-fullscreen").hide()
-      }
-    }else {
-      if(options && options["exitFullscreen"]) {
-        $("#page-fullscreen").css("background-position", "-45px 0px");
-        $("#page-fullscreen").hover(function() {
-          $("#page-fullscreen").css("background-position", "-45px -40px")
-        }, function() {
-          $("#page-fullscreen").css("background-position", "-45px 0px")
-        });
-        $(document).on("click", "#page-fullscreen", function() {
-          window.location = options["exitFullscreen"]
-        })
-      }else {
-        $("#page-fullscreen").hide()
-      }
-      setupElements();
-      setupSize(true);
-      decideIfPageSwitcher()
-    }
-  };
-  var _enableFullScreen = function(options) {
+  var _enableFullScreen = function() {
     if(V.Status.getDevice().features.fullscreen) {
       if(V.Status.getIsInIframe()) {
         var myDoc = parent.document
@@ -8449,25 +8530,27 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
       $(document).on("click", "#page-fullscreen", V.SlideManager.toggleFullScreen);
       $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
-        V.ViewerAdapter.setupElements();
         setTimeout(function() {
-          V.ViewerAdapter.setupSize(true);
-          V.ViewerAdapter.decideIfPageSwitcher()
+          setupSize(!page_is_fullscreen)
         }, 400)
       })
     }else {
-      if(V.Status.getIsInIframe() && options["fullscreen"]) {
+      if(enter_fs_button) {
         $(document).on("click", "#page-fullscreen", function() {
-          VISH.Utils.sendParentToURL(options["fullscreen"])
+          VISH.Utils.sendParentToURL(enter_fs_url)
         })
       }
     }
   };
-  var setupElements = function() {
-    if(page_is_fullscreen) {
-      _onLeaveFullScreen()
-    }else {
+  var _onFullscreenEvent = function(fullscreen) {
+    if(typeof fullscreen === "undefined") {
+      fullscreen = page_is_fullscreen
+    }
+    page_is_fullscreen = fullscreen;
+    if(fullscreen) {
       _onEnterFullScreen()
+    }else {
+      _onLeaveFullScreen()
     }
   };
   var _onEnterFullScreen = function() {
@@ -8488,69 +8571,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     });
     _decideIfViewBarShow(false)
   };
-  var _decideIfViewBarShow = function(fullScreen) {
-    if(!fullScreen) {
-      if(VISH.Slides.getSlidesQuantity() > 1) {
-        $("#viewbar").show()
-      }else {
-        $("#viewbar").hide()
-      }
-    }else {
-      $("#viewbar").hide()
-    }
-  };
-  var setupGame = function(presentation) {
-    $("#my_game_iframe").attr("src", presentation.game.src);
-    var fileref = document.createElement("link");
-    fileref.setAttribute("rel", "stylesheet");
-    fileref.setAttribute("type", "text/css");
-    fileref.setAttribute("href", "stylesheets/game/game.css");
-    document.getElementsByTagName("body")[0].appendChild(fileref)
-  };
-  var _initPager = function() {
-    if(V.Status.getDevice().desktop) {
-      $("#back_arrow").html("");
-      $("#forward_arrow").html("");
-      if(VISH.Slides.getSlidesQuantity() > 1) {
-        $("#viewbar").show();
-        VISH.SlideManager.updateSlideCounter()
-      }else {
-        $("#viewbar").hide()
-      }
-    }else {
-      $("#viewbar").hide()
-    }
-  };
-  var decideIfPageSwitcher = function() {
-    if(VISH.Slides.getCurrentSubSlide() !== null) {
-      $("#forward_arrow").hide();
-      $("#back_arrow").hide()
-    }else {
-      if(VISH.Slides.isCurrentFirstSlide()) {
-        $("#back_arrow").hide()
-      }else {
-        $("#back_arrow").show()
-      }
-      if(VISH.Slides.isCurrentLastSlide()) {
-        $("#forward_arrow").hide()
-      }else {
-        $("#forward_arrow").show()
-      }
-    }
-    if(!page_is_fullscreen && !V.Status.getDevice().mobile) {
-      if(VISH.Slides.isCurrentFirstSlide()) {
-        $("#page-switcher-start").hide()
-      }else {
-        $("#page-switcher-start").show()
-      }
-      if(VISH.Slides.isCurrentLastSlide()) {
-        $("#page-switcher-end").hide()
-      }else {
-        $("#page-switcher-end").show()
-      }
-    }
-  };
-  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, setupElements:setupElements, setupGame:setupGame, setupInterface:setupInterface, setupSize:setupSize}
+  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface}
 }(VISH, jQuery);
 VISH.Game = function(V, $, undefined) {
   var actions = {};
@@ -9384,7 +9405,7 @@ VISH.Events = function(V, $, undefined) {
       _hideAddressBar()
     });
     $(window).on("orientationchange", function() {
-      V.ViewerAdapter.setupSize()
+      V.ViewerAdapter.updateInterface()
     })
   };
   var _hideAddressBar = function() {
