@@ -24,7 +24,9 @@ en:
     follow: "+ Follow"
     unfollow: "UnFollow"
   all: "all"
-  announce: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration in"
+  announce: 
+    title: "Announcement"
+    body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
   author: "author"
   cancel: "Cancel"
   close: "Close"

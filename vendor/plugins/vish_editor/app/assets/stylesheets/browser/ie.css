@@ -12,3 +12,7 @@
 #menubar_background{
 	z-index: 0;
 }
+
+#toolbar_text {
+	margin-top: -30px !important;
+}
