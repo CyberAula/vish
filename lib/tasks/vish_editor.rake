@@ -10,6 +10,7 @@ JS_FILES_AND_DIRS = ['app/assets/js_to_compile/lang','app/assets/js_to_compile/V
 ONLY_VIEWER = ['libs/jquery-1.7.2.min.js', 'VISH.js', 'VISH.Constant.js', 'VISH.Configuration.js', 'libs/jquery-ui-1.9.2.custom.min.js', 'libs/jquery.fancybox-1.3.4.js', 'libs/jquery.qrcode.min.js', 'libs/yt_iframe_api.js','VISH.User.js', 'VISH.Object.js', 'VISH.Renderer.js', 'VISH.Renderer.Filter.js', 'VISH.Debugging.js', 'VISH.Presentation.js', 'VISH.Text.js', 'VISH.VideoPlayer.js', 'VISH.VideoPlayer.CustomPlayer.js', 'VISH.VideoPlayer.HTML5.js', 'VISH.VideoPlayer.Youtube.js', 'VISH.ObjectPlayer.js', 'VISH.SnapshotPlayer.js', 'VISH.AppletPlayer.js', 'VISH.SlideManager.js', 'VISH.Utils.js', 'VISH.Status.js', 'VISH.ViewerAdapter.js', 'VISH.Game.js', 'VISH.Flashcard.js',  'VISH.Themes.js', 'VISH.Messenger.js', 'VISH.Messenger.Helper.js', 'VISH.Addons.js', 'VISH.Addons.IframeMessenger.js', 'VISH.LocalStorage.js', 'VISH.Slides.js', 'VISH.Events.js', 'VISH.EventsNotifier.js', 'VISH.Quiz.js', 'VISH.Quiz.Renderer.js', 'VISH.Quiz.API.js']
 
 
+
 COMPILER_JAR_PATH = "lib/tasks/compile"
 COMPILER_JAR_FILE = COMPILER_JAR_PATH + "/compiler.jar"
 COMPILER_DOWNLOAD_URI = 'http://closure-compiler.googlecode.com/files/compiler-latest.zip'
