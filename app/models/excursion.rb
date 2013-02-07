@@ -147,12 +147,14 @@ class Excursion < ActiveRecord::Base
             quiz.type="OpenQuiz"
             # PENDING
           when "multiplechoice" # Multiple-choice
-            puts "multiplechoice type detected"
+           # puts "multiplechoice type detected"
             quiz.type="MultipleChoiceQuiz"
             quiz.question = element["question"] 
             quiz.options  = element["options"].to_json
           when "truefalse" # True/False
             quiz.type="TrueFalseQuiz"
+             quiz.question = element["question"] 
+             quiz.options  = element["options"].to_json
             # PENDING
         end
         quiz.simple_json = element["quiz_simple_json"].to_json
