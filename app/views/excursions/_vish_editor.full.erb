@@ -140,7 +140,9 @@
 
     <!-- Hidden link to open fancybox when adding a slide -->
     <a id="addSlideFancybox" href="#thumbcontent" style="display: none;"></a>
-    
+
+    <!-- Hidden link to open fancybox when adding a quiz inside a slide -->
+    <a id="addQuizFancybox" href="#quizcontent" style="display: none;"></a>    
     <!-- Hidden link to open fancybox when creating a new presentation -->
     <a id="launch_presentation_details" href="#presentationdetails" style="display: none;"></a>
 
@@ -372,7 +374,32 @@
     </div>
   </div>
 
-  
+
+  <!-- Quizes fancybox -->
+  <div style='display:none'>
+    <div id='quizcontent'>
+
+      <div class='fancy_tabs' id='quizcontent_tabs'>
+        <ul>
+          <li>
+            <a href="#" id="tab_quizes" class="fancy_tab">Quiz</a>
+          </li>
+        </ul>
+        <img id='tab_quizes_help' class='help_in_fancybox' src='/assets/helptutorial_circle_blank.png'/>
+      </div> 
+      <div id='tab_quizes_content' class="fancy_tab_content" style='display:none' > 
+        <div style="display:none" class='quizFancythumb'>
+          <img src='/assets/templatesthumbs/tquiz1.png' />
+        </div>
+        <div class='quizFancythumb'>
+          <img src='/assets/templatesthumbs/tquiz2.png' onclick='VISH.Editor.Quiz.addQuiz("multiplechoice");' />
+        </div>
+        <div class='quizFancythumb'>
+          <img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.addQuiz("truefalse");'/>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <div style='display:none'>
       
@@ -391,6 +418,35 @@
       </a>
       <a class="addLive medium large" href="#live_fancybox">
         <div class='thumbicon livethumb' i18n-key="i.Live" title="Live"></div>
+      </a>
+      <a class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
+       <div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
+      </a>
+       </a>    
+    </div>
+      
+    </div>
+
+    <div style='display:none'>
+      
+    <div id='menuselect' class="menuselect_hide">
+      <a class='all' href="#">
+        <div class='thumbicon textthumb' i18n-key="i.Text" title="Text"></div>
+      </a>
+      <a class="addpicture all" href="#picture_fancybox">
+        <div class='thumbicon picthumb' i18n-key="i.Image" title="Image"></div>
+      </a>
+      <a class="addobject medium large" href="#object_fancybox">
+        <div class='thumbicon objectthumb' i18n-key="i.Object" title="Object"></div>
+      </a>
+      <a class="addvideo medium large" href="#video_fancybox">
+        <div class='thumbicon videothumb' i18n-key="i.Video" title="Video"></div>
+      </a>
+      <a class="addLive medium large" href="#live_fancybox">
+        <div class='thumbicon livethumb' i18n-key="i.Live" title="Live"></div>
+      </a>
+      <a class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
+        <div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
       </a>
     </div>
       
