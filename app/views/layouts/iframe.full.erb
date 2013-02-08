@@ -37,20 +37,7 @@
 
     <body onload="start()" style="display: none" class="loaded">
       <%= yield %>
-
-      <% if Rails.env == "production" and not request.host == "vishub-test.global.dit.upm.es" %>
-      <!-- BEGIN: SeeVolution -->
-        <script type="text/javascript">
-          (function () {
-            var ms = document.createElement("script"); 
-            ms.src = "https://assets.seevolution.com/cjs.aspx";
-            ms.setAttribute("async", "true");
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ms, s);
-          })();
-        </script>
-        <!-- END: SeeVolution -->
-      <%end%>
+      
     </body>
 
 </html>
