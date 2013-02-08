@@ -8333,13 +8333,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var render_full;
   var is_preview;
   var close_button;
+  var fs_button;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
   var exit_fs_url;
-  var page_is_fullscreen;
   var isOneSlide;
+  var page_is_fullscreen;
+  var initialized = false;
   var init = function(options) {
+    if(initialized) {
+      return
+    }else {
+      initialized = true
+    }
     if(options) {
       if(typeof render_full !== "boolean") {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
@@ -8356,24 +8363,21 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       if(exit_fs_button) {
         exit_fs_url = options["exitFullscreen"]
       }
+      fs_button = (V.Status.getDevice().features.fullscreen || enter_fs_button && exit_fs_button) && !is_preview
     }else {
       render_full = false;
       is_preview = false;
       close_button = false;
       enter_fs_button = false;
-      exit_fs_button = false
+      exit_fs_button = false;
+      fs_button = false
     }
-    render_full = render_full || V.Status.getDevice().mobile || V.Status.getDevice().tablet;
-    enter_fs_button = enter_fs_button && V.Status.getDevice().desktop;
-    exit_fs_button = exit_fs_button && V.Status.getDevice().desktop;
+    render_full = render_full || V.Status.getDevice().mobile;
+    enter_fs_button = enter_fs_button && !V.Status.getDevice().mobile;
+    exit_fs_button = exit_fs_button && !V.Status.getDevice().mobile;
     close_button = close_button && V.Status.getDevice().mobile;
-    page_is_fullscreen = false;
+    page_is_fullscreen = render_full;
     isOneSlide = !(VISH.Slides.getSlidesQuantity() > 1);
-    _initPager(render_full);
-    updateInterface();
-    V.Text.init()
-  };
-  var _initPager = function(render_full) {
     if(V.Status.getDevice().desktop) {
       $("#back_arrow").html("");
       $("#forward_arrow").html("")
@@ -8388,6 +8392,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
         $("#viewbar").hide()
       }
     }
+    if(is_preview) {
+      $("div#viewerpreview").show();
+      V.Quiz.UnbindStartQuizEvents()
+    }
+    if(close_button) {
+      $("button#closeButton").show()
+    }
+    if(fs_button) {
+      _enableFullScreen(render_full)
+    }else {
+      $("#page-fullscreen").hide()
+    }
+    updateInterface();
+    V.Text.init()
   };
   var decideIfPageSwitcher = function() {
     if(VISH.Slides.getCurrentSubSlide() !== null) {
@@ -8430,37 +8448,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
   };
   var updateInterface = function() {
-    if(is_preview) {
-      $("div#viewerpreview").show();
-      V.Quiz.UnbindStartQuizEvents()
-    }
-    if(close_button) {
-      $("button#closeButton").show()
-    }
-    if(!render_full) {
-      if(!is_preview) {
-        _enableFullScreen()
-      }else {
-        $("#page-fullscreen").hide()
-      }
-    }else {
-      if(exit_fs_button) {
-        $("#page-fullscreen").css("background-position", "-45px 0px");
-        $("#page-fullscreen").hover(function() {
-          $("#page-fullscreen").css("background-position", "-45px -40px")
-        }, function() {
-          $("#page-fullscreen").css("background-position", "-45px 0px")
-        });
-        $(document).on("click", "#page-fullscreen", function() {
-          window.location = exit_fs_url
-        })
-      }else {
-        $("#page-fullscreen").hide()
-      }
-    }
-    setupSize(render_full)
+    _setupSize(page_is_fullscreen)
   };
-  var setupSize = function(fullscreen) {
+  var _setupSize = function(fullscreen) {
     var reserved_px_for_menubar;
     var margin_height;
     var margin_width;
@@ -8521,7 +8511,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
   };
-  var _enableFullScreen = function() {
+  var _enableFullScreen = function(fullscreen) {
     if(V.Status.getDevice().features.fullscreen) {
       if(V.Status.getIsInIframe()) {
         var myDoc = parent.document
@@ -8531,14 +8521,26 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $(document).on("click", "#page-fullscreen", V.SlideManager.toggleFullScreen);
       $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
         setTimeout(function() {
-          setupSize(!page_is_fullscreen)
+          _setupSize(!page_is_fullscreen)
         }, 400)
       })
     }else {
-      if(enter_fs_button) {
+      if(fullscreen && exit_fs_button) {
+        $("#page-fullscreen").css("background-position", "-45px 0px");
+        $("#page-fullscreen").hover(function() {
+          $("#page-fullscreen").css("background-position", "-45px -40px")
+        }, function() {
+          $("#page-fullscreen").css("background-position", "-45px 0px")
+        });
         $(document).on("click", "#page-fullscreen", function() {
-          VISH.Utils.sendParentToURL(enter_fs_url)
+          window.location = exit_fs_url
         })
+      }else {
+        if(!fullscreen && enter_fs_button) {
+          $(document).on("click", "#page-fullscreen", function() {
+            VISH.Utils.sendParentToURL(enter_fs_url)
+          })
+        }
       }
     }
   };
@@ -9361,7 +9363,9 @@ VISH.Events = function(V, $, undefined) {
     if(!bindedEventListeners) {
       $(document).bind("keydown", handleBodyKeyDown);
       $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      _registerEvent("page-switcher-start");
       $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+      _registerEvent("page-switcher-end");
       $(document).on("click", "#back_arrow", V.Slides.backwardOneSlide);
       _registerEvent("back_arrow");
       $(document).on("click", "#forward_arrow", V.Slides.forwardOneSlide);
@@ -9376,6 +9380,7 @@ VISH.Events = function(V, $, undefined) {
       _registerEvent("close_subslide");
       _registerEvent("customPlayerButton");
       _registerEvent("customPlayerControls");
+      _registerEvent("page-fullscreen");
       var presentation = V.SlideManager.getCurrentPresentation();
       for(index in presentation.slides) {
         var slide = presentation.slides[index];
@@ -9401,10 +9406,8 @@ VISH.Events = function(V, $, undefined) {
     window.addEventListener("load", function() {
       _hideAddressBar()
     });
-    window.addEventListener("orientationchange", function() {
-      _hideAddressBar()
-    });
     $(window).on("orientationchange", function() {
+      _hideAddressBar();
       V.ViewerAdapter.updateInterface()
     })
   };
@@ -9413,7 +9416,9 @@ VISH.Events = function(V, $, undefined) {
   var unbindViewerEventListeners = function() {
     if(bindedEventListeners) {
       $(document).unbind("keydown", handleBodyKeyDown);
+      _unregisterEvent("page-switcher-start");
       $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      _unregisterEvent("page-switcher-end");
       $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
       _unregisterEvent("back_arrow");
       $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
@@ -9423,14 +9428,24 @@ VISH.Events = function(V, $, undefined) {
       _unregisterEvent("closeButtonImg");
       $(document).off("click", "#closeButton");
       $(document).unbind("touchstart", handleTouchStart);
+      $(document).off("click", ".close_subslide", _onFlashcardCloseSlideClicked);
+      _unregisterEvent("close_subslide");
+      _unregisterEvent("customPlayerButton");
+      _unregisterEvent("customPlayerControls");
+      _unregisterEvent("page-fullscreen");
       var presentation = V.SlideManager.getCurrentPresentation();
       for(index in presentation.slides) {
-        if(presentation.slides[index].type === "flashcard") {
-          for(ind in presentation.slides[index].pois) {
-            var poi = presentation.slides[index].pois[ind];
-            $(document).off("click", "#" + poi.id, {poi_id:poi.id}, _onFlashcardPoiClicked)
-          }
-          $(document).off("click", ".close_subslide", _onFlashcardCloseSlideClicked)
+        var slide = presentation.slides[index];
+        switch(slide.type) {
+          case VISH.Constant.FLASHCARD:
+            for(ind in slide.pois) {
+              var poi = slide.pois[ind];
+              $(document).off("click", "#" + poi.id, {poi_id:poi.id}, _onFlashcardPoiClicked);
+              _unregisterEvent(poi.id)
+            }
+            break;
+          case VISH.Constant.VTOUR:
+            break
         }
       }
       bindedEventListeners = false
@@ -9488,6 +9503,8 @@ VISH.Quiz = function(V, $, undefined) {
   mcOptionsHash["f"] = 5;
   var startButtonClass = "quiz_session_start_button";
   var optionsButtonClass = "quiz_session_options_button";
+  var showAnswerButtonClass = "show_answers_button";
+  var hideAnswerButtonClass = "hide_answers_button";
   var voteButtonClass = "quiz_send_vote_button";
   var stopSessionButtonClass = "quiz_session_stop_button";
   var statisticsButtonClass = "mch_statistics_icon";
@@ -9538,6 +9555,8 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", "." + startButtonClass, startMcQuizButtonClicked);
     $(document).on("click", "." + stopSessionButtonClass, onStopMcQuizButtonClicked);
     $(document).on("click", "." + optionsButtonClass, showQuizStats);
+    $(document).on("click", "." + showAnswerButtonClass, toggleShowAnswers);
+    $(document).on("click", "." + hideAnswerButtonClass, toggleShowAnswers);
     $(document).on("click", "#mask_stop_quiz", _hideStopQuizPopup);
     $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
     $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
@@ -9897,6 +9916,20 @@ VISH.Quiz = function(V, $, undefined) {
   var UnbindStartQuizEvents = function() {
     $(document).off("click", "." + startButtonClass, startMcQuizButtonClicked)
   };
+  var toggleShowAnswers = function(event) {
+    var current_slide = VISH.Slides.getCurrentSlide();
+    if(event.target.classList[0] == showAnswerButtonClass) {
+      $(current_slide).find(".truefalse_answers > input").show();
+      $(current_slide).find(".show_answers_button").hide();
+      $(current_slide).find(".hide_answers_button").show()
+    }else {
+      if(event.target.classList[0] == hideAnswerButtonClass) {
+        $(current_slide).find(".truefalse_answers > input").hide();
+        $(current_slide).find(".hide_answers_button").hide();
+        $(current_slide).find(".show_answers_button").show()
+      }
+    }
+  };
   return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, qrToggleFullScreen:qrToggleFullScreen, showQuizStats:showQuizStats, testFullScreen:testFullScreen, UnbindStartQuizEvents:UnbindStartQuizEvents}
 }(VISH, jQuery);
 VISH.Quiz.Renderer = function(V, $, undefined) {
@@ -9911,8 +9944,8 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
       case "openQuestion":
         return _renderOpenquestion(element, template);
         break;
-      case "truefalsequestion":
-        return _renderTrueFalseQuestion(element, template);
+      case "truefalse":
+        return _renderTrueFalseQuestion(quiz_element, zone_class, slide_id, zone);
         break;
       default:
         break
@@ -9964,30 +9997,52 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     ret += "<button type='button' class='question_button'>Send</button>";
     return ret
   };
-  var _renderTrueFalseQuestion = function(element, template) {
-    var next_num = 0;
-    var answers = new Array;
-    var ret = "<div id='" + element["id"] + "' class='truefalse_question'>";
+  var _renderTrueFalseQuestion = function(quiz_element, zone_class, slide_id, zone) {
+    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='truefalse_question_container'>";
-    ret += "<form class='truefalse_question_form' action='" + element["posturl"] + "' method='post'>";
-    ret += "<table id='truefalse_quiz_table_1' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr>";
-    for(var i = 0;i < element["questions"].length;i++) {
-      answers[i] = element["questions"][i]["answer"];
-      ret += "<tr id='tr_question_" + (i + 1) + "'>";
-      ret += "<td id='td_true_" + (i + 1) + "' class='td_true'>";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='true' /></td>";
-      ret += "<td id='td_false_" + (i + 1) + "' class='td_false' >";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='false'/></td>";
-      ret += "<td id='td_question_" + (i + 1) + "' class='true_false_question_txt'><label>" + element["questions"][i]["text_question"] + "?</label></td>";
-      ret += "</tr>"
+    ret += "<div class='value_truefalse_question_in_zone question_in_viewer'>";
+    ret += quiz_element["question"];
+    ret += "</div>";
+    ret += "<div class='truefalse_options_in_zone'> ";
+    ret += "<form class='truefalse_form' action='" + quiz_element["posturl"] + "' method='post'>";
+    ret += "<div class='truefalse_options'>";
+    ret += "<div class='truefalse_titles'>";
+    ret += "<div class='truefalse_titles_true'>True</div>";
+    ret += "<div class='truefalse_titles_false'>False</div>";
+    ret += "</div>";
+    if(VISH.Quiz.getQuizMode() == "answer") {
+      ret += "<div class='truefalse_answers answer_mode'>";
+      ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true'/>";
+      ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false'/>";
+      ret += "</div>"
+    }else {
+      ret += "<div class='truefalse_answers teacher_mode'>";
+      if(quiz_element["options"]["answer"] == "true") {
+        ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true' disabled='disabled' checked/>";
+        ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false' disabled='disabled'/>"
+      }else {
+        if(quiz_element["options"]["answer"] === "false") {
+          ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true' disabled='disabled'/>";
+          ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false' disabled='disabled' checked/>"
+        }
+      }
+      ret += "</div>";
+      ret += "<div class='showhide_answer_button_container'>";
+      ret += "<input type='button' class='show_answers_button' value='Show Answer'/>";
+      ret += "<input type='button' class='hide_answers_button' value='Hide Answer'/>";
+      ret += "</div>"
     }
-    ret += "</table>";
-    ret += "<input type='button' class='tfquestion_button' value='Send'/>";
+    ret += "</div>";
+    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
+    ret += "<div class='mch_inputs_wrapper'>";
+    ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
+    ret += "<input type='button' class='quiz_send_vote_button' value='Send'/>";
+    ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
+    ret += "</div>";
     ret += "</form>";
     ret += "</div>";
-    trueFalseAnswers = answers;
-    asnswers = [];
-    VISH.Debugging.log("JSON object answer is: " + trueFalseAnswers);
+    ret += "</div>";
+    ret += "</div>";
     return ret
   };
   return{init:init, renderQuiz:renderQuiz}
@@ -10016,6 +10071,10 @@ VISH.Quiz.API = function(V, $, undefined) {
         }else {
           if(quizId == 13) {
             var quiz_session_id = "98955"
+          }else {
+            if(quizId == 14) {
+              var quiz_session_id = "98977"
+            }
           }
         }
         if(typeof successCallback == "function") {

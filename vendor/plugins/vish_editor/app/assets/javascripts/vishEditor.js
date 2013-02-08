@@ -10559,9 +10559,9 @@ VISH.Editor = function(V, $, undefined) {
                   }
                 }else {
                   if(element.type === VISH.Constant.QUIZ) {
-                    var quizQuestion = $(div).find(".value_multiplechoice_question_in_zone");
-                    element.question = VISH.Editor.Text.changeFontPropertiesToSpan($(quizQuestion));
-                    if($(div).find(".multiplechoice_option_in_zone")) {
+                    if($(div).attr("quiztype") == "multiplechoice") {
+                      var quizQuestion = $(div).find(".value_multiplechoice_question_in_zone");
+                      element.question = VISH.Editor.Text.NiceEditor.changeFontPropertiesToSpan($(quizQuestion));
                       element.quiz_id = "";
                       if($(div).find("input[name=quiz_id]").val() !== "") {
                         element.quiz_id = $(div).find("input[name=quiz_id]").val()
@@ -10570,15 +10570,41 @@ VISH.Editor = function(V, $, undefined) {
                       element.options = {};
                       element.options.choices = [];
                       $(div).find(".multiplechoice_option_in_zone").each(function(i, option_text) {
-                        var option = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
+                        var option = VISH.Editor.Text.NiceEditor.changeFontPropertiesToSpan(option_text);
                         if(option && $(option_text).text() !== "Write options here" && $(option_text).text() !== "") {
-                          result = VISH.Editor.Text.changeFontPropertiesToSpan(option_text);
+                          result = VISH.Editor.Text.NiceEditor.changeFontPropertiesToSpan(option_text);
                           var choice = {};
                           choice.value = $(option_text).text();
-                          choice.container = VISH.Editor.Text.changeFontPropertiesToSpan($(option_text));
+                          choice.container = VISH.Editor.Text.NiceEditor.changeFontPropertiesToSpan($(option_text));
                           element.options.choices.push(choice)
                         }
                       })
+                    }else {
+                      if($(div).attr("quiztype") == "truefalse") {
+                        V.Debugging.log("true false detected");
+                        var quizQuestion = $(div).find(".value_truefalse_question_in_zone");
+                        element.question = VISH.Editor.Text.NiceEditor.changeFontPropertiesToSpan($(quizQuestion));
+                        element.quiz_id = "";
+                        if($(div).find("input[name=quiz_id]").val() != "") {
+                          element.quiz_id = $(div).find("input[name=quiz_id]").val()
+                        }
+                        element.quiztype = "truefalse";
+                        element.options = {};
+                        element.options.choices = [];
+                        $(div).find(".truefalse_answers > form > input").each(function(i, option_text) {
+                          V.Debugging.log("option text:" + option_text);
+                          var choice = new Object;
+                          choice.value = $(option_text).attr("value");
+                          choice.container = $(option_text).attr("value");
+                          element.options.choices.push(choice)
+                        });
+                        V.Debugging.log("value: " + $(div).find("input[name=truefalse]:checked").val());
+                        element.options.answer = $(div).find("input[name=truefalse]:checked").val()
+                      }else {
+                        if($(div).attr("quiztype") == "open") {
+                          V.Debugging.log("open detected")
+                        }
+                      }
                     }
                   }else {
                     if(element.type === VISH.Constant.SNAPSHOT) {
@@ -11370,9 +11396,13 @@ VISH.Editor.Image = function(V, $, undefined) {
     current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' draggable='true' title='Click to drag' src='" + image_url + "' style='" + newStyle + "'/>");
     if(!style) {
       var theImg = $("#" + idToDragAndResize);
-      var dimentionsToDraw = VISH.Editor.Utils.dimentionToDraw($(current_area).width(), $(current_area).height(), $(theImg).width(), $(theImg).height());
-      $(theImg).height(dimentionsToDraw.height);
-      $(theImg).width(dimentionsToDraw.width)
+      $(theImg).load(function() {
+        var dimentionsToDraw = VISH.Editor.Utils.dimentionToDraw($(current_area).width(), $(current_area).height(), $(theImg).width(), $(theImg).height());
+        $(theImg).width(dimentionsToDraw.width);
+        if(dimentionsToDraw.height > 0) {
+          $(theImg).height(dimentionsToDraw.height)
+        }
+      })
     }
     V.Editor.addDeleteButton(current_area);
     $("#" + idToDragAndResize).draggable({cursor:"move", stop:function() {
@@ -11992,7 +12022,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"zone7", "type":"quiz", "quiz_id":13, "areaid":"center", "question":'<i><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Second </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">question</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"> quiz quiz<b> quiz</b> ... ?</span></i>', "quiztype":"multiplechoice", "options":{"choices":[{"value":"aaaaa... mucha a ", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>aaaaa</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... mucha a</span></div>'}, 
   {"value":"bbb ... mucha b ", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>bbb ...</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... mucha b</span></div>'}, {"value":"ccc ... mucha c", "container":'<div class="vish-parent-font4" unselectable="on" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><i><u>ccc ...</u></i></span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">... <b>mucha c</b></span></div>'}]}}, 
   {"id":"zone8", "type":"image", "areaid":"subheader", "body":"http://farm3.staticflickr.com/2653/3950938406_8a2429bf14_m.jpg", "style":"position: relative; width:68.18181818181819%; height:333.3333333333333%; top:-126.3157894736842%; left:14.242428866299717%;"}]}]};
-  var quizzes__samples2 = {"VEVersion":"0.2", "id":12314, "type":"presentation", "author":"", "slides":[{"id":"article_12314_0", "type":"standard", "template":"t3", "elements":[{"id":"zone9", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font6 vish-parent-fontundefined" style="text-align: center; font-weight: normal;"><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><b><u>Multiple Choice Quiz Example</u></b></span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  var quizes_samples2 = {"VEVersion":"0.2", "id":12314, "type":"presentation", "author":"", "slides":[{"id":"article_12314_0", "type":"standard", "template":"t3", "elements":[{"id":"zone9", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font6 vish-parent-fontundefined" style="text-align: center; font-weight: normal;"><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><b><u>Multiple Choice Quiz Example</u></b></span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
   {"id":"zone10", "type":"quiz", "areaid":"left", "question":'Has aprendido a <span class="vish-fontundefined vish-fontHelvetica" style="color: rgb(112, 167, 58); font-weight: normal;"><b>programar </b></span>en <b><span class="vish-font6 vish-fontHelvetica" style="color:#840e5a;undefined;">Ruby</span></b>?<div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>', "quiz_id":"12", "quiztype":"multiplechoice", "options":{"choices":[{"value":"S\u00ed", 
   "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">S\u00ed</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"No", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">No</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
   {"value":"Un poco", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Un poco</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"Nada", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Nada</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}, 
@@ -12000,6 +12030,10 @@ VISH.Samples = function(V, undefined) {
   "options":{"choices":[{"value":"S\u00ed", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">S\u00ed</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"No", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">No</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
   {"value":"Un poco", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Un poco</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, {"value":"Nada", "container":'<div class="vish-parent-font4" style="font-weight: normal;"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">Nada</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}]}}], 
   "type":"quiz_simple"}}]}]};
+  var quizes_truefalse_sample = {"VEVersion":"0.3", "id":"12312", "type":"presentation", "author":"", "slides":[{"id":"article1", "type":"standard", "template":"t8", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font6 vish-parent-fontundefined" style="text-align: center; font-weight: normal;"><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;"><u>Testing True/False Quiz</u></span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
+  {"id":"article1_zone2", "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8195/8449969950_6e3756946e.jpg", "style":"position: relative; width:100%; height:81.51658767772511%; top:8.100753711863153%; left:-0.86151123046875%;"}, {"id":"article1_zone3", "type":"quiz", "areaid":"center", "question":'<div class="vish-parent-fontundefined vish-parent-font4 vish-parent-font6" unselectable="on" style="font-weight: normal;"><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;"><b>The picture</b></span><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;"> </span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">is a desert from </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">Per\u00fa</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">?</span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>', 
+  "quiz_id":"14", "quiztype":"truefalse", "options":{"choices":[{"value":"true", "container":"true"}, {"value":"false", "container":"false"}], "answer":"true"}, "quiz_simple_json":{"author":"", "slides":[{"id":"article1_zone3", "type":"quiz_simple", "areaid":"center", "question":'<div class="vish-parent-fontundefined vish-parent-font4 vish-parent-font6" unselectable="on" style="font-weight: normal;"><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;"><b>The picture</b></span><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;"> </span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">is a desert from </span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;undefined;">Per\u00fa</span><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">?</span><span class="vish-fontundefined vish-fontHelvetica" style="color:undefined;undefined;"></span></div>', 
+  "quiz_id":"", "quiztype":"truefalse", "options":{"choices":[{"value":"true", "container":"true"}, {"value":"false", "container":"false"}], "answer":"true"}}], "type":"quiz_simple"}}, {"id":"article1_zone4", "areaid":"right"}]}]};
   var magnetic_gifs = {"id":405, "type":"presentation", "title":"Magnetic Resonance Imaging of Foods (Mobile)", "description":"Images of magnetic resonance: Food series.\nhttp://insideinsides.blogspot.com.es/", "avatar":"http://vishub.org/assets/logos/original/excursion-35.png", "tags":["Art", "Mobile", "LifeSciences", "Life-Sciences", "EarthScience", "e-learning"], "author":"N\u00e9stor Toribio Ruiz", "slides":[{"id":"article_405_0", "type":"standard", "template":"t1", "elements":[{"id":"zone1", 
   "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/-QLfceEKHmis/TijNAXnjwLI/AAAAAAAACSA/LWzvgAAy4YI/s840/insideinsides.jpg", "style":"position: relative; width:97.61388286334056%; height:60.85790884718499%; top:23.288651126319536%; left:1.0773698057890455%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" class="vish-parent-font7 vish-parent-font2 vish-parent-font4" align="center"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font2 vish-fontHelvetica" style="color:#201815;undefined;"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;">Magnetic Resonance</span></span></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div style="font-weight: 400;" class="vish-parent-font5 vish-parent-font2" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><i>Imaging of Foods</i></span></span></div>'}]}, {"id":"article_405_1", "type":"standard", "template":"t5", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Broccoli</span></span></div>'}, 
@@ -12019,7 +12053,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, full_samples:full_samples, quizes_samples:quizes_samples, quizzes__samples2:quizzes__samples2, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
+  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, full_samples:full_samples, quizes_samples:quizes_samples, quizes_samples2:quizes_samples2, quizes_truefalse_sample:quizes_truefalse_sample, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var flashcardList = {"flashcards":[{"id":"1120", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://4.bp.blogspot.com/-fsV8poJXoJc/ULe8nkVbaVI/AAAAAAAAA-M/Q2vW16z6Ivc/s1600/Imagen16.png)", "pois":[{"id":"article4_poi1", "x":"36.875", "y":"67.33333333333333", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"55.375", "y":"68.16666666666667", "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":"45.875", "y":"5.5", 
@@ -12567,7 +12601,9 @@ VISH.Events = function(V, $, undefined) {
     if(!bindedEventListeners) {
       $(document).bind("keydown", handleBodyKeyDown);
       $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      _registerEvent("page-switcher-start");
       $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+      _registerEvent("page-switcher-end");
       $(document).on("click", "#back_arrow", V.Slides.backwardOneSlide);
       _registerEvent("back_arrow");
       $(document).on("click", "#forward_arrow", V.Slides.forwardOneSlide);
@@ -12582,6 +12618,7 @@ VISH.Events = function(V, $, undefined) {
       _registerEvent("close_subslide");
       _registerEvent("customPlayerButton");
       _registerEvent("customPlayerControls");
+      _registerEvent("page-fullscreen");
       var presentation = V.SlideManager.getCurrentPresentation();
       for(index in presentation.slides) {
         var slide = presentation.slides[index];
@@ -12607,10 +12644,8 @@ VISH.Events = function(V, $, undefined) {
     window.addEventListener("load", function() {
       _hideAddressBar()
     });
-    window.addEventListener("orientationchange", function() {
-      _hideAddressBar()
-    });
     $(window).on("orientationchange", function() {
+      _hideAddressBar();
       V.ViewerAdapter.updateInterface()
     })
   };
@@ -12619,7 +12654,9 @@ VISH.Events = function(V, $, undefined) {
   var unbindViewerEventListeners = function() {
     if(bindedEventListeners) {
       $(document).unbind("keydown", handleBodyKeyDown);
+      _unregisterEvent("page-switcher-start");
       $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+      _unregisterEvent("page-switcher-end");
       $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
       _unregisterEvent("back_arrow");
       $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
@@ -12629,14 +12666,24 @@ VISH.Events = function(V, $, undefined) {
       _unregisterEvent("closeButtonImg");
       $(document).off("click", "#closeButton");
       $(document).unbind("touchstart", handleTouchStart);
+      $(document).off("click", ".close_subslide", _onFlashcardCloseSlideClicked);
+      _unregisterEvent("close_subslide");
+      _unregisterEvent("customPlayerButton");
+      _unregisterEvent("customPlayerControls");
+      _unregisterEvent("page-fullscreen");
       var presentation = V.SlideManager.getCurrentPresentation();
       for(index in presentation.slides) {
-        if(presentation.slides[index].type === "flashcard") {
-          for(ind in presentation.slides[index].pois) {
-            var poi = presentation.slides[index].pois[ind];
-            $(document).off("click", "#" + poi.id, {poi_id:poi.id}, _onFlashcardPoiClicked)
-          }
-          $(document).off("click", ".close_subslide", _onFlashcardCloseSlideClicked)
+        var slide = presentation.slides[index];
+        switch(slide.type) {
+          case VISH.Constant.FLASHCARD:
+            for(ind in slide.pois) {
+              var poi = slide.pois[ind];
+              $(document).off("click", "#" + poi.id, {poi_id:poi.id}, _onFlashcardPoiClicked);
+              _unregisterEvent(poi.id)
+            }
+            break;
+          case VISH.Constant.VTOUR:
+            break
         }
       }
       bindedEventListeners = false
@@ -12719,6 +12766,8 @@ VISH.Quiz = function(V, $, undefined) {
   mcOptionsHash["f"] = 5;
   var startButtonClass = "quiz_session_start_button";
   var optionsButtonClass = "quiz_session_options_button";
+  var showAnswerButtonClass = "show_answers_button";
+  var hideAnswerButtonClass = "hide_answers_button";
   var voteButtonClass = "quiz_send_vote_button";
   var stopSessionButtonClass = "quiz_session_stop_button";
   var statisticsButtonClass = "mch_statistics_icon";
@@ -12769,6 +12818,8 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", "." + startButtonClass, startMcQuizButtonClicked);
     $(document).on("click", "." + stopSessionButtonClass, onStopMcQuizButtonClicked);
     $(document).on("click", "." + optionsButtonClass, showQuizStats);
+    $(document).on("click", "." + showAnswerButtonClass, toggleShowAnswers);
+    $(document).on("click", "." + hideAnswerButtonClass, toggleShowAnswers);
     $(document).on("click", "#mask_stop_quiz", _hideStopQuizPopup);
     $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
     $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
@@ -13127,6 +13178,20 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var UnbindStartQuizEvents = function() {
     $(document).off("click", "." + startButtonClass, startMcQuizButtonClicked)
+  };
+  var toggleShowAnswers = function(event) {
+    var current_slide = VISH.Slides.getCurrentSlide();
+    if(event.target.classList[0] == showAnswerButtonClass) {
+      $(current_slide).find(".truefalse_answers > input").show();
+      $(current_slide).find(".show_answers_button").hide();
+      $(current_slide).find(".hide_answers_button").show()
+    }else {
+      if(event.target.classList[0] == hideAnswerButtonClass) {
+        $(current_slide).find(".truefalse_answers > input").hide();
+        $(current_slide).find(".hide_answers_button").hide();
+        $(current_slide).find(".show_answers_button").show()
+      }
+    }
   };
   return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, qrToggleFullScreen:qrToggleFullScreen, showQuizStats:showQuizStats, testFullScreen:testFullScreen, UnbindStartQuizEvents:UnbindStartQuizEvents}
 }(VISH, jQuery);
@@ -13547,9 +13612,13 @@ VISH.Editor.Quiz = function(V, $, undefined) {
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)"];
   var addQuizOptionButtonClass = "add_quiz_option_button";
   var deleteQuizOptionButtonClass = "delete_quiz_option_button";
+  var addTrueFalseQuizOptionButtonClass = "add_truefalse_quiz_button";
+  var deleteTrueFalseQuizOptionButtonClass = "delete_truefalse_quiz_button";
   var init = function() {
     $(document).on("click", "." + "multipleChoiceQuizContainer", _clickOnQuizArea);
-    $(document).on("click", "." + deleteQuizOptionButtonClass, _removeOptionInQuiz)
+    $(document).on("click", "." + "trueFalseQuizContainer", _clickOnQuizArea);
+    $(document).on("click", "." + deleteQuizOptionButtonClass, _removeOptionInQuiz);
+    $(document).on("click", "." + deleteTrueFalseQuizOptionButtonClass, _removeOptionInQuiz)
   };
   var onLoadTab = function(tab) {
   };
@@ -13570,10 +13639,11 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       case "open":
         break;
       case "multiplechoice":
-        _addMultipleChoiceQuiz(current_area, current_num_options);
+        _addMultipleChoiceQuiz(current_area, current_num_options, quiz_type);
         VISH.Utils.loadTab("tab_quizes");
         break;
       case "truefalse":
+        _addMultipleChoiceQuiz(current_area, current_num_options, quiz_type);
         break;
       default:
         break
@@ -13628,24 +13698,49 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       case "li_mch_options_in_zone":
         V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.id));
         break;
+      case "trueFalseQuizContainer":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.id));
+        break;
+      case "value_truefalse_question_in_zone":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.id));
+        break;
+      case "add_truefalse_quiz_button":
+        V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id));
+        addOptionInQuiz("truefalse", V.Editor.getCurrentArea());
+        break;
+      case "delete_truefalse_quiz_button":
+        V.Debugging.log("click on area detected");
+        break;
       default:
         break
     }
   };
-  var _addMultipleChoiceQuiz = function(area, num_options) {
+  var _addMultipleChoiceQuiz = function(area, num_options, quiz_type) {
     var current_area = area;
     var current_num_options = num_options;
-    var quiz = VISH.Editor.Quiz.Dummies.getQuizDummy("multiplechoice", V.Slides.getSlides().length);
+    var quiztype = quiz_type;
+    var quiz = VISH.Editor.Quiz.Dummies.getQuizDummy(quiztype, V.Slides.getSlides().length);
+    current_area.append(quiz);
     current_area.find(".menuselect_hide").remove();
     current_area.attr("type", "quiz");
-    current_area.attr("quiztype", "multiplechoice");
-    current_area.append(quiz);
-    launchTextEditorInTextArea(current_area, "multiplechoice");
-    V.Editor.addDeleteButton(current_area);
-    var i = 0;
-    for(i = 0;i <= current_num_options;i++) {
-      addOptionInQuiz("multiplechoice", current_area)
+    if(quiztype == "multiplechoice") {
+      current_area.attr("quiztype", "multiplechoice");
+      V.Debugging.log("num options value: " + current_num_options);
+      if(current_num_options >= 0) {
+        var i = 0;
+        for(i = 0;i <= current_num_options;i++) {
+          addOptionInQuiz("multiplechoice", current_area)
+        }
+      }
+    }else {
+      if(quiztype === "truefalse") {
+        current_area.attr("quiztype", "truefalse");
+        var quiz_option = VISH.Editor.Quiz.Dummies.getQuizOptionDummy(quiztype);
+        $(current_area).find(".truefalse_options_in_zone").append(quiz_option)
+      }
     }
+    launchTextEditorInTextArea(current_area, quiztype);
+    V.Editor.addDeleteButton(current_area)
   };
   var addOptionInQuiz = function(quiz_type, area) {
     var setKeyDownListener = false;
@@ -13679,6 +13774,18 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         if(current_options + 1 === maxNumMultipleChoiceOptions) {
           $($(current_area).find("." + addQuizOptionButtonClass)[parseInt(current_options)]).hide();
           $($(current_area).find("." + deleteQuizOptionButtonClass)[parseInt(current_options)]).show()
+        }
+        break;
+      case "truefalse":
+        var quiz_option = VISH.Editor.Quiz.Dummies.getQuizOptionDummy(current_quiz_type);
+        var current_questions = $(current_area).find(".value_truefalse_question_in_zone").size();
+        V.Debugging.log("current options: " + current_questions);
+        current_area.find(".truefalse_quiz_table").append(quiz_option);
+        launchTextEditorInTextArea(current_area, "truefalse");
+        if(current_questions > 0) {
+          $($(current_area).find("." + addTrueFalseQuizOptionButtonClass)[parseInt(current_questions) - 1]).hide();
+          $($(current_area).find("." + deleteTrueFalseQuizOptionButtonClass)[parseInt(current_questions) - 1]).show();
+          $($(current_area).find(".value_truefalse_question_in_zone")[current_questions]).focus()
         }
         break;
       default:
@@ -13718,6 +13825,11 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         $($(current_area).find("." + deleteQuizOptionButtonClass)[maxNumMultipleChoiceOptions - 2]).hide();
         $($(current_area).find("." + addQuizOptionButtonClass)[maxNumMultipleChoiceOptions - 2]).show()
       }
+    }
+    if(event.target.attributes["class"].value === deleteTrueFalseQuizOptionButtonClass) {
+      V.Debugging.log("remove true false question detected");
+      V.Editor.setCurrentArea($("#" + event.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.id));
+      $(event.target.parentElement.parentElement).remove()
     }else {
       V.Debugging.log("other event  handler")
     }
@@ -13730,14 +13842,14 @@ VISH.Editor.Quiz = function(V, $, undefined) {
       $($(current_area).find("." + type_quiz + "_option_in_zone")[option_number]).attr("id", optionWysiwygId);
       if($($(current_area).find(".li_mch_options_in_zone")[option_number]).find(".wysiwygInstance").val() === undefined) {
         $("#" + optionWysiwygId).addClass("wysiwygInstance");
-        V.Editor.Text.getNicEditor().addInstance(optionWysiwygId)
+        VISH.Editor.Text.NiceEditor.getNicEditor().addInstance(optionWysiwygId)
       }
     }else {
       var textArea = $(current_area).find(".value_" + type_quiz + "_question_in_zone");
       var wysiwygId = V.Utils.getId();
       textArea.attr("id", wysiwygId);
       $("#" + wysiwygId).addClass("wysiwygInstance");
-      VISH.Editor.Text.getNicEditor().addInstance(wysiwygId)
+      VISH.Editor.Text.NiceEditor.getNicEditor().addInstance(wysiwygId)
     }
     $(".initTextDiv").click(function(event) {
       if(event.target.tagName == "FONT") {
@@ -13766,6 +13878,18 @@ VISH.Editor.Quiz = function(V, $, undefined) {
         }
       }
     })
+  };
+  var _addTrueFalseQuiz = function(area) {
+    var current_area = area;
+    var quiz = VISH.Editor.Quiz.Dummies.getQuizDummy("truefalse", V.Slides.getSlides().length);
+    current_area.find(".menuselect_hide").remove();
+    current_area.attr("type", "quiz");
+    current_area.attr("quiztype", "truefalse");
+    current_area.append(quiz);
+    option = VISH.Editor.Quiz.Dummies.getQuizOptionDummy("truefalse");
+    current_area.find(".truefalse_quiz_table").append(option);
+    launchTextEditorInTextArea(current_area, "truefalse");
+    V.Editor.addDeleteButton(current_area)
   };
   return{init:init, onLoadTab:onLoadTab, drawQuiz:drawQuiz, addQuiz:addQuiz, addOptionInQuiz:addOptionInQuiz}
 }(VISH, jQuery);
@@ -15690,8 +15814,8 @@ VISH.Editor.Quiz.Dummies = function(VISH, undefined) {
   var quizDummies = [];
   var quizOptionsDummies = [];
   var init = function() {
-    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone'><div class='initTextDiv'><font size='4'>Write question here</font></div></div><ul class='ul_mch_options_in_zone'></ul><input type='hidden' name='quiz_id'/></div></div>", "<div class='trueFalseQuizContainer'><p> quiz dummy truefalse</p></div>"];
-    quizOptionDummies = ["", "<li class='li_mch_options_in_zone'><span class='quiz_option_index'></span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div><img src='" + VISH.ImagesPath + "icons/add.png' class='add_quiz_option_button'/><img src='" + VISH.ImagesPath + "icons/ve_delete.png' class='delete_quiz_option_button'/></li>", ""]
+    quizDummies = ["<div class='openQuizContainer'><textarea class='value_open_question_in_zone'><div><font size=" + 4 + ">Write question here</font></div></textarea></div>", "<div class='multipleChoiceQuizContainer'><div class='value_multiplechoice_question_in_zone'><div class='initTextDiv'><font size='4'>Write question here</font></div></div><ul class='ul_mch_options_in_zone'></ul><input type='hidden' name='quiz_id'/></div></div>", "<div class='trueFalseQuizContainer'><div class='value_truefalse_question_in_zone'><div class='initTextDiv'><font size='4'>Write question here</font></div></div><div class='truefalse_options_in_zone'></div><input type='hidden' name='quiz_id'/></div></div>"];
+    quizOptionDummies = ["", "<li class='li_mch_options_in_zone'><span class='quiz_option_index'></span><div class='multiplechoice_option_in_zone'><div class='initTextDiv'><font size='4'>Write options here</font></div></div><img src='" + VISH.ImagesPath + "icons/add.png' class='add_quiz_option_button'/><img src='" + VISH.ImagesPath + "icons/delete.png' class='delete_quiz_option_button'/></li>", "<div class='truefalse_options'><div class='truefalse_titles'><div class='truefalse_titles_true'>True</div><div class='truefalse_titles_false'>False</div></div><div class='truefalse_answers'><form ><input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true'/><input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false'/></form></div></div>"]
   };
   var hashTypeQuiz = {"open":0, "multiplechoice":1, "truefalse":2};
   var getQuizDummy = function(type_quiz, position) {
@@ -17650,6 +17774,10 @@ VISH.Quiz.API = function(V, $, undefined) {
         }else {
           if(quizId == 13) {
             var quiz_session_id = "98955"
+          }else {
+            if(quizId == 14) {
+              var quiz_session_id = "98977"
+            }
           }
         }
         if(typeof successCallback == "function") {
@@ -17754,8 +17882,8 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
       case "openQuestion":
         return _renderOpenquestion(element, template);
         break;
-      case "truefalsequestion":
-        return _renderTrueFalseQuestion(element, template);
+      case "truefalse":
+        return _renderTrueFalseQuestion(quiz_element, zone_class, slide_id, zone);
         break;
       default:
         break
@@ -17807,30 +17935,52 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     ret += "<button type='button' class='question_button'>Send</button>";
     return ret
   };
-  var _renderTrueFalseQuestion = function(element, template) {
-    var next_num = 0;
-    var answers = new Array;
-    var ret = "<div id='" + element["id"] + "' class='truefalse_question'>";
+  var _renderTrueFalseQuestion = function(quiz_element, zone_class, slide_id, zone) {
+    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
     ret += "<div class='truefalse_question_container'>";
-    ret += "<form class='truefalse_question_form' action='" + element["posturl"] + "' method='post'>";
-    ret += "<table id='truefalse_quiz_table_1' class='truefalse_quiz_table'><tr><th>True</th><th>False</th><th> Question </th></tr>";
-    for(var i = 0;i < element["questions"].length;i++) {
-      answers[i] = element["questions"][i]["answer"];
-      ret += "<tr id='tr_question_" + (i + 1) + "'>";
-      ret += "<td id='td_true_" + (i + 1) + "' class='td_true'>";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='true' /></td>";
-      ret += "<td id='td_false_" + (i + 1) + "' class='td_false' >";
-      ret += "<input type='radio' name='tf_radio_" + (i + 1) + "' value='false'/></td>";
-      ret += "<td id='td_question_" + (i + 1) + "' class='true_false_question_txt'><label>" + element["questions"][i]["text_question"] + "?</label></td>";
-      ret += "</tr>"
+    ret += "<div class='value_truefalse_question_in_zone question_in_viewer'>";
+    ret += quiz_element["question"];
+    ret += "</div>";
+    ret += "<div class='truefalse_options_in_zone'> ";
+    ret += "<form class='truefalse_form' action='" + quiz_element["posturl"] + "' method='post'>";
+    ret += "<div class='truefalse_options'>";
+    ret += "<div class='truefalse_titles'>";
+    ret += "<div class='truefalse_titles_true'>True</div>";
+    ret += "<div class='truefalse_titles_false'>False</div>";
+    ret += "</div>";
+    if(VISH.Quiz.getQuizMode() == "answer") {
+      ret += "<div class='truefalse_answers answer_mode'>";
+      ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true'/>";
+      ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false'/>";
+      ret += "</div>"
+    }else {
+      ret += "<div class='truefalse_answers teacher_mode'>";
+      if(quiz_element["options"]["answer"] == "true") {
+        ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true' disabled='disabled' checked/>";
+        ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false' disabled='disabled'/>"
+      }else {
+        if(quiz_element["options"]["answer"] === "false") {
+          ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true' disabled='disabled'/>";
+          ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false' disabled='disabled' checked/>"
+        }
+      }
+      ret += "</div>";
+      ret += "<div class='showhide_answer_button_container'>";
+      ret += "<input type='button' class='show_answers_button' value='Show Answer'/>";
+      ret += "<input type='button' class='hide_answers_button' value='Hide Answer'/>";
+      ret += "</div>"
     }
-    ret += "</table>";
-    ret += "<input type='button' class='tfquestion_button' value='Send'/>";
+    ret += "</div>";
+    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
+    ret += "<div class='mch_inputs_wrapper'>";
+    ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
+    ret += "<input type='button' class='quiz_send_vote_button' value='Send'/>";
+    ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
+    ret += "</div>";
     ret += "</form>";
     ret += "</div>";
-    trueFalseAnswers = answers;
-    asnswers = [];
-    VISH.Debugging.log("JSON object answer is: " + trueFalseAnswers);
+    ret += "</div>";
+    ret += "</div>";
     return ret
   };
   return{init:init, renderQuiz:renderQuiz}
@@ -18889,13 +19039,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var render_full;
   var is_preview;
   var close_button;
+  var fs_button;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
   var exit_fs_url;
-  var page_is_fullscreen;
   var isOneSlide;
+  var page_is_fullscreen;
+  var initialized = false;
   var init = function(options) {
+    if(initialized) {
+      return
+    }else {
+      initialized = true
+    }
     if(options) {
       if(typeof render_full !== "boolean") {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
@@ -18912,24 +19069,21 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       if(exit_fs_button) {
         exit_fs_url = options["exitFullscreen"]
       }
+      fs_button = (V.Status.getDevice().features.fullscreen || enter_fs_button && exit_fs_button) && !is_preview
     }else {
       render_full = false;
       is_preview = false;
       close_button = false;
       enter_fs_button = false;
-      exit_fs_button = false
+      exit_fs_button = false;
+      fs_button = false
     }
-    render_full = render_full || V.Status.getDevice().mobile || V.Status.getDevice().tablet;
-    enter_fs_button = enter_fs_button && V.Status.getDevice().desktop;
-    exit_fs_button = exit_fs_button && V.Status.getDevice().desktop;
+    render_full = render_full || V.Status.getDevice().mobile;
+    enter_fs_button = enter_fs_button && !V.Status.getDevice().mobile;
+    exit_fs_button = exit_fs_button && !V.Status.getDevice().mobile;
     close_button = close_button && V.Status.getDevice().mobile;
-    page_is_fullscreen = false;
+    page_is_fullscreen = render_full;
     isOneSlide = !(VISH.Slides.getSlidesQuantity() > 1);
-    _initPager(render_full);
-    updateInterface();
-    V.Text.init()
-  };
-  var _initPager = function(render_full) {
     if(V.Status.getDevice().desktop) {
       $("#back_arrow").html("");
       $("#forward_arrow").html("")
@@ -18944,6 +19098,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
         $("#viewbar").hide()
       }
     }
+    if(is_preview) {
+      $("div#viewerpreview").show();
+      V.Quiz.UnbindStartQuizEvents()
+    }
+    if(close_button) {
+      $("button#closeButton").show()
+    }
+    if(fs_button) {
+      _enableFullScreen(render_full)
+    }else {
+      $("#page-fullscreen").hide()
+    }
+    updateInterface();
+    V.Text.init()
   };
   var decideIfPageSwitcher = function() {
     if(VISH.Slides.getCurrentSubSlide() !== null) {
@@ -18986,37 +19154,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
   };
   var updateInterface = function() {
-    if(is_preview) {
-      $("div#viewerpreview").show();
-      V.Quiz.UnbindStartQuizEvents()
-    }
-    if(close_button) {
-      $("button#closeButton").show()
-    }
-    if(!render_full) {
-      if(!is_preview) {
-        _enableFullScreen()
-      }else {
-        $("#page-fullscreen").hide()
-      }
-    }else {
-      if(exit_fs_button) {
-        $("#page-fullscreen").css("background-position", "-45px 0px");
-        $("#page-fullscreen").hover(function() {
-          $("#page-fullscreen").css("background-position", "-45px -40px")
-        }, function() {
-          $("#page-fullscreen").css("background-position", "-45px 0px")
-        });
-        $(document).on("click", "#page-fullscreen", function() {
-          window.location = exit_fs_url
-        })
-      }else {
-        $("#page-fullscreen").hide()
-      }
-    }
-    setupSize(render_full)
+    _setupSize(page_is_fullscreen)
   };
-  var setupSize = function(fullscreen) {
+  var _setupSize = function(fullscreen) {
     var reserved_px_for_menubar;
     var margin_height;
     var margin_width;
@@ -19077,7 +19217,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     VISH.SnapshotPlayer.aftersetupSize(increase);
     VISH.ObjectPlayer.aftersetupSize(increase)
   };
-  var _enableFullScreen = function() {
+  var _enableFullScreen = function(fullscreen) {
     if(V.Status.getDevice().features.fullscreen) {
       if(V.Status.getIsInIframe()) {
         var myDoc = parent.document
@@ -19087,14 +19227,26 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $(document).on("click", "#page-fullscreen", V.SlideManager.toggleFullScreen);
       $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
         setTimeout(function() {
-          setupSize(!page_is_fullscreen)
+          _setupSize(!page_is_fullscreen)
         }, 400)
       })
     }else {
-      if(enter_fs_button) {
+      if(fullscreen && exit_fs_button) {
+        $("#page-fullscreen").css("background-position", "-45px 0px");
+        $("#page-fullscreen").hover(function() {
+          $("#page-fullscreen").css("background-position", "-45px -40px")
+        }, function() {
+          $("#page-fullscreen").css("background-position", "-45px 0px")
+        });
         $(document).on("click", "#page-fullscreen", function() {
-          VISH.Utils.sendParentToURL(enter_fs_url)
+          window.location = exit_fs_url
         })
+      }else {
+        if(!fullscreen && enter_fs_button) {
+          $(document).on("click", "#page-fullscreen", function() {
+            VISH.Utils.sendParentToURL(enter_fs_url)
+          })
+        }
       }
     }
   };
