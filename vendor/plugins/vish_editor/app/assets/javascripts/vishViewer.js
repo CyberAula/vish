@@ -3284,7 +3284,7 @@
   })
 })(window);
 var VISH = VISH || {};
-VISH.VERSION = "0.3";
+VISH.VERSION = "0.4";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -6832,18 +6832,15 @@ VISH.Text = function(V, $, undefined) {
       });
       var tableOrgStyle = $(table).attr("style");
       if(tableOrgStyle) {
-        var tableAreaStyle = $(table).parent().parent().attr("style");
         var tableStyle = "";
         var tableWidth = VISH.Utils.getWidthFromStyle(tableOrgStyle);
         if(tableWidth) {
-          var parentWidth = VISH.Utils.getWidthFromStyle(tableAreaStyle);
-          var percentWidth = tableWidth * 100 / parentWidth;
+          var percentWidth = tableWidth * 100 / 800;
           tableStyle += "width:" + percentWidth + "%;"
         }
         var tableHeight = VISH.Utils.getHeightFromStyle(tableOrgStyle);
         if(tableHeight) {
-          var parentHeight = VISH.Utils.getHeightFromStyle(tableAreaStyle);
-          var percentHeight = tableHeight * 100 / parentHeight;
+          var percentHeight = tableHeight * 100 / 600;
           tableStyle += "height:" + percentHeight + "%;"
         }
         if(tableStyle !== "") {
@@ -8163,24 +8160,28 @@ VISH.Status = function(V, $, undefined) {
     device.iOS = device.iPhone || device.iPad;
     device.applePhone = device.iPhone || device.iPhone4;
     device.appleTablet = device.iPad;
+    if(device.iOS) {
+      V.ViewerAdapter.setViewportForIphone()
+    }
     device.androidPhone = false;
     device.androidTablet = false;
     device.android = /android/i.test(navigator.userAgent);
     if(device.android) {
+      V.ViewerAdapter.setViewportForAndroid();
       if(/tablet/i.test(navigator.userAgent)) {
         device.androidTablet = true
       }else {
+        var maxWidth = 960 * device.pixelRatio;
         var maxHeight = 720 * device.pixelRatio;
-        maxWidth = 1024 * device.pixelRatio;
         var landscape = window.screen.availWidth > window.screen.availHeight;
         if(landscape) {
-          if(window.screen.availHeight >= maxHeight) {
+          if(window.screen.availWidth >= maxWidth && window.screen.availHeight >= maxHeight) {
             device.androidTablet = true
           }else {
             device.androidPhone = true
           }
         }else {
-          if(window.screen.availHeight >= maxWidth) {
+          if(window.screen.availWidth >= maxHeight && window.screen.availHeight >= maxWidth) {
             device.androidTablet = true
           }else {
             device.androidPhone = true
@@ -8334,6 +8335,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var is_preview;
   var close_button;
   var fs_button;
+  var can_use_nativeFs;
+  var embed;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
@@ -8352,29 +8355,36 @@ VISH.ViewerAdapter = function(V, $, undefined) {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
       }
       if(typeof options["preview"] === "boolean") {
-        is_preview = true
+        is_preview = options["preview"]
+      }
+      if(typeof options["embed"] === "boolean") {
+        embed = options["embed"]
+      }else {
+        embed = false
       }
       close_button = !V.Status.getDevice().desktop && !V.Status.getIsInIframe() && options["comeBackUrl"];
-      enter_fs_button = V.Status.getIsInIframe() && options["fullscreen"];
+      can_use_nativeFs = V.Status.getDevice().features.fullscreen && !embed;
+      enter_fs_button = typeof options["fullscreen"] !== "undefined" && !can_use_nativeFs;
       if(enter_fs_button) {
         enter_fs_url = options["fullscreen"]
       }
-      exit_fs_button = typeof options["exitFullscreen"] !== "undefined";
+      exit_fs_button = typeof options["exitFullscreen"] !== "undefined" && !can_use_nativeFs;
       if(exit_fs_button) {
         exit_fs_url = options["exitFullscreen"]
       }
-      fs_button = (V.Status.getDevice().features.fullscreen || enter_fs_button && exit_fs_button) && !is_preview
+      fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
+      fs_button = fs_button && !is_preview
     }else {
       render_full = false;
       is_preview = false;
       close_button = false;
       enter_fs_button = false;
       exit_fs_button = false;
-      fs_button = false
+      fs_button = false;
+      can_use_nativeFs = false
     }
     render_full = render_full || V.Status.getDevice().mobile;
-    enter_fs_button = enter_fs_button && !V.Status.getDevice().mobile;
-    exit_fs_button = exit_fs_button && !V.Status.getDevice().mobile;
+    fs_button = fs_button && !V.Status.getDevice().mobile;
     close_button = close_button && V.Status.getDevice().mobile;
     page_is_fullscreen = render_full;
     isOneSlide = !(VISH.Slides.getSlidesQuantity() > 1);
@@ -8382,15 +8392,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("#back_arrow").html("");
       $("#forward_arrow").html("")
     }
-    if(render_full) {
-      $("#viewbar").hide()
-    }else {
-      if(!isOneSlide) {
-        $("#viewbar").show();
-        VISH.SlideManager.updateSlideCounter()
-      }else {
+    if(!isOneSlide) {
+      if(render_full) {
         $("#viewbar").hide()
+      }else {
+        $("#viewbar").show()
       }
+      VISH.SlideManager.updateSlideCounter()
+    }else {
+      $("#viewbar").hide()
     }
     if(is_preview) {
       $("div#viewerpreview").show();
@@ -8404,8 +8414,23 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }else {
       $("#page-fullscreen").hide()
     }
-    updateInterface();
-    V.Text.init()
+    var delay = 0;
+    if(!V.Status.getDevice().desktop) {
+      delay = 200
+    }
+    setTimeout(function() {
+      updateInterface();
+      V.Text.init()
+    }, delay)
+  };
+  var setViewport = function(viewportContent) {
+    $("head").prepend('<meta name="viewport" content="' + viewportContent + '"/>')
+  };
+  var setViewportForAndroid = function() {
+    setViewport("width=device-width,height=device-height,user-scalable=yes")
+  };
+  var setViewportForIphone = function() {
+    setViewport("user-scalable=yes")
   };
   var decideIfPageSwitcher = function() {
     if(VISH.Slides.getCurrentSubSlide() !== null) {
@@ -8512,7 +8537,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     VISH.ObjectPlayer.aftersetupSize(increase)
   };
   var _enableFullScreen = function(fullscreen) {
-    if(V.Status.getDevice().features.fullscreen) {
+    if(can_use_nativeFs) {
       if(V.Status.getIsInIframe()) {
         var myDoc = parent.document
       }else {
@@ -8533,12 +8558,12 @@ VISH.ViewerAdapter = function(V, $, undefined) {
           $("#page-fullscreen").css("background-position", "-45px 0px")
         });
         $(document).on("click", "#page-fullscreen", function() {
-          window.location = exit_fs_url
+          window.location = exit_fs_url + window.location.hash
         })
       }else {
         if(!fullscreen && enter_fs_button) {
           $(document).on("click", "#page-fullscreen", function() {
-            VISH.Utils.sendParentToURL(enter_fs_url)
+            VISH.Utils.sendParentToURL(enter_fs_url + "?orgUrl=" + window.parent.location.href)
           })
         }
       }
@@ -8573,7 +8598,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     });
     _decideIfViewBarShow(false)
   };
-  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface}
+  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface, setViewport:setViewport, setViewportForAndroid:setViewportForAndroid, setViewportForIphone:setViewportForIphone}
 }(VISH, jQuery);
 VISH.Game = function(V, $, undefined) {
   var actions = {};
@@ -9233,23 +9258,105 @@ VISH.Slides = function(V, $, undefined) {
   isCurrentLastSlide:isCurrentLastSlide, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
+  var eMobile;
   var bindedEventListeners = false;
-  var PM_TOUCH_SENSITIVITY = 200;
-  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
-  var registeredEvents = [];
+  var mobile;
   var init = function() {
+    mobile = !V.Status.getDevice().desktop;
+    eMobile = VISH.Events.Mobile;
     if(!V.Editing) {
+      eMobile.init();
       bindViewerEventListeners()
     }
   };
-  var _registerEvent = function(eventTargetId) {
-    if(registeredEvents.indexOf(eventTargetId) == -1) {
-      registeredEvents.push(eventTargetId)
+  var bindViewerEventListeners = function() {
+    if(bindedEventListeners) {
+      return
+    }else {
+      bindedEventListeners = true
+    }
+    $(document).bind("keydown", handleBodyKeyDown);
+    $(document).on("click", "#page-switcher-start", function() {
+      V.Slides.backwardOneSlide()
+    });
+    $(document).on("click", "#page-switcher-end", function() {
+      V.Slides.forwardOneSlide()
+    });
+    $(document).on("click", "#closeButton", function(event) {
+      event.stopPropagation();
+      event.preventDefault();
+      window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
+    });
+    $(document).on("click", "#back_arrow", function(event) {
+      V.Slides.backwardOneSlide()
+    });
+    $(document).on("click", "#forward_arrow", function(event) {
+      V.Slides.forwardOneSlide()
+    });
+    $(document).on("click", ".close_subslide", onFlashcardCloseSlideClicked);
+    var presentation = V.SlideManager.getCurrentPresentation();
+    for(index in presentation.slides) {
+      var slide = presentation.slides[index];
+      switch(slide.type) {
+        case VISH.Constant.FLASHCARD:
+          for(ind in slide.pois) {
+            var poi = slide.pois[ind];
+            $(document).on("click", "#" + poi.id, {poi_id:poi.id}, onFlashcardPoiClicked)
+          }
+          break;
+        case VISH.Constant.VTOUR:
+          break
+      }
+    }
+    if(typeof applicationCache !== "undefined") {
+      applicationCache.addEventListener("cached", function() {
+        VISH.LocalStorage.addPresentation(presentation)
+      }, false);
+      applicationCache.addEventListener("updateready", function() {
+        VISH.LocalStorage.addPresentation(presentation)
+      }, false)
+    }
+    if(mobile) {
+      eMobile.bindViewerMobileEventListeners()
     }
   };
-  var _unregisterEvent = function(eventTargetId) {
-    if(registeredEvents.indexOf(eventTargetId) != -1) {
-      registeredEvents.splice(registeredEvents.indexOf(eventTargetId), 1)
+  var unbindViewerEventListeners = function() {
+    if(!bindedEventListeners) {
+      return
+    }else {
+      bindedEventListeners = false
+    }
+    $(document).unbind("keydown", handleBodyKeyDown);
+    $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+    $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
+    $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
+    $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
+    $(document).off("click", "#closeButton");
+    $(document).off("click", ".close_subslide", onFlashcardCloseSlideClicked);
+    var presentation = V.SlideManager.getCurrentPresentation();
+    for(index in presentation.slides) {
+      var slide = presentation.slides[index];
+      switch(slide.type) {
+        case VISH.Constant.FLASHCARD:
+          for(ind in slide.pois) {
+            var poi = slide.pois[ind];
+            $(document).off("click", "#" + poi.id, {poi_id:poi.id}, onFlashcardPoiClicked)
+          }
+          break;
+        case VISH.Constant.VTOUR:
+          break
+      }
+    }
+    if(typeof applicationCache !== "undefined") {
+      applicationCache.removeEventListener("cached", function() {
+        VISH.LocalStorage.addPresentation(presentation)
+      }, false);
+      applicationCache.removeEventListener("updateready", function() {
+        VISH.LocalStorage.addPresentation(presentation)
+      }, false)
+    }
+    if(mobile) {
+      eMobile.unbindViewerMobileEventListeners()
     }
   };
   var handleBodyKeyDown = function(event) {
@@ -9268,79 +9375,7 @@ VISH.Events = function(V, $, undefined) {
         break
     }
   };
-  var getTouches = function(event) {
-    if(event.touches) {
-      return event.touches
-    }else {
-      if(event.originalEvent.touches) {
-        return event.originalEvent.touches
-      }else {
-        return null
-      }
-    }
-  };
-  var handleTouchStart = function(event) {
-    var touches = getTouches(event);
-    if(touches.length === 1) {
-      touchDX = 0;
-      touchDY = 0;
-      touchStartX = touches[0].pageX;
-      touchStartY = touches[0].pageY;
-      document.body.addEventListener("touchmove", handleTouchMove, true);
-      document.body.addEventListener("touchend", handleTouchEnd, true);
-      var zoom = document.documentElement.clientWidth / window.innerWidth;
-      var firstClass = $(event.target).attr("class").split(" ")[0];
-      var eventNotRegister = registeredEvents.indexOf(event.target.id) == -1 && registeredEvents.indexOf(firstClass) == -1;
-      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL && eventNotRegister) {
-        event.preventDefault()
-      }else {
-        if(VISH.Status.getDevice().iPhone && VISH.Status.getDevice().browser.name === VISH.Constant.SAFARI) {
-          if($(event.target).hasClass("fc_poi")) {
-            var poiId = event.target.id;
-            _onFlashcardPoiClicked(poiId)
-          }else {
-            if($(event.target).hasClass("close_subslide")) {
-              _onFlashcardCloseSlideClicked(event)
-            }
-          }
-        }
-      }
-    }
-  };
-  var handleTouchMove = function(event) {
-    var touches = getTouches(event);
-    if(touches.length > 1) {
-      cancelTouch()
-    }else {
-      touchDX = touches[0].pageX - touchStartX;
-      touchDY = touches[0].pageY - touchStartY;
-      var zoom = document.documentElement.clientWidth / window.innerWidth;
-      if(zoom < MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
-        event.preventDefault()
-      }
-    }
-  };
-  var handleTouchEnd = function(event) {
-    var dx = Math.abs(touchDX);
-    var dy = Math.abs(touchDY);
-    if(dx > PM_TOUCH_SENSITIVITY && dy < dx * 2 / 3) {
-      var subslide = V.Slides.getCurrentSubSlide();
-      if(subslide !== null) {
-        V.Slides.closeSubslide($(subslide).attr("id"))
-      }
-      if(touchDX > 0) {
-        V.Slides.backwardOneSlide()
-      }else {
-        V.Slides.forwardOneSlide()
-      }
-    }
-    cancelTouch()
-  };
-  var cancelTouch = function() {
-    document.body.removeEventListener("touchmove", handleTouchMove, true);
-    document.body.removeEventListener("touchend", handleTouchEnd, true)
-  };
-  var _onFlashcardPoiClicked = function(event) {
+  var onFlashcardPoiClicked = function(event) {
     if(typeof event === "string") {
       var poiId = event
     }else {
@@ -9355,103 +9390,224 @@ VISH.Events = function(V, $, undefined) {
       V.Slides.openSubslide(poi.slide_id, true)
     }
   };
-  var _onFlashcardCloseSlideClicked = function(event) {
+  var onFlashcardCloseSlideClicked = function(event) {
     var close_slide_id = event.target.id.substring(5);
     V.Slides.closeSubslide(close_slide_id, true)
   };
-  var bindViewerEventListeners = function() {
-    if(!bindedEventListeners) {
-      $(document).bind("keydown", handleBodyKeyDown);
-      $(document).on("click", "#page-switcher-start", V.Slides.backwardOneSlide);
-      _registerEvent("page-switcher-start");
-      $(document).on("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-      _registerEvent("page-switcher-end");
-      $(document).on("click", "#back_arrow", V.Slides.backwardOneSlide);
-      _registerEvent("back_arrow");
-      $(document).on("click", "#forward_arrow", V.Slides.forwardOneSlide);
-      _registerEvent("forward_arrow");
-      _registerEvent("closeButton");
-      _registerEvent("closeButtonImg");
-      $(document).on("click", "#closeButton", function() {
-        window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
-      });
-      $(document).bind("touchstart", handleTouchStart);
-      $(document).on("click", ".close_subslide", _onFlashcardCloseSlideClicked);
-      _registerEvent("close_subslide");
-      _registerEvent("customPlayerButton");
-      _registerEvent("customPlayerControls");
-      _registerEvent("page-fullscreen");
-      var presentation = V.SlideManager.getCurrentPresentation();
-      for(index in presentation.slides) {
-        var slide = presentation.slides[index];
-        switch(slide.type) {
-          case VISH.Constant.FLASHCARD:
-            for(ind in slide.pois) {
-              var poi = slide.pois[ind];
-              $(document).on("click", "#" + poi.id, {poi_id:poi.id}, _onFlashcardPoiClicked);
-              _registerEvent(poi.id)
-            }
-            break;
-          case VISH.Constant.VTOUR:
-            break
-        }
-      }
-      if(!V.Status.getDevice().desktop) {
-        bindMobileViewerEventListeners()
+  return{init:init, bindViewerEventListeners:bindViewerEventListeners, unbindViewerEventListeners:unbindViewerEventListeners, onFlashcardPoiClicked:onFlashcardPoiClicked, onFlashcardCloseSlideClicked:onFlashcardCloseSlideClicked}
+}(VISH, jQuery);
+VISH.Events.Mobile = function(V, $, undefined) {
+  var PM_TOUCH_SENSITIVITY = 20;
+  var PM_TOUCH_DESVIATION = 60;
+  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
+  var PM_TOUCH_SENSITIVITY_FOR_PAGER_FALLBACK = 15;
+  var LONG_TOUCH_DURATION = 1E3;
+  var bindedEventListeners = false;
+  var init = function() {
+    var device = V.Status.getDevice();
+    var isIphoneAndSafari = device.iPhone && device.browser.name === V.Constant.SAFARI;
+    if(isIphoneAndSafari) {
+      _simpleClick = _simpleClickForIphoneAndSafari
+    }
+    if(device.tablet) {
+      _longClick = _longClickForTablets
+    }
+    if(!isIphoneAndSafari && !device.tablet) {
+      _checkClickTouches = function() {
+        return false
       }
     }
-    bindedEventListeners = true
   };
-  var bindMobileViewerEventListeners = function() {
+  var bindViewerMobileEventListeners = function() {
+    if(bindedEventListeners) {
+      return
+    }else {
+      bindedEventListeners = true
+    }
+    $(document).bind("touchstart", handleTouchStart);
     window.addEventListener("load", function() {
       _hideAddressBar()
     });
     $(window).on("orientationchange", function() {
       _hideAddressBar();
       V.ViewerAdapter.updateInterface()
-    })
+    });
+    document.body.addEventListener("touchmove", handleTouchMove, true);
+    document.body.addEventListener("touchend", handleTouchEnd, true);
+    document.body.addEventListener("touchcancel", handleTouchCancel, true)
+  };
+  var unbindViewerMobileEventListeners = function() {
+    if(!bindedEventListeners) {
+      return
+    }else {
+      bindedEventListeners = false
+    }
+    $(document).unbind("touchstart", handleTouchStart);
+    window.removeEventListener("load", function() {
+      _hideAddressBar()
+    });
+    $(window).off("orientationchange", function() {
+      _hideAddressBar();
+      V.ViewerAdapter.updateInterface()
+    });
+    document.body.removeEventListener("touchmove", handleTouchMove, true);
+    document.body.removeEventListener("touchend", handleTouchEnd, true)
+  };
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchCX = 0;
+  var touchCY = 0;
+  var touchesLength = 0;
+  var touchStartTime = 0;
+  var handleTouchStart = function(event) {
+    _resetTouchVars();
+    var touches = _getTouches(event);
+    touchesLength = touches.length;
+    if(touchesLength === 1) {
+      touchStartX = touches[0].pageX;
+      touchStartY = touches[0].pageY
+    }
+    touchStartTime = (new Date).getTime()
+  };
+  var _resetTouchVars = function() {
+    touchStartX = -1;
+    touchStartY = -1;
+    touchCX = -1;
+    touchCY = -1;
+    touchesLength = -1;
+    touchStart = -1
+  };
+  var handleTouchMove = function(event) {
+    var touches = _getTouches(event);
+    if(touches.length === 1) {
+      touchCX = touches[0].pageX;
+      touchCY = touches[0].pageY;
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      if(zoom <= MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+        event.preventDefault();
+        return
+      }
+    }
+  };
+  var handleTouchEnd = function(event) {
+    if(touchesLength === 1) {
+      if(_checkClickTouches(event)) {
+        return
+      }
+      if(_checkAdvanceSlidesTouches(event)) {
+        return
+      }
+      if(_checkOtherTouches(event)) {
+        return
+      }
+    }
+    _resetTouchVars()
+  };
+  var handleTouchCancel = function() {
+    _resetTouchVars()
   };
   var _hideAddressBar = function() {
   };
-  var unbindViewerEventListeners = function() {
-    if(bindedEventListeners) {
-      $(document).unbind("keydown", handleBodyKeyDown);
-      _unregisterEvent("page-switcher-start");
-      $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
-      _unregisterEvent("page-switcher-end");
-      $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
-      _unregisterEvent("back_arrow");
-      $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
-      _unregisterEvent("forward_arrow");
-      $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
-      _unregisterEvent("closeButton");
-      _unregisterEvent("closeButtonImg");
-      $(document).off("click", "#closeButton");
-      $(document).unbind("touchstart", handleTouchStart);
-      $(document).off("click", ".close_subslide", _onFlashcardCloseSlideClicked);
-      _unregisterEvent("close_subslide");
-      _unregisterEvent("customPlayerButton");
-      _unregisterEvent("customPlayerControls");
-      _unregisterEvent("page-fullscreen");
-      var presentation = V.SlideManager.getCurrentPresentation();
-      for(index in presentation.slides) {
-        var slide = presentation.slides[index];
-        switch(slide.type) {
-          case VISH.Constant.FLASHCARD:
-            for(ind in slide.pois) {
-              var poi = slide.pois[ind];
-              $(document).off("click", "#" + poi.id, {poi_id:poi.id}, _onFlashcardPoiClicked);
-              _unregisterEvent(poi.id)
-            }
-            break;
-          case VISH.Constant.VTOUR:
-            break
-        }
+  var _checkClickTouches = function(event) {
+    var click = touchCX == -1 && touchCY == -1;
+    if(click) {
+      var duration = (new Date).getTime() - touchStartTime;
+      if(duration < LONG_TOUCH_DURATION) {
+        _simpleClick(event)
+      }else {
+        _longClick(event)
       }
-      bindedEventListeners = false
+    }
+    return click
+  };
+  var _simpleClick = function(event) {
+    return true
+  };
+  var _simpleClickForIphoneAndSafari = function(event) {
+    if($(event.target).hasClass("fc_poi")) {
+      event.preventDefault();
+      var poiId = event.target.id;
+      V.Events.onFlashcardPoiClicked(poiId)
+    }else {
+      if($(event.target).hasClass("close_subslide")) {
+        event.preventDefault();
+        V.Events.onFlashcardCloseSlideClicked(event)
+      }
+    }
+    return true
+  };
+  var _longClick = function(event) {
+    return true
+  };
+  var _longClickForTablets = function(event) {
+    if(_checkPaginatorClick(event.target.id)) {
+      event.preventDefault();
+      event.stopPropagation();
+      _applyPaginatorClick(event.target.id)
     }
   };
-  return{init:init, bindViewerEventListeners:bindViewerEventListeners, unbindViewerEventListeners:unbindViewerEventListeners}
+  var _checkAdvanceSlidesTouches = function(event) {
+    var touchDX = touchCX - touchStartX;
+    var touchDY = touchCY - touchStartY;
+    var absTouchDX = Math.abs(touchDX);
+    var absTouchDY = Math.abs(touchDY);
+    var move_slide = absTouchDX > PM_TOUCH_SENSITIVITY && absTouchDY < PM_TOUCH_DESVIATION;
+    move_slide = move_slide && touchCX !== -1;
+    if(move_slide) {
+      event.preventDefault();
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      if(zoom > MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+        return
+      }
+      var subslide = V.Slides.getCurrentSubSlide();
+      if(subslide !== null) {
+        V.Slides.closeSubslide($(subslide).attr("id"))
+      }
+      if(touchDX > 0) {
+        V.Slides.backwardOneSlide()
+      }else {
+        V.Slides.forwardOneSlide()
+      }
+    }
+    return move_slide
+  };
+  var _checkOtherTouches = function(event) {
+    return false
+  };
+  var _checkOtherTouchesForTablets = function(event) {
+    var id = event.target.id;
+    if(_checkPaginatorClick(id)) {
+      if((absTouchDX + absTouchDY) / 2 < PM_TOUCH_SENSITIVITY_FOR_PAGER_FALLBACK) {
+        event.preventDefault();
+        _applyPaginatorClick(id);
+        return true
+      }
+    }
+  };
+  var _checkPaginatorClick = function(targetId) {
+    return targetId === "page-switcher-end" || targetId === "page-switcher-start"
+  };
+  var _applyPaginatorClick = function(targetId) {
+    if(targetId === "page-switcher-end") {
+      $("#page-switcher-end").trigger("click")
+    }else {
+      if(targetId === "page-switcher-start") {
+        $("#page-switcher-start").trigger("click")
+      }
+    }
+  };
+  var _getTouches = function(event) {
+    if(event.touches) {
+      return event.touches
+    }else {
+      if(event.originalEvent.touches) {
+        return event.originalEvent.touches
+      }else {
+        return null
+      }
+    }
+  };
+  return{init:init, bindViewerMobileEventListeners:bindViewerMobileEventListeners, unbindViewerMobileEventListeners:unbindViewerMobileEventListeners}
 }(VISH, jQuery);
 VISH.EventsNotifier = function(V, $, undefined) {
   var listeners;
@@ -9569,15 +9725,16 @@ VISH.Quiz = function(V, $, undefined) {
   var startMcQuizButtonClicked = function() {
     if(V.User.isLogged()) {
       var quizId = $(VISH.Slides.getCurrentSlide()).find(".quizId").val();
+      var quiztype = $(VISH.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
       $("a#addQuizSessionFancybox").trigger("click");
       V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
-      _startStats();
+      _startStats(quiztype);
       testFullScreen()
     }else {
       V.Debugging.log("User not logged")
     }
   };
-  var _startStats = function() {
+  var _startStats = function(quiz_type) {
     var question;
     if($("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").contents()) {
       $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").children().remove()
@@ -9588,13 +9745,20 @@ VISH.Quiz = function(V, $, undefined) {
     if($("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children()) {
       $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children().remove()
     }
-    question = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone");
+    if(quiz_type == "multiplechoice") {
+      question = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone");
+      var options_form = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form")
+    }
+    if(quiz_type == "truefalse") {
+      question = $(VISH.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".value_truefalse_question_in_zone");
+      var options_form = $(VISH.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".truefalse_options_container")
+    }
     question.addClass("question_in_stats");
     $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append(question.clone());
     $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append(question.clone());
-    var options_form = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form");
     options_form.find(".multiplechoice_option_in_viewer").addClass("option_in_stats");
     $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append(options_form);
+    $("#" + tabQuizStatsBarsContentId).find(".truefalse_options_container").css("display", "block");
     $("#" + tabQuizStatsBarsContentId).find(".mch_inputs_wrapper").remove();
     $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
     $("#tab_quiz_stats_pie_content").addClass("resized_fancybox_for_stats");
@@ -9768,7 +9932,15 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).on("click", "." + voteButtonClass, _sendVote)
   };
   var _sendVote = function(event) {
-    var answer = $(VISH.Slides.getCurrentSlide()).find("input:radio[name='mc_radio']:checked'").val();
+    var answer;
+    if(event.target.parentElement.classList[0] == "mch_inputs_wrapper") {
+      var answer = $(VISH.Slides.getCurrentSlide()).find("input:radio[name='mc_radio']:checked'").val()
+    }else {
+      if(event.target.parentElement.classList[0] == "truefalse_inputs_wrapper") {
+        var answer = $(VISH.Slides.getCurrentSlide()).find("input:radio[name='truefalse']:checked'").val()
+      }
+    }
+    console.log("_answer value:  " + answer);
     if(typeof answer !== "undefined") {
       var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
       V.Quiz.API.putQuizSession(answer, quizSessionActiveId, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError);
@@ -9777,10 +9949,12 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _onQuizVotingSuccessReceived = function(data) {
     var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
-    V.Debugging.log("_onQuizVotingSuccessReceived, and quizSessionActiveId is:  " + quizSessionActiveId);
+    console.log("_onQuizVotingSuccessReceived, and quizSessionActiveId is:  " + quizSessionActiveId);
+    console.log("_OnQuizzVotingSuccessReceived, and value received is:  " + JSON.stringify(data));
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
   };
   var _onQuizSessionResultsReceived = function(data) {
+    console.log("_onQuizSessionResultsReceived, and value received is:  " + JSON.stringify(data));
     $(VISH.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
     $(".thanks_div").show();
     var id = $("a[name=modal_window]").attr("href");
@@ -9800,6 +9974,7 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _showResults = function(data) {
+    console.log("_showResults, and value received is:  " + JSON.stringify(data));
     var maxWidth = 70;
     var totalVotes = 0;
     for(option in data.results) {
@@ -9953,7 +10128,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
   };
   var _renderMcQuestion = function(quiz_element, zone_class, slide_id, zone) {
     V.Debugging.log("_renderMcQuestion, and quiz choices received is:  " + JSON.stringify(quiz_element["options"]["choices"]));
-    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
+    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz' quiztype='multiplechoice'>";
     ret += "<div class='mcquestion_container'>";
     ret += "<div class='mcquestion_body'>";
     ret += "<div class='value_multiplechoice_question_in_zone question_in_viewer'>" + quiz_element["question"] + "</div>";
@@ -9998,7 +10173,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     return ret
   };
   var _renderTrueFalseQuestion = function(quiz_element, zone_class, slide_id, zone) {
-    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz'>";
+    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz' quiztype='truefalse'>";
     ret += "<div class='truefalse_question_container'>";
     ret += "<div class='value_truefalse_question_in_zone question_in_viewer'>";
     ret += quiz_element["question"];
@@ -10027,6 +10202,18 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
         }
       }
       ret += "</div>";
+      ret += "<div class='truefalse_options_container'>";
+      ret += "<li class='truefalse_options_in_zone'>";
+      ret += "<div class='truefalse_titles_true'>True</div>";
+      ret += "</li>";
+      ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
+      ret += "<label class='mcoption_label'></label>";
+      ret += "<li class='truefalse_options_in_zone'>";
+      ret += "<div class='truefalse_titles_false'>False</div>";
+      ret += "</li>";
+      ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
+      ret += "<label class='mcoption_label'></label>";
+      ret += "</div>";
       ret += "<div class='showhide_answer_button_container'>";
       ret += "<input type='button' class='show_answers_button' value='Show Answer'/>";
       ret += "<input type='button' class='hide_answers_button' value='Hide Answer'/>";
@@ -10034,7 +10221,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     }
     ret += "</div>";
     ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
-    ret += "<div class='mch_inputs_wrapper'>";
+    ret += "<div class='truefalse_inputs_wrapper'>";
     ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
     ret += "<input type='button' class='quiz_send_vote_button' value='Send'/>";
     ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";

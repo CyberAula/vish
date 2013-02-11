@@ -1,7 +1,7 @@
 <script>
 	var loadIframeMessenger=true;
 	var gateway = "<%=@gateway%>";
-	switch("<%=@gateway%>"){
+	switch(gateway){
 		case "mashme":
 			var MASHME_API_SCRIPT_URL = "https://mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
 			$.getScript(MASHME_API_SCRIPT_URL).done(function(script, textStatus) {  		
@@ -20,7 +20,7 @@
 				var VEMessageObject = JSON.parse(VEMessage);
 				if(typeof VEMessageObject.sent === "boolean"){
 					//Received message from Web App
-					console.log("Received message from Web App: iframeAPI send message");
+					// console.log("Received message from Web App: iframeAPI send message");
 					VISH.IframeAPI.sendMessage(VEMessage,"*");
 				}
 			} catch(e){
@@ -35,13 +35,16 @@
 
 <script>
 	window.onload = function(){
+		if(!gateway){
+			return;
+		}
 		VISH.IframeAPI.init({preventDefault: true, callback: onConnect});
 		VISH.IframeAPI.registerCallback("onMessage",function(VEMessage,origin){
 			var VEMessageObject = JSON.parse(VEMessage);
 			if(typeof VEMessageObject.sent !== "boolean"){
 				VEMessageObject.sent = true;
 				VEMessage = JSON.stringify(VEMessageObject);
-				switch("<%=@gateway%>"){
+				switch(gateway){
 					case "mashme":
 						if(MASHME){
 							MASHME.API.iFrame.broadcast("MashMeAPIMessage:"+VEMessage);

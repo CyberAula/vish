@@ -235,7 +235,7 @@ this can not be done with show() and hide() because then it remains with display
   background-repeat: no-repeat;
   height: 40px;
   width: 45px;
-  position: fixed;
+  position: absolute;
   right: 0;
   bottom: 0;
   text-align: center;
@@ -266,7 +266,7 @@ this can not be done with show() and hide() because then it remains with display
     left: 50%;
     margin-left: -200px;
     opacity: 1.0;
-    position: fixed;
+    position: absolute;
     text-align: center;
     width: 430px;
 }
@@ -429,32 +429,24 @@ div#viewerpreview {
 
 
 img#closeButtonImg{
-  max-width: 75px; 
-  max-height: 75px;
-  width: 100%; 
-  height: 100%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  max-width: 100px;
+  max-height: 100px;
+  min-width: 30px;
+  min-height: 30px;
+  width: 100%;
   background-color: transparent;
 }
 
 button#closeButton {
-  position: absolute; 
-  top: 0px; 
-  right: 0px; 
-  width: 100%; 
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 8%;
   height: 100%;
-  max-width: 100px; 
   max-height: 100px;
-  padding-top: 10px; 
-  padding-right: 15px; 
-  padding-bottom: 10px; 
-  padding-left: 15px; 
-  font-size: 24px; 
-  text-align: center; 
-  font-family: 'trebuchet ms', verdana, arial, sans-serif; 
-  border-radius: 10px 0px 0px 10px;
-  -o-border-radius: 10px 0px 0px 10px;
-  -moz-border-radius: 10px 0px 0px 10px;
-  -webkit-border-radius: 10px 0px 0px 10px;
   background-color: transparent;
   z-index: 2620;
   cursor: pointer;

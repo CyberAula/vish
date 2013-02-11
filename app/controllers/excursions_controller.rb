@@ -105,7 +105,12 @@ class ExcursionsController < ApplicationController
           render
         end
       }
-      format.full { render :layout => 'iframe' }
+      format.full {
+        if params[:orgUrl]
+          @orgUrl = params[:orgUrl]
+        end
+        render :layout => 'iframe'
+      }
       format.mobile { render :layout => 'iframe' }
       format.json { render :json => resource }
       format.gateway { 
@@ -115,7 +120,6 @@ class ExcursionsController < ApplicationController
       format.scorm {
         @excursion.to_scorm(self)
         send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
-
       }
     end
   end

@@ -26,9 +26,13 @@
 	options["developping"] = false;
 	<% if @excursion %>
 		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
-		options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
+		<% if @orgUrl %>
+			var orgUrl = "<%=@orgUrl%>";
+			options["exitFullscreen"] = orgUrl;
+		<% else %>
+			options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
+		<% end %>
 	<% end %>
-	
 	<% if request && request.referrer %>
 		options["comeBackUrl"] = "<%=request.referrer%>";
 	<% end %>
@@ -53,13 +57,18 @@
 		options.addons.push(addon);
 	}
 
+	if((window.parent.embed===true)||(typeof orgUrl !== "undefined")){
+		options["embed"] = true;
+	}
+
 	function start(){
 		var isPreview = false;
         try {
             isPreview = window.parent.VISH && 
             			window.parent.VISH.Editor && 
             			(typeof window.parent.VISH.Editor.Preview.getPreview == "function") && 
-            			(typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined');
+            			(typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined') &&
+            			(window.parent.VISH.Editor.Preview.getPreview() != null);
         } catch(exception) {
             isPreview = false;
         }
@@ -76,6 +85,7 @@
       			myexcursion = null;
       		<%end%>
       	}
+
 		VISH.SlideManager.init(options , myexcursion);
 	}
 </script>
