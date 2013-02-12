@@ -21,6 +21,6 @@ class TrueFalseQuiz < Quiz
   end
 
   def possible_answers_raw
-    [true, false]
+    ["true", "false"]
   end
 end
