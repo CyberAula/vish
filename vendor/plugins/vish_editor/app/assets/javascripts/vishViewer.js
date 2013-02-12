@@ -7664,7 +7664,13 @@ VISH.SlideManager = function(V, $, undefined) {
     if(options.addons) {
       V.Addons.init(options.addons)
     }
-    V.ViewerAdapter.init(options)
+    var delay = 0;
+    if(!V.Status.getDevice().desktop) {
+      delay = 200
+    }
+    setTimeout(function() {
+      V.ViewerAdapter.init(options)
+    }, delay)
   };
   var toggleFullScreen = function() {
     if(VISH.Status.isSlaveMode()) {
@@ -8149,7 +8155,7 @@ VISH.Status = function(V, $, undefined) {
     }
     device.features.touchScreen = !!("ontouchstart" in window);
     device.features.localStorage = typeof Storage !== "undefined";
-    device.features.history = typeof history === "object" && typeof history.back === "function"
+    device.features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function"
   };
   var fillUserAgent = function() {
     device.pixelRatio = window.devicePixelRatio || 1;
@@ -8423,14 +8429,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }else {
       $("#page-fullscreen").hide()
     }
-    var delay = 0;
-    if(!V.Status.getDevice().desktop) {
-      delay = 200
-    }
-    setTimeout(function() {
-      updateInterface();
-      V.Text.init()
-    }, delay)
+    updateInterface();
+    V.Text.init()
   };
   var setViewport = function(viewportContent) {
     $("head").prepend('<meta name="viewport" content="' + viewportContent + '"/>')
@@ -8572,7 +8572,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
             window.location = exit_fs_url
           }else {
             if(V.Status.getDevice().features.history) {
-              history.back()
+              history.go(-1)
             }
           }
         })
@@ -9418,219 +9418,6 @@ VISH.Events = function(V, $, undefined) {
   };
   return{init:init, bindViewerEventListeners:bindViewerEventListeners, unbindViewerEventListeners:unbindViewerEventListeners, onFlashcardPoiClicked:onFlashcardPoiClicked, onFlashcardCloseSlideClicked:onFlashcardCloseSlideClicked}
 }(VISH, jQuery);
-VISH.Events.Mobile = function(V, $, undefined) {
-  var PM_TOUCH_SENSITIVITY = 20;
-  var PM_TOUCH_DESVIATION = 60;
-  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
-  var PM_TOUCH_SENSITIVITY_FOR_PAGER_FALLBACK = 15;
-  var LONG_TOUCH_DURATION = 1E3;
-  var bindedEventListeners = false;
-  var init = function() {
-    var device = V.Status.getDevice();
-    var isIphoneAndSafari = device.iPhone && device.browser.name === V.Constant.SAFARI;
-    if(isIphoneAndSafari) {
-      _simpleClick = _simpleClickForIphoneAndSafari
-    }
-    if(device.tablet) {
-      _longClick = _longClickForTablets
-    }
-    if(!isIphoneAndSafari && !device.tablet) {
-      _checkClickTouches = function() {
-        return false
-      }
-    }
-  };
-  var bindViewerMobileEventListeners = function() {
-    if(bindedEventListeners) {
-      return
-    }else {
-      bindedEventListeners = true
-    }
-    $(document).bind("touchstart", handleTouchStart);
-    window.addEventListener("load", function() {
-      _hideAddressBar()
-    });
-    $(window).on("orientationchange", function() {
-      _hideAddressBar();
-      V.ViewerAdapter.updateInterface()
-    });
-    document.body.addEventListener("touchmove", handleTouchMove, true);
-    document.body.addEventListener("touchend", handleTouchEnd, true);
-    document.body.addEventListener("touchcancel", handleTouchCancel, true)
-  };
-  var unbindViewerMobileEventListeners = function() {
-    if(!bindedEventListeners) {
-      return
-    }else {
-      bindedEventListeners = false
-    }
-    $(document).unbind("touchstart", handleTouchStart);
-    window.removeEventListener("load", function() {
-      _hideAddressBar()
-    });
-    $(window).off("orientationchange", function() {
-      _hideAddressBar();
-      V.ViewerAdapter.updateInterface()
-    });
-    document.body.removeEventListener("touchmove", handleTouchMove, true);
-    document.body.removeEventListener("touchend", handleTouchEnd, true)
-  };
-  var touchStartX = 0;
-  var touchStartY = 0;
-  var touchCX = 0;
-  var touchCY = 0;
-  var touchesLength = 0;
-  var touchStartTime = 0;
-  var handleTouchStart = function(event) {
-    _resetTouchVars();
-    var touches = _getTouches(event);
-    touchesLength = touches.length;
-    if(touchesLength === 1) {
-      touchStartX = touches[0].pageX;
-      touchStartY = touches[0].pageY
-    }
-    touchStartTime = (new Date).getTime()
-  };
-  var _resetTouchVars = function() {
-    touchStartX = -1;
-    touchStartY = -1;
-    touchCX = -1;
-    touchCY = -1;
-    touchesLength = -1;
-    touchStart = -1
-  };
-  var handleTouchMove = function(event) {
-    var touches = _getTouches(event);
-    if(touches.length === 1) {
-      touchCX = touches[0].pageX;
-      touchCY = touches[0].pageY;
-      var zoom = document.documentElement.clientWidth / window.innerWidth;
-      if(zoom <= MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
-        event.preventDefault();
-        return
-      }
-    }
-  };
-  var handleTouchEnd = function(event) {
-    if(touchesLength === 1) {
-      if(_checkClickTouches(event)) {
-        return
-      }
-      if(_checkAdvanceSlidesTouches(event)) {
-        return
-      }
-      if(_checkOtherTouches(event)) {
-        return
-      }
-    }
-    _resetTouchVars()
-  };
-  var handleTouchCancel = function() {
-    _resetTouchVars()
-  };
-  var _hideAddressBar = function() {
-  };
-  var _checkClickTouches = function(event) {
-    var click = touchCX == -1 && touchCY == -1;
-    if(click) {
-      var duration = (new Date).getTime() - touchStartTime;
-      if(duration < LONG_TOUCH_DURATION) {
-        _simpleClick(event)
-      }else {
-        _longClick(event)
-      }
-    }
-    return click
-  };
-  var _simpleClick = function(event) {
-    return true
-  };
-  var _simpleClickForIphoneAndSafari = function(event) {
-    if($(event.target).hasClass("fc_poi")) {
-      event.preventDefault();
-      var poiId = event.target.id;
-      V.Events.onFlashcardPoiClicked(poiId)
-    }else {
-      if($(event.target).hasClass("close_subslide")) {
-        event.preventDefault();
-        V.Events.onFlashcardCloseSlideClicked(event)
-      }
-    }
-    return true
-  };
-  var _longClick = function(event) {
-    return true
-  };
-  var _longClickForTablets = function(event) {
-    if(_checkPaginatorClick(event.target.id)) {
-      event.preventDefault();
-      event.stopPropagation();
-      _applyPaginatorClick(event.target.id)
-    }
-  };
-  var _checkAdvanceSlidesTouches = function(event) {
-    var touchDX = touchCX - touchStartX;
-    var touchDY = touchCY - touchStartY;
-    var absTouchDX = Math.abs(touchDX);
-    var absTouchDY = Math.abs(touchDY);
-    var move_slide = absTouchDX > PM_TOUCH_SENSITIVITY && absTouchDY < PM_TOUCH_DESVIATION;
-    move_slide = move_slide && touchCX !== -1;
-    if(move_slide) {
-      event.preventDefault();
-      var zoom = document.documentElement.clientWidth / window.innerWidth;
-      if(zoom > MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
-        return
-      }
-      var subslide = V.Slides.getCurrentSubSlide();
-      if(subslide !== null) {
-        V.Slides.closeSubslide($(subslide).attr("id"))
-      }
-      if(touchDX > 0) {
-        V.Slides.backwardOneSlide()
-      }else {
-        V.Slides.forwardOneSlide()
-      }
-    }
-    return move_slide
-  };
-  var _checkOtherTouches = function(event) {
-    return false
-  };
-  var _checkOtherTouchesForTablets = function(event) {
-    var id = event.target.id;
-    if(_checkPaginatorClick(id)) {
-      if((absTouchDX + absTouchDY) / 2 < PM_TOUCH_SENSITIVITY_FOR_PAGER_FALLBACK) {
-        event.preventDefault();
-        _applyPaginatorClick(id);
-        return true
-      }
-    }
-  };
-  var _checkPaginatorClick = function(targetId) {
-    return targetId === "page-switcher-end" || targetId === "page-switcher-start"
-  };
-  var _applyPaginatorClick = function(targetId) {
-    if(targetId === "page-switcher-end") {
-      $("#page-switcher-end").trigger("click")
-    }else {
-      if(targetId === "page-switcher-start") {
-        $("#page-switcher-start").trigger("click")
-      }
-    }
-  };
-  var _getTouches = function(event) {
-    if(event.touches) {
-      return event.touches
-    }else {
-      if(event.originalEvent.touches) {
-        return event.originalEvent.touches
-      }else {
-        return null
-      }
-    }
-  };
-  return{init:init, bindViewerMobileEventListeners:bindViewerMobileEventListeners, unbindViewerMobileEventListeners:unbindViewerMobileEventListeners}
-}(VISH, jQuery);
 VISH.EventsNotifier = function(V, $, undefined) {
   var listeners;
   var init = function() {
@@ -10385,5 +10172,218 @@ VISH.Quiz.API = function(V, $, undefined) {
     }
   };
   return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, putQuizSession:putQuizSession, getQuizSessionResults:getQuizSessionResults}
+}(VISH, jQuery);
+VISH.Events.Mobile = function(V, $, undefined) {
+  var PM_TOUCH_SENSITIVITY = 20;
+  var PM_TOUCH_DESVIATION = 60;
+  var MINIMUM_ZOOM_TO_ENABLE_SCROLL = 1.2;
+  var PM_TOUCH_SENSITIVITY_FOR_PAGER_FALLBACK = 15;
+  var LONG_TOUCH_DURATION = 1E3;
+  var bindedEventListeners = false;
+  var init = function() {
+    var device = V.Status.getDevice();
+    var isIphoneAndSafari = device.iPhone && device.browser.name === V.Constant.SAFARI;
+    if(isIphoneAndSafari) {
+      _simpleClick = _simpleClickForIphoneAndSafari
+    }
+    if(device.tablet) {
+      _longClick = _longClickForTablets
+    }
+    if(!isIphoneAndSafari && !device.tablet) {
+      _checkClickTouches = function() {
+        return false
+      }
+    }
+  };
+  var bindViewerMobileEventListeners = function() {
+    if(bindedEventListeners) {
+      return
+    }else {
+      bindedEventListeners = true
+    }
+    $(document).bind("touchstart", handleTouchStart);
+    window.addEventListener("load", function() {
+      _hideAddressBar()
+    });
+    $(window).on("orientationchange", function() {
+      _hideAddressBar();
+      V.ViewerAdapter.updateInterface()
+    });
+    document.body.addEventListener("touchmove", handleTouchMove, true);
+    document.body.addEventListener("touchend", handleTouchEnd, true);
+    document.body.addEventListener("touchcancel", handleTouchCancel, true)
+  };
+  var unbindViewerMobileEventListeners = function() {
+    if(!bindedEventListeners) {
+      return
+    }else {
+      bindedEventListeners = false
+    }
+    $(document).unbind("touchstart", handleTouchStart);
+    window.removeEventListener("load", function() {
+      _hideAddressBar()
+    });
+    $(window).off("orientationchange", function() {
+      _hideAddressBar();
+      V.ViewerAdapter.updateInterface()
+    });
+    document.body.removeEventListener("touchmove", handleTouchMove, true);
+    document.body.removeEventListener("touchend", handleTouchEnd, true)
+  };
+  var touchStartX = 0;
+  var touchStartY = 0;
+  var touchCX = 0;
+  var touchCY = 0;
+  var touchesLength = 0;
+  var touchStartTime = 0;
+  var handleTouchStart = function(event) {
+    _resetTouchVars();
+    var touches = _getTouches(event);
+    touchesLength = touches.length;
+    if(touchesLength === 1) {
+      touchStartX = touches[0].pageX;
+      touchStartY = touches[0].pageY
+    }
+    touchStartTime = (new Date).getTime()
+  };
+  var _resetTouchVars = function() {
+    touchStartX = -1;
+    touchStartY = -1;
+    touchCX = -1;
+    touchCY = -1;
+    touchesLength = -1;
+    touchStart = -1
+  };
+  var handleTouchMove = function(event) {
+    var touches = _getTouches(event);
+    if(touches.length === 1) {
+      touchCX = touches[0].pageX;
+      touchCY = touches[0].pageY;
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      if(zoom <= MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+        event.preventDefault();
+        return
+      }
+    }
+  };
+  var handleTouchEnd = function(event) {
+    if(touchesLength === 1) {
+      if(_checkClickTouches(event)) {
+        return
+      }
+      if(_checkAdvanceSlidesTouches(event)) {
+        return
+      }
+      if(_checkOtherTouches(event)) {
+        return
+      }
+    }
+    _resetTouchVars()
+  };
+  var handleTouchCancel = function() {
+    _resetTouchVars()
+  };
+  var _hideAddressBar = function() {
+  };
+  var _checkClickTouches = function(event) {
+    var click = touchCX == -1 && touchCY == -1;
+    if(click) {
+      var duration = (new Date).getTime() - touchStartTime;
+      if(duration < LONG_TOUCH_DURATION) {
+        _simpleClick(event)
+      }else {
+        _longClick(event)
+      }
+    }
+    return click
+  };
+  var _simpleClick = function(event) {
+    return true
+  };
+  var _simpleClickForIphoneAndSafari = function(event) {
+    if($(event.target).hasClass("fc_poi")) {
+      event.preventDefault();
+      var poiId = event.target.id;
+      V.Events.onFlashcardPoiClicked(poiId)
+    }else {
+      if($(event.target).hasClass("close_subslide")) {
+        event.preventDefault();
+        V.Events.onFlashcardCloseSlideClicked(event)
+      }
+    }
+    return true
+  };
+  var _longClick = function(event) {
+    return true
+  };
+  var _longClickForTablets = function(event) {
+    if(_checkPaginatorClick(event.target.id)) {
+      event.preventDefault();
+      event.stopPropagation();
+      _applyPaginatorClick(event.target.id)
+    }
+  };
+  var _checkAdvanceSlidesTouches = function(event) {
+    var touchDX = touchCX - touchStartX;
+    var touchDY = touchCY - touchStartY;
+    var absTouchDX = Math.abs(touchDX);
+    var absTouchDY = Math.abs(touchDY);
+    var move_slide = absTouchDX > PM_TOUCH_SENSITIVITY && absTouchDY < PM_TOUCH_DESVIATION;
+    move_slide = move_slide && touchCX !== -1;
+    if(move_slide) {
+      event.preventDefault();
+      var zoom = document.documentElement.clientWidth / window.innerWidth;
+      if(zoom > MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
+        return
+      }
+      var subslide = V.Slides.getCurrentSubSlide();
+      if(subslide !== null) {
+        V.Slides.closeSubslide($(subslide).attr("id"))
+      }
+      if(touchDX > 0) {
+        V.Slides.backwardOneSlide()
+      }else {
+        V.Slides.forwardOneSlide()
+      }
+    }
+    return move_slide
+  };
+  var _checkOtherTouches = function(event) {
+    return false
+  };
+  var _checkOtherTouchesForTablets = function(event) {
+    var id = event.target.id;
+    if(_checkPaginatorClick(id)) {
+      if((absTouchDX + absTouchDY) / 2 < PM_TOUCH_SENSITIVITY_FOR_PAGER_FALLBACK) {
+        event.preventDefault();
+        _applyPaginatorClick(id);
+        return true
+      }
+    }
+  };
+  var _checkPaginatorClick = function(targetId) {
+    return targetId === "page-switcher-end" || targetId === "page-switcher-start"
+  };
+  var _applyPaginatorClick = function(targetId) {
+    if(targetId === "page-switcher-end") {
+      $("#page-switcher-end").trigger("click")
+    }else {
+      if(targetId === "page-switcher-start") {
+        $("#page-switcher-start").trigger("click")
+      }
+    }
+  };
+  var _getTouches = function(event) {
+    if(event.touches) {
+      return event.touches
+    }else {
+      if(event.originalEvent.touches) {
+        return event.originalEvent.touches
+      }else {
+        return null
+      }
+    }
+  };
+  return{init:init, bindViewerMobileEventListeners:bindViewerMobileEventListeners, unbindViewerMobileEventListeners:unbindViewerMobileEventListeners}
 }(VISH, jQuery);
 

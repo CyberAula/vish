@@ -9574,7 +9574,7 @@ VISH.Status = function(V, $, undefined) {
     }
     device.features.touchScreen = !!("ontouchstart" in window);
     device.features.localStorage = typeof Storage !== "undefined";
-    device.features.history = typeof history === "object" && typeof history.back === "function"
+    device.features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function"
   };
   var fillUserAgent = function() {
     device.pixelRatio = window.devicePixelRatio || 1;
@@ -18267,7 +18267,13 @@ VISH.SlideManager = function(V, $, undefined) {
     if(options.addons) {
       V.Addons.init(options.addons)
     }
-    V.ViewerAdapter.init(options)
+    var delay = 0;
+    if(!V.Status.getDevice().desktop) {
+      delay = 200
+    }
+    setTimeout(function() {
+      V.ViewerAdapter.init(options)
+    }, delay)
   };
   var toggleFullScreen = function() {
     if(VISH.Status.isSlaveMode()) {
@@ -19307,14 +19313,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }else {
       $("#page-fullscreen").hide()
     }
-    var delay = 0;
-    if(!V.Status.getDevice().desktop) {
-      delay = 200
-    }
-    setTimeout(function() {
-      updateInterface();
-      V.Text.init()
-    }, delay)
+    updateInterface();
+    V.Text.init()
   };
   var setViewport = function(viewportContent) {
     $("head").prepend('<meta name="viewport" content="' + viewportContent + '"/>')
@@ -19456,7 +19456,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
             window.location = exit_fs_url
           }else {
             if(V.Status.getDevice().features.history) {
-              history.back()
+              history.go(-1)
             }
           }
         })
