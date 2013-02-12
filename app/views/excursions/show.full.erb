@@ -1,12 +1,17 @@
 <section class="slides layout-regular template-default">
-      <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
-    </section>
+	<button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
+</section>
     
     <div id="viewbar" class="viewbar" style="display:none">   
-    <button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
-      <div id="slide-counter"></div>
-    <button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
-    </div>
+		<button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
+		<div id="slide-counter"></div>
+		<button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
+	</div>
+    
+	<div style="display:none" id="viewerpreview">Preview</div>
+	<button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/icons/back_icon.png"/></button>
+	<button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
+	<button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
     
 
     <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
@@ -87,11 +92,6 @@
          </div>       
    <div id='mask_stop_quiz' style='display:none;'></div>
 
-    <div style="display:none" id="viewerpreview">Preview</div>
-    <button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/icons/back_icon.png"/></button>
-    <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
-    <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
-
 
 <script>	
 	options = {};
@@ -103,17 +103,30 @@
 	options["configuration"] = configuration;
 	options["full"] = true;
 	options["developping"] = false;
+
+	//Embed
+	var cEmbed = ("<%=@embed%>" === "true");
+	if((window.parent.embed===true)||(cEmbed === true)){
+		options["embed"] = true;
+	}
+
+	<% if @orgUrl %>
+		var orgUrl = "<%=@orgUrl%>";
+		options["comeBackUrl"] = orgUrl;
+		options["exitFullscreen"] = orgUrl;
+	<% end %>
+
 	<% if @excursion %>
 		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
-		<% if @orgUrl %>
-			var orgUrl = "<%=@orgUrl%>";
-			options["exitFullscreen"] = orgUrl;
-		<% else %>
+		if(!cEmbed){
 			options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
-		<% end %>
+		}
 	<% end %>
+
 	<% if request && request.referrer %>
-		options["comeBackUrl"] = "<%=request.referrer%>";
+		if(typeof options["comeBackUrl"] === "undefined"){
+			options["comeBackUrl"] = "<%=request.referrer%>";
+		}
 	<% end %>
 
 	options["token"] = "<%= form_authenticity_token %>";
@@ -134,10 +147,6 @@
 		addon.url = "";
 		addon.config = {enable: true};
 		options.addons.push(addon);
-	}
-
-	if((window.parent.embed===true)||(typeof orgUrl !== "undefined")){
-		options["embed"] = true;
 	}
 
 	function start(){
@@ -164,7 +173,7 @@
       			myexcursion = null;
       		<%end%>
       	}
-
+      	
 		VISH.SlideManager.init(options , myexcursion);
 	}
 </script>

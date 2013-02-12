@@ -28,7 +28,7 @@ Vish::Application.routes.draw do
 
   match '/excursions/:id/manifest' => 'excursions#manifest'
 
-  match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "gateway" }
+  match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full", :embed => 'true' }
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
 
   resources :excursions

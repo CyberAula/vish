@@ -106,9 +106,8 @@ class ExcursionsController < ApplicationController
         end
       }
       format.full {
-        if params[:orgUrl]
-          @orgUrl = params[:orgUrl]
-        end
+        @embed = params[:embed]
+        @orgUrl = params[:orgUrl]
         render :layout => 'iframe'
       }
       format.mobile { render :layout => 'iframe' }

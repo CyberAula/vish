@@ -8148,7 +8148,8 @@ VISH.Status = function(V, $, undefined) {
       }
     }
     device.features.touchScreen = !!("ontouchstart" in window);
-    device.features.localStorage = typeof Storage !== "undefined"
+    device.features.localStorage = typeof Storage !== "undefined";
+    device.features.history = typeof history === "object" && typeof history.back === "function"
   };
   var fillUserAgent = function() {
     device.pixelRatio = window.devicePixelRatio || 1;
@@ -8368,12 +8369,13 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       if(enter_fs_button) {
         enter_fs_url = options["fullscreen"]
       }
-      exit_fs_button = typeof options["exitFullscreen"] !== "undefined" && !can_use_nativeFs;
+      exit_fs_button = (typeof options["exitFullscreen"] !== "undefined" || V.Status.getDevice().features.history && embed) && !can_use_nativeFs;
       if(exit_fs_button) {
         exit_fs_url = options["exitFullscreen"]
       }
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
-      fs_button = fs_button && !is_preview
+      fs_button = fs_button && !is_preview;
+      page_is_fullscreen = render_full && !V.Status.getIsInIframe()
     }else {
       render_full = false;
       is_preview = false;
@@ -8381,12 +8383,19 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       enter_fs_button = false;
       exit_fs_button = false;
       fs_button = false;
-      can_use_nativeFs = false
+      can_use_nativeFs = false;
+      embed = false
     }
-    render_full = render_full || V.Status.getDevice().mobile;
-    fs_button = fs_button && !V.Status.getDevice().mobile;
+    if(V.Status.getDevice().mobile) {
+      render_full = true;
+      page_is_fullscreen = render_full && !V.Status.getIsInIframe();
+      if(page_is_fullscreen) {
+        fs_button = false
+      }else {
+        close_button = false
+      }
+    }
     close_button = close_button && V.Status.getDevice().mobile;
-    page_is_fullscreen = render_full;
     isOneSlide = !(VISH.Slides.getSlidesQuantity() > 1);
     if(V.Status.getDevice().desktop) {
       $("#back_arrow").html("");
@@ -8410,7 +8419,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("button#closeButton").show()
     }
     if(fs_button) {
-      _enableFullScreen(render_full)
+      _enableFullScreen(page_is_fullscreen)
     }else {
       $("#page-fullscreen").hide()
     }
@@ -8448,7 +8457,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
         $("#forward_arrow").show()
       }
     }
-    if(!page_is_fullscreen) {
+    if(!render_full) {
       if(VISH.Slides.isCurrentFirstSlide()) {
         $("#page-switcher-start").hide()
       }else {
@@ -8473,7 +8482,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
   };
   var updateInterface = function() {
-    _setupSize(page_is_fullscreen)
+    _setupSize(render_full)
   };
   var _setupSize = function(fullscreen) {
     var reserved_px_for_menubar;
@@ -8546,7 +8555,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $(document).on("click", "#page-fullscreen", V.SlideManager.toggleFullScreen);
       $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
         setTimeout(function() {
-          _setupSize(!page_is_fullscreen)
+          page_is_fullscreen = !page_is_fullscreen;
+          _setupSize(page_is_fullscreen)
         }, 400)
       })
     }else {
@@ -8558,12 +8568,22 @@ VISH.ViewerAdapter = function(V, $, undefined) {
           $("#page-fullscreen").css("background-position", "-45px 0px")
         });
         $(document).on("click", "#page-fullscreen", function() {
-          window.location = exit_fs_url + window.location.hash
+          if(exit_fs_url && !embed) {
+            window.location = exit_fs_url
+          }else {
+            if(V.Status.getDevice().features.history) {
+              history.back()
+            }
+          }
         })
       }else {
         if(!fullscreen && enter_fs_button) {
           $(document).on("click", "#page-fullscreen", function() {
-            VISH.Utils.sendParentToURL(enter_fs_url + "?orgUrl=" + window.parent.location.href)
+            if(typeof window.parent.location.href !== "undefined") {
+              VISH.Utils.sendParentToURL(enter_fs_url + "?orgUrl=" + window.parent.location.href)
+            }else {
+              VISH.Utils.sendParentToURL(enter_fs_url + "?embed=true")
+            }
           })
         }
       }
@@ -8573,7 +8593,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     if(typeof fullscreen === "undefined") {
       fullscreen = page_is_fullscreen
     }
-    page_is_fullscreen = fullscreen;
     if(fullscreen) {
       _onEnterFullScreen()
     }else {
@@ -8598,7 +8617,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     });
     _decideIfViewBarShow(false)
   };
-  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface, setViewport:setViewport, setViewportForAndroid:setViewportForAndroid, setViewportForIphone:setViewportForIphone}
+  var isFullScreen = function() {
+    return page_is_fullscreen
+  };
+  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface, setViewport:setViewport, setViewportForAndroid:setViewportForAndroid, setViewportForIphone:setViewportForIphone, isFullScreen:isFullScreen}
 }(VISH, jQuery);
 VISH.Game = function(V, $, undefined) {
   var actions = {};
@@ -9657,6 +9679,9 @@ VISH.Quiz = function(V, $, undefined) {
   mcOptionsHash["d"] = 3;
   mcOptionsHash["e"] = 4;
   mcOptionsHash["f"] = 5;
+  var tfOptionsHash = new Array;
+  tfOptionsHash["true"] = 0;
+  tfOptionsHash["false"] = 1;
   var startButtonClass = "quiz_session_start_button";
   var optionsButtonClass = "quiz_session_options_button";
   var showAnswerButtonClass = "show_answers_button";
@@ -9822,7 +9847,6 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_OnQuizSessionReceivedError:  " + JSON.stringify(error))
   };
   var _addToggleFullScreenListener = function() {
-    V.Debugging.log("toggle FS detected");
     var qrImgID = "quiz_session_qrcode_container_id";
     addedFullScreenListener = true;
     if(V.Status.getIsInIframe()) {
@@ -9940,7 +9964,6 @@ VISH.Quiz = function(V, $, undefined) {
         var answer = $(VISH.Slides.getCurrentSlide()).find("input:radio[name='truefalse']:checked'").val()
       }
     }
-    console.log("_answer value:  " + answer);
     if(typeof answer !== "undefined") {
       var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
       V.Quiz.API.putQuizSession(answer, quizSessionActiveId, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError);
@@ -9949,12 +9972,9 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _onQuizVotingSuccessReceived = function(data) {
     var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
-    console.log("_onQuizVotingSuccessReceived, and quizSessionActiveId is:  " + quizSessionActiveId);
-    console.log("_OnQuizzVotingSuccessReceived, and value received is:  " + JSON.stringify(data));
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
   };
   var _onQuizSessionResultsReceived = function(data) {
-    console.log("_onQuizSessionResultsReceived, and value received is:  " + JSON.stringify(data));
     $(VISH.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
     $(".thanks_div").show();
     var id = $("a[name=modal_window]").attr("href");
@@ -9974,19 +9994,35 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _showResults = function(data) {
-    console.log("_showResults, and value received is:  " + JSON.stringify(data));
+    var quiz_type = $(VISH.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
+    var index;
     var maxWidth = 70;
     var totalVotes = 0;
     for(option in data.results) {
-      if(option in mcOptionsHash) {
-        var votes = data.results[option];
-        totalVotes += votes
+      if(quiz_type == "multiplechoice") {
+        if(option in mcOptionsHash) {
+          var votes = data.results[option];
+          totalVotes += votes
+        }
+      }else {
+        if(quiz_type == "truefalse") {
+          if(option in tfOptionsHash) {
+            var votes = data.results[option];
+            totalVotes += votes
+          }
+        }
       }
     }
     if(totalVotes > 0) {
       for(option in data.results) {
-        if(option in mcOptionsHash) {
-          var index = mcOptionsHash[option];
+        if(option in mcOptionsHash || option in tfOptionsHash) {
+          if(quiz_type == "multiplechoice") {
+            index = mcOptionsHash[option]
+          }else {
+            if(quiz_type = "truefalse") {
+              index = tfOptionsHash[option]
+            }
+          }
           var votes = data.results[option];
           var percent = votes / totalVotes * 100;
           var percentString = percent.toString() + "%";
@@ -9994,7 +10030,13 @@ VISH.Quiz = function(V, $, undefined) {
           if(typeof $("#" + tabQuizStatsBarsContentId).find(".mc_meter")[index] != "undefined") {
             $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index].style.width = percentString;
             $($("#" + tabQuizStatsBarsContentId).find(".mcoption_label")[index]).text(roundedNumber + "%");
-            $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("mcoption_" + option)
+            if(quiz_type == "multiplechoice") {
+              $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("mcoption_" + option)
+            }else {
+              if(quiz_type = "truefalse") {
+                $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("tfoption_" + option)
+              }
+            }
           }
         }
       }
@@ -10006,7 +10048,7 @@ VISH.Quiz = function(V, $, undefined) {
     data_for_chart.addColumn("string", "Question");
     data_for_chart.addColumn("number", "Slices");
     for(option in data) {
-      if(option in mcOptionsHash) {
+      if(option in mcOptionsHash || option in tfOptionsHash) {
         var votes = data[option];
         data_for_chart.addRow([option, votes])
       }
@@ -10077,16 +10119,6 @@ VISH.Quiz = function(V, $, undefined) {
     return quizSessionStarted
   };
   var testFullScreen = function() {
-    var myDoc;
-    if(V.Status.getIsInIframe()) {
-      myDoc = parent.document
-    }else {
-      myDoc = document
-    }
-    if(myDoc.fullScreen || myDoc.mozFullScreen || myDoc.webkitIsFullScreen) {
-      var myElem = $(document).find(".quiz_full_screen");
-      myElem.hide()
-    }
   };
   var UnbindStartQuizEvents = function() {
     $(document).off("click", "." + startButtonClass, startMcQuizButtonClicked)
