@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-
 <% if false %> <!--(not @excursion.blank?) and @excursion.is_a? Excursion %>-->
   <html manifest="/excursions/<%= @excursion.id.to_s%>/manifest">
 <% else %>
   <html>
 <% end %>
     <head>
-
       <title>ViSH Excursion</title>
       <%= favicon_link_tag "icons/favicon.ico" %>
       <meta charset="UTF-8">
-      <meta name="viewport" content="user-scalable=yes">
       <meta name="apple-mobile-web-app-capable" content="yes">
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <%if controller.action_name == "show" %>
@@ -42,20 +39,12 @@
       </div>
     <body onload="start()" style="display: none" class="loaded">
       <%= yield %>
-
-      <% if Rails.env == "production" and not request.host == "vishub-test.global.dit.upm.es" %>
-      <!-- BEGIN: SeeVolution -->
-        <script type="text/javascript">
-          (function () {
-            var ms = document.createElement("script"); 
-            ms.src = "https://assets.seevolution.com/cjs.aspx";
-            ms.setAttribute("async", "true");
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ms, s);
-          })();
-        </script>
-        <!-- END: SeeVolution -->
-      <%end%>
+      <script type="text/javascript">
+        setTimeout(function(){var a=document.createElement("script");
+        var b=document.getElementsByTagName("script")[0];
+        a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0014/0195.js?"+Math.floor(new Date().getTime()/3600000);
+        a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+      </script>
     </body>
 
 </html>

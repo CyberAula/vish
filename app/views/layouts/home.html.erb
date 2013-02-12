@@ -19,20 +19,14 @@
   <!--<iframe src="/offline" style="display: none;"></iframe>-->
   <footer class="footer">
     <%= render :partial => "layouts/footer" %>
-  </footer>
-  <% if Rails.env == "production" and not request.host == "vishub-test.global.dit.upm.es" %>
-     <!-- BEGIN: SeeVolution -->
-        <script type="text/javascript">
-          (function () {
-            var ms = document.createElement("script"); 
-            ms.src = "https://assets.seevolution.com/cjs.aspx";
-            ms.setAttribute("async", "true");
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ms, s);
-          })();
-        </script>
-        <!-- END: SeeVolution -->
-      <%end%>
+  </footer>  
+  <script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0014/0195.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
 </body>
 </html>
 

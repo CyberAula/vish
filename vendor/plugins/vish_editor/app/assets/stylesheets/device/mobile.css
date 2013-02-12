@@ -61,3 +61,10 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 */
 }
 
+
+/* Remove default minimum font-size */
+
+* {
+  -webkit-text-size-adjust: none;
+  font-size-adjust: none;
+}
