@@ -8296,8 +8296,7 @@ VISH.Status.Device = function(V, $, undefined) {
           _setViewportForChromeForAndroid(callback)
         }else {
           if(device.browser.name === V.Constant.ANDROID_BROWSER) {
-            var storedDevice = V.Storage.get(V.Constant.Storage.Device);
-            if(typeof storedDevice === "undefined") {
+            if(typeof device.desktop === "undefined") {
               device.hasTestingViewport = true;
               _setTestingViewportForAndroidBrowser(callback)
             }else {
