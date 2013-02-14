@@ -19696,6 +19696,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $(myDoc).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
         setTimeout(function() {
           page_is_fullscreen = !page_is_fullscreen;
+          render_full = page_is_fullscreen;
           _setupSize(page_is_fullscreen)
         }, 400)
       })
