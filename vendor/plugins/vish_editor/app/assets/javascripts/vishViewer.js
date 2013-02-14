@@ -7625,23 +7625,23 @@ VISH.SlideManager = function(V, $, undefined) {
   var current_presentation;
   var presentationType = "presentation";
   var init = function(options, presentation) {
-    VISH.Editing = false;
-    VISH.Debugging.init(options);
+    Editing = false;
+    V.Debugging.init(options);
     if(options) {
       initOptions = options
     }else {
       initOptions = {}
     }
-    if(options && options["configuration"] && VISH.Configuration) {
-      VISH.Configuration.init(options["configuration"])
+    if(options && options["configuration"] && V.Configuration) {
+      V.Configuration.init(options["configuration"])
     }
-    if(VISH.Debugging.isDevelopping()) {
-      if(options["configuration"]["mode"] == "noserver" && !presentation && VISH.Debugging.getPresentationSamples() != null) {
-        presentation = VISH.Debugging.getPresentationSamples()
+    if(V.Debugging.isDevelopping()) {
+      if(options["configuration"]["mode"] == "noserver" && !presentation && V.Debugging.getPresentationSamples() != null) {
+        presentation = V.Debugging.getPresentationSamples()
       }
     }
-    VISH.Debugging.log("\n\nSlideManager.init with presentation:\n");
-    VISH.Debugging.log(JSON.stringify(presentation));
+    V.Debugging.log("\n\nSlideManager.init with presentation:\n");
+    V.Debugging.log(JSON.stringify(presentation));
     current_presentation = presentation;
     setPresentationType(presentation.type);
     V.Status.init(function() {
@@ -7658,12 +7658,12 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Storage.init();
     V.Utils.init();
     switch(presentation.type) {
-      case VISH.Constant.GAME:
-        VISH.ViewerAdapter.setupGame(presentation);
-        VISH.Game.registerActions(presentation);
+      case V.Constant.GAME:
+        V.ViewerAdapter.setupGame(presentation);
+        V.Game.registerActions(presentation);
         break;
-      case VISH.Constant.VTOUR:
-        VISH.VirtualTour.init();
+      case V.Constant.VTOUR:
+        V.VirtualTour.init();
         break
     }
     V.Events.init();
@@ -7679,7 +7679,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.ViewerAdapter.init(options)
   };
   var toggleFullScreen = function() {
-    if(VISH.Status.isSlaveMode()) {
+    if(V.Status.isSlaveMode()) {
       return
     }
     if(V.Status.getIsInIframe()) {
@@ -7687,8 +7687,8 @@ VISH.SlideManager = function(V, $, undefined) {
     }else {
       var myDoc = document
     }
-    if(VISH.Status.getIsInIframe()) {
-      var myElem = VISH.Status.getIframe()
+    if(V.Status.getIsInIframe()) {
+      var myElem = V.Status.getIframe()
     }else {
       var myElem = myDoc.getElementById("presentation_iframe")
     }
@@ -7765,7 +7765,7 @@ VISH.SlideManager = function(V, $, undefined) {
   };
   var updateSlideCounter = function() {
     var number_of_slides = V.Slides.getSlides().length;
-    var slide_number = VISH.Slides.getCurrentSlideNumber();
+    var slide_number = V.Slides.getCurrentSlideNumber();
     if(number_of_slides === 0) {
       slide_number = 0
     }
@@ -7779,7 +7779,7 @@ VISH.SlideManager = function(V, $, undefined) {
   };
   var setPresentationType = function(type) {
     if(!type) {
-      type = VISH.Constant.STANDARD
+      type = V.Constant.STANDARD
     }
     presentationType = type
   };
@@ -7790,6 +7790,13 @@ VISH.Utils = function(V, undefined) {
   var init = function() {
     if(!domIds) {
       domIds = new Array
+    }
+  };
+  var getOptions = function() {
+    if(V.Editing) {
+      return V.Editor.getOptions()
+    }else {
+      return V.SlideManager.getOptions()
     }
   };
   var getId = function(full_id_prefix, justCheck, separator) {
@@ -8117,7 +8124,7 @@ VISH.Utils = function(V, undefined) {
     });
     return filterStyle
   };
-  return{init:init, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
+  return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
   loadTab:loadTab, sendParentToURL:sendParentToURL}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
@@ -8142,7 +8149,7 @@ VISH.Status = function(V, $, undefined) {
     _isInIframe = window.location != window.parent.location ? true : false
   };
   var _checkEmbed = function() {
-    _isEmbed = V.SlideManager.getOptions()["embed"] === true
+    _isEmbed = V.Utils.getOptions()["embed"] === true
   };
   var _checkOnline = function() {
     $.ajax({async:true, cache:false, error:function(req, status, ex) {
@@ -8502,10 +8509,14 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var isOneSlide;
   var page_is_fullscreen;
   var initialized = false;
+  var _lastWidth;
+  var _lastHeight;
   var init = function(options) {
     if(initialized) {
       return
     }else {
+      _lastWidth = -1;
+      _lastHeight = -1;
       initialized = true
     }
     if(options) {
@@ -8624,6 +8635,13 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
   };
   var updateInterface = function() {
+    var cWidth = $(window).width();
+    var cHeight = $(window).height();
+    if(cWidth === _lastWidth && cHeight === _lastHeight) {
+      return
+    }
+    _lastWidth = cWidth;
+    _lastHeight = cHeight;
     _setupSize(render_full)
   };
   var _setupSize = function(fullscreen) {
@@ -8645,8 +8663,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       margin_height = 40;
       margin_width = 30
     }
-    var height = $(window).height() - reserved_px_for_menubar;
-    var width = $(window).width();
+    var height = _lastHeight - reserved_px_for_menubar;
+    var width = _lastWidth;
     var finalW = 800;
     var finalH = 600;
     var aspectRatio = width / height;
@@ -9555,6 +9573,23 @@ VISH.Events = function(V, $, undefined) {
         V.Storage.addPresentation(presentation)
       }, false)
     }
+    var multipleOnResize = undefined;
+    window.onresize = function() {
+      if(typeof multipleOnResize === "undefined") {
+        multipleOnResize = false;
+        setTimeout(function() {
+          if(!multipleOnResize) {
+            multipleOnResize = undefined;
+            V.ViewerAdapter.updateInterface()
+          }else {
+            multipleOnResize = undefined;
+            window.onresize()
+          }
+        }, 600)
+      }else {
+        multipleOnResize = true
+      }
+    };
     if(mobile) {
       eMobile.bindViewerMobileEventListeners()
     }
@@ -10424,7 +10459,7 @@ VISH.Events.Mobile = function(V, $, undefined) {
     });
     $(window).on("orientationchange", function() {
       _hideAddressBar();
-      V.ViewerAdapter.updateInterface()
+      $(window).trigger("resize")
     });
     document.body.addEventListener("touchmove", handleTouchMove, true);
     document.body.addEventListener("touchend", handleTouchEnd, true);
@@ -10442,7 +10477,7 @@ VISH.Events.Mobile = function(V, $, undefined) {
     });
     $(window).off("orientationchange", function() {
       _hideAddressBar();
-      V.ViewerAdapter.updateInterface()
+      window.onresize()
     });
     document.body.removeEventListener("touchmove", handleTouchMove, true);
     document.body.removeEventListener("touchend", handleTouchEnd, true)
