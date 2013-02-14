@@ -3300,6 +3300,7 @@ VISH.Constant.IE = "Internet Explorer";
 VISH.Constant.FIREFOX = "Mozilla Firefox";
 VISH.Constant.CHROME = "Google Chrome";
 VISH.Constant.SAFARI = "Safari";
+VISH.Constant.ANDROID_BROWSER = "Android Browser";
 VISH.Constant.EXTRA_SMALL = "extra-small";
 VISH.Constant.SMALL = "small";
 VISH.Constant.MEDIUM = "medium";
@@ -3341,6 +3342,8 @@ VISH.Constant.Event.onFlashcardSlideClosed = "onFlashcardSlideClosed";
 VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
+VISH.Constant.Storage = {};
+VISH.Constant.Storage.Device = "Device";
 VISH.Configuration = function(V, $, undefined) {
   var configuration;
   var init = function(myConfiguration) {
@@ -7366,7 +7369,7 @@ VISH.VideoPlayer.Youtube = function() {
     }
   };
   var loadYoutubeObject = function(article, zone) {
-    if(VISH.Status.getOnline() === false) {
+    if(VISH.Status.isOnline() === false) {
       $(zone).html("<img src='" + VISH.ImagesPath + "adverts/advert_new_grey_video.png'/>");
       return
     }
@@ -7516,20 +7519,20 @@ VISH.VideoPlayer.Youtube = function() {
   };
   return{init:init, loadYoutubeObject:loadYoutubeObject, onPlayerReady:onPlayerReady, onPlayerStateChange:onPlayerStateChange, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, getYoutubeIdFromURL:getYoutubeIdFromURL}
 }(VISH, jQuery);
-VISH.ObjectPlayer = function() {
+VISH.ObjectPlayer = function(V, $, undefined) {
   var loadObject = function(slide) {
     $.each(slide.children(".objectelement"), function(index, value) {
       if($(value).hasClass("youtubeelement")) {
-        VISH.VideoPlayer.Youtube.loadYoutubeObject(slide, value);
+        V.VideoPlayer.Youtube.loadYoutubeObject(slide, value);
         return
       }
-      if($(value).attr("objectWrapper").match("^<iframe") !== null && VISH.Status.getOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "/adverts/advert_new_grey_iframe.png'/>");
+      if($(value).attr("objectWrapper").match("^<iframe") !== null && V.Status.isOnline() === false) {
+        $(value).html("<img src='" + V.ImagesPath + "/adverts/advert_new_grey_iframe.png'/>");
         return
       }
       var object = $($(value).attr("objectWrapper"));
       $(object).attr("style", $(value).attr("zoomInStyle"));
-      $(value).html("<div style='" + $(value).attr("objectStyle") + "'>" + VISH.Utils.getOuterHTML(object) + "</div>");
+      $(value).html("<div style='" + $(value).attr("objectStyle") + "'>" + V.Utils.getOuterHTML(object) + "</div>");
       adjustDimensionsAfterZoom($($(value).children()[0]).children()[0])
     })
   };
@@ -7545,9 +7548,13 @@ VISH.ObjectPlayer = function() {
   };
   var adjustDimensionsAfterZoom = function(objectWithZoom) {
     var parent = $(objectWithZoom).parent();
-    var zoom = VISH.Utils.getZoomFromStyle($(objectWithZoom).attr("style"));
-    $(objectWithZoom).height($(parent).height() / zoom);
-    $(objectWithZoom).width($(parent).width() / zoom)
+    var parentHeight = $(parent).height();
+    var parentWidth = $(parent).width();
+    var zoom = V.Utils.getZoomFromStyle($(objectWithZoom).attr("style"));
+    var percentHeight = parentHeight / zoom / parentHeight * 100;
+    var percentWidth = parentWidth / zoom / parentWidth * 100;
+    $(objectWithZoom).height(percentHeight + "%");
+    $(objectWithZoom).width(percentWidth + "%")
   };
   return{loadObject:loadObject, unloadObject:unloadObject, aftersetupSize:aftersetupSize, adjustDimensionsAfterZoom:adjustDimensionsAfterZoom}
 }(VISH, jQuery);
@@ -7557,7 +7564,7 @@ VISH.SnapshotPlayer = function() {
       var wrapper_class = "snapshot_wrapper" + "_viewer";
       var content_class = "snapshot_content" + "_viewer";
       var content = $(value).attr("objectWrapper");
-      if(VISH.Status.getOnline() === false) {
+      if(VISH.Status.isOnline() === false) {
         $(value).html("<img src='" + VISH.ImagesPath + "adverts/advert_new_grey_iframe.png'/>");
         return
       }
@@ -7637,13 +7644,18 @@ VISH.SlideManager = function(V, $, undefined) {
     VISH.Debugging.log(JSON.stringify(presentation));
     current_presentation = presentation;
     setPresentationType(presentation.type);
-    V.Status.init();
+    V.Status.init(function() {
+      _initAferStatusLoaded(options, presentation)
+    })
+  };
+  var _initAferStatusLoaded = function(options, presentation) {
     V.Quiz.init(presentation);
     V.Flashcard.init();
     V.Renderer.init();
     V.Slides.init();
     V.Utils.loadDeviceCSS();
     V.User.init(options);
+    V.Storage.init();
     V.Utils.init();
     switch(presentation.type) {
       case VISH.Constant.GAME:
@@ -7664,13 +7676,7 @@ VISH.SlideManager = function(V, $, undefined) {
     if(options.addons) {
       V.Addons.init(options.addons)
     }
-    var delay = 0;
-    if(!V.Status.getDevice().desktop) {
-      delay = 200
-    }
-    setTimeout(function() {
-      V.ViewerAdapter.init(options)
-    }, delay)
+    V.ViewerAdapter.init(options)
   };
   var toggleFullScreen = function() {
     if(VISH.Status.isSlaveMode()) {
@@ -8115,66 +8121,220 @@ VISH.Utils = function(V, undefined) {
   loadTab:loadTab, sendParentToURL:sendParentToURL}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
-  var device;
-  var isInIframe;
-  var isOnline;
-  var isSlave;
-  var isPreventDefault;
-  var init = function() {
-    device = {};
-    device.browser = {};
-    device.features = {};
-    fillBrowser();
-    fillUserAgent();
-    fillFeatures();
-    _checkOnline()
+  var _device;
+  var _isInIframe;
+  var _isEmbed;
+  var _isOnline;
+  var _isSlave;
+  var _isPreventDefault;
+  var init = function(callback) {
+    VISH.Status.Device.init(function(returnedDevice) {
+      _device = returnedDevice;
+      _checkIframe();
+      _checkEmbed();
+      _checkOnline();
+      if(typeof callback === "function") {
+        callback()
+      }
+    })
+  };
+  var _checkIframe = function() {
+    _isInIframe = window.location != window.parent.location ? true : false
+  };
+  var _checkEmbed = function() {
+    _isEmbed = V.SlideManager.getOptions()["embed"] === true
   };
   var _checkOnline = function() {
     $.ajax({async:true, cache:false, error:function(req, status, ex) {
       VISH.Debugging.log("Error: " + ex);
-      isOnline = false
+      _isOnline = false
     }, success:function(data, status, req) {
-      isOnline = true
+      _isOnline = true
     }, timeout:5E3, type:"GET", url:VISH.ImagesPath + "blank.gif"})
   };
-  var fillFeatures = function() {
-    setIsInIframe(window.location != window.parent.location ? true : false);
-    var elem = document.getElementById("page-fullscreen");
-    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
-      if(!isInIframe) {
-        device.features.fullscreen = true
+  var getDevice = function() {
+    return _device
+  };
+  var getIsEmbed = function() {
+    return _isEmbed
+  };
+  var getIsInIframe = function() {
+    return _isInIframe
+  };
+  var getIframe = function() {
+    if(_isInIframe) {
+      return window.frameElement
+    }else {
+      return null
+    }
+  };
+  var isOnline = function() {
+    return _isOnline
+  };
+  var isSlaveMode = function() {
+    if(typeof _isSlave !== "undefined") {
+      return _isSlave
+    }else {
+      return false
+    }
+  };
+  var setSlaveMode = function(slaveMode) {
+    if(slaveMode !== _isSlave) {
+      if(slaveMode === true) {
+        VISH.Events.unbindViewerEventListeners();
+        VISH.VideoPlayer.HTML5.showControls(false);
+        _isSlave = true
       }else {
-        try {
-          if(window.parent.location.host === window.location.host && (!window.parent.VISH || !window.parent.VISH.Editor || !(typeof window.parent.VISH.Editor.Preview.getPreview === "function"))) {
-            device.features.fullscreen = true
-          }
-        }catch(e) {
-          device.features.fullscreen = false
-        }
+        VISH.Events.bindViewerEventListeners();
+        VISH.VideoPlayer.HTML5.showControls(true);
+        _isSlave = false
       }
     }
-    device.features.touchScreen = !!("ontouchstart" in window);
-    device.features.localStorage = typeof Storage !== "undefined";
-    device.features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function"
   };
-  var fillUserAgent = function() {
+  var isPreventDefaultMode = function() {
+    if(typeof _isPreventDefault !== "undefined") {
+      return _isPreventDefault
+    }else {
+      return false
+    }
+  };
+  var setPreventDefaultMode = function(preventDefault) {
+    if(preventDefault !== _isPreventDefault) {
+      if(preventDefault === true) {
+        _isPreventDefault = true
+      }else {
+        _isPreventDefault = false
+      }
+    }
+  };
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode}
+}(VISH, jQuery);
+VISH.Status.Device = function(V, $, undefined) {
+  var init = function(callback) {
+    V.Status.Device.Browser.init();
+    V.Status.Device.Features.init();
+    _fillDevice(callback)
+  };
+  var _fillDevice = function(callback) {
+    var storedDevice = V.Storage.get(V.Constant.Storage.Device);
+    if(typeof storedDevice !== "undefined") {
+      device = storedDevice;
+      _loadViewportForDevice(device, function() {
+        _fillScreen(device);
+        if(typeof callback === "function") {
+          callback(device)
+        }
+      });
+      return
+    }
+    var device = {};
+    device.browser = {};
+    device.features = {};
+    device.browser = V.Status.Device.Browser.fillBrowser();
+    _fillUserAgentBeforeViewport(device);
+    _loadViewportForDevice(device, function() {
+      _fillUserAgentAfterViewport(device);
+      _fillScreen(device);
+      device.features = V.Status.Device.Features.fillFeatures();
+      V.Storage.add(VISH.Constant.Storage.Device, device, false);
+      if(device.android && device.browser.name === VISH.Constant.ANDROID_BROWSER) {
+        if(device.hasTestingViewport === true) {
+          _reloadOnAndroidTestingViewport(callback, device);
+          return
+        }
+      }
+      if(typeof callback === "function") {
+        callback(device)
+      }
+    })
+  };
+  var _reloadOnAndroidTestingViewport = function(callback, device) {
+    var attempts = 0;
+    var maxAttempts = 3;
+    var initialDevice = V.Storage.get(V.Constant.Storage.Device);
+    if(typeof storedDevice !== "undefined") {
+      location.reload(true);
+      return
+    }
+    var waitTimer = setInterval(function() {
+      var storedDevice = V.Storage.get(V.Constant.Storage.Device);
+      if(typeof storedDevice !== "undefined") {
+        clearInterval(waitTimer);
+        location.reload(true)
+      }else {
+        attempts++;
+        if(attempts >= maxAttempts) {
+          clearInterval(waitTimer);
+          callback(device)
+        }
+      }
+    }, 1E3)
+  };
+  var _fillUserAgentBeforeViewport = function(device) {
     device.pixelRatio = window.devicePixelRatio || 1;
-    device.viewport = {width:window.innerWidth, height:window.innerHeight};
-    device.screen = {width:window.screen.availWidth * device.pixelRatio, height:window.screen.availHeight * device.pixelRatio};
     device.iPhone = /iPhone/i.test(navigator.userAgent);
     device.iPhone4 = device.iPhone && device.pixelRatio == 2;
     device.iPad = /iPad/i.test(navigator.userAgent);
     device.iOS = device.iPhone || device.iPad;
     device.applePhone = device.iPhone || device.iPhone4;
     device.appleTablet = device.iPad;
-    if(device.iOS) {
-      V.ViewerAdapter.setViewportForIphone()
+    device.android = /android/i.test(navigator.userAgent)
+  };
+  var _loadViewportForDevice = function(device, callback) {
+    if(device.iOS && device.browser.name === V.Constant.SAFARI) {
+      _setViewportForIphone(callback)
+    }else {
+      if(device.android) {
+        if(device.browser.name === V.Constant.CHROME) {
+          _setViewportForChromeForAndroid(callback)
+        }else {
+          if(device.browser.name === V.Constant.ANDROID_BROWSER) {
+            var storedDevice = V.Storage.get(V.Constant.Storage.Device);
+            if(typeof storedDevice === "undefined") {
+              device.hasTestingViewport = true;
+              _setTestingViewportForAndroidBrowser(callback)
+            }else {
+              _setViewportForAndroidBrowser(callback)
+            }
+          }
+        }
+      }else {
+        if(typeof callback === "function") {
+          callback()
+        }
+      }
     }
+  };
+  var WAITING_TIME_FOR_VIEWPORT_LOAD = 1250;
+  var _setViewport = function(viewportContent, callback) {
+    var viewport = $("head>meta[name='viewport']");
+    if(viewport.length === 0) {
+      $("head").prepend('<meta name="viewport" content="' + viewportContent + '"/>')
+    }else {
+      $(viewport).attr("content", viewportContent)
+    }
+    setTimeout(function() {
+      if(typeof callback === "function") {
+        callback()
+      }
+    }, WAITING_TIME_FOR_VIEWPORT_LOAD)
+  };
+  var _setViewportForAndroidBrowser = function(callback) {
+    _setViewport("user-scalable=yes", callback)
+  };
+  var _setTestingViewportForAndroidBrowser = function(callback) {
+    _setViewport("width=device-width,height=device-height,user-scalable=yes", callback)
+  };
+  var _setViewportForChromeForAndroid = function(callback) {
+    _setViewport("width=device-width,height=device-height,user-scalable=yes", callback)
+  };
+  var _setViewportForIphone = function(callback) {
+    _setViewport("user-scalable=yes", callback)
+  };
+  var _fillUserAgentAfterViewport = function(device) {
     device.androidPhone = false;
     device.androidTablet = false;
-    device.android = /android/i.test(navigator.userAgent);
     if(device.android) {
-      V.ViewerAdapter.setViewportForAndroid();
       if(/tablet/i.test(navigator.userAgent)) {
         device.androidTablet = true
       }else {
@@ -8204,34 +8364,54 @@ VISH.Status = function(V, $, undefined) {
       device.desktop = false
     }
   };
+  var _fillScreen = function(device) {
+    device.viewport = {width:window.innerWidth, height:window.innerHeight};
+    device.screen = {rWidth:window.screen.availWidth * device.pixelRatio, rHeight:window.screen.availHeight * device.pixelRatio, width:window.screen.availWidth, height:window.screen.availHeight}
+  };
+  return{init:init}
+}(VISH, jQuery);
+VISH.Status.Device.Browser = function(V, $, undefined) {
+  var init = function() {
+  };
   var fillBrowser = function() {
+    var browser = {};
     var version;
+    var android;
     version = _getInternetExplorerVersion();
     if(version != -1) {
-      device.browser.name = VISH.Constant.IE;
-      device.browser.version = version;
-      return
+      browser.name = VISH.Constant.IE;
+      browser.version = version;
+      return browser
     }
     version = _getFirefoxVersion();
     if(version != -1) {
-      device.browser.name = VISH.Constant.FIREFOX;
-      device.browser.version = version;
-      return
+      browser.name = VISH.Constant.FIREFOX;
+      browser.version = version;
+      return browser
     }
     version = _getGoogleChromeVersion();
     if(version != -1) {
-      device.browser.name = VISH.Constant.CHROME;
-      device.browser.version = version;
-      return
+      browser.name = VISH.Constant.CHROME;
+      browser.version = version;
+      return browser
     }
+    android = /android/i.test(navigator.userAgent);
     version = _getSafariVersion();
     if(version != -1) {
-      device.browser.name = VISH.Constant.SAFARI;
-      device.browser.version = version;
-      return
+      if(android) {
+        browser.name = VISH.Constant.ANDROID_BROWSER
+      }else {
+        browser.name = VISH.Constant.SAFARI
+      }
+      browser.version = version;
+      return browser
     }
-    device.browser.name = VISH.Constant.UNKNOWN;
-    device.browser.name = -1
+    browser.name = V.Constant.UNKNOWN;
+    browser.version = -1;
+    if(android) {
+      browser.name = VISH.Constant.ANDROID_BROWSER
+    }
+    return browser
   };
   var _getInternetExplorerVersion = function() {
     var rv = -1;
@@ -8270,7 +8450,7 @@ VISH.Status = function(V, $, undefined) {
     var rv = -1;
     if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
       var ua = navigator.userAgent;
-      if(ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1) {
+      if(ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1) {
         var rv = -2;
         var re = new RegExp(".* Version/([0-9.]+)");
         if(re.exec(ua) != null) {
@@ -8280,62 +8460,33 @@ VISH.Status = function(V, $, undefined) {
     }
     return rv
   };
-  var getIsInIframe = function() {
-    return isInIframe
+  return{init:init, fillBrowser:fillBrowser}
+}(VISH, jQuery);
+VISH.Status.Device.Features = function(V, $, undefined) {
+  var init = function() {
   };
-  var setIsInIframe = function(isIframe) {
-    isInIframe = isIframe
-  };
-  var getIframe = function() {
-    if(isInIframe) {
-      return window.frameElement
-    }else {
-      return null
-    }
-  };
-  var getDevice = function() {
-    return device
-  };
-  var getOnline = function() {
-    return isOnline
-  };
-  var setSlaveMode = function(slaveMode) {
-    if(slaveMode !== isSlave) {
-      if(slaveMode === true) {
-        VISH.Events.unbindViewerEventListeners();
-        VISH.VideoPlayer.HTML5.showControls(false);
-        isSlave = true
+  var fillFeatures = function() {
+    var features = {};
+    var elem = document.getElementById("page-fullscreen");
+    if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
+      if(!V.Status.getIsInIframe()) {
+        features.fullscreen = true
       }else {
-        VISH.Events.bindViewerEventListeners();
-        VISH.VideoPlayer.HTML5.showControls(true);
-        isSlave = false
+        try {
+          if(window.parent.location.host === window.location.host && (!window.parent.VISH || !window.parent.VISH.Editor || !(typeof window.parent.VISH.Editor.Preview.getPreview === "function"))) {
+            features.fullscreen = true
+          }
+        }catch(e) {
+          features.fullscreen = false
+        }
       }
     }
+    features.touchScreen = !!("ontouchstart" in window);
+    features.localStorage = V.Storage.checkLocalStorageSupport();
+    features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
+    return features
   };
-  var isSlaveMode = function() {
-    if(typeof isSlave !== "undefined") {
-      return isSlave
-    }else {
-      return false
-    }
-  };
-  var setPreventDefaultMode = function(preventDefault) {
-    if(preventDefault !== isPreventDefault) {
-      if(preventDefault === true) {
-        isPreventDefault = true
-      }else {
-        isPreventDefault = false
-      }
-    }
-  };
-  var isPreventDefaultMode = function() {
-    if(typeof isPreventDefault !== "undefined") {
-      return isPreventDefault
-    }else {
-      return false
-    }
-  };
-  return{init:init, getIsInIframe:getIsInIframe, getIframe:getIframe, getDevice:getDevice, getOnline:getOnline, setSlaveMode:setSlaveMode, isSlaveMode:isSlaveMode, setPreventDefaultMode:setPreventDefaultMode, isPreventDefaultMode:isPreventDefaultMode}
+  return{init:init, fillFeatures:fillFeatures}
 }(VISH, jQuery);
 VISH.ViewerAdapter = function(V, $, undefined) {
   var render_full;
@@ -8369,7 +8520,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         embed = false
       }
-      close_button = !V.Status.getDevice().desktop && !V.Status.getIsInIframe() && options["comeBackUrl"];
+      close_button = V.Status.getDevice().mobile && !V.Status.getIsInIframe() && (options["comeBackUrl"] || V.Status.getDevice().features.history && embed);
       can_use_nativeFs = V.Status.getDevice().features.fullscreen && !embed;
       enter_fs_button = typeof options["fullscreen"] !== "undefined" && !can_use_nativeFs;
       if(enter_fs_button) {
@@ -8401,8 +8552,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
         close_button = false
       }
     }
-    close_button = close_button && V.Status.getDevice().mobile;
-    isOneSlide = !(VISH.Slides.getSlidesQuantity() > 1);
+    isOneSlide = !(V.Slides.getSlidesQuantity() > 1);
     if(V.Status.getDevice().desktop) {
       $("#back_arrow").html("");
       $("#forward_arrow").html("")
@@ -8413,7 +8563,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#viewbar").show()
       }
-      VISH.SlideManager.updateSlideCounter()
+      V.SlideManager.updateSlideCounter()
     }else {
       $("#viewbar").hide()
     }
@@ -8425,45 +8575,37 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("button#closeButton").show()
     }
     if(fs_button) {
-      _enableFullScreen(page_is_fullscreen)
+      _enableFullScreen(page_is_fullscreen);
+      $("#page-fullscreen").show()
     }else {
       $("#page-fullscreen").hide()
     }
     updateInterface();
     V.Text.init()
   };
-  var setViewport = function(viewportContent) {
-    $("head").prepend('<meta name="viewport" content="' + viewportContent + '"/>')
-  };
-  var setViewportForAndroid = function() {
-    setViewport("width=device-width,height=device-height,user-scalable=yes")
-  };
-  var setViewportForIphone = function() {
-    setViewport("user-scalable=yes")
-  };
   var decideIfPageSwitcher = function() {
-    if(VISH.Slides.getCurrentSubSlide() !== null) {
+    if(V.Slides.getCurrentSubSlide() !== null) {
       $("#forward_arrow").hide();
       $("#back_arrow").hide()
     }else {
-      if(VISH.Slides.isCurrentFirstSlide()) {
+      if(V.Slides.isCurrentFirstSlide()) {
         $("#back_arrow").hide()
       }else {
         $("#back_arrow").show()
       }
-      if(VISH.Slides.isCurrentLastSlide()) {
+      if(V.Slides.isCurrentLastSlide()) {
         $("#forward_arrow").hide()
       }else {
         $("#forward_arrow").show()
       }
     }
     if(!render_full) {
-      if(VISH.Slides.isCurrentFirstSlide()) {
+      if(V.Slides.isCurrentFirstSlide()) {
         $("#page-switcher-start").hide()
       }else {
         $("#page-switcher-start").show()
       }
-      if(VISH.Slides.isCurrentLastSlide()) {
+      if(V.Slides.isCurrentLastSlide()) {
         $("#page-switcher-end").hide()
       }else {
         $("#page-switcher-end").show()
@@ -8541,9 +8683,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       V.Quiz.testFullScreen()
     }
     decideIfPageSwitcher();
-    VISH.Text.aftersetupSize(increase);
-    VISH.SnapshotPlayer.aftersetupSize(increase);
-    VISH.ObjectPlayer.aftersetupSize(increase)
+    V.Text.aftersetupSize(increase);
+    V.SnapshotPlayer.aftersetupSize(increase);
+    V.ObjectPlayer.aftersetupSize(increase)
   };
   var _enableFullScreen = function(fullscreen) {
     if(can_use_nativeFs) {
@@ -8572,7 +8714,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
             window.location = exit_fs_url
           }else {
             if(V.Status.getDevice().features.history) {
-              history.go(-1)
+              history.back()
             }
           }
         })
@@ -8580,9 +8722,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
         if(!fullscreen && enter_fs_button) {
           $(document).on("click", "#page-fullscreen", function() {
             if(typeof window.parent.location.href !== "undefined") {
-              VISH.Utils.sendParentToURL(enter_fs_url + "?orgUrl=" + window.parent.location.href)
+              V.Utils.sendParentToURL(enter_fs_url + "?orgUrl=" + window.parent.location.href)
             }else {
-              VISH.Utils.sendParentToURL(enter_fs_url + "?embed=true")
+              V.Utils.sendParentToURL(enter_fs_url + "?embed=true")
             }
           })
         }
@@ -8620,7 +8762,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var isFullScreen = function() {
     return page_is_fullscreen
   };
-  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface, setViewport:setViewport, setViewportForAndroid:setViewportForAndroid, setViewportForIphone:setViewportForIphone, isFullScreen:isFullScreen}
+  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface, isFullScreen:isFullScreen}
 }(VISH, jQuery);
 VISH.Game = function(V, $, undefined) {
   var actions = {};
@@ -8935,9 +9077,66 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
   };
   return{init:init}
 }(VISH, jQuery);
-VISH.LocalStorage = function(V, $, undefined) {
+VISH.Storage = function(V, $, undefined) {
+  var _initialized;
+  var _testing = false;
+  var _isLocalStorageSupported;
+  var init = function() {
+    if(!_initialized) {
+      _isLocalStorageSupported = checkLocalStorageSupport();
+      _initialized = true;
+      if(_testing) {
+        clear();
+        _isLocalStorageSupported = false
+      }
+    }
+  };
+  var add = function(key, value, persistent) {
+    if(!_initialized) {
+      init()
+    }
+    if(_isLocalStorageSupported) {
+      persistent = !(persistent === false);
+      var myObject = {};
+      myObject.value = value;
+      myObject.persistent = persistent;
+      myObject.version = V.VERSION;
+      myObject = JSON.stringify(myObject);
+      localStorage.setItem(key, myObject);
+      return true
+    }else {
+      return false
+    }
+  };
+  var get = function(key) {
+    if(!_initialized) {
+      init()
+    }
+    if(_isLocalStorageSupported) {
+      var myObject = localStorage.getItem(key);
+      if(typeof myObject === "string") {
+        myObject = JSON.parse(myObject);
+        if(myObject && myObject.value) {
+          if(!myObject.persistent && myObject.version) {
+            var cVersion = parseFloat(V.VERSION);
+            var valueVersion = parseFloat(myObject.version);
+            if(cVersion > valueVersion) {
+              return undefined
+            }
+          }
+          return myObject.value
+        }
+      }
+      return undefined
+    }else {
+      return undefined
+    }
+  };
   var addPresentation = function(presentation) {
-    if(typeof Storage !== "undefined") {
+    if(!_initialized) {
+      init()
+    }
+    if(_isLocalStorageSupported) {
       var list = localStorage.getItem("presentation_list") ? JSON.parse(localStorage.getItem("presentation_list")) : new Array;
       if($.inArray(presentation.id, list) === -1) {
         list.push(presentation.id);
@@ -8949,10 +9148,12 @@ VISH.LocalStorage = function(V, $, undefined) {
         _saveImage(presentation.avatar)
       }
     }else {
-      V.Debugging.log("Sorry! No web storage support.")
     }
   };
   var _saveImage = function(path) {
+    if(!_initialized) {
+      init()
+    }
     if(localStorage.getItem(path) === null && !path.match(/^http/)) {
       var canvas = document.createElement("canvas");
       var ctx = canvas.getContext("2d");
@@ -8967,7 +9168,16 @@ VISH.LocalStorage = function(V, $, undefined) {
       }
     }
   };
-  return{addPresentation:addPresentation}
+  var checkLocalStorageSupport = function() {
+    return typeof Storage !== "undefined"
+  };
+  var clear = function() {
+    localStorage.clear()
+  };
+  var setTestingMode = function(bolean) {
+    _testing = bolean
+  };
+  return{init:init, add:add, get:get, addPresentation:addPresentation, checkLocalStorageSupport:checkLocalStorageSupport, clear:clear, setTestingMode:setTestingMode}
 }(VISH, jQuery);
 VISH.Slides = function(V, $, undefined) {
   var slideEls;
@@ -9307,7 +9517,14 @@ VISH.Events = function(V, $, undefined) {
     $(document).on("click", "#closeButton", function(event) {
       event.stopPropagation();
       event.preventDefault();
-      window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
+      var comeBackUrl = V.SlideManager.getOptions()["comeBackUrl"];
+      if(comeBackUrl) {
+        window.top.location.href = V.SlideManager.getOptions()["comeBackUrl"]
+      }else {
+        if(V.Status.getIsEmbed() && V.Status.getDevice().features.history) {
+          history.back()
+        }
+      }
     });
     $(document).on("click", "#back_arrow", function(event) {
       V.Slides.backwardOneSlide()
@@ -9320,22 +9537,22 @@ VISH.Events = function(V, $, undefined) {
     for(index in presentation.slides) {
       var slide = presentation.slides[index];
       switch(slide.type) {
-        case VISH.Constant.FLASHCARD:
+        case V.Constant.FLASHCARD:
           for(ind in slide.pois) {
             var poi = slide.pois[ind];
             $(document).on("click", "#" + poi.id, {poi_id:poi.id}, onFlashcardPoiClicked)
           }
           break;
-        case VISH.Constant.VTOUR:
+        case V.Constant.VTOUR:
           break
       }
     }
     if(typeof applicationCache !== "undefined") {
       applicationCache.addEventListener("cached", function() {
-        VISH.LocalStorage.addPresentation(presentation)
+        V.Storage.addPresentation(presentation)
       }, false);
       applicationCache.addEventListener("updateready", function() {
-        VISH.LocalStorage.addPresentation(presentation)
+        V.Storage.addPresentation(presentation)
       }, false)
     }
     if(mobile) {
@@ -9359,22 +9576,22 @@ VISH.Events = function(V, $, undefined) {
     for(index in presentation.slides) {
       var slide = presentation.slides[index];
       switch(slide.type) {
-        case VISH.Constant.FLASHCARD:
+        case V.Constant.FLASHCARD:
           for(ind in slide.pois) {
             var poi = slide.pois[ind];
             $(document).off("click", "#" + poi.id, {poi_id:poi.id}, onFlashcardPoiClicked)
           }
           break;
-        case VISH.Constant.VTOUR:
+        case V.Constant.VTOUR:
           break
       }
     }
     if(typeof applicationCache !== "undefined") {
       applicationCache.removeEventListener("cached", function() {
-        VISH.LocalStorage.addPresentation(presentation)
+        V.Storage.addPresentation(presentation)
       }, false);
       applicationCache.removeEventListener("updateready", function() {
-        VISH.LocalStorage.addPresentation(presentation)
+        V.Storage.addPresentation(presentation)
       }, false)
     }
     if(mobile) {
@@ -9407,7 +9624,7 @@ VISH.Events = function(V, $, undefined) {
         return
       }
     }
-    var poi = VISH.Flashcard.getPoiData(poiId);
+    var poi = V.Flashcard.getPoiData(poiId);
     if(poi !== null) {
       V.Slides.openSubslide(poi.slide_id, true)
     }
@@ -9429,8 +9646,8 @@ VISH.EventsNotifier = function(V, $, undefined) {
     }else {
       listeners[listenedEvent] = [];
       listeners[listenedEvent].push(callback);
-      if(listenedEvent == VISH.Constant.Event.onMessage) {
-        VISH.Messenger.init()
+      if(listenedEvent == V.Constant.Event.onMessage) {
+        V.Messenger.init()
       }
     }
   };

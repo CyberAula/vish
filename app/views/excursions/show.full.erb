@@ -105,29 +105,30 @@
 	options["developping"] = false;
 
 	//Embed
-	var cEmbed = ("<%=@embed%>" === "true");
-	if((window.parent.embed===true)||(cEmbed === true)){
-		options["embed"] = true;
-	}
-
-	<% if @orgUrl %>
-		var orgUrl = "<%=@orgUrl%>";
-		options["comeBackUrl"] = orgUrl;
-		options["exitFullscreen"] = orgUrl;
-	<% end %>
+	var isEmbed = (("<%=@embed%>" === "true")||(window.parent.embed===true));
+	options["embed"] = isEmbed;
 
 	<% if @excursion %>
 		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
-		if(!cEmbed){
-			options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
-		}
+		options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
 	<% end %>
 
-	<% if request && request.referrer %>
-		if(typeof options["comeBackUrl"] === "undefined"){
-			options["comeBackUrl"] = "<%=request.referrer%>";
-		}
-	<% end %>
+  if(isEmbed){
+    //Remove exitFullscreen and comeBackUrl (Vish Editor will use native back)
+    options["exitFullscreen"] = undefined;
+    options["comeBackUrl"] = undefined;
+  } else {
+    //Look for URL param
+    <% if @orgUrl %>
+      var orgUrl = "<%=@orgUrl%>";
+      options["comeBackUrl"] = orgUrl;
+      options["exitFullscreen"] = orgUrl;
+    <% else %>
+      <% if request && request.referrer %>
+        options["comeBackUrl"] = "<%=request.referrer%>";
+      <% end %>
+    <% end %>
+  }
 
 	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
