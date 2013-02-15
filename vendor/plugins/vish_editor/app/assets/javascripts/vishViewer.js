@@ -6751,14 +6751,14 @@ VISH.Debugging = function(V, $, undefined) {
   };
   var initVishViewer = function() {
     var mypresentation = null;
-    if(VISH.Editing) {
+    if(V.Editing) {
       if(!presentationOptions) {
         log("VISH.Debugging Error: Specify presentationOptions");
         return
       }
-      mypresentation = VISH.Editor.getSavedPresentation();
+      mypresentation = V.Editor.getSavedPresentation();
       if(mypresentation === null) {
-        mypresentation = VISH.Editor.savePresentation()
+        mypresentation = V.Editor.savePresentation()
       }
     }else {
       log("You are already in Vish Viewer");
@@ -6770,14 +6770,14 @@ VISH.Debugging = function(V, $, undefined) {
     $("#menubar_helpsection2").hide();
     $("#joyride_help_button").hide();
     $("#preview_circle").hide();
-    VISH.Editor.Tools.cleanZoneTools();
-    VISH.Editor.Tools.disableToolbar();
+    V.Editor.Tools.cleanZoneTools();
+    V.Editor.Tools.disableToolbar();
     $("#menubar-viewer").show();
-    VISH.SlideManager.init(presentationOptions, mypresentation)
+    V.SlideManager.init(presentationOptions, mypresentation)
   };
   var initVishEditor = function() {
     var mypresentation = null;
-    if(VISH.Editing) {
+    if(V.Editing) {
       log("You are already in Vish Editor");
       return
     }else {
@@ -6785,7 +6785,7 @@ VISH.Debugging = function(V, $, undefined) {
         log("VISH.Debugging Error: Specify presentationOptions");
         return
       }
-      mypresentation = VISH.Editor.getSavedPresentation()
+      mypresentation = V.Editor.getSavedPresentation()
     }
     $("article").remove();
     $("#menubar").show();
@@ -6793,9 +6793,9 @@ VISH.Debugging = function(V, $, undefined) {
     $("#menubar_helpsection2").show();
     $("#joyride_help_button").show();
     $("#preview_circle").show();
-    VISH.Editor.Tools.enableToolbar();
+    V.Editor.Tools.enableToolbar();
     $("#menubar-viewer").hide();
-    VISH.Editor.init(presentationOptions, mypresentation)
+    V.Editor.init(presentationOptions, mypresentation)
   };
   return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getPresentationSamples:getPresentationSamples, initVishViewer:initVishViewer, initVishEditor:initVishEditor}
 }(VISH, jQuery);
@@ -7625,7 +7625,7 @@ VISH.SlideManager = function(V, $, undefined) {
   var current_presentation;
   var presentationType = "presentation";
   var init = function(options, presentation) {
-    Editing = false;
+    V.Editing = false;
     V.Debugging.init(options);
     if(options) {
       initOptions = options
@@ -7636,7 +7636,7 @@ VISH.SlideManager = function(V, $, undefined) {
       V.Configuration.init(options["configuration"])
     }
     if(V.Debugging.isDevelopping()) {
-      if(options["configuration"]["mode"] == "noserver" && !presentation && V.Debugging.getPresentationSamples() != null) {
+      if(options["configuration"]["mode"] === V.Constant.NOSERVER && !presentation && V.Debugging.getPresentationSamples() !== null) {
         presentation = V.Debugging.getPresentationSamples()
       }
     }
@@ -7855,6 +7855,42 @@ VISH.Utils = function(V, undefined) {
   };
   var sendParentToURL = function(the_url) {
     window.parent.location = the_url
+  };
+  var addParamToUrl = function(url, paramName, paramValue) {
+    if(typeof url !== "string" || typeof paramName !== "string" || typeof paramValue !== "string") {
+      return url
+    }
+    var splitHash = url.split("#");
+    url = splitHash[0];
+    var param = paramName + "=" + paramValue;
+    if(url.indexOf("?") > -1) {
+      url += "&" + param
+    }else {
+      url += "?" + param
+    }
+    if(splitHash.length > 1) {
+      url = url + "#" + splitHash[1]
+    }
+    return url
+  };
+  var getParamsFromUrl = function(url) {
+    var params = {};
+    if(typeof url !== "string") {
+      return params
+    }
+    var split = url.split("?");
+    if(split.length <= 1) {
+      return params
+    }else {
+      var urlParams = split[1].split("#")[0].split("&");
+      for(var i = 0;i < urlParams.length;i++) {
+        var resultSplit = urlParams[i].split("=");
+        if(resultSplit.length === 2) {
+          params[resultSplit[0]] = resultSplit[1]
+        }
+      }
+      return params
+    }
   };
   var loadCSS = function(path) {
     $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + path + '" type="text/css" />')
@@ -8125,7 +8161,7 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  loadTab:loadTab, sendParentToURL:sendParentToURL}
+  loadTab:loadTab, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
   var _device;
@@ -8135,10 +8171,10 @@ VISH.Status = function(V, $, undefined) {
   var _isSlave;
   var _isPreventDefault;
   var init = function(callback) {
+    _checkIframe();
+    _checkEmbed();
     VISH.Status.Device.init(function(returnedDevice) {
       _device = returnedDevice;
-      _checkIframe();
-      _checkEmbed();
       _checkOnline();
       if(typeof callback === "function") {
         callback()
