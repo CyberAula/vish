@@ -20,7 +20,7 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended]
+  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended, :evaluate]
   include SocialStream::Controllers::Objects
   include HomeHelper
 
@@ -142,6 +142,16 @@ class ExcursionsController < ApplicationController
       }
       format.json { render :json => @found_excursions }
     end
+  end
+
+  def evaluate
+    @excursion_evaluation = ExcursionEvaluation.new(:excursion => Excursion.find_by_id(params[:id]))
+    @excursion_evaluation.ip = request.remote_ip
+    5.times do |ind|
+      @excursion_evaluation.send("answer_#{ind}=", params[("excursion_evaluation_#{ind}").to_sym])
+    end
+    @excursion_evaluation.save!
+    redirect_to '/'
   end
 
   def recommended
