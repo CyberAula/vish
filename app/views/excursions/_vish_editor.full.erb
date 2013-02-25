@@ -1,9 +1,19 @@
 <section class="slides layout-regular template-default" id="slides_panel">
     
     <div id="flashcard-background" style="display:none">
-    <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/icons/helptutorial_circle.png"/>
+      <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/icons/helptutorial_circle.png"/>
+      </div>
+      <div id="fc_change_bg_big" class="change_bg_button_class"></div>
     </div>
-    <div id="fc_change_bg_big" class="change_bg_button_class"></div>
+    <div id="vtour-background" style="display:none">
+      <div id="vtour_help_button"><img id="help_vtour" src="/assets/icons/helptutorial_circle.png"/></div>
+      <div id="vt_canvas"></div>
+      <div id="vt_search">
+        <input id="vt_search_input" type="text" placeholder="Search places"></input>
+        <button id="vt_search_button">
+          <img id="vt_search_button_img" src="/assets/vtour/gsearch.png"/>
+        </button>
+      </div>
     </div>
     <div id="menubarbg" class="menubarcolor"></div>
     <div id="menubar_helpsection"><img src="/assets/menubar_helpsection.png"/></div>
@@ -39,7 +49,7 @@
     <div id="toolbar_wrapper">
       <div id="toolbar_menu">
 
-        <!-- MENU -->
+              <!-- MENU -->
         <ul id="menu" style="display:none">
           <li class="current">
             <a class="menu_option_main" href="#">
@@ -67,7 +77,7 @@
                 <a class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
                 <ul>
                   <li>
-                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
+                    <a class="menu_option" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.File">File</a>
@@ -76,7 +86,7 @@
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.Presentation">Presentation</a>
                   </li>
                   <li>
-                    <a style="display:none" class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
+                    <a class="menu_option" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.Game">Game</a>
@@ -90,13 +100,16 @@
                 <a class="menu_option menu_all" i18n-key="i.ConvertTo">Convert to</a>
                 <ul>
                   <li>
-                    <a class="menu_option menu_action menu_flashcard menu_game" action="switchToPresentation" i18n-key="i.Presentation">Presentation</a>
+                    <a class="menu_option menu_action menu_flashcard menu_game menu_vtour" action="switchToPresentation" i18n-key="i.Presentation">Presentation</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_standard_presentation menu_game" action="switchToFlashcard" i18n-key="i.Flashcard">Flashcard</a>
+                    <a class="menu_option menu_action menu_standard_presentation menu_game menu_vtour" action="switchToFlashcard" i18n-key="i.Flashcard">Flashcard</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" action="switchToGame" i18n-key="i.Game">Game</a>
+                  </li>
+                  <li>
+                    <a class="menu_option menu_action menu_standard_presentation menu_flashcard menu_game" action="switchToVirtualTour" i18n-key="i.VirtualTour">Virtual Tour</a>
                   </li>
                 </ul>
               </li>
@@ -548,7 +561,7 @@
       <div id='message2_form'>
         <div class="text_in_fancybox">
           <img id="message2img" src="/assets/zonethumbs/content_fail.png">
-          <span class="deltext">Transform the flashcard to standard presentation to add a new slide.</span>
+          <span class="deltext">Transform to standard presentation to add a new slide.</span>
         </div>    
         <div id="button_accept_when_fail">
           <a href="#" i18n-key="i.accept" onclick="$.fancybox.close();" class="prompt_button buttonfail">accept</a>
@@ -587,7 +600,20 @@
       <div id='message5_form'>
         <div class="text_in_fancybox">
           <img id="message5img" src="/assets/zonethumbs/content_fail.png">
-          <span class="deltext">Please create at least one slide before changing to flashcard mode.</span>
+          <span class="deltext">Please create at least one slide before changing mode.</span>
+        </div>    
+        <div id="button_accept_when_fail">
+          <a href="#" onclick="$.fancybox.close();" class="prompt_button buttonfail">accept</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
+    <div style='display:none'>
+      <div id='message6_form'>
+        <div class="text_in_fancybox">
+          <img id="message6img" src="/assets/zonethumbs/content_fail.png">
+          <span class="deltext">Please drag and drop at least one point of interest in the map.</span>
         </div>    
         <div id="button_accept_when_fail">
           <a href="#" onclick="$.fancybox.close();" class="prompt_button buttonfail">accept</a>
@@ -1090,6 +1116,21 @@
     <p><span i18n-key="i.walk60">You can click on the "preview button" to test the flashcard before you save it.</span><img src="/assets/icons/preview_circle.png"/></p>
     <p i18n-key="i.walk61">If you save your presentation as a flashcard, it will be shown on the Vish web page as a flashcard, but you can always edit your excursion back and save it as a presentation.</p>
     </li>
+    </ol>
+
+    <!--help for vtours -->
+    <ol id="vt_help" class="joyRideTipContent">
+      <li data-id="change_background_fc" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
+        <h2>Virtual Tours</h2>
+        <p>A virtual tour is a represententation of your excursion as a map.</p>
+        <p>Just "drag and drop" the arrows in the lower zone of the editor (on top of the slides) into the map.</p>
+        <img src="/assets/tutorial/icons_flashcard_tut2.png"/>
+        <p>The arrows will be converted into a pin, which you can moved across the map.</p>
+        <p>To remove a pin from the map, just click the desired pin.</p>
+        <p><span>You can click on the "preview button" to show the resulting virtual tour before you save it.</span>
+          <img src="/assets/icons/preview_circle.png"/>
+        </p>
+      </li>
     </ol>
 
     <!--help for themes-->

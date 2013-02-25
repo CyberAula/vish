@@ -5,3 +5,7 @@
 div#viewerpreview {
 	padding-left: 26px !important;
 }
+
+#toolbar_element {
+	position: absolute;
+}

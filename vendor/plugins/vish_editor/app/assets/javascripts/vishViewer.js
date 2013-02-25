@@ -3314,7 +3314,7 @@ VISH.Constant.STANDARD = "standard";
 VISH.Constant.FLASHCARD = "flashcard";
 VISH.Constant.QUIZ_SIMPLE = "quiz_simple";
 VISH.Constant.GAME = "game";
-VISH.Constant.VTOUR = "virtualTour";
+VISH.Constant.VTOUR = "VirtualTour";
 VISH.Constant.IMAGE = "image";
 VISH.Constant.TEXT = "text";
 VISH.Constant.VIDEO = "video";
@@ -3344,6 +3344,9 @@ VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
 VISH.Constant.Storage = {};
 VISH.Constant.Storage.Device = "Device";
+VISH.Constant.VTour = {};
+VISH.Constant.VTour.DEFAULT_MAP = "roadmap";
+VISH.Constant.VTour.ROADMAP = "roadmap";
 VISH.Configuration = function(V, $, undefined) {
   var configuration;
   var init = function(myConfiguration) {
@@ -3351,11 +3354,11 @@ VISH.Configuration = function(V, $, undefined) {
     _initPaths()
   };
   var _initPaths = function() {
-    VISH.ImagesPath = configuration["ImagesPath"];
-    VISH.StylesheetsPath = configuration["StylesheetsPath"];
-    VISH.UploadImagePath = configuration["uploadImagePath"];
-    VISH.UploadObjectPath = configuration["uploadObjectPath"];
-    VISH.UploadPresentationPath = configuration["uploadPresentationPath"]
+    V.ImagesPath = configuration["ImagesPath"];
+    V.StylesheetsPath = configuration["StylesheetsPath"];
+    V.UploadImagePath = configuration["uploadImagePath"];
+    V.UploadObjectPath = configuration["uploadObjectPath"];
+    V.UploadPresentationPath = configuration["uploadPresentationPath"]
   };
   var applyConfiguration = function() {
     if(configuration["presentationSettings"]) {
@@ -6395,7 +6398,7 @@ VISH.Object = function(V, $, undefined) {
       case "IFRAME":
         return $(object).attr("src");
       default:
-        VISH.Debugging.log("Unrecognized object wrapper: " + wrapper);
+        V.Debugging.log("Unrecognized object wrapper: " + wrapper);
         return null;
         break
     }
@@ -6440,7 +6443,7 @@ VISH.Renderer = function(V, $, undefined) {
   var SLIDE_CONTAINER = null;
   var init = function() {
     SLIDE_CONTAINER = $(".slides");
-    VISH.Renderer.Filter.init()
+    V.Renderer.Filter.init()
   };
   var renderSlide = function(slide, extra_classes, extra_buttons) {
     var article;
@@ -6453,16 +6456,16 @@ VISH.Renderer = function(V, $, undefined) {
     switch(slide.type) {
       case undefined:
       ;
-      case VISH.Constant.STANDARD:
+      case V.Constant.STANDARD:
         article = _renderStandardSlide(slide, extra_classes, extra_buttons);
         break;
-      case VISH.Constant.FLASHCARD:
+      case V.Constant.FLASHCARD:
         article = _renderFlashcardSlide(slide, extra_classes, extra_buttons);
         break;
-      case VISH.Constant.VTOUR:
+      case V.Constant.VTOUR:
         article = _renderVirtualTourSlide(slide, extra_classes, extra_buttons);
         break;
-      case VISH.Constant.QUIZ_SIMPLE:
+      case V.Constant.QUIZ_SIMPLE:
         article = _renderStandardSlide(slide, extra_classes, extra_buttons);
         break;
       default:
@@ -6478,8 +6481,8 @@ VISH.Renderer = function(V, $, undefined) {
     var content = "";
     var classes = "";
     for(el in slide.elements) {
-      if(!VISH.Renderer.Filter.allowElement(slide.elements[el])) {
-        content += VISH.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template)
+      if(!V.Renderer.Filter.allowElement(slide.elements[el])) {
+        content += V.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template)
       }else {
         if(slide.elements[el].type === "text") {
           content += _renderText(slide.elements[el], slide.template)
@@ -6502,9 +6505,9 @@ VISH.Renderer = function(V, $, undefined) {
                     content += _renderApplet(slide.elements[el], slide.template);
                     classes += "applet "
                   }else {
-                    if(slide.elements[el].type === VISH.Constant.QUIZ) {
+                    if(slide.elements[el].type === V.Constant.QUIZ) {
                       content += V.Quiz.Renderer.renderQuiz(slide.elements[el].quiztype, slide.elements[el], slide.template + "_" + slide.elements[el].areaid, slide.id, slide.elements[el].id);
-                      classes += VISH.Constant.QUIZ
+                      classes += V.Constant.QUIZ
                     }else {
                       content += _renderEmpty(slide.elements[el], slide.template)
                     }
@@ -6516,9 +6519,9 @@ VISH.Renderer = function(V, $, undefined) {
         }
       }
     }
-    if(slide.type == VISH.Constant.QUIZ_SIMPLE) {
+    if(slide.type == V.Constant.QUIZ_SIMPLE) {
       content += V.Quiz.Renderer.renderQuiz(slide.quiztype, slide, slide.template + "_" + slide.areaid, null, slide.id);
-      classes += VISH.Constant.QUIZ
+      classes += V.Constant.QUIZ
     }
     return"<article class='" + extra_classes + " " + classes + "' id='" + slide.id + "'>" + extra_buttons + content + "</article>"
   };
@@ -6544,17 +6547,17 @@ VISH.Renderer = function(V, $, undefined) {
     switch(slide.type) {
       case undefined:
       ;
-      case VISH.Constant.STANDARD:
+      case V.Constant.STANDARD:
         break;
-      case VISH.Constant.FLASHCARD:
+      case V.Constant.FLASHCARD:
         $("#" + slide.id).css("background-image", slide.background);
         for(index in slide.pois) {
           var poi = slide.pois[index];
           V.Flashcard.addArrow(slide.id, poi, true)
         }
         break;
-      case VISH.Constant.VTOUR:
-        VISH.VirtualTour.drawMap(slide);
+      case V.Constant.VTOUR:
+        V.VirtualTour.drawMap(slide);
         break;
       default:
         break
@@ -6576,7 +6579,7 @@ VISH.Renderer = function(V, $, undefined) {
     }else {
       $(div).append(img)
     }
-    return VISH.Utils.getOuterHTML(div)
+    return V.Utils.getOuterHTML(div)
   };
   var renderVideo = function(element, template) {
     var rendered = "<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'>";
@@ -6586,7 +6589,7 @@ VISH.Renderer = function(V, $, undefined) {
     var poster = element["poster"] ? "poster='" + element["poster"] + "' " : "";
     var loop = element["loop"] ? "loop='loop' " : "";
     var sources = element["sources"];
-    var videoId = VISH.Utils.getId();
+    var videoId = V.Utils.getId();
     if(typeof sources == "string") {
       sources = JSON.parse(sources)
     }
@@ -6602,7 +6605,7 @@ VISH.Renderer = function(V, $, undefined) {
     return rendered
   };
   var _renderObject = function(element, template) {
-    var objectInfo = VISH.Object.getObjectInfo(element.body);
+    var objectInfo = V.Object.getObjectInfo(element.body);
     switch(objectInfo.type) {
       case "youtube":
         return _renderYoutubeVideo(element, template, objectInfo.source);
@@ -6616,7 +6619,7 @@ VISH.Renderer = function(V, $, undefined) {
     }
   };
   var _renderYoutubeVideo = function(element, template, source) {
-    var ytContainerId = VISH.Utils.getId();
+    var ytContainerId = V.Utils.getId();
     var style = element["style"] ? element["style"] : "";
     var body = element["body"];
     var zoomInStyle = element["zoomInStyle"] ? element["zoomInStyle"] : "";
@@ -6641,7 +6644,7 @@ VISH.Renderer.Filter = function(V, $, undefined) {
   var init = function() {
   };
   var allowElement = function(element) {
-    var device = VISH.Status.getDevice();
+    var device = V.Status.getDevice();
     if(device.desktop) {
       switch(element.type) {
         case "applet":
@@ -6653,7 +6656,7 @@ VISH.Renderer.Filter = function(V, $, undefined) {
       if(device.mobile || device.tablet) {
         switch(element.type) {
           case "object":
-            var objectInfo = VISH.Object.getObjectInfo(element.body);
+            var objectInfo = V.Object.getObjectInfo(element.body);
             if(objectInfo.type == "swf") {
               return false
             }else {
@@ -6678,7 +6681,7 @@ VISH.Renderer.Filter = function(V, $, undefined) {
     return true
   };
   var renderContentFiltered = function(element, template) {
-    return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + VISH.ImagesPath + "adverts/advert_new_grey.png'/></div>"
+    return"<div id='" + element["id"] + "' class='contentfiltered " + template + "_" + element["areaid"] + "'><img class='" + template + "_image' src='" + V.ImagesPath + "adverts/advert_new_grey.png'/></div>"
   };
   return{init:init, allowElement:allowElement, renderContentFiltered:renderContentFiltered}
 }(VISH, jQuery);
@@ -6836,12 +6839,12 @@ VISH.Text = function(V, $, undefined) {
       var tableOrgStyle = $(table).attr("style");
       if(tableOrgStyle) {
         var tableStyle = "";
-        var tableWidth = VISH.Utils.getWidthFromStyle(tableOrgStyle);
+        var tableWidth = V.Utils.getWidthFromStyle(tableOrgStyle);
         if(tableWidth) {
           var percentWidth = tableWidth * 100 / 800;
           tableStyle += "width:" + percentWidth + "%;"
         }
-        var tableHeight = VISH.Utils.getHeightFromStyle(tableOrgStyle);
+        var tableHeight = V.Utils.getHeightFromStyle(tableOrgStyle);
         if(tableHeight) {
           var percentHeight = tableHeight * 100 / 600;
           tableStyle += "height:" + percentHeight + "%;"
@@ -6859,12 +6862,12 @@ VISH.Text = function(V, $, undefined) {
     var lastFontSize = null;
     $(spans).each(function(index, span) {
       oldStyle = $(span).attr("style");
-      lastFontSizeCandidate = parseInt(VISH.Utils.getFontSizeFromStyle(oldStyle));
+      lastFontSizeCandidate = parseInt(V.Utils.getFontSizeFromStyle(oldStyle));
       if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
         lastFontSize = lastFontSizeCandidate
       }
       if($(span).find("span").length !== 0) {
-        newStyle = VISH.Utils.removeFontSizeInStyle(oldStyle);
+        newStyle = V.Utils.removeFontSizeInStyle(oldStyle);
         if(newStyle === null || newStyle === "; ") {
           $(span).removeAttr("style")
         }else {
@@ -6878,11 +6881,11 @@ VISH.Text = function(V, $, undefined) {
           if(lastFontSize !== null) {
             fontSize = lastFontSize
           }else {
-            fontSize = VISH.Constant.TextDefault
+            fontSize = V.Constant.TextDefault
           }
         }
-        var em = fontSize / VISH.Constant.TextBase + "em";
-        newStyle = VISH.Utils.addFontSizeToStyle(oldStyle, em);
+        var em = fontSize / V.Constant.TextBase + "em";
+        newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
         $(span).attr("style", newStyle)
       }
     })
@@ -6899,7 +6902,7 @@ VISH.Text = function(V, $, undefined) {
       }
       $(font).hide();
       var pxfontSize = _font_to_px(fontSize);
-      var em = pxfontSize / VISH.Constant.TextBase + "em";
+      var em = pxfontSize / V.Constant.TextBase + "em";
       var span = $("<span style='font-size:" + em + "'></span>");
       $(span).html($(font).html());
       $(font).parent().prepend(span);
@@ -6912,18 +6915,18 @@ VISH.Text = function(V, $, undefined) {
     if(typeof oldStyle !== "string") {
       oldStyle = ""
     }else {
-      fontSize = VISH.Utils.getFontSizeFromStyle(oldStyle)
+      fontSize = V.Utils.getFontSizeFromStyle(oldStyle)
     }
     if(typeof fontSize !== "number" || isNaN(fontSize)) {
-      fontSize = VISH.Constant.TextDefault
+      fontSize = V.Constant.TextDefault
     }
-    var em = fontSize / VISH.Constant.TextBase + "em";
-    var newStyle = VISH.Utils.addFontSizeToStyle(oldStyle, em);
+    var em = fontSize / V.Constant.TextBase + "em";
+    var newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
     $(el).attr("style", newStyle)
   };
   var aftersetupSize = function(increase) {
     increase = increase * _correctionFactor(increase);
-    var reference_font_size = VISH.Constant.TextBase;
+    var reference_font_size = V.Constant.TextBase;
     var texts = $("article");
     $(texts).css("font-size", reference_font_size * increase + "px")
   };
@@ -7001,36 +7004,36 @@ VISH.Text = function(V, $, undefined) {
   };
   return{init:init, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
-VISH.VideoPlayer = function() {
+VISH.VideoPlayer = function(V, $, undefined) {
   var init = function() {
-    VISH.VideoPlayer.CustomPlayer.init();
-    VISH.VideoPlayer.HTML5.init();
-    VISH.VideoPlayer.Youtube.init()
+    V.VideoPlayer.CustomPlayer.init();
+    V.VideoPlayer.HTML5.init();
+    V.VideoPlayer.Youtube.init()
   };
   var getTypeVideoWithId = function(videoId) {
     return getTypeVideo(document.getElementById(videoId))
   };
   var getTypeVideo = function(video) {
     if(!video) {
-      return VISH.Constant.UNKNOWN
+      return V.Constant.UNKNOWN
     }else {
       if(video.tagName === "VIDEO") {
-        return VISH.Constant.Video.HTML5
+        return V.Constant.Video.HTML5
       }else {
         if(video.tagName === "OBJECT" || video.tagName === "IFRAME") {
-          return VISH.Constant.Video.Youtube
+          return V.Constant.Video.Youtube
         }
       }
     }
-    return VISH.Constant.UNKNOWN
+    return V.Constant.UNKNOWN
   };
   var playVideo = function(videoId, currentTime, triggeredByUser) {
     switch(getTypeVideoWithId(videoId)) {
-      case VISH.Constant.Video.HTML5:
-        VISH.VideoPlayer.HTML5.playVideo(videoId, currentTime, triggeredByUser);
+      case V.Constant.Video.HTML5:
+        V.VideoPlayer.HTML5.playVideo(videoId, currentTime, triggeredByUser);
         break;
-      case VISH.Constant.Video.Youtube:
-        VISH.VideoPlayer.Youtube.playVideo(videoId, currentTime, triggeredByUser);
+      case V.Constant.Video.Youtube:
+        V.VideoPlayer.Youtube.playVideo(videoId, currentTime, triggeredByUser);
         break;
       default:
         break
@@ -7038,11 +7041,11 @@ VISH.VideoPlayer = function() {
   };
   var pauseVideo = function(videoId, currentTime, triggeredByUser) {
     switch(getTypeVideoWithId(videoId)) {
-      case VISH.Constant.Video.HTML5:
-        VISH.VideoPlayer.HTML5.pauseVideo(videoId, currentTime, triggeredByUser);
+      case V.Constant.Video.HTML5:
+        V.VideoPlayer.HTML5.pauseVideo(videoId, currentTime, triggeredByUser);
         break;
-      case VISH.Constant.Video.Youtube:
-        VISH.VideoPlayer.Youtube.pauseVideo(videoId, currentTime, triggeredByUser);
+      case V.Constant.Video.Youtube:
+        V.VideoPlayer.Youtube.pauseVideo(videoId, currentTime, triggeredByUser);
         break;
       default:
         break
@@ -7050,11 +7053,11 @@ VISH.VideoPlayer = function() {
   };
   var seekVideo = function(videoId, seekTime, triggeredByUser) {
     switch(getTypeVideoWithId(videoId)) {
-      case VISH.Constant.Video.HTML5:
-        VISH.VideoPlayer.HTML5.seekVideo(videoId, seekTime, triggeredByUser);
+      case V.Constant.Video.HTML5:
+        V.VideoPlayer.HTML5.seekVideo(videoId, seekTime, triggeredByUser);
         break;
-      case VISH.Constant.Video.Youtube:
-        VISH.VideoPlayer.Youtube.seekVideo(videoId, seekTime, triggeredByUser);
+      case V.Constant.Video.Youtube:
+        V.VideoPlayer.Youtube.seekVideo(videoId, seekTime, triggeredByUser);
         break;
       default:
         break
@@ -7062,10 +7065,10 @@ VISH.VideoPlayer = function() {
   };
   var getDuration = function(video) {
     switch(getTypeVideo(video)) {
-      case VISH.Constant.Video.HTML5:
+      case V.Constant.Video.HTML5:
         return video.getDuration();
         break;
-      case VISH.Constant.Video.Youtube:
+      case V.Constant.Video.Youtube:
         return youtubePlayers[video.id].getDuration();
         break;
       default:
@@ -7074,10 +7077,10 @@ VISH.VideoPlayer = function() {
   };
   var getCurrentTime = function(video) {
     switch(getTypeVideo(video)) {
-      case VISH.Constant.Video.HTML5:
+      case V.Constant.Video.HTML5:
         return video.getCurrentTime();
         break;
-      case VISH.Constant.Video.Youtube:
+      case V.Constant.Video.Youtube:
         return youtubePlayers[video.id].getCurrentTime();
         break;
       default:
@@ -7086,7 +7089,7 @@ VISH.VideoPlayer = function() {
   };
   return{init:init, getTypeVideoWithId:getTypeVideoWithId, getTypeVideo:getTypeVideo, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, getDuration:getDuration, getCurrentTime:getCurrentTime}
 }(VISH, jQuery);
-VISH.VideoPlayer.CustomPlayer = function() {
+VISH.VideoPlayer.CustomPlayer = function(V, $, undefined) {
   var progressBarTimer;
   var init = function() {
   };
@@ -7156,7 +7159,7 @@ VISH.VideoPlayer.CustomPlayer = function() {
     var progressBar = $(video).parent().find("div.progressBarElapsed");
     var timer = progressBarTimer = setInterval(function() {
       try {
-        var ratio = VISH.VideoPlayer.getCurrentTime(video) / VISH.VideoPlayer.getDuration(video) * 100;
+        var ratio = V.VideoPlayer.getCurrentTime(video) / V.VideoPlayer.getDuration(video) * 100;
         $(progressBar).width(ratio + "%");
         if(ratio === 100) {
           clearTimeout(timer)
@@ -7167,7 +7170,7 @@ VISH.VideoPlayer.CustomPlayer = function() {
     }, 400)
   };
   var _onClickProgressBar = function(event) {
-    if(VISH.Status.isSlaveMode()) {
+    if(V.Status.isSlaveMode()) {
       return
     }
     if($(event.target).hasClass("customPlayerProgressBar")) {
@@ -7185,27 +7188,27 @@ VISH.VideoPlayer.CustomPlayer = function() {
     event.stopPropagation();
     var video = $(progressBar).parent().children()[0];
     var ratio = (event.pageX - $(progressBar).offset().left) / $(progressBar).outerWidth();
-    var seekToPos = Math.round(VISH.VideoPlayer.getDuration(video) * ratio);
-    VISH.VideoPlayer.seekVideo(video.id, seekToPos, true)
+    var seekToPos = Math.round(V.VideoPlayer.getDuration(video) * ratio);
+    V.VideoPlayer.seekVideo(video.id, seekToPos, true)
   };
   var onClickVideo = function(video) {
-    if(VISH.Status.isSlaveMode()) {
+    if(V.Status.isSlaveMode()) {
       return
     }
     switch($(video).attr("customPlayerStatus")) {
       case "ready":
       ;
       case "pause":
-        if(!VISH.Status.isPreventDefaultMode()) {
+        if(!V.Status.isPreventDefaultMode()) {
           onPlayVideo(video)
         }
-        VISH.VideoPlayer.playVideo(video.id, null, true);
+        V.VideoPlayer.playVideo(video.id, null, true);
         break;
       case "playing":
-        if(!VISH.Status.isPreventDefaultMode()) {
+        if(!V.Status.isPreventDefaultMode()) {
           onPauseVideo(video)
         }
-        VISH.VideoPlayer.pauseVideo(video.id, null, true);
+        V.VideoPlayer.pauseVideo(video.id, null, true);
         break;
       default:
         break
@@ -7234,7 +7237,7 @@ VISH.VideoPlayer.CustomPlayer = function() {
   };
   return{init:init, addCustomPlayerControls:addCustomPlayerControls, loadCustomPlayerControlEvents:loadCustomPlayerControlEvents, onPlayVideo:onPlayVideo, onPauseVideo:onPauseVideo, onEndVideo:onEndVideo}
 }(VISH, jQuery);
-VISH.VideoPlayer.HTML5 = function() {
+VISH.VideoPlayer.HTML5 = function(V, $, undefined) {
   var playTriggeredByUser = true;
   var pauseTriggeredByUser = true;
   var seekTriggeredByUser = true;
@@ -7248,8 +7251,8 @@ VISH.VideoPlayer.HTML5 = function() {
         params.type = "HTML5";
         params.videoId = video.id;
         params.currentTime = video.currentTime;
-        params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-        VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, playTriggeredByUser);
+        params.slideNumber = V.Slides.getCurrentSlideNumber();
+        V.EventsNotifier.notifyEvent(V.Constant.Event.onPlayVideo, params, playTriggeredByUser);
         playTriggeredByUser = true
       }, false);
       video.addEventListener("pause", function() {
@@ -7257,8 +7260,8 @@ VISH.VideoPlayer.HTML5 = function() {
         params.type = "HTML5";
         params.videoId = video.id;
         params.currentTime = video.currentTime;
-        params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-        VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, pauseTriggeredByUser);
+        params.slideNumber = V.Slides.getCurrentSlideNumber();
+        V.EventsNotifier.notifyEvent(V.Constant.Event.onPauseVideo, params, pauseTriggeredByUser);
         pauseTriggeredByUser = true
       }, false);
       video.addEventListener("ended", function() {
@@ -7270,8 +7273,8 @@ VISH.VideoPlayer.HTML5 = function() {
         params.type = "HTML5";
         params.videoId = video.id;
         params.currentTime = video.currentTime;
-        params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-        VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, seekTriggeredByUser);
+        params.slideNumber = V.Slides.getCurrentSlideNumber();
+        V.EventsNotifier.notifyEvent(V.Constant.Event.onSeekVideo, params, seekTriggeredByUser);
         seekTriggeredByUser = true
       }, false);
       $(video).focus(function(event) {
@@ -7358,7 +7361,7 @@ YT.PlayerState.BUFFERING = 3;
 YT.PlayerState.CUED = 5;
 function onYouTubeIframeAPIReady() {
 }
-VISH.VideoPlayer.Youtube = function() {
+VISH.VideoPlayer.Youtube = function(V, $, undefined) {
   var init = function() {
   };
   var _isYouTubeIframeAPIReady = function() {
@@ -7369,8 +7372,8 @@ VISH.VideoPlayer.Youtube = function() {
     }
   };
   var loadYoutubeObject = function(article, zone) {
-    if(VISH.Status.isOnline() === false) {
-      $(zone).html("<img src='" + VISH.ImagesPath + "adverts/advert_new_grey_video.png'/>");
+    if(V.Status.isOnline() === false) {
+      $(zone).html("<img src='" + V.ImagesPath + "adverts/advert_new_grey_video.png'/>");
       return
     }
     if(!_isYouTubeIframeAPIReady()) {
@@ -7384,11 +7387,11 @@ VISH.VideoPlayer.Youtube = function() {
     $(zone).html("<div id='" + iframeId + "' style='" + $(zone).attr("objectStyle") + "'></div>");
     youtubePlayers[iframeId] = new YT.Player(iframeId, {height:"100%", width:"100%", videoId:youtubeVideoId, playerVars:{"autoplay":0, "controls":0, "enablejsapi":1, "showinfo":0, wmode:"transparent", "rel":0}, events:{"onReady":onPlayerReady, "onStateChange":onPlayerStateChange, "onError":onPlayerError}});
     $("#" + iframeId).attr("wmode", "transparent");
-    VISH.VideoPlayer.CustomPlayer.addCustomPlayerControls(iframeId, false)
+    V.VideoPlayer.CustomPlayer.addCustomPlayerControls(iframeId, false)
   };
   var onPlayerReady = function(event) {
     var iframe = event.target.getIframe();
-    VISH.VideoPlayer.CustomPlayer.loadCustomPlayerControlEvents(iframe)
+    V.VideoPlayer.CustomPlayer.loadCustomPlayerControlEvents(iframe)
   };
   var onPlayerStateChange = function(event) {
     var newState = event.data;
@@ -7397,13 +7400,13 @@ VISH.VideoPlayer.Youtube = function() {
       case -1:
         break;
       case 0:
-        VISH.VideoPlayer.CustomPlayer.onEndVideo(iframe);
+        V.VideoPlayer.CustomPlayer.onEndVideo(iframe);
         break;
       case 1:
-        VISH.VideoPlayer.CustomPlayer.onPlayVideo(iframe);
+        V.VideoPlayer.CustomPlayer.onPlayVideo(iframe);
         break;
       case 2:
-        VISH.VideoPlayer.CustomPlayer.onPauseVideo(iframe);
+        V.VideoPlayer.CustomPlayer.onPauseVideo(iframe);
         break;
       case 3:
         break;
@@ -7416,7 +7419,7 @@ VISH.VideoPlayer.Youtube = function() {
     }
   };
   var onPlayerError = function(event) {
-    VISH.Debugging.log("onPlayerError with error type " + event.data)
+    V.Debugging.log("onPlayerError with error type " + event.data)
   };
   var playVideo = function(iframeId, currentTime, triggeredByUser) {
     var ytPlayer = youtubePlayers[iframeId];
@@ -7424,12 +7427,12 @@ VISH.VideoPlayer.Youtube = function() {
       var params = new Object;
       params.videoId = iframeId;
       params.currentTime = ytPlayer.getCurrentTime();
-      params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-      if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
-        VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onPlayVideo, params);
+      params.slideNumber = V.Slides.getCurrentSlideNumber();
+      if(triggeredByUser && V.Status.isPreventDefaultMode()) {
+        V.Messenger.notifyEventByMessage(V.Constant.Event.onPlayVideo, params);
         return
       }
-      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPlayVideo, params, triggeredByUser);
+      V.EventsNotifier.notifyEvent(V.Constant.Event.onPlayVideo, params, triggeredByUser);
       _seekVideo(ytPlayer, iframeId, currentTime, false);
       if(ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) {
         ytPlayer.playVideo()
@@ -7442,12 +7445,12 @@ VISH.VideoPlayer.Youtube = function() {
       var params = new Object;
       params.videoId = iframeId;
       params.currentTime = ytPlayer.getCurrentTime();
-      params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-      if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
-        VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onPauseVideo, params);
+      params.slideNumber = V.Slides.getCurrentSlideNumber();
+      if(triggeredByUser && V.Status.isPreventDefaultMode()) {
+        V.Messenger.notifyEventByMessage(V.Constant.Event.onPauseVideo, params);
         return
       }
-      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onPauseVideo, params, triggeredByUser);
+      V.EventsNotifier.notifyEvent(V.Constant.Event.onPauseVideo, params, triggeredByUser);
       if(ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
         ytPlayer.pauseVideo()
       }
@@ -7466,12 +7469,12 @@ VISH.VideoPlayer.Youtube = function() {
       var params = new Object;
       params.videoId = iframeId;
       params.currentTime = seekTime;
-      params.slideNumber = VISH.Slides.getCurrentSlideNumber();
-      if(triggeredByUser && VISH.Status.isPreventDefaultMode()) {
-        VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onSeekVideo, params);
+      params.slideNumber = V.Slides.getCurrentSlideNumber();
+      if(triggeredByUser && V.Status.isPreventDefaultMode()) {
+        V.Messenger.notifyEventByMessage(V.Constant.Event.onSeekVideo, params);
         return
       }
-      VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onSeekVideo, params, triggeredByUser);
+      V.EventsNotifier.notifyEvent(V.Constant.Event.onSeekVideo, params, triggeredByUser);
       ytPlayer.seekTo(seekTime)
     }
   };
@@ -7558,24 +7561,24 @@ VISH.ObjectPlayer = function(V, $, undefined) {
   };
   return{loadObject:loadObject, unloadObject:unloadObject, aftersetupSize:aftersetupSize, adjustDimensionsAfterZoom:adjustDimensionsAfterZoom}
 }(VISH, jQuery);
-VISH.SnapshotPlayer = function() {
+VISH.SnapshotPlayer = function(V, $, undefined) {
   var loadSnapshot = function(element) {
     $.each(element.children(".snapshotelement"), function(index, value) {
       var wrapper_class = "snapshot_wrapper" + "_viewer";
       var content_class = "snapshot_content" + "_viewer";
       var content = $(value).attr("objectWrapper");
-      if(VISH.Status.isOnline() === false) {
-        $(value).html("<img src='" + VISH.ImagesPath + "adverts/advert_new_grey_iframe.png'/>");
+      if(V.Status.isOnline() === false) {
+        $(value).html("<img src='" + V.ImagesPath + "adverts/advert_new_grey_iframe.png'/>");
         return
       }
-      var iframe = $(VISH.Utils.getOuterHTML($(content)));
+      var iframe = $(V.Utils.getOuterHTML($(content)));
       $(iframe).removeClass();
       $(iframe).addClass(content_class);
       var scrollTop = $(value).attr("scrollTop");
       var scrollLeft = $(value).attr("scrollLeft");
-      $(value).html("<div class='" + wrapper_class + "' style='" + $(value).attr("objectStyle") + "'>" + VISH.Utils.getOuterHTML(iframe) + "</div>");
+      $(value).html("<div class='" + wrapper_class + "' style='" + $(value).attr("objectStyle") + "'>" + V.Utils.getOuterHTML(iframe) + "</div>");
       if($(value).attr("zoom")) {
-        $(value).find("." + content_class).attr("style", VISH.Utils.getZoomInStyle($(value).attr("zoom")))
+        $(value).find("." + content_class).attr("style", V.Utils.getZoomInStyle($(value).attr("zoom")))
       }
       $(value).find("." + wrapper_class).scrollTop(scrollTop);
       $(value).find("." + wrapper_class).scrollLeft(scrollLeft)
@@ -7592,7 +7595,7 @@ VISH.SnapshotPlayer = function() {
       var area = $(iframe).parent().parent();
       var iframe_wrapper = $(iframe).parent();
       $(area).attr("zoom", increase);
-      $(iframe).attr("style", VISH.Utils.getZoomInStyle(increase));
+      $(iframe).attr("style", V.Utils.getZoomInStyle(increase));
       var scrollLeft = $(area).attr("scrollLeftOrigin");
       var newScrollLeft = scrollLeft * increase;
       var scrollTop = $(area).attr("scrollTopOrigin");
@@ -7676,7 +7679,10 @@ VISH.SlideManager = function(V, $, undefined) {
     if(options.addons) {
       V.Addons.init(options.addons)
     }
-    V.ViewerAdapter.init(options)
+    V.ViewerAdapter.init(options);
+    if(!V.Status.getIsAnotherDomain()) {
+      window.focus()
+    }
   };
   var toggleFullScreen = function() {
     if(V.Status.isSlaveMode()) {
@@ -7736,19 +7742,23 @@ VISH.SlideManager = function(V, $, undefined) {
   };
   var _onslideenter = function(e) {
     var slide = e.target;
+    var cSlideNumber = V.Slides.getCurrentSlideNumber();
     V.ViewerAdapter.decideIfPageSwitcher();
     setTimeout(function() {
+      if(cSlideNumber !== V.Slides.getCurrentSlideNumber()) {
+        return
+      }
       if($(slide).hasClass("object")) {
         V.ObjectPlayer.loadObject($(slide))
       }
       if($(e.target).hasClass("snapshot")) {
         V.SnapshotPlayer.loadSnapshot($(slide))
       }
-    }, 500);
-    V.VideoPlayer.HTML5.playVideos(e.target);
-    if($(e.target).hasClass("flashcard_slide")) {
-      V.Flashcard.startAnimation(e.target.id)
-    }
+      V.VideoPlayer.HTML5.playVideos(e.target);
+      if($(e.target).hasClass("flashcard_slide")) {
+        V.Flashcard.startAnimation(e.target.id)
+      }
+    }, 500)
   };
   var _onslideleave = function(e) {
     var slide = e.target;
@@ -7830,25 +7840,25 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var loadDeviceCSS = function() {
-    if(VISH.Status.getDevice().desktop) {
+    if(V.Status.getDevice().desktop) {
       loadCSS("device/desktop.css")
     }else {
-      if(VISH.Status.getDevice().mobile) {
+      if(V.Status.getDevice().mobile) {
         loadCSS("device/mobile.css")
       }else {
-        if(VISH.Status.getDevice().tablet) {
+        if(V.Status.getDevice().tablet) {
           loadCSS("device/tablet.css")
         }
       }
     }
-    switch(VISH.Status.getDevice().browser.name) {
-      case VISH.Constant.FIREFOX:
+    switch(V.Status.getDevice().browser.name) {
+      case V.Constant.FIREFOX:
         loadCSS("browser/firefox.css");
         break;
-      case VISH.Constant.IE:
+      case V.Constant.IE:
         loadCSS("browser/ie.css");
         break;
-      case VISH.Constant.CHROME:
+      case V.Constant.CHROME:
         loadCSS("browser/chrome.css");
         break
     }
@@ -7893,14 +7903,14 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var loadCSS = function(path) {
-    $("head").append('<link rel="stylesheet" href="' + VISH.StylesheetsPath + path + '" type="text/css" />')
+    $("head").append('<link rel="stylesheet" href="' + V.StylesheetsPath + path + '" type="text/css" />')
   };
   var checkMiniumRequirements = function() {
     var browserRequirements = true;
-    var device = VISH.Status.getDevice();
+    var device = V.Status.getDevice();
     switch(device.browser.name) {
-      case VISH.Constant.IE:
-        if(VISH.Editing) {
+      case V.Constant.IE:
+        if(V.Editing) {
           if(device.browser.version < 9) {
             browserRequirements = false
           }
@@ -7910,9 +7920,9 @@ VISH.Utils = function(V, undefined) {
           }
         }
         break;
-      case VISH.Constant.FIREFOX:
+      case V.Constant.FIREFOX:
         break;
-      case VISH.Constant.CHROME:
+      case V.Constant.CHROME:
         break;
       default:
         break
@@ -8071,46 +8081,46 @@ VISH.Utils = function(V, undefined) {
         V.Editor.Image.Flikr.onLoadTab();
         break;
       case "tab_video_from_url":
-        VISH.Editor.Video.onLoadTab();
+        V.Editor.Video.onLoadTab();
         break;
       case "tab_video_repo":
-        VISH.Editor.Video.Repository.onLoadTab();
+        V.Editor.Video.Repository.onLoadTab();
         break;
       case "tab_video_youtube":
-        VISH.Editor.Video.Youtube.onLoadTab();
+        V.Editor.Video.Youtube.onLoadTab();
         break;
       case "tab_video_vimeo":
-        VISH.Editor.Video.Vimeo.onLoadTab();
+        V.Editor.Video.Vimeo.onLoadTab();
         break;
       case "tab_object_from_url":
-        VISH.Editor.Object.onLoadTab("url");
+        V.Editor.Object.onLoadTab("url");
         break;
       case "tab_object_from_web":
-        VISH.Editor.Object.Web.onLoadTab();
+        V.Editor.Object.Web.onLoadTab();
         break;
       case "tab_object_snapshot":
-        VISH.Editor.Object.Snapshot.onLoadTab();
+        V.Editor.Object.Snapshot.onLoadTab();
         break;
       case "tab_object_upload":
-        VISH.Editor.Object.onLoadTab("upload");
+        V.Editor.Object.onLoadTab("upload");
         break;
       case "tab_object_repo":
-        VISH.Editor.Object.Repository.onLoadTab();
+        V.Editor.Object.Repository.onLoadTab();
         break;
       case "tab_live_webcam":
-        VISH.Editor.Object.Live.onLoadTab("webcam");
+        V.Editor.Object.Live.onLoadTab("webcam");
         break;
       case "tab_live_micro":
-        VISH.Editor.Object.Live.onLoadTab("micro");
+        V.Editor.Object.Live.onLoadTab("micro");
         break;
       case "tab_quiz_session":
-        VISH.Quiz.activatePolling(false);
+        V.Quiz.activatePolling(false);
         break;
       case "tab_quiz_stats_bars":
-        VISH.Quiz.activatePolling(true);
+        V.Quiz.activatePolling(true);
         break;
       case "tab_quiz_stats_pie":
-        VISH.Quiz.activatePolling(true);
+        V.Quiz.activatePolling(true);
         break;
       default:
         break
@@ -8163,17 +8173,159 @@ VISH.Utils = function(V, undefined) {
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
   loadTab:loadTab, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl}
 }(VISH);
+VISH.Utils.Loader = function(V, undefined) {
+  var _loadGoogleLibraryCallback = undefined;
+  var libVideos = {};
+  var libImages = {};
+  var getImage = function(imagePath) {
+    if(libImages[imagePath]) {
+      return libImages[imagePath]
+    }else {
+      V.Debugging.log("Error, Image with path " + imagePath + " was not preloaded");
+      return null
+    }
+  };
+  var getVideo = function(videoPath) {
+    if(libVideos[videoPath]) {
+      return libVideos[videoPath]
+    }else {
+      V.Debugging.log("Error, Video with path " + videoPath + " was not preloaded");
+      return null
+    }
+  };
+  var loadImage = function(src) {
+    var deferred, img;
+    deferred = $.Deferred();
+    img = new Image;
+    img.onload = function() {
+      deferred.resolve()
+    };
+    img.src = src;
+    libImages[src] = img;
+    return deferred.promise()
+  };
+  var loadVideo = function(videoSrc, videoId) {
+    var deferred, v;
+    deferred = $.Deferred();
+    v = document.createElement("video");
+    v.setAttribute("id", "video" + videoId);
+    v.setAttribute("style", "display:none");
+    v.setAttribute("preload", "auto");
+    v.setAttribute("src", videoSrc);
+    document.body.appendChild(v);
+    v.addEventListener("loadedmetadata", function() {
+      deferred.resolve()
+    }, false);
+    libVideos[videoSrc] = v;
+    return deferred.promise()
+  };
+  var loadImagesOnCarrousel = function(imagesArray, callback, carrouselDivId, titleArray) {
+    var imagesLength = imagesArray.length;
+    var imagesLoaded = 0;
+    $.each(imagesArray, function(i, image) {
+      $(image).load(function(response) {
+        if(titleArray && titleArray[imagesArray.indexOf(image)]) {
+          $("#" + carrouselDivId).append("<div><p>" + titleArray[imagesArray.indexOf(image)] + "</p>" + V.Utils.getOuterHTML(image) + "</div>")
+        }else {
+          $("#" + carrouselDivId).append("<div>" + V.Utils.getOuterHTML(image) + "</div>")
+        }
+        imagesLoaded = imagesLoaded + 1;
+        if(imagesLoaded == imagesLength) {
+          callback()
+        }
+      });
+      $(image).error(function(response) {
+        imagesLoaded = imagesLoaded + 1;
+        if(imagesLoaded == imagesLength) {
+          callback()
+        }
+      })
+    })
+  };
+  var loadImagesOnCarrouselOrder = function(imagesArray, callback, carrouselDivId, titleArray) {
+    var validImagesArray = imagesArray;
+    var imagesLength = imagesArray.length;
+    var imagesLoaded = 0;
+    $.each(imagesArray, function(i, image) {
+      $(image).load(function(response) {
+        imagesLoaded = imagesLoaded + 1;
+        if(imagesLoaded == imagesLength) {
+          _insertElementsWithOrder(validImagesArray, carrouselDivId, titleArray);
+          callback()
+        }
+      });
+      $(image).error(function(response) {
+        imagesLoaded = imagesLoaded + 1;
+        validImagesArray.splice(validImagesArray.indexOf(image), 1);
+        if(imagesLoaded == imagesLength) {
+          _insertElementsWithOrder(validImagesArray, carrouselDivId, titleArray);
+          callback()
+        }
+      })
+    })
+  };
+  var _insertElementsWithOrder = function(imagesArray, carrouselDivId, titleArray) {
+    $.each(imagesArray, function(i, image) {
+      if(titleArray && titleArray[imagesArray.indexOf(image)]) {
+        var slideNumber = titleArray[imagesArray.indexOf(image)];
+        var slideId = V.Slides.getSlideWithNumber(slideNumber).id;
+        var poiId = "poi" + slideNumber;
+        $("#" + carrouselDivId).append("<div><div class='draggable_arrow_div' slide_id='" + slideId + "' id='" + poiId + "'><img src='" + V.ImagesPath + "flashcard/flashcard_button.png'  class='fc_draggable_arrow'/><p class='draggable_number'>" + slideNumber + "</p></div><p slidenumber='" + slideNumber + "' action='goToSlide'>" + slideNumber + "</p>" + V.Utils.getOuterHTML(image) + "</div>")
+      }else {
+        $("#" + carrouselDivId).append("<div>" + V.Utils.getOuterHTML(image) + "</div>")
+      }
+    })
+  };
+  var loadScript = function(scriptSrc, callback) {
+    if(typeof scriptSrc !== "string" || typeof callback !== "function") {
+      return
+    }
+    var head = document.getElementsByTagName("head")[0];
+    if(head) {
+      var script = document.createElement("script");
+      script.setAttribute("src", scriptSrc);
+      script.setAttribute("type", "text/javascript");
+      var loadFunction = function() {
+        if(this.readyState == "complete" || this.readyState == "loaded") {
+          callback()
+        }
+      };
+      script.onreadystatechange = loadFunction;
+      script.onload = callback;
+      head.appendChild(script)
+    }
+  };
+  var loadGoogleLibrary = function(scriptSrc, callback) {
+    if(typeof callback === "function") {
+      _loadGoogleLibraryCallback = callback
+    }else {
+      return
+    }
+    var fullScriptSrc = scriptSrc + "&callback=VISH.Utils.Loader.onGoogleLibraryLoaded";
+    loadScript(fullScriptSrc, function() {
+    })
+  };
+  var onGoogleLibraryLoaded = function() {
+    if(typeof _loadGoogleLibraryCallback === "function") {
+      _loadGoogleLibraryCallback()
+    }
+    _loadGoogleLibraryCallback = undefined
+  };
+  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded}
+}(VISH);
 VISH.Status = function(V, $, undefined) {
   var _device;
   var _isInIframe;
   var _isEmbed;
+  var _isAnotherDomain;
   var _isOnline;
   var _isSlave;
   var _isPreventDefault;
   var init = function(callback) {
     _checkIframe();
     _checkEmbed();
-    VISH.Status.Device.init(function(returnedDevice) {
+    _checkDomain();
+    V.Status.Device.init(function(returnedDevice) {
       _device = returnedDevice;
       _checkOnline();
       if(typeof callback === "function") {
@@ -8182,24 +8334,31 @@ VISH.Status = function(V, $, undefined) {
     })
   };
   var _checkIframe = function() {
-    _isInIframe = window.location != window.parent.location ? true : false
+    _isInIframe = window.location != window.parent.location ? true : false;
+    return _isInIframe
   };
   var _checkEmbed = function() {
     _isEmbed = V.Utils.getOptions()["embed"] === true
   };
+  var _checkDomain = function() {
+    _isAnotherDomain = _checkIframe() && typeof window.parent.location.href === "undefined"
+  };
   var _checkOnline = function() {
     $.ajax({async:true, cache:false, error:function(req, status, ex) {
-      VISH.Debugging.log("Error: " + ex);
+      V.Debugging.log("Error: " + ex);
       _isOnline = false
     }, success:function(data, status, req) {
       _isOnline = true
-    }, timeout:5E3, type:"GET", url:VISH.ImagesPath + "blank.gif"})
+    }, timeout:5E3, type:"GET", url:V.ImagesPath + "blank.gif"})
   };
   var getDevice = function() {
     return _device
   };
   var getIsEmbed = function() {
     return _isEmbed
+  };
+  var getIsAnotherDomain = function() {
+    return _isAnotherDomain
   };
   var getIsInIframe = function() {
     return _isInIframe
@@ -8224,12 +8383,12 @@ VISH.Status = function(V, $, undefined) {
   var setSlaveMode = function(slaveMode) {
     if(slaveMode !== _isSlave) {
       if(slaveMode === true) {
-        VISH.Events.unbindViewerEventListeners();
-        VISH.VideoPlayer.HTML5.showControls(false);
+        V.Events.unbindViewerEventListeners();
+        V.VideoPlayer.HTML5.showControls(false);
         _isSlave = true
       }else {
-        VISH.Events.bindViewerEventListeners();
-        VISH.VideoPlayer.HTML5.showControls(true);
+        V.Events.bindViewerEventListeners();
+        V.VideoPlayer.HTML5.showControls(true);
         _isSlave = false
       }
     }
@@ -8250,7 +8409,7 @@ VISH.Status = function(V, $, undefined) {
       }
     }
   };
-  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode}
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsAnotherDomain:getIsAnotherDomain, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode}
 }(VISH, jQuery);
 VISH.Status.Device = function(V, $, undefined) {
   var init = function(callback) {
@@ -8279,8 +8438,8 @@ VISH.Status.Device = function(V, $, undefined) {
       _fillUserAgentAfterViewport(device);
       _fillScreen(device);
       device.features = V.Status.Device.Features.fillFeatures();
-      V.Storage.add(VISH.Constant.Storage.Device, device, false);
-      if(device.android && device.browser.name === VISH.Constant.ANDROID_BROWSER) {
+      V.Storage.add(V.Constant.Storage.Device, device, false);
+      if(device.android && device.browser.name === V.Constant.ANDROID_BROWSER) {
         if(device.hasTestingViewport === true) {
           _reloadOnAndroidTestingViewport(callback, device);
           return
@@ -8421,19 +8580,19 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
     var android;
     version = _getInternetExplorerVersion();
     if(version != -1) {
-      browser.name = VISH.Constant.IE;
+      browser.name = V.Constant.IE;
       browser.version = version;
       return browser
     }
     version = _getFirefoxVersion();
     if(version != -1) {
-      browser.name = VISH.Constant.FIREFOX;
+      browser.name = V.Constant.FIREFOX;
       browser.version = version;
       return browser
     }
     version = _getGoogleChromeVersion();
     if(version != -1) {
-      browser.name = VISH.Constant.CHROME;
+      browser.name = V.Constant.CHROME;
       browser.version = version;
       return browser
     }
@@ -8441,9 +8600,9 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
     version = _getSafariVersion();
     if(version != -1) {
       if(android) {
-        browser.name = VISH.Constant.ANDROID_BROWSER
+        browser.name = V.Constant.ANDROID_BROWSER
       }else {
-        browser.name = VISH.Constant.SAFARI
+        browser.name = V.Constant.SAFARI
       }
       browser.version = version;
       return browser
@@ -8451,13 +8610,13 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
     browser.name = V.Constant.UNKNOWN;
     browser.version = -1;
     if(android) {
-      browser.name = VISH.Constant.ANDROID_BROWSER
+      browser.name = V.Constant.ANDROID_BROWSER
     }
     return browser
   };
   var _getInternetExplorerVersion = function() {
     var rv = -1;
-    if(navigator.appName === VISH.Constant.UA_IE) {
+    if(navigator.appName === V.Constant.UA_IE) {
       var ua = navigator.userAgent;
       var re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
       if(re.exec(ua) != null) {
@@ -8468,7 +8627,7 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
   };
   var _getFirefoxVersion = function() {
     var rv = -1;
-    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+    if(navigator.appName === V.Constant.UA_NETSCAPE) {
       var ua = navigator.userAgent;
       var re = new RegExp(".* Firefox/([0-9.]+)");
       if(re.exec(ua) != null) {
@@ -8479,7 +8638,7 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
   };
   var _getGoogleChromeVersion = function() {
     var rv = -1;
-    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+    if(navigator.appName === V.Constant.UA_NETSCAPE) {
       var ua = navigator.userAgent;
       var re = new RegExp(".* Chrome/([0-9.]+)");
       if(re.exec(ua) != null) {
@@ -8490,7 +8649,7 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
   };
   var _getSafariVersion = function() {
     var rv = -1;
-    if(navigator.appName === VISH.Constant.UA_NETSCAPE) {
+    if(navigator.appName === V.Constant.UA_NETSCAPE) {
       var ua = navigator.userAgent;
       if(ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1 && ua.indexOf("crmo") == -1) {
         var rv = -2;
@@ -8617,6 +8776,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("div#viewerpreview").show();
       V.Quiz.UnbindStartQuizEvents()
     }
+    if(embed && V.Status.getIsInIframe()) {
+      $("#embedWatermarkWrapper").show()
+    }
     if(close_button) {
       $("button#closeButton").show()
     }
@@ -8722,6 +8884,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     $(".subslide").css("margin-top", "-" + finalH / 2 + "px");
     $(".subslide").css("margin-left", "-" + marginLeft + "px");
     var increase = finalH / 600;
+    var increaseW = finalW / 800;
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
     if($("#fancy_content:empty").length === 0) {
@@ -8736,9 +8899,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       V.Quiz.testFullScreen()
     }
     decideIfPageSwitcher();
-    V.Text.aftersetupSize(increase);
-    V.SnapshotPlayer.aftersetupSize(increase);
-    V.ObjectPlayer.aftersetupSize(increase)
+    V.Text.aftersetupSize(increase, increaseW);
+    V.SnapshotPlayer.aftersetupSize(increase, increaseW);
+    V.ObjectPlayer.aftersetupSize(increase, increaseW);
+    V.VirtualTour.aftersetupSize(increase, increaseW)
   };
   var _enableFullScreen = function(fullscreen) {
     if(can_use_nativeFs) {
@@ -8816,7 +8980,12 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var isFullScreen = function() {
     return page_is_fullscreen
   };
-  return{init:init, decideIfPageSwitcher:decideIfPageSwitcher, updateInterface:updateInterface, isFullScreen:isFullScreen}
+  var decideIfCloseButton = function() {
+    if(close_button) {
+      $("#closeButton").show()
+    }
+  };
+  return{init:init, updateInterface:updateInterface, isFullScreen:isFullScreen, decideIfPageSwitcher:decideIfPageSwitcher, decideIfCloseButton:decideIfCloseButton}
 }(VISH, jQuery);
 VISH.Game = function(V, $, undefined) {
   var actions = {};
@@ -8893,16 +9062,89 @@ VISH.Flashcard = function(V, $, undefined) {
   };
   return{init:init, addArrow:addArrow, startAnimation:startAnimation, stopAnimation:stopAnimation, animateArrows:animateArrows, getPoiData:getPoiData}
 }(VISH, jQuery);
+VISH.VirtualTour = function(V, $, undefined) {
+  var virtualTours;
+  var gMlLoaded = false;
+  var lastIncrease;
+  var init = function(presentation) {
+    virtualTours = new Array
+  };
+  var drawMap = function(vt) {
+    if(!gMlLoaded) {
+      V.Utils.Loader.loadGoogleLibrary("https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places", function() {
+        gMlLoaded = true;
+        drawMap(vt)
+      });
+      return
+    }
+    if(vt.type !== V.Constant.VTOUR) {
+      return
+    }
+    var canvas_id = V.Utils.getId(vt.id + "_canvas");
+    var canvas = $("<div id='" + canvas_id + "' class='map_canvas' style='height:" + "100%" + "; width:" + "100%" + "'></div>");
+    $("#" + vt.id).append(canvas);
+    var latlng = new google.maps.LatLng(vt.center.lat, vt.center.lng);
+    var myOptions = {zoom:parseInt(vt.zoom), center:latlng, mapTypeId:vt.mapType};
+    if(typeof virtualTours[vt.id] === "undefined") {
+      virtualTours[vt.id] = new Object;
+      virtualTours[vt.id].canvasId = canvas_id;
+      virtualTours[vt.id].center = latlng;
+      virtualTours[vt.id].pois = new Array;
+      virtualTours[vt.id].paths = []
+    }
+    var map = new google.maps.Map(document.getElementById(canvas_id), myOptions);
+    virtualTours[vt.id].map = map;
+    $(vt.pois).each(function(index, poi) {
+      virtualTours[vt.id].pois[poi.id] = poi;
+      _addMarkerToCoordinates(vt, poi.lat, poi.lng, poi.id)
+    });
+    google.maps.event.addListenerOnce(map, "tilesloaded", function() {
+      google.maps.event.addListenerOnce(map, "tilesloaded", function() {
+      })
+    })
+  };
+  var _addMarkerToCoordinates = function(vt, lat, lng, poi_id) {
+    return _addMarkerToPosition(vt, new google.maps.LatLng(lat, lng), poi_id)
+  };
+  var _addMarkerToPosition = function(vt, myLatlng, poi_id) {
+    var marker = new google.maps.Marker({position:myLatlng, map:virtualTours[vt.id].map, draggable:false, poi_id:poi_id, title:"(" + myLatlng.lat().toFixed(3) + "," + myLatlng.lng().toFixed(3) + ")"});
+    google.maps.event.addListener(marker, "click", function(event) {
+      var poi = _getPoi(vt, marker.poi_id);
+      V.Slides.openSubslide(poi.slide_id, true)
+    });
+    return marker
+  };
+  var _getPoi = function(vt, poiId) {
+    if(typeof virtualTours[vt.id] !== "undefined" && typeof virtualTours[vt.id].pois[poiId] !== "undefined") {
+      return virtualTours[vt.id].pois[poiId]
+    }
+  };
+  var aftersetupSize = function(increase) {
+  };
+  var _getZoomForIncreaseDiff = function(zoom, increaseDiff) {
+    var absIncreaseDiff = Math.floor(Math.abs(increaseDiff) / 0.3);
+    if(increaseDiff > 0) {
+      var newZoom = zoom + absIncreaseDiff
+    }else {
+      var newZoom = zoom - absIncreaseDiff
+    }
+    return Math.max(Math.min(newZoom, 20), 1)
+  };
+  var getVirtualTours = function() {
+    return virtualTours
+  };
+  return{init:init, drawMap:drawMap, aftersetupSize:aftersetupSize, getVirtualTours:getVirtualTours}
+}(VISH, jQuery);
 VISH.Themes = function(V, $, undefined) {
   var loadTheme = function(theme) {
     if(!theme) {
-      theme = VISH.Constant.Themes.Default
+      theme = V.Constant.Themes.Default
     }
     _unloadAllThemes();
     V.Utils.loadCSS("themes/" + theme + ".css")
   };
   var _unloadAllThemes = function() {
-    var theme_pattern = "(^" + VISH.StylesheetsPath + "themes/)";
+    var theme_pattern = "(^" + V.StylesheetsPath + "themes/)";
     $("head").find("link[type='text/css']").each(function(index, link) {
       var href = $(link).attr("href");
       if(href) {
@@ -8916,31 +9158,31 @@ VISH.Themes = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Messenger = function(V, undefined) {
   var init = function() {
-    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onGoToSlide, function(params) {
-      notifyEventByMessage(VISH.Constant.Event.onGoToSlide, params)
+    V.EventsNotifier.registerCallback(V.Constant.Event.onGoToSlide, function(params) {
+      notifyEventByMessage(V.Constant.Event.onGoToSlide, params)
     });
-    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onPlayVideo, function(params) {
-      notifyEventByMessage(VISH.Constant.Event.onPlayVideo, params)
+    V.EventsNotifier.registerCallback(V.Constant.Event.onPlayVideo, function(params) {
+      notifyEventByMessage(V.Constant.Event.onPlayVideo, params)
     });
-    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onPauseVideo, function(params) {
-      notifyEventByMessage(VISH.Constant.Event.onPauseVideo, params)
+    V.EventsNotifier.registerCallback(V.Constant.Event.onPauseVideo, function(params) {
+      notifyEventByMessage(V.Constant.Event.onPauseVideo, params)
     });
-    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onSeekVideo, function(params) {
-      notifyEventByMessage(VISH.Constant.Event.onSeekVideo, params)
+    V.EventsNotifier.registerCallback(V.Constant.Event.onSeekVideo, function(params) {
+      notifyEventByMessage(V.Constant.Event.onSeekVideo, params)
     });
-    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onFlashcardPointClicked, function(params) {
-      notifyEventByMessage(VISH.Constant.Event.onFlashcardPointClicked, params)
+    V.EventsNotifier.registerCallback(V.Constant.Event.onFlashcardPointClicked, function(params) {
+      notifyEventByMessage(V.Constant.Event.onFlashcardPointClicked, params)
     });
-    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onFlashcardSlideClosed, function(params) {
-      notifyEventByMessage(VISH.Constant.Event.onFlashcardSlideClosed, params)
+    V.EventsNotifier.registerCallback(V.Constant.Event.onFlashcardSlideClosed, function(params) {
+      notifyEventByMessage(V.Constant.Event.onFlashcardSlideClosed, params)
     })
   };
   var notifyEventByMessage = function(event, params) {
     if(params.triggeredByUser === false) {
       return
     }
-    var VEMessage = VISH.Messenger.Helper.createMessage(event, params);
-    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onMessage, VEMessage, true)
+    var VEMessage = V.Messenger.Helper.createMessage(event, params);
+    V.EventsNotifier.notifyEvent(V.Constant.Event.onMessage, VEMessage, true)
   };
   return{init:init, notifyEventByMessage:notifyEventByMessage}
 }(VISH);
@@ -8964,8 +9206,8 @@ VISH.Messenger.Helper = function(V, undefined) {
   }
   var createMessage = function(VEevent, params, origin, destination) {
     if(!origin) {
-      if(VISH.Status.getIsInIframe()) {
-        origin = VISH.Status.getIframe().id
+      if(V.Status.getIsInIframe()) {
+        origin = V.Status.getIframe().id
       }
     }
     var VEMessage = new message(VEevent, params, origin, destination);
@@ -8986,8 +9228,8 @@ VISH.Messenger.Helper = function(V, undefined) {
       if(!VEMessageObject.VEevent) {
         return false
       }
-      if(VISH.Status.getIsInIframe() && params && params.allowSelfMessages === false) {
-        if(VEMessageObject.origin === VISH.Status.getIframe().id) {
+      if(V.Status.getIsInIframe() && params && params.allowSelfMessages === false) {
+        if(VEMessageObject.origin === V.Status.getIframe().id) {
           return false
         }
       }
@@ -8999,60 +9241,60 @@ VISH.Messenger.Helper = function(V, undefined) {
   var processVEMessage = function(VEMessage) {
     var VEMessageObject = JSON.parse(VEMessage);
     switch(VEMessageObject.VEevent) {
-      case VISH.Constant.Event.onGoToSlide:
+      case V.Constant.Event.onGoToSlide:
         if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
-          VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+          V.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
         }
         break;
-      case VISH.Constant.Event.onPlayVideo:
+      case V.Constant.Event.onPlayVideo:
         if(VEMessageObject.params && VEMessageObject.params.videoId) {
-          if(VEMessageObject.params.slideNumber && VISH.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
-            VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+          if(VEMessageObject.params.slideNumber && V.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
+            V.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
           }
-          VISH.VideoPlayer.playVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
+          V.VideoPlayer.playVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
         }
         break;
-      case VISH.Constant.Event.onPauseVideo:
+      case V.Constant.Event.onPauseVideo:
         if(VEMessageObject.params && VEMessageObject.params.videoId) {
-          if(VEMessageObject.params.slideNumber && VISH.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
-            VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+          if(VEMessageObject.params.slideNumber && V.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
+            V.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
           }
-          VISH.VideoPlayer.pauseVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
+          V.VideoPlayer.pauseVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
         }
         break;
-      case VISH.Constant.Event.onSeekVideo:
+      case V.Constant.Event.onSeekVideo:
         if(VEMessageObject.params && VEMessageObject.params.videoId) {
-          if(VEMessageObject.params.slideNumber && VISH.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
-            VISH.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
+          if(VEMessageObject.params.slideNumber && V.Slides.getCurrentSlideNumber() != VEMessageObject.params.slideNumber) {
+            V.Slides.goToSlide(VEMessageObject.params.slideNumber, false)
           }
-          VISH.VideoPlayer.seekVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
+          V.VideoPlayer.seekVideo(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, false)
         }
         break;
-      case VISH.Constant.Event.onFlashcardPointClicked:
+      case V.Constant.Event.onFlashcardPointClicked:
         if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
-          VISH.Slides.openSubslide(VEMessageObject.params.slideNumber, false)
+          V.Slides.openSubslide(VEMessageObject.params.slideNumber, false)
         }
         break;
-      case VISH.Constant.Event.onFlashcardSlideClosed:
+      case V.Constant.Event.onFlashcardSlideClosed:
         if(VEMessageObject.params && VEMessageObject.params.slideNumber) {
-          VISH.Slides.closeSubslide(VEMessageObject.params.slideNumber, false)
+          V.Slides.closeSubslide(VEMessageObject.params.slideNumber, false)
         }
         break;
-      case VISH.Constant.Event.onSetSlave:
+      case V.Constant.Event.onSetSlave:
         if(VEMessageObject.params && typeof VEMessageObject.params.slave != "undefined") {
-          VISH.Status.setSlaveMode(VEMessageObject.params.slave)
+          V.Status.setSlaveMode(VEMessageObject.params.slave)
         }
         break;
-      case VISH.Constant.Event.onPreventDefault:
+      case V.Constant.Event.onPreventDefault:
         if(VEMessageObject.params && typeof VEMessageObject.params.preventDefaults != "undefined") {
-          VISH.Status.setPreventDefaultMode(VEMessageObject.params.preventDefaults)
+          V.Status.setPreventDefaultMode(VEMessageObject.params.preventDefaults)
         }
         break;
-      case VISH.Constant.Event.allowExitWithoutConfirmation:
-        VISH.Editor.allowExitWithoutConfirmation();
+      case V.Constant.Event.allowExitWithoutConfirmation:
+        V.Editor.allowExitWithoutConfirmation();
         break;
       default:
-        VISH.Debugging.log("VISH.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
+        V.Debugging.log("V.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
         break
     }
   };
@@ -9062,10 +9304,10 @@ VISH.Addons = function(V, undefined) {
   var init = function(addons) {
     if(typeof addons === "object") {
       for(var i = 0;i < addons.length;i++) {
-        var targeted = VISH.Editing && addons[i].target === VISH.Constant.Edit || !VISH.Editing && addons[i].target === VISH.Constant.Viewer || addons[i].target === VISH.Constant.AnyMode;
+        var targeted = V.Editing && addons[i].target === V.Constant.Edit || !V.Editing && addons[i].target === V.Constant.Viewer || addons[i].target === V.Constant.AnyMode;
         if(targeted) {
-          if(typeof VISH.Addons[addons[i].id] !== "undefined" && typeof VISH.Addons[addons[i].id].init === "function") {
-            VISH.Addons[addons[i].id].init(addons[i].config)
+          if(typeof V.Addons[addons[i].id] !== "undefined" && typeof V.Addons[addons[i].id].init === "function") {
+            V.Addons[addons[i].id].init(addons[i].config)
           }
         }
       }
@@ -9086,10 +9328,10 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
         window.attachEvent("message", _onWebAppMessage)
       }
     }
-    VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello"
+    V.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello"
   };
   var _initListener = function() {
-    VISH.EventsNotifier.registerCallback(VISH.Constant.Event.onMessage, _onVishEditorMessage);
+    V.EventsNotifier.registerCallback(V.Constant.Event.onMessage, _onVishEditorMessage);
     listenerInitialized = true
   };
   var _onVishEditorMessage = function(VEMessage) {
@@ -9098,33 +9340,33 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
   var _onWebAppMessage = function(webAppMessage) {
     if(webAppMessage) {
       var VEMessage = webAppMessage.data;
-      var processSelfMessages = VISH.Status.isPreventDefaultMode();
-      if(VISH.Messenger.Helper.validateVEMessage(VEMessage, {allowSelfMessages:processSelfMessages})) {
+      var processSelfMessages = V.Status.isPreventDefaultMode();
+      if(V.Messenger.Helper.validateVEMessage(VEMessage, {allowSelfMessages:processSelfMessages})) {
         if(_isVEHelloMessage(VEMessage)) {
           if(!listenerInitialized) {
             _initListener();
-            if(VISH.Status.getIsInIframe()) {
+            if(V.Status.getIsInIframe()) {
               var helloEcho = JSON.parse(VEMessage);
-              helloEcho.origin = VISH.Status.getIframe().id;
+              helloEcho.origin = V.Status.getIframe().id;
               VEMessage = JSON.stringify(helloEcho)
             }
             _sendMessage(VEMessage)
           }
         }else {
-          VISH.Messenger.Helper.processVEMessage(VEMessage)
+          V.Messenger.Helper.processVEMessage(VEMessage)
         }
       }
     }
   };
   var _isVEHelloMessage = function(VEMessage) {
     var message = JSON.parse(VEMessage);
-    return message.VEevent === VISH.Constant.Event.onIframeMessengerHello
+    return message.VEevent === V.Constant.Event.onIframeMessengerHello
   };
   var _validateWebAppMessage = function(webAppMessage) {
     if(!webAppMessage) {
       return false
     }
-    return VISH.Messenger.Helper.validateVEMessage(webAppMessage.data)
+    return V.Messenger.Helper.validateVEMessage(webAppMessage.data)
   };
   var _sendMessage = function(VEMessage) {
     window.parent.postMessage(VEMessage, "*")
@@ -9244,7 +9486,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var handleDomLoaded = function() {
     slideEls = document.querySelectorAll("section.slides > article");
-    if(V.SlideManager.getPresentationType() === V.Constant.FLASHCARD) {
+    if(isSlideset(V.SlideManager.getPresentationType())) {
       curSlideIndex = 0
     }
     updateSlides(true);
@@ -9255,7 +9497,7 @@ VISH.Slides = function(V, $, undefined) {
     if(slideNo) {
       curSlideIndex = slideNo - 1
     }else {
-      if(VISH.Editing) {
+      if(V.Editing) {
         curSlideIndex = -1
       }else {
         curSlideIndex = 0
@@ -9371,23 +9613,23 @@ VISH.Slides = function(V, $, undefined) {
       switch($(slideEl).attr("type")) {
         case undefined:
         ;
-        case VISH.Constant.STANDARD:
-          return VISH.Constant.STANDARD;
+        case V.Constant.STANDARD:
+          return V.Constant.STANDARD;
           break;
-        case VISH.Constant.FLASHCARD:
-          return VISH.Constant.FLASHCARD;
+        case V.Constant.FLASHCARD:
+          return V.Constant.FLASHCARD;
           break;
-        case VISH.Constant.QUIZ_SIMPLE:
-          return VISH.Constant.QUIZ_SIMPLE;
+        case V.Constant.QUIZ_SIMPLE:
+          return V.Constant.QUIZ_SIMPLE;
           break;
-        case VISH.Constant.GAME:
-          return VISH.Constant.GAME;
+        case V.Constant.GAME:
+          return V.Constant.GAME;
           break;
-        case VISH.Constant.VTOUR:
-          return VISH.Constant.VTOUR;
+        case V.Constant.VTOUR:
+          return V.Constant.VTOUR;
           break;
         default:
-          return VISH.Constant.UNKNOWN;
+          return V.Constant.UNKNOWN;
           break
       }
     }else {
@@ -9457,10 +9699,10 @@ VISH.Slides = function(V, $, undefined) {
       return
     }
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = new Object;
       params.slideNumber = no;
-      VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onGoToSlide, params);
+      V.Messenger.notifyEventByMessage(V.Constant.Event.onGoToSlide, params);
       return
     }
     if(no > slideEls.length || no <= 0) {
@@ -9478,26 +9720,26 @@ VISH.Slides = function(V, $, undefined) {
         }
       }
     }
-    if(VISH.Editing) {
+    if(V.Editing) {
       $(".selectable").css("border-style", "none");
-      VISH.Editor.Tools.cleanZoneTools();
+      V.Editor.Tools.cleanZoneTools();
       V.Editor.Thumbnails.selectThumbnail(no)
     }else {
       V.SlideManager.updateSlideCounter()
     }
     var params = new Object;
     params.slideNumber = no;
-    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onGoToSlide, params, triggeredByUser)
+    V.EventsNotifier.notifyEvent(V.Constant.Event.onGoToSlide, params, triggeredByUser)
   };
   var lastSlide = function() {
     goToSlide(slideEls.length)
   };
   var openSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = new Object;
       params.slideNumber = slide_id;
-      VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onFlashcardPointClicked, params);
+      V.Messenger.notifyEventByMessage(V.Constant.Event.onFlashcardPointClicked, params);
       return
     }
     _onOpenSubslide(slide_id);
@@ -9505,14 +9747,14 @@ VISH.Slides = function(V, $, undefined) {
     _triggerEnterEventById(slide_id);
     var params = new Object;
     params.slideNumber = slide_id;
-    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
+    V.EventsNotifier.notifyEvent(V.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
   };
   var closeSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && VISH.Status.isPreventDefaultMode() && VISH.Messenger) {
+    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
       var params = new Object;
       params.slideNumber = slide_id;
-      VISH.Messenger.notifyEventByMessage(VISH.Constant.Event.onFlashcardSlideClosed, params);
+      V.Messenger.notifyEventByMessage(V.Constant.Event.onFlashcardSlideClosed, params);
       return
     }
     _onCloseSubslide(slide_id);
@@ -9520,7 +9762,7 @@ VISH.Slides = function(V, $, undefined) {
     _triggerLeaveEventById(slide_id);
     var params = new Object;
     params.slideNumber = slide_id;
-    VISH.EventsNotifier.notifyEvent(VISH.Constant.Event.onFlashcardSlideClosed, params, triggeredByUser)
+    V.EventsNotifier.notifyEvent(V.Constant.Event.onFlashcardSlideClosed, params, triggeredByUser)
   };
   var _onOpenSubslide = function(subSlideId) {
     curSubSlideId = subSlideId;
@@ -9528,20 +9770,30 @@ VISH.Slides = function(V, $, undefined) {
   };
   var _onCloseSubslide = function() {
     curSubSlideId = null;
-    if(VISH.Status.getDevice().mobile) {
+    if(V.Status.getDevice().mobile) {
       setTimeout(function() {
-        $("#closeButton").show();
-        VISH.ViewerAdapter.decideIfPageSwitcher()
+        V.ViewerAdapter.decideIfCloseButton();
+        V.ViewerAdapter.decideIfPageSwitcher()
       }, 800)
     }else {
-      VISH.ViewerAdapter.decideIfPageSwitcher()
+      V.ViewerAdapter.decideIfPageSwitcher()
     }
   };
   var closeAllSlides = function() {
     $(".slides > article").hide()
   };
+  var isSlideset = function(type) {
+    switch(type) {
+      case V.Constant.FLASHCARD:
+      ;
+      case V.Constant.VTOUR:
+        return true;
+      default:
+        return false
+    }
+  };
   return{init:init, getSlides:getSlides, setSlides:setSlides, updateSlides:updateSlides, updateSlideEls:updateSlideEls, setCurrentSlideIndex:setCurrentSlideIndex, getCurrentSlide:getCurrentSlide, getCurrentSubSlide:getCurrentSubSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, 
-  isCurrentLastSlide:isCurrentLastSlide, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides}
+  isCurrentLastSlide:isCurrentLastSlide, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides, isSlideset:isSlideset}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var eMobile;
@@ -9549,7 +9801,7 @@ VISH.Events = function(V, $, undefined) {
   var mobile;
   var init = function() {
     mobile = !V.Status.getDevice().desktop;
-    eMobile = VISH.Events.Mobile;
+    eMobile = V.Events.Mobile;
     if(!V.Editing) {
       eMobile.init();
       bindViewerEventListeners()
@@ -9779,10 +10031,10 @@ VISH.Quiz = function(V, $, undefined) {
       quizMode = "question";
       _loadEvents()
     }
-    VISH.Quiz.Renderer.init();
-    VISH.Quiz.API.init();
+    V.Quiz.Renderer.init();
+    V.Quiz.API.init();
     $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"90%", "height":"90%", "margin":"10%", "padding":0, "autoScale":true, "onStart":function(data) {
-      VISH.Utils.loadTab("tab_quiz_session");
+      V.Utils.loadTab("tab_quiz_session");
       _enableFullScreenQRButton()
     }})
   };
@@ -9795,7 +10047,7 @@ VISH.Quiz = function(V, $, undefined) {
       $("." + voteButtonClass).show()
     }else {
       if(quizMode == "question") {
-        if(!VISH.User.isLogged()) {
+        if(!V.User.isLogged()) {
           $("." + startButtonClass).hide()
         }else {
           $("." + startButtonClass).show()
@@ -9824,8 +10076,8 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var startMcQuizButtonClicked = function() {
     if(V.User.isLogged()) {
-      var quizId = $(VISH.Slides.getCurrentSlide()).find(".quizId").val();
-      var quiztype = $(VISH.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
+      var quizId = $(V.Slides.getCurrentSlide()).find(".quizId").val();
+      var quiztype = $(V.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
       $("a#addQuizSessionFancybox").trigger("click");
       V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
       _startStats(quiztype);
@@ -9846,12 +10098,12 @@ VISH.Quiz = function(V, $, undefined) {
       $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children().remove()
     }
     if(quiz_type == "multiplechoice") {
-      question = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone");
-      var options_form = $(VISH.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form")
+      question = $(V.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone");
+      var options_form = $(V.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form")
     }
     if(quiz_type == "truefalse") {
-      question = $(VISH.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".value_truefalse_question_in_zone");
-      var options_form = $(VISH.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".truefalse_options_container")
+      question = $(V.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".value_truefalse_question_in_zone");
+      var options_form = $(V.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".truefalse_options_container")
     }
     question.addClass("question_in_stats");
     $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append(question.clone());
@@ -9992,7 +10244,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(id).fadeIn(2E3)
   };
   var _stopAndSaveQuiz = function() {
-    var current_slide = VISH.Slides.getCurrentSlide();
+    var current_slide = V.Slides.getCurrentSlide();
     quizName = $("#stop_quiz_fancybox").find(".quiz_saved_session_name").val();
     var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
     var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
@@ -10016,7 +10268,7 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _stopAndDontSaveQuiz = function() {
-    var current_slide = VISH.Slides.getCurrentSlide();
+    var current_slide = V.Slides.getCurrentSlide();
     var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
     _hideStopQuizPopup();
     $.fancybox.close();
@@ -10033,24 +10285,24 @@ VISH.Quiz = function(V, $, undefined) {
   var _sendVote = function(event) {
     var answer;
     if(event.target.parentElement.classList[0] == "mch_inputs_wrapper") {
-      var answer = $(VISH.Slides.getCurrentSlide()).find("input:radio[name='mc_radio']:checked'").val()
+      var answer = $(V.Slides.getCurrentSlide()).find("input:radio[name='mc_radio']:checked'").val()
     }else {
       if(event.target.parentElement.classList[0] == "truefalse_inputs_wrapper") {
-        var answer = $(VISH.Slides.getCurrentSlide()).find("input:radio[name='truefalse']:checked'").val()
+        var answer = $(V.Slides.getCurrentSlide()).find("input:radio[name='truefalse']:checked'").val()
       }
     }
     if(typeof answer !== "undefined") {
-      var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
+      var quizSessionActiveId = V.SlideManager.getOptions()["quiz_active_session_id"];
       V.Quiz.API.putQuizSession(answer, quizSessionActiveId, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError);
       $("." + startButtonClass).hide()
     }
   };
   var _onQuizVotingSuccessReceived = function(data) {
-    var quizSessionActiveId = VISH.SlideManager.getOptions()["quiz_active_session_id"];
+    var quizSessionActiveId = V.SlideManager.getOptions()["quiz_active_session_id"];
     V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
   };
   var _onQuizSessionResultsReceived = function(data) {
-    $(VISH.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
+    $(V.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
     $(".thanks_div").show();
     var id = $("a[name=modal_window]").attr("href");
     var maskHeight = $(document).height();
@@ -10060,7 +10312,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(id).css("top", maskHeight / 2 - $(id).height() / 2);
     $(id).css("left", maskWidth / 2 - $(id).width() / 2);
     $(id).show();
-    $(VISH.Slides.getCurrentSlide()).find("." + voteButtonClass).hide()
+    $(V.Slides.getCurrentSlide()).find("." + voteButtonClass).hide()
   };
   var _OnQuizVotingReceivedError = function(error) {
     V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + JSON.stringify(error))
@@ -10069,7 +10321,7 @@ VISH.Quiz = function(V, $, undefined) {
     V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
   };
   var _showResults = function(data) {
-    var quiz_type = $(VISH.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
+    var quiz_type = $(V.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
     var index;
     var maxWidth = 70;
     var totalVotes = 0;
@@ -10116,7 +10368,7 @@ VISH.Quiz = function(V, $, undefined) {
         }
       }
     }
-    google.load("visualization", "1.0", {"packages":["corechart"]}, {"callback":VISH.Quiz.drawPieChart(data.results)})
+    google.load("visualization", "1.0", {"packages":["corechart"]}, {"callback":V.Quiz.drawPieChart(data.results)})
   };
   var drawPieChart = function(data) {
     var data_for_chart = new google.visualization.DataTable;
@@ -10128,7 +10380,7 @@ VISH.Quiz = function(V, $, undefined) {
         data_for_chart.addRow([option, votes])
       }
     }
-    var question = $(VISH.Slides.getCurrentSlide()).find(".value_multiplechoice_question_in_zone").text();
+    var question = $(V.Slides.getCurrentSlide()).find(".value_multiplechoice_question_in_zone").text();
     var options = {"title":"", "width":400, "height":300};
     var chart = new google.visualization.PieChart(document.getElementById("quiz_chart_container_id"));
     chart.draw(data_for_chart, options)
@@ -10199,7 +10451,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(document).off("click", "." + startButtonClass, startMcQuizButtonClicked)
   };
   var toggleShowAnswers = function(event) {
-    var current_slide = VISH.Slides.getCurrentSlide();
+    var current_slide = V.Slides.getCurrentSlide();
     if(event.target.classList[0] == showAnswerButtonClass) {
       $(current_slide).find(".truefalse_answers > input").show();
       $(current_slide).find(".show_answers_button").hide();
@@ -10243,7 +10495,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     ret += "<ul class='ul_mch_options_in_zone'>";
     for(var i = 0;i < quiz_element["options"]["choices"].length;i++) {
       var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      if(VISH.Quiz.getQuizMode() == "answer") {
+      if(V.Quiz.getQuizMode() == "answer") {
         ret += "<li class='li_mch_options_in_zone'>";
         ret += "<input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'/><span class='quiz_option_index'>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
         ret += "</li>"
@@ -10292,7 +10544,7 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
     ret += "<div class='truefalse_titles_true'>True</div>";
     ret += "<div class='truefalse_titles_false'>False</div>";
     ret += "</div>";
-    if(VISH.Quiz.getQuizMode() == "answer") {
+    if(V.Quiz.getQuizMode() == "answer") {
       ret += "<div class='truefalse_answers answer_mode'>";
       ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true'/>";
       ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false'/>";
@@ -10345,7 +10597,7 @@ VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
   var postStartQuizSession = function(quizId, successCallback, failCallback) {
-    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+    if(V.Configuration.getConfiguration()["mode"] == "vish") {
       var send_type = "POST";
       var params = {"quiz_id":quizId, "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
@@ -10358,7 +10610,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }});
       return null
     }else {
-      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
         V.Debugging.log("No server case");
         if(quizId == 12) {
           var quiz_session_id = "98988"
@@ -10378,7 +10630,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }
   };
   var deleteQuizSession = function(quiz_session_id, successCallback, failCallback, quiz_name) {
-    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+    if(V.Configuration.getConfiguration()["mode"] == "vish") {
       var quizName;
       if(quiz_name) {
         quizName = quiz_name
@@ -10397,7 +10649,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }});
       return null
     }else {
-      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
         V.Debugging.log("No server case");
         var results = {"quiz_session_id":19, "quiz_id":3, "results":{"b":4, "a":2, "c":1, "d":1}};
         if(typeof successCallback == "function") {
@@ -10407,7 +10659,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }
   };
   var putQuizSession = function(answer_selected, quiz_active_session_id, successCallback, failCallback) {
-    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+    if(V.Configuration.getConfiguration()["mode"] == "vish") {
       var send_type = "PUT";
       V.Debugging.log("token is: " + V.User.getToken());
       var params = {"id":quiz_active_session_id, "option":answer_selected, "authenticity_token":V.User.getToken()};
@@ -10421,7 +10673,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }});
       return null
     }else {
-      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
         V.Debugging.log("No server case");
         var quiz_session_id = "123";
         if(typeof successCallback == "function") {
@@ -10431,7 +10683,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }
   };
   var getQuizSessionResults = function(quiz_active_session_id, successCallback, failCallback) {
-    if(VISH.Configuration.getConfiguration()["mode"] == "vish") {
+    if(V.Configuration.getConfiguration()["mode"] == "vish") {
       var send_type = "GET";
       var params = {"id":quiz_active_session_id, "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id + "/results.json", data:params, success:function(data) {
@@ -10444,7 +10696,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }});
       return null
     }else {
-      if(VISH.Configuration.getConfiguration()["mode"] == "noserver") {
+      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
         V.Debugging.log("No server case: and quiz session get results: " + quiz_active_session_id);
         if(quiz_active_session_id == 98988) {
           var results = {"quiz_session_id":98988, "quiz_id":12, "results":{"b":4, "a":2, "c":1, "d":1}}

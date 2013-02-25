@@ -282,6 +282,14 @@ div.image_carousel_single_row_slides {
     margin-left: 25px;
 }
 
+div.image_carousel_single_row_slides{
+    overflow: visible;
+}
+
+div.image_carousel_single_row_slides  > div.caroufredsel_wrapper {
+  overflow: visible !important;
+}
+
 div.carrousel_element_single_row_slides{
   width: 60px;
   height: 60px;

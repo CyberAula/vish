@@ -1,5 +1,10 @@
 /* Custom CSS for Tablets */
 
+/* Menu */
+#menu a, li, ul {
+	color: #333;
+}
+
 /* Remove default minimum font-size */
 * {
   -webkit-text-size-adjust: none;

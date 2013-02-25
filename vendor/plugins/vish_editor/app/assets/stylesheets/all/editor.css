@@ -9,6 +9,7 @@ img {
 	bottom:0px;
 	left: 0px;	
 	margin-top: 50px;
+	z-index: 1075;
 }
 
 #presentation_details_fields {
@@ -842,6 +843,7 @@ table.metadata td div.height_wrapper_description{
 .text_in_fancybox{
 	margin-left: 22px;
 	margin-top: 22px;
+	margin-bottom: 10px;
 }
 
 #button_accept_when_fail{
@@ -1608,14 +1610,19 @@ iframe.snapshot_content{
 	cursor: pointer;
 }
 
+div.draggable_arrow_div, div.carrrousel_element_single_row_slides{
+	z-index: 1075;
+}
+
 .draggable_arrow_div img.fc_draggable_arrow{
 	background-color: transparent;
 }
 
 .draggable_number{
 	position: relative;
+	text-align: center;
 	top: -45px;
-	left: 27px;
+	left: 0px;
 	font-family: Helvetica;
 	font-size: 15px;
 }
@@ -1837,4 +1844,136 @@ margin: 0px;
 	width: 638px;
 	height: 230px;
 	position: absolute;
+}
+
+img#help_flashcard{
+	cursor: pointer;
+}
+
+img#message2img{
+	padding-right: 10px;
+}
+
+img#message3img{
+	padding-right: 10px;
+}
+
+/*
+ * Virtual Tour styles
+ */
+
+ #vtour-background{
+	display:none;
+	z-index: 1050;
+	width: 800px;
+	height: 600px;
+	background-size: 800px 600px;
+	margin-top: -327px;
+	margin-left: -400px;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	background-image: url(/assets/flashcard/flashcard_initial_background.jpg);
+	background-repeat:no-repeat;
+	/*background-attachment:fixed;*/
+	background-position:center center;
+	
+	border-radius: 20px;
+	webkit-border-radius: 20px;
+	moz-border-radius: 20px;
+	border: 1px solid #CCCCCC;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    moz-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+    webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+}
+
+#help_vtour{
+	cursor: pointer;
+}
+
+#vtour_help_button{
+	position: absolute;
+	right: 0px;
+	z-index: 2;
+	top: 27px;
+}
+
+#vt_canvas{
+	width: 100%;
+	height: 100%;
+}
+
+span.poi_label{
+	font-size: 17px;
+	position: relative; 
+	left: -6px; 
+	top: -33px;
+	white-space: nowrap; 
+	border: none;
+	padding: 2px; 
+	background-color: transparent;
+	font-family: Helvetica;
+}
+
+div.poi_label_container{
+	position: absolute; 
+	display: none;
+}
+
+#vt_search{
+	position: absolute;
+	top: 0;
+	left: 140px;
+	top: 3px;
+}
+
+#vt_search_input{
+	position: absolute;
+	width: 486px;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,0.15);
+	border-top: 1px solid rgba(0,0,0,0.25);
+	height: 28px;
+	padding-left: 4px;
+	font-family: Helvetica;
+}
+
+#vt_search_input:hover{
+	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
+	border: 1px solid #4d90fe
+}
+
+#vt_search_button{
+	position: absolute;
+	background: #4d90fe !important
+	background-color: #3079ed !important;
+	background-image: -webkit-linear-gradient(top, #4d90fe,#4787ed) !important;
+	left: 495px;
+	width: 44px;
+	height: 32px;
+	padding: 0px;
+	top: -1px;
+}
+
+#vt_search_button_img{
+
+}
+
+/*
+ * A class of the Google Maps API Autocomplete class
+ */
+.pac-container{
+	z-index: 2000 !important;
+	font-family: Helvetica;
+}
+
+.pac-container:after {
+/*  content: "Powered by Google  ";
+  font-size: 10px;*/
+}
+
+.pac-container > .pac-item {
+	padding: 4px 4px;
 }
