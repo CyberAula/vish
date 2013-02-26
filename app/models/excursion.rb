@@ -28,6 +28,7 @@ class Excursion < ActiveRecord::Base
   after_save :parse_for_meta
   before_save :fix_relation_ids_drafts
   after_destroy :remove_scorm
+  after_destroy :remove_pdf
 
   define_index do
     activity_object_index
@@ -55,10 +56,9 @@ class Excursion < ActiveRecord::Base
         zos.print xml_manifest.target!()
 
         zos.put_next_entry("excursion.html")
-        zos.print controller.render_to_string "show.embed.erb", :locals => {:excursion=>self}, :layout => false  
+        zos.print controller.render_to_string "show.full.erb", :embed=> true, :locals => {:excursion=>self}, :layout => false  
 
-        self.scorm_timestamp = Time.now
-        self.save!
+        self.update_column(:scorm_timestamp, Time.now)
       end    
       t.close
     end
@@ -91,6 +91,112 @@ class Excursion < ActiveRecord::Base
   def remove_scorm
     if File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
       File.delete("#{Rails.root}/public/scorm/excursions/#{self.id}.zip") 
+    end
+  end
+
+  def to_pdf(controller)
+    if self.pdf_needs_generate
+      slidesQuantity = generate_thumbnails(controller)
+      if slidesQuantity > 0
+        pdfFolder = "#{Rails.root}/public/pdf/excursions/#{self.id}"
+
+        #Generate PDF
+        pdf = File.open(pdfFolder+"/#{self.id}.pdf", 'w')
+
+        require 'RMagick'
+        images = []
+        slidesQuantity.times do |num|
+          images.push(pdfFolder + "/#{self.id}_#{num+1}.png");
+        end
+        pdf_image_list = ::Magick::ImageList.new
+        pdf_image_list.read(*images)
+        pdf_image_list.write(pdfFolder + "/#{self.id}.pdf")
+        pdf.close
+
+        self.update_column(:pdf_timestamp, Time.now)
+      end
+    end
+  end
+
+  def generate_thumbnails(controller)
+    begin
+      #Create folder if not exists
+      pdfFolder = "#{Rails.root}/public/pdf/excursions/#{self.id}"
+      Dir.mkdir(pdfFolder) unless File.exists?(pdfFolder)
+
+      require 'selenium-webdriver'
+      Selenium::WebDriver::Chrome.path = "/usr/lib/chromium-browser/chromium-browser"
+      driver = Selenium::WebDriver.for :chrome
+
+      # Testing
+      # excursion_url = 'http://vishub.org/excursions/55.full'
+      
+      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :format => 'full', :id=>self.id);
+      # driver.navigate.to excursion_url
+      driver.get excursion_url
+
+      #Specify screenshots dimensions
+      width = 775;
+      height = 1042;
+      driver.execute_script %Q{ window.resizeTo(#{width}, #{height}); }
+
+      #Hide fullscreen button
+      driver.execute_script %Q{ $("#page-fullscreen").hide(); }
+      #Disable non-iframe alerts
+      driver.execute_script %Q{ window.alert = function(){}; }
+
+      #Get slidesQuantity
+      slidesQuantity = driver.execute_script %Q{ 
+        return VISH.Slides.getSlidesQuantity();
+      }
+
+      #Take a screenshot of each slide
+      slidesQuantity.times do |num|
+        driver.execute_script %Q{
+          VISH.Slides.goToSlide(#{num+1});
+        }
+        driver.execute_script %Q{ 
+          $("article.current").css("display","block");
+          $("article").not(".current").css("display","none");
+        }
+
+        Selenium::WebDriver::Wait.new(:timeout => 30).until { 
+          # TODO:// VISH.SlideManager.isSlideLoaded()
+          driver.execute_script("return true")
+        }
+        #Wait a constant period
+        sleep 1.5;
+
+        #Remove alert (if is present)
+        driver.switch_to.alert.accept rescue Selenium::WebDriver::Error::NoAlertOpenError
+
+        driver.save_screenshot(pdfFolder + "/#{self.id}_#{num+1}.png")
+      end
+
+      driver.quit
+      return slidesQuantity
+
+    rescue Exception => e
+      begin
+        driver.quit
+      rescue
+      end
+      puts e.message
+      return -1;
+    end
+  end
+
+  def pdf_needs_generate
+    if self.pdf_timestamp.nil? or self.updated_at > self.pdf_timestamp or !File.exist?("#{Rails.root}/public/pdf/excursions/#{self.id}/#{self.id}.pdf")
+      return true;
+    else
+      return false;
+    end
+  end
+
+  def remove_pdf
+    if File.exist?("#{Rails.root}/public/pdf/excursions/#{self.id}")
+      FileUtils.rm_rf("#{Rails.root}/public/pdf/excursions/#{self.id}") 
     end
   end
 

@@ -40,6 +40,9 @@ public/assets
 # scorm zip files
 public/scorm/excursions/*
 
+# pdf files
+public/pdf/excursions/*
+
 #temporal files
 app/views/layouts/_grid.html.erb
 
@@ -56,3 +59,7 @@ lib/tasks/compile
 .rvmrc
 
 .sass-cache/
+
+# Chrome Driver
+C:\\nppdf32Log\\debuglog.txt
+chromedriver.log

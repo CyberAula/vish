@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.2.3'
 gem 'jquery-rails', '2.0.2'
 gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
+gem 'selenium-webdriver', '=2.30.0'
 
 social_stream_gems = lambda {
   gem 'social_stream-base', '~> 1.1.0'
@@ -84,11 +85,8 @@ group :development do
   # $ export VISH_DEBUG=true
 
   if ENV['VISH_DEV'] || ENV['VISH_DEBUG']	  	
-    gem "debugger", "~> 1.1.1"  	
-  end
-
-  if ENV['VISH_DEV_ALTERNATIVE']
-    gem 'ruby-debug19', :require => 'ruby-debug'
+    gem "debugger", "~> 1.1.1"
+    gem 'unicorn', '=4.6.2'
   end
 
 end
