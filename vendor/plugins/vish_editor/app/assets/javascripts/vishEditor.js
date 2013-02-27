@@ -12078,6 +12078,9 @@ VISH.Samples = function(V, undefined) {
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quizes_samples:quizes_samples, quizes_samples2:quizes_samples2, quizes_truefalse_sample:quizes_truefalse_sample, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
+  var recommendationList = {"items":[{"url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"ebarra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity in my title long", "author":"aldo", "description":" bla bla bla 2", "image":"http://vishub.org/assets/logos/original/excursion-07.png", "views":"563", "favourites":"13", 
+  "number_of_slides":"2"}, {"url":"http://vishub.org/excursions/55", "title":"Nanogame by UCAM or by her friend", "author":"nestor", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-08.png", "views":"56", "favourites":"33", "number_of_slides":"8"}, {"url":"http://vishub.org/excursions/14", "title":"Heart", "author":"ebarra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-15.png", "views":"156", "favourites":"3", "number_of_slides":"8"}, 
+  {"url":"http://vishub.org/excursions/81", "title":"Flascard Curiosity", "author":"aldo", "description":" bla bla bla 2", "image":"http://vishub.org/assets/logos/original/excursion-17.png", "views":"463", "favourites":"23", "number_of_slides":"2"}, {"url":"http://vishub.org/excursions/56", "title":"Nanogame", "author":"nestor", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-18.png", "views":"1256", "favourites":"33", "number_of_slides":"8"}]};
   var flashcardList = {"flashcards":[{"id":"1120", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://4.bp.blogspot.com/-fsV8poJXoJc/ULe8nkVbaVI/AAAAAAAAA-M/Q2vW16z6Ivc/s1600/Imagen16.png)", "pois":[{"id":"article4_poi1", "x":"36.875", "y":"67.33333333333333", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"55.375", "y":"68.16666666666667", "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":"45.875", "y":"5.5", 
   "slide_id":"article4_article3"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", "type":"image", "areaid":"left", "body":"http://1.bp.blogspot.com/_KaMLeO20q1Q/TGk8gfWkp7I/AAAAAAAAAHI/80bTifiIk6M/s1600/24+Do%C3%B1ana.JPG", "style":"position: relative; width:110.31518624641834%; height:97.1590909090909%; top:2.0833333333333335%; left:-1.146131805157593%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t2", "elements":[{"id":"article4_article2_zone1", 
   "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8504/8367119464_f8ff09456d.jpg", "style":"position: relative; width:103.15186246418338%; height:90.53030303030303%; top:3.0303030303030303%; left:-0.5730659025787965%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t2", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"left", "body":"http://cabeceras.eldiariomontanes.es/imagenes-municipios/galerias/5348/mf01z4411811x1492-452.jpg", "style":"position: relative; width:119.05444126074498%; height:129.54545454545453%; top:-2.6515151515151514%; left:-3.5816618911174785%;"}]}]}]}, 
@@ -12180,7 +12183,8 @@ VISH.Samples.API = function(V, undefined) {
   {"title":"Thumbnail 20", "description":"Sample excursion thumbnail 20", "src":"/vishEditor/images/excursion_thumbnails/excursion-20.png"}, {"title":"Thumbnail 21", "description":"Sample excursion thumbnail 21", "src":"/vishEditor/images/excursion_thumbnails/excursion-21.png"}, {"title":"Thumbnail 22", "description":"Sample excursion thumbnail 22", "src":"/vishEditor/images/excursion_thumbnails/excursion-22.png"}, {"title":"Thumbnail 23", "description":"Sample excursion thumbnail 23", "src":"/vishEditor/images/excursion_thumbnails/excursion-23.png"}, 
   {"title":"Thumbnail 24", "description":"Sample excursion thumbnail 24", "src":"/vishEditor/images/excursion_thumbnails/excursion-24.png"}, {"title":"Thumbnail 25", "description":"Sample excursion thumbnail 25", "src":"/vishEditor/images/excursion_thumbnails/excursion-25.png"}, {"title":"Thumbnail 26", "description":"Sample excursion thumbnail 26", "src":"/vishEditor/images/excursion_thumbnails/excursion-26.png"}, {"title":"Thumbnail 27", "description":"Sample excursion thumbnail 27", "src":"/vishEditor/images/excursion_thumbnails/excursion-27.png"}, 
   {"title":"Thumbnail 28", "description":"Sample excursion thumbnail 28", "src":"/vishEditor/images/excursion_thumbnails/excursion-28.png"}, {"title":"Thumbnail 29", "description":"Sample excursion thumbnail 29", "src":"/vishEditor/images/excursion_thumbnails/excursion-29.png"}, {"title":"Thumbnail 30", "description":"Sample excursion thumbnail 30", "src":"/vishEditor/images/excursion_thumbnails/excursion-30.png"}]};
-  return{flashcardList:flashcardList, imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, objectListDummy:objectListDummy, tagsList:tagsList, thumbnailsList:thumbnailsList}
+  return{recommendationList:recommendationList, flashcardList:flashcardList, imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, objectListDummy:objectListDummy, 
+  tagsList:tagsList, thumbnailsList:thumbnailsList}
 }(VISH);
 VISH.Slides = function(V, $, undefined) {
   var slideEls;
@@ -12396,7 +12400,11 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   var forwardOneSlide = function(event) {
-    goToSlide(curSlideIndex + 2)
+    if(isCurrentLastSlide() && V.Status.getDevice().desktop) {
+      VISH.Recommendations.showFancybox()
+    }else {
+      goToSlide(curSlideIndex + 2)
+    }
   };
   var backwardOneSlide = function() {
     goToSlide(curSlideIndex)
@@ -18818,6 +18826,54 @@ VISH.Quiz.Renderer = function(V, $, undefined) {
   };
   return{init:init, renderQuiz:renderQuiz}
 }(VISH, jQuery);
+VISH.Recommendations = function(V, $, undefined) {
+  var url_to_get_recommendations;
+  var user_id;
+  var presentation_id;
+  var generated;
+  var init = function(options) {
+    user_id = V.User.getId();
+    presentation_id = V.SlideManager.getCurrentPresentation().id;
+    if(options && options["urlToGetRecommendations"]) {
+      url_to_get_recommendations = options["urlToGetRecommendations"]
+    }
+    generated = false;
+    $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
+      $("#fancybox-wrap").css("margin-top", "0px")
+    }, "onClosed":function(data) {
+      $("#fancybox-wrap").css("margin-top", "-14px")
+    }})
+  };
+  var generateFancybox = function() {
+    if(!generated) {
+      console.log("user_id " + user_id + " presentation_id " + presentation_id);
+      if(url_to_get_recommendations !== undefined) {
+        var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
+        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+          _fillFancyboxWithData(data)
+        }})
+      }else {
+        _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+      }
+      generated = true
+    }
+  };
+  var _fillFancyboxWithData = function(data) {
+    var ex;
+    var result = "";
+    for(var i = data.items.length - 1;i >= 0;i--) {
+      ex = data.items[i];
+      result += '<a href="' + ex.url + '">' + '<div class="rec-excursion">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
+      '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>" + "</a>"
+    }
+    $("#fancy_recommendations .rec-grid").html(result)
+  };
+  var showFancybox = function() {
+    console.log("show");
+    $("#fancyRec").trigger("click")
+  };
+  return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox}
+}(VISH, jQuery);
 VISH.Renderer.Filter = function(V, $, undefined) {
   var init = function() {
   };
@@ -18903,6 +18959,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.User.init(options);
     V.Storage.init();
     V.Utils.init();
+    V.Recommendations.init(options);
     switch(presentation.type) {
       case V.Constant.GAME:
         V.ViewerAdapter.setupGame(presentation);
@@ -18997,11 +19054,14 @@ VISH.SlideManager = function(V, $, undefined) {
       if($(e.target).hasClass("snapshot")) {
         V.SnapshotPlayer.loadSnapshot($(slide))
       }
-      V.VideoPlayer.HTML5.playVideos(e.target);
-      if($(e.target).hasClass("flashcard_slide")) {
-        V.Flashcard.startAnimation(e.target.id)
-      }
-    }, 500)
+    }, 500);
+    V.VideoPlayer.HTML5.playVideos(e.target);
+    if($(e.target).hasClass("flashcard_slide")) {
+      V.Flashcard.startAnimation(e.target.id)
+    }
+    if(_isRecommendationMoment()) {
+      V.Recommendations.generateFancybox()
+    }
   };
   var _onslideleave = function(e) {
     var slide = e.target;
@@ -19014,6 +19074,15 @@ VISH.SlideManager = function(V, $, undefined) {
     V.VideoPlayer.HTML5.stopVideos(slide);
     if($(e.target).hasClass("flashcard_slide")) {
       V.Flashcard.stopAnimation(e.target.id)
+    }
+  };
+  var _isRecommendationMoment = function() {
+    var number_of_slides = V.Slides.getSlides().length;
+    var slide_number = V.Slides.getCurrentSlideNumber();
+    if(number_of_slides === 1 || slide_number === number_of_slides - 1) {
+      return true
+    }else {
+      return false
     }
   };
   var updateSlideCounter = function() {
@@ -20140,6 +20209,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var fs_button;
   var can_use_nativeFs;
   var embed;
+  var display_recommendations;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
@@ -20181,7 +20251,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
-      page_is_fullscreen = render_full && !V.Status.getIsInIframe()
+      if(options["disablefullscreen"] === true) {
+        fs_button = false
+      }
+      page_is_fullscreen = render_full && !V.Status.getIsInIframe();
+      if(typeof options["urlToGetRecommendations"] == "string") {
+        display_recommendations = true
+      }else {
+        display_recommendations = false
+      }
     }else {
       render_full = false;
       is_preview = false;
@@ -20190,7 +20268,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       exit_fs_button = false;
       fs_button = false;
       can_use_nativeFs = false;
-      embed = false
+      embed = false;
+      display_recommendations = false
     }
     if(V.Status.getDevice().mobile) {
       render_full = true;
@@ -20237,7 +20316,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   };
   var decideIfPageSwitcher = function() {
     if(V.Slides.getCurrentSubSlide() !== null) {
-      $("#forward_arrow").hide();
       $("#back_arrow").hide()
     }else {
       if(V.Slides.isCurrentFirstSlide()) {
@@ -20245,11 +20323,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#back_arrow").show()
       }
-      if(V.Slides.isCurrentLastSlide()) {
-        $("#forward_arrow").hide()
-      }else {
-        $("#forward_arrow").show()
-      }
+      $("#forward_arrow").show()
     }
     if(!render_full) {
       if(V.Slides.isCurrentFirstSlide()) {
@@ -20257,11 +20331,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#page-switcher-start").show()
       }
-      if(V.Slides.isCurrentLastSlide()) {
-        $("#page-switcher-end").hide()
-      }else {
-        $("#page-switcher-end").show()
-      }
+      $("#page-switcher-end").show()
     }
   };
   var _decideIfViewBarShow = function(fullScreen) {
@@ -20331,15 +20401,18 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var increaseW = finalW / 800;
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
-    if($("#fancy_content:empty").length === 0) {
-      $("#fancybox-inner").width("80%");
-      $("#fancybox-wrap").width("80%");
-      $("#fancybox-content").width("80%");
-      $("#fancybox-content > div").width("100%");
-      $("#fancybox-inner").height("80%");
-      $("#fancybox-wrap").height("80%");
-      $("#fancybox-wrap").css("top", "10%");
-      $("#fancybox-wrap").css("left", "10%");
+    if($("#fancybox-content:empty").length === 0) {
+      $("#fancybox-wrap").width($(".current").width() + 100);
+      $("#fancybox-wrap").height($(".current").height() + 70);
+      $("#fancybox-wrap").css("top", $(".current").offset().top + "px");
+      $("#fancybox-wrap").css("left", $(".current").offset().left + "px");
+      setTimeout(function() {
+        $("#fancybox-wrap").height($(".current").height() + 70);
+        $("#fancybox-content").width("100%");
+        $("#fancybox-content").height("100%");
+        $("#fancybox-content > div").width("100%");
+        $("#fancybox-content > div").height("100%")
+      }, 300);
       V.Quiz.testFullScreen()
     }
     decideIfPageSwitcher();

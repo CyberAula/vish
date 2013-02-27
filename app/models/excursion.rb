@@ -56,7 +56,7 @@ class Excursion < ActiveRecord::Base
         zos.print xml_manifest.target!()
 
         zos.put_next_entry("excursion.html")
-        zos.print controller.render_to_string "show.full.erb", :embed=> true, :locals => {:excursion=>self}, :layout => false  
+        zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>self}, :layout => false  
 
         self.update_column(:scorm_timestamp, Time.now)
       end    
@@ -65,7 +65,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def scorm_needs_generate
-    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp
+    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
       return true;
     else
       return false;

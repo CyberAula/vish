@@ -7660,6 +7660,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.User.init(options);
     V.Storage.init();
     V.Utils.init();
+    V.Recommendations.init(options);
     switch(presentation.type) {
       case V.Constant.GAME:
         V.ViewerAdapter.setupGame(presentation);
@@ -7754,11 +7755,14 @@ VISH.SlideManager = function(V, $, undefined) {
       if($(e.target).hasClass("snapshot")) {
         V.SnapshotPlayer.loadSnapshot($(slide))
       }
-      V.VideoPlayer.HTML5.playVideos(e.target);
-      if($(e.target).hasClass("flashcard_slide")) {
-        V.Flashcard.startAnimation(e.target.id)
-      }
-    }, 500)
+    }, 500);
+    V.VideoPlayer.HTML5.playVideos(e.target);
+    if($(e.target).hasClass("flashcard_slide")) {
+      V.Flashcard.startAnimation(e.target.id)
+    }
+    if(_isRecommendationMoment()) {
+      V.Recommendations.generateFancybox()
+    }
   };
   var _onslideleave = function(e) {
     var slide = e.target;
@@ -7771,6 +7775,15 @@ VISH.SlideManager = function(V, $, undefined) {
     V.VideoPlayer.HTML5.stopVideos(slide);
     if($(e.target).hasClass("flashcard_slide")) {
       V.Flashcard.stopAnimation(e.target.id)
+    }
+  };
+  var _isRecommendationMoment = function() {
+    var number_of_slides = V.Slides.getSlides().length;
+    var slide_number = V.Slides.getCurrentSlideNumber();
+    if(number_of_slides === 1 || slide_number === number_of_slides - 1) {
+      return true
+    }else {
+      return false
     }
   };
   var updateSlideCounter = function() {
@@ -8696,6 +8709,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var fs_button;
   var can_use_nativeFs;
   var embed;
+  var display_recommendations;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
@@ -8737,7 +8751,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
-      page_is_fullscreen = render_full && !V.Status.getIsInIframe()
+      if(options["disablefullscreen"] === true) {
+        fs_button = false
+      }
+      page_is_fullscreen = render_full && !V.Status.getIsInIframe();
+      if(typeof options["urlToGetRecommendations"] == "string") {
+        display_recommendations = true
+      }else {
+        display_recommendations = false
+      }
     }else {
       render_full = false;
       is_preview = false;
@@ -8746,7 +8768,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       exit_fs_button = false;
       fs_button = false;
       can_use_nativeFs = false;
-      embed = false
+      embed = false;
+      display_recommendations = false
     }
     if(V.Status.getDevice().mobile) {
       render_full = true;
@@ -8793,7 +8816,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   };
   var decideIfPageSwitcher = function() {
     if(V.Slides.getCurrentSubSlide() !== null) {
-      $("#forward_arrow").hide();
       $("#back_arrow").hide()
     }else {
       if(V.Slides.isCurrentFirstSlide()) {
@@ -8801,11 +8823,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#back_arrow").show()
       }
-      if(V.Slides.isCurrentLastSlide()) {
-        $("#forward_arrow").hide()
-      }else {
-        $("#forward_arrow").show()
-      }
+      $("#forward_arrow").show()
     }
     if(!render_full) {
       if(V.Slides.isCurrentFirstSlide()) {
@@ -8813,11 +8831,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#page-switcher-start").show()
       }
-      if(V.Slides.isCurrentLastSlide()) {
-        $("#page-switcher-end").hide()
-      }else {
-        $("#page-switcher-end").show()
-      }
+      $("#page-switcher-end").show()
     }
   };
   var _decideIfViewBarShow = function(fullScreen) {
@@ -8887,15 +8901,18 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var increaseW = finalW / 800;
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
-    if($("#fancy_content:empty").length === 0) {
-      $("#fancybox-inner").width("80%");
-      $("#fancybox-wrap").width("80%");
-      $("#fancybox-content").width("80%");
-      $("#fancybox-content > div").width("100%");
-      $("#fancybox-inner").height("80%");
-      $("#fancybox-wrap").height("80%");
-      $("#fancybox-wrap").css("top", "10%");
-      $("#fancybox-wrap").css("left", "10%");
+    if($("#fancybox-content:empty").length === 0) {
+      $("#fancybox-wrap").width($(".current").width() + 100);
+      $("#fancybox-wrap").height($(".current").height() + 70);
+      $("#fancybox-wrap").css("top", $(".current").offset().top + "px");
+      $("#fancybox-wrap").css("left", $(".current").offset().left + "px");
+      setTimeout(function() {
+        $("#fancybox-wrap").height($(".current").height() + 70);
+        $("#fancybox-content").width("100%");
+        $("#fancybox-content").height("100%");
+        $("#fancybox-content > div").width("100%");
+        $("#fancybox-content > div").height("100%")
+      }, 300);
       V.Quiz.testFullScreen()
     }
     decideIfPageSwitcher();
@@ -9689,7 +9706,11 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   var forwardOneSlide = function(event) {
-    goToSlide(curSlideIndex + 2)
+    if(isCurrentLastSlide() && V.Status.getDevice().desktop) {
+      VISH.Recommendations.showFancybox()
+    }else {
+      goToSlide(curSlideIndex + 2)
+    }
   };
   var backwardOneSlide = function() {
     goToSlide(curSlideIndex)
@@ -10925,5 +10946,53 @@ VISH.Events.Mobile = function(V, $, undefined) {
     }
   };
   return{init:init, bindViewerMobileEventListeners:bindViewerMobileEventListeners, unbindViewerMobileEventListeners:unbindViewerMobileEventListeners}
+}(VISH, jQuery);
+VISH.Recommendations = function(V, $, undefined) {
+  var url_to_get_recommendations;
+  var user_id;
+  var presentation_id;
+  var generated;
+  var init = function(options) {
+    user_id = V.User.getId();
+    presentation_id = V.SlideManager.getCurrentPresentation().id;
+    if(options && options["urlToGetRecommendations"]) {
+      url_to_get_recommendations = options["urlToGetRecommendations"]
+    }
+    generated = false;
+    $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
+      $("#fancybox-wrap").css("margin-top", "0px")
+    }, "onClosed":function(data) {
+      $("#fancybox-wrap").css("margin-top", "-14px")
+    }})
+  };
+  var generateFancybox = function() {
+    if(!generated) {
+      console.log("user_id " + user_id + " presentation_id " + presentation_id);
+      if(url_to_get_recommendations !== undefined) {
+        var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
+        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+          _fillFancyboxWithData(data)
+        }})
+      }else {
+        _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+      }
+      generated = true
+    }
+  };
+  var _fillFancyboxWithData = function(data) {
+    var ex;
+    var result = "";
+    for(var i = data.items.length - 1;i >= 0;i--) {
+      ex = data.items[i];
+      result += '<a href="' + ex.url + '">' + '<div class="rec-excursion">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
+      '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>" + "</a>"
+    }
+    $("#fancy_recommendations .rec-grid").html(result)
+  };
+  var showFancybox = function() {
+    console.log("show");
+    $("#fancyRec").trigger("click")
+  };
+  return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox}
 }(VISH, jQuery);
 

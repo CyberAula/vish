@@ -3,6 +3,7 @@
 	var gateway = "<%=@gateway%>";
 	switch(gateway){
 		case "mashme":
+			var disableFullscreen = true;
 			var MASHME_API_SCRIPT_URL = "https://mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
 			$.getScript(MASHME_API_SCRIPT_URL).done(function(script, textStatus) {  		
   				MASHME.API.iFrame.init("myappkey","myappsecret", _onMessage);

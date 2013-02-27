@@ -155,6 +155,12 @@
 		options.addons.push(addon);
 	}
 
+  if(window.parent.disableFullscreen){
+    //Force fs disabled
+    options["disablefullscreen"] = true;
+  }
+
+
 	function start(){
 		var isPreview = false;
         try {
