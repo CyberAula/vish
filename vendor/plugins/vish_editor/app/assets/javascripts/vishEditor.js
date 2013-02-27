@@ -9866,7 +9866,7 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var sendParentToURL = function(the_url) {
-    window.parent.location = the_url
+    window.top.location = the_url
   };
   var addParamToUrl = function(url, paramName, paramValue) {
     if(typeof url !== "string" || typeof paramName !== "string" || typeof paramValue !== "string") {
