@@ -1942,12 +1942,12 @@ div.poi_label_container{
 	-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
 	-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
 	box-shadow: rgba(0,0,0,0.3) 0 1px 2px inset;
-	border: 1px solid #4d90fe
+	border: 1px solid #4d90fe;
 }
 
 #vt_search_button{
 	position: absolute;
-	background: #4d90fe !important
+	background: #4d90fe !important;
 	background-color: #3079ed !important;
 	background-image: -webkit-linear-gradient(top, #4d90fe,#4787ed) !important;
 	left: 495px;
