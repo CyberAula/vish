@@ -8823,7 +8823,11 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#back_arrow").show()
       }
-      $("#forward_arrow").show()
+      if(V.Slides.isCurrentLastSlide()) {
+        $("#forward_arrow").hide()
+      }else {
+        $("#forward_arrow").show()
+      }
     }
     if(!render_full) {
       if(V.Slides.isCurrentFirstSlide()) {
@@ -8831,7 +8835,11 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#page-switcher-start").show()
       }
-      $("#page-switcher-end").show()
+      if(V.Slides.isCurrentLastSlide()) {
+        $("#page-switcher-end").hide()
+      }else {
+        $("#page-switcher-end").show()
+      }
     }
   };
   var _decideIfViewBarShow = function(fullScreen) {
@@ -9707,7 +9715,6 @@ VISH.Slides = function(V, $, undefined) {
   };
   var forwardOneSlide = function(event) {
     if(isCurrentLastSlide() && V.Status.getDevice().desktop) {
-      VISH.Recommendations.showFancybox()
     }else {
       goToSlide(curSlideIndex + 2)
     }
@@ -10958,10 +10965,12 @@ VISH.Recommendations = function(V, $, undefined) {
     if(options && options["urlToGetRecommendations"]) {
       url_to_get_recommendations = options["urlToGetRecommendations"]
     }
-    generated = false;
+    generated = true;
     $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
+      $("#fancybox-outer").css("background", "transparent");
       $("#fancybox-wrap").css("margin-top", "0px")
     }, "onClosed":function(data) {
+      $("#fancybox-outer").css("background", "white");
       $("#fancybox-wrap").css("margin-top", "-14px")
     }})
   };
@@ -10970,7 +10979,7 @@ VISH.Recommendations = function(V, $, undefined) {
       console.log("user_id " + user_id + " presentation_id " + presentation_id);
       if(url_to_get_recommendations !== undefined) {
         var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
-        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+        $.ajax({type:"POST", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
           _fillFancyboxWithData(data)
         }})
       }else {
