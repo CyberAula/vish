@@ -1,11 +1,13 @@
-<% unless excursion.draft %>
+<% editingToolbar = (excursion.draft or controller.action_name=="edit") %>
+
+<% unless editingToolbar %>
   <div class="excursion_toolbar">
 <% else %>
   <div class="excursion_toolbar draft_excursion_tools">
 <% end %>
   <div class="inline-block">
-    <% unless excursion.draft %>
 
+    <% unless editingToolbar %>
       <div class="btn-gray">
         <a class="action excursion_toolbar_icon" data-toggle="collapse" data-target="#embed" data-parent="#excursion-share"><%= content_tag(:span, raw("<i class='icontool16-tool16_embed'></i> ")) %></a>
       </div>
@@ -49,7 +51,7 @@
       </script>
     <% end %>
 
-    <% unless excursion.draft %>
+    <% unless editingToolbar %>
       <div class="btn-gray">
         <div class="verb_like" id="like_<%= dom_id(excursion.post_activity) %>"><%= link_like(excursion.post_activity, :size => :big)%></div>
       </div>
@@ -57,7 +59,7 @@
 
   </div>
   <div class="view-like-mashme">
-    <% unless excursion.draft %>
+    <% unless editingToolbar %>
       <span class="green"><%=excursion.visit_count.to_s%></span><span> <%=t('follow.views')%></span>
       <span class="green like_count_<%= dom_id(excursion.post_activity) %>"><%= excursion.post_activity.likes.count.to_s  %></span><span> <%= t('follow.favorites').downcase %></span>
       <!--<div class="iconx-quiz"></div>-->
@@ -84,7 +86,7 @@
     <% end %>
   </div>
 
-<% unless excursion.draft %>
+<% unless editingToolbar %>
 <div id="excursion-share">
   <div id="share" class="collapse in">
     <input class="input-embed-excursion " type="text"  size="30" rows="1" value="<%= shortURL %>" onclick="this.select()" />
