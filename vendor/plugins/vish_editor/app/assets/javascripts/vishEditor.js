@@ -17498,6 +17498,12 @@ VISH.Editor.VirtualTour.Creator = function(V, $, undefined) {
     $(".carrousel_element_single_row_slides").droppable()
   };
   var _restorePois = function() {
+    if(!gMlLoaded) {
+      setTimeout(function() {
+        _restorePois()
+      }, 1E3);
+      return
+    }
     if(typeof currentPois === "undefined" && trustOrgPois) {
       var presentation = V.Editor.getPresentation();
       if(presentation && presentation.slides && presentation.slides[0] && presentation.slides[0].pois) {
