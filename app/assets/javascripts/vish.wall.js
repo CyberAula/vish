@@ -238,7 +238,7 @@ Vish.Wall = (function(V, $, undefined){
 
   var modalLikeBtn = function(signed_in, activity_id, is_fav){
     if(signed_in) {
-      return '<div class="btn-gray"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/icons/star-'+ (is_fav?'on':'off') +'.png" /></a></div></div>';
+      return '<div class="btn-gray"><div class="verb_like" id="like_' + activity_id + '"><a href="/activities/'+ activity_id +'/like" class="verb_like like_size_big like_activity_' + activity_id + '" data-method="' + (is_fav?"delete":"post") + '" data-remote="true" rel="nofollow"><img alt="Star-' + (is_fav?'on':'off') + '" class="menu_icon" src="/assets/icons/star-'+ (is_fav?'on':'off') +'.png" /></a></div></div>';
     } else {
       return ""; /* TODO: add button that leads to login? */
     }

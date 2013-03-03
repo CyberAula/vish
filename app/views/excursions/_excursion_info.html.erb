@@ -5,7 +5,7 @@
   <%= modal_for(c.subject) %>
   <%end%>
 <% end %>
-  <div class="notebook">
+  <div class="notebook margin-left100">
     <div class="notebook-cabecera">   
     </div>
     <div class="notebook-medio">
@@ -111,7 +111,8 @@
         <div class="text-notebook">
           <%= I18n.localize @excursion.created_at, :format => :long %>
         </div>
-<!--date-upload-->
+        
+<!--date-upload
       <div class="info_resources">
         <div class="tittle-notebook">
           <%= t('document.info.date.updated_at') %>
@@ -120,9 +121,10 @@
           <%= I18n.localize @excursion.updated_at, :format => :long %>
         </div>
       </div>
+      -->
     </div>
   </div>
-  <div class="notebook-pie"></div>
+  <div class="notebook-pie margin-left100"></div>
 </section>
 
 
