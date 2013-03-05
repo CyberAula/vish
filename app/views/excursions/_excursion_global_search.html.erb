@@ -31,16 +31,17 @@
           <%= link_like(excursion.post_activity)%>
         </div>
         <% end %>
+
+      </div>
         <% unless excursion.tag_list.blank? %>
-          <ul class="tagit-suggestions nomargin single-line-tags">
+          <ul class="tags-group">
             <% excursion.tag_list.shuffle.each do |tag| %>
-              <li class="tagit-choice">
+              <li class="tags">
                 <%= link_to tag, search_path(:q => tag) %>
               </li>
             <% end %>
           </ul>
         <% end %>
-      </div>
     </li>
   </ul>
 </div>
