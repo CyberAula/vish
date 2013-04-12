@@ -8835,11 +8835,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#page-switcher-start").show()
       }
-      if(V.Slides.isCurrentLastSlide()) {
-        $("#page-switcher-end").hide()
-      }else {
-        $("#page-switcher-end").show()
-      }
+      $("#page-switcher-end").show()
     }
   };
   var _decideIfViewBarShow = function(fullScreen) {
@@ -9715,6 +9711,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var forwardOneSlide = function(event) {
     if(isCurrentLastSlide() && V.Status.getDevice().desktop) {
+      VISH.Recommendations.showFancybox()
     }else {
       goToSlide(curSlideIndex + 2)
     }
@@ -10965,7 +10962,7 @@ VISH.Recommendations = function(V, $, undefined) {
     if(options && options["urlToGetRecommendations"]) {
       url_to_get_recommendations = options["urlToGetRecommendations"]
     }
-    generated = true;
+    generated = false;
     $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
       $("#fancybox-outer").css("background", "transparent");
       $("#fancybox-wrap").css("margin-top", "0px")
@@ -10979,7 +10976,7 @@ VISH.Recommendations = function(V, $, undefined) {
       console.log("user_id " + user_id + " presentation_id " + presentation_id);
       if(url_to_get_recommendations !== undefined) {
         var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
-        $.ajax({type:"POST", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
           _fillFancyboxWithData(data)
         }})
       }else {
@@ -10989,10 +10986,13 @@ VISH.Recommendations = function(V, $, undefined) {
     }
   };
   var _fillFancyboxWithData = function(data) {
+    if(data.length == 0) {
+      return
+    }
     var ex;
     var result = "";
-    for(var i = data.items.length - 1;i >= 0;i--) {
-      ex = data.items[i];
+    for(var i = data.length - 1;i >= 0;i--) {
+      ex = data[i];
       result += '<a href="' + ex.url + '">' + '<div class="rec-excursion">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
       '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>" + "</a>"
     }

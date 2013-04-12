@@ -191,7 +191,7 @@ es:
     config_html: "Si quieres modificar el servicio de notificaciones. Pulsa <a href='%{url}'>aquí</a>"
     makefriend:
       user: "%{sender} está siguiendo a %{who}."
-    unread: " sin leer"
+    unread: " sin leer"  
   offline:
     title: "Modo sin conexión"
   officedoc:
@@ -218,6 +218,12 @@ es:
     input: "Comparte aquí tus opiniones, enlaces, imágenes y más..."
     search_name: "actualización de estado"
   profile:
+    occupation:
+      label: "Ocupación"
+      other: "Otra"
+      scientist: "Científico"
+      select: "Selecciona tu ocupación"
+      teacher: "Profesor"
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"

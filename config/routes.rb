@@ -22,6 +22,8 @@ Vish::Application.routes.draw do
   match 'excursions/search' => 'excursions#search'
   match 'excursions/recommended' => 'excursions#recommended'
 
+  match 'excursions/last_slide' => 'excursions#last_slide'
+
   match 'excursions/preview' => 'excursions#preview'
 
   match 'excursions/:id/clone' => 'excursions#clone'

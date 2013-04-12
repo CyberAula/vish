@@ -12078,9 +12078,9 @@ VISH.Samples = function(V, undefined) {
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quizes_samples:quizes_samples, quizes_samples2:quizes_samples2, quizes_truefalse_sample:quizes_truefalse_sample, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
-  var recommendationList = {"items":[{"url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"ebarra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity in my title long", "author":"aldo", "description":" bla bla bla 2", "image":"http://vishub.org/assets/logos/original/excursion-07.png", "views":"563", "favourites":"13", 
+  var recommendationList = [{"url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"ebarra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity in my title long", "author":"aldo", "description":" bla bla bla 2", "image":"http://vishub.org/assets/logos/original/excursion-07.png", "views":"563", "favourites":"13", 
   "number_of_slides":"2"}, {"url":"http://vishub.org/excursions/55", "title":"Nanogame by UCAM or by her friend", "author":"nestor", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-08.png", "views":"56", "favourites":"33", "number_of_slides":"8"}, {"url":"http://vishub.org/excursions/14", "title":"Heart", "author":"ebarra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-15.png", "views":"156", "favourites":"3", "number_of_slides":"8"}, 
-  {"url":"http://vishub.org/excursions/81", "title":"Flascard Curiosity", "author":"aldo", "description":" bla bla bla 2", "image":"http://vishub.org/assets/logos/original/excursion-17.png", "views":"463", "favourites":"23", "number_of_slides":"2"}, {"url":"http://vishub.org/excursions/56", "title":"Nanogame", "author":"nestor", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-18.png", "views":"1256", "favourites":"33", "number_of_slides":"8"}]};
+  {"url":"http://vishub.org/excursions/81", "title":"Flascard Curiosity", "author":"aldo", "description":" bla bla bla 2", "image":"http://vishub.org/assets/logos/original/excursion-17.png", "views":"463", "favourites":"23", "number_of_slides":"2"}, {"url":"http://vishub.org/excursions/56", "title":"Nanogame", "author":"nestor", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-18.png", "views":"1256", "favourites":"33", "number_of_slides":"8"}];
   var flashcardList = {"flashcards":[{"id":"1120", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://4.bp.blogspot.com/-fsV8poJXoJc/ULe8nkVbaVI/AAAAAAAAA-M/Q2vW16z6Ivc/s1600/Imagen16.png)", "pois":[{"id":"article4_poi1", "x":"36.875", "y":"67.33333333333333", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"55.375", "y":"68.16666666666667", "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":"45.875", "y":"5.5", 
   "slide_id":"article4_article3"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", "type":"image", "areaid":"left", "body":"http://1.bp.blogspot.com/_KaMLeO20q1Q/TGk8gfWkp7I/AAAAAAAAAHI/80bTifiIk6M/s1600/24+Do%C3%B1ana.JPG", "style":"position: relative; width:110.31518624641834%; height:97.1590909090909%; top:2.0833333333333335%; left:-1.146131805157593%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t2", "elements":[{"id":"article4_article2_zone1", 
   "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8504/8367119464_f8ff09456d.jpg", "style":"position: relative; width:103.15186246418338%; height:90.53030303030303%; top:3.0303030303030303%; left:-0.5730659025787965%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t2", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"left", "body":"http://cabeceras.eldiariomontanes.es/imagenes-municipios/galerias/5348/mf01z4411811x1492-452.jpg", "style":"position: relative; width:119.05444126074498%; height:129.54545454545453%; top:-2.6515151515151514%; left:-3.5816618911174785%;"}]}]}]}, 
@@ -12401,6 +12401,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var forwardOneSlide = function(event) {
     if(isCurrentLastSlide() && V.Status.getDevice().desktop) {
+      VISH.Recommendations.showFancybox()
     }else {
       goToSlide(curSlideIndex + 2)
     }
@@ -18842,7 +18843,7 @@ VISH.Recommendations = function(V, $, undefined) {
     if(options && options["urlToGetRecommendations"]) {
       url_to_get_recommendations = options["urlToGetRecommendations"]
     }
-    generated = true;
+    generated = false;
     $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
       $("#fancybox-outer").css("background", "transparent");
       $("#fancybox-wrap").css("margin-top", "0px")
@@ -18856,7 +18857,7 @@ VISH.Recommendations = function(V, $, undefined) {
       console.log("user_id " + user_id + " presentation_id " + presentation_id);
       if(url_to_get_recommendations !== undefined) {
         var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
-        $.ajax({type:"POST", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
           _fillFancyboxWithData(data)
         }})
       }else {
@@ -18866,10 +18867,13 @@ VISH.Recommendations = function(V, $, undefined) {
     }
   };
   var _fillFancyboxWithData = function(data) {
+    if(data.length == 0) {
+      return
+    }
     var ex;
     var result = "";
-    for(var i = data.items.length - 1;i >= 0;i--) {
-      ex = data.items[i];
+    for(var i = data.length - 1;i >= 0;i--) {
+      ex = data[i];
       result += '<a href="' + ex.url + '">' + '<div class="rec-excursion">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
       '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>" + "</a>"
     }
@@ -20342,11 +20346,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#page-switcher-start").show()
       }
-      if(V.Slides.isCurrentLastSlide()) {
-        $("#page-switcher-end").hide()
-      }else {
-        $("#page-switcher-end").show()
-      }
+      $("#page-switcher-end").show()
     }
   };
   var _decideIfViewBarShow = function(fullScreen) {

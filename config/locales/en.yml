@@ -187,7 +187,7 @@ en:
     config_html: "If you want to modify the notification service. Click <a href='%{url}'>here</a>"
     makefriend:
       user: "%{sender} is following %{who}."
-    unread: " unread"
+    unread: " unread"  
   officedoc:
     confirm_delete: "Delete document?"
     title: "Office Documents"
@@ -214,6 +214,12 @@ en:
     input: "Share your thoughts, links, videos and more, here!"
     search_name: "status update"
   profile:
+    occupation: 
+      label: "Occupation"
+      other: "Other"
+      scientist: "Scientist"
+      select: "Select your occupation"
+      teacher: "Teacher"
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"

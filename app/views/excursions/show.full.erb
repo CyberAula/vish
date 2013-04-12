@@ -22,7 +22,25 @@
     <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
    <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>    
     <!-- Hidden link to open fancybox when stop a quiz session  -->
-    <a id="stopQuizSessionFancybox" href="#stop_quiz_fancybox" style="display: none;" name='modal_fancybox'></a>    
+    <a id="stopQuizSessionFancybox" href="#stop_quiz_fancybox" style="display: none;" name='modal_fancybox'></a> 
+    <!-- Hidden link to open fancybox to display recommendations in the end -->
+    <a id="fancyRec" href="#fancy_recommendations" style="display: none;"></a>
+   
+    <!-- Thumbnails fancybox -->
+    <div style='display:none'>
+        <div id='fancy_recommendations'>
+            <div class="rec-first-row">
+                <span class="textintro1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
+                <button id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
+            </div>
+            <div class="rec-second-row">
+                <span class="textintro1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
+                <div class="rec-grid">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- quiz Session Fancybox fancybox -->
     <div style='display:none'>
         <div id="start_quiz_fancybox" class="outer_box">
@@ -143,6 +161,9 @@
 	<% else %>
 	    options["username"] = false;
 	<% end %>
+
+  //URL to get the recommendations to show in the last slide
+  options["urlToGetRecommendations"] = "http://localhost:3000/excursions/last_slide.json"
 
 	options.addons = [];
 

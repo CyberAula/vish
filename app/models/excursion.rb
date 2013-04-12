@@ -231,6 +231,21 @@ class Excursion < ActiveRecord::Base
     parsed_json.to_json
   end
 
+  #method used to return json objects to the recommendation in the last slide
+  def reduced_json(controller)  
+      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :id=>self.id);
+      
+      { :url => excursion_url,
+        :title => title,
+        :author => author.name,
+        :description => description,
+        :image => thumbnail_url ? thumbnail_url : "/assets/logos/original/excursion-00.png",
+        :views => visit_count,
+        :favourites => like_count,
+        :number_of_slides => slide_count
+      }
+  end
+
   private
 
   def extract_quizzes(parsed_json)
@@ -296,5 +311,7 @@ class Excursion < ActiveRecord::Base
       activity_object.relation_ids=[Relation::Public.instance.id]
     end
   end
+
+  
 
 end
