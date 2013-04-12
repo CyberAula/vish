@@ -235,7 +235,8 @@ class Excursion < ActiveRecord::Base
   def reduced_json(controller)  
       excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :id=>self.id);
       
-      { :url => excursion_url,
+      { :id => id,
+        :url => excursion_url,
         :title => title,
         :author => author.name,
         :description => description,
