@@ -3,21 +3,49 @@ class QuizSessionsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [ :create, :delete ]
 
-  def create # POST /quiz_sessions => open quiz to collect answers => respond with quiz_session id
-    return if params[:quiz_id].blank?
+    # create_table :quiz_sessions do |t|
+    #   t.integer :owner_id
+    #   t.string  :name
+    #   t.string  :quiz
+    #   t.string  :quiz_results
+    #   t.boolean :active, :default => true
+    #   t.datetime :created_at
+    #   t.datetime :updated_at
+    #   t.datetime :closed_at
+    # end
+
+
+
+  # POST /quiz_sessions 
+  # Open a quiz to collect answers
+  # Respond with the quiz session id
+  def create 
     #debugger
     qs = QuizSession.new
-    qs.quiz = Quiz.find(params[:quiz_id])
-    qs.owner=current_user
+    qs.owner_id=current_user.id
+
+    if params[:name]
+      qs.name = params[:name]
+    end
+
+    if params[:quiz_json]
+      render :text => "Quiz Json required"
+    end
+
+    qs.quiz_results = [];
     qs.active=true
-    qs.name = params[:name] unless params[:name].blank?
+
+    # qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
+    qs.url= request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}"
     qs.save!
-    qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
-    qs.save!
+
     render :text => qs.id.to_s
   end
 
-  def show # GET /quiz_sessions/X => render vote page 
+
+  # GET /quiz_sessions/X 
+  #render vote page 
+  def show
     @quiz_session = QuizSession.find(params[:id])
    #debugger
     if @quiz_session.active

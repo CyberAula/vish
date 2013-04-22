@@ -306,7 +306,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def fix_relation_ids_drafts
-    if draft
+    if self.draft
       activity_object.relation_ids=[Relation::Private.instance.id]
     else
       activity_object.relation_ids=[Relation::Public.instance.id]
