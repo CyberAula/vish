@@ -7,10 +7,6 @@
   <% end %>
   <div class="content settings_briefing" id="profile_info_briefing">
     <% if !is_personal_empty? %>
-        <% if @profile.occupation? %>
-          <h4><%= t('profile.occupation.label') %></h4>
-          <small><%= h @profile.occupation %></small>
-        <% end %>
         <% if @profile.organization? %>
           <h4><%= t('profile.organization') %></h4>
           <small><%= h @profile.organization %></small>
@@ -49,8 +45,6 @@
           <%= f.label t('actor.name'), :class => "text" %>
           <span class="needed"></span>
           <%= actor_form.text_field :name, :class => "input_settings" %>
-          <%= f.label t('profile.occupation.label'), :class => "text" %>
-          <%= f.select(:occupation, options_for_select([[t('profile.occupation.select'), 0], [t('profile.occupation.teacher'), 1],[t('profile.occupation.scientist'),2], [t('profile.occupation.other'),3]])) %>
           <%= f.label t('profile.organization'), :class => "text" %>
           <%= f.text_field :organization, :class => "input_settings" %>
           <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday'), :class => "text" %>

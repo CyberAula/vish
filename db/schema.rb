@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409132448) do
+ActiveRecord::Schema.define(:version => 20130226154202) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -325,7 +325,6 @@ ActiveRecord::Schema.define(:version => 20130409132448) do
     t.string   "website"
     t.string   "skype",        :limit => 45
     t.string   "im",           :limit => 45
-    t.integer  "occupation"
   end
 
   add_index "profiles", ["actor_id"], :name => "index_profiles_on_actor_id"
