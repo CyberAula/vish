@@ -3315,12 +3315,20 @@ VISH.Constant.FLASHCARD = "flashcard";
 VISH.Constant.QUIZ_SIMPLE = "quiz_simple";
 VISH.Constant.GAME = "game";
 VISH.Constant.VTOUR = "VirtualTour";
-VISH.Constant.IMAGE = "image";
 VISH.Constant.TEXT = "text";
+VISH.Constant.IMAGE = "image";
 VISH.Constant.VIDEO = "video";
 VISH.Constant.OBJECT = "object";
 VISH.Constant.SNAPSHOT = "snapshot";
+VISH.Constant.APPLET = "applet";
 VISH.Constant.QUIZ = "quiz";
+VISH.Constant.QZ_TYPE = {};
+VISH.Constant.QZ_TYPE.OPEN = "open";
+VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.Constant.QZ_MODE = {};
+VISH.Constant.QZ_MODE.SELFA = "selfA";
+VISH.Constant.QZ_MODE.RT = "realTime";
 VISH.Constant.TextDefault = 12;
 VISH.Constant.TextBase = 12;
 VISH.Constant.Video = {};
@@ -3347,6 +3355,7 @@ VISH.Constant.Storage.Device = "Device";
 VISH.Constant.VTour = {};
 VISH.Constant.VTour.DEFAULT_MAP = "roadmap";
 VISH.Constant.VTour.ROADMAP = "roadmap";
+VISH.Constant.INTRO = 13;
 VISH.Configuration = function(V, $, undefined) {
   var configuration;
   var init = function(myConfiguration) {
@@ -6457,6 +6466,8 @@ VISH.Renderer = function(V, $, undefined) {
       case undefined:
       ;
       case V.Constant.STANDARD:
+      ;
+      case V.Constant.QUIZ_SIMPLE:
         article = _renderStandardSlide(slide, extra_classes, extra_buttons);
         break;
       case V.Constant.FLASHCARD:
@@ -6464,9 +6475,6 @@ VISH.Renderer = function(V, $, undefined) {
         break;
       case V.Constant.VTOUR:
         article = _renderVirtualTourSlide(slide, extra_classes, extra_buttons);
-        break;
-      case V.Constant.QUIZ_SIMPLE:
-        article = _renderStandardSlide(slide, extra_classes, extra_buttons);
         break;
       default:
         article = null;
@@ -6484,29 +6492,29 @@ VISH.Renderer = function(V, $, undefined) {
       if(!V.Renderer.Filter.allowElement(slide.elements[el])) {
         content += V.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template)
       }else {
-        if(slide.elements[el].type === "text") {
+        if(slide.elements[el].type === V.Constant.TEXT) {
           content += _renderText(slide.elements[el], slide.template)
         }else {
-          if(slide.elements[el].type === "image") {
+          if(slide.elements[el].type === V.Constant.IMAGE) {
             content += _renderImage(slide.elements[el], slide.template)
           }else {
-            if(slide.elements[el].type === "video") {
+            if(slide.elements[el].type === V.Constant.VIDEO) {
               content += renderVideo(slide.elements[el], slide.template)
             }else {
-              if(slide.elements[el].type === "object") {
+              if(slide.elements[el].type === V.Constant.OBJECT) {
                 content += _renderObject(slide.elements[el], slide.template);
                 classes += "object "
               }else {
-                if(slide.elements[el].type === "snapshot") {
+                if(slide.elements[el].type === V.Constant.SNAPSHOT) {
                   content += _renderSnapshot(slide.elements[el], slide.template);
                   classes += "snapshot "
                 }else {
-                  if(slide.elements[el].type === "applet") {
+                  if(slide.elements[el].type === V.Constant.APPLET) {
                     content += _renderApplet(slide.elements[el], slide.template);
                     classes += "applet "
                   }else {
                     if(slide.elements[el].type === V.Constant.QUIZ) {
-                      content += V.Quiz.Renderer.renderQuiz(slide.elements[el].quiztype, slide.elements[el], slide.template + "_" + slide.elements[el].areaid, slide.id, slide.elements[el].id);
+                      content += V.Quiz.render(slide.elements[el], slide.template);
                       classes += V.Constant.QUIZ
                     }else {
                       content += _renderEmpty(slide.elements[el], slide.template)
@@ -6518,10 +6526,6 @@ VISH.Renderer = function(V, $, undefined) {
           }
         }
       }
-    }
-    if(slide.type == V.Constant.QUIZ_SIMPLE) {
-      content += V.Quiz.Renderer.renderQuiz(slide.quiztype, slide, slide.template + "_" + slide.areaid, null, slide.id);
-      classes += V.Constant.QUIZ
     }
     return"<article class='" + extra_classes + " " + classes + "' id='" + slide.id + "'>" + extra_buttons + content + "</article>"
   };
@@ -6823,13 +6827,9 @@ VISH.Presentation = function(V, undefined) {
 }(VISH);
 VISH.Text = function(V, $, undefined) {
   var init = function() {
-    $("article > div.VEtextArea > p").each(function(index, p) {
-      if($(p).children().length === 0) {
-        _setStyleInEm(p);
-        return
-      }
-      _adaptSpans($(p).find("span"))
-    });
+    _adaptPs($("article > div.VEtextArea > p"));
+    _adaptPs($("article > div.quizzContainer > div > p"));
+    _adaptPs($("article > div.quizzContainer").find("td > p"));
     $("article > div.VEtextArea > table").each(function(index, table) {
       _adaptSpans($(table).find("caption").find("span"));
       $(table).find("td").each(function(index, td) {
@@ -6853,6 +6853,16 @@ VISH.Text = function(V, $, undefined) {
           $(table).attr("style", tableStyle)
         }
       }
+    })
+  };
+  var _adaptPs = function(selector) {
+    $(selector).each(function(index, p) {
+      if($(p).children().length === 0) {
+        _setStyleInEm(p);
+        return
+      }
+      _adaptSpans($(p).find("span"));
+      _adaptFonts($(p).find("font"))
     })
   };
   var _adaptSpans = function(spans) {
@@ -7652,7 +7662,6 @@ VISH.SlideManager = function(V, $, undefined) {
     })
   };
   var _initAferStatusLoaded = function(options, presentation) {
-    V.Quiz.init(presentation);
     V.Flashcard.init();
     V.Renderer.init();
     V.Slides.init();
@@ -7676,7 +7685,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Themes.loadTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
-    V.Quiz.prepareQuiz(presentation);
+    V.Quiz.init(presentation);
     if(options.addons) {
       V.Addons.init(options.addons)
     }
@@ -8751,9 +8760,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
-      if(options["disablefullscreen"] === true) {
-        fs_button = false
-      }
       page_is_fullscreen = render_full && !V.Status.getIsInIframe();
       if(typeof options["urlToGetRecommendations"] == "string") {
         display_recommendations = true
@@ -8796,8 +8802,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("#viewbar").hide()
     }
     if(is_preview) {
-      $("div#viewerpreview").show();
-      V.Quiz.UnbindStartQuizEvents()
+      $("div#viewerpreview").show()
     }
     if(embed && V.Status.getIsInIframe()) {
       $("#embedWatermarkWrapper").show()
@@ -8823,11 +8828,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         $("#back_arrow").show()
       }
-      if(V.Slides.isCurrentLastSlide()) {
-        $("#forward_arrow").hide()
-      }else {
-        $("#forward_arrow").show()
-      }
+      $("#forward_arrow").show()
     }
     if(!render_full) {
       if(V.Slides.isCurrentFirstSlide()) {
@@ -10023,600 +10024,305 @@ VISH.EventsNotifier = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
-  var quizSessionStarted = false;
-  var mcOptionsHash = new Array;
-  mcOptionsHash["a"] = 0;
-  mcOptionsHash["b"] = 1;
-  mcOptionsHash["c"] = 2;
-  mcOptionsHash["d"] = 3;
-  mcOptionsHash["e"] = 4;
-  mcOptionsHash["f"] = 5;
-  var tfOptionsHash = new Array;
-  tfOptionsHash["true"] = 0;
-  tfOptionsHash["false"] = 1;
-  var startButtonClass = "quiz_session_start_button";
-  var optionsButtonClass = "quiz_session_options_button";
-  var showAnswerButtonClass = "show_answers_button";
-  var hideAnswerButtonClass = "hide_answers_button";
-  var voteButtonClass = "quiz_send_vote_button";
-  var stopSessionButtonClass = "quiz_session_stop_button";
-  var statisticsButtonClass = "mch_statistics_icon";
-  var tabQuizSessionContent = "tab_quiz_session_content";
-  var tabQuizStatsBarsContentId = "quiz_stats_bars_content_id";
-  var tabQuizStatsPieContentId = "quiz_stats_pie_content_id";
-  var getResultsPeriod = 3E3;
-  var getResultsTimeOut;
-  var pollingActivated = false;
-  var addedFullScreenListener = false;
+  var selfA = "selfA";
+  var realTime = "realTime";
   var init = function(presentation) {
-    if(presentation.type == "quiz_simple") {
-      quizMode = "answer";
-      _loadAnswerEvents()
+    V.Quiz.MC.init();
+    V.Quiz.TF.init();
+    _loadEvents();
+    if(presentation.type === VISH.Constant.QUIZ_SIMPLE) {
+      quizMode = VISH.Constant.QZ_MODE.RT
     }else {
-      quizMode = "question";
-      _loadEvents()
+      quizMode = VISH.Constant.QZ_MODE.SELFA
     }
-    V.Quiz.Renderer.init();
-    V.Quiz.API.init();
-    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"90%", "height":"90%", "margin":"10%", "padding":0, "autoScale":true, "onStart":function(data) {
-      V.Utils.loadTab("tab_quiz_session");
-      _enableFullScreenQRButton()
-    }})
-  };
-  var getQuizMode = function() {
-    return quizMode
-  };
-  var prepareQuiz = function() {
-    if(quizMode == "answer") {
-      $("." + startButtonClass).hide();
-      $("." + voteButtonClass).show()
-    }else {
-      if(quizMode == "question") {
-        if(!V.User.isLogged()) {
-          $("." + startButtonClass).hide()
-        }else {
-          $("." + startButtonClass).show()
-        }
-      }
-    }
-  };
-  var showQuizStats = function() {
-    $("a#addQuizSessionFancybox").trigger("click");
-    testFullScreen()
   };
   var _loadEvents = function() {
-    $(document).on("click", "." + startButtonClass, startMcQuizButtonClicked);
-    $(document).on("click", "." + stopSessionButtonClass, onStopMcQuizButtonClicked);
-    $(document).on("click", "." + optionsButtonClass, showQuizStats);
-    $(document).on("click", "." + showAnswerButtonClass, toggleShowAnswers);
-    $(document).on("click", "." + hideAnswerButtonClass, toggleShowAnswers);
-    $(document).on("click", "#mask_stop_quiz", _hideStopQuizPopup);
-    $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
-    $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
-    $(document).on("click", ".quiz_stop_session_dont_save", _stopAndDontSaveQuiz);
-    $(document).on("click", ".quiz_full_screen", qrToggleFullScreen);
-    $(document).on("click", ".hide_qrcode", _hideQRCode);
-    $(document).on("click", ".show_qrcode", _showQRCode);
-    $(document).on("click", ".quiz_cancel_full_screen", qrToggleFullScreen)
+    $(document).on("click", ".quizAnswerButton", _onAnswerQuiz);
+    $(document).on("click", ".quizStartButton", _onStartQuiz)
   };
-  var startMcQuizButtonClicked = function() {
-    if(V.User.isLogged()) {
-      var quizId = $(V.Slides.getCurrentSlide()).find(".quizId").val();
-      var quiztype = $(V.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
-      $("a#addQuizSessionFancybox").trigger("click");
-      V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
-      _startStats(quiztype);
-      testFullScreen()
-    }else {
-      V.Debugging.log("User not logged")
-    }
-  };
-  var _startStats = function(quiz_type) {
-    var question;
-    if($("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").contents()) {
-      $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").children().remove()
-    }
-    if($("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").contents()) {
-      $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").children().remove()
-    }
-    if($("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children()) {
-      $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children().remove()
-    }
-    if(quiz_type == "multiplechoice") {
-      question = $(V.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone");
-      var options_form = $(V.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form")
-    }
-    if(quiz_type == "truefalse") {
-      question = $(V.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".value_truefalse_question_in_zone");
-      var options_form = $(V.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".truefalse_options_container")
-    }
-    question.addClass("question_in_stats");
-    $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append(question.clone());
-    $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append(question.clone());
-    options_form.find(".multiplechoice_option_in_viewer").addClass("option_in_stats");
-    $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append(options_form);
-    $("#" + tabQuizStatsBarsContentId).find(".truefalse_options_container").css("display", "block");
-    $("#" + tabQuizStatsBarsContentId).find(".mch_inputs_wrapper").remove();
-    $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
-    $("#tab_quiz_stats_pie_content").addClass("resized_fancybox_for_stats");
-    $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
-  };
-  var activatePolling = function(activate_boolean) {
-    if(!pollingActivated && activate_boolean) {
-      pollingActivated = activate_boolean;
-      _updateBarsStats();
-      getResultsTimeOut = setInterval(_getResults, getResultsPeriod)
-    }else {
-      if(pollingActivated && activate_boolean) {
+  var _onAnswerQuiz = function(event) {
+    var quiz = $("div.quizzContainer").has(event.target);
+    var quizModule = _getQuizModule($(quiz).attr("type"));
+    if(quizModule) {
+      if(quizMode === VISH.Constant.QZ_MODE.SELFA) {
+        quizModule.onAnswerQuiz(quiz)
       }else {
-        pollingActivated = activate_boolean;
-        clearInterval(getResultsTimeOut)
+        var report = quizModule.getResults(quiz);
+        _answerRTQuiz(quiz, quizModule, report)
       }
     }
   };
-  var _updateBarsStats = function(data) {
-    if(data) {
-      V.Debugging.log("_updateBarsStats with  data: " + JSON.stringify(data))
-    }else {
-      V.Debugging.log("_updateBarsStats with no data params");
-      $("#" + tabQuizStatsBarsContentId).find(".mc_meter").css("display", "block");
-      $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").css("display", "block");
-      $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").text("0%");
-      $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span").css("width", "0%");
-      _getResults()
+  var _answerRTQuiz = function(quiz, quizModule, report) {
+    if(report.empty === true) {
+      alert("Answer the quiz before send");
+      return
+    }
+    quizModule.disableQuiz(quiz);
+    var results = report.results;
+    V.Debugging.log(results);
+    alert("Your answer has been submitted")
+  };
+  var _onStartQuiz = function() {
+  };
+  var render = function(slide, template) {
+    var quizModule = _getQuizModule(slide.quiztype);
+    if(quizModule) {
+      return quizModule.render(slide, template)
     }
   };
-  var _getResults = function(quiz_session_active_id) {
-    if(quiz_session_active_id) {
-      var quizSessionActiveId = quiz_session_active_id
-    }else {
-      var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").val()
+  var renderButtons = function(selfA) {
+    var quizButtons = $("<div class='quizButtons'></div>");
+    if(VISH.User.isLogged()) {
+      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Start'/>")
     }
-    V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _showResults, _onQuizSessionResultsReceivedError)
-  };
-  var _onQuizSessionReceived = function(quiz_session_id) {
-    var quizUrlForSession = "http://" + window.location.host.toString() + "/quiz_sessions/";
-    var url = quizUrlForSession + quiz_session_id;
-    var current_slide = V.Slides.getCurrentSlide();
-    var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
-    $(header).find(".url_share_link").attr("href", url);
-    $(header).find(".url_share_link").text("");
-    $(header).find(".url_share_link").append(url.toString());
-    $(".hidden_for_qr_quiz > canvas").remove();
-    $(".hidden_for_qr_quiz").qrcode({width:512, height:512, text:url.toString()});
-    var imageData = $(".hidden_for_qr_quiz > canvas")[0].toDataURL();
-    $("#" + tabQuizSessionContent).find(".qr_quiz_image").attr("src", imageData);
-    $(current_slide).find("input." + startButtonClass).hide();
-    $(current_slide).find("input." + optionsButtonClass).show();
-    quizSessionStarted = true;
-    $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value", quiz_session_id);
-    _showQRCode();
-    if(addedFullScreenListener === false) {
-      _addToggleFullScreenListener()
+    if(selfA) {
+      var answerButton = $("<input type='button' class='quizButton quizAnswerButton' value='Answer'/>");
+      $(quizButtons).prepend(answerButton)
     }
+    return quizButtons
   };
-  var _OnQuizSessionReceivedError = function(error) {
-    V.Debugging.log("_OnQuizSessionReceivedError:  " + JSON.stringify(error))
+  var disableAnswerButton = function(quiz) {
+    var answeButton = $(quiz).find("input.quizAnswerButton");
+    $(answeButton).attr("disabled", "disabled");
+    $(answeButton).addClass("quizAnswerButtonDisabled")
   };
-  var _addToggleFullScreenListener = function() {
-    var qrImgID = "quiz_session_qrcode_container_id";
-    addedFullScreenListener = true;
-    if(V.Status.getIsInIframe()) {
-      var myDoc = parent.document
-    }else {
-      var myDoc = document
-    }
-    var myElem = $(document).find(".quiz_full_screen")[0];
-    if(myElem.requestFullscreen) {
-      myDoc.addEventListener("fullscreenchange", function() {
-        if(document.fullScreen) {
-          $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
-          $(document.getElementById(qrImgID)).addClass("full-screen")
-        }else {
-          $(document.getElementById(qrImgID)).removeClass("full-screen");
-          $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container")
-        }
-      }, false)
-    }else {
-      if(myElem.webkitRequestFullScreen) {
-        myDoc.addEventListener("webkitfullscreenchange", function() {
-          if(document.webkitIsFullScreen) {
-            if($(document.getElementById(qrImgID)).hasClass("quiz_session_qrcode_container")) {
-              $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
-              $(document.getElementById(qrImgID)).addClass("full-screen");
-              $(".quiz_cancel_full_screen").show()
-            }
-          }else {
-            if($(document.getElementById(qrImgID)).hasClass("full-screen")) {
-              $(document.getElementById(qrImgID)).removeClass("full-screen");
-              $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container");
-              $(".quiz_cancel_full_screen").hide()
-            }
-          }
-        }, false)
-      }else {
-        if(myElem.mozRequestFullScreen) {
-          myDoc.addEventListener("mozfullscreenchange", function() {
-            if(document.mozFullScreen) {
-              $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
-              $(document.getElementById(qrImgID)).addClass("full-screen");
-              $(".quiz_cancel_full_screen").show()
-            }else {
-              $(document.getElementById(qrImgID)).removeClass("full-screen");
-              $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container");
-              $(".quiz_cancel_full_screen").hide()
-            }
-          }, false)
-        }else {
-          V.Debugging.log("Other Browser does not support FUll Screen Mode")
-        }
-      }
-    }
-  };
-  var onStopMcQuizButtonClicked = function() {
-    var id = $("a[name=modal_fancybox]").attr("href");
-    var maskHeight = $(document).height();
-    var maskWidth = $(window).width();
-    $("#mask_stop_quiz").css({"width":maskWidth, "height":maskHeight});
-    $("#mask_stop_quiz").fadeTo("slow", 0.6);
-    $(id).css("top", maskHeight / 2 - $(id).height() / 2);
-    $(id).css("left", maskWidth / 2 - $(id).width() / 2);
-    $(id).show();
-    $(id).children().show();
-    var date = new Date;
-    var date_string = date.getFullYear().toString() + (date.getMonth() + 1).toString() + date.getDate().toString() + "_" + date.getHours().toString() + date.getMinutes().toString();
-    $(id).find(".quiz_saved_session_name").val(date_string);
-    $(id).fadeIn(2E3)
-  };
-  var _stopAndSaveQuiz = function() {
-    var current_slide = V.Slides.getCurrentSlide();
-    quizName = $("#stop_quiz_fancybox").find(".quiz_saved_session_name").val();
-    var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
-    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
-    if(!quizName) {
-      quizName = "Unknown"
-    }
-    _hideStopQuizPopup();
-    $.fancybox.close();
-    $(current_slide).find("input." + optionsButtonClass).hide();
-    $(current_slide).find("input." + startButtonClass).show();
-    V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
-    pollingActivated = false;
-    clearInterval(getResultsTimeOut);
-    quizSessionStarted = false
-  };
-  var _onQuizSessionCloseReceived = function(results) {
-    V.Debugging.log("_onQuizSessionCloseReceived");
-    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value")
-  };
-  var _onQuizSessionCloseReceivedError = function(error) {
-    V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + JSON.stringify(error))
-  };
-  var _stopAndDontSaveQuiz = function() {
-    var current_slide = V.Slides.getCurrentSlide();
-    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
-    _hideStopQuizPopup();
-    $.fancybox.close();
-    quizName = false;
-    $(current_slide).find("input." + optionsButtonClass).hide();
-    $(current_slide).find("input." + startButtonClass).show();
-    V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
-    clearInterval(getResultsTimeOut);
-    quizSessionStarted = false
-  };
-  var _loadAnswerEvents = function() {
-    $(document).on("click", "." + voteButtonClass, _sendVote)
-  };
-  var _sendVote = function(event) {
-    var answer;
-    if(event.target.parentElement.classList[0] == "mch_inputs_wrapper") {
-      var answer = $(V.Slides.getCurrentSlide()).find("input:radio[name='mc_radio']:checked'").val()
-    }else {
-      if(event.target.parentElement.classList[0] == "truefalse_inputs_wrapper") {
-        var answer = $(V.Slides.getCurrentSlide()).find("input:radio[name='truefalse']:checked'").val()
-      }
-    }
-    if(typeof answer !== "undefined") {
-      var quizSessionActiveId = V.SlideManager.getOptions()["quiz_active_session_id"];
-      V.Quiz.API.putQuizSession(answer, quizSessionActiveId, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError);
-      $("." + startButtonClass).hide()
-    }
-  };
-  var _onQuizVotingSuccessReceived = function(data) {
-    var quizSessionActiveId = V.SlideManager.getOptions()["quiz_active_session_id"];
-    V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
-  };
-  var _onQuizSessionResultsReceived = function(data) {
-    $(V.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
-    $(".thanks_div").show();
-    var id = $("a[name=modal_window]").attr("href");
-    var maskHeight = $(document).height();
-    var maskWidth = $(window).width();
-    $("#thanks_div").css({"width":maskWidth, "height":maskHeight});
-    $("#thanks_div").fadeTo("slow", 0.6);
-    $(id).css("top", maskHeight / 2 - $(id).height() / 2);
-    $(id).css("left", maskWidth / 2 - $(id).width() / 2);
-    $(id).show();
-    $(V.Slides.getCurrentSlide()).find("." + voteButtonClass).hide()
-  };
-  var _OnQuizVotingReceivedError = function(error) {
-    V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + JSON.stringify(error))
-  };
-  var _onQuizSessionResultsReceivedError = function(error) {
-    V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
-  };
-  var _showResults = function(data) {
-    var quiz_type = $(V.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
-    var index;
-    var maxWidth = 70;
-    var totalVotes = 0;
-    for(option in data.results) {
-      if(quiz_type == "multiplechoice") {
-        if(option in mcOptionsHash) {
-          var votes = data.results[option];
-          totalVotes += votes
-        }
-      }else {
-        if(quiz_type == "truefalse") {
-          if(option in tfOptionsHash) {
-            var votes = data.results[option];
-            totalVotes += votes
-          }
-        }
-      }
-    }
-    if(totalVotes > 0) {
-      for(option in data.results) {
-        if(option in mcOptionsHash || option in tfOptionsHash) {
-          if(quiz_type == "multiplechoice") {
-            index = mcOptionsHash[option]
-          }else {
-            if(quiz_type = "truefalse") {
-              index = tfOptionsHash[option]
-            }
-          }
-          var votes = data.results[option];
-          var percent = votes / totalVotes * 100;
-          var percentString = percent.toString() + "%";
-          var roundedNumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-          if(typeof $("#" + tabQuizStatsBarsContentId).find(".mc_meter")[index] != "undefined") {
-            $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index].style.width = percentString;
-            $($("#" + tabQuizStatsBarsContentId).find(".mcoption_label")[index]).text(roundedNumber + "%");
-            if(quiz_type == "multiplechoice") {
-              $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("mcoption_" + option)
-            }else {
-              if(quiz_type = "truefalse") {
-                $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("tfoption_" + option)
-              }
-            }
-          }
-        }
-      }
-    }
-    google.load("visualization", "1.0", {"packages":["corechart"]}, {"callback":V.Quiz.drawPieChart(data.results)})
-  };
-  var drawPieChart = function(data) {
-    var data_for_chart = new google.visualization.DataTable;
-    data_for_chart.addColumn("string", "Question");
-    data_for_chart.addColumn("number", "Slices");
-    for(option in data) {
-      if(option in mcOptionsHash || option in tfOptionsHash) {
-        var votes = data[option];
-        data_for_chart.addRow([option, votes])
-      }
-    }
-    var question = $(V.Slides.getCurrentSlide()).find(".value_multiplechoice_question_in_zone").text();
-    var options = {"title":"", "width":400, "height":300};
-    var chart = new google.visualization.PieChart(document.getElementById("quiz_chart_container_id"));
-    chart.draw(data_for_chart, options)
-  };
-  var _hideStopQuizPopup = function() {
-    $("#mask_stop_quiz").fadeTo("slow", 0);
-    $("#mask_stop_quiz").hide();
-    $("#stop_quiz_fancybox").hide()
-  };
-  var _hideQRCode = function() {
-    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > .qr_quiz_image")) {
-      $("#" + tabQuizSessionContent).find(".qr_quiz_image").hide();
-      $("#" + tabQuizSessionContent).find(".qr_background").show();
-      $("#" + tabQuizSessionContent).find(".hide_qrcode").hide();
-      $("#" + tabQuizSessionContent).find(".show_qrcode").show()
-    }
-  };
-  var _showQRCode = function() {
-    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > .qr_background")) {
-      $("#" + tabQuizSessionContent).find(".qr_background").hide();
-      $("#" + tabQuizSessionContent).find(".qr_quiz_image").show();
-      $("#" + tabQuizSessionContent).find(".show_qrcode").hide();
-      $("#" + tabQuizSessionContent).find(".hide_qrcode").show()
-    }
-  };
-  var _enableFullScreenQRButton = function() {
-    if(V.Status.getDevice().features.fullscreen) {
-      $(".quiz_full_screen").show()
-    }else {
-      $(".quiz_full_screen").hide()
-    }
-  };
-  var qrToggleFullScreen = function(event) {
-    var myDoc = document;
-    var myElem = document.getElementById("quiz_session_qrcode_container_id");
-    if(myDoc.fullScreenElement && myDoc.fullScreenElement !== null || !myDoc.mozFullScreen && !myDoc.webkitIsFullScreen) {
-      if(myDoc.documentElement.requestFullScreen) {
-        myElem.requestFullScreen()
-      }else {
-        if(myDoc.documentElement.mozRequestFullScreen) {
-          myElem.mozRequestFullScreen()
-        }else {
-          if(myDoc.documentElement.webkitRequestFullScreen) {
-            myElem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
-          }
-        }
-      }
-    }else {
-      if(myDoc.cancelFullScreen) {
-        myDoc.cancelFullScreen()
-      }else {
-        if(myDoc.mozCancelFullScreen) {
-          myDoc.mozCancelFullScreen()
-        }else {
-          if(myDoc.webkitCancelFullScreen) {
-            myDoc.webkitCancelFullScreen()
-          }
-        }
-      }
-    }
-  };
-  var getIsQuizSessionStarted = function() {
-    return quizSessionStarted
-  };
-  var testFullScreen = function() {
-  };
-  var UnbindStartQuizEvents = function() {
-    $(document).off("click", "." + startButtonClass, startMcQuizButtonClicked)
-  };
-  var toggleShowAnswers = function(event) {
-    var current_slide = V.Slides.getCurrentSlide();
-    if(event.target.classList[0] == showAnswerButtonClass) {
-      $(current_slide).find(".truefalse_answers > input").show();
-      $(current_slide).find(".show_answers_button").hide();
-      $(current_slide).find(".hide_answers_button").show()
-    }else {
-      if(event.target.classList[0] == hideAnswerButtonClass) {
-        $(current_slide).find(".truefalse_answers > input").hide();
-        $(current_slide).find(".hide_answers_button").hide();
-        $(current_slide).find(".show_answers_button").show()
-      }
-    }
-  };
-  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, qrToggleFullScreen:qrToggleFullScreen, showQuizStats:showQuizStats, testFullScreen:testFullScreen, UnbindStartQuizEvents:UnbindStartQuizEvents}
-}(VISH, jQuery);
-VISH.Quiz.Renderer = function(V, $, undefined) {
-  var isQuizInPreview = false;
-  var init = function() {
-  };
-  var renderQuiz = function(quizType, quiz_element, zone_class, slide_id, zone) {
-    switch(quizType) {
-      case "multiplechoice":
-        return _renderMcQuestion(quiz_element, zone_class, slide_id, zone);
+  var _getQuizModule = function(quiz_type) {
+    switch(quiz_type) {
+      case VISH.Constant.QZ_TYPE.OPEN:
         break;
-      case "openQuestion":
-        return _renderOpenquestion(element, template);
+      case VISH.Constant.QZ_TYPE.MCHOICE:
+        return V.Quiz.MC;
         break;
-      case "truefalse":
-        return _renderTrueFalseQuestion(quiz_element, zone_class, slide_id, zone);
+      case VISH.Constant.QZ_TYPE.TF:
+        return V.Quiz.TF;
         break;
       default:
+        return null;
         break
     }
   };
-  var _renderMcQuestion = function(quiz_element, zone_class, slide_id, zone) {
-    V.Debugging.log("_renderMcQuestion, and quiz choices received is:  " + JSON.stringify(quiz_element["options"]["choices"]));
-    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz' quiztype='multiplechoice'>";
-    ret += "<div class='mcquestion_container'>";
-    ret += "<div class='mcquestion_body'>";
-    ret += "<div class='value_multiplechoice_question_in_zone question_in_viewer'>" + quiz_element["question"] + "</div>";
-    ret += "<form class='mcquestion_form' action='" + quiz_element["posturl"] + "' method='post'>";
-    ret += "<ul class='ul_mch_options_in_zone'>";
-    for(var i = 0;i < quiz_element["options"]["choices"].length;i++) {
-      var next_index = String.fromCharCode("a".charCodeAt(0) + i);
-      if(V.Quiz.getQuizMode() == "answer") {
-        ret += "<li class='li_mch_options_in_zone'>";
-        ret += "<input class='mc_radio' type='radio' name='mc_radio' value='" + next_index + "'/><span class='quiz_option_index'>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
-        ret += "</li>"
-      }else {
-        ret += "<li class='li_mch_options_in_zone'>";
-        ret += "<span class='quiz_option_index'>" + next_index + ")</span><div class='multiplechoice_option_in_zone multiplechoice_option_in_viewer'>" + quiz_element.options["choices"][i]["container"] + "</div>";
-        ret += "</li>"
-      }
-      ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
-      ret += "<label class='mcoption_label'></label>"
+  var updateCheckbox = function(checkbox, check) {
+    if(typeof check == "boolean") {
+      check = check.toString()
     }
-    ret += "</ul>";
-    ret += "<input type='hidden' value='" + zone + "' name='zone' />";
-    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
-    ret += "<div class='mch_inputs_wrapper'>";
-    ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
-    ret += "<input type='button' class='quiz_send_vote_button' value='Send'/>";
-    ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    ret += "</div>";
-    ret += "</div>";
-    return ret
+    var imagePathRoot = V.ImagesPath + "quiz/checkbox";
+    switch(check) {
+      case "true":
+        $(checkbox).attr("check", "true");
+        $(checkbox).attr("src", imagePathRoot + "_checked.jpg");
+        break;
+      case "false":
+        $(checkbox).attr("check", "false");
+        $(checkbox).attr("src", imagePathRoot + "_wrong.png");
+        break;
+      case "none":
+      ;
+      default:
+        $(checkbox).attr("check", "none");
+        $(checkbox).attr("src", imagePathRoot + ".jpg");
+        break
+    }
   };
-  var _renderOpenquestion = function(element, template) {
-    var ret = "<form action='" + element["posturl"] + "' method='post' style='text-align:center;'>";
-    ret += "<label class='question_name'>Name:  </label>";
-    ret += "<textarea id='pupil_name' rows='1' cols='50' class='question_name_input' placeholder='Write your name here'></textarea>";
-    ret += "<h2 class='question'> Question: " + element["question"] + "? </h2>";
-    ret += "<label class='label_question'>Answer: </label>";
-    ret += "<textarea id='question_answer' rows='5' cols='50' class='question_answer' placeholder='Write your answer here'></textarea>";
-    ret += "<button type='button' class='question_button'>Send</button>";
-    return ret
+  return{init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton}
+}(VISH, jQuery);
+VISH.Quiz.MC = function(V, $, undefined) {
+  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
+  var choices = {};
+  var init = function() {
+    _loadEvents()
   };
-  var _renderTrueFalseQuestion = function(quiz_element, zone_class, slide_id, zone) {
-    var ret = "<div id='" + quiz_element["id"] + "' class='" + zone_class + " quiz' quiztype='truefalse'>";
-    ret += "<div class='truefalse_question_container'>";
-    ret += "<div class='value_truefalse_question_in_zone question_in_viewer'>";
-    ret += quiz_element["question"];
-    ret += "</div>";
-    ret += "<div class='truefalse_options_in_zone'> ";
-    ret += "<form class='truefalse_form' action='" + quiz_element["posturl"] + "' method='post'>";
-    ret += "<div class='truefalse_options'>";
-    ret += "<div class='truefalse_titles'>";
-    ret += "<div class='truefalse_titles_true'>True</div>";
-    ret += "<div class='truefalse_titles_false'>False</div>";
-    ret += "</div>";
-    if(V.Quiz.getQuizMode() == "answer") {
-      ret += "<div class='truefalse_answers answer_mode'>";
-      ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true'/>";
-      ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false'/>";
-      ret += "</div>"
-    }else {
-      ret += "<div class='truefalse_answers teacher_mode'>";
-      if(quiz_element["options"]["answer"] == "true") {
-        ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true' disabled='disabled' checked/>";
-        ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false' disabled='disabled'/>"
-      }else {
-        if(quiz_element["options"]["answer"] === "false") {
-          ret += "<input class='truefalse_answer_radio_true' type='radio' name='truefalse' value='true' disabled='disabled'/>";
-          ret += "<input class='truefalse_answer_radio_false' type='radio' name='truefalse' value='false' disabled='disabled' checked/>"
+  var _loadEvents = function() {
+  };
+  var render = function(slide, template) {
+    var quizId = V.Utils.getId();
+    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + VISH.Constant.QZ_TYPE.MCHOICE + "'></div>");
+    var multipleAnswer = false;
+    var inputType = "radio";
+    if(slide.extras && slide.extras.multipleAnswer === true) {
+      multipleAnswer = true;
+      inputType = "checkbox"
+    }
+    var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
+    $(questionWrapper).html(slide.question.wysiwygValue);
+    $(container).append(questionWrapper);
+    var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='mc_options'></table>");
+    choices[quizId] = [];
+    for(var i = 0;i < slide.choices.length;i++) {
+      var option = slide.choices[i];
+      var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
+      var optionBox = $("<td><input class='mc_box' type='" + inputType + "' name='mc_option' value='" + i + "'/></td>");
+      var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + choicesLetters[i] + "</span></td>");
+      var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
+      $(optionText).html(option.wysiwygValue);
+      $(optionWrapper).append(optionBox);
+      $(optionWrapper).append(optionIndex);
+      $(optionWrapper).append(optionText);
+      $(optionsWrapper).append(optionWrapper);
+      choices[quizId].push(option)
+    }
+    $(container).append(optionsWrapper);
+    var quizButtons = V.Quiz.renderButtons(slide.selfA);
+    $(container).append(quizButtons);
+    return V.Utils.getOuterHTML(container)
+  };
+  var onAnswerQuiz = function(quiz) {
+    var answeredQuiz = false;
+    var quizChoices = choices[$(quiz).attr("id")];
+    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
+      var answerValue = parseInt($(radioBox).attr("value"));
+      var choice = quizChoices[answerValue];
+      if($(radioBox).is(":checked")) {
+        var trAnswer = $("tr.mc_option").has(radioBox);
+        if(choice.answer === true) {
+          $(trAnswer).addClass("mc_correct_choice")
+        }else {
+          if(choice.answer === false) {
+            $(trAnswer).addClass("mc_wrong_choice")
+          }
+        }
+        answeredQuiz = true
+      }
+    });
+    var trCorrectAnswers = [];
+    for(var key in quizChoices) {
+      if(quizChoices[key].answer === true) {
+        var trCorrect = $(quiz).find("tr.mc_option")[key];
+        trCorrectAnswers.push($(quiz).find("tr.mc_option")[key]);
+        if(answeredQuiz) {
+          $(trCorrect).addClass("mc_correct_choice")
         }
       }
-      ret += "</div>";
-      ret += "<div class='truefalse_options_container'>";
-      ret += "<li class='truefalse_options_in_zone'>";
-      ret += "<div class='truefalse_titles_true'>True</div>";
-      ret += "</li>";
-      ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
-      ret += "<label class='mcoption_label'></label>";
-      ret += "<li class='truefalse_options_in_zone'>";
-      ret += "<div class='truefalse_titles_false'>False</div>";
-      ret += "</li>";
-      ret += "<div class='mc_meter'><span style='width:0%' >&nbsp;</span></div>";
-      ret += "<label class='mcoption_label'></label>";
-      ret += "</div>";
-      ret += "<div class='showhide_answer_button_container'>";
-      ret += "<input type='button' class='show_answers_button' value='Show Answer'/>";
-      ret += "<input type='button' class='hide_answers_button' value='Hide Answer'/>";
-      ret += "</div>"
     }
-    ret += "</div>";
-    ret += "<input type='hidden' value='" + quiz_element["quiz_id"] + "' name='quiz_id' class='quizId' />";
-    ret += "<div class='truefalse_inputs_wrapper'>";
-    ret += "<a href='#start_quiz_fancybox' class='quiz_session_start_link' id='launchQuizFancybox'><input type='button' class='quiz_session_start_button' value='Start Quiz'/></a>";
-    ret += "<input type='button' class='quiz_send_vote_button' value='Send'/>";
-    ret += "<input type='button' class='quiz_session_options_button' value='Options'/>";
-    ret += "</div>";
-    ret += "</form>";
-    ret += "</div>";
-    ret += "</div>";
-    ret += "</div>";
-    return ret
+    if(!answeredQuiz) {
+      $(trCorrectAnswers).each(function(index, trCorrect) {
+        $(trCorrect).find("input[name='mc_option']").attr("checked", "checked")
+      })
+    }
+    disableQuiz(quiz)
   };
-  return{init:init, renderQuiz:renderQuiz}
+  var getResults = function(quiz) {
+    var report = {};
+    report.results = [];
+    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
+      if($(radioBox).is(":checked")) {
+        report.results.push({id:(index + 1).toString(), answer:"true"})
+      }
+    });
+    report.empty = report.results.length === 0;
+    return report
+  };
+  var disableQuiz = function(quiz) {
+    $(quiz).find("input[name='mc_option']").attr("disabled", "disabled");
+    V.Quiz.disableAnswerButton(quiz)
+  };
+  var getChoicesLetters = function() {
+    return choicesLetters
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getResults:getResults, disableQuiz:disableQuiz}
+}(VISH, jQuery);
+VISH.Quiz.TF = function(V, $, undefined) {
+  var choices = {};
+  var init = function() {
+    _loadEvents()
+  };
+  var _loadEvents = function() {
+  };
+  var render = function(slide, template) {
+    var quizId = V.Utils.getId();
+    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + VISH.Constant.QZ_TYPE.TF + "'></div>");
+    var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
+    $(questionWrapper).html(slide.question.wysiwygValue);
+    $(container).append(questionWrapper);
+    var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
+    choices[quizId] = [];
+    var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.jpg' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
+    $(optionsWrapper).prepend(newTr);
+    for(var i = 0;i < slide.choices.length;i++) {
+      var option = slide.choices[i];
+      var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
+      var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true' value='" + index + "'/></td>");
+      var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' value='" + index + "'/></td>");
+      var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + VISH.Quiz.MC.getChoicesLetters()[i] + "</span></td>");
+      var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
+      $(optionText).html(option.wysiwygValue);
+      $(optionWrapper).append(optionBox1);
+      $(optionWrapper).append(optionBox2);
+      $(optionWrapper).append(optionIndex);
+      $(optionWrapper).append(optionText);
+      $(optionsWrapper).append(optionWrapper);
+      choices[quizId].push(option)
+    }
+    $(container).append(optionsWrapper);
+    var quizButtons = V.Quiz.renderButtons(slide.selfA);
+    $(container).append(quizButtons);
+    return V.Utils.getOuterHTML(container)
+  };
+  var onAnswerQuiz = function(quiz) {
+    var quizChoices = choices[$(quiz).attr("id")];
+    $(quiz).find("tr.mc_option").not(".tf_head").each(function(index, tr) {
+      var trueRadio = $(tr).find("input[type='radio'][column='true']")[0];
+      var falseRadio = $(tr).find("input[type='radio'][column='false']")[0];
+      var myAnswer;
+      if($(trueRadio).is(":checked")) {
+        myAnswer = true
+      }else {
+        if($(falseRadio).is(":checked")) {
+          myAnswer = false
+        }else {
+          myAnswer = undefined
+        }
+      }
+      var choice = quizChoices[index];
+      var trChoice = $(quiz).find("tr.mc_option").not(".tf_head")[index];
+      if(myAnswer === choice.answer) {
+        $(trChoice).addClass("mc_correct_choice")
+      }else {
+        if(typeof myAnswer != "undefined") {
+          $(trChoice).addClass("mc_wrong_choice")
+        }else {
+          if(choice.answer === true) {
+            $(trueRadio).attr("checked", true)
+          }else {
+            if(choice.answer === false) {
+              $(falseRadio).attr("checked", true)
+            }
+          }
+        }
+      }
+    });
+    disableQuiz(quiz)
+  };
+  var getResults = function(quiz) {
+    var report = {};
+    report.results = [];
+    report.empty = true;
+    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
+      if($(radioBox).is(":checked")) {
+        results.push({id:(index + 1).toString(), answer:true})
+      }
+    });
+    $(quiz).find("tr.mc_option").not(".tf_head").each(function(index, tr) {
+      var trueRadio = $(tr).find("input[type='radio'][column='true']")[0];
+      var falseRadio = $(tr).find("input[type='radio'][column='false']")[0];
+      if($(trueRadio).is(":checked")) {
+        report.results.push({id:(index + 1).toString(), answer:"true"});
+        report.empty = false
+      }else {
+        if($(falseRadio).is(":checked")) {
+          report.results.push({id:(index + 1).toString(), answer:"false"});
+          report.empty = false
+        }else {
+          report.results.push({id:(index + 1).toString(), answer:"none"})
+        }
+      }
+    });
+    return report
+  };
+  var disableQuiz = function(quiz) {
+    $(quiz).find("input[type='radio']").attr("disabled", "disabled");
+    V.Quiz.disableAnswerButton(quiz)
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getResults:getResults, disableQuiz:disableQuiz}
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
@@ -10973,10 +10679,9 @@ VISH.Recommendations = function(V, $, undefined) {
   };
   var generateFancybox = function() {
     if(!generated) {
-      console.log("user_id " + user_id + " presentation_id " + presentation_id);
       if(url_to_get_recommendations !== undefined) {
         var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
-        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+        $.ajax({type:"POST", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
           _fillFancyboxWithData(data)
         }})
       }else {
@@ -10986,20 +10691,22 @@ VISH.Recommendations = function(V, $, undefined) {
     }
   };
   var _fillFancyboxWithData = function(data) {
-    if(data.length == 0) {
+    if(!data) {
       return
     }
     var ex;
     var result = "";
-    for(var i = data.length - 1;i >= 0;i--) {
-      ex = data[i];
+    for(var i = data.items.length - 1;i >= 0;i--) {
+      ex = data.items[i];
       result += '<a href="' + ex.url + '">' + '<div class="rec-excursion">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
       '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>" + "</a>"
     }
     $("#fancy_recommendations .rec-grid").html(result)
   };
   var showFancybox = function() {
-    console.log("show");
+    if(V.Utils.getOptions() && V.Utils.getOptions().preview) {
+      return
+    }
     $("#fancyRec").trigger("click")
   };
   return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox}

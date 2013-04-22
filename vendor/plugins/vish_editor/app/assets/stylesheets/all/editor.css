@@ -1632,10 +1632,6 @@ div.draggable_arrow_div, div.carrrousel_element_single_row_slides{
 	right: 0px;
 }
 
-span.mcChoiceSpan{
-	margin-right: 3px;
-}
-
 .change_bg_button_class{
 	position: absolute;
 	left: 325px;
@@ -1740,17 +1736,6 @@ span.mcChoiceSpan{
 #menuButton {
 	border: none;
 }
-.add_quiz_option_button {
-	display: inline-block;
-	width: 6%;
-	cursor: pointer;
-}
-.delete_quiz_option_button {
-	display: none;
-	width: 4%;
-	cursor: pointer;
-}
-
 
 
 #pedagogical_first_row {
