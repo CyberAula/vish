@@ -11791,6 +11791,7 @@ VISH.Quiz = function(V, $, undefined) {
   var selfA = "selfA";
   var realTime = "realTime";
   var init = function(presentation) {
+    V.Quiz.API.init();
     V.Quiz.MC.init();
     V.Quiz.TF.init();
     _loadEvents();
@@ -11827,6 +11828,35 @@ VISH.Quiz = function(V, $, undefined) {
     alert("Your answer has been submitted")
   };
   var _onStartQuiz = function() {
+    var quizJSON = _getQuizJSONFromSlide(V.Slides.getCurrentSlide());
+    V.Quiz.API.postStartQuizSession(quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
+  };
+  var _onQuizSessionReceived = function(data) {
+    console.log("_onQuizSessionReceived");
+    console.log(data)
+  };
+  var _onQuizSessionReceivedError = function(error) {
+    console.log("_OnQuizSessionReceivedError");
+    console.log(error)
+  };
+  var _getQuizJSONFromSlide = function(slide) {
+    var slideId = $(slide).attr("id");
+    var presentation = V.SlideManager.getCurrentPresentation();
+    if(slideId && presentation) {
+      var slides = presentation.slides;
+      var sL = slides.length;
+      for(var i = 0;i < sL;i++) {
+        if(slides[i].id == slideId) {
+          var elements = slides[i].elements;
+          var eL = elements.length;
+          for(var j = 0;j < eL;j++) {
+            if(elements[j].type == V.Constant.QUIZ) {
+              return elements[j].quiz_simple_json
+            }
+          }
+        }
+      }
+    }
   };
   var render = function(slide, template) {
     var quizModule = _getQuizModule(slide.quiztype);
@@ -11836,8 +11866,9 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(VISH.User.isLogged()) {
-      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Start'/>")
+    if((V.Configuration.getConfiguration()["mode"] === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && VISH.User.isLogged()) {
+      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Start'/>");
+      $(quizButtons).prepend(startButton)
     }
     if(selfA) {
       var answerButton = $("<input type='button' class='quizButton quizAnswerButton' value='Answer'/>");
@@ -17314,35 +17345,25 @@ VISH.Presentation = function(V, undefined) {
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
-  var postStartQuizSession = function(quizId, successCallback, failCallback) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
+  var postStartQuizSession = function(quiz, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
       var send_type = "POST";
-      var params = {"quiz_id":quizId, "authenticity_token":V.User.getToken()};
+      var params = {"quiz":quiz, "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
-        var quiz_session_id = data;
+        console.log("data in JSON");
+        console.log(data);
         if(typeof successCallback == "function") {
-          successCallback(quiz_session_id)
+          successCallback(data)
         }
       }, error:function(error) {
         failCallback(error)
-      }});
-      return null
+      }})
     }else {
-      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
+      if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
         V.Debugging.log("No server case");
-        if(quizId == 12) {
-          var quiz_session_id = "98988"
-        }else {
-          if(quizId == 13) {
-            var quiz_session_id = "98955"
-          }else {
-            if(quizId == 14) {
-              var quiz_session_id = "98977"
-            }
-          }
-        }
+        var quiz_session = {id:"10000" * (1 + Math.random())};
         if(typeof successCallback == "function") {
-          successCallback(quiz_session_id)
+          successCallback(quiz_session)
         }
       }
     }
@@ -18121,20 +18142,9 @@ VISH.Recommendations = function(V, $, undefined) {
     }})
   };
   var generateFancybox = function() {
-    if(!generated) {
-      if(url_to_get_recommendations !== undefined) {
-        var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
-        $.ajax({type:"POST", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
-          _fillFancyboxWithData(data)
-        }})
-      }else {
-        _fillFancyboxWithData(VISH.Samples.API.recommendationList)
-      }
-      generated = true
-    }
   };
   var _fillFancyboxWithData = function(data) {
-    if(!data) {
+    if(!data || !data.items) {
       return
     }
     var ex;

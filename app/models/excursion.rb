@@ -18,9 +18,6 @@ require 'builder'
 
 class Excursion < ActiveRecord::Base
   include SocialStream::Models::Object
-
-  has_many :quizzes, :dependent => :destroy
-
   has_many :excursion_contributors, :dependent => :destroy
   has_many :contributors, :class_name => "Actor", :through => :excursion_contributors
 
@@ -43,7 +40,6 @@ class Excursion < ActiveRecord::Base
   def to_json(options=nil)
     json
   end
-
 
   def to_scorm(controller)
     if self.scorm_needs_generate
@@ -206,29 +202,12 @@ class Excursion < ActiveRecord::Base
     e.author=sbj
     e.owner=sbj
     e.user_author=sbj.user.actor
-    e.json=self.quizless_json # We do this so quizzes are re-created upon cloning.
     e.contributors=self.contributors.push(self.author)
     e.contributors.uniq!
     e.contributors.delete(sbj)
     e.draft=true
     e.save!
     e
-  end
-
-  def has_quizzes?
-    not quizzes.empty?
-  end
-
-  def has_quiz_results?
-    has_quizzes? # TODO: Hide unless there are answers
-  end
-
-  def quizless_json
-    parsed_json = JSON(json)
-    parsed_json["slides"].each do |slide|
-      slide.delete("quiz_id")
-    end
-    parsed_json.to_json
   end
 
   #method used to return json objects to the recommendation in the last slide
@@ -249,44 +228,6 @@ class Excursion < ActiveRecord::Base
 
   private
 
-  def extract_quizzes(parsed_json)
-    return if parsed_json["slides"].nil?
-    parsed_json["slides"].each do |slide|
-      next if slide["elements"].nil?
-
-      slide["elements"].each do |element| 
-        next if element["type"].nil?
-        next unless element["type"] == "quiz"
-       
-        if element["quiz_id"] == ""
-          quiz = Quiz.new
-        else
-          quiz = Quiz.find(element["quiz_id"])
-        end
-        quiz.excursion=self
-        case element["quiztype"]
-          when "open" # Open question
-            quiz.type="OpenQuiz"
-            # PENDING
-          when "multiplechoice" # Multiple-choice
-           # puts "multiplechoice type detected"
-            quiz.type="MultipleChoiceQuiz"
-            quiz.question = element["question"] 
-            quiz.options  = element["options"].to_json
-          when "truefalse" # True/False
-            quiz.type="TrueFalseQuiz"
-             quiz.question = element["question"] 
-             quiz.options  = element["options"].to_json
-            # PENDING
-        end
-        quiz.simple_json = element["quiz_simple_json"].to_json
-        quiz.save!
-        element["quiz_id"]=quiz.id
-      end
-    end
-    parsed_json
-  end
-
   def parse_for_meta
     parsed_json = JSON(json)
     activity_object.title = parsed_json["title"]
@@ -296,13 +237,11 @@ class Excursion < ActiveRecord::Base
 
     parsed_json["id"] = activity_object.id.to_s
     parsed_json["author"] = author.name
-    parsed_json = extract_quizzes(parsed_json) # Fill up quiz_id parameters
     self.update_column :json, parsed_json.to_json
 
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
     self.update_column :thumbnail_url, parsed_json["avatar"]
-
   end
 
   def fix_relation_ids_drafts

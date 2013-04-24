@@ -199,13 +199,15 @@
 		if(isPreview){
 			options["preview"] = true;
         	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
-      	} else {
-      		<% if @excursion %>
-      			myexcursion = <%= raw @excursion.json %>;
-      		<%else%>
-      			myexcursion = null;
-      		<%end%>
-      	}
+  	} else {
+  		<% if @excursion %>
+  			myexcursion = <%= raw @excursion.json %>;
+      <% elsif @quiz_session %>
+        myexcursion = <%= raw @quiz_session.quizJSON %>;
+  		<% else %>
+  			myexcursion = null;
+  		<% end %>
+  	}
       	
 		VISH.SlideManager.init(options , myexcursion);
 	}

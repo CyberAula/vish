@@ -335,6 +335,7 @@ ActiveRecord::Schema.define(:version => 20130422132346) do
     t.string   "quiz"
     t.string   "quiz_results"
     t.boolean  "active",       :default => true
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "closed_at"

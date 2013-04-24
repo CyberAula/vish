@@ -46,14 +46,6 @@
         </a>
       </li>
 <!---->
-
-    <% if @excursion.has_quiz_results? and user_signed_in? %>
-      <li class="">
-        <a data-toggle="tab" href="#quiz-results-1">
-          <%= t('quiz.answer.title.other') %>
-        </a>
-      </li>
-    <% end %>
     </ul>
       
     <div class="tab-content">
@@ -70,15 +62,6 @@
           <%end%>
          <%end%>
         </div>
-
-
-
-
-        <% if @excursion.has_quiz_results? and user_signed_in? %>
-          <div id="ex-1" class="tab-pane active ">
-            <%= render :partial => 'excursions/quiz_results', :locals => { :excursion => @excursion } %>
-          </div>
-        <% end %>
         
 <!--tab evaluation-->
         <div id="evaluation" class="tab-pane ">

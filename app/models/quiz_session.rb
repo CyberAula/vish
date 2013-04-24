@@ -18,12 +18,8 @@
 class QuizSession < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User'
 
-  def answers
-
+  def quizJSON(options=nil)
+    self.quiz.to_json
   end
 
-  def answers_clear
-
-  end
-  
 end

@@ -19,8 +19,7 @@ class QuizSessionsController < ApplicationController
   # POST /quiz_sessions 
   # Open a quiz to collect answers
   # Respond with the quiz session id
-  def create 
-    #debugger
+  def create
     qs = QuizSession.new
     qs.owner_id=current_user.id
 
@@ -28,35 +27,43 @@ class QuizSessionsController < ApplicationController
       qs.name = params[:name]
     end
 
-    if params[:quiz_json]
-      render :text => "Quiz Json required"
+    if params[:quiz]
+      qs.quiz = params[:quiz]
+    else
+      render :text => "Quiz JSON required"
     end
 
     qs.quiz_results = [];
     qs.active=true
-
-    # qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
-    qs.url= request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}"
     qs.save!
 
-    render :text => qs.id.to_s
+    #Now generate the URL
+    #We need to save the quiz twice, one to generate the id and the other to save the URL
+
+    # qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
+    qs.url = request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}"
+
+    results = Hash.new
+    results["id"] = qs.id;
+    results["url"] = qs.url;
+
+    render :json => results
   end
 
-
   # GET /quiz_sessions/X 
-  #render vote page 
+  # Page to answer the quiz 
   def show
     @quiz_session = QuizSession.find(params[:id])
-   #debugger
     if @quiz_session.active
-      respond_to do |format|
-        format.html { render :layout => 'iframe' }
-        format.all { render }
-      end
+      render :template => 'excursions/show', :formats => [:full], :layout => 'iframe'
     else
       render 'quiz_sessions/closed' # Quiz is closed!!!
     end
   end
+
+
+
+  #OLD
 
   def results # GET /quiz_sessions/X/results => render results page 
     @quiz_session = QuizSession.find(params[:id])
