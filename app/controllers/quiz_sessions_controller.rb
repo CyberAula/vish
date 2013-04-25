@@ -1,7 +1,7 @@
 class QuizSessionsController < ApplicationController
   include Shortener::ShortenerHelper
 
-  before_filter :authenticate_user!, :only => [ :create, :delete ]
+  before_filter :authenticate_user!, :only => [ :create, :close ]
 
 
   # POST /quiz_sessions 
@@ -21,8 +21,8 @@ class QuizSessionsController < ApplicationController
       render :text => "Quiz JSON required"
     end
 
-    qs.quiz_results = [];
-    qs.active=true
+    qs.quiz_results = nil;
+    qs.active = true
     qs.save!
 
     #Now generate the URL
@@ -38,6 +38,7 @@ class QuizSessionsController < ApplicationController
     render :json => results
   end
 
+
   # GET /quiz_sessions/X 
   # Page to answer the quiz 
   def show
@@ -51,44 +52,74 @@ class QuizSessionsController < ApplicationController
   end
 
 
-
-  #OLD
-
-  def results # GET /quiz_sessions/X/results => render results page 
+  # PUT /quiz_sessions/X
+  # Route to send the quiz answers
+  def update 
     @quiz_session = QuizSession.find(params[:id])
-    @results = {}
-    @results[:quiz_session_id] = @quiz_session.id
-    @results[:quiz_id] = @quiz_session.quiz.id
+
+    response = Hash.new
+
+    if @quiz_session
+      answers = JSON(params[:answers])
+
+      if @quiz_session.quiz_results == nil
+        results = [];
+      else
+        results = JSON(@quiz_session.quiz_results);
+      end
+      
+      results.push(answers);
+      @quiz_session.quiz_results = results.to_json;
+      @quiz_session.save!
+      response["processed"] = true;
+    else
+      response["processed"] = false;
+    end
+
+    render :json => response
+  end
+
+  # GET /quiz_sessions/X/results
+  def results 
+    @quiz_session = QuizSession.find(params[:id])
     respond_to do |format|
-      format.html { render :layout => 'iframe' }
-      @results[:results] = @quiz_session.answers
-      format.all { render :json => @results }
+      format.json { 
+        render :json => @quiz_session.quiz_results
+      }
     end
   end
 
-  def index # GET /quiz_sessions => list your quiz sessions as a list
-    # TODO
-  end
-
-  def update # PUT /quiz_sessions/X => vote => respond
-    return if params[:option].blank?
+  # /quiz_sessions/X/close
+  def close 
     @quiz_session = QuizSession.find(params[:id])
-    render 'quiz_sessions/closed' unless @quiz_session.active # Quiz is closed!!!
-    qa = QuizAnswer.new
-    qa.quiz_session = @quiz_session
-    qa.json = '{"option": ' + params[:option].to_json + '}'
-    qa.save!
-    render 'quiz_sessions/accepted'
-  end
 
-  def destroy # DELETE /quiz_sessions/X => close quiz => show results
-    @quiz_session = QuizSession.find(params[:id])
-    render 'quiz_sessions/not_owner' unless @quiz_session.owner = current_user
+    if @quiz_session.owner != current_user
+      render :text => "You are not the owner of this quiz"
+    end
+
     @quiz_session.active=false
     @quiz_session.name = params[:name] unless params[:name].blank?
-    @quiz_session.name = "No Name" if @quiz_session.name.blank?
     @quiz_session.closed_at = Time.now
     @quiz_session.save!
-       render 'quiz_sessions/accepted'
+    
+    response = Hash.new
+    response["processed"] = true;
+    render :json => response
   end
+
+
+#OLD
+  # # GET /quiz_sessions/X/results
+  # def results 
+  #   @quiz_session = QuizSession.find(params[:id])
+  #   @results = {}
+  #   @results[:quiz_session_id] = @quiz_session.id
+  #   @results[:quiz_id] = @quiz_session.quiz.id
+  #   respond_to do |format|
+  #     format.html { render :layout => 'iframe' }
+  #     @results[:results] = @quiz_session.answers
+  #     format.all { render :json => @results }
+  #   end
+  # end
+
 end

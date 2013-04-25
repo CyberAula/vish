@@ -162,6 +162,10 @@
 	    options["username"] = false;
 	<% end %>
 
+  <% if @quiz_session %>
+    options["quizSessionId"] = "<%= @quiz_session.id %>";
+  <% end %>
+
   //URL to get the recommendations to show in the last slide
   options["urlToGetRecommendations"] = "http://localhost:3000/excursions/last_slide.json"
 

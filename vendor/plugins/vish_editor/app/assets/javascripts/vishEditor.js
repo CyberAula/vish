@@ -11788,9 +11788,13 @@ VISH.Flashcard = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
+  var quizSessionId;
   var initBeforeRender = function(presentation) {
     if(presentation.type === V.Constant.QUIZ_SIMPLE) {
-      quizMode = V.Constant.QZ_MODE.RT
+      quizMode = V.Constant.QZ_MODE.RT;
+      if(V.Utils.getOptions().quizSessionId) {
+        quizSessionId = V.Utils.getOptions().quizSessionId
+      }
     }else {
       quizMode = V.Constant.QZ_MODE.SELFA
     }
@@ -11812,28 +11816,36 @@ VISH.Quiz = function(V, $, undefined) {
       if(quizMode === V.Constant.QZ_MODE.SELFA) {
         quizModule.onAnswerQuiz(quiz)
       }else {
-        var report = quizModule.getResults(quiz);
+        var report = quizModule.getReport(quiz);
         _answerRTQuiz(quiz, quizModule, report)
       }
     }
   };
   var _answerRTQuiz = function(quiz, quizModule, report) {
+    if(!quizSessionId) {
+      return
+    }
     if(report.empty === true) {
       alert("Answer the quiz before send");
       return
     }
     quizModule.disableQuiz(quiz);
-    var results = report.results;
-    V.Debugging.log(results);
-    alert("Your answer has been submitted")
+    var answers = report.answers;
+    V.Debugging.log(answers);
+    V.Quiz.API.sendAnwers(answers, quizSessionId, function(data) {
+      alert("Your answer has been submitted");
+      console.log(data)
+    }, function(error) {
+      alert("Error on submit answer")
+    })
   };
   var _onStartQuiz = function() {
     var quizJSON = _getQuizJSONFromSlide(V.Slides.getCurrentSlide());
-    V.Quiz.API.postStartQuizSession(quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
+    V.Quiz.API.startQuizSession(quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
   };
-  var _onQuizSessionReceived = function(data) {
+  var _onQuizSessionReceived = function(quizSession) {
     console.log("_onQuizSessionReceived");
-    console.log(data)
+    console.log(quizSession)
   };
   var _onQuizSessionReceivedError = function(error) {
     console.log("_OnQuizSessionReceivedError");
@@ -17345,8 +17357,8 @@ VISH.Presentation = function(V, undefined) {
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
-  var postStartQuizSession = function(quiz, successCallback, failCallback) {
-    if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
+  var startQuizSession = function(quiz, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
       var params = {"quiz":JSON.stringify(quiz), "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
@@ -17362,6 +17374,40 @@ VISH.Quiz.API = function(V, $, undefined) {
         var quiz_session = {id:"10000" * (1 + Math.random())};
         if(typeof successCallback == "function") {
           successCallback(quiz_session)
+        }
+      }
+    }
+  };
+  var sendAnwers = function(answers, quizSessionId, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
+      var send_type = "PUT";
+      var params = {"id":quizSessionId, "answers":JSON.stringify(answers), "authenticity_token":V.User.getToken()};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId, data:params, success:function(data) {
+        if(typeof successCallback == "function") {
+          successCallback(data)
+        }
+      }, error:function(error) {
+        failCallback(error)
+      }});
+      return null
+    }
+  };
+  var getResults = function(quizSessionId, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration()["mode"] == "vish") {
+      var send_type = "GET";
+      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/results.json", data:params, success:function(data) {
+        if(typeof successCallback == "function") {
+          successCallback(data)
+        }
+      }, error:function(error) {
+        failCallback(error)
+      }})
+    }else {
+      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
+        var data = [[{"no":"4", "answer":"true"}], [{"no":"4", "answer":"true"}], [{"no":"2", "answer":"true"}]];
+        if(typeof successCallback == "function") {
+          successCallback(data)
         }
       }
     }
@@ -17395,30 +17441,6 @@ VISH.Quiz.API = function(V, $, undefined) {
       }
     }
   };
-  var putQuizSession = function(answer_selected, quiz_active_session_id, successCallback, failCallback) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
-      var send_type = "PUT";
-      V.Debugging.log("token is: " + V.User.getToken());
-      var params = {"id":quiz_active_session_id, "option":answer_selected, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id, data:params, success:function(data) {
-        var results = data;
-        if(typeof successCallback == "function") {
-          successCallback(results)
-        }
-      }, error:function(error) {
-        failCallback(error)
-      }});
-      return null
-    }else {
-      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        V.Debugging.log("No server case");
-        var quiz_session_id = "123";
-        if(typeof successCallback == "function") {
-          successCallback(quiz_session_id)
-        }
-      }
-    }
-  };
   var getQuizSessionResults = function(quiz_active_session_id, successCallback, failCallback) {
     if(V.Configuration.getConfiguration()["mode"] == "vish") {
       var send_type = "GET";
@@ -17448,7 +17470,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }
     }
   };
-  return{init:init, postStartQuizSession:postStartQuizSession, deleteQuizSession:deleteQuizSession, putQuizSession:putQuizSession, getQuizSessionResults:getQuizSessionResults}
+  return{init:init, startQuizSession:startQuizSession, sendAnwers:sendAnwers, getResults:getResults}
 }(VISH, jQuery);
 VISH.Quiz.MC = function(V, $, undefined) {
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
@@ -17525,15 +17547,15 @@ VISH.Quiz.MC = function(V, $, undefined) {
     }
     disableQuiz(quiz)
   };
-  var getResults = function(quiz) {
+  var getReport = function(quiz) {
     var report = {};
-    report.results = [];
+    report.answers = [];
     $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
       if($(radioBox).is(":checked")) {
-        report.results.push({id:(index + 1).toString(), answer:"true"})
+        report.answers.push({no:(index + 1).toString(), answer:"true"})
       }
     });
-    report.empty = report.results.length === 0;
+    report.empty = report.answers.length === 0;
     return report
   };
   var disableQuiz = function(quiz) {
@@ -17543,7 +17565,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var getChoicesLetters = function() {
     return choicesLetters
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getResults:getResults, disableQuiz:disableQuiz}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
 VISH.Quiz.TF = function(V, $, undefined) {
   var choices = {};
@@ -17617,27 +17639,22 @@ VISH.Quiz.TF = function(V, $, undefined) {
     });
     disableQuiz(quiz)
   };
-  var getResults = function(quiz) {
+  var getReport = function(quiz) {
     var report = {};
-    report.results = [];
+    report.answers = [];
     report.empty = true;
-    $(quiz).find("input[name='mc_option']").each(function(index, radioBox) {
-      if($(radioBox).is(":checked")) {
-        results.push({id:(index + 1).toString(), answer:true})
-      }
-    });
     $(quiz).find("tr.mc_option").not(".tf_head").each(function(index, tr) {
       var trueRadio = $(tr).find("input[type='radio'][column='true']")[0];
       var falseRadio = $(tr).find("input[type='radio'][column='false']")[0];
       if($(trueRadio).is(":checked")) {
-        report.results.push({id:(index + 1).toString(), answer:"true"});
+        report.answers.push({no:(index + 1).toString(), answer:"true"});
         report.empty = false
       }else {
         if($(falseRadio).is(":checked")) {
-          report.results.push({id:(index + 1).toString(), answer:"false"});
+          report.answers.push({no:(index + 1).toString(), answer:"false"});
           report.empty = false
         }else {
-          report.results.push({id:(index + 1).toString(), answer:"none"})
+          report.answers.push({no:(index + 1).toString(), answer:"none"})
         }
       }
     });
@@ -17647,7 +17664,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(quiz).find("input[type='radio']").attr("disabled", "disabled");
     V.Quiz.disableAnswerButton(quiz)
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getResults:getResults, disableQuiz:disableQuiz}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
 VISH.Quiz_OLD = function(V, $, undefined) {
   var quizMode;
