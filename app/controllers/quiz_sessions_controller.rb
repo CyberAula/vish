@@ -3,18 +3,6 @@ class QuizSessionsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [ :create, :delete ]
 
-    # create_table :quiz_sessions do |t|
-    #   t.integer :owner_id
-    #   t.string  :name
-    #   t.string  :quiz
-    #   t.string  :quiz_results
-    #   t.boolean :active, :default => true
-    #   t.datetime :created_at
-    #   t.datetime :updated_at
-    #   t.datetime :closed_at
-    # end
-
-
 
   # POST /quiz_sessions 
   # Open a quiz to collect answers
@@ -28,7 +16,7 @@ class QuizSessionsController < ApplicationController
     end
 
     if params[:quiz]
-      qs.quiz = params[:quiz]
+      qs.quiz = JSON(params[:quiz]).to_json
     else
       render :text => "Quiz JSON required"
     end
@@ -57,7 +45,8 @@ class QuizSessionsController < ApplicationController
     if @quiz_session.active
       render :template => 'excursions/show', :formats => [:full], :layout => 'iframe'
     else
-      render 'quiz_sessions/closed' # Quiz is closed!!!
+      # Quiz is closed!!!
+      render 'quiz_sessions/closed' 
     end
   end
 

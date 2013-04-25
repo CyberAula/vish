@@ -10,8 +10,8 @@ class ResetQuizzSessions < ActiveRecord::Migration
   	create_table :quiz_sessions do |t|
       t.integer :owner_id
       t.string  :name
-      t.string  :quiz
-      t.string  :quiz_results
+      t.text    :quiz
+      t.text    :quiz_results
       t.boolean :active, :default => true
       t.string  :url
       t.datetime :created_at

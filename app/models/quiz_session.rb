@@ -19,7 +19,7 @@ class QuizSession < ActiveRecord::Base
   belongs_to :owner, :class_name => 'User'
 
   def quizJSON(options=nil)
-    self.quiz.to_json
+  	self.quiz
   end
 
 end

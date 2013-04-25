@@ -332,8 +332,8 @@ ActiveRecord::Schema.define(:version => 20130422132346) do
   create_table "quiz_sessions", :force => true do |t|
     t.integer  "owner_id"
     t.string   "name"
-    t.string   "quiz"
-    t.string   "quiz_results"
+    t.text     "quiz"
+    t.text     "quiz_results"
     t.boolean  "active",       :default => true
     t.string   "url"
     t.datetime "created_at"

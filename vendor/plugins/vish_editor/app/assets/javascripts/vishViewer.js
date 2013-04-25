@@ -3284,7 +3284,7 @@
   })
 })(window);
 var VISH = VISH || {};
-VISH.VERSION = "0.4";
+VISH.VERSION = "0.5";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -7663,6 +7663,7 @@ VISH.SlideManager = function(V, $, undefined) {
   };
   var _initAferStatusLoaded = function(options, presentation) {
     V.Flashcard.init();
+    V.Quiz.initBeforeRender(presentation);
     V.Renderer.init();
     V.Slides.init();
     V.Utils.loadDeviceCSS();
@@ -7685,7 +7686,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Themes.loadTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
-    V.Quiz.init(presentation);
+    V.Quiz.init();
     if(options.addons) {
       V.Addons.init(options.addons)
     }
@@ -10024,18 +10025,18 @@ VISH.EventsNotifier = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
-  var selfA = "selfA";
-  var realTime = "realTime";
-  var init = function(presentation) {
+  var initBeforeRender = function(presentation) {
+    if(presentation.type === V.Constant.QUIZ_SIMPLE) {
+      quizMode = V.Constant.QZ_MODE.RT
+    }else {
+      quizMode = V.Constant.QZ_MODE.SELFA
+    }
+  };
+  var init = function() {
     V.Quiz.API.init();
     V.Quiz.MC.init();
     V.Quiz.TF.init();
-    _loadEvents();
-    if(presentation.type === VISH.Constant.QUIZ_SIMPLE) {
-      quizMode = VISH.Constant.QZ_MODE.RT
-    }else {
-      quizMode = VISH.Constant.QZ_MODE.SELFA
-    }
+    _loadEvents()
   };
   var _loadEvents = function() {
     $(document).on("click", ".quizAnswerButton", _onAnswerQuiz);
@@ -10045,7 +10046,7 @@ VISH.Quiz = function(V, $, undefined) {
     var quiz = $("div.quizzContainer").has(event.target);
     var quizModule = _getQuizModule($(quiz).attr("type"));
     if(quizModule) {
-      if(quizMode === VISH.Constant.QZ_MODE.SELFA) {
+      if(quizMode === V.Constant.QZ_MODE.SELFA) {
         quizModule.onAnswerQuiz(quiz)
       }else {
         var report = quizModule.getResults(quiz);
@@ -10102,11 +10103,11 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
-    if((V.Configuration.getConfiguration()["mode"] === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && VISH.User.isLogged()) {
+    if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged()) {
       var startButton = $("<input type='button' class='quizButton quizStartButton' value='Start'/>");
       $(quizButtons).prepend(startButton)
     }
-    if(selfA) {
+    if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
       var answerButton = $("<input type='button' class='quizButton quizAnswerButton' value='Answer'/>");
       $(quizButtons).prepend(answerButton)
     }
@@ -10119,12 +10120,12 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _getQuizModule = function(quiz_type) {
     switch(quiz_type) {
-      case VISH.Constant.QZ_TYPE.OPEN:
+      case V.Constant.QZ_TYPE.OPEN:
         break;
-      case VISH.Constant.QZ_TYPE.MCHOICE:
+      case V.Constant.QZ_TYPE.MCHOICE:
         return V.Quiz.MC;
         break;
-      case VISH.Constant.QZ_TYPE.TF:
+      case V.Constant.QZ_TYPE.TF:
         return V.Quiz.TF;
         break;
       default:
@@ -10140,7 +10141,7 @@ VISH.Quiz = function(V, $, undefined) {
     switch(check) {
       case "true":
         $(checkbox).attr("check", "true");
-        $(checkbox).attr("src", imagePathRoot + "_checked.jpg");
+        $(checkbox).attr("src", imagePathRoot + "_checked.png");
         break;
       case "false":
         $(checkbox).attr("check", "false");
@@ -10150,11 +10151,11 @@ VISH.Quiz = function(V, $, undefined) {
       ;
       default:
         $(checkbox).attr("check", "none");
-        $(checkbox).attr("src", imagePathRoot + ".jpg");
+        $(checkbox).attr("src", imagePathRoot + ".png");
         break
     }
   };
-  return{init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton}
+  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton}
 }(VISH, jQuery);
 VISH.Quiz.MC = function(V, $, undefined) {
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
@@ -10266,7 +10267,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(container).append(questionWrapper);
     var optionsWrapper = $("<table cellspacing='0' cellpadding='0' class='tf_options'></table>");
     choices[quizId] = [];
-    var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.jpg' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
+    var newTr = $("<tr class='mc_option tf_head'><td><img src='" + V.ImagesPath + "quiz/checkbox_checked.png' class='tfCheckbox_viewer'/></td><td><img src='" + V.ImagesPath + "quiz/checkbox_wrong.png' class='tfCheckbox_viewer'/></td><td></td><td></td></tr>");
     $(optionsWrapper).prepend(newTr);
     for(var i = 0;i < slide.choices.length;i++) {
       var option = slide.choices[i];
@@ -10361,10 +10362,8 @@ VISH.Quiz.API = function(V, $, undefined) {
   var postStartQuizSession = function(quiz, successCallback, failCallback) {
     if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
       var send_type = "POST";
-      var params = {"quiz":quiz, "authenticity_token":V.User.getToken()};
+      var params = {"quiz":JSON.stringify(quiz), "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
-        console.log("data in JSON");
-        console.log(data);
         if(typeof successCallback == "function") {
           successCallback(data)
         }
