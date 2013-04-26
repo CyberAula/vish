@@ -107,19 +107,4 @@ class QuizSessionsController < ApplicationController
     render :json => response
   end
 
-
-#OLD
-  # # GET /quiz_sessions/X/results
-  # def results 
-  #   @quiz_session = QuizSession.find(params[:id])
-  #   @results = {}
-  #   @results[:quiz_session_id] = @quiz_session.id
-  #   @results[:quiz_id] = @quiz_session.quiz.id
-  #   respond_to do |format|
-  #     format.html { render :layout => 'iframe' }
-  #     @results[:results] = @quiz_session.answers
-  #     format.all { render :json => @results }
-  #   end
-  # end
-
 end
