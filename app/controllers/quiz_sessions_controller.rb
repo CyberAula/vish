@@ -21,7 +21,6 @@ class QuizSessionsController < ApplicationController
       render :text => "Quiz JSON required"
     end
 
-    qs.quiz_results = nil;
     qs.active = true
     qs.save!
 
@@ -60,17 +59,11 @@ class QuizSessionsController < ApplicationController
     response = Hash.new
 
     if @quiz_session
-      answers = JSON(params[:answers])
-
-      if @quiz_session.quiz_results == nil
-        results = [];
-      else
-        results = JSON(@quiz_session.quiz_results);
-      end
-      
-      results.push(answers);
-      @quiz_session.quiz_results = results.to_json;
-      @quiz_session.save!
+      qa = QuizAnswer.new
+      qa.quiz_session_id = @quiz_session.id
+      qa.created_at = Time.now
+      qa.answer = JSON(params[:answers]).to_json
+      qa.save!
       response["processed"] = true;
     else
       response["processed"] = false;
@@ -84,7 +77,7 @@ class QuizSessionsController < ApplicationController
     @quiz_session = QuizSession.find(params[:id])
     respond_to do |format|
       format.json { 
-        render :json => @quiz_session.quiz_results
+        render :json => @quiz_session.results
       }
     end
   end

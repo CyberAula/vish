@@ -15,16 +15,11 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
-class QuizSession < ActiveRecord::Base
-  belongs_to :owner, :class_name => 'User'
-  has_many :quiz_answers, :dependent => :destroy
+class QuizAnswer < ActiveRecord::Base
+  belongs_to :quiz_session
 
-  def quizJSON(options=nil)
-  	self.quiz
-  end
-
-  def results
-  	self.quiz_answers
+  def answerJSON(options=nil)
+  	self.answer
   end
 
 end

@@ -329,12 +329,17 @@ ActiveRecord::Schema.define(:version => 20130422132346) do
 
   add_index "profiles", ["actor_id"], :name => "index_profiles_on_actor_id"
 
+  create_table "quiz_answers", :force => true do |t|
+    t.integer  "quiz_session_id"
+    t.datetime "created_at"
+    t.text     "answer"
+  end
+
   create_table "quiz_sessions", :force => true do |t|
     t.integer  "owner_id"
     t.string   "name"
     t.text     "quiz"
-    t.text     "quiz_results"
-    t.boolean  "active",       :default => true
+    t.boolean  "active",     :default => true
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
