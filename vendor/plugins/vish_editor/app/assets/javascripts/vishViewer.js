@@ -3283,6 +3283,1478 @@
     return f
   })
 })(window);
+(function(a, h, y) {
+  var w = "function", v = "password", j = "maxLength", n = "type", b = "", c = true, u = "placeholder", i = false, t = "watermark", g = t, f = "watermarkClass", q = "watermarkFocus", l = "watermarkSubmit", o = "watermarkMaxLength", e = "watermarkPassword", d = "watermarkText", k = /\r/g, s = "input:data(" + g + "),textarea:data(" + g + ")", m = "input:text,input:password,input[type=search],input:not([type]),textarea", p = ["Page_ClientValidate"], r = i, x = u in document.createElement("input");
+  a.watermark = a.watermark || {version:"3.1.3", runOnce:c, options:{className:t, useNative:c, hideBeforeUnload:c}, hide:function(b) {
+    a(b).filter(s).each(function() {
+      a.watermark._hide(a(this))
+    })
+  }, _hide:function(a, r) {
+    var p = a[0], q = (p.value || b).replace(k, b), l = a.data(d) || b, m = a.data(o) || 0, i = a.data(f);
+    if(l.length && q == l) {
+      p.value = b;
+      if(a.data(e)) {
+        if((a.attr(n) || b) === "text") {
+          var g = a.data(e) || [], c = a.parent() || [];
+          if(g.length && c.length) {
+            c[0].removeChild(a[0]);
+            c[0].appendChild(g[0]);
+            a = g
+          }
+        }
+      }
+      if(m) {
+        a.attr(j, m);
+        a.removeData(o)
+      }
+      if(r) {
+        a.attr("autocomplete", "off");
+        h.setTimeout(function() {
+          a.select()
+        }, 1)
+      }
+    }
+    i && a.removeClass(i)
+  }, show:function(b) {
+    a(b).filter(s).each(function() {
+      a.watermark._show(a(this))
+    })
+  }, _show:function(g) {
+    var p = g[0], u = (p.value || b).replace(k, b), h = g.data(d) || b, s = g.attr(n) || b, t = g.data(f);
+    if((u.length == 0 || u == h) && !g.data(q)) {
+      r = c;
+      if(g.data(e)) {
+        if(s === v) {
+          var m = g.data(e) || [], l = g.parent() || [];
+          if(m.length && l.length) {
+            l[0].removeChild(g[0]);
+            l[0].appendChild(m[0]);
+            g = m;
+            g.attr(j, h.length);
+            p = g[0]
+          }
+        }
+      }
+      if(s === "text" || s === "search") {
+        var i = g.attr(j) || 0;
+        if(i > 0 && h.length > i) {
+          g.data(o, i);
+          g.attr(j, h.length)
+        }
+      }
+      t && g.addClass(t);
+      p.value = h
+    }else {
+      a.watermark._hide(g)
+    }
+  }, hideAll:function() {
+    if(r) {
+      a.watermark.hide(m);
+      r = i
+    }
+  }, showAll:function() {
+    a.watermark.show(m)
+  }};
+  a.fn.watermark = a.fn.watermark || function(p, o) {
+    var t = "string";
+    if(!this.length) {
+      return this
+    }
+    var s = i, r = typeof p === t;
+    if(r) {
+      p = p.replace(k, b)
+    }
+    if(typeof o === "object") {
+      s = typeof o.className === t;
+      o = a.extend({}, a.watermark.options, o)
+    }else {
+      if(typeof o === t) {
+        s = c;
+        o = a.extend({}, a.watermark.options, {className:o})
+      }else {
+        o = a.watermark.options
+      }
+    }
+    if(typeof o.useNative !== w) {
+      o.useNative = o.useNative ? function() {
+        return c
+      } : function() {
+        return i
+      }
+    }
+    return this.each(function() {
+      var B = "dragleave", A = "dragenter", z = this, i = a(z);
+      if(!i.is(m)) {
+        return
+      }
+      if(i.data(g)) {
+        if(r || s) {
+          a.watermark._hide(i);
+          r && i.data(d, p);
+          s && i.data(f, o.className)
+        }
+      }else {
+        if(x && o.useNative.call(z, i) && (i.attr("tagName") || b) !== "TEXTAREA") {
+          r && i.attr(u, p);
+          return
+        }
+        i.data(d, r ? p : b);
+        i.data(f, o.className);
+        i.data(g, 1);
+        if((i.attr(n) || b) === v) {
+          var C = i.wrap("<span>").parent(), t = a(C.html().replace(/type=["']?password["']?/i, 'type="text"'));
+          t.data(d, i.data(d));
+          t.data(f, i.data(f));
+          t.data(g, 1);
+          t.attr(j, p.length);
+          t.focus(function() {
+            a.watermark._hide(t, c)
+          }).bind(A, function() {
+            a.watermark._hide(t)
+          }).bind("dragend", function() {
+            h.setTimeout(function() {
+              t.blur()
+            }, 1)
+          });
+          i.blur(function() {
+            a.watermark._show(i)
+          }).bind(B, function() {
+            a.watermark._show(i)
+          });
+          t.data(e, i);
+          i.data(e, t)
+        }else {
+          i.focus(function() {
+            i.data(q, 1);
+            a.watermark._hide(i, c)
+          }).blur(function() {
+            i.data(q, 0);
+            a.watermark._show(i)
+          }).bind(A, function() {
+            a.watermark._hide(i)
+          }).bind(B, function() {
+            a.watermark._show(i)
+          }).bind("dragend", function() {
+            h.setTimeout(function() {
+              a.watermark._show(i)
+            }, 1)
+          }).bind("drop", function(e) {
+            var c = i[0], a = e.originalEvent.dataTransfer.getData("Text");
+            if((c.value || b).replace(k, b).replace(a, b) === i.data(d)) {
+              c.value = a
+            }
+            i.focus()
+          })
+        }
+        if(z.form) {
+          var w = z.form, y = a(w);
+          if(!y.data(l)) {
+            y.submit(a.watermark.hideAll);
+            if(w.submit) {
+              y.data(l, w.submit);
+              w.submit = function(c, b) {
+                return function() {
+                  var d = b.data(l);
+                  a.watermark.hideAll();
+                  if(d.apply) {
+                    d.apply(c, Array.prototype.slice.call(arguments))
+                  }else {
+                    d()
+                  }
+                }
+              }(w, y)
+            }else {
+              y.data(l, 1);
+              w.submit = function(b) {
+                return function() {
+                  a.watermark.hideAll();
+                  delete b.submit;
+                  b.submit()
+                }
+              }(w)
+            }
+          }
+        }
+      }
+      a.watermark._show(i)
+    })
+  };
+  if(a.watermark.runOnce) {
+    a.watermark.runOnce = i;
+    a.extend(a.expr[":"], {data:function(c, d, b) {
+      return!!a.data(c, b[3])
+    }});
+    (function(c) {
+      a.fn.val = function() {
+        var e = this;
+        if(!e.length) {
+          return arguments.length ? e : y
+        }
+        if(!arguments.length) {
+          if(e.data(g)) {
+            var f = (e[0].value || b).replace(k, b);
+            return f === (e.data(d) || b) ? b : f
+          }else {
+            return c.apply(e, arguments)
+          }
+        }else {
+          c.apply(e, arguments);
+          a.watermark.show(e);
+          return e
+        }
+      }
+    })(a.fn.val);
+    p.length && a(function() {
+      for(var b, c, d = p.length - 1;d >= 0;d--) {
+        b = p[d];
+        c = h[b];
+        if(typeof c === w) {
+          h[b] = function(b) {
+            return function() {
+              a.watermark.hideAll();
+              return b.apply(null, Array.prototype.slice.call(arguments))
+            }
+          }(c)
+        }
+      }
+    });
+    a(h).bind("beforeunload", function() {
+      a.watermark.options.hideBeforeUnload && a.watermark.hideAll()
+    })
+  }
+})(jQuery, window);
+window.Chart = function(context, options) {
+  var chart = this;
+  var animationOptions = {linear:function(t) {
+    return t
+  }, easeInQuad:function(t) {
+    return t * t
+  }, easeOutQuad:function(t) {
+    return-1 * t * (t - 2)
+  }, easeInOutQuad:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t
+    }
+    return-1 / 2 * (--t * (t - 2) - 1)
+  }, easeInCubic:function(t) {
+    return t * t * t
+  }, easeOutCubic:function(t) {
+    return 1 * ((t = t / 1 - 1) * t * t + 1)
+  }, easeInOutCubic:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * t
+    }
+    return 1 / 2 * ((t -= 2) * t * t + 2)
+  }, easeInQuart:function(t) {
+    return t * t * t * t
+  }, easeOutQuart:function(t) {
+    return-1 * ((t = t / 1 - 1) * t * t * t - 1)
+  }, easeInOutQuart:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * t * t
+    }
+    return-1 / 2 * ((t -= 2) * t * t * t - 2)
+  }, easeInQuint:function(t) {
+    return 1 * (t /= 1) * t * t * t * t
+  }, easeOutQuint:function(t) {
+    return 1 * ((t = t / 1 - 1) * t * t * t * t + 1)
+  }, easeInOutQuint:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * t * t * t
+    }
+    return 1 / 2 * ((t -= 2) * t * t * t * t + 2)
+  }, easeInSine:function(t) {
+    return-1 * Math.cos(t / 1 * (Math.PI / 2)) + 1
+  }, easeOutSine:function(t) {
+    return 1 * Math.sin(t / 1 * (Math.PI / 2))
+  }, easeInOutSine:function(t) {
+    return-1 / 2 * (Math.cos(Math.PI * t / 1) - 1)
+  }, easeInExpo:function(t) {
+    return t == 0 ? 1 : 1 * Math.pow(2, 10 * (t / 1 - 1))
+  }, easeOutExpo:function(t) {
+    return t == 1 ? 1 : 1 * (-Math.pow(2, -10 * t / 1) + 1)
+  }, easeInOutExpo:function(t) {
+    if(t == 0) {
+      return 0
+    }
+    if(t == 1) {
+      return 1
+    }
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * Math.pow(2, 10 * (t - 1))
+    }
+    return 1 / 2 * (-Math.pow(2, -10 * --t) + 2)
+  }, easeInCirc:function(t) {
+    if(t >= 1) {
+      return t
+    }
+    return-1 * (Math.sqrt(1 - (t /= 1) * t) - 1)
+  }, easeOutCirc:function(t) {
+    return 1 * Math.sqrt(1 - (t = t / 1 - 1) * t)
+  }, easeInOutCirc:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return-1 / 2 * (Math.sqrt(1 - t * t) - 1)
+    }
+    return 1 / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1)
+  }, easeInElastic:function(t) {
+    var s = 1.70158;
+    var p = 0;
+    var a = 1;
+    if(t == 0) {
+      return 0
+    }
+    if((t /= 1) == 1) {
+      return 1
+    }
+    if(!p) {
+      p = 1 * 0.3
+    }
+    if(a < Math.abs(1)) {
+      a = 1;
+      var s = p / 4
+    }else {
+      var s = p / (2 * Math.PI) * Math.asin(1 / a)
+    }
+    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p))
+  }, easeOutElastic:function(t) {
+    var s = 1.70158;
+    var p = 0;
+    var a = 1;
+    if(t == 0) {
+      return 0
+    }
+    if((t /= 1) == 1) {
+      return 1
+    }
+    if(!p) {
+      p = 1 * 0.3
+    }
+    if(a < Math.abs(1)) {
+      a = 1;
+      var s = p / 4
+    }else {
+      var s = p / (2 * Math.PI) * Math.asin(1 / a)
+    }
+    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * 2 * Math.PI / p) + 1
+  }, easeInOutElastic:function(t) {
+    var s = 1.70158;
+    var p = 0;
+    var a = 1;
+    if(t == 0) {
+      return 0
+    }
+    if((t /= 1 / 2) == 2) {
+      return 1
+    }
+    if(!p) {
+      p = 1 * 0.3 * 1.5
+    }
+    if(a < Math.abs(1)) {
+      a = 1;
+      var s = p / 4
+    }else {
+      var s = p / (2 * Math.PI) * Math.asin(1 / a)
+    }
+    if(t < 1) {
+      return-0.5 * a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p)
+    }
+    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p) * 0.5 + 1
+  }, easeInBack:function(t) {
+    var s = 1.70158;
+    return 1 * (t /= 1) * t * ((s + 1) * t - s)
+  }, easeOutBack:function(t) {
+    var s = 1.70158;
+    return 1 * ((t = t / 1 - 1) * t * ((s + 1) * t + s) + 1)
+  }, easeInOutBack:function(t) {
+    var s = 1.70158;
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * (((s *= 1.525) + 1) * t - s)
+    }
+    return 1 / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2)
+  }, easeInBounce:function(t) {
+    return 1 - animationOptions.easeOutBounce(1 - t)
+  }, easeOutBounce:function(t) {
+    if((t /= 1) < 1 / 2.75) {
+      return 1 * 7.5625 * t * t
+    }else {
+      if(t < 2 / 2.75) {
+        return 1 * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75)
+      }else {
+        if(t < 2.5 / 2.75) {
+          return 1 * (7.5625 * (t -= 2.25 / 2.75) * t + 0.9375)
+        }else {
+          return 1 * (7.5625 * (t -= 2.625 / 2.75) * t + 0.984375)
+        }
+      }
+    }
+  }, easeInOutBounce:function(t) {
+    if(t < 1 / 2) {
+      return animationOptions.easeInBounce(t * 2) * 0.5
+    }
+    return animationOptions.easeOutBounce(t * 2 - 1) * 0.5 + 1 * 0.5
+  }};
+  this.tooltips = [], defaults = {tooltips:{background:"rgba(0,0,0,0.6)", fontFamily:"'Arial'", fontStyle:"normal", fontColor:"white", fontSize:"12px", labelTemplate:"<%=label%>: <%=value%>", padding:{top:10, right:10, bottom:10, left:10}, offset:{left:0, top:0}, border:{width:0, color:"#000"}, showHighlight:true, highlight:{stroke:{width:1, color:"rgba(230,230,230,0.25)"}, fill:"rgba(255,255,255,0.25)"}}}, options = options ? mergeChartConfig(defaults, options) : defaults;
+  function registerTooltip(ctx, areaObj, data, type) {
+    chart.tooltips.push(new Tooltip(ctx, areaObj, data, type))
+  }
+  var Tooltip = function(ctx, areaObj, data, type) {
+    this.ctx = ctx;
+    this.areaObj = areaObj;
+    this.data = data;
+    this.savedState = null;
+    this.highlightState = null;
+    this.x = null;
+    this.y = null;
+    this.inRange = function(x, y) {
+      if(this.areaObj.type) {
+        switch(this.areaObj.type) {
+          case "rect":
+            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height;
+            break;
+          case "circle":
+            return Math.pow(x - this.areaObj.x, 2) + Math.pow(y - this.areaObj.y, 2) < Math.pow(this.areaObj.r, 2);
+            break;
+          case "shape":
+            var poly = this.areaObj.points;
+            for(var c = false, i = -1, l = poly.length, j = l - 1;++i < l;j = i) {
+              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c)
+            }
+            return c;
+            break
+        }
+      }
+    };
+    this.render = function(x, y) {
+      if(this.savedState == null) {
+        this.ctx.putImageData(chart.savedState, 0, 0);
+        this.savedState = this.ctx.getImageData(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+      }
+      this.ctx.putImageData(this.savedState, 0, 0);
+      if(options.tooltips.showHighlight) {
+        if(this.highlightState == null) {
+          this.ctx.strokeStyle = options.tooltips.highlight.stroke.color;
+          this.ctx.lineWidth = options.tooltips.highlight.stroke.width;
+          this.ctx.fillStyle = options.tooltips.highlight.fill;
+          switch(this.areaObj.type) {
+            case "rect":
+              this.ctx.strokeRect(this.areaObj.x, this.areaObj.y, this.areaObj.width, this.areaObj.height);
+              this.ctx.fillStyle = options.tooltips.highlight.fill;
+              this.ctx.fillRect(this.areaObj.x, this.areaObj.y, this.areaObj.width, this.areaObj.height);
+              break;
+            case "circle":
+              this.ctx.beginPath();
+              this.ctx.arc(this.areaObj.x, this.areaObj.y, this.areaObj.r, 0, 2 * Math.PI, false);
+              this.ctx.stroke();
+              this.ctx.fill();
+              break;
+            case "shape":
+              this.ctx.beginPath();
+              this.ctx.moveTo(this.areaObj.points[0].x, this.areaObj.points[0].y);
+              for(var p in this.areaObj.points) {
+                this.ctx.lineTo(this.areaObj.points[p].x, this.areaObj.points[p].y)
+              }
+              this.ctx.stroke();
+              this.ctx.fill();
+              break
+          }
+          this.highlightState = this.ctx.getImageData(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+        }else {
+          this.ctx.putImageData(this.highlightState, 0, 0)
+        }
+      }
+      var posX = x + options.tooltips.offset.left, posY = y + options.tooltips.offset.top, tpl = tmpl(options.tooltips.labelTemplate, this.data), rectWidth = options.tooltips.padding.left + this.ctx.measureText(tpl).width + options.tooltips.padding.right;
+      if(posX + rectWidth > ctx.canvas.width) {
+        posX -= posX - rectWidth < 0 ? posX : rectWidth
+      }
+      if(posY + 24 > ctx.canvas.height) {
+        posY -= 24
+      }
+      this.ctx.fillStyle = options.tooltips.background;
+      this.ctx.fillRect(posX, posY, rectWidth, 24);
+      if(options.tooltips.border.width > 0) {
+        this.ctx.fillStyle = options.tooltips.order.color;
+        this.ctx.lineWidth = options.tooltips.border.width;
+        this.ctx.strokeRect(posX, posY, rectWidth, 24)
+      }
+      this.ctx.font = options.tooltips.fontStyle + " " + options.tooltips.fontSize + " " + options.tooltips.fontFamily;
+      this.ctx.fillStyle = options.tooltips.fontColor;
+      this.ctx.textAlign = "center";
+      this.ctx.textBaseline = "middle";
+      this.ctx.fillText(tpl, posX + rectWidth / 2, posY + 12);
+      this.x = x;
+      this.y = y
+    }
+  };
+  var width = context.canvas.width, height = context.canvas.height;
+  this.savedState = null;
+  function getPosition(e) {
+    var xPosition = 0;
+    var yPosition = 0;
+    while(e) {
+      xPosition += e.offsetLeft + e.clientLeft;
+      yPosition += e.offsetTop + e.clientTop;
+      e = e.offsetParent
+    }
+    if(window.pageXOffset > 0 || window.pageYOffset > 0) {
+      xPosition -= window.pageXOffset;
+      yPosition -= window.pageYOffset
+    }else {
+      if(document.body.scrollLeft > 0 || document.body.scrollTop > 0) {
+        xPosition -= document.body.scrollLeft;
+        yPosition -= document.body.scrollTop
+      }
+    }
+    return{x:xPosition, y:yPosition}
+  }
+  context.canvas.onmousemove = function(e) {
+    if(chart.tooltips.length > 0) {
+      chart.savedState = chart.savedState == null ? context.getImageData(0, 0, context.canvas.width, context.canvas.height) : chart.savedState;
+      var rendered = 0;
+      for(var i in chart.tooltips) {
+        var position = getPosition(context.canvas), mx = e.clientX - position.x, my = e.clientY - position.y;
+        if(chart.tooltips[i].inRange(mx, my)) {
+          chart.tooltips[i].render(mx, my);
+          rendered++
+        }
+      }
+      if(rendered == 0) {
+        context.putImageData(chart.savedState, 0, 0)
+      }
+    }
+  };
+  context.canvas.onmouseout = function(e) {
+    if(chart.savedState != null) {
+      context.putImageData(chart.savedState, 0, 0)
+    }
+  };
+  if(window.devicePixelRatio) {
+    context.canvas.style.width = width + "px";
+    context.canvas.style.height = height + "px";
+    context.canvas.height = height * window.devicePixelRatio;
+    context.canvas.width = width * window.devicePixelRatio;
+    context.scale(window.devicePixelRatio, window.devicePixelRatio)
+  }
+  this.PolarArea = function(data, options) {
+    chart.PolarArea.defaults = {scaleOverlay:true, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleShowLine:true, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:true, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowLabelBackdrop:true, scaleBackdropColor:"rgba(255,255,255,0.75)", scaleBackdropPaddingY:2, scaleBackdropPaddingX:2, segmentShowStroke:true, segmentStrokeColor:"#fff", 
+    segmentStrokeWidth:2, animation:true, animationSteps:100, animationEasing:"easeOutBounce", animateRotate:true, animateScale:false, onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.PolarArea.defaults, options) : chart.PolarArea.defaults;
+    return new PolarArea(data, config, context)
+  };
+  this.Radar = function(data, options) {
+    chart.Radar.defaults = {scaleOverlay:false, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleShowLine:true, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:false, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowLabelBackdrop:true, scaleBackdropColor:"rgba(255,255,255,0.75)", scaleBackdropPaddingY:2, scaleBackdropPaddingX:2, angleShowLineOut:true, angleLineColor:"rgba(0,0,0,.1)", 
+    angleLineWidth:1, pointLabelFontFamily:"'Arial'", pointLabelFontStyle:"normal", pointLabelFontSize:12, pointLabelFontColor:"#666", pointDot:true, pointDotRadius:3, pointDotStrokeWidth:1, datasetStroke:true, datasetStrokeWidth:2, datasetFill:true, animation:true, animationSteps:60, animationEasing:"easeOutQuart", onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Radar.defaults, options) : chart.Radar.defaults;
+    return new Radar(data, config, context)
+  };
+  this.Pie = function(data, options) {
+    chart.Pie.defaults = {segmentShowStroke:true, segmentStrokeColor:"#fff", segmentStrokeWidth:2, animation:true, animationSteps:100, animationEasing:"easeOutBounce", animateRotate:true, animateScale:false, onAnimationComplete:null, labelFontFamily:"'Arial'", labelFontStyle:"normal", labelFontSize:12, labelFontColor:"#666", labelAlign:"right", showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Pie.defaults, options) : chart.Pie.defaults;
+    return new Pie(data, config, context)
+  };
+  this.Doughnut = function(data, options) {
+    chart.Doughnut.defaults = {segmentShowStroke:true, segmentStrokeColor:"#fff", segmentStrokeWidth:2, percentageInnerCutout:50, animation:true, animationSteps:100, animationEasing:"easeOutBounce", animateRotate:true, animateScale:false, onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Doughnut.defaults, options) : chart.Doughnut.defaults;
+    return new Doughnut(data, config, context)
+  };
+  this.Line = function(data, options) {
+    chart.Line.defaults = {scaleOverlay:false, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:true, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowGridLines:true, scaleGridLineColor:"rgba(0,0,0,.05)", scaleGridLineWidth:1, bezierCurve:true, pointDot:true, pointDotRadius:4, pointDotStrokeWidth:2, datasetStroke:true, datasetStrokeWidth:2, 
+    datasetFill:true, animation:true, animationSteps:60, animationEasing:"easeOutQuart", onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Line.defaults, options) : chart.Line.defaults;
+    return new Line(data, config, context)
+  };
+  this.Bar = function(data, options) {
+    chart.Bar.defaults = {scaleOverlay:false, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:true, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowGridLines:true, scaleGridLineColor:"rgba(0,0,0,.05)", scaleGridLineWidth:1, barShowStroke:true, barStrokeWidth:2, barValueSpacing:5, barDatasetSpacing:1, animation:true, animationSteps:60, 
+    animationEasing:"easeOutQuart", onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Bar.defaults, options) : chart.Bar.defaults;
+    return new Bar(data, config, context)
+  };
+  var clear = function(c) {
+    c.clearRect(0, 0, width, height)
+  };
+  var PolarArea = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString;
+    calculateDrawingSizes();
+    valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : null;
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = maxSize / calculatedScale.steps;
+    animationLoop(config, drawScale, drawAllSegments, ctx);
+    function calculateDrawingSizes() {
+      maxSize = Min([width, height]) / 2;
+      maxSize -= Max([config.scaleFontSize * 0.5, config.scaleLineWidth * 0.5]);
+      labelHeight = config.scaleFontSize * 2;
+      if(config.scaleShowLabelBackdrop) {
+        labelHeight += 2 * config.scaleBackdropPaddingY;
+        maxSize -= config.scaleBackdropPaddingY * 1.5
+      }
+      scaleHeight = maxSize;
+      labelHeight = Default(labelHeight, 5)
+    }
+    function drawScale() {
+      for(var i = 0;i < calculatedScale.steps;i++) {
+        if(config.scaleShowLine) {
+          ctx.beginPath();
+          ctx.arc(width / 2, height / 2, scaleHop * (i + 1), 0, Math.PI * 2, true);
+          ctx.strokeStyle = config.scaleLineColor;
+          ctx.lineWidth = config.scaleLineWidth;
+          ctx.stroke()
+        }
+        if(config.scaleShowLabels) {
+          ctx.textAlign = "center";
+          ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+          var label = calculatedScale.labels[i];
+          if(config.scaleShowLabelBackdrop) {
+            var textWidth = ctx.measureText(label).width;
+            ctx.fillStyle = config.scaleBackdropColor;
+            ctx.beginPath();
+            ctx.rect(Math.round(width / 2 - textWidth / 2 - config.scaleBackdropPaddingX), Math.round(height / 2 - scaleHop * (i + 1) - config.scaleFontSize * 0.5 - config.scaleBackdropPaddingY), Math.round(textWidth + config.scaleBackdropPaddingX * 2), Math.round(config.scaleFontSize + config.scaleBackdropPaddingY * 2));
+            ctx.fill()
+          }
+          ctx.textBaseline = "middle";
+          ctx.fillStyle = config.scaleFontColor;
+          ctx.fillText(label, width / 2, height / 2 - scaleHop * (i + 1))
+        }
+      }
+    }
+    function drawAllSegments(animationDecimal) {
+      var startAngle = -Math.PI / 2, angleStep = Math.PI * 2 / data.length, scaleAnimation = 1, rotateAnimation = 1;
+      if(config.animation) {
+        if(config.animateScale) {
+          scaleAnimation = animationDecimal
+        }
+        if(config.animateRotate) {
+          rotateAnimation = animationDecimal
+        }
+      }
+      for(var i = 0;i < data.length;i++) {
+        ctx.beginPath();
+        ctx.arc(width / 2, height / 2, scaleAnimation * calculateOffset(data[i].value, calculatedScale, scaleHop), startAngle, startAngle + rotateAnimation * angleStep, false);
+        ctx.lineTo(width / 2, height / 2);
+        ctx.closePath();
+        ctx.fillStyle = data[i].color;
+        ctx.fill();
+        if(animationDecimal > 0.9999999) {
+          var points = [{x:width / 2, y:height / 2}], pAmount = 50, radius = calculateOffset(data[i].value, calculatedScale, scaleHop);
+          points.push({x:width / 2 + radius * Math.cos(startAngle), y:height / 2 + radius * Math.sin(startAngle)});
+          for(var p = 0;p <= pAmount;p++) {
+            points.push({x:width / 2 + radius * Math.cos(startAngle + p / pAmount * rotateAnimation * angleStep), y:height / 2 + radius * Math.sin(startAngle + p / pAmount * rotateAnimation * angleStep)})
+          }
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "PolarArea")
+          }
+        }
+        if(config.segmentShowStroke) {
+          ctx.strokeStyle = config.segmentStrokeColor;
+          ctx.lineWidth = config.segmentStrokeWidth;
+          ctx.stroke()
+        }
+        startAngle += rotateAnimation * angleStep
+      }
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.length;i++) {
+        if(data[i].value > upperValue) {
+          upperValue = data[i].value
+        }
+        if(data[i].value < lowerValue) {
+          lowerValue = data[i].value
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  var Radar = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString;
+    if(!data.labels) {
+      data.labels = []
+    }
+    calculateDrawingSizes();
+    var valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : null;
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = maxSize / calculatedScale.steps;
+    animationLoop(config, drawScale, drawAllDataPoints, ctx);
+    function drawAllDataPoints(animationDecimal) {
+      var rotationDegree = 2 * Math.PI / data.datasets[0].data.length;
+      ctx.save();
+      ctx.translate(width / 2, height / 2);
+      for(var i = 0;i < data.datasets.length;i++) {
+        var offset = calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop);
+        ctx.beginPath();
+        ctx.moveTo(0, animationDecimal * -1 * offset);
+        if(animationDecimal == 1) {
+          var curX = width / 2 + offset * Math.cos(0 - Math.PI / 2), curY = height / 2 + offset * Math.sin(0 - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[0].trim() != "" ? data.labels[0] + ": " + data.datasets[i].data[0] : data.datasets[i].data[0];
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[0], value:data.datasets[i].data[0]}, "Radar")
+          }
+        }
+        for(var j = 1;j < data.datasets[i].data.length;j++) {
+          offset = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop);
+          ctx.rotate(rotationDegree);
+          ctx.lineTo(0, animationDecimal * -1 * offset);
+          if(animationDecimal == 1) {
+            var curX = width / 2 + offset * Math.cos(j * rotationDegree - Math.PI / 2), curY = height / 2 + offset * Math.sin(j * rotationDegree - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[j].trim() != "" ? data.labels[j] + ": " + data.datasets[i].data[j] : data.datasets[i].data[j];
+            if(config.showTooltips === true) {
+              registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Radar")
+            }
+          }
+        }
+        ctx.closePath();
+        ctx.fillStyle = data.datasets[i].fillColor;
+        ctx.strokeStyle = data.datasets[i].strokeColor;
+        ctx.lineWidth = config.datasetStrokeWidth;
+        ctx.fill();
+        ctx.stroke();
+        if(config.pointDot) {
+          ctx.fillStyle = data.datasets[i].pointColor;
+          ctx.strokeStyle = data.datasets[i].pointStrokeColor;
+          ctx.lineWidth = config.pointDotStrokeWidth;
+          for(var k = 0;k < data.datasets[i].data.length;k++) {
+            ctx.rotate(rotationDegree);
+            ctx.beginPath();
+            ctx.arc(0, animationDecimal * -1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop), config.pointDotRadius, 2 * Math.PI, false);
+            ctx.fill();
+            ctx.stroke()
+          }
+        }
+        ctx.rotate(rotationDegree)
+      }
+      ctx.restore()
+    }
+    function drawScale() {
+      var rotationDegree = 2 * Math.PI / data.datasets[0].data.length;
+      ctx.save();
+      ctx.translate(width / 2, height / 2);
+      if(config.angleShowLineOut) {
+        ctx.strokeStyle = config.angleLineColor;
+        ctx.lineWidth = config.angleLineWidth;
+        for(var h = 0;h < data.datasets[0].data.length;h++) {
+          ctx.rotate(rotationDegree);
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -maxSize);
+          ctx.stroke()
+        }
+      }
+      for(var i = 0;i < calculatedScale.steps;i++) {
+        ctx.beginPath();
+        if(config.scaleShowLine) {
+          ctx.strokeStyle = config.scaleLineColor;
+          ctx.lineWidth = config.scaleLineWidth;
+          ctx.moveTo(0, -scaleHop * (i + 1));
+          for(var j = 0;j < data.datasets[0].data.length;j++) {
+            ctx.rotate(rotationDegree);
+            ctx.lineTo(0, -scaleHop * (i + 1))
+          }
+          ctx.closePath();
+          ctx.stroke()
+        }
+        if(config.scaleShowLabels) {
+          ctx.textAlign = "center";
+          ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+          ctx.textBaseline = "middle";
+          if(config.scaleShowLabelBackdrop) {
+            var textWidth = ctx.measureText(calculatedScale.labels[i]).width;
+            ctx.fillStyle = config.scaleBackdropColor;
+            ctx.beginPath();
+            ctx.rect(Math.round(-textWidth / 2 - config.scaleBackdropPaddingX), Math.round(-scaleHop * (i + 1) - config.scaleFontSize * 0.5 - config.scaleBackdropPaddingY), Math.round(textWidth + config.scaleBackdropPaddingX * 2), Math.round(config.scaleFontSize + config.scaleBackdropPaddingY * 2));
+            ctx.fill()
+          }
+          ctx.fillStyle = config.scaleFontColor;
+          ctx.fillText(calculatedScale.labels[i], 0, -scaleHop * (i + 1))
+        }
+      }
+      for(var k = 0;k < data.labels.length;k++) {
+        ctx.font = config.pointLabelFontStyle + " " + config.pointLabelFontSize + "px " + config.pointLabelFontFamily;
+        ctx.fillStyle = config.pointLabelFontColor;
+        var opposite = Math.sin(rotationDegree * k) * (maxSize + config.pointLabelFontSize);
+        var adjacent = Math.cos(rotationDegree * k) * (maxSize + config.pointLabelFontSize);
+        if(rotationDegree * k == Math.PI || rotationDegree * k == 0) {
+          ctx.textAlign = "center"
+        }else {
+          if(rotationDegree * k > Math.PI) {
+            ctx.textAlign = "right"
+          }else {
+            ctx.textAlign = "left"
+          }
+        }
+        ctx.textBaseline = "middle";
+        ctx.fillText(data.labels[k], opposite, -adjacent)
+      }
+      ctx.restore()
+    }
+    function calculateDrawingSizes() {
+      maxSize = Min([width, height]) / 2;
+      labelHeight = config.scaleFontSize * 2;
+      var labelLength = 0;
+      for(var i = 0;i < data.labels.length;i++) {
+        ctx.font = config.pointLabelFontStyle + " " + config.pointLabelFontSize + "px " + config.pointLabelFontFamily;
+        var textMeasurement = ctx.measureText(data.labels[i]).width;
+        if(textMeasurement > labelLength) {
+          labelLength = textMeasurement
+        }
+      }
+      maxSize -= Max([labelLength, config.pointLabelFontSize / 2 * 1.5]);
+      maxSize -= config.pointLabelFontSize;
+      maxSize = CapValue(maxSize, null, 0);
+      scaleHeight = maxSize;
+      labelHeight = Default(labelHeight, 5)
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.datasets.length;i++) {
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(data.datasets[i].data[j] > upperValue) {
+            upperValue = data.datasets[i].data[j]
+          }
+          if(data.datasets[i].data[j] < lowerValue) {
+            lowerValue = data.datasets[i].data[j]
+          }
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  var Pie = function(data, config, ctx) {
+    var segmentTotal = 0;
+    var pieRadius = Min([height / 2, width / 2]) - 5;
+    for(var i = 0;i < data.length;i++) {
+      segmentTotal += data[i].value
+    }
+    ctx.fillStyle = "black";
+    ctx.textBaseline = "base";
+    animationLoop(config, null, drawPieSegments, ctx);
+    function drawPieSegments(animationDecimal) {
+      var cumulativeAngle = -Math.PI / 2, scaleAnimation = 1, rotateAnimation = 1;
+      if(config.animation) {
+        if(config.animateScale) {
+          scaleAnimation = animationDecimal
+        }
+        if(config.animateRotate) {
+          rotateAnimation = animationDecimal
+        }
+      }
+      for(var i = 0;i < data.length;i++) {
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        ctx.beginPath();
+        ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
+        ctx.lineTo(width / 2, height / 2);
+        ctx.closePath();
+        ctx.fillStyle = data[i].color;
+        ctx.fill();
+        if(data[i].label && scaleAnimation * pieRadius * 2 * segmentAngle / (2 * Math.PI) > config.labelFontSize) {
+          function getPieLabelX(align, r) {
+            switch(align) {
+              case "left":
+                return-r + 20;
+                break;
+              case "center":
+                return-r / 2;
+                break
+            }
+            return-10
+          }
+          function reversePieLabelAlign(align) {
+            switch(align) {
+              case "left":
+                return"right";
+                break;
+              case "right":
+                return"left";
+                break;
+              case "center":
+                return align;
+                break
+            }
+          }
+          var fontSize = data[i].labelFontSize || config.labelFontSize + "px";
+          if(fontSize.match(/^[0-9]+$/g) != null) {
+            fontSize = fontSize + "px"
+          }
+          ctx.font = config.labelFontStyle + " " + fontSize + " " + config.labelFontFamily;
+          ctx.fillStyle = getFadeColor(animationDecimal, data[i].labelColor || "black", data[i].color);
+          ctx.textBaseline = "middle";
+          var textRotation = -(cumulativeAngle + segmentAngle) + segmentAngle / 2, tX = width / 2 + scaleAnimation * pieRadius * Math.cos(textRotation), tY = height / 2 - scaleAnimation * pieRadius * Math.sin(textRotation);
+          ctx.textAlign = data[i].labelAlign || config.labelAlign;
+          textX = getPieLabelX(ctx.textAlign, scaleAnimation * pieRadius);
+          if(textRotation < -Math.PI / 2) {
+            textRotation -= Math.PI;
+            ctx.textAlign = reversePieLabelAlign(ctx.textAlign);
+            textX = -textX
+          }
+          ctx.translate(tX, tY);
+          ctx.rotate(-textRotation);
+          ctx.fillText(data[i].label, textX, 0);
+          ctx.rotate(textRotation);
+          ctx.translate(-tX, -tY)
+        }
+        if(animationDecimal > 0.9999999) {
+          var points = [{x:width / 2, y:height / 2}], pAmount = 50;
+          points.push({x:width / 2 + pieRadius * Math.cos(cumulativeAngle), y:height / 2 + pieRadius * Math.sin(cumulativeAngle)});
+          for(var p = 0;p <= pAmount;p++) {
+            points.push({x:width / 2 + pieRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + pieRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
+          }
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Pie")
+          }
+        }
+        if(config.segmentShowStroke) {
+          ctx.lineWidth = config.segmentStrokeWidth;
+          ctx.strokeStyle = config.segmentStrokeColor;
+          ctx.stroke()
+        }
+        cumulativeAngle += segmentAngle
+      }
+    }
+  };
+  var Doughnut = function(data, config, ctx) {
+    var segmentTotal = 0;
+    var doughnutRadius = Min([height / 2, width / 2]) - 5;
+    var cutoutRadius = doughnutRadius * (config.percentageInnerCutout / 100);
+    for(var i = 0;i < data.length;i++) {
+      segmentTotal += data[i].value
+    }
+    animationLoop(config, null, drawPieSegments, ctx);
+    function drawPieSegments(animationDecimal) {
+      var cumulativeAngle = -Math.PI / 2, scaleAnimation = 1, rotateAnimation = 1;
+      if(config.animation) {
+        if(config.animateScale) {
+          scaleAnimation = animationDecimal
+        }
+        if(config.animateRotate) {
+          rotateAnimation = animationDecimal
+        }
+      }
+      for(var i = 0;i < data.length;i++) {
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        ctx.beginPath();
+        ctx.arc(width / 2, height / 2, scaleAnimation * doughnutRadius, cumulativeAngle, cumulativeAngle + segmentAngle, false);
+        ctx.arc(width / 2, height / 2, scaleAnimation * cutoutRadius, cumulativeAngle + segmentAngle, cumulativeAngle, true);
+        ctx.closePath();
+        ctx.fillStyle = data[i].color;
+        ctx.fill();
+        if(animationDecimal > 0.9999999) {
+          var points = [], pAmount = 50;
+          points.push({x:width / 2 + doughnutRadius * Math.cos(cumulativeAngle), y:height / 2 + doughnutRadius * Math.sin(cumulativeAngle)});
+          for(var p = 0;p <= pAmount;p++) {
+            points.push({x:width / 2 + doughnutRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + doughnutRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
+          }
+          points.push({x:width / 2 + cutoutRadius * Math.cos(cumulativeAngle + segmentAngle), y:height / 2 + cutoutRadius * Math.sin(cumulativeAngle + segmentAngle)});
+          for(var p = pAmount;p >= 0;p--) {
+            points.push({x:width / 2 + cutoutRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + cutoutRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
+          }
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Doughnut")
+          }
+        }
+        if(config.segmentShowStroke) {
+          ctx.lineWidth = config.segmentStrokeWidth;
+          ctx.strokeStyle = config.segmentStrokeColor;
+          ctx.stroke()
+        }
+        cumulativeAngle += segmentAngle
+      }
+    }
+  };
+  var Line = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString, valueHop, widestXLabel, xAxisLength, yAxisPosX, xAxisPosY, rotateLabels = 0;
+    calculateDrawingSizes();
+    valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : "";
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = Math.floor(scaleHeight / calculatedScale.steps);
+    calculateXAxisSize();
+    animationLoop(config, drawScale, drawLines, ctx);
+    function drawLines(animPc) {
+      for(var i = 0;i < data.datasets.length;i++) {
+        ctx.strokeStyle = data.datasets[i].strokeColor;
+        ctx.lineWidth = config.datasetStrokeWidth;
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop));
+        for(var j = 1;j < data.datasets[i].data.length;j++) {
+          if(config.bezierCurve) {
+            ctx.bezierCurveTo(xPos(j - 0.5), yPos(i, j - 1), xPos(j - 0.5), yPos(i, j), xPos(j), yPos(i, j))
+          }else {
+            ctx.lineTo(xPos(j), yPos(i, j))
+          }
+        }
+        var pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10;
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(animPc == 1) {
+            if(config.showTooltips === true) {
+              registerTooltip(ctx, {type:"circle", x:xPos(j), y:yPos(i, j), r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Line")
+            }
+          }
+        }
+        ctx.stroke();
+        if(config.datasetFill) {
+          ctx.lineTo(yAxisPosX + valueHop * (data.datasets[i].data.length - 1), xAxisPosY);
+          ctx.lineTo(yAxisPosX, xAxisPosY);
+          ctx.closePath();
+          ctx.fillStyle = data.datasets[i].fillColor;
+          ctx.fill()
+        }else {
+          ctx.closePath()
+        }
+        if(config.pointDot) {
+          ctx.fillStyle = data.datasets[i].pointColor;
+          ctx.strokeStyle = data.datasets[i].pointStrokeColor;
+          ctx.lineWidth = config.pointDotStrokeWidth;
+          for(var k = 0;k < data.datasets[i].data.length;k++) {
+            ctx.beginPath();
+            ctx.arc(yAxisPosX + valueHop * k, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop), config.pointDotRadius, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.stroke()
+          }
+        }
+      }
+      function yPos(dataSet, iteration) {
+        return xAxisPosY - animPc * calculateOffset(data.datasets[dataSet].data[iteration], calculatedScale, scaleHop)
+      }
+      function xPos(iteration) {
+        return yAxisPosX + valueHop * iteration
+      }
+    }
+    function drawScale() {
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(width - widestXLabel / 2 + 5, xAxisPosY);
+      ctx.lineTo(width - widestXLabel / 2 - xAxisLength - 5, xAxisPosY);
+      ctx.stroke();
+      if(rotateLabels > 0) {
+        ctx.save();
+        ctx.textAlign = "right"
+      }else {
+        ctx.textAlign = "center"
+      }
+      ctx.fillStyle = config.scaleFontColor;
+      for(var i = 0;i < data.labels.length;i++) {
+        ctx.save();
+        if(rotateLabels > 0) {
+          ctx.translate(yAxisPosX + i * valueHop, xAxisPosY + config.scaleFontSize);
+          ctx.rotate(-(rotateLabels * (Math.PI / 180)));
+          ctx.fillText(data.labels[i], 0, 0);
+          ctx.restore()
+        }else {
+          ctx.fillText(data.labels[i], yAxisPosX + i * valueHop, xAxisPosY + config.scaleFontSize + 3)
+        }
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX + i * valueHop, xAxisPosY + 3);
+        if(config.scaleShowGridLines && i > 0) {
+          ctx.lineWidth = config.scaleGridLineWidth;
+          ctx.strokeStyle = config.scaleGridLineColor;
+          ctx.lineTo(yAxisPosX + i * valueHop, 5)
+        }else {
+          ctx.lineTo(yAxisPosX + i * valueHop, xAxisPosY + 3)
+        }
+        ctx.stroke()
+      }
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(yAxisPosX, xAxisPosY + 5);
+      ctx.lineTo(yAxisPosX, 5);
+      ctx.stroke();
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      for(var j = 0;j < calculatedScale.steps;j++) {
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX - 3, xAxisPosY - (j + 1) * scaleHop);
+        if(config.scaleShowGridLines) {
+          ctx.lineWidth = config.scaleGridLineWidth;
+          ctx.strokeStyle = config.scaleGridLineColor;
+          ctx.lineTo(yAxisPosX + xAxisLength + 5, xAxisPosY - (j + 1) * scaleHop)
+        }else {
+          ctx.lineTo(yAxisPosX - 0.5, xAxisPosY - (j + 1) * scaleHop)
+        }
+        ctx.stroke();
+        if(config.scaleShowLabels) {
+          ctx.fillText(calculatedScale.labels[j], yAxisPosX - 8, xAxisPosY - (j + 1) * scaleHop)
+        }
+      }
+    }
+    function calculateXAxisSize() {
+      var longestText = 1;
+      if(config.scaleShowLabels) {
+        ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+        for(var i = 0;i < calculatedScale.labels.length;i++) {
+          var measuredText = ctx.measureText(calculatedScale.labels[i]).width;
+          longestText = measuredText > longestText ? measuredText : longestText
+        }
+        longestText += 10
+      }
+      xAxisLength = width - longestText - widestXLabel;
+      valueHop = Math.floor(xAxisLength / (data.labels.length - 1));
+      yAxisPosX = width - widestXLabel / 2 - xAxisLength;
+      xAxisPosY = scaleHeight + config.scaleFontSize / 2
+    }
+    function calculateDrawingSizes() {
+      maxSize = height;
+      ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+      widestXLabel = 1;
+      for(var i = 0;i < data.labels.length;i++) {
+        var textLength = ctx.measureText(data.labels[i]).width;
+        widestXLabel = textLength > widestXLabel ? textLength : widestXLabel
+      }
+      if(width / data.labels.length < widestXLabel) {
+        rotateLabels = 45;
+        if(width / data.labels.length < Math.cos(rotateLabels) * widestXLabel) {
+          rotateLabels = 90;
+          maxSize -= widestXLabel
+        }else {
+          maxSize -= Math.sin(rotateLabels) * widestXLabel
+        }
+      }else {
+        maxSize -= config.scaleFontSize
+      }
+      maxSize -= 5;
+      labelHeight = config.scaleFontSize;
+      maxSize -= labelHeight;
+      scaleHeight = maxSize
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.datasets.length;i++) {
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(data.datasets[i].data[j] > upperValue) {
+            upperValue = data.datasets[i].data[j]
+          }
+          if(data.datasets[i].data[j] < lowerValue) {
+            lowerValue = data.datasets[i].data[j]
+          }
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  var Bar = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString, valueHop, widestXLabel, xAxisLength, yAxisPosX, xAxisPosY, barWidth, rotateLabels = 0;
+    calculateDrawingSizes();
+    valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : "";
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = Math.floor(scaleHeight / calculatedScale.steps);
+    calculateXAxisSize();
+    animationLoop(config, drawScale, drawBars, ctx);
+    function drawBars(animPc) {
+      ctx.lineWidth = config.barStrokeWidth;
+      for(var i = 0;i < data.datasets.length;i++) {
+        ctx.fillStyle = data.datasets[i].fillColor;
+        ctx.strokeStyle = data.datasets[i].strokeColor;
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          var barOffset = yAxisPosX + config.barValueSpacing + valueHop * j + barWidth * i + config.barDatasetSpacing * i + config.barStrokeWidth * i;
+          ctx.beginPath();
+          ctx.moveTo(barOffset, xAxisPosY);
+          ctx.lineTo(barOffset, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop) + config.barStrokeWidth / 2);
+          ctx.lineTo(barOffset + barWidth, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop) + config.barStrokeWidth / 2);
+          ctx.lineTo(barOffset + barWidth, xAxisPosY);
+          if(config.barShowStroke) {
+            ctx.stroke()
+          }
+          ctx.closePath();
+          ctx.fill();
+          if(animPc == 1) {
+            var x = barOffset, height = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop), y = xAxisPosY - height, width = barWidth;
+            if(config.showTooltips === true) {
+              registerTooltip(ctx, {type:"rect", x:x, y:y, width:width, height:height}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Bar")
+            }
+          }
+        }
+      }
+    }
+    function drawScale() {
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(width - widestXLabel / 2 + 5, xAxisPosY);
+      ctx.lineTo(width - widestXLabel / 2 - xAxisLength - 5, xAxisPosY);
+      ctx.stroke();
+      if(rotateLabels > 0) {
+        ctx.save();
+        ctx.textAlign = "right"
+      }else {
+        ctx.textAlign = "center"
+      }
+      ctx.fillStyle = config.scaleFontColor;
+      for(var i = 0;i < data.labels.length;i++) {
+        ctx.save();
+        if(rotateLabels > 0) {
+          ctx.translate(yAxisPosX + i * valueHop, xAxisPosY + config.scaleFontSize);
+          ctx.rotate(-(rotateLabels * (Math.PI / 180)));
+          ctx.fillText(data.labels[i], 0, 0);
+          ctx.restore()
+        }else {
+          ctx.fillText(data.labels[i], yAxisPosX + i * valueHop + valueHop / 2, xAxisPosY + config.scaleFontSize + 3)
+        }
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX + (i + 1) * valueHop, xAxisPosY + 3);
+        ctx.lineWidth = config.scaleGridLineWidth;
+        ctx.strokeStyle = config.scaleGridLineColor;
+        ctx.lineTo(yAxisPosX + (i + 1) * valueHop, 5);
+        ctx.stroke()
+      }
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(yAxisPosX, xAxisPosY + 5);
+      ctx.lineTo(yAxisPosX, 5);
+      ctx.stroke();
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      for(var j = 0;j < calculatedScale.steps;j++) {
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX - 3, xAxisPosY - (j + 1) * scaleHop);
+        if(config.scaleShowGridLines) {
+          ctx.lineWidth = config.scaleGridLineWidth;
+          ctx.strokeStyle = config.scaleGridLineColor;
+          ctx.lineTo(yAxisPosX + xAxisLength + 5, xAxisPosY - (j + 1) * scaleHop)
+        }else {
+          ctx.lineTo(yAxisPosX - 0.5, xAxisPosY - (j + 1) * scaleHop)
+        }
+        ctx.stroke();
+        if(config.scaleShowLabels) {
+          ctx.fillText(calculatedScale.labels[j], yAxisPosX - 8, xAxisPosY - (j + 1) * scaleHop)
+        }
+      }
+    }
+    function calculateXAxisSize() {
+      var longestText = 1;
+      if(config.scaleShowLabels) {
+        ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+        for(var i = 0;i < calculatedScale.labels.length;i++) {
+          var measuredText = ctx.measureText(calculatedScale.labels[i]).width;
+          longestText = measuredText > longestText ? measuredText : longestText
+        }
+        longestText += 10
+      }
+      xAxisLength = width - longestText - widestXLabel;
+      valueHop = Math.floor(xAxisLength / data.labels.length);
+      barWidth = (valueHop - config.scaleGridLineWidth * 2 - config.barValueSpacing * 2 - (config.barDatasetSpacing * data.datasets.length - 1) - (config.barStrokeWidth / 2 * data.datasets.length - 1)) / data.datasets.length;
+      yAxisPosX = width - widestXLabel / 2 - xAxisLength;
+      xAxisPosY = scaleHeight + config.scaleFontSize / 2
+    }
+    function calculateDrawingSizes() {
+      maxSize = height;
+      ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+      widestXLabel = 1;
+      for(var i = 0;i < data.labels.length;i++) {
+        var textLength = ctx.measureText(data.labels[i]).width;
+        widestXLabel = textLength > widestXLabel ? textLength : widestXLabel
+      }
+      if(width / data.labels.length < widestXLabel) {
+        rotateLabels = 45;
+        if(width / data.labels.length < Math.cos(rotateLabels) * widestXLabel) {
+          rotateLabels = 90;
+          maxSize -= widestXLabel
+        }else {
+          maxSize -= Math.sin(rotateLabels) * widestXLabel
+        }
+      }else {
+        maxSize -= config.scaleFontSize
+      }
+      maxSize -= 5;
+      labelHeight = config.scaleFontSize;
+      maxSize -= labelHeight;
+      scaleHeight = maxSize
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.datasets.length;i++) {
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(data.datasets[i].data[j] > upperValue) {
+            upperValue = data.datasets[i].data[j]
+          }
+          if(data.datasets[i].data[j] < lowerValue) {
+            lowerValue = data.datasets[i].data[j]
+          }
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  function calculateOffset(val, calculatedScale, scaleHop) {
+    var outerValue = calculatedScale.steps * calculatedScale.stepValue;
+    var adjustedValue = val - calculatedScale.graphMin;
+    var scalingFactor = CapValue(adjustedValue / outerValue, 1, 0);
+    return scaleHop * calculatedScale.steps * scalingFactor
+  }
+  function animationLoop(config, drawScale, drawData, ctx) {
+    var animFrameAmount = config.animation ? 1 / CapValue(config.animationSteps, Number.MAX_VALUE, 1) : 1, easingFunction = animationOptions[config.animationEasing], percentAnimComplete = config.animation ? 0 : 1;
+    if(typeof drawScale !== "function") {
+      drawScale = function() {
+      }
+    }
+    requestAnimFrame(animLoop);
+    function animateFrame() {
+      var easeAdjustedAnimationPercent = config.animation ? CapValue(easingFunction(percentAnimComplete), null, 0) : 1;
+      clear(ctx);
+      if(config.scaleOverlay) {
+        drawData(easeAdjustedAnimationPercent);
+        drawScale()
+      }else {
+        drawScale();
+        drawData(easeAdjustedAnimationPercent)
+      }
+    }
+    function animLoop() {
+      percentAnimComplete += animFrameAmount;
+      animateFrame();
+      if(percentAnimComplete <= 1) {
+        requestAnimFrame(animLoop)
+      }else {
+        if(typeof config.onAnimationComplete == "function") {
+          config.onAnimationComplete()
+        }
+      }
+    }
+  }
+  var requestAnimFrame = function() {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+      window.setTimeout(callback, 1E3 / 60)
+    }
+  }();
+  function calculateScale(drawingHeight, maxSteps, minSteps, maxValue, minValue, labelTemplateString) {
+    var graphMin, graphMax, graphRange, stepValue, numberOfSteps, valueRange, rangeOrderOfMagnitude, decimalNum;
+    valueRange = maxValue - minValue;
+    rangeOrderOfMagnitude = calculateOrderOfMagnitude(valueRange);
+    graphMin = Math.floor(minValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude);
+    graphMax = Math.ceil(maxValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude);
+    graphRange = graphMax - graphMin;
+    stepValue = Math.pow(10, rangeOrderOfMagnitude);
+    numberOfSteps = Math.round(graphRange / stepValue);
+    while(numberOfSteps < minSteps || numberOfSteps > maxSteps) {
+      if(numberOfSteps < minSteps) {
+        stepValue /= 2;
+        numberOfSteps = Math.round(graphRange / stepValue)
+      }else {
+        stepValue *= 2;
+        numberOfSteps = Math.round(graphRange / stepValue)
+      }
+    }
+    var labels = [];
+    populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue);
+    return{steps:numberOfSteps, stepValue:stepValue, graphMin:graphMin, labels:labels};
+    function calculateOrderOfMagnitude(val) {
+      return Math.floor(Math.log(val) / Math.LN10)
+    }
+  }
+  function populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue) {
+    if(labelTemplateString) {
+      for(var i = 1;i < numberOfSteps + 1;i++) {
+        labels.push(tmpl(labelTemplateString, {value:(graphMin + stepValue * i).toFixed(getDecimalPlaces(stepValue))}))
+      }
+    }
+  }
+  function populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue) {
+    if(labelTemplateString) {
+      for(var i = 1;i < numberOfSteps + 1;i++) {
+        labels.push(tmpl(labelTemplateString, {value:(graphMin + stepValue * i).toFixed(getDecimalPlaces(stepValue))}))
+      }
+    }
+  }
+  function Max(array) {
+    return Math.max.apply(Math, array)
+  }
+  function Min(array) {
+    return Math.min.apply(Math, array)
+  }
+  function Default(userDeclared, valueIfFalse) {
+    if(!userDeclared) {
+      return valueIfFalse
+    }else {
+      return userDeclared
+    }
+  }
+  function isNumber(n) {
+    return!isNaN(parseFloat(n)) && isFinite(n)
+  }
+  function CapValue(valueToCap, maxValue, minValue) {
+    if(isNumber(maxValue)) {
+      if(valueToCap > maxValue) {
+        return maxValue
+      }
+    }
+    if(isNumber(minValue)) {
+      if(valueToCap < minValue) {
+        return minValue
+      }
+    }
+    return valueToCap
+  }
+  function getDecimalPlaces(num) {
+    var numberOfDecimalPlaces;
+    if(num % 1 != 0) {
+      return num.toString().split(".")[1].length
+    }else {
+      return 0
+    }
+  }
+  function mergeChartConfig(defaults, userDefined) {
+    var returnObj = {};
+    for(var attrname in defaults) {
+      returnObj[attrname] = defaults[attrname]
+    }
+    for(var attrname in userDefined) {
+      if(typeof userDefined[attrname] === "object" && defaults[attrname]) {
+        returnObj[attrname] = mergeChartConfig(defaults[attrname], userDefined[attrname])
+      }else {
+        returnObj[attrname] = userDefined[attrname]
+      }
+    }
+    return returnObj
+  }
+  var cache = {};
+  function tmpl(str, data) {
+    var fn = !/\W/.test(str) ? cache[str] = cache[str] || tmpl(document.getElementById(str).innerHTML) : new Function("obj", "var p=[],print=function(){p.push.apply(p,arguments);};" + "with(obj){p.push('" + str.replace(/[\r\t\n]/g, " ").split("<%").join("\t").replace(/((^|%>)[^\t]*)'/g, "$1\r").replace(/\t=(.*?)%>/g, "',$1,'").split("\t").join("');").split("%>").join("p.push('").split("\r").join("\\'") + "');}return p.join('');");
+    return data ? fn(data) : fn
+  }
+  function getFadeColor(percent, primColor, secColor) {
+    var pseudoEl = document.createElement("div"), rgbPrim, rgbSec;
+    pseudoEl.style.color = primColor;
+    document.body.appendChild(pseudoEl);
+    rgbPrim = window.getComputedStyle(pseudoEl).color;
+    pseudoEl.style.color = secColor;
+    rgbSec = window.getComputedStyle(pseudoEl).color;
+    var regex = /rgb *\( *([0-9]{1,3}) *, *([0-9]{1,3}) *, *([0-9]{1,3}) *\)/, valuesP = regex.exec(rgbPrim), valuesS = regex.exec(rgbSec), rP = Math.round(parseFloat(valuesP[1])), gP = Math.round(parseFloat(valuesP[2])), bP = Math.round(parseFloat(valuesP[3])), rS = Math.round(parseFloat(valuesS[1])), gS = Math.round(parseFloat(valuesS[2])), bS = Math.round(parseFloat(valuesS[3])), rCur = parseInt((rP - rS) * percent + rS), gCur = parseInt((gP - gS) * percent + gS), bCur = parseInt((bP - bS) * percent + 
+    bS);
+    pseudoEl.parentNode.removeChild(pseudoEl);
+    return"rgb(" + rCur + "," + gCur + "," + bCur + ")"
+  }
+};
 var VISH = VISH || {};
 VISH.VERSION = "0.5";
 VISH.AUTHORS = "GING";
@@ -6937,7 +8409,7 @@ VISH.Text = function(V, $, undefined) {
   var aftersetupSize = function(increase) {
     increase = increase * _correctionFactor(increase);
     var reference_font_size = V.Constant.TextBase;
-    var texts = $("article");
+    var texts = $("article, #fancybox-content");
     $(texts).css("font-size", reference_font_size * increase + "px")
   };
   var _correctionFactor = function(factor) {
@@ -8077,78 +9549,6 @@ VISH.Utils = function(V, undefined) {
     dimensions.push(height);
     return dimensions
   };
-  var loadTab = function(tab_id) {
-    $(".joyride-close-tip").click();
-    $(".fancy_tab_content").hide();
-    $("#" + tab_id + "_content").show();
-    $(".fancy_tab").removeClass("fancy_selected");
-    $("#" + tab_id).addClass("fancy_selected");
-    $(".help_in_fancybox").hide();
-    $("#" + tab_id + "_help").show();
-    switch(tab_id) {
-      case "tab_templates":
-        break;
-      case "tab_flashcards_repo":
-        V.Editor.Flashcard.Repository.onLoadTab();
-        break;
-      case "tab_pic_from_url":
-        V.Editor.Image.onLoadTab("url");
-        break;
-      case "tab_pic_upload":
-        V.Editor.Image.onLoadTab("upload");
-        break;
-      case "tab_pic_repo":
-        V.Editor.Image.Repository.onLoadTab();
-        break;
-      case "tab_pic_flikr":
-        V.Editor.Image.Flikr.onLoadTab();
-        break;
-      case "tab_video_from_url":
-        V.Editor.Video.onLoadTab();
-        break;
-      case "tab_video_repo":
-        V.Editor.Video.Repository.onLoadTab();
-        break;
-      case "tab_video_youtube":
-        V.Editor.Video.Youtube.onLoadTab();
-        break;
-      case "tab_video_vimeo":
-        V.Editor.Video.Vimeo.onLoadTab();
-        break;
-      case "tab_object_from_url":
-        V.Editor.Object.onLoadTab("url");
-        break;
-      case "tab_object_from_web":
-        V.Editor.Object.Web.onLoadTab();
-        break;
-      case "tab_object_snapshot":
-        V.Editor.Object.Snapshot.onLoadTab();
-        break;
-      case "tab_object_upload":
-        V.Editor.Object.onLoadTab("upload");
-        break;
-      case "tab_object_repo":
-        V.Editor.Object.Repository.onLoadTab();
-        break;
-      case "tab_live_webcam":
-        V.Editor.Object.Live.onLoadTab("webcam");
-        break;
-      case "tab_live_micro":
-        V.Editor.Object.Live.onLoadTab("micro");
-        break;
-      case "tab_quiz_session":
-        V.Quiz.activatePolling(false);
-        break;
-      case "tab_quiz_stats_bars":
-        V.Quiz.activatePolling(true);
-        break;
-      case "tab_quiz_stats_pie":
-        V.Quiz.activatePolling(true);
-        break;
-      default:
-        break
-    }
-  };
   var getFontSizeFromStyle = function(style) {
     if(!style) {
       return
@@ -8194,7 +9594,7 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  loadTab:loadTab, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;
@@ -8833,9 +10233,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
     if(!render_full) {
       if(V.Slides.isCurrentFirstSlide()) {
-        $("#page-switcher-start").hide()
+        $("#page-switcher-start").addClass("disabledarrow")
       }else {
-        $("#page-switcher-start").show()
+        $("#page-switcher-start").removeClass("disabledarrow")
       }
       $("#page-switcher-end").show()
     }
@@ -8907,25 +10307,26 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var increaseW = finalW / 800;
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
+    decideIfPageSwitcher();
+    V.Text.aftersetupSize(increase, increaseW);
+    V.SnapshotPlayer.aftersetupSize(increase, increaseW);
+    V.ObjectPlayer.aftersetupSize(increase, increaseW);
+    V.VirtualTour.aftersetupSize(increase, increaseW);
+    _updateFancyboxAfterSetupSize()
+  };
+  var _updateFancyboxAfterSetupSize = function() {
     if($("#fancybox-content:empty").length === 0) {
       $("#fancybox-wrap").width($(".current").width() + 100);
       $("#fancybox-wrap").height($(".current").height() + 70);
       $("#fancybox-wrap").css("top", $(".current").offset().top + "px");
       $("#fancybox-wrap").css("left", $(".current").offset().left + "px");
       setTimeout(function() {
-        $("#fancybox-wrap").height($(".current").height() + 70);
         $("#fancybox-content").width("100%");
         $("#fancybox-content").height("100%");
         $("#fancybox-content > div").width("100%");
         $("#fancybox-content > div").height("100%")
-      }, 300);
-      V.Quiz.testFullScreen()
+      }, 300)
     }
-    decideIfPageSwitcher();
-    V.Text.aftersetupSize(increase, increaseW);
-    V.SnapshotPlayer.aftersetupSize(increase, increaseW);
-    V.ObjectPlayer.aftersetupSize(increase, increaseW);
-    V.VirtualTour.aftersetupSize(increase, increaseW)
   };
   var _enableFullScreen = function(fullscreen) {
     if(can_use_nativeFs) {
@@ -10026,6 +11427,9 @@ VISH.EventsNotifier = function(V, $, undefined) {
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
   var quizSessionId;
+  var currentQuiz;
+  var currentQuizSession;
+  var currentPolling;
   var initBeforeRender = function(presentation) {
     if(presentation.type === V.Constant.QUIZ_SIMPLE) {
       quizMode = V.Constant.QZ_MODE.RT;
@@ -10037,6 +11441,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var init = function() {
+    $("#prompt2name").watermark("Quiz Session Name");
     V.Quiz.API.init();
     V.Quiz.MC.init();
     V.Quiz.TF.init();
@@ -10044,7 +11449,33 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _loadEvents = function() {
     $(document).on("click", ".quizAnswerButton", _onAnswerQuiz);
-    $(document).on("click", ".quizStartButton", _onStartQuiz)
+    $(document).on("click", ".quizStartButton", _onStartQuiz);
+    $(document).on("click", ".quizStopButton", _onStopQuiz);
+    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"0%", "height":"0%", "padding":0, "autoScale":true, "onStart":function(data) {
+      loadTab("tab_quiz_session");
+      $("#fancybox-close").height(0);
+      $("#fancybox-close").css("padding", 0)
+    }, "onComplete":function(data) {
+      setTimeout(function() {
+        $("#fancybox-close").height("22px");
+        $("#fancybox-close").css("padding", "10px");
+        $("#fancybox-close").css("padding-left", "4px");
+        $("#fancybox-wrap").css("margin-top", "0px");
+        $("#fancybox-wrap").width($(".current").width() + 100);
+        $("#fancybox-wrap").height($(".current").height() + 70);
+        $(".outer_box").css("width", "100%");
+        $(".outer_box").height($(".current").height() + 70);
+        $("#fancybox-wrap").css("top", $(".current").offset().top + "px");
+        $("#fancybox-wrap").css("left", $(".current").offset().left + "px");
+        $("#fancybox-content").width("100%");
+        $("#fancybox-content").height("100%");
+        $("#fancybox-content > div").width("100%");
+        $("#fancybox-content > div").height("100%");
+        $("#fancybox-wrap").show()
+      }, 300)
+    }, "onClosed":function() {
+      _stopPolling()
+    }})
   };
   var _onAnswerQuiz = function(event) {
     var quiz = $("div.quizzContainer").has(event.target);
@@ -10063,30 +11494,63 @@ VISH.Quiz = function(V, $, undefined) {
       return
     }
     if(report.empty === true) {
-      alert("Answer the quiz before send");
+      _showAlert("prompt3_alert");
       return
     }
     quizModule.disableQuiz(quiz);
+    _loadingAnswerButton(quiz);
     var answers = report.answers;
     V.Debugging.log(answers);
     V.Quiz.API.sendAnwers(answers, quizSessionId, function(data) {
-      alert("Your answer has been submitted");
-      console.log(data)
+      disableAnswerButton(quiz);
+      _showAlert("prompt4_alert")
     }, function(error) {
-      alert("Error on submit answer")
+      disableAnswerButton(quiz);
+      _showAlert("prompt5_alert")
     })
   };
-  var _onStartQuiz = function() {
-    var quizJSON = _getQuizJSONFromSlide(V.Slides.getCurrentSlide());
-    V.Quiz.API.startQuizSession(quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
+  var _onStartQuiz = function(event) {
+    var startButton = $(event.target);
+    var quiz = $("div.quizzContainer").has(startButton);
+    switch($(startButton).attr("quizStatus")) {
+      case "running":
+        $("#fancybox-close").hide();
+        $("a#addQuizSessionFancybox").trigger("click");
+        break;
+      case "loading":
+        break;
+      case "stop":
+      ;
+      default:
+        _startNewQuizSession(quiz);
+        break
+    }
   };
-  var _onQuizSessionReceived = function(quizSession) {
-    console.log("_onQuizSessionReceived");
-    console.log(quizSession)
+  var _startNewQuizSession = function(quiz) {
+    if(currentQuizSession) {
+      _showAlert("prompt1_alert");
+      return
+    }
+    _loadingLaunchButton(quiz);
+    var quizJSON = _getQuizJSONFromQuiz(quiz);
+    V.Quiz.API.startQuizSession(quiz, quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
   };
-  var _onQuizSessionReceivedError = function(error) {
-    console.log("_OnQuizSessionReceivedError");
-    console.log(error)
+  var _onQuizSessionReceived = function(quiz, quizSession) {
+    V.Debugging.log("_onQuizSessionReceived");
+    V.Debugging.log(quizSession);
+    currentQuiz = quiz;
+    currentQuizSession = quizSession;
+    _runningLaunchButton(quiz);
+    $("a#addQuizSessionFancybox").trigger("click")
+  };
+  var _onQuizSessionReceivedError = function(quiz, error) {
+    V.Debugging.log("_OnQuizSessionReceivedError");
+    V.Debugging.log(error);
+    _enableLaunchButton(quiz)
+  };
+  var _getQuizJSONFromQuiz = function(quiz) {
+    var slide = $("article").has(quiz);
+    return _getQuizJSONFromSlide(slide)
   };
   var _getQuizJSONFromSlide = function(slide) {
     var slideId = $(slide).attr("id");
@@ -10107,6 +11571,44 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }
   };
+  var _onStopQuiz = function(event) {
+    $.fancybox($("#prompt2_alert").html(), {"autoDimensions":false, "scrolling":"no", "width":$(".current").width(), "height":Math.min(200, $(".current").height()), "showCloseButton":false, "padding":5, "onCleanup":function() {
+    }, "onClosed":function() {
+    }})
+  };
+  var onCloseQuizSession = function(saving) {
+    var name = undefined;
+    switch(saving) {
+      case "yes":
+        $(".prompt2name").each(function(index, pn) {
+          if($(pn).is(":visible")) {
+            name = $(pn).val()
+          }
+        });
+        $(".prompt_button_viewer2").addClass("quizStartButtonLoading");
+        _closeQuizSession(name);
+        break;
+      case "no":
+        $(".prompt_button_viewer1").addClass("quizStartButtonLoading");
+        _closeQuizSession();
+        break;
+      case "cancel":
+      ;
+      default:
+        $.fancybox.close();
+        break
+    }
+  };
+  var _closeQuizSession = function(name) {
+    V.Quiz.API.closeQuizSession(currentQuizSession.id, name, function(data) {
+      $.fancybox.close();
+      currentQuiz = null;
+      currentQuizSession = null;
+      $(".prompt_button_viewer1").removeClass("quizStartButtonLoading");
+      $(".prompt_button_viewer2").removeClass("quizStartButtonLoading");
+      _enableLaunchButton(currentQuiz)
+    })
+  };
   var render = function(slide, template) {
     var quizModule = _getQuizModule(slide.quiztype);
     if(quizModule) {
@@ -10115,8 +11617,8 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged()) {
-      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Start'/>");
+    if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
+      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Launch'/>");
       $(quizButtons).prepend(startButton)
     }
     if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
@@ -10125,10 +11627,116 @@ VISH.Quiz = function(V, $, undefined) {
     }
     return quizButtons
   };
+  var _enableAnswerButton = function(quiz) {
+    var answerButton = $(quiz).find("input.quizAnswerButton");
+    $(answerButton).removeAttr("disabled");
+    $(answerButton).removeClass("quizStartButtonLoading");
+    $(answerButton).removeAttr("quizStatus")
+  };
+  var _loadingAnswerButton = function(quiz) {
+    var answerButton = $(quiz).find("input.quizAnswerButton");
+    $(answerButton).attr("disabled", "disabled");
+    $(answerButton).addClass("quizStartButtonLoading");
+    $(answerButton).attr("quizStatus", "loading")
+  };
   var disableAnswerButton = function(quiz) {
-    var answeButton = $(quiz).find("input.quizAnswerButton");
-    $(answeButton).attr("disabled", "disabled");
-    $(answeButton).addClass("quizAnswerButtonDisabled")
+    var answerButton = $(quiz).find("input.quizAnswerButton");
+    $(answerButton).attr("disabled", "disabled");
+    $(answerButton).addClass("quizAnswerButtonDisabled");
+    $(answerButton).removeClass("quizStartButtonLoading");
+    $(answerButton).attr("quizStatus", "disabled")
+  };
+  var _enableLaunchButton = function(quiz) {
+    var startButton = $(quiz).find("input.quizStartButton");
+    $(startButton).removeAttr("disabled");
+    $(startButton).removeClass("quizStartButtonLoading");
+    $(startButton).removeAttr("quizStatus");
+    $(startButton).attr("value", "Launch")
+  };
+  var _loadingLaunchButton = function(quiz) {
+    var startButton = $(quiz).find("input.quizStartButton");
+    $(startButton).attr("disabled", "disabled");
+    $(startButton).addClass("quizStartButtonLoading");
+    $(startButton).attr("quizStatus", "loading");
+    $(startButton).attr("value", "Launch")
+  };
+  var _runningLaunchButton = function(quiz) {
+    var startButton = $(quiz).find("input.quizStartButton");
+    $(startButton).removeAttr("disabled");
+    $(startButton).removeClass("quizStartButtonLoading");
+    $(startButton).attr("quizStatus", "running");
+    $(startButton).attr("value", "Options")
+  };
+  var loadTab = function(tab_id) {
+    $(".fancy_viewer_tab_content").hide();
+    $("#" + tab_id + "_content").show();
+    $(".fancy_viewer_tab").removeClass("fancy_selected");
+    $("#" + tab_id).addClass("fancy_selected");
+    $(".help_in_fancybox_viewer").hide();
+    $("#" + tab_id + "_help").show();
+    switch(tab_id) {
+      case "tab_quiz_session":
+        _loadQuizSession();
+        break;
+      case "tab_quiz_stats":
+        _loadStats();
+        break;
+      default:
+        break
+    }
+  };
+  var _loadQuizSession = function() {
+    if(!currentQuizSession) {
+      return
+    }
+    var myA = $("#tab_quiz_session_url_link");
+    $(myA).attr("href", currentQuizSession.url);
+    $(myA).html("<p id='tab_quiz_session_url'>" + currentQuizSession.url + "</p>")
+  };
+  var _loadStats = function() {
+    V.Quiz.API.getResults(currentQuizSession.id, function(results) {
+      _drawResults(results, {"first":true});
+      _startPolling()
+    })
+  };
+  var _startPolling = function() {
+    _stopPolling();
+    currentPolling = setInterval(function() {
+      if(!currentQuizSession) {
+        _stopPolling();
+        return
+      }
+      V.Quiz.API.getResults(currentQuizSession.id, function(results) {
+        _drawResults(results, {"first":false})
+      })
+    }, 2E3)
+  };
+  var _stopPolling = function() {
+    if(currentPolling) {
+      clearInterval(currentPolling)
+    }
+  };
+  var _drawResults = function(results, options) {
+    var canvas = $("#quiz_chart");
+    var desiredWidth = $("#fancybox-content").width();
+    var desiredHeight = $("#fancybox-content").height() * 0.8;
+    $(canvas).width(desiredWidth);
+    $(canvas).height(desiredHeight);
+    $(canvas).attr("width", desiredWidth);
+    $(canvas).attr("height", desiredHeight);
+    var answers = _getAnswers(results);
+    var quizModule = _getQuizModule($(currentQuiz).attr("type"));
+    if(quizModule) {
+      quizModule.drawAnswers(currentQuiz, answers, options)
+    }
+  };
+  var _getAnswers = function(results) {
+    var answers = [];
+    var rL = results.length;
+    for(var i = 0;i < rL;i++) {
+      answers.push(JSON.parse(results[i].answer))
+    }
+    return answers
   };
   var _getQuizModule = function(quiz_type) {
     switch(quiz_type) {
@@ -10167,10 +11775,15 @@ VISH.Quiz = function(V, $, undefined) {
         break
     }
   };
-  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton}
+  var _showAlert = function(alertId) {
+    $.fancybox($("#" + alertId).html(), {"autoDimensions":false, "scrolling":"no", "width":$(".current").width(), "height":Math.min(200, $(".current").height()), "showCloseButton":false, "padding":5})
+  };
+  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton, loadTab:loadTab, onCloseQuizSession:onCloseQuizSession}
 }(VISH, jQuery);
 VISH.Quiz.MC = function(V, $, undefined) {
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
+  var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
+  var pieLetterColor = ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"];
   var choices = {};
   var init = function() {
     _loadEvents()
@@ -10179,7 +11792,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
   };
   var render = function(slide, template) {
     var quizId = V.Utils.getId();
-    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + VISH.Constant.QZ_TYPE.MCHOICE + "'></div>");
+    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + V.Constant.QZ_TYPE.MCHOICE + "'></div>");
     var multipleAnswer = false;
     var inputType = "radio";
     if(slide.extras && slide.extras.multipleAnswer === true) {
@@ -10262,7 +11875,43 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var getChoicesLetters = function() {
     return choicesLetters
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz}
+  var drawAnswers = function(quiz, answersList, options) {
+    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
+    var pieFragments = [];
+    var data = [];
+    for(var i = 0;i < nAnswers;i++) {
+      pieFragments[i] = {};
+      pieFragments[i].value = 0;
+      pieFragments[i].label = choicesLetters[i];
+      pieFragments[i].color = pieBackgroundColor[i];
+      pieFragments[i].labelColor = pieLetterColor[i];
+      pieFragments[i].labelFontSize = "16"
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          pieFragments[index].value++
+        }
+      }
+    }
+    for(var i = 0;i < nAnswers;i++) {
+      data.push(pieFragments[i])
+    }
+    var canvas = $("#quiz_chart");
+    var ctx = $(canvas).get(0).getContext("2d");
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
+    }
+    var options = {showTooltips:false, animation:animation};
+    var myNewChart = (new Chart(ctx)).Pie(data, options)
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
 }(VISH, jQuery);
 VISH.Quiz.TF = function(V, $, undefined) {
   var choices = {};
@@ -10273,7 +11922,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
   };
   var render = function(slide, template) {
     var quizId = V.Utils.getId();
-    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + VISH.Constant.QZ_TYPE.TF + "'></div>");
+    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + V.Constant.QZ_TYPE.TF + "'></div>");
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
     $(questionWrapper).html(slide.question.wysiwygValue);
     $(container).append(questionWrapper);
@@ -10286,7 +11935,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
       var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true' value='" + index + "'/></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' value='" + index + "'/></td>");
-      var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + VISH.Quiz.MC.getChoicesLetters()[i] + "</span></td>");
+      var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + V.Quiz.MC.getChoicesLetters()[i] + "</span></td>");
       var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
       $(optionText).html(option.wysiwygValue);
       $(optionWrapper).append(optionBox1);
@@ -10361,28 +12010,78 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(quiz).find("input[type='radio']").attr("disabled", "disabled");
     V.Quiz.disableAnswerButton(quiz)
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz}
+  var drawAnswers = function(quiz, answersList, options) {
+    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
+    var labels = [];
+    var dataTrue = [];
+    var dataFalse = [];
+    var maxValue = 0;
+    var scaleSteps = 10;
+    for(var i = 0;i < nAnswers;i++) {
+      labels[i] = "V       " + V.Quiz.MC.getChoicesLetters()[i] + "       F";
+      dataTrue[i] = 0;
+      dataFalse[i] = 0
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          dataTrue[index]++
+        }else {
+          dataFalse[index]++
+        }
+      }
+    }
+    for(var l = 0;l < nAnswers;l++) {
+      if(dataTrue[i] > maxValue) {
+        maxValue = dataTrue[i]
+      }
+      if(dataFalse[i] > maxValue) {
+        maxValue = dataFalse[i]
+      }
+    }
+    if(maxValue < 10) {
+      scaleSteps = Math.max(1, maxValue)
+    }
+    var canvas = $("#quiz_chart");
+    var ctx = $(canvas).get(0).getContext("2d");
+    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
+    }
+    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
+    var myNewChart = (new Chart(ctx)).Bar(data, options)
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
-  var startQuizSession = function(quiz, successCallback, failCallback) {
+  var startQuizSession = function(quiz, quizJSON, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
-      var params = {"quiz":JSON.stringify(quiz), "authenticity_token":V.User.getToken()};
+      var params = {"quiz":JSON.stringify(quizJSON), "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
         if(typeof successCallback == "function") {
-          successCallback(data)
+          successCallback(quiz, data)
         }
       }, error:function(error) {
-        failCallback(error)
+        failCallback(quiz, error)
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-        V.Debugging.log("No server case");
-        var quiz_session = {id:"10000" * (1 + Math.random())};
+        var quizSessionId = Math.ceil(1E4 * (1 + Math.random())).toString();
+        var url = "http://" + window.location.host + "/quiz_sessions/" + quizSessionId;
+        var quiz_session = {id:quizSessionId, url:url};
         if(typeof successCallback == "function") {
-          successCallback(quiz_session)
+          setTimeout(function() {
+            successCallback(quiz, quiz_session)
+          }, 1E3)
         }
       }
     }
@@ -10399,6 +12098,12 @@ VISH.Quiz.API = function(V, $, undefined) {
         failCallback(error)
       }});
       return null
+    }else {
+      if(typeof successCallback == "function") {
+        setTimeout(function() {
+          successCallback()
+        }, 1E3)
+      }
     }
   };
   var getResults = function(quizSessionId, successCallback, failCallback) {
@@ -10414,72 +12119,44 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        var data = [[{"no":"4", "answer":"true"}], [{"no":"4", "answer":"true"}], [{"no":"2", "answer":"true"}]];
+        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}];
+        if(Math.random() < 0.5) {
+          data = [{"answer":'[{"no":"1","answer":"false"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}, {"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}]
+        }
+        if(typeof successCallback == "function") {
+          setTimeout(function() {
+            successCallback(data)
+          }, 1E3)
+        }
+      }
+    }
+  };
+  var closeQuizSession = function(quizSessionId, name, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration()["mode"] == "vish") {
+      var send_type = "GET";
+      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
+      if(typeof name == "string") {
+        params["name"] = name
+      }
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/close", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
-      }
-    }
-  };
-  var deleteQuizSession = function(quiz_session_id, successCallback, failCallback, quiz_name) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
-      var quizName;
-      if(quiz_name) {
-        quizName = quiz_name
-      }else {
-        quizName = ""
-      }
-      var send_type = "DELETE";
-      var params = {"id":quiz_session_id, "authenticity_token":V.User.getToken(), "name":quizName};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
-        var results = data;
-        if(typeof successCallback == "function") {
-          successCallback(results)
-        }
       }, error:function(error) {
         failCallback(error)
-      }});
-      return null
+      }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        V.Debugging.log("No server case");
-        var results = {"quiz_session_id":19, "quiz_id":3, "results":{"b":4, "a":2, "c":1, "d":1}};
+        var data = {"processed":"true"};
         if(typeof successCallback == "function") {
-          successCallback(results)
+          setTimeout(function() {
+            successCallback(data)
+          }, 1E3)
         }
       }
     }
   };
-  var getQuizSessionResults = function(quiz_active_session_id, successCallback, failCallback) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
-      var send_type = "GET";
-      var params = {"id":quiz_active_session_id, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id + "/results.json", data:params, success:function(data) {
-        var results = data;
-        if(typeof successCallback == "function") {
-          successCallback(results)
-        }
-      }, error:function(error) {
-        failCallback(error)
-      }});
-      return null
-    }else {
-      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        V.Debugging.log("No server case: and quiz session get results: " + quiz_active_session_id);
-        if(quiz_active_session_id == 98988) {
-          var results = {"quiz_session_id":98988, "quiz_id":12, "results":{"b":4, "a":2, "c":1, "d":1}}
-        }else {
-          if(quiz_active_session_id == 98955) {
-            var results = {"quiz_session_id":98955, "quiz_id":13, "results":{"b":8, "a":4, "c":4}}
-          }
-        }
-        if(typeof successCallback == "function") {
-          successCallback(results)
-        }
-      }
-    }
-  };
-  return{init:init, startQuizSession:startQuizSession, sendAnwers:sendAnwers, getResults:getResults}
+  return{init:init, startQuizSession:startQuizSession, closeQuizSession:closeQuizSession, sendAnwers:sendAnwers, getResults:getResults}
 }(VISH, jQuery);
 VISH.Events.Mobile = function(V, $, undefined) {
   var PM_TOUCH_SENSITIVITY = 20;
@@ -10715,6 +12392,13 @@ VISH.Recommendations = function(V, $, undefined) {
     }})
   };
   var generateFancybox = function() {
+    if(!generated) {
+      if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
+      }else {
+        _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+      }
+      generated = true
+    }
   };
   var _fillFancyboxWithData = function(data) {
     if(!data || !data.items) {

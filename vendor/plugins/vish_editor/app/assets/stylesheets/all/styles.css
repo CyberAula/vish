@@ -1,4 +1,5 @@
 /*
+  Derived from
   Google HTML5 slides template
   Authors: Luke Mahé (code)
            Marcin Wichary (code and design)
@@ -8,19 +9,7 @@
   URL: http://code.google.com/p/html5slides/
 */
 
-/* Framework */
-
 .slides > article:not(.fill)::before {
-  content: '';
-  display: block;
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-
-.slides2 > article:not(.fill)::before {
   content: '';
   display: block;
   width: 100px;
@@ -209,32 +198,59 @@ this can not be done with show() and hide() because then it remains with display
 	outline: none;
 }
 
+.disabledarrow {
+  background-position: -120px -120px !important;
+  cursor: auto !important; 
+}
+
 
 
 #page-switcher-end{
-	right: 0px;
+    background-image: url("/assets/arrows.png");
+  background-position: -160px -160px;
+  background-repeat: no-repeat;
+	right: 23%;
   cursor: pointer;
-}
-
-#page-switcher-start:hover{
-	color: #ededed;
-}
-
-#page-switcher-start{
-	left: 0px;
-  cursor: pointer;
+    height: 30px;
+  width: 20px;
+  top: 16%;
 }
 
 #page-switcher-end:hover{
-	color: #d7d7d7;
+  background-position: -200px -200px;
 }
 
-#page-fullscreen{
-  background-image: url("/assets/icons/fullscreen_all.png");
+#page-switcher-end:active{
+  background-position: -240px -240px;
+}
+
+#page-switcher-start:hover{
+	background-position: -40px -40px;
+}
+
+#page-switcher-start:active{
+  background-position: -80px -80px;
+}
+
+#page-switcher-start{
+  background-image: url("/assets/arrows.png");
   background-position: 0 0;
   background-repeat: no-repeat;
-  height: 40px;
-  width: 45px;
+	left: 31%;
+  cursor: pointer;
+  height: 30px;
+  width: 20px;
+  top: 16%;
+}
+
+
+#page-fullscreen{
+  background-image: url("/assets/fullscreen.png");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  padding: 15px;
+  height: 15px;
+  width: 15px;
   position: absolute;
   right: 0;
   bottom: 0;
@@ -243,33 +259,41 @@ this can not be done with show() and hide() because then it remains with display
   border: medium none;
   opacity: 1;
   cursor: pointer;
+  z-index: 2;
 }
 
 #page-fullscreen:hover{
-    background-position:0px -41px;
+    background-position:-40px -40px !important;
+}
+
+#page-fullscreen:active{
+    background-position:-120px -120px !important;
 }
 
 #slide-counter {
-	z-index: 10;
-	font-family: Helvetica;
-	font-size:18px;
-	text-align: center;
-	margin-top: 10px;
+z-index: 10;
+font-family: Helvetica;
+font-size: 1.2em;
+text-align: center;
+margin-top: 8px;
 }
 
 .viewbar {
-	background-image: url(/assets/viewbar.png) ;
+  background-image: -moz-linear-gradient(#ececec,#a8a8a8);
+  background-image: -webkit-gradient(linear,0% 0,0% 100%,from(#ececec),to(#a8a8a8));
+  background-image: -o-linear-gradient(#ececec,#a8a8a8);
+  background-image: -ms-linear-gradient(#ececec,#a8a8a8);
 	height: 40px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    bottom: 0;
-    left: 50%;
-    margin-left: -200px;
-    opacity: 1.0;
-    position: absolute;
-    text-align: center;
-    width: 430px;
+  bottom: 0;
+  opacity: 1.0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #888;
+  border-top: 1px solid #ccc;
+  z-index: 1;
 }
+
 
 /* Style for Texts (CkEditor version) */
 article {
@@ -529,10 +553,12 @@ button#closeButton {
 
 #back_arrow{
   left: 0%;
+  z-index: 0;
 }
 
 #forward_arrow{
   right: 0%;
+  z-index: 0;
 }
 
 /* Watermark */
@@ -543,4 +569,196 @@ button#closeButton {
   left: -8px;
   opacity: 0.6;
   z-index: 2000;
+}
+
+
+/***** Real Time Quizzes *****/
+
+.quizStartButtonLoading{
+    color: #ccc !important;
+    cursor: wait !important;
+}
+
+#tab_quiz_session_url{
+  text-align: center;
+  margin-top: 20%;
+  color: blue;
+  font-size: 3.2em;
+  font-family: Helvetica;
+  font-weight: bold;
+}
+
+a.link_quiz_session_url{
+  text-decoration: none;
+}
+
+div#tab_quiz_session_results{
+  height: 100%;
+  width: 100%;
+}
+
+#quiz_chart{
+  margin-top: 5%;
+}
+
+.quizStopButton{
+  height: 6% !important;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 2%;
+}
+
+/***** Fancybox tabs (for quizzes) ****************/
+
+.outer_box_viewer{
+  width: 800px;
+  height: 600px;
+}
+
+.fancy_viewer_tabs{
+  border-bottom: 1px solid #ff005d;
+  border-radius: 5px 5px 0px 0px;
+  moz-border-radius: 5px 5px 0px 0px;
+  webkit-border-radius: 5px 5px 0px 0px;
+}
+
+.fancy_viewer_tabs ul{
+  width: auto;
+  list-style-type: none;
+  background-color: #ffffff;
+  color: #ff005d;
+  margin: 0px;
+  line-height: 1.5;
+  font-weight: bold;
+  padding: 0px;
+  border-radius: 5px 5px 0px 0px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px; 
+}
+
+.fancy_viewer_tabs li{
+  display: inline-block;
+  margin-bottom: -1px;
+}
+
+.fancy_viewer_tabs li a{
+  display:block;
+  padding: 0.5em 1.5em;
+  text-decoration: none;
+  background: transparent;
+  color: #ff005d;
+  font-size: 1.5em;
+  font-family: Helvetica;
+  font-weight: bold;
+  border-radius: 5px 5px 0px 0px;
+  -moz-border-radius: 5px 5px 0px 0px;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  border-bottom-color: transparent;
+}
+
+.fancy_viewer_tabs li a:hover{
+  border: 1px solid #ff005d;
+  border-bottom-color: #fff;
+  background: #fff;
+}
+
+.fancy_viewer_tabs li a.fancy_selected{
+  background: #ffffff;
+  color: #ff005d;
+  border: 1px solid #ff005d;
+  border-bottom-color: transparent;
+}
+
+.fancy_viewer_tab_content{
+  text-align:left;
+}
+
+.help_in_fancybox_viewer{
+  background-image:url(/assets/icons/helptutorial_circle.png);
+  position: absolute;
+  margin-top: -1px;
+  margin-right: -5px;
+  top: 0px;
+  right: 30px;
+  margin-top: -1px;
+  margin-right: -5px;
+}
+
+.help_in_fancybox_viewer:hover{
+  background-image:url(/assets/icons/helptutorial_circle_hover.png);
+  cursor: pointer;
+}
+
+.tab_quiz_session_content{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+/*
+ * PROMPTS
+ */
+
+.prompt_text_container_viewer{
+  height: 60%;
+  width: 95%;
+  position: absolute;
+  top: 25%;
+  text-align: center;
+  padding: 2%;
+}
+
+.prompt_text_container_viewer2{
+  top: 10%;
+  height: 76%;
+}
+
+.prompt_text_viewer{
+  text-decoration:none;
+  font-family:Helvetica;
+  font-size:32px;
+  color:#CCC;
+  padding-bottom: 15px;
+}
+
+#prompt2name{
+  margin-top: 2%;
+}
+
+.prompt_button_viewer {
+  position: absolute;
+  bottom: 0%;
+  margin-bottom: 2%;
+  padding: 5px 20px;
+  text-decoration:none;
+  cursor: pointer;
+  background: #ff005d repeat-x bottom;
+  opacity: 0.6;
+  color:#f9f9f9;
+  font-size: 1.5em;
+  font-weight: bold;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.prompt_button_viewer1{
+  left: 50%;
+  margin-left: -30px;
+}
+
+.prompt_button_viewer2{
+  left: 50%;
+  margin-left: -115px;
+}
+
+.prompt_button_viewer3{
+  left: 50%;
+  margin-left: 50px;
+}
+
+.prompt_button_viewer4{
+  right: 0%;
+  margin-right: 10px;
 }

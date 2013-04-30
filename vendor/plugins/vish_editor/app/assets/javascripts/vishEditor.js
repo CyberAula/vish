@@ -106,6 +106,1238 @@ VISH.Constant.VTour = {};
 VISH.Constant.VTour.DEFAULT_MAP = "roadmap";
 VISH.Constant.VTour.ROADMAP = "roadmap";
 VISH.Constant.INTRO = 13;
+window.Chart = function(context, options) {
+  var chart = this;
+  var animationOptions = {linear:function(t) {
+    return t
+  }, easeInQuad:function(t) {
+    return t * t
+  }, easeOutQuad:function(t) {
+    return-1 * t * (t - 2)
+  }, easeInOutQuad:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t
+    }
+    return-1 / 2 * (--t * (t - 2) - 1)
+  }, easeInCubic:function(t) {
+    return t * t * t
+  }, easeOutCubic:function(t) {
+    return 1 * ((t = t / 1 - 1) * t * t + 1)
+  }, easeInOutCubic:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * t
+    }
+    return 1 / 2 * ((t -= 2) * t * t + 2)
+  }, easeInQuart:function(t) {
+    return t * t * t * t
+  }, easeOutQuart:function(t) {
+    return-1 * ((t = t / 1 - 1) * t * t * t - 1)
+  }, easeInOutQuart:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * t * t
+    }
+    return-1 / 2 * ((t -= 2) * t * t * t - 2)
+  }, easeInQuint:function(t) {
+    return 1 * (t /= 1) * t * t * t * t
+  }, easeOutQuint:function(t) {
+    return 1 * ((t = t / 1 - 1) * t * t * t * t + 1)
+  }, easeInOutQuint:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * t * t * t
+    }
+    return 1 / 2 * ((t -= 2) * t * t * t * t + 2)
+  }, easeInSine:function(t) {
+    return-1 * Math.cos(t / 1 * (Math.PI / 2)) + 1
+  }, easeOutSine:function(t) {
+    return 1 * Math.sin(t / 1 * (Math.PI / 2))
+  }, easeInOutSine:function(t) {
+    return-1 / 2 * (Math.cos(Math.PI * t / 1) - 1)
+  }, easeInExpo:function(t) {
+    return t == 0 ? 1 : 1 * Math.pow(2, 10 * (t / 1 - 1))
+  }, easeOutExpo:function(t) {
+    return t == 1 ? 1 : 1 * (-Math.pow(2, -10 * t / 1) + 1)
+  }, easeInOutExpo:function(t) {
+    if(t == 0) {
+      return 0
+    }
+    if(t == 1) {
+      return 1
+    }
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * Math.pow(2, 10 * (t - 1))
+    }
+    return 1 / 2 * (-Math.pow(2, -10 * --t) + 2)
+  }, easeInCirc:function(t) {
+    if(t >= 1) {
+      return t
+    }
+    return-1 * (Math.sqrt(1 - (t /= 1) * t) - 1)
+  }, easeOutCirc:function(t) {
+    return 1 * Math.sqrt(1 - (t = t / 1 - 1) * t)
+  }, easeInOutCirc:function(t) {
+    if((t /= 1 / 2) < 1) {
+      return-1 / 2 * (Math.sqrt(1 - t * t) - 1)
+    }
+    return 1 / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1)
+  }, easeInElastic:function(t) {
+    var s = 1.70158;
+    var p = 0;
+    var a = 1;
+    if(t == 0) {
+      return 0
+    }
+    if((t /= 1) == 1) {
+      return 1
+    }
+    if(!p) {
+      p = 1 * 0.3
+    }
+    if(a < Math.abs(1)) {
+      a = 1;
+      var s = p / 4
+    }else {
+      var s = p / (2 * Math.PI) * Math.asin(1 / a)
+    }
+    return-(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p))
+  }, easeOutElastic:function(t) {
+    var s = 1.70158;
+    var p = 0;
+    var a = 1;
+    if(t == 0) {
+      return 0
+    }
+    if((t /= 1) == 1) {
+      return 1
+    }
+    if(!p) {
+      p = 1 * 0.3
+    }
+    if(a < Math.abs(1)) {
+      a = 1;
+      var s = p / 4
+    }else {
+      var s = p / (2 * Math.PI) * Math.asin(1 / a)
+    }
+    return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * 2 * Math.PI / p) + 1
+  }, easeInOutElastic:function(t) {
+    var s = 1.70158;
+    var p = 0;
+    var a = 1;
+    if(t == 0) {
+      return 0
+    }
+    if((t /= 1 / 2) == 2) {
+      return 1
+    }
+    if(!p) {
+      p = 1 * 0.3 * 1.5
+    }
+    if(a < Math.abs(1)) {
+      a = 1;
+      var s = p / 4
+    }else {
+      var s = p / (2 * Math.PI) * Math.asin(1 / a)
+    }
+    if(t < 1) {
+      return-0.5 * a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p)
+    }
+    return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * 2 * Math.PI / p) * 0.5 + 1
+  }, easeInBack:function(t) {
+    var s = 1.70158;
+    return 1 * (t /= 1) * t * ((s + 1) * t - s)
+  }, easeOutBack:function(t) {
+    var s = 1.70158;
+    return 1 * ((t = t / 1 - 1) * t * ((s + 1) * t + s) + 1)
+  }, easeInOutBack:function(t) {
+    var s = 1.70158;
+    if((t /= 1 / 2) < 1) {
+      return 1 / 2 * t * t * (((s *= 1.525) + 1) * t - s)
+    }
+    return 1 / 2 * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2)
+  }, easeInBounce:function(t) {
+    return 1 - animationOptions.easeOutBounce(1 - t)
+  }, easeOutBounce:function(t) {
+    if((t /= 1) < 1 / 2.75) {
+      return 1 * 7.5625 * t * t
+    }else {
+      if(t < 2 / 2.75) {
+        return 1 * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75)
+      }else {
+        if(t < 2.5 / 2.75) {
+          return 1 * (7.5625 * (t -= 2.25 / 2.75) * t + 0.9375)
+        }else {
+          return 1 * (7.5625 * (t -= 2.625 / 2.75) * t + 0.984375)
+        }
+      }
+    }
+  }, easeInOutBounce:function(t) {
+    if(t < 1 / 2) {
+      return animationOptions.easeInBounce(t * 2) * 0.5
+    }
+    return animationOptions.easeOutBounce(t * 2 - 1) * 0.5 + 1 * 0.5
+  }};
+  this.tooltips = [], defaults = {tooltips:{background:"rgba(0,0,0,0.6)", fontFamily:"'Arial'", fontStyle:"normal", fontColor:"white", fontSize:"12px", labelTemplate:"<%=label%>: <%=value%>", padding:{top:10, right:10, bottom:10, left:10}, offset:{left:0, top:0}, border:{width:0, color:"#000"}, showHighlight:true, highlight:{stroke:{width:1, color:"rgba(230,230,230,0.25)"}, fill:"rgba(255,255,255,0.25)"}}}, options = options ? mergeChartConfig(defaults, options) : defaults;
+  function registerTooltip(ctx, areaObj, data, type) {
+    chart.tooltips.push(new Tooltip(ctx, areaObj, data, type))
+  }
+  var Tooltip = function(ctx, areaObj, data, type) {
+    this.ctx = ctx;
+    this.areaObj = areaObj;
+    this.data = data;
+    this.savedState = null;
+    this.highlightState = null;
+    this.x = null;
+    this.y = null;
+    this.inRange = function(x, y) {
+      if(this.areaObj.type) {
+        switch(this.areaObj.type) {
+          case "rect":
+            return x >= this.areaObj.x && x <= this.areaObj.x + this.areaObj.width && y >= this.areaObj.y && y <= this.areaObj.y + this.areaObj.height;
+            break;
+          case "circle":
+            return Math.pow(x - this.areaObj.x, 2) + Math.pow(y - this.areaObj.y, 2) < Math.pow(this.areaObj.r, 2);
+            break;
+          case "shape":
+            var poly = this.areaObj.points;
+            for(var c = false, i = -1, l = poly.length, j = l - 1;++i < l;j = i) {
+              (poly[i].y <= y && y < poly[j].y || poly[j].y <= y && y < poly[i].y) && x < (poly[j].x - poly[i].x) * (y - poly[i].y) / (poly[j].y - poly[i].y) + poly[i].x && (c = !c)
+            }
+            return c;
+            break
+        }
+      }
+    };
+    this.render = function(x, y) {
+      if(this.savedState == null) {
+        this.ctx.putImageData(chart.savedState, 0, 0);
+        this.savedState = this.ctx.getImageData(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+      }
+      this.ctx.putImageData(this.savedState, 0, 0);
+      if(options.tooltips.showHighlight) {
+        if(this.highlightState == null) {
+          this.ctx.strokeStyle = options.tooltips.highlight.stroke.color;
+          this.ctx.lineWidth = options.tooltips.highlight.stroke.width;
+          this.ctx.fillStyle = options.tooltips.highlight.fill;
+          switch(this.areaObj.type) {
+            case "rect":
+              this.ctx.strokeRect(this.areaObj.x, this.areaObj.y, this.areaObj.width, this.areaObj.height);
+              this.ctx.fillStyle = options.tooltips.highlight.fill;
+              this.ctx.fillRect(this.areaObj.x, this.areaObj.y, this.areaObj.width, this.areaObj.height);
+              break;
+            case "circle":
+              this.ctx.beginPath();
+              this.ctx.arc(this.areaObj.x, this.areaObj.y, this.areaObj.r, 0, 2 * Math.PI, false);
+              this.ctx.stroke();
+              this.ctx.fill();
+              break;
+            case "shape":
+              this.ctx.beginPath();
+              this.ctx.moveTo(this.areaObj.points[0].x, this.areaObj.points[0].y);
+              for(var p in this.areaObj.points) {
+                this.ctx.lineTo(this.areaObj.points[p].x, this.areaObj.points[p].y)
+              }
+              this.ctx.stroke();
+              this.ctx.fill();
+              break
+          }
+          this.highlightState = this.ctx.getImageData(0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+        }else {
+          this.ctx.putImageData(this.highlightState, 0, 0)
+        }
+      }
+      var posX = x + options.tooltips.offset.left, posY = y + options.tooltips.offset.top, tpl = tmpl(options.tooltips.labelTemplate, this.data), rectWidth = options.tooltips.padding.left + this.ctx.measureText(tpl).width + options.tooltips.padding.right;
+      if(posX + rectWidth > ctx.canvas.width) {
+        posX -= posX - rectWidth < 0 ? posX : rectWidth
+      }
+      if(posY + 24 > ctx.canvas.height) {
+        posY -= 24
+      }
+      this.ctx.fillStyle = options.tooltips.background;
+      this.ctx.fillRect(posX, posY, rectWidth, 24);
+      if(options.tooltips.border.width > 0) {
+        this.ctx.fillStyle = options.tooltips.order.color;
+        this.ctx.lineWidth = options.tooltips.border.width;
+        this.ctx.strokeRect(posX, posY, rectWidth, 24)
+      }
+      this.ctx.font = options.tooltips.fontStyle + " " + options.tooltips.fontSize + " " + options.tooltips.fontFamily;
+      this.ctx.fillStyle = options.tooltips.fontColor;
+      this.ctx.textAlign = "center";
+      this.ctx.textBaseline = "middle";
+      this.ctx.fillText(tpl, posX + rectWidth / 2, posY + 12);
+      this.x = x;
+      this.y = y
+    }
+  };
+  var width = context.canvas.width, height = context.canvas.height;
+  this.savedState = null;
+  function getPosition(e) {
+    var xPosition = 0;
+    var yPosition = 0;
+    while(e) {
+      xPosition += e.offsetLeft + e.clientLeft;
+      yPosition += e.offsetTop + e.clientTop;
+      e = e.offsetParent
+    }
+    if(window.pageXOffset > 0 || window.pageYOffset > 0) {
+      xPosition -= window.pageXOffset;
+      yPosition -= window.pageYOffset
+    }else {
+      if(document.body.scrollLeft > 0 || document.body.scrollTop > 0) {
+        xPosition -= document.body.scrollLeft;
+        yPosition -= document.body.scrollTop
+      }
+    }
+    return{x:xPosition, y:yPosition}
+  }
+  context.canvas.onmousemove = function(e) {
+    if(chart.tooltips.length > 0) {
+      chart.savedState = chart.savedState == null ? context.getImageData(0, 0, context.canvas.width, context.canvas.height) : chart.savedState;
+      var rendered = 0;
+      for(var i in chart.tooltips) {
+        var position = getPosition(context.canvas), mx = e.clientX - position.x, my = e.clientY - position.y;
+        if(chart.tooltips[i].inRange(mx, my)) {
+          chart.tooltips[i].render(mx, my);
+          rendered++
+        }
+      }
+      if(rendered == 0) {
+        context.putImageData(chart.savedState, 0, 0)
+      }
+    }
+  };
+  context.canvas.onmouseout = function(e) {
+    if(chart.savedState != null) {
+      context.putImageData(chart.savedState, 0, 0)
+    }
+  };
+  if(window.devicePixelRatio) {
+    context.canvas.style.width = width + "px";
+    context.canvas.style.height = height + "px";
+    context.canvas.height = height * window.devicePixelRatio;
+    context.canvas.width = width * window.devicePixelRatio;
+    context.scale(window.devicePixelRatio, window.devicePixelRatio)
+  }
+  this.PolarArea = function(data, options) {
+    chart.PolarArea.defaults = {scaleOverlay:true, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleShowLine:true, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:true, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowLabelBackdrop:true, scaleBackdropColor:"rgba(255,255,255,0.75)", scaleBackdropPaddingY:2, scaleBackdropPaddingX:2, segmentShowStroke:true, segmentStrokeColor:"#fff", 
+    segmentStrokeWidth:2, animation:true, animationSteps:100, animationEasing:"easeOutBounce", animateRotate:true, animateScale:false, onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.PolarArea.defaults, options) : chart.PolarArea.defaults;
+    return new PolarArea(data, config, context)
+  };
+  this.Radar = function(data, options) {
+    chart.Radar.defaults = {scaleOverlay:false, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleShowLine:true, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:false, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowLabelBackdrop:true, scaleBackdropColor:"rgba(255,255,255,0.75)", scaleBackdropPaddingY:2, scaleBackdropPaddingX:2, angleShowLineOut:true, angleLineColor:"rgba(0,0,0,.1)", 
+    angleLineWidth:1, pointLabelFontFamily:"'Arial'", pointLabelFontStyle:"normal", pointLabelFontSize:12, pointLabelFontColor:"#666", pointDot:true, pointDotRadius:3, pointDotStrokeWidth:1, datasetStroke:true, datasetStrokeWidth:2, datasetFill:true, animation:true, animationSteps:60, animationEasing:"easeOutQuart", onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Radar.defaults, options) : chart.Radar.defaults;
+    return new Radar(data, config, context)
+  };
+  this.Pie = function(data, options) {
+    chart.Pie.defaults = {segmentShowStroke:true, segmentStrokeColor:"#fff", segmentStrokeWidth:2, animation:true, animationSteps:100, animationEasing:"easeOutBounce", animateRotate:true, animateScale:false, onAnimationComplete:null, labelFontFamily:"'Arial'", labelFontStyle:"normal", labelFontSize:12, labelFontColor:"#666", labelAlign:"right", showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Pie.defaults, options) : chart.Pie.defaults;
+    return new Pie(data, config, context)
+  };
+  this.Doughnut = function(data, options) {
+    chart.Doughnut.defaults = {segmentShowStroke:true, segmentStrokeColor:"#fff", segmentStrokeWidth:2, percentageInnerCutout:50, animation:true, animationSteps:100, animationEasing:"easeOutBounce", animateRotate:true, animateScale:false, onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Doughnut.defaults, options) : chart.Doughnut.defaults;
+    return new Doughnut(data, config, context)
+  };
+  this.Line = function(data, options) {
+    chart.Line.defaults = {scaleOverlay:false, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:true, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowGridLines:true, scaleGridLineColor:"rgba(0,0,0,.05)", scaleGridLineWidth:1, bezierCurve:true, pointDot:true, pointDotRadius:4, pointDotStrokeWidth:2, datasetStroke:true, datasetStrokeWidth:2, 
+    datasetFill:true, animation:true, animationSteps:60, animationEasing:"easeOutQuart", onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Line.defaults, options) : chart.Line.defaults;
+    return new Line(data, config, context)
+  };
+  this.Bar = function(data, options) {
+    chart.Bar.defaults = {scaleOverlay:false, scaleOverride:false, scaleSteps:null, scaleStepWidth:null, scaleStartValue:null, scaleLineColor:"rgba(0,0,0,.1)", scaleLineWidth:1, scaleShowLabels:true, scaleLabel:"<%=value%>", scaleFontFamily:"'Arial'", scaleFontSize:12, scaleFontStyle:"normal", scaleFontColor:"#666", scaleShowGridLines:true, scaleGridLineColor:"rgba(0,0,0,.05)", scaleGridLineWidth:1, barShowStroke:true, barStrokeWidth:2, barValueSpacing:5, barDatasetSpacing:1, animation:true, animationSteps:60, 
+    animationEasing:"easeOutQuart", onAnimationComplete:null, showTooltips:true};
+    var config = options ? mergeChartConfig(chart.Bar.defaults, options) : chart.Bar.defaults;
+    return new Bar(data, config, context)
+  };
+  var clear = function(c) {
+    c.clearRect(0, 0, width, height)
+  };
+  var PolarArea = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString;
+    calculateDrawingSizes();
+    valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : null;
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = maxSize / calculatedScale.steps;
+    animationLoop(config, drawScale, drawAllSegments, ctx);
+    function calculateDrawingSizes() {
+      maxSize = Min([width, height]) / 2;
+      maxSize -= Max([config.scaleFontSize * 0.5, config.scaleLineWidth * 0.5]);
+      labelHeight = config.scaleFontSize * 2;
+      if(config.scaleShowLabelBackdrop) {
+        labelHeight += 2 * config.scaleBackdropPaddingY;
+        maxSize -= config.scaleBackdropPaddingY * 1.5
+      }
+      scaleHeight = maxSize;
+      labelHeight = Default(labelHeight, 5)
+    }
+    function drawScale() {
+      for(var i = 0;i < calculatedScale.steps;i++) {
+        if(config.scaleShowLine) {
+          ctx.beginPath();
+          ctx.arc(width / 2, height / 2, scaleHop * (i + 1), 0, Math.PI * 2, true);
+          ctx.strokeStyle = config.scaleLineColor;
+          ctx.lineWidth = config.scaleLineWidth;
+          ctx.stroke()
+        }
+        if(config.scaleShowLabels) {
+          ctx.textAlign = "center";
+          ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+          var label = calculatedScale.labels[i];
+          if(config.scaleShowLabelBackdrop) {
+            var textWidth = ctx.measureText(label).width;
+            ctx.fillStyle = config.scaleBackdropColor;
+            ctx.beginPath();
+            ctx.rect(Math.round(width / 2 - textWidth / 2 - config.scaleBackdropPaddingX), Math.round(height / 2 - scaleHop * (i + 1) - config.scaleFontSize * 0.5 - config.scaleBackdropPaddingY), Math.round(textWidth + config.scaleBackdropPaddingX * 2), Math.round(config.scaleFontSize + config.scaleBackdropPaddingY * 2));
+            ctx.fill()
+          }
+          ctx.textBaseline = "middle";
+          ctx.fillStyle = config.scaleFontColor;
+          ctx.fillText(label, width / 2, height / 2 - scaleHop * (i + 1))
+        }
+      }
+    }
+    function drawAllSegments(animationDecimal) {
+      var startAngle = -Math.PI / 2, angleStep = Math.PI * 2 / data.length, scaleAnimation = 1, rotateAnimation = 1;
+      if(config.animation) {
+        if(config.animateScale) {
+          scaleAnimation = animationDecimal
+        }
+        if(config.animateRotate) {
+          rotateAnimation = animationDecimal
+        }
+      }
+      for(var i = 0;i < data.length;i++) {
+        ctx.beginPath();
+        ctx.arc(width / 2, height / 2, scaleAnimation * calculateOffset(data[i].value, calculatedScale, scaleHop), startAngle, startAngle + rotateAnimation * angleStep, false);
+        ctx.lineTo(width / 2, height / 2);
+        ctx.closePath();
+        ctx.fillStyle = data[i].color;
+        ctx.fill();
+        if(animationDecimal > 0.9999999) {
+          var points = [{x:width / 2, y:height / 2}], pAmount = 50, radius = calculateOffset(data[i].value, calculatedScale, scaleHop);
+          points.push({x:width / 2 + radius * Math.cos(startAngle), y:height / 2 + radius * Math.sin(startAngle)});
+          for(var p = 0;p <= pAmount;p++) {
+            points.push({x:width / 2 + radius * Math.cos(startAngle + p / pAmount * rotateAnimation * angleStep), y:height / 2 + radius * Math.sin(startAngle + p / pAmount * rotateAnimation * angleStep)})
+          }
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "PolarArea")
+          }
+        }
+        if(config.segmentShowStroke) {
+          ctx.strokeStyle = config.segmentStrokeColor;
+          ctx.lineWidth = config.segmentStrokeWidth;
+          ctx.stroke()
+        }
+        startAngle += rotateAnimation * angleStep
+      }
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.length;i++) {
+        if(data[i].value > upperValue) {
+          upperValue = data[i].value
+        }
+        if(data[i].value < lowerValue) {
+          lowerValue = data[i].value
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  var Radar = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString;
+    if(!data.labels) {
+      data.labels = []
+    }
+    calculateDrawingSizes();
+    var valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : null;
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = maxSize / calculatedScale.steps;
+    animationLoop(config, drawScale, drawAllDataPoints, ctx);
+    function drawAllDataPoints(animationDecimal) {
+      var rotationDegree = 2 * Math.PI / data.datasets[0].data.length;
+      ctx.save();
+      ctx.translate(width / 2, height / 2);
+      for(var i = 0;i < data.datasets.length;i++) {
+        var offset = calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop);
+        ctx.beginPath();
+        ctx.moveTo(0, animationDecimal * -1 * offset);
+        if(animationDecimal == 1) {
+          var curX = width / 2 + offset * Math.cos(0 - Math.PI / 2), curY = height / 2 + offset * Math.sin(0 - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[0].trim() != "" ? data.labels[0] + ": " + data.datasets[i].data[0] : data.datasets[i].data[0];
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[0], value:data.datasets[i].data[0]}, "Radar")
+          }
+        }
+        for(var j = 1;j < data.datasets[i].data.length;j++) {
+          offset = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop);
+          ctx.rotate(rotationDegree);
+          ctx.lineTo(0, animationDecimal * -1 * offset);
+          if(animationDecimal == 1) {
+            var curX = width / 2 + offset * Math.cos(j * rotationDegree - Math.PI / 2), curY = height / 2 + offset * Math.sin(j * rotationDegree - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[j].trim() != "" ? data.labels[j] + ": " + data.datasets[i].data[j] : data.datasets[i].data[j];
+            if(config.showTooltips === true) {
+              registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Radar")
+            }
+          }
+        }
+        ctx.closePath();
+        ctx.fillStyle = data.datasets[i].fillColor;
+        ctx.strokeStyle = data.datasets[i].strokeColor;
+        ctx.lineWidth = config.datasetStrokeWidth;
+        ctx.fill();
+        ctx.stroke();
+        if(config.pointDot) {
+          ctx.fillStyle = data.datasets[i].pointColor;
+          ctx.strokeStyle = data.datasets[i].pointStrokeColor;
+          ctx.lineWidth = config.pointDotStrokeWidth;
+          for(var k = 0;k < data.datasets[i].data.length;k++) {
+            ctx.rotate(rotationDegree);
+            ctx.beginPath();
+            ctx.arc(0, animationDecimal * -1 * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop), config.pointDotRadius, 2 * Math.PI, false);
+            ctx.fill();
+            ctx.stroke()
+          }
+        }
+        ctx.rotate(rotationDegree)
+      }
+      ctx.restore()
+    }
+    function drawScale() {
+      var rotationDegree = 2 * Math.PI / data.datasets[0].data.length;
+      ctx.save();
+      ctx.translate(width / 2, height / 2);
+      if(config.angleShowLineOut) {
+        ctx.strokeStyle = config.angleLineColor;
+        ctx.lineWidth = config.angleLineWidth;
+        for(var h = 0;h < data.datasets[0].data.length;h++) {
+          ctx.rotate(rotationDegree);
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -maxSize);
+          ctx.stroke()
+        }
+      }
+      for(var i = 0;i < calculatedScale.steps;i++) {
+        ctx.beginPath();
+        if(config.scaleShowLine) {
+          ctx.strokeStyle = config.scaleLineColor;
+          ctx.lineWidth = config.scaleLineWidth;
+          ctx.moveTo(0, -scaleHop * (i + 1));
+          for(var j = 0;j < data.datasets[0].data.length;j++) {
+            ctx.rotate(rotationDegree);
+            ctx.lineTo(0, -scaleHop * (i + 1))
+          }
+          ctx.closePath();
+          ctx.stroke()
+        }
+        if(config.scaleShowLabels) {
+          ctx.textAlign = "center";
+          ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+          ctx.textBaseline = "middle";
+          if(config.scaleShowLabelBackdrop) {
+            var textWidth = ctx.measureText(calculatedScale.labels[i]).width;
+            ctx.fillStyle = config.scaleBackdropColor;
+            ctx.beginPath();
+            ctx.rect(Math.round(-textWidth / 2 - config.scaleBackdropPaddingX), Math.round(-scaleHop * (i + 1) - config.scaleFontSize * 0.5 - config.scaleBackdropPaddingY), Math.round(textWidth + config.scaleBackdropPaddingX * 2), Math.round(config.scaleFontSize + config.scaleBackdropPaddingY * 2));
+            ctx.fill()
+          }
+          ctx.fillStyle = config.scaleFontColor;
+          ctx.fillText(calculatedScale.labels[i], 0, -scaleHop * (i + 1))
+        }
+      }
+      for(var k = 0;k < data.labels.length;k++) {
+        ctx.font = config.pointLabelFontStyle + " " + config.pointLabelFontSize + "px " + config.pointLabelFontFamily;
+        ctx.fillStyle = config.pointLabelFontColor;
+        var opposite = Math.sin(rotationDegree * k) * (maxSize + config.pointLabelFontSize);
+        var adjacent = Math.cos(rotationDegree * k) * (maxSize + config.pointLabelFontSize);
+        if(rotationDegree * k == Math.PI || rotationDegree * k == 0) {
+          ctx.textAlign = "center"
+        }else {
+          if(rotationDegree * k > Math.PI) {
+            ctx.textAlign = "right"
+          }else {
+            ctx.textAlign = "left"
+          }
+        }
+        ctx.textBaseline = "middle";
+        ctx.fillText(data.labels[k], opposite, -adjacent)
+      }
+      ctx.restore()
+    }
+    function calculateDrawingSizes() {
+      maxSize = Min([width, height]) / 2;
+      labelHeight = config.scaleFontSize * 2;
+      var labelLength = 0;
+      for(var i = 0;i < data.labels.length;i++) {
+        ctx.font = config.pointLabelFontStyle + " " + config.pointLabelFontSize + "px " + config.pointLabelFontFamily;
+        var textMeasurement = ctx.measureText(data.labels[i]).width;
+        if(textMeasurement > labelLength) {
+          labelLength = textMeasurement
+        }
+      }
+      maxSize -= Max([labelLength, config.pointLabelFontSize / 2 * 1.5]);
+      maxSize -= config.pointLabelFontSize;
+      maxSize = CapValue(maxSize, null, 0);
+      scaleHeight = maxSize;
+      labelHeight = Default(labelHeight, 5)
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.datasets.length;i++) {
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(data.datasets[i].data[j] > upperValue) {
+            upperValue = data.datasets[i].data[j]
+          }
+          if(data.datasets[i].data[j] < lowerValue) {
+            lowerValue = data.datasets[i].data[j]
+          }
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  var Pie = function(data, config, ctx) {
+    var segmentTotal = 0;
+    var pieRadius = Min([height / 2, width / 2]) - 5;
+    for(var i = 0;i < data.length;i++) {
+      segmentTotal += data[i].value
+    }
+    ctx.fillStyle = "black";
+    ctx.textBaseline = "base";
+    animationLoop(config, null, drawPieSegments, ctx);
+    function drawPieSegments(animationDecimal) {
+      var cumulativeAngle = -Math.PI / 2, scaleAnimation = 1, rotateAnimation = 1;
+      if(config.animation) {
+        if(config.animateScale) {
+          scaleAnimation = animationDecimal
+        }
+        if(config.animateRotate) {
+          rotateAnimation = animationDecimal
+        }
+      }
+      for(var i = 0;i < data.length;i++) {
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        ctx.beginPath();
+        ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
+        ctx.lineTo(width / 2, height / 2);
+        ctx.closePath();
+        ctx.fillStyle = data[i].color;
+        ctx.fill();
+        if(data[i].label && scaleAnimation * pieRadius * 2 * segmentAngle / (2 * Math.PI) > config.labelFontSize) {
+          function getPieLabelX(align, r) {
+            switch(align) {
+              case "left":
+                return-r + 20;
+                break;
+              case "center":
+                return-r / 2;
+                break
+            }
+            return-10
+          }
+          function reversePieLabelAlign(align) {
+            switch(align) {
+              case "left":
+                return"right";
+                break;
+              case "right":
+                return"left";
+                break;
+              case "center":
+                return align;
+                break
+            }
+          }
+          var fontSize = data[i].labelFontSize || config.labelFontSize + "px";
+          if(fontSize.match(/^[0-9]+$/g) != null) {
+            fontSize = fontSize + "px"
+          }
+          ctx.font = config.labelFontStyle + " " + fontSize + " " + config.labelFontFamily;
+          ctx.fillStyle = getFadeColor(animationDecimal, data[i].labelColor || "black", data[i].color);
+          ctx.textBaseline = "middle";
+          var textRotation = -(cumulativeAngle + segmentAngle) + segmentAngle / 2, tX = width / 2 + scaleAnimation * pieRadius * Math.cos(textRotation), tY = height / 2 - scaleAnimation * pieRadius * Math.sin(textRotation);
+          ctx.textAlign = data[i].labelAlign || config.labelAlign;
+          textX = getPieLabelX(ctx.textAlign, scaleAnimation * pieRadius);
+          if(textRotation < -Math.PI / 2) {
+            textRotation -= Math.PI;
+            ctx.textAlign = reversePieLabelAlign(ctx.textAlign);
+            textX = -textX
+          }
+          ctx.translate(tX, tY);
+          ctx.rotate(-textRotation);
+          ctx.fillText(data[i].label, textX, 0);
+          ctx.rotate(textRotation);
+          ctx.translate(-tX, -tY)
+        }
+        if(animationDecimal > 0.9999999) {
+          var points = [{x:width / 2, y:height / 2}], pAmount = 50;
+          points.push({x:width / 2 + pieRadius * Math.cos(cumulativeAngle), y:height / 2 + pieRadius * Math.sin(cumulativeAngle)});
+          for(var p = 0;p <= pAmount;p++) {
+            points.push({x:width / 2 + pieRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + pieRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
+          }
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Pie")
+          }
+        }
+        if(config.segmentShowStroke) {
+          ctx.lineWidth = config.segmentStrokeWidth;
+          ctx.strokeStyle = config.segmentStrokeColor;
+          ctx.stroke()
+        }
+        cumulativeAngle += segmentAngle
+      }
+    }
+  };
+  var Doughnut = function(data, config, ctx) {
+    var segmentTotal = 0;
+    var doughnutRadius = Min([height / 2, width / 2]) - 5;
+    var cutoutRadius = doughnutRadius * (config.percentageInnerCutout / 100);
+    for(var i = 0;i < data.length;i++) {
+      segmentTotal += data[i].value
+    }
+    animationLoop(config, null, drawPieSegments, ctx);
+    function drawPieSegments(animationDecimal) {
+      var cumulativeAngle = -Math.PI / 2, scaleAnimation = 1, rotateAnimation = 1;
+      if(config.animation) {
+        if(config.animateScale) {
+          scaleAnimation = animationDecimal
+        }
+        if(config.animateRotate) {
+          rotateAnimation = animationDecimal
+        }
+      }
+      for(var i = 0;i < data.length;i++) {
+        var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        ctx.beginPath();
+        ctx.arc(width / 2, height / 2, scaleAnimation * doughnutRadius, cumulativeAngle, cumulativeAngle + segmentAngle, false);
+        ctx.arc(width / 2, height / 2, scaleAnimation * cutoutRadius, cumulativeAngle + segmentAngle, cumulativeAngle, true);
+        ctx.closePath();
+        ctx.fillStyle = data[i].color;
+        ctx.fill();
+        if(animationDecimal > 0.9999999) {
+          var points = [], pAmount = 50;
+          points.push({x:width / 2 + doughnutRadius * Math.cos(cumulativeAngle), y:height / 2 + doughnutRadius * Math.sin(cumulativeAngle)});
+          for(var p = 0;p <= pAmount;p++) {
+            points.push({x:width / 2 + doughnutRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + doughnutRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
+          }
+          points.push({x:width / 2 + cutoutRadius * Math.cos(cumulativeAngle + segmentAngle), y:height / 2 + cutoutRadius * Math.sin(cumulativeAngle + segmentAngle)});
+          for(var p = pAmount;p >= 0;p--) {
+            points.push({x:width / 2 + cutoutRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + cutoutRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
+          }
+          if(config.showTooltips === true) {
+            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Doughnut")
+          }
+        }
+        if(config.segmentShowStroke) {
+          ctx.lineWidth = config.segmentStrokeWidth;
+          ctx.strokeStyle = config.segmentStrokeColor;
+          ctx.stroke()
+        }
+        cumulativeAngle += segmentAngle
+      }
+    }
+  };
+  var Line = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString, valueHop, widestXLabel, xAxisLength, yAxisPosX, xAxisPosY, rotateLabels = 0;
+    calculateDrawingSizes();
+    valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : "";
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = Math.floor(scaleHeight / calculatedScale.steps);
+    calculateXAxisSize();
+    animationLoop(config, drawScale, drawLines, ctx);
+    function drawLines(animPc) {
+      for(var i = 0;i < data.datasets.length;i++) {
+        ctx.strokeStyle = data.datasets[i].strokeColor;
+        ctx.lineWidth = config.datasetStrokeWidth;
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop));
+        for(var j = 1;j < data.datasets[i].data.length;j++) {
+          if(config.bezierCurve) {
+            ctx.bezierCurveTo(xPos(j - 0.5), yPos(i, j - 1), xPos(j - 0.5), yPos(i, j), xPos(j), yPos(i, j))
+          }else {
+            ctx.lineTo(xPos(j), yPos(i, j))
+          }
+        }
+        var pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10;
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(animPc == 1) {
+            if(config.showTooltips === true) {
+              registerTooltip(ctx, {type:"circle", x:xPos(j), y:yPos(i, j), r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Line")
+            }
+          }
+        }
+        ctx.stroke();
+        if(config.datasetFill) {
+          ctx.lineTo(yAxisPosX + valueHop * (data.datasets[i].data.length - 1), xAxisPosY);
+          ctx.lineTo(yAxisPosX, xAxisPosY);
+          ctx.closePath();
+          ctx.fillStyle = data.datasets[i].fillColor;
+          ctx.fill()
+        }else {
+          ctx.closePath()
+        }
+        if(config.pointDot) {
+          ctx.fillStyle = data.datasets[i].pointColor;
+          ctx.strokeStyle = data.datasets[i].pointStrokeColor;
+          ctx.lineWidth = config.pointDotStrokeWidth;
+          for(var k = 0;k < data.datasets[i].data.length;k++) {
+            ctx.beginPath();
+            ctx.arc(yAxisPosX + valueHop * k, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[k], calculatedScale, scaleHop), config.pointDotRadius, 0, Math.PI * 2, true);
+            ctx.fill();
+            ctx.stroke()
+          }
+        }
+      }
+      function yPos(dataSet, iteration) {
+        return xAxisPosY - animPc * calculateOffset(data.datasets[dataSet].data[iteration], calculatedScale, scaleHop)
+      }
+      function xPos(iteration) {
+        return yAxisPosX + valueHop * iteration
+      }
+    }
+    function drawScale() {
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(width - widestXLabel / 2 + 5, xAxisPosY);
+      ctx.lineTo(width - widestXLabel / 2 - xAxisLength - 5, xAxisPosY);
+      ctx.stroke();
+      if(rotateLabels > 0) {
+        ctx.save();
+        ctx.textAlign = "right"
+      }else {
+        ctx.textAlign = "center"
+      }
+      ctx.fillStyle = config.scaleFontColor;
+      for(var i = 0;i < data.labels.length;i++) {
+        ctx.save();
+        if(rotateLabels > 0) {
+          ctx.translate(yAxisPosX + i * valueHop, xAxisPosY + config.scaleFontSize);
+          ctx.rotate(-(rotateLabels * (Math.PI / 180)));
+          ctx.fillText(data.labels[i], 0, 0);
+          ctx.restore()
+        }else {
+          ctx.fillText(data.labels[i], yAxisPosX + i * valueHop, xAxisPosY + config.scaleFontSize + 3)
+        }
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX + i * valueHop, xAxisPosY + 3);
+        if(config.scaleShowGridLines && i > 0) {
+          ctx.lineWidth = config.scaleGridLineWidth;
+          ctx.strokeStyle = config.scaleGridLineColor;
+          ctx.lineTo(yAxisPosX + i * valueHop, 5)
+        }else {
+          ctx.lineTo(yAxisPosX + i * valueHop, xAxisPosY + 3)
+        }
+        ctx.stroke()
+      }
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(yAxisPosX, xAxisPosY + 5);
+      ctx.lineTo(yAxisPosX, 5);
+      ctx.stroke();
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      for(var j = 0;j < calculatedScale.steps;j++) {
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX - 3, xAxisPosY - (j + 1) * scaleHop);
+        if(config.scaleShowGridLines) {
+          ctx.lineWidth = config.scaleGridLineWidth;
+          ctx.strokeStyle = config.scaleGridLineColor;
+          ctx.lineTo(yAxisPosX + xAxisLength + 5, xAxisPosY - (j + 1) * scaleHop)
+        }else {
+          ctx.lineTo(yAxisPosX - 0.5, xAxisPosY - (j + 1) * scaleHop)
+        }
+        ctx.stroke();
+        if(config.scaleShowLabels) {
+          ctx.fillText(calculatedScale.labels[j], yAxisPosX - 8, xAxisPosY - (j + 1) * scaleHop)
+        }
+      }
+    }
+    function calculateXAxisSize() {
+      var longestText = 1;
+      if(config.scaleShowLabels) {
+        ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+        for(var i = 0;i < calculatedScale.labels.length;i++) {
+          var measuredText = ctx.measureText(calculatedScale.labels[i]).width;
+          longestText = measuredText > longestText ? measuredText : longestText
+        }
+        longestText += 10
+      }
+      xAxisLength = width - longestText - widestXLabel;
+      valueHop = Math.floor(xAxisLength / (data.labels.length - 1));
+      yAxisPosX = width - widestXLabel / 2 - xAxisLength;
+      xAxisPosY = scaleHeight + config.scaleFontSize / 2
+    }
+    function calculateDrawingSizes() {
+      maxSize = height;
+      ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+      widestXLabel = 1;
+      for(var i = 0;i < data.labels.length;i++) {
+        var textLength = ctx.measureText(data.labels[i]).width;
+        widestXLabel = textLength > widestXLabel ? textLength : widestXLabel
+      }
+      if(width / data.labels.length < widestXLabel) {
+        rotateLabels = 45;
+        if(width / data.labels.length < Math.cos(rotateLabels) * widestXLabel) {
+          rotateLabels = 90;
+          maxSize -= widestXLabel
+        }else {
+          maxSize -= Math.sin(rotateLabels) * widestXLabel
+        }
+      }else {
+        maxSize -= config.scaleFontSize
+      }
+      maxSize -= 5;
+      labelHeight = config.scaleFontSize;
+      maxSize -= labelHeight;
+      scaleHeight = maxSize
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.datasets.length;i++) {
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(data.datasets[i].data[j] > upperValue) {
+            upperValue = data.datasets[i].data[j]
+          }
+          if(data.datasets[i].data[j] < lowerValue) {
+            lowerValue = data.datasets[i].data[j]
+          }
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  var Bar = function(data, config, ctx) {
+    var maxSize, scaleHop, calculatedScale, labelHeight, scaleHeight, valueBounds, labelTemplateString, valueHop, widestXLabel, xAxisLength, yAxisPosX, xAxisPosY, barWidth, rotateLabels = 0;
+    calculateDrawingSizes();
+    valueBounds = getValueBounds();
+    labelTemplateString = config.scaleShowLabels ? config.scaleLabel : "";
+    if(!config.scaleOverride) {
+      calculatedScale = calculateScale(scaleHeight, valueBounds.maxSteps, valueBounds.minSteps, valueBounds.maxValue, valueBounds.minValue, labelTemplateString)
+    }else {
+      calculatedScale = {steps:config.scaleSteps, stepValue:config.scaleStepWidth, graphMin:config.scaleStartValue, labels:[]};
+      populateLabels(labelTemplateString, calculatedScale.labels, calculatedScale.steps, config.scaleStartValue, config.scaleStepWidth)
+    }
+    scaleHop = Math.floor(scaleHeight / calculatedScale.steps);
+    calculateXAxisSize();
+    animationLoop(config, drawScale, drawBars, ctx);
+    function drawBars(animPc) {
+      ctx.lineWidth = config.barStrokeWidth;
+      for(var i = 0;i < data.datasets.length;i++) {
+        ctx.fillStyle = data.datasets[i].fillColor;
+        ctx.strokeStyle = data.datasets[i].strokeColor;
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          var barOffset = yAxisPosX + config.barValueSpacing + valueHop * j + barWidth * i + config.barDatasetSpacing * i + config.barStrokeWidth * i;
+          ctx.beginPath();
+          ctx.moveTo(barOffset, xAxisPosY);
+          ctx.lineTo(barOffset, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop) + config.barStrokeWidth / 2);
+          ctx.lineTo(barOffset + barWidth, xAxisPosY - animPc * calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop) + config.barStrokeWidth / 2);
+          ctx.lineTo(barOffset + barWidth, xAxisPosY);
+          if(config.barShowStroke) {
+            ctx.stroke()
+          }
+          ctx.closePath();
+          ctx.fill();
+          if(animPc == 1) {
+            var x = barOffset, height = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop), y = xAxisPosY - height, width = barWidth;
+            if(config.showTooltips === true) {
+              registerTooltip(ctx, {type:"rect", x:x, y:y, width:width, height:height}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Bar")
+            }
+          }
+        }
+      }
+    }
+    function drawScale() {
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(width - widestXLabel / 2 + 5, xAxisPosY);
+      ctx.lineTo(width - widestXLabel / 2 - xAxisLength - 5, xAxisPosY);
+      ctx.stroke();
+      if(rotateLabels > 0) {
+        ctx.save();
+        ctx.textAlign = "right"
+      }else {
+        ctx.textAlign = "center"
+      }
+      ctx.fillStyle = config.scaleFontColor;
+      for(var i = 0;i < data.labels.length;i++) {
+        ctx.save();
+        if(rotateLabels > 0) {
+          ctx.translate(yAxisPosX + i * valueHop, xAxisPosY + config.scaleFontSize);
+          ctx.rotate(-(rotateLabels * (Math.PI / 180)));
+          ctx.fillText(data.labels[i], 0, 0);
+          ctx.restore()
+        }else {
+          ctx.fillText(data.labels[i], yAxisPosX + i * valueHop + valueHop / 2, xAxisPosY + config.scaleFontSize + 3)
+        }
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX + (i + 1) * valueHop, xAxisPosY + 3);
+        ctx.lineWidth = config.scaleGridLineWidth;
+        ctx.strokeStyle = config.scaleGridLineColor;
+        ctx.lineTo(yAxisPosX + (i + 1) * valueHop, 5);
+        ctx.stroke()
+      }
+      ctx.lineWidth = config.scaleLineWidth;
+      ctx.strokeStyle = config.scaleLineColor;
+      ctx.beginPath();
+      ctx.moveTo(yAxisPosX, xAxisPosY + 5);
+      ctx.lineTo(yAxisPosX, 5);
+      ctx.stroke();
+      ctx.textAlign = "right";
+      ctx.textBaseline = "middle";
+      for(var j = 0;j < calculatedScale.steps;j++) {
+        ctx.beginPath();
+        ctx.moveTo(yAxisPosX - 3, xAxisPosY - (j + 1) * scaleHop);
+        if(config.scaleShowGridLines) {
+          ctx.lineWidth = config.scaleGridLineWidth;
+          ctx.strokeStyle = config.scaleGridLineColor;
+          ctx.lineTo(yAxisPosX + xAxisLength + 5, xAxisPosY - (j + 1) * scaleHop)
+        }else {
+          ctx.lineTo(yAxisPosX - 0.5, xAxisPosY - (j + 1) * scaleHop)
+        }
+        ctx.stroke();
+        if(config.scaleShowLabels) {
+          ctx.fillText(calculatedScale.labels[j], yAxisPosX - 8, xAxisPosY - (j + 1) * scaleHop)
+        }
+      }
+    }
+    function calculateXAxisSize() {
+      var longestText = 1;
+      if(config.scaleShowLabels) {
+        ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+        for(var i = 0;i < calculatedScale.labels.length;i++) {
+          var measuredText = ctx.measureText(calculatedScale.labels[i]).width;
+          longestText = measuredText > longestText ? measuredText : longestText
+        }
+        longestText += 10
+      }
+      xAxisLength = width - longestText - widestXLabel;
+      valueHop = Math.floor(xAxisLength / data.labels.length);
+      barWidth = (valueHop - config.scaleGridLineWidth * 2 - config.barValueSpacing * 2 - (config.barDatasetSpacing * data.datasets.length - 1) - (config.barStrokeWidth / 2 * data.datasets.length - 1)) / data.datasets.length;
+      yAxisPosX = width - widestXLabel / 2 - xAxisLength;
+      xAxisPosY = scaleHeight + config.scaleFontSize / 2
+    }
+    function calculateDrawingSizes() {
+      maxSize = height;
+      ctx.font = config.scaleFontStyle + " " + config.scaleFontSize + "px " + config.scaleFontFamily;
+      widestXLabel = 1;
+      for(var i = 0;i < data.labels.length;i++) {
+        var textLength = ctx.measureText(data.labels[i]).width;
+        widestXLabel = textLength > widestXLabel ? textLength : widestXLabel
+      }
+      if(width / data.labels.length < widestXLabel) {
+        rotateLabels = 45;
+        if(width / data.labels.length < Math.cos(rotateLabels) * widestXLabel) {
+          rotateLabels = 90;
+          maxSize -= widestXLabel
+        }else {
+          maxSize -= Math.sin(rotateLabels) * widestXLabel
+        }
+      }else {
+        maxSize -= config.scaleFontSize
+      }
+      maxSize -= 5;
+      labelHeight = config.scaleFontSize;
+      maxSize -= labelHeight;
+      scaleHeight = maxSize
+    }
+    function getValueBounds() {
+      var upperValue = Number.MIN_VALUE;
+      var lowerValue = Number.MAX_VALUE;
+      for(var i = 0;i < data.datasets.length;i++) {
+        for(var j = 0;j < data.datasets[i].data.length;j++) {
+          if(data.datasets[i].data[j] > upperValue) {
+            upperValue = data.datasets[i].data[j]
+          }
+          if(data.datasets[i].data[j] < lowerValue) {
+            lowerValue = data.datasets[i].data[j]
+          }
+        }
+      }
+      var maxSteps = Math.floor(scaleHeight / (labelHeight * 0.66));
+      var minSteps = Math.floor(scaleHeight / labelHeight * 0.5);
+      return{maxValue:upperValue, minValue:lowerValue, maxSteps:maxSteps, minSteps:minSteps}
+    }
+  };
+  function calculateOffset(val, calculatedScale, scaleHop) {
+    var outerValue = calculatedScale.steps * calculatedScale.stepValue;
+    var adjustedValue = val - calculatedScale.graphMin;
+    var scalingFactor = CapValue(adjustedValue / outerValue, 1, 0);
+    return scaleHop * calculatedScale.steps * scalingFactor
+  }
+  function animationLoop(config, drawScale, drawData, ctx) {
+    var animFrameAmount = config.animation ? 1 / CapValue(config.animationSteps, Number.MAX_VALUE, 1) : 1, easingFunction = animationOptions[config.animationEasing], percentAnimComplete = config.animation ? 0 : 1;
+    if(typeof drawScale !== "function") {
+      drawScale = function() {
+      }
+    }
+    requestAnimFrame(animLoop);
+    function animateFrame() {
+      var easeAdjustedAnimationPercent = config.animation ? CapValue(easingFunction(percentAnimComplete), null, 0) : 1;
+      clear(ctx);
+      if(config.scaleOverlay) {
+        drawData(easeAdjustedAnimationPercent);
+        drawScale()
+      }else {
+        drawScale();
+        drawData(easeAdjustedAnimationPercent)
+      }
+    }
+    function animLoop() {
+      percentAnimComplete += animFrameAmount;
+      animateFrame();
+      if(percentAnimComplete <= 1) {
+        requestAnimFrame(animLoop)
+      }else {
+        if(typeof config.onAnimationComplete == "function") {
+          config.onAnimationComplete()
+        }
+      }
+    }
+  }
+  var requestAnimFrame = function() {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+      window.setTimeout(callback, 1E3 / 60)
+    }
+  }();
+  function calculateScale(drawingHeight, maxSteps, minSteps, maxValue, minValue, labelTemplateString) {
+    var graphMin, graphMax, graphRange, stepValue, numberOfSteps, valueRange, rangeOrderOfMagnitude, decimalNum;
+    valueRange = maxValue - minValue;
+    rangeOrderOfMagnitude = calculateOrderOfMagnitude(valueRange);
+    graphMin = Math.floor(minValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude);
+    graphMax = Math.ceil(maxValue / (1 * Math.pow(10, rangeOrderOfMagnitude))) * Math.pow(10, rangeOrderOfMagnitude);
+    graphRange = graphMax - graphMin;
+    stepValue = Math.pow(10, rangeOrderOfMagnitude);
+    numberOfSteps = Math.round(graphRange / stepValue);
+    while(numberOfSteps < minSteps || numberOfSteps > maxSteps) {
+      if(numberOfSteps < minSteps) {
+        stepValue /= 2;
+        numberOfSteps = Math.round(graphRange / stepValue)
+      }else {
+        stepValue *= 2;
+        numberOfSteps = Math.round(graphRange / stepValue)
+      }
+    }
+    var labels = [];
+    populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue);
+    return{steps:numberOfSteps, stepValue:stepValue, graphMin:graphMin, labels:labels};
+    function calculateOrderOfMagnitude(val) {
+      return Math.floor(Math.log(val) / Math.LN10)
+    }
+  }
+  function populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue) {
+    if(labelTemplateString) {
+      for(var i = 1;i < numberOfSteps + 1;i++) {
+        labels.push(tmpl(labelTemplateString, {value:(graphMin + stepValue * i).toFixed(getDecimalPlaces(stepValue))}))
+      }
+    }
+  }
+  function populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue) {
+    if(labelTemplateString) {
+      for(var i = 1;i < numberOfSteps + 1;i++) {
+        labels.push(tmpl(labelTemplateString, {value:(graphMin + stepValue * i).toFixed(getDecimalPlaces(stepValue))}))
+      }
+    }
+  }
+  function Max(array) {
+    return Math.max.apply(Math, array)
+  }
+  function Min(array) {
+    return Math.min.apply(Math, array)
+  }
+  function Default(userDeclared, valueIfFalse) {
+    if(!userDeclared) {
+      return valueIfFalse
+    }else {
+      return userDeclared
+    }
+  }
+  function isNumber(n) {
+    return!isNaN(parseFloat(n)) && isFinite(n)
+  }
+  function CapValue(valueToCap, maxValue, minValue) {
+    if(isNumber(maxValue)) {
+      if(valueToCap > maxValue) {
+        return maxValue
+      }
+    }
+    if(isNumber(minValue)) {
+      if(valueToCap < minValue) {
+        return minValue
+      }
+    }
+    return valueToCap
+  }
+  function getDecimalPlaces(num) {
+    var numberOfDecimalPlaces;
+    if(num % 1 != 0) {
+      return num.toString().split(".")[1].length
+    }else {
+      return 0
+    }
+  }
+  function mergeChartConfig(defaults, userDefined) {
+    var returnObj = {};
+    for(var attrname in defaults) {
+      returnObj[attrname] = defaults[attrname]
+    }
+    for(var attrname in userDefined) {
+      if(typeof userDefined[attrname] === "object" && defaults[attrname]) {
+        returnObj[attrname] = mergeChartConfig(defaults[attrname], userDefined[attrname])
+      }else {
+        returnObj[attrname] = userDefined[attrname]
+      }
+    }
+    return returnObj
+  }
+  var cache = {};
+  function tmpl(str, data) {
+    var fn = !/\W/.test(str) ? cache[str] = cache[str] || tmpl(document.getElementById(str).innerHTML) : new Function("obj", "var p=[],print=function(){p.push.apply(p,arguments);};" + "with(obj){p.push('" + str.replace(/[\r\t\n]/g, " ").split("<%").join("\t").replace(/((^|%>)[^\t]*)'/g, "$1\r").replace(/\t=(.*?)%>/g, "',$1,'").split("\t").join("');").split("%>").join("p.push('").split("\r").join("\\'") + "');}return p.join('');");
+    return data ? fn(data) : fn
+  }
+  function getFadeColor(percent, primColor, secColor) {
+    var pseudoEl = document.createElement("div"), rgbPrim, rgbSec;
+    pseudoEl.style.color = primColor;
+    document.body.appendChild(pseudoEl);
+    rgbPrim = window.getComputedStyle(pseudoEl).color;
+    pseudoEl.style.color = secColor;
+    rgbSec = window.getComputedStyle(pseudoEl).color;
+    var regex = /rgb *\( *([0-9]{1,3}) *, *([0-9]{1,3}) *, *([0-9]{1,3}) *\)/, valuesP = regex.exec(rgbPrim), valuesS = regex.exec(rgbSec), rP = Math.round(parseFloat(valuesP[1])), gP = Math.round(parseFloat(valuesP[2])), bP = Math.round(parseFloat(valuesP[3])), rS = Math.round(parseFloat(valuesS[1])), gS = Math.round(parseFloat(valuesS[2])), bS = Math.round(parseFloat(valuesS[3])), rCur = parseInt((rP - rS) * percent + rS), gCur = parseInt((gP - gS) * percent + gS), bCur = parseInt((bP - bS) * percent + 
+    bS);
+    pseudoEl.parentNode.removeChild(pseudoEl);
+    return"rgb(" + rCur + "," + gCur + "," + bCur + ")"
+  }
+};
 (function(a, b) {
   function cy(a) {
     return f.isWindow(a) ? a : a.nodeType === 9 ? a.defaultView || a.parentWindow : !1
@@ -9075,78 +10307,6 @@ VISH.Utils = function(V, undefined) {
     dimensions.push(height);
     return dimensions
   };
-  var loadTab = function(tab_id) {
-    $(".joyride-close-tip").click();
-    $(".fancy_tab_content").hide();
-    $("#" + tab_id + "_content").show();
-    $(".fancy_tab").removeClass("fancy_selected");
-    $("#" + tab_id).addClass("fancy_selected");
-    $(".help_in_fancybox").hide();
-    $("#" + tab_id + "_help").show();
-    switch(tab_id) {
-      case "tab_templates":
-        break;
-      case "tab_flashcards_repo":
-        V.Editor.Flashcard.Repository.onLoadTab();
-        break;
-      case "tab_pic_from_url":
-        V.Editor.Image.onLoadTab("url");
-        break;
-      case "tab_pic_upload":
-        V.Editor.Image.onLoadTab("upload");
-        break;
-      case "tab_pic_repo":
-        V.Editor.Image.Repository.onLoadTab();
-        break;
-      case "tab_pic_flikr":
-        V.Editor.Image.Flikr.onLoadTab();
-        break;
-      case "tab_video_from_url":
-        V.Editor.Video.onLoadTab();
-        break;
-      case "tab_video_repo":
-        V.Editor.Video.Repository.onLoadTab();
-        break;
-      case "tab_video_youtube":
-        V.Editor.Video.Youtube.onLoadTab();
-        break;
-      case "tab_video_vimeo":
-        V.Editor.Video.Vimeo.onLoadTab();
-        break;
-      case "tab_object_from_url":
-        V.Editor.Object.onLoadTab("url");
-        break;
-      case "tab_object_from_web":
-        V.Editor.Object.Web.onLoadTab();
-        break;
-      case "tab_object_snapshot":
-        V.Editor.Object.Snapshot.onLoadTab();
-        break;
-      case "tab_object_upload":
-        V.Editor.Object.onLoadTab("upload");
-        break;
-      case "tab_object_repo":
-        V.Editor.Object.Repository.onLoadTab();
-        break;
-      case "tab_live_webcam":
-        V.Editor.Object.Live.onLoadTab("webcam");
-        break;
-      case "tab_live_micro":
-        V.Editor.Object.Live.onLoadTab("micro");
-        break;
-      case "tab_quiz_session":
-        V.Quiz.activatePolling(false);
-        break;
-      case "tab_quiz_stats_bars":
-        V.Quiz.activatePolling(true);
-        break;
-      case "tab_quiz_stats_pie":
-        V.Quiz.activatePolling(true);
-        break;
-      default:
-        break
-    }
-  };
   var getFontSizeFromStyle = function(style) {
     if(!style) {
       return
@@ -9192,7 +10352,7 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  loadTab:loadTab, sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initialPresentation = false;
@@ -9255,10 +10415,10 @@ VISH.Editor = function(V, $, undefined) {
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":640, "height":350, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Utils.loadTab("tab_templates")
+      V.Editor.Utils.loadTab("tab_templates")
     }});
     $("a#addQuizFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
-      V.Utils.loadTab("tab_quizes")
+      V.Editor.Utils.loadTab("tab_quizes")
     }});
     if(!eventsLoaded) {
       eventsLoaded = true;
@@ -9466,22 +10626,22 @@ VISH.Editor = function(V, $, undefined) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
       V.Editor.Image.setAddContentMode(V.Constant.NONE);
-      V.Utils.loadTab("tab_pic_from_url")
+      V.Editor.Utils.loadTab("tab_pic_from_url")
     }});
     $("a.addobject").fancybox({"autoDimensions":false, "width":800, "height":600, "scrolling":"no", "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Utils.loadTab("tab_object_from_url")
+      V.Editor.Utils.loadTab("tab_object_from_url")
     }});
     $("a.addvideo").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Utils.loadTab("tab_video_from_url")
+      V.Editor.Utils.loadTab("tab_video_from_url")
     }});
     $("a.addLive").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
       setCurrentArea($("#" + clickedZoneId));
-      V.Utils.loadTab("tab_live_webcam")
+      V.Editor.Utils.loadTab("tab_live_webcam")
     }});
     $("a.addQuiz").click(function(event) {
       $("a#addQuizFancybox").trigger("click")
@@ -10139,7 +11299,70 @@ VISH.Editor.Utils = function(V, $, undefined) {
     }
     return fc
   };
-  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, dimentionToDraw:dimentionToDraw, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForFlashcardJSON:replaceIdsForFlashcardJSON, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath}
+  var loadTab = function(tab_id) {
+    $(".joyride-close-tip").click();
+    $(".fancy_tab_content").hide();
+    $("#" + tab_id + "_content").show();
+    $(".fancy_tab").removeClass("fancy_selected");
+    $("#" + tab_id).addClass("fancy_selected");
+    $(".help_in_fancybox").hide();
+    $("#" + tab_id + "_help").show();
+    switch(tab_id) {
+      case "tab_templates":
+        break;
+      case "tab_flashcards_repo":
+        V.Editor.Flashcard.Repository.onLoadTab();
+        break;
+      case "tab_pic_from_url":
+        V.Editor.Image.onLoadTab("url");
+        break;
+      case "tab_pic_upload":
+        V.Editor.Image.onLoadTab("upload");
+        break;
+      case "tab_pic_repo":
+        V.Editor.Image.Repository.onLoadTab();
+        break;
+      case "tab_pic_flikr":
+        V.Editor.Image.Flikr.onLoadTab();
+        break;
+      case "tab_video_from_url":
+        V.Editor.Video.onLoadTab();
+        break;
+      case "tab_video_repo":
+        V.Editor.Video.Repository.onLoadTab();
+        break;
+      case "tab_video_youtube":
+        V.Editor.Video.Youtube.onLoadTab();
+        break;
+      case "tab_video_vimeo":
+        V.Editor.Video.Vimeo.onLoadTab();
+        break;
+      case "tab_object_from_url":
+        V.Editor.Object.onLoadTab("url");
+        break;
+      case "tab_object_from_web":
+        V.Editor.Object.Web.onLoadTab();
+        break;
+      case "tab_object_snapshot":
+        V.Editor.Object.Snapshot.onLoadTab();
+        break;
+      case "tab_object_upload":
+        V.Editor.Object.onLoadTab("upload");
+        break;
+      case "tab_object_repo":
+        V.Editor.Object.Repository.onLoadTab();
+        break;
+      case "tab_live_webcam":
+        V.Editor.Object.Live.onLoadTab("webcam");
+        break;
+      case "tab_live_micro":
+        V.Editor.Object.Live.onLoadTab("micro");
+        break;
+      default:
+        break
+    }
+  };
+  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, dimentionToDraw:dimentionToDraw, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForFlashcardJSON:replaceIdsForFlashcardJSON, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab}
 }(VISH, jQuery);
 VISH.Editor.Text = function(V, $, undefined) {
   var initialized = false;
@@ -11103,9 +12326,6 @@ VISH.Samples = function(V, undefined) {
   "question":{"value":"What are ancient weapons?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, "choices":[{"id":1, "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', 
   "answer":true}, {"id":2, "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":3, "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', "answer":true}, {"id":4, "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', 
   "answer":false}], "extras":{"multipleAnswer":true}}], "containsQuiz":true}]}}], "containsQuiz":true}]};
-  var quiz_simple_sample = {"author":"", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"value":"Fu\u00ad", 
-  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', 
-  "answer":false}, {"value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}]}]}]};
   var magnetic_gifs = {"id":405, "type":"presentation", "title":"Magnetic Resonance Imaging of Foods (Mobile)", "description":"Images of magnetic resonance: Food series.\nhttp://insideinsides.blogspot.com.es/", "avatar":"http://vishub.org/assets/logos/original/excursion-35.png", "tags":["Art", "Mobile", "LifeSciences", "Life-Sciences", "EarthScience", "e-learning"], "author":"N\u00e9stor Toribio Ruiz", "slides":[{"id":"article_405_0", "type":"standard", "template":"t1", "elements":[{"id":"zone1", 
   "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/-QLfceEKHmis/TijNAXnjwLI/AAAAAAAACSA/LWzvgAAy4YI/s840/insideinsides.jpg", "style":"position: relative; width:97.61388286334056%; height:60.85790884718499%; top:23.288651126319536%; left:1.0773698057890455%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" class="vish-parent-font7 vish-parent-font2 vish-parent-font4" align="center"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font2 vish-fontHelvetica" style="color:#201815;undefined;"><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;">Magnetic Resonance</span></span></span></div>'}, 
   {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div style="font-weight: 400;" class="vish-parent-font5 vish-parent-font2" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font5 vish-fontHelvetica" style="color:undefined;undefined;"><i>Imaging of Foods</i></span></span></div>'}]}, {"id":"article_405_1", "type":"standard", "template":"t5", "elements":[{"id":"zone4", "type":"text", "areaid":"header", "body":'<div style="font-weight: 400;" align="center"><span class="vish-font2 vish-fontHelvetica" style="color:undefined;undefined;"><span class="vish-font7 vish-fontHelvetica" style="font-weight: 400;">Magnetic Resonance: Broccoli</span></span></div>'}, 
@@ -11125,7 +12345,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, quiz_simple_sample:quiz_simple_sample, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
+  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var recommendationList = {"items":[{"url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"ebarra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity in my title long", "author":"aldo", "description":" bla bla bla 2", "image":"http://vishub.org/assets/logos/original/excursion-07.png", "views":"563", "favourites":"13", 
@@ -11789,6 +13009,9 @@ VISH.Flashcard = function(V, $, undefined) {
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
   var quizSessionId;
+  var currentQuiz;
+  var currentQuizSession;
+  var currentPolling;
   var initBeforeRender = function(presentation) {
     if(presentation.type === V.Constant.QUIZ_SIMPLE) {
       quizMode = V.Constant.QZ_MODE.RT;
@@ -11800,6 +13023,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var init = function() {
+    $("#prompt2name").watermark("Quiz Session Name");
     V.Quiz.API.init();
     V.Quiz.MC.init();
     V.Quiz.TF.init();
@@ -11807,7 +13031,33 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _loadEvents = function() {
     $(document).on("click", ".quizAnswerButton", _onAnswerQuiz);
-    $(document).on("click", ".quizStartButton", _onStartQuiz)
+    $(document).on("click", ".quizStartButton", _onStartQuiz);
+    $(document).on("click", ".quizStopButton", _onStopQuiz);
+    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"0%", "height":"0%", "padding":0, "autoScale":true, "onStart":function(data) {
+      loadTab("tab_quiz_session");
+      $("#fancybox-close").height(0);
+      $("#fancybox-close").css("padding", 0)
+    }, "onComplete":function(data) {
+      setTimeout(function() {
+        $("#fancybox-close").height("22px");
+        $("#fancybox-close").css("padding", "10px");
+        $("#fancybox-close").css("padding-left", "4px");
+        $("#fancybox-wrap").css("margin-top", "0px");
+        $("#fancybox-wrap").width($(".current").width() + 100);
+        $("#fancybox-wrap").height($(".current").height() + 70);
+        $(".outer_box").css("width", "100%");
+        $(".outer_box").height($(".current").height() + 70);
+        $("#fancybox-wrap").css("top", $(".current").offset().top + "px");
+        $("#fancybox-wrap").css("left", $(".current").offset().left + "px");
+        $("#fancybox-content").width("100%");
+        $("#fancybox-content").height("100%");
+        $("#fancybox-content > div").width("100%");
+        $("#fancybox-content > div").height("100%");
+        $("#fancybox-wrap").show()
+      }, 300)
+    }, "onClosed":function() {
+      _stopPolling()
+    }})
   };
   var _onAnswerQuiz = function(event) {
     var quiz = $("div.quizzContainer").has(event.target);
@@ -11826,30 +13076,63 @@ VISH.Quiz = function(V, $, undefined) {
       return
     }
     if(report.empty === true) {
-      alert("Answer the quiz before send");
+      _showAlert("prompt3_alert");
       return
     }
     quizModule.disableQuiz(quiz);
+    _loadingAnswerButton(quiz);
     var answers = report.answers;
     V.Debugging.log(answers);
     V.Quiz.API.sendAnwers(answers, quizSessionId, function(data) {
-      alert("Your answer has been submitted");
-      console.log(data)
+      disableAnswerButton(quiz);
+      _showAlert("prompt4_alert")
     }, function(error) {
-      alert("Error on submit answer")
+      disableAnswerButton(quiz);
+      _showAlert("prompt5_alert")
     })
   };
-  var _onStartQuiz = function() {
-    var quizJSON = _getQuizJSONFromSlide(V.Slides.getCurrentSlide());
-    V.Quiz.API.startQuizSession(quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
+  var _onStartQuiz = function(event) {
+    var startButton = $(event.target);
+    var quiz = $("div.quizzContainer").has(startButton);
+    switch($(startButton).attr("quizStatus")) {
+      case "running":
+        $("#fancybox-close").hide();
+        $("a#addQuizSessionFancybox").trigger("click");
+        break;
+      case "loading":
+        break;
+      case "stop":
+      ;
+      default:
+        _startNewQuizSession(quiz);
+        break
+    }
   };
-  var _onQuizSessionReceived = function(quizSession) {
-    console.log("_onQuizSessionReceived");
-    console.log(quizSession)
+  var _startNewQuizSession = function(quiz) {
+    if(currentQuizSession) {
+      _showAlert("prompt1_alert");
+      return
+    }
+    _loadingLaunchButton(quiz);
+    var quizJSON = _getQuizJSONFromQuiz(quiz);
+    V.Quiz.API.startQuizSession(quiz, quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
   };
-  var _onQuizSessionReceivedError = function(error) {
-    console.log("_OnQuizSessionReceivedError");
-    console.log(error)
+  var _onQuizSessionReceived = function(quiz, quizSession) {
+    V.Debugging.log("_onQuizSessionReceived");
+    V.Debugging.log(quizSession);
+    currentQuiz = quiz;
+    currentQuizSession = quizSession;
+    _runningLaunchButton(quiz);
+    $("a#addQuizSessionFancybox").trigger("click")
+  };
+  var _onQuizSessionReceivedError = function(quiz, error) {
+    V.Debugging.log("_OnQuizSessionReceivedError");
+    V.Debugging.log(error);
+    _enableLaunchButton(quiz)
+  };
+  var _getQuizJSONFromQuiz = function(quiz) {
+    var slide = $("article").has(quiz);
+    return _getQuizJSONFromSlide(slide)
   };
   var _getQuizJSONFromSlide = function(slide) {
     var slideId = $(slide).attr("id");
@@ -11870,6 +13153,44 @@ VISH.Quiz = function(V, $, undefined) {
       }
     }
   };
+  var _onStopQuiz = function(event) {
+    $.fancybox($("#prompt2_alert").html(), {"autoDimensions":false, "scrolling":"no", "width":$(".current").width(), "height":Math.min(200, $(".current").height()), "showCloseButton":false, "padding":5, "onCleanup":function() {
+    }, "onClosed":function() {
+    }})
+  };
+  var onCloseQuizSession = function(saving) {
+    var name = undefined;
+    switch(saving) {
+      case "yes":
+        $(".prompt2name").each(function(index, pn) {
+          if($(pn).is(":visible")) {
+            name = $(pn).val()
+          }
+        });
+        $(".prompt_button_viewer2").addClass("quizStartButtonLoading");
+        _closeQuizSession(name);
+        break;
+      case "no":
+        $(".prompt_button_viewer1").addClass("quizStartButtonLoading");
+        _closeQuizSession();
+        break;
+      case "cancel":
+      ;
+      default:
+        $.fancybox.close();
+        break
+    }
+  };
+  var _closeQuizSession = function(name) {
+    V.Quiz.API.closeQuizSession(currentQuizSession.id, name, function(data) {
+      $.fancybox.close();
+      currentQuiz = null;
+      currentQuizSession = null;
+      $(".prompt_button_viewer1").removeClass("quizStartButtonLoading");
+      $(".prompt_button_viewer2").removeClass("quizStartButtonLoading");
+      _enableLaunchButton(currentQuiz)
+    })
+  };
   var render = function(slide, template) {
     var quizModule = _getQuizModule(slide.quiztype);
     if(quizModule) {
@@ -11878,8 +13199,8 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
-    if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged()) {
-      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Start'/>");
+    if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
+      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Launch'/>");
       $(quizButtons).prepend(startButton)
     }
     if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
@@ -11888,10 +13209,116 @@ VISH.Quiz = function(V, $, undefined) {
     }
     return quizButtons
   };
+  var _enableAnswerButton = function(quiz) {
+    var answerButton = $(quiz).find("input.quizAnswerButton");
+    $(answerButton).removeAttr("disabled");
+    $(answerButton).removeClass("quizStartButtonLoading");
+    $(answerButton).removeAttr("quizStatus")
+  };
+  var _loadingAnswerButton = function(quiz) {
+    var answerButton = $(quiz).find("input.quizAnswerButton");
+    $(answerButton).attr("disabled", "disabled");
+    $(answerButton).addClass("quizStartButtonLoading");
+    $(answerButton).attr("quizStatus", "loading")
+  };
   var disableAnswerButton = function(quiz) {
-    var answeButton = $(quiz).find("input.quizAnswerButton");
-    $(answeButton).attr("disabled", "disabled");
-    $(answeButton).addClass("quizAnswerButtonDisabled")
+    var answerButton = $(quiz).find("input.quizAnswerButton");
+    $(answerButton).attr("disabled", "disabled");
+    $(answerButton).addClass("quizAnswerButtonDisabled");
+    $(answerButton).removeClass("quizStartButtonLoading");
+    $(answerButton).attr("quizStatus", "disabled")
+  };
+  var _enableLaunchButton = function(quiz) {
+    var startButton = $(quiz).find("input.quizStartButton");
+    $(startButton).removeAttr("disabled");
+    $(startButton).removeClass("quizStartButtonLoading");
+    $(startButton).removeAttr("quizStatus");
+    $(startButton).attr("value", "Launch")
+  };
+  var _loadingLaunchButton = function(quiz) {
+    var startButton = $(quiz).find("input.quizStartButton");
+    $(startButton).attr("disabled", "disabled");
+    $(startButton).addClass("quizStartButtonLoading");
+    $(startButton).attr("quizStatus", "loading");
+    $(startButton).attr("value", "Launch")
+  };
+  var _runningLaunchButton = function(quiz) {
+    var startButton = $(quiz).find("input.quizStartButton");
+    $(startButton).removeAttr("disabled");
+    $(startButton).removeClass("quizStartButtonLoading");
+    $(startButton).attr("quizStatus", "running");
+    $(startButton).attr("value", "Options")
+  };
+  var loadTab = function(tab_id) {
+    $(".fancy_viewer_tab_content").hide();
+    $("#" + tab_id + "_content").show();
+    $(".fancy_viewer_tab").removeClass("fancy_selected");
+    $("#" + tab_id).addClass("fancy_selected");
+    $(".help_in_fancybox_viewer").hide();
+    $("#" + tab_id + "_help").show();
+    switch(tab_id) {
+      case "tab_quiz_session":
+        _loadQuizSession();
+        break;
+      case "tab_quiz_stats":
+        _loadStats();
+        break;
+      default:
+        break
+    }
+  };
+  var _loadQuizSession = function() {
+    if(!currentQuizSession) {
+      return
+    }
+    var myA = $("#tab_quiz_session_url_link");
+    $(myA).attr("href", currentQuizSession.url);
+    $(myA).html("<p id='tab_quiz_session_url'>" + currentQuizSession.url + "</p>")
+  };
+  var _loadStats = function() {
+    V.Quiz.API.getResults(currentQuizSession.id, function(results) {
+      _drawResults(results, {"first":true});
+      _startPolling()
+    })
+  };
+  var _startPolling = function() {
+    _stopPolling();
+    currentPolling = setInterval(function() {
+      if(!currentQuizSession) {
+        _stopPolling();
+        return
+      }
+      V.Quiz.API.getResults(currentQuizSession.id, function(results) {
+        _drawResults(results, {"first":false})
+      })
+    }, 2E3)
+  };
+  var _stopPolling = function() {
+    if(currentPolling) {
+      clearInterval(currentPolling)
+    }
+  };
+  var _drawResults = function(results, options) {
+    var canvas = $("#quiz_chart");
+    var desiredWidth = $("#fancybox-content").width();
+    var desiredHeight = $("#fancybox-content").height() * 0.8;
+    $(canvas).width(desiredWidth);
+    $(canvas).height(desiredHeight);
+    $(canvas).attr("width", desiredWidth);
+    $(canvas).attr("height", desiredHeight);
+    var answers = _getAnswers(results);
+    var quizModule = _getQuizModule($(currentQuiz).attr("type"));
+    if(quizModule) {
+      quizModule.drawAnswers(currentQuiz, answers, options)
+    }
+  };
+  var _getAnswers = function(results) {
+    var answers = [];
+    var rL = results.length;
+    for(var i = 0;i < rL;i++) {
+      answers.push(JSON.parse(results[i].answer))
+    }
+    return answers
   };
   var _getQuizModule = function(quiz_type) {
     switch(quiz_type) {
@@ -11930,7 +13357,10 @@ VISH.Quiz = function(V, $, undefined) {
         break
     }
   };
-  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton}
+  var _showAlert = function(alertId) {
+    $.fancybox($("#" + alertId).html(), {"autoDimensions":false, "scrolling":"no", "width":$(".current").width(), "height":Math.min(200, $(".current").height()), "showCloseButton":false, "padding":5})
+  };
+  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton, loadTab:loadTab, onCloseQuizSession:onCloseQuizSession}
 }(VISH, jQuery);
 VISH.Editor.Tools = function(V, $, undefined) {
   var toolbarEventsLoaded = false;
@@ -12008,7 +13438,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
       case V.Constant.FLASHCARD:
         $("#hidden_button_to_launch_picture_fancybox_for_flashcard").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
           V.Editor.Image.setAddContentMode(V.Constant.FLASHCARD);
-          V.Utils.loadTab("tab_pic_from_url")
+          V.Editor.Utils.loadTab("tab_pic_from_url")
         }, "onClosed":function(data) {
           V.Editor.Image.setAddContentMode(V.Constant.NONE)
         }});
@@ -12898,7 +14328,7 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var init = function() {
     $("#hidden_button_to_uploadThumbnail").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
       V.Editor.Image.setAddContentMode(V.Constant.THUMBNAIL);
-      V.Utils.loadTab("tab_pic_from_url")
+      V.Editor.Utils.loadTab("tab_pic_from_url")
     }, "onClosed":function(data) {
       V.Editor.Image.setAddContentMode(V.Constant.NONE)
     }})
@@ -15680,11 +17110,11 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   };
   var insertFlashcard = function() {
     $("#addSlideFancybox").trigger("click");
-    V.Utils.loadTab("tab_flashcards_repo")
+    V.Editor.Utils.loadTab("tab_flashcards_repo")
   };
   var insertSlide = function() {
     $("#addSlideFancybox").trigger("click");
-    V.Utils.loadTab("tab_templates")
+    V.Editor.Utils.loadTab("tab_templates")
   };
   var _hideMenuAfterAction = function() {
     if(_hoverMenu) {
@@ -17357,23 +18787,26 @@ VISH.Presentation = function(V, undefined) {
 VISH.Quiz.API = function(V, $, undefined) {
   var init = function() {
   };
-  var startQuizSession = function(quiz, successCallback, failCallback) {
+  var startQuizSession = function(quiz, quizJSON, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
-      var params = {"quiz":JSON.stringify(quiz), "authenticity_token":V.User.getToken()};
+      var params = {"quiz":JSON.stringify(quizJSON), "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
         if(typeof successCallback == "function") {
-          successCallback(data)
+          successCallback(quiz, data)
         }
       }, error:function(error) {
-        failCallback(error)
+        failCallback(quiz, error)
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-        V.Debugging.log("No server case");
-        var quiz_session = {id:"10000" * (1 + Math.random())};
+        var quizSessionId = Math.ceil(1E4 * (1 + Math.random())).toString();
+        var url = "http://" + window.location.host + "/quiz_sessions/" + quizSessionId;
+        var quiz_session = {id:quizSessionId, url:url};
         if(typeof successCallback == "function") {
-          successCallback(quiz_session)
+          setTimeout(function() {
+            successCallback(quiz, quiz_session)
+          }, 1E3)
         }
       }
     }
@@ -17390,6 +18823,12 @@ VISH.Quiz.API = function(V, $, undefined) {
         failCallback(error)
       }});
       return null
+    }else {
+      if(typeof successCallback == "function") {
+        setTimeout(function() {
+          successCallback()
+        }, 1E3)
+      }
     }
   };
   var getResults = function(quizSessionId, successCallback, failCallback) {
@@ -17405,75 +18844,49 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        var data = [[{"no":"4", "answer":"true"}], [{"no":"4", "answer":"true"}], [{"no":"2", "answer":"true"}]];
+        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}];
+        if(Math.random() < 0.5) {
+          data = [{"answer":'[{"no":"1","answer":"false"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}, {"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}]
+        }
+        if(typeof successCallback == "function") {
+          setTimeout(function() {
+            successCallback(data)
+          }, 1E3)
+        }
+      }
+    }
+  };
+  var closeQuizSession = function(quizSessionId, name, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration()["mode"] == "vish") {
+      var send_type = "GET";
+      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
+      if(typeof name == "string") {
+        params["name"] = name
+      }
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/close", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
-      }
-    }
-  };
-  var deleteQuizSession = function(quiz_session_id, successCallback, failCallback, quiz_name) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
-      var quizName;
-      if(quiz_name) {
-        quizName = quiz_name
-      }else {
-        quizName = ""
-      }
-      var send_type = "DELETE";
-      var params = {"id":quiz_session_id, "authenticity_token":V.User.getToken(), "name":quizName};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_session_id, data:params, success:function(data) {
-        var results = data;
-        if(typeof successCallback == "function") {
-          successCallback(results)
-        }
       }, error:function(error) {
         failCallback(error)
-      }});
-      return null
+      }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        V.Debugging.log("No server case");
-        var results = {"quiz_session_id":19, "quiz_id":3, "results":{"b":4, "a":2, "c":1, "d":1}};
+        var data = {"processed":"true"};
         if(typeof successCallback == "function") {
-          successCallback(results)
+          setTimeout(function() {
+            successCallback(data)
+          }, 1E3)
         }
       }
     }
   };
-  var getQuizSessionResults = function(quiz_active_session_id, successCallback, failCallback) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
-      var send_type = "GET";
-      var params = {"id":quiz_active_session_id, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quiz_active_session_id + "/results.json", data:params, success:function(data) {
-        var results = data;
-        if(typeof successCallback == "function") {
-          successCallback(results)
-        }
-      }, error:function(error) {
-        failCallback(error)
-      }});
-      return null
-    }else {
-      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        V.Debugging.log("No server case: and quiz session get results: " + quiz_active_session_id);
-        if(quiz_active_session_id == 98988) {
-          var results = {"quiz_session_id":98988, "quiz_id":12, "results":{"b":4, "a":2, "c":1, "d":1}}
-        }else {
-          if(quiz_active_session_id == 98955) {
-            var results = {"quiz_session_id":98955, "quiz_id":13, "results":{"b":8, "a":4, "c":4}}
-          }
-        }
-        if(typeof successCallback == "function") {
-          successCallback(results)
-        }
-      }
-    }
-  };
-  return{init:init, startQuizSession:startQuizSession, sendAnwers:sendAnwers, getResults:getResults}
+  return{init:init, startQuizSession:startQuizSession, closeQuizSession:closeQuizSession, sendAnwers:sendAnwers, getResults:getResults}
 }(VISH, jQuery);
 VISH.Quiz.MC = function(V, $, undefined) {
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
+  var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
+  var pieLetterColor = ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"];
   var choices = {};
   var init = function() {
     _loadEvents()
@@ -17482,7 +18895,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
   };
   var render = function(slide, template) {
     var quizId = V.Utils.getId();
-    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + VISH.Constant.QZ_TYPE.MCHOICE + "'></div>");
+    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + V.Constant.QZ_TYPE.MCHOICE + "'></div>");
     var multipleAnswer = false;
     var inputType = "radio";
     if(slide.extras && slide.extras.multipleAnswer === true) {
@@ -17565,7 +18978,43 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var getChoicesLetters = function() {
     return choicesLetters
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz}
+  var drawAnswers = function(quiz, answersList, options) {
+    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
+    var pieFragments = [];
+    var data = [];
+    for(var i = 0;i < nAnswers;i++) {
+      pieFragments[i] = {};
+      pieFragments[i].value = 0;
+      pieFragments[i].label = choicesLetters[i];
+      pieFragments[i].color = pieBackgroundColor[i];
+      pieFragments[i].labelColor = pieLetterColor[i];
+      pieFragments[i].labelFontSize = "16"
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          pieFragments[index].value++
+        }
+      }
+    }
+    for(var i = 0;i < nAnswers;i++) {
+      data.push(pieFragments[i])
+    }
+    var canvas = $("#quiz_chart");
+    var ctx = $(canvas).get(0).getContext("2d");
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
+    }
+    var options = {showTooltips:false, animation:animation};
+    var myNewChart = (new Chart(ctx)).Pie(data, options)
+  };
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
 }(VISH, jQuery);
 VISH.Quiz.TF = function(V, $, undefined) {
   var choices = {};
@@ -17576,7 +19025,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
   };
   var render = function(slide, template) {
     var quizId = V.Utils.getId();
-    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + VISH.Constant.QZ_TYPE.TF + "'></div>");
+    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + V.Constant.QZ_TYPE.TF + "'></div>");
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
     $(questionWrapper).html(slide.question.wysiwygValue);
     $(container).append(questionWrapper);
@@ -17589,7 +19038,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
       var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
       var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true' value='" + index + "'/></td>");
       var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' value='" + index + "'/></td>");
-      var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + VISH.Quiz.MC.getChoicesLetters()[i] + "</span></td>");
+      var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + V.Quiz.MC.getChoicesLetters()[i] + "</span></td>");
       var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
       $(optionText).html(option.wysiwygValue);
       $(optionWrapper).append(optionBox1);
@@ -17664,477 +19113,54 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(quiz).find("input[type='radio']").attr("disabled", "disabled");
     V.Quiz.disableAnswerButton(quiz)
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz}
-}(VISH, jQuery);
-VISH.Quiz_OLD = function(V, $, undefined) {
-  var quizMode;
-  var quizSessionStarted = false;
-  var mcOptionsHash = new Array;
-  mcOptionsHash["a"] = 0;
-  mcOptionsHash["b"] = 1;
-  mcOptionsHash["c"] = 2;
-  mcOptionsHash["d"] = 3;
-  mcOptionsHash["e"] = 4;
-  mcOptionsHash["f"] = 5;
-  var tfOptionsHash = new Array;
-  tfOptionsHash["true"] = 0;
-  tfOptionsHash["false"] = 1;
-  var startButtonClass = "quiz_session_start_button";
-  var optionsButtonClass = "quiz_session_options_button";
-  var showAnswerButtonClass = "show_answers_button";
-  var hideAnswerButtonClass = "hide_answers_button";
-  var voteButtonClass = "quiz_send_vote_button";
-  var stopSessionButtonClass = "quiz_session_stop_button";
-  var statisticsButtonClass = "mch_statistics_icon";
-  var tabQuizSessionContent = "tab_quiz_session_content";
-  var tabQuizStatsBarsContentId = "quiz_stats_bars_content_id";
-  var tabQuizStatsPieContentId = "quiz_stats_pie_content_id";
-  var getResultsPeriod = 3E3;
-  var getResultsTimeOut;
-  var pollingActivated = false;
-  var addedFullScreenListener = false;
-  var init = function(presentation) {
-    if(presentation.type == "quiz_simple") {
-      quizMode = "answer";
-      _loadAnswerEvents()
-    }else {
-      quizMode = "question";
-      _loadEvents()
+  var drawAnswers = function(quiz, answersList, options) {
+    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
+    var labels = [];
+    var dataTrue = [];
+    var dataFalse = [];
+    var maxValue = 0;
+    var scaleSteps = 10;
+    for(var i = 0;i < nAnswers;i++) {
+      labels[i] = "V       " + V.Quiz.MC.getChoicesLetters()[i] + "       F";
+      dataTrue[i] = 0;
+      dataFalse[i] = 0
     }
-    V.Quiz.Renderer.init();
-    V.Quiz.API.init();
-    $("a#addQuizSessionFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":"90%", "height":"90%", "margin":"10%", "padding":0, "autoScale":true, "onStart":function(data) {
-      V.Utils.loadTab("tab_quiz_session");
-      _enableFullScreenQRButton()
-    }})
-  };
-  var getQuizMode = function() {
-    return quizMode
-  };
-  var prepareQuiz = function() {
-    if(quizMode == "answer") {
-      $("." + startButtonClass).hide();
-      $("." + voteButtonClass).show()
-    }else {
-      if(quizMode == "question") {
-        if(!V.User.isLogged()) {
-          $("." + startButtonClass).hide()
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          dataTrue[index]++
         }else {
-          $("." + startButtonClass).show()
+          dataFalse[index]++
         }
       }
     }
-  };
-  var showQuizStats = function() {
-    $("a#addQuizSessionFancybox").trigger("click");
-    testFullScreen()
-  };
-  var _loadEvents = function() {
-    $(document).on("click", "." + startButtonClass, startMcQuizButtonClicked);
-    $(document).on("click", "." + stopSessionButtonClass, onStopMcQuizButtonClicked);
-    $(document).on("click", "." + optionsButtonClass, showQuizStats);
-    $(document).on("click", "." + showAnswerButtonClass, toggleShowAnswers);
-    $(document).on("click", "." + hideAnswerButtonClass, toggleShowAnswers);
-    $(document).on("click", "#mask_stop_quiz", _hideStopQuizPopup);
-    $(document).on("click", ".quiz_stop_session_cancel", _hideStopQuizPopup);
-    $(document).on("click", ".quiz_stop_session_save", _stopAndSaveQuiz);
-    $(document).on("click", ".quiz_stop_session_dont_save", _stopAndDontSaveQuiz);
-    $(document).on("click", ".quiz_full_screen", qrToggleFullScreen);
-    $(document).on("click", ".hide_qrcode", _hideQRCode);
-    $(document).on("click", ".show_qrcode", _showQRCode);
-    $(document).on("click", ".quiz_cancel_full_screen", qrToggleFullScreen)
-  };
-  var startMcQuizButtonClicked = function() {
-    if(V.User.isLogged()) {
-      var quizId = $(V.Slides.getCurrentSlide()).find(".quizId").val();
-      var quiztype = $(V.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
-      $("a#addQuizSessionFancybox").trigger("click");
-      V.Quiz.API.postStartQuizSession(quizId, _onQuizSessionReceived, _OnQuizSessionReceivedError);
-      _startStats(quiztype);
-      testFullScreen()
-    }else {
-      V.Debugging.log("User not logged")
-    }
-  };
-  var _startStats = function(quiz_type) {
-    var question;
-    if($("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").contents()) {
-      $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").children().remove()
-    }
-    if($("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").contents()) {
-      $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").children().remove()
-    }
-    if($("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children()) {
-      $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").children().remove()
-    }
-    if(quiz_type == "multiplechoice") {
-      question = $(V.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".value_multiplechoice_question_in_zone");
-      var options_form = $(V.Slides.getCurrentSlide()).find("div.mcquestion_body").clone().find(".mcquestion_form")
-    }
-    if(quiz_type == "truefalse") {
-      question = $(V.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".value_truefalse_question_in_zone");
-      var options_form = $(V.Slides.getCurrentSlide()).find("div.truefalse_question_container").clone().find(".truefalse_options_container")
-    }
-    question.addClass("question_in_stats");
-    $("#" + tabQuizStatsBarsContentId).find(".quiz_question_container").append(question.clone());
-    $("#" + tabQuizStatsPieContentId).find(".quiz_question_container").append(question.clone());
-    options_form.find(".multiplechoice_option_in_viewer").addClass("option_in_stats");
-    $("#" + tabQuizStatsBarsContentId).find(".quiz_options_container").append(options_form);
-    $("#" + tabQuizStatsBarsContentId).find(".truefalse_options_container").css("display", "block");
-    $("#" + tabQuizStatsBarsContentId).find(".mch_inputs_wrapper").remove();
-    $("#tab_quiz_stats_bars_content").addClass("resized_fancybox_for_stats");
-    $("#tab_quiz_stats_pie_content").addClass("resized_fancybox_for_stats");
-    $("#tab_quiz_session_content").addClass("resized_fancybox_for_stats")
-  };
-  var activatePolling = function(activate_boolean) {
-    if(!pollingActivated && activate_boolean) {
-      pollingActivated = activate_boolean;
-      _updateBarsStats();
-      getResultsTimeOut = setInterval(_getResults, getResultsPeriod)
-    }else {
-      if(pollingActivated && activate_boolean) {
-      }else {
-        pollingActivated = activate_boolean;
-        clearInterval(getResultsTimeOut)
+    for(var l = 0;l < nAnswers;l++) {
+      if(dataTrue[i] > maxValue) {
+        maxValue = dataTrue[i]
+      }
+      if(dataFalse[i] > maxValue) {
+        maxValue = dataFalse[i]
       }
     }
-  };
-  var _updateBarsStats = function(data) {
-    if(data) {
-      V.Debugging.log("_updateBarsStats with  data: " + JSON.stringify(data))
-    }else {
-      V.Debugging.log("_updateBarsStats with no data params");
-      $("#" + tabQuizStatsBarsContentId).find(".mc_meter").css("display", "block");
-      $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").css("display", "block");
-      $("#" + tabQuizStatsBarsContentId).find(".mcoption_label").text("0%");
-      $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span").css("width", "0%");
-      _getResults()
+    if(maxValue < 10) {
+      scaleSteps = Math.max(1, maxValue)
     }
-  };
-  var _getResults = function(quiz_session_active_id) {
-    if(quiz_session_active_id) {
-      var quizSessionActiveId = quiz_session_active_id
-    }else {
-      var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").val()
+    var canvas = $("#quiz_chart");
+    var ctx = $(canvas).get(0).getContext("2d");
+    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
     }
-    V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _showResults, _onQuizSessionResultsReceivedError)
+    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
+    var myNewChart = (new Chart(ctx)).Bar(data, options)
   };
-  var _onQuizSessionReceived = function(quiz_session_id) {
-    var quizUrlForSession = "http://" + window.location.host.toString() + "/quiz_sessions/";
-    var url = quizUrlForSession + quiz_session_id;
-    var current_slide = V.Slides.getCurrentSlide();
-    var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
-    $(header).find(".url_share_link").attr("href", url);
-    $(header).find(".url_share_link").text("");
-    $(header).find(".url_share_link").append(url.toString());
-    $(".hidden_for_qr_quiz > canvas").remove();
-    $(".hidden_for_qr_quiz").qrcode({width:512, height:512, text:url.toString()});
-    var imageData = $(".hidden_for_qr_quiz > canvas")[0].toDataURL();
-    $("#" + tabQuizSessionContent).find(".qr_quiz_image").attr("src", imageData);
-    $(current_slide).find("input." + startButtonClass).hide();
-    $(current_slide).find("input." + optionsButtonClass).show();
-    quizSessionStarted = true;
-    $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value", quiz_session_id);
-    _showQRCode();
-    if(addedFullScreenListener === false) {
-      _addToggleFullScreenListener()
-    }
-  };
-  var _OnQuizSessionReceivedError = function(error) {
-    V.Debugging.log("_OnQuizSessionReceivedError:  " + JSON.stringify(error))
-  };
-  var _addToggleFullScreenListener = function() {
-    var qrImgID = "quiz_session_qrcode_container_id";
-    addedFullScreenListener = true;
-    if(V.Status.getIsInIframe()) {
-      var myDoc = parent.document
-    }else {
-      var myDoc = document
-    }
-    var myElem = $(document).find(".quiz_full_screen")[0];
-    if(myElem.requestFullscreen) {
-      myDoc.addEventListener("fullscreenchange", function() {
-        if(document.fullScreen) {
-          $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
-          $(document.getElementById(qrImgID)).addClass("full-screen")
-        }else {
-          $(document.getElementById(qrImgID)).removeClass("full-screen");
-          $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container")
-        }
-      }, false)
-    }else {
-      if(myElem.webkitRequestFullScreen) {
-        myDoc.addEventListener("webkitfullscreenchange", function() {
-          if(document.webkitIsFullScreen) {
-            if($(document.getElementById(qrImgID)).hasClass("quiz_session_qrcode_container")) {
-              $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
-              $(document.getElementById(qrImgID)).addClass("full-screen");
-              $(".quiz_cancel_full_screen").show()
-            }
-          }else {
-            if($(document.getElementById(qrImgID)).hasClass("full-screen")) {
-              $(document.getElementById(qrImgID)).removeClass("full-screen");
-              $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container");
-              $(".quiz_cancel_full_screen").hide()
-            }
-          }
-        }, false)
-      }else {
-        if(myElem.mozRequestFullScreen) {
-          myDoc.addEventListener("mozfullscreenchange", function() {
-            if(document.mozFullScreen) {
-              $(document.getElementById(qrImgID)).removeClass("quiz_session_qrcode_container");
-              $(document.getElementById(qrImgID)).addClass("full-screen");
-              $(".quiz_cancel_full_screen").show()
-            }else {
-              $(document.getElementById(qrImgID)).removeClass("full-screen");
-              $(document.getElementById(qrImgID)).addClass("quiz_session_qrcode_container");
-              $(".quiz_cancel_full_screen").hide()
-            }
-          }, false)
-        }else {
-          V.Debugging.log("Other Browser does not support FUll Screen Mode")
-        }
-      }
-    }
-  };
-  var onStopMcQuizButtonClicked = function() {
-    var id = $("a[name=modal_fancybox]").attr("href");
-    var maskHeight = $(document).height();
-    var maskWidth = $(window).width();
-    $("#mask_stop_quiz").css({"width":maskWidth, "height":maskHeight});
-    $("#mask_stop_quiz").fadeTo("slow", 0.6);
-    $(id).css("top", maskHeight / 2 - $(id).height() / 2);
-    $(id).css("left", maskWidth / 2 - $(id).width() / 2);
-    $(id).show();
-    $(id).children().show();
-    var date = new Date;
-    var date_string = date.getFullYear().toString() + (date.getMonth() + 1).toString() + date.getDate().toString() + "_" + date.getHours().toString() + date.getMinutes().toString();
-    $(id).find(".quiz_saved_session_name").val(date_string);
-    $(id).fadeIn(2E3)
-  };
-  var _stopAndSaveQuiz = function() {
-    var current_slide = V.Slides.getCurrentSlide();
-    quizName = $("#stop_quiz_fancybox").find(".quiz_saved_session_name").val();
-    var header = $("#" + tabQuizSessionContent).find(".quiz_session_header");
-    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
-    if(!quizName) {
-      quizName = "Unknown"
-    }
-    _hideStopQuizPopup();
-    $.fancybox.close();
-    $(current_slide).find("input." + optionsButtonClass).hide();
-    $(current_slide).find("input." + startButtonClass).show();
-    V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
-    pollingActivated = false;
-    clearInterval(getResultsTimeOut);
-    quizSessionStarted = false
-  };
-  var _onQuizSessionCloseReceived = function(results) {
-    V.Debugging.log("_onQuizSessionCloseReceived");
-    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value")
-  };
-  var _onQuizSessionCloseReceivedError = function(error) {
-    V.Debugging.log("_onQuizSessionCloseReceivedError, and value received is:  " + JSON.stringify(error))
-  };
-  var _stopAndDontSaveQuiz = function() {
-    var current_slide = V.Slides.getCurrentSlide();
-    var quizSessionActiveId = $("#" + tabQuizSessionContent).find("input.quiz_session_id").attr("value");
-    _hideStopQuizPopup();
-    $.fancybox.close();
-    quizName = false;
-    $(current_slide).find("input." + optionsButtonClass).hide();
-    $(current_slide).find("input." + startButtonClass).show();
-    V.Quiz.API.deleteQuizSession(quizSessionActiveId, _onQuizSessionCloseReceived, _onQuizSessionCloseReceivedError, quizName);
-    clearInterval(getResultsTimeOut);
-    quizSessionStarted = false
-  };
-  var _loadAnswerEvents = function() {
-    $(document).on("click", "." + voteButtonClass, _sendVote)
-  };
-  var _sendVote = function(event) {
-    var answer;
-    if(event.target.parentElement.classList[0] == "mch_inputs_wrapper") {
-      var answer = $(V.Slides.getCurrentSlide()).find("input:radio[name='mc_radio']:checked'").val()
-    }else {
-      if(event.target.parentElement.classList[0] == "truefalse_inputs_wrapper") {
-        var answer = $(V.Slides.getCurrentSlide()).find("input:radio[name='truefalse']:checked'").val()
-      }
-    }
-    if(typeof answer !== "undefined") {
-      var quizSessionActiveId = V.SlideManager.getOptions()["quiz_active_session_id"];
-      V.Quiz.API.putQuizSession(answer, quizSessionActiveId, _onQuizVotingSuccessReceived, _OnQuizVotingReceivedError);
-      $("." + startButtonClass).hide()
-    }
-  };
-  var _onQuizVotingSuccessReceived = function(data) {
-    var quizSessionActiveId = V.SlideManager.getOptions()["quiz_active_session_id"];
-    V.Quiz.API.getQuizSessionResults(quizSessionActiveId, _onQuizSessionResultsReceived, _onQuizSessionResultsReceivedError)
-  };
-  var _onQuizSessionResultsReceived = function(data) {
-    $(V.Slides.getCurrentSlide()).find(".li_mch_options_in_zone > input").remove();
-    $(".thanks_div").show();
-    var id = $("a[name=modal_window]").attr("href");
-    var maskHeight = $(document).height();
-    var maskWidth = $(window).width();
-    $("#thanks_div").css({"width":maskWidth, "height":maskHeight});
-    $("#thanks_div").fadeTo("slow", 0.6);
-    $(id).css("top", maskHeight / 2 - $(id).height() / 2);
-    $(id).css("left", maskWidth / 2 - $(id).width() / 2);
-    $(id).show();
-    $(V.Slides.getCurrentSlide()).find("." + voteButtonClass).hide()
-  };
-  var _OnQuizVotingReceivedError = function(error) {
-    V.Debugging.log("_OnQuizVotingReceivedError, and value received is:  " + JSON.stringify(error))
-  };
-  var _onQuizSessionResultsReceivedError = function(error) {
-    V.Debugging.log("_onQuizSessionResultsReceivedError, and value received is:  " + JSON.stringify(error))
-  };
-  var _showResults = function(data) {
-    var quiz_type = $(V.Slides.getCurrentSlide()).find(".quiz").attr("quiztype");
-    var index;
-    var maxWidth = 70;
-    var totalVotes = 0;
-    for(option in data.results) {
-      if(quiz_type == "multiplechoice") {
-        if(option in mcOptionsHash) {
-          var votes = data.results[option];
-          totalVotes += votes
-        }
-      }else {
-        if(quiz_type == "truefalse") {
-          if(option in tfOptionsHash) {
-            var votes = data.results[option];
-            totalVotes += votes
-          }
-        }
-      }
-    }
-    if(totalVotes > 0) {
-      for(option in data.results) {
-        if(option in mcOptionsHash || option in tfOptionsHash) {
-          if(quiz_type == "multiplechoice") {
-            index = mcOptionsHash[option]
-          }else {
-            if(quiz_type = "truefalse") {
-              index = tfOptionsHash[option]
-            }
-          }
-          var votes = data.results[option];
-          var percent = votes / totalVotes * 100;
-          var percentString = percent.toString() + "%";
-          var roundedNumber = Math.round(percent * Math.pow(10, 2)) / Math.pow(10, 2);
-          if(typeof $("#" + tabQuizStatsBarsContentId).find(".mc_meter")[index] != "undefined") {
-            $("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index].style.width = percentString;
-            $($("#" + tabQuizStatsBarsContentId).find(".mcoption_label")[index]).text(roundedNumber + "%");
-            if(quiz_type == "multiplechoice") {
-              $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("mcoption_" + option)
-            }else {
-              if(quiz_type = "truefalse") {
-                $($("#" + tabQuizStatsBarsContentId).find(".mc_meter > span")[index]).addClass("tfoption_" + option)
-              }
-            }
-          }
-        }
-      }
-    }
-    google.load("visualization", "1.0", {"packages":["corechart"]}, {"callback":V.Quiz.drawPieChart(data.results)})
-  };
-  var drawPieChart = function(data) {
-    var data_for_chart = new google.visualization.DataTable;
-    data_for_chart.addColumn("string", "Question");
-    data_for_chart.addColumn("number", "Slices");
-    for(option in data) {
-      if(option in mcOptionsHash || option in tfOptionsHash) {
-        var votes = data[option];
-        data_for_chart.addRow([option, votes])
-      }
-    }
-    var question = $(V.Slides.getCurrentSlide()).find(".value_multiplechoice_question_in_zone").text();
-    var options = {"title":"", "width":400, "height":300};
-    var chart = new google.visualization.PieChart(document.getElementById("quiz_chart_container_id"));
-    chart.draw(data_for_chart, options)
-  };
-  var _hideStopQuizPopup = function() {
-    $("#mask_stop_quiz").fadeTo("slow", 0);
-    $("#mask_stop_quiz").hide();
-    $("#stop_quiz_fancybox").hide()
-  };
-  var _hideQRCode = function() {
-    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > .qr_quiz_image")) {
-      $("#" + tabQuizSessionContent).find(".qr_quiz_image").hide();
-      $("#" + tabQuizSessionContent).find(".qr_background").show();
-      $("#" + tabQuizSessionContent).find(".hide_qrcode").hide();
-      $("#" + tabQuizSessionContent).find(".show_qrcode").show()
-    }
-  };
-  var _showQRCode = function() {
-    if($("#" + tabQuizSessionContent).find(".quiz_session_qrcode_container > .qr_background")) {
-      $("#" + tabQuizSessionContent).find(".qr_background").hide();
-      $("#" + tabQuizSessionContent).find(".qr_quiz_image").show();
-      $("#" + tabQuizSessionContent).find(".show_qrcode").hide();
-      $("#" + tabQuizSessionContent).find(".hide_qrcode").show()
-    }
-  };
-  var _enableFullScreenQRButton = function() {
-    if(V.Status.getDevice().features.fullscreen) {
-      $(".quiz_full_screen").show()
-    }else {
-      $(".quiz_full_screen").hide()
-    }
-  };
-  var qrToggleFullScreen = function(event) {
-    var myDoc = document;
-    var myElem = document.getElementById("quiz_session_qrcode_container_id");
-    if(myDoc.fullScreenElement && myDoc.fullScreenElement !== null || !myDoc.mozFullScreen && !myDoc.webkitIsFullScreen) {
-      if(myDoc.documentElement.requestFullScreen) {
-        myElem.requestFullScreen()
-      }else {
-        if(myDoc.documentElement.mozRequestFullScreen) {
-          myElem.mozRequestFullScreen()
-        }else {
-          if(myDoc.documentElement.webkitRequestFullScreen) {
-            myElem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
-          }
-        }
-      }
-    }else {
-      if(myDoc.cancelFullScreen) {
-        myDoc.cancelFullScreen()
-      }else {
-        if(myDoc.mozCancelFullScreen) {
-          myDoc.mozCancelFullScreen()
-        }else {
-          if(myDoc.webkitCancelFullScreen) {
-            myDoc.webkitCancelFullScreen()
-          }
-        }
-      }
-    }
-  };
-  var getIsQuizSessionStarted = function() {
-    return quizSessionStarted
-  };
-  var testFullScreen = function() {
-  };
-  var UnbindStartQuizEvents = function() {
-    $(document).off("click", "." + startButtonClass, startMcQuizButtonClicked)
-  };
-  var toggleShowAnswers = function(event) {
-    var current_slide = V.Slides.getCurrentSlide();
-    if(event.target.classList[0] == showAnswerButtonClass) {
-      $(current_slide).find(".truefalse_answers > input").show();
-      $(current_slide).find(".show_answers_button").hide();
-      $(current_slide).find(".hide_answers_button").show()
-    }else {
-      if(event.target.classList[0] == hideAnswerButtonClass) {
-        $(current_slide).find(".truefalse_answers > input").hide();
-        $(current_slide).find(".hide_answers_button").hide();
-        $(current_slide).find(".show_answers_button").show()
-      }
-    }
-  };
-  return{init:init, prepareQuiz:prepareQuiz, getQuizMode:getQuizMode, startMcQuizButtonClicked:startMcQuizButtonClicked, drawPieChart:drawPieChart, getIsQuizSessionStarted:getIsQuizSessionStarted, onStopMcQuizButtonClicked:onStopMcQuizButtonClicked, activatePolling:activatePolling, qrToggleFullScreen:qrToggleFullScreen, showQuizStats:showQuizStats, testFullScreen:testFullScreen, UnbindStartQuizEvents:UnbindStartQuizEvents}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
 }(VISH, jQuery);
 VISH.Recommendations = function(V, $, undefined) {
   var url_to_get_recommendations;
@@ -18157,6 +19183,13 @@ VISH.Recommendations = function(V, $, undefined) {
     }})
   };
   var generateFancybox = function() {
+    if(!generated) {
+      if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
+      }else {
+        _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+      }
+      generated = true
+    }
   };
   var _fillFancyboxWithData = function(data) {
     if(!data || !data.items) {
@@ -18791,7 +19824,7 @@ VISH.Text = function(V, $, undefined) {
   var aftersetupSize = function(increase) {
     increase = increase * _correctionFactor(increase);
     var reference_font_size = V.Constant.TextBase;
-    var texts = $("article");
+    var texts = $("article, #fancybox-content");
     $(texts).css("font-size", reference_font_size * increase + "px")
   };
   var _correctionFactor = function(factor) {
@@ -19634,9 +20667,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
     if(!render_full) {
       if(V.Slides.isCurrentFirstSlide()) {
-        $("#page-switcher-start").hide()
+        $("#page-switcher-start").addClass("disabledarrow")
       }else {
-        $("#page-switcher-start").show()
+        $("#page-switcher-start").removeClass("disabledarrow")
       }
       $("#page-switcher-end").show()
     }
@@ -19708,25 +20741,26 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var increaseW = finalW / 800;
     $(".fc_poi img").css("width", 50 * increase + "px");
     $(".fc_poi img").css("height", 50 * increase + "px");
+    decideIfPageSwitcher();
+    V.Text.aftersetupSize(increase, increaseW);
+    V.SnapshotPlayer.aftersetupSize(increase, increaseW);
+    V.ObjectPlayer.aftersetupSize(increase, increaseW);
+    V.VirtualTour.aftersetupSize(increase, increaseW);
+    _updateFancyboxAfterSetupSize()
+  };
+  var _updateFancyboxAfterSetupSize = function() {
     if($("#fancybox-content:empty").length === 0) {
       $("#fancybox-wrap").width($(".current").width() + 100);
       $("#fancybox-wrap").height($(".current").height() + 70);
       $("#fancybox-wrap").css("top", $(".current").offset().top + "px");
       $("#fancybox-wrap").css("left", $(".current").offset().left + "px");
       setTimeout(function() {
-        $("#fancybox-wrap").height($(".current").height() + 70);
         $("#fancybox-content").width("100%");
         $("#fancybox-content").height("100%");
         $("#fancybox-content > div").width("100%");
         $("#fancybox-content > div").height("100%")
-      }, 300);
-      V.Quiz.testFullScreen()
+      }, 300)
     }
-    decideIfPageSwitcher();
-    V.Text.aftersetupSize(increase, increaseW);
-    V.SnapshotPlayer.aftersetupSize(increase, increaseW);
-    V.ObjectPlayer.aftersetupSize(increase, increaseW);
-    V.VirtualTour.aftersetupSize(increase, increaseW)
   };
   var _enableFullScreen = function(fullscreen) {
     if(can_use_nativeFs) {

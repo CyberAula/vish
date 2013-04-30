@@ -1,35 +1,28 @@
-<section class="slides layout-regular template-default">
-  <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
-</section>
-    
-    <div id="viewbar" class="viewbar" style="display:none">
-		<button id="page-switcher-start" class="page-switcher" tabindex="2"><</button>
-		<div id="slide-counter"></div>
-		<button id="page-switcher-end" class="page-switcher" tabindex="2" >></button>
-	</div>
-    
-	<div style="display:none" id="viewerpreview">Preview</div>
-  <div style="display:none" id="embedWatermarkWrapper">
-    <a href="http://vishub.org" target="_blank">
-      <img id="embedWatermark" src="/assets/watermark.png"/>
-    </a>
-  </div>
-	<button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/icons/back_icon.png"/></button>
-	<button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
-	<button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
-    
+<button id="vishwatermark" class="watermark" tabindex="2"></button>
+    <section class="slides layout-regular template-default"></section>
+        <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
+    <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
 
-    <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
-   <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>    
-    <!-- Hidden link to open fancybox when stop a quiz session  -->
-    <a id="stopQuizSessionFancybox" href="#stop_quiz_fancybox" style="display: none;" name='modal_fancybox'></a> 
+    <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
+
+    <div id="viewbar" class="viewbar" style="display:none">  
+    <button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
+      <div id="slide-counter"></div>
+      <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
+    </div> 
+
+    <div style="display:none" id="viewerpreview">Preview</div>
+    <div style="display:none" id="embedWatermarkWrapper">
+    </div>
+    <button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/icons/back_icon.png"/></button>
+    
     <!-- Hidden link to open fancybox to display recommendations in the end -->
     <a id="fancyRec" href="#fancy_recommendations" style="display: none;"></a>
-   
-    <!-- Thumbnails fancybox -->
+
+    <!-- Recommendations fancybox -->
     <div style='display:none'>
         <div id='fancy_recommendations'>
-            <div class="rec-first-row">
+            <div class="rec-first-row" style="display:none">
                 <span class="textintro1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
                 <button id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
             </div>
@@ -41,79 +34,93 @@
         </div>
     </div>
 
-    <!-- quiz Session Fancybox fancybox -->
-    <div style='display:none'>
-        <div id="start_quiz_fancybox" class="outer_box">
-             <div class="fancy_tabs" id="start_quiz_fancy_tabs_id">
-                    <ul>
-                      <li><a href="#" onclick="VISH.Utils.loadTab('tab_quiz_session')" id="tab_quiz_session" class="fancy_tab" i18n-key="i.quiz_session">url</a></li>
-                      <li><a href="#" onclick="VISH.Utils.loadTab('tab_quiz_stats_bars')" id="tab_quiz_stats_bars" class="fancy_tab" i18n-key="i.statistics_bars">Stats 1</a></li>
-                      <li><a href="#" onclick="VISH.Utils.loadTab('tab_quiz_stats_pie')" id="tab_quiz_stats_pie" class="fancy_tab" i18n-key="i.statistics_pie">Stats 2</a></li>
-                    </ul>
-                    <img class='help_in_fancybox' id='tab_quiz_session_help' src='/assets/helptutorial_circle_blank.png'/>
-                    <img class='help_in_fancybox' id='tab_quiz_stats_bars_help' src='/assets/helptutorial_circle_blank.png'/>
-                    <img class='help_in_fancybox' id='tab_quiz_stats_pie_help' src='/assets/helptutorial_circle_blank.png'/>
-                </div>
-            <div id='tab_quiz_session_content' class="fancy_tab_content" style='display:none;'>
-                <div class='quiz_session_header'>
-                    <div class='url_share_container'>
-                        <span><a target="blank_" href="#" class='url_share_link'></a></span>
-                    </div>
-                </div>
-               <div class='quiz_session_body'>
-                    <div id='hidden_for_qr_quiz' class='hidden_for_qr_quiz' style='display:none;'></div>
-                    <div class='quiz_session_qrcode_container' id='quiz_session_qrcode_container_id'>
-                        <img id='qr_quiz_image_id' class="qr_quiz_image" src=''/>
-                        <button class='quiz_cancel_full_screen' tabindex='2' ></button>
-                        <img class='qr_background'/>
-                   </div>
-                    <div class='buttons_container'>
-                    <button class='quiz_full_screen' tabindex='2' ></button>
-                        <img id="qr_quiz_fullscreen_close" class='quiz_full_screen_back' src='/assets/quiz/fullscreen_goback.png' />
-                         <img class='hide_qrcode' src='/assets/quiz/hide_eye.png' />
-                         <img class='show_qrcode' src='/assets/quiz/eye.png' />
-                   </div>
-                </div>
-                <div class='quiz_session_inputs_container'>
-                        <input type='hidden' class='quiz_session_id' name='quiz_session_id' />
-                        <input type='button' class='quiz_session_stop_button' value='Stop Quiz'/>
-                    </div>
-            </div>
-             <div id='tab_quiz_stats_bars_content' class="fancy_tab_content" style='display:none;'> 
-                  <div id='quiz_stats_bars_content_id' class='quiz_stats_bars_content'>
-                        <div id='quiz_question_container_id' class='quiz_question_container'>
-                       </div>
-                        <div id='quiz_options_container_id' class='quiz_options_container'> </div>
-                        <div class='quiz_session_inputs_container'>
-                            <input type='button' class='quiz_session_stop_button' value='Stop Quiz'/>
-                        </div>
-                 </div>
 
-            </div>  
-             <div id='tab_quiz_stats_pie_content' class="fancy_tab_content" style='display:none;'>
-                <div id='quiz_stats_pie_content_id' class='quiz_stats_pie_content'>
-                        <div id='quiz_question_container_id' class='quiz_question_container'>
-                        </div>
-                        <div id='quiz_chart_container_id' class='quiz_chart_container'><img class='img_chart'/>
-                       </div>
-                       <div class='quiz_session_inputs_container'>
-                            <input type='button' class='quiz_session_stop_button' value='Stop Quiz'/>
-                        </div>
-                 </div>
-           </div>  
-        </div>    
-    </div>      
-    <!-- second fancybox over fancybox -->
-     <div id='stop_quiz_fancybox' class='outer_box' style='diplay:none;'>
-            <div id='stop_quiz_fancybox_content' class='window'>
-                 <p class='stop_quiz_text'> Are you sure to stop the quiz?</p>
-                <input type='text' class='input_text_fancy quiz_saved_session_name' style='position:relative;'  />
-                <input type='button' class='quiz_stop_session quiz_stop_session_cancel' value='Cancel'/>
-                <input type='button' class='quiz_stop_session quiz_stop_session_dont_save' value='Dont save'/>
-               <input type='button' class='quiz_stop_session quiz_stop_session_save' value='Save'/>
-           </div>    
-         </div>       
-   <div id='mask_stop_quiz' style='display:none;'></div>
+    <!-- Quizzes -->
+
+    <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
+    <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>
+    
+    <!-- Quiz session fancybox (new)-->
+    <div style='display:none'>
+        <div id="start_quiz_fancybox" class="outer_box_viewer">
+            <div class="fancy_viewer_tabs" id="images_fancy_tabs_id">     
+                <ul>
+                    <li><a href="#" id="tab_quiz_session" onclick="VISH.Quiz.loadTab('tab_quiz_session')" class="fancy_viewer_tab tabbable">Quiz Session</a></li>
+                    <li><a href="#" id="tab_quiz_stats" onclick="VISH.Quiz.loadTab('tab_quiz_stats')"class="fancy_viewer_tab">Stats</a></li>
+                </ul>
+                <img class='help_in_fancybox_viewer' id='tab_quiz_session_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+                <img class='help_in_fancybox_viewer' id='tab_quiz_stats_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+            </div>
+            <div id='tab_quiz_session_content' class="tab_quiz_session_content fancy_viewer_tab_content">
+                <a target="_blank" id='tab_quiz_session_url_link'></a>
+                <input type='button' class='quizButton quizStopButton' value='Stop'/>
+            </div>
+            <div id='tab_quiz_stats_content' class="fancy_viewer_tab_content">
+                <canvas id="quiz_chart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT WHEN TRY TO LAUNCH TWO QUIZZES AT THE SAME TIME-->
+    <div style='display:none'>
+        <div id='prompt1_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Please stop all quizzes before launch another one.</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT WHEN SAVE A QUIZ SESSION -->
+    <div style='display:none'>
+        <div id='prompt2_alert'>
+            <div class="prompt_text_container_viewer prompt_text_container_viewer2">
+                <p><span class="prompt_text_viewer">Do you want to save the quiz?</span></p>
+                <p><input type="text" id="prompt2name" title="Enter a name for the quiz session" class="prompt2name"></input></p>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('yes');" class="prompt_button_viewer prompt_button_viewer2">Yes</a>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('no');" class="prompt_button_viewer prompt_button_viewer1">No</a>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('cancel');" class="prompt_button_viewer prompt_button_viewer3">Cancel</a>
+            </div>
+        </div>
+      </div>
+
+    <!-- PROMPT WHEN TRY TO SEND AN EMPTY ANSWER-->
+    <div style='display:none'>
+        <div id='prompt3_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Please, answer the quiz before send</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT AFTER SEND ANSWER-->
+    <div style='display:none'>
+        <div id='prompt4_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Your answer has been submitted</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT AFTER ERROR ON SENDING ANSWER-->
+    <div style='display:none'>
+        <div id='prompt5_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Sorry, your answer can be submitted.</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
 
 
 <script>	
