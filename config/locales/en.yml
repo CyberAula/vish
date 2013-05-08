@@ -155,6 +155,8 @@ en:
   go:
     repository: "go to repository"
   help: "help"
+  help_page: "ViSH help"
+  help_manual: "Download user manual"
   lang:
     independent: "Language independent"
     changed: "Changed language to %{lang}"

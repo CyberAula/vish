@@ -159,6 +159,8 @@ es:
     lifesciences: "ciencias naturales"
     biotechnology: "biotecnología"
   help: "ayuda"
+  help_page: "ayuda de ViSH"
+  help_manual: "Descargar el manual de usuario"
   lang:
     independent: "No depende del lenguaje"
     changed: "Se cambia el idioma a %{lang}"

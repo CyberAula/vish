@@ -92,6 +92,9 @@ Vish::Application.routes.draw do
   match 'recSys/timestamp' => 'rec_sys#timestamp'
   match 'recSys/onSocialContextGenerated' => 'rec_sys#onSocialContextGenerated'
 
+  #Download the user manual and count the number of downloads
+  match 'user_manual' => 'help#download_user_manual'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
