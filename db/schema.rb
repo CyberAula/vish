@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422132346) do
+ActiveRecord::Schema.define(:version => 20130509080639) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -428,6 +428,11 @@ ActiveRecord::Schema.define(:version => 20130422132346) do
     t.datetime "updated_at",         :null => false
     t.integer  "activity_object_id"
     t.text     "json"
+  end
+
+  create_table "stats", :force => true do |t|
+    t.string  "stat_name",                 :null => false
+    t.integer "stat_value", :default => 0
   end
 
   create_table "taggings", :force => true do |t|
