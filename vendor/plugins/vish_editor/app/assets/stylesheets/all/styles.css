@@ -291,7 +291,7 @@ margin-top: 8px;
   width: 100%;
   border-bottom: 1px solid #888;
   border-top: 1px solid #ccc;
-  z-index: 1;
+  z-index: 1200;
 }
 
 
@@ -553,12 +553,10 @@ button#closeButton {
 
 #back_arrow{
   left: 0%;
-  z-index: 0;
 }
 
 #forward_arrow{
   right: 0%;
-  z-index: 0;
 }
 
 /* Watermark */
@@ -581,7 +579,8 @@ button#closeButton {
 
 #tab_quiz_session_url{
   text-align: center;
-  margin-top: 20%;
+  margin-top: 5%;
+  margin-bottom: 2%;
   color: blue;
   font-size: 3.2em;
   font-family: Helvetica;
@@ -598,6 +597,7 @@ div#tab_quiz_session_results{
 }
 
 #quiz_chart{
+  display: none;
   margin-top: 5%;
 }
 
@@ -612,8 +612,8 @@ div#tab_quiz_session_results{
 /***** Fancybox tabs (for quizzes) ****************/
 
 .outer_box_viewer{
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
 }
 
 .fancy_viewer_tabs{
@@ -694,6 +694,35 @@ div#tab_quiz_session_results{
   width: 100%;
   height: 100%;
   text-align: center;
+}
+
+.socialButton{
+  height: 9%;
+  margin-left: 5%;
+}
+
+.quizSharebuttons{
+  text-align: right;
+  margin-right: 5%;
+  margin-bottom: 3%;
+}
+
+#tab_quiz_session_share_twitter{
+
+}
+
+#tab_quiz_session_share_facebook{
+
+}
+
+div.quizQr {
+  width: 100%;
+  height: 50%;
+}
+
+div.quizQr > table {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*

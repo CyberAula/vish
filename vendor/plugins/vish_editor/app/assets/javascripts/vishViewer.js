@@ -3806,7 +3806,7 @@ window.Chart = function(context, options) {
     }
     return{x:xPosition, y:yPosition}
   }
-  context.canvas.onmousemove = function(e) {
+  function tooltipEventHandler(e) {
     if(chart.tooltips.length > 0) {
       chart.savedState = chart.savedState == null ? context.getImageData(0, 0, context.canvas.width, context.canvas.height) : chart.savedState;
       var rendered = 0;
@@ -3821,7 +3821,23 @@ window.Chart = function(context, options) {
         context.putImageData(chart.savedState, 0, 0)
       }
     }
-  };
+  }
+  if(window.Touch) {
+    context.canvas.ontouchstart = function(e) {
+      e.clientX = e.targetTouches[0].clientX;
+      e.clientY = e.targetTouches[0].clientY;
+      tooltipEventHandler(e)
+    };
+    context.canvas.ontouchmove = function(e) {
+      e.clientX = e.targetTouches[0].clientX;
+      e.clientY = e.targetTouches[0].clientY;
+      tooltipEventHandler(e)
+    }
+  }else {
+    context.canvas.onmousemove = function(e) {
+      tooltipEventHandler(e)
+    }
+  }
   context.canvas.onmouseout = function(e) {
     if(chart.savedState != null) {
       context.putImageData(chart.savedState, 0, 0)
@@ -3938,15 +3954,13 @@ window.Chart = function(context, options) {
         ctx.closePath();
         ctx.fillStyle = data[i].color;
         ctx.fill();
-        if(animationDecimal > 0.9999999) {
+        if(animationDecimal >= 1 && config.showTooltips) {
           var points = [{x:width / 2, y:height / 2}], pAmount = 50, radius = calculateOffset(data[i].value, calculatedScale, scaleHop);
           points.push({x:width / 2 + radius * Math.cos(startAngle), y:height / 2 + radius * Math.sin(startAngle)});
           for(var p = 0;p <= pAmount;p++) {
             points.push({x:width / 2 + radius * Math.cos(startAngle + p / pAmount * rotateAnimation * angleStep), y:height / 2 + radius * Math.sin(startAngle + p / pAmount * rotateAnimation * angleStep)})
           }
-          if(config.showTooltips === true) {
-            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "PolarArea")
-          }
+          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "PolarArea")
         }
         if(config.segmentShowStroke) {
           ctx.strokeStyle = config.segmentStrokeColor;
@@ -3996,21 +4010,17 @@ window.Chart = function(context, options) {
         var offset = calculateOffset(data.datasets[i].data[0], calculatedScale, scaleHop);
         ctx.beginPath();
         ctx.moveTo(0, animationDecimal * -1 * offset);
-        if(animationDecimal == 1) {
+        if(animationDecimal >= 1 && config.showTooltips) {
           var curX = width / 2 + offset * Math.cos(0 - Math.PI / 2), curY = height / 2 + offset * Math.sin(0 - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[0].trim() != "" ? data.labels[0] + ": " + data.datasets[i].data[0] : data.datasets[i].data[0];
-          if(config.showTooltips === true) {
-            registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[0], value:data.datasets[i].data[0]}, "Radar")
-          }
+          registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[0], value:data.datasets[i].data[0]}, "Radar")
         }
         for(var j = 1;j < data.datasets[i].data.length;j++) {
           offset = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop);
           ctx.rotate(rotationDegree);
           ctx.lineTo(0, animationDecimal * -1 * offset);
-          if(animationDecimal == 1) {
+          if(animationDecimal >= 1 && config.showTooltips) {
             var curX = width / 2 + offset * Math.cos(j * rotationDegree - Math.PI / 2), curY = height / 2 + offset * Math.sin(j * rotationDegree - Math.PI / 2), pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10, ttData = data.labels[j].trim() != "" ? data.labels[j] + ": " + data.datasets[i].data[j] : data.datasets[i].data[j];
-            if(config.showTooltips === true) {
-              registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Radar")
-            }
+            registerTooltip(ctx, {type:"circle", x:curX, y:curY, r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Radar")
           }
         }
         ctx.closePath();
@@ -4153,6 +4163,7 @@ window.Chart = function(context, options) {
       }
       for(var i = 0;i < data.length;i++) {
         var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        segmentAngle = Math.min(Math.PI * 1.999999, segmentAngle);
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
         ctx.lineTo(width / 2, height / 2);
@@ -4205,15 +4216,13 @@ window.Chart = function(context, options) {
           ctx.rotate(textRotation);
           ctx.translate(-tX, -tY)
         }
-        if(animationDecimal > 0.9999999) {
+        if(animationDecimal >= 1 && config.showTooltips) {
           var points = [{x:width / 2, y:height / 2}], pAmount = 50;
           points.push({x:width / 2 + pieRadius * Math.cos(cumulativeAngle), y:height / 2 + pieRadius * Math.sin(cumulativeAngle)});
           for(var p = 0;p <= pAmount;p++) {
             points.push({x:width / 2 + pieRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + pieRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
           }
-          if(config.showTooltips === true) {
-            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Pie")
-          }
+          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Pie")
         }
         if(config.segmentShowStroke) {
           ctx.lineWidth = config.segmentStrokeWidth;
@@ -4250,7 +4259,7 @@ window.Chart = function(context, options) {
         ctx.closePath();
         ctx.fillStyle = data[i].color;
         ctx.fill();
-        if(animationDecimal > 0.9999999) {
+        if(animationDecimal >= 1 && config.showTooltips) {
           var points = [], pAmount = 50;
           points.push({x:width / 2 + doughnutRadius * Math.cos(cumulativeAngle), y:height / 2 + doughnutRadius * Math.sin(cumulativeAngle)});
           for(var p = 0;p <= pAmount;p++) {
@@ -4260,9 +4269,7 @@ window.Chart = function(context, options) {
           for(var p = pAmount;p >= 0;p--) {
             points.push({x:width / 2 + cutoutRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + cutoutRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
           }
-          if(config.showTooltips === true) {
-            registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Doughnut")
-          }
+          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Doughnut")
         }
         if(config.segmentShowStroke) {
           ctx.lineWidth = config.segmentStrokeWidth;
@@ -4302,10 +4309,8 @@ window.Chart = function(context, options) {
         }
         var pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10;
         for(var j = 0;j < data.datasets[i].data.length;j++) {
-          if(animPc == 1) {
-            if(config.showTooltips === true) {
-              registerTooltip(ctx, {type:"circle", x:xPos(j), y:yPos(i, j), r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Line")
-            }
+          if(animPc >= 1 && config.showTooltips) {
+            registerTooltip(ctx, {type:"circle", x:xPos(j), y:yPos(i, j), r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Line")
           }
         }
         ctx.stroke();
@@ -4484,11 +4489,9 @@ window.Chart = function(context, options) {
           }
           ctx.closePath();
           ctx.fill();
-          if(animPc == 1) {
+          if(animPc >= 1 && config.showTooltips) {
             var x = barOffset, height = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop), y = xAxisPosY - height, width = barWidth;
-            if(config.showTooltips === true) {
-              registerTooltip(ctx, {type:"rect", x:x, y:y, width:width, height:height}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Bar")
-            }
+            registerTooltip(ctx, {type:"rect", x:x, y:y, width:width, height:height}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Bar")
           }
         }
       }
@@ -10312,6 +10315,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     V.SnapshotPlayer.aftersetupSize(increase, increaseW);
     V.ObjectPlayer.aftersetupSize(increase, increaseW);
     V.VirtualTour.aftersetupSize(increase, increaseW);
+    V.Quiz.aftersetupSize(increase, increaseW);
     _updateFancyboxAfterSetupSize()
   };
   var _updateFancyboxAfterSetupSize = function() {
@@ -11471,10 +11475,14 @@ VISH.Quiz = function(V, $, undefined) {
         $("#fancybox-content").height("100%");
         $("#fancybox-content > div").width("100%");
         $("#fancybox-content > div").height("100%");
-        $("#fancybox-wrap").show()
+        $("#fancybox-wrap").show();
+        if(currentQuizSession && currentQuizSession.url) {
+          _loadQr(currentQuizSession.url)
+        }
       }, 300)
     }, "onClosed":function() {
-      _stopPolling()
+      _stopPolling();
+      _cleanResults()
     }})
   };
   var _onAnswerQuiz = function(event) {
@@ -11602,11 +11610,11 @@ VISH.Quiz = function(V, $, undefined) {
   var _closeQuizSession = function(name) {
     V.Quiz.API.closeQuizSession(currentQuizSession.id, name, function(data) {
       $.fancybox.close();
-      currentQuiz = null;
-      currentQuizSession = null;
       $(".prompt_button_viewer1").removeClass("quizStartButtonLoading");
       $(".prompt_button_viewer2").removeClass("quizStartButtonLoading");
-      _enableLaunchButton(currentQuiz)
+      _enableLaunchButton(currentQuiz);
+      currentQuiz = null;
+      currentQuizSession = null
     })
   };
   var render = function(slide, template) {
@@ -11686,14 +11694,38 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var _loadQuizSession = function() {
+    _cleanResults();
     if(!currentQuizSession) {
       return
     }
+    if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+      currentQuizSession.url = "http://vishub.org/quiz_sessions/4567"
+    }
     var myA = $("#tab_quiz_session_url_link");
     $(myA).attr("href", currentQuizSession.url);
-    $(myA).html("<p id='tab_quiz_session_url'>" + currentQuizSession.url + "</p>")
+    $(myA).html("<p id='tab_quiz_session_url'>" + currentQuizSession.url + "</p>");
+    var sharingText = $(currentQuiz).find(".mc_question_wrapper_viewer").text().trim();
+    var twitter = $("#tab_quiz_session_share_twitter");
+    $(twitter).attr("href", "https://twitter.com/share?url=" + currentQuizSession.url + "&text=" + sharingText + "");
+    var facebook = $("#tab_quiz_session_share_facebook");
+    var facebookUrl = "http://www.facebook.com/sharer.php?s=100&p[url]=" + currentQuizSession.url + "&p[title]=" + sharingText;
+    $(facebook).attr("href", facebookUrl);
+    var gPlus = $("#tab_quiz_session_share_gPlus");
+    $(gPlus).attr("href", "https://plus.google.com/share?url=" + currentQuizSession.url)
+  };
+  var _loadQr = function(url) {
+    if(typeof url != "string") {
+      return
+    }
+    var container = $(".quizQr");
+    $(container).html("");
+    var height = $(container).height();
+    var width = height;
+    var qrOptions = {render:"div", width:width, height:height, color:"#000", bgColor:"#fff", text:url.toString()};
+    $(container).qrcode(qrOptions)
   };
   var _loadStats = function() {
+    _cleanResults();
     V.Quiz.API.getResults(currentQuizSession.id, function(results) {
       _drawResults(results, {"first":true});
       _startPolling()
@@ -11727,8 +11759,15 @@ VISH.Quiz = function(V, $, undefined) {
     var answers = _getAnswers(results);
     var quizModule = _getQuizModule($(currentQuiz).attr("type"));
     if(quizModule) {
+      $("#quiz_chart").show();
       quizModule.drawAnswers(currentQuiz, answers, options)
     }
+  };
+  var _cleanResults = function() {
+    var canvas = $("#quiz_chart");
+    var ctx = $(canvas).get(0).getContext("2d");
+    ctx.clearRect(0, 0, $(canvas).width(), $(canvas).height());
+    $(canvas).hide()
   };
   var _getAnswers = function(results) {
     var answers = [];
@@ -11778,12 +11817,17 @@ VISH.Quiz = function(V, $, undefined) {
   var _showAlert = function(alertId) {
     $.fancybox($("#" + alertId).html(), {"autoDimensions":false, "scrolling":"no", "width":$(".current").width(), "height":Math.min(200, $(".current").height()), "showCloseButton":false, "padding":5})
   };
-  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton, loadTab:loadTab, onCloseQuizSession:onCloseQuizSession}
+  var aftersetupSize = function(increase) {
+    setTimeout(function() {
+      if(currentQuizSession && currentQuizSession.url) {
+        _loadQr(currentQuizSession.url)
+      }
+    }, 500)
+  };
+  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton, loadTab:loadTab, onCloseQuizSession:onCloseQuizSession, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Quiz.MC = function(V, $, undefined) {
   var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
-  var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
-  var pieLetterColor = ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"];
   var choices = {};
   var init = function() {
     _loadEvents()
@@ -11876,40 +11920,9 @@ VISH.Quiz.MC = function(V, $, undefined) {
     return choicesLetters
   };
   var drawAnswers = function(quiz, answersList, options) {
-    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    var pieFragments = [];
-    var data = [];
-    for(var i = 0;i < nAnswers;i++) {
-      pieFragments[i] = {};
-      pieFragments[i].value = 0;
-      pieFragments[i].label = choicesLetters[i];
-      pieFragments[i].color = pieBackgroundColor[i];
-      pieFragments[i].labelColor = pieLetterColor[i];
-      pieFragments[i].labelFontSize = "16"
-    }
-    var alL = answersList.length;
-    for(var j = 0;j < alL;j++) {
-      var answers = answersList[j];
-      var aL = answers.length;
-      for(var k = 0;k < aL;k++) {
-        var answer = answers[k];
-        var index = answer.no - 1;
-        if(answer.answer === "true") {
-          pieFragments[index].value++
-        }
-      }
-    }
-    for(var i = 0;i < nAnswers;i++) {
-      data.push(pieFragments[i])
-    }
     var canvas = $("#quiz_chart");
-    var ctx = $(canvas).get(0).getContext("2d");
-    var animation = false;
-    if(options && options.first === true) {
-      animation = true
-    }
-    var options = {showTooltips:false, animation:animation};
-    var myNewChart = (new Chart(ctx)).Pie(data, options)
+    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
+    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.MCHOICE, nAnswers, answersList, options)
   };
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
 }(VISH, jQuery);
@@ -12011,51 +12024,9 @@ VISH.Quiz.TF = function(V, $, undefined) {
     V.Quiz.disableAnswerButton(quiz)
   };
   var drawAnswers = function(quiz, answersList, options) {
-    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    var labels = [];
-    var dataTrue = [];
-    var dataFalse = [];
-    var maxValue = 0;
-    var scaleSteps = 10;
-    for(var i = 0;i < nAnswers;i++) {
-      labels[i] = "V       " + V.Quiz.MC.getChoicesLetters()[i] + "       F";
-      dataTrue[i] = 0;
-      dataFalse[i] = 0
-    }
-    var alL = answersList.length;
-    for(var j = 0;j < alL;j++) {
-      var answers = answersList[j];
-      var aL = answers.length;
-      for(var k = 0;k < aL;k++) {
-        var answer = answers[k];
-        var index = answer.no - 1;
-        if(answer.answer === "true") {
-          dataTrue[index]++
-        }else {
-          dataFalse[index]++
-        }
-      }
-    }
-    for(var l = 0;l < nAnswers;l++) {
-      if(dataTrue[i] > maxValue) {
-        maxValue = dataTrue[i]
-      }
-      if(dataFalse[i] > maxValue) {
-        maxValue = dataFalse[i]
-      }
-    }
-    if(maxValue < 10) {
-      scaleSteps = Math.max(1, maxValue)
-    }
     var canvas = $("#quiz_chart");
-    var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
-    var animation = false;
-    if(options && options.first === true) {
-      animation = true
-    }
-    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
-    var myNewChart = (new Chart(ctx)).Bar(data, options)
+    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
+    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.TF, nAnswers, answersList, options)
   };
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
 }(VISH, jQuery);
@@ -12071,7 +12042,9 @@ VISH.Quiz.API = function(V, $, undefined) {
           successCallback(quiz, data)
         }
       }, error:function(error) {
-        failCallback(quiz, error)
+        if(typeof failCallback == "function") {
+          failCallback(error)
+        }
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
@@ -12095,7 +12068,9 @@ VISH.Quiz.API = function(V, $, undefined) {
           successCallback(data)
         }
       }, error:function(error) {
-        failCallback(error)
+        if(typeof failCallback == "function") {
+          failCallback(error)
+        }
       }});
       return null
     }else {
@@ -12115,7 +12090,9 @@ VISH.Quiz.API = function(V, $, undefined) {
           successCallback(data)
         }
       }, error:function(error) {
-        failCallback(error)
+        if(typeof failCallback == "function") {
+          failCallback(error)
+        }
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == "noserver") {
@@ -12143,7 +12120,9 @@ VISH.Quiz.API = function(V, $, undefined) {
           successCallback(data)
         }
       }, error:function(error) {
-        failCallback(error)
+        if(typeof failCallback == "function") {
+          failCallback(error)
+        }
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == "noserver") {
@@ -12384,7 +12363,7 @@ VISH.Recommendations = function(V, $, undefined) {
     }
     generated = false;
     $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
-      $("#fancybox-outer").css("background", "transparent");
+      $("#fancybox-outer").css("background", "rgba(0,0,0,.7)");
       $("#fancybox-wrap").css("margin-top", "0px")
     }, "onClosed":function(data) {
       $("#fancybox-outer").css("background", "white");
@@ -12393,7 +12372,12 @@ VISH.Recommendations = function(V, $, undefined) {
   };
   var generateFancybox = function() {
     if(!generated) {
-      if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
+      console.log("user_id " + user_id + " presentation_id " + presentation_id);
+      if(url_to_get_recommendations !== undefined) {
+        var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
+        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+          _fillFancyboxWithData(data)
+        }})
       }else {
         _fillFancyboxWithData(VISH.Samples.API.recommendationList)
       }
@@ -12401,17 +12385,30 @@ VISH.Recommendations = function(V, $, undefined) {
     }
   };
   var _fillFancyboxWithData = function(data) {
-    if(!data || !data.items) {
+    if(!data || data.length === 0) {
       return
     }
     var ex;
     var result = "";
-    for(var i = data.items.length - 1;i >= 0;i--) {
-      ex = data.items[i];
-      result += '<a href="' + ex.url + '">' + '<div class="rec-excursion">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
-      '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>" + "</a>"
+    for(var i = data.length - 1;i >= 0;i--) {
+      ex = data[i];
+      if(V.Status.getIsAnotherDomain()) {
+        result += '<a href="' + ex.url + '.full">'
+      }
+      result += '<div class="rec-excursion" id="recom-' + ex.id + '" number="' + ex.id + '">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
+      '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>";
+      if(V.Status.getIsAnotherDomain()) {
+        result += "</a>"
+      }
     }
-    $("#fancy_recommendations .rec-grid").html(result)
+    $("#fancy_recommendations .rec-grid").html(result);
+    if(!V.Status.getIsAnotherDomain()) {
+      for(var i = data.length - 1;i >= 0;i--) {
+        $("#recom-" + data[i].id).click(function(my_event) {
+          V.Utils.sendParentToURL(data[$(my_event.toElement).closest(".rec-excursion").attr("number")].url)
+        })
+      }
+    }
   };
   var showFancybox = function() {
     if(V.Utils.getOptions() && V.Utils.getOptions().preview) {
