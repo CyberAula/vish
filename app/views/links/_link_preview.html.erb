@@ -1,5 +1,5 @@
 <%= div_for link, :class => 'content_size' do %>
-  <% if link.image %>
+  <% if link.image && link.image!=""%>
     <div class="thumbnail">
       <%= image_tag(link.image)%>
       <%= hidden_field_tag "link[image]", link.image %>
