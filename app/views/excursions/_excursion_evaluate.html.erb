@@ -1,5 +1,5 @@
           <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <%= form_tag("/excursions/#{ @excursion.id }/evaluate", :class => '') do %>
+            <%= form_tag("/excursions/#{ @excursion.id }/evaluate", :class => 'evaluation_form') do %>
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
@@ -12,7 +12,7 @@
                         <%= t('evaluation.phrase'+ind.to_s) %>
                       </p>
                       <div class="escale">
-                        <div><%= t('evaluation.disagree') %></div>
+                        <div><span class="span_disagree"><%= t('evaluation.disagree') %></span><span><%= t('evaluation.agree') %></span></div>
                         <label class="radio value1">
                           <input type="radio" name="excursion_evaluation_<%= ind %>" id="" value="1">
                         </label>
@@ -28,7 +28,6 @@
                         <label class="radio value5">
                           <input type="radio" name="excursion_evaluation_<%= ind %>" id="" value="5">
                         </label>
-                        <div><%= t('evaluation.agree') %></div>
                       </div>
                     </div>
                   <% end %>
@@ -36,7 +35,7 @@
                 </div>
                 <div class="modal-footer">
 
-                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-primary"><%=t('save')%></button>
               </div>
             <% end %>
           </div>
