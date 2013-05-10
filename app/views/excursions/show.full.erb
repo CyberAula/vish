@@ -1,18 +1,16 @@
-<button id="vishwatermark" class="watermark" tabindex="2"></button>
     <section class="slides layout-regular template-default"></section>
         <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
     <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
 
-    <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
-
-    <div id="viewbar" class="viewbar" style="display:none">  
-    <button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
-      <div id="slide-counter"></div>
-      <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
+    <div id="viewbar" class="viewbar" style="display:none">
+        <a href="#" target="_blank"><div id="embedWatermark" class="watermark" style="display:none"></div></a>
+        <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
+        <button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
+        <div id="slide-counter"></div>
+        <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
     </div> 
 
     <div style="display:none" id="viewerpreview">Preview</div>
-    <div style="display:none" id="embedWatermarkWrapper">
     </div>
     <button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/icons/back_icon.png"/></button>
     
@@ -40,7 +38,7 @@
     <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
     <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>
     
-    <!-- Quiz session fancybox (new)-->
+    <!-- Quiz session fancybox -->
     <div style='display:none'>
         <div id="start_quiz_fancybox" class="outer_box_viewer">
             <div class="fancy_viewer_tabs" id="images_fancy_tabs_id">     
@@ -53,6 +51,12 @@
             </div>
             <div id='tab_quiz_session_content' class="tab_quiz_session_content fancy_viewer_tab_content">
                 <a target="_blank" id='tab_quiz_session_url_link'></a>
+                <div class="quizSharebuttons">
+                    <a target="_blank" href="#" id='tab_quiz_session_share_twitter'><img src='/assets/icons/social/twitter.png' class='socialButton'/></a>
+                    <a target="_blank" href="#" id='tab_quiz_session_share_facebook'><img src='/assets/icons/social/facebook.svg' class='socialButton'/></a>
+                    <a target="_blank" href="#" id='tab_quiz_session_share_gPlus'><img src='/assets/icons/social/gplus.svg' class='socialButton'/></a>
+                </div>
+                <div class="quizQr"></div>
                 <input type='button' class='quizButton quizStopButton' value='Stop'/>
             </div>
             <div id='tab_quiz_stats_content' class="fancy_viewer_tab_content">
@@ -123,6 +127,8 @@
     </div>
 
 
+
+
 <script>	
 	options = {};
 	var configuration = {};
@@ -134,20 +140,11 @@
 	options["full"] = true;
 	options["developping"] = false;
 
-	//Embed
-	var isEmbed = (("<%=@embed%>" === "true")||(window.parent.embed===true));
-	options["embed"] = isEmbed;
-
 	<% if @excursion %>
 		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
 		options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
 	<% end %>
 
-  if(isEmbed){
-    //Remove exitFullscreen and comeBackUrl (Vish Editor will use native back)
-    options["exitFullscreen"] = undefined;
-    options["comeBackUrl"] = undefined;
-  } else {
     //Look for URL param
     <% if @orgUrl %>
       var orgUrl = "<%=@orgUrl%>";
@@ -158,8 +155,7 @@
         options["comeBackUrl"] = "<%=request.referrer%>";
       <% end %>
     <% end %>
-  }
-
+ 
 	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
@@ -169,28 +165,24 @@
 	    options["username"] = false;
 	<% end %>
 
-  <% if @quiz_session %>
-    options["quizSessionId"] = "<%= @quiz_session.id %>";
-  <% end %>
+    <% if @quiz_session %>
+        options["quizSessionId"] = "<%= @quiz_session.id %>";
+        options["forceHideViewbar"] = true;
+    <% end %>
 
-  //URL to get the recommendations to show in the last slide
-  options["urlToGetRecommendations"] = "http://localhost:3000/excursions/last_slide.json"
+    //URL to get the recommendations to show in the last slide
+    options["urlToGetRecommendations"] = "http://localhost:3000/excursions/last_slide.json"
 
-	options.addons = [];
+    options.addons = [];
 
-	if(window.parent.loadIframeMessenger===true){
-		var addon = new Object();
-		addon.target = "Viewer";
-		addon.id = "IframeMessenger";
-		addon.url = "";
-		addon.config = {enable: true};
-		options.addons.push(addon);
-	}
-
-  if(window.parent.disableFullscreen){
-    //Force fs disabled
-    options["disablefullscreen"] = true;
-  }
+    if(window.parent.loadIframeMessenger===true){
+    	var addon = new Object();
+    	addon.target = "Viewer";
+    	addon.id = "IframeMessenger";
+    	addon.url = "";
+    	addon.config = {enable: true};
+    	options.addons.push(addon);
+    }
 
 
 	function start(){
@@ -210,16 +202,16 @@
 		if(isPreview){
 			options["preview"] = true;
         	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
-  	} else {
-  		<% if @excursion %>
-  			myexcursion = <%= raw @excursion.json %>;
-      <% elsif @quiz_session %>
-        myexcursion = <%= raw @quiz_session.quizJSON %>;
-  		<% else %>
-  			myexcursion = null;
-  		<% end %>
-  	}
-      	
-		VISH.SlideManager.init(options , myexcursion);
-	}
+      	} else {
+      		<% if @excursion %>
+      			myexcursion = <%= raw @excursion.json %>;
+          <% elsif @quiz_session %>
+                myexcursion = <%= raw @quiz_session.quizJSON %>;
+      		<% else %>
+      			myexcursion = null;
+      		<% end %>
+      	}
+          	
+    		VISH.SlideManager.init(options , myexcursion);
+    	}
 </script>

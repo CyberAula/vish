@@ -245,7 +245,7 @@ this can not be done with show() and hide() because then it remains with display
 
 
 #page-fullscreen{
-  background-image: url("/assets/fullscreen.png");
+  background-image: url("/assets/icons/fullscreen.png");
   background-position: 0 0;
   background-repeat: no-repeat;
   padding: 15px;
@@ -260,14 +260,6 @@ this can not be done with show() and hide() because then it remains with display
   opacity: 1;
   cursor: pointer;
   z-index: 2;
-}
-
-#page-fullscreen:hover{
-    background-position:-40px -40px !important;
-}
-
-#page-fullscreen:active{
-    background-position:-120px -120px !important;
 }
 
 #slide-counter {
@@ -562,11 +554,13 @@ button#closeButton {
 /* Watermark */
 
 #embedWatermark{
+  background-image:url("/assets/watermark.png");
   position: absolute;
-  top: -5px;
-  left: -8px;
-  opacity: 0.6;
-  z-index: 2000;
+  bottom: 0;
+  left: 2%;
+  width: 100px;
+  height: 31px;
+  background-size: 112%;
 }
 
 
@@ -697,7 +691,7 @@ div#tab_quiz_session_results{
 }
 
 .socialButton{
-  height: 9%;
+  height: 100%;
   margin-left: 5%;
 }
 
@@ -705,6 +699,7 @@ div#tab_quiz_session_results{
   text-align: right;
   margin-right: 5%;
   margin-bottom: 3%;
+  height: 9%;
 }
 
 #tab_quiz_session_share_twitter{
@@ -716,9 +711,15 @@ div#tab_quiz_session_results{
 }
 
 div.quizQr {
-  width: 100%;
+  width: 50%;
   height: 50%;
+  margin-left: 25%;
 }
+div.quizQr:-webkit-full-screen  { margin-left: 0; width: 100%; height: 100%; }
+div.quizQr:-moz-full-screen   { margin-left: 0; width: 100%; height: 100%; }
+div.quizQr:-ms-full-screen    { margin-left: 0; width: 100%; height: 100%; }
+div.quizQr:-o-full-screen   { margin-left: 0; width: 100%; height: 100%; }
+div.quizQr:full-screen      { margin-left: 0; width: 100%; height: 100%; }
 
 div.quizQr > table {
   margin-left: auto;

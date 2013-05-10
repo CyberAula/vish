@@ -4881,6 +4881,115 @@ VISH.Configuration = function(V, $, undefined) {
   };
   return{init:init, applyConfiguration:applyConfiguration, getConfiguration:getConfiguration}
 }(VISH, jQuery);
+var VISH = VISH || {};
+VISH.Constant = VISH.Constant || {};
+VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
+VISH.Constant.QZ_TYPE.OPEN = "open";
+VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.TF = "truefalse";
+VISH.QuizCharts = function(V, $, undefined) {
+  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
+  var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
+  var pieLetterColor = ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"];
+  var choices = {};
+  var init = function() {
+  };
+  var drawQuizChart = function(canvas, quizType, nAnswers, answersList, options) {
+    switch(quizType) {
+      case V.Constant.QZ_TYPE.OPEN:
+        break;
+      case V.Constant.QZ_TYPE.MCHOICE:
+        _drawMcChoiceQuizChart(canvas, nAnswers, answersList, options);
+        break;
+      case V.Constant.QZ_TYPE.TF:
+        _drawTFQuizChart(canvas, nAnswers, answersList, options);
+        break;
+      default:
+        return null;
+        break
+    }
+  };
+  var _drawMcChoiceQuizChart = function(canvas, nAnswers, answersList, options) {
+    var pieFragments = [];
+    var data = [];
+    for(var i = 0;i < nAnswers;i++) {
+      pieFragments[i] = {};
+      pieFragments[i].value = 0;
+      pieFragments[i].label = choicesLetters[i];
+      pieFragments[i].color = pieBackgroundColor[i];
+      pieFragments[i].labelColor = pieLetterColor[i];
+      pieFragments[i].labelFontSize = "16"
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          pieFragments[index].value++
+        }
+      }
+    }
+    for(var i = 0;i < nAnswers;i++) {
+      data.push(pieFragments[i])
+    }
+    var ctx = $(canvas).get(0).getContext("2d");
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
+    }
+    var options = {showTooltips:false, animation:animation};
+    var myNewChart = (new Chart(ctx)).Pie(data, options)
+  };
+  var _drawTFQuizChart = function(canvas, nAnswers, answersList, options) {
+    var labels = [];
+    var dataTrue = [];
+    var dataFalse = [];
+    var maxValue = 0;
+    var scaleSteps = 10;
+    for(var i = 0;i < nAnswers;i++) {
+      labels[i] = "V       " + choicesLetters[i] + "       F";
+      dataTrue[i] = 0;
+      dataFalse[i] = 0
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          dataTrue[index]++
+        }else {
+          dataFalse[index]++
+        }
+      }
+    }
+    for(var l = 0;l < nAnswers;l++) {
+      if(dataTrue[i] > maxValue) {
+        maxValue = dataTrue[i]
+      }
+      if(dataFalse[i] > maxValue) {
+        maxValue = dataFalse[i]
+      }
+    }
+    if(maxValue < 10) {
+      scaleSteps = Math.max(1, maxValue)
+    }
+    var ctx = $(canvas).get(0).getContext("2d");
+    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
+    }
+    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
+    var myNewChart = (new Chart(ctx)).Bar(data, options)
+  };
+  return{init:init, drawQuizChart:drawQuizChart}
+}(VISH, jQuery);
 (function(e, t) {
   function i(t, n) {
     var r, i, o, u = t.nodeName.toLowerCase();
@@ -9166,7 +9275,7 @@ VISH.SlideManager = function(V, $, undefined) {
       V.Addons.init(options.addons)
     }
     V.ViewerAdapter.init(options);
-    if(!V.Status.getIsAnotherDomain()) {
+    if(!V.Status.getIsEmbed()) {
       window.focus()
     }
   };
@@ -9742,14 +9851,12 @@ VISH.Utils.Loader = function(V, undefined) {
 VISH.Status = function(V, $, undefined) {
   var _device;
   var _isInIframe;
-  var _isEmbed;
   var _isAnotherDomain;
   var _isOnline;
   var _isSlave;
   var _isPreventDefault;
   var init = function(callback) {
     _checkIframe();
-    _checkEmbed();
     _checkDomain();
     V.Status.Device.init(function(returnedDevice) {
       _device = returnedDevice;
@@ -9763,11 +9870,9 @@ VISH.Status = function(V, $, undefined) {
     _isInIframe = window.location != window.parent.location ? true : false;
     return _isInIframe
   };
-  var _checkEmbed = function() {
-    _isEmbed = V.Utils.getOptions()["embed"] === true
-  };
   var _checkDomain = function() {
-    _isAnotherDomain = _checkIframe() && typeof window.parent.location.href === "undefined"
+    _isAnotherDomain = _checkIframe() && typeof window.parent.location.href === "undefined";
+    return _isAnotherDomain
   };
   var _checkOnline = function() {
     $.ajax({async:true, cache:false, error:function(req, status, ex) {
@@ -9781,9 +9886,6 @@ VISH.Status = function(V, $, undefined) {
     return _device
   };
   var getIsEmbed = function() {
-    return _isEmbed
-  };
-  var getIsAnotherDomain = function() {
     return _isAnotherDomain
   };
   var getIsInIframe = function() {
@@ -9835,7 +9937,7 @@ VISH.Status = function(V, $, undefined) {
       }
     }
   };
-  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsAnotherDomain:getIsAnotherDomain, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode}
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode}
 }(VISH, jQuery);
 VISH.Status.Device = function(V, $, undefined) {
   var init = function(callback) {
@@ -10123,11 +10225,11 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var can_use_nativeFs;
   var embed;
   var display_recommendations;
+  var showViewbar;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
   var exit_fs_url;
-  var isOneSlide;
   var page_is_fullscreen;
   var initialized = false;
   var _lastWidth;
@@ -10140,6 +10242,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       _lastHeight = -1;
       initialized = true
     }
+    embed = V.Status.getIsEmbed();
     if(options) {
       if(typeof render_full !== "boolean") {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
@@ -10147,28 +10250,29 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       if(typeof options["preview"] === "boolean") {
         is_preview = options["preview"]
       }
-      if(typeof options["embed"] === "boolean") {
-        embed = options["embed"]
-      }else {
-        embed = false
-      }
-      close_button = V.Status.getDevice().mobile && !V.Status.getIsInIframe() && (options["comeBackUrl"] || V.Status.getDevice().features.history && embed);
-      can_use_nativeFs = V.Status.getDevice().features.fullscreen && !embed;
+      close_button = V.Status.getDevice().mobile && !V.Status.getIsInIframe() && options["comeBackUrl"];
+      can_use_nativeFs = V.Status.getDevice().features.fullscreen;
       enter_fs_button = typeof options["fullscreen"] !== "undefined" && !can_use_nativeFs;
       if(enter_fs_button) {
         enter_fs_url = options["fullscreen"]
       }
-      exit_fs_button = (typeof options["exitFullscreen"] !== "undefined" || V.Status.getDevice().features.history && embed) && !can_use_nativeFs;
+      exit_fs_button = typeof options["exitFullscreen"] !== "undefined" && !can_use_nativeFs;
       if(exit_fs_button) {
         exit_fs_url = options["exitFullscreen"]
       }
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
+      fs_button = fs_button && !embed;
       page_is_fullscreen = render_full && !V.Status.getIsInIframe();
       if(typeof options["urlToGetRecommendations"] == "string") {
         display_recommendations = true
       }else {
         display_recommendations = false
+      }
+      if(typeof options["forceHideViewbar"] == "boolean") {
+        showViewbar = !options["forceHideViewbar"]
+      }else {
+        showViewbar = true
       }
     }else {
       render_full = false;
@@ -10178,38 +10282,34 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       exit_fs_button = false;
       fs_button = false;
       can_use_nativeFs = false;
-      embed = false;
-      display_recommendations = false
+      display_recommendations = false;
+      showViewbar = true
     }
     if(V.Status.getDevice().mobile) {
       render_full = true;
       page_is_fullscreen = render_full && !V.Status.getIsInIframe();
       if(page_is_fullscreen) {
-        fs_button = false
+        fs_button = false;
+        showViewbar = false
       }else {
         close_button = false
       }
     }
-    isOneSlide = !(V.Slides.getSlidesQuantity() > 1);
     if(V.Status.getDevice().desktop) {
       $("#back_arrow").html("");
       $("#forward_arrow").html("")
     }
-    if(!isOneSlide) {
-      if(render_full) {
-        $("#viewbar").hide()
-      }else {
-        $("#viewbar").show()
-      }
-      V.SlideManager.updateSlideCounter()
+    if(showViewbar) {
+      V.SlideManager.updateSlideCounter();
+      $("#viewbar").show()
     }else {
       $("#viewbar").hide()
     }
     if(is_preview) {
       $("div#viewerpreview").show()
     }
-    if(embed && V.Status.getIsInIframe()) {
-      $("#embedWatermarkWrapper").show()
+    if(embed) {
+      $("#embedWatermark").show()
     }
     if(close_button) {
       $("button#closeButton").show()
@@ -10225,6 +10325,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   };
   var decideIfPageSwitcher = function() {
     if(V.Slides.getCurrentSubSlide() !== null) {
+      $("#forward_arrow").hide();
       $("#back_arrow").hide()
     }else {
       if(V.Slides.isCurrentFirstSlide()) {
@@ -10234,22 +10335,16 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
       $("#forward_arrow").show()
     }
-    if(!render_full) {
-      if(V.Slides.isCurrentFirstSlide()) {
-        $("#page-switcher-start").addClass("disabledarrow")
-      }else {
-        $("#page-switcher-start").removeClass("disabledarrow")
-      }
-      $("#page-switcher-end").show()
+    if(V.Slides.isCurrentFirstSlide()) {
+      $("#page-switcher-start").addClass("disabledarrow")
+    }else {
+      $("#page-switcher-start").removeClass("disabledarrow")
     }
+    $("#page-switcher-end").show()
   };
   var _decideIfViewBarShow = function(fullScreen) {
-    if(!fullScreen) {
-      if(!isOneSlide) {
-        $("#viewbar").show()
-      }else {
-        $("#viewbar").hide()
-      }
+    if(showViewbar) {
+      $("#viewbar").show()
     }else {
       $("#viewbar").hide()
     }
@@ -10265,23 +10360,18 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     _setupSize(render_full)
   };
   var _setupSize = function(fullscreen) {
-    var reserved_px_for_menubar;
-    var margin_height;
-    var margin_width;
-    if(fullscreen) {
-      _onFullscreenEvent(true);
+    var reserved_px_for_menubar = 40;
+    var margin_height = 40;
+    var margin_width = 30;
+    if(!showViewbar) {
       reserved_px_for_menubar = 0;
       margin_height = 0;
       margin_width = 0
+    }
+    if(fullscreen) {
+      _onFullscreenEvent(true)
     }else {
-      _onFullscreenEvent(false);
-      if(!isOneSlide) {
-        reserved_px_for_menubar = 40
-      }else {
-        reserved_px_for_menubar = 0
-      }
-      margin_height = 40;
-      margin_width = 30
+      _onFullscreenEvent(false)
     }
     var height = _lastHeight - reserved_px_for_menubar;
     var width = _lastWidth;
@@ -10349,12 +10439,8 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       })
     }else {
       if(fullscreen && exit_fs_button) {
-        $("#page-fullscreen").css("background-position", "-45px 0px");
-        $("#page-fullscreen").hover(function() {
-          $("#page-fullscreen").css("background-position", "-45px -40px")
-        }, function() {
-          $("#page-fullscreen").css("background-position", "-45px 0px")
-        });
+        $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'icons/fullscreen.png")');
+        $("#page-fullscreen").css("background-position", "0px 0px");
         $(document).on("click", "#page-fullscreen", function() {
           if(exit_fs_url && !embed) {
             window.location = exit_fs_url
@@ -10388,18 +10474,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
   };
   var _onEnterFullScreen = function() {
-    $("#page-fullscreen").css("background-position", "-45px 0px");
+    $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'icons/fullscreenback.png")');
+    $("#page-fullscreen").css("background-position", "0px 0px");
     $("#page-fullscreen").hover(function() {
-      $("#page-fullscreen").css("background-position", "-45px -40px")
+      $("#page-fullscreen").css("background-position", "-30px -40px")
     }, function() {
-      $("#page-fullscreen").css("background-position", "-45px 0px")
+      $("#page-fullscreen").css("background-position", "0px 0px")
     });
     _decideIfViewBarShow(true)
   };
   var _onLeaveFullScreen = function() {
+    $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'icons/fullscreen.png")');
     $("#page-fullscreen").css("background-position", "0px 0px");
     $("#page-fullscreen").hover(function() {
-      $("#page-fullscreen").css("background-position", "0px -40px")
+      $("#page-fullscreen").css("background-position", "-40px -40px")
     }, function() {
       $("#page-fullscreen").css("background-position", "0px 0px")
     });
@@ -11137,6 +11225,9 @@ VISH.Slides = function(V, $, undefined) {
       V.Messenger.notifyEventByMessage(V.Constant.Event.onGoToSlide, params);
       return
     }
+    if(!V.Editing && $.fancybox) {
+      $.fancybox.close()
+    }
     if(no > slideEls.length || no <= 0) {
       return
     }else {
@@ -11721,8 +11812,69 @@ VISH.Quiz = function(V, $, undefined) {
     $(container).html("");
     var height = $(container).height();
     var width = height;
-    var qrOptions = {render:"div", width:width, height:height, color:"#000", bgColor:"#fff", text:url.toString()};
+    var qrOptions = {render:"canvas", width:width, height:height, color:"#000", bgColor:"#fff", text:url.toString()};
     $(container).qrcode(qrOptions)
+  };
+  var _onClickQR = function() {
+    var changeToFs = false;
+    var changeFromFs = false;
+    var elem = $(".quizQr")[0];
+    if(V.Status.getIsInIframe() && isFullscreen(parent.document)) {
+      return
+    }
+    if(isFullscreen(document)) {
+      changeFromFS = cancelFullScreen(document)
+    }else {
+      changeToFS = requestFullScreen(elem)
+    }
+    if(changeToFs) {
+      $(".quizQr").attr("disabledTitle", $(".quizQr").attr("title"));
+      $(".quizQr").removeAttr("title")
+    }else {
+      if(changeFromFs) {
+        $(".quizQr").attr("title", $(".quizQr").attr("disabledTitle"))
+      }
+    }
+    if(changeToFs || changeFromFs) {
+      _loadQr(currentQuizSession.url)
+    }
+  };
+  var isFullscreen = function(myDoc) {
+    return myDoc.fullScreen || myDoc.mozFullScreen || myDoc.webkitIsFullScreen
+  };
+  var cancelFullScreen = function(myDoc) {
+    if(myDoc.cancelFullScreen) {
+      myDoc.cancelFullScreen();
+      return true
+    }else {
+      if(myDoc.mozCancelFullScreen) {
+        myDoc.mozCancelFullScreen();
+        return true
+      }else {
+        if(myDoc.webkitCancelFullScreen) {
+          myDoc.webkitCancelFullScreen();
+          return true
+        }
+      }
+    }
+    return false
+  };
+  var requestFullScreen = function(elem) {
+    if(elem.requestFullscreen) {
+      elem.requestFullscreen();
+      return true
+    }else {
+      if(elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+        return true
+      }else {
+        if(elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+          return true
+        }
+      }
+    }
+    return false
   };
   var _loadStats = function() {
     _cleanResults();
@@ -12392,17 +12544,17 @@ VISH.Recommendations = function(V, $, undefined) {
     var result = "";
     for(var i = data.length - 1;i >= 0;i--) {
       ex = data[i];
-      if(V.Status.getIsAnotherDomain()) {
+      if(V.Status.getIsEmbed()) {
         result += '<a href="' + ex.url + '.full">'
       }
       result += '<div class="rec-excursion" id="recom-' + ex.id + '" number="' + ex.id + '">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
       '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>";
-      if(V.Status.getIsAnotherDomain()) {
+      if(V.Status.getIsEmbed()) {
         result += "</a>"
       }
     }
     $("#fancy_recommendations .rec-grid").html(result);
-    if(!V.Status.getIsAnotherDomain()) {
+    if(!V.Status.getIsEmbed()) {
       for(var i = data.length - 1;i >= 0;i--) {
         $("#recom-" + data[i].id).click(function(my_event) {
           V.Utils.sendParentToURL(data[$(my_event.toElement).closest(".rec-excursion").attr("number")].url)
