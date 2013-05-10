@@ -270,6 +270,7 @@ es:
       other: "recursos"
     top: "paraMí"
     upload: "subir"
+  save: "Salvar"
   search:
     110slides: "1-10 diapositivas"
     1020slides: "10-20 diapositivas"

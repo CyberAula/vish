@@ -266,6 +266,7 @@ en:
       other: "resources"
     top: "forMe"
     upload: "upload"
+  save: "Save"
   search:
     110slides: "1-10 slides"
     1020slides: "10-20 slides"
