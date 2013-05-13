@@ -16,7 +16,8 @@ VISH.QuizCharts = (function(V,$,undefined){
   var init = function(){
   };
 
-  var drawQuizChart = function(canvas,quizType,nAnswers,answersList,options){
+  var drawQuizChart = function(canvas,quizType,nAnswers,results,options){
+    var answersList = _getAnswers(results);
     switch (quizType) {
       case V.Constant.QZ_TYPE.OPEN:
          break;
@@ -156,10 +157,32 @@ VISH.QuizCharts = (function(V,$,undefined){
     var myNewChart = new Chart(ctx).Bar(data,options);
   }
 
+  /**
+   * Helpers
+   */
+  var _getAnswers = function(results){
+    var answers = [];
+    var rL = results.length;
+    for(var i=0; i<rL; i++){
+      answers.push(JSON.parse(results[i].answer));
+    }
+    return answers;
+  }
+
+  var getQuizParams = function(quiz){
+    var params = {};
+    try {
+      params.quizType = quiz["slides"][0]["elements"][0]["quiztype"];
+      params.nAnswers = quiz["slides"][0]["elements"][0]["choices"].length;
+    } catch (e){}
+    return params;
+  }
+
 
   return {
     init                : init,
-    drawQuizChart       : drawQuizChart
+    drawQuizChart       : drawQuizChart,
+    getQuizParams       : getQuizParams
   };
     
 }) (VISH, jQuery);

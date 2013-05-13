@@ -75,9 +75,15 @@ class QuizSessionsController < ApplicationController
   # GET /quiz_sessions/X/results
   def results 
     @quiz_session = QuizSession.find(params[:id])
+    @results = @quiz_session.results
     respond_to do |format|
       format.json { 
-        render :json => @quiz_session.results
+        render :json => @results
+      }
+      format.html {
+        @results = @results.to_json
+        @quiz = @quiz_session.quizJSON
+        render :show_results
       }
     end
   end
@@ -94,10 +100,41 @@ class QuizSessionsController < ApplicationController
     @quiz_session.name = params[:name] unless params[:name].blank?
     @quiz_session.closed_at = Time.now
     @quiz_session.save!
-    
-    response = Hash.new
-    response["processed"] = true;
-    render :json => response
+
+    respond_to do |format|
+      format.json { 
+        response = Hash.new
+        response["processed"] = true;
+        render :json => response
+      }
+      format.html {
+        redirect_to "/quiz_sessions/"
+      }
+    end
+  end
+
+  # /quiz_sessions/X/delete
+  def delete
+    @quiz_session = QuizSession.find(params[:id])
+    @quiz_session.delete
+    respond_to do |format|
+      format.json { 
+        response = Hash.new
+        response["processed"] = true;
+        render :json => response
+      }
+      format.html {
+        redirect_to "/quiz_sessions/"
+      }
+    end
+  end
+
+  # /quiz_sessions/
+  # List all sessions
+  def index
+    @quiz_sessions = QuizSession.where(:owner_id => Actor.normalize_id(current_user));
+    @quiz_active_sessions = @quiz_sessions.where(:active => true).order('created_at DESC')
+    @quiz_inactive_sessions = @quiz_sessions.where(:active => false).order('created_at DESC')
   end
 
 end

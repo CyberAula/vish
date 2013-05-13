@@ -27,4 +27,16 @@ class QuizSession < ActiveRecord::Base
   	self.quiz_answers
   end
 
+  def results_url
+  	return "/quiz_sessions/" + self.id.to_s() + "/results/"
+  end
+
+  def close_url
+  	return "/quiz_sessions/" + self.id.to_s() + "/close/"
+  end
+
+  def delete_url
+  	return "/quiz_sessions/" + self.id.to_s() + "/delete/"
+  end
+
 end

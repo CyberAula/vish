@@ -60,6 +60,7 @@ Vish::Application.routes.draw do
     get "results", :on => :member
   end
   match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
+  match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
   match 'qs/:id' => 'quiz_sessions#show'
 
   match 'resources/search' => 'resources#search'

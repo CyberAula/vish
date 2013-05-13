@@ -14362,11 +14362,10 @@ VISH.Quiz = function(V, $, undefined) {
     $(canvas).height(desiredHeight);
     $(canvas).attr("width", desiredWidth);
     $(canvas).attr("height", desiredHeight);
-    var answers = _getAnswers(results);
     var quizModule = _getQuizModule($(currentQuiz).attr("type"));
     if(quizModule) {
       $("#quiz_chart").show();
-      quizModule.drawAnswers(currentQuiz, answers, options)
+      quizModule.drawResults(currentQuiz, results, options)
     }
   };
   var _cleanResults = function() {
@@ -14374,14 +14373,6 @@ VISH.Quiz = function(V, $, undefined) {
     var ctx = $(canvas).get(0).getContext("2d");
     ctx.clearRect(0, 0, $(canvas).width(), $(canvas).height());
     $(canvas).hide()
-  };
-  var _getAnswers = function(results) {
-    var answers = [];
-    var rL = results.length;
-    for(var i = 0;i < rL;i++) {
-      answers.push(JSON.parse(results[i].answer))
-    }
-    return answers
   };
   var _getQuizModule = function(quiz_type) {
     switch(quiz_type) {
@@ -20052,12 +20043,12 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var getChoicesLetters = function() {
     return choicesLetters
   };
-  var drawAnswers = function(quiz, answersList, options) {
+  var drawResults = function(quiz, results, options) {
     var canvas = $("#quiz_chart");
     var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.MCHOICE, nAnswers, answersList, options)
+    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.MCHOICE, nAnswers, results, options)
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getChoicesLetters:getChoicesLetters, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
 }(VISH, jQuery);
 VISH.Quiz.TF = function(V, $, undefined) {
   var choices = {};
@@ -20156,12 +20147,12 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(quiz).find("input[type='radio']").attr("disabled", "disabled");
     V.Quiz.disableAnswerButton(quiz)
   };
-  var drawAnswers = function(quiz, answersList, options) {
+  var drawResults = function(quiz, results, options) {
     var canvas = $("#quiz_chart");
     var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.TF, nAnswers, answersList, options)
+    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.TF, nAnswers, results, options)
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawAnswers:drawAnswers}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
 }(VISH, jQuery);
 var VISH = VISH || {};
 VISH.Constant = VISH.Constant || {};
@@ -20176,7 +20167,8 @@ VISH.QuizCharts = function(V, $, undefined) {
   var choices = {};
   var init = function() {
   };
-  var drawQuizChart = function(canvas, quizType, nAnswers, answersList, options) {
+  var drawQuizChart = function(canvas, quizType, nAnswers, results, options) {
+    var answersList = _getAnswers(results);
     switch(quizType) {
       case V.Constant.QZ_TYPE.OPEN:
         break;
@@ -20270,7 +20262,24 @@ VISH.QuizCharts = function(V, $, undefined) {
     var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
     var myNewChart = (new Chart(ctx)).Bar(data, options)
   };
-  return{init:init, drawQuizChart:drawQuizChart}
+  var _getAnswers = function(results) {
+    var answers = [];
+    var rL = results.length;
+    for(var i = 0;i < rL;i++) {
+      answers.push(JSON.parse(results[i].answer))
+    }
+    return answers
+  };
+  var getQuizParams = function(quiz) {
+    var params = {};
+    try {
+      params.quizType = quiz["slides"][0]["elements"][0]["quiztype"];
+      params.nAnswers = quiz["slides"][0]["elements"][0]["choices"].length
+    }catch(e) {
+    }
+    return params
+  };
+  return{init:init, drawQuizChart:drawQuizChart, getQuizParams:getQuizParams}
 }(VISH, jQuery);
 VISH.Recommendations = function(V, $, undefined) {
   var url_to_get_recommendations;
@@ -20294,7 +20303,6 @@ VISH.Recommendations = function(V, $, undefined) {
   };
   var generateFancybox = function() {
     if(!generated) {
-      console.log("user_id " + user_id + " presentation_id " + presentation_id);
       if(url_to_get_recommendations !== undefined) {
         var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
         $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
