@@ -4969,11 +4969,11 @@ VISH.QuizCharts = function(V, $, undefined) {
       }
     }
     for(var l = 0;l < nAnswers;l++) {
-      if(dataTrue[i] > maxValue) {
-        maxValue = dataTrue[i]
+      if(dataTrue[l] > maxValue) {
+        maxValue = dataTrue[l]
       }
-      if(dataFalse[i] > maxValue) {
-        maxValue = dataFalse[i]
+      if(dataFalse[l] > maxValue) {
+        maxValue = dataFalse[l]
       }
     }
     if(maxValue < 10) {
@@ -4990,6 +4990,292 @@ VISH.QuizCharts = function(V, $, undefined) {
   };
   return{init:init, drawQuizChart:drawQuizChart}
 }(VISH, jQuery);
+var VISH = VISH || {};
+VISH.Constant = VISH.Constant || {};
+VISH.Constant.Event = {};
+VISH.Constant.Event.onMessage = "onMessage";
+VISH.Constant.Event.onGoToSlide = "onGoToSlide";
+VISH.Constant.Event.onPlayVideo = "onPlayVideo";
+VISH.Constant.Event.onPauseVideo = "onPauseVideo";
+VISH.Constant.Event.onSeekVideo = "onSeekVideo";
+VISH.Constant.Event.onFlashcardPointClicked = "onFlashcardPointClicked";
+VISH.Constant.Event.onFlashcardSlideClosed = "onFlashcardSlideClosed";
+VISH.Constant.Event.onSetSlave = "onSetSlave";
+VISH.Constant.Event.onPreventDefault = "onPreventDefault";
+VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
+VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
+VISH.IframeAPI = function(V, undefined) {
+  var helloAttempts;
+  var maxHelloAttempts = 15;
+  var helloTimeout;
+  var options;
+  var listeners;
+  var init = function(initOptions) {
+    options = initOptions;
+    if(window.addEventListener) {
+      window.addEventListener("message", _onWrapperedVEMessage, false)
+    }else {
+      if(el.attachEvent) {
+        window.attachEvent("message", _onWrapperedVEMessage)
+      }
+    }
+    listeners = new Array;
+    _startHelloExchange()
+  };
+  var _startHelloExchange = function() {
+    registerCallback(VISH.Constant.Event.onIframeMessengerHello, function(origin) {
+      if(helloTimeout) {
+        clearTimeout(helloTimeout)
+      }
+      _applyOptions(origin);
+      if(options && typeof options.callback === "function") {
+        options.callback(origin)
+      }
+    });
+    helloAttempts = 0;
+    helloTimeout = setInterval(function() {
+      _sayHello()
+    }, 1E3);
+    _sayHello()
+  };
+  var _sayHello = function() {
+    var helloMessage = _createMessage(VISH.Constant.Event.onIframeMessengerHello);
+    sendMessage(helloMessage, "*");
+    helloAttempts++;
+    if(helloAttempts >= maxHelloAttempts && helloTimeout) {
+      clearTimeout(helloTimeout)
+    }
+  };
+  var _sendPreventDefaults = function(preventDefaults, destination) {
+    var params = {};
+    params.preventDefaults = preventDefaults;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPreventDefault, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var _applyOptions = function(destination) {
+    if(options) {
+      if(options.preventDefault === true) {
+        _sendPreventDefaults(true, destination)
+      }
+    }
+  };
+  var registerCallback = function(listenedEvent, callback) {
+    if(callback) {
+      listeners[listenedEvent] = callback
+    }
+  };
+  var unRegisterCallback = function(listenedEvent) {
+    if(listenedEvent in listeners) {
+      listeners[listenedEvent] = null
+    }
+  };
+  function message(VEevent, params, origin, destination) {
+    this.vishEditor = true;
+    this.VEevent = VEevent;
+    if(params) {
+      this.params = params
+    }
+    if(origin) {
+      this.origin = origin
+    }else {
+      this.origin = "?"
+    }
+    if(destination) {
+      this.destination = destination
+    }else {
+      this.destination = "*"
+    }
+  }
+  var _createMessage = function(VEevent, params, origin, destination) {
+    var VEMessage = new message(VEevent, params, origin, destination);
+    return JSON.stringify(VEMessage)
+  };
+  var _validateVEMessage = function(VEMessage) {
+    if(typeof VEMessage !== "string") {
+      return false
+    }
+    try {
+      var VEMessageObject = JSON.parse(VEMessage);
+      if(typeof VEMessageObject !== "object") {
+        return false
+      }
+      if(VEMessageObject.vishEditor !== true) {
+        return false
+      }
+      if(!VEMessageObject.VEevent) {
+        return false
+      }
+    }catch(e) {
+      return false
+    }
+    return true
+  };
+  var sendMessage = function(VEMessage, destination) {
+    if(typeof destination === "string") {
+      if(destination === "*") {
+        _broadcastMessage(VEMessage)
+      }else {
+        var iframe = document.getElementById(destination);
+        if(iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(VEMessage, "*")
+        }
+      }
+    }else {
+      if(_isArray(destination) && typeof destination[0] == "string") {
+        for(var i = 0;i < destination.length;i++) {
+          var iframe = document.getElementById(destination[i]);
+          if(iframe && iframe.contentWindow) {
+            iframe.contentWindow.postMessage(VEMessage, "*")
+          }
+        }
+      }else {
+        _broadcastMessage(VEMessage)
+      }
+    }
+  };
+  var _broadcastMessage = function(VEMessage) {
+    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
+    for(var i = 0;i < allVEIframes.length;i++) {
+      allVEIframes[i].contentWindow.postMessage(VEMessage, "*")
+    }
+  };
+  var _onWrapperedVEMessage = function(wrapperedVEMessage) {
+    if(wrapperedVEMessage) {
+      if(_validateVEMessage(wrapperedVEMessage.data)) {
+        _processVEMessage(wrapperedVEMessage.data)
+      }
+    }
+  };
+  var _processVEMessage = function(VEMessage) {
+    var VEMessageObject = JSON.parse(VEMessage);
+    if(listeners[VISH.Constant.Event.onMessage]) {
+      listeners[VISH.Constant.Event.onMessage](VEMessage, VEMessageObject.origin)
+    }
+    var callback = listeners[VEMessageObject.VEevent];
+    if(!callback) {
+      return
+    }
+    switch(VEMessageObject.VEevent) {
+      case VISH.Constant.Event.onGoToSlide:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onPlayVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onPauseVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onSeekVideo:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.videoId, VEMessageObject.params.currentTime, VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onFlashcardPointClicked:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onFlashcardSlideClosed:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onIframeMessengerHello:
+        callback(VEMessageObject.origin);
+        break;
+      default:
+        _print("VISH.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
+        break
+    }
+  };
+  var goToSlide = function(slideNumber, destination) {
+    var params = {};
+    params.slideNumber = slideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onGoToSlide, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var playVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPlayVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var pauseVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onPauseVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var seekVideo = function(videoId, currentTime, videoSlideNumber, destination) {
+    var params = {};
+    params.videoId = videoId;
+    params.currentTime = currentTime;
+    params.slideNumber = videoSlideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSeekVideo, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var openSlideInFlashcard = function(flashcardSlideNumber, slideNumber, destination) {
+    var params = {};
+    params.flashcardSlideNumber = flashcardSlideNumber;
+    params.slideNumber = slideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onFlashcardPointClicked, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var closeSlideInFlashcard = function(flashcardSlideNumber, slideNumber, destination) {
+    var params = {};
+    params.flashcardSlideNumber = flashcardSlideNumber;
+    params.slideNumber = slideNumber;
+    var VEMessage = _createMessage(VISH.Constant.Event.onFlashcardSlideClosed, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var setSlave = function(slave, destination) {
+    var params = {};
+    params.slave = slave;
+    var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var setMaster = function(master) {
+    var params = {};
+    var allVEIframes = document.querySelectorAll(".vishEditorIframe");
+    for(var i = 0;i < allVEIframes.length;i++) {
+      if(allVEIframes[i].id !== master) {
+        params.slave = true
+      }else {
+        params.slave = false
+      }
+      var destination = allVEIframes[i].id;
+      var VEMessage = _createMessage(VISH.Constant.Event.onSetSlave, params, null, destination);
+      sendMessage(VEMessage, destination)
+    }
+  };
+  var allowExitWithoutConfirmation = function(destination) {
+    var params = {};
+    var VEMessage = _createMessage(VISH.Constant.Event.allowExitWithoutConfirmation, params, null, destination);
+    sendMessage(VEMessage, destination)
+  };
+  var _print = function(objectToPrint) {
+    if(console && console.log) {
+      console.log(objectToPrint)
+    }
+  };
+  var _isArray = function(object) {
+    if(typeof object !== "undefined") {
+      return object.constructor === Array
+    }
+    return false
+  };
+  return{init:init, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback, sendMessage:sendMessage, setSlave:setSlave, setMaster:setMaster, allowExitWithoutConfirmation:allowExitWithoutConfirmation, goToSlide:goToSlide, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, openSlideInFlashcard:openSlideInFlashcard, closeSlideInFlashcard:closeSlideInFlashcard}
+}(VISH);
 (function(e, t) {
   function i(t, n) {
     var r, i, o, u = t.nodeName.toLowerCase();
@@ -7920,8 +8206,8 @@ if(!YT.Player) {
     }
   };
   var isLogged = function() {
-    if(user && user.token) {
-      return typeof user.token == "string"
+    if(user && typeof user.token == "string" && user.id) {
+      return true
     }else {
       return false
     }
@@ -10198,17 +10484,9 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     var features = {};
     var elem = document.getElementById("page-fullscreen");
     if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
-      if(!V.Status.getIsInIframe()) {
-        features.fullscreen = true
-      }else {
-        try {
-          if(window.parent.location.host === window.location.host && (!window.parent.VISH || !window.parent.VISH.Editor || !(typeof window.parent.VISH.Editor.Preview.getPreview === "function"))) {
-            features.fullscreen = true
-          }
-        }catch(e) {
-          features.fullscreen = false
-        }
-      }
+      features.fullscreen = true
+    }else {
+      features.fullscreen = false
     }
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
@@ -10243,6 +10521,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       initialized = true
     }
     embed = V.Status.getIsEmbed();
+    showViewbar = _defaultViewbar();
     if(options) {
       if(typeof render_full !== "boolean") {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
@@ -10269,11 +10548,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         display_recommendations = false
       }
-      if(typeof options["forceHideViewbar"] == "boolean") {
-        showViewbar = !options["forceHideViewbar"]
-      }else {
-        showViewbar = true
-      }
     }else {
       render_full = false;
       is_preview = false;
@@ -10282,8 +10556,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       exit_fs_button = false;
       fs_button = false;
       can_use_nativeFs = false;
-      display_recommendations = false;
-      showViewbar = true
+      display_recommendations = false
     }
     if(V.Status.getDevice().mobile) {
       render_full = true;
@@ -10309,6 +10582,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("div#viewerpreview").show()
     }
     if(embed) {
+      if(options && typeof options.watermarkURL == "string") {
+        $("#embedWatermark").parent().attr("href", options.watermarkURL)
+      }
       $("#embedWatermark").show()
     }
     if(close_button) {
@@ -10347,6 +10623,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("#viewbar").show()
     }else {
       $("#viewbar").hide()
+    }
+  };
+  var _defaultViewbar = function() {
+    var presentationType = V.SlideManager.getPresentationType();
+    var slidesQuantity = V.Slides.getSlidesQuantity();
+    if(presentationType === V.Constant.QUIZ_SIMPLE && slidesQuantity === 1) {
+      return false
+    }else {
+      return true
     }
   };
   var updateInterface = function() {
@@ -11206,7 +11491,7 @@ VISH.Slides = function(V, $, undefined) {
   };
   var forwardOneSlide = function(event) {
     if(isCurrentLastSlide() && V.Status.getDevice().desktop) {
-      VISH.Recommendations.showFancybox()
+      V.Recommendations.showFancybox()
     }else {
       goToSlide(curSlideIndex + 2)
     }
@@ -12248,10 +12533,8 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}];
-        if(Math.random() < 0.5) {
-          data = [{"answer":'[{"no":"1","answer":"false"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}, {"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-04-29T10:48:42Z", "id":1, "quiz_session_id":1}]
-        }
+        var data = [{"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:23Z", "id":30, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"false"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:37Z", "id":31, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"true"},{"no":"3","answer":"false"},{"no":"4","answer":"false"}]', 
+        "created_at":"2013-05-13T13:10:52Z", "id":32, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:09Z", "id":33, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:41Z", "id":34, "quiz_session_id":19}];
         if(typeof successCallback == "function") {
           setTimeout(function() {
             successCallback(data)

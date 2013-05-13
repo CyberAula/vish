@@ -1,19 +1,19 @@
-<section class="slides layout-regular template-default" id="slides_panel">
+  <section class="slides layout-regular template-default" id="slides_panel">
     
     <div id="flashcard-background" style="display:none">
-      <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/icons/helptutorial_circle.png"/>
-      </div>
-      <div id="fc_change_bg_big" class="change_bg_button_class"></div>
+    <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/icons/helptutorial_circle.png"/>
+    </div>
+    <div id="fc_change_bg_big" class="change_bg_button_class"></div>
     </div>
     <div id="vtour-background" style="display:none">
-      <div id="vtour_help_button"><img id="help_vtour" src="/assets/icons/helptutorial_circle.png"/></div>
-      <div id="vt_canvas"></div>
-      <div id="vt_search">
-        <input id="vt_search_input" type="text" placeholder="Search places"></input>
-        <button id="vt_search_button">
-          <img id="vt_search_button_img" src="/assets/vtour/gsearch.png"/>
-        </button>
-      </div>
+    <div id="vtour_help_button"><img id="help_vtour" src="/assets/icons/helptutorial_circle.png"/></div>
+    <div id="vt_canvas"></div>
+    <div id="vt_search">
+      <input id="vt_search_input" type="text" placeholder="Search places"></input>
+      <button id="vt_search_button">
+        <img id="vt_search_button_img" src="/assets/vtour/gsearch.png"/>
+      </button>
+    </div>
     </div>
     <div id="menubarbg" class="menubarcolor"></div>
     <div id="menubar_helpsection"><img src="/assets/menubar_helpsection.png"/></div>
@@ -49,7 +49,7 @@
     <div id="toolbar_wrapper">
       <div id="toolbar_menu">
 
-              <!-- MENU -->
+        <!-- MENU -->
         <ul id="menu" style="display:none">
           <li class="current">
             <a class="menu_option_main" href="#">
@@ -77,7 +77,7 @@
                 <a class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
                 <ul>
                   <li>
-                    <a class="menu_option" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
+                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.File">File</a>
@@ -86,7 +86,7 @@
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.Presentation">Presentation</a>
                   </li>
                   <li>
-                    <a class="menu_option" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
+                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.Game">Game</a>
@@ -153,9 +153,9 @@
 
     <!-- Hidden link to open fancybox when adding a slide -->
     <a id="addSlideFancybox" href="#thumbcontent" style="display: none;"></a>
-
     <!-- Hidden link to open fancybox when adding a quiz inside a slide -->
-    <a id="addQuizFancybox" href="#quizcontent" style="display: none;"></a>    
+    <a id="addQuizFancybox" href="#quizcontent" style="display: none;"></a>
+    
     <!-- Hidden link to open fancybox when creating a new presentation -->
     <a id="launch_presentation_details" href="#presentationdetails" style="display: none;"></a>
 
@@ -316,10 +316,10 @@
       <div class='fancy_tabs' id='thumcontent_tabs'>
         <ul>
           <li>
-            <a href="#" onclick="VISH.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
+            <a href="#" onclick="VISH.Editor.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
           </li>
           <li>
-            <a style="display:none" href="#" onclick="VISH.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
+            <a href="#" onclick="VISH.Editor.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
           </li>
         </ul>
       </div> 
@@ -387,7 +387,6 @@
     </div>
   </div>
 
-
   <!-- Quizes fancybox -->
   <div style='display:none'>
     <div id='quizcontent'>
@@ -398,9 +397,11 @@
             <a href="#" id="tab_quizes" class="fancy_tab">Quiz</a>
           </li>
         </ul>
-        <img id='tab_quizes_help' class='help_in_fancybox' src='/assets/helptutorial_circle_blank.png'/>
+        <img id='tab_quizes_help' class='help_in_fancybox' src='/assets/icons/helptutorial_circle_blank.png'/>
       </div> 
+
       <div id='tab_quizes_content' class="fancy_tab_content" style='display:none' > 
+        
         <div style="display:none" class='quizFancythumb'>
           <img src='/assets/templatesthumbs/tquiz1.png' />
         </div>
@@ -408,39 +409,14 @@
           <img src='/assets/templatesthumbs/tquiz2.png' onclick='VISH.Editor.Quiz.add("multiplechoice");' />
         </div>
         <div class='quizFancythumb'>
-          <img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.add("truefalse");'/>
+          <img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.add("truefalse");' />
         </div>
       </div>
     </div>
   </div>
 
-      <div style='display:none'>
-      
-    <div id='menuselect' class="menuselect_hide">
-      <a class='all' href="#">
-        <div class='thumbicon textthumb' i18n-key="i.Text" title="Text"></div>
-      </a>
-      <a class="addpicture all" href="#picture_fancybox">
-        <div class='thumbicon picthumb' i18n-key="i.Image" title="Image"></div>
-      </a>
-      <a class="addobject medium large" href="#object_fancybox">
-        <div class='thumbicon objectthumb' i18n-key="i.Object" title="Object"></div>
-      </a>
-      <a class="addvideo medium large" href="#video_fancybox">
-        <div class='thumbicon videothumb' i18n-key="i.Video" title="Video"></div>
-      </a>
-      <a class="addLive medium large" href="#live_fancybox">
-        <div class='thumbicon livethumb' i18n-key="i.Live" title="Live"></div>
-      </a>
-      <a class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
-       <div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
-      </a>
-       </a>    
-    </div>
-      
-    </div>
 
-    <div style='display:none'>
+      <div style='display:none'>
       
     <div id='menuselect' class="menuselect_hide">
       <a class='all' href="#">
@@ -504,7 +480,7 @@
             </div>
           </div>
           <div class="buttons_requirements_wrapper">
-            <a href="#" onclick="$.fancybox.close();" class=" button buttons_requirements" i18n-key="i.OK">OK</a>
+            <a href="#" onclick="$.fancybox.close();" class="button buttons_requirements" i18n-key="i.OK">OK</a>
           </div>
         </div>
       </div>
@@ -517,10 +493,10 @@
         <img id="saveimg" class="delete_img" src="/assets/icons/save_document.png">
         <span i18n-key="i.sure" class="deltext">are you sure?</span>    
         <div class="buttons_together">
-          <a save-option-id="save" href="#" onclick="$('#save_answer').val('save'); $.fancybox.close();" class=" button" i18n-key="i.save">Save</a>
-          <a save-option-id="publish" href="#" onclick="$('#save_answer').val('publish'); $.fancybox.close();" class=" button" i18n-key="i.publish">Publish</a>
-          <a save-option-id="draft" href="#" onclick="$('#save_answer').val('draft'); $.fancybox.close();" class=" button" i18n-key="i.draft">Draft</a>
-          <a save-option-id="cancel" i18n-key="i.cancel" href="#" onclick="$('#save_answer').val('cancel'); $.fancybox.close();" class=" button button2">cancel</a>
+          <a save-option-id="save" href="#" onclick="$('#save_answer').val('save');" class=" button" i18n-key="i.save">Save</a>
+          <a save-option-id="publish" href="#" onclick="$('#save_answer').val('publish');" class=" button" i18n-key="i.publish">Publish</a>
+          <a save-option-id="draft" href="#" onclick="$('#save_answer').val('draft');" class="button" i18n-key="i.draft">Draft</a>
+          <a save-option-id="cancel" i18n-key="i.cancel" href="#" onclick="$('#save_answer').val('cancel'); $.fancybox.close();" class="button button2">cancel</a>
         </div>
       </div>
     </div>
@@ -533,7 +509,7 @@
           <span class="deltext" i18n-key="i.oneSlideAlert">Create at least one slide before saving.</span>
         </div>    
         <div id="button_accept_when_fail">
-          <a href="#" onclick="$.fancybox.close();" class=" buttonfail">accept</a>
+          <a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
         </div>
       </div>
     </div>
@@ -564,7 +540,7 @@
           <span class="deltext">Transform to standard presentation to add a new slide.</span>
         </div>    
         <div id="button_accept_when_fail">
-          <a href="#" i18n-key="i.accept" onclick="$.fancybox.close();" class=" buttonfail">accept</a>
+          <a href="#" i18n-key="i.accept" onclick="$.fancybox.close();" class="buttonfail">accept</a>
         </div>
       </div>
     </div>
@@ -577,7 +553,7 @@
           <span class="deltext">Please drag and drop at least one arrow in the flashcard.</span>
         </div>    
         <div id="button_accept_when_fail">
-          <a href="#" onclick="$.fancybox.close();" class=" buttonfail">accept</a>
+          <a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
         </div>
       </div>
     </div>
@@ -590,7 +566,7 @@
           <span class="deltext">Please change the flashcard background before saving.</span>
         </div>    
         <div id="button_accept_when_fail">
-          <a href="#" onclick="$.fancybox.close();" class=" buttonfail">accept</a>
+          <a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
         </div>
       </div>
     </div>
@@ -603,12 +579,12 @@
           <span class="deltext">Please create at least one slide before changing mode.</span>
         </div>    
         <div id="button_accept_when_fail">
-          <a href="#" onclick="$.fancybox.close();" class=" buttonfail">accept</a>
+          <a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
         </div>
       </div>
     </div>
 
-    <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
+      <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
     <div style='display:none'>
       <div id='message6_form'>
         <div class="text_in_fancybox">
@@ -616,7 +592,7 @@
           <span class="deltext">Please drag and drop at least one point of interest in the map.</span>
         </div>    
         <div id="button_accept_when_fail">
-          <a href="#" onclick="$.fancybox.close();" class=" buttonfail">accept</a>
+          <a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
         </div>
       </div>
     </div>
@@ -629,10 +605,10 @@
       <div id="picture_fancybox" class="outer_box">
         <div class="fancy_tabs" id="images_fancy_tabs_id">     
           <ul>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
           <img class='help_in_fancybox' id='tab_pic_upload_help' src='/assets/icons/helptutorial_circle_blank.png'/>
@@ -769,11 +745,11 @@
       <div id="object_fancybox" class="outer_box">
         <div class="fancy_tabs" id="object_fancy_tabs_id">     
           <ul>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_object_from_url')" id="tab_object_from_url" class="fancy_tab">embed</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_object_from_web')" id="tab_object_from_web" class="fancy_tab">web</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_url')" id="tab_object_from_url" class="fancy_tab">embed</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_web')" id="tab_object_from_web" class="fancy_tab">web</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
           <img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/icons/helptutorial_circle_blank.png'/>
@@ -853,7 +829,7 @@
               <div id="tab_object_repo_content_preview_object" class="content_preview_data"></div>
               <div id="tab_object_repo_content_preview_metadata" class="content_preview_metadata"></div>
               <div id="tab_object_repo_content_preview_foot" class="content_preview_foot">
-                <button i18n-key="i.Add" type="button" class="okButton" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
+                <button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
               </div>
             </div>        
           </div>
@@ -882,10 +858,10 @@
       <div id="video_fancybox" class="outer_box">
         <div class="fancy_tabs" id="video_fancy_tabs_id">    
             <ul>
-              <li><a href="#" onclick="VISH.Utils.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
-              <li><a href="#" onclick="VISH.Utils.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
-              <li><a href="#" onclick="VISH.Utils.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
-              <li><a href="#" onclick="VISH.Utils.loadTab('tab_video_vimeo')" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
+              <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
+              <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
+              <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
+              <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo')" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
             </ul>
             <img class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
             <img class='help_in_fancybox' id='tab_video_repo_help' src='/assets/icons/helptutorial_circle_blank.png'/>
@@ -919,7 +895,7 @@
                 </div>
                 <div id="tab_video_repo_content_preview_metadata" class="content_preview_metadata"></div>
                 <div id="tab_video_repo_content_preview_foot" class="content_preview_foot">
-                  <button type="button" class="okButton" onclick="VISH.Editor.Video.Repository.addSelectedVideo()">Add</button>
+                  <button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.Repository.addSelectedVideo()">Add</button>
                 </div>
               </div>
             </div>
@@ -940,7 +916,7 @@
             </div>
             <div id="tab_video_youtube_content_preview_metadata" class="content_preview_metadata"></div>
             <div id="tab_video_youtube_content_preview_foot" class="content_preview_foot">
-              <button type="button" class="okButton" onclick="VISH.Editor.Video.Youtube.addSelectedVideo()">Add</button>
+              <button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.Youtube.addSelectedVideo()">Add</button>
             </div>
           </div>
           
@@ -961,7 +937,7 @@
             </div>
             <div id="tab_video_vimeo_content_preview_metadata" class="content_preview_metadata"></div>
             <div id="tab_video_vimeo_content_preview_foot" class="content_preview_foot">
-              <button type="button" class="okButton" onclick="VISH.Editor.Video.vimeo.addSelectedVideo()">Add</button>
+              <button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.vimeo.addSelectedVideo()">Add</button>
             </div>
           </div>
           
@@ -976,8 +952,8 @@
       <div id="live_fancybox" class="outer_box">
         <div class="fancy_tabs" id="live_fancy_tabs_id">    
           <ul>
-            <li><a href="#" onclick="VISH.Utils.loadTab('tab_live_webcam')" id="tab_live_webcam" class="fancy_tab">Webcams</a></li>
-            <li style="display:none"><a href="#" onclick="VISH.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_webcam')" id="tab_live_webcam" class="fancy_tab">Webcams</a></li>
+            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_live_webcam_help' src='/assets/icons/helptutorial_circle_blank.png'/> 
         </div>
@@ -994,7 +970,7 @@
               <div id="tab_live_webcam_content_preview_live" class="content_preview_data"></div>
               <div id="tab_live_webcam_content_preview_metadata" class="content_preview_metadata"></div>
               <div id="tab_live_webcam_content_preview_foot" class="content_preview_foot">
-                <button type="button" class="okButton" onclick="VISH.Editor.Object.Live.addSelectedObject()">Add</button>
+                <button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.Live.addSelectedObject()">Add</button>
               </div>
             </div>        
           </div>
@@ -1099,23 +1075,28 @@
 
     <!--help for flashcard -->
     <ol id="fc_help" class="joyRideTipContent">
-        <li data-id="change_background_fc" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
-     <h2>Flashcards</h2>
-     <p i18n-key="i.walk56">A flashcard, is an application that will help you represent your excursion as an infographic, using an image to represent the concept of the excursion and mark zones of the image for the user to interact with them in order to see the pages of the excursion.</p>
-     <p i18n-key="i.walk57">First, use these icons to add a background to the slide.</p>
-     <img class="imagetutflash" src="/assets/tutorial/icons_flashcard_tut.png"/>
-     <p i18n-key="i.walk58">You can add images by:</p>
-     <ul>
-      <li><h1 i18n-key="i.Url">Url</h1></li><img class="imagetutflash2" src="/assets/tutorial/icons_flashcard_tut3.png"/>
-      <li><h1 i18n-key="i.OwnImages">Upload your own images</h1></li>
-      <li><h1 i18n-key="i.SearchImagesVish">From the vish repository</h1></li>
-      <li><h1 i18n-key="i.SearchImagesFlickr">From Flickr</h1></li>
-    </ul>
-     <p i18n-key="i.walk59">Once, you finish this step, you can "drag and drop" the arrows in the lower zone of the editor (on top of the slides) into the flashcard background image to mark the zones that you want the user to interact with.</p>
-     <img src="/assets/tutorial/icons_flashcard_tut2.png"/>
-    <p><span i18n-key="i.walk60">You can click on the "preview button" to test the flashcard before you save it.</span><img src="/assets/icons/preview_circle.png"/></p>
-    <p i18n-key="i.walk61">If you save your presentation as a flashcard, it will be shown on the Vish web page as a flashcard, but you can always edit your excursion back and save it as a presentation.</p>
-    </li>
+      <li data-id="change_background_fc" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
+        <h2>Flashcards</h2>
+        <p i18n-key="i.walk56">
+          A flashcard, is an application that will help you represent your excursion as an infographic, using an image to represent the concept of the excursion and mark zones of the image for the user to interact with them in order to see the pages of the excursion.
+        </p>
+        <p i18n-key="i.walk57">First, use these icons to add a background to the slide.</p>
+        <img class="imagetutflash" src="/assets/tutorial/icons_flashcard_tut.png"/>
+        <p i18n-key="i.walk58">You can add images by:</p>
+        <ul>
+          <li>
+            <h1 i18n-key="i.Url">Url</h1>
+          </li>
+          <img class="imagetutflash2" src="/assets/tutorial/icons_flashcard_tut3.png"/>
+          <li><h1 i18n-key="i.OwnImages">Upload your own images</h1></li>
+          <li><h1 i18n-key="i.SearchImagesVish">From the vish repository</h1></li>
+          <li><h1 i18n-key="i.SearchImagesFlickr">From Flickr</h1></li>
+        </ul>
+        <p i18n-key="i.walk59">Once, you finish this step, you can "drag and drop" the arrows in the lower zone of the editor (on top of the slides) into the flashcard background image to mark the zones that you want the user to interact with.</p>
+        <img src="/assets/tutorial/icons_flashcard_tut2.png"/>
+        <p><span i18n-key="i.walk60">You can click on the "preview button" to test the flashcard before you save it.</span><img src="/assets/icons/preview_circle.png"/></p>
+        <p i18n-key="i.walk61">If you save your presentation as a flashcard, it will be shown on the Vish web page as a flashcard, but you can always edit your excursion back and save it as a presentation.</p>
+      </li>
     </ol>
 
     <!--help for vtours -->
@@ -1499,4 +1480,4 @@
         <h2 i18n-key="i.SearchLiveContent">Search Live Content</h2>
      <p i18n-key="i.walk55">Just write inside a word (press Enter)and a gallery will appear to show you the results, If you want to add one from the results you just have to click on it, then, the content will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
     </li>
-  </ol> 
+  </ol>

@@ -21,11 +21,11 @@
     <div style='display:none'>
         <div id='fancy_recommendations'>
             <div class="rec-first-row" style="display:none">
-                <span class="textintro1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
+                <span class="textrec1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
                 <button id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
             </div>
             <div class="rec-second-row">
-                <span class="textintro1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
+                <span class="textrec1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
                 <div class="rec-grid">
                 </div>
             </div>
@@ -143,6 +143,7 @@
 	<% if @excursion %>
 		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
 		options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
+        options["watermarkURL"] = "<%=excursion_path(@excursion)%>";
 	<% end %>
 
     //Look for URL param
@@ -156,13 +157,12 @@
       <% end %>
     <% end %>
  
-	options["token"] = "<%= form_authenticity_token %>";
 	options["lang"] = "<%= I18n.locale.to_s%>";
+    options["token"] = "<%= form_authenticity_token %>";
 
 	<% if user_signed_in? %>
+        options['userId'] = "<%= current_user.id %>";
 	    options["username"] = "<%= current_user.name %>";
-	<% else %>
-	    options["username"] = false;
 	<% end %>
 
     <% if @quiz_session %>

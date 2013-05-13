@@ -32,7 +32,7 @@ Vish::Application.routes.draw do
 
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
 
-  match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full", :embed => 'true' }
+  match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
 
   resources :excursions
@@ -60,6 +60,7 @@ Vish::Application.routes.draw do
     get "results", :on => :member
   end
   match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
+  match 'qs/:id' => 'quiz_sessions#show'
 
   match 'resources/search' => 'resources#search'
   match 'resources/recommended' => 'resources#recommended'

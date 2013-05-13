@@ -106,7 +106,6 @@ class ExcursionsController < ApplicationController
         end
       }
       format.full {
-        @embed = params[:embed]
         @orgUrl = params[:orgUrl]
         render :layout => 'iframe'
       }
@@ -114,7 +113,7 @@ class ExcursionsController < ApplicationController
       format.json { render :json => resource }
       format.gateway { 
         @gateway = params[:gateway]
-        render :layout => 'iframe'
+        render :layout => 'iframe.full'
       }
       format.scorm {
         @excursion.to_scorm(self)

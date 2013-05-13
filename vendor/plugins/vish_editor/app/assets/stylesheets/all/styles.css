@@ -563,6 +563,10 @@ button#closeButton {
   background-size: 112%;
 }
 
+#embedWatermark:hover{
+  background-position: -33px -33px;
+}
+
 
 /***** Real Time Quizzes *****/
 

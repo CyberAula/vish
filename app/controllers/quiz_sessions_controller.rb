@@ -28,7 +28,7 @@ class QuizSessionsController < ApplicationController
     #We need to save the quiz twice, one to generate the id and the other to save the URL
 
     # qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
-    qs.url = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}"
+    qs.url = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/qs/#{qs.id.to_s}"
 
     results = Hash.new
     results["id"] = qs.id;

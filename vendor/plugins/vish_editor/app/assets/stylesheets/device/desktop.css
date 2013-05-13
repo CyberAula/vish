@@ -32,13 +32,13 @@
 	height: 20%;
 }
 
-.textintro1 {
+.textrec1 {
   font-family:Helvetica;
   font-size:2em;
   color: #fff ;
 }
 
-.rec-first-row .textintro1{
+.rec-first-row .textrec1{
 	margin-left: 5%;
 	margin-top: 5%;
 	position: absolute;
@@ -75,7 +75,7 @@
 	width: 100%;
 }
 
-.rec-second-row .textintro1{
+.rec-second-row .textrec1{
 	margin-left: 5%;
 	margin-top: 5%;
 	position: absolute;
