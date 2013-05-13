@@ -1,10 +1,6 @@
 <% unless profile_or_current_subject.blank? %>
-  <% if Rails.env == "production" and not request.host == "vishub-test.global.dit.upm.es" %>
-    <%=javascript_include_tag "vishEditor.min" %>
-  <% else %>
-    <%=javascript_include_tag "vishEditor" %>
-  <% end %>
-  <%= stylesheet_link_tag "vish_editor" %>
-    
+  <%=javascript_include_tag "VISH.QuizCharts" %>
   <p> Quiz sessions </p>
+
+  
 <% end %>

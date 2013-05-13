@@ -1,23 +1,24 @@
-
+#
+# A javascript compile rake task (uses google's closure compiler).
+# @see http://code.google.com/closure/compiler/
+#
 
 #PATHS
 VISH_EDITOR_PLUGIN_PATH = "vendor/plugins/vish_editor";
 VISH_EDITOR_PATH = "../vish_editor/public/vishEditor";
 
-# configure these defaults based on Your needs :
+# Vish Editor and Vish Viewer files and dirs :
 JS_FILES_AND_DIRS = ['app/assets/js_to_compile/lang','app/assets/js_to_compile/VISH.js', 'app/assets/js_to_compile/VISH.Constant.js', 'app/assets/js_to_compile/libs','app/assets/js_to_compile/VISH.Renderer.js', 'app/assets/js_to_compile/VISH.Status.js', 'app/assets/js_to_compile/VISH.Status.Device.js', 'app/assets/js_to_compile/VISH.Utils.js', 'app/assets/js_to_compile/VISH.Editor.js', 'app/assets/js_to_compile/VISH.Editor.Utils.js', 'app/assets/js_to_compile/VISH.Editor.Text.js', 'app/assets/js_to_compile/VISH.Editor.Video.js', 'app/assets/js_to_compile/VISH.Editor.Image.js', 'app/assets/js_to_compile/VISH.Editor.Object.js', 'app/assets/js_to_compile/VISH.Editor.Flashcard.js', 'app/assets/js_to_compile/VISH.Editor.VirtualTour.js', 'app/assets/js_to_compile/VISH.Editor.Flashcard.Repository.js', 'app/assets/js_to_compile/VISH.Samples.js', 'app/assets/js_to_compile/VISH.Samples.API.js', 'app/assets/js_to_compile/VISH.Slides.js', 'app/assets/js_to_compile/VISH.Events.js', 'app/assets/js_to_compile/VISH.Flashcard.js', 'app/assets/js_to_compile/VISH.Quiz.js', 'app/assets/js_to_compile/VISH.Editor.Tools.js', 'app/assets/js_to_compile/VISH.Addons.js', 'app/assets/js_to_compile/VISH.VideoPlayer.js', 'app/assets/js_to_compile/VISH.Messenger.js' , 'app/assets/js_to_compile/VISH.Editor.Quiz.js', 'app/assets/js_to_compile']
 
+# Vish Viewer files and dirs
 ONLY_VIEWER = ['libs/jquery-1.7.2.min.js', 'libs/jquery.watermark.min.js', 'libs/RegaddiChart.js', 'VISH.js', 'VISH.Constant.js', 'VISH.Configuration.js', 'VISH.QuizCharts.js', 'VISH.IframeAPI.js', 'libs/jquery-ui-1.9.2.custom.min.js', 'libs/jquery.fancybox-1.3.4.js', 'libs/jquery.qrcode.min.js', 'libs/yt_iframe_api.js','VISH.User.js', 'VISH.Object.js', 'VISH.Renderer.js', 'VISH.Renderer.Filter.js', 'VISH.Debugging.js', 'VISH.Presentation.js', 'VISH.Text.js', 'VISH.VideoPlayer.js', 'VISH.VideoPlayer.CustomPlayer.js', 'VISH.VideoPlayer.HTML5.js', 'VISH.VideoPlayer.Youtube.js', 'VISH.ObjectPlayer.js', 'VISH.SnapshotPlayer.js', 'VISH.AppletPlayer.js', 'VISH.SlideManager.js', 'VISH.Utils.js', 'VISH.Utils.Loader.js', 'VISH.Status.js', 'VISH.Status.Device.js', 'VISH.Status.Device.Browser.js', 'VISH.Status.Device.Features.js', 'VISH.ViewerAdapter.js', 'VISH.Game.js', 'VISH.Flashcard.js',  'VISH.VirtualTour.js', 'VISH.Themes.js', 'VISH.Messenger.js', 'VISH.Messenger.Helper.js', 'VISH.Addons.js', 'VISH.Addons.IframeMessenger.js', 'VISH.Storage.js', 'VISH.Slides.js', 'VISH.Events.js', 'VISH.EventsNotifier.js', 'VISH.Quiz.js', 'VISH.Quiz.MC.js', 'VISH.Quiz.TF.js', 'VISH.Quiz.API.js', 'VISH.Events.Mobile.js', 'VISH.Recommendations.js']
 
 COMPILER_JAR_PATH = "lib/tasks/compile"
 COMPILER_JAR_FILE = COMPILER_JAR_PATH + "/compiler.jar"
 COMPILER_DOWNLOAD_URI = 'http://closure-compiler.googlecode.com/files/compiler-latest.zip'
 
-#
-# a javascript compile rake task (uses google's closure compiler).
-#
-# @see http://code.google.com/closure/compiler/
-#
+
+# Rake Task
 namespace :vish_editor do
     
   task :prepare do
@@ -31,6 +32,10 @@ namespace :vish_editor do
     #Copy CKEditor files to assets
     system "mkdir -p " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/ckeditor"
     system "cp -r " + VISH_EDITOR_PATH + "/js/libs/ckeditor/* " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/ckeditor/"
+
+    #Copy Standalone JS files
+    system "cp " + VISH_EDITOR_PATH + "/js/VISH.IframeAPI.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
+    system "cp " + VISH_EDITOR_PATH + "/js/VISH.QuizCharts.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
 
     system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
