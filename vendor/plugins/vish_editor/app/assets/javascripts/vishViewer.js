@@ -10175,7 +10175,21 @@ VISH.Status = function(V, $, undefined) {
     return _isInIframe
   };
   var _checkDomain = function() {
-    _isAnotherDomain = _checkIframe() && typeof window.parent.location.href === "undefined";
+    _isAnotherDomain = false;
+    if(_checkIframe()) {
+      var parent = window.parent;
+      while(parent != window.top) {
+        if(typeof parent.location.href === "undefined") {
+          _isAnotherDomain = true;
+          break
+        }else {
+          parent = parent.parent
+        }
+      }
+      if(typeof window.top.location.href === "undefined") {
+        _isAnotherDomain = true
+      }
+    }
     return _isAnotherDomain
   };
   var _checkOnline = function() {
