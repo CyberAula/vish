@@ -410,7 +410,7 @@ div.addUrlButtons{
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;	
-	width: 638px;
+	width: 738px;
 	height: 340px;
 }
 
@@ -625,12 +625,25 @@ a#tab_pic_flikr > img {
 	margin: auto;
 }
 
+.content_preview_presentation{
+	width: 800px;
+	height: 270px;
+	text-align: center;
+	padding-top: -10px;
+	margin: auto;
+}
+
 .content_preview_data{
 	width: 350px;
 	height: 195px;
 	margin-left: auto; 
 	margin-right: auto;
 	float: left;
+}
+
+div.content_preview_presentation > div.content_preview_data{
+	width: 0px;
+	height: 270px;
 }
 
 .content_preview_metadata{
@@ -640,10 +653,15 @@ a#tab_pic_flikr > img {
 	overflow: hidden;
 }
 
+div.content_preview_presentation > div.content_preview_metadata{
+	width: 790px;
+	height: 270px;
+}
+
 .content_preview_foot{
 	outline: none;
 	text-align: center;
-  margin-left: 70px;
+	margin-left: 70px;
 }
 
 div.search_container {
@@ -737,6 +755,13 @@ table.metadata{
 	width: 300px;
 	height: 195px;
 	table-layout:fixed;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.metadata_presentation{
+	width: 490px;
+	height: 270px;
 }
 
 table.metadata td{
@@ -1762,10 +1787,14 @@ margin: 0px;
 .ui-widget-header { border: 1px solid #e78f08; background: #eeeeed  50% 50% repeat-x; color: #ffffff; font-weight: bold; }
 .ui-widget-content { border: 1px solid #dddddd; background: #eeeeee; }
 
-.fc_repo_content {
+.excursions_repo_content {
 	width: 638px;
 	height: 230px;
 	position: absolute;
+}
+
+.input_text_excursions{
+	width: 345px !important;
 }
 
 img#help_flashcard{

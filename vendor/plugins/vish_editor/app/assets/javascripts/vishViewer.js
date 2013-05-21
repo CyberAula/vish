@@ -4825,6 +4825,7 @@ VISH.Constant.Event.onFlashcardSlideClosed = "onFlashcardSlideClosed";
 VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
+VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
 VISH.Constant.Storage = {};
 VISH.Constant.Storage.Device = "Device";
 VISH.Constant.VTour = {};
@@ -5021,6 +5022,7 @@ VISH.Constant.Event.onFlashcardSlideClosed = "onFlashcardSlideClosed";
 VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
+VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
 VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
 VISH.IframeAPI = function(V, undefined) {
   var helloAttempts;
@@ -8433,7 +8435,7 @@ VISH.Renderer = function(V, $, undefined) {
       all_slides += _renderStandardSlide(subslide, "subslide", "<div class='close_subslide' id='close" + subslide.id + "'></div>")
     }
     var div_for_slides_hidden = "<div class='subslides' >" + all_slides + "</div>";
-    return $("<article class='" + extra_classes + " virtualTour_slide' type='virtualTour' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
+    return $("<article class='" + extra_classes + " virtualTour_slide' type='" + V.Constant.VTOUR + "' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
   };
   var _afterDrawSlide = function(slide) {
     switch(slide.type) {
@@ -9543,6 +9545,8 @@ VISH.SlideManager = function(V, $, undefined) {
     }
     V.Debugging.log("\n\nSlideManager.init with presentation:\n");
     V.Debugging.log(JSON.stringify(presentation));
+    V.Utils.init();
+    presentation = V.Utils.fixPresentation(presentation);
     current_presentation = presentation;
     setPresentationType(presentation.type);
     V.Status.init(function() {
@@ -9551,23 +9555,14 @@ VISH.SlideManager = function(V, $, undefined) {
   };
   var _initAferStatusLoaded = function(options, presentation) {
     V.Flashcard.init();
+    V.VirtualTour.init();
     V.Quiz.initBeforeRender(presentation);
     V.Renderer.init();
     V.Slides.init();
     V.Utils.loadDeviceCSS();
     V.User.init(options);
     V.Storage.init();
-    V.Utils.init();
     V.Recommendations.init(options);
-    switch(presentation.type) {
-      case V.Constant.GAME:
-        V.ViewerAdapter.setupGame(presentation);
-        V.Game.registerActions(presentation);
-        break;
-      case V.Constant.VTOUR:
-        V.VirtualTour.init();
-        break
-    }
     V.Events.init();
     V.EventsNotifier.init();
     V.VideoPlayer.init();
@@ -9657,6 +9652,10 @@ VISH.SlideManager = function(V, $, undefined) {
     V.VideoPlayer.HTML5.playVideos(e.target);
     if($(e.target).hasClass("flashcard_slide")) {
       V.Flashcard.startAnimation(e.target.id)
+    }else {
+      if($(e.target).hasClass("virtualTour_slide")) {
+        V.VirtualTour.loadMap(e.target.id)
+      }
     }
     if(_isRecommendationMoment()) {
       V.Recommendations.generateFancybox()
@@ -9707,10 +9706,12 @@ VISH.SlideManager = function(V, $, undefined) {
   return{init:init, getStatus:getStatus, updateStatus:updateStatus, addEnterLeaveEvents:addEnterLeaveEvents, toggleFullScreen:toggleFullScreen, getOptions:getOptions, updateSlideCounter:updateSlideCounter, getCurrentPresentation:getCurrentPresentation, getPresentationType:getPresentationType, setPresentationType:setPresentationType}
 }(VISH, jQuery);
 VISH.Utils = function(V, undefined) {
+  var ids;
   var domIds;
   var init = function() {
     if(!domIds) {
-      domIds = new Array
+      domIds = new Array;
+      ids = []
     }
   };
   var getOptions = function() {
@@ -9737,11 +9738,78 @@ VISH.Utils = function(V, undefined) {
       var full_id = full_id_prefix;
       full_id_prefix = full_id_prefix.replace(full_id_prefix[full_id_prefix.length - 1], "")
     }
-    if($("#" + full_id).length === 0) {
+    if($("#" + full_id).length === 0 && ids.indexOf(full_id) === -1) {
+      ids.push(full_id);
       return full_id
     }else {
       return getId(full_id_prefix, false, separator)
     }
+  };
+  var fixPresentation = function(presentation) {
+    if(typeof presentation.type == "undefined") {
+      presentation.type = V.Constant.STANDARD
+    }
+    if(typeof presentation.VEVersion == "undefined") {
+      presentation.VEVersion = "0.1"
+    }
+    presentation = _fixIds(presentation);
+    return presentation
+  };
+  var _fixIds = function(presentation) {
+    var slides = presentation.slides;
+    var sL = slides.length;
+    for(var i = 0;i < sL;i++) {
+      var slide = slides[i];
+      if(!slide.id.match(/^article[0-9]+/g)) {
+        slide.id = getId("article")
+      }else {
+        slide.id = getId(slide.id, true)
+      }
+      if(typeof slide.type == "undefined") {
+        slide.type = V.Constant.STANDARD
+      }
+      switch(slide.type) {
+        case V.Constant.STANDARD:
+          slide = _fixIdsStandardSlide(slide);
+          break;
+        case V.Constant.FLASHCARD:
+          slide = _fixIdsFlashcardSlide(slide);
+          break;
+        case V.Constant.VTOUR:
+          slide = _fixIdsVTourSlide(slide);
+          break;
+        default:
+          return
+      }
+    }
+    return presentation
+  };
+  var _fixIdsStandardSlide = function(slide) {
+    var elements = slide.elements;
+    var eL = elements.length;
+    for(var j = 0;j < eL;j++) {
+      if(elements[j].id.match(new RegExp("^" + slide.id, "g")) === null) {
+        elements[j].id = getId(slide.id + "_zone")
+      }else {
+        elements[j].id = getId(elements[j].id, true)
+      }
+    }
+    return slide
+  };
+  var _fixIdsFlashcardSlide = function(slide) {
+    return slide
+  };
+  var _fixIdsVTourSlide = function(slide) {
+    var slides = slide.slides;
+    if(slides) {
+      var sL = slides.length;
+      for(var i = 0;i < sL;i++) {
+        if(typeof slides[i].type == "undefined") {
+          slides[i].type = V.Constant.STANDARD
+        }
+      }
+    }
+    return slide
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -10010,7 +10078,7 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;
@@ -10530,6 +10598,7 @@ VISH.Status.Device.Features = function(V, $, undefined) {
 VISH.ViewerAdapter = function(V, $, undefined) {
   var render_full;
   var is_preview;
+  var is_preview_insertMode;
   var close_button;
   var fs_button;
   var can_use_nativeFs;
@@ -10590,6 +10659,13 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       can_use_nativeFs = false;
       display_recommendations = false
     }
+    is_preview_insertMode = false;
+    if(is_preview) {
+      var presentation = V.SlideManager.getCurrentPresentation();
+      if(presentation.insertMode === true) {
+        is_preview_insertMode = true
+      }
+    }
     if(V.Status.getDevice().mobile) {
       render_full = true;
       page_is_fullscreen = render_full && !V.Status.getIsInIframe();
@@ -10612,6 +10688,12 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
     if(is_preview) {
       $("div#viewerpreview").show()
+    }
+    if(is_preview_insertMode) {
+      $("#selectSlidesBar").show();
+      $("#viewbar").css("bottom", $("#selectSlidesBar").height() + "px");
+      $("#viewbar").css("border-bottom", "none");
+      V.SlidesSelector.init()
     }
     if(embed) {
       if(options && typeof options.watermarkURL == "string") {
@@ -10684,6 +10766,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       reserved_px_for_menubar = 0;
       margin_height = 0;
       margin_width = 0
+    }else {
+      if(is_preview_insertMode) {
+        reserved_px_for_menubar = 120
+      }
     }
     if(fullscreen) {
       _onFullscreenEvent(true)
@@ -10898,14 +10984,25 @@ VISH.Flashcard = function(V, $, undefined) {
 VISH.VirtualTour = function(V, $, undefined) {
   var virtualTours;
   var gMlLoaded = false;
+  var gMlLoading = false;
   var lastIncrease;
+  var _loadQueue;
   var init = function(presentation) {
-    virtualTours = new Array
+    virtualTours = new Array;
+    _loadQueue = []
   };
   var drawMap = function(vt) {
     if(!gMlLoaded) {
+      if(gMlLoading) {
+        setTimeout(function() {
+          drawMap(vt)
+        }, 1E3);
+        return
+      }
+      gMlLoading = true;
       V.Utils.Loader.loadGoogleLibrary("https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places", function() {
         gMlLoaded = true;
+        gMlLoading = false;
         drawMap(vt)
       });
       return
@@ -10913,27 +11010,58 @@ VISH.VirtualTour = function(V, $, undefined) {
     if(vt.type !== V.Constant.VTOUR) {
       return
     }
+    if(typeof virtualTours[vt.id] != "undefined") {
+      return
+    }
     var canvas_id = V.Utils.getId(vt.id + "_canvas");
     var canvas = $("<div id='" + canvas_id + "' class='map_canvas' style='height:" + "100%" + "; width:" + "100%" + "'></div>");
     $("#" + vt.id).append(canvas);
     var latlng = new google.maps.LatLng(vt.center.lat, vt.center.lng);
-    var myOptions = {zoom:parseInt(vt.zoom), center:latlng, mapTypeId:vt.mapType};
-    if(typeof virtualTours[vt.id] === "undefined") {
+    if(typeof virtualTours[vt.id] == "undefined") {
       virtualTours[vt.id] = new Object;
+      virtualTours[vt.id].id = vt.id;
       virtualTours[vt.id].canvasId = canvas_id;
       virtualTours[vt.id].center = latlng;
+      virtualTours[vt.id].zoom = parseInt(vt.zoom);
+      virtualTours[vt.id].mapType = vt.mapType;
       virtualTours[vt.id].pois = new Array;
+      virtualTours[vt.id].orgPois = vt.pois;
       virtualTours[vt.id].paths = []
     }
-    var map = new google.maps.Map(document.getElementById(canvas_id), myOptions);
-    virtualTours[vt.id].map = map;
-    $(vt.pois).each(function(index, poi) {
-      virtualTours[vt.id].pois[poi.id] = poi;
+    var lqL = _loadQueue.length;
+    for(var i = 0;i < lqL;i++) {
+      if(_loadQueue[i] === vt.id) {
+        loadMap(vt.id);
+        _loadQueue.splice(_loadQueue.indexOf(vt.id), 1)
+      }
+    }
+  };
+  var loadMap = function(vtId) {
+    var vt = virtualTours[vtId];
+    if(typeof vt == "undefined") {
+      _loadQueue.push(vtId);
+      return
+    }
+    if(typeof vt.map != "undefined") {
+      return
+    }
+    $("#" + vt.id).addClass("temp_shown");
+    var canvasId = vt.canvasId;
+    var myOptions = {zoom:vt.zoom, center:vt.center, mapTypeId:vt.mapType};
+    var map = new google.maps.Map(document.getElementById(canvasId), myOptions);
+    vt.map = map;
+    $(vt.orgPois).each(function(index, poi) {
+      vt.pois[poi.id] = poi;
       _addMarkerToCoordinates(vt, poi.lat, poi.lng, poi.id)
     });
     google.maps.event.addListenerOnce(map, "tilesloaded", function() {
+      $("#" + vtId).removeClass("temp_shown");
       google.maps.event.addListenerOnce(map, "tilesloaded", function() {
       })
+    });
+    google.maps.event.addDomListener(map, "idle", function() {
+    });
+    google.maps.event.addDomListener(window, "resize", function() {
     })
   };
   var _addMarkerToCoordinates = function(vt, lat, lng, poi_id) {
@@ -10966,7 +11094,7 @@ VISH.VirtualTour = function(V, $, undefined) {
   var getVirtualTours = function() {
     return virtualTours
   };
-  return{init:init, drawMap:drawMap, aftersetupSize:aftersetupSize, getVirtualTours:getVirtualTours}
+  return{init:init, drawMap:drawMap, loadMap:loadMap, aftersetupSize:aftersetupSize, getVirtualTours:getVirtualTours}
 }(VISH, jQuery);
 VISH.Themes = function(V, $, undefined) {
   var loadTheme = function(theme) {
@@ -11125,6 +11253,9 @@ VISH.Messenger.Helper = function(V, undefined) {
         break;
       case V.Constant.Event.allowExitWithoutConfirmation:
         V.Editor.allowExitWithoutConfirmation();
+        break;
+      case V.Constant.Event.onSelectedSlides:
+        V.EventsNotifier.notifyEvent(V.Constant.Event.onSelectedSlides, VEMessageObject.params, true);
         break;
       default:
         V.Debugging.log("V.Messenger.Proceesor Error: Unrecognized event: " + VEMessageObject.VEevent);
@@ -11320,7 +11451,7 @@ VISH.Slides = function(V, $, undefined) {
   var handleDomLoaded = function() {
     slideEls = document.querySelectorAll("section.slides > article");
     if(isSlideset(V.SlideManager.getPresentationType())) {
-      curSlideIndex = 0
+      setCurrentSlideIndex(0)
     }
     updateSlides(true);
     $("body").addClass("loaded")
@@ -11328,12 +11459,12 @@ VISH.Slides = function(V, $, undefined) {
   var _getcurSlideIndexFromHash = function() {
     var slideNo = parseInt(location.hash.substr(1));
     if(slideNo) {
-      curSlideIndex = slideNo - 1
+      setCurrentSlideIndex(slideNo - 1)
     }else {
       if(V.Editing) {
-        curSlideIndex = -1
+        setCurrentSlideIndex(-1)
       }else {
-        curSlideIndex = 0
+        setCurrentSlideIndex(0)
       }
     }
   };
@@ -11411,7 +11542,7 @@ VISH.Slides = function(V, $, undefined) {
     return curSlideIndex + 1
   };
   var setCurrentSlideNumber = function(currentSlideNumber) {
-    curSlideIndex = currentSlideNumber - 1
+    setCurrentSlideIndex(currentSlideNumber - 1)
   };
   var _getSlide = function(no) {
     return getSlideWithNumber(no + 1)
@@ -11511,13 +11642,13 @@ VISH.Slides = function(V, $, undefined) {
   };
   var _prevSlide = function() {
     if(curSlideIndex > 0) {
-      curSlideIndex--;
+      setCurrentSlideIndex(curSlideIndex - 1);
       updateSlides(false)
     }
   };
   var _nextSlide = function() {
     if(curSlideIndex < slideEls.length - 1) {
-      curSlideIndex++;
+      setCurrentSlideIndex(curSlideIndex + 1);
       updateSlides(true)
     }
   };

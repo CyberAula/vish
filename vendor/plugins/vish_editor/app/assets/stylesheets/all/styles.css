@@ -287,6 +287,83 @@ margin-top: 8px;
 }
 
 
+/* Select slides */
+.selectSlidesBar{
+  background-image: -moz-linear-gradient(#a8a8a8,#ececec);
+  background-image: -webkit-gradient(linear,0% 0,0% 100%,from(#a8a8a8),to(#ececec));
+  background-image: -o-linear-gradient(#a8a8a8,#ececec);
+  background-image: -ms-linear-gradient(#a8a8a8,#ececec);
+  height: 80px;
+  bottom: 0;
+  opacity: 1.0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #888;
+  border-top: 1px solid #ccc;
+  z-index: 1200;
+  border: none;
+}
+
+
+#selectSlidesBar > div{
+  height: 100%;
+  text-align: center;
+}
+
+.selectSlidesButtons1{
+  float: left;
+  width: 25%;
+}
+
+.selectSlidesButtons2{
+  float: right;
+  width: 49%;
+}
+
+.selectSlidesButtons3{
+  float: right;
+  width: 25%;
+}
+
+.selectSlidesButtons1 > button{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.selectSlidesButtons2 > button {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.selectSlidesSelection{
+  float: left;
+  position: absolute;
+}
+
+.selectSlidesSelection > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.selectSlidesSelection > p {
+  position: absolute;
+  right: 8%;
+  bottom: -39%;
+  background: white;
+  padding: 5px;
+  font-size: 2em;
+}
+
+.selectSlidesButtonWrapper{
+  position: absolute;
+  top: 25%;
+  right: 4%;
+}
+
 /* Style for Texts (CkEditor version) */
 article {
   font-family: Arial, Verdana, sans-serif;
@@ -515,7 +592,7 @@ button#closeButton {
 }
 
 .virtualTour_slide{
-  display: block !important;
+  display: block;
 }
 
 /** Arrows **/
