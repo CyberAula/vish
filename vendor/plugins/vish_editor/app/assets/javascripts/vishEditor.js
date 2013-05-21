@@ -11499,8 +11499,8 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.Image.init();
     V.Editor.Video.init();
     V.Editor.Object.init();
-    V.Editor.Flashcard.Repository.init();
     V.Editor.Presentation.Repository.init();
+    V.Editor.Slideset.Repository.init();
     V.Editor.Thumbnails.init();
     V.Editor.AvatarPicker.init();
     V.Editor.Quiz.init();
@@ -12287,6 +12287,9 @@ VISH.Editor.Utils = function(V, $, undefined) {
       case V.Constant.FLASHCARD:
         slide = _replaceIdsForFlashcardSlide(slide, slideId);
         break;
+      case V.Constant.VTOUR:
+        slide = _replaceIdsForVirtualTourSlide(slide, slideId);
+        break;
       default:
         return
     }
@@ -12309,6 +12312,16 @@ VISH.Editor.Utils = function(V, $, undefined) {
       subSlide = _replaceIdsForSubSlide(subSlide, flashcardId)
     });
     return flashcard
+  };
+  var _replaceIdsForVirtualTourSlide = function(vt, vtId) {
+    var canvas = $(vt).find(".map_canvas");
+    var canvasId = V.Utils.getId(vtId + "_canvas");
+    $(canvas).attr("id", canvasId);
+    var subslides = $(vt).find(".subslides > article.subslide");
+    $(subslides).each(function(index, subSlide) {
+      subSlide = _replaceIdsForSubSlide(subSlide, vtId)
+    });
+    return vt
   };
   var _replaceIdsForSubSlide = function(subSlide, parentId) {
     var slideId = V.Utils.getId(parentId + "_article");
@@ -12387,6 +12400,9 @@ VISH.Editor.Utils = function(V, $, undefined) {
     for(var ind in fc.slides) {
       old_id = fc.slides[ind].id;
       fc.slides[ind] = _replaceIdsForStandardSlideJSON(fc.slides[ind], fc.id + "_article" + (parseInt(ind) + 1));
+      if(fc.slides[ind] === null) {
+        return null
+      }
       hash_subslide_new_ids[old_id] = fc.slides[ind].id
     }
     for(var num in fc.pois) {
@@ -12425,8 +12441,8 @@ VISH.Editor.Utils = function(V, $, undefined) {
       case "tab_presentations_repo":
         V.Editor.Presentation.Repository.onLoadTab();
         break;
-      case "tab_flashcards_repo":
-        V.Editor.Flashcard.Repository.onLoadTab();
+      case "tab_smartcards_repo":
+        V.Editor.Slideset.Repository.onLoadTab();
         break;
       case "tab_pic_from_url":
         V.Editor.Image.onLoadTab("url");
@@ -13256,6 +13272,269 @@ VISH.Editor.Object = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, drawObject:drawObject, renderObjectPreview:renderObjectPreview, resizeObject:resizeObject, autofixWrapperedObjectAfterZoom:autofixWrapperedObjectAfterZoom, drawPreview:drawPreview, resetPreview:resetPreview, drawPreviewElement:drawPreviewElement, drawPreviewObject:drawPreviewObject}
 }(VISH, jQuery);
+VISH.Editor.Presentation = function(V, $, undefined) {
+  var init = function() {
+    V.EventsNotifier.registerCallback(V.Constant.Event.onSelectedSlides, function(params) {
+      insertPresentation(params.JSON, params.acceptedSlides);
+      $.fancybox.close()
+    })
+  };
+  var _onConnect = function(origin) {
+  };
+  var previewPresentation = function(presentation) {
+    V.Editor.Preview.preview({insertMode:true, slideNumberToPreview:1, presentationJSON:presentation});
+    V.IframeAPI.init({callback:_onConnect})
+  };
+  var insertPresentation = function(presentationJSON, selectedSlideNumbers) {
+    var snL = selectedSlideNumbers.length;
+    if(snL < 1) {
+      $.fancybox.close();
+      return
+    }
+    var selectedSlides = [];
+    var flashcards = [];
+    var vts = [];
+    for(var i = 0;i < snL;i++) {
+      var slide = presentationJSON.slides[selectedSlideNumbers[i] - 1];
+      var mySlide = V.Editor.Utils.replaceIdsForSlideJSON(slide);
+      if(mySlide === null) {
+        $.fancybox.close();
+        V.Debugging.log("Not valid presentation");
+        return null
+      }
+      switch(mySlide.type) {
+        case V.Constant.FLASHCARD:
+          flashcards.push(mySlide);
+          break;
+        case V.Constant.VTOUR:
+          vts.push(mySlide);
+          break;
+        default:
+          break
+      }
+      selectedSlides.push(mySlide)
+    }
+    presentationJSON.slides = selectedSlides;
+    V.Editor.Renderer.renderPresentation(presentationJSON);
+    V.Editor.Slides.redrawSlides();
+    V.Editor.Thumbnails.redrawThumbnails();
+    V.Slides.lastSlide();
+    V.Editor.Utils.Loader.unloadAllObjects();
+    V.Editor.Utils.Loader.loadObjectsInEditorSlide(V.Slides.getCurrentSlide());
+    for(var j = 0;j < flashcards.length;j++) {
+      V.Editor.Events.bindEventsForFlashcard(flashcards[j]);
+      V.Editor.Tools.Menu.updateMenuAfterAddSlide(V.Constant.FLASHCARD)
+    }
+    for(var k = 0;k < vts.length;k++) {
+      V.Editor.Tools.Menu.updateMenuAfterAddSlide(V.Constant.VTOUR)
+    }
+    $.fancybox.close()
+  };
+  return{init:init, insertPresentation:insertPresentation, previewPresentation:previewPresentation}
+}(VISH, jQuery);
+VISH.Editor.Presentation.Repository = function(V, $, undefined) {
+  var carrouselDivId = "tab_presentations_repo_content_carrousel";
+  var previewDivId = "tab_presentations_repo_content_preview";
+  var currentPresentations = new Array;
+  var selectedPres = null;
+  var myInput;
+  var previewButton;
+  var initialized = false;
+  var init = function() {
+    myInput = $("#tab_presentations_repo_content").find("input[type='search']");
+    previewButton = $("#" + previewDivId).find("button.okButton");
+    if(!initialized) {
+      $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+      $(myInput).keydown(function(event) {
+        if(event.keyCode == 13) {
+          _requestData($(myInput).val());
+          $(myInput).blur()
+        }
+      });
+      $(previewButton).click(function() {
+        if(selectedPres) {
+          V.Editor.Presentation.previewPresentation(selectedPres)
+        }
+      });
+      initialized = true
+    }
+  };
+  var onLoadTab = function() {
+    var previousSearch = $(myInput).val() !== "";
+    if(!previousSearch) {
+      _cleanObjectMetadata();
+      _requestInitialData()
+    }
+  };
+  var _requestInitialData = function() {
+    V.Editor.API.requestRecomendedExcursions(_onDataReceived, _onAPIError)
+  };
+  var _requestData = function(text) {
+    V.Editor.API.requestExcursions(text, _onDataReceived, _onAPIError)
+  };
+  var _onDataReceived = function(data) {
+    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+    $("#" + carrouselDivId).hide();
+    currentExcursions = new Array;
+    var carrouselImages = [];
+    var content = "";
+    if(!data.excursions || data.excursions.length == 0) {
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
+      $("#" + carrouselDivId).show();
+      return
+    }
+    $.each(data.excursions, function(index, pres) {
+      var myImg = $("<img excursionid ='" + pres.id + "'' src=" + pres.avatar + " />");
+      carrouselImages.push(myImg);
+      currentExcursions[pres.id] = pres
+    });
+    V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+  };
+  var _onImagesLoaded = function() {
+    $("#" + carrouselDivId).show();
+    var options = new Array;
+    options["rows"] = 1;
+    options["callback"] = _onClickCarrouselElement;
+    options["rowItems"] = 5;
+    options["scrollItems"] = 5;
+    options["width"] = 800;
+    options["styleClass"] = "presentation_repository";
+    V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
+  };
+  var _onAPIError = function() {
+    V.Debugging.log("API error")
+  };
+  var _onClickCarrouselElement = function(event) {
+    var excursionid = $(event.target).attr("excursionid");
+    if(excursionid) {
+      selectedPres = currentExcursions[excursionid];
+      _renderObjectMetadata(selectedPres)
+    }
+  };
+  var _renderObjectMetadata = function(object) {
+    var metadataArea = $("#" + previewDivId).find("div.content_preview_metadata");
+    $(metadataArea).html("");
+    if(object) {
+      var table = V.Editor.Utils.generateTable(object.author, object.title, object.description, "metadata metadata_presentation");
+      $(metadataArea).html(table);
+      $(previewButton).show()
+    }
+  };
+  var _cleanObjectMetadata = function() {
+    var metadataArea = $("#" + previewDivId).find("div.content_preview_metadata");
+    $(metadataArea).html("");
+    $(previewButton).hide()
+  };
+  return{init:init, onLoadTab:onLoadTab}
+}(VISH, jQuery);
+VISH.Editor.Slideset = function(V, $, undefined) {
+  var initialized = false;
+  var init = function() {
+    if(initialized) {
+      return
+    }
+  };
+  var isSlideset = function(type) {
+    return V.Slides.isSlideset(type)
+  };
+  var getCreatorModule = function(type) {
+    switch(type) {
+      case V.Constant.FLASHCARD:
+        return V.Editor.Flashcard.Creator;
+        break;
+      case V.Constant.VTOUR:
+        return V.Editor.VirtualTour.Creator;
+        break;
+      default:
+        return null
+    }
+  };
+  var getModule = function(type) {
+    switch(type) {
+      case V.Constant.FLASHCARD:
+        return V.Editor.Flashcard;
+        break;
+      case V.Constant.VTOUR:
+        return V.Editor.VirtualTour;
+        break;
+      default:
+        return null
+    }
+  };
+  var prepareToNest = function(slide) {
+    return V.Editor.Utils.prepareSlideToNest(_getIdForSlideSet(V.Editor.getMode()), slide)
+  };
+  var undoNestedSlides = function(slideset) {
+    slideset.slides = _undoNestedSlides(slideset.id, slideset.slides);
+    slideset.pois = _undoNestedPois(slideset.id, slideset.pois);
+    return slideset
+  };
+  var _undoNestedSlides = function(slidesetId, slides) {
+    if(slides) {
+      var sl = slides.length;
+      for(var j = 0;j < sl;j++) {
+        slides[j] = V.Editor.Utils.undoNestedSlide(slidesetId, slides[j])
+      }
+    }
+    return slides
+  };
+  var _undoNestedPois = function(slidesetId, pois) {
+    if(pois) {
+      var lp = pois.length;
+      for(var k = 0;k < lp;k++) {
+        pois[k].id = pois[k].id.replace(slidesetId + "_", "");
+        pois[k].slide_id = pois[k].slide_id.replace(slidesetId + "_", "")
+      }
+    }
+    return pois
+  };
+  var _getIdForSlideSet = function(type) {
+    switch(type) {
+      case V.Constant.FLASHCARD:
+        return V.Editor.Flashcard.Creator.getId();
+        break;
+      case V.Constant.VTOUR:
+        return V.Editor.VirtualTour.Creator.getId();
+        break;
+      default:
+        return null
+    }
+  };
+  return{init:init, isSlideset:isSlideset, getCreatorModule:getCreatorModule, getModule:getModule, prepareToNest:prepareToNest, undoNestedSlides:undoNestedSlides}
+}(VISH, jQuery);
+VISH.Editor.VirtualTour = function(V, $, undefined) {
+  var myVirtualTours;
+  var init = function() {
+    V.Editor.VirtualTour.Creator.init();
+    myVirtualTours = new Array
+  };
+  var addVirtualTour = function(vt) {
+    if(typeof myVirtualTours !== "undefined") {
+      myVirtualTours[vt.id] = vt
+    }
+  };
+  var getVirtualTour = function(id) {
+    if(typeof myVirtualTours !== "undefined") {
+      return myVirtualTours[id]
+    }
+  };
+  var hasVirtualTours = function() {
+    return $("section.slides > .VirtualTour_slide[type='VirtualTour']").length > 0
+  };
+  var getSlideset = function(id) {
+    return getVirtualTour(id)
+  };
+  var preCopyActions = function(vtJSON, vtDOM) {
+    var canvas = $(vtDOM).find(".map_canvas");
+    $(canvas).remove()
+  };
+  var postCopyActions = function(vtJSON, vtDOM) {
+    V.VirtualTour.drawMap(vtJSON);
+    V.VirtualTour.loadMap(vtJSON.id);
+    V.Editor.VirtualTour.addVirtualTour(vtJSON)
+  };
+  return{init:init, addVirtualTour:addVirtualTour, getVirtualTour:getVirtualTour, hasVirtualTours:hasVirtualTours, getSlideset:getSlideset, preCopyActions:preCopyActions, postCopyActions:postCopyActions}
+}(VISH, jQuery);
 VISH.Editor.Flashcard = function(V, $, undefined) {
   var myFlashcards;
   var init = function() {
@@ -13281,56 +13560,28 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
   var getSlideset = function(id) {
     return getFlashcard(id)
   };
-  var preCopyActions = function(fc) {
-    addFlashcard(fc);
-    for(index in fc.pois) {
-      var poi = fc.pois[index];
-      V.Flashcard.addArrow(fc.id, poi, true)
+  var preCopyActions = function(fcJSON, fcDOM) {
+    addFlashcard(fcJSON);
+    for(index in fcJSON.pois) {
+      var poi = fcJSON.pois[index];
+      V.Flashcard.addArrow(fcJSON.id, poi, true)
     }
-    V.Editor.Events.bindEventsForFlashcard(fc)
+    V.Editor.Events.bindEventsForFlashcard(fcJSON)
   };
-  var postCopyActions = function() {
+  var postCopyActions = function(fcJSON, fcDOM) {
   };
   return{init:init, addFlashcard:addFlashcard, getFlashcard:getFlashcard, getFlashcards:getFlashcards, hasFlascards:hasFlascards, getSlideset:getSlideset, preCopyActions:preCopyActions, postCopyActions:postCopyActions}
 }(VISH, jQuery);
-VISH.Editor.VirtualTour = function(V, $, undefined) {
-  var myVirtualTours;
-  var init = function() {
-    V.Editor.VirtualTour.Creator.init();
-    myVirtualTours = new Array
-  };
-  var addVirtualTour = function(vt) {
-    if(typeof myVirtualTours !== "undefined") {
-      myVirtualTours[vt.id] = vt
-    }
-  };
-  var getVirtualTour = function(id) {
-    if(typeof myVirtualTours !== "undefined") {
-      return myVirtualTours[id]
-    }
-  };
-  var hasVirtualTours = function() {
-    return $("section.slides > .VirtualTour_slide[type='VirtualTour']").length > 0
-  };
-  var getSlideset = function(id) {
-    return getVirtualTour(id)
-  };
-  var preCopyActions = function() {
-  };
-  var postCopyActions = function() {
-  };
-  return{init:init, addVirtualTour:addVirtualTour, getVirtualTour:getVirtualTour, hasVirtualTours:hasVirtualTours, getSlideset:getSlideset, preCopyActions:preCopyActions, postCopyActions:postCopyActions}
-}(VISH, jQuery);
-VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
-  var carrouselDivId = "tab_flashcards_repo_content_carrousel";
-  var previewDivId = "tab_flashcards_repo_content_preview";
-  var currentFlashcards = new Array;
-  var selectedFc = null;
+VISH.Editor.Slideset.Repository = function(V, $, undefined) {
+  var carrouselDivId = "tab_smartcards_repo_content_carrousel";
+  var previewDivId = "tab_smartcards_repo_content_preview";
+  var currentSmartcards = new Array;
+  var selectedSmartcard = null;
   var myInput;
   var previewButton;
   var initialized = false;
   var init = function() {
-    myInput = $("#tab_flashcards_repo_content").find("input[type='search']");
+    myInput = $("#tab_smartcards_repo_content").find("input[type='search']");
     previewButton = $("#" + previewDivId).find("button.okButton");
     if(!initialized) {
       $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
@@ -13341,8 +13592,8 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
         }
       });
       $(previewButton).click(function() {
-        if(selectedFc) {
-          V.Editor.Presentation.previewPresentation(selectedFc)
+        if(selectedSmartcard) {
+          V.Editor.Presentation.previewPresentation(selectedSmartcard)
         }
       });
       initialized = true
@@ -13356,26 +13607,35 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
-    V.Editor.API.requestRecomendedFlashcards(_onDataReceived, _onAPIError)
+    V.Editor.API.requestRecomendedSmartcards(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
-    V.Editor.API.requestFlashcards(text, _onDataReceived, _onAPIError)
+    V.Editor.API.requestSmartcards(text, _onDataReceived, _onAPIError)
   };
   var _onDataReceived = function(data) {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
-    currentFlashcards = new Array;
+    currentSmartcards = new Array;
     var carrouselImages = [];
     var content = "";
-    if(!data.flashcards || data.flashcards.length == 0) {
+    if(!data.smartcards || data.smartcards.length == 0) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
       $("#" + carrouselDivId).show();
       return
     }
-    $.each(data.flashcards, function(index, fc) {
-      var myImg = $("<img flashcardid ='" + fc.id + "'' src=" + V.Utils.getSrcFromCSS(fc.slides[0].background) + " >");
+    $.each(data.smartcards, function(index, sc) {
+      switch(sc.type) {
+        case V.Constant.FLASHCARD:
+          var myImg = $("<img smartcardid ='" + sc.id + "'' src='" + V.Utils.getSrcFromCSS(sc.slides[0].background) + "' />");
+          break;
+        case V.Constant.VTOUR:
+          var myImg = $("<img smartcardid ='" + sc.id + "'' src='" + V.ImagesPath + "templatesthumbs/tVTour.png' />");
+          break;
+        default:
+          return
+      }
       carrouselImages.push(myImg);
-      currentFlashcards[fc.id] = fc
+      currentSmartcards[sc.id] = sc
     });
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
@@ -13394,10 +13654,10 @@ VISH.Editor.Flashcard.Repository = function(V, $, undefined) {
     V.Debugging.log("API error")
   };
   var _onClickCarrouselElement = function(event) {
-    var flashcardid = $(event.target).attr("flashcardid");
-    if(flashcardid) {
-      selectedFc = currentFlashcards[flashcardid];
-      _renderObjectMetadata(selectedFc)
+    var smartCardId = $(event.target).attr("smartcardid");
+    if(smartCardId) {
+      selectedSmartcard = currentSmartcards[smartCardId];
+      _renderObjectMetadata(selectedSmartcard)
     }
   };
   var _renderObjectMetadata = function(object) {
@@ -13521,47 +13781,21 @@ VISH.Samples.API = function(V, undefined) {
   {"id":"1115", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://www.exploringnature.org/graphics/endangered_species/endangered_animals200.jpg)", "pois":[{"id":"article4_poi1", "x":"15.625", "y":"8.5", "slide_id":"article4_article3"}, {"id":"article4_poi2", "x":"77.75", "y":"11.5", "slide_id":"article4_article1"}, {"id":"article4_poi3", "x":"17.125", "y":"58.833333333333336", "slide_id":"article4_article2"}], "slides":[{"id":"article4_article3", 
   "type":"standard", "template":"t10", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"center", "body":"http://d30mmglg94tqnw.cloudfront.net/wp-content/plugins/magic-gallery/uploads/12/komodo-dragon_6771_600x450.jpg", "style":"position: relative; width:49.62406015037594%; height:66.22073578595318%; top:15.719063545150501%; left:24.18546365914787%;"}]}, {"id":"article4_article1", "type":"standard", "template":"t10", "elements":[{"id":"article4_article1_zone1", "type":"image", 
   "areaid":"center", "body":"http://www.golden-gate-park.com/wp-content/uploads/2011/03/bison_bufflo_in_golden_gate_park.jpg", "style":"position: relative; width:60.526315789473685%; height:67.3913043478261%; top:15.719063545150501%; left:20.17543859649123%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t10", "elements":[{"id":"article4_article2_zone1", "type":"image", "areaid":"center", "body":"http://wfiles.brothersoft.com/e/elephant_88059-1600x1200.jpg", "style":"position: relative; width:115.91478696741855%; height:116.05351170568562%; top:-2.842809364548495%; left:-0.7518796992481203%;"}]}]}]}, 
-  {"id":"111", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
-  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"27", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
-  {"id":"222", "title":"Curiosity", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
-  "slides":[{"id":"28", "type":"flashcard", "background":"url(http://images.freshnessmag.com/wp-content/uploads//2012/08/nasa-NASA-curiosity-mars-rover-00.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
-  {"id":"333", "title":"fly", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
-  "slides":[{"id":"27", "type":"flashcard", "background":"url(http://1.bp.blogspot.com/_Y_4eV9-N0NY/SeToztTkalI/AAAAAAAAAe0/zpSf85grpW8/s400/small+fly.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
-  {"id":"444", "title":"dogs", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
-  "slides":[{"id":"28", "type":"flashcard", "background":"url(http://images5.fanpop.com/image/photos/31900000/Doggie-3-all-small-dogs-31936880-500-348.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
-  {"id":"555", "title":"cats", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
-  "slides":[{"id":"27", "type":"flashcard", "background":"url(http://25.media.tumblr.com/tumblr_m6utxcoA7y1qdortwo1_1280.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, 
-  {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, 
-  {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
-  {"id":"666", "title":"nature", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", "adquired_competencies":"pupils will be smarter", 
-  "slides":[{"id":"28", "type":"flashcard", "background":"url(http://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bachalpseeflowers.jpg/300px-Bachalpseeflowers.jpg)", "pois":[{"id":"poi1", "x":"11", "y":"4.5", "slide_id":"1"}, {"id":"poi2", "x":"47", "y":"34", "slide_id":"2"}, {"id":"poi3", "x":"84", "y":"81", "slide_id":"3"}], "slides":[{"id":"1", "template":"t1", "elements":[{"id":"zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", 
-  "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
-  {"id":"zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"2", "template":"t2", "elements":[{"id":"325", "type":"text", "areaid":"header", "body":"Experimento virtual1"}, {"id":"7335", 
-  "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"3", "template":"t6", "elements":[{"id":"zone6", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
-  {"id":"zone7", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"zone8", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
-  {"id":"zone9", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}]};
+  {"id":"111", "title":"Chess: The Art of Learning", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-10.png", "author":"John Doe", "type":"flashcard", "tags":["Samples", "Test", "Development"], "author":"", "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"bla bla bla 3", 
+  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "type":"flashcard", "background":"url(http://html.rincondelvago.com/000563580.png)", "pois":[{"id":"article1_poi1", "x":"11", "y":"4.5", "slide_id":"article1_article1"}, {"id":"article1_poi2", "x":"47", "y":"34", "slide_id":"article1_article2"}, {"id":"article1_poi3", "x":"84", "y":"81", "slide_id":"article1_article3"}], "slides":[{"id":"article1_article1", "template":"t1", "elements":[{"id":"article1_article1_zone1", 
+  "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article1_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"article1_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article1_article2", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"text", 
+  "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article1_article3", "template":"t6", "elements":[{"id":"article1_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article1_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article1_article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"article1_article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}, 
+  {"id":"222", "title":"Curiosity", "description":"The Art of Learning, a journey in the pursuit of excellence.\nAmazing presentation with images, videos and 3d objects, generated by Vish Editor.", "avatar":"/vishEditor/images/excursion_thumbnails/excursion-12.png", "author":"Comepiedras volador", "type":"flashcard", "tags":["Samples", "Test", "Development"], "theme":"theme1", "age_range":"4 - 14", "subject":"Media Education", "language":"en", "educational_objectives":"Known the comepiedras volador", 
+  "adquired_competencies":"pupils will be smarter", "slides":[{"id":"article1", "type":"flashcard", "background":"url(http://images.freshnessmag.com/wp-content/uploads//2012/08/nasa-NASA-curiosity-mars-rover-00.jpg)", "pois":[{"id":"article1_poi1", "x":"11", "y":"4.5", "slide_id":"article1_article1"}, {"id":"article1_poi2", "x":"47", "y":"34", "slide_id":"article1_article2"}, {"id":"article1_poi3", "x":"84", "y":"81", "slide_id":"article1_article3"}], "slides":[{"id":"article1_article1", "template":"t1", 
+  "elements":[{"id":"article1_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.82608695652173%; height:80.10752688172043%; top:0%; left:0%;"}, {"id":"article1_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span><br></span></div>'}, 
+  {"id":"article1_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span><br></span></div>'}]}, {"id":"article1_article2", "template":"t2", "elements":[{"id":"article1_article2_zone1", "type":"text", 
+  "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article1_article3", "template":"t6", "elements":[{"id":"article1_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
+  {"id":"article1_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article1_article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
+  {"id":"article1_article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}]};
+  var smartcardList = {"smartcards":[flashcardList.flashcards[0], flashcardList.flashcards[1], flashcardList.flashcards[2], flashcardList.flashcards[3], flashcardList.flashcards[3], flashcardList.flashcards[3], VISH.Samples.fc_sample, VISH.Samples.samples_vtour]};
   var imageList = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, 
   {"id":57, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.granadablogs.com/pateandoelmundo/wp-content/uploads/2009/10/_061.jpg"}, {"id":58, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.revistaintime.com/wp-content/uploads/2012/03/el-padrino-2.jpg"}, {"id":59, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://cinealdesnudo.files.wordpress.com/2011/12/el-indomable-will-hunting.jpg"}, {"id":60, 
   "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://politicamenteconservador.blogia.com/upload/20060818041914-el-senor-de-los-anillos2.jpg"}, {"id":61, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://despertando.me/wp-content/uploads/2012/04/el-se%C3%B1or-de-los-anillos.jpg"}, {"id":62, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://4.bp.blogspot.com/-Fh_v8PYbVg0/TyGdKEiYmKI/AAAAAAAAAPI/MKdfZ224aEQ/s1600/el_senor_de_los_anillos_la_batalla_por_la_tierra_media_2_the_rise_of_the_witchking-181035.jpg"}, 
@@ -13617,8 +13851,8 @@ VISH.Samples.API = function(V, undefined) {
   {"title":"Thumbnail 20", "description":"Sample excursion thumbnail 20", "src":"/vishEditor/images/excursion_thumbnails/excursion-20.png"}, {"title":"Thumbnail 21", "description":"Sample excursion thumbnail 21", "src":"/vishEditor/images/excursion_thumbnails/excursion-21.png"}, {"title":"Thumbnail 22", "description":"Sample excursion thumbnail 22", "src":"/vishEditor/images/excursion_thumbnails/excursion-22.png"}, {"title":"Thumbnail 23", "description":"Sample excursion thumbnail 23", "src":"/vishEditor/images/excursion_thumbnails/excursion-23.png"}, 
   {"title":"Thumbnail 24", "description":"Sample excursion thumbnail 24", "src":"/vishEditor/images/excursion_thumbnails/excursion-24.png"}, {"title":"Thumbnail 25", "description":"Sample excursion thumbnail 25", "src":"/vishEditor/images/excursion_thumbnails/excursion-25.png"}, {"title":"Thumbnail 26", "description":"Sample excursion thumbnail 26", "src":"/vishEditor/images/excursion_thumbnails/excursion-26.png"}, {"title":"Thumbnail 27", "description":"Sample excursion thumbnail 27", "src":"/vishEditor/images/excursion_thumbnails/excursion-27.png"}, 
   {"title":"Thumbnail 28", "description":"Sample excursion thumbnail 28", "src":"/vishEditor/images/excursion_thumbnails/excursion-28.png"}, {"title":"Thumbnail 29", "description":"Sample excursion thumbnail 29", "src":"/vishEditor/images/excursion_thumbnails/excursion-29.png"}, {"title":"Thumbnail 30", "description":"Sample excursion thumbnail 30", "src":"/vishEditor/images/excursion_thumbnails/excursion-30.png"}]};
-  return{recommendationList:recommendationList, excursionsList:excursionsList, flashcardList:flashcardList, imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, objectListDummy:objectListDummy, 
-  tagsList:tagsList, thumbnailsList:thumbnailsList}
+  return{recommendationList:recommendationList, excursionsList:excursionsList, smartcardList:smartcardList, flashcardList:flashcardList, imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, 
+  objectListDummy:objectListDummy, tagsList:tagsList, thumbnailsList:thumbnailsList}
 }(VISH);
 VISH.Slides = function(V, $, undefined) {
   var slideEls;
@@ -14123,7 +14357,7 @@ VISH.Flashcard = function(V, $, undefined) {
     }
   };
   var startAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined") {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined") {
       flashcards[slideId].timer = setInterval(function() {
         animateArrows(slideId)
       }, 1E3 / FPS)
@@ -14131,7 +14365,8 @@ VISH.Flashcard = function(V, $, undefined) {
   };
   var stopAnimation = function(slideId) {
     if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined") {
-      clearTimeout(flashcards[slideId].timer)
+      clearTimeout(flashcards[slideId].timer);
+      flashcards[slideId].timer = undefined
     }
   };
   var addArrow = function(fcId, poi, sync) {
@@ -15349,6 +15584,26 @@ VISH.Editor.API = function(V, $, undefined) {
     }
     _requestByType("excursions", "", successCallback, failCallback)
   };
+  var requestSmartcards = function(text, successCallback, failCallback) {
+    if(V.Debugging.isDevelopping()) {
+      if(typeof successCallback == "function") {
+        var result = V.Samples.API.smartcardList;
+        successCallback(result)
+      }
+      return
+    }
+    _requestByType("smartcard", text, successCallback, failCallback)
+  };
+  var requestRecomendedSmartcards = function(successCallback, failCallback) {
+    if(V.Debugging.isDevelopping()) {
+      if(typeof successCallback == "function") {
+        var result = V.Samples.API.smartcardList;
+        successCallback(result)
+      }
+      return
+    }
+    _requestByType("smartcard", "", successCallback, failCallback)
+  };
   var requestFlashcards = function(text, successCallback, failCallback) {
     if(V.Debugging.isDevelopping()) {
       if(typeof successCallback == "function") {
@@ -15598,8 +15853,8 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
-  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestFlashcards:requestFlashcards, requestRecomendedFlashcards:requestRecomendedFlashcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, 
-  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails}
+  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestFlashcards:requestFlashcards, requestRecomendedFlashcards:requestRecomendedFlashcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, 
+  requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails}
 }(VISH, jQuery);
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;
@@ -17107,156 +17362,6 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
 }(VISH, jQuery);
-VISH.Editor.Presentation.Repository = function(V, $, undefined) {
-  var carrouselDivId = "tab_presentations_repo_content_carrousel";
-  var previewDivId = "tab_presentations_repo_content_preview";
-  var currentPresentations = new Array;
-  var selectedPres = null;
-  var myInput;
-  var previewButton;
-  var initialized = false;
-  var init = function() {
-    myInput = $("#tab_presentations_repo_content").find("input[type='search']");
-    previewButton = $("#" + previewDivId).find("button.okButton");
-    if(!initialized) {
-      $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
-      $(myInput).keydown(function(event) {
-        if(event.keyCode == 13) {
-          _requestData($(myInput).val());
-          $(myInput).blur()
-        }
-      });
-      $(previewButton).click(function() {
-        if(selectedPres) {
-          V.Editor.Presentation.previewPresentation(selectedPres)
-        }
-      });
-      initialized = true
-    }
-  };
-  var onLoadTab = function() {
-    var previousSearch = $(myInput).val() !== "";
-    if(!previousSearch) {
-      _cleanObjectMetadata();
-      _requestInitialData()
-    }
-  };
-  var _requestInitialData = function() {
-    V.Editor.API.requestRecomendedExcursions(_onDataReceived, _onAPIError)
-  };
-  var _requestData = function(text) {
-    V.Editor.API.requestExcursions(text, _onDataReceived, _onAPIError)
-  };
-  var _onDataReceived = function(data) {
-    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
-    $("#" + carrouselDivId).hide();
-    currentExcursions = new Array;
-    var carrouselImages = [];
-    var content = "";
-    if(!data.excursions || data.excursions.length == 0) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
-      $("#" + carrouselDivId).show();
-      return
-    }
-    $.each(data.excursions, function(index, pres) {
-      var myImg = $("<img excursionid ='" + pres.id + "'' src=" + pres.avatar + " />");
-      carrouselImages.push(myImg);
-      currentExcursions[pres.id] = pres
-    });
-    V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
-  };
-  var _onImagesLoaded = function() {
-    $("#" + carrouselDivId).show();
-    var options = new Array;
-    options["rows"] = 1;
-    options["callback"] = _onClickCarrouselElement;
-    options["rowItems"] = 5;
-    options["scrollItems"] = 5;
-    options["width"] = 800;
-    options["styleClass"] = "presentation_repository";
-    V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
-  };
-  var _onAPIError = function() {
-    V.Debugging.log("API error")
-  };
-  var _onClickCarrouselElement = function(event) {
-    var excursionid = $(event.target).attr("excursionid");
-    if(excursionid) {
-      selectedPres = currentExcursions[excursionid];
-      _renderObjectMetadata(selectedPres)
-    }
-  };
-  var _renderObjectMetadata = function(object) {
-    var metadataArea = $("#" + previewDivId).find("div.content_preview_metadata");
-    $(metadataArea).html("");
-    if(object) {
-      var table = V.Editor.Utils.generateTable(object.author, object.title, object.description, "metadata metadata_presentation");
-      $(metadataArea).html(table);
-      $(previewButton).show()
-    }
-  };
-  var _cleanObjectMetadata = function() {
-    var metadataArea = $("#" + previewDivId).find("div.content_preview_metadata");
-    $(metadataArea).html("");
-    $(previewButton).hide()
-  };
-  return{init:init, onLoadTab:onLoadTab}
-}(VISH, jQuery);
-VISH.Editor.Presentation = function(V, $, undefined) {
-  var init = function() {
-    V.EventsNotifier.registerCallback(V.Constant.Event.onSelectedSlides, function(params) {
-      insertPresentation(params.JSON, params.acceptedSlides);
-      $.fancybox.close()
-    })
-  };
-  var _onConnect = function(origin) {
-  };
-  var previewPresentation = function(presentation) {
-    V.Editor.Preview.preview({insertMode:true, slideNumberToPreview:1, presentationJSON:presentation});
-    V.IframeAPI.init({callback:_onConnect})
-  };
-  var insertPresentation = function(presentationJSON, selectedSlideNumbers) {
-    var snL = selectedSlideNumbers.length;
-    if(snL < 1) {
-      $.fancybox.close();
-      return
-    }
-    var selectedSlides = [];
-    var flashcards = [];
-    var vts = [];
-    for(var i = 0;i < snL;i++) {
-      var slide = presentationJSON.slides[selectedSlideNumbers[i] - 1];
-      var mySlide = V.Editor.Utils.replaceIdsForSlideJSON(slide);
-      switch(mySlide.type) {
-        case V.Constant.FLASHCARD:
-          flashcards.push(mySlide);
-          break;
-        case V.Constant.VTOUR:
-          vts.push(mySlide);
-          break;
-        default:
-          break
-      }
-      selectedSlides.push(mySlide)
-    }
-    presentationJSON.slides = selectedSlides;
-    V.Editor.Renderer.renderPresentation(presentationJSON);
-    V.Editor.Slides.redrawSlides();
-    V.Editor.Thumbnails.redrawThumbnails();
-    V.Slides.lastSlide();
-    V.Editor.Utils.Loader.unloadAllObjects();
-    V.Editor.Utils.Loader.loadObjectsInEditorSlide(V.Slides.getCurrentSlide());
-    for(var j = 0;j < flashcards.length;j++) {
-      V.Editor.Events.bindEventsForFlashcard(flashcards[j]);
-      V.Editor.Tools.Menu.updateMenuAfterAddSlide(V.Constant.FLASHCARD)
-    }
-    for(var k = 0;k < vts.length;k++) {
-      V.Editor.Tools.Menu.updateMenuAfterAddSlide(V.Constant.VTOUR)
-    }
-    $.fancybox.close()
-  };
-  return{init:init, insertPresentation:insertPresentation, previewPresentation:previewPresentation}
-}(VISH, jQuery);
 VISH.Editor.Preview = function(V, $, undefined) {
   var presentation_preview = null;
   var init = function() {
@@ -17915,8 +18020,8 @@ VISH.Editor.Slides = function(V, $, undefined) {
       if(!options.JSON) {
         return
       }
-      var selectedSlideset = V.Editor.Utils.replaceIdsForSlideJSON(options.JSON, slidesetId);
-      slidesetModule.preCopyActions(selectedSlideset)
+      var slideToCopyJSON = V.Editor.Utils.replaceIdsForSlideJSON(options.JSON, slidesetId);
+      slidesetModule.preCopyActions(slideToCopyJSON, slideToCopy)
     }
     var currentSlide = V.Slides.getCurrentSlide();
     if(currentSlide) {
@@ -17932,7 +18037,7 @@ VISH.Editor.Slides = function(V, $, undefined) {
       }
     }
     if(typeof slidesetModule !== "undefined") {
-      slidesetModule.postCopyActions(selectedSlideset)
+      slidesetModule.postCopyActions(slideToCopyJSON, slideCopied)
     }
     V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
     V.Slides.updateSlideEls();
@@ -18021,81 +18126,6 @@ VISH.Editor.Slides = function(V, $, undefined) {
     }
   };
   return{showSlides:showSlides, hideSlides:hideSlides, redrawSlides:redrawSlides, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, copySlideWithNumber:copySlideWithNumber, addSlide:addSlide, removeSlide:removeSlide, copyTextAreasOfSlide:copyTextAreasOfSlide}
-}(VISH, jQuery);
-VISH.Editor.Slideset = function(V, $, undefined) {
-  var initialized = false;
-  var init = function() {
-    if(initialized) {
-      return
-    }
-  };
-  var isSlideset = function(type) {
-    return V.Slides.isSlideset(type)
-  };
-  var getCreatorModule = function(type) {
-    switch(type) {
-      case V.Constant.FLASHCARD:
-        return V.Editor.Flashcard.Creator;
-        break;
-      case V.Constant.VTOUR:
-        return V.Editor.VirtualTour.Creator;
-        break;
-      default:
-        return null
-    }
-  };
-  var getModule = function(type) {
-    switch(type) {
-      case V.Constant.FLASHCARD:
-        return V.Editor.Flashcard;
-        break;
-      case V.Constant.VTOUR:
-        return V.Editor.VirtualTour;
-        break;
-      default:
-        return null
-    }
-  };
-  var prepareToNest = function(slide) {
-    return V.Editor.Utils.prepareSlideToNest(_getIdForSlideSet(V.Editor.getMode()), slide)
-  };
-  var undoNestedSlides = function(slideset) {
-    slideset.slides = _undoNestedSlides(slideset.id, slideset.slides);
-    slideset.pois = _undoNestedPois(slideset.id, slideset.pois);
-    return slideset
-  };
-  var _undoNestedSlides = function(slidesetId, slides) {
-    if(slides) {
-      var sl = slides.length;
-      for(var j = 0;j < sl;j++) {
-        slides[j] = V.Editor.Utils.undoNestedSlide(slidesetId, slides[j])
-      }
-    }
-    return slides
-  };
-  var _undoNestedPois = function(slidesetId, pois) {
-    if(pois) {
-      var lp = pois.length;
-      for(var k = 0;k < lp;k++) {
-        pois[k].id = pois[k].id.replace(slidesetId + "_", "");
-        pois[k].slide_id = pois[k].slide_id.replace(slidesetId + "_", "")
-      }
-    }
-    return pois
-  };
-  var _getIdForSlideSet = function(type) {
-    switch(type) {
-      case V.Constant.FLASHCARD:
-        return V.Editor.Flashcard.Creator.getId();
-        break;
-      case V.Constant.VTOUR:
-        return V.Editor.VirtualTour.Creator.getId();
-        break;
-      default:
-        return null
-    }
-  };
-  return{init:init, isSlideset:isSlideset, getCreatorModule:getCreatorModule, getModule:getModule, prepareToNest:prepareToNest, undoNestedSlides:undoNestedSlides}
 }(VISH, jQuery);
 VISH.Editor.Themes = function(V, $, undefined) {
   var initialized = false;
@@ -18581,9 +18611,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
         break
     }
   };
-  var insertFlashcard = function() {
+  var insertSmartcard = function() {
     $("#addSlideFancybox").trigger("click");
-    V.Editor.Utils.loadTab("tab_flashcards_repo")
+    V.Editor.Utils.loadTab("tab_smartcards_repo")
   };
   var insertPresentation = function() {
     $("#addSlideFancybox").trigger("click");
@@ -18601,7 +18631,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       }, 50)
     }
   };
-  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertFlashcard:insertFlashcard, insertSlide:insertSlide, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, 
+  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, 
   preview:preview, help:help, switchToPresentation:switchToPresentation, switchToFlashcard:switchToFlashcard, switchToVirtualTour:switchToVirtualTour}
 }(VISH, jQuery);
 VISH.Editor.Tour = function(V, $, undefined) {
@@ -22557,7 +22587,7 @@ VISH.VirtualTour = function(V, $, undefined) {
       _addMarkerToCoordinates(vt, poi.lat, poi.lng, poi.id)
     });
     google.maps.event.addListenerOnce(map, "tilesloaded", function() {
-      $("#" + vtId).removeClass("temp_shown");
+      $("#" + vt.id).removeClass("temp_shown");
       google.maps.event.addListenerOnce(map, "tilesloaded", function() {
       })
     });

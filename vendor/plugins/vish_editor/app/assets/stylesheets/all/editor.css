@@ -1788,7 +1788,7 @@ margin: 0px;
 .ui-widget-content { border: 1px solid #dddddd; background: #eeeeee; }
 
 .excursions_repo_content {
-	width: 638px;
+	width: 100%;
 	height: 230px;
 	position: absolute;
 }

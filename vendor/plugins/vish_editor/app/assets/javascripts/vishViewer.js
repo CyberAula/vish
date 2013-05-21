@@ -10931,7 +10931,7 @@ VISH.Flashcard = function(V, $, undefined) {
     }
   };
   var startAnimation = function(slideId) {
-    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined") {
+    if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer == "undefined") {
       flashcards[slideId].timer = setInterval(function() {
         animateArrows(slideId)
       }, 1E3 / FPS)
@@ -10939,7 +10939,8 @@ VISH.Flashcard = function(V, $, undefined) {
   };
   var stopAnimation = function(slideId) {
     if(typeof flashcards !== "undefined" && typeof flashcards[slideId] !== "undefined" && typeof flashcards[slideId].timer !== "undefined") {
-      clearTimeout(flashcards[slideId].timer)
+      clearTimeout(flashcards[slideId].timer);
+      flashcards[slideId].timer = undefined
     }
   };
   var addArrow = function(fcId, poi, sync) {
@@ -11055,7 +11056,7 @@ VISH.VirtualTour = function(V, $, undefined) {
       _addMarkerToCoordinates(vt, poi.lat, poi.lng, poi.id)
     });
     google.maps.event.addListenerOnce(map, "tilesloaded", function() {
-      $("#" + vtId).removeClass("temp_shown");
+      $("#" + vt.id).removeClass("temp_shown");
       google.maps.event.addListenerOnce(map, "tilesloaded", function() {
       })
     });
