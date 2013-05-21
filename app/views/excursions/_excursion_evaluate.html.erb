@@ -1,11 +1,44 @@
           <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <%= javascript_tag do %>              
+              $(document).on("click",".evaluation_form_button",function() {
+                var is_ok = true;
+                //validate empty radio buttons
+                $(':radio').each(function() { // loop through each radio button
+                    nam = $(this).attr('name'); // get the name of its set
+                    if (!$(':radio[name="'+nam+'"]:checked').length) { 
+                        // see if any button in the set is checked
+                        alert('<%=t("evaluation.alert")%>');
+                        is_ok = false;
+                        return false; //equivalent to break each loop, not return the function!
+                    }
+                });
+
+                if(is_ok){
+                  //everything ok, send via Ajax
+                  $.ajax({
+                    type: "post",
+                    url: "/excursions/<%=@excursion.id%>/evaluate",
+                    dataType: "text",
+                    data: $("#myModal .evaluation_form").serialize(), // serializes the form's elements.
+                    success: function(data){
+                      $(".btn-modal-footer").html("<h3><%=t('evaluation.success')%></h3>");
+                      setTimeout(function(){$(".modal-header button").click();},1000);                      
+                    }
+                  });
+                }
+                else{
+                  return;
+                }
+               });   
+            <%end%>
+
             <%= form_tag("/excursions/#{ @excursion.id }/evaluate", :class => 'evaluation_form') do %>
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
                 </div>
-                <div class="modal-body">
-                  <% 5.times do |ind| %>
+                <div class="modal-body evaluation_body">
+                  <% 6.times do |ind| %>
                     <div class="evaluate">
                       <p>
                         <a><%= (ind+1).to_s %></a>
@@ -33,9 +66,8 @@
                   <% end %>
 
                 </div>
-                <div class="modal-footer">
-
-                <button class="btn btn-primary"><%=t('save')%></button>
-              </div>
-            <% end %>
+                <% end %>
+                <div class="btn-modal-footer">
+                  <button type="button" class="btn btn-primary evaluation_form_button"><%=t('save')%></button>
+                </div>            
           </div>

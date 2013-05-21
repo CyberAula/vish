@@ -228,6 +228,7 @@ ActiveRecord::Schema.define(:version => 20130509080639) do
     t.integer  "answer_2"
     t.integer  "answer_3"
     t.integer  "answer_4"
+    t.integer  "answer_5"
   end
 
   create_table "excursions", :force => true do |t|

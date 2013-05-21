@@ -96,9 +96,17 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def show
+  def show    
     show! do |format|
       format.html {
+        @evaluations = []
+        if ExcursionEvaluation.find_by_excursion_id(@excursion.id)          
+          6.times do |ind|
+            @evaluations << ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", @excursion.id]).to_f
+          end
+        else
+          @evaluations = [0,0,0,0,0,0]
+        end
         if @excursion.draft and (can? :edit, @excursion)
           redirect_to edit_excursion_path(@excursion)
         else
@@ -154,11 +162,13 @@ class ExcursionsController < ApplicationController
   def evaluate
     @excursion_evaluation = ExcursionEvaluation.new(:excursion => Excursion.find_by_id(params[:id]))
     @excursion_evaluation.ip = request.remote_ip
-    5.times do |ind|
+    6.times do |ind|
       @excursion_evaluation.send("answer_#{ind}=", params[("excursion_evaluation_#{ind}").to_sym])
     end
     @excursion_evaluation.save!
-    redirect_to '/'
+    respond_to do |format|   
+      format.js {render :text => "Thank you", :status => 200}
+    end
   end
 
   def recommended
