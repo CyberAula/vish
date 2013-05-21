@@ -26,7 +26,27 @@
     ]
   };
 
-  var options = {};
+  var options = { 
+    scaleOverlay : false,
+    scaleOverride : true,
+  
+    //** Required if scaleOverride is true **
+    //Number - The number of steps in a hard coded scale
+    scaleSteps : 4,
+    //Number - The value jump in the hard coded scale
+    scaleStepWidth : 1,
+    //Number - The centre starting value
+    scaleStartValue : 1,
+    
+    //Boolean - Whether to show lines for each scale point
+    scaleShowLine : true,
+
+    //String - Colour of the scale line 
+    scaleLineColor : "rgba(0,0,0,.1)",
+    pointDotRadius : 5,
+    scaleFontSize : 16,
+
+  };
 
   var myNewChart = new Chart(ctx).Radar(data,options);
 <%end%>
