@@ -202,6 +202,7 @@ class Excursion < ActiveRecord::Base
     e.author=sbj
     e.owner=sbj
     e.user_author=sbj.user.actor
+    e.json = self.json
     e.contributors=self.contributors.push(self.author)
     e.contributors.uniq!
     e.contributors.delete(sbj)
@@ -238,7 +239,6 @@ class Excursion < ActiveRecord::Base
     parsed_json["id"] = activity_object.id.to_s
     parsed_json["author"] = author.name
     self.update_column :json, parsed_json.to_json
-
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
     self.update_column :thumbnail_url, parsed_json["avatar"]

@@ -11810,7 +11810,7 @@ VISH.Editor = function(V, $, undefined) {
       saveForPreview = true
     }
     if(saveForPreview && options && options.forcePresentation) {
-      presentation.type = "presentation"
+      presentation.type = V.Constant.PRESENTATION
     }else {
       presentation.type = getPresentationType()
     }
@@ -16582,10 +16582,10 @@ VISH.Editor.Flashcard.Creator = function(V, $, undefined) {
     var pois = [];
     $(".draggable_arrow_div[moved='true']").each(function(index, s) {
       pois[index] = {};
-      pois[index].id = V.Utils.getId(flashcardId + "_" + s.id, true);
+      pois[index].id = flashcardId + "_" + s.id;
       pois[index].x = (100 * ($(s).offset().left - 48) / 800).toString();
       pois[index].y = (100 * ($(s).offset().top - 38) / 600).toString();
-      pois[index].slide_id = V.Utils.getId(flashcardId + "_" + $(s).attr("slide_id"), true)
+      pois[index].slide_id = flashcardId + "_" + $(s).attr("slide_id")
     });
     return pois
   };
@@ -22250,6 +22250,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
       fs_button = fs_button && !embed;
+      if(embed) {
+        $(".rec-first-row").hide()
+      }
       page_is_fullscreen = render_full && !V.Status.getIsInIframe();
       if(typeof options["urlToGetRecommendations"] == "string") {
         display_recommendations = true

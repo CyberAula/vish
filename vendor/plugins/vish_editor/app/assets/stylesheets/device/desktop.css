@@ -29,7 +29,7 @@
 }
 
 .rec-first-row{
-	height: 20%;
+	height: 14%;
 }
 
 .textrec1 {
@@ -64,9 +64,9 @@
 }
 
 .rec-first-row .button{
-	position: absolute;
-	margin-top: 12%;
-	margin-left: 5%;
+	float: right;
+  margin-top: 5%;
+  margin-right: 8%;
 }
 
 .rec-second-row{
@@ -77,12 +77,12 @@
 
 .rec-second-row .textrec1{
 	margin-left: 5%;
-	margin-top: 5%;
+	margin-top: 2%;
 	position: absolute;
 }
 
 .rec-second-row .rec-grid{
-margin-top: 14% !important;
+margin-top: 8% !important;
 margin-left: 6% !important;
 height: 80%;
 width: 91%;
@@ -90,6 +90,7 @@ margin: auto;
 }
 
 .rec-excursion{
+  cursor:pointer;
   opacity: 0.8;
   border: 1px #ccc solid;
 padding-left: 15px;
