@@ -1,4 +1,4 @@
-  <section class="slides layout-regular template-default" id="slides_panel">
+    <section class="slides layout-regular template-default" id="slides_panel">
     
     <div id="flashcard-background" style="display:none">
     <div id="flashcard_help_button"><img id="help_flashcard" src="/assets/icons/helptutorial_circle.png"/>
@@ -83,16 +83,13 @@
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.File">File</a>
                   </li>
                   <li>
-                    <a style="display:none" class="menu_option menu_action" i18n-key="i.Presentation">Presentation</a>
+                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
                   </li>
                   <li>
-                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertFlashcard" i18n-key="i.Flashcard">Flashcard</a>
+                    <a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSmartcard" i18n-key="i.Smartcard">Smartcard</a>
                   </li>
                   <li>
                     <a style="display:none" class="menu_option menu_action" i18n-key="i.Game">Game</a>
-                  </li>
-                  <li>
-                    <a style="display:none" class="menu_option menu_action" i18n-key="i.vExperiment">Virtual Experiment</a>
                   </li>
                 </ul>
               </li>             
@@ -312,14 +309,17 @@
     <!-- Thumbnails fancybox -->
   <div style='display:none'>
     <div id='thumbcontent'>
-
+      
       <div class='fancy_tabs' id='thumcontent_tabs'>
         <ul>
           <li>
             <a href="#" onclick="VISH.Editor.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
           </li>
           <li>
-            <a href="#" onclick="VISH.Editor.Utils.loadTab('tab_flashcards_repo')" id="tab_flashcards_repo" class="fancy_tab tabbable" i18n-key="i.Flashcards">Flashcards</a>
+            <a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo')" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursions">Excursions</a>
+          </li>
+          <li>
+            <a href="#" onclick="VISH.Editor.Utils.loadTab('tab_smartcards_repo')" id="tab_smartcards_repo" class="fancy_tab tabbable" i18n-key="i.Smartcards">Smartcards</a>
           </li>
         </ul>
       </div> 
@@ -373,15 +373,38 @@
         </div>
       </div>
 
-      <div id='tab_flashcards_repo_content' class="fancy_tab_content" style='display:none' > 
-        <div class="fc_repo_content">
-                <img src="/assets/repositoryimg.png" class="imagelogotab"/>                
+      <div id='tab_presentations_repo_content' class="fancy_tab_content" style='display:none'> 
+        <div class="excursions_repo_content">
+          <img src="/assets/repositoryimg.png" class="imagelogotab"/>  
           <div class="search_container">
-            <input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy3" > </input>
+            <input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
           </div>
-            
-          <div id="tab_flashcards_repo_content_carrousel"></div>          
-              </div>  
+          <div id="tab_presentations_repo_content_carrousel"></div>
+          <div id="tab_presentations_repo_content_preview" class="content_preview_presentation">
+            <div class="content_preview_data"></div>
+            <div class="content_preview_metadata"></div>
+            <div class="content_preview_foot">
+              <button i18n-key="i.Preview" style="display:none" type="button" class="okButton okButtonCarrousel">Preview</button>
+            </div>
+          </div>  
+        </div>  
+      </div>
+
+      <div id='tab_smartcards_repo_content' class="fancy_tab_content" style='display:none'> 
+        <div class="excursions_repo_content">
+          <img src="/assets/repositoryimg.png" class="imagelogotab"/>  
+          <div class="search_container">
+            <input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
+          </div>
+          <div id="tab_smartcards_repo_content_carrousel"></div>
+          <div id="tab_smartcards_repo_content_preview" class="content_preview_presentation">
+            <div class="content_preview_data"></div>
+            <div class="content_preview_metadata"></div>
+            <div class="content_preview_foot">
+              <button i18n-key="i.Preview" style="display:none" type="button" class="okButton okButtonCarrousel">Preview</button>
+            </div>
+          </div>  
+        </div>  
       </div>
 
     </div>
@@ -665,9 +688,9 @@
             <div class="search_container">
               <input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
             </div>
-            
+
             <div id="tab_pic_repo_content_carrousel"></div>
-            
+
             <div id="tab_pic_repo_content_preview">
               <div id="tab_pic_repo_content_preview_image"></div>
             </div>
@@ -817,23 +840,23 @@
               </div>
         </div> 
         
-        <div id='tab_object_repo_content' class="fancy_tab_content">  
-          <div class="box1 box1fancy2">
-            <img src="/assets/repositoryimg.png" class="imagelogotab"/>          
-            <div class="search_container">
-              <input id="search_object" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-            </div>
-            
-            <div id="tab_object_repo_content_carrousel"></div>
-            <div id="tab_object_repo_content_preview" class="content_preview">
-              <div id="tab_object_repo_content_preview_object" class="content_preview_data"></div>
-              <div id="tab_object_repo_content_preview_metadata" class="content_preview_metadata"></div>
-              <div id="tab_object_repo_content_preview_foot" class="content_preview_foot">
-                <button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
-              </div>
-            </div>        
+    <div id='tab_object_repo_content' class="fancy_tab_content">  
+      <div class="box1 box1fancy2">
+        <img src="/assets/repositoryimg.png" class="imagelogotab"/>          
+        <div class="search_container">
+        <input id="search_object" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+        </div>
+
+        <div id="tab_object_repo_content_carrousel"></div>
+        <div id="tab_object_repo_content_preview" class="content_preview">
+          <div id="tab_object_repo_content_preview_object" class="content_preview_data"></div>
+          <div id="tab_object_repo_content_preview_metadata" class="content_preview_metadata"></div>
+          <div id="tab_object_repo_content_preview_foot" class="content_preview_foot">
+            <button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
           </div>
-        </div>  
+        </div>        
+      </div>
+    </div>  
         
         <div id='tab_object_snapshot_content' class="fancy_tab_content">
           <div class="box1 box1fancy1">
@@ -1480,4 +1503,4 @@
         <h2 i18n-key="i.SearchLiveContent">Search Live Content</h2>
      <p i18n-key="i.walk55">Just write inside a word (press Enter)and a gallery will appear to show you the results, If you want to add one from the results you just have to click on it, then, the content will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
     </li>
-  </ol>
+  </ol> 
