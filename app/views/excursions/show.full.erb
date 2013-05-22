@@ -39,9 +39,9 @@
     <!-- Recommendations fancybox -->
     <div style='display:none'>
         <div id='fancy_recommendations'>
-            <div class="rec-first-row" style="display:none">
+            <div class="rec-first-row">
                 <span class="textrec1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
-                <button id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
+                <button onclick=" parent.triggerEvaluation();return false;" id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
             </div>
             <div class="rec-second-row">
                 <span class="textrec1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
@@ -51,9 +51,7 @@
         </div>
     </div>
 
-
     <!-- Quizzes -->
-
     <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
     <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>
     
@@ -190,7 +188,7 @@
     <% end %>
 
     //URL to get the recommendations to show in the last slide
-    options["urlToGetRecommendations"] = "http://localhost:3000/excursions/last_slide.json"
+    options["urlToGetRecommendations"] = "http://sabina.dit.upm.es:3000/excursions/last_slide.json"
 
     options.addons = [];
 

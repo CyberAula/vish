@@ -44,11 +44,15 @@
     //String - Colour of the scale line 
     scaleLineColor : "rgba(0,0,0,.1)",
     pointDotRadius : 5,
-    scaleFontSize : 16,
+    pointLabelFontSize : 14
 
   };
 
   var myNewChart = new Chart(ctx).Radar(data,options);
+
+  triggerEvaluation = function(){
+    $("#evaluation-button-id").trigger("click");
+  };
 <%end%>
 
 <div class="tabbable">
@@ -110,18 +114,19 @@
           <div class="btn-evalue">
             <%= t('evaluation.contribute') %>
             <!-- Button to trigger modal -->
-            <a href="#myModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+            <a id="evaluation-button-id" href="#myModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
           </div>
 
           <div class="excursion-eval-results">
-            <canvas id="evalChart" width="500" height="400"></canvas>
+            <canvas id="evalChart" width="600" height="500"></canvas>
           </div>
+          
+          
+          </div>
+          <!---->
           
           <!-- Modal -->
           <%= render :partial => "excursions/excursion_evaluate" %>
-
-          </div>
-          <!---->
 
       </div>
     </div>
