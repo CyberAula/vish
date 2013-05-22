@@ -516,9 +516,9 @@
         <img id="saveimg" class="delete_img" src="/assets/icons/save_document.png">
         <span i18n-key="i.sure" class="deltext">are you sure?</span>    
         <div class="buttons_together">
-          <a save-option-id="save" href="#" onclick="$('#save_answer').val('save');" class=" button" i18n-key="i.save">Save</a>
-          <a save-option-id="publish" href="#" onclick="$('#save_answer').val('publish');" class=" button" i18n-key="i.publish">Publish</a>
-          <a save-option-id="draft" href="#" onclick="$('#save_answer').val('draft');" class="button" i18n-key="i.draft">Draft</a>
+          <a save-option-id="save" href="#" onclick="$('#save_answer').val('save'); $.fancybox.close();" class=" button" i18n-key="i.save">Save</a>
+          <a save-option-id="publish" href="#" onclick="$('#save_answer').val('publish'); $.fancybox.close();" class=" button" i18n-key="i.publish">Publish</a>
+          <a save-option-id="draft" href="#" onclick="$('#save_answer').val('draft'); $.fancybox.close();" class="button" i18n-key="i.draft">Draft</a>
           <a save-option-id="cancel" i18n-key="i.cancel" href="#" onclick="$('#save_answer').val('cancel'); $.fancybox.close();" class="button button2">cancel</a>
         </div>
       </div>

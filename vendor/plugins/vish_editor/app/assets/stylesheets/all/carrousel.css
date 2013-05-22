@@ -265,10 +265,12 @@ a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
 }
 
 div.pagination_single_row_thumbnails{
-	margin-top: 15px;
 	margin-bottom: 25px;
 }
 
+div.image_carousel_single_row_thumbnails  > div.caroufredsel_wrapper {
+  margin-bottom: 20px !important;
+}
 
 
 /* CSS for Slides Carrousel */
