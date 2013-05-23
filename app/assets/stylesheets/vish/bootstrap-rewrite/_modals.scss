@@ -23,7 +23,7 @@
 // Base modal
 .modal {
   position: fixed;
-  top: 65%;
+  top: 100%;
   left: 72%;
   z-index: $zindexModal;
   overflow: auto;
@@ -45,7 +45,7 @@
     @include transition(opacity .3s linear, top .3s ease-out);
     top: -25%;
   }
-  &.fade.in { top: 65%; }
+  &.fade.in { top: 100%; }
 }
 .modal-header {
   padding: 9px 15px;
@@ -62,7 +62,7 @@
 // Body (where all modal content resides)
 .modal-body {
   //overflow-y: auto;
-  height: 72%;
+  height: 70%;
   padding: 15px;
   max-height: 768px;
 }
