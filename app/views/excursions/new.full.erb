@@ -35,6 +35,13 @@
 
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
+	options.addons = [];
+	var addon = new Object();
+	addon.target = "Both";
+	addon.id = "IframeMessenger";
+	addon.config = {enable: true};
+	options.addons.push(addon);
+
 	function start(){
 		VISH.Editor.init(options);
 	}

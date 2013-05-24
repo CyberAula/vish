@@ -188,18 +188,16 @@
     <% end %>
 
     //URL to get the recommendations to show in the last slide
-    options["urlToGetRecommendations"] = "http://sabina.dit.upm.es:3000/excursions/last_slide.json"
+    options["urlToGetRecommendations"] = "/excursions/last_slide.json"
 
     options.addons = [];
 
-    if(window.parent.loadIframeMessenger===true){
-    	var addon = new Object();
-    	addon.target = "Viewer";
-    	addon.id = "IframeMessenger";
-    	addon.url = "";
-    	addon.config = {enable: true};
-    	options.addons.push(addon);
-    }
+	var addon = new Object();
+	addon.target = "Both";
+	addon.id = "IframeMessenger";
+	addon.url = "";
+	addon.config = {enable: true};
+	options.addons.push(addon);
 
 
 	function start(){

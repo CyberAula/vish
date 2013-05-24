@@ -8715,6 +8715,84 @@ VISH.Presentation = function(V, undefined) {
   };
   return{init:init}
 }(VISH);
+VISH.SlidesSelector = function(V, $, undefined) {
+  var initialized = false;
+  var countIndex;
+  var acceptButton;
+  var nSlides;
+  var slides;
+  var init = function() {
+    if(!initialized) {
+      countIndex = $("#ssbsp");
+      acceptButton = $("#ssbaccept");
+      nSlides = V.Slides.getSlidesQuantity();
+      slides = [nSlides];
+      _acceptAll();
+      _updateIndex();
+      $("#ssbAll").click(function(event) {
+        _acceptAll();
+        _updateInterface(V.Slides.getCurrentSlideNumber());
+        _updateIndex()
+      });
+      $("#ssbuAll").click(function(event) {
+        _denyAll();
+        _updateInterface(V.Slides.getCurrentSlideNumber());
+        _updateIndex()
+      });
+      $(acceptButton).click(function(event) {
+        var aIndex = V.Slides.getCurrentSlideNumber() - 1;
+        if(slides[aIndex] === true) {
+          slides[aIndex] = false
+        }else {
+          slides[aIndex] = true
+        }
+        _updateInterface(V.Slides.getCurrentSlideNumber());
+        _updateIndex()
+      });
+      $("#ssbdone").click(function(event) {
+        var params = new Object;
+        params.acceptedSlides = _getAcceptedSlides();
+        params.JSON = V.SlideManager.getCurrentPresentation();
+        V.Messenger.notifyEventByMessage(V.Constant.Event.onSelectedSlides, params)
+      });
+      V.EventsNotifier.registerCallback(V.Constant.Event.onGoToSlide, function(params) {
+        _updateInterface(params.slideNumber)
+      });
+      initialized = true
+    }
+  };
+  _acceptAll = function() {
+    for(var i = 0;i < nSlides;i++) {
+      slides[i] = true
+    }
+  };
+  _denyAll = function() {
+    for(var i = 0;i < nSlides;i++) {
+      slides[i] = false
+    }
+  };
+  _updateIndex = function() {
+    var nAcceptedSlides = _getAcceptedSlides().length;
+    $(countIndex).html("+" + nAcceptedSlides)
+  };
+  _getAcceptedSlides = function() {
+    var aSlides = [];
+    for(var i = 0;i < nSlides;i++) {
+      if(slides[i]) {
+        aSlides.push(i + 1)
+      }
+    }
+    return aSlides
+  };
+  _updateInterface = function(slideNumber) {
+    if(slides[slideNumber - 1] === true) {
+      $(acceptButton).html("Deny")
+    }else {
+      $(acceptButton).html("Accept")
+    }
+  };
+  return{init:init}
+}(VISH, jQuery);
 VISH.Text = function(V, $, undefined) {
   var init = function() {
     _adaptPs($("article > div.VEtextArea > p"));
