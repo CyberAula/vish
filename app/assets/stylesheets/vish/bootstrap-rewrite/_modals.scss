@@ -45,7 +45,10 @@
     @include transition(opacity .3s linear, top .3s ease-out);
     top: -25%;
   }
-  &.fade.in { top: 100%; }
+  &.fade.in { 
+  top: 100%; 
+  overflow: hidden;
+  }
 }
 .modal-header {
   padding: 9px 15px;
