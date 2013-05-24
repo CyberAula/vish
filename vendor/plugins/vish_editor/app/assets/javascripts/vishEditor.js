@@ -13618,12 +13618,12 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
     currentSmartcards = new Array;
     var carrouselImages = [];
     var content = "";
-    if(!data.smartcards || data.smartcards.length == 0) {
+    if(!data.excursions || data.excursions.length == 0) {
       $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
       $("#" + carrouselDivId).show();
       return
     }
-    $.each(data.smartcards, function(index, sc) {
+    $.each(data.excursions, function(index, sc) {
       switch(sc.type) {
         case V.Constant.FLASHCARD:
           var myImg = $("<img smartcardid ='" + sc.id + "'' src='" + V.Utils.getSrcFromCSS(sc.slides[0].background) + "' />");
@@ -13795,7 +13795,7 @@ VISH.Samples.API = function(V, undefined) {
   "areaid":"header", "body":"Experimento virtual1"}, {"id":"article1_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash"></embed>'}]}, {"id":"article1_article3", "template":"t6", "elements":[{"id":"article1_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; "><span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span><br></span></div>'}, 
   {"id":"article1_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article1_article3_zone3", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"article1_article3_zone4", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}]}]}]};
-  var smartcardList = {"smartcards":[flashcardList.flashcards[0], flashcardList.flashcards[1], flashcardList.flashcards[2], flashcardList.flashcards[3], flashcardList.flashcards[3], flashcardList.flashcards[3], VISH.Samples.fc_sample, VISH.Samples.samples_vtour]};
+  var smartcardList = {"excursions":[flashcardList.flashcards[0], flashcardList.flashcards[1], flashcardList.flashcards[2], flashcardList.flashcards[3], flashcardList.flashcards[3], flashcardList.flashcards[3], VISH.Samples.fc_sample, VISH.Samples.samples_vtour]};
   var imageList = {"pictures":[{"id":54, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.dan-dare.org/dan%20simpsons/TheSimpsonsEveryoneEver800.jpg"}, {"id":55, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://3.bp.blogspot.com/--H0o8mc28bA/TxrsnMAFMDI/AAAAAAAAARs/eOCVIXKlm9I/s1600/sala-cine.jpg"}, {"id":56, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.deviantart.com/download/46036660/The_Simpsonzu_by_spacecoyote.jpg"}, 
   {"id":57, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.granadablogs.com/pateandoelmundo/wp-content/uploads/2009/10/_061.jpg"}, {"id":58, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://www.revistaintime.com/wp-content/uploads/2012/03/el-padrino-2.jpg"}, {"id":59, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://cinealdesnudo.files.wordpress.com/2011/12/el-indomable-will-hunting.jpg"}, {"id":60, 
   "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://politicamenteconservador.blogia.com/upload/20060818041914-el-senor-de-los-anillos2.jpg"}, {"id":61, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://despertando.me/wp-content/uploads/2012/04/el-se%C3%B1or-de-los-anillos.jpg"}, {"id":62, "title":"ClintEastwood.jpg", "description":null, "author":"Demo", "src":"http://4.bp.blogspot.com/-Fh_v8PYbVg0/TyGdKEiYmKI/AAAAAAAAAPI/MKdfZ224aEQ/s1600/el_senor_de_los_anillos_la_batalla_por_la_tierra_media_2_the_rise_of_the_witchking-181035.jpg"}, 
@@ -15572,7 +15572,7 @@ VISH.Editor.API = function(V, $, undefined) {
       }
       return
     }
-    _requestByType("excursions", text, successCallback, failCallback)
+    _requestByType("excursion", text, successCallback, failCallback)
   };
   var requestRecomendedExcursions = function(successCallback, failCallback) {
     if(V.Debugging.isDevelopping()) {
@@ -15582,7 +15582,7 @@ VISH.Editor.API = function(V, $, undefined) {
       }
       return
     }
-    _requestByType("excursions", "", successCallback, failCallback)
+    _requestByType("excursion", "", successCallback, failCallback)
   };
   var requestSmartcards = function(text, successCallback, failCallback) {
     if(V.Debugging.isDevelopping()) {
@@ -15603,26 +15603,6 @@ VISH.Editor.API = function(V, $, undefined) {
       return
     }
     _requestByType("smartcard", "", successCallback, failCallback)
-  };
-  var requestFlashcards = function(text, successCallback, failCallback) {
-    if(V.Debugging.isDevelopping()) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.flashcardList;
-        successCallback(result)
-      }
-      return
-    }
-    _requestByType("flashcard", text, successCallback, failCallback)
-  };
-  var requestRecomendedFlashcards = function(successCallback, failCallback) {
-    if(V.Debugging.isDevelopping()) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.flashcardList;
-        successCallback(result)
-      }
-      return
-    }
-    _requestByType("flashcard", "", successCallback, failCallback)
   };
   var requestVideos = function(text, successCallback, failCallback) {
     if(V.Debugging.isDevelopping()) {
@@ -15779,9 +15759,14 @@ VISH.Editor.API = function(V, $, undefined) {
     _requestByType("object", "", successCallback, failCallback)
   };
   var _requestByType = function(type, query, successCallback, failCallback) {
-    if(type == "live" || type == "object") {
+    if(type === "live" || type === "object") {
       _requestResourceType(type, query, successCallback, failCallback);
       return
+    }else {
+      if(type === "excursion" || type === "smartcard") {
+        _requestExcursionType(type, query, successCallback, failCallback);
+        return
+      }
     }
     $.ajax({type:"GET", url:"/search.json?type=" + type + "&q=" + query, dataType:"html", success:function(response) {
       if(typeof successCallback == "function") {
@@ -15796,6 +15781,21 @@ VISH.Editor.API = function(V, $, undefined) {
   };
   var _requestResourceType = function(type, query, successCallback, failCallback) {
     $.ajax({type:"GET", url:"/resources/search.json?" + type + "=1&q=" + query, dataType:"html", success:function(response) {
+      if(typeof successCallback == "function") {
+        var resp = JSON.parse(response);
+        successCallback(resp)
+      }
+    }, error:function(xhr, ajaxOptions, thrownError) {
+      if(typeof failCallback == "function") {
+        failCallback()
+      }
+    }})
+  };
+  var _requestExcursionType = function(type, query, successCallback, failCallback) {
+    if(type === "excursion") {
+      type = ""
+    }
+    $.ajax({type:"GET", url:"/excursions/search.json?type=" + type + "&q=" + query, dataType:"html", success:function(response) {
       if(typeof successCallback == "function") {
         var resp = JSON.parse(response);
         successCallback(resp)
@@ -15853,8 +15853,8 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
-  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestFlashcards:requestFlashcards, requestRecomendedFlashcards:requestRecomendedFlashcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, 
-  requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails}
+  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, 
+  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails}
 }(VISH, jQuery);
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;

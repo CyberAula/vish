@@ -142,7 +142,7 @@ class ExcursionsController < ApplicationController
                         else
                           Excursion.search params[:q], search_options
                         end
-
+    
     respond_to do |format|
       format.html {
         if @found_excursions.size == 0 and params[:scope].present? and params[:scope] == "like"
@@ -151,7 +151,15 @@ class ExcursionsController < ApplicationController
           render :layout => false
         end
       }
-      format.json { render :json => @found_excursions }
+     
+      format.json {
+        results = Hash.new
+        results["excursions"] = [];
+        @found_excursions.each do |excursion|
+          results["excursions"].push(JSON(excursion.json));
+        end
+        render :json => results
+      }
     end
   end
 
@@ -190,6 +198,10 @@ class ExcursionsController < ApplicationController
 
   def search_options
     opts = search_scope_options
+
+    if params[:type] == "smartcard"
+      params[:type] = "flashcard|virtualTour"
+    end
 
     # Allow  me to search only (e.g.) Flashcards
     opts.deep_merge!({
