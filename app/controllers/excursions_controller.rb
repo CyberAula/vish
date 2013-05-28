@@ -95,14 +95,7 @@ class ExcursionsController < ApplicationController
   def show    
     show! do |format|
       format.html {
-        @evaluations = []
-        if ExcursionEvaluation.find_by_excursion_id(@excursion.id)          
-          6.times do |ind|            
-            @evaluations << ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", @excursion.id]).to_f
-          end
-        else
-          @evaluations = [0,0,0,0,0,0]
-        end        
+        @evaluations = @excursion.averageEvaluation
         if @excursion.draft and (can? :edit, @excursion)
           redirect_to edit_excursion_path(@excursion)
         else
