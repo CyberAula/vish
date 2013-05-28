@@ -10721,7 +10721,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
       fs_button = fs_button && !embed;
-      if(embed) {
+      if(true) {
         $(".rec-first-row").hide()
       }
       page_is_fullscreen = render_full && !V.Status.getIsInIframe();

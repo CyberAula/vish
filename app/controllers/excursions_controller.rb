@@ -174,8 +174,8 @@ class ExcursionsController < ApplicationController
 
   def last_slide
     excursions = []
-    #current_subject.excursion_suggestions(6).each do |ex|
-    Excursion.first(6).each do |ex|
+    current_subject.excursion_suggestions(6).each do |ex|
+    #Excursion.first(6).each do |ex|
       excursions.push ex.reduced_json(self)
     end
     respond_to do |format|  
