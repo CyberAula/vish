@@ -16,6 +16,22 @@
   <%= favicon_link_tag "icons/favicon.ico" %>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
+
+  <!--[if gte IE 8]>
+    <%= stylesheet_link_tag "vish/browser/ie" %>
+  <![endif]-->
+
+  <script type="text/javascript"> 
+      if (/*@cc_on!@*/false) { 
+        //for IE10 that ignores conditional coments
+        var fileref=document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", "assets/vish/browser/ie.css");
+        document.getElementsByTagName("head")[0].appendChild(fileref);        
+      } 
+  </script>
+
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
