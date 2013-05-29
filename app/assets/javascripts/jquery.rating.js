@@ -365,11 +365,11 @@
 	/*--------------------------------------------------------*/
 	
 	
-	  // XXX ENRIQUE comment this because I initialize the plugin with options
-	  //auto-initialize plugin
-				//$(function(){
-				// $('input[type=radio].star').rating();
-				//});
+	//XXX ENRIQUE comment this because I initialize it manually and it is called twice
+	  // auto-initialize plugin
+				// $(function(){
+				//  $('input[type=radio].star').rating();
+				// });
 	
 	
 /*# AVOID COLLISIONS #*/
