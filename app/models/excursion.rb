@@ -227,6 +227,23 @@ class Excursion < ActiveRecord::Base
       }
   end
 
+  def evaluations
+    ExcursionEvaluation.where(:excursion_id => self.id)
+  end
+
+  def averageEvaluation
+    evaluations = [];
+    if self.evaluations.length > 0
+      6.times do |ind|
+        evaluations.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
+      end
+    else
+      evaluations = [0,0,0,0,0,0];
+    end
+    evaluations
+  end
+
+
   private
 
   def parse_for_meta
@@ -251,7 +268,5 @@ class Excursion < ActiveRecord::Base
       activity_object.relation_ids=[Relation::Public.instance.id]
     end
   end
-
-  
 
 end
