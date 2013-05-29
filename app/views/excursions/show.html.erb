@@ -6,8 +6,9 @@
 <%= content_for :og_url do %><%= shortURL %><% end %>
 <%= content_for :og_image do %><%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
 
-<% javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
+<%= javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
 <%=javascript_include_tag "RegaddiChart" %>
+<%=javascript_include_tag "jquery.rating" %>
 
 <%= content_for :javascript do %> 
   //Get the context of the canvas element we want to select
@@ -124,7 +125,7 @@
           
           </div>
           <!---->
-          
+
           <!-- Modal -->
           <%= render :partial => "excursions/excursion_evaluate" %>
 

@@ -98,8 +98,11 @@ es:
     label3: "Participación"
     label4: "Interdisciplinario"
     label5: "Reutilización"
-    disagree: "desacuerdo"
-    agree: "acuerdo"
+    strong_d: "Muy en desacuerdo"
+    disagree: "En desacuerdo"
+    neutral: "Neutral"
+    agree: "Deacuerdo"
+    strong_a: "Muy deacuerdo"
     alert: "Por favor rellena las cinco preguntas de evaluación. Gracias."
     success: "Tus respuestas se han guardado. Gracias por ayudar a evaluar esta excursión."
   excursion:
