@@ -13342,7 +13342,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   var initialized = false;
   var init = function() {
     myInput = $("#tab_presentations_repo_content").find("input[type='search']");
-    previewButton = $("#" + previewDivId).find("button.okButton");
+    previewButton = $("#" + previewDivId).find("button.okButton2");
     if(!initialized) {
       $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
       $(myInput).keydown(function(event) {
@@ -13582,7 +13582,7 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
   var initialized = false;
   var init = function() {
     myInput = $("#tab_smartcards_repo_content").find("input[type='search']");
-    previewButton = $("#" + previewDivId).find("button.okButton");
+    previewButton = $("#" + previewDivId).find("button.okButton2");
     if(!initialized) {
       $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
       $(myInput).keydown(function(event) {
@@ -14606,11 +14606,11 @@ VISH.Quiz = function(V, $, undefined) {
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
     if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
-      var startButton = $("<input type='button' class='quizButton quizStartButton' value='Launch'/>");
+      var startButton = $("<input type='button' class='button2 quizStartButton' value='Launch'/>");
       $(quizButtons).prepend(startButton)
     }
     if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
-      var answerButton = $("<input type='button' class='quizButton quizAnswerButton' value='Answer'/>");
+      var answerButton = $("<input type='button' class='button2 quizAnswerButton' value='Answer'/>");
       $(quizButtons).prepend(answerButton)
     }
     return quizButtons
@@ -21045,24 +21045,31 @@ VISH.SlidesSelector = function(V, $, undefined) {
       slides = [nSlides];
       _acceptAll();
       _updateIndex();
+      _updateAllInterface("accept");
       $("#ssbAll").click(function(event) {
         _acceptAll();
-        _updateInterface(V.Slides.getCurrentSlideNumber());
+        _updateAllInterface("accept");
+        _updateButtonValue(V.Slides.getCurrentSlideNumber());
         _updateIndex()
       });
       $("#ssbuAll").click(function(event) {
         _denyAll();
-        _updateInterface(V.Slides.getCurrentSlideNumber());
+        _updateAllInterface("deny");
+        _updateButtonValue(V.Slides.getCurrentSlideNumber());
         _updateIndex()
       });
       $(acceptButton).click(function(event) {
         var aIndex = V.Slides.getCurrentSlideNumber() - 1;
         if(slides[aIndex] === true) {
-          slides[aIndex] = false
+          slides[aIndex] = false;
+          _updateOneInterface(V.Slides.getCurrentSlide(), "deny")
         }else {
-          slides[aIndex] = true
+          slides[aIndex] = true;
+          _updateOneInterface(V.Slides.getCurrentSlide(), "accept")
         }
-        _updateInterface(V.Slides.getCurrentSlideNumber());
+        $("#ssbAll").removeClass("selected_inactive");
+        $("#ssbuAll").removeClass("selected_inactive");
+        _updateButtonValue(V.Slides.getCurrentSlideNumber());
         _updateIndex()
       });
       $("#ssbdone").click(function(event) {
@@ -21072,7 +21079,7 @@ VISH.SlidesSelector = function(V, $, undefined) {
         V.Messenger.notifyEventByMessage(V.Constant.Event.onSelectedSlides, params)
       });
       V.EventsNotifier.registerCallback(V.Constant.Event.onGoToSlide, function(params) {
-        _updateInterface(params.slideNumber)
+        _updateButtonValue(params.slideNumber)
       });
       initialized = true
     }
@@ -21089,7 +21096,20 @@ VISH.SlidesSelector = function(V, $, undefined) {
   };
   _updateIndex = function() {
     var nAcceptedSlides = _getAcceptedSlides().length;
-    $(countIndex).html("+" + nAcceptedSlides)
+    $(countIndex).html("+" + nAcceptedSlides);
+    if(nAcceptedSlides === 0) {
+      $(countIndex).removeClass("selected_n_slides");
+      $(countIndex).addClass("selected_zero_slides")
+    }else {
+      $(countIndex).removeClass("selected_zero_slides");
+      $(countIndex).addClass("selected_n_slides")
+    }
+    $(countIndex).addClass("addslidetrans");
+    $(countIndex).addClass("addslidetrans2");
+    setTimeout(function() {
+      $(countIndex).removeClass("addslidetrans");
+      $(countIndex).removeClass("addslidetrans2")
+    }, 800)
   };
   _getAcceptedSlides = function() {
     var aSlides = [];
@@ -21100,11 +21120,29 @@ VISH.SlidesSelector = function(V, $, undefined) {
     }
     return aSlides
   };
-  _updateInterface = function(slideNumber) {
-    if(slides[slideNumber - 1] === true) {
-      $(acceptButton).html("Deny")
+  _updateAllInterface = function(status) {
+    if(status === "accept") {
+      $("#ssbAll").addClass("selected_inactive");
+      $("#ssbuAll").removeClass("selected_inactive")
     }else {
-      $(acceptButton).html("Accept")
+      $("#ssbuAll").addClass("selected_inactive");
+      $("#ssbAll").removeClass("selected_inactive")
+    }
+    var all_slides = V.Slides.getSlides();
+    for(var i = 0;i < all_slides.length;i++) {
+      _updateOneInterface(all_slides[i], status)
+    }
+  };
+  _updateOneInterface = function(the_slide, status) {
+    $(the_slide).removeClass("selected_accept");
+    $(the_slide).removeClass("selected_deny");
+    $(the_slide).addClass("selected_" + status)
+  };
+  _updateButtonValue = function(slideNumber) {
+    if(slides[slideNumber - 1] === true) {
+      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_wrong.png"/>Remove Slide')
+    }else {
+      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_checked.png"/>Add Slide')
     }
   };
   return{init:init}

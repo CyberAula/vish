@@ -410,7 +410,7 @@ div.addUrlButtons{
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;	
-	width: 738px;
+	width: 800px;
 	height: 340px;
 }
 
@@ -742,6 +742,30 @@ input.rounded:focus {
 }
 
 .okButton::-moz-focus-inner {
+    border: none;
+}
+
+.okButton2 {
+    background: url('/assets/carrousel/carrousel_sprite.png') 0 -150px no-repeat transparent;
+    cursor:pointer;
+    width: 150px;
+    height: 50px;
+    border: none;
+	margin-left: -70px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;  
+    outline: none;
+    border: none;
+	margin-top: -20px;
+}
+
+.okButton2:hover {
+    background: url('/assets/carrousel/carrousel_sprite.png') 0 -200px no-repeat transparent;
+}
+
+.okButton2::-moz-focus-inner {
     border: none;
 }
 
@@ -1272,7 +1296,7 @@ textarea {
 #help_template_selection, #help_quiz_selection {
 	background-image:url(/assets/icons/helptutorial_circle_tp.png);
 	position: absolute;
-	margin-top: -43px;
+	margin-top: -145px;
 	right: 21px;
 }
 
@@ -1928,3 +1952,5 @@ div.poi_label_container{
 .pac-container > .pac-item {
 	padding: 4px 4px;
 }
+
+

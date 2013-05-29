@@ -8,7 +8,7 @@
                 },
                 blur: function(value, link){
                   var tip = $(this).siblings(".eval_tip");
-                  $('#eval_star').html(tip[0].data || '');
+                  $(tip).html(tip[0].data || '');
                 }
               });
             <%end%>
@@ -55,17 +55,18 @@
                 </div>
                 <div class="modal-body evaluation_body">
                   <% 6.times do |ind| %>
+                    <%scale = (ind==0 || ind==1) ? "a" : "b" %>
                     <div class="evaluate">
                       <p>
                         <a><%= (ind+1).to_s %></a>
                         <%= t('evaluation.phrase'+ind.to_s) %>
                       </p>
                       <div class="escale">
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_d')%>" class="star" value="1" />
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.disagree')%>" class="star" value="2"/>
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.neutral')%>" class="star" value="3"/>
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.agree')%>" class="star" value="4"/>
-                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_a')%>" class="star" value="5"/>
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_disagree_'+scale)%>" class="star" value="1" />
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.disagree_'+scale)%>" class="star" value="2"/>
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.neutral_'+scale)%>" class="star" value="3"/>
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.agree_'+scale)%>" class="star" value="4"/>
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_agree_'+scale)%>" class="star" value="5"/>
                         
                         <span class="eval_tip" style="margin:0 0 0 20px;"></span>
                       </div>
