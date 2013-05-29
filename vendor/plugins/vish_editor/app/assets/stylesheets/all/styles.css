@@ -307,8 +307,9 @@ margin-top: 8px;
 
 
 #selectSlidesBar > div{
-  height: 100%;
-  text-align: center;
+height: 100%;
+text-align: center;
+margin-left: 23px;
 }
 
 .selectSlidesButtons1{
@@ -328,8 +329,9 @@ margin-top: 8px;
 
 .selectSlidesButtons1 > button{
   display: block;
-  margin-left: auto;
+  margin-left: 13px;
   margin-right: auto;
+  float: left;
 }
 
 .selectSlidesButtons2 > button {
@@ -344,18 +346,19 @@ margin-top: 8px;
 }
 
 .selectSlidesSelection > img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+margin-top: -10px;
+display: block;
+margin-left: auto;
+margin-right: auto;
 }
 
 .selectSlidesSelection > p {
-  position: absolute;
-  right: 8%;
-  bottom: -39%;
-  background: white;
-  padding: 5px;
-  font-size: 2em;
+  font-family: arial;
+position: absolute;
+right: 64px;
+bottom: -21px;
+padding: 5px;
+font-size: 1.5em;
 }
 
 .selectSlidesButtonWrapper{
@@ -653,13 +656,15 @@ button#closeButton {
 }
 
 #tab_quiz_session_url{
-  text-align: center;
-  margin-top: 5%;
-  margin-bottom: 2%;
-  color: blue;
-  font-size: 3.2em;
-  font-family: Helvetica;
-  font-weight: bold;
+text-align: center;
+background-color: rgb(247, 247, 247);
+margin-top: 5%;
+margin-bottom: 2%;
+color: rgb(114, 114, 114);
+font-size: 2.7em;
+font-family: Helvetica;
+font-weight: bold;
+padding: 13px;
 }
 
 a.link_quiz_session_url{
@@ -772,8 +777,21 @@ div#tab_quiz_session_results{
 }
 
 .socialButton{
-  height: 100%;
-  margin-left: 5%;
+height: 79%;
+margin-left: 2%;
+opacity: 0.6;
+}
+
+.socialButton:hover {
+  opacity: 0.8;
+}
+
+.socialButton:active {
+  opacity: 1;
+}
+
+.socialButton:hover {
+  opacity: 1;
 }
 
 .quizSharebuttons{
@@ -857,19 +875,131 @@ div.quizQr > table {
 .prompt_button_viewer1{
   left: 50%;
   margin-left: -30px;
+  font-family: arial;
+font-size: 1.5em;
 }
 
 .prompt_button_viewer2{
-  left: 50%;
-  margin-left: -115px;
+left: 50%;
+margin-left: -115px;
+font-family: arial;
+font-size: 1.5em;
 }
 
 .prompt_button_viewer3{
-  left: 50%;
   margin-left: 50px;
+  left: 50%;
+font-family: arial;
+font-size: 1.5em;
 }
 
 .prompt_button_viewer4{
   right: 0%;
   margin-right: 10px;
+font-family: arial;
+font-size: 1.5em;
 }
+
+.prompt_button_viewer1:hover{
+      opacity: 1;
+  text-shadow: 1px 1px #666;
+}
+.prompt_button_viewer2:hover{
+  opacity: 1;
+  text-shadow: 1px 1px #666;
+}
+.prompt_button_viewer3:hover {
+  opacity: 1;
+  text-shadow: 1px 1px #666;
+}
+.prompt_button_viewer4:hover {
+  opacity: 1;
+  text-shadow: 1px 1px #666;
+} 
+
+
+.tab_templates_content {
+margin-top: 102px;
+margin-left: 73px;
+}
+
+.addt {
+margin-left: 26px !important;
+width: 58px;
+}
+
+.buttonconfirm {
+width: 92px;
+margin-top: -22px;
+margin-left: -74px;
+position: absolute;
+}
+
+.buttoncenter {
+margin-left: -273px !important;
+margin-top: -76px;
+position: absolute;
+}
+
+.imgbutton {
+width: 17px;
+margin-right: 8px;
+margin-top: -3px;
+}
+
+.unselectall {
+  position: absolute;
+margin-left: 118px !important;
+}
+
+.selectall {
+margin-left: -6px !important
+}
+
+.selected_accept {
+-webkit-transition: opacity 0.7s linear;
+overflow: hidden;
+  border: 1px solid green !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(52, 186, 74, 0.6) !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(52, 186, 74, 0.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(52, 186, 74, 0.6) !important;
+}
+
+.selected_deny {
+  border: 1px solid red !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(191, 21, 21, 0.6) !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(191, 21, 21, 0.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(191, 21, 21, 0.6) !important;
+}
+
+.selected_n_slides {
+  color: green !important;
+}
+
+.selected_zero_slides {
+  color: red !important;
+}
+
+.addslidetrans {
+-webkit-transition-duration: 0.8s;
+-moz-transition-duration: 0.8s;
+-o-transition-duration: 0.8s;
+transition-duration: 0.8s;
+-webkit-transition-property: -webkit-transform;
+-moz-transition-property: -moz-transform;
+-o-transition-property: -o-transform;
+transition-property: transform;
+overflow: hidden;
+}
+
+.addslidetrans2 {
+-webkit-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+}
+
+.previewbutton2 {
+margin-left: 431px !important;
+margin-top: 242px !important;
+position: absolute;
+  }

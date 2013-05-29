@@ -45,6 +45,7 @@
 }
 
 .button {
+  font-family: arial;
     padding: 5px 10px;
     display: inline;
     text-decoration:none;
@@ -61,6 +62,55 @@
 .button:hover {
   opacity: 1;
   text-shadow: 1px 1px #666;
+}
+
+.button2 {
+    padding: 5px 10px;
+    display: inline;
+    text-decoration:none;
+    background: rgb(0, 71, 255) repeat-x bottom;
+    opacity: 0.6;
+    color:#f9f9f9;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.button2:hover {
+  opacity: 1;
+  text-shadow: 1px 1px #666;
+}
+
+.buttonadd {
+    padding: 5px 10px;
+    display: inline;
+    text-decoration:none;
+    background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffffff 0%, #f3f3f3 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(99%,#f3f3f3)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#f3f3f3 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#f3f3f3 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#f3f3f3 99%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f3f3f3',GradientType=0 ); /* IE6-9 */
+  opacity: 1;
+    color:#000;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.buttonadd:hover {
+
+}
+
+.selected_inactive {
+cursor: default !important;
+opacity: 0.4 !important;
 }
 
 .rec-first-row .button{

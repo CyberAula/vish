@@ -26,6 +26,9 @@ div.image_carousel_multiple_row {
 }
 
 div.image_carousel img {
+  border-radius: 6px;
+  moz-border-radius: 6px;
+  o-border-radius: 6px;
     background-color: white;
     margin: 6px;
     display: block;
@@ -367,7 +370,7 @@ div.carrousel_element_single_row_presentation_repository > img.carrousel_element
 }
 
 div.image_carousel_single_row_presentation_repository {
-  padding: 85px 0 0px 0px;
+  padding: 100px 0 0px 0px;
   width: 800px;
 }
 
@@ -378,6 +381,22 @@ div.carrousel_element_single_row_presentation_repository{
   max-height: 150px;
   float: left;
   margin-left: 35px;
+  opacity: 0.6;
+}
+
+div.carrousel_element_single_row_presentation_repository:hover{
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+img.carrousel_element_single_row_presentation_repository:hover {
+  -webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
+  -moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
+  box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
+}
+
+div.carrousel_element_single_row_presentation_repository:active{
+  opacity: 1.0;
 }
 
 img.carrousel_element_single_row_presentation_repository{

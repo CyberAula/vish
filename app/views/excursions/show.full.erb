@@ -1,4 +1,4 @@
-   <section class="slides layout-regular template-default"></section>
+    <section class="slides layout-regular template-default"></section>
         <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
     <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
 
@@ -12,20 +12,20 @@
 
     <div id="selectSlidesBar" class="selectSlidesBar" style="display:none">
         <div class="selectSlidesButtons1">
-            <button id="ssbAll">Select All</button>
-            <button id="ssbuAll">Unselect All</button>
+            <button id="ssbAll" class="buttonadd selectall"><img class="imgbutton" src="/assets/quiz/checkbox_checked.png"/>Select All</button>
+            <button id="ssbuAll" class="buttonadd unselectall"><img class="imgbutton" src="/assets/quiz/checkbox_wrong.png"/>Unselect All</button>
         </div>
         <div class="selectSlidesButtons3">
             <div class="selectSlidesSelection">
-                <p id="ssbsp"></p>
-                <img src="/assets/templatesthumbs/t3.png"/>
+                <p id="ssbsp" class="selected_n_slides addslidetrans"></p>
+                <img  class="addt" src="/assets/templatesthumbs/addt.png"/>
             </div>
             <div class="selectSlidesButtonWrapper">
-                <button id="ssbdone">Done</button>
+                <button id="ssbdone" class="button buttonconfirm">Add Slides</button>
             </div>
         </div>
         <div class="selectSlidesButtons2">
-            <button id="ssbaccept">Deny</button>
+            <button id="ssbaccept" class="buttoncenter buttonadd"><img class="imgbutton" src="/assets/quiz/checkbox_wrong.png"/>Remove Slide</button>
         </div>
     </div>
 
@@ -41,7 +41,7 @@
         <div id='fancy_recommendations'>
             <div class="rec-first-row">
                 <span class="textrec1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
-                <button onclick=" parent.triggerEvaluation();return false;" id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
+                <button onclick="window.opener.document.getElementById('evaluation-button-id').click();" id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
             </div>
             <div class="rec-second-row">
                 <span class="textrec1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
@@ -51,7 +51,9 @@
         </div>
     </div>
 
+
     <!-- Quizzes -->
+
     <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
     <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>
     
@@ -74,7 +76,7 @@
                     <a target="_blank" href="#" id='tab_quiz_session_share_gPlus'><img src='/assets/icons/social/gplus.svg' class='socialButton'/></a>
                 </div>
                 <div class="quizQr"></div>
-                <input type='button' class='quizButton quizStopButton' value='Stop'/>
+                <input type='button2' class='quizButton button quizStopButton' value='Stop'/>
             </div>
             <div id='tab_quiz_stats_content' class="fancy_viewer_tab_content">
                 <canvas id="quiz_chart" width="400" height="400"></canvas>
@@ -142,8 +144,6 @@
             </div>
         </div>
     </div>
-
-
 
 
 <script>	
