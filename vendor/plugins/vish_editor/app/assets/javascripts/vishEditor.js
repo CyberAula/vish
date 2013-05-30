@@ -11459,9 +11459,6 @@ VISH.Editor = function(V, $, undefined) {
       setPresentation(presentation);
       V.Editor.Renderer.init(presentation);
       _removeSelectableProperties()
-    }else {
-      initialPresentation = false;
-      V.Editor.setMode(V.Constant.PRESENTATION)
     }
     $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":600, "padding":0, "onStart":function(data) {
       var clickedZoneId = $(data).attr("zone");
@@ -13283,12 +13280,6 @@ VISH.Editor.Presentation = function(V, $, undefined) {
     })
   };
   var _onConnect = function(origin) {
-    V.IframeAPI.registerCallback("onMessage", function(VEMessage, origin) {
-      var VEMessageObject = JSON.parse(VEMessage);
-      if(VEMessageObject.VEevent === V.Constant.Event.onSelectedSlides) {
-        V.Messenger.Helper.processVEMessage(VEMessage)
-      }
-    })
   };
   var previewPresentation = function(presentation) {
     V.Editor.Preview.preview({insertMode:true, slideNumberToPreview:1, presentationJSON:presentation});
@@ -13416,8 +13407,6 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   var _onClickCarrouselElement = function(event) {
     var excursionid = $(event.target).attr("excursionid");
     if(excursionid) {
-      $(".excursionSelectedInCarrousel").removeClass("excursionSelectedInCarrousel");
-      $(event.target).addClass("excursionSelectedInCarrousel");
       selectedPres = currentExcursions[excursionid];
       _renderObjectMetadata(selectedPres)
     }
@@ -13667,8 +13656,6 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
   var _onClickCarrouselElement = function(event) {
     var smartCardId = $(event.target).attr("smartcardid");
     if(smartCardId) {
-      $(".smartcardSelectedInCarrousel").removeClass("smartcardSelectedInCarrousel");
-      $(event.target).addClass("smartcardSelectedInCarrousel");
       selectedSmartcard = currentSmartcards[smartCardId];
       _renderObjectMetadata(selectedSmartcard)
     }
@@ -13780,16 +13767,14 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var testText = '{"VEVersion":"0.5","title":"Test samples","id":"213123123","type":"flashcard","author":"Basic","avatar":"http://vishub.org/assets/logos/original/excursion-15.png","slides":[{"id":"article4","type":"flashcard","background":"url(http://farm9.staticflickr.com/8140/8772901348_dc29ab8ab3.jpg)","pois":[{"id":"article4_poi1","x":"14.375","y":"44.166666666666664","slide_id":"article4_article1"},{"id":"article4_poi2","x":"41","y":"29","slide_id":"article4_article2"},{"id":"article4_poi3","x":"74.875","y":"50.333333333333336","slide_id":"article4_article3"}],"slides":[{"id":"article4_article1","type":"standard","template":"t2","elements":[{"id":"article4_article1_zone1","areaid":"left"}]},{"id":"article4_article2","type":"standard","template":"t12","elements":[{"id":"article4_article2_zone1","areaid":"left1"},{"id":"article4_article2_zone2","areaid":"right1"},{"id":"article4_article2_zone3","areaid":"left2"},{"id":"article4_article2_zone4","areaid":"right2"}]},{"id":"article4_article3","type":"standard","template":"t7","elements":[{"id":"article4_article3_zone1","areaid":"header"},{"id":"article4_article3_zone2","areaid":"left"},{"id":"article4_article3_zone3","areaid":"center"},{"id":"article4_article3_zone4","areaid":"subheader"}]}]}]}';
-  var test = JSON.parse(testText);
-  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
+  return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
   var recommendationList = [{"id":"1", "url":"http://vishub.org/excursions/144", "title":"Nanogame", "author":"Enrique Barra", "description":" bla bla bla", "image":"http://vishub.org/assets/logos/original/excursion-05.png", "views":"56", "favourites":"3", "number_of_slides":"8"}, {"id":"2", "url":"http://vishub.org/excursions/83", "title":"Flascard Curiosity", "author":"Evita Tassiopolu", "description":" bla bla bla 2", "image":"http://www.topsecretwriters.com/wp-content/uploads/2012/08/curiosityrover.jpg", 
   "views":"563", "favourites":"13", "number_of_slides":"2"}, {"id":"3", "url":"http://vishub.org/excursions/55", "title":"Madrid\u00b4s Planetarium", "author":"Nestor Toribio", "description":" bla bla bla", "image":"http://upload.wikimedia.org/wikipedia/commons/0/06/Planetarium_WPKiW.jpg", "views":"56", "favourites":"33", "number_of_slides":"8"}, {"id":"4", "url":"http://vishub.org/excursions/14", "title":"Earth explained", "author":"Enrique Barra", "description":" bla bla bla", "image":"http://upload.wikimedia.org/wikipedia/commons/2/22/Earth_Western_Hemisphere_transparent_background.png", 
   "views":"156", "favourites":"3", "number_of_slides":"8"}, {"id":"5", "url":"http://vishub.org/excursions/81", "title":"Planets: Mars", "author":"Barbara Kieslinger ", "description":" bla bla bla 2", "image":"http://static.giantbomb.com/uploads/scale_small/0/4866/192066-mars.jpg", "views":"463", "favourites":"23", "number_of_slides":"2"}, {"id":"6", "url":"http://vishub.org/excursions/56", "title":"Galileo", "author":"Nestor Toribio", "description":" bla bla bla", "image":"https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRjinxT31jvvelugew_ydynnvzXcJRLSeTAMYPfEcFZsbvxAlHP", 
   "views":"1256", "favourites":"33", "number_of_slides":"8"}];
-  var excursionsList = {"excursions":[VISH.Samples.full_samples, VISH.Samples.quiz_samples, VISH.Samples.magnetic_gifs, VISH.Samples.basic_samples, VISH.Samples.fc_sample, VISH.Samples.samples_vtour, VISH.Samples.samplesv01, VISH.Samples.test]};
+  var excursionsList = {"excursions":[VISH.Samples.full_samples, VISH.Samples.quiz_samples, VISH.Samples.magnetic_gifs, VISH.Samples.basic_samples, VISH.Samples.fc_sample, VISH.Samples.samples_vtour, VISH.Samples.samplesv01]};
   var flashcardList = {"flashcards":[{"id":"1120", "VEVersion":"0.2", "type":"flashcard", "author":"", "slides":[{"id":"article4", "type":"flashcard", "background":"url(http://4.bp.blogspot.com/-fsV8poJXoJc/ULe8nkVbaVI/AAAAAAAAA-M/Q2vW16z6Ivc/s1600/Imagen16.png)", "pois":[{"id":"article4_poi1", "x":"36.875", "y":"67.33333333333333", "slide_id":"article4_article1"}, {"id":"article4_poi2", "x":"55.375", "y":"68.16666666666667", "slide_id":"article4_article2"}, {"id":"article4_poi3", "x":"45.875", "y":"5.5", 
   "slide_id":"article4_article3"}], "slides":[{"id":"article4_article1", "type":"standard", "template":"t2", "elements":[{"id":"article4_article1_zone1", "type":"image", "areaid":"left", "body":"http://1.bp.blogspot.com/_KaMLeO20q1Q/TGk8gfWkp7I/AAAAAAAAAHI/80bTifiIk6M/s1600/24+Do%C3%B1ana.JPG", "style":"position: relative; width:110.31518624641834%; height:97.1590909090909%; top:2.0833333333333335%; left:-1.146131805157593%;"}]}, {"id":"article4_article2", "type":"standard", "template":"t2", "elements":[{"id":"article4_article2_zone1", 
   "type":"image", "areaid":"left", "body":"http://farm9.staticflickr.com/8504/8367119464_f8ff09456d.jpg", "style":"position: relative; width:103.15186246418338%; height:90.53030303030303%; top:3.0303030303030303%; left:-0.5730659025787965%;"}]}, {"id":"article4_article3", "type":"standard", "template":"t2", "elements":[{"id":"article4_article3_zone1", "type":"image", "areaid":"left", "body":"http://cabeceras.eldiariomontanes.es/imagenes-municipios/galerias/5348/mf01z4411811x1492-452.jpg", "style":"position: relative; width:119.05444126074498%; height:129.54545454545453%; top:-2.6515151515151514%; left:-3.5816618911174785%;"}]}]}]}, 
@@ -14285,14 +14270,13 @@ VISH.Events = function(V, $, undefined) {
   };
   var unbindViewerEventListeners = function() {
     if(!bindedEventListeners) {
-      console.log("return unbindViewerEventListeners");
       return
     }else {
       bindedEventListeners = false
     }
     $(document).unbind("keydown", handleBodyKeyDown);
-    $(document).off("click", "#page-switcher-start");
-    $(document).off("click", "#page-switcher-end");
+    $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+    $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
     $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
     $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
     $(document).off("click", "#closeButton");
@@ -14304,7 +14288,7 @@ VISH.Events = function(V, $, undefined) {
         case V.Constant.FLASHCARD:
           for(ind in slide.pois) {
             var poi = slide.pois[ind];
-            $(document).off("click", "#" + poi.id, onFlashcardPoiClicked)
+            $(document).off("click", "#" + poi.id, {poi_id:poi.id}, onFlashcardPoiClicked)
           }
           break;
         case V.Constant.VTOUR:
@@ -18590,7 +18574,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.setMode(V.Constant.PRESENTATION);
     var presentation = V.Editor.savePresentation();
     V.Editor.setPresentation(presentation);
-    V.Editor.setPresentationType(V.Constant.PRESENTATION);
+    V.Editor.setPresentationType("presentation");
     V.Editor.Slides.showSlides();
     V.Editor.Thumbnails.redrawThumbnails();
     V.Editor.Tools.init()
@@ -20054,11 +20038,6 @@ VISH.Messenger.Helper = function(V, undefined) {
       }
       if(V.Status.getIsInIframe() && params && params.allowSelfMessages === false) {
         if(VEMessageObject.origin === V.Status.getIframe().id) {
-          return false
-        }
-      }
-      if(typeof VEMessageObject.origin != "undefined" && VEMessageObject.origin !== "?") {
-        if($.contains(document, $("#" + VEMessageObject.origin)[0])) {
           return false
         }
       }

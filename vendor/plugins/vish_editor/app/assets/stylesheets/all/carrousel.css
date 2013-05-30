@@ -26,9 +26,9 @@ div.image_carousel_multiple_row {
 }
 
 div.image_carousel img {
-  border-radius: 6px;
-  moz-border-radius: 6px;
-  o-border-radius: 6px;
+  border-radius: 10px;
+  moz-border-radius: 10px;
+  o-border-radius: 10px;
     background-color: white;
     margin: 6px;
     display: block;

@@ -1553,11 +1553,6 @@ iframe.snapshot_content{
 	border: 1px solid #005fdd;
 }
 
-.excursionSelectedInCarrousel, .smartcardSelectedInCarrousel{
-	opacity: 1.0 !important;
-	border: 1px solid #005fdd;
-}
-
 /* Flashcards */
 #flashcard_button img{
 	width: 40px;

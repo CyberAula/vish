@@ -11314,11 +11314,6 @@ VISH.Messenger.Helper = function(V, undefined) {
           return false
         }
       }
-      if(typeof VEMessageObject.origin != "undefined" && VEMessageObject.origin !== "?") {
-        if($.contains(document, $("#" + VEMessageObject.origin)[0])) {
-          return false
-        }
-      }
     }catch(e) {
       return false
     }
@@ -11980,14 +11975,13 @@ VISH.Events = function(V, $, undefined) {
   };
   var unbindViewerEventListeners = function() {
     if(!bindedEventListeners) {
-      console.log("return unbindViewerEventListeners");
       return
     }else {
       bindedEventListeners = false
     }
     $(document).unbind("keydown", handleBodyKeyDown);
-    $(document).off("click", "#page-switcher-start");
-    $(document).off("click", "#page-switcher-end");
+    $(document).off("click", "#page-switcher-start", V.Slides.backwardOneSlide);
+    $(document).off("click", "#page-switcher-end", V.Slides.forwardOneSlide);
     $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
     $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
     $(document).off("click", "#closeButton");
@@ -11999,7 +11993,7 @@ VISH.Events = function(V, $, undefined) {
         case V.Constant.FLASHCARD:
           for(ind in slide.pois) {
             var poi = slide.pois[ind];
-            $(document).off("click", "#" + poi.id, onFlashcardPoiClicked)
+            $(document).off("click", "#" + poi.id, {poi_id:poi.id}, onFlashcardPoiClicked)
           }
           break;
         case V.Constant.VTOUR:
