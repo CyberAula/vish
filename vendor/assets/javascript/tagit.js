@@ -7,6 +7,7 @@
  */
 
 /*
+ * MODIFIED BY ENRIQUE AND ALDO. Search XXX to see where it was modified
  * Dependencies
  * JQuery $().watermark library is needed to allow input watermarks
  */
@@ -191,11 +192,13 @@
                 self.currentLabel = $(this).val();
                 self.currentValue = $(this).attr('tagValue');
                 if ((self.options.allowNewTags)&&(self.currentLabel)) {
-                    self.timer = setTimeout(function () {
+                    //XXX commented by ENRIQUE to add the last tag to the tags
+                    //when clicking "update", if you add it 400 milisecs after it is not sent
+                    //self.timer = setTimeout(function () {
                         self._addTag(self.currentLabel, self.currentValue);
                         self.currentValue = '';
                         self.currentLabel = '';
-                    }, 400);
+                    //}, 400);
                 }
                 $(this).val('').removeAttr('tagValue');
                 return true;

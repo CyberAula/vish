@@ -29,7 +29,7 @@
 
         <div class="control-group">
           <div class="controls">
-            <%= actor_form.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
+            <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list" %>
             <div class="tagBoxNew ">
               <ul class="tagList"></ul>
             </div>
@@ -85,7 +85,7 @@
     //Fill tag_list hidden input before send
      var button = $("#submit_update_tags_button");
      $(button).click(function(event) {
-       var tagList = $(".tagList");
+       var tagList = $(".tagList");       
        $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
        return true;
      });
