@@ -251,6 +251,13 @@ class Excursion < ActiveRecord::Base
     activity_object.title = parsed_json["title"]
     activity_object.description = parsed_json["description"]
     activity_object.tag_list = parsed_json["tags"]
+    begin
+      ageRange = parsed_json["age_range"]
+      activity_object.age_min = ageRange.split("-")[0].delete(' ')
+      activity_object.age_max = ageRange.split("-")[1].delete(' ')
+    rescue
+    end
+    
     activity_object.save!
 
     parsed_json["id"] = activity_object.id.to_s
