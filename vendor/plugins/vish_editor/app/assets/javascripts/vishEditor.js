@@ -11551,6 +11551,12 @@ VISH.Editor = function(V, $, undefined) {
     $(document).on("click", "#help_template_selection", function() {
       V.Editor.Tour.startTourWithId("help_template_selection_help", "bottom")
     });
+    $(document).on("click", "#help_excursion_selection", function() {
+      V.Editor.Tour.startTourWithId("help_excursion_selection_help", "bottom")
+    });
+    $(document).on("click", "#help_smartcard_selection", function() {
+      V.Editor.Tour.startTourWithId("help_smartcard_selection_help", "bottom")
+    });
     $(document).on("click", "#tab_pic_from_url_help", function() {
       V.Editor.Tour.startTourWithId("images_fancy_tabs_id_help", "top")
     });
@@ -12782,8 +12788,8 @@ VISH.Editor.Image = function(V, $, undefined) {
           $("#" + uploadDivId + " input[name='document[owner_id]']").val(V.User.getId());
           $("#" + uploadDivId + " input[name='authenticity_token']").val(V.User.getToken());
           $("#" + uploadDivId + " .documentsForm").attr("action", V.UploadImagePath);
-          $("#" + uploadDivId + " input[name='tags']").val(V.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
+          $("#" + uploadDivId + " input[name='document[tag_list]']").val(V.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
           $(tagList).parent().hide();
           $("#" + uploadDivId + " .upload_progress_bar_wrapper").show()
         }
@@ -12971,8 +12977,8 @@ VISH.Editor.Object = function(V, $, undefined) {
           $("#" + uploadDivId + " input[name='document[owner_id]']").val(V.User.getId());
           $("#" + uploadDivId + " input[name='authenticity_token']").val(V.User.getToken());
           $("#" + uploadDivId + " .documentsForm").attr("action", V.UploadObjectPath);
-          $("#" + uploadDivId + " input[name='tags']").val(V.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
           var tagList = $("#" + uploadDivId + " .tagList");
+          $("#" + uploadDivId + " input[name='document[tag_list]']").val(V.Editor.Utils.convertToTagsArray($(tagList).tagit("tags")));
           $(tagList).parent().hide();
           $("#" + uploadDivId + " .upload_progress_bar_wrapper").show()
         }

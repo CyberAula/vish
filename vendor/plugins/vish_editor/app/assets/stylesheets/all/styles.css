@@ -852,7 +852,8 @@ div.quizQr > table {
 }
 
 #prompt2name{
-  margin-top: 2%;
+margin-top: 0%;
+width: 28%
 }
 
 .prompt_button_viewer {
@@ -873,22 +874,21 @@ div.quizQr > table {
 }
 
 .prompt_button_viewer1{
-  left: 50%;
-  margin-left: -30px;
+  left: 45%;
   font-family: arial;
 font-size: 1.5em;
 }
 
 .prompt_button_viewer2{
 left: 50%;
-margin-left: -115px;
+margin-left: -20%;
 font-family: arial;
 font-size: 1.5em;
 }
 
 .prompt_button_viewer3{
   margin-left: 50px;
-  left: 50%;
+  left: 51%;
 font-family: arial;
 font-size: 1.5em;
 }

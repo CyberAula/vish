@@ -33,6 +33,20 @@ div.image_carousel img {
     margin: 6px;
     display: block;
     float: left;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+div.image_carousel img:hover {
+  opacity: 1;
+    -webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
+  -moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
+  box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
+}
+
+div.image_carousel img:active {
+  opacity: 1;
+  border: 2px solid #005fdd;
 }
 
 a.prev, a.next {
@@ -259,6 +273,11 @@ img.carrousel_element_single_row_thumbnails:hover{
   box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
 }
 
+img.carrousel_element_single_row_thumbnails:active{
+  opacity: 1;
+  cursor: pointer;
+}
+
 a.prev_single_row_thumbnails, a.next_single_row_thumbnails{
   top: 28px;
 }
@@ -381,9 +400,11 @@ div.carrousel_element_single_row_presentation_repository{
   max-height: 150px;
   float: left;
   margin-left: 35px;
-  opacity: 0.6;
 }
 
+div.carrousel_element_single_row_presentation_repository:active {
+  opacity: 1 !important;
+}
 div.carrousel_element_single_row_presentation_repository:hover{
   opacity: 0.8;
   cursor: pointer;
@@ -393,6 +414,10 @@ img.carrousel_element_single_row_presentation_repository:hover {
   -webkit-box-shadow: 4px 4px 9px rgba(50, 50, 50, 0.37);
   -moz-box-shadow:    4px 4px 9px rgba(50, 50, 50, 0.37);
   box-shadow:         4px 4px 9px rgba(50, 50, 50, 0.37);
+}
+
+img.carrousel_element_single_row_presentation_repository:active {
+ opacity: 1.0;
 }
 
 div.carrousel_element_single_row_presentation_repository:active{
