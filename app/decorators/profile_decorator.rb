@@ -3,6 +3,9 @@ Profile.class_eval do
   			:through => :actor,
   			:autosave   => true
 
+  delegate :tag_list, :tag_list=,
+           to: :actor
+
   delegate :occupation_t, :occupation?,:occupation, :occupation=,
            to: :user
 
