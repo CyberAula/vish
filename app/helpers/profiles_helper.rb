@@ -11,7 +11,7 @@ module ProfilesHelper
   
   #Returns true if the "Personal Information" section is empty
   def is_personal_empty?
-    if (@profile.organization?) or (@profile.birthday?) or (@profile.city?) or (@profile.description?)
+    if (@profile.occupation?) or (@profile.organization?) or (@profile.birthday?) or (@profile.city?) or (@profile.description?)
       return false
     else
       return true

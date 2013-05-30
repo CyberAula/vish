@@ -61,6 +61,7 @@ GEM
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     cocaine (0.4.2)
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -136,6 +137,7 @@ GEM
       carrierwave (>= 0.5.8)
       foreigner (>= 0.9.1)
       rails (> 3.0.0)
+    method_source (0.8.1)
     mime-types (1.23)
     modernizr-rails (2.0.6)
     multi_json (1.7.3)
@@ -186,6 +188,12 @@ GEM
       json
       nokogiri
       rest-client
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
+    pry-rails (0.3.0)
+      pry (>= 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -264,6 +272,7 @@ GEM
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
+    slop (3.4.5)
     social_cheesecake (0.5.0)
       railties (>= 3.1.3)
     social_stream-base (1.1.6)
@@ -355,6 +364,7 @@ DEPENDENCIES
   mysql2
   net-ssh (= 2.4.0)
   pg
+  pry-rails
   rails (~> 3.2.0)
   rspec-rails (= 2.9.0)
   rubyzip (= 0.9.9)

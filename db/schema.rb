@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509080639) do
+ActiveRecord::Schema.define(:version => 20130529122058) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -482,6 +482,7 @@ ActiveRecord::Schema.define(:version => 20130509080639) do
     t.boolean  "connected",                             :default => false
     t.string   "status",                                :default => "chat"
     t.boolean  "chat_enabled",                          :default => true
+    t.integer  "occupation"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"

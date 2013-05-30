@@ -59,6 +59,7 @@ en:
       description: "Description"
       tags:
         title: "Topics"
+        areasOfInterestMessage: "Type here your areas of interest"
         addMessage: "Add tags"
         limitMessage: "limit reached"
       age: "Age"
@@ -234,11 +235,13 @@ en:
     search_name: "status update"
   profile:
     occupation: 
-      label: "Occupation"
-      other: "Other"
-      scientist: "Scientist"
+      label: "Occupation area"
+      options:
+        select: "Select"
+        scientist: "Science"
+        teacher: "Education"
+        other: "Other"
       select: "Select your occupation"
-      teacher: "Teacher"
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"

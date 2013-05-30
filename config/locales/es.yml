@@ -238,11 +238,11 @@ es:
     search_name: "actualización de estado"
   profile:
     occupation:
-      label: "Ocupación"
+      label: "Dedicación"
       other: "Otra"
-      scientist: "Científico"
+      scientist: "Ciencia"
       select: "Selecciona tu ocupación"
-      teacher: "Profesor"
+      teacher: "Educación"
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
