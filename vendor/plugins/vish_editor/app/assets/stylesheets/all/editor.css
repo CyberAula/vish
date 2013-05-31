@@ -1650,18 +1650,33 @@ div.draggable_arrow_div, div.carrrousel_element_single_row_slides{
 }
 
 #flashcard_help_button{
-background-image:url(/assets/icons/helptutorial_circle_bg.png);
+	background-image:url(/assets/icons/helptutorial_circle.png);
 	cursor: pointer;
-		position: absolute;
+	position: absolute;
 	right: 0px;
-
-height: 29px;
+	height: 29px;
 }
+
+
 
 #flashcard_help_button:hover {
 	background-image:url(/assets/icons/helptutorial_circle_hover_tp.png);
 	cursor: pointer;
 }
+
+
+#help_pedagogical_selection {
+	background-image:url(/assets/icons/helptutorial_circle.png);
+position: absolute;
+right: 25px;
+height: 29px;
+top: -1px;
+}
+
+#help_pedagogical_selection:hover {
+	background-image:url(/assets/icons/helptutorial_circle_hover_tp.png);
+	cursor: pointer;
+	}
 
 .change_bg_button_class{
 	position: absolute;

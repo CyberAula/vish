@@ -770,6 +770,20 @@ div#tab_quiz_session_results{
   cursor: pointer;
 }
 
+#help_addslides_selection {
+  background-image:url(/assets/icons/helptutorial_circle.png);
+margin-top: -577px;
+margin-left: 380px;
+position: absolute;
+}
+
+#help_addslides_selection:hover{
+  background-image:url(/assets/icons/helptutorial_circle_hover.png);
+  cursor: pointer;
+}
+
+
+
 .tab_quiz_session_content{
   width: 100%;
   height: 100%;
