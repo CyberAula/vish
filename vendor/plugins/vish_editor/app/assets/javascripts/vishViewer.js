@@ -8211,7 +8211,597 @@ if(!YT.Player) {
     YT.embed_template = '<iframe width="425" height="344" src="" frameborder="0" allowfullscreen></iframe>'
   })()
 }
-;VISH.User = function(V, $, undefined) {
+;(function($) {
+  $.fn.joyride = function(options) {
+    var settings = {"tipLocation":"bottom", "scrollSpeed":300, "timer":0, "startTimerOnClick":false, "nextButton":true, "tipAnimation":"fade", "tipAnimationFadeSpeed":300, "cookieMonster":false, "cookieName":"JoyRide", "cookieDomain":false, "tipContainer":"body", "inline":false, "tipContent":"#joyRideTipContent", "postRideCallback":$.noop, "postStepCallback":$.noop};
+    var options = $.extend(settings, options);
+    return this.each(function() {
+      if($(options.tipContent).length === 0) {
+        return
+      }
+      $(options.tipContent).hide();
+      var bodyOffset = $(options.tipContainer).children("*").first().position(), tipContent = $(options.tipContent + " > li"), count = skipCount = 0, prevCount = -1, timerIndicatorInstance, timerIndicatorTemplate = '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>';
+      var tipTemplate = function(tipClass, index, buttonText, self) {
+        return'<div class="joyride-tip-guide ' + tipClass + '" id="joyRidePopup' + index + '"><span class="joyride-nub"></span><div class="joyride-content-wrapper">' + $(self).html() + buttonText + '<a href="#close" class="joyride-close-tip"></a>' + timerIndicatorInstance + "</div></div>"
+      };
+      var tipLayout = function(tipClass, index, buttonText, self) {
+        if(index == 0 && settings.startTimerOnClick && settings.timer > 0 || settings.timer == 0) {
+          timerIndicatorInstance = ""
+        }else {
+          timerIndicatorInstance = timerIndicatorTemplate
+        }
+        if(!tipClass) {
+          tipClass = ""
+        }
+        if(buttonText) {
+          buttonText = '<a href="#" class="joyride-next-tip small nice radius yellow button">' + buttonText + "</a>"
+        }else {
+          buttonText = ""
+        }
+        if(settings.inline) {
+          $(tipTemplate(tipClass, index, buttonText, self)).insertAfter("#" + $(self).data("id"))
+        }else {
+          $(options.tipContainer).append(tipTemplate(tipClass, index, buttonText, self))
+        }
+      };
+      if(!settings.cookieMonster || !$.cookie(settings.cookieName)) {
+        tipContent.each(function(index) {
+          var buttonText = $(this).data("text"), tipClass = $(this).attr("class"), self = this;
+          if(settings.nextButton && !buttonText) {
+            buttonText = "Next"
+          }
+          if(settings.nextButton || !settings.nextButton && settings.startTimerOnClick) {
+            if($(this).attr("class")) {
+              tipLayout(tipClass, index, buttonText, self)
+            }else {
+              tipLayout(false, index, buttonText, self)
+            }
+          }else {
+            if(!settings.nextButton) {
+              if($(this).attr("class")) {
+                tipLayout(tipClass, index, "", self)
+              }else {
+                tipLayout(false, index, "", self)
+              }
+            }
+          }
+          $("#joyRidePopup" + index).hide()
+        })
+      }
+      showNextTip = function() {
+        var parentElementID = $(tipContent[count]).data("id"), parentElement = $("#" + parentElementID), opt = {};
+        $.each(($(tipContent[count]).data("options") || ":").split(";"), function(i, s) {
+          var p = s.split(":");
+          if(p.length == 2) {
+            opt[$.trim(p[0])] = $.trim(p[1])
+          }
+        });
+        var tipSettings = $.extend({}, settings, opt);
+        while(parentElement.offset() === null) {
+          count++;
+          skipCount++;
+          if(tipContent.length - 1 > prevCount) {
+            prevCount++
+          }
+          parentElementID = $(tipContent[count]).data("id"), parentElement = $("#" + parentElementID);
+          if($(tipContent).length < count) {
+            break
+          }
+        }
+        var windowHalf = Math.ceil($(window).height() / 2), currentTip = $("#joyRidePopup" + count), currentTipPosition = parentElement.offset(), currentParentHeight = parentElement.outerHeight(), currentTipHeight = currentTip.outerHeight(), nubHeight = Math.ceil($(".joyride-nub").outerHeight() / 2), tipOffset = 0;
+        if(currentTip.length === 0) {
+          return
+        }
+        if(count < tipContent.length) {
+          if(settings.tipAnimation == "pop") {
+            $(".joyride-timer-indicator").width(0);
+            if(settings.timer > 0) {
+              currentTip.show().children(".joyride-timer-indicator-wrap").children(".joyride-timer-indicator").animate({width:$(".joyride-timer-indicator-wrap").width()}, settings.timer)
+            }else {
+              currentTip.show()
+            }
+          }else {
+            if(settings.tipAnimation == "fade") {
+              $(".joyride-timer-indicator").width(0);
+              if(settings.timer > 0) {
+                currentTip.fadeIn(settings.tipAnimationFadeSpeed).children(".joyride-timer-indicator-wrap").children(".joyride-timer-indicator").animate({width:$(".joyride-timer-indicator-wrap").width()}, settings.timer)
+              }else {
+                currentTip.fadeIn(settings.tipAnimationFadeSpeed)
+              }
+            }
+          }
+          var nub = currentTip.children(".joyride-nub");
+          var left = currentTipPosition.left - bodyOffset.left;
+          nub.removeClass("bottom").removeClass("top").removeClass("right");
+          if($(window).scrollLeft() + $(window).width() < left + currentTip.width()) {
+            left -= currentTip.width() - nub.offset().left * 2;
+            nub.addClass("right")
+          }
+          if(Modernizr.mq("only screen and (max-width: 769px)")) {
+            if(tipSettings.tipLocation.indexOf("top") != -1) {
+              if(currentTipHeight >= currentTipPosition.top) {
+                currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight - bodyOffset.top});
+                nub.addClass("top").css({left:left})
+              }else {
+                currentTip.offset({top:currentTipPosition.top - (currentTipHeight + bodyOffset.top + nubHeight)});
+                nub.addClass("bottom").css({left:left})
+              }
+            }else {
+              currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight});
+              nub.addClass("top").css({left:left})
+            }
+          }else {
+            if(tipSettings.tipLocation == "top") {
+              if(currentTipHeight >= currentTipPosition.top) {
+                currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight - bodyOffset.top, left:left});
+                nub.addClass("top")
+              }else {
+                currentTip.offset({top:currentTipPosition.top - (currentTipHeight + bodyOffset.top + nubHeight), left:left});
+                nub.addClass("bottom")
+              }
+            }else {
+              if(tipSettings.tipLocation == "bottom") {
+                currentTip.offset({top:currentTipPosition.top + currentParentHeight + nubHeight, left:left});
+                nub.addClass("top")
+              }
+            }
+          }
+          if(tipSettings.tipLocation.indexOf("right") != -1) {
+            currentTip.offset({left:currentTipPosition.left - bodyOffset.left - currentTip.width() + parentElement.width()});
+            currentTip.children(".joyride-nub").addClass("right")
+          }
+          tipOffset = Math.ceil(currentTip.offset().top - windowHalf);
+          $("html, body").animate({scrollTop:tipOffset}, settings.scrollSpeed);
+          if(count > 0) {
+            if(skipCount > 0) {
+              var hideCount = prevCount - skipCount;
+              skipCount = 0
+            }else {
+              var hideCount = prevCount
+            }
+            if(settings.tipAnimation == "pop") {
+              $("#joyRidePopup" + hideCount).hide()
+            }else {
+              if(settings.tipAnimation == "fade") {
+                $("#joyRidePopup" + hideCount).fadeOut(settings.tipAnimationFadeSpeed)
+              }
+            }
+          }
+        }else {
+          if(tipContent.length - 1 < count) {
+            var hideCnt;
+            if(skipCount > 0) {
+              hideCount = prevCount - skipCount;
+              skipCount = 0
+            }else {
+              hideCount = prevCount
+            }
+            if(settings.cookieMonster == true) {
+              $.cookie(settings.cookieName, "ridden", {expires:365, domain:settings.cookieDomain})
+            }
+            if(settings.tipAnimation == "pop") {
+              $("#joyRidePopup" + hideCount).fadeTo(0, 0)
+            }else {
+              if(settings.tipAnimation == "fade") {
+                $("#joyRidePopup" + hideCount).fadeTo(settings.tipAnimationFadeSpeed, 0)
+              }
+            }
+          }
+        }
+        count++;
+        if(prevCount < 0) {
+          prevCount = 0
+        }else {
+          if(tipContent.length - 1 > prevCount) {
+            prevCount++
+          }
+        }
+        if(settings.postStepCallback != $.noop) {
+          settings.postStepCallback(prevCount)
+        }
+      };
+      if(!settings.inline || !settings.cookieMonster || !$.cookie(settings.cookieName)) {
+        $(window).resize(function() {
+          var parentElementID = $(tipContent[prevCount]).data("id"), currentTipPosition = $("#" + parentElementID).offset(), currentParentHeight = $("#" + parentElementID).outerHeight(), currentTipHeight = $("#joyRidePopup" + prevCount).outerHeight(), nubHeight = Math.ceil($(".joyride-nub").outerHeight() / 2);
+          if(Modernizr.mq("only screen and (max-width: 769px)")) {
+            if(settings.tipLocation == "bottom") {
+              $("#joyRidePopup" + prevCount).offset({top:currentTipPosition.top + currentParentHeight + nubHeight, left:0});
+              $("#joyRidePopup" + prevCount).children(".joyride-nub").addClass("top").removeClass("bottom").css({left:currentTipPosition.left - bodyOffset.left})
+            }else {
+              if(settings.tipLocation == "top") {
+                if(currentTipPosition.top <= currentTipHeight) {
+                  $("#joyRidePopup" + prevCount).offset({top:currentTipPosition.top + nubHeight + currentParentHeight, left:0});
+                  $("#joyRidePopup" + prevCount).children(".joyride-nub").addClass("top").removeClass("bottom").css({left:currentTipPosition.left - bodyOffset.left})
+                }else {
+                  $("#joyRidePopup" + prevCount).offset({top:currentTipPosition.top - (currentTipHeight + nubHeight), left:0});
+                  $("#joyRidePopup" + prevCount).children(".joyride-nub").addClass("bottom").removeClass("top").css({left:currentTipPosition.left - bodyOffset.left})
+                }
+              }
+            }
+          }else {
+            if(settings.tipLocation == "bottom") {
+              $("#joyRidePopup" + prevCount).offset({top:currentTipPosition.top + currentParentHeight + nubHeight, left:currentTipPosition.left});
+              $("#joyRidePopup" + prevCount).children(".joyride-nub").addClass("top").removeClass("bottom").css({left:""})
+            }else {
+              if(settings.tipLocation == "top") {
+                if(currentTipPosition.top <= currentTipHeight) {
+                  $("#joyRidePopup" + prevCount).offset({top:currentTipPosition.top + nubHeight + currentParentHeight, left:currentTipPosition.left});
+                  $("#joyRidePopup" + prevCount).children(".joyride-nub").addClass("top").removeClass("bottom").css({left:""})
+                }else {
+                  $("#joyRidePopup" + prevCount).offset({top:currentTipPosition.top - (currentTipHeight + nubHeight), left:currentTipPosition.left});
+                  $("#joyRidePopup" + prevCount).children(".joyride-nub").addClass("bottom").removeClass("top").css({left:""})
+                }
+              }
+            }
+          }
+        })
+      }
+      var interval_id = null, showTimerState = false;
+      if(!settings.startTimerOnClick && settings.timer > 0) {
+        showNextTip();
+        interval_id = setInterval(function() {
+          showNextTip()
+        }, settings.timer)
+      }else {
+        showNextTip()
+      }
+      var endTip = function(e, interval_id, cookie, self) {
+        e.preventDefault();
+        clearInterval(interval_id);
+        if(cookie) {
+          $.cookie(settings.cookieName, "ridden", {expires:365, domain:settings.cookieDomain})
+        }
+        $(self).parent().parent().hide();
+        if(settings.postRideCallback != $.noop) {
+          settings.postRideCallback()
+        }
+      };
+      $(".joyride-close-tip").click(function(e) {
+        endTip(e, interval_id, settings.cookieMonster, this)
+      });
+      $(".joyride-next-tip").click(function(e) {
+        e.preventDefault();
+        if(count >= tipContent.length) {
+          endTip(e, interval_id, settings.cookieMonster, this)
+        }
+        if(settings.timer > 0 && settings.startTimerOnClick) {
+          showNextTip();
+          clearInterval(interval_id);
+          interval_id = setInterval(function() {
+            showNextTip()
+          }, settings.timer)
+        }else {
+          if(settings.timer > 0 && !settings.startTimerOnClick) {
+            clearInterval(interval_id);
+            interval_id = setInterval(function() {
+              showNextTip()
+            }, settings.timer)
+          }else {
+            showNextTip()
+          }
+        }
+      })
+    })
+  }
+})(jQuery);
+jQuery.cookie = function(key, value, options) {
+  if(arguments.length > 1 && String(value) !== "[object Object]") {
+    options = jQuery.extend({}, options);
+    if(value === null || value === undefined) {
+      options.expires = -1
+    }
+    if(typeof options.expires === "number") {
+      var days = options.expires, t = options.expires = new Date;
+      t.setDate(t.getDate() + days)
+    }
+    value = String(value);
+    return document.cookie = [encodeURIComponent(key), "=", options.raw ? value : encodeURIComponent(value), options.expires ? "; expires=" + options.expires.toUTCString() : "", options.path ? "; path=" + options.path : "", options.domain ? "; domain=" + options.domain : "", options.secure ? "; secure" : ""].join("")
+  }
+  options = value || {};
+  var result, decode = options.raw ? function(s) {
+    return s
+  } : decodeURIComponent;
+  return(result = (new RegExp("(?:^|; )" + encodeURIComponent(key) + "=([^;]*)")).exec(document.cookie)) ? decode(result[1]) : null
+};
+window.Modernizr = function(a, b, c) {
+  function v(a) {
+    i.cssText = a
+  }
+  function w(a, b) {
+    return v(prefixes.join(a + ";") + (b || ""))
+  }
+  function x(a, b) {
+    return typeof a === b
+  }
+  function y(a, b) {
+    return!!~("" + a).indexOf(b)
+  }
+  function z(a, b, d) {
+    for(var e in a) {
+      var f = b[a[e]];
+      if(f !== c) {
+        return d === !1 ? a[e] : x(f, "function") ? f.bind(d || b) : f
+      }
+    }
+    return!1
+  }
+  var d = "2.5.3", e = {}, f = b.documentElement, g = "modernizr", h = b.createElement(g), i = h.style, j, k = {}.toString, l = {}, m = {}, n = {}, o = [], p = o.slice, q, r = function(a, c, d, e) {
+    var h, i, j, k = b.createElement("div"), l = b.body, m = l ? l : b.createElement("body");
+    if(parseInt(d, 10)) {
+      while(d--) {
+        j = b.createElement("div"), j.id = e ? e[d] : g + (d + 1), k.appendChild(j)
+      }
+    }
+    return h = ["&#173;", "<style>", a, "</style>"].join(""), k.id = g, (l ? k : m).innerHTML += h, m.appendChild(k), l || (m.style.background = "", f.appendChild(m)), i = c(k, a), l ? k.parentNode.removeChild(k) : m.parentNode.removeChild(m), !!i
+  }, s = function(b) {
+    var c = a.matchMedia || a.msMatchMedia;
+    if(c) {
+      return c(b).matches
+    }
+    var d;
+    return r("@media " + b + " { #" + g + " { position: absolute; } }", function(b) {
+      d = (a.getComputedStyle ? getComputedStyle(b, null) : b.currentStyle)["position"] == "absolute"
+    }), d
+  }, t = {}.hasOwnProperty, u;
+  !x(t, "undefined") && !x(t.call, "undefined") ? u = function(a, b) {
+    return t.call(a, b)
+  } : u = function(a, b) {
+    return b in a && x(a.constructor.prototype[b], "undefined")
+  }, Function.prototype.bind || (Function.prototype.bind = function(b) {
+    var c = this;
+    if(typeof c != "function") {
+      throw new TypeError;
+    }
+    var d = p.call(arguments, 1), e = function() {
+      if(this instanceof e) {
+        var a = function() {
+        };
+        a.prototype = c.prototype;
+        var f = new a, g = c.apply(f, d.concat(p.call(arguments)));
+        return Object(g) === g ? g : f
+      }
+      return c.apply(b, d.concat(p.call(arguments)))
+    };
+    return e
+  });
+  for(var A in l) {
+    u(l, A) && (q = A.toLowerCase(), e[q] = l[A](), o.push((e[q] ? "" : "no-") + q))
+  }
+  return v(""), h = j = null, e._version = d, e.mq = s, e.testStyles = r, e
+}(this, this.document);
+window.Modernizr = function(a, b, c) {
+  function x(a) {
+    j.cssText = a
+  }
+  function y(a, b) {
+    return x(m.join(a + ";") + (b || ""))
+  }
+  function z(a, b) {
+    return typeof a === b
+  }
+  function A(a, b) {
+    return!!~("" + a).indexOf(b)
+  }
+  function B(a, b, d) {
+    for(var e in a) {
+      var f = b[a[e]];
+      if(f !== c) {
+        return d === !1 ? a[e] : z(f, "function") ? f.bind(d || b) : f
+      }
+    }
+    return!1
+  }
+  var d = "2.5.2", e = {}, f = !0, g = b.documentElement, h = "modernizr", i = b.createElement(h), j = i.style, k, l = {}.toString, m = " -webkit- -moz- -o- -ms- ".split(" "), n = {}, o = {}, p = {}, q = [], r = q.slice, s, t = function(a, c, d, e) {
+    var f, i, j, k = b.createElement("div"), l = b.body, m = l ? l : b.createElement("body");
+    if(parseInt(d, 10)) {
+      while(d--) {
+        j = b.createElement("div"), j.id = e ? e[d] : h + (d + 1), k.appendChild(j)
+      }
+    }
+    return f = ["&#173;", "<style>", a, "</style>"].join(""), k.id = h, m.innerHTML += f, m.appendChild(k), l || g.appendChild(m), i = c(k, a), l ? k.parentNode.removeChild(k) : m.parentNode.removeChild(m), !!i
+  }, u = function(b) {
+    var c = a.matchMedia || a.msMatchMedia;
+    if(c) {
+      return c(b).matches
+    }
+    var d;
+    return t("@media " + b + " { #" + h + " { position: absolute; } }", function(b) {
+      d = (a.getComputedStyle ? getComputedStyle(b, null) : b.currentStyle)["position"] == "absolute"
+    }), d
+  }, v = {}.hasOwnProperty, w;
+  !z(v, "undefined") && !z(v.call, "undefined") ? w = function(a, b) {
+    return v.call(a, b)
+  } : w = function(a, b) {
+    return b in a && z(a.constructor.prototype[b], "undefined")
+  }, Function.prototype.bind || (Function.prototype.bind = function(b) {
+    var c = this;
+    if(typeof c != "function") {
+      throw new TypeError;
+    }
+    var d = r.call(arguments, 1), e = function() {
+      if(this instanceof e) {
+        var a = function() {
+        };
+        a.prototype = c.prototype;
+        var f = new a, g = c.apply(f, d.concat(r.call(arguments)));
+        return Object(g) === g ? g : f
+      }
+      return c.apply(b, d.concat(r.call(arguments)))
+    };
+    return e
+  });
+  var C = function(c, d) {
+    var f = c.join(""), g = d.length;
+    t(f, function(c, d) {
+      var f = b.styleSheets[b.styleSheets.length - 1], h = f ? f.cssRules && f.cssRules[0] ? f.cssRules[0].cssText : f.cssText || "" : "", i = c.childNodes, j = {};
+      while(g--) {
+        j[i[g].id] = i[g]
+      }
+      e.touch = "ontouchstart" in a || a.DocumentTouch && b instanceof DocumentTouch || (j.touch && j.touch.offsetTop) === 9
+    }, g, d)
+  }([, ["@media (", m.join("touch-enabled),("), h, ")", "{#touch{top:9px;position:absolute}}"].join("")], [, "touch"]);
+  n.touch = function() {
+    return e.touch
+  };
+  for(var D in n) {
+    w(n, D) && (s = D.toLowerCase(), e[s] = n[D](), q.push((e[s] ? "" : "no-") + s))
+  }
+  return e.addTest = function(a, b) {
+    if(typeof a == "object") {
+      for(var d in a) {
+        w(a, d) && e.addTest(d, a[d])
+      }
+    }else {
+      a = a.toLowerCase();
+      if(e[a] !== c) {
+        return e
+      }
+      b = typeof b == "function" ? b() : b, g.className += " " + (b ? "" : "no-") + a, e[a] = b
+    }
+    return e
+  }, x(""), i = k = null, e._version = d, e._prefixes = m, e.mq = u, e.testStyles = t, g.className = g.className.replace(/(^|\s)no-js(\s|$)/, "$1$2") + (f ? " js " + q.join(" ") : ""), e
+}(this, this.document), function(a, b, c) {
+  function d(a) {
+    return o.call(a) == "[object Function]"
+  }
+  function e(a) {
+    return typeof a == "string"
+  }
+  function f() {
+  }
+  function g(a) {
+    return!a || a == "loaded" || a == "complete" || a == "uninitialized"
+  }
+  function h() {
+    var a = p.shift();
+    q = 1, a ? a.t ? m(function() {
+      (a.t == "c" ? B.injectCss : B.injectJs)(a.s, 0, a.a, a.x, a.e, 1)
+    }, 0) : (a(), h()) : q = 0
+  }
+  function i(a, c, d, e, f, i, j) {
+    function k(b) {
+      if(!o && g(l.readyState) && (u.r = o = 1, !q && h(), l.onload = l.onreadystatechange = null, b)) {
+        a != "img" && m(function() {
+          t.removeChild(l)
+        }, 50);
+        for(var d in y[c]) {
+          y[c].hasOwnProperty(d) && y[c][d].onload()
+        }
+      }
+    }
+    var j = j || B.errorTimeout, l = {}, o = 0, r = 0, u = {t:d, s:c, e:f, a:i, x:j};
+    y[c] === 1 && (r = 1, y[c] = [], l = b.createElement(a)), a == "object" ? l.data = c : (l.src = c, l.type = a), l.width = l.height = "0", l.onerror = l.onload = l.onreadystatechange = function() {
+      k.call(this, r)
+    }, p.splice(e, 0, u), a != "img" && (r || y[c] === 2 ? (t.insertBefore(l, s ? null : n), m(k, j)) : y[c].push(l))
+  }
+  function j(a, b, c, d, f) {
+    return q = 0, b = b || "j", e(a) ? i(b == "c" ? v : u, a, b, this.i++, c, d, f) : (p.splice(this.i++, 0, a), p.length == 1 && h()), this
+  }
+  function k() {
+    var a = B;
+    return a.loader = {load:j, i:0}, a
+  }
+  var l = b.documentElement, m = a.setTimeout, n = b.getElementsByTagName("script")[0], o = {}.toString, p = [], q = 0, r = "MozAppearance" in l.style, s = r && !!b.createRange().compareNode, t = s ? l : n.parentNode, l = !!b.attachEvent, u = r ? "object" : l ? "script" : "img", v = l ? "script" : u, w = Array.isArray || function(a) {
+    return o.call(a) == "[object Array]"
+  }, x = [], y = {}, z = {timeout:function(a, b) {
+    return b.length && (a.timeout = b[0]), a
+  }}, A, B;
+  B = function(a) {
+    function b(a) {
+      var a = a.split("!"), b = x.length, c = a.pop(), d = a.length, c = {url:c, origUrl:c, prefixes:a}, e, f, g;
+      for(f = 0;f < d;f++) {
+        g = a[f].split("="), (e = z[g.shift()]) && (c = e(c, g))
+      }
+      for(f = 0;f < b;f++) {
+        c = x[f](c)
+      }
+      return c
+    }
+    function g(a, e, f, g, i) {
+      var j = b(a), l = j.autoCallback;
+      j.url.split(".").pop().split("?").shift(), j.bypass || (e && (e = d(e) ? e : e[a] || e[g] || e[a.split("/").pop().split("?")[0]] || h), j.instead ? j.instead(a, e, f, g, i) : (y[j.url] ? j.noexec = !0 : y[j.url] = 1, f.load(j.url, j.forceCSS || !j.forceJS && "css" == j.url.split(".").pop().split("?").shift() ? "c" : c, j.noexec, j.attrs, j.timeout), (d(e) || d(l)) && f.load(function() {
+        k(), e && e(j.origUrl, i, g), l && l(j.origUrl, i, g), y[j.url] = 2
+      })))
+    }
+    function i(a, b) {
+      function c(a, c) {
+        if(a) {
+          if(e(a)) {
+            c || (j = function() {
+              var a = [].slice.call(arguments);
+              k.apply(this, a), l()
+            }), g(a, j, b, 0, h)
+          }else {
+            if(Object(a) === a) {
+              for(n in m = function() {
+                var b = 0, c;
+                for(c in a) {
+                  a.hasOwnProperty(c) && b++
+                }
+                return b
+              }(), a) {
+                a.hasOwnProperty(n) && (!c && !--m && (d(j) ? j = function() {
+                  var a = [].slice.call(arguments);
+                  k.apply(this, a), l()
+                } : j[n] = function(a) {
+                  return function() {
+                    var b = [].slice.call(arguments);
+                    a && a.apply(this, b), l()
+                  }
+                }(k[n])), g(a[n], j, b, n, h))
+              }
+            }
+          }
+        }else {
+          !c && l()
+        }
+      }
+      var h = !!a.test, i = a.load || a.both, j = a.callback || f, k = j, l = a.complete || f, m, n;
+      c(h ? a.yep : a.nope, !!i), i && c(i)
+    }
+    var j, l, m = this.yepnope.loader;
+    if(e(a)) {
+      g(a, 0, m, 0)
+    }else {
+      if(w(a)) {
+        for(j = 0;j < a.length;j++) {
+          l = a[j], e(l) ? g(l, 0, m, 0) : w(l) ? B(l) : Object(l) === l && i(l, m)
+        }
+      }else {
+        Object(a) === a && i(a, m)
+      }
+    }
+  }, B.addPrefix = function(a, b) {
+    z[a] = b
+  }, B.addFilter = function(a) {
+    x.push(a)
+  }, B.errorTimeout = 1E4, b.readyState == null && b.addEventListener && (b.readyState = "loading", b.addEventListener("DOMContentLoaded", A = function() {
+    b.removeEventListener("DOMContentLoaded", A, 0), b.readyState = "complete"
+  }, 0)), a.yepnope = k(), a.yepnope.executeStack = h, a.yepnope.injectJs = function(a, c, d, e, i, j) {
+    var k = b.createElement("script"), l, o, e = e || B.errorTimeout;
+    k.src = a;
+    for(o in d) {
+      k.setAttribute(o, d[o])
+    }
+    c = j ? h : c || f, k.onreadystatechange = k.onload = function() {
+      !l && g(k.readyState) && (l = 1, c(), k.onload = k.onreadystatechange = null)
+    }, m(function() {
+      l || (l = 1, c(1))
+    }, e), i ? k.onload() : n.parentNode.insertBefore(k, n)
+  }, a.yepnope.injectCss = function(a, c, d, e, g, i) {
+    var e = b.createElement("link"), j, c = i ? h : c || f;
+    e.href = a, e.rel = "stylesheet", e.type = "text/css";
+    for(j in d) {
+      e.setAttribute(j, d[j])
+    }
+    g || (n.parentNode.insertBefore(e, n), m(c, 0))
+  }
+}(this, document), Modernizr.load = function() {
+  yepnope.apply(window, [].slice.call(arguments, 0))
+}, Modernizr.addTest("ie8compat", function() {
+  return!window.addEventListener && document.documentMode && document.documentMode === 7
+});
+VISH.User = function(V, $, undefined) {
   var user;
   var init = function(options) {
     user = new Object;
@@ -9682,6 +10272,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Events.init();
     V.EventsNotifier.init();
     V.VideoPlayer.init();
+    _addTutorialEvents();
     V.Themes.loadTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
@@ -9693,6 +10284,17 @@ VISH.SlideManager = function(V, $, undefined) {
     if(!V.Status.getIsEmbed()) {
       window.focus()
     }
+  };
+  var _addTutorialEvents = function() {
+    $(document).on("click", "#tab_quiz_session_help", function() {
+      V.Tour.startTourWithId("quiz_session_help", "bottom")
+    });
+    $(document).on("click", "#tab_quiz_stats_help", function() {
+      V.Tour.startTourWithId("quiz_stats_help", "bottom")
+    });
+    $(document).on("click", "#help_addslides_selection", function() {
+      V.Tour.startTourWithId("addslides_help", "bottom")
+    })
   };
   var toggleFullScreen = function() {
     if(V.Status.isSlaveMode()) {
@@ -13131,5 +13733,23 @@ VISH.Recommendations = function(V, $, undefined) {
     $("#fancyRec").trigger("click")
   };
   return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox}
+}(VISH, jQuery);
+VISH.Tour = function(V, $, undefined) {
+  var startTourWithId = function(helpid, tipLocation) {
+    clear();
+    var loc;
+    if(tipLocation === undefined) {
+      loc = "top"
+    }else {
+      loc = tipLocation
+    }
+    $(window).joyride({"tipLocation":loc, "tipContent":"#" + helpid, "postRideCallback":V.Tour.clear})
+  };
+  var clear = function() {
+    $(".joyride-tip-guide").each(function() {
+      $(this).remove()
+    })
+  };
+  return{clear:clear, startTourWithId:startTourWithId}
 }(VISH, jQuery);
 

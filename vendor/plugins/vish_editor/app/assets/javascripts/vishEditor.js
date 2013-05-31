@@ -34,8 +34,8 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo", 
 "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", 
 "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", 
-"i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved."}}, 
-"standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", 
+"i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.VERSION = "0.5";
 VISH.AUTHORS = "GING";
@@ -11531,31 +11531,31 @@ VISH.Editor = function(V, $, undefined) {
   };
   var _addTutorialEvents = function() {
     $(document).on("click", "#start_tutorial", function() {
-      V.Editor.Tour.startTourWithId("initial_screen_help", "top")
+      V.Tour.startTourWithId("initial_screen_help", "top")
     });
     $(document).on("click", "#help_right", function() {
-      V.Editor.Tour.startTourWithId("menubar_help", "top")
+      V.Tour.startTourWithId("menubar_help", "top")
     });
     $(document).on("click", "#help_flashcard", function() {
-      V.Editor.Tour.startTourWithId("fc_help", "top")
+      V.Tour.startTourWithId("fc_help", "top")
     });
     $(document).on("click", "#help_vtour", function() {
-      V.Editor.Tour.startTourWithId("vt_help", "top")
+      V.Tour.startTourWithId("vt_help", "top")
     });
     $(document).on("click", ".help_in_template", function() {
-      V.Editor.Tour.startTourWithId("template_help", "bottom")
+      V.Tour.startTourWithId("template_help", "bottom")
     });
     $(document).on("click", ".help_addslides_selection", function() {
       V.Editor.Tour.startTourWithId("help_addslides_selection_help", "bottom")
     });
     $(document).on("click", "#tab_quizes_help", function() {
-      V.Editor.Tour.startTourWithId("quiz_help", "bottom")
+      V.Tour.startTourWithId("quiz_help", "bottom")
     });
     $(document).on("click", "#help_themes_selection", function() {
-      V.Editor.Tour.startTourWithId("themes_help", "bottom")
+      V.Tour.startTourWithId("themes_help", "bottom")
     });
     $(document).on("click", "#help_template_selection", function() {
-      V.Editor.Tour.startTourWithId("help_template_selection_help", "bottom")
+      V.Tour.startTourWithId("help_template_selection_help", "bottom")
     });
     $(document).on("click", "#help_pedagogical_selection", function() {
       V.Editor.Tour.startTourWithId("help_pedagogical_selection_help", "bottom")
@@ -11567,46 +11567,46 @@ VISH.Editor = function(V, $, undefined) {
       V.Editor.Tour.startTourWithId("help_smartcard_selection_help", "bottom")
     });
     $(document).on("click", "#tab_pic_from_url_help", function() {
-      V.Editor.Tour.startTourWithId("images_fancy_tabs_id_help", "top")
+      V.Tour.startTourWithId("images_fancy_tabs_id_help", "top")
     });
     $(document).on("click", "#tab_pic_upload_help", function() {
-      V.Editor.Tour.startTourWithId("upload_picture_form_help", "top")
+      V.Tour.startTourWithId("upload_picture_form_help", "top")
     });
     $(document).on("click", "#tab_pic_repo_help", function() {
-      V.Editor.Tour.startTourWithId("search_picture_help", "bottom")
+      V.Tour.startTourWithId("search_picture_help", "bottom")
     });
     $(document).on("click", "#tab_pic_flikr_help", function() {
-      V.Editor.Tour.startTourWithId("search_flickr_fancy_help", "bottom")
+      V.Tour.startTourWithId("search_flickr_fancy_help", "bottom")
     });
     $(document).on("click", "#tab_object_from_url_help", function() {
-      V.Editor.Tour.startTourWithId("object_fancy_tabs_id_help", "top")
+      V.Tour.startTourWithId("object_fancy_tabs_id_help", "top")
     });
     $(document).on("click", "#tab_object_from_web_help", function() {
-      V.Editor.Tour.startTourWithId("object_fancy_tabs_web_help", "top")
+      V.Tour.startTourWithId("object_fancy_tabs_web_help", "top")
     });
     $(document).on("click", "#tab_object_upload_help", function() {
-      V.Editor.Tour.startTourWithId("upload_object_form_help", "top")
+      V.Tour.startTourWithId("upload_object_form_help", "top")
     });
     $(document).on("click", "#tab_object_repo_help", function() {
-      V.Editor.Tour.startTourWithId("search_object_help", "bottom")
+      V.Tour.startTourWithId("search_object_help", "bottom")
     });
     $(document).on("click", "#tab_object_snapshot_help", function() {
-      V.Editor.Tour.startTourWithId("object_fancy_tabs_websnapshot_help", "bottom")
+      V.Tour.startTourWithId("object_fancy_tabs_websnapshot_help", "bottom")
     });
     $(document).on("click", "#tab_video_from_url_help", function() {
-      V.Editor.Tour.startTourWithId("video_fancy_tabs_id_help", "top")
+      V.Tour.startTourWithId("video_fancy_tabs_id_help", "top")
     });
     $(document).on("click", "#tab_video_repo_help", function() {
-      V.Editor.Tour.startTourWithId("search_video_help", "top")
+      V.Tour.startTourWithId("search_video_help", "top")
     });
     $(document).on("click", "#tab_video_youtube_help", function() {
-      V.Editor.Tour.startTourWithId("search_youtube_fancy_help", "bottom")
+      V.Tour.startTourWithId("search_youtube_fancy_help", "bottom")
     });
     $(document).on("click", "#tab_video_vimeo_help", function() {
-      V.Editor.Tour.startTourWithId("search_vimeo_fancy_help", "bottom")
+      V.Tour.startTourWithId("search_vimeo_fancy_help", "bottom")
     });
     $(document).on("click", "#tab_live_webcam_help", function() {
-      V.Editor.Tour.startTourWithId("tab_live_webcam_id", "bottom")
+      V.Tour.startTourWithId("tab_live_webcam_id", "bottom")
     })
   };
   var _addEditorEnterLeaveEvents = function() {
@@ -11662,6 +11662,7 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.Slides.addSlide(slide);
     $.fancybox.close();
     V.Slides.setCurrentSlideNumber(V.Slides.getCurrentSlideNumber() + 1);
+    V.Editor.Slides.addTooltipsToAddedSlide();
     V.Editor.Slides.redrawSlides();
     V.Editor.Thumbnails.redrawThumbnails();
     setTimeout(function() {
@@ -18156,7 +18157,15 @@ VISH.Editor.Slides = function(V, $, undefined) {
       V.Editor.Tools.Menu.init()
     }
   };
-  return{showSlides:showSlides, hideSlides:hideSlides, redrawSlides:redrawSlides, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, copySlideWithNumber:copySlideWithNumber, addSlide:addSlide, removeSlide:removeSlide, copyTextAreasOfSlide:copyTextAreasOfSlide}
+  var addTooltipsToAddedSlide = function() {
+    var last_slide = $(".slides article").filter(":last");
+    var tooltip = "<span class='zone_tooltip'>" + V.Editor.I18n.getTrans("i.ZoneTooltip") + "</span>";
+    var zones = last_slide.find(".editable");
+    for(var i = 0;i < zones.length;i++) {
+      $(last_slide.find(".editable")[i]).append(tooltip)
+    }
+  };
+  return{showSlides:showSlides, hideSlides:hideSlides, redrawSlides:redrawSlides, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, copySlideWithNumber:copySlideWithNumber, addSlide:addSlide, removeSlide:removeSlide, addTooltipsToAddedSlide:addTooltipsToAddedSlide, copyTextAreasOfSlide:copyTextAreasOfSlide}
 }(VISH, jQuery);
 VISH.Editor.Themes = function(V, $, undefined) {
   var initialized = false;
@@ -18664,24 +18673,6 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   };
   return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, 
   preview:preview, help:help, switchToPresentation:switchToPresentation, switchToFlashcard:switchToFlashcard, switchToVirtualTour:switchToVirtualTour}
-}(VISH, jQuery);
-VISH.Editor.Tour = function(V, $, undefined) {
-  var startTourWithId = function(helpid, tipLocation) {
-    clear();
-    var loc;
-    if(tipLocation === undefined) {
-      loc = "top"
-    }else {
-      loc = tipLocation
-    }
-    $(window).joyride({"tipLocation":loc, "tipContent":"#" + helpid, "postRideCallback":V.Editor.Tour.clear})
-  };
-  var clear = function() {
-    $(".joyride-tip-guide").each(function() {
-      $(this).remove()
-    })
-  };
-  return{clear:clear, startTourWithId:startTourWithId}
 }(VISH, jQuery);
 VISH.Editor.Utils.Loader = function(V, $, undefined) {
   var _loadObjectsInEditor = function(objects) {
@@ -20928,6 +20919,7 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Events.init();
     V.EventsNotifier.init();
     V.VideoPlayer.init();
+    _addTutorialEvents();
     V.Themes.loadTheme(presentation.theme);
     mySlides = presentation.slides;
     V.Presentation.init(mySlides);
@@ -20939,6 +20931,17 @@ VISH.SlideManager = function(V, $, undefined) {
     if(!V.Status.getIsEmbed()) {
       window.focus()
     }
+  };
+  var _addTutorialEvents = function() {
+    $(document).on("click", "#tab_quiz_session_help", function() {
+      V.Tour.startTourWithId("quiz_session_help", "bottom")
+    });
+    $(document).on("click", "#tab_quiz_stats_help", function() {
+      V.Tour.startTourWithId("quiz_stats_help", "bottom")
+    });
+    $(document).on("click", "#help_addslides_selection", function() {
+      V.Tour.startTourWithId("addslides_help", "bottom")
+    })
   };
   var toggleFullScreen = function() {
     if(V.Status.isSlaveMode()) {
@@ -21651,6 +21654,24 @@ VISH.Themes = function(V, $, undefined) {
     })
   };
   return{loadTheme:loadTheme}
+}(VISH, jQuery);
+VISH.Tour = function(V, $, undefined) {
+  var startTourWithId = function(helpid, tipLocation) {
+    clear();
+    var loc;
+    if(tipLocation === undefined) {
+      loc = "top"
+    }else {
+      loc = tipLocation
+    }
+    $(window).joyride({"tipLocation":loc, "tipContent":"#" + helpid, "postRideCallback":V.Tour.clear})
+  };
+  var clear = function() {
+    $(".joyride-tip-guide").each(function() {
+      $(this).remove()
+    })
+  };
+  return{clear:clear, startTourWithId:startTourWithId}
 }(VISH, jQuery);
 VISH.User = function(V, $, undefined) {
   var user;
