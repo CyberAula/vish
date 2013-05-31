@@ -22,7 +22,7 @@ class EmbedsController < ApplicationController
   private
 
   def allowed_params
-    [:fulltext, :width, :height, :live]
+    [:fulltext, :width, :height, :live, :language, :age_min, :age_max]
   end
 
   def hack_auth
