@@ -25,6 +25,7 @@ class Document < ActiveRecord::Base
   
   class << self 
     def new(*args)
+
       if !(self.name == "Document")
         return super
        end 
