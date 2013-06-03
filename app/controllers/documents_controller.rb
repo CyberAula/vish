@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new, :edit, :create, :update]
   before_filter :profile_subject!, :only => :index
-
+  
   def index
     respond_to do |format|
       format.html {
@@ -70,7 +70,7 @@ class DocumentsController < ApplicationController
   private
 
   def allowed_params
-    [:file]
+    [:file, :language, :age_min, :age_max]
   end
 
   class << self

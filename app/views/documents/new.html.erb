@@ -188,7 +188,7 @@
 
 <!--  -->
 
-<!-- FILES TAB2 -->
+<!-- LINKS TAB2 -->
     <div id="docs-2" class="tab-pane ">
       <div id="formulate-new">
         <div class="box_gray1 ">
@@ -249,7 +249,7 @@
                     <label class="text-tittle" for="language">
                       <%= f.label t('lang.title') %>
                     </label>
-                    <select class="" name="document[language]">
+                    <select class="" name="link[language]">
                       <option value="" selected="1">(<%= t('lang.independent') %>)</option>
                       <option value="de">Deutsch</option>
                       <option value="en">English</option>
@@ -270,8 +270,8 @@
                       </div>
                       <div class="slider-new">
                         <input type="text" class="age"/>
-                        <input type="hidden"  name="document[age_min]"/>
-                        <input type="hidden"  name="document[age_max]"/>
+                        <input type="hidden"  name="link[age_min]"/>
+                        <input type="hidden"  name="link[age_max]"/>
                         <div class="slider-new-range position-new">
                           <div class="slider-range"></div>
                         </div>
@@ -299,10 +299,7 @@
 
 
 
-<!-- EMBED TAB -->
-
-
-<!-- FILES TAB1 -->
+<!-- EMBED TAB3 -->
 
     <div id="docs-3" class="tab-pane ">
       <div id="formulate-new">
@@ -348,7 +345,7 @@
                       <%= f.label t('document.info.tags.title') %>
                     </label>
 
-                    <input type="hidden" name="document[tag_list][]"></input>
+                    <input type="hidden" name="embed[tag_list][]"></input>
                     <div class="tagBoxDocument span">
                        <ul class="tagList"></ul>
                      </div>
@@ -362,7 +359,7 @@
                     <label class="text-tittle" for="language">
                       <%= f.label t('lang.title') %>
                     </label>
-                    <select class="" name="document[language]">
+                    <select class="" name="embed[language]">
                       <option value="" selected="1">(<%= t('lang.independent') %>)</option>
                       <option value="de">Deutsch</option>
                       <option value="en">English</option>
@@ -383,8 +380,8 @@
                       </div>
                       <div class="slider-new">
                         <input type="text" class="age"/>
-                        <input type="hidden"  name="document[age_min]"/>
-                        <input type="hidden"  name="document[age_max]"/>
+                        <input type="hidden"  name="embed[age_min]"/>
+                        <input type="hidden"  name="embed[age_max]"/>
                         <div class="slider-new-range position-new">
                           <div class="slider-range"></div>
                         </div>
@@ -467,11 +464,12 @@
         resetFields()
       });
 
-			var allButtons = $("input[value='Save'][type='submit'][name='commit'].button");
+			var allButtons = $("input[value='Save'][type='submit'][name='commit']");
 
       $('#new_file_only_link_url').change(urlDetect).keyup(urlDetect);
 
 			$(allButtons).click(function(event) {
+
         var tab = $(event.target).attr("tab");
         if(!validateForm(tab)){
           event.preventDefault();
@@ -482,23 +480,23 @@
           case "file":
             var tagList = $("#docs-1 .tagList")
 						var slider = $("#docs-1 .slider-range")
-						$("input[name='document[age_min]']").val($(slider).slider( "values", 0 ));
-						$("input[name='document[age_max]']").val($(slider).slider( "values", 1 ));
-            $("input[name='document[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+						$("#docs-1 input[name='document[age_min]']").val($(slider).slider( "values", 0 ));
+						$("#docs-1 input[name='document[age_max]']").val($(slider).slider( "values", 1 ));
+            $("#docs-1 input[name='document[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
             break;
           case "link":
             var tagList = $("#docs-2 .tagList")
 						var slider = $("#docs-2 .slider-range")
-						$("input[name='link[age_min]']").val($(slider).slider( "values", 0 ));
-						$("input[name='link[age_max]']").val($(slider).slider( "values", 1 ));
-            $("input[name='link[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+						$("#docs-2 input[name='link[age_min]']").val($(slider).slider( "values", 0 ));
+						$("#docs-2 input[name='link[age_max]']").val($(slider).slider( "values", 1 ));
+            $("#docs-2 input[name='link[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
             break;
           case "embed":
            var tagList = $("#docs-3 .tagList")
 						var slider = $("#docs-3 .slider-range")
-						$("input[name='embed[age_min]']").val($(slider).slider( "values", 0 ));
-						$("input[name='embed[age_max]']").val($(slider).slider( "values", 1 ));
-            $("input[name='embed[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+						$("#docs-3 input[name='embed[age_min]']").val($(slider).slider( "values", 0 ));
+						$("#docs-3 input[name='embed[age_max]']").val($(slider).slider( "values", 1 ));
+            $("#docs-3 input[name='embed[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
             break;
           default :
             event.preventDefault();
