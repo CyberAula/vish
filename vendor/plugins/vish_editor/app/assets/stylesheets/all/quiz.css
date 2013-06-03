@@ -91,6 +91,7 @@ img.mcCheckbox, img.tfCheckbox{
     width: 90%;
     max-height: 32px;
     max-width: 32px;
+    cursor: pointer;
 }
 
 .delete_quiz_option_mc, .delete_quiz_option_tf {

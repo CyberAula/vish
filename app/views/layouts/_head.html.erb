@@ -50,16 +50,7 @@
       $(".flash_close").on("click", function(){
         $(event.target).parent(".alert").hide("slow");
       });
-      setTimeout(function () { 
-        if($(".alert").is(':hover')){
-          //if it is hover, check again in 6 secs. If still hover do not close it.
-          setTimeout(function () {  if(!$(".alert").is(':hover')){ $(".alert").hide("slow"); } }, 6000);
-        }
-        else{
-          $(".alert").hide("slow"); 
-        }
-      }, 8000);
-
+      
       <%= yield :javascript%>
     });
   </script>

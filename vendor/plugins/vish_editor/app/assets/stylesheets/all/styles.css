@@ -1027,6 +1027,24 @@ position: absolute;
   top: 265px;
 }
 
+.tut_quiz {
+width: 64%;
+left: 21%;
+  position: absolute;
+  top: 25%;
+}
+
+.joyride-tip-guide p {
+font-size: 0.9em !important;
+line-height: 18px;
+}
+
+.joyride-tip-guide h2 {
+font-size: 1.3em !important;
+color: #0066ff;
+padding-bottom: 5px;
+}
+
 .tut_with_arrow span.joyride-nub {
   border-bottom-color: transparent;
   border-left-color: transparent;
@@ -1043,4 +1061,38 @@ position: absolute;
 
 .tut_without_arrow span.joyride-nub{
   display: none;
+}
+
+.addslidestut {
+  top: 12px;
+left: 100px;
+display: block;
+width: 674px;
+height: 511px;
+}
+
+.selectedslidetut {
+top: 278px;
+left: 388px;
+position: absolute;
+float: left;
+width: 30px;
+height: 20px;
+border: 1px solid green !important;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(52, 186, 74, 0.6) !important;
+-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(52, 186, 74, 0.6) !important;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(52, 186, 74, 0.6) !important;
+}
+
+.unselectedslidetut {
+top: 320px;
+left: 388px;
+position: absolute;
+float: left;
+  width: 30px;
+  height: 20px;
+  border: 1px solid red !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(191, 21, 21, 0.6) !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(191, 21, 21, 0.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 20px rgba(191, 21, 21, 0.6) !important;
 }

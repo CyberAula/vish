@@ -2019,4 +2019,57 @@ div.poi_label_container{
 	padding: 4px 4px;
 }
 
+.zone_tooltip {
+opacity: 0.5;
+font-family: arial;
+color: #fff;
+font-weight: bold;
+
+ text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+[size=small] .zone_tooltip{
+	font-size: 2.2em;
+	line-height: 1em;
+}
+
+[size=medium] .zone_tooltip{
+	font-size: 2.2em;
+	line-height: 1em;
+}
+
+[size=large] .zone_tooltip{
+	font-size: 3.2em;
+	line-height: 1em;
+	margin: 17%;
+	float: left;
+}
+
+.t13_circle .zone_tooltip{
+margin: 37% 0 0 25%;
+vertical-align: middle;
+width: 50%;
+height: 100%;
+float: left;
+}
+
+.t14_circle1 .zone_tooltip, .t14_circle2 .zone_tooltip, .t14_circle3 .zone_tooltip{
+margin: 24% 0 0 9%;
+vertical-align: middle;
+width: 84%;
+height: 100%;
+float: left;
+}
+
 
