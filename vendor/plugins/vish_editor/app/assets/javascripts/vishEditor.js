@@ -11106,6 +11106,8 @@ VISH.Utils = function(V, undefined) {
         case V.Constant.VTOUR:
           slide = _fixIdsVTourSlide(slide);
           break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
         default:
           return
       }
@@ -15896,8 +15898,18 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
+  var downloadJSON = function(json) {
+    console.log("downloadJSON");
+    console.log(json);
+    $.ajax({async:false, type:"POST", url:"/downloadJSON.json", dataType:"json", data:{"json":JSON.stringify(json)}, success:function(data) {
+      console.log("downloadJSON");
+      console.log(data)
+    }, error:function(xhr, ajaxOptions, thrownError) {
+      console.log("downloadJSON error")
+    }})
+  };
   return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, 
-  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails}
+  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails, downloadJSON:downloadJSON}
 }(VISH, jQuery);
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;
@@ -17441,7 +17453,11 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
     }(file);
     reader.readAsText(file)
   };
-  return{init:init, onLoadTab:onLoadTab}
+  var exportToJSON = function() {
+    var presentation = V.Editor.savePresentation();
+    V.Editor.API.downloadJSON(presentation)
+  };
+  return{init:init, onLoadTab:onLoadTab, exportToJSON:exportToJSON}
 }(VISH, jQuery);
 VISH.Editor.Preview = function(V, $, undefined) {
   var presentation_preview = null;
@@ -18715,6 +18731,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var insertJSON = function() {
     $("#addJSONFancybox").trigger("click")
   };
+  var exportToJSON = function() {
+    VISH.Editor.Presentation.File.exportToJSON()
+  };
   var _hideMenuAfterAction = function() {
     if(_hoverMenu) {
       $("#menu").hide();
@@ -18723,8 +18742,8 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       }, 50)
     }
   };
-  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertJSON:insertJSON, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, 
-  preview:preview, help:help, switchToPresentation:switchToPresentation, switchToFlashcard:switchToFlashcard, switchToVirtualTour:switchToVirtualTour}
+  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertJSON:insertJSON, exportToJSON:exportToJSON, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, 
+  onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, switchToPresentation:switchToPresentation, switchToFlashcard:switchToFlashcard, switchToVirtualTour:switchToVirtualTour}
 }(VISH, jQuery);
 VISH.Editor.Utils.Loader = function(V, $, undefined) {
   var _loadObjectsInEditor = function(objects) {

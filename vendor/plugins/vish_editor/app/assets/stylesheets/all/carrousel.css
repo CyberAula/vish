@@ -356,8 +356,6 @@ img.carrousel_element_single_row_slides{
 img.carrousel_element_single_row_slides:hover{
   opacity: 0.8;
   cursor: pointer;
-  width: 64px;
-  height: 54px;
 }
 
 img.carrousel_element_single_row_slides:active{
