@@ -35,6 +35,9 @@ Vish::Application.routes.draw do
   match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
 
+  #Download JSON
+  match '/downloadExcursionJSON' => 'excursions#downloadJSON'
+
   resources :excursions
   resources :slides
   resources :embeds

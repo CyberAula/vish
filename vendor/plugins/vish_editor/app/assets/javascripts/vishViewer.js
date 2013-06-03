@@ -10499,6 +10499,8 @@ VISH.Utils = function(V, undefined) {
         case V.Constant.VTOUR:
           slide = _fixIdsVTourSlide(slide);
           break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
         default:
           return
       }

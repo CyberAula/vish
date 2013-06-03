@@ -20,7 +20,7 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended, :evaluate, :last_slide]
+  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadJSON]
   include SocialStream::Controllers::Objects
   include HomeHelper
 
@@ -181,6 +181,12 @@ class ExcursionsController < ApplicationController
     respond_to do |format|  
       format.json { render :json => excursions}
     end
+  end
+
+  def downloadJSON
+    binding.pry
+    # send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
+    render :text => "Ok"
   end
 
   private
