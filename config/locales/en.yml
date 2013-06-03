@@ -203,6 +203,8 @@ en:
   navigation:
     home: "Home"
   no_bio: "This user has not uploaded a biography."
+  notice:
+    fill_profile: "You don't have filled in your profile with your areas of interest and occupation. With them we will be able to place better personalized recommendations for you. Please fill in your profile <a href='%{url}'>here</a>."
   notification:
     config_html: "If you want to modify the notification service. Click <a href='%{url}'>here</a>"
     makefriend:

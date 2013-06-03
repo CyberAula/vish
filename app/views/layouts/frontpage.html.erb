@@ -8,10 +8,7 @@
       <section class="container">
         <header class="header">
           <%= render :partial => "layouts/header_frontpage" %>
-        </header>
-        <article class="flash">
-          <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
-        </article>
+        </header>        
         <article class="agrupation-search-frontpage">
           <%= yield %>
         </article>
