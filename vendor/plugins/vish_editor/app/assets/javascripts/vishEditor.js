@@ -11478,6 +11478,9 @@ VISH.Editor = function(V, $, undefined) {
     $("a#addQuizFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
       V.Editor.Utils.loadTab("tab_quizes")
     }});
+    $("a#addJSONFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":300, "padding":0, "onComplete":function(data) {
+      V.Editor.Utils.loadTab("tab_json_file")
+    }});
     if(!eventsLoaded) {
       eventsLoaded = true;
       $(document).on("click", "#edit_presentation_details", V.Editor.Tools.Menu.onSettings);
@@ -12512,6 +12515,9 @@ VISH.Editor.Utils = function(V, $, undefined) {
       case "tab_live_micro":
         V.Editor.Object.Live.onLoadTab("micro");
         break;
+      case "tab_json_file":
+        V.Editor.Presentation.File.onLoadTab();
+        break;
       default:
         break
     }
@@ -13297,6 +13303,7 @@ VISH.Editor.Object = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.Presentation = function(V, $, undefined) {
   var init = function() {
+    V.Editor.Presentation.File.init();
     V.EventsNotifier.registerCallback(V.Constant.Event.onSelectedSlides, function(params) {
       insertPresentation(params.JSON, params.acceptedSlides);
       $.fancybox.close()
@@ -16531,6 +16538,9 @@ VISH.Editor.Filter = function(V, $, undefined) {
         $("#tab_object_snapshot").hide();
         break
     }
+    if(!device.features.reader) {
+      $(".liInsertJson > a").css("display", "none")
+    }
   };
   return{init:init}
 }(VISH, jQuery);
@@ -17397,6 +17407,41 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
     return"<iframe class='objectPreview' src='" + url + "'></iframe>"
   };
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
+}(VISH, jQuery);
+VISH.Editor.Presentation.File = function(V, $, undefined) {
+  var fileDivId = "tab_json_file_content";
+  var inputFilesId = "json_file_input";
+  var buttonId = "json_preview_button";
+  var initialized = false;
+  var init = function() {
+    if(!initialized) {
+      $("#" + buttonId).click(function() {
+        var files = $("#" + inputFilesId)[0].files;
+        if(files.length > 0) {
+          _insertFile(files[0])
+        }
+      });
+      initialized = true
+    }
+  };
+  var onLoadTab = function(tab) {
+    $("#json_file_input").attr("value", "")
+  };
+  var _insertFile = function(file) {
+    var reader = new FileReader;
+    reader.onload = function(theFile) {
+      return function(e) {
+        try {
+          var json = JSON.parse(e.target.result);
+          V.Editor.Presentation.previewPresentation(json)
+        }catch(e) {
+          V.Debugging.log("Error reading JSON file")
+        }
+      }
+    }(file);
+    reader.readAsText(file)
+  };
+  return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
 VISH.Editor.Preview = function(V, $, undefined) {
   var presentation_preview = null;
@@ -18667,6 +18712,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     $("#addSlideFancybox").trigger("click");
     V.Editor.Utils.loadTab("tab_templates")
   };
+  var insertJSON = function() {
+    $("#addJSONFancybox").trigger("click")
+  };
   var _hideMenuAfterAction = function() {
     if(_hoverMenu) {
       $("#menu").hide();
@@ -18675,7 +18723,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       }, 50)
     }
   };
-  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, 
+  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertJSON:insertJSON, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, onSaveButtonClicked:onSaveButtonClicked, 
   preview:preview, help:help, switchToPresentation:switchToPresentation, switchToFlashcard:switchToFlashcard, switchToVirtualTour:switchToVirtualTour}
 }(VISH, jQuery);
 VISH.Editor.Utils.Loader = function(V, $, undefined) {
@@ -20208,6 +20256,9 @@ VISH.Object = function(V, $, undefined) {
     if(html5VideoFormats.indexOf(extension) != "-1") {
       return"HTML5"
     }
+    if(extension == "json") {
+      return"json"
+    }
     if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
       return"web"
     }
@@ -21343,6 +21394,11 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
     features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
+    if(window.File && window.FileReader && window.FileList && window.Blob) {
+      features.reader = true
+    }else {
+      features.reader = false
+    }
     return features
   };
   return{init:init, fillFeatures:fillFeatures}

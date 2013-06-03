@@ -8918,6 +8918,9 @@ VISH.Object = function(V, $, undefined) {
     if(html5VideoFormats.indexOf(extension) != "-1") {
       return"HTML5"
     }
+    if(extension == "json") {
+      return"json"
+    }
     if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
       return"web"
     }
@@ -11309,6 +11312,11 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
     features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
+    if(window.File && window.FileReader && window.FileList && window.Blob) {
+      features.reader = true
+    }else {
+      features.reader = false
+    }
     return features
   };
   return{init:init, fillFeatures:fillFeatures}
