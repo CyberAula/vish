@@ -3,7 +3,7 @@
     <%= t('profile.tags.other') %>
   </div>
   <% if is_owner? %>
-    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"tags_info\");", :class => "action"  %>
+    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings('tags_info');", :class => "action"  %>
   <% end %>
   <div class="content field_profile" id="tags_info_briefing">
     <% if @profile.subject.tag_list.count > 0 %>

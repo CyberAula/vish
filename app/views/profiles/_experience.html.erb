@@ -3,7 +3,7 @@
     <%= t('profile.' + @profile.subject.class.to_s.downcase + '.experience') %>
   </div>
   <% if is_owner? %>
-    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"experience_info\");", :class => "action"  %>
+    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings('experience_info');", :class => "action"  %>
   <% end %>
   <div class="content settings_briefing" id="experience_info_briefing">
     <% if @profile.experience? %>

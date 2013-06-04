@@ -207,7 +207,7 @@ es:
     home: "Inicio"
   no_bio: "Este usuario no ha actualizado su biografía."
   notice:
-    fill_profile: "No tienes relleno tu perfil con tus areas de interés y tu ocupación. Con estos datos te podremos dar una mejor recomendación personalizada. Por favor rellena tu perfil <a href='%{url}'>aquí</a>."
+    fill_profile: "No tienes relleno tu perfil con tus <b>areas de interés</b> y tu <b>ocupación</b> en la sección de información personal. Con estos datos te podremos dar una mejor recomendación personalizada. Por favor rellena tu perfil <a href='%{url}'>aquí</a>."
   notification:
     config_html: "Si quieres modificar el servicio de notificaciones. Pulsa <a href='%{url}'>aquí</a>"
     makefriend:

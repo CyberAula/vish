@@ -4,11 +4,10 @@
     <%= t('profile.contact') %>
   </div>
   <% if is_owner? %>
-    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings(\"contact_info\");", :class => "action" %>
+    <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")), "javascript:showSettings('contact_info');", :class => "action" %>
   <% end %>
   <div id="contact_info_briefing">
     <% if !is_contact_empty? %>
-
         <% if @profile.phone? %>
           <h4><%= t('profile.phone') %></h4>
           <small><%= h @profile.phone %></small>
@@ -28,13 +27,13 @@
         <% if @profile.website? %>
           <h4><%= t('profile.website') %></h4>
           <small><a href="<%= h @profile.website %>"><%= h @profile.website %></a></small>
-        <% end %>
-      </div>
+        <% end %>  
       <% elsif is_owner? %>
         <div id="field_empty">
           <%= t('profile.empty') %>
         </div>
       <% end %>
+  </div>
 
   <% if is_owner? %>
     <div class="content settings_content " id="contact_info_content" style="display:none;">
