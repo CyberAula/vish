@@ -15898,18 +15898,22 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
-  var downloadJSON = function(json) {
-    console.log("downloadJSON");
-    console.log(json);
-    $.ajax({async:false, type:"POST", url:"/downloadExcursionJSON.json", dataType:"json", data:{"json":JSON.stringify(json)}, success:function(data) {
-      console.log("downloadJSON");
-      console.log(data)
+  var uploadTmpJSON = function(json) {
+    $.ajax({async:false, type:"POST", url:"/excursions/tmpJson.json", dataType:"json", data:{"authenticity_token":V.User.getToken(), "json":JSON.stringify(json)}, success:function(data) {
+      if(data && data.fileId) {
+        V.Editor.API.downloadTmpJSON(data.fileId)
+      }
     }, error:function(xhr, ajaxOptions, thrownError) {
-      console.log("downloadJSON error")
+      V.Debugging.log("uploadTmpJSON error")
     }})
   };
+  var downloadTmpJSON = function(fileId) {
+    var filename = fileId;
+    var iframe = $("#hiddenIframeForAjaxDownloads");
+    $(iframe).attr("src", "/excursions/tmpJson.json?fileId=" + fileId + "&filename=" + filename)
+  };
   return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, 
-  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails, downloadJSON:downloadJSON}
+  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, downloadTmpJSON:downloadTmpJSON}
 }(VISH, jQuery);
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;
@@ -17455,7 +17459,7 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
   };
   var exportToJSON = function() {
     var presentation = V.Editor.savePresentation();
-    V.Editor.API.downloadJSON(presentation)
+    V.Editor.API.uploadTmpJSON(presentation)
   };
   return{init:init, onLoadTab:onLoadTab, exportToJSON:exportToJSON}
 }(VISH, jQuery);
