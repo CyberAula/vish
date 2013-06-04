@@ -38,8 +38,9 @@ namespace :vish_editor do
     system "cp " + VISH_EDITOR_PATH + "/js/libs/RegaddiChart.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
     system "cp " + VISH_EDITOR_PATH + "/js/VISH.QuizCharts.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
 
-
-
+    #Copy HTML
+    # sed -n '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' viewer.html > viewer2.html
+    # sed -i 's/vishEditor\/images/assets/g' viewer2.html
 
     system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"

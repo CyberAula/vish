@@ -1,0 +1,146 @@
+    <section class="slides layout-regular template-default"></section>
+        <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
+    <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
+
+    <div id="viewbar" class="viewbar" style="display:none">
+        <a href="#" target="_blank"><div id="embedWatermark" class="watermark" style="display:none"></div></a>
+        <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
+        <button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
+        <div id="slide-counter"></div>
+        <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
+    </div> 
+
+    <div id="selectSlidesBar" class="selectSlidesBar" style="display:none">
+        <div class="selectSlidesButtons1">
+            <button id="ssbAll" class="buttonadd selectall"><img class="imgbutton" src="/assets/quiz/checkbox_checked.png"/>Select All</button>
+            <button id="ssbuAll" class="buttonadd unselectall"><img class="imgbutton" src="/assets/quiz/checkbox_wrong.png"/>Unselect All</button>
+        </div>
+        <div class="selectSlidesButtons3">
+            <div class="selectSlidesSelection">
+                <p id="ssbsp" class="selected_n_slides addslidetrans"></p>
+                <img  class="addt" src="/assets/templatesthumbs/addt.png"/>
+            </div>
+            <div class="selectSlidesButtonWrapper">
+                <button id="ssbdone" class="button buttonconfirm">Add Slides</button>
+            </div>
+        </div>
+        <div class="selectSlidesButtons2">
+            <button id="ssbaccept" class="buttoncenter buttonadd"><img class="imgbutton" src="/assets/quiz/checkbox_wrong.png"/>Remove Slide</button>
+        </div>
+    </div>
+
+    <div style="display:none" id="viewerpreview">Preview</div>
+    </div>
+    <button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/icons/back_icon.png"/></button>
+    
+    <!-- Hidden link to open fancybox to display recommendations in the end -->
+    <a id="fancyRec" href="#fancy_recommendations" style="display: none;"></a>
+
+    <!-- Recommendations fancybox -->
+    <div style='display:none'>
+        <div id='fancy_recommendations'>
+            <div class="rec-first-row">
+                <span class="textrec1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
+                <button onclick="window.opener.document.getElementById('evaluation-button-id').click();" id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
+            </div>
+            <div class="rec-second-row">
+                <span class="textrec1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
+                <div class="rec-grid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Quizzes -->
+
+    <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
+    <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>
+    
+    <!-- Quiz session fancybox -->
+    <div style='display:none'>
+        <div id="start_quiz_fancybox" class="outer_box_viewer">
+            <div class="fancy_viewer_tabs" id="images_fancy_tabs_id">     
+                <ul>
+                    <li><a href="#" id="tab_quiz_session" onclick="VISH.Quiz.loadTab('tab_quiz_session')" class="fancy_viewer_tab tabbable">Quiz Session</a></li>
+                    <li><a href="#" id="tab_quiz_stats" onclick="VISH.Quiz.loadTab('tab_quiz_stats')"class="fancy_viewer_tab">Stats</a></li>
+                </ul>
+                <img class='help_in_fancybox_viewer' id='tab_quiz_session_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+                <img class='help_in_fancybox_viewer' id='tab_quiz_stats_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+            </div>
+            <div id='tab_quiz_session_content' class="tab_quiz_session_content fancy_viewer_tab_content">
+                <a target="_blank" id='tab_quiz_session_url_link'></a>
+                <div class="quizSharebuttons">
+                    <a target="_blank" href="#" id='tab_quiz_session_share_twitter'><img src='/assets/icons/social/twitter.png' class='socialButton'/></a>
+                    <a target="_blank" href="#" id='tab_quiz_session_share_facebook'><img src='/assets/icons/social/facebook.svg' class='socialButton'/></a>
+                    <a target="_blank" href="#" id='tab_quiz_session_share_gPlus'><img src='/assets/icons/social/gplus.svg' class='socialButton'/></a>
+                </div>
+                <div class="quizQr"></div>
+                <input type='button2' class='quizButton button quizStopButton' value='Stop'/>
+            </div>
+            <div id='tab_quiz_stats_content' class="fancy_viewer_tab_content">
+                <canvas id="quiz_chart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT WHEN TRY TO LAUNCH TWO QUIZZES AT THE SAME TIME-->
+    <div style='display:none'>
+        <div id='prompt1_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Please stop all quizzes before launch another one.</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT WHEN SAVE A QUIZ SESSION -->
+    <div style='display:none'>
+        <div id='prompt2_alert'>
+            <div class="prompt_text_container_viewer prompt_text_container_viewer2">
+                <p><span class="prompt_text_viewer">Do you want to save the quiz?</span></p>
+                <p><input type="text" id="prompt2name" title="Enter a name for the quiz session" class="prompt2name"></input></p>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('yes');" class="prompt_button_viewer prompt_button_viewer2">Yes</a>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('no');" class="prompt_button_viewer prompt_button_viewer1">No</a>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('cancel');" class="prompt_button_viewer prompt_button_viewer3">Cancel</a>
+            </div>
+        </div>
+      </div>
+
+    <!-- PROMPT WHEN TRY TO SEND AN EMPTY ANSWER-->
+    <div style='display:none'>
+        <div id='prompt3_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Please, answer the quiz before send</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT AFTER SEND ANSWER-->
+    <div style='display:none'>
+        <div id='prompt4_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Your answer has been submitted</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT AFTER ERROR ON SENDING ANSWER-->
+    <div style='display:none'>
+        <div id='prompt5_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Sorry, your answer can be submitted.</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
