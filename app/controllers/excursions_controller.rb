@@ -17,10 +17,10 @@
 
 class ExcursionsController < ApplicationController
   # Quick hack for bypassing social stream's auth
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadJSON]
+  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   include SocialStream::Controllers::Objects
   include HomeHelper
 
@@ -183,10 +183,54 @@ class ExcursionsController < ApplicationController
     end
   end
 
-  def downloadJSON
-    binding.pry
-    # send_file "#{Rails.root}/public/scorm/excursions/#{@excursion.id}.zip", :type => 'application/zip', :disposition => 'attachment', :filename => "scorm-#{@excursion.id}.zip"
-    render :text => "Ok"
+  def uploadTmpJSON
+    respond_to do |format|  
+      format.json {
+        results = Hash.new
+
+        if params["json"] == nil
+          results["url"] = "";
+          results["fileId"] = "";
+          render :json => results
+          return
+        else
+          json = params["json"]
+        end
+
+        count = %x(ls -l #{Rails.root}/public/tmp/json/ | wc -l).to_i
+        filePath = "#{Rails.root}/public/tmp/json//#{count}.json"
+        t = File.open(filePath, 'w')
+        t.write json
+        t.close
+
+        results["url"] = "/excursions/tmpJson";
+        results["fileId"] = count.to_s;
+        render :json => results
+      }
+    end
+  end
+
+  def downloadTmpJSON
+    respond_to do |format|  
+      format.json {
+        if params["fileId"] == nil
+          results = Hash.new
+          render :json => results
+          return
+        else
+          fileId = params["fileId"]
+        end
+
+        if params["filename"]
+          filename = params["filename"]
+        else
+          filename = fileId
+        end
+
+        filePath = "#{Rails.root}/public/tmp/json/#{fileId}.json"
+        send_file "#{filePath}", :type => 'application/json', :disposition => 'attachment', :filename => "#{filename}.json"
+      }
+    end
   end
 
   private

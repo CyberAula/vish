@@ -62,20 +62,6 @@
 								<a class="menu_option menu_action menu_all" action="onSaveButtonClicked" i18n-key="i.Save">Save</a>
 							</li>
 							<li>
-								<a style="display:none" class="menu_option menu_all" i18n-key="i.ExportAs">Export as</a>
-								<ul>
-									<li>
-										<a class="menu_option menu_action menu_all" i18n-key="i.File">File</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_all">PDF</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_all" i18n-key="i.html5App">HTML5 Application</a>
-									</li>
-								</ul>
-							</li>
-							<li>
 								<a class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
 								<ul>
 									<li>
@@ -91,7 +77,7 @@
 										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSmartcard" i18n-key="i.Smartcard">Smartcard</a>
 									</li>
 									<li class="liInsertJson">
-										<a style="display:none" class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertJSON">JSON</a>
+										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertJSON">JSON</a>
 									</li>
 								</ul>
 							</li>
@@ -99,7 +85,7 @@
 								<a class="menu_option menu_all" href="#" i18n-key="i.Export">Export</a>
 								<ul>
 									<li>
-										<a style="display:none" class="menu_option menu_action menu_all" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
+										<a class="menu_option menu_action menu_all" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
 									</li>
 								</ul>
 							</li>							
@@ -1572,5 +1558,7 @@
 		 <p i18n-key="i.walk55">Just write inside a word (press Enter)and a gallery will appear to show you the results, If you want to add one from the results you just have to click on it, then, the content will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
 		</li>
 	</ol> 
+
+	<iframe id="hiddenIframeForAjaxDownloads"></iframe>
 
 	<!-- Copy HTML until here -->
