@@ -199,9 +199,9 @@
 
 <!--open file browser-->
 
-                  <% d = Link.new %>
-                  <% d.owner_id = Actor.normalize_id(current_user) %>
-                  <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+                <% d = Link.new %>
+                <% d.owner_id = Actor.normalize_id(current_user) %>
+                <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
                   <%= f.hidden_field :owner_id %>
                   <%= f.hidden_field :callback_url %>
                   <%= f.hidden_field :loaded %>
