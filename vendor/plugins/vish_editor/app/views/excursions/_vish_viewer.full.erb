@@ -1,3 +1,5 @@
+    <!-- Copy HTML from here -->
+    
     <section class="slides layout-regular template-default"></section>
         <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
     <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
@@ -5,12 +7,13 @@
     <div id="viewbar" class="viewbar" style="display:none">
         <a href="#" target="_blank"><div id="embedWatermark" class="watermark" style="display:none"></div></a>
         <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
-        <button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
-        <div id="slide-counter"></div>
-        <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
+		<button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
+	    <div id="slide-counter"></div>
+	    <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
     </div> 
 
     <div id="selectSlidesBar" class="selectSlidesBar" style="display:none">
+        <img id='help_addslides_selection' src='/assets/icons/helptutorial_circle_blank.png'/>
         <div class="selectSlidesButtons1">
             <button id="ssbAll" class="buttonadd selectall"><img class="imgbutton" src="/assets/quiz/checkbox_checked.png"/>Select All</button>
             <button id="ssbuAll" class="buttonadd unselectall"><img class="imgbutton" src="/assets/quiz/checkbox_wrong.png"/>Unselect All</button>
@@ -144,3 +147,41 @@
             </div>
         </div>
     </div>
+
+
+    <!-- WALKTHROUGH HELP SECTION -->
+    <!--help for quiz session-->
+    <ol id="quiz_session_help" class="joyRideTipContent">>
+        <li data-id="tab_quiz_session_content" class="custom tut_quiz tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
+         <h2 i18n-key="i.themesTitle">Quiz session</h2>
+           <p i18n-key="i.walk92">This window offers you a Qr-code and a link that you can give or show to the users that you want to participate in your simple quiz, or multiple-choice session, you can check in real-time too the results by clicking on the "stats" tab in the upper section of this window.<br>
+            You can share this session in other social networks by clicking on their icon.<br>
+            If you click on the close button in the superior zone of this windows you can always go back here by clicking the options button in the slide of the excursion.<br>
+           You can save all the results once you finish by clicking on the button Stop in the button "Stop" in the inferior section of this window.<br>A new window will appear for naming and saving the session in your profile.<br>Click on close button to finish this tutorial.</p>
+        </li>
+    </ol>
+
+    <!--help for quiz stats-->
+    <ol id="quiz_stats_help" class="joyRideTipContent">>
+        <li data-id="tab_quiz_stats_content" class="custom tut_quiz tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
+         <h2 i18n-key="i.themesTitle">Quiz Session stats</h2>
+           <p i18n-key="i.walk93">This window offers you stadistics of your Quiz session, if you are offering a session with a simple quiz the stadistics the results will be shown as a circle shape separating every option in a different area.<br> If you are offering a session of multiple-choice you will get the results in a bar graph, you can always go back, close or save the results by clicking in the quiz session tab which is located in upper zone of this windows. Click "close" to finsih this tutorial.</p>
+        </li>
+    </ol>
+
+    <!--help for add excursion-->
+    <ol id="addslides_help" class="joyRideTipContent">
+<li data-id="viewbar" data-text="Close" i18n-key="i.Close" class="addslidestut custom tut_template tut_without_arrow" data-options="tipLocation:none">
+        <h2 i18n-key="i.AddingSlideinto">Adding slides into your excursion</h2>
+        <p i18n-key="i.walk84">In this window you can preview the slides of the excursion that you had already choosen in order to add all or some of the slides into your excursion.This preview offers you some options (at the bottom) which are:</p>
+        <p i18n-key="i.walk85"><img src="/assets/tutorial/selectall.png"/>This button will select all the slides in order to add them to your excursion.</p>
+        <p i18n-key="i.walk86"><img src="/assets/tutorial/unselectall.png"/>This button will unselect all the slides.</p>
+        <p i18n-key="i.walk87"><img src="/assets/tutorial/selectslides.png"/> Also, you can add or remove any slide by clicking the button in the lower center space below the number of the slide.</p>
+        <p i18n-key="i.walk88">Every time you select an slide it will show its border green</p>
+        <p i18n-key="i.walk89">and if you remove it it will show a red border.</p>
+        <p i18n-key="i.walk90">You will know how many slides you are going to add to your excursion by checking the cuantity at the right bottom of the screen.Example: <i style="color: green; font-size: 1.4em">"+4"</i></p>
+        <p i18n-key="i.walk91">If you finished your selection you can finally add your slides to you excursion by click the button "add slides" at the right bottom in the screen. Click on "Close" to finish the tutorial.</p><br>
+        <div class="selectedslidetut"></div><div class="unselectedslidetut"></div>
+        </ol>
+
+    <!-- Copy HTML until here -->

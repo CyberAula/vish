@@ -88,7 +88,7 @@ class ExcursionsController < ApplicationController
 
   def preview
     respond_to do |format|
-      format.all { render "show.full.erb", :layout => 'iframe.full' }
+      format.all { render "show.full.erb", :format => 'full', :layout => 'iframe.full' }
     end
   end
 

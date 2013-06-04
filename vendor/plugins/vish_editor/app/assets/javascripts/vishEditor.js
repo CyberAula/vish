@@ -15901,7 +15901,7 @@ VISH.Editor.API = function(V, $, undefined) {
   var downloadJSON = function(json) {
     console.log("downloadJSON");
     console.log(json);
-    $.ajax({async:false, type:"POST", url:"/downloadJSON.json", dataType:"json", data:{"json":JSON.stringify(json)}, success:function(data) {
+    $.ajax({async:false, type:"POST", url:"/downloadExcursionJSON.json", dataType:"json", data:{"json":JSON.stringify(json)}, success:function(data) {
       console.log("downloadJSON");
       console.log(data)
     }, error:function(xhr, ajaxOptions, thrownError) {
