@@ -22428,7 +22428,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
       fs_button = fs_button && !embed;
-      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
+      if(V.Configuration.getConfiguration()["mode"] !== V.Constant.VISH) {
         $(".rec-first-row").hide()
       }else {
         $(".rec-first-row").show()
