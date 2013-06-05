@@ -11371,15 +11371,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
       fs_button = fs_button && !embed;
-      if(true) {
+      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
         $(".rec-first-row").hide()
       }
-      page_is_fullscreen = render_full && !V.Status.getIsInIframe();
-      if(typeof options["urlToGetRecommendations"] == "string") {
-        display_recommendations = true
-      }else {
-        display_recommendations = false
-      }
+      page_is_fullscreen = render_full && !V.Status.getIsInIframe()
     }else {
       render_full = false;
       is_preview = false;
@@ -11387,8 +11382,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       enter_fs_button = false;
       exit_fs_button = false;
       fs_button = false;
-      can_use_nativeFs = false;
-      display_recommendations = false
+      can_use_nativeFs = false
     }
     is_preview_insertMode = false;
     if(is_preview) {
