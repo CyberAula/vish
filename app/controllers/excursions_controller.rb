@@ -176,7 +176,8 @@ class ExcursionsController < ApplicationController
     excursions = []
     #current_subject.excursion_suggestions(20).each do |ex|
     Excursion.first(20).each do |ex|
-      if ex.author.subject == current_subject
+      #remove my excursions and drafts
+      if ex.author.subject == current_subject || ex.draft
         next
       end
       excursions.push ex.reduced_json(self)
