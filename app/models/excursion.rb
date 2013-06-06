@@ -212,8 +212,8 @@ class Excursion < ActiveRecord::Base
   end
 
   #method used to return json objects to the recommendation in the last slide
-  def reduced_json(controller)  
-      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :id=>self.id);
+  def reduced_json(controller)
+      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :id=>self.id)
       
       { :id => id,
         :url => excursion_url,
@@ -232,7 +232,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def averageEvaluation
-    evaluations = [];
+    evaluations = []
     if self.evaluations.length > 0
       6.times do |ind|
         evaluations.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))

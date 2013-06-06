@@ -22397,7 +22397,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var fs_button;
   var can_use_nativeFs;
   var embed;
-  var display_recommendations;
   var showViewbar;
   var enter_fs_button;
   var enter_fs_url;
