@@ -1,4 +1,4 @@
-.slides > article {
+section.slides > article:not(.slideset_slide), section.slides > article article.subslide {
 	background: white url(/assets/themes/theme5/bg.jpg) top;
 	background-size: 100% 100%;
 }
@@ -8,7 +8,7 @@
 }
 
 
-.slides {
+section.slides {
 	background: rgb(255,255,255); /* Old browsers */
 	background: url(/assets/background1.png) no-repeat 255px, -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,1) 23%, rgba(39,37,58,1) 100%); /* FF3.6+ */
 	background: url(/assets/background1.png) no-repeat 255px, -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(23%,rgba(255,255,255,1)), color-stop(100%,rgba(39,37,58,1))); /* Chrome,Safari4+ */

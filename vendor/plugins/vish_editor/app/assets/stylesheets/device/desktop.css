@@ -114,9 +114,10 @@ opacity: 0.4 !important;
 }
 
 .rec-first-row .button{
-	float: right;
-  margin-top: 5%;
-  margin-right: 8%;
+float: right;
+margin-top: 6%;
+font-size: 1.2em;
+margin-right: 9%;
 }
 
 .rec-second-row{
@@ -127,12 +128,12 @@ opacity: 0.4 !important;
 
 .rec-second-row .textrec1{
 	margin-left: 5%;
-	margin-top: 2%;
+  margin-top: 1%
 	position: absolute;
 }
 
 .rec-second-row .rec-grid{
-margin-top: 5% !important;
+margin-top: 3% !important;
 margin-left: 6% !important;
 height: 80%;
 width: 91%;
@@ -148,8 +149,8 @@ float: left;
 width: 44%;
 height: 33%;
 border-radius: 20px;
-margin-top: 3%;
-margin-right: 2%;
+margin-top: 2%;
+margin-right: 3%;
 background: #f6f8f9; /* Old browsers */
 background: -moz-linear-gradient(top, #f6f8f9 0%, #c8cbce 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(100%,#c8cbce)); /* Chrome,Safari4+ */
@@ -201,15 +202,17 @@ margin-right: 8%;
 
 .rec-img-excursion {
   float: left;
-  margin-left: 5%;
+  margin-left: 4%;
 display: inline-block;
 width: 36%;
+height: 91%;
 }
 
 .rec-img-excursion > img{
   border-radius: 15%;
+
 width: 77%;
-height: 80%;
+height: 91%;
 border: 1px #CCC solid;
 }
 
@@ -231,8 +234,8 @@ text-decoration: none;
 font-family: Arial;
 padding: 3%;
 position: relative;
-height: 26%;
-width: 14%;
+height: 14%;
+width: 12%;
 margin-top: -23%;
 margin-left: 55%;
 text-align: center;

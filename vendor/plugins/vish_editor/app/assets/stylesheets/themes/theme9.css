@@ -1,4 +1,4 @@
-.slides > article {
+section.slides > article:not(.slideset_slide), section.slides > article article.subslide {
 	background-color: transparent;
 	border: none;
 	background: url(/assets/themes/theme9/bg.png) top;
@@ -20,7 +20,7 @@
 }
 
 
-.slides {
+section.slides {
 	background: rgb(254,254,254); /* Old browsers */
 	background: url(/assets/background1.png) no-repeat 255px, -moz-linear-gradient(top,  rgba(254,254,254,1) 0%, rgba(209,209,209,1) 49%, rgba(219,219,219,1) 50%, rgba(226,226,226,1) 100%); /* FF3.6+ */
 	background: url(/assets/background1.png) no-repeat 255px, -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,254,254,1)), color-stop(49%,rgba(209,209,209,1)), color-stop(50%,rgba(219,219,219,1)), color-stop(100%,rgba(226,226,226,1))); /* Chrome,Safari4+ */

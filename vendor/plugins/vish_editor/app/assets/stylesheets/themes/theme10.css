@@ -1,4 +1,4 @@
-.slides > article {
+section.slides > article:not(.slideset_slide), section.slides > article article.subslide {
 	background-color: transparent;
 	border: none;
 	padding: 17px 40px 86px 40px;;
@@ -20,7 +20,7 @@
 }
 
 
-.slides {
+section.slides {
 	background: #f2f5f6; /* Old browsers */
 	background: url(/assets/background1.png) no-repeat 255px, -moz-radial-gradient(center, ellipse cover,  #f2f5f6 0%, #afafaf 100%); /* FF3.6+ */
 	background: url(/assets/background1.png) no-repeat 255px, -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#f2f5f6), color-stop(100%,#afafaf)); /* Chrome,Safari4+ */
