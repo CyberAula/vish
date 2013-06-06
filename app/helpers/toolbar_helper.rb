@@ -2,7 +2,7 @@
 #
 module ToolbarHelper
   # Configuration of toolbar items
-  include SocialStream::Views::Toolbar
+  # include SocialStream::Views::Toolbar
 
   # This method define the toolbar content for your view. The toolbar is at the left
   # side of the screen in vanilla SocialStream distribution.

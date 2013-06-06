@@ -1,7 +1,7 @@
 //= require jquery.autosize
 //
 //= require social_stream.timeline
-//= require social_stream.objects
+//= require social_stream-base
 
 SocialStream.Comments = (function(SS, $, undefined){
   var newElementsToHide = [

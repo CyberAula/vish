@@ -12,10 +12,6 @@
 //= require jquery.fittext
 //= require social_stream-base
 //= require social_stream-documents
-//= require social_stream.audio
-//= require social_stream.repository
-//= require social_stream.video
-//= require social_stream.comments
 //= require tagit
 //= require vish
 //= require swipe

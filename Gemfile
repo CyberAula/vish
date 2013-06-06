@@ -21,13 +21,13 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 gem 'selenium-webdriver', '=2.30.0'
 
-gem 'social_stream-base', '~> 1.1.10'
-gem 'social_stream-documents', '~> 1.1.3'
-gem 'social_stream-linkser', '~> 1.1.1'
-gem 'social_stream-ostatus', '~> 1.1.1'
+gem 'social_stream-base', '~> 2.0.3'
+gem 'social_stream-documents', '~> 2.0.3'
+gem 'social_stream-linkser', '~> 2.0.0'
+gem 'social_stream-ostatus', '~> 2.0.0'
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap
-gem 'avatars_for_rails', '~> 0.2.6'
+gem 'avatars_for_rails', '~> 1.1.0'
 
 # Composite keys for vish-recsys
 gem 'composite_primary_keys'

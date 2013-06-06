@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529122058) do
+ActiveRecord::Schema.define(:version => 20130605153009) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
     t.integer "activity_object_id"
     t.integer "property_id"
     t.string  "type"
+    t.boolean "main"
   end
 
   add_index "activity_object_properties", ["activity_object_id"], :name => "index_activity_object_properties_on_activity_object_id"
@@ -109,6 +110,10 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "activity_object_id"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -132,17 +137,6 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
   end
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
-
-  create_table "avatars", :force => true do |t|
-    t.integer  "actor_id"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.boolean  "active",            :default => true
-  end
-
-  add_index "avatars", ["actor_id"], :name => "index_avatars_on_actor_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "activity_object_id"
@@ -287,6 +281,8 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
     t.string   "notified_object_type"
     t.string   "notification_code"
     t.string   "attachment"
+    t.boolean  "global",               :default => false
+    t.datetime "expires"
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
@@ -351,7 +347,7 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
     t.integer  "receiver_id"
     t.string   "receiver_type"
     t.integer  "notification_id",                                  :null => false
-    t.boolean  "read",                          :default => false
+    t.boolean  "is_read",                       :default => false
     t.boolean  "trashed",                       :default => false
     t.boolean  "deleted",                       :default => false
     t.string   "mailbox_type",    :limit => 25
@@ -422,7 +418,11 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
     t.text     "config"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "type"
+    t.integer  "actor_id"
   end
+
+  add_index "sites", ["actor_id"], :name => "index_sites_on_actor_id"
 
   create_table "slides", :force => true do |t|
     t.datetime "created_at",         :null => false
@@ -511,8 +511,6 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
 
   add_foreign_key "authentications", "users", :name => "authentications_on_user_id"
 
-  add_foreign_key "avatars", "actors", :name => "avatars_on_actor_id"
-
   add_foreign_key "comments", "activity_objects", :name => "comments_on_activity_object_id"
 
   add_foreign_key "contacts", "actors", :name => "contacts_on_receiver_id", :column => "receiver_id"
@@ -542,6 +540,8 @@ ActiveRecord::Schema.define(:version => 20130529122058) do
   add_foreign_key "remote_subjects", "actors", :name => "remote_subjects_on_actor_id"
 
   add_foreign_key "rooms", "actors", :name => "index_rooms_on_actor_id"
+
+  add_foreign_key "sites", "actors", :name => "index_sites_on_actor_id"
 
   add_foreign_key "ties", "contacts", :name => "ties_on_contact_id"
   add_foreign_key "ties", "relations", :name => "ties_on_relation_id"
