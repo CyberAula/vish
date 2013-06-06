@@ -62,7 +62,6 @@ class RecSysController < ApplicationController
     data["rec_users"] = rec_users;
     data["rec_los"] = rec_los;
 
-    # debugger
     respond_to do |format|
       format.html { render :text => "Request JSON to get recomended data" } 
       format.json { render :json => data }
