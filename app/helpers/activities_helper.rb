@@ -2,7 +2,7 @@ module ActivitiesHelper
   # Javascript line to fetch or create the modal dialog
   def modal_for(object)
     if object.acts_as_actor?
-     raw "m = Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', '#{ raw j contact_to(object)}');
+     raw "m = Vish.Wall.getUserModal('#{object.slug}', #{ user_signed_in? ? "true" : "false" }, '#{raw j truncate_name(object.name, :length => 75)}', '#{ raw j contact_button(object)}');
       if(m.length) {
          m.on('show', function(){
            $.ajax('/users/#{ object.actor.slug }/modal');
