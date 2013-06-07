@@ -10259,6 +10259,10 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Debugging.log(JSON.stringify(presentation));
     V.Utils.init();
     presentation = V.Utils.fixPresentation(presentation);
+    if(presentation === null) {
+      V.Utils.showPNotValidDialog();
+      return
+    }
     current_presentation = presentation;
     setPresentationType(presentation.type);
     V.Status.init(function() {
@@ -10471,37 +10475,124 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var fixPresentation = function(presentation) {
-    if(typeof presentation.type == "undefined") {
-      presentation.type = V.Constant.STANDARD
+    if(typeof presentation == "undefined" || presentation === null || typeof presentation.slides == "undefined") {
+      return null
     }
     if(typeof presentation.VEVersion == "undefined") {
       presentation.VEVersion = "0.1"
     }
-    presentation = _fixIds(presentation);
+    presentation = _fixTypes(presentation);
+    if(!_checkIds(presentation)) {
+      presentation = _overwriteIds(presentation)
+    }
     return presentation
   };
-  var _fixIds = function(presentation) {
+  var _fixTypes = function(presentation) {
+    if(typeof presentation.type == "undefined") {
+      presentation.type = V.Constant.STANDARD
+    }
+    var slides = presentation.slides;
+    var sL = slides.length;
+    for(var i = 0;i < sL;i++) {
+      var slide = slides[i];
+      switch(slide.type) {
+        case V.Constant.STANDARD:
+          break;
+        case V.Constant.FLASHCARD:
+        ;
+        case V.Constant.VTOUR:
+          var subslides = slide.slides;
+          if(subslides) {
+            var ssL = subslides.length;
+            for(var j = 0;j < ssL;j++) {
+              if(typeof subslides[j].type == "undefined") {
+                subslides[j].type = V.Constant.STANDARD
+              }
+            }
+          }
+          break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
+        default:
+          slide.type = V.Constant.STANDARD;
+          break
+      }
+    }
+    return presentation
+  };
+  var _checkIds = function(presentation) {
     var slides = presentation.slides;
     var sL = slides.length;
     for(var i = 0;i < sL;i++) {
       var slide = slides[i];
       if(!slide.id.match(/^article[0-9]+/g)) {
-        slide.id = getId("article")
-      }else {
-        slide.id = getId(slide.id, true)
-      }
-      if(typeof slide.type == "undefined") {
-        slide.type = V.Constant.STANDARD
+        return false
       }
       switch(slide.type) {
         case V.Constant.STANDARD:
-          slide = _fixIdsStandardSlide(slide);
+          if(!_checkIdsStandardSlide(slide)) {
+            return false
+          }
           break;
         case V.Constant.FLASHCARD:
-          slide = _fixIdsFlashcardSlide(slide);
+          if(!_checkIdsFlashcardSlide(slide)) {
+            return false
+          }
           break;
         case V.Constant.VTOUR:
-          slide = _fixIdsVTourSlide(slide);
+          if(!_checkIdsVTourSlide(slide)) {
+            return false
+          }
+          break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
+        default:
+          break
+      }
+    }
+    return true
+  };
+  var _checkIdsStandardSlide = function(slide) {
+    var elements = slide.elements;
+    var eL = elements.length;
+    for(var j = 0;j < eL;j++) {
+      if(elements[j].id.match(new RegExp("^" + slide.id, "g")) === null) {
+        return false
+      }
+    }
+    return true
+  };
+  var _checkIdsFlashcardSlide = function(slide) {
+    return _checkIdsVTourSlide(slide)
+  };
+  var _checkIdsVTourSlide = function(slide) {
+    var subslides = slide.slides;
+    if(subslides) {
+      var ssL = subslides.length;
+      for(var i = 0;i < ssL;i++) {
+        var subslide = subslides[i];
+        if(!_checkIdsStandardSlide(subslide)) {
+          return false
+        }
+      }
+    }
+    return true
+  };
+  var _overwriteIds = function(presentation) {
+    var slides = presentation.slides;
+    var sL = slides.length;
+    for(var i = 0;i < sL;i++) {
+      var slide = slides[i];
+      slide.id = "article" + (i + 1).toString();
+      switch(slide.type) {
+        case V.Constant.STANDARD:
+          slide = _overwriteIdsStandardSlide(slide);
+          break;
+        case V.Constant.FLASHCARD:
+          slide = _overwriteIdsFlashcardSlide(slide);
+          break;
+        case V.Constant.VTOUR:
+          slide = _overwriteIdsVTourSlide(slide);
           break;
         case V.Constant.QUIZ_SIMPLE:
           break;
@@ -10511,32 +10602,22 @@ VISH.Utils = function(V, undefined) {
     }
     return presentation
   };
-  var _fixIdsStandardSlide = function(slide) {
+  var _overwriteIdsStandardSlide = function(slide) {
     var elements = slide.elements;
     var eL = elements.length;
     for(var j = 0;j < eL;j++) {
-      if(elements[j].id.match(new RegExp("^" + slide.id, "g")) === null) {
-        elements[j].id = getId(slide.id + "_zone")
-      }else {
-        elements[j].id = getId(elements[j].id, true)
-      }
+      elements[j].id = slide.id + "_zone" + (j + 1).toString()
     }
     return slide
   };
-  var _fixIdsFlashcardSlide = function(slide) {
+  var _overwriteIdsFlashcardSlide = function(slide) {
     return slide
   };
-  var _fixIdsVTourSlide = function(slide) {
-    var slides = slide.slides;
-    if(slides) {
-      var sL = slides.length;
-      for(var i = 0;i < sL;i++) {
-        if(typeof slides[i].type == "undefined") {
-          slides[i].type = V.Constant.STANDARD
-        }
-      }
-    }
+  var _overwriteIdsVTourSlide = function(slide) {
     return slide
+  };
+  var showPNotValidDialog = function() {
+    $.fancybox($("#presentation_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -10805,7 +10886,7 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showPNotValidDialog:showPNotValidDialog}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;

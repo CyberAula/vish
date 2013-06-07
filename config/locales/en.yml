@@ -79,10 +79,10 @@ en:
     input: "Paste your embed here"
     name: "embed"
   evaluation:
-    teaching: "teaching experience results"
+    teaching: "Rating"
     contribute: "Want to contribute?"
     evaluation: "evaluate it"
-    experience: "teaching experience"
+    experience: "Teaching Experience"
     phrase0: "Rate the quality of the content used in this excursion"
     phrase1: "Rate the quality of this excursion design"
     phrase2: "Were the students motivated to participate in the activities related to this excursion?"

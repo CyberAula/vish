@@ -20,13 +20,13 @@ img {
 .empty_slide_button:hover {
 	cursor: default !important;
 	opacity: 0.6 !important;
--webkit-box-shadow: none !important;
--moz-box-shadow: none !important;
-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
 }
 
 .empty_slide_button:active {
-border: none !important;
+	border: none !important;
 }
 
 #presentation_details_fields {
@@ -217,7 +217,6 @@ div.addUrlButtons{
 	opacity: 1;
 	text-shadow: 1px 1px #666;
 }
-	
 
 .buttomadd {
 	border: 1px solid rgb(255, 2, 94);
@@ -945,7 +944,7 @@ table.metadata td div.height_wrapper_description{
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }	
-	
+
 .button:hover {
 	opacity: 1;
 	text-shadow: 1px 1px #666;
@@ -1235,40 +1234,9 @@ textarea {
 	cursor: pointer;
 }
 
-#requirements_form{
-	text-align: center;
-	padding: 20px 20px 20px 20px;
-	border-radius: 20px;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;	
-}
-
 #recomended_browsers{
 	margin-top: 35px;
-}
-
-.recomended_browsers{
-	margin-top: 35px;
-}
-
-
-.buttons_requirements_wrapper{
-	margin-top: 50px;
-	text-align: center;
-}
-
-.buttons_requirements{
-	font-family: Helvetica, Arial;
-	width: 60px;
-	height: 23px;
-	position: absolute;
-	margin-left: -345px;
-	margin-top: 120px;
-	background-color: #ccc;
-}
-
-.buttons_requirements:hover{
-  	background-color: #ff005d;
+	height: 115px;
 }
 
 .browser_img{ 
@@ -1284,22 +1252,11 @@ textarea {
 	display: block;
 	padding: 5px;
 	color: #9B999D;
-	
 }
 
 .recomended_browser{
 	width: 150px;
 	float: left;
-}
-
-.warning_requirements{
-	height: 80px;
-  	margin-left: 25px;
-  	margin-top: 1px;
-}
-
-.requirementsText{
-	padding-top: 50px;
 }
 
 #menubar_helpsection {
@@ -1645,6 +1602,10 @@ img.excursionSelectedInCarrousel:active , img.smartcardSelectedInCarrousel:activ
 	margin-bottom: -30px;
 	opacity: 1;
 	cursor: pointer;
+}
+
+.draggable_arrow_div img.fc_draggable_arrow:active {
+	border: none !important;
 }
 
 .draggable_arrow_div img.fc_draggable_arrow:hover  {

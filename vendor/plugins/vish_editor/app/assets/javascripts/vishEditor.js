@@ -38,8 +38,8 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", 
 "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", 
 "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", 
-"i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", 
-"i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor."}, 
+"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.VERSION = "0.5";
 VISH.AUTHORS = "GING";
@@ -11074,37 +11074,124 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var fixPresentation = function(presentation) {
-    if(typeof presentation.type == "undefined") {
-      presentation.type = V.Constant.STANDARD
+    if(typeof presentation == "undefined" || presentation === null || typeof presentation.slides == "undefined") {
+      return null
     }
     if(typeof presentation.VEVersion == "undefined") {
       presentation.VEVersion = "0.1"
     }
-    presentation = _fixIds(presentation);
+    presentation = _fixTypes(presentation);
+    if(!_checkIds(presentation)) {
+      presentation = _overwriteIds(presentation)
+    }
     return presentation
   };
-  var _fixIds = function(presentation) {
+  var _fixTypes = function(presentation) {
+    if(typeof presentation.type == "undefined") {
+      presentation.type = V.Constant.STANDARD
+    }
+    var slides = presentation.slides;
+    var sL = slides.length;
+    for(var i = 0;i < sL;i++) {
+      var slide = slides[i];
+      switch(slide.type) {
+        case V.Constant.STANDARD:
+          break;
+        case V.Constant.FLASHCARD:
+        ;
+        case V.Constant.VTOUR:
+          var subslides = slide.slides;
+          if(subslides) {
+            var ssL = subslides.length;
+            for(var j = 0;j < ssL;j++) {
+              if(typeof subslides[j].type == "undefined") {
+                subslides[j].type = V.Constant.STANDARD
+              }
+            }
+          }
+          break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
+        default:
+          slide.type = V.Constant.STANDARD;
+          break
+      }
+    }
+    return presentation
+  };
+  var _checkIds = function(presentation) {
     var slides = presentation.slides;
     var sL = slides.length;
     for(var i = 0;i < sL;i++) {
       var slide = slides[i];
       if(!slide.id.match(/^article[0-9]+/g)) {
-        slide.id = getId("article")
-      }else {
-        slide.id = getId(slide.id, true)
-      }
-      if(typeof slide.type == "undefined") {
-        slide.type = V.Constant.STANDARD
+        return false
       }
       switch(slide.type) {
         case V.Constant.STANDARD:
-          slide = _fixIdsStandardSlide(slide);
+          if(!_checkIdsStandardSlide(slide)) {
+            return false
+          }
           break;
         case V.Constant.FLASHCARD:
-          slide = _fixIdsFlashcardSlide(slide);
+          if(!_checkIdsFlashcardSlide(slide)) {
+            return false
+          }
           break;
         case V.Constant.VTOUR:
-          slide = _fixIdsVTourSlide(slide);
+          if(!_checkIdsVTourSlide(slide)) {
+            return false
+          }
+          break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
+        default:
+          break
+      }
+    }
+    return true
+  };
+  var _checkIdsStandardSlide = function(slide) {
+    var elements = slide.elements;
+    var eL = elements.length;
+    for(var j = 0;j < eL;j++) {
+      if(elements[j].id.match(new RegExp("^" + slide.id, "g")) === null) {
+        return false
+      }
+    }
+    return true
+  };
+  var _checkIdsFlashcardSlide = function(slide) {
+    return _checkIdsVTourSlide(slide)
+  };
+  var _checkIdsVTourSlide = function(slide) {
+    var subslides = slide.slides;
+    if(subslides) {
+      var ssL = subslides.length;
+      for(var i = 0;i < ssL;i++) {
+        var subslide = subslides[i];
+        if(!_checkIdsStandardSlide(subslide)) {
+          return false
+        }
+      }
+    }
+    return true
+  };
+  var _overwriteIds = function(presentation) {
+    var slides = presentation.slides;
+    var sL = slides.length;
+    for(var i = 0;i < sL;i++) {
+      var slide = slides[i];
+      slide.id = "article" + (i + 1).toString();
+      switch(slide.type) {
+        case V.Constant.STANDARD:
+          slide = _overwriteIdsStandardSlide(slide);
+          break;
+        case V.Constant.FLASHCARD:
+          slide = _overwriteIdsFlashcardSlide(slide);
+          break;
+        case V.Constant.VTOUR:
+          slide = _overwriteIdsVTourSlide(slide);
           break;
         case V.Constant.QUIZ_SIMPLE:
           break;
@@ -11114,32 +11201,22 @@ VISH.Utils = function(V, undefined) {
     }
     return presentation
   };
-  var _fixIdsStandardSlide = function(slide) {
+  var _overwriteIdsStandardSlide = function(slide) {
     var elements = slide.elements;
     var eL = elements.length;
     for(var j = 0;j < eL;j++) {
-      if(elements[j].id.match(new RegExp("^" + slide.id, "g")) === null) {
-        elements[j].id = getId(slide.id + "_zone")
-      }else {
-        elements[j].id = getId(elements[j].id, true)
-      }
+      elements[j].id = slide.id + "_zone" + (j + 1).toString()
     }
     return slide
   };
-  var _fixIdsFlashcardSlide = function(slide) {
+  var _overwriteIdsFlashcardSlide = function(slide) {
     return slide
   };
-  var _fixIdsVTourSlide = function(slide) {
-    var slides = slide.slides;
-    if(slides) {
-      var sL = slides.length;
-      for(var i = 0;i < sL;i++) {
-        if(typeof slides[i].type == "undefined") {
-          slides[i].type = V.Constant.STANDARD
-        }
-      }
-    }
+  var _overwriteIdsVTourSlide = function(slide) {
     return slide
+  };
+  var showPNotValidDialog = function() {
+    $.fancybox($("#presentation_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -11408,7 +11485,7 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showPNotValidDialog:showPNotValidDialog}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initialPresentation = false;
@@ -11464,6 +11541,10 @@ VISH.Editor = function(V, $, undefined) {
     $("#age_range").val(V.Constant.AGE_RANGE);
     if(presentation) {
       presentation = V.Utils.fixPresentation(presentation);
+      if(presentation === null) {
+        V.Utils.showPNotValidDialog();
+        return
+      }
       initialPresentation = true;
       setPresentation(presentation);
       V.Editor.Renderer.init(presentation);
@@ -20983,6 +21064,10 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Debugging.log(JSON.stringify(presentation));
     V.Utils.init();
     presentation = V.Utils.fixPresentation(presentation);
+    if(presentation === null) {
+      V.Utils.showPNotValidDialog();
+      return
+    }
     current_presentation = presentation;
     setPresentationType(presentation.type);
     V.Status.init(function() {
