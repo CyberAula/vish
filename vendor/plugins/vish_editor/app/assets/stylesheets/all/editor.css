@@ -785,7 +785,7 @@ input.rounded:focus {
     background: url('/assets/carrousel/carrousel_sprite.png') 0 -200px no-repeat transparent;
 }
 
-.okButton2::-moz-focus-inner {
+.okButton2:-moz-focus-inner {
     border: none;
 }
 
@@ -2052,13 +2052,10 @@ float: left;
 }
 
 .t14_circle1 .zone_tooltip, .t14_circle2 .zone_tooltip, .t14_circle3 .zone_tooltip{
-margin: 24% 0 0 9%;
-vertical-align: middle;
-width: 84%;
-height: 100%;
-float: left;
+	margin: 24% 0 0 9%;
+	vertical-align: middle;
+	width: 84%;
+	height: 100%;
+	float: left;
 }
 
-.waitCursor {
-	cursor: wait !important;
-}

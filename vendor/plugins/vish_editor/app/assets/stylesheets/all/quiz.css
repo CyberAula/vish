@@ -151,6 +151,25 @@ float: left;
     color: #ccc;
 }
 
+.buttonQuiz {
+    padding: 5px 10px;
+    display: inline;
+    text-decoration:none;
+    background: rgb(0, 71, 255) repeat-x bottom;
+    opacity: 0.6;
+    color:#f9f9f9;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.buttonQuiz:hover {
+  opacity: 1;
+  text-shadow: 1px 1px #666;
+}
+
 table.mc_options, table.tf_options{
     border: none;
     border-collapse: separate;

@@ -11619,6 +11619,13 @@ VISH.Editor = function(V, $, undefined) {
     $("a#addJSONFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":300, "padding":0, "onComplete":function(data) {
       V.Editor.Utils.loadTab("tab_json_file")
     }});
+    $("#fancyLoad").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":true, "width":"100%", "height":"100%", "padding":0, "margin":0, "overlayOpacity":0, "overlayColor":"#fff", "showCloseButton":false, "onComplete":function(data) {
+      $("#fancybox-outer").css("background", "rgba(255,255,255,0.9)");
+      $("#fancybox-wrap").css("margin-top", "20px");
+      $("#fancybox-wrap").css("margin-left", "20px")
+    }, "onClosed":function(data) {
+      $("#fancybox-outer").css("background", "white")
+    }});
     if(!eventsLoaded) {
       eventsLoaded = true;
       $(document).on("click", "#edit_presentation_details", V.Editor.Tools.Menu.onSettings);
@@ -13550,14 +13557,19 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedExcursions(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestExcursions(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId), {style:"loading_presentation_carrousel"})
+  };
+  var _onDataReceived = function(data) {
     currentExcursions = new Array;
     var carrouselImages = [];
     var content = "";
@@ -13575,6 +13587,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onClickCarrouselElement;
@@ -13792,14 +13805,19 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedSmartcards(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestSmartcards(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId), {style:"loading_presentation_carrousel"})
+  };
+  var _onDataReceived = function(data) {
     currentSmartcards = new Array;
     var carrouselImages = [];
     var content = "";
@@ -13826,6 +13844,7 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onClickCarrouselElement;
@@ -14801,11 +14820,11 @@ VISH.Quiz = function(V, $, undefined) {
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
     if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
-      var startButton = $("<input type='button' class='button2 quizStartButton' value='Launch'/>");
+      var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='Launch'/>");
       $(quizButtons).prepend(startButton)
     }
     if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
-      var answerButton = $("<input type='button' class='button2 quizAnswerButton' value='Answer'/>");
+      var answerButton = $("<input type='button' class='buttonQuiz quizAnswerButton' value='Answer'/>");
       $(quizButtons).prepend(answerButton)
     }
     return quizButtons
@@ -15763,7 +15782,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.excursionsList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15773,7 +15794,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.excursionsList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15783,7 +15806,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.smartcardList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15793,7 +15818,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.smartcardList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15813,7 +15840,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result["videos"] = V.Debugging.shuffleJson(V.Samples.API.videoList["videos"])
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15824,43 +15853,13 @@ VISH.Editor.API = function(V, $, undefined) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.videoList;
         result["videos"] = V.Debugging.shuffleJson(V.Samples.API.videoList["videos"]);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
     _requestByType("video", "", successCallback, failCallback)
-  };
-  var requestFlashes = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = jQuery.extend({}, V.Samples.API.flashList);
-        switch(text) {
-          case "dummy":
-            result["flashes"] = V.Samples.API.flashListDummy["flashes"];
-            break;
-          case "little":
-            result["flashes"] = V.Debugging.shuffleJson(V.Samples.API.flashListLittle["flashes"]);
-            break;
-          default:
-            result["flashes"] = V.Debugging.shuffleJson(V.Samples.API.flashList["flashes"])
-        }
-        successCallback(result)
-      }
-      return
-    }
-    _requestByType("swfs", text, successCallback, failCallback)
-  };
-  var requestRecomendedFlashes = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.flashList;
-        result["flashes"] = V.Debugging.shuffleJson(V.Samples.API.flashList["flashes"]);
-        successCallback(result)
-      }
-      return
-    }else {
-      _requestByType("swfs", "", successCallback, failCallback)
-    }
   };
   var requestImages = function(text, successCallback, failCallback) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
@@ -15876,7 +15875,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result["pictures"] = V.Debugging.shuffleJson(V.Samples.API.imageList["pictures"])
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15887,7 +15888,9 @@ VISH.Editor.API = function(V, $, undefined) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.imageList;
         result["pictures"] = V.Debugging.shuffleJson(V.Samples.API.imageList["pictures"]);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15907,7 +15910,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result = V.Debugging.shuffleJson(V.Samples.API.liveList)
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15917,7 +15922,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Debugging.shuffleJson(V.Samples.API.liveList);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15937,7 +15944,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result = V.Debugging.shuffleJson(V.Samples.API.objectList)
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15947,7 +15956,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Debugging.shuffleJson(V.Samples.API.objectList);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -16010,7 +16021,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         tags = V.Samples.API.tagsList["tags"];
-        successCallback(V.Samples.API.tagsList["tags"])
+        setTimeout(function() {
+          successCallback(V.Samples.API.tagsList["tags"])
+        }, 2E3)
       }
       return
     }
@@ -16034,7 +16047,9 @@ VISH.Editor.API = function(V, $, undefined) {
   var requestThumbnails = function(successCallback, failCallback) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
-        successCallback(V.Samples.API.thumbnailsList)
+        setTimeout(function() {
+          successCallback(V.Samples.API.thumbnailsList)
+        }, 2E3)
       }
       return
     }
@@ -16053,7 +16068,7 @@ VISH.Editor.API = function(V, $, undefined) {
       if(typeof successCallback == "function") {
         setTimeout(function() {
           var iframe = $("#hiddenIframeForAjaxDownloads");
-          $(iframe).attr("src", "http://localhost/vishEditor/examples/contents/jsons/255.json");
+          $(iframe).attr("src", "http://vishub.org/excursions/tmpJson.json?fileId=1");
           successCallback()
         }, 2E3)
       }
@@ -16065,6 +16080,10 @@ VISH.Editor.API = function(V, $, undefined) {
         if(typeof successCallback == "function") {
           successCallback()
         }
+      }else {
+        if(typeof failCallback == "function") {
+          failCallback()
+        }
       }
     }, error:function(xhr, ajaxOptions, thrownError) {
       if(typeof failCallback == "function") {
@@ -16072,13 +16091,13 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
-  var downloadTmpJSON = function(fileId, successCallback) {
+  var downloadTmpJSON = function(fileId) {
     var filename = fileId;
     var iframe = $("#hiddenIframeForAjaxDownloads");
     $(iframe).attr("src", "/excursions/tmpJson.json?fileId=" + fileId + "&filename=" + filename)
   };
-  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, 
-  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, downloadTmpJSON:downloadTmpJSON}
+  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, 
+  requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, downloadTmpJSON:downloadTmpJSON}
 }(VISH, jQuery);
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;
@@ -16098,7 +16117,9 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
       selectedAvatar = mySelectedAvatar
     }
     if(avatars === null) {
-      $("#" + thumbnailsDetailsId).hide();
+      V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+      $("#" + carrouselDivId).hide();
+      V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId), {style:"loading_avatars"});
       V.Editor.API.requestThumbnails(_onThumbnailsReceived, _onThumbnailsError)
     }else {
       _selectAvatarInCarrousel(selectedAvatar)
@@ -16163,7 +16184,6 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
   };
   var _onThumbnailsReceived = function(data) {
     avatars = data;
-    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     var content = "";
     var carrouselImages = [];
     carrouselImages.push($("<img class='uploadThumbnail' src='" + V.ImagesPath + "icons/addThumbnail.png'/>")[0]);
@@ -16180,7 +16200,8 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     V.Debugging.log("ERROR!" + thrownError)
   };
   var _onImagesLoaded = function() {
-    $("#" + thumbnailsDetailsId).show();
+    $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onAvatarSelected;
@@ -17028,6 +17049,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
   var listImages = function(text) {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId));
     var url_flikr = "http://api.flickr.com/services/feeds/photos_public.gne?tags=" + text + "&tagmode=any&format=json&jsoncallback=?";
     var carrouselImages = [];
     $.getJSON(url_flikr, function(data) {
@@ -17048,6 +17070,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
     V.Editor.Image.addContent(image_url)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 2;
@@ -17080,14 +17103,19 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedImages(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestImages(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentImages = new Array;
     var carrouselImages = [];
     var content = "";
@@ -17104,6 +17132,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 2;
@@ -17201,15 +17230,20 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
     $("#" + footId).find(".okButton").hide()
   };
   var _requestInicialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedLives(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestLives(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     _cleanObjectPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentObject = new Array;
     var carrouselImages = [];
     var carrouselImagesTitles = [];
@@ -17249,6 +17283,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onClickCarrouselElement;
@@ -17330,15 +17365,20 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
     $("#" + footId).find(".okButton").hide()
   };
   var _requestInicialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedObjects(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestObjects(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     _cleanObjectPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentObject = new Array;
     var carrouselImages = [];
     var carrouselImagesTitles = [];
@@ -17377,6 +17417,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 1;
@@ -18901,7 +18942,11 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     $("#addJSONFancybox").trigger("click")
   };
   var exportToJSON = function() {
-    VISH.Editor.Presentation.File.exportToJSON(function() {
+    V.Utils.Loader.startLoading();
+    V.Editor.Presentation.File.exportToJSON(function() {
+      V.Utils.Loader.stopLoading()
+    }, function() {
+      V.Utils.Loader.stopLoading()
     })
   };
   var _hideMenuAfterAction = function() {
@@ -22119,7 +22164,32 @@ VISH.Utils.Loader = function(V, undefined) {
     }
     _loadGoogleLibraryCallback = undefined
   };
-  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded}
+  var t1Loading;
+  var startLoading = function() {
+    t1Loading = Date.now();
+    $("#fancyLoad").trigger("click")
+  };
+  var stopLoading = function() {
+    if(Date.now() - t1Loading < 600) {
+      setTimeout(function() {
+        $.fancybox.close()
+      }, 600);
+      return
+    }
+    $.fancybox.close()
+  };
+  var startLoadingInContainer = function(container, options) {
+    $(container).html($("#loading_fancy_wrapper").html());
+    $(container).addClass("loadingtmpShown");
+    if(options && options.style) {
+      $(container).find(".loading_fancy_img").addClass(options.style)
+    }
+  };
+  var stopLoadingInContainer = function(container) {
+    $(container).find(".loading_fancy_img").parent().remove();
+    $(container).removeClass("loadingtmpShown")
+  };
+  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.VideoPlayer.CustomPlayer = function(V, $, undefined) {
   var progressBarTimer;

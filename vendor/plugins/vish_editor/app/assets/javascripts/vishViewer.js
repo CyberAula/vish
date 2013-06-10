@@ -11081,7 +11081,32 @@ VISH.Utils.Loader = function(V, undefined) {
     }
     _loadGoogleLibraryCallback = undefined
   };
-  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded}
+  var t1Loading;
+  var startLoading = function() {
+    t1Loading = Date.now();
+    $("#fancyLoad").trigger("click")
+  };
+  var stopLoading = function() {
+    if(Date.now() - t1Loading < 600) {
+      setTimeout(function() {
+        $.fancybox.close()
+      }, 600);
+      return
+    }
+    $.fancybox.close()
+  };
+  var startLoadingInContainer = function(container, options) {
+    $(container).html($("#loading_fancy_wrapper").html());
+    $(container).addClass("loadingtmpShown");
+    if(options && options.style) {
+      $(container).find(".loading_fancy_img").addClass(options.style)
+    }
+  };
+  var stopLoadingInContainer = function(container) {
+    $(container).find(".loading_fancy_img").parent().remove();
+    $(container).removeClass("loadingtmpShown")
+  };
+  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
   var _device;
@@ -13043,11 +13068,11 @@ VISH.Quiz = function(V, $, undefined) {
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
     if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
-      var startButton = $("<input type='button' class='button2 quizStartButton' value='Launch'/>");
+      var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='Launch'/>");
       $(quizButtons).prepend(startButton)
     }
     if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
-      var answerButton = $("<input type='button' class='button2 quizAnswerButton' value='Answer'/>");
+      var answerButton = $("<input type='button' class='buttonQuiz quizAnswerButton' value='Answer'/>");
       $(quizButtons).prepend(answerButton)
     }
     return quizButtons
