@@ -11162,15 +11162,41 @@ VISH.Utils = function(V, undefined) {
     return true
   };
   var _checkIdsFlashcardSlide = function(slide) {
-    return _checkIdsVTourSlide(slide)
+    return _checkSlideset(slide)
   };
   var _checkIdsVTourSlide = function(slide) {
-    var subslides = slide.slides;
+    return _checkSlideset(slide)
+  };
+  var _checkSlideset = function(slideset) {
+    var subslides = slideset.slides;
+    var subslidesIds = [];
     if(subslides) {
       var ssL = subslides.length;
       for(var i = 0;i < ssL;i++) {
         var subslide = subslides[i];
+        if(typeof subslide.id != "undefined") {
+          subslidesIds.push(subslide.id)
+        }
         if(!_checkIdsStandardSlide(subslide)) {
+          return false
+        }
+      }
+    }
+    var pois = slideset.pois;
+    if(typeof pois != "undefined") {
+      var pL = pois.length;
+      for(var j = 0;j < pL;j++) {
+        var poi = pois[j];
+        if(poi.id.match(new RegExp("^" + slideset.id + "_poi[0-9]+", "g")) === null) {
+          return false
+        }
+        if(typeof poi.slide_id == "undefined") {
+          return false
+        }
+        if(poi.slide_id.match(new RegExp("^" + slideset.id + "_article[0-9]+", "g")) === null) {
+          return false
+        }
+        if(subslidesIds.indexOf(poi.slide_id) === -1) {
           return false
         }
       }
@@ -11210,10 +11236,39 @@ VISH.Utils = function(V, undefined) {
     return slide
   };
   var _overwriteIdsFlashcardSlide = function(slide) {
-    return slide
+    return _overwriteIdsSlideset(slide)
   };
   var _overwriteIdsVTourSlide = function(slide) {
-    return slide
+    return _overwriteIdsSlideset(slide)
+  };
+  var _overwriteIdsSlideset = function(slideset) {
+    var subslides = slideset.slides;
+    var subslidesIds = new Array;
+    if(subslides) {
+      var ssL = subslides.length;
+      for(var i = 0;i < ssL;i++) {
+        var subslide = subslides[i];
+        var oldId = subslide.id;
+        subslide.id = slideset.id + "_article" + (i + 1).toString();
+        subslidesIds[oldId] = subslide.id;
+        subslide = _overwriteIdsStandardSlide(subslide)
+      }
+    }
+    var newPois = [];
+    var pois = slideset.pois;
+    if(typeof pois != "undefined") {
+      var pL = pois.length;
+      for(var j = 0;j < pL;j++) {
+        var poi = pois[j];
+        poi.id = slideset.id + "_poi" + (j + 1).toString();
+        if(typeof subslidesIds[poi.slide_id] != "undefined") {
+          poi.slide_id = subslidesIds[poi.slide_id];
+          newPois.push(poi)
+        }
+      }
+      slideset.pois = newPois
+    }
+    return slideset
   };
   var showPNotValidDialog = function() {
     $.fancybox($("#presentation_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
@@ -12209,6 +12264,9 @@ VISH.Editor = function(V, $, undefined) {
         return true
       }
       if(V.Editor.Flashcard.hasFlascards()) {
+        return false
+      }
+      if(V.Editor.VirtualTour.hasVirtualTours()) {
         return false
       }
       return true
@@ -13410,6 +13468,12 @@ VISH.Editor.Presentation = function(V, $, undefined) {
       $.fancybox.close();
       return
     }
+    presentationJSON = V.Utils.fixPresentation(presentationJSON);
+    if(presentationJSON === null) {
+      V.Utils.showPNotValidDialog();
+      $.fancybox.close();
+      return
+    }
     var selectedSlides = [];
     var flashcards = [];
     var vts = [];
@@ -13640,7 +13704,7 @@ VISH.Editor.VirtualTour = function(V, $, undefined) {
     }
   };
   var hasVirtualTours = function() {
-    return $("section.slides > .VirtualTour_slide[type='VirtualTour']").length > 0
+    return $("section.slides > .virtualTour_slide[type='VirtualTour']").length > 0
   };
   var getSlideset = function(id) {
     return getVirtualTour(id)
@@ -15984,16 +16048,31 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
-  var uploadTmpJSON = function(json) {
+  var uploadTmpJSON = function(json, successCallback, failCallback) {
+    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
+      if(typeof successCallback == "function") {
+        setTimeout(function() {
+          var iframe = $("#hiddenIframeForAjaxDownloads");
+          $(iframe).attr("src", "http://localhost/vishEditor/examples/contents/jsons/255.json");
+          successCallback()
+        }, 2E3)
+      }
+      return
+    }
     $.ajax({async:false, type:"POST", url:"/excursions/tmpJson.json", dataType:"json", data:{"authenticity_token":V.User.getToken(), "json":JSON.stringify(json)}, success:function(data) {
       if(data && data.fileId) {
-        V.Editor.API.downloadTmpJSON(data.fileId)
+        V.Editor.API.downloadTmpJSON(data.fileId);
+        if(typeof successCallback == "function") {
+          successCallback()
+        }
       }
     }, error:function(xhr, ajaxOptions, thrownError) {
-      V.Debugging.log("uploadTmpJSON error")
+      if(typeof failCallback == "function") {
+        failCallback(xhr, ajaxOptions, thrownError)
+      }
     }})
   };
-  var downloadTmpJSON = function(fileId) {
+  var downloadTmpJSON = function(fileId, successCallback) {
     var filename = fileId;
     var iframe = $("#hiddenIframeForAjaxDownloads");
     $(iframe).attr("src", "/excursions/tmpJson.json?fileId=" + fileId + "&filename=" + filename)
@@ -17543,9 +17622,9 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
     }(file);
     reader.readAsText(file)
   };
-  var exportToJSON = function() {
+  var exportToJSON = function(successCallback, failCallback) {
     var presentation = V.Editor.savePresentation();
-    V.Editor.API.uploadTmpJSON(presentation)
+    V.Editor.API.uploadTmpJSON(presentation, successCallback, failCallback)
   };
   return{init:init, onLoadTab:onLoadTab, exportToJSON:exportToJSON}
 }(VISH, jQuery);
@@ -18822,7 +18901,8 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     $("#addJSONFancybox").trigger("click")
   };
   var exportToJSON = function() {
-    VISH.Editor.Presentation.File.exportToJSON()
+    VISH.Editor.Presentation.File.exportToJSON(function() {
+    })
   };
   var _hideMenuAfterAction = function() {
     if(_hoverMenu) {

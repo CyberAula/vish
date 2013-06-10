@@ -10563,15 +10563,41 @@ VISH.Utils = function(V, undefined) {
     return true
   };
   var _checkIdsFlashcardSlide = function(slide) {
-    return _checkIdsVTourSlide(slide)
+    return _checkSlideset(slide)
   };
   var _checkIdsVTourSlide = function(slide) {
-    var subslides = slide.slides;
+    return _checkSlideset(slide)
+  };
+  var _checkSlideset = function(slideset) {
+    var subslides = slideset.slides;
+    var subslidesIds = [];
     if(subslides) {
       var ssL = subslides.length;
       for(var i = 0;i < ssL;i++) {
         var subslide = subslides[i];
+        if(typeof subslide.id != "undefined") {
+          subslidesIds.push(subslide.id)
+        }
         if(!_checkIdsStandardSlide(subslide)) {
+          return false
+        }
+      }
+    }
+    var pois = slideset.pois;
+    if(typeof pois != "undefined") {
+      var pL = pois.length;
+      for(var j = 0;j < pL;j++) {
+        var poi = pois[j];
+        if(poi.id.match(new RegExp("^" + slideset.id + "_poi[0-9]+", "g")) === null) {
+          return false
+        }
+        if(typeof poi.slide_id == "undefined") {
+          return false
+        }
+        if(poi.slide_id.match(new RegExp("^" + slideset.id + "_article[0-9]+", "g")) === null) {
+          return false
+        }
+        if(subslidesIds.indexOf(poi.slide_id) === -1) {
           return false
         }
       }
@@ -10611,10 +10637,39 @@ VISH.Utils = function(V, undefined) {
     return slide
   };
   var _overwriteIdsFlashcardSlide = function(slide) {
-    return slide
+    return _overwriteIdsSlideset(slide)
   };
   var _overwriteIdsVTourSlide = function(slide) {
-    return slide
+    return _overwriteIdsSlideset(slide)
+  };
+  var _overwriteIdsSlideset = function(slideset) {
+    var subslides = slideset.slides;
+    var subslidesIds = new Array;
+    if(subslides) {
+      var ssL = subslides.length;
+      for(var i = 0;i < ssL;i++) {
+        var subslide = subslides[i];
+        var oldId = subslide.id;
+        subslide.id = slideset.id + "_article" + (i + 1).toString();
+        subslidesIds[oldId] = subslide.id;
+        subslide = _overwriteIdsStandardSlide(subslide)
+      }
+    }
+    var newPois = [];
+    var pois = slideset.pois;
+    if(typeof pois != "undefined") {
+      var pL = pois.length;
+      for(var j = 0;j < pL;j++) {
+        var poi = pois[j];
+        poi.id = slideset.id + "_poi" + (j + 1).toString();
+        if(typeof subslidesIds[poi.slide_id] != "undefined") {
+          poi.slide_id = subslidesIds[poi.slide_id];
+          newPois.push(poi)
+        }
+      }
+      slideset.pois = newPois
+    }
+    return slideset
   };
   var showPNotValidDialog = function() {
     $.fancybox($("#presentation_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})

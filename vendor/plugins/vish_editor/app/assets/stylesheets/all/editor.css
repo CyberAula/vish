@@ -1572,6 +1572,7 @@ img.excursionSelectedInCarrousel:active , img.smartcardSelectedInCarrousel:activ
 }
 
 #flashcard-background{
+	background: #fff;
 	display:none;
 	z-index: 1050;
 	width: 800px;
@@ -1606,21 +1607,24 @@ img.excursionSelectedInCarrousel:active , img.smartcardSelectedInCarrousel:activ
 
 .draggable_arrow_div img.fc_draggable_arrow:active {
 	border: none !important;
+	opacity: 1.0 !important;
 }
 
 .draggable_arrow_div img.fc_draggable_arrow:hover  {
 		-webkit-box-shadow: none !important;
 	-moz-box-shadow: none !important;
 	box-shadow:   none !important;
-	opacity: 1.0;
+	opacity: 1.0 !important;
 }
 
 div.draggable_arrow_div, div.carrrousel_element_single_row_slides{
 	z-index: 1075;
+	opacity: 1.0;
 }
 
 .draggable_arrow_div img.fc_draggable_arrow{
 	background-color: transparent;
+	opacity: 1.0 !important;
 }
 
 .draggable_number{
@@ -2055,4 +2059,6 @@ height: 100%;
 float: left;
 }
 
-
+.waitCursor {
+	cursor: wait !important;
+}
