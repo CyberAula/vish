@@ -11619,6 +11619,9 @@ VISH.Editor = function(V, $, undefined) {
     $("a#addJSONFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":300, "padding":0, "onComplete":function(data) {
       V.Editor.Utils.loadTab("tab_json_file")
     }});
+    $("a#addPDFexFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":300, "padding":0, "onComplete":function(data) {
+      V.Editor.Utils.loadTab("tab_pdfex")
+    }});
     $("#fancyLoad").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":true, "width":"100%", "height":"100%", "padding":0, "margin":0, "overlayOpacity":0, "overlayColor":"#fff", "showCloseButton":false, "onComplete":function(data) {
       $("#fancybox-outer").css("background", "rgba(255,255,255,0.9)");
       $("#fancybox-wrap").css("margin-top", "20px");
@@ -11657,6 +11660,7 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.Image.init();
     V.Editor.Video.init();
     V.Editor.Object.init();
+    V.Editor.PDFex.init();
     V.Editor.Presentation.Repository.init();
     V.Editor.Slideset.Repository.init();
     V.Editor.Thumbnails.init();
@@ -12665,6 +12669,9 @@ VISH.Editor.Utils = function(V, $, undefined) {
         break;
       case "tab_json_file":
         V.Editor.Presentation.File.onLoadTab();
+        break;
+      case "tab_pdfex":
+        V.Editor.PDFex.onLoadTab();
         break;
       default:
         break
@@ -15619,7 +15626,8 @@ VISH.Configuration = function(V, $, undefined) {
     V.StylesheetsPath = configuration["StylesheetsPath"];
     V.UploadImagePath = configuration["uploadImagePath"];
     V.UploadObjectPath = configuration["uploadObjectPath"];
-    V.UploadPresentationPath = configuration["uploadPresentationPath"]
+    V.UploadPresentationPath = configuration["uploadPresentationPath"];
+    V.UploadPDF2PPath = configuration["uploadPDF2PPath"]
   };
   var applyConfiguration = function() {
     if(configuration["presentationSettings"]) {
@@ -17630,6 +17638,81 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
 }(VISH, jQuery);
+VISH.Editor.PDFex = function(V, $, undefined) {
+  var uploadDivId = "tab_pdfex_content";
+  var init = function() {
+    var options = V.Editor.getOptions();
+    var bar = $("#" + uploadDivId + " .upload_progress_bar");
+    var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
+    $("#" + uploadDivId + " input[name='pdfex[attach]']").change(function() {
+      var filterFilePath = V.Editor.Utils.filterFilePath($("#" + uploadDivId + " input:file").val());
+      $("#" + uploadDivId + " input[name='pdfex[title]']").val(filterFilePath);
+      _resetUploadFields();
+      $("#" + uploadDivId + " form" + " .button").show();
+      $("#" + uploadDivId + " .upload_progress_bar_wrapper").hide()
+    });
+    $("#" + uploadDivId + " #upload_pdfex_submit").click(function(event) {
+      if(!V.Police.validateFileUpload($("#" + uploadDivId + " input[name='pdfex[attach]']").val())[0]) {
+        event.preventDefault()
+      }else {
+        if(options) {
+          $("#" + uploadDivId + " input[name='pdfex[owner_id]']").val(V.User.getId());
+          $("#" + uploadDivId + " input[name='authenticity_token']").val(V.User.getToken());
+          $("#" + uploadDivId + " .documentsForm").attr("action", V.UploadPDF2PPath);
+          $("#" + uploadDivId + " .upload_progress_bar_wrapper").show()
+        }
+      }
+    });
+    $("#" + uploadDivId + " form").ajaxForm({beforeSend:function() {
+      var percentVal = "0%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, uploadProgress:function(event, position, total, percentComplete) {
+      var percentVal = percentComplete + "%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, complete:function(xhr) {
+      switch(V.Configuration.getConfiguration()["mode"]) {
+        case V.Constant.NOSERVER:
+          var responseTest = '{"urls":["http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-0.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-1.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-2.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-3.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-4.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-5.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-6.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-7.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-8.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-9.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-10.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-11.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-12.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-13.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-14.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-15.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-16.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-17.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-18.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-19.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-20.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-21.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-22.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-23.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-24.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-25.jpg"]}';
+          processResponse(responseTest);
+          break;
+        case V.Constant.VISH:
+          processResponse(xhr.responseText);
+          break;
+        case V.Constant.STANDALONE:
+          processResponse(xhr.responseText);
+          break
+      }
+      var percentVal = "100%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, error:function(error) {
+      V.Debugging.log("Upload error");
+      V.Debugging.log(error)
+    }})
+  };
+  var onLoadTab = function() {
+    $("#" + uploadDivId + " form" + " .button").hide();
+    $("#" + uploadDivId + " .upload_progress_bar_wrapper").hide();
+    $("#" + uploadDivId + " input[name='pdfex[attach]']").val("");
+    _resetUploadFields()
+  };
+  var _resetUploadFields = function() {
+    var bar = $("#" + uploadDivId + " .upload_progress_bar");
+    var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
+    bar.width("0%");
+    percent.html("0%")
+  };
+  var processResponse = function(response) {
+    try {
+      var jsonResponse = JSON.parse(response);
+      V.Debugging.log(jsonResponse)
+    }catch(e) {
+    }
+  };
+  return{init:init, onLoadTab:onLoadTab}
+}(VISH, jQuery);
 VISH.Editor.Presentation.File = function(V, $, undefined) {
   var fileDivId = "tab_json_file_content";
   var inputFilesId = "json_file_input";
@@ -18941,6 +19024,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var insertJSON = function() {
     $("#addJSONFancybox").trigger("click")
   };
+  var insertPDFex = function() {
+    $("#addPDFexFancybox").trigger("click")
+  };
   var exportToJSON = function() {
     V.Utils.Loader.startLoading();
     V.Editor.Presentation.File.exportToJSON(function() {
@@ -18957,7 +19043,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       }, 50)
     }
   };
-  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertJSON:insertJSON, exportToJSON:exportToJSON, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, 
+  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertJSON:insertJSON, insertPDFex:insertPDFex, exportToJSON:exportToJSON, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, 
   onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, switchToPresentation:switchToPresentation, switchToFlashcard:switchToFlashcard, switchToVirtualTour:switchToVirtualTour}
 }(VISH, jQuery);
 VISH.Editor.Utils.Loader = function(V, $, undefined) {

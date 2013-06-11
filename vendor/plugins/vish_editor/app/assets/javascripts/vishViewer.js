@@ -4843,7 +4843,8 @@ VISH.Configuration = function(V, $, undefined) {
     V.StylesheetsPath = configuration["StylesheetsPath"];
     V.UploadImagePath = configuration["uploadImagePath"];
     V.UploadObjectPath = configuration["uploadObjectPath"];
-    V.UploadPresentationPath = configuration["uploadPresentationPath"]
+    V.UploadPresentationPath = configuration["uploadPresentationPath"];
+    V.UploadPDF2PPath = configuration["uploadPDF2PPath"]
   };
   var applyConfiguration = function() {
     if(configuration["presentationSettings"]) {

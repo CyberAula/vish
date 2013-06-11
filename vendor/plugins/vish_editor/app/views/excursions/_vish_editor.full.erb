@@ -79,6 +79,9 @@
 									<li class="liInsertJson">
 										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertJSON">JSON</a>
 									</li>
+									<li>
+										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertPDFex">PDF Slideshow</a>
+									</li>
 								</ul>
 							</li>
 							<li>
@@ -150,6 +153,8 @@
     <a id="addQuizFancybox" href="#quizcontent" style="display: none;"></a>
     <!-- Hidden link to open fancybox when adding a json  -->
     <a id="addJSONFancybox" href="#json_fancybox" style="display: none;"></a>
+    <!-- Hidden link to open fancybox when adding a pdf slideshow as excursion  -->
+    <a id="addPDFexFancybox" href="#pdfex_fancybox" style="display: none;"></a>
     <!-- Hidden link to open fancybox when creating a new presentation -->
     <a id="launch_presentation_details" href="#presentationdetails" style="display: none;"></a>
     <!-- Hidden link for loading fancybox -->
@@ -491,6 +496,44 @@
 	    </div>
 	  </div>
 
+	  <!-- PDFex fancybox -->
+	  <div style='display:none'>
+	    <div id="pdfex_fancybox" class="outer_box">
+				<div class="fancy_tabs" id="pdfex_fancy_tabs_id">
+				  <ul>
+				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex')" id="tab_pdfex" class="fancy_tab">file</a></li>
+				  </ul>
+				  <img class='help_in_fancybox' id='tab_pdfex_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+				</div>
+
+				<div id='tab_pdfex_content' class="fancy_tab_content">
+					<div class="box1 box1fancy3">
+						<p class="textfancy">Add slideshow from PDF file</p></br>
+						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+
+						<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
+							<input id="upload_file_input" type="file" name="pdfex[attach]" class="upload_file_input">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
+
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
+
+					</div>
+				</div>
+	    </div>
+	  </div>
+
+
+					
+
+
+
+
 
 	  <!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
 	  <div style='display:none'>
@@ -692,38 +735,42 @@
                 				<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
                 			</div>
             			</div>
-				</div>      
+				</div> 
+
+
 				<div id='tab_pic_upload_content' class="fancy_tab_content">
-              <div class="box1 box1fancy3">
-				  			<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
-                <img class="image_add_url" src="/assets/icons/url_upl.png"/>
-								
-							    <form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-							        <input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
-							        <input type="hidden" name="document[title]">
-							        <input type="hidden" name="document[description]">
-							        <input type="hidden" name="document[owner_id]">
-							        <input type="hidden" name="authenticity_token">
-									<input type="hidden" name="document[tag_list]">
-							        <input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-							    </form>
-							    
-							    <div class="upload_progress_bar_wrapper">
-							        <div class="upload_progress_bar"></div >
-							        <div class="upload_progress_bar_percent">0%</div >
-							    </div>
-									
-									<div class="tagBoxUpload">
-				            <ul class="tagList"></ul>
-                  </div>
-									
-							</div>
-              <div class="box2 box2_upload">
-            				<div class="previewimgbox">
-                				<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
-                    </div>
-							</div>
-        </div>            
+					<div class="box1 box1fancy3">
+						<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
+						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+
+						<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
+							<input type="hidden" name="document[title]">
+							<input type="hidden" name="document[description]">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input type="hidden" name="document[tag_list]">
+							<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
+
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
+
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
+					</div>
+
+					<div class="box2 box2_upload">
+						<div class="previewimgbox">
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
+						</div>
+					</div>
+				</div>  
+
+
 				<div id='tab_pic_repo_content' class="fancy_tab_content">
 					<div class="box1 box1fancy2">
 						<img src="/assets/repositoryimg.png" class="imagelogotab"/>				  		  
