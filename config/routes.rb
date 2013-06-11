@@ -102,6 +102,9 @@ Vish::Application.routes.draw do
   #Download the user manual and count the number of downloads
   match 'user_manual' => 'help#download_user_manual'
 
+  #PDF to Excursion
+  resources :pdfexes
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
