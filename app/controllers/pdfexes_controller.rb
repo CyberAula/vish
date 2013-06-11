@@ -5,7 +5,6 @@ class PdfexesController < ApplicationController
 		render :json => @pdfex.getImgArray
 	end
 
-
 	def create
 		@pdfex = Pdfex.new(params[:pdfex])
 		@pdfex.save!
