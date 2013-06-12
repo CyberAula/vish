@@ -127,6 +127,11 @@ this can not be done with show() and hide() because then it remains with display
   display: none;
 }
 
+/* Allow temp shown to be applied to any element*/
+.temp_shown{
+  display: block !important;
+}
+
 .slides > article.far-past {
   display: block;
   transform: translate(-230%);
@@ -183,8 +188,8 @@ this can not be done with show() and hide() because then it remains with display
 	padding: 0;
 	position: absolute;
 	margin: 0;
-	max-width: 70px;
-	min-width: 100px;
+max-width: 26px;
+min-width: 26px;
 	outline: none;
 	top: 0;
 	padding-bottom: 0px;
@@ -209,7 +214,7 @@ this can not be done with show() and hide() because then it remains with display
     background-image: url("/assets/arrows.png");
   background-position: -160px -160px;
   background-repeat: no-repeat;
-	right: 23%;
+	right: 30%;
   cursor: pointer;
     height: 30px;
   width: 20px;
@@ -263,6 +268,7 @@ this can not be done with show() and hide() because then it remains with display
 }
 
 #slide-counter-div {
+  cursor: default;
 z-index: 10;
 font-family: Helvetica;
 font-size: 1.2em;
@@ -271,7 +277,10 @@ margin-top: 8px;
 }
 
 #slide-counter-span{
-
+cursor: default;
+font-family: Helvetica;
+font-size: 1em;
+text-align: center;
 }
 
 #slide-counter-input{
@@ -283,7 +292,7 @@ margin-top: 8px;
 }
 
 #slide-counter-input:hover{
-  cursor: pointer;
+  cursor: text;
   border-radius: 1px;
 }
 

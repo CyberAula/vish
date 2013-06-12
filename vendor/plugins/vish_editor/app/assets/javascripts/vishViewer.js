@@ -4759,7 +4759,7 @@ window.Chart = function(context, options) {
   }
 };
 var VISH = VISH || {};
-VISH.VERSION = "0.5";
+VISH.VERSION = "0.6";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -9058,8 +9058,13 @@ VISH.Renderer = function(V, $, undefined) {
     return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'></div>"
   };
   var _renderImage = function(element, template) {
+    if(typeof element["style"] == "undefined") {
+      style = "max-height: 100%; max-width: 100%;"
+    }else {
+      style = element["style"]
+    }
     var div = $("<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'></div>");
-    var img = $("<img class='" + template + "_image' src='" + element["body"] + "' style='" + element["style"] + "' />");
+    var img = $("<img class='" + template + "_image' src='" + element["body"] + "' style='" + style + "' />");
     if(element["hyperlink"]) {
       var a = $("<a href='" + element["hyperlink"] + "' target='blank_'></a>");
       $(a).append(img);

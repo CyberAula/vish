@@ -41,7 +41,7 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor."}, 
 "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.5";
+VISH.VERSION = "0.6";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -10698,8 +10698,13 @@ if(!YT.Player) {
     return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'></div>"
   };
   var _renderImage = function(element, template) {
+    if(typeof element["style"] == "undefined") {
+      style = "max-height: 100%; max-width: 100%;"
+    }else {
+      style = element["style"]
+    }
     var div = $("<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'></div>");
-    var img = $("<img class='" + template + "_image' src='" + element["body"] + "' style='" + element["style"] + "' />");
+    var img = $("<img class='" + template + "_image' src='" + element["body"] + "' style='" + style + "' />");
     if(element["hyperlink"]) {
       var a = $("<a href='" + element["hyperlink"] + "' target='blank_'></a>");
       $(a).append(img);
@@ -13094,7 +13099,13 @@ VISH.Editor.Image = function(V, $, undefined) {
     if(!style) {
       var theImg = $("#" + idToDragAndResize);
       $(theImg).load(function() {
+        $(current_area).parent().addClass("temp_shown");
+        $(current_area).addClass("temp_shown");
+        $(theImg).addClass("temp_shown");
         var dimentionsToDraw = V.Editor.Utils.dimentionToDraw($(current_area).width(), $(current_area).height(), $(theImg).width(), $(theImg).height());
+        $(current_area).parent().removeClass("temp_shown");
+        $(current_area).removeClass("temp_shown");
+        $(theImg).removeClass("temp_shown");
         $(theImg).width(dimentionsToDraw.width);
         if(dimentionsToDraw.height > 0) {
           $(theImg).height(dimentionsToDraw.height)
@@ -17674,7 +17685,7 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     }, complete:function(xhr) {
       switch(V.Configuration.getConfiguration()["mode"]) {
         case V.Constant.NOSERVER:
-          var responseTest = '{"urls":["http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-0.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-1.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-2.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-3.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-4.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-5.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-6.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-7.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-8.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-9.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-10.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-11.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-12.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-13.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-14.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-15.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-16.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-17.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-18.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-19.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-20.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-21.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-22.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-23.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-24.jpg","http://localhost:3000//system/pdfexes/attaches/000/000/021/original/vish_user_manual-25.jpg"]}';
+          var responseTest = '{"urls":["http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-0.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-1.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-2.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-3.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-4.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-5.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-6.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-7.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-8.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-9.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-10.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-11.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-12.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-13.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-14.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-15.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-16.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-17.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-18.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-19.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-20.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-21.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-22.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-23.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-24.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-25.jpg"]}';
           processResponse(responseTest);
           break;
         case V.Constant.VISH:
@@ -17707,9 +17718,36 @@ VISH.Editor.PDFex = function(V, $, undefined) {
   var processResponse = function(response) {
     try {
       var jsonResponse = JSON.parse(response);
-      V.Debugging.log(jsonResponse)
+      var presentation = generatePresentationWithImgArray(jsonResponse.urls);
+      V.Editor.Presentation.previewPresentation(presentation)
     }catch(e) {
     }
+  };
+  var generatePresentationWithImgArray = function(imgs) {
+    var presentation = {};
+    presentation.VEVersion = V.VERSION;
+    presentation.type = V.Constant.PRESENTATION;
+    presentation.theme = V.Constant.Themes.Default;
+    presentation.slides = [];
+    for(var i = 0;i < imgs.length;i++) {
+      var imageUrl = imgs[i];
+      presentation.slides.push(_generateSlideWithImg(i, imageUrl))
+    }
+    return presentation
+  };
+  var _generateSlideWithImg = function(index, imgUrl) {
+    var slide = {};
+    slide.id = "article" + index;
+    slide.type = V.Constant.STANDARD;
+    slide.template = "t10";
+    slide.elements = [];
+    var element = {};
+    element.areaid = "center";
+    element.body = imgUrl;
+    element.id = slide.id + "_zone1";
+    element.type = V.Constant.IMAGE;
+    slide.elements.push(element);
+    return slide
   };
   return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
