@@ -1,7 +1,19 @@
--//
+//
 // Variables
 // --------------------------------------------------
 
+// ViSH Colors
+// -------------------------
+$background:            #f9f9f9 ;
+$red-1:                 #ff005d ;
+$red-2:                 #FE99C4 ;
+$linkgray:              #6e6e6e ;
+$blue-1:                #3366ff ;
+$blue-2:                #6A98E2 ;
+$green-vish:            #40CC7F ;
+
+$gray-vish:             #CCCCCC ;
+$gray-search:           #A1A1A1 ;
 
 // Global values
 // --------------------------------------------------
@@ -13,15 +25,17 @@ $black:                 #000 !default;
 $grayDarker:            #222 !default;
 $grayDark:              #333 !default;
 $gray:                  #555 !default;
-$grayLight:             #999 !default;
-$grayLighter:           #eee !default;
+$grayLight:             #888 !default;
+$grayLighter:           #e2e2e2 !default;
+$whiteSmoke:            #f9f9f9 !default;
 $white:                 #fff !default;
 
 
 // Accent colors
 // -------------------------
 $blue:                  #049cdb !default;
-$blueDark:              #0064cd !default;
+$blueDark:              #0380b4 !default;
+$blueLight:             #90ddfc !default;
 $green:                 #46a546 !default;
 $red:                   #9d261d !default;
 $yellow:                #ffc40d !default;
@@ -29,34 +43,46 @@ $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;
 
+// -----------
+$principalColor:        $orange !default;
+$secundaryColor:        $blueLight !default;
+$auxiliarColor:         $white !default;
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        $white !default;
-$textColor:             $grayDark !default;
+$bodyBackground:        $red-1 !default;
+$textColor:             $red-1 !default;
 
 
 // Links
 // -------------------------
-$linkColor:             #08c !default;
+$linkColor:             #049cdb !default;
 $linkColorHover:        darken($linkColor, 15%) !default;
 
 
 // Typography
 // -------------------------
-$sansFontFamily:        "Arial", Helvetica, Arial, sans-serif !default;
-$serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
-$monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+$sansFontFamily:        "OpenSans", Arial, sans-serif;
+$sansFontFamilyLight:   "OpenSansLight", Arial, sans-serif;
+$serifFontFamily:       "BreeSerif", Times New Roman, Times, serif !default;
+$handwriteFontFamily:   "Giveyouglory", Courier New, monospace !default;
 
 $baseFontSize:          14px !default;
-$baseFontFamily:        $sansFontFamily !default;
+$baseFontFamily:        $sansFontFamily;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
 
 $headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
-$headingsFontWeight:    bold !default;    // instead of browser default, bold
+$headingsFontWeight:    normal !default;    // instead of browser default, bold
 $headingsColor:         inherit !default; // empty to use BS default, $textColor
 
+
+// buttons
+// -------------------------
+$principal-btnColorbackground: $auxiliarColor;
+$principal-btnColorborder: $principalColor;
+$secundary-btnColorbackground: $principalColor;
+$secundary-btnColorborder: $auxiliarColor;
 
 // Component sizing
 // -------------------------
@@ -66,13 +92,13 @@ $fontSizeLarge:         $baseFontSize * 1.25; // ~18px
 $fontSizeSmall:         $baseFontSize * 0.85; // ~12px
 $fontSizeMini:          $baseFontSize * 0.75; // ~11px
 
-$paddingLarge:          11px 19px; // 44px
-$paddingSmall:          2px 10px;  // 26px
-$paddingMini:           1px 6px;   // 24px
+$paddingLarge:          11px 19px !default; // 44px
+$paddingSmall:          2px 10px !default;  // 26px
+$paddingMini:           0px 6px !default;   // 22px
 
-$baseBorderRadius:      4px;
-$borderRadiusLarge:     6px;
-$borderRadiusSmall:     3px;
+$baseBorderRadius:      4px !default;
+$borderRadiusLarge:     6px !default;
+$borderRadiusSmall:     3px !default;
 
 
 // Tables
@@ -88,8 +114,8 @@ $btnBackground:                     $white !default;
 $btnBackgroundHighlight:            darken($white, 10%) !default;
 $btnBorder:                         #bbb !default;
 
-$btnPrimaryBackground:              $red-1 ;
-$btnPrimaryBackgroundHighlight:     $red-1 ;
+$btnPrimaryBackground:              $linkColor !default;
+$btnPrimaryBackgroundHighlight:     adjust-hue($btnPrimaryBackground, 20%) !default;
 
 $btnInfoBackground:                 #5bc0de !default;
 $btnInfoBackgroundHighlight:        #2f96b4 !default;
@@ -167,7 +193,7 @@ $hrBorder:                $grayLighter !default;
 
 // Horizontal forms & lists
 // -------------------------
-$horizontalComponentOffset:       180px;
+$horizontalComponentOffset:       180px !default;
 
 
 // Wells
@@ -231,19 +257,19 @@ $heroUnitLeadColor:               inherit !default;
 // Form states and alerts
 // -------------------------
 $warningText:             #c09853 !default;
-$warningBackground:       transparent !default;
+$warningBackground:       #fcf8e3 !default;
 $warningBorder:           darken(adjust-hue($warningBackground, -10), 3%) !default;
 
 $errorText:               #b94a48 !default;
-$errorBackground:         transparent !default;
+$errorBackground:         #f2dede !default;
 $errorBorder:             darken(adjust-hue($errorBackground, -10), 3%) !default;
 
 $successText:             #468847 !default;
-$successBackground:       transparent !default;
+$successBackground:       #dff0d8 !default;
 $successBorder:           darken(adjust-hue($successBackground, -10), 5%) !default;
 
 $infoText:                #3a87ad !default;
-$infoBackground:          transparent !default;
+$infoBackground:          #d9edf7 !default;
 $infoBorder:              darken(adjust-hue($infoBackground, -10), 7%) !default;
 
 
@@ -273,7 +299,7 @@ $popoverArrowOuterColor:  rgba(0,0,0,.25) !default;
 // -------------------------
 $gridColumns:             12 !default;
 $gridColumnWidth:         60px !default;
-$gridGutterWidth:         20px !default;
+$gridGutterWidth:         30px !default;
 $gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1)) !default;
 
 // 1200px min
@@ -299,3 +325,9 @@ $fluidGridGutterWidth1200:     percentage($gridGutterWidth1200/$gridRowWidth1200
 // 768px-979px
 $fluidGridColumnWidth768:      percentage($gridColumnWidth768/$gridRowWidth768) !default;
 $fluidGridGutterWidth768:      percentage($gridGutterWidth768/$gridRowWidth768) !default;
+
+
+
+
+
+

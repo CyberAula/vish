@@ -9,6 +9,5 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require social_stream.css.sass
- *= require_tree .
+ *= require vish.css.sass
  */
