@@ -17681,26 +17681,44 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     }, uploadProgress:function(event, position, total, percentComplete) {
       var percentVal = percentComplete + "%";
       bar.width(percentVal);
-      percent.html(percentVal)
-    }, complete:function(xhr) {
+      percent.html(percentVal);
+      if(percentVal === "100%") {
+        V.Utils.Loader.startLoading()
+      }
+    }, success:function(responseText, statusText, xhr, form) {
       switch(V.Configuration.getConfiguration()["mode"]) {
-        case V.Constant.NOSERVER:
-          var responseTest = '{"urls":["http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-0.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-1.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-2.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-3.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-4.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-5.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-6.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-7.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-8.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-9.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-10.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-11.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-12.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-13.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-14.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-15.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-16.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-17.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-18.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-19.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-20.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-21.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-22.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-23.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-24.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-25.jpg"]}';
-          processResponse(responseTest);
-          break;
         case V.Constant.VISH:
-          processResponse(xhr.responseText);
+          processResponse(responseText);
           break;
         case V.Constant.STANDALONE:
-          processResponse(xhr.responseText);
+          processResponse(responseText);
+          break;
+        default:
           break
       }
       var percentVal = "100%";
       bar.width(percentVal);
       percent.html(percentVal)
+    }, complete:function(xhr) {
+      switch(V.Configuration.getConfiguration()["mode"]) {
+        case V.Constant.NOSERVER:
+          setTimeout(function() {
+            var responseTest = '{"urls":["http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-0.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-1.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-2.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-3.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-4.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-5.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-6.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-7.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-8.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-9.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-10.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-11.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-12.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-13.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-14.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-15.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-16.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-17.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-18.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-19.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-20.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-21.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-22.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-23.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-24.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-25.jpg"]}';
+            processResponse(JSON.parse(responseTest))
+          }, 1E4);
+          break;
+        case V.Constant.VISH:
+        ;
+        case V.Constant.STANDALONE:
+        ;
+        default:
+          break
+      }
     }, error:function(error) {
-      V.Debugging.log("Upload error");
-      V.Debugging.log(error)
+      if(V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
+        return
+      }
+      V.Utils.Loader.stopLoading()
     }})
   };
   var onLoadTab = function() {
@@ -17715,12 +17733,12 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     bar.width("0%");
     percent.html("0%")
   };
-  var processResponse = function(response) {
+  var processResponse = function(jsonResponse) {
     try {
-      var jsonResponse = JSON.parse(response);
       var presentation = generatePresentationWithImgArray(jsonResponse.urls);
       V.Editor.Presentation.previewPresentation(presentation)
     }catch(e) {
+      V.Utils.Loader.stopLoading()
     }
   };
   var generatePresentationWithImgArray = function(imgs) {
@@ -21597,9 +21615,9 @@ VISH.SlidesSelector = function(V, $, undefined) {
   };
   _updateButtonValue = function(slideNumber) {
     if(slides[slideNumber - 1] === true) {
-      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_wrong.png"/>Remove Slide')
+      $(acceptButton).html('<img class="imgbutton" src="' + V.ImagesPath + 'quiz/checkbox_wrong.png"/>Remove Slide')
     }else {
-      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_checked.png"/>Add Slide')
+      $(acceptButton).html('<img class="imgbutton" src="' + V.ImagesPath + 'quiz/checkbox_checked.png"/>Add Slide')
     }
   };
   return{init:init}
@@ -22290,17 +22308,25 @@ VISH.Utils.Loader = function(V, undefined) {
   };
   var t1Loading;
   var startLoading = function() {
-    t1Loading = Date.now();
-    $("#fancyLoad").trigger("click")
+    if(!_isFullLoadingActive()) {
+      t1Loading = Date.now();
+      $("#fancyLoad").trigger("click")
+    }
   };
   var stopLoading = function() {
-    if(Date.now() - t1Loading < 600) {
+    var diff = Date.now() - t1Loading;
+    if(diff < 800) {
       setTimeout(function() {
+        stopLoading()
+      }, 800)
+    }else {
+      if(_isFullLoadingActive()) {
         $.fancybox.close()
-      }, 600);
-      return
+      }
     }
-    $.fancybox.close()
+  };
+  var _isFullLoadingActive = function() {
+    return $("#loading_fancy").is(":visible")
   };
   var startLoadingInContainer = function(container, options) {
     $(container).html($("#loading_fancy_wrapper").html());

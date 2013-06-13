@@ -9423,9 +9423,9 @@ VISH.SlidesSelector = function(V, $, undefined) {
   };
   _updateButtonValue = function(slideNumber) {
     if(slides[slideNumber - 1] === true) {
-      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_wrong.png"/>Remove Slide')
+      $(acceptButton).html('<img class="imgbutton" src="' + V.ImagesPath + 'quiz/checkbox_wrong.png"/>Remove Slide')
     }else {
-      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_checked.png"/>Add Slide')
+      $(acceptButton).html('<img class="imgbutton" src="' + V.ImagesPath + 'quiz/checkbox_checked.png"/>Add Slide')
     }
   };
   return{init:init}
@@ -11089,17 +11089,25 @@ VISH.Utils.Loader = function(V, undefined) {
   };
   var t1Loading;
   var startLoading = function() {
-    t1Loading = Date.now();
-    $("#fancyLoad").trigger("click")
+    if(!_isFullLoadingActive()) {
+      t1Loading = Date.now();
+      $("#fancyLoad").trigger("click")
+    }
   };
   var stopLoading = function() {
-    if(Date.now() - t1Loading < 600) {
+    var diff = Date.now() - t1Loading;
+    if(diff < 800) {
       setTimeout(function() {
+        stopLoading()
+      }, 800)
+    }else {
+      if(_isFullLoadingActive()) {
         $.fancybox.close()
-      }, 600);
-      return
+      }
     }
-    $.fancybox.close()
+  };
+  var _isFullLoadingActive = function() {
+    return $("#loading_fancy").is(":visible")
   };
   var startLoadingInContainer = function(container, options) {
     $(container).html($("#loading_fancy_wrapper").html());
