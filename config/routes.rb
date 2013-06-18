@@ -38,6 +38,8 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
+  match 'lre/search' => 'lre#search'
+
   resources :excursions
   match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
   

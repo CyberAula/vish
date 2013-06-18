@@ -186,6 +186,9 @@ en:
     other: "links"
     confirm_delete: "Delete link?"
     go: "Go to link"
+  lre:
+    data_error: "There was an error and the data server responded with a code %{code}"
+    search_error: "There was an error and the search server responded with a code %{code}"
   translate:
     change: "Change language"
   message:

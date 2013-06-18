@@ -27,7 +27,7 @@ gem 'social_stream-linkser', '~> 1.1.1'
 gem 'social_stream-ostatus', '~> 1.1.1'
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap
-gem 'avatars_for_rails', '~> 0.2.6'
+gem 'avatars_for_rails', '=0.2.8'
 
 # Composite keys for vish-recsys
 gem 'composite_primary_keys'
@@ -82,3 +82,6 @@ group :development do
 end
 
 gem 'pry-rails'
+
+gem 'rest-client'
+
