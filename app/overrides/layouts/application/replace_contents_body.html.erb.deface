@@ -1,7 +1,7 @@
 <!-- replace_contents 'body' -->
 
+<%= render :partial => "layouts/header" %>
 <div class="wrapper container-fluid">
-  <%= render :partial => "layouts/header" %>
 
   <%= flashy %>
 
