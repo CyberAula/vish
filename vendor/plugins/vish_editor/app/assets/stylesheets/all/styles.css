@@ -398,13 +398,17 @@ font-size: 1.5em;
 }
 
 /* Style for Texts (CkEditor version) */
-article {
-  font-family: Arial, Verdana, sans-serif;
+
+html {
   font-size: 12px; /* text-base size */
 }
 
+article {
+  font-family: Arial, Verdana, sans-serif;
+}
+
 article > div > p {
-  margin-top: 1em;
+  margin-top: 0em;
   margin-bottom: 1em;
   font-size: 1em;
 }
@@ -920,21 +924,21 @@ width: 28%
 .prompt_button_viewer1{
   left: 45%;
   font-family: arial;
-font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .prompt_button_viewer2{
-left: 50%;
-margin-left: -20%;
-font-family: arial;
-font-size: 1.5em;
+  left: 50%;
+  margin-left: -20%;
+  font-family: arial;
+  font-size: 1.5em;
 }
 
 .prompt_button_viewer3{
   margin-left: 50px;
   left: 51%;
-font-family: arial;
-font-size: 1.5em;
+  font-family: arial;
+  font-size: 1.5em;
 }
 
 .prompt_button_viewer4{
@@ -945,7 +949,7 @@ font-size: 1.5em;
 }
 
 .prompt_button_viewer1:hover{
-      opacity: 1;
+  opacity: 1;
   text-shadow: 1px 1px #666;
 }
 .prompt_button_viewer2:hover{
@@ -1402,9 +1406,28 @@ a.button_advert:hover {
   margin-top: 6%;
   font-size: 1.2em;
   margin-right: 9%;
-} 
+}
 
 .recbutton:hover {
+  opacity: 1;
+  text-shadow: 1px 1px #666;
+}
+
+.viewer_button{
+  padding: 5px 10px;
+  display: inline;
+  text-decoration:none;
+  background: #ff005d repeat-x bottom;
+  opacity: 0.6;
+  color:#f9f9f9;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+} 
+
+.viewer_button:hover {
   opacity: 1;
   text-shadow: 1px 1px #666;
 }

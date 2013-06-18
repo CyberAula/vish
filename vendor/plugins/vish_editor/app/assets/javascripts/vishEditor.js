@@ -38,8 +38,9 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", 
 "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", 
 "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", 
-"i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor."}, 
-"default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", 
+"i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, 
+"standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.VERSION = "0.6";
 VISH.AUTHORS = "GING";
@@ -12749,7 +12750,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     }
     config.width = "100%";
     config.height = $(current_area).height();
-    config.fontSize_defaultLabel = "12px";
+    config.fontSize_defaultLabel = "12";
     var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
     config.skin = "vEditor," + ckeditorBasePath + "editor/skins/vEditor/";
     var ckeditor = CKEDITOR.appendTo(wysiwygContainerId, config);
@@ -13991,8 +13992,61 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var testText = '{"VEVersion":"0.5","title":"Test samples","id":"213123123","type":"flashcard","author":"Basic","avatar":"http://vishub.org/assets/logos/original/excursion-15.png","slides":[{"id":"article4","type":"flashcard","background":"url(http://farm9.staticflickr.com/8140/8772901348_dc29ab8ab3.jpg)","pois":[{"id":"article4_poi1","x":"14.375","y":"44.166666666666664","slide_id":"article4_article1"},{"id":"article4_poi2","x":"41","y":"29","slide_id":"article4_article2"},{"id":"article4_poi3","x":"74.875","y":"50.333333333333336","slide_id":"article4_article3"}],"slides":[{"id":"article4_article1","type":"standard","template":"t2","elements":[{"id":"article4_article1_zone1","areaid":"left"}]},{"id":"article4_article2","type":"standard","template":"t12","elements":[{"id":"article4_article2_zone1","areaid":"left1"},{"id":"article4_article2_zone2","areaid":"right1"},{"id":"article4_article2_zone3","areaid":"left2"},{"id":"article4_article2_zone4","areaid":"right2"}]},{"id":"article4_article3","type":"standard","template":"t7","elements":[{"id":"article4_article3_zone1","areaid":"header"},{"id":"article4_article3_zone2","areaid":"left"},{"id":"article4_article3_zone3","areaid":"center"},{"id":"article4_article3_zone4","areaid":"subheader"}]}]}]}';
-  var test = JSON.parse(testText);
+  var test = {"VEVersion":"0.4", "id":"2874", "type":"presentation", "title":"Geomorfolog\u00eda Volcanica", "description":"Colecci\u00f3n de fotograf\u00edas de estructuras geomorfologicas propias de un volc\u00e1n.\nRealizado por: Alejandro Sanchez Balsa y Esteban Iglesias Rivas", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Education", "Geomorfologia", "Volcanoes"], "theme":"theme7", "age_range":"4 - 20", "subject":["Unspecified"], "language":"independent", "educational_objectives":"", 
+  "adquired_competencies":"", "author":"Jose Vi\u00f1as", "slides":[{"id":"article1", "type":"standard", "template":"t3", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center; ">\n\t<u><em><strong><span style="font-size:36px;"><font class="Apple-style-span" face="\'comic sans ms\', cursive">Geomorfolog&iacute;a volc&aacute;nica</font></span></strong></em></u></p>\n'}, {"id":"article1_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org//pictures/551.jpg", 
+  "style":"position: relative; width:105.01432664756447%; height:110.04464285714286%; top:-2.232142857142857%; left:-1.146131805157593%;"}]}, {"id":"article3", "type":"standard", "template":"t1", "elements":[{"id":"article3_zone1", "type":"image", "areaid":"left", "body":"http://en.academic.ru/pictures/enwiki/80/PanoCrat%C3%A8re2.jpg", "style":"position: relative; width:306.5400843881857%; height:100.78947368421052%; top:0%; left:-109.07172995780591%;"}, {"id":"article3_zone2", "type":"text", "areaid":"header", 
+  "body":'<p>\n\t<span style="font-size:14px;">Esta fotograf&iacute;a representa un <strong><span style="color:#ee82ee;">cr&aacute;ter volc&aacute;nico</span></strong>. Los <strong><span style="color:#ee82ee;">Cr&aacute;teres Volc&aacute;nicos</span></strong> <font face="sans-serif"><span style="line-height: 19.1875px;">son depresiones volc&aacute;nicas causadas por actividad volv&aacute;nica, generalmente funcionan como abertura o boca de erupci&oacute;n del volc&aacute;n y suelen estar situados en su cima. Suelen tener forma de cono imbertido.</span></font></span></p>\n'}, 
+  {"id":"article3_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span autocolor="true"><span style="font-size:18px;">Cr&aacute;ter Volc&aacute;nico Nevado en Los Andes (Ecuador)&shy;</span></span></strong></p>\n'}]}, {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"image", "areaid":"left", "body":"http://www.earthrandom.com/wp-content/uploads/2013/01/Aogashima-Island1.jpg", "style":"position: relative; width:110.12658227848101%; height:103.94736842105263%; top:0%; left:-2.742616033755274%;"}, 
+  {"id":"article4_zone2", "type":"text", "areaid":"header", "body":'<p>\n\t<span style="font-size:18px;">Esta Isla es otro <strong><span style="color:#ee82ee;">ejemplo</span></strong> de <strong><span style="color:#ee82ee;">cr&aacute;ter volcanico</span></strong> que se ve a simple vista y adem&aacute;s en su interior, aparece un nuevo volc&aacute;n.</span></p>\n'}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span style="font-size:20px;"><span autocolor="true" style="color:#000;"><span style="color: rgb(34, 34, 34);">Aogashima Volcanic Island</span></span></span></strong></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}]}, 
+  {"id":"article5", "type":"standard", "template":"t1", "elements":[{"id":"article5_zone1", "type":"image", "areaid":"left", "body":"http://images.nationalgeographic.com/wpf/media-live/photos/000/600/cache/hverfjall-iceland-haarberg_60070_990x742.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:-4.219409282700422%;"}, {"id":"article5_zone2", "type":"text", "areaid":"header", "body":'<p>\n\t<span style="font-size:18px;">Otro<strong><span style="color:#ee82ee;"> ejemplo</span></strong> de <strong><span style="color:#ee82ee;">cr&aacute;ter volc&aacute;nico</span></strong>, esta vez helado en Islandia.</span></p>\n'}, 
+  {"id":"article5_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span autocolor="true" style="color:#000;"><span style="font-size:20px;"><span style="color: rgb(34, 34, 34);">Hverfjall Crater - Iceland&nbsp;</span></span></span></strong></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}]}, {"id":"article6", "type":"standard", "template":"t1", "elements":[{"id":"article6_zone1", 
+  "type":"image", "areaid":"left", "body":"http://imagenes.nationalgeographic.com.es/medio/2009/09/27/metatada_120.jpg", "style":"position: relative; width:105.0632911392405%; height:98.15789473684211%; top:0%; left:-2.320675105485232%;"}, {"id":"article6_zone2", "type":"text", "areaid":"header", "body":'<p>\n\t<span style="font-size:18px;">Otro <span style="color:#ee82ee;"><strong>ejemplo</strong></span> m&aacute;s de un <strong><span style="color:#ee82ee;">cr&aacute;ter volc&aacute;nico</span></strong>, este situado en el Desierto del Sahara , dentro de el podemos observar incluso un peque&ntilde;o lago.</span></p>\n'}, 
+  {"id":"article6_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;"><span style="color: rgb(34, 34, 34);">Waw an-Namus Volcano (Sahara Desert)</span></span></strong></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}]}, {"id":"article7", "type":"standard", "template":"t1", "elements":[{"id":"article7_zone1", 
+  "type":"image", "areaid":"left", "body":"http://acbconsultores.com/Geologia%20general/Vulcanismo/Vulcanismo1/Image10.jpg", "style":"position: relative; width:121.51898734177215%; height:100%; top:0%; left:-9.071729957805907%;"}, {"id":"article7_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Bomba Volc&aacute;nica</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es un globulo de roca fundida. Fragmentos de lava solidificados, arrojados por u cr&aacute;ter volc&aacute;nico.&shy;</span></span></p>\n'}, 
+  {"id":"article7_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;"><strong>Bombas Volc&aacute;nicas</strong>&shy;</span></span></p>\n'}]}, {"id":"article8", "type":"standard", "template":"t1", "elements":[{"id":"article8_zone1", "type":"image", "areaid":"left", "body":"http://www.shelios.com/ima01a/expe/rgb500/181m.jpg", "style":"position: relative; width:127.21518987341773%; height:102.89473684210526%; top:0%; left:-4.219409282700422%;"}, 
+  {"id":"article8_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Bomba Volc&aacute;nica&shy;</strong></span></span></span></p>\n'}, 
+  {"id":"article8_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Bomba Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article9", "type":"standard", "template":"t1", "elements":[{"id":"article9_zone1", "type":"image", "areaid":"left", "body":"http://www.shelios.com/ima01a/expe/rgb500/186m.jpg", "style":"position: relative; width:127.42616033755274%; height:102.89473684210526%; top:0%; left:-22.573839662447256%;"}, 
+  {"id":"article9_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de varias </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Bombas Volc&aacute;nicas.&shy;</span></span></span></p>\n'}, 
+  {"id":"article9_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Bombas Volc&aacute;nicas&shy;</span></strong></span></p>\n'}]}, {"id":"article10", "type":"standard", "template":"t1", "elements":[{"id":"article10_zone1", "type":"image", "areaid":"left", "body":"http://www.mp3stahuj.cz/img_db/2009/March/Ozivlesopky/6347.jpg", "style":"position: relative; width:121.51898734177215%; height:101.05263157894737%; top:1.0526315789473684%; left:-10.759493670886076%;"}, 
+  {"id":"article10_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Colada Volc&aacute;nica </strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;">es un manto de lava flu&iacute;da emitida por un volc&aacute;n durante sus erupciones.&shy;</span></span></p>\n'}, 
+  {"id":"article10_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Colada Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article11", "type":"standard", "template":"t1", "elements":[{"id":"article11_zone1", "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/--KT-tgWOn5g/TXZ8cNS6C5I/AAAAAAAAAAU/Xx0WVHSFE58/s1600/kilauea%2BHawaii.jpg", "style":"position: relative; width:98.73417721518987%; height:115.78947368421052%; top:-0.2631578947368421%; left:0%;"}, 
+  {"id":"article11_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro</span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"> ejemplo</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>colada volc&aacute;nica&shy;</strong></span></span></span></p>\n'}, 
+  {"id":"article11_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Colada Volcanica ( Hawaii )&shy;</span></strong></span></p>\n'}]}, {"id":"article12", "type":"standard", "template":"t1", "elements":[{"id":"article12_zone1", "type":"image", "areaid":"left", "body":"http://www.ecofield.com.ar/images-blog/IMAGES/220410x2.jpg", "style":"position: relative; width:115.61181434599156%; height:98.6842105263158%; top:0%; left:-1.4767932489451476%;"}, 
+  {"id":"article12_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Este </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">polvo volc&aacute;nico</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es, generalmente, ceniza que expulsa en volc&aacute;n cu&aacute;ndo entra en erupci&oacute;n.&shy;</span></span></p>\n'}, 
+  {"id":"article12_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong>Polvo Volc&aacute;nico</strong></span></p>\n'}]}, {"id":"article13", "type":"standard", "template":"t1", "elements":[{"id":"article13_zone1", "type":"image", "areaid":"left", "body":"http://vuelasinmiedo.files.wordpress.com/2010/04/volcanic.jpg", "style":"position: relative; width:148.52320675105486%; height:110.78947368421052%; top:-1.5789473684210527%; left:-14.345991561181435%;"}, 
+  {"id":"article13_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Polvo Volc&aacute;nico&shy;</span></span></span></strong></p>\n'}, 
+  {"id":"article13_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;">Polvo Volc&aacute;nico&shy;</span></span></strong></p>\n'}]}, {"id":"article14", "type":"standard", "template":"t1", "elements":[{"id":"article14_zone1", "type":"image", "areaid":"left", "body":"http://img1.liveinternet.ru/images/attach/c/5/87/829/87829817_12.jpg", "style":"position: relative; width:121.94092827004219%; height:101.05263157894737%; top:2.1052631578947367%; left:-9.49367088607595%;"}, 
+  {"id":"article14_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Caldera Volc&aacute;nica</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es una depresi&oacute;n central formada tras las explosiones que destruyen la parte central del edificio volc&aacute;nico.</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}, 
+  {"id":"article14_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Caldera Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article15", "type":"standard", "template":"t1", "elements":[{"id":"article15_zone1", "type":"image", "areaid":"left", "body":"http://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Aniakchak-caldera_alaska.jpg/800px-Aniakchak-caldera_alaska.jpg", 
+  "style":"position: relative; width:121.94092827004219%; height:101.3157894736842%; top:0%; left:-9.915611814345992%;"}, {"id":"article15_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>caldera volc&aacute;nica</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;">, nevada.&shy;</span></span></p>\n'}, 
+  {"id":"article15_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Caldera Volc&aacute;nica nevada ( Alaska )&shy;</span></strong></span></p>\n'}]}, {"id":"article16", "type":"standard", "template":"t1", "elements":[{"id":"article16_zone1", "type":"image", "areaid":"left", "body":"http://www.ux1.eiu.edu/~cfrbj/parks/MSHE/lapilli.jpg", "style":"position: relative; width:116.03375527426161%; height:102.36842105263158%; top:0.2631578947368421%; left:-6.118143459915612%;"}, 
+  {"id":"article16_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">El </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Lapilli</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son los peque&ntilde;os fragmentos expulsados en una erupci&oacute;n volc&aacute;nica.</span></span></p>\n'}, 
+  {"id":"article16_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span style="font-size:22px;"><span autocolor="true" style="color:#000;">Lapilli&shy;</span></span></strong></p>\n'}]}, {"id":"article17", "type":"standard", "template":"t1", "elements":[{"id":"article17_zone1", "type":"image", "areaid":"left", "body":"http://ismafer.files.wordpress.com/2008/10/t047655a.jpg", "style":"position: relative; width:131.64556962025316%; height:100%; top:0%; left:-21.30801687763713%;"}, 
+  {"id":"article17_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Los </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">volcanes hawaianos</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son caracteristicos por tener efusiones abundantes y tranquilas de lavas bs&aacute;lticas fundidas.</span></span></p>\n'}, 
+  {"id":"article17_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong>Volc&aacute;n hawaiano</strong></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<strong><span style="font-size:24px;">Volc&aacute;n Hawaiano</span></strong></p>\n'}]}, {"id":"article18", "type":"standard", "template":"t1", "elements":[{"id":"article18_zone1", "type":"image", "areaid":"left", "body":"http://img63.imageshack.us/img63/3029/kilauea2.jpg", 
+  "style":"position: relative; width:116.03375527426161%; height:108.15789473684211%; top:0%; left:-2.742616033755274%;"}, {"id":"article18_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">ejemplo</span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de un </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Volc&aacute;n Hawaiano&shy;</span></span></span></strong></p>\n'}, 
+  {"id":"article18_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Hawaiano&shy;</span></strong></span></p>\n'}]}, {"id":"article19", "type":"standard", "template":"t1", "elements":[{"id":"article19_zone1", "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/-xhv4jyK60fA/Te0WLZzEMmI/AAAAAAAAAEw/YAkhQ1aF3T4/s1600/images241.jpg", "style":"position: relative; width:105.0632911392405%; height:98.15789473684211%; top:0%; left:-2.320675105485232%;"}, 
+  {"id":"article19_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Un </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Volc&aacute;n Stromboliano&shy;</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> resulta de la alternancia sistem&aacute;tica de lavas y cenizas e incluso de fragmentos de su interior. Es un volc&aacute;n de cono compuesto.</span></span></p>\n'}, 
+  {"id":"article19_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Stromboliano&shy;</span></strong></span></p>\n'}]}, {"id":"article21", "type":"standard", "template":"t1", "elements":[{"id":"article21_zone1", "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/_x7lgZJ_8v8U/TRQazxU5FlI/AAAAAAAAAA8/O148IytO2u8/s1600/1289153709volcan_merapi.jpg", "style":"position: relative; width:110.33755274261604%; height:102.89473684210526%; top:0%; left:-1.6877637130801688%;"}, 
+  {"id":"article21_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true"><span style="font-size:18px;">Otro <span style="color:#ee82ee;"><strong>ejemplo</strong></span> de <strong><span style="color:#ee82ee;">volc&aacute;n Stromboliano</span></strong>&shy;</span></span></p>\n'}, {"id":"article21_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Stromboliano&shy;</span></strong></span></p>\n'}]}, 
+  {"id":"article22", "type":"standard", "template":"t1", "elements":[{"id":"article22_zone1", "type":"image", "areaid":"left", "body":"http://www.arciduca.it/wp-content/themes/arciduca/images/vulcan-3.jpg", "style":"position: relative; width:198.73417721518987%; height:95%; top:-1.0526315789473684%; left:-58.438818565400844%;"}, {"id":"article22_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Los </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Volcanes Vulcanianos</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> se forman por erupciones muy violentas con fuerte explosividad, su cono se compone fundamentalmente de cenizas y escoria.&shy;</span></span></p>\n'}, 
+  {"id":"article22_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Vulcaniano&shy; ( Islas L&iacute;pari)</span></strong></span></p>\n'}]}, {"id":"article23", "type":"standard", "template":"t1", "elements":[{"id":"article23_zone1", "type":"image", "areaid":"left", "body":"http://sobrecaribe.com/wp-content/uploads/2009/12/monte-pelee-2.jpg", "style":"position: relative; width:105.0632911392405%; height:98.6842105263158%; top:0%; left:-1.8987341772151898%;"}, 
+  {"id":"article23_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Un </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Volc&aacute;n Peleano</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> se forma por la extrusi&oacute;n de lavas poco fluidas, viscosas, acompa&ntilde;adas de nubes ardientes.</span></span></p>\n'}, 
+  {"id":"article23_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Peleano ( Monte Pel&eacute;)&shy;</span></strong></span></p>\n'}]}, {"id":"article24", "type":"standard", "template":"t1", "elements":[{"id":"article24_zone1", "type":"image", "areaid":"left", "body":"http://grupoportuguesa.files.wordpress.com/2012/07/espeleologia-volcanica-ricardo_fernandez_barrueco.jpg", 
+  "style":"position: relative; width:128.0590717299578%; height:106.05263157894737%; top:0%; left:0%;"}, {"id":"article24_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>sima volc&aacute;nica</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es una fisura abierta en la superficie que se ensancha hacia abajo, suelen conducir a cuevas.&shy;</span></span></p>\n'}, 
+  {"id":"article24_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Sima Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article26", "type":"standard", "template":"t1", "elements":[{"id":"article26_zone1", "type":"image", "areaid":"left", "body":"http://farm5.staticflickr.com/4108/5019759679_b1e1823c07_n.jpg", "style":"position: relative; width:134.59915611814347%; height:109.73684210526316%; top:0%; left:-21.729957805907173%;"}, 
+  {"id":"article26_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">dolina volc&aacute;nica</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es una peque&ntilde;a depresi&oacute;n cerrada de forma redondeada, que muchas veces se encuentra inundada.&shy;</span></span></p>\n'}, 
+  {"id":"article26_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Dolina o Torca Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article27", "type":"standard", "template":"t1", "elements":[{"id":"article27_zone1", "type":"image", "areaid":"left", "body":"http://sugeowiki.wikispaces.com/file/view/uvala.jpg/368819824/404x256/uvala.jpg", "style":"position: relative; width:128.0590717299578%; height:100%; top:0%; left:-8.649789029535865%;"}, 
+  {"id":"article27_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Las </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Uvalas Volc&aacute;nicas</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son depresiones volc&aacute;nicas, generalmente de mayor tama&ntilde;o que las dolinas.&shy;</span></span></p>\n'}, 
+  {"id":"article27_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Uvalas Volc&aacute;nicas&shy;</span></strong></span></p>\n'}]}, {"id":"article28", "type":"standard", "template":"t1", "elements":[{"id":"article28_zone1", "type":"image", "areaid":"left", "body":"http://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Polj%C3%A9_de_Comellas.jpg/300px-Polj%C3%A9_de_Comellas.jpg", 
+  "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, {"id":"article28_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Los </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>polj&eacute;s volc&aacute;nicos</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son grandes depresiones de forma alargada con fondo plano, y de gran longitud.&shy;</span></span></p>\n'}, 
+  {"id":"article28_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Polj&eacute;s Volc&aacute;nicos&shy;</span></strong></span></p>\n'}]}, {"id":"article29", "type":"standard", "template":"t1", "elements":[{"id":"article29_zone1", "type":"image", "areaid":"left", "body":"http://cloudconnected.pblogs.gr/files/f/160305-solstice_35_bg_062203.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, 
+  {"id":"article29_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Alguna fotografia, interesante como esta </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">chimenea volc&aacute;nica exterior.&shy;&nbsp;</span></span></span></strong></p>\n'}, {"id":"article29_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:16px;"><strong><span autocolor="true" style="color:#000;">Chimenea Volc&aacute;nica Exterior&shy; ( Parque de Yellowstone)</span></strong></span></p>\n'}]}, 
+  {"id":"article30", "type":"standard", "template":"t1", "elements":[{"id":"article30_zone1", "type":"image", "areaid":"left", "body":"http://www.diasdehistoria.com.ar/userfiles/image/vesubio-erupcion.jpg", "style":"position: relative; width:101.26582278481013%; height:141.05263157894737%; top:0%; left:0%;"}, {"id":"article30_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Columna Volc&aacute;nica del Vesubio </span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;">que provoco el sepultamiento de la ciudad de Pompeya.&shy;</span></span></p>\n'}, 
+  {"id":"article30_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Columna Volc&aacute;nica del Vesubio&shy;</span></strong></span></p>\n'}]}, {"id":"article31", "type":"standard", "template":"t1", "elements":[{"id":"article31_zone1", "type":"image", "areaid":"left", "body":"http://rutasymapas.com/wp-content/uploads/2012/06/cuerpos-enterrados-en-pompeya.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, 
+  {"id":"article31_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Cuerpos sepultados</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> en la antigua ciudad de Pompeya por la lava volc&aacute;nica.&shy;</span></span></p>\n'}, {"id":"article31_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Cuerpos sepultados en Pompeya&shy;</span></strong></span></p>\n'}]}, 
+  {"id":"article32", "type":"standard", "template":"t1", "elements":[{"id":"article32_zone1", "type":"image", "areaid":"left", "body":"http://photography.nationalgeographic.com/staticfiles/NGS/Shared/StaticFiles/Photography/Images/POD/m/mt-kilauea-night-sw.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, {"id":"article32_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Erupci&oacute;n Volc&aacute;nica</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> en el Monte Kilauea ( Hawaii )&shy;</span></span></p>\n'}, 
+  {"id":"article32_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Erupci&oacute;n Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -14541,12 +14595,16 @@ VISH.Events = function(V, $, undefined) {
   };
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
+      case 34:
+      ;
       case 38:
       ;
       case 39:
         V.Slides.forwardOneSlide();
         event.preventDefault();
         break;
+      case 33:
+      ;
       case 37:
       ;
       case 40:
@@ -15667,6 +15725,11 @@ VISH.Configuration = function(V, $, undefined) {
     }
     if(!configuration["Vimeo"]) {
       $("#tab_video_vimeo").css("display", "none")
+    }
+    if(!configuration["LRE"]) {
+      $("#tab_video_lre").css("display", "none");
+      $("#tab_image_lre").css("display", "none");
+      $("#tab_object_lre").css("display", "none")
     }
     if(!configuration["Flickr"]) {
       $("#tab_pic_flikr").css("display", "none")
@@ -17703,8 +17766,12 @@ VISH.Editor.PDFex = function(V, $, undefined) {
       switch(V.Configuration.getConfiguration()["mode"]) {
         case V.Constant.NOSERVER:
           setTimeout(function() {
-            var responseTest = '{"urls":["http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-0.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-1.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-2.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-3.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-4.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-5.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-6.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-7.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-8.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-9.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-10.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-11.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-12.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-13.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-14.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-15.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-16.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-17.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-18.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-19.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-20.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-21.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-22.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-23.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-24.jpg","http://localhost:3000/system/pdfexes/attaches/000/000/021/original/vish_user_manual-25.jpg"]}';
-            processResponse(JSON.parse(responseTest))
+            var responseTest = {};
+            responseTest.urls = [];
+            for(var v = 0;v < 13;v++) {
+              responseTest.urls.push("http://localhost/vishEditor/examples/contents/pdf2p/Presentacion_INTED2013_VishViewer-" + v + ".jpg")
+            }
+            processResponse(responseTest)
           }, 1E4);
           break;
         case V.Constant.VISH:
@@ -17718,7 +17785,10 @@ VISH.Editor.PDFex = function(V, $, undefined) {
       if(V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
         return
       }
-      V.Utils.Loader.stopLoading()
+      setTimeout(function() {
+        V.Utils.Loader.onCloseLoading();
+        _showErrorDialog()
+      }, 800)
     }})
   };
   var onLoadTab = function() {
@@ -17733,10 +17803,14 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     bar.width("0%");
     percent.html("0%")
   };
+  var _showErrorDialog = function() {
+    $.fancybox($("#pdf2p_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
+  };
   var processResponse = function(jsonResponse) {
     try {
       var presentation = generatePresentationWithImgArray(jsonResponse.urls);
-      V.Editor.Presentation.previewPresentation(presentation)
+      V.Editor.Presentation.previewPresentation(presentation);
+      V.Utils.Loader.onCloseLoading()
     }catch(e) {
       V.Utils.Loader.stopLoading()
     }
@@ -19259,15 +19333,20 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedVideos(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestVideos(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     _cleanVideoPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentVideos = new Array;
     var carrouselImages = [];
     var content = "";
@@ -19286,6 +19365,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 1;
@@ -19415,15 +19495,16 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     _cleanVideoPreview()
   };
   var requestYoutubeData = function(text) {
+    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+    $("#" + carrouselDivId).hide();
+    _cleanVideoPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId));
     var url_youtube = "http://gdata.youtube.com/feeds/api/videos?q=" + text + "&alt=json-in-script&callback=?&max-results=" + queryMaxMaxNumberYoutubeVideo + "&start-index=1";
     jQuery.getJSON(url_youtube, function(data) {
       _onDataReceived(data)
     })
   };
   var _onDataReceived = function(data) {
-    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
-    $("#" + carrouselDivId).hide();
-    _cleanVideoPreview();
     currentVideos = new Array;
     var carrouselImages = [];
     var content = "";
@@ -19451,6 +19532,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 1;
@@ -21887,7 +21969,14 @@ VISH.Storage = function(V, $, undefined) {
   return{init:init, add:add, get:get, addPresentation:addPresentation, checkLocalStorageSupport:checkLocalStorageSupport, clear:clear, setTestingMode:setTestingMode}
 }(VISH, jQuery);
 VISH.Text = function(V, $, undefined) {
+  var disableConversion = false;
   var init = function() {
+    if(V.Status.getDevice().browser.name === V.Constant.IE && V.Status.getDevice().browser.version < 9) {
+      disableConversion = true
+    }
+    if(disableConversion) {
+      return
+    }
     _adaptPs($("article > div.VEtextArea > p"));
     _adaptPs($("article > div.quizzContainer > div > p"));
     _adaptPs($("article > div.quizzContainer").find("td > p"));
@@ -21918,50 +22007,24 @@ VISH.Text = function(V, $, undefined) {
   };
   var _adaptPs = function(selector) {
     $(selector).each(function(index, p) {
-      if($(p).children().length === 0) {
-        _setStyleInEm(p);
-        return
-      }
+      _setStyleInRem(p);
       _adaptSpans($(p).find("span"));
       _adaptFonts($(p).find("font"))
     })
   };
   var _adaptSpans = function(spans) {
-    var oldStyle = null;
-    var newStyle = null;
-    var lastFontSizeCandidate = null;
-    var lastFontSize = null;
     $(spans).each(function(index, span) {
-      oldStyle = $(span).attr("style");
-      lastFontSizeCandidate = parseInt(V.Utils.getFontSizeFromStyle(oldStyle));
-      if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-        lastFontSize = lastFontSizeCandidate
+      var oldStyle = $(span).attr("style");
+      if(typeof oldStyle == "undefined") {
+        return
       }
-      if($(span).find("span").length !== 0) {
-        newStyle = V.Utils.removeFontSizeInStyle(oldStyle);
-        if(newStyle === null || newStyle === "; ") {
-          $(span).removeAttr("style")
-        }else {
-          $(span).attr("style", newStyle)
-        }
-      }else {
-        var fontSize;
-        if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-          fontSize = lastFontSizeCandidate
-        }else {
-          if(lastFontSize !== null) {
-            fontSize = lastFontSize
-          }else {
-            fontSize = V.Constant.TextDefault
-          }
-        }
-        var em = fontSize / V.Constant.TextBase + "em";
-        if(typeof oldStyle == "undefined") {
-          oldStyle = ""
-        }
-        newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
-        $(span).attr("style", newStyle)
+      fontSize = parseInt(V.Utils.getFontSizeFromStyle(oldStyle));
+      if(typeof fontSize != "number" || isNaN(fontSize)) {
+        return
       }
+      var rem = fontSize / V.Constant.TextBase + "rem";
+      newStyle = V.Utils.addFontSizeToStyle(oldStyle, rem);
+      $(span).attr("style", newStyle)
     })
   };
   var _adaptFonts = function(fonts) {
@@ -21976,32 +22039,30 @@ VISH.Text = function(V, $, undefined) {
       }
       $(font).hide();
       var pxfontSize = _font_to_px(fontSize);
-      var em = pxfontSize / V.Constant.TextBase + "em";
-      var span = $("<span style='font-size:" + em + "'></span>");
+      var rem = pxfontSize / V.Constant.TextBase + "rem";
+      var span = $("<span style='font-size:" + rem + "'></span>");
       $(span).html($(font).html());
       $(font).parent().prepend(span);
       $(font).remove()
     })
   };
-  var _setStyleInEm = function(el) {
+  var _setStyleInRem = function(el) {
     var oldStyle = $(el).attr("style");
-    var fontSize;
     if(typeof oldStyle !== "string") {
-      oldStyle = ""
-    }else {
-      fontSize = V.Utils.getFontSizeFromStyle(oldStyle)
+      return
     }
-    if(typeof fontSize !== "number" || isNaN(fontSize)) {
-      fontSize = V.Constant.TextDefault
+    var fontSize = V.Utils.getFontSizeFromStyle(oldStyle);
+    if(typeof fontSize != "number" || isNaN(fontSize)) {
+      return
     }
-    var em = fontSize / V.Constant.TextBase + "em";
-    var newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
+    var rem = fontSize / V.Constant.TextBase + "rem";
+    var newStyle = V.Utils.addFontSizeToStyle(oldStyle, rem);
     $(el).attr("style", newStyle)
   };
   var aftersetupSize = function(increase) {
     increase = increase * _correctionFactor(increase);
     var reference_font_size = V.Constant.TextBase;
-    var texts = $("article, #fancybox-content");
+    var texts = $("html");
     $(texts).css("font-size", reference_font_size * increase + "px")
   };
   var _correctionFactor = function(factor) {
@@ -22313,17 +22374,25 @@ VISH.Utils.Loader = function(V, undefined) {
       $("#fancyLoad").trigger("click")
     }
   };
-  var stopLoading = function() {
+  var stopLoading = function(callback) {
     var diff = Date.now() - t1Loading;
     if(diff < 800) {
       setTimeout(function() {
-        stopLoading()
+        stopLoading(callback)
       }, 800)
     }else {
+      var closed = false;
       if(_isFullLoadingActive()) {
-        $.fancybox.close()
+        $.fancybox.close();
+        closed = true
+      }
+      if(typeof callback == "function") {
+        callback(closed)
       }
     }
+  };
+  var onCloseLoading = function() {
+    $("#fancybox-outer").css("background", "white")
   };
   var _isFullLoadingActive = function() {
     return $("#loading_fancy").is(":visible")
@@ -22339,7 +22408,7 @@ VISH.Utils.Loader = function(V, undefined) {
     $(container).find(".loading_fancy_img").parent().remove();
     $(container).removeClass("loadingtmpShown")
   };
-  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
+  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.VideoPlayer.CustomPlayer = function(V, $, undefined) {
   var progressBarTimer;

@@ -4874,6 +4874,11 @@ VISH.Configuration = function(V, $, undefined) {
     if(!configuration["Vimeo"]) {
       $("#tab_video_vimeo").css("display", "none")
     }
+    if(!configuration["LRE"]) {
+      $("#tab_video_lre").css("display", "none");
+      $("#tab_image_lre").css("display", "none");
+      $("#tab_object_lre").css("display", "none")
+    }
     if(!configuration["Flickr"]) {
       $("#tab_pic_flikr").css("display", "none")
     }
@@ -9431,7 +9436,14 @@ VISH.SlidesSelector = function(V, $, undefined) {
   return{init:init}
 }(VISH, jQuery);
 VISH.Text = function(V, $, undefined) {
+  var disableConversion = false;
   var init = function() {
+    if(V.Status.getDevice().browser.name === V.Constant.IE && V.Status.getDevice().browser.version < 9) {
+      disableConversion = true
+    }
+    if(disableConversion) {
+      return
+    }
     _adaptPs($("article > div.VEtextArea > p"));
     _adaptPs($("article > div.quizzContainer > div > p"));
     _adaptPs($("article > div.quizzContainer").find("td > p"));
@@ -9462,50 +9474,24 @@ VISH.Text = function(V, $, undefined) {
   };
   var _adaptPs = function(selector) {
     $(selector).each(function(index, p) {
-      if($(p).children().length === 0) {
-        _setStyleInEm(p);
-        return
-      }
+      _setStyleInRem(p);
       _adaptSpans($(p).find("span"));
       _adaptFonts($(p).find("font"))
     })
   };
   var _adaptSpans = function(spans) {
-    var oldStyle = null;
-    var newStyle = null;
-    var lastFontSizeCandidate = null;
-    var lastFontSize = null;
     $(spans).each(function(index, span) {
-      oldStyle = $(span).attr("style");
-      lastFontSizeCandidate = parseInt(V.Utils.getFontSizeFromStyle(oldStyle));
-      if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-        lastFontSize = lastFontSizeCandidate
+      var oldStyle = $(span).attr("style");
+      if(typeof oldStyle == "undefined") {
+        return
       }
-      if($(span).find("span").length !== 0) {
-        newStyle = V.Utils.removeFontSizeInStyle(oldStyle);
-        if(newStyle === null || newStyle === "; ") {
-          $(span).removeAttr("style")
-        }else {
-          $(span).attr("style", newStyle)
-        }
-      }else {
-        var fontSize;
-        if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-          fontSize = lastFontSizeCandidate
-        }else {
-          if(lastFontSize !== null) {
-            fontSize = lastFontSize
-          }else {
-            fontSize = V.Constant.TextDefault
-          }
-        }
-        var em = fontSize / V.Constant.TextBase + "em";
-        if(typeof oldStyle == "undefined") {
-          oldStyle = ""
-        }
-        newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
-        $(span).attr("style", newStyle)
+      fontSize = parseInt(V.Utils.getFontSizeFromStyle(oldStyle));
+      if(typeof fontSize != "number" || isNaN(fontSize)) {
+        return
       }
+      var rem = fontSize / V.Constant.TextBase + "rem";
+      newStyle = V.Utils.addFontSizeToStyle(oldStyle, rem);
+      $(span).attr("style", newStyle)
     })
   };
   var _adaptFonts = function(fonts) {
@@ -9520,32 +9506,30 @@ VISH.Text = function(V, $, undefined) {
       }
       $(font).hide();
       var pxfontSize = _font_to_px(fontSize);
-      var em = pxfontSize / V.Constant.TextBase + "em";
-      var span = $("<span style='font-size:" + em + "'></span>");
+      var rem = pxfontSize / V.Constant.TextBase + "rem";
+      var span = $("<span style='font-size:" + rem + "'></span>");
       $(span).html($(font).html());
       $(font).parent().prepend(span);
       $(font).remove()
     })
   };
-  var _setStyleInEm = function(el) {
+  var _setStyleInRem = function(el) {
     var oldStyle = $(el).attr("style");
-    var fontSize;
     if(typeof oldStyle !== "string") {
-      oldStyle = ""
-    }else {
-      fontSize = V.Utils.getFontSizeFromStyle(oldStyle)
+      return
     }
-    if(typeof fontSize !== "number" || isNaN(fontSize)) {
-      fontSize = V.Constant.TextDefault
+    var fontSize = V.Utils.getFontSizeFromStyle(oldStyle);
+    if(typeof fontSize != "number" || isNaN(fontSize)) {
+      return
     }
-    var em = fontSize / V.Constant.TextBase + "em";
-    var newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
+    var rem = fontSize / V.Constant.TextBase + "rem";
+    var newStyle = V.Utils.addFontSizeToStyle(oldStyle, rem);
     $(el).attr("style", newStyle)
   };
   var aftersetupSize = function(increase) {
     increase = increase * _correctionFactor(increase);
     var reference_font_size = V.Constant.TextBase;
-    var texts = $("article, #fancybox-content");
+    var texts = $("html");
     $(texts).css("font-size", reference_font_size * increase + "px")
   };
   var _correctionFactor = function(factor) {
@@ -11094,17 +11078,25 @@ VISH.Utils.Loader = function(V, undefined) {
       $("#fancyLoad").trigger("click")
     }
   };
-  var stopLoading = function() {
+  var stopLoading = function(callback) {
     var diff = Date.now() - t1Loading;
     if(diff < 800) {
       setTimeout(function() {
-        stopLoading()
+        stopLoading(callback)
       }, 800)
     }else {
+      var closed = false;
       if(_isFullLoadingActive()) {
-        $.fancybox.close()
+        $.fancybox.close();
+        closed = true
+      }
+      if(typeof callback == "function") {
+        callback(closed)
       }
     }
+  };
+  var onCloseLoading = function() {
+    $("#fancybox-outer").css("background", "white")
   };
   var _isFullLoadingActive = function() {
     return $("#loading_fancy").is(":visible")
@@ -11120,7 +11112,7 @@ VISH.Utils.Loader = function(V, undefined) {
     $(container).find(".loading_fancy_img").parent().remove();
     $(container).removeClass("loadingtmpShown")
   };
-  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
+  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
   var _device;
@@ -12811,12 +12803,16 @@ VISH.Events = function(V, $, undefined) {
   };
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
+      case 34:
+      ;
       case 38:
       ;
       case 39:
         V.Slides.forwardOneSlide();
         event.preventDefault();
         break;
+      case 33:
+      ;
       case 37:
       ;
       case 40:

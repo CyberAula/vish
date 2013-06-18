@@ -549,7 +549,7 @@
 	  	</div>
 	  </div>
   
-	 <!-- PROMPT USER WHEN NOT MET MINIMUM REQUIREMENTS -->
+	 <!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
 	<div style='display:none'>
 		<div id='requirements_form_wrapper'>
 			<div id='requirements_form' class='fancy_msg_advert'>      
@@ -579,11 +579,11 @@
 		</div>
 	</div>
 
-	<!-- PROMPT USER WHEN PRESENTATION IS NOT VALID -->
+	<!-- NOTIFY USER WHEN PRESENTATION IS NOT VALID -->
 	<div style='display:none'>
 		<div id='presentation_not_valid_wrapper'>
 			<div id='presentation_not_valid' class='fancy_msg_advert'>      
-				<span i18n-key="i.NotValid" class="adverttext">
+				<span i18n-key="i.pNotValid" class="adverttext">
 				This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.
 				</span> 
 				<div class="button_advert_wrapper">
@@ -593,6 +593,19 @@
 		</div>
 	</div>
   
+  	<!-- NOTIFY USER WHEN A PDF FILE COULDN'T BE TRANSFORMED TO A PRESENTATION -->
+	<div style='display:none'>
+		<div id='pdf2p_not_valid_wrapper'>
+			<div id='pdf2p_not_valid' class='fancy_msg_advert'>      
+				<span i18n-key="i.PDFNotValid" class="adverttext">
+					An error has occurred. Ensure that the PDF file is valid.
+				</span>
+				<div class="button_advert_wrapper">
+					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+				</div>
+				</div>
+		</div>
+	</div>
 
   	  <!-- PROMPT USER IF SHE IS SURE TO SAVE THE SLIDE -->
 	  <div style='display:none'>
@@ -609,7 +622,7 @@
 	  	</div>
 	  </div>
 	  
-	  <!-- PROMPT WHEN THERE IS NO SLIDES AND TRY TO SAVE -->
+	  <!-- NOTIFY WHEN THERE IS NO SLIDES AND TRY TO SAVE -->
 	  <div style='display:none'>
 	  	<div id='message1_form'>
 	  		<div class="text_in_fancybox">
@@ -640,7 +653,7 @@
 	  	</div>
 	</div>
 
-	  <!-- PROMPT WHEN CLICK ON ADD SLIDE IN FLASHCARD MODE -->
+	  <!-- NOTIFY WHEN CLICK ON ADD SLIDE IN FLASHCARD MODE -->
 	  <div style='display:none'>
 	  	<div id='message2_form'>
 	  		<div class="text_in_fancybox">
@@ -653,7 +666,7 @@
 	  	</div>
 	  </div>
 
-	  <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE FLASHCARD-->
+	  <!-- NOTIFY WHEN TRY TO SAVE AND THERE IS NO POIS IN THE FLASHCARD-->
 	  <div style='display:none'>
 	  	<div id='message3_form'>
 	  		<div class="text_in_fancybox">
@@ -666,7 +679,7 @@
 	  	</div>
 	  </div>
 
-	  <!-- PROMPT WHEN TRY TO SAVE AND BACKGROUND IS NOT SET-->
+	  <!-- NOTIFY WHEN TRY TO SAVE AND BACKGROUND IS NOT SET-->
 	  <div style='display:none'>
 	  	<div id='message4_form'>
 	  		<div class="text_in_fancybox">
@@ -679,7 +692,7 @@
 	  	</div>
 	  </div>
 
-	<!-- PROMPT WHEN TRY TO CHANGE TO FLASHCARD AND THERE IS NO SLIDES-->
+	<!-- NOTIFY WHEN TRY TO CHANGE TO FLASHCARD AND THERE IS NO SLIDES-->
     <div style='display:none'>
       <div id='message5_form'>
         <div class="text_in_fancybox">
@@ -692,7 +705,7 @@
       </div>
     </div>
 
-      <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
+      <!-- NOTIFY WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
 	  <div style='display:none'>
 	  	<div id='message6_form'>
 	  		<div class="text_in_fancybox">
@@ -1091,7 +1104,8 @@
         </div>  
       </div>
     </div>
-	
+
+    
 	
 	<!-- WALKTHROUGH HELP SECTION -->
 		<!-- help for initial screen -->
