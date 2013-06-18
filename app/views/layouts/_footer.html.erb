@@ -1,46 +1,40 @@
 <footer class="container-fluid">
   <nav>
     <ul>
-      <li class="site_name">
-        <%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %>
-      </li>
       <li>
-        t('conditions.other')
+        <%= t('conditions.other') %>
       </li>
+
       <li>
-        <div class="btn-group dropup ">
-          <button data-toggle="dropdown" class="btn dropdown-toggle">
-            <span class="idioma"><%=t('help')%></span>
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">            
-              <li class="">
-                 t('help_page')
-                               </li>
-              <li class="">
-                t('help_manual')  
-                            </li>
-          </ul>
-        </div>  
+         <%= t('help') %>
       </li>
+
+      <li class="btn-group dropup">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="idioma">
+            <%= t('lang.title') %>
+          </span>
+          <span class="caret"></span>
+        </button>     
+      </li>
+
       <li>
-        <div class="btn-group dropup ">
-          <button data-toggle="dropdown" class="btn dropdown-toggle">
-            <span class="idioma"><%=t('lang.title')%></span>
-            <span class="caret"></span>
-          </button>     
-          
-        </div>
+         user manual 
       </li>
-      <li><%= link_to image_tag("footer/global.png",  :class=> "imgnoradio" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
+
+      <li>
+         contact 
       </li>
+
       <li class="social-img">
         <%= link_to image_tag("footer/facebook-logo.png",  :class=> "social-img" ), "https://www.facebook.com/VirtualScienceHub", :target=> "_blank" %>
         <%= link_to image_tag("footer/twitter-logo.png",  :class=> "social-img " ), "https://twitter.com/ViSH_portal", :target=> "_blank" %>
       </li>
+
+      <li>
+        <%= link_to image_tag("footer/global.png",  :class=> "imgnoradio" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
+      </li>
+
     </ul>
   </nav>
-</div>
-
-
 </footer>

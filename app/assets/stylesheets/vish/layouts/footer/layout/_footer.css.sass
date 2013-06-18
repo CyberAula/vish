@@ -1,3 +1,12 @@
 footer.container-fluid
- @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
- @include menuHorizontal
+  @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  @include menuHorizontal
+  clear: both
+  min-height: 50px
+  nav
+    margin-top: 8px
+    ul
+      li.social-img
+        color: #555      
+        img
+          width: 30px
