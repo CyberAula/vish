@@ -1,6 +1,0 @@
-<!-- replace_contents '.explanation' -->
-
-  <%= image_tag("logo/composition.png") %>
-
-
-

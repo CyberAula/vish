@@ -1,0 +1,48 @@
+<!-- HTML5 DOCTYPE -->
+<!DOCTYPE html>
+<html lang="<%= I18n.locale.to_s %>">
+  <head>
+    <meta charset="utf-8">
+    <title><%= content_for?(:title) ? yield(:title) : t('site.current.title') %></title>
+    <meta name="keywords" content="<%= content_for?(:keywords) ? yield(:keywords) : t('site.current.keywords') %>" >
+    <meta name="description" content= "<%= content_for?(:description) ? yield(:description) : t('site.current.description') %>" >
+    <meta name="generator" content="Social Stream" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+
+    <%= yield :headers %>
+
+    <%= favicon_link_tag "icons/favicon.ico" %>
+
+    <% if protect_against_forgery? %>
+      <%= csrf_meta_tag %>
+    <% end %>
+
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        <%= yield :javascript %>
+      })
+    </script>
+  </head>
+  
+  <body>
+    <div class="wrapper container-fluid">
+      <%= render :partial => "layouts/header" %>
+
+      <%= flashy %>
+
+      <%= yield %>
+      <div class="push"></div>
+    </div>  
+
+    <%= render :partial => "layouts/footer" %>
+
+  </body>
+</html>
