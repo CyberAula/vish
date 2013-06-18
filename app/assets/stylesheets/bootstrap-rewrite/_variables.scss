@@ -29,11 +29,24 @@ $orange:                #f89406 !default;
 $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;
 
+// ViSH color
+// -------------------------
+$background:            #f9f9f9 ;
+$red-1:                 #ff005d ;
+$red-2:                 #FE99C4 ;
+$linkgray:              #6e6e6e ;
+$blue-1:                #3366ff ;
+$blue-2:                #6A98E2 ;
+$green-vish:            #40CC7F ;
+
+$gray-vish:             #CCCCCC ;
+$gray-search:           #A1A1A1 ;
+
 
 // Scaffolding
 // -------------------------
-$bodyBackground:        $white !default;
-$textColor:             $grayDark !default;
+$bodyBackground:        $background ;
+$textColor:             $gray ;
 
 
 // Links
@@ -44,18 +57,22 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 
 // Typography
 // -------------------------
-$sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$sansFontFamily:        Helvetica Neue, Helvetica, "Arial", sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
+
+$firstFontFamily:       "DsignesLight";
+$secondFontFamily:      "DsignesRegulaR";
+$thirdFontFamily:       "DsignesBold";
 
 $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
 
-$headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
-$headingsFontWeight:    bold !default;    // instead of browser default, bold
-$headingsColor:         inherit !default; // empty to use BS default, $textColor
+$headingsFontFamily:    $firstFontFamily; // empty to use BS default, $baseFontFamily
+$headingsFontWeight:    normal ;    // instead of browser default, bold
+$headingsColor:         $grayLight ; // empty to use BS default, $textColor
 
 
 // Component sizing
