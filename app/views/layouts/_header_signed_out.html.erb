@@ -49,7 +49,23 @@
              <b class="caret"></b>
             </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-            <form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
+            <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
+              <%= f.email_field :email, :id => "username" %>
+              <%= f.password_field :password, :id => "password"  %>
+              <%= f.submit t(:sign_in), :class => ' btn btn-primary storePass'%>    
+            <% end %>
+            <%= javascript_tag do %>
+              $(function() {
+                if ("placeholder" in document.createElement("input")) {
+                  $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+                } else {
+                  $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+                }
+                $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+              });
+            <% end %>
+
+<!--             <form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
               <input id="user_username" type="text" name="user[username]" placeholder="User" size="30" />
               <input id="user_password" type="password" name="user[password]" placeholder="Password" size="30" />
               <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
@@ -57,7 +73,7 @@
              
               <input class="btn btn-primary" style="float: right;
 margin-bottom: 8px;" type="submit" name="commit" value="Sign In" />
-            </form>
+            </form> -->
           </ul>
         </li>
       </div>
