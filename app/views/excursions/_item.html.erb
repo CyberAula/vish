@@ -1,13 +1,27 @@
-<li class="excursion-item">
-   <%= image_tag("logo/manzana.jpg") %> 
+<li class="excursion-item" style="margin-left: 0">
+  <%= image_tag("badges/badge-1.png",  :class=> "badges" ) %>
+
+  <%= link_to image_tag("excursions/exc-prev.png",  :class=> "" ), "#" %>
   <div class="info">
-    <h3>title</h3>
-    <p>by <h4>name</h4></p>
+    <a class="name">
+      excursion name excur excursion name sion name   
+    </a>
+    <div class="like">    
+      <span class="count">32</span>
+      <%= link_to image_tag("icons/likes/star-active.png",  :class=> "" ), "#" %>
+    </div>
+
+    <div class="info-bottom">
+      <a class="author"> 
+        author name     
+      </a>
+      <div class="views">
+        <span class="count">23</span>
+        views    
+      </div>
+    </div>
   </div>
-
-
 </li>
-
 
 
 
