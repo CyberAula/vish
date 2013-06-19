@@ -18,10 +18,10 @@ RSpec::Core::RakeTask.new(:spec) do |s|
                 bsp('./controllers/users_controller_spec.rb'),
                 bsp('./controllers/notifications_controller_spec.rb'),
                 bsp('./controllers/likes_controller_spec.rb'),
-                # bsp('./controllers/profiles_controller_spec.rb'), *
+                # bsp('./controllers/profiles_controller_spec.rb'),
                 bsp('./controllers/comments_controller_spec.rb'),
                 bsp('./controllers/frontpage_controller_spec.rb'),
-                # bsp('./controllers/posts_controller_spec.rb'), *
+                # bsp('./controllers/posts_controller_spec.rb'),
                 bsp('./controllers/representations_spec.rb'),
                 # bsp('./controllers/groups_controller_spec.rb'),
                 bsp('./controllers/settings_controller_spec.rb'),
