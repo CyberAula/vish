@@ -1,5 +1,29 @@
 .user
-  .avatar
-    img.avatar_img
-      border-radius: 500px
-      
+  margin-top: 20px
+  header
+    .avatar
+      @include grid-core-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+      img.avatar_img
+        @include border-radius(500px)
+        @include grid-core-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        border: 5px solid $grayLight
+    .information
+      padding: 15px
+      border: 1px solid $grayLight
+      background-color: $white
+      @include border-radius($borderRadiusLarge)
+      display: block
+      float: left
+      @include grid-core-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      clear: right
+  .info-profile
+    @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    clear: both
+
+
+
+
+
