@@ -2,3 +2,25 @@
   border: 1px solid $grayLight
   @include border-bottom-right-radius(15px)
   @include border-bottom-left-radius(15px)
+
+@mixin gray-box
+  @include border-radius($radius)
+  border-top: 1px solid #F2F2F2
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
+  position: relative
+  width: 97%
+  z-index: 1
+  margin-left: 1%
+  .box_gray2
+    float: left
+    border: medium non
+    border-radius: 100% 100% 100% 100% / 33px
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.02)
+    .box_gray3 
+      @include gradient-vertical($startColor: #F9F9F9, $endColor: #F0F0F0)
+      border-radius: 15px 15px 15px 15px
+      box-shadow: 0 2px 1px rgba(255, 255, 255, 0.97) inset
+      cursor: pointer
+      display: block
+      padding: 15px
+      float: left

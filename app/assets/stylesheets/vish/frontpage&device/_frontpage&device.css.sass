@@ -17,9 +17,59 @@
 .forgot
 
 
-/*REMEMBER REGISTER*/
+/*REGISTER*/
+
+.box
+  @include gray-box
+  .campos,
+  .campo
+    input
+      border: none
+  .campos
+    input
+      box-shadow: none
+  .box_white
+    background-color: $white
+    @include border-radius($radius)
+
+  li,
+  .tagit-new
+  .text-tittle
+    color: $gray
+    font-family: $thirdFontFamily
+
+  .line
+    border-bottom: 1px solid $gray-vish
+
+  input
+    &[type="submit"]
+      @include btn-primary
+
+  .sentence-rules
+    text-align: center
 
 
+.sugestions-tags
+  @include border-radius($radius)
+  @include box-shadow (0 1px 3px rgba(0, 0, 0, 0.15))
+  background-color: $white
+  a
+    @include rotate(-90deg)
+    color: gray
+    font-size: 18px
+    &:hover
+      text-decoration: none
+  ul
+    li
+      list-style: none
+      background-color: #06F
+      color: #FFF
+      font-size: 13px
+      font-family: Helvetica
+      @include border-radius (5px)
+      @include opacity (50)
+      &:hover
+        @include opacity (60)
 
 
-/*REMEMBER NEW-SESSION*/
+/*NEW-SESSION*/

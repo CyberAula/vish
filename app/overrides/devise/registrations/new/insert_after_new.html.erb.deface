@@ -1,0 +1,92 @@
+<!-- insert_after 'input#user_password_confirmation' -->
+
+    <label class="text-tittle margin-top10" for="tags">
+      <%= t('profile.occupation.label') %>
+    </label>
+    <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]])) %>
+
+    <label class="text-tittle margin-top10" for="tags">
+      <%= t('activerecord.attributes.user.tag') %>
+    </label>
+
+    <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
+
+    <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+    <ul id="preloadTagList" style="display:none">
+      <%@tags.each do |tag| %>
+      <li>
+        <%=tag.name%>
+      </li>
+     <%end%>
+    </ul>
+    <div class="tagBoxNew">
+      <ul class="tagList devisetags"></ul>
+    </div>
+      
+    <div class="sentence-rules">
+      <%= t('conditions.check_message') %>
+      </br> 
+      <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+      <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
+      <% end -%>
+    </div>
+    <div class="accept-btn">
+      <%= f.submit t('action.accept').capitalize, :class => "btn btn-primary" %>
+    </div>
+    <% end %>
+      
+    <ul class="tagit-suggestions">
+      <div class="sugestions-tags">
+        <a>popular tags<%#= t('devise.suggestion')%> </a>
+        <li class="tagit-choice">Nanotechnology</li>
+        <li class="tagit-choice">Biotechnology</li>
+        <li class="tagit-choice">Life-Sciences</li>
+        <li class="tagit-choice">Grid-Computing</li>
+      </div>
+    </ul>
+
+
+
+<%= content_for :javascript do %>
+  $(document).ready(function() {
+    var tagList = $(".tagList");
+    var tags = [];
+
+    //Load tags
+    $.each($("#preloadTagList li"), function(index, element) {
+       tags.push($(element).html());
+    });
+		
+		$(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+      watermarkAllowMessage: '<%=t('document.info.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' ,
+		  tagsChanged:function (tag, action) {
+			  //Check if the element popped is a suggestion
+			  if(action=="popped"){
+					$.each($(".tagit-suggestions li"), function(index, element) {
+            if($(element).html()==tag){
+						  $(element).show();
+						}
+          });
+				}
+      } 
+		});
+
+    //Allow suggestions
+    $(".tagit-suggestions li").on("click", function(){
+      var result = $(".tagit").tagit('add', $(this).html() );
+			if(result==true){
+			  $(this).hide();
+			}
+    });
+
+    //Fill tag_list hidden input before send
+     var button = $("#submit_new_user_button");
+     $(".accept-btn").click(function(event) {
+       var tagList = $(".tagList");
+       $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+       return true;
+     });
+
+  });
+<% end %>

@@ -1,0 +1,14 @@
+<div class="setting-box" id="cancel_account">
+  <div class="title">
+    <%= t("account.cancel")%>
+  </div>
+  <%= link_to (image_tag('icons/edit_icon.png', :class=>"imgnoradio")),  "javascript:showSettings(\"cancel_account\");", :class => "action" %>
+  <div class="content settings_content" id="cancel_account_content" style="display:none;">
+
+      Unhappy? 
+      <b>
+        <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.
+      </b>
+
+  </div>
+</div>
