@@ -5,7 +5,7 @@
       <div class="avatar">
         <%= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>
 
-        <%= image_tag("excursions/exc-prev.png") %>
+        <%= image_tag("excursions/exc-prev.png",  :class=> "avatar_img") %>
       </div>
       <div class="information">
         <h1> virtual science hub </h1>
