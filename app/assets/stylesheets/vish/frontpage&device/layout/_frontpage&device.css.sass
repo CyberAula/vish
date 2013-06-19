@@ -52,6 +52,9 @@
       padding-left: 189px
 
   section.password
+    float: right
+    padding: 3px 7px
+    width: 61%
     label
       display: none
     input
@@ -71,57 +74,57 @@
   h1
     margin: 0 0 0 5%
   h2
-    margin-left: 150px
+    margin-left: 19%
     small
       width: 176px
       margin-bottom: -18px
-  .box
-    margin-left: 152px
-    width: 340px
-    float: left
-    .campos,
-    .campo
-      display: inline-block
-      input
-        width: $inputFormulate
-        display: inline-block
-        margin-right: 15px
-    .campos
-      input
-        margin-top: 8px
-        width: 142px
-    .box_white
-      display: inline-block
-      padding: 5px
-      input#password_confirmation
-        width: 140px
-      select
-        margin: 10px 0
-
-    li,
-    .tagit-new
-      input
-        width: auto 
-
-    .text-tittle
-      display: inline-block
-      margin-left: 10px
-
-    .line
-      display: block
-      margin-left: auto
-      margin-right: auto
-      width: 95%
-
+.box
+  margin-left: 19%
+  width: 340px
+  float: left
+  .campos,
+  .campo
+    display: inline-block
     input
-      &[type="submit"]
-        margin-top: 4px
-        margin-bottom: 0px
-        float: right
+      width: $inputFormulate
+      display: inline-block
+      margin-right: 15px
+  .campos
+    input
+      margin-top: 8px
+      width: 142px
+  .box_white
+    display: inline-block
+    padding: 5px
+    input#password_confirmation
+      width: 140px
+    select
+      margin: 10px 0
 
-    .sentence-rules
-      line-height: 20px
-      margin-top: 10px
+  li,
+  .tagit-new
+    input
+      width: auto 
+
+  .text-tittle
+    display: inline-block
+    margin-left: 10px
+
+  .line
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 95%
+
+  input
+    &[type="submit"]
+      margin-top: 4px
+      margin-bottom: 0px
+      float: right
+
+  .sentence-rules
+    line-height: 20px
+    margin-top: 10px
 
 .devise-box
   width: 98%
@@ -131,11 +134,9 @@
 .sugestions-tags
   width: 150px
   margin-top: 200px
-  margin-left: -25px
-
   height: 120px
   padding: 5px
-  float: right
+  float: left
   a
     float: left
     display: inline-block
@@ -157,3 +158,105 @@
 
 
 /*NEW-SESSION*/
+
+#new_session
+  width: 50%
+  margin: 0 25%
+
+
+
+
+/*old*/
+.menssage-devise
+  @include makeColumn(4,0)
+  text-align: right
+  clear: right
+  margin-top: 50px
+
+.sentence
+  @include makeColumn(6,4)
+  line-height: 20px
+  margin-top: -20px
+.sentence-rules
+
+  line-height: 20px
+  margin-top: 10px
+  text-align: center
+
+
+#formulate
+  @include makeColumn(6,4)
+
+  .box_gray1
+    .box_gray2
+      .box_gray3
+        .campo
+
+          display: inline-block
+          input
+            width: $inputFormulate
+            display: inline-block
+            margin-right: 15px
+            border: none
+
+        .campos
+
+          display: inline-block
+          input
+            width: $inputFormulate
+            display: inline-block
+            margin-right: 15px
+            border: none
+            box-shadow: none
+            margin-top: 8px
+
+        li,
+        .tagit-new
+          input
+            width: auto 
+
+        .text-tittle
+          color: $gray
+          display: inline-block
+          font-family: $thirdFontFamily
+          margin-left: 10px
+
+.remenber
+  margin-top: 5px
+  .check-remenber
+    display: inline-block 
+
+.devise-box
+  width: 98%
+
+.accept-btn
+  margin-top: 10px
+  margin-bottom: 30px
+
+.sugestions-tags
+  width: 150px
+  margin-top: 200px
+  margin-left: -25px
+  @include border-radius($radius)
+  background-color: $white
+  height: 120px
+  padding: 5px
+  float: right
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
+
+
+  a
+    color: gray
+    font-size: 18px
+    float: left
+    display: inline-block
+    margin-left: -30px
+    margin-top: 50px
+    margin-bottom: -68px
+    @include rotate(-90deg)
+
+  a:hover
+    text-decoration: none
+
+  .tagit-choice
+    margin-left: 40px

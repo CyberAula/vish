@@ -1,0 +1,43 @@
+<div id="new_session">
+  <h1 class="menssage-devise">
+    <%= t('sign_in') %>
+  </h1>
+  <h2 class="sentence">
+    <small>
+  <%= t('devise.invalid_login') %>
+    </small>
+  </h2>
+  <div id="formulate">
+    <div class="box_gray1 ">
+      <div class="box_gray2">
+        <div class="box_gray3">
+          <div class="box_white devise-box">
+            <div class="campos">
+              <%= form_for(resource, :as => resource_name, :url => user_session_path,  :html => { :method => :post, :class=>"" }) do |f| %>
+              <%= devise_error_messages! %>
+              <label class="text-tittle" for="email">
+                <%= f.label :email %>
+              </label>
+              <%= f.text_field :email, :class => "", :id => "email", :placeholder => "email" %>
+              <div class="line"></div>
+              <label class="text-tittle" for="password">
+                <%= f.label :password %>
+              </label>
+              <%= f.password_field :password, :class => "", :id => "password" %>
+            </div>
+          </div>
+          <div class="remenber">
+            <% if devise_mapping.rememberable? -%>
+            <%= f.check_box :remember_me %> <%= f.label :remember_me, :class => "check-remenber " %>
+            <% end -%>
+          </div>
+          <%= f.submit t('action.send'), :class =>"btn btn-primary" %>
+          <% end %>
+        </br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
