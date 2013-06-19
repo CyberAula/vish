@@ -1,7 +1,65 @@
 <header class="header">
     <div class="container">
-    <div class="corporatelogo">
-  <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => ""); %>
-</div>
-</div>
+
+      <div class="corporatelogo">
+        <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => ""); %>
+      </div>
+
+      <div class="corporatelogo_signedout">
+        <h4>virtual science hub</h4>
+      </div>
+
+      <div class="navbarbrowse">
+      <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">Browse
+             <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <li><a tabindex="-1" href="#">Popular</a></li>
+            <li class="divider"></li>
+            <li><a tabindex="-1" href="#">Excursions</a></li>
+            <li><a tabindex="-1" href="#">Categories</a></li>
+            <li><a tabindex="-1" href="#">Events</a></li>
+            <li><a tabindex="-1" href="#">Resources</a></li>
+            
+          </ul>
+        </li>
+      </div>
+
+      <div class="navbarsearch">
+        <form class="navbar-search pull-left">
+        <input type="text" class="search-query" placeholder="Search">
+        </form>
+      </div>
+              <div class="signin pull-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">Sign In
+            </a>
+        </li>
+      </div>
+      <div class="login pull-right">
+      <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">Log In
+             <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
+              <input id="user_username" type="text" name="user[username]" placeholder="User" size="30" />
+              <input id="user_password" type="password" name="user[password]" placeholder="Password" size="30" />
+              <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="user[remember_me]" value="1" />
+              <label class="string optional" for="user_remember_me"> Remember me</label>
+             
+              <input class="btn btn-primary" style="float: right;
+margin-bottom: 8px;" type="submit" name="commit" value="Sign In" />
+            </form>
+          </ul>
+        </li>
+      </div>
+    </div>
 </header>
