@@ -1,8 +1,62 @@
 #frontpage
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  
+
   .characteristics
-    @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include grid-core-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin: 100px auto 0
+    
+    .inspiration
+      @include grid-core-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      img
+        width: 60%
+        margin: 0 20%
+    
     .description
       @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      margin-left: 2%
+      hr
+        margin: 12px 0
+      .redes
+        @include grid-core-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        float: left
+        a
+          display: block
+          margin: 10px 10px 10px 0px
+      .email
+        @include grid-core-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin-left: 2%
+        float: left
+        padding-top: 15px
+  
+
   .excursions
-    @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    width: 80%
+    margin: 0 10%
+    clear: both
+
+    .excursion
+      @include excursion-box
+      width: 18.2%
+      float: left
+      margin-left: 2%
+      &:first-child
+        margin-left: 0
+      .badges
+        position: absolute
+        margin-left: 7.7%
+      .info
+        padding: 5px 10px
+        a.name
+          float: left
+          width: 80%
+        .like
+          float: right
+      .info-bottom
+        clear: both
+        a.author
+          float: left
+        .views
+          float: right
