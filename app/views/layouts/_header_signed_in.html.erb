@@ -1,10 +1,77 @@
 <header class="header">
-  <div class="container">
-    <div>
-      <%= link_to(image_tag('logo.png', :alt => t('site.name')), '/', :class => "corporatelogo"); %>
+    <div class="container">
+
+      <div class="corporatelogo">
+        <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => ""); %>
+      </div>
+
+      <div class="corporatelogo_signedout">
+        <h4>virtual science hub</h4>
+      </div>
+
+      <div class="navbarbrowse">
+      <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">Browse
+             <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <li><a tabindex="-1" href="#">Popular</a></li>
+            <li class="divider"></li>
+            <li><a tabindex="-1" href="#">Excursions</a></li>
+            <li><a tabindex="-1" href="#">Categories</a></li>
+            <li><a tabindex="-1" href="#">Events</a></li>
+            <li><a tabindex="-1" href="#">Resources</a></li>
+            
+          </ul>
+        </li>
+      </div>
+
+      <div class="navbarsearch">
+        <form class="navbar-search pull-left">
+        <input type="text" class="search-query" placeholder="Search">
+        </form>
+      </div>
+              <div class="signin pull-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">Sign up
+            </a>
+        </li>
+      </div>
+      <div class="login pull-right">
+      <li class="dropdown">
+          <a class="dropdown-toggle"
+             data-toggle="dropdown"
+             href="#">Log In
+             <b class="caret"></b>
+            </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
+              <%= f.email_field :email, :id => "username" %>
+              <%= f.password_field :password, :id => "password"  %>
+              <%= f.submit t(:sign_in), :class => ' btn btn-primary storePass'%>    
+            <% end %>
+            <%= javascript_tag do %>
+              $(function() {
+                if ("placeholder" in document.createElement("input")) {
+                  $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+                } else {
+                  $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+                }
+                $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+              });
+            <% end %>
+          </ul>
+        </li>
+      </div>
     </div>
-    <div class="signin pull-right">
+</header>
+
+        <div class="signin pull-right">
       <%=link_to(t('sign_out'), destroy_user_session_path, :method => :delete) %>
     </div>
-  </div>
-</header>
+
+        <%= link_to(image_tag(current_subject.logo.url, :size => "22x22", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
