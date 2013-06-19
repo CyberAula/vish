@@ -19,7 +19,10 @@
         </a>
       </div>
       <h4 class="email">
-        or register with your <a>email</a>
+        or register with your 
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to t('devise.links.email'), new_registration_path(resource_name) %>
+        <% end -%>
       </h4>
     </div>
   </div>

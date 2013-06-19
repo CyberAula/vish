@@ -1,0 +1,7 @@
+<!-- replace 'section#new_session' -->
+
+  <section id="new_session">
+
+    <%= render partial: 'devise/sessions/form' %>
+
+  </section>
