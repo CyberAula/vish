@@ -1,7 +1,7 @@
+/*FRONTPAGE*/
 #frontpage
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   
-
   .characteristics
     @include grid-core-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
     margin: 30px auto 0
@@ -36,3 +36,36 @@
     width: 80%
     margin: 0 10%
     clear: both
+
+
+
+/*REMEMBER PASSWORD*/
+
+.forgot
+  width: 50%
+  margin: 0 25%
+  header
+    h2
+      width: 176px
+      margin-bottom: -18px
+    form
+      padding-left: 189px
+
+  section.password
+    label
+      display: none
+    input
+      &[type="text"]
+        margin-top: 12px
+
+      &[type="submit"]
+        @include btn-primary
+
+
+
+/*REMEMBER REGISTER*/
+
+
+
+
+/*REMEMBER NEW-SESSION*/
