@@ -1,8 +1,11 @@
 li.excursion-item
-  @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  list-style-type: none
-  img.cover
-    width: 100%
+  list-style: none
+  img.badge
+    background: $white
   .info
-    h3
-      color: $blue-1
+    .name
+      line-height: 18px
+    span
+      color: $green
+    .info-bottom
+      border-top: 1px solid $grayLight

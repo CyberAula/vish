@@ -4,7 +4,7 @@
 
   .characteristics
     @include grid-core-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    margin: 100px auto 0
+    margin: 30px auto 0
     
     .inspiration
       @include grid-core-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -36,27 +36,3 @@
     width: 80%
     margin: 0 10%
     clear: both
-
-    .excursion
-      @include excursion-box
-      width: 18.2%
-      float: left
-      margin-left: 2%
-      &:first-child
-        margin-left: 0
-      .badges
-        position: absolute
-        margin-left: 7.7%
-      .info
-        padding: 5px 10px
-        a.name
-          float: left
-          width: 80%
-        .like
-          float: right
-      .info-bottom
-        clear: both
-        a.author
-          float: left
-        .views
-          float: right
