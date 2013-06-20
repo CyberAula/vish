@@ -14357,6 +14357,15 @@ VISH.Slides = function(V, $, undefined) {
   var backwardOneSlide = function() {
     goToSlide(curSlideIndex)
   };
+  var moveSlides = function(n) {
+    if(n > 0 && !V.Editing && isCurrentLastSlide() && V.Status.getDevice().desktop) {
+      V.Recommendations.showFancybox();
+      return
+    }
+    var no = curSlideIndex + n + 1;
+    no = Math.min(Math.max(1, no), slideEls.length);
+    goToSlide(no)
+  };
   var goToSlide = function(no, triggeredByUser) {
     if(no === getCurrentSlideNumber()) {
       return
@@ -14389,6 +14398,11 @@ VISH.Slides = function(V, $, undefined) {
     if(V.Editing) {
       $(".selectable").css("border-style", "none");
       V.Editor.Tools.cleanZoneTools();
+      var firstCarrouselNumber = parseInt($($("div.carrousel_element_single_row_slides")[0]).find("img.carrousel_element_single_row_slides[slidenumber]").attr("slidenumber"));
+      var lastCarrouselNumber = firstCarrouselNumber + 7;
+      if(no < firstCarrouselNumber || no > lastCarrouselNumber) {
+        V.Editor.Thumbnails.moveCarrouselToSlide(no)
+      }
       V.Editor.Thumbnails.selectThumbnail(no)
     }else {
       V.SlideManager.updateSlideCounter()
@@ -14459,7 +14473,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   return{init:init, getSlides:getSlides, setSlides:setSlides, updateSlides:updateSlides, updateSlideEls:updateSlideEls, setCurrentSlideIndex:setCurrentSlideIndex, getCurrentSlide:getCurrentSlide, getCurrentSubSlide:getCurrentSubSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, 
-  isCurrentLastSlide:isCurrentLastSlide, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides, isSlideset:isSlideset}
+  isCurrentLastSlide:isCurrentLastSlide, moveSlides:moveSlides, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides, isSlideset:isSlideset}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var eMobile;
@@ -16474,7 +16488,7 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
     if(!start) {
       start = 0
     }
-    $("#" + id).carouFredSel({circular:false, infinite:false, auto:false, width:width, scroll:{items:scrollItems, duration:1E3, timeoutDuration:2E3}, items:{visible:{min:rowItems, max:rowItems}, start:start}, prev:{button:"#carrousel_prev" + widgetsId, key:"left"}, next:{button:"#carrousel_next" + widgetsId, key:"right"}, pagination:"#carrousel_pag" + widgetsId, onCreate:afterCreateCarruselFunction});
+    $("#" + id).carouFredSel({circular:false, infinite:false, auto:false, width:width, scroll:{items:scrollItems, duration:1E3, timeoutDuration:2E3}, items:{visible:{min:rowItems, max:rowItems}, start:start}, prev:{button:"#carrousel_prev" + widgetsId}, next:{button:"#carrousel_next" + widgetsId}, pagination:"#carrousel_pag" + widgetsId, onCreate:afterCreateCarruselFunction});
     if(synchronizeIds) {
       $(synchronizeIds).each(function(index, value) {
         $("#" + id).trigger("configuration", ["synchronise", "#" + value])
@@ -16704,13 +16718,21 @@ VISH.Editor.Events = function(V, $, undefined) {
     switch(event.keyCode) {
       case 39:
         if(V.Editor.Slides.isSlideFocused()) {
-          V.Slides.forwardOneSlide();
+          if(!ctrlDown) {
+            V.Slides.forwardOneSlide()
+          }else {
+            V.Slides.moveSlides(10)
+          }
           event.preventDefault()
         }
         break;
       case 37:
         if(V.Editor.Slides.isSlideFocused()) {
-          V.Slides.backwardOneSlide();
+          if(!ctrlDown) {
+            V.Slides.backwardOneSlide()
+          }else {
+            V.Slides.moveSlides(-10)
+          }
           event.preventDefault()
         }
         break;
@@ -18508,9 +18530,11 @@ VISH.Editor.Slides = function(V, $, undefined) {
         return
       }
     }
+    $(article_to_move).addClass("temp_shown");
     V.Editor.Utils.refreshDraggables(article_to_move);
     _cleanTextAreas(article_to_move);
     _loadTextAreasOfSlide(article_to_move, textAreas);
+    $(article_to_move).removeClass("temp_shown");
     V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
     if(moving_current_slide) {
       V.Slides.setCurrentSlideIndex(V.Slides.getNumberOfSlide(article_to_move))
@@ -18534,7 +18558,7 @@ VISH.Editor.Slides = function(V, $, undefined) {
     }
     var slideToCopyType = V.Slides.getSlideType(slideToCopy);
     var slidesetModule = V.Editor.Slideset.getModule(slideToCopyType);
-    if(typeof slidesetModule !== "undefined") {
+    if(typeof slidesetModule != "undefined" && slidesetModule != null) {
       var slidesetModule = V.Editor.Slideset.getModule(slideToCopyType);
       var slidesetId = $(slideToCopy).attr("id");
       if(!options.JSON) {
@@ -18556,14 +18580,13 @@ VISH.Editor.Slides = function(V, $, undefined) {
         _loadTextAreasOfSlide(slideCopied, options.textAreas)
       }
     }
-    if(typeof slidesetModule !== "undefined") {
+    if(typeof slidesetModule != "undefined" && slidesetModule != null) {
       slidesetModule.postCopyActions(slideToCopyJSON, slideCopied)
     }
     V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
     V.Slides.updateSlideEls();
     V.Editor.Thumbnails.redrawThumbnails(function() {
       if(currentSlide) {
-        V.Editor.Thumbnails.moveCarrouselToSlide(V.Slides.getCurrentSlideNumber() + 1);
         V.Slides.goToSlide(V.Slides.getCurrentSlideNumber() + 1)
       }else {
         V.Slides.goToSlide(1);
@@ -21328,7 +21351,7 @@ VISH.Recommendations = function(V, $, undefined) {
     if(!V.Status.getIsEmbed()) {
       for(var i = data.length - 1;i >= 0;i--) {
         $("#recom-" + data[i].id).click(function(my_event) {
-          V.Utils.sendParentToURL(data[$(my_event.toElement).closest(".rec-excursion").attr("number")].url)
+          V.Utils.sendParentToURL(data[$(my_event.target).closest(".rec-excursion").attr("number")].url)
         })
       }
     }
