@@ -1,5 +1,5 @@
-<header class="header">
-    <div class="container">
+<header class="header navbar-fixed-top">
+    <div class="container-fluid">
 
       <div class="corporatelogo">
         <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => ""); %>
@@ -69,9 +69,3 @@
       </div>
     </div>
 </header>
-
-        <div class="signin pull-right">
-      <%=link_to(t('sign_out'), destroy_user_session_path, :method => :delete) %>
-    </div>
-
-        <%= link_to(image_tag(current_subject.logo.url, :size => "22x22", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
