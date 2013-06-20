@@ -1,4 +1,4 @@
-<!-- insert_after 'input#user_password_confirmation' -->
+<!-- insert_after 'code[erb-loud]:contains("f.password_field :password_confirmation")' -->
 
     <label class="text-tittle margin-top10" for="tags">
       <%= t('profile.occupation.label') %>
@@ -11,7 +11,7 @@
 
     <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
 
-    <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+    <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
     <ul id="preloadTagList" style="display:none">
       <%@tags.each do |tag| %>
       <li>
@@ -34,7 +34,6 @@
     <div class="accept-btn">
       <%= f.submit t('action.accept').capitalize, :class => "btn btn-primary" %>
     </div>
-    <% end %>
       
     <ul class="tagit-suggestions">
       <div class="sugestions-tags">
