@@ -32,3 +32,28 @@
 
 @mixin hidden-desktop
   @extend .hidden-desktop
+
+
+
+@mixin grid
+  @include excursion-box
+  width: 18.2%
+  float: left
+  margin-left: 2%
+  list-style: none
+  &:first-child
+    margin-left: 0
+  .badges
+    width: 5.2%
+    position: absolute
+    margin-left: 9%
+  .info
+    padding: 5px 10px
+    .like
+      float: right
+  .info-bottom
+    clear: both
+    a.author
+      float: left
+    .views
+      float: right

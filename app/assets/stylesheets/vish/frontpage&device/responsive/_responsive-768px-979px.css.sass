@@ -5,3 +5,46 @@
 
 @media (min-width: 768px) and (max-width: 979px)
 
+  #frontpage
+    @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    
+    .characteristics
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      
+      .inspiration
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        float: none
+        img
+          width: 60%
+          margin: 0 20%
+      
+      .description
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        float: none
+        h1,
+        p
+          width: 56%
+          margin-left: 4%
+          float: left
+        hr
+          @include hidden-phone
+        .redes
+          width: 38%
+          margin-top: -49px
+          margin-left: 2%
+          a
+            display: block
+            margin: 10px 10px 10px 0px
+            &:first:child
+              margin-top: 0
+        .email
+          width: 38%
+          margin-left: 2%
+          float: right
+          padding-top: 15px
+    
+
+    .excursions
+      width: 100%
+      margin: 0
+      clear: both

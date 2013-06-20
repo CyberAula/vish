@@ -12,7 +12,6 @@
 #profile_info,
 #tags_info
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  border-bottom: 1px solid $gray-vish
   display: block
   margin-left: auto
   margin-right: auto
@@ -23,11 +22,9 @@
 
   .title
     @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    color: $blue-1
     font-size: 20px
     display: inline-block
     float: left
-    font-family: $fistFontFamily
     margin-bottom: 10px
 
   .action
@@ -44,16 +41,12 @@
       display: inline-block
     h4
       margin: 2px 0
-      color: $gray
       margin-left: 20px
       display: block
 
-
     small 
-      color: $blue-2
       margin-left: 40px
       display: block
-      word-wrap: break-word
 
     .text
       color: $gray
@@ -67,20 +60,20 @@
 
       .tagit 
         @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        @include nomargin-left
         @mixin center-block()
-        border: 1px solid #CCCCCC
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset
+        margin-left: 0px
+
 
     textarea,
     input.input_settings
       @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
       
-    .btn-primary
-      float: right
-      margin-right: 35px
-      margin-bottom: 5px
-      margin-top: 1px
+    input
+      &[type="submit"]
+        float: right
+        margin-right: 35px
+        margin-bottom: 5px
+        margin-top: 1px
 
 #cancel_account
   .title
