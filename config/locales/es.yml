@@ -43,6 +43,7 @@ es:
     password: "Contraseña"
     passwordconfirmation: "Confirmar contraseña"
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
+    tags: "etiquetas"
   disjunction:
     or: "or"
   document:

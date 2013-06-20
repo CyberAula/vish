@@ -5,9 +5,24 @@ footer.container-fluid
   bottom: 0
   clear: both
   min-height: 60px
-  nav
+  nav.footercontent
+    margin-top: 1%
     ul
-      li.social-img
-        color: #555      
+      li.social-img     
         img
           width: 30px
+      li.dropup
+        .dropdown-menu
+          min-width: 122px
+          background-color: rgba(255, 255, 255, .7)
+          li.languaje
+            display: block
+            padding: 0
+            margin-bottom: 4px
+            &:last-child
+              margin-bottom: 0
+            img   
+              width: 25px
+              margin-right: 5px
+              height: 20px
+              background-color: black

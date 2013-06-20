@@ -39,6 +39,7 @@ en:
       other: "Following you"
   devise:
     invalid_login: "Please enter your email and password to continue."
+    tags: "tags"
   disjunction:
     or: "or"
   document:
