@@ -1,14 +1,19 @@
 footer.container-fluid
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  @include menuHorizontal
   position: fixed
-  left: 0px
-  bottom: 0px
-  height: 50px
+  left: 0
+  bottom: 0
+  height: 38px
   width: 100%
   nav.footercontent
-    margin-top: 1%
+    margin-left: -22%
+    margin-top: 6px
     ul
+      padding: 0
+      text-align: center
+      li
+        display: inline
+        padding: 0 2%
       li.social-img     
         img
           width: 30px

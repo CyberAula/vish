@@ -9,16 +9,22 @@
          <%= t('help') %>
       </li>
 
-      <li class="dropup">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <%= t('languaje') %>
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <li class="languaje"><a tabindex="-1" href="#"><img>English</a></li>
-          <li class="languaje"><a tabindex="-1" href="#"><img>Spanish</a></li>
-        </ul>
-      </li> 
+      <li class="btn-group dropup">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="idioma">
+            <%= t('lang.title') %>
+          </span>
+          <span class="caret"></span>
+        </button>   
+          <ul class="dropdown-menu">
+            <% for locale in (I18n.available_locales) -%>
+              <% next if locale.to_s != "en" and locale.to_s != "es" %>
+              <li class="">
+              </li>
+            <% end -%>
+          </ul>
+      </li>
+
       <li>
          user manual 
       </li>
