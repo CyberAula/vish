@@ -78,28 +78,30 @@
     small
       width: 176px
       margin-bottom: -18px
-.box
-  margin-left: 19%
-  width: 340px
-  float: left
-  .campos,
-  .campo
-    display: inline-block
-    input
-      width: $inputFormulate
+form#new_user
+  @include gray-box
+  .reg-labels
+    margin-left: 19%
+    width: 340px
+    float: left
+    .campos,
+    .campo
       display: inline-block
-      margin-right: 15px
-  .campos
-    input
-      margin-top: 8px
-      width: 142px
-  .box_white
-    display: inline-block
-    padding: 5px
-    input#password_confirmation
-      width: 140px
-    select
-      margin: 10px 0
+      input
+        width: $inputFormulate
+        display: inline-block
+        margin-right: 15px
+    .campos
+      input
+        margin-top: 8px
+        width: 142px
+    .box_white
+      display: inline-block
+      padding: 5px
+      input#password_confirmation
+        width: 140px
+      select
+        margin: 10px 0
 
   li,
   .tagit-new
