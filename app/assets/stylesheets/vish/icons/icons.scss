@@ -1,51 +1,10 @@
-/**************REPOSITORIES css *************/
-
-[class^="iconx-"],   [class*=" iconx-"] {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  vertical-align: text-top;
-  background-image: url("icons/iconrepository32.png");
-  background-position: 32px 32px;
-  background-repeat: no-repeat;
-  *margin-right: .3em;
-}
-[class^="iconx-"]:last-child,   [class*=" iconx-"]:last-child {
-  *margin-left: 0;
-}
-.iconx-default { background-position: 0  -42px;  }
-.iconx-pdf     { background-position: -126px -42px;  }
-.iconx-word    { background-position: -168px -42px;  }
-.iconx-ppt     { background-position: -210px -42px;  }
-.iconx-excel   { background-position: -252px -42px; }
-.iconx-audio   { background-position: -294px -42px; }
-.iconx-picture { background-position: 0-126px; }
-.iconx-video   { background-position: 0 -210px; }
-.iconx-swf     { background-position: -168px -210px; }
-.iconx-quiz    { background-position: -210px -168px; }
-.iconx-vc      { background-position: -378px -84px;  }
-
-.iconx-default:hover { background-position: 0  0;  }
-.iconx-pdf:hover     { background-position: -126px 0;  }
-.iconx-word:hover    { background-position: -168px 0;  }
-.iconx-ppt:hover     { background-position: -210px 0;  }
-.iconx-excel:hover   { background-position: -252px 0; }
-.iconx-audio:hover   { background-position: -294px 0; }
-.iconx-picture:hover { background-position: 0 -84px; }
-.iconx-video:hover   { background-position: 0 -168px; }
-.iconx-swf:hover     { background-position: -168px -168px; }
-.iconx-quiz:hover    { background-position: -210px -210px;  }
-.iconx-vc:hover      { background-position: -378px -126px; }
-
-
 /*..................icon navigation 22x22....................... */
 
 li{
   list-style-type:none}
 
 [class^="iconnav-"], [class*=" iconnav-"] {
-  background-image: url("icons/icon_nav.png");
+  background-image: url("icons/nav/icon_nav.png");
   background-position:22px 22px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -60,7 +19,7 @@ li{
 [class^="iconnav-"]:last-child, [class*="iconnav-"]:last-child {
 }
 .iconnav-white {
-  background-image: url("icons/icon_nav.png");
+  background-image: url("icons/nav/icon_nav.png");
 }
 /* normal*/
 .iconnav-home { background-position:0 0;}
@@ -95,7 +54,7 @@ li{
 /*..................icon file 16x16....................... */
 
 [class^="iconfile16-"], [class*=" iconfile16-"] {
-  background-image: url("icons/iconfile16.png");
+  background-image: url("icons/file/iconfile16.png");
   background-position:16px 16px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -108,7 +67,7 @@ li{
 [class^="iconfile16-"]:last-child, [class*="iconfile16-"]:last-child {
 }
 .iconfile16-file16_white {
-  background-image: url("icons/iconfile16.png");}
+  background-image: url("icons/file/iconfile16.png");}
 
 .iconfile16-file16_file { background-position: 0 0;}
 .iconfile16-file16_add { background-position: -26px 0;}
@@ -135,7 +94,7 @@ li{
 /*..................icon file 32x32....................... */
 
 [class^="iconfile32-"], [class*=" iconfile32-"] {
-  background-image: url("icons/iconfile32.png");
+  background-image: url("icons/file/iconfile32.png");
   background-position:32px 32px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -147,7 +106,7 @@ li{
 
 [class^="iconfile32-"]:last-child, [class*="iconfile32-"]:last-child {
 }
-.iconfile32-file32_white {background-image: url("icons/iconfile32.png");}
+.iconfile32-file32_white {background-image: url("icons/file/iconfile32.png");}
 
 .iconfile32-file32_file { background-position: 0 0;}
 .iconfile32-file32_add { background-position: -42px 0;}
@@ -179,7 +138,7 @@ li{
   height: 75px;
   line-height: 75px;
   vertical-align: text-top;
-  background-image: url("icons/iconrepository75.png");
+  background-image: url("icons/repository/iconrepository75.png");
   background-position: 75px 75px;
   background-repeat: no-repeat;
   *margin-right: .3em;
@@ -222,7 +181,7 @@ li{
 /*.................. icon repository 32 x 32 px......................*/
 
 [class^="icon_repository32-"], [class*=" icon_repository32-"] {
-  background-image: url("icons/iconrepository32.png");
+  background-image: url("icons/repository/iconrepository32.png");
   background-position:32px 32px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -236,7 +195,7 @@ li{
 [class^="icon_repository32-"]:last-child, [class*="icon_repository32-"]:last-child {
 }
 .icon_repository32-white {
-  background-image: url("icons/iconrepository32.png");}
+  background-image: url("icons/repository/iconrepository32.png");}
 
 /*................................................... */
 
@@ -305,7 +264,7 @@ li{
 /*.................. icon repository 75 x 75 px......................*/
 
 [class^="icon_repository75-"], [class*=" icon_repository75-"] {
-  background-image: url("icons/iconrepository75.png");
+  background-image: url("icons/repository/iconrepository75.png");
   background-position:75px 75px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -318,7 +277,7 @@ li{
 [class^="icon_repository75-"]:last-child, [class*="icon_repository75-"]:last-child {
 }
 .icon_repository75-75_repository_white {
-  background-image: url("icons/iconrepository75.png");}
+  background-image: url("icons/repository/iconrepository75.png");}
 
 /*................................................... */
 
@@ -393,7 +352,7 @@ li{
   height:22px;
   width:22px;
   vertical-align:text-top;
-  background-image: url("icons/icon_message22.png");
+  background-image: url("icons/chat/icon_message22.png");
   background-position:22px 22px;
   background-repeat:no-repeat;
   line-height:22px;
@@ -403,7 +362,7 @@ li{
   *margin-left: 0;
 }
 .iconmessage22-message22_white {
-  background-image: url("icons/icon_message22.png");}
+  background-image: url("icons/chat/icon_message22.png");}
 
 .iconmessage22-message22_message { background-position: 0 0;}
 .iconmessage22-message22_new { background-position: -32px 0;}
@@ -439,7 +398,7 @@ li{
     height:22px;
     width:22px;
     vertical-align:text-top;
-    background-image: url("icon_chat22.png");
+    background-image: url("icons/chat/icon_chat22.png");
     background-position:22px 22px;
     background-repeat:no-repeat;
     line-height:22px;
@@ -449,7 +408,7 @@ li{
     *margin-left: 0;
 }
 .iconmessage22-message22_white {
-    background-image: url("icon_chat22.png");}
+    background-image: url("icons/chat/icon_chat22.png");}
 
 .iconchat22-chat22_message { background-position: 0 0;}
 .iconchat22-chat22_new { background-position: -32px 0;}
@@ -480,7 +439,7 @@ li{list-style-type:none}
 
 [class^="icontool16-"], [class*=" icontool16-"] {
 
-  background-image: url("icons/tools16.png");
+  background-image: url("icons/tools/tools16.png");
   background-position:16px 16px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
@@ -494,7 +453,7 @@ li{list-style-type:none}
 [class^="icontool16-"]:last-child, [class*="icontool16-"]:last-child {
 }
 .icontool16-tool16_white {
-  background-image: url("icons/tools16.png");}
+  background-image: url("icons/tools/tools16.png");}
 
 
 .icontool16-tool16_ok{background-position: 0 0;}

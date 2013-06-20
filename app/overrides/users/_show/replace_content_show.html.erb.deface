@@ -3,27 +3,36 @@
   <section class="user">
     <header>
       <div class="avatar">
+        <!--SUSTITUIR POR AVATAR DE USUARIO-->
         <%= image_tag("excursions/exc-prev.png",  :class=> "avatar_img") %>
         <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
       </div>
       <div class="information">
-        <h1> virtual science hub </h1>
+        <h2> <%= @user.name %></h2>
+        <button>
+          <!--SUSTITUIR POR ENVIAR MENSAJE A ESTE USURIO-->
+          <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %> <%= t 'mailboxer.send' %>
+        </button>
         <hr class="soften">
-        <h3> User name </h3>
-        <p>
-          etijgitwejiwthji 4tihj4tiejhi42tej h42t hk24telkbfdk wlkbnlwblrwgblrwtnbdfb b kt lwkt hlkt4hklwb rtlk blkwrt jklbwrjktlblkrwt b2tlr rwtljkjr gbjlkrwtjklrwkljblkwrj blkrwj rlkjklrw jklwrklj klrw jlkrwtkl wrklt lkjwrtljkh
+        <h3 class="name-roll"> 
+          <!--SUSTITUIR POR ROLL DE USUARIO-->
+          Teacher
+        </h3>
+        <p class="description">
+          <%= @user.profile.description%>
         </p>
         <hr class="soften">
-        <h3 class="karma">
-          Karma
+        <h3 class="karma">Karma
           <span> 65 </span>
         </h3>
+        
         <h3 class="archivements">
           archivements
-          <%= image_tag("badges/badge-3.png",  :class=> "archivement" ) %>
-          <%= image_tag("badges/badge-3.png",  :class=> "archivement" ) %>
-          <%= image_tag("badges/badge-3.png",  :class=> "archivement" ) %>
         </h3>
+          <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %>
+          <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %>
+          <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %>
+        
       </div>
     </header>
 
