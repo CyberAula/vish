@@ -16,14 +16,13 @@
           </span>
           <span class="caret"></span>
         </button>   
-        <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
             <% for locale in (I18n.available_locales) -%>
               <% next if locale.to_s != "en" and locale.to_s != "es" %>
               <li class="">
               </li>
             <% end -%>
           </ul>
-  
       </li>
 
       <li>
