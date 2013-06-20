@@ -1,0 +1,6 @@
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid {
+  padding-right: 10%;
+  padding-left: 10%;
+  @include clearfix();
+}
