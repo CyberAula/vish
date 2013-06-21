@@ -1,0 +1,104 @@
+@import 'avatars_for_rails'
+
+#profile
+  width: 60%
+  margin: 0 20%
+  #toolbar,
+  #sidebar
+    display: none
+  #profile-info
+    .briefing
+      padding: 1px 0px 16px
+      min-height: 35px
+      span
+        margin-left: 11px
+        padding: 3px 8px 3px 7px
+      p
+        margin: -15px 26px 0 14px
+        padding: 20px 0px 5px 0px
+        width: 100%
+    .empty
+      float: left
+      padding: 8px 27px 9px 27px
+    .update
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      background-color: $white
+      margin-left: 0px
+      padding: 12px 0px 32px 0px !important
+      form.edit_profile
+        padding: 0 14px
+        textarea
+          resize: none
+          height: 50px
+        input
+          &[type="submit"]
+            @include btn-primary
+            float: right
+            margin-top: 10px
+            margin-right: 9px
+      
+
+    .personal,
+    .comunication-info,
+    .experience
+      input
+        &[type="text"],
+        &[type="tel"],
+        &[type="email"]
+          width: 95% !important
+
+
+      textarea
+        width: 95% !important
+
+    
+    .experience
+      .briefing
+        p
+          margin: 10px 26px 0 14px
+
+    
+    section
+      padding: 6px
+      .edit_icon
+        display: inline
+      h4
+        display: inline-block
+
+    
+    h5
+      margin: 16px
+    p
+      @include border-radius (15px)
+      margin: -15px 11px 0 5px
+      padding: 12px 10px 11px 27px
+      width: 325px
+      .update
+        margin-left: 22px
+
+
+
+
+#profile_birthday_3i,
+#profile_birthday_2i,
+#profile_birthday_1i
+  width: auto !important
+  margin-right: 4px !important
+.avatar
+  padding: 4px
+  .edit_icon
+    display: inline
+  h4
+    display: inline-block
+  .update
+    .jcrop-holder
+      width: 100% !important
+      background: $black 
+      div 
+        img
+          margin: 0 auto
+          position: relative
+        div 
+          overflow: hidden
+          
+

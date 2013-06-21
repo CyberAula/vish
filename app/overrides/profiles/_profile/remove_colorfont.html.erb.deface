@@ -1,0 +1,7 @@
+<!-- remove '.colorfont' -->
+  <h2>
+    <%= t('profile.one') %>
+  </h2>
+  
+
+

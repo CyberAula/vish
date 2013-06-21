@@ -1,0 +1,46 @@
+#profile
+  #profile-info
+    @include gray-box
+    h2
+      margin-bottom: 10px
+      .colorfont-overlay
+      top: 20px !important
+    input,
+    textarea
+      background-color: $white
+    .briefing
+      background-color: $white
+      color: $gray
+      span
+        @include border-radius(5px)
+        border: 1px solid #F1D6E7
+        color: #D87070
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5)
+      p
+        border-top: 5px solid $white
+        background-color: none
+    
+
+    form.edit_profile
+      input
+        &[type="submit"]
+          @include btn-primary
+    .personal
+      form.edit_profile
+        h6 
+          label
+            display: inline
+    .avatar
+      form.edit_actor
+        background-color: $white
+        padding-left: 10px
+        padding-top: 14px
+        input
+          &[type="submit"]
+            float: right
+            margin: -10px 24px 0 0px
+        
+    h5
+      color: $grayLighter
+      font-size: 17px
+      font-weight: bold
