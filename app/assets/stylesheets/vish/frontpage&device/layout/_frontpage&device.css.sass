@@ -3,15 +3,14 @@
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   
   .characteristics
-    @include grid-core-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
     margin: 30px auto 0
     
     .inspiration
       @include grid-core-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
       img
-        width: 60%
-        margin: 0 20%
+        width: 90%
+        margin: 0 2%
     
     .description
       @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -32,10 +31,14 @@
         padding-top: 15px
   
 
-  .excursions
-    width: 80%
-    margin: 0 10%
-    clear: both
+ul.excursions
+  clear: both
+  padding-top: 26px
+  margin: 0 auto
+  @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  li
+    margin-left: 20px
+
 
 
 
