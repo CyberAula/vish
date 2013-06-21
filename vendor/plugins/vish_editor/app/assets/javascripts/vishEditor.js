@@ -21325,15 +21325,18 @@ VISH.Recommendations = function(V, $, undefined) {
   };
   var generateFancybox = function() {
     if(!generated) {
-      if(url_to_get_recommendations !== undefined) {
-        var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
-        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
-          _fillFancyboxWithData(data)
-        }})
+      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
+        if(url_to_get_recommendations !== undefined) {
+          var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
+          $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+            _fillFancyboxWithData(data)
+          }})
+        }
       }else {
-        _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+        if(V.Configuration.getConfiguration()["mode"] == "noserver") {
+          _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+        }
       }
-      generated = true
     }
   };
   var _fillFancyboxWithData = function(data) {
@@ -21354,6 +21357,7 @@ VISH.Recommendations = function(V, $, undefined) {
       }
     }
     $("#fancy_recommendations .rec-grid").html(result);
+    generated = true;
     if(!V.Status.getIsEmbed()) {
       for(var i = data.length - 1;i >= 0;i--) {
         $("#recom-" + data[i].id).click(function(my_event) {
@@ -21364,6 +21368,9 @@ VISH.Recommendations = function(V, $, undefined) {
   };
   var showFancybox = function() {
     if(V.Utils.getOptions() && V.Utils.getOptions().preview) {
+      return
+    }
+    if(V.Configuration.getConfiguration()["mode"] != V.Constant.NOSERVER && typeof url_to_get_recommendations == "undefined") {
       return
     }
     $("#fancyRec").trigger("click")

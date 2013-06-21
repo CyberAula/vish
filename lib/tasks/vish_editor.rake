@@ -148,6 +148,9 @@ namespace :vish_editor do
 
     system "mv vishViewer.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishViewer.js"
     system "mv vishViewer.min.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishViewer.min.js"
+
+    #Copy ViSH Viewer to SCORM example on ViSH Editor
+    system "cp " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishViewer.min.js " + VISH_EDITOR_PATH + "/examples/contents/scorm/js/vishViewer.min.js"
   end
 
 end
