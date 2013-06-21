@@ -12681,7 +12681,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   return{init:init, getSlides:getSlides, setSlides:setSlides, updateSlides:updateSlides, updateSlideEls:updateSlideEls, setCurrentSlideIndex:setCurrentSlideIndex, getCurrentSlide:getCurrentSlide, getCurrentSubSlide:getCurrentSubSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, 
-  isCurrentLastSlide:isCurrentLastSlide, moveSlides:moveSlides, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides, isSlideset:isSlideset}
+  isCurrentLastSlide:isCurrentLastSlide, moveSlides:moveSlides, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides, isSlideset:isSlideset, triggerEnterEvent:triggerEnterEvent, triggerLeaveEvent:triggerLeaveEvent}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var eMobile;
@@ -13871,19 +13871,25 @@ VISH.Recommendations = function(V, $, undefined) {
   var user_id;
   var presentation_id;
   var generated;
+  var _isRecVisible;
   var init = function(options) {
     user_id = V.User.getId();
     presentation_id = V.SlideManager.getCurrentPresentation().id;
+    _isRecVisible = false;
     if(options && options["urlToGetRecommendations"]) {
       url_to_get_recommendations = options["urlToGetRecommendations"]
     }
     generated = false;
     $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
       $("#fancybox-outer").css("background", "rgba(0,0,0,.7)");
-      $("#fancybox-wrap").css("margin-top", "0px")
+      $("#fancybox-wrap").css("margin-top", "0px");
+      V.Slides.triggerLeaveEvent(V.Slides.getCurrentSlideNumber() - 1);
+      _isRecVisible = true
     }, "onClosed":function(data) {
       $("#fancybox-outer").css("background", "white");
-      $("#fancybox-wrap").css("margin-top", "-14px")
+      $("#fancybox-wrap").css("margin-top", "-14px");
+      V.Slides.triggerEnterEvent(V.Slides.getCurrentSlideNumber() - 1);
+      _isRecVisible = false
     }})
   };
   var generateFancybox = function() {
@@ -13931,7 +13937,10 @@ VISH.Recommendations = function(V, $, undefined) {
     }
     $("#fancyRec").trigger("click")
   };
-  return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox}
+  var isRecVisible = function() {
+    return _isRecVisible
+  };
+  return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox, isRecVisible:isRecVisible}
 }(VISH, jQuery);
 VISH.Tour = function(V, $, undefined) {
   var startTourWithId = function(helpid, tipLocation) {
