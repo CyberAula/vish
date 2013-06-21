@@ -2,22 +2,50 @@
   margin-top: 20px
   header
     .avatar
-      @include grid-core-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
       float: left
       img.avatar_img
         @include border-radius(500px)
-        @include grid-core-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        border: 5px solid $grayLight
+        border: 5px solid $grayLighter
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include center-block() 
     .information
-      padding: 15px
-      border: 1px solid $grayLight
+      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      border: 1px solid $grayLighter
       background-color: $white
       @include border-radius($borderRadiusLarge)
-      display: block
-      float: left
-      @include grid-core-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      clear: right
+      float: right
+      padding: 0.5%
+      h1, h2, h3, h4, h5, h6 
+        line-height: 25px
+        display: inline-block
+        margin-left: 5px
+      h2
+        color: $blue-1
+        width: 75%
+
+      button
+        float: right
+        display: inline-block
+        margin-top: 7px
+      hr
+        margin: 5px 0
+      h3.name-roll
+        @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+        vertical-align: top
+      p.description
+        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: inline-block
+      span
+        color: $green-vish
+      h3.archivements
+        padding-left: 20px
+        border-left: 1px solid $grayLighter
+        margin-left: 20px
+        color: $blue-2
+        margin-right: 10px
   .info-profile
     @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: block
