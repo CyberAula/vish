@@ -47,19 +47,27 @@
   header
     h2
       width: 176px
-      margin-bottom: -18px
+      margin-bottom: 4px 0 -18px
+      float: left
+    h4
+      font-size: 20.5px !important
+      line-height: 23px !important
     form
       padding-left: 189px
+      padding-top: 9px
 
   section.password
+    @include gray-box
     float: right
     padding: 3px 7px
-    width: 61%
+    width: 258px
+    margin-right: 19px
     label
       display: none
     input
       &[type="text"]
         margin-top: 12px
+        width: 177px
 
       &[type="submit"]
         @include btn-primary
@@ -71,73 +79,62 @@
 #registration
   width: 80%
   margin: 0 10%
-  h1
-    margin: 0 0 0 5%
+  h3
+    margin: 0 auto
+    width: 345px !important
   h2
     margin-left: 19%
     small
       width: 176px
       margin-bottom: -18px
-form#new_user
-  @include gray-box
-  .reg-labels
-    margin-left: 19%
-    width: 340px
-    float: left
-    .campos,
-    .campo
-      display: inline-block
+
+  form#new_user
+    min-height: 384px
+    width: 326px !important
+    padding: 7px 8px
+    margin: 0 auto
+    .reg-labels
+      padding: 10px 14px
+      float: left
+      label
+        display: inline
       input
         width: $inputFormulate
         display: inline-block
-        margin-right: 15px
-    .campos
-      input
-        margin-top: 8px
-        width: 142px
-    .box_white
-      display: inline-block
-      padding: 5px
-      input#password_confirmation
-        width: 140px
+
+      #user_password_confirmation_label
+        display: inline
+
+      input#user_name
+        &[type="text"]
+          width: 232px !important
+
+      input#user_email
+        &[type="email"]
+          width: 249px !important
+      
+      input#password
+        &[type="password"]
+          width: 211px !important
+
+      input#user_password_confirmation
+        &[type="password"]
+          width: 149px !important
+
       select
         margin: 10px 0
 
-  li,
-  .tagit-new
-    input
-      width: auto 
+      input
+        &[type="submit"]
+          margin: 35px 0 13px
+          float: right
+          width: 100px
 
-  .text-tittle
-    display: inline-block
-    margin-left: 10px
-
-  .line
-    display: block
-    margin-left: auto
-    margin-right: auto
-    width: 95%
-
-  input
-    &[type="submit"]
-      margin-top: 4px
-      margin-bottom: 0px
-      float: right
-
-  .sentence-rules
-    line-height: 20px
-    margin-top: 10px
-
-.devise-box
-  width: 98%
-
-
-
-.sugestions-tags
-  width: 150px
-  margin-top: 200px
-  height: 120px
-  padding: 5px
+.tags-suggestions
+  @include size(120px, 136px)
+  position: absolute
+  margin: 170px 0 0 335px
+  padding: 2px 8px 2px 1px 
   float: left
   a
     float: left
@@ -146,16 +143,14 @@ form#new_user
     margin-top: 50px
     margin-bottom: -68px
 
-  ul
+  ul.sugestions-tags
+    margin-left: 21px
     li
       margin-bottom: 8px
+      margin-left: 9px
+      padding-left: 7px
       &:first-child
         margin-top: 8px
-
-  .tagit-choice
-    margin-left: 9px
-    padding-left: 7px
-
 
 
 
@@ -164,101 +159,3 @@ form#new_user
 #new_session
   width: 50%
   margin: 0 25%
-
-
-
-
-/*old*/
-.menssage-devise
-  @include makeColumn(4,0)
-  text-align: right
-  clear: right
-  margin-top: 50px
-
-.sentence
-  @include makeColumn(6,4)
-  line-height: 20px
-  margin-top: -20px
-.sentence-rules
-
-  line-height: 20px
-  margin-top: 10px
-  text-align: center
-
-
-#formulate
-  @include makeColumn(6,4)
-
-  .box_gray1
-    .box_gray2
-      .box_gray3
-        .campo
-
-          display: inline-block
-          input
-            width: $inputFormulate
-            display: inline-block
-            margin-right: 15px
-            border: none
-
-        .campos
-
-          display: inline-block
-          input
-            width: $inputFormulate
-            display: inline-block
-            margin-right: 15px
-            border: none
-            box-shadow: none
-            margin-top: 8px
-
-        li,
-        .tagit-new
-          input
-            width: auto 
-
-        .text-tittle
-          color: $gray
-          display: inline-block
-          font-family: $thirdFontFamily
-          margin-left: 10px
-
-.remenber
-  margin-top: 5px
-  .check-remenber
-    display: inline-block 
-
-.devise-box
-  width: 98%
-
-.accept-btn
-  margin-top: 10px
-  margin-bottom: 30px
-
-.sugestions-tags
-  width: 150px
-  margin-top: 200px
-  margin-left: -25px
-  @include border-radius($radius)
-  background-color: $white
-  height: 120px
-  padding: 5px
-  float: right
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)
-
-
-  a
-    color: gray
-    font-size: 18px
-    float: left
-    display: inline-block
-    margin-left: -30px
-    margin-top: 50px
-    margin-bottom: -68px
-    @include rotate(-90deg)
-
-  a:hover
-    text-decoration: none
-
-  .tagit-choice
-    margin-left: 40px

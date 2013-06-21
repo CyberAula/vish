@@ -1,49 +1,34 @@
 <!-- insert_after 'code[erb-loud]:contains("f.password_field :password_confirmation")' -->
 
-    <label class="text-tittle margin-top10" for="tags">
-      <%= t('profile.occupation.label') %>
-    </label>
-    <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]])) %>
+  <%= f.label t('profile.occupation.label') %>
 
-    <label class="text-tittle margin-top10" for="tags">
-      <%= t('activerecord.attributes.user.tag') %>
-    </label>
+  <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]])) %>
 
-    <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
+  <%= f.label t('activerecord.attributes.user.tag') %>
 
-    <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
-    <ul id="preloadTagList" style="display:none">
-      <%@tags.each do |tag| %>
+  <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
+
+  <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+  <ul id="preloadTagList" style="display:none">
+    <%@tags.each do |tag| %>
       <li>
         <%=tag.name%>
       </li>
-     <%end%>
-    </ul>
-    <div class="tagBoxNew">
-      <ul class="tagList devisetags"></ul>
-    </div>
+    <%end%>
+  </ul>
+  <div class="tagBoxNew">
+    <ul class="tagList devisetags"></ul>
+  </div>
       
-    <div class="sentence-rules">
-      <%= t('conditions.check_message') %>
-      </br> 
-      <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
-      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-      <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>
-      <% end -%>
-    </div>
-    <div class="accept-btn">
-      <%= f.submit t('action.accept').capitalize, :class => "btn btn-primary" %>
-    </div>
-      
-    <ul class="tagit-suggestions">
-      <div class="sugestions-tags">
-        <a>popular tags<%#= t('devise.suggestion')%> </a>
-        <li class="tagit-choice">Nanotechnology</li>
-        <li class="tagit-choice">Biotechnology</li>
-        <li class="tagit-choice">Life-Sciences</li>
-        <li class="tagit-choice">Grid-Computing</li>
-      </div>
-    </ul>
+  <hr class="soften">
+  <%= f.label t('conditions.check_message'), :class =>"sentence-rules" %>
+
+  <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
+
+  <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>.
+  <% end -%>
+
 
 
 

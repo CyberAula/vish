@@ -17,58 +17,55 @@
 
 
 /*REGISTER*/
+#registration
+  h3
+    font-size: 31.5px
+  form#new_user
+    @include gray-box
 
-.box
-  @include gray-box
-  .campos,
-  .campo
-    input
-      border: none
-  .campos
-    input
-      box-shadow: none
-  .box_white
-    background-color: $white
-    @include border-radius($radius)
+    .reg-labels
+      @include border-radius($radius)
+      background-color: #FFF
 
-  li,
-  .tagit-new
-  .text-tittle
-    color: $gray
-    font-family: $thirdFontFamily
+      input
+        border: none
+        box-shadow: none
+        border-bottom: 1px solid $grayLighter
+        @include border-radius(0px)
 
-  .line
-    border-bottom: 1px solid $gray-vish
-
-  input
-    &[type="submit"]
-      @include btn-primary
-
-  .sentence-rules
-    text-align: center
+      input
+        &[type="submit"]
+          @include btn-primary
 
 
-.sugestions-tags
-  @include border-radius($radius)
-  @include box-shadow (0 1px 3px rgba(0, 0, 0, 0.15))
+.tags-suggestions
+  @include box-shadow (0 1px 3px rgba(0, 0, 0, 0.15))  
+  @include border-bottom-right-radius($radius)  
+  @include border-top-right-radius($radius)  
   background-color: $white
+
   a
     @include rotate(-90deg)
     color: gray
     font-size: 18px
+
     &:hover
       text-decoration: none
-  ul
-    li
-      list-style: none
-      background-color: #06F
-      color: #FFF
-      font-size: 13px
-      font-family: Helvetica
-      @include border-radius (5px)
-      @include opacity (50)
-      &:hover
-        @include opacity (60)
+
+ul.sugestions-tags
+
+  li
+    list-style: none
+    background-color: #06F
+    color: #FFF
+    font-size: 13px
+    font-family: Helvetica
+    @include border-radius (5px)
+    @include opacity (50)
+
+    &:hover
+      @include opacity (60)
+      @include rotate(-2deg)
 
 
 /*NEW-SESSION*/
