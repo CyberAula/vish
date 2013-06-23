@@ -33,7 +33,16 @@
 @mixin hidden-desktop
   @extend .hidden-desktop
 
-
+@mixin check-box
+  display: block
+  input
+    &[type="checkbox"]
+      display: inline
+      margin-top: 0
+      width: 17px
+  label
+    display: inline-block
+    font-size: 12px
 
 @mixin grid
   @include excursion-box

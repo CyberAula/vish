@@ -43,10 +43,13 @@ ul.excursions
 
 
 /*REMEMBER PASSWORD*/
+#forgot-pass
+  width: 70%
+  margin: 0 auto
 
 .forgot
-  width: 50%
-  margin: 0 25%
+  width: 455px
+  margin: 0 auto
   header
     h2
       width: 176px
@@ -58,13 +61,14 @@ ul.excursions
     form
       padding-left: 189px
       padding-top: 9px
+      width: 258px
 
   section.password
     @include gray-box
-    float: right
+    float: left
     padding: 3px 7px
     width: 258px
-    margin-right: 19px
+    margin-left: 185px
     label
       display: none
     input
@@ -79,12 +83,13 @@ ul.excursions
 
 /*REGISTER*/
 
-#registration
+#registration,
+#new_session
   width: 80%
   margin: 0 10%
   h3
     margin: 0 auto
-    width: 345px !important
+    width: 345px
   h2
     margin-left: 19%
     small
@@ -96,7 +101,8 @@ ul.excursions
     width: 326px !important
     padding: 7px 8px
     margin: 0 auto
-    .reg-labels
+    .reg-labels,
+    .login_data
       padding: 10px 14px
       float: left
       label
@@ -110,19 +116,19 @@ ul.excursions
 
       input#user_name
         &[type="text"]
-          width: 232px !important
+          width: 232px
 
       input#user_email
         &[type="email"]
-          width: 249px !important
+          width: 249px
       
       input#password
         &[type="password"]
-          width: 211px !important
+          width: 211px
 
       input#user_password_confirmation
         &[type="password"]
-          width: 149px !important
+          width: 149px
 
       select
         margin: 10px 0
@@ -160,5 +166,20 @@ ul.excursions
 /*NEW-SESSION*/
 
 #new_session
-  width: 50%
-  margin: 0 25%
+  #sign_in
+    width: 50%
+    margin: 0 25%
+    form#new_user
+      min-height: 145px
+      input#user_password
+        &[type="password"]
+          width: 210px
+      #remember
+        @include check-box
+   
+      input
+        &[type="submit"]
+          float: right
+          display: inline-block
+          margin: -16px 0 10px
+    

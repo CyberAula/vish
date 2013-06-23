@@ -5,6 +5,7 @@
 
 @media (max-width: 767px)
 
+
   #frontpage
     @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     
@@ -42,7 +43,20 @@
           margin-left: 2%
           float: right
           padding-top: 15px
+  
+  #registration,
+  #new_session
+    .registration,
+    #sign_in
+      width: 100%
+      margin: 0
 
+
+  .tags-suggestions
+    @include hidden-phone
+
+  #forgot-pass
+    width: 100%
 
 
 // UP TO LANDSCAPE PHONE
@@ -78,3 +92,58 @@
           margin: 0 2%
           float: right
           padding-top: 15px
+
+  #registration,
+  #new_session
+    width: 100%
+    margin: 0
+    .registration,
+    #sign_in
+      width: 100%
+      margin: 0
+      h3
+        width: 100%
+        margin: 0
+      form#new_user
+        width: 95% !important
+        input
+          &[type="text"],
+          &[type="email"],
+          &[type="password"]
+            width: 96% !important
+  
+  #registration
+    form#new_user
+      min-height: 462px !important
+      select
+        width: 70%
+
+  #new_session
+    #sign_in
+      form#new_user
+        min-height: 186px !important
+
+
+  .forgot
+    width: 90%
+    margin: 0 5%
+    header
+      h2
+        width: 90%
+        margin: 0
+        float: none
+      form
+        width: auto
+        padding: 0
+    section.password
+      @include centered
+      width: 97%
+      input
+        &[type="text"]
+          width: 70%
+      input
+        &[type="submit"]
+          float: right
+          margin: 10px 4px 0 0
+
+

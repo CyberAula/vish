@@ -1,0 +1,113 @@
+@import "jquery.cleditor"
+
+#conversations
+  .conversations
+    .conversation
+      @include selection-1
+      .content_left
+        header
+          h5 
+            a
+              @include ellipsis
+          .date
+            font-size: 11px
+            color: #888
+
+      .content_right
+        color: $gray
+        .subject
+          font-weight: normal
+          font-size: 14px
+          a
+            @include ellipsis
+            font-size: 15px
+            font-weight: bold
+            &:hover
+              text-decoration: none
+        .briefing
+          @include ellipsis
+          color: $gray
+        .date
+          color: $gray
+          font-size: 11px
+
+
+  
+#ck_editor
+  .cleditorMain
+    @include border-radius(5px) 
+.conversations
+  .conversation
+    @include opacity (50)
+
+.unread
+  @include opacity (100)
+
+.conversation_full
+  h3
+    @include ellipsis
+  .participants
+    @include border-radius(5px)
+    background-color: #f1f1f1
+    img
+      @include border-radius (5px)
+  .soften
+    border-color: $white
+
+  .cont_conversation
+    .answer
+      font-size: 16px
+      color: $gray
+    .cleditorMain
+      @include border-radius(5px) 
+      border-color: #c5c5c5
+    .actions
+      margin-top: 10px
+      input
+        &[type="submit"]
+          @include border-radius(5px)
+
+
+
+  .message
+    border-bottom: 1px solid #f1f1f1
+    background-color: $white
+    .media
+      .pull-left
+        img
+          @include border-radius (5px)
+      .date
+        color: #999
+        font-size: 13px
+
+  #conversation
+    form.new_message
+      margin-top: 30px
+      input
+        &[type="submit"]
+          float: right
+          margin-top: 10px
+  #subject
+    width: 96.8% !important
+
+#conversations,
+#conversation,
+#new_message
+  #toolbar
+    @include gray-box
+    nav.toolbar_menu
+      background-color: $white
+      @include border-radius($radius)
+      ul
+        li
+          .active
+            background-position: -9px -10px
+          a
+            &:hover
+              background-color: transparent
+
+
+
+#content
+  .notification
+    color: $gray
