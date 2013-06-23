@@ -4,14 +4,12 @@
   
   .characteristics
     margin: 30px auto 0
-    
     .inspiration
       @include grid-core-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
       img
         width: 90%
         margin: 0 2%
-    
     .description
       @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
@@ -19,18 +17,16 @@
       hr
         margin: 12px 0
       .redes
-        @include grid-core-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        float: left
+        @include makeColumn(2, 0)
+        margin-left: 0 
         a
           display: block
           margin: 10px 10px 10px 0px
       .email
-        @include grid-core-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
         margin-left: 2%
         float: left
-        padding-top: 15px
   
-
 ul.excursions
   clear: both
   padding-top: 26px
@@ -38,7 +34,6 @@ ul.excursions
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   li
     margin-left: 20px
-
 
 
 
