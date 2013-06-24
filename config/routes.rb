@@ -2,6 +2,15 @@ Vish::Application.routes.draw do
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
+  resource :session_locale
+
+  resources :quiz_sessions do
+    get "results", :on => :member
+  end
+  match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
+  match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
+  match 'qs/:id' => 'quiz_sessions#show'
+
   #get 'excursions' => 'excursions#index', :as => :home
 
   

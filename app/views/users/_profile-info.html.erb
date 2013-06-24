@@ -6,8 +6,8 @@
       <li><a href="#tab2" data-toggle="tab">events</a></li>
       <li><a href="#tab3" data-toggle="tab">resources</a></li>
       <li><a href="#tab4" data-toggle="tab">categories</a></li>
-      <li class="pull-right"><a href="#tab5" data-toggle="tab"><span>3</span>followers</a></li>
-      <li class="pull-right"><a href="#tab6" data-toggle="tab"><span>3</span>followings</a></li>
+      <li class="follow-tab"><a href="#tab5" data-toggle="tab"><span><%= profile_subject.followers.count.to_s %></span><%= t('follow.followers') %></a></li>
+      <li class="follow-tab"><a href="#tab6" data-toggle="tab"><span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span><%= t('follow.followings') %></a></li>
     </ul>
     <div class="tab-content">
 
@@ -28,11 +28,14 @@
       </div>
 
       <div class="tab-pane" id="tab5">
-        <p>What up girl, this is Section 5.</p>
+        <%= render profile_subject.followers %>
       </div>
 
       <div class="tab-pane" id="tab6">
-        <p>What up girl, this is Section 6.</p>
+        <%#= render @followings.
+          page(params[:page]).
+          per(20).
+          map { |f| current_subject.contact_to!(f) } %>
       </div>
 
     </div>

@@ -7,19 +7,17 @@
 
       <div class="corporatelogo_signedin">
         <div class="btn-group">
-      <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+      <%= link_to(raw("<i class='iconnav-home'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
       <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
       <%= link_to(raw("<i class='iconnav-followers'></i> "),
                         followings_path,
                         :class => "btn-header tooltip-header",
                         :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
                         :rel => 'tooltip') %>
-      <%= link_to(raw("<i class='iconnav-myroom'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
-      <%= link_to(raw("<i class='iconnav-quiz'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
-
-      <% unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
+      <%= link_to(raw("<i class='iconnav-myroom'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+      <%# unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
       <%= link_to(raw("<i class='iconnav-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
-      <% end %>
+      <%# end %>
       <%= render :partial => 'layouts/header_dropdown_menu' %>
     </div>
       </div>
@@ -49,6 +47,25 @@
         </form>
       </div>
 
+      <div class="profile2-toolbar">
+        <div class="btn-group">
+          <button class="btn long"><%= link_to(image_tag(current_subject.logo.url, :size => "25x25", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
+        <%= link_to(truncate_name(current_subject.name, :length => 20), current_subject, :class => "name-user") %></button>
+          <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Excursions</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Acount</a></li>
+            <li class="divider"></li>
+            <li><%=link_to(t('sign_out'), destroy_user_session_path, :method => :delete) %></li>
+          </ul>
+        </div>
+      </div>
+
       <div class="profile-toolbar">
       <%= link_to(image_tag(current_subject.logo.url, :size => "25x25", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
       <%= link_to(truncate_name(current_subject.name, :length => 20), current_subject, :class => "name-user") %>
@@ -57,7 +74,7 @@
         </b>
         </div>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-                        <li><a tabindex="-1" href="#">Profile</a></li>
+            <li><a tabindex="-1" href="#">Profile</a></li>
             <li><a tabindex="-1" href="#">Excursions</a></li>
             <li><a tabindex="-1" href="#">Categories</a></li>
             <li><a tabindex="-1" href="#">Events</a></li>
