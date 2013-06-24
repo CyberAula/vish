@@ -74,6 +74,21 @@
         background-color: $white
         //padding: 6px 30px 5px 30px
 
+@mixin header-tabbable-search
+  @include header-tabbable
+  ul.nav
+    float: left
+    width: 70%
+  input
+    &[type="text"]
+      width: 27%
+      margin-top: 25px
+      float: right
+  .tab-content
+    clear: left
+    padding-top: 25px
+    width: 100%
+
 
 @mixin grid
   @include excursion-box

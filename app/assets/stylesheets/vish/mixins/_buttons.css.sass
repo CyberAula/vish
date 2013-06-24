@@ -99,3 +99,13 @@
   .loading
     z-index: 200
     position: relative
+
+@mixin full-btn-primary
+  margin-top: 10px
+  input
+    &[type="submit"]
+      @include border-radius(5px)
+      @include btn-primary
+      width: 100%
+
+   

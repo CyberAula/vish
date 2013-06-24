@@ -1,0 +1,40 @@
+<section id="search" class="sub-content-full">
+  <%= render partial: 'search/toolbar-search' %>
+
+<div class="search">
+  <div class="tabbable">
+
+    <ul class="nav nav-tabs">
+      <li><h1>search</h1></li>
+      <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
+      <li><a href="#tab2" data-toggle="tab">excursions</a></li>
+      <li><a href="#tab3" data-toggle="tab">users</a></li>
+      <li><a href="#tab4" data-toggle="tab">resources</a></li>
+      <li><a href="#tab5" data-toggle="tab">activity</a></li>
+    </ul>
+    <input type="text" placeholder="search.placeholder"></input>
+
+    <div class="tab-content">
+      <%= render partial: 'layouts/loading' %>
+
+     
+
+
+      <div class="tab-pane active" id="tab1">
+        <ul>  
+          <%= render partial: 'repositories/resources' %>
+        </ul>
+      </div>
+
+      <div class="tab-pane" id="tab2">
+        <ul>  
+          <%= render partial: 'repositories/resources' %>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <%= javascript_tag do %>
+    SocialStream.Repository.show();
+  <% end %>
+</div>

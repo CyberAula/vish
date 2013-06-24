@@ -5,65 +5,76 @@
 
 @media (min-width: 768px) and (max-width: 979px)
 
-  #conversations
-    div.conversations
-      .conversation
-        height: 85px
-        .content_left
-          width: 34%
-          margin-left: 10px
-          float: left
-          .avatar
-            width: 45px
-            display: inline
-          header
-            display: inline-block
-        .content_right
-          width: 55%
-          float: left
-          .subject
-            display: inline
-            a
-              width: 100%
-          .action
-            display: inline-block
-            float: right
-            margin: -19px -40px 0 0
-          .briefing
-            width: 100%
-  #conversation 
-    .conversation_full
-      @include grid-core-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
-      h3
-        width: 96%
+  #conversation
+    h2
+    input
+      &[type="submit"]
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
 
+  #conversations,
+  #conversation,
   #new_message
     @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-left: 0px
+    float: none
     #toolbar
-      @include grid-core-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include border-radius(5px)
+      display: block !important
+      .toolbar_menu
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)  
+        margin-left: 0px
+      ul
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        height: 70px
+        width: 94%
+        margin: 0 0 0 6%
+        li
+          @include grid-core-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: inline
+          margin-bottom: 0px
+          float: left
+          margin-top: 12px
+          a
+            width: auto
+            text-align: center
+            i
+              display: block
+              margin-left: auto
+              margin-right: auto
+              padding: 0 !important
+    form.new_message
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-left: 0
+    .conversations
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-top: 26px
+      .conversation
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .content_left
+          width: 60px
+          margin-right: 13px
+          margin-left: 0px
+          header
+            width: 54px
+          .date
+            @extend .hidden-phone
+        .content_right
+          width: 77%
+          .action
+            float: right
+            margin: 0
+    
+  #conversation 
+    .conversation_full
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      
+  #new_message
+    label
+      margin-bottom: 0px
+      margin-top: 6px
+    .select2-container
+      width: 100%
     #conversation
-      @include grid-core-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
-      margin-left: 0px
-      label
-        margin-bottom: 0px
-        margin-top: 6px
-      .select2-container
-        width: 101%
-      input
-        &[type="text"]
-          width: 99%
-  
-  
-  #conversation
-    @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    #toolbar
-      @include grid-core-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
-    #conversation_full
-      @include grid-core-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
-      margin-left: 0px
+      width: 100%

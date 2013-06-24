@@ -32,10 +32,6 @@
           font-size: 11px
 
 
-  
-#ck_editor
-  .cleditorMain
-    @include border-radius(5px) 
 .conversations
   .conversation
     @include opacity (50)
@@ -46,9 +42,13 @@
 .conversation_full
   h3
     @include ellipsis
+  .action
+    h4
+      font-family: $firstFontFamily
   .participants
     @include border-radius(5px)
     background-color: #f1f1f1
+    border: 1px solid #f1f1f1
     img
       @include border-radius (5px)
   .soften
@@ -59,15 +59,9 @@
       font-size: 16px
       color: $gray
     .cleditorMain
-      @include gray-box
-      .cleditorMain
-        @include border-radius($radius)
+      @include cleditorMain-box
     .actions
-      margin-top: 10px
-      input
-        &[type="submit"]
-          @include border-radius(5px)
-          @include btn-primary
+      @mixin full-btn-primary
 
 
 
@@ -108,7 +102,8 @@
             &:hover
               background-color: transparent
 
-
+#conversation
+  @include full-btn-primary
 
 #content
   .notification

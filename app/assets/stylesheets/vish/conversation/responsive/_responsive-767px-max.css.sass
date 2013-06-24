@@ -39,13 +39,11 @@
           a
             width: auto
             text-align: center
-            .icon_message-new,
-            .icon_message-inbox,
-            .icon_message-sentbox,
-            .icon_message-trash
+            i
               display: block
               margin-left: auto
               margin-right: auto
+              padding: 0 !important
     form.new_message
       @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       margin-left: 0
@@ -81,6 +79,8 @@
     input
       &[type="text"]
         width: 98%
+    #conversation
+      width: 100%
 
 
 
