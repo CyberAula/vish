@@ -1,18 +1,18 @@
 .user
-
+  margin-bottom: 20px
   header
     .avatar
-      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
       float: left
       img.avatar_img
         @include border-radius(500px)
         border: 5px solid $grayLighter
-        @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        @include center-block() 
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
     .information
       margin-top: 20px
-      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
       border: 1px solid $grayLighter
       background-color: $white
       @include border-radius($borderRadiusLarge)
@@ -47,6 +47,17 @@
         margin-left: 20px
         color: $blue-2
         margin-right: 10px
+.info-profile
+  .follow-tab
+    float: right
+    a
+      background-color: $white !important
+      font-size: 1em 
+      span
+        color: $thirdColor
+        font-size: 1.1em
+      span:after
+        content: " "
 
 
 

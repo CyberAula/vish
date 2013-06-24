@@ -4,7 +4,7 @@
       <div class="avatar">
         <!--SUSTITUIR POR AVATAR DE USUARIO-->
 
-        <%= link_to(image_tag(current_subject.logo.url, :size => "150x150", :alt => current_subject.name, :class => "avatar_img"), current_subject, :class => "avatar_img") %>
+        <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
         <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
       </div>
       <div class="information">
@@ -19,7 +19,13 @@
           Teacher
         </h3>
         <p class="description">
-          <%= @user.profile.description%>
+          <% content_for :description do %>
+            <% if @user.profile.description? %>
+              <%= @user.profile.description%>
+            <% else %>
+              <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
+            <% end %>
+          <% end %>
         </p>
         <hr class="soften">
         <h3 class="karma">Karma
