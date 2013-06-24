@@ -18,6 +18,8 @@ es:
           title: "%{subject} y %{contact} están siguiéndose"
           message: "%{name} también te está siguiendo."
   activity2:
+    one: "activity"
+    other: "activities"
     title:
       other: "actividad"
   activity_action:
@@ -285,6 +287,8 @@ es:
     newfav_html: "Aún no tienes ningún recurso favorito. Para marcar una recurso como favorito, haz click en la estrella <img src='/assets/icons/star-off.png'>"
     my: "mis"
     net: "red"
+    one: "recurso"
+    other: "recursos"
     title:
       one: "recursos"
       other: "recursos"

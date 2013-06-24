@@ -18,6 +18,8 @@ en:
           title: "%{subject} and %{contact} are following each other."
           message: "%{name} is following you back."
   activity2:
+    one: "activity"
+    other: "activities"
     title:
       other: "activity"
   activity_action:
@@ -284,6 +286,8 @@ en:
     newfav_html: "You have no favorite resources yet. Mark any resource as favorite by clicking the star icon <img src='/assets/icons/star-off.png'>"
     my: "my"
     net: "network"
+    one: "resource"
+    other: "resources"
     title:
       one: "resource"
       other: "resources"
