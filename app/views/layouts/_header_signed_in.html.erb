@@ -7,7 +7,7 @@
 
       <div class="corporatelogo_signedin">
         <div class="btn-group">
-      <%= link_to(raw("<i class='iconnav-home'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+      <%= link_to(raw("<i class='iconnav-home'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
       <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
       <%= link_to(raw("<i class='iconnav-followers'></i> "),
                         followings_path,
