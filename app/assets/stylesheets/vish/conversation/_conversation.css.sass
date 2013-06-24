@@ -59,13 +59,15 @@
       font-size: 16px
       color: $gray
     .cleditorMain
-      @include border-radius(5px) 
-      border-color: #c5c5c5
+      @include gray-box
+      .cleditorMain
+        @include border-radius($radius)
     .actions
       margin-top: 10px
       input
         &[type="submit"]
           @include border-radius(5px)
+          @include btn-primary
 
 
 
