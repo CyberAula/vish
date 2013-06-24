@@ -14,6 +14,8 @@
                         :class => "btn-header tooltip-header",
                         :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
                         :rel => 'tooltip') %>
+      <%= link_to(raw("<i class='iconnav-myroom'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+      <%= link_to(raw("<i class='iconnav-quiz'></i> "), home_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
 
       <% unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
       <%= link_to(raw("<i class='iconnav-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
