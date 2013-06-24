@@ -35,7 +35,7 @@ class ExcursionsController < ApplicationController
     original = Excursion.find_by_id(params[:id])
     if original.blank?
       flash[:error] = t('excursion.clone.not_found')
-      redirect_to home_path if original.blank? # Bad parameter
+      redirect_to excursions_path if original.blank? # Bad parameter
     else
       # Do clone
       excursion = original.clone_for current_subject.actor

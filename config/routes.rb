@@ -2,6 +2,8 @@ Vish::Application.routes.draw do
 
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
+  resource :session_locale
+
   #get 'excursions' => 'excursions#index', :as => :home
 
   

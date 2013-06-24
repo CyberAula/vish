@@ -11,17 +11,16 @@
 
       <li class="btn-group dropup">
         <button data-toggle="dropdown" class="btn dropdown-toggle">
-          <span class="idioma">
-            <%= t('lang.title') %>
-          </span>
+          <span class="idioma"><%= t('lang.title') %></span>
           <span class="caret"></span>
         </button>   
           <ul class="dropdown-menu">
-            <% for locale in (I18n.available_locales) -%>
+            <% for locale in (I18n.available_locales) %>
               <% next if locale.to_s != "en" and locale.to_s != "es" %>
               <li class="">
+                <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
               </li>
-            <% end -%>
+            <% end %>
           </ul>
       </li>
 
