@@ -4,7 +4,7 @@
     <header>
       <div class="avatar">
         <!--SUSTITUIR POR AVATAR DE USUARIO-->
-        <%= image_tag("excursions/exc-prev.png",  :class=> "avatar_img") %>
+        <%= image_tag("logos/medium/user.png",  :class=> "avatar_img") %>
         <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
       </div>
       <div class="information">

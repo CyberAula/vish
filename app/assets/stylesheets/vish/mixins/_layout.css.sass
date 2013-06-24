@@ -44,12 +44,41 @@
     display: inline-block
     font-size: 12px
 
+@mixin header-tabbable
+  clear: both
+  margin-top: 10px
+  ul.nav
+    margin-bottom: 6px
+    li
+      margin-right: 10px
+      a
+        font-size: 15px
+        color: $grayLight
+        background-color: #D8D8D8
+        border: 1px solid #DDD
+        border-bottom-color: transparent
+        cursor: default
+        padding: 1px 30px 6px 30px
+        margin-top: 5px
+
+      h1
+        line-height: 38px
+        margin: 1px 10px 0 0 
+        font-size: 33.5px
+    li.active
+      a
+        color: $red
+        background-color: $white
+        padding: 6px 30px 5px 30px
+
+
 @mixin grid
   @include excursion-box
   width: 18.2%
   float: left
   margin-left: 2%
   list-style: none
+  font-family: $secondFontFamily
   &:first-child
     margin-left: 0
   .badges
@@ -58,6 +87,8 @@
     margin-left: 9%
   .info
     padding: 5px 10px
+    a.name
+      font-family: $secondFontFamily
     .like
       float: right
   .info-bottom

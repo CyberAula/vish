@@ -1,9 +1,7 @@
 <section class="info-profile">
-  <h1>
-    Profile
-  </h1>
-  <div class="tabbable" style="margin-bottom: 18px;">
+  <div class="tabbable">
     <ul class="nav nav-tabs">
+      <li><h1>Profile</h1></li>
       <li class="active"><a href="#tab1" data-toggle="tab">excursions</a></li>
       <li><a href="#tab2" data-toggle="tab">events</a></li>
       <li><a href="#tab3" data-toggle="tab">resources</a></li>
@@ -11,22 +9,22 @@
       <li><a href="#tab5" data-toggle="tab"><span>3</span>followers</a></li>
       <li><a href="#tab6" data-toggle="tab"><span>3</span>followings</a></li>
     </ul>
-    <div class="tab-content" style="padding-bottom: 9px; border-bottom: 1px solid #ddd;">
+    <div class="tab-content">
 
       <div class="tab-pane active" id="tab1">
-        <p>I'm in Section 1.</p>
+        <p><%= render partial: 'excursions/excursions' %></p>
       </div>
 
       <div class="tab-pane" id="tab2">
-        <p>Howdy, I'm in Section 2.</p>
+        <p><%= render partial: 'events/events' %></p>
       </div>
 
       <div class="tab-pane" id="tab3">
-        <p>What up girl, this is Section 3.</p>
+        <p><%= render partial: 'repositories/resources' %></p>
       </div>
 
       <div class="tab-pane" id="tab4">
-        <p>What up girl, this is Section 4.</p>
+        <p><%= render partial: 'categories/categories' %></p>
       </div>
 
       <div class="tab-pane" id="tab5">

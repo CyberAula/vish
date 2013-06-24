@@ -1,25 +1,78 @@
 @mixin grid
   @include excursion-box
-  width: 135px
+  width: 150px
   float: left
-  margin: 15px 0px
+  margin: 15px 12px
   list-style: none
   &:first-child
     margin-left: 0
   .badges
-    width: 53px
-    position: absolute
-    margin-left: 82px
+    @include badge-grid
   .info
-    padding: 5px 10px
-    a.name
-      float: left
+    font-family: $firstFontFamily
+    padding: 5px
+    h5.name
+      margin-top: 0
+      margin-bottom: 5px
+      line-height: 18px
+      a
+        float: left
+        line-height: 17px
     .like
       float: right
+      margin-top: -6px
+      h5
+        color: $green
+        font-size: 12px
+        margin: 0 auto
+        display: inline
+        a
+          color: $green
+
   .info-bottom
+    font-family: $firstFontFamily
     clear: both
-    a.author
-      float: left
+    .soften
+      margin-bottom: 1px
+    h5.author
+      width: 140px
+      margin-top: 4px
+      margin-bottom: 2px
+      a
+        @include ellipsis
+        width: 56%
+
     .views
       float: right
+      span
+        color: $green
+    .date,
+    .category
+      float: right
+      font-size: 12px
+    .date
+      color: $green
+
+
+@mixin grid-add
+  @include border-radius($radius)
+  width: 150px
+  float: left
+  margin: 15px 12px
+  list-style: none
+  min-height: 235px
+  border: 2px dashed $gray
+  background-color: $white
+  i
+    padding: 132px 140px
+  &:first-child
+    margin-left: 0
+
+  .action-name
+    padding: 23px 10px
+    text-align: center
+    font-size: 1.1em
+    margin: 107px auto 20px
+    color: $grayLight
+
 

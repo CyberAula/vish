@@ -1,5 +1,19 @@
-<div>This is the excursion index page. Our home page!</div>
-<div class="signin pull-right">
-  <%=link_to(t('sign_out'), destroy_user_session_path, :method => :delete) %>
-</div>
-<%= link_to(image_tag(current_subject.logo.url, :size => "22x22", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
+<section id="excursions">
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li><h1>excursions</h1></li>
+      <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
+      <li><a href="#tab2" data-toggle="tab">mine</a></li>
+    </ul>
+    <div class="tab-content">
+
+      <div class="tab-pane active" id="tab1">
+        <%= render partial: 'excursions/excursions' %>
+      </div>
+
+      <div class="tab-pane" id="tab2">
+        <%= render partial: 'excursions/excursions' %>
+      </div>
+    </ul>
+  </div>
+</section>

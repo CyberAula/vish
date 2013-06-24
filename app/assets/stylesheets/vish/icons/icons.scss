@@ -712,3 +712,18 @@ li{list-style-type:none}
 .icon_message-inbox:hover  { background-position: -129px -10px;}
 .icon_message-trash:hover  { background-position: -188px -10px;}
 
+
+
+/*.................. icon grid-item 20 x 20 px......................*/
+
+[class^="grid-item-"], [class*="grid-item-"] {
+  height:133px;
+  width:150px;
+  background-image: url("icons/grid-items.png");
+  background-repeat: no-repeat
+}
+
+.grid-item-add  { background-position: 1px 138px;}
+.grid-item-myroom { background-position: -161px -170px;}
+
+

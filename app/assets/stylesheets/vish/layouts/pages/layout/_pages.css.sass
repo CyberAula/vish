@@ -1,0 +1,18 @@
+.user,
+#excursions,
+#events,
+#categories,
+#repository,
+  #toolbar
+    display: none
+  .tabbable
+    @include header-tabbable
+
+li.excursions-item,
+li.events-item,
+li.categories-item,
+li.repositories-item
+  @include grid
+
+li.add-item
+  @include grid-add

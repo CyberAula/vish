@@ -1,8 +1,3 @@
-@mixin excursion-box
-  border: 1px solid $grayLight
-  @include border-bottom-right-radius(15px)
-  @include border-bottom-left-radius(15px)
-
 @mixin gray-box
   @include border-radius($radius)
   border-top: 1px solid #F2F2F2
@@ -11,3 +6,21 @@
   width: 97%
   z-index: 1
   margin-left: 1%
+
+@mixin excursion-box
+  border: 1px solid #C0C0C0
+  @include border-bottom-right-radius(15px)
+  @include border-bottom-left-radius(15px)
+
+@mixin badge-grid
+  position: absolute
+  margin-left: 87px
+  width: 0
+  height: 0
+  border-top: 52px solid rgba(255, 255, 255, 0.8)
+  border-left: 63px solid rgba(0, 0, 0, 0)
+  border-right: 0px solid rgba(0, 0, 0, 0)
+  img
+    min-width: 19px
+    margin-top: -95px
+    margin-left: -24px

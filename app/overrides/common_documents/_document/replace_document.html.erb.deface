@@ -1,0 +1,2 @@
+<!-- replace 'div' -->
+  <%= render partial: 'repositories/resource' %>
