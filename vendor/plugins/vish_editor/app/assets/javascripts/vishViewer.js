@@ -13942,6 +13942,9 @@ VISH.Recommendations = function(V, $, undefined) {
     if(V.Configuration.getConfiguration()["mode"] != V.Constant.NOSERVER && typeof url_to_get_recommendations == "undefined") {
       return
     }
+    if(isRecVisible()) {
+      return
+    }
     $("#fancyRec").trigger("click")
   };
   var isRecVisible = function() {
