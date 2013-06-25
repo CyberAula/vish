@@ -47,7 +47,7 @@
         </form>
       </div>
 
-      <div class="profile2-toolbar">
+      <div class="profile-toolbar">
         <div class="btn-group">
           <button class="btn long"><%= link_to(image_tag(current_subject.logo.url, :size => "25x25", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
         <%= link_to(truncate_name(current_subject.name, :length => 20), current_subject, :class => "name-user") %></button>
@@ -65,29 +65,6 @@
           </ul>
         </div>
       </div>
-
-      <div class="profile-toolbar">
-      <%= link_to(image_tag(current_subject.logo.url, :size => "25x25", :alt => current_subject.name, :class => "img-header"), current_subject, :class => "img-header") %>
-      <%= link_to(truncate_name(current_subject.name, :length => 20), current_subject, :class => "name-user") %>
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        <div class="profile-options dropdown"><b class="caret">
-        </b>
-        </div>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-            <li><a tabindex="-1" href="#">Profile</a></li>
-            <li><a tabindex="-1" href="#">Excursions</a></li>
-            <li><a tabindex="-1" href="#">Categories</a></li>
-            <li><a tabindex="-1" href="#">Events</a></li>
-            <li><a tabindex="-1" href="#">Resources</a></li>
-            <li><a tabindex="-1" href="#">Settings</a></li>
-            <li><a tabindex="-1" href="#">Account</a></li>
-            <li class="divider"></li>
-            <li><%=link_to(t('sign_out'), destroy_user_session_path, :method => :delete) %></li>
-          </ul>
-      </a>
-      </div>
-
-
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       <div class="add-toolbar dropdown">
         <i class="icontool16-tool16_add"></i>
