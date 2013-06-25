@@ -7,13 +7,10 @@
       float: left
       img.avatar_img
         @include border-radius(500px)
-        border: 5px solid $grayLighter
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
     .information
       margin-top: 20px
       @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      border: 1px solid $grayLighter
       background-color: $white
       @include border-radius($borderRadiusLarge)
       float: right
@@ -23,9 +20,7 @@
         display: inline-block
         margin-left: 5px
       h2
-        color: $secondColor 
         width: 75%
-
       button
         float: right
         display: inline-block
@@ -34,28 +29,20 @@
         margin: 5px 0
       h3.name-roll
         @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
         vertical-align: top
       p.description
         @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: inline-block
       span
-        color: $thirdColor  
       h3.archivements
         padding-left: 20px
-        border-left: 1px solid $grayLighter
         margin-left: 20px
-        color: $blue-2
         margin-right: 10px
 .info-profile
   .follow-tab
     float: right
     a
-      background-color: $white !important
-      font-size: 1em 
       span
-        color: $thirdColor
-        font-size: 1.1em
       span:after
         content: " "
 
