@@ -2,8 +2,6 @@
   <section class="user">
     <header>
       <div class="avatar">
-        <!--SUSTITUIR POR AVATAR DE USUARIO-->
-
         <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
         <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
       </div>
@@ -19,6 +17,7 @@
           Teacher
         </h3>
         <p class="description">
+          <!--poner frase de esta descripcion esta vacia-->
           <% content_for :description do %>
             <% if @user.profile.description? %>
               <%= @user.profile.description%>

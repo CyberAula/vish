@@ -28,14 +28,18 @@
       </div>
 
       <div class="tab-pane" id="tab5">
-        <%= render profile_subject.followers %>
+        <%#= render @followers.
+          page(params[:page]).
+          per(20).
+          map { |f| current_subject.contact_to!(f) } %>
+
       </div>
 
       <div class="tab-pane" id="tab6">
         <%#= render @followings.
-          page(params[:page]).
-          per(20).
-          map { |f| current_subject.contact_to!(f) } %>
+            page(params[:page]).
+            per(20).
+            map { |f| current_subject.contact_to!(f) } %>
       </div>
 
     </div>
