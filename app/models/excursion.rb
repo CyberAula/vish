@@ -71,16 +71,181 @@ class Excursion < ActiveRecord::Base
   def generate_scorm_manifest
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    myxml.manifest('xsi:schemaLocation'=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd", 'identifier'=>"MANIFEST-A2F3004F6186AC9480285D4AEDCD6BAF", 'xmlns:adlcp'=>"http://www.adlnet.org/xsd/adlcp_rootv1p2", 'xmlns:xsi'=>"http://www.w3.org/2001/XMLSchema-instance", 'xmlns:imsmd'=>"http://www.imsglobal.org/xsd/imsmd_rootv1p2p1", 'xmlns'=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2") do
-      myxml.organizations('default'=>"ITEM") do       
-        
+    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_55",
+      "version"=>"1.0", 
+      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1.xsd
+                        http://www.adlnet.org/xsd/adlcp_v1p3.xsd
+                        http://www.adlnet.org/xsd/adlnav_v1p3.xsd
+                        http://www.adlnet.org/xsd/adlseq_v1p3.xsd
+                        http://www.imsglobal.org/xsd/imsss_v1p0.xsd
+                        http://ltsc.ieee.org/xsd/LOM/lom.xsd",
+      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
+      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
+      "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
+      "xmlns:lom"=>"http://ltsc.ieee.org/xsd/LOM/lom.xsd" ) do
+
+      myxml.metadata() do
+        myxml.schema("ADL SCORM");
+        myxml.schemaversion("CAM 1.3");
+
+        myxml.lom do
+          myxml.general do
+            myxml.identifier("VISH_VIRTUAL_EXCURSION_55");
+            myxml.title do
+              myxml.langstring("The Iberian Lynx");
+            end
+            myxml.language("en");
+            myxml.description do
+              myxml.langstring("The Iberian Lynx. A Virtual Excursion provided by http://vishub.org.");
+            end
+            myxml.keyword do
+              myxml.langstring("Science");
+            end
+            myxml.keyword do
+              myxml.langstring("Biology");
+            end
+            myxml.structure do
+              myxml.source do
+                myxml.langstring("LOMv1.0");
+              end
+              myxml.value do
+                myxml.langstring("hierarchical");
+              end
+            end
+            myxml.aggregationlevel do
+              myxml.source do
+                myxml.langstring("LOMv1.0");
+              end
+              myxml.value do
+                myxml.langstring("4");
+              end
+            end
+          end
+
+          myxml.lifecycle do
+            myxml.version do
+              myxml.langstring("1.0");
+            end
+            myxml.status do
+              myxml.source do
+                myxml.langstring("LOMv1.0");
+              end
+              myxml.value do
+                myxml.langstring("final");
+              end
+            end
+            myxml.contribute do
+              myxml.role do
+                myxml.source do
+                  myxml.langstring("LOMv1.0");
+                end
+                myxml.value do
+                  myxml.langstring("author");
+                end
+              end
+              myxml.centity do
+                myxml.vcard("begin:vcard n:Aldo fn:Gordillo end:vcard");
+              end
+              myxml.date do
+                myxml.datetime("20/04/2008");
+              end
+            end
+          end
+
+          myxml.technical do
+            myxml.format("text/html")
+            myxml.location("http://vishub.org/excursions/55");
+            myxml.requirement do
+              myxml.type do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring("browser")
+                end
+              end
+              myxml.name do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring("any")
+                end
+              end
+            end
+            myxml.otherplatformrequirements do
+              myxml.langstring("HTML5-compliant web browser")
+            end
+          end
+
+          myxml.educational do
+            myxml.interactivitytype do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("mixed")
+              end
+            end
+            myxml.learningresourcetype do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("slide")
+              end
+            end
+            myxml.interactivitylevel do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("very high")
+              end
+            end
+            myxml.intendedenduserrole do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("learner")
+              end
+            end
+            myxml.typicalagerange do
+              myxml.langstring("16-20")
+            end
+            myxml.difficulty do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("medium")
+              end
+            end
+            myxml.typicallearningtime do
+              myxml.duration("PT5M30S")
+            end
+            myxml.description do
+              myxml.duration("Know about Iberian Lynx")
+            end
+            myxml.language("en")
+          end
+        end
       end
+
+
+      myxml.organizations('default'=>"ITEM") do
+      end
+
       myxml.resources do         
         myxml.resource('identifier'=>"RES-" + self.id.to_s, 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
           myxml.file('href'=> "excursion.html")
         end
-      end       
+      end
+
     end    
+
     return myxml 
   end
 
