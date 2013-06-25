@@ -253,15 +253,11 @@ namespace :vish_editor do
     puts "downloading compiler jar from: #{CSSCOMPILER_DOWNLOAD_URI}"
    
     FileUtils.mkdir_p(COMPILER_JAR_PATH)
-
-    #TODO
     writeOut = open(COMPILER_JAR_PATH + "/YUIcompressor.zip", "wb")
     writeOut.write(open(CSSCOMPILER_DOWNLOAD_URI).read)
     writeOut.close
 
-    # -u  update files, create if necessary :
     system "unzip -u " + COMPILER_JAR_PATH + "/YUIcompressor.zip -d " + COMPILER_JAR_PATH
-
     system "mv " + COMPILER_JAR_PATH + "/builder/componentbuild/lib/yuicompressor/yuicompressor-2.4.2.jar " + COMPILER_JAR_PATH + "/yuicompressor-2.4.2.jar"
     system "rm -rf " + COMPILER_JAR_PATH + "/builder"
   end
