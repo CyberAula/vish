@@ -199,8 +199,7 @@ namespace :vish_editor do
 
   def compile_css(files)
     unless File.exist?(CSSCOMPILER_JAR_FILE)
-      # TODO: download CSS compiles
-      # Rake::Task["vish_editor:download_YUIcompressor"].invoke
+      Rake::Task["vish_editor:download_YUIcompressor"].invoke
     end
     unless File.exist?(CSSCOMPILER_JAR_FILE)
       puts "#{CSSCOMPILER_JAR_FILE} not found !"
@@ -263,8 +262,8 @@ namespace :vish_editor do
     # -u  update files, create if necessary :
     system "unzip -u " + COMPILER_JAR_PATH + "/YUIcompressor.zip -d " + COMPILER_JAR_PATH
 
-    #Get YUI Comprsesor from YUI tools
-    #TODO
+    system "mv " + COMPILER_JAR_PATH + "/builder/componentbuild/lib/yuicompressor/yuicompressor-2.4.2.jar " + COMPILER_JAR_PATH + "/yuicompressor-2.4.2.jar"
+    system "rm -rf " + COMPILER_JAR_PATH + "/builder"
   end
 
 end
