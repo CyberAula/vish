@@ -330,6 +330,10 @@ en:
   share: "Post"
   sign_up: "Register"
   site:
+    current:
+      description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
+      keywords: "VisHub,virtual,excursion"
+      title: "Virtual Science Hub"
     name: "Virtual Science Hub"
   swf:
     confirm_delete: "Delete SWF?"

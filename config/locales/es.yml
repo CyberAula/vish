@@ -331,6 +331,10 @@ es:
     send: "Enviar"
   share: "Enviar"
   site:
+    current:
+      description: "Un punto de encuentro para científicos y profesores basado en la idea de excursiones virtuales"
+      keywords: "VisHub,virtual,excursion"
+      title: "Virtual Science Hub"
     name: "Virtual Science Hub"
   swf:
     confirm_delete: "¿Borrar SWF?"
