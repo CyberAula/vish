@@ -5,17 +5,119 @@ header.navbar
   background-color: #fff
   padding: 10px 10px
   border-bottom: 1px solid #F3F3F3
+  .navbar-inner
+    box-shadow: none
+    background-color: transparent
+    background-image: none
+    border: none
+
+   
   
-  nav.navheader
-    display: inline-block
-  nav.browse
-    display: inline-block
-  nav.add
-    display: inline-block
+  nav.headernav
+    float: left
+    a
+      margin: 0 3px
+      &:hover
+        text-decoration: none
+
+
+  .browse
+    margin-left: 6%
+    float: left
+    margin-top: 7px
+    margin-bottom: -20px
+    border-right: 1px solid rgb(214, 214, 214)
+    @extend hidden-phone
+    .dropdown
+      list-style: none
+      .dropdown-menu
+        padding: 1px
+      .caret
+        margin-left: 10px
+        margin-right: 13px
+
+  div.search-nav
+    float: left
+    width: 26%
+    @extend hidden-tablet
+    form
+      width: 100%
+      input.search-query
+        width: 100%
+        margin: -2px 0 0 10px
+
+  .search-mobile
+    @extend .hidden-desktop
+    @extend .hidden-tablet
+    float: left
+    margin-top: 0px
+    margin-left: 28px
+    position: absolute
+    z-index: 4
+    width: 80%
+    &:hover
+      z-index: 60
+    .icon_tool16-searcher
+      background-position: -220px -181px
+      background-image: url("icons/tools_ico-16.png")
+      background-repeat: no-repeat
+
+    input
+      &[type="text"]
+        width: 0px !important
+        text-indent: 1px
+        padding: 0 0 0 22px
+        width: 0
+        height: 22px
+        border: 1px solid #eee
+        color: #999
+        line-height: 20px
+        font-weight: bold
+        @include border-radius (6px)
+
+        @include transition (width 0.5s ease-in-out)
+
+        cursor: pointer 
+        padding: 2px 11px
+
+    input
+      &:hover
+        width: 86% !important
+        outline: none
+        @include box-shadow (1px 1px 9px rgba(55,55,55,0.5))
+        cursor: text
+        padding-left: 22px
+
+
+  div.add-toolbar
+    border-right: 1px solid #ccc
+    cursor: pointer
+    padding: 4px 11px 0 1px
+    width: 22px
+
+
+
+  
+  ul.nav
+    background: #f0f0f0
+    border: 1px solid #ddd
+    @include border-top-right-radius (5px)
+    @include border-bottom-right-radius (5px)
+    a
+      padding: 4px 0px 4px 9px
+      img
+        width: 31px
+        @include border-radius (15px)
+    ul.dropdown-menu
+      margin: 17px 40px 0 -120px
 
 
 
 .logo-header-in 
+  width: 131px
+  height: 35px
+  float: left
   img
-    width: 100px
-    float: left
+    width: 60%
+    margin: 0 17%
+    display: inline-block !important

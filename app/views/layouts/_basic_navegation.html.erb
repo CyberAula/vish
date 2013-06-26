@@ -10,11 +10,10 @@
   <%# unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
   <%= link_to(raw("<i class='icon_navbar-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
   <%# end %>
-  <%= render :partial => 'layouts/header_dropdown_menu' %>
 </nav>
 
 
-<nav class"browse">
+<nav class="browse">
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
       Browse

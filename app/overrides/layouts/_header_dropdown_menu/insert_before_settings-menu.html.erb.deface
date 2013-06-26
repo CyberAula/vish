@@ -1,4 +1,4 @@
-<!-- insert_after '.settings-menu' -->
+<!-- insert_before '.settings-menu' -->
 
 <li><a tabindex="-1" href="#">Add Excursion</a></li>
 <li><a tabindex="-1" href="#">Add Category</a></li>
