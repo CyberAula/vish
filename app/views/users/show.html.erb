@@ -8,8 +8,13 @@
       <div class="information">
         <h2> <%= @user.name %></h2>
         <button>
-          <!--SUSTITUIR POR ENVIAR MENSAJE A ESTE USURIO-->
-          <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %> <%= t 'mailboxer.send' %>
+          <% if profile_subject != current_subject %>
+            <li>
+              <%= link_to new_message_path(receiver: profile_subject.slug) do %>
+                <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %> <%= t 'mailboxer.send' %>
+              <% end %>
+            </li>
+          <% end %>
         </button>
         <hr class="soften">
         <h3 class="name-roll"> 
@@ -28,7 +33,7 @@
         </p>
         <hr class="soften">
         <h3 class="karma">Karma
-          <span> 65 <!--nivel carma--></span>
+          <span> 65 <!--nivel karma--></span>
         </h3>
         
         <h3 class="archivements">
