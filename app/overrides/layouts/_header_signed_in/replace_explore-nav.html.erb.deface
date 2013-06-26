@@ -1,0 +1,4 @@
+<!-- replace '.explore-nav' -->
+  <%= render partial: 'layouts/advanced_navigation' %>
+
+
