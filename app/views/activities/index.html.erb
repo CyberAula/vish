@@ -1,1 +1,5 @@
-<div>This is the activities page</div>
+  <div id ="time-line">
+  <%= render :partial => "activities/index",
+             :locals => { section: :home,
+                          owner: current_subject } %>
+  </div>
