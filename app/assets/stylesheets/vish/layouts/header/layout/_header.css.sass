@@ -1,1 +1,21 @@
-header.navbar-fixed-top
+header.navbar
+  @include box-shadow (0px -1px 30px rgba(50, 51, 51, 0.15))
+  @extend .navbar-fixed-top
+  display: block
+  background-color: #fff
+  padding: 10px 10px
+  border-bottom: 1px solid #F3F3F3
+  
+  nav.navheader
+    display: inline-block
+  nav.browse
+    display: inline-block
+  nav.add
+    display: inline-block
+
+
+
+.logo-header-in 
+  img
+    width: 100px
+    float: left
