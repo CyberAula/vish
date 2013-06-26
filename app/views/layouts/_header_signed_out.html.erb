@@ -1,71 +1,88 @@
 <header class="header navbar-fixed-top">
-    <div class="container-fluid">
+  <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => "logo"); %>
 
-      <div class="corporatelogo">
-        <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => ""); %>
+  <h4>virtual science hub</h4>
+
+
+  <nav class="browse">
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        Browse
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+        <li><a tabindex="-1" href="#">Popular</a></li>
+        <li class="divider"></li>
+        <li><a tabindex="-1" href="#">Excursions</a></li>
+        <li><a tabindex="-1" href="#">Categories</a></li>
+        <li><a tabindex="-1" href="#">Events</a></li>
+        <li><a tabindex="-1" href="#">Resources</a></li>
+      </ul>
+    </li>
+  </nav>
+
+  <%= form_tag search_path, method: 'get', id: "search-box", class: "navbar-search pull-left search-mobile" do %>
+        <%= text_field_tag :q, nil, autocomplete: :off, class: "search-query-mobile input-small icon_tool16-searcher", placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
+      <% end %>
+      <%= javascript_tag do %>
+        $(function() {
+          SocialStream.SearchHeader.show();
+        });
+      <% end %>
+
+  
+    
+  <div class="search-nav hidden-phone hidden-tablet">
+    <%= form_tag search_path, method: 'get', class: "navbar-search pull-left" do %>
+      <%= text_field_tag :q, nil, autocomplete: :off, class: 'search-query input-small', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
+    <% end %>
+    <%= javascript_tag do %>
+      $(function() {
+        SocialStream.SearchHeader.show();
+      });
+    <% end %>
+    <div class="mat">
+      <%= render partial: 'layouts/loading' %>
+
+      <div class="query_too_short">
+        <%= t 'search.at_least', count: SocialStream::Search::MIN_QUERY %>
       </div>
 
-      <div class="corporatelogo_signedout">
-        <h4>virtual science hub</h4>
+      <div class="no_results">
+        <%= t 'search.nothing' %>
       </div>
 
-      <div class="navbarbrowse">
-      <li class="dropdown">
-          <a class="dropdown-toggle"
-             data-toggle="dropdown"
-             href="#">Browse
-             <b class="caret"></b>
-            </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-            <li><a tabindex="-1" href="#">Popular</a></li>
-            <li class="divider"></li>
-            <li><a tabindex="-1" href="#">Excursions</a></li>
-            <li><a tabindex="-1" href="#">Categories</a></li>
-            <li><a tabindex="-1" href="#">Events</a></li>
-            <li><a tabindex="-1" href="#">Resources</a></li>
-            
-          </ul>
-        </li>
-      </div>
-
-      <div class="navbarsearch">
-        <form class="navbar-search pull-left">
-        <input type="text" class="search-query" placeholder="Search">
-        </form>
-      </div>
-      <div class="signin pull-right">
-        <li class="dropdown">
-          <a class="dropdown-toggle"
-             data-toggle="dropdown"
-             href="#">Sign up
-            </a>
-        </li>
-      </div>
-      <div class="login pull-right">
-      <li class="dropdown">
-          <a class="dropdown-toggle"
-             data-toggle="dropdown"
-             href="#">Log In
-             <b class="caret"></b>
-            </a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-            <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
-              <%= f.email_field :email, :id => "username" %>
-              <%= f.password_field :password, :id => "password"  %>
-              <%= f.submit t(:sign_in), :class => ' btn btn-primary storePass'%>    
-            <% end %>
-            <%= javascript_tag do %>
-              $(function() {
-                if ("placeholder" in document.createElement("input")) {
-                  $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
-                } else {
-                  $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
-                }
-                $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
-              });
-            <% end %>
-          </ul>
-        </li>
+      <div class="results">
       </div>
     </div>
+  </div>
+
+  <div class="login dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Log In
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+      <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
+        <%= f.email_field :email, :id => "username" %>
+        <%= f.password_field :password, :id => "password"  %>
+        <%= f.submit t(:sign_in), :class => ' btn btn-primary storePass'%>    
+      <% end %>
+      <%= javascript_tag do %>
+        $(function() {
+          if ("placeholder" in document.createElement("input")) {
+            $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+          } else {
+            $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+          }
+          $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+        });
+      <% end %>
+    </ul>
+  </div>
+
+  <a href="#"class="signin">
+    Sign up
+  </a>
+
 </header>
