@@ -4,6 +4,7 @@ es:
       user:
         email: "Email"
         tag: "Áreas de interés"
+        name: Nombre
   activity:
     empty: "Tu timeline está vacío"
     more: "Ver más..."

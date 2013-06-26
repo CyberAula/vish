@@ -1,8 +1,8 @@
 @mixin grid
   @include excursion-box
-  width: 150px
+  width: 165px
   float: left
-  margin: 15px 12px
+  margin: 15px 11.5px
   list-style: none
   &:first-child
     margin-left: 0
@@ -10,42 +10,54 @@
     @include badge-grid
   .info
     font-family: $firstFontFamily
-    padding: 5px
-    h5.name
-      margin-top: 0
-      margin-bottom: 5px
-      line-height: 18px
+    padding: 5px 5px 0 5px
+    h5
+      color: $green
+      font-size: 12px
+      margin: 0 auto
+      display: inline
       a
-        float: left
-        line-height: 17px
-    .like
+        img
+          width: 10px
+          margin-top: -2px
+    .views
       float: right
-      margin-top: -6px
-      h5
-        color: $green
-        font-size: 12px
-        margin: 0 auto
-        display: inline
+      margin: -4px 0 -3px 0
+      h5.name
+        margin: 0 0 5px 0
+        line-height: 18px
         a
-          color: $green
+          float: left
+          line-height: 17px
+      
 
   .info-bottom
     font-family: $firstFontFamily
     clear: both
+    hr
+      margin: 0
     .soften
       margin-bottom: 1px
     h5.author
-      width: 140px
-      margin-top: 4px
-      margin-bottom: 2px
+      width: 154px
+      margin: 1px 0 2px 0
+      font-size: 13px
       a
         @include ellipsis
         width: 56%
+        display: initial
 
-    .views
-      float: right
-      span
-        color: $green
+      .like
+        float: right
+        font-size: 12px
+        span
+          color: $green
+          display: inline
+        a
+          width: 30px
+          img
+            width: 10px
+            margin-top: -2px
     .date,
     .category
       float: right
@@ -56,22 +68,22 @@
 
 @mixin grid-add
   @include border-radius($radius)
-  width: 150px
+  width: 165px
   float: left
-  margin: 15px 12px
+  margin: 15px 11.5px
   list-style: none
-  min-height: 235px
+  min-height: 227px
   border: 2px dashed $gray
   background-color: $white
   i
-    padding: 132px 140px
+    padding: 129px 145px
   &:first-child
     margin-left: 0
 
   .action-name
-    padding: 23px 10px
+    padding: 37px 10px 0
     text-align: center
-    font-size: 1.1em
+    font-size: 1.3em
     margin: 107px auto 20px
     color: $grayLight
 
