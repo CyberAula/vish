@@ -7,37 +7,34 @@
       </div>
       <div class="information">
         <h2> <%= @user.name %></h2>
-        <button>
-          <% if profile_subject != current_subject %>
-            <li>
-              <%= link_to new_message_path(receiver: profile_subject.slug) do %>
-                <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %> <%= t 'mailboxer.send' %>
-              <% end %>
-            </li>
-          <% end %>
-        </button>
+        <% if profile_subject != current_subject %>
+          <button>
+            <%= link_to new_message_path(receiver: profile_subject.slug) do %>
+              <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %> <%= t 'mailboxer.send' %>
+            <% end %>
+          </button>
+          <!-- <button>
+            <%#= contact_to(profile_subject) %>
+          </button> -->
+        <% end %>
         <hr class="soften">
         <h3 class="name-roll"> 
-          <!--SUSTITUIR POR ROLL DE USUARIO-->
-          Teacher
+          <%= profile_subject.occupation_t %>
         </h3>
         <p class="description">
-          <!--poner frase de esta descripcion esta vacia-->
-          <% content_for :description do %>
             <% if @user.profile.description? %>
               <%= @user.profile.description%>
             <% else %>
               <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
             <% end %>
-          <% end %>
         </p>
         <hr class="soften">
         <h3 class="karma">Karma
           <span> 65 <!--nivel karma--></span>
         </h3>
         
-        <h3 class="archivements">
-          archivements
+        <h3 class="achievements">
+          achievements
         </h3>
           <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %>
           <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %>
