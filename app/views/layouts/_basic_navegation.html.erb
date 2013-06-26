@@ -1,26 +1,24 @@
-<header class="header navbar-fixed-top">
-    <div class="container-fluid">
 
-      <div class="corporatelogo">
-        <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => ""); %>
-      </div>
+<div class="corporatelogo">
+  <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => ""); %>
+</div>
 
-      <div class="corporatelogo_signedin">
-        <div class="btn-group">
-      <%= link_to(raw("<i class='iconnav-home'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
-      <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
-      <%= link_to(raw("<i class='iconnav-followers'></i> "),
-                        followings_path,
-                        :class => "btn-header tooltip-header",
-                        :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
-                        :rel => 'tooltip') %>
-      <%= link_to(raw("<i class='iconnav-myroom'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
-      <%# unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
-      <%= link_to(raw("<i class='iconnav-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
-      <%# end %>
-      <%= render :partial => 'layouts/header_dropdown_menu' %>
-    </div>
-      </div>
+<div class="corporatelogo_signedin">
+  <div class="btn-group">
+    <%= link_to(raw("<i class='iconnav-home'></i> "), excursions_path, :class => "btn-header tooltip-header", :title =>  t('navigation.home'), :rel => 'tooltip') %>
+    <%= link_to(raw("<i class='iconnav-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
+   <%= link_to(raw("<i class='iconnav-followers'></i> "),
+                    followings_path,
+                    :class => "btn-header tooltip-header",
+                    :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
+                    :rel => 'tooltip') %>
+    <%= link_to(raw("<i class='iconnav-myroom'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+    <%# unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
+    <%= link_to(raw("<i class='iconnav-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
+    <%# end %>
+    <%= render :partial => 'layouts/header_dropdown_menu' %>
+  </div>
+</div>
 
       <div class="navbarbrowse">
       <li class="dropdown">
