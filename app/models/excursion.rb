@@ -53,11 +53,52 @@ class Excursion < ActiveRecord::Base
 
         zos.put_next_entry("excursion.html")
         zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>self}, :layout => false  
+      end
+      
+      dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
+      zip_folder(t.path,dir,nil)
 
-        self.update_column(:scorm_timestamp, Time.now)
-      end    
       t.close
+      self.update_column(:scorm_timestamp, Time.now)
     end
+
+  end
+
+
+  def zip_folder(zipFilePath,root,dir)
+
+    unless dir 
+      dir = root
+    end
+
+    #Get subdirectories
+    Dir.chdir(dir)
+    subdir_list=Dir["*"].reject{|o| not File.directory?(o)}
+    subdir_list.each do |subdirectory|
+      subdirectory_path = "#{dir}/#{subdirectory}"
+      zip_folder(zipFilePath,root,subdirectory_path)
+    end
+
+    #Look for files
+    Zip::ZipFile.open(zipFilePath, Zip::ZipFile::CREATE) { |zipfile|
+
+      Dir.foreach(dir) do |item|
+        item_path = "#{dir}/#{item}"
+        if File.file?item_path
+          rpath = String.new(item_path)
+          rpath.slice! root + "/"
+          # puts "###########################"
+          # puts "Full Path"
+          # puts item_path
+          # puts "root"
+          # puts root
+          # puts "relative path"
+          # puts rpath
+          # puts "###########################"
+          zipfile.add(rpath,item_path)
+        end
+      end
+    }
   end
 
   def scorm_needs_generate

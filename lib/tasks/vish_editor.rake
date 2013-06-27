@@ -30,10 +30,19 @@ CSSCOMPILER_DOWNLOAD_URI = 'http://yui.zenfs.com/releases/builder/builder_1.0.0b
 # Rake Task
 namespace :vish_editor do
     
+  task :build do
+    Rake::Task["vish_editor:prepare"].invoke
+    Rake::Task["vish_editor:compile"].invoke
+    Rake::Task["vish_editor:cleanCompile"].invoke
+    Rake::Task["vish_editor:buildSCORM"].invoke
+    Rake::Task["vish_editor:rewritePaths"].invoke
+  end
+
   task :prepare do
     puts "Task prepare do start"
     system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/*"
     system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/views/*"
+    system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/*"
     system "rm -rf " + VISH_EDITOR_PATH + "/examples/contents/scorm/images"
     system "rm -rf " + VISH_EDITOR_PATH + "/examples/contents/scorm/javascripts"
     system "rm -rf " + VISH_EDITOR_PATH + "/examples/contents/scorm/stylesheets"
@@ -53,28 +62,15 @@ namespace :vish_editor do
     system "cp " + VISH_EDITOR_PATH + "/js/libs/RegaddiChart.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
     system "cp " + VISH_EDITOR_PATH + "/js/VISH.QuizCharts.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
 
-    #Copy HTML and rewrite paths
+    #Copy HTML
     system "sed -n  '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' " + VISH_EDITOR_PATH + "/viewer.html > " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer.full.erb"
     system "sed -n  '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' " + VISH_EDITOR_PATH + "/edit.html > " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_editor.full.erb"
-    system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/*"
-
-    #Rewrite CSS paths
-    system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/css_to_compile/*/*css"
-    system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/css_to_compile/*/*css"
-
+    
     puts "Task prepare do finishs"
   end
 
 
-  task :clean do
-    system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile"
-    system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/css_to_compile"
-  end
-
-
-  task :compile do 
-    Rake::Task["vish_editor:prepare"].invoke
-    
+  task :compile do   
     #JavaScript files
     puts "Compiling Javascript"
     js_files = []
@@ -124,15 +120,40 @@ namespace :vish_editor do
     css_files.uniq!
     puts "matched #{css_files.size} .css file(s)"
     compile_css(css_files)
-
-    Rake::Task["vish_editor:clean"].invoke
-
-    #Copy files to scorm file in ViSH Editor
-    system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/* " + VISH_EDITOR_PATH + "/examples/contents/scorm/"
-    #Rewrite css paths again (undo first rewriting for testing in VE)
-    system "sed -i 's/\\\/assets/..\\\/..\\\/images/g' " + VISH_EDITOR_PATH + "/examples/contents/scorm/stylesheets/*/*.css"
-    system "sed -i 's/assets\\\/vishEditor/images/g' " + VISH_EDITOR_PATH + "/examples/contents/scorm/stylesheets/*/*.css"
   end
+
+  task :cleanCompile do
+    system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/js_to_compile"
+    system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/css_to_compile"
+  end
+
+  task :buildSCORM do
+    #Copy files to ViSH
+    system "cp " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer.full.erb " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
+    # system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/"
+    system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/* " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/"
+    
+    #Rewrite paths for SCORM
+    system "sed -i 's/vishEditor\\\/images/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
+    system "sed -i 's/\\\/vishEditor\\\/images/..\\\/..\\\/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/*/*css"
+
+    #Remove unused files...
+    #TODO
+    
+    #Copy files to scorm folder in ViSH Editor
+    system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/* " + VISH_EDITOR_PATH + "/examples/contents/scorm/"
+  end
+
+  task :rewritePaths do
+    #Rewrite HTML paths
+    system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer.full.erb"
+    system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_editor.full.erb"
+
+    #Rewrite CSS paths
+    system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
+    system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
+  end
+
 
   #========================================================================
 

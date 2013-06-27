@@ -1,0 +1,204 @@
+    <!-- Copy HTML from here -->
+    
+    <section class="slides layout-regular template-default"></section>
+        <button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
+    <button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
+
+    <div id="viewbar" class="viewbar" style="display:none">
+        <a href="#" target="_blank"><div id="embedWatermark" class="watermark" style="display:none"></div></a>
+        <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
+		<button id="page-switcher-start" class="page-switcher" tabindex="2"></button>	    
+        <div id="slide-counter-div" style="">
+            <input id="slide-counter-input" type="text" name="goToSlide" maxlength="2" value="1">
+            <span id="slide-counter-span"></span>
+        </div>
+	    <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
+    </div> 
+
+    <div id="selectSlidesBar" class="selectSlidesBar" style="display:none">
+        <img id='help_addslides_selection' src='/images/icons/helptutorial_circle_blank.png'/>
+        <div class="selectSlidesButtons1">
+            <button id="ssbAll" class="buttonadd selectall"><img class="imgbutton" src="/images/quiz/checkbox_checked.png"/>Select All</button>
+            <button id="ssbuAll" class="buttonadd unselectall"><img class="imgbutton" src="/images/quiz/checkbox_wrong.png"/>Unselect All</button>
+        </div>
+        <div class="selectSlidesButtons3">
+            <div class="selectSlidesSelection">
+                <p id="ssbsp" class="selected_n_slides addslidetrans"></p>
+                <img  class="addt" src="/images/templatesthumbs/addt.png"/>
+            </div>
+            <div class="selectSlidesButtonWrapper">
+                <button id="ssbdone" class="viewer_button buttonconfirm">Add Slides</button>
+            </div>
+        </div>
+        <div class="selectSlidesButtons2">
+            <button id="ssbaccept" class="buttoncenter buttonadd"><img class="imgbutton" src="/images/quiz/checkbox_wrong.png"/>Remove Slide</button>
+        </div>
+    </div>
+
+    <div style="display:none" id="viewerpreview">Preview</div>
+    </div>
+    <button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/images/icons/back_icon.png"/></button>
+    
+    <!-- Hidden link to open fancybox to display recommendations in the end -->
+    <a id="fancyRec" href="#fancy_recommendations" style="display: none;"></a>
+
+    <!-- Recommendations fancybox -->
+    <div style='display:none'>
+        <div id='fancy_recommendations'>
+            <div class="rec-first-row">
+                <span class="textrec1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
+                <button onclick="window.parent.document.getElementById('evaluation-button-id').click();" id='evaluate_excursion' submit='disable' class='recbutton' i18n-key="i.evaluate">Evaluate</button>
+            </div>
+            <div class="rec-second-row">
+                <span class="textrec1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
+                <div class="rec-grid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Quizzes -->
+
+    <!-- Hidden link to open fancybox when start a quiz session inside a slide  -->
+    <a id="addQuizSessionFancybox" href="#start_quiz_fancybox" style="display: none;"></a>
+    
+    <!-- Quiz session fancybox -->
+    <div style='display:none'>
+        <div id="start_quiz_fancybox" class="outer_box_viewer">
+            <div class="fancy_viewer_tabs" id="images_fancy_tabs_id">     
+                <ul>
+                    <li><a href="#" id="tab_quiz_session" onclick="VISH.Quiz.loadTab('tab_quiz_session')" class="fancy_viewer_tab tabbable">Quiz Session</a></li>
+                    <li><a href="#" id="tab_quiz_stats" onclick="VISH.Quiz.loadTab('tab_quiz_stats')"class="fancy_viewer_tab">Stats</a></li>
+                </ul>
+                <img class='help_in_fancybox_viewer' id='tab_quiz_session_help' src='/images/icons/helptutorial_circle_blank.png'/>
+                <img class='help_in_fancybox_viewer' id='tab_quiz_stats_help' src='/images/icons/helptutorial_circle_blank.png'/>
+            </div>
+            <div id='tab_quiz_session_content' class="tab_quiz_session_content fancy_viewer_tab_content">
+                <a target="_blank" id='tab_quiz_session_url_link'></a>
+                <div class="quizSharebuttons">
+                    <a target="_blank" href="#" id='tab_quiz_session_share_twitter'><img src='/images/icons/social/twitter.png' class='socialButton'/></a>
+                    <a target="_blank" href="#" id='tab_quiz_session_share_facebook'><img src='/images/icons/social/facebook.svg' class='socialButton'/></a>
+                    <a target="_blank" href="#" id='tab_quiz_session_share_gPlus'><img src='/images/icons/social/gplus.svg' class='socialButton'/></a>
+                </div>
+                <div class="quizQr"></div>
+                <input class='quizButton button quizStopButton' value='Stop'/>
+            </div>
+            <div id='tab_quiz_stats_content' class="fancy_viewer_tab_content">
+                <canvas id="quiz_chart" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT WHEN TRY TO LAUNCH TWO QUIZZES AT THE SAME TIME-->
+    <div style='display:none'>
+        <div id='prompt1_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Please stop all quizzes before launch another one.</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT WHEN SAVE A QUIZ SESSION -->
+    <div style='display:none'>
+        <div id='prompt2_alert'>
+            <div class="prompt_text_container_viewer prompt_text_container_viewer2">
+                <p><span class="prompt_text_viewer">Do you want to save the quiz?</span></p>
+                <p><input type="text" id="prompt2name" title="Enter a name for the quiz session" class="prompt2name"></input></p>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('yes');" class="prompt_button_viewer prompt_button_viewer2">Yes</a>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('no');" class="prompt_button_viewer prompt_button_viewer1">No</a>
+                <a href="#" onclick="VISH.Quiz.onCloseQuizSession('cancel');" class="prompt_button_viewer prompt_button_viewer3">Cancel</a>
+            </div>
+        </div>
+      </div>
+
+    <!-- PROMPT WHEN TRY TO SEND AN EMPTY ANSWER-->
+    <div style='display:none'>
+        <div id='prompt3_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Please, answer the quiz before send</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT AFTER SEND ANSWER-->
+    <div style='display:none'>
+        <div id='prompt4_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Your answer has been submitted</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT AFTER ERROR ON SENDING ANSWER-->
+    <div style='display:none'>
+        <div id='prompt5_alert'>
+            <div class="prompt_text_container_viewer">
+                <span class="prompt_text_viewer">Sorry, your answer can be submitted.</span>
+            </div>
+            <div>
+                <a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer_viewer4">accept</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROMPT USER WHEN PRESENTATION IS NOT VALID -->
+    <div style='display:none'>
+        <div id='presentation_not_valid_wrapper'>
+            <div id='presentation_not_valid' class='fancy_msg_advert'>      
+                <span i18n-key="i.NotValid" class="adverttext">
+                This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.
+                </span> 
+                <div class="button_advert_wrapper">
+                    <a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+                </div>
+                </div>
+        </div>
+    </div>
+
+
+    <!-- WALKTHROUGH HELP SECTION -->
+    <!--help for quiz session-->
+    <ol id="quiz_session_help" class="joyRideTipContent">>
+        <li data-id="tab_quiz_session_content" class="custom tut_quiz tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
+         <h2 i18n-key="i.themesTitle">Quiz session</h2>
+           <p i18n-key="i.walk92">This window offers you a Qr-code and a link that you can give or show to the users that you want to participate in your simple quiz, or multiple-choice session, you can check in real-time too the results by clicking on the "stats" tab in the upper section of this window.<br>
+            You can share this session in other social networks by clicking on their icon.<br>
+            If you click on the close button in the superior zone of this windows you can always go back here by clicking the options button in the slide of the excursion.<br>
+           You can save all the results once you finish by clicking on the button Stop in the button "Stop" in the inferior section of this window.<br>A new window will appear for naming and saving the session in your profile.<br>Click on close button to finish this tutorial.</p>
+        </li>
+    </ol>
+
+    <!--help for quiz stats-->
+    <ol id="quiz_stats_help" class="joyRideTipContent">>
+        <li data-id="tab_quiz_stats_content" class="custom tut_quiz tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
+         <h2 i18n-key="i.themesTitle">Quiz Session stats</h2>
+           <p i18n-key="i.walk93">This window offers you stadistics of your Quiz session, if you are offering a session with a simple quiz the stadistics the results will be shown as a circle shape separating every option in a different area.<br> If you are offering a session of multiple-choice you will get the results in a bar graph, you can always go back, close or save the results by clicking in the quiz session tab which is located in upper zone of this windows. Click "close" to finsih this tutorial.</p>
+        </li>
+    </ol>
+
+    <!--help for add excursion-->
+    <ol id="addslides_help" class="joyRideTipContent">
+<li data-id="viewbar" data-text="Close" i18n-key="i.Close" class="addslidestut custom tut_template tut_without_arrow" data-options="tipLocation:none">
+        <h2 i18n-key="i.AddingSlideinto">Adding slides into your excursion</h2>
+        <p i18n-key="i.walk84">In this window you can preview the slides of the excursion that you had already choosen in order to add all or some of the slides into your excursion.This preview offers you some options (at the bottom) which are:</p>
+        <p i18n-key="i.walk85"><img src="/images/tutorial/selectall.png"/>This button will select all the slides in order to add them to your excursion.</p>
+        <p i18n-key="i.walk86"><img src="/images/tutorial/unselectall.png"/>This button will unselect all the slides.</p>
+        <p i18n-key="i.walk87"><img src="/images/tutorial/selectslides.png"/> Also, you can add or remove any slide by clicking the button in the lower center space below the number of the slide.</p>
+        <p i18n-key="i.walk88">Every time you select an slide it will show its border green</p>
+        <p i18n-key="i.walk89">and if you remove it it will show a red border.</p>
+        <p i18n-key="i.walk90">You will know how many slides you are going to add to your excursion by checking the cuantity at the right bottom of the screen.Example: <i style="color: green; font-size: 1.4em">"+4"</i></p>
+        <p i18n-key="i.walk91">If you finished your selection you can finally add your slides to you excursion by click the button "add slides" at the right bottom in the screen. Click on "Close" to finish the tutorial.</p><br>
+        <div class="selectedslidetut"></div><div class="unselectedslidetut"></div>
+        </ol>
+
+    <!-- Copy HTML until here -->
