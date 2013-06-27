@@ -88,3 +88,37 @@
     clear: left
     padding-top: 25px
     width: 100%
+
+@mixin contact-layout
+  margin: 4px 0
+  width: 100%
+  min-height: 76px
+  float: left
+  .avatar
+    width: 50px
+    float: left
+    img
+      @include border-radius(25px)
+  .data
+    display: inline-block
+    margin: 5px 0 0 8px
+    float: left
+    width: 65%
+    .name
+      font-size: 17px
+    .info
+      font-size: 14px
+      z-index: 1
+    a
+      display: inline
+  .x
+    a
+      float: right
+      display: inline-block
+      margin-right: 16px
+      margin-top: -98px
+  .info
+    z-index: 1
+  .add
+    margin-top: 2px
+    width: auto

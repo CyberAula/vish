@@ -38,57 +38,7 @@ header.header
         margin-left: 10px
         margin-right: 13px
 
-  div.search-nav
-    float: left
-    width: 26%
-    @extend hidden-tablet
-    form
-      width: 100%
-      input.search-query
-        width: 100%
-        margin: -2px 0 0 10px
 
-  .search-mobile
-    @extend .hidden-desktop
-    @extend .hidden-tablet
-    float: left
-    margin-top: 0px
-    margin-left: 28px
-    position: absolute
-    z-index: 4
-    width: 80%
-    &:hover
-      z-index: 60
-    .icon_tool16-searcher
-      background-position: -220px -181px
-      background-image: url("icons/tools_ico-16.png")
-      background-repeat: no-repeat
-
-    input
-      &[type="text"]
-        width: 0px !important
-        text-indent: 1px
-        padding: 0 0 0 22px
-        width: 0
-        height: 22px
-        border: 1px solid #eee
-        color: #999
-        line-height: 20px
-        font-weight: bold
-        @include border-radius (6px)
-
-        @include transition (width 0.5s ease-in-out)
-
-        cursor: pointer 
-        padding: 2px 11px
-
-    input
-      &:hover
-        width: 86% !important
-        outline: none
-        @include box-shadow (1px 1px 9px rgba(55,55,55,0.5))
-        cursor: text
-        padding-left: 22px
 
 
   div.add-toolbar

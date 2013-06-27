@@ -1,23 +1,13 @@
 #search
   .advanced-search
-    @include gray-box
-    width: 171px
-    float: left
-    margin: 10px 15px 0 0px
-    padding: 2px 1px
     h4
       text-align: center
     ul
       @include border-bottom-right-radius(13px)
       @include border-bottom-left-radius(13px)
       background: $white
-      margin: 0 1px 0 0
-      padding: 12px 0 3px 17px
       ol
-        margin-left: 15px
         li
-          line-height: 24px
-          padding: 3px 10px
           &:hover
             background: #f9f9f9
             @include border-top-left-radius(13px)
@@ -25,11 +15,3 @@
             a
               color: $red
               text-decoration: none
-
-
-
-  .search
-    width: 76%
-    float: left
-    .tabbable
-      @include header-tabbable-search
