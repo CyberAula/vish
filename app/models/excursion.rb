@@ -69,21 +69,18 @@ class Excursion < ActiveRecord::Base
   end
 
   def generate_scorm_manifest
+    ejson = JSON(self.json)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_55",
+    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + self.id.to_s,
       "version"=>"1.0", 
-      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1.xsd
-                        http://www.adlnet.org/xsd/adlcp_v1p3.xsd
-                        http://www.adlnet.org/xsd/adlnav_v1p3.xsd
-                        http://www.adlnet.org/xsd/adlseq_v1p3.xsd
-                        http://www.imsglobal.org/xsd/imsss_v1p0.xsd
-                        http://ltsc.ieee.org/xsd/LOM/lom.xsd",
+      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3.xsd http://www.imsglobal.org/xsd/imsss_v1p0.xsd http://ltsc.ieee.org/xsd/LOM/lom.xsd",
       "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
       "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
       "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
       "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
       "xmlns:lom"=>"http://ltsc.ieee.org/xsd/LOM/lom.xsd" ) do
+
 
       myxml.metadata() do
         myxml.schema("ADL SCORM");
@@ -91,19 +88,18 @@ class Excursion < ActiveRecord::Base
 
         myxml.lom do
           myxml.general do
-            myxml.identifier("VISH_VIRTUAL_EXCURSION_55");
+            myxml.identifier("VISH_VIRTUAL_EXCURSION_"+ self.id.to_s);
             myxml.title do
-              myxml.langstring("The Iberian Lynx");
+              myxml.langstring(self.title);
             end
-            myxml.language("en");
+            myxml.language(ejson["language"]);
             myxml.description do
-              myxml.langstring("The Iberian Lynx. A Virtual Excursion provided by http://vishub.org.");
+              myxml.langstring(self.title + ". A Virtual Excursion provided by http://vishub.org.");
             end
-            myxml.keyword do
-              myxml.langstring("Science");
-            end
-            myxml.keyword do
-              myxml.langstring("Biology");
+            self.tags.each do |tag|
+              myxml.keyword do
+                myxml.langstring(tag.name.to_s);
+              end
             end
             myxml.structure do
               myxml.source do
@@ -145,17 +141,17 @@ class Excursion < ActiveRecord::Base
                 end
               end
               myxml.centity do
-                myxml.vcard("begin:vcard n:Aldo fn:Gordillo end:vcard");
+                myxml.vcard("begin:vcard\n n:"+self.author.name+"\n fn:\n end:vcard");
               end
               myxml.date do
-                myxml.datetime("20/04/2008");
+                myxml.datetime(self.updated_at.strftime("%d/%m/%y"));
               end
             end
           end
 
           myxml.technical do
             myxml.format("text/html")
-            myxml.location("http://vishub.org/excursions/55");
+            myxml.location("http://vishub.org/excursions/"+self.id.to_s);
             myxml.requirement do
               myxml.type do
                 myxml.source do
@@ -213,7 +209,7 @@ class Excursion < ActiveRecord::Base
               end
             end
             myxml.typicalagerange do
-              myxml.langstring("16-20")
+              myxml.langstring(self.age_min.to_s + "-" + self.age_max.to_s)
             end
             myxml.difficulty do
               myxml.source do
@@ -224,29 +220,54 @@ class Excursion < ActiveRecord::Base
               end
             end
             myxml.typicallearningtime do
-              myxml.duration("PT5M30S")
+              #Inferred
+              # 1 min per slide
+              inferredTPL = (self.slide_count * 1).to_s
+              myxml.duration("PT"+inferredTPL+"M0S")
             end
             myxml.description do
-              myxml.duration("Know about Iberian Lynx")
+              myxml.langstring(ejson["educational_objectives"])
             end
-            myxml.language("en")
+            myxml.language(ejson["language"])
           end
         end
       end
 
 
-      myxml.organizations('default'=>"ITEM") do
+      myxml.organizations('default'=>"ViSH",'structure'=>"hierarchical") do
+        myxml.organization('identifier'=>"ViSH") do
+          myxml.title("Virtual Science Hub");
+          myxml.metadata() do
+            myxml.schema("ADL SCORM");
+            myxml.schemaversion("CAM 1.3");
+            myxml.lom do
+              myxml.general do
+                myxml.identifier("ViSH");
+                myxml.title do
+                  myxml.langstring("Virtual Science Hub");
+                end
+                myxml.description do
+                  myxml.langstring("Virtual Science Hub. http://vishub.org.");
+                end
+              end
+            end
+          end
+          myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + self.id.to_s,'identifierref'=>"VIRTUAL_EXCURSION_" + self.id.to_s + "_RESOURCE") do
+            myxml.title(self.title);
+          end
+        end
       end
 
+
       myxml.resources do         
-        myxml.resource('identifier'=>"RES-" + self.id.to_s, 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
+        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + self.id.to_s + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
           myxml.file('href'=> "excursion.html")
         end
       end
 
     end    
 
-    return myxml 
+    return myxml
   end
 
   def remove_scorm
