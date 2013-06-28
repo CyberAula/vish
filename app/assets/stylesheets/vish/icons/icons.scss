@@ -16,6 +16,22 @@ li{
 
 
 }
+
+[class^="icon_"]:hover, [class*=" navbar-"]:hover {
+  background-image: url("icons/nav/navbar_ico-20.png");
+  background-position:22px 22px;
+  background-color: $red-1;
+  background-repeat:no-repeat no-repeat;
+  display:inline-block;
+  height:22px;
+  width:22px;
+  line-height:22px;
+  vertical-align:text-top;
+  *margin-right: .3em;
+
+
+}
+
 [class^="icon-"]:last-child, [class*="navbar-"]:last-child {
 }
 .iconnav-white {
