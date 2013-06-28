@@ -128,17 +128,39 @@ namespace :vish_editor do
   end
 
   task :buildSCORM do
-    #Copy files to ViSH
+    #Clean SCORM folder
+    system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/*"
+
+    #Copy HTML files to ViSH
     system "cp " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer.full.erb " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
-    # system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/"
-    system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/* " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/"
+    
+    #Create folders
+    system "mkdir -p " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/"
+    system "mkdir -p " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/javascripts/"
+    system "mkdir -p " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/"
+
+    #Copy images
+    system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/images/* " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/"
+    #Remove unused images...
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/logos"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/carrousel"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/toolbar"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/tutorial"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/zonethumbs"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/templatesthumbs"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/excursion_thumbnails"
+    #Remove themes
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/themes/* "
+
+    #Copy JavaScript and CSS files
+    system "cp " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/vishViewer.min.js " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/javascripts/vishViewer.min.js"
+    system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/* " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets"
+    system "rm " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/all/*"
+    system "cp " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/all/vishViewer.css " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/all/vishViewer.css"
     
     #Rewrite paths for SCORM
     system "sed -i 's/vishEditor\\\/images/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
     system "sed -i 's/\\\/vishEditor\\\/images/..\\\/..\\\/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/*/*css"
-
-    #Remove unused files...
-    #TODO
     
     #Copy files to scorm folder in ViSH Editor
     system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/* " + VISH_EDITOR_PATH + "/examples/contents/scorm/"

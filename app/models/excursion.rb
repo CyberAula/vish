@@ -46,6 +46,8 @@ class Excursion < ActiveRecord::Base
       require 'zip/zip'
       require 'zip/zipfilesystem'  
       t = File.open("#{Rails.root}/public/scorm/excursions/#{self.id}.zip", 'w')
+
+      #Generate Manifest and HTML file
       Zip::ZipOutputStream.open(t.path) do |zos|
         xml_manifest = self.generate_scorm_manifest
         zos.put_next_entry("imsmanifest.xml")
@@ -55,8 +57,18 @@ class Excursion < ActiveRecord::Base
         zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>self}, :layout => false  
       end
       
+      #Copy SCORM assets (image, javascript and css files)
       dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
       zip_folder(t.path,dir,nil)
+
+      #Add theme
+      themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
+      theme = "theme1" #Default theme
+      if JSON(self.json)["theme"] and File.exists?(themesPath + JSON(self.json)["theme"])
+        theme = JSON(self.json)["theme"]
+      end
+      #Copy excursion theme
+      zip_folder(t.path,"#{Rails.root}/vendor/plugins/vish_editor/app/assets",themesPath + theme)
 
       t.close
       self.update_column(:scorm_timestamp, Time.now)
