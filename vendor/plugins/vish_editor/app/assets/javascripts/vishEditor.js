@@ -22978,6 +22978,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("div#viewerpreview").show()
     }
     if(is_preview_insertMode) {
+      $("#selectSlidesBar").find("img.addt").attr("src", V.ImagesPath + "templatesthumbs/addt.png");
+      $("#tutorialSelectAllImage").attr("src", V.ImagesPath + "tutorial/selectall.png");
+      $("tutorialUnselectAllImage").attr("src", V.ImagesPath + "tutorial/unselectall.png");
+      $("tutorialSelectSlidesImage").attr("src", V.ImagesPath + "tutorial/selectslides.png");
       $("#selectSlidesBar").show();
       $("#viewbar").css("bottom", $("#selectSlidesBar").height() + "px");
       $("#viewbar").css("border-bottom", "none");
