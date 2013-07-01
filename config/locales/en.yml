@@ -45,6 +45,10 @@ en:
   disjunction:
     or: "or"
   document:
+    body:
+      title1: "Select the type of content that you upload"
+      title2: "Identify your resource"
+    close: "Close"
     document: "document"
     help:
       title: "Uploading resources"
@@ -66,12 +70,15 @@ en:
         addMessage: "Add tags"
         limitMessage: "limit reached"
       age: "Age"
+
+    input: "Add a description here"
+    main_title: "Upload pictures, videos and other resources"
+    new: "Add resource"
     recommended_age: "Recommended age"
     recommended_age_detail: "From %{min} to %{max} years"
-    input: "Add a description here"
-    new: "Add resource"
     screencast: "VISH's screencast"
     title_input: "Name for this resource"
+    upload: "Upload"
   email:
     regards: "Kind regards,<br/>"
     welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"

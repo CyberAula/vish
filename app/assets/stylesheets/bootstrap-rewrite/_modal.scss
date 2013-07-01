@@ -1,0 +1,70 @@
+// .modal-backdrop{
+//   opacity: 0.95;
+//   filter: alpha(opacity=95);
+// }
+
+// .modal-backdrop.fade.in {
+//   opacity: 1;
+// }
+.accordion-group {
+  border: none;
+}
+
+.accordion-heading a{
+  color: $black;
+  font-style: bold;
+  font-weight: 10px;
+}
+.accordion-heading a:hover{
+  text-decoration: none;
+}
+
+ legend {
+   font-size: 16px;
+   font-style: bold;
+   color: $firstColor;
+ }
+
+.modal-body{
+   opacity: 1;
+   background-color: $white;
+   z-index: 500;
+ }
+
+.modal-header h3 {
+  font-style: bold;
+  font-family: Helvetica;
+  color: $white;
+  font-size: 18px;
+}
+.modal-header{
+  background-color: $firstColor;
+  @include border-radius($baseBorderRadius);
+  @include border-bottom-radius(0px);
+}
+
+.btn-primary, .btn-primary:hover {
+color: white;
+text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+background-color: $firstColor;
+background-image: -moz-linear-gradient(top, $red-2, $red-1);
+background-image: -webkit-gradient(linear, 0 0, 0 100%, from($red-2), to($red-1));
+background-image: -webkit-linear-gradient(top, $red-2, $red-1);
+background-image: -o-linear-gradient(top, $red-2, $red-1);
+background-image: linear-gradient(to bottom, $red-2, $red-1);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-2', endColorstr='$red-1', GradientType=0);
+border-color: $red-1 $red-1 $red-2;
+border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+textarea{ 
+  width: 100%; 
+}
+
+ .input-append .btn:last-child {
+  -webkit-border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
+  border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
+  margin-left: -5px;
+ }

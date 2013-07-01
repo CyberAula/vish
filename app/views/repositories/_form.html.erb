@@ -1,0 +1,165 @@
+<!-- Button to trigger modal -->
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Prueba modal</a>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t('document.main_title')%></h3>
+  </div>
+  <div class="modal-body">
+    <p><%= t('document.body.title1')%></p>
+    <!--<label class="radio">
+      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+      Documentos
+    </label>
+    <label class="radio">
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+      Enlaces (URLs)
+    </label>
+    <label class="radio">
+      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+      Embed (Código HTML para completar tu web)
+    </label>-->
+    <div class="accordion" id="accordion2">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+          <i class="icon-folder-open"></i> Documentos
+        </a>
+      </div>
+      <div id="collapseOne" class="accordion-body collapse in">
+        <div class="accordion-inner">
+          <div class="input-append">
+            <input class="input-xlarge" id="appendedInputButtons" type="text">
+            <button class="btn" type="button">buscar...</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+           Enlaces (URLs) 
+        </a>
+      </div>
+      <div id="collapseTwo" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <input class="input-xlarge" type="text" placeholder="Escribe o pega aquí la URL">
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+          Embed (Código HTML)
+        </a>
+      </div>
+      <div id="collapseThree" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <textarea rows="5"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p></p>
+  <p><%= t('document.body.title2')%></p>
+    <!--TITULO-->
+    <legend>Título</legend>
+    <input type="text" placeholder="Añade un título a tu recurso…">
+    
+    <!--DESCRIPCION-->
+    <legend>Descripción</legend>
+    <input type="text" placeholder="Describe el recurso…">
+    
+    <!--TAGS-->
+    <legend>Tags</legend>
+    <!-- Tags preloaded -->
+    <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+    <ul id="preloadTagList" style="display:none">
+      <%@tags.each do |tag| %>
+        <li><%=tag.name%></li>
+      <%end%>
+    </ul>
+    <!-- User tags -->
+    <%@user_tags = current_user.tags%>
+    <ul id="preloadUserTagList" style="display:none">
+      <%@user_tags.each do |tag| %>
+        <li><%=tag.name%></li>
+      <%end%>
+    </ul> 
+    <input type="hidden" name="document[tag_list][]"></input>
+    <div class="tagBoxDocument span">
+      <ul class="tagList"></ul>
+    </div>
+    <div class="clearfloat"></div>
+    <div class="line"></div>
+    <div class="clearfloat"></div>
+
+    
+    <legend>Idioma</legend>
+    <select>
+      <option>(No depende del lenguaje)</option>
+      <option>Deutsch</option>
+      <option>English</option>
+      <option>Español</option>
+      <option>Français</option>
+      <option>Italiano</option>
+      <option>Português</option>
+      <option>Otros</option>
+    </select>
+    
+<!-- Age (With slider) -->
+     
+    <div class="form">
+      <legend><%= t('document.recommended_age')%></legend>   
+      <div class="slider-new">
+        <input type="text" class="age"/>
+        <input type="hidden"  name="document[age_min]"/>
+        <input type="hidden"  name="document[age_max]"/>
+        <div class="slider-new-range position-new">
+          <div class="slider-range"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <a href="#" id="foo" role="button" class="btn">Ayuda</a>
+    <!--<b id="foo" rel="popover">Ayuda </b>-->
+    <button class="btn" data-dismiss="modal" aria-hidden="true"><%= t('document.close')%></button>
+    <button class="btn btn-primary"> <%= t('document.upload')%></button>
+  </div>
+</div>
+
+<%= content_for :javascript do %> 
+    $('#foo').popover({
+    placement : 'left',
+    title : 'Subir recursos',
+    content : '1. Haga click en el tab documentos, enlaces o embed 2. Si desea subir un documento, haga click en el botón browse para seleccionar un archivo. Si su recurso es un enlace o un embed lo puede pegar dentro de la caja de texto'
+    });
+
+    $(document).ready(function() {
+      //////////////
+      //Tags
+      //////////////
+      var tagList = $(".tagList");
+      var tags = [];
+      
+      //Load tags
+      $.each($("#preloadTagList li"), function(index, element) {
+         tags.push($(element).html());
+      });
+              
+      if ($(tagList).children().length == 0){
+        $.each($("#preloadUserTagList li"), function(index, element) {
+           $(tagList).append("<li>" + $(element).html() + "</li>")
+        });
+
+        $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+        watermarkAllowMessage: '<%=t('document.info.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' });
+      } 
+    });
+  <% end %>
