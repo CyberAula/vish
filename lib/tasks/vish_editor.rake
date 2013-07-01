@@ -159,7 +159,7 @@ namespace :vish_editor do
     system "cp " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/all/vishViewer.css " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/all/vishViewer.css"
     
     #Rewrite paths for SCORM
-    system "sed -i 's/vishEditor\\\/images/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
+    system "sed -i 's/\\\/vishEditor\\\/images/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
     system "sed -i 's/\\\/vishEditor\\\/images/..\\\/..\\\/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/*/*css"
     
     #Copy files to scorm folder in ViSH Editor
