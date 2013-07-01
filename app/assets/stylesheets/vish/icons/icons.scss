@@ -3,62 +3,67 @@
 li{
   list-style-type:none}
 
-[class^="icon_"], [class*=" navbar-"] {
+[class^="icon_"], [class*=" icon-"] {
   background-image: url("icons/nav/navbar_ico-20.png");
   background-position:22px 22px;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
-  height:22px;
-  width:22px;
+  height:30px;
+  width:30px;
   line-height:22px;
   vertical-align:text-top;
-  *margin-right: .3em;
+  margin-left: 3px;
+
 
 
 }
 
-[class^="icon_"]:hover, [class*=" navbar-"]:hover {
+[class^="icon_"]:hover, [class*=" icon-"]:hover {
   background-image: url("icons/nav/navbar_ico-20.png");
   background-position:22px 22px;
   background-color: $red-1;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
-  height:22px;
-  width:22px;
+  height:30px;
+  width:30px;
   line-height:22px;
   vertical-align:text-top;
-  *margin-right: .3em;
+  border-radius: 50px
 
 
 }
 
-[class^="icon-"]:last-child, [class*="navbar-"]:last-child {
+[class^="icon-"]:last-child, [class*="icon-"]:last-child {
 }
 .iconnav-white {
   background-image: url("icons/nav/icon_nav.png");
 }
 /* normal*/
-.icon_navbar-home {background-position:0px -52px;}
-.icon_navbar-message {background-position:-32px -52px;}
-.icon_navbar-followers {background-position:-64px -52px;}
-.icon_navbar-notification {background-position:-96px -52px;}
-.icon_navbar-quiz {background-position:-128px -52px;}
-.iconnav-tools {background-position:-128px -52px;}
-.icon_navbar-myroom {background-position:-95px -52px;}
-.icon_navbar-settings {background-position:-168px -50px;}
+.icon_navbar-home {background-position:3px -52px;}
+.icon_navbar-message {background-position:-29px -52px;}
+.icon_navbar-followers {background-position:-61px -52px;}
+.icon_navbar-notification {background-position:-93px -52px;}
+.icon_navbar-quiz {background-position:-125px -52px;}
+.iconnav-tools {background-position:-125px -52px;}
+.icon_navbar-myroom {background-position:-92px -52px;}
+.icon_navbar-settings {background-position:-164px -50px;}
+
+
+
+
 /* alarm*/
 .icon_navbar-notification_message {background-position:-32px -26px;}
 .icon_navbar-notification_followers {background-position:-64px -26px;}
 .icon_navbar-notification_notification {background-position:-96px -26px;}
 .icon_navbar-notification_myroom {background-position:-95px -27px;}
 /* hover*/
-.icon_navbar-home:hover { background-position:0 0;}
-.icon_navbar-message:hover {background-position:-32px 0;}
-.icon_navbar-followers:hover {background-position:-64px 0;}
-.icon_navbar-myroom:hover {background-position:-95px 0;}
-.icon_navbar-quiz:hover {background-position:-129px 0;}
-.icon_navbar-settings:hover {background-position:-168px 2px;}
-.icon_navbar-notification:hover {background-position:-96px 0;}
+.icon_navbar-home:hover { background-position:3px 0;}
+.icon_navbar-message:hover {background-position:-29px 0;}
+.icon_navbar-followers:hover {background-position:-61px 0;}
+.icon_navbar-myroom:hover {background-position:-92px 0;}
+.icon_navbar-quiz:hover {background-position:-126px 0;}
+.icon_navbar-settings:hover {background-position:-165px 2px;}
+.icon_navbar-notification:hover {background-position:-13px 0;}
 
 
 .iconnav-mashme { background-position: 0 -78px ;}
