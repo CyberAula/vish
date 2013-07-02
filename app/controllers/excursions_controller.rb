@@ -197,15 +197,10 @@ class ExcursionsController < ApplicationController
 
   def last_slide
     excursions = []
-    #current_subject.excursion_suggestions(20).each do |ex|
-    Excursion.first(20).each do |ex|
-      #remove my excursions and drafts
-      if ex.author.subject == current_subject || ex.draft
-        next
-      end
+    current_subject.excursion_suggestions(20).each do |ex|
       excursions.push ex.reduced_json(self)
-    end    
-    respond_to do |format|  
+    end
+    respond_to do |format|
       format.json { render :json => excursions.sample(6) }
     end
   end
