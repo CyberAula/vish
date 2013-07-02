@@ -72,9 +72,14 @@ en:
       age: "Age"
 
     input: "Add a description here"
+    leyend:
+      description: "Description"
+      language: "Language"
+      tags: "Tags"
+      title: "Title"
+      recommended_age: "Recommended age"
     main_title: "Upload pictures, videos and other resources"
     new: "Add resource"
-    recommended_age: "Recommended age"
     recommended_age_detail: "From %{min} to %{max} years"
     screencast: "VISH's screencast"
     title_input: "Name for this resource"
