@@ -8208,13 +8208,11 @@ if(!window["YT"]) {
 }
 if(!YT.Player) {
   (function() {
-    var s = "http:" + "//s.ytimg.com/yts/jsbin/www-widgetapi-vfl3iLqI8.js";
     var a = document.createElement("script");
-    a.src = s;
+    a.src = "https:" + "//s.ytimg.com/yts/jsbin/www-widgetapi-vflop0WbJ.js";
     a.async = true;
     var b = document.getElementsByTagName("script")[0];
-    b.parentNode.insertBefore(a, b);
-    YT.embed_template = '<iframe width="425" height="344" src="" frameborder="0" allowfullscreen></iframe>'
+    b.parentNode.insertBefore(a, b)
   })()
 }
 ;(function($) {
@@ -11502,7 +11500,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var fs_button;
   var can_use_nativeFs;
   var embed;
+  var scorm;
   var showViewbar;
+  var isInexternalSite;
+  var isInVishSite;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
@@ -11522,11 +11523,14 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     embed = V.Status.getIsEmbed();
     showViewbar = _defaultViewbar();
     if(options) {
-      if(typeof render_full !== "boolean") {
+      if(typeof render_full != "boolean") {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
       }
-      if(typeof options["preview"] === "boolean") {
+      if(typeof options["preview"] == "boolean") {
         is_preview = options["preview"]
+      }
+      if(typeof options["scorm"] == "boolean") {
+        scorm = options["scorm"]
       }
       close_button = V.Status.getDevice().mobile && !V.Status.getIsInIframe() && options["comeBackUrl"];
       can_use_nativeFs = V.Status.getDevice().features.fullscreen;
@@ -11541,11 +11545,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
       fs_button = fs_button && !embed;
-      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
-        $(".rec-first-row").show()
-      }else {
-        $(".rec-first-row").hide()
-      }
       page_is_fullscreen = render_full && !V.Status.getIsInIframe()
     }else {
       render_full = false;
@@ -11554,8 +11553,11 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       enter_fs_button = false;
       exit_fs_button = false;
       fs_button = false;
-      can_use_nativeFs = false
+      can_use_nativeFs = false;
+      scorm = false
     }
+    isInexternalSite = embed || scorm;
+    isInVishSite = !isInexternalSite && V.Configuration.getConfiguration()["mode"] === V.Constant.VISH;
     is_preview_insertMode = false;
     if(is_preview) {
       var presentation = V.SlideManager.getCurrentPresentation();
@@ -11596,11 +11598,16 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("#viewbar").css("border-bottom", "none");
       V.SlidesSelector.init()
     }
-    if(embed) {
+    if(isInexternalSite) {
       if(options && typeof options.watermarkURL == "string") {
-        $("#embedWatermark").parent().attr("href", options.watermarkURL)
+        $("#embedWatermark").parent().attr("href", options.watermarkURL);
+        $("#embedWatermark").show()
       }
-      $("#embedWatermark").show()
+    }
+    if(isInVishSite || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
+      $(".rec-first-row").show()
+    }else {
+      $(".rec-first-row").hide()
     }
     if(close_button) {
       $("button#closeButton").show()
