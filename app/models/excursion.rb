@@ -114,7 +114,6 @@ class Excursion < ActiveRecord::Base
   end
 
   def scorm_needs_generate
-    return true;
     if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
       return true;
     else
@@ -459,7 +458,7 @@ class Excursion < ActiveRecord::Base
         :title => title,
         :author => author.name,
         :description => description,
-        :image => thumbnail_url ? thumbnail_url : "/assets/logos/original/excursion-00.png",
+        :image => thumbnail_url ? thumbnail_url : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png",
         :views => visit_count,
         :favourites => like_count,
         :number_of_slides => slide_count

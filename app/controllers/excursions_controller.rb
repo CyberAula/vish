@@ -25,7 +25,7 @@ class ExcursionsController < ApplicationController
   before_filter :cors_preflight_check, :only => [ :last_slide]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide]
 
-  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   include SocialStream::Controllers::Objects
   include HomeHelper
 
@@ -258,6 +258,26 @@ class ExcursionsController < ApplicationController
         send_file "#{filePath}", :type => 'application/json', :disposition => 'attachment', :filename => "#{filename}.json"
       }
     end
+  end
+
+  def excursion_thumbnails
+    thumbnails = Hash.new
+    thumbnails["pictures"] = [];
+
+    81.times do |index|
+      index = index+1
+      thumbnail = Hash.new
+      thumbnail["title"] = "Thumbnail " + index.to_s
+      thumbnail["description"] = "Sample Thumbnail"
+      tnumber = index.to_s
+      if index<10
+        tnumber = "0" + tnumber
+      end
+      thumbnail["src"] = Site.current.config[:documents_hostname] + "assets/logos/original/excursion-"+tnumber+".png"
+      thumbnails["pictures"].push(thumbnail)
+    end
+
+    render :json => thumbnails
   end
 
   private
