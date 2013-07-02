@@ -114,6 +114,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def scorm_needs_generate
+    return true;
     if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
       return true;
     else
@@ -452,8 +453,7 @@ class Excursion < ActiveRecord::Base
 
   #method used to return json objects to the recommendation in the last slide
   def reduced_json(controller)
-      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :id=>self.id)
-      
+      excursion_url = controller.excursion_url(:id => self.id)
       { :id => id,
         :url => excursion_url,
         :title => title,

@@ -22,8 +22,8 @@
 		options["full"] = true;
 		options["developping"] = false;
 		options["scorm"] = true;
-		options["watermarkURL"] = "http://" + "<%=request.host_with_port%>" + "<%=excursion_path(@excursion)%>";
-		// options["urlToGetRecommendations"] = "http://localhost:3000/excursions/last_slide.json"
+		options["watermarkURL"] = "<%=excursion_url(@excursion)%>";
+		// options["urlToGetRecommendations"] = "<%=excursion_url(:id => 'last_slide', :format=>'json')%>";
 
 		function start(){
 			var presentation = <%= raw @excursion.json %>;
