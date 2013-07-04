@@ -42,7 +42,7 @@ module RecSys
 
       #remove user excursions and drafts
       excursions.each do |ex|
-        if ex.author.subject == current_subject || ex.draft
+        if (!(defined? current_subject).nil? && ex.author.subject == current_subject) || ex.draft
           next
         end
         rec_excursions.push(ex)

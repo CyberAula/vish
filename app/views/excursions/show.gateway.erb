@@ -39,6 +39,7 @@
 		if(!gateway){
 			return;
 		}
+		document.body.style.height="100%";
 		VISH.IframeAPI.init({preventDefault: true, callback: onConnect});
 		VISH.IframeAPI.registerCallback("onMessage",function(VEMessage,origin){
 			var VEMessageObject = JSON.parse(VEMessage);
