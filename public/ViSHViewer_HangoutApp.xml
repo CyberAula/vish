@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+	<ModulePrefs title="ViSH Viewer">
+		<Require feature="rpc" />
+		<Require feature="views" />
+	</ModulePrefs>
+	<Content type="html"><![CDATA[
+<html>
+<body>
+<script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+<script src="//vishub.org/apis/iframe_api.js"></script>
+
+<iframe class="vishEditorIframe" id="presentation_iframe" src="" width="100%" height="99%" style="border:0; height: 99% !important;" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
+
+<script>
+  window.onload = function(){
+    gapi.hangout.onApiReady.add(function(eventObj) {
+      if (eventObj.isApiReady) {
+        try {
+          gapi.hangout.data.onMessageReceived.add(onMessageReceived);
+          
+          var url;
+          var appData = gadgets.views.getParams()['appData'];
+
+          if(typeof appData == "string"){
+            gapi.hangout.data.setValue('url', appData);
+            url = appData;
+          } else {
+            url = gapi.hangout.data.getValue('url');
+          }
+          
+          var VEiframe = document.getElementById("presentation_iframe");
+          VEiframe.onload = function(){
+            VISH.IframeAPI.init({preventDefault: true, callback: onConnect});
+            VISH.IframeAPI.registerCallback("onMessage",function(VEMessage,origin){
+              var VEMessageObject = JSON.parse(VEMessage);
+              if(typeof VEMessageObject.sent !== "boolean"){
+                VEMessageObject.sent = true;
+                VEMessage = JSON.stringify(VEMessageObject);
+                gapi.hangout.data.sendMessage(VEMessage);
+              }
+            });
+          }
+          VEiframe.src = url;
+        } catch (e) {
+          // console.log(e);
+        }
+      }
+    });
+  };
+
+  /** Get a message from GHangouts.
+   * @param {MessageReceievedEvent} event An event.
+   */
+  function onMessageReceived(event) {
+    try {
+      var data = JSON.parse(event.message);
+      VISH.IframeAPI.sendMessage(event.message,"*");
+    } catch (e) {
+      // console.log(e);
+    }
+  }
+
+  /**
+   * Connect with ViSH Editor instance callback
+   */
+  function onConnect(origin){
+    // console.log("Communication stablished with " + origin);
+  }
+
+</script>
+
+</body>
+
+]]>
+</Content>
+</Module>
