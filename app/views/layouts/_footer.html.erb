@@ -5,10 +5,24 @@
         <%= t('conditions.other') %>
       </li>
 
-      <li>
-         <%= t('help') %>
+      <!--<li>
+         <#%= t('help') %>
       </li>
-
+      -->
+      <li class="btn-group dropup">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="idioma"><%= t('help') %></span>
+          <span class="caret"></span>
+        </button>   
+          <ul class="dropdown-menu">
+              <li class="">
+                <a href="#">Ayuda VISH</a>
+              </li>
+              <li class="">
+                <a href="#">Manual Usuario</a>
+              </li>
+          </ul>
+      </li>
       <li class="btn-group dropup">
         <button data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="idioma"><%= t('lang.title') %></span>

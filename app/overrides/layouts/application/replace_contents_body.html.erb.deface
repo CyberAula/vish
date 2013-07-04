@@ -2,10 +2,9 @@
 
 <%= render :partial => "layouts/header" %>
 <div class="wrapper">
+     <%= flashy %>
 
-  <%= flashy %>
-
-  <%= yield %>
+      <%= yield %>
   <div class="push"></div>
 </div>  
 

@@ -15,14 +15,14 @@
     <div class="accordion-group">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-          <i class="icon-folder-open"></i> Documentos
+          <i class="icon-folder-open"></i> <%= t('document.options.documents')%>
         </a>
       </div>
       <div id="collapseOne" class="accordion-body collapse in">
         <div class="accordion-inner">
           <div class="input-append">
             <input class="small" id="appendedInputButtons" type="text">
-            <button class="btn" type="button">buscar...</button>
+            <button class="btn" type="button"><%= t('document.options.browse')%></button>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
     <div class="accordion-group">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-          Enlaces (URLs) / Embed (Código HTML)
+          <i class="iconLink"></i> <%= t('document.options.links')%> / <i class="iconembed"></i> <%= t('document.options.embed')%> 
         </a>
       </div>
       <div id="collapseTwo" class="accordion-body collapse">
@@ -43,21 +43,21 @@
   </div>
   <p></p>
   <p><%= t('document.body.title2')%></p>
+
     <!--TITULO-->
     <legend><%= t('document.leyend.title')%></legend>
-    <input type="text" placeholder="Añade un título a tu recurso…">
+    <input type="text" placeholder="<%= t('document.title_input')%>">
     
     <!--DESCRIPCION-->
     <legend><%= t('document.leyend.description')%></legend>
-    <input type="text" placeholder="Describe el recurso…">
-    
-    
+    <input type="text" placeholder="<%= t('document.input')%>">
+
     <legend><%= t('document.leyend.tags')%></legend>
    
     
     <legend><%= t('document.leyend.language')%></legend>
     <select>
-      <option>(No depende del lenguaje)</option>
+      <option><%= t('document.language.option1')%></option>
       <option>Deutsch</option>
       <option>English</option>
       <option>Español</option>
@@ -68,23 +68,16 @@
     </select>
     
 <!-- Age (With slider) -->
-     
-    <div class="form">
-      <legend><%= t('document.leyend.recommended_age')%></legend>   
-      <div class="slider-new">
-        <input type="text" class="age"/>
-        <input type="hidden"  name="document[age_min]"/>
-        <input type="hidden"  name="document[age_max]"/>
-        <div class="slider-new-range position-new">
-          <div class="slider-range"></div>
-        </div>
-      </div>
+
+    <div class="form">    
+      <legend><%= t('document.leyend.recommended_age')%></legend>
+        
     </div>
 
   </div>
   <div class="modal-footer">
      <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-     <button class="btn" id="logIn" type="button" rel="popover" data-placement="top" data-original-title="Subir recursos" aria-hidden="true"> ? </button>
+     <button class="btn" id="logIn" type="button" rel="popover" data-placement="top" data-original-title="¿Como subo un recurso?" aria-hidden="true"> ? </button>
       <div id="popover_content_wrapper" style="display: none">
         <div><%= t('document.help.info1_html')%>  <br/>
              <%= t('document.help.info2_html')%>  <br/>
@@ -108,7 +101,6 @@ $(document).ready(function(){
     html : true,
     content: function() {
       return $('#popover_content_wrapper').html();
-
     }
   });
 });
