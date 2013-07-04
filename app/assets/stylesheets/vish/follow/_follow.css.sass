@@ -1,32 +1,22 @@
 .contact
-  
   float: left
-  @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  margin-bottom: 20px
+  @include grid-core-span(2, $gridColumnWidth, $gridGutterWidth)
   .avatar
-    @include center-block()
-    @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    position: relative
     a
-      position: absolute
       img
+        @include center-block()
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         @include border-radius(500px)
-        
-
-    .add
-      position: absolute
-      .following-button
-        background-color: $red-1
-        height: 35px
-        width: 35px
   .data
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     text-align: center
+    float: left
     .name
       a
         color: $black
         font-family: $firstFontFamily
         font-size: $fontSizeLarge
-
       .x
         font-size: 12px
         color: $black
@@ -36,4 +26,45 @@
       font-size: 11px
       color: #777
       font-family: $firstFontFamily
+  .add
+    clear: both
+    text-align: center
+    display: block
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include center-block()
+    color: $white
+
+    form
+      margin: 0px
+      input
+        height: 20px
+        border: 0px none 
+        width: 100px
+        display: block
+        background-color: $blue-1
+        @include border-radius($baseBorderRadius)
+        color: $white
+        @include center-block()
+
+
+    .following-button
+      @include center-block()
+      display: block
+      background-color: $green-vish
+      height: 20px
+      width: 100px
+      @include border-radius($baseBorderRadius)
+    .unfollow-button
+      form
+        margin: 0px
+        input
+          @include center-block()
+          height: 20px
+          border: 0px none 
+          width: 100px
+          display: block
+          background-color: $red-1
+          @include border-radius($baseBorderRadius)
+          color: $white
+
 

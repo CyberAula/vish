@@ -1,0 +1,2 @@
+<!-- replace_contents '.avatar' -->
+<%= link_to(image_tag(contact.receiver.logo.url(:medium)), contact.receiver_subject) %>
