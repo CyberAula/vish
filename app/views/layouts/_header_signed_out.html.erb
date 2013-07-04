@@ -66,7 +66,7 @@
       <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
         <%= f.email_field :email, :id => "username" %>
         <%= f.password_field :password, :id => "password"  %>
-        <%= f.submit t(:sign_in), :class => ' btn btn-primary storePass'%>    
+        <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>    
       <% end %>
       <%= javascript_tag do %>
         $(function() {

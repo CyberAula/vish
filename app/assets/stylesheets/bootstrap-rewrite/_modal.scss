@@ -1,11 +1,20 @@
-// .modal-backdrop{
-//   opacity: 0.95;
-//   filter: alpha(opacity=95);
-// }
+.modal{
+  textarea,
+  input, 
+  {
+    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth);
+  }
+  .small{
+    @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth);
+  }
+  .prueba{
+  float: left;
+  width: 20px;
+  height: 100%;
+  background-color: $black;
+}
 
-// .modal-backdrop.fade.in {
-//   opacity: 1;
-// }
+}
 .accordion-group {
   border: none;
 }
@@ -43,28 +52,74 @@
   @include border-bottom-radius(0px);
 }
 
-.btn-primary, .btn-primary:hover {
-color: white;
-text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+.btn-primary {
+//color: white;
+//text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+background-color: $grayLight;
+background-image: none;
+filter: none;
+//background-image: -moz-linear-gradient(top, $red-2, $red-1);
+//background-image: -webkit-gradient(linear, 0 0, 0 100%, from($red-2), to($red-1));
+//background-image: -webkit-linear-gradient(top, $red-2, $red-1);
+//background-image: -o-linear-gradient(top, $red-2, $red-1);
+//background-image: linear-gradient(to bottom, $red-2, $red-1);
+//background-repeat: repeat-x;
+//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-2', endColorstr='$red-1', GradientType=0);
+//border-color: $red-1 $red-1 $red-2;
+//border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+//filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-primary:hover {
 background-color: $firstColor;
-background-image: -moz-linear-gradient(top, $red-2, $red-1);
-background-image: -webkit-gradient(linear, 0 0, 0 100%, from($red-2), to($red-1));
-background-image: -webkit-linear-gradient(top, $red-2, $red-1);
-background-image: -o-linear-gradient(top, $red-2, $red-1);
-background-image: linear-gradient(to bottom, $red-2, $red-1);
-background-repeat: repeat-x;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-2', endColorstr='$red-1', GradientType=0);
-border-color: $red-1 $red-1 $red-2;
-border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
-
-textarea{ 
-  width: 100%; 
-}
-
  .input-append .btn:last-child {
   -webkit-border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
   border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
   margin-left: -5px;
  }
+
+
+.popover-title {
+  padding: 8px 14px;
+  margin: 0;
+  font-size: 16px;
+  color: $firstColor;
+  font-family: Helvetica;
+  font-weight: bold;
+  line-height: 18px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  -webkit-border-radius: $baseBorderRadius $baseBorderRadius 0 0;
+  -moz-border-radius: $baseBorderRadius $baseBorderRadius 0 0;
+  border-radius: $baseBorderRadius $baseBorderRadius 0 0;
+}
+.popover {
+    background-clip: padding-box;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    max-width: 500px;
+    padding: 1px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    white-space: normal;
+    z-index: 1010;
+}
+
+
+
+
+.popover .arrow, .popover .arrow:after {
+    border-color: transparent;
+    border-style: solid;
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+}
+
+

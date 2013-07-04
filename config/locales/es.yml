@@ -76,9 +76,16 @@ es:
       age: "Edad"
     
     input: "Descripción del recurso"
+    leyend:
+      description: "Descripción"
+      language: "Idioma"
+      tags: "Etiquetas"
+      title: "Título"
+      recommended_age: "Edad recomendada"
+
     main_title: "Sube videos, imágenes y otros recursos"
     new: "Añadir recurso"
-    recommended_age: "Edades recomendadas"
+    
     recommended_age_detail: "De %{min} a %{max} años"
     screencast: "Screencast de VISH"
     title_input: "Nombre del recurso"
