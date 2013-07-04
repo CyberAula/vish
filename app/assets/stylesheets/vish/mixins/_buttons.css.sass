@@ -109,3 +109,29 @@
       width: 100%
 
    
+
+
+
+
+@mixin btn-add
+  font-size: 10px
+  .btn-group
+    button
+      @include btn-primary
+      &:hover
+        .caret
+          @include transition (border 1s, color, 1s)
+          border-top-color: $thirdColor  
+          border-bottom-color: $thirdColor  
+          
+        border-top-color: $thirdColor  
+        border-bottom-color: $thirdColor  
+        &:hover
+          border-top-color: $thirdColor  
+          border-bottom-color: $thirdColor  
+
+  .open
+    .btn
+      .caret
+        border-top-color: $thirdColor  
+        border-bottom-color: $thirdColor  

@@ -1,0 +1,39 @@
+.contact
+  
+  float: left
+  @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  .avatar
+    @include center-block()
+    @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    position: relative
+    a
+      position: absolute
+      img
+        @include border-radius(500px)
+        
+
+    .add
+      position: absolute
+      .following-button
+        background-color: $red-1
+        height: 35px
+        width: 35px
+  .data
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    text-align: center
+    .name
+      a
+        color: $black
+        font-family: $firstFontFamily
+        font-size: $fontSizeLarge
+
+      .x
+        font-size: 12px
+        color: $black
+        a
+          text-decoration: none
+    .info
+      font-size: 11px
+      color: #777
+      font-family: $firstFontFamily
+
