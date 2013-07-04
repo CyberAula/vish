@@ -11170,7 +11170,7 @@ VISH.Status = function(V, $, undefined) {
     return _isInIframe
   };
   var getIframe = function() {
-    if(_isInIframe) {
+    if(_isInIframe && !_isAnotherDomain) {
       return window.frameElement
     }else {
       return null
@@ -12076,7 +12076,7 @@ VISH.Messenger.Helper = function(V, undefined) {
   }
   var createMessage = function(VEevent, params, origin, destination) {
     if(!origin) {
-      if(V.Status.getIsInIframe()) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null) {
         origin = V.Status.getIframe().id
       }
     }
@@ -12098,7 +12098,7 @@ VISH.Messenger.Helper = function(V, undefined) {
       if(!VEMessageObject.VEevent) {
         return false
       }
-      if(V.Status.getIsInIframe() && params && params.allowSelfMessages === false) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null && params && params.allowSelfMessages === false) {
         if(VEMessageObject.origin === V.Status.getIframe().id) {
           return false
         }
@@ -12225,7 +12225,9 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
             _initListener();
             if(V.Status.getIsInIframe()) {
               var helloEcho = JSON.parse(VEMessage);
-              helloEcho.origin = V.Status.getIframe().id;
+              if(V.Status.getIframe() != null) {
+                helloEcho.origin = V.Status.getIframe().id
+              }
               VEMessage = JSON.stringify(helloEcho)
             }
             _sendMessage(VEMessage)

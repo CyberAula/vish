@@ -22,10 +22,10 @@ class ExcursionsController < ApplicationController
   before_filter :hack_auth, :only => [ :new, :create]
 
   # Enable CORS for last_slide method (http://www.tsheffler.com/blog/?p=428)
-  before_filter :cors_preflight_check, :only => [ :last_slide]
-  after_filter :cors_set_access_control_headers, :only => [ :last_slide]
+  before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
+  after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
 
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   include SocialStream::Controllers::Objects
   include HomeHelper
 
@@ -202,6 +202,16 @@ class ExcursionsController < ApplicationController
     end
     respond_to do |format|
       format.json { render :json => excursions.sample(6) }
+    end
+  end
+
+  def iframe_api
+    respond_to do |format|
+      format.js {
+        render :file => "#{Rails.root}/vendor/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
+          :content_type => 'application/javascript',
+          :layout => false
+      }
     end
   end
 

@@ -10830,7 +10830,7 @@ VISH.Status = function(V, $, undefined) {
     return _isInIframe
   };
   var getIframe = function() {
-    if(_isInIframe) {
+    if(_isInIframe && !_isAnotherDomain) {
       return window.frameElement
     }else {
       return null
@@ -15658,7 +15658,9 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
             _initListener();
             if(V.Status.getIsInIframe()) {
               var helloEcho = JSON.parse(VEMessage);
-              helloEcho.origin = V.Status.getIframe().id;
+              if(V.Status.getIframe() != null) {
+                helloEcho.origin = V.Status.getIframe().id
+              }
               VEMessage = JSON.stringify(helloEcho)
             }
             _sendMessage(VEMessage)
@@ -17183,6 +17185,9 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, listImages:listImages, addImage:addImage}
 }(VISH, jQuery);
+VISH.Editor.Image.LRE = function(V, $, undefined) {
+  return{init:init}
+}(VISH, jQuery);
 VISH.Editor.Image.Repository = function(V, $, undefined) {
   var carrouselDivId = "tab_pic_repo_content_carrousel";
   var previewDivId = "tab_pic_repo_content_preview";
@@ -17252,6 +17257,47 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
+VISH.Editor.LRE = function(V, $, undefined) {
+  var LIMIT = 20;
+  var VISH_LRE_URL = "";
+  var init = function(options) {
+    if(options["urlToSearchLRE"]) {
+      VISH_LRE_URL = options["urlToSearchLRE"]
+    }
+  };
+  var _searchLRE = function(terms, lrt, language, maxage, minage, limit, successCallback, failCallback) {
+    var query = "";
+    if(terms.length == 0) {
+      failCallback("Search terms can\u00b4t be blank")
+    }
+    for(var i = 0;i < terms.length;i++) {
+      query += "((content[" + terms[i] + "))"
+    }
+    if(lrt) {
+      query += "((lrt[" + lrt + "]))"
+    }
+    if(language) {
+      query += "((lolanguage[" + language + "]))"
+    }
+    if(maxage) {
+      query += "((maxage[" + maxage + "]))"
+    }
+    if(minage) {
+      query += "((minage[" + minage + "]))"
+    }
+    $.ajax({type:"GET", url:VISH_LRE_URL + "?cnf=" + query + "&limit=" + limit, dataType:"html", success:function(response) {
+      if(typeof successCallback == "function") {
+        var resp = JSON.parse(response);
+        successCallback(resp)
+      }
+    }, error:function(xhr, ajaxOptions, thrownError) {
+      if(typeof failCallback == "function") {
+        failCallback()
+      }
+    }})
+  };
+  return{_searchLRE:_searchLRE}
+}(VISH, jQuery);
 VISH.Editor.MenuTablet = function(V, $, undefined) {
   var init = function() {
     $(".menu_option_main").click(function(event) {
@@ -17303,6 +17349,9 @@ VISH.Editor.Object.Flash = function(V, $, undefined) {
     $("#" + idToDrag).draggable({cursor:"move"})
   };
   return{drawFlashObjectWithSource:drawFlashObjectWithSource}
+}(VISH, jQuery);
+VISH.Editor.Object.LRE = function(V, $, undefined) {
+  return{init:init}
 }(VISH, jQuery);
 VISH.Editor.Object.Live = function(V, $, undefined) {
   var carrouselDivId = "tab_live_webcam_content_carrousel";
@@ -19331,6 +19380,9 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   };
   return{init:init, drawVideoWithUrl:drawVideoWithUrl, drawVideo:drawVideo, renderVideoFromSources:renderVideoFromSources}
 }(VISH, jQuery);
+VISH.Editor.Video.LRE = function(V, $, undefined) {
+  return{init:init}
+}(VISH, jQuery);
 VISH.Editor.Video.Repository = function(V, $, undefined) {
   var carrouselDivId = "tab_video_repo_content_carrousel";
   var previewDivId = "tab_video_repo_content_preview";
@@ -20567,7 +20619,7 @@ VISH.Messenger.Helper = function(V, undefined) {
   }
   var createMessage = function(VEevent, params, origin, destination) {
     if(!origin) {
-      if(V.Status.getIsInIframe()) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null) {
         origin = V.Status.getIframe().id
       }
     }
@@ -20589,7 +20641,7 @@ VISH.Messenger.Helper = function(V, undefined) {
       if(!VEMessageObject.VEevent) {
         return false
       }
-      if(V.Status.getIsInIframe() && params && params.allowSelfMessages === false) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null && params && params.allowSelfMessages === false) {
         if(VEMessageObject.origin === V.Status.getIframe().id) {
           return false
         }

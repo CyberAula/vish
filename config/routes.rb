@@ -27,6 +27,8 @@ Vish::Application.routes.draw do
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
 
+  match '/apis/iframe_api' => 'excursions#iframe_api'
+
   match 'excursions/preview' => 'excursions#preview'
 
   match 'excursions/:id/clone' => 'excursions#clone'
