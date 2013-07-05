@@ -1,0 +1,12 @@
+<section id="show_excursions">
+	<div class="visor"></div>
+	<div class="activity"></div>
+	<div class="recomended_excursion">
+		<ul class="excursions">
+		  <% 10.times do %>
+		    <%= render partial: 'excursions/excursion' %>
+		  <% end %>
+		</ul>
+	</div>
+	<div class="activities_excursion"></div>
+</section>
