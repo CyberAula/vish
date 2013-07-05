@@ -1,11 +1,14 @@
 begin
-  $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) if ENV['rvm_path']
   require "rvm/capistrano"
+  #to deploy in production
+  set :rvm_type, :system
+  #to deploy in test
+  #set :rvm_type, :user
 rescue LoadError
   puts 'WARNING: RVM not found in your machine, falling back to hardcoded paths'
   set :default_environment, {
     'PATH' => "/usr/share/ruby-rvm/gems/ruby-1.9.3-p125/bin:/usr/share/ruby-rvm/gems/ruby-1.9.3-p125@global/bin:/usr/share/ruby-rvm/rubies/ruby-1.9.3-p125/bin:/usr/share/ruby-rvm/bin:$PATH",
-    'RUBY_VERSION' => 'ruby-1.9.3-p125',
+    'RUBY_VERSION' => 'ruby-1.9.3-p429',
     'GEM_HOME'     => '/usr/share/ruby-rvm/gems/ruby-1.9.3-p125',
     'GEM_PATH'     => '/usr/share/ruby-rvm/gems/ruby-1.9.3-p125:/usr/share/ruby-rvm/gems/ruby-1.9.3-p125@global',
     'BUNDLE_PATH'  => '/usr/share/ruby-rvm/gems/ruby-1.9.3-p125:/usr/share/ruby-rvm/gems/ruby-1.9.3-p125@global'  # If you are using bundler.
@@ -16,7 +19,7 @@ require "bundler/capistrano"
 
 # Where we get the app from and all...
 set :scm, :git
-set :repository,  "git://github.com/ging/vish.git"
+set :repository,  "git@github.com:ging/vish.git"
 
 # Some options
 default_run_options[:pty] = true
@@ -24,16 +27,25 @@ ssh_options[:forward_agent] = true
 
 # Servers to deploy to
 set :application, "vish"
-set :user, "TYPE_YOUR_USERNAME_HERE"
-role :web, "TYPE_YOUR_WEB_HOSTNAME_HERE" # Your HTTP server, Apache/etc
-role :app, "TYPE_YOUR_APP_HOSTNAME_HERE" # This may be the same as your `Web` server
-role :db,  "TYPE_YOUR_DB_HOSTNAME_HERE", :primary => true # This is where Rails migrations will run
+set :user, "isabel"
+
+if ENV['DEPLOY'] == 'production'
+  puts "WARNING: Deploying to production!!!"
+  role :web, "vishub.global.dit.upm.es" # Your HTTP server, Apache/etc
+  role :app, "vishub.global.dit.upm.es" # This may be the same as your `Web` server
+  role :db,  "vishub.global.dit.upm.es", :primary => true # This is where Rails migrations will run
+else
+  role :web, "vishub-test.dit.upm.es" # Your HTTP server, Apache/etc
+  role :app, "vishub-test.dit.upm.es" # This may be the same as your `Web` server
+  role :db,  "vishub-test.dit.upm.es", :primary => true # This is where Rails migrations will run
+end
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
 after 'deploy:update_code', 'deploy:fix_file_permissions'
-after 'deploy:update_code', 'deploy:link_files'
+#after 'deploy:update_code', 'deploy:link_files'
+before 'deploy:assets:precompile', 'deploy:link_files'
 before 'deploy:restart', 'deploy:start_sphinx'
 after  'deploy:start_sphinx', 'deploy:fix_sphinx_file_permissions'
 #after 'deploy:restart', 'deploy:stop_workers'
@@ -53,17 +65,20 @@ namespace(:deploy) do
     run "#{try_sudo} touch #{ release_path }/log/production.log"
     run "#{try_sudo} /bin/chmod 666 #{ release_path }/log/production.log"
 
-    # TMP
+   # TMP
     run "/bin/chmod -R g+w #{ release_path }/tmp"
     sudo "/bin/chgrp -R www-data #{ release_path }/tmp"
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/json"
-
+    
     # config.ru
     sudo "/bin/chown www-data #{ release_path }/config.ru"
+
+    #scorm
+    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/scorm"
   end
 
   task :link_files do
-    run "ln -s #{ shared_path}/documents #{ release_path }"
+    run "ln -s #{ shared_path}/documents #{ release_path }/"
     run "ln -s #{ shared_path}/database.yml #{ release_path }/config"
     run "ln -s #{ shared_path}/exception_notification.rb #{ release_path }/config/initializers"
     run "ln -s #{ shared_path}/social_stream-ostatus.rb #{ release_path }/config/initializers"

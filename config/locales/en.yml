@@ -188,6 +188,7 @@ en:
     go: "Go to link"
   lre:
     data_error: "There was an error and the data server responded with a code %{code}"
+    json_error: "There was an error with the returned contents, try with another search terms"
     search_error: "There was an error and the search server responded with a code %{code}"
   translate:
     change: "Change language"

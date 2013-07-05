@@ -44,7 +44,7 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
-  match 'lre/search' => 'lre#search'
+  match 'lre/search' => 'lre#search_lre'
 
   resources :excursions
   resources :slides
