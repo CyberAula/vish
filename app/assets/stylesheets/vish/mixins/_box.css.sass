@@ -12,6 +12,11 @@
   @include border-bottom-right-radius(15px)
   @include border-bottom-left-radius(15px)
 
+@mixin excursion-box-small
+  border: 1px solid #C0C0C0
+  @include border-right-radius($baseBorderRadius)
+  @include border-bottom-left-radius(0px)
+
 @mixin badge-grid
   position: absolute
   margin-left: 102px
