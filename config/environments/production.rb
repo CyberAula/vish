@@ -14,11 +14,11 @@ Vish::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
-  if Rails.env == "production" and Site.current.config[:documents_hostname] == "http://vishub.org/"
+  if ENV['VISH_TEST']
     # Don't fallback to assets pipeline if a precompiled asset is missed
-    config.assets.compile = true
-  else
     config.assets.compile = false
+  else
+    config.assets.compile = true
   end
 
   # Generate digests for assets URLs
