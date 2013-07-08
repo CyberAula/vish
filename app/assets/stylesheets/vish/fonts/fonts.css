@@ -2,11 +2,14 @@
 
 @font-face{
   font-family:"OpenSans";
-  src: url(vish/fonts/opensans/opensans-regular.ttf);
-  src: url(vish/fonts/opensans/opensans-regular-webfont.eot);
-  src: url(vish/fonts/opensans/opensans-regular-webfont.woff);
-  src: url(vish/fonts/opensans/opensans-regular-webfont.svg);
+  src: url(vish/fonts/opensans/opensans-Regular.ttf);
 }
+
+@font-face{
+  font-family:"OpenSansBold";
+  src: url(vish/fonts/opensans/opensans-Semibold.ttf);
+}
+
 @font-face{
   font-family:"OpenSansLight";
   src: url(vish/fonts/opensans/OpenSans-Light.ttf);

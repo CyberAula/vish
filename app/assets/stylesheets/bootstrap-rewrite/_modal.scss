@@ -12,8 +12,12 @@
   width: 20px;
   height: 100%;
   background-color: $black;
+  }  
 }
-
+legend {
+  font-size: 16px;
+  
+  color: $secondColor;
 }
 .accordion-group {
   border: none;
@@ -28,11 +32,7 @@
   text-decoration: none;
 }
 
- legend {
-   font-size: 16px;
-   font-style: bold;
-   color: $firstColor;
- }
+ 
 
 .modal-body{
    opacity: 1;
@@ -47,7 +47,7 @@
   font-size: 18px;
 }
 .modal-header{
-  background-color: $firstColor;
+  background-color: $secondColor;
   @include border-radius($baseBorderRadius);
   @include border-bottom-radius(0px);
 }
