@@ -19,8 +19,20 @@ footer.container-fluid
           width: 30px
       li.dropup
         .dropdown-menu
+          margin-bottom: 10px
+          border-radius: $baseBorderRadius
           min-width: 122px
-          background-color: rgba(255, 255, 255, .7)
+          //background-color: rgba(255, 255, 255, .7)
+          li
+            a
+              &:hover
+                background: $firstColor
+                color: $white
+                border-radius: 0 $baseBorderRadius $baseBorderRadius 0
+                width: 60%
+                align-self: center
+
+
           li.languaje
             display: block
             padding: 0
@@ -31,4 +43,5 @@ footer.container-fluid
               width: 25px
               margin-right: 5px
               height: 20px
-              background-color: black
+              background-color: $firstColor
+          

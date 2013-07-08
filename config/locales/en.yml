@@ -52,7 +52,7 @@ en:
     document: "document"
     help:
       title: "Uploading resources"
-      info1_html: "1. Click on <b>documents</b>, <b>links</b> or <b>embed</b> tab.<br>"
+      info1_html: "1. Click on <b>documents</b> or <b>links</b> / <b>embed</b> option.<br>"
       info2_html: "2. If you want to upload a document, click on <b>browse</b> to choose a file from your computer. If your resource is a link or embed, you can <b>paste</b> it into the text box.<br>"
       info3_html: "3. Type a <b>title</b> and <b>description</b>.<br>"
       info4_html: "4. Add related <b>tags</b> to your resource. Your areas of interest have been assigned by default. However, you can delete them or add new tags.<br>"
@@ -72,6 +72,8 @@ en:
       age: "Age"
 
     input: "Add a description here"
+    language:
+      option1: "(Not depends on the language)"
     leyend:
       description: "Description"
       language: "Language"
@@ -80,6 +82,11 @@ en:
       recommended_age: "Recommended age"
     main_title: "Upload pictures, videos and other resources"
     new: "Add resource"
+    options:
+      documents: "Documents"
+      embed: "Embed (HTML code)"
+      links: "Links (URLs)"
+      browse: "Browse"
     recommended_age_detail: "From %{min} to %{max} years"
     screencast: "VISH's screencast"
     title_input: "Name for this resource"
@@ -262,7 +269,7 @@ en:
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"
-  project: "Global Excursion"      
+  project: "GLOBAL EXCURSION"      
   published: "Published"
   quiz:
     answer:

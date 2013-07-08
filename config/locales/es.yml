@@ -57,8 +57,8 @@ es:
     document: "documento"
     help:
       title: "Subir recursos"
-      info1_html: "1. Haga click en el tab <b>documentos</b>, <b>enlaces</b> o <b>embed</b>.<br>"
-      info2_html: "2. Si desea subir un documento, haga click en el botón <b>browse</b> para seleccionar un archivo. Si su recurso es un enlace o un embed lo puede <b>pegar</b> dentro de la caja de texto.<br>"
+      info1_html: "1. Haga click en la opción <b>documentos</b> o <b>enlaces</b> / <b>embed</b>.<br>"
+      info2_html: "2. Si desea subir un documento, haga click en el botón <b>buscar</b> para seleccionar un archivo. Si su recurso es un enlace o un embed lo puede <b>pegar</b> dentro de la caja de texto.<br>"
       info3_html: "3. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
       info4_html: "4. Añada <b>tags</b> relacionados a su recurso. Sus áreas de interés han sido asignadas por defecto. Sin embargo, puede borrarlas o añadir unas nuevas.<br>"
       info5_html: "5. Seleccione el <b>idioma</b>, si lo considera necesario.<br>"
@@ -76,6 +76,8 @@ es:
       age: "Edad"
     
     input: "Descripción del recurso"
+    language:
+      option1: "(No depende del lenguaje)"
     leyend:
       description: "Descripción"
       language: "Idioma"
@@ -84,11 +86,15 @@ es:
       recommended_age: "Edad recomendada"
 
     main_title: "Sube videos, imágenes y otros recursos"
-    new: "Añadir recurso"
-    
+    new: "Añadir recurso" 
+    options:
+      documents: "Documentos"
+      embed: "Embed (Código HTML)"
+      links: "Enlaces (URLs)"
+      browse: "Buscar"
     recommended_age_detail: "De %{min} a %{max} años"
     screencast: "Screencast de VISH"
-    title_input: "Nombre del recurso"
+    title_input: "Ponle título al recurso"
     upload: "Subir"
   email:
     regards: "Un cordial saludo,<br/>"
@@ -266,7 +272,7 @@ es:
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
-  project: "Global Excursion"      
+  project: "EXCURSIÓN GLOBAL"      
   published: "Publicados"
   quiz:
     answer:
