@@ -11,6 +11,8 @@
 <!-- <script src="//vishub.org/apis/iframe_api.js"></script> -->
 
 
+<script>
+
 /*
  * VISH Iframe Messenger API
  * Provides an API that allows web applications to communicate with Vish Editor
@@ -387,6 +389,7 @@ VISH.IframeAPI = (function(V,undefined){
 
 }) (VISH);
 
+</script>
 <!-- END: VISH EDITOR IFRAME API -->
 
 
