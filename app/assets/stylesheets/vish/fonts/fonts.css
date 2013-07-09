@@ -2,12 +2,12 @@
 
 @font-face{
   font-family:"OpenSans";
-  src: url(vish/fonts/opensans/opensans-Regular.ttf);
+  src: url(vish/fonts/opensans/OpenSans-Regular.ttf);
 }
 
 @font-face{
   font-family:"OpenSansBold";
-  src: url(vish/fonts/opensans/opensans-Semibold.ttf);
+  src: url(vish/fonts/opensans/OpenSans-Semibold.ttf);
 }
 
 @font-face{

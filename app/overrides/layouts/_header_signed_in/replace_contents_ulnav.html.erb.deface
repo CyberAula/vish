@@ -5,8 +5,8 @@
 	    <i class="icontool16-tool16_add"></i>
 	    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 	      <li><a tabindex="-1" href="#">Add Excursion</a></li>
-	      <li><a tabindex="-1" href="#">Add Category</a></li>
-	      <li><a tabindex="-1" href="#">Add Event</a></li>
+	      <li><a href="#AddCategory" data-toggle="modal">Add Category</a></li>
+	      <!--<li><a tabindex="-1" href="#">Add Event</a></li>-->
 	      <li><a href="#AddResource" data-toggle="modal">Add Resource</a></li>
 	    </ul>
 	  </div>
@@ -21,5 +21,6 @@
 <li> 
   <%= render partial: 'layouts/header_dropdown_menu' %>
 </li>
-
+<!-- carga de modales -->
 <%= render partial: 'repositories/form' %>
+<%= render partial: 'categories/form' %>

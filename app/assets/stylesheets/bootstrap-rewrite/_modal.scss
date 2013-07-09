@@ -16,8 +16,8 @@
 }
 legend {
   font-size: 16px;
-  
-  color: $secondColor;
+  font-family: $secondFontFamily;
+  color: $firstColor;
 }
 .accordion-group {
   border: none;
@@ -33,21 +33,22 @@ legend {
 }
 
  
-
 .modal-body{
    opacity: 1;
    background-color: $white;
+   color: $grayLight;
    z-index: 500;
  }
 
 .modal-header h3 {
-  font-style: bold;
-  font-family: Helvetica;
-  color: $white;
+  
+  font-family: $thirdFontFamily;
+  color: $firstColor;
   font-size: 18px;
 }
 .modal-header{
-  background-color: $secondColor;
+  background-color: $grayLighter;
+
   @include border-radius($baseBorderRadius);
   @include border-bottom-radius(0px);
 }

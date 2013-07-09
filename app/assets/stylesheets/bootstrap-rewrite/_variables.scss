@@ -69,8 +69,8 @@ $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
 $firstFontFamily:       "OpenSansLight";
-$secondFontFamily:      "OpenSansBold";
-$thirdFontFamily:       "DsignesBold";
+$secondFontFamily:      "OpenSans";
+$thirdFontFamily:       "OpenSansBold";
 
 $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
@@ -144,7 +144,7 @@ $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8p
 // Forms
 // ----------------------new
 
-$inputBorderRadius:             15px;
+$inputBorderRadius:             5px;
 
 $inputFrontPage:                156px;
 $inputFormulate:                240px;
