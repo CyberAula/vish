@@ -7,7 +7,7 @@
 	      <li><a tabindex="-1" href="#">Add Excursion</a></li>
 	      <li><a tabindex="-1" href="#">Add Category</a></li>
 	      <li><a tabindex="-1" href="#">Add Event</a></li>
-	      <li><a tabindex="-1" href="#">Add Resource</a></li>
+	      <li><a href="#AddResource" data-toggle="modal">Add Resource</a></li>
 	    </ul>
 	  </div>
 	</a>
