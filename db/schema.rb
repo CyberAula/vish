@@ -287,15 +287,6 @@ ActiveRecord::Schema.define(:version => 20130709155010) do
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
 
-  create_table "pdfexes", :force => true do |t|
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "attach_file_name"
-    t.string   "attach_content_type"
-    t.integer  "attach_file_size"
-    t.datetime "attach_updated_at"
-  end
-
   create_table "permissions", :force => true do |t|
     t.string   "action"
     t.string   "object"

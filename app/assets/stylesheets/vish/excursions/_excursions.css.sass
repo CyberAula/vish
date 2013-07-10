@@ -1,3 +1,106 @@
+#excursions
+  ul.excursions
+    li.excursions-item
+      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include excursion-box
+      float: left
+      list-style: none
+      margin-left: 1.4%
+      margin-top: 20px
+      .badges
+        display: none
+        @include badge-grid
+      .info
+        padding: 5px 5px 0 5px
+        h5.name
+          font-family: $secondFontFamily
+          color: $gray
+          margin: 0
+          a
+            color: $gray
+
+          a
+            img
+              width: 10px
+              margin-top: -2px
+        .views
+          float: right
+          margin: -4px 0 -3px 0
+          h5.name
+            margin: 0 0 5px 0
+            line-height: 18px
+            @include ellipsis
+            a
+              float: left
+              line-height: 17px
+          
+
+      .info-bottom
+        font-family: $firstFontFamily
+        clear: both
+        hr
+          margin: 0
+        .soften
+          margin-bottom: 1px
+        .author
+          content: "by"
+
+          margin: 1px 0 2px 0
+          font-size: 13px
+          a
+            @include ellipsis
+            width: 56%
+            display: initial
+
+          .like
+            float: right
+            font-size: 12px
+            span
+              color: $green
+              display: inline
+            a
+              width: 30px
+              img
+                width: 10px
+                margin-top: -2px
+        .date,
+        .category
+          float: right
+          font-size: 12px
+        .date
+          color: $green
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #show_excursions
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   .visor
@@ -70,6 +173,6 @@
           font-family: $firstFontFamily
           width: 70%
           hr
-            display: none
+
 
 
