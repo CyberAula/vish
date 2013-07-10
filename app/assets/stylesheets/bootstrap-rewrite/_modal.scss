@@ -53,34 +53,29 @@ legend {
   @include border-bottom-radius(0px);
 }
 
-.btn-primary:focus {
+.btn-group.open .btn-primary.dropdown-toggle{
+  background-color: $firstColor;  
+}
+.btn-primary{
   background-color: $firstColor;
+  background-image: none;
+  filter: none;
+  font-family: $secondFontFamily;
+
+  &:hover{
+    background-color: $firstColor;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-2', endColorstr='$red-1', GradientType=0); 
+  }
+  &:focus{
+    background-color: $firstColor;  
+  }
 }
-.btn-primary {
-//color: white;
-//text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-background-color: $grayLight;
-background-image: none;
-filter: none;
-//background-image: -moz-linear-gradient(top, $red-2, $red-1);
-//background-image: -webkit-gradient(linear, 0 0, 0 100%, from($red-2), to($red-1));
-//background-image: -webkit-linear-gradient(top, $red-2, $red-1);
-//background-image: -o-linear-gradient(top, $red-2, $red-1);
-//background-image: linear-gradient(to bottom, $red-2, $red-1);
-//background-repeat: repeat-x;
-//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-2', endColorstr='$red-1', GradientType=0);
-//border-color: $red-1 $red-1 $red-2;
-//border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-//filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
-.btn-primary:hover {
-background-color: $firstColor;
-}
- .input-append .btn:last-child {
+
+.input-append .btn:last-child {
   -webkit-border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
   border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
   margin-left: -5px;
- }
+}
 
 
 .popover-title {
