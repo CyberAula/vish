@@ -32,6 +32,14 @@ es:
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
   author: "autor"
   cancel: "Cancelar"
+  categories:
+    input: "Añade una descripción"
+    leyend:
+      title: "Título"
+      description: "Descripción"
+    main_title: "Crea nuevas categorías y organiza tus visitas virtuales"  
+    title_input: "Dale un nombre a tu categoría"
+    save: "Guardar"
   close: "Cerrar"
   conditions:
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
@@ -200,7 +208,7 @@ es:
     lifesciences: "ciencias naturales"
     biotechnology: "biotecnología"
   help: "ayuda"
-  help_page: "ayuda de ViSH"
+  help_page: "AYUDA DE ViSH"
   help_manual: "Descargar el manual de usuario"
   lang:
     independent: "No depende del lenguaje"
@@ -272,7 +280,7 @@ es:
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
-  project: "EXCURSIÓN GLOBAL"      
+  project: "Excursión Global"      
   published: "Publicados"
   quiz:
     answer:
@@ -367,10 +375,11 @@ es:
     other: "usuarios"
   username: "usuario"
   vish:
-    about: "Acerca de VISH"    
-    sentence1: "Crea tu cuenta con VISH"
-    sentence2: "VISH es una plataforma social de ciencia"
-    team: "El equipo de VISH"    
+    about: "Acerca de ViSH"    
+    sentence1: "Crea tu cuenta con ViSH"
+    sentence2: "ViSH es una plataforma social de ciencia"
+    team: "El equipo de ViSH"  
+    starterguide: "Guía del principiante"    
   views:
     pagination:
       next: "»"

@@ -24,7 +24,7 @@
       <li><a href="#">Perfil</a></li>
       <li><a href="#" data-toggle="modal">Ajustes</a></li>
       <li class="divider"></li>
-      <li><a href="#" data-toggle="modal">log-out</a></li>  
+      <li><a href="#" data-toggle="modal">cerrar sesión</a></li>  
     </ul>
  
   <#% end %>

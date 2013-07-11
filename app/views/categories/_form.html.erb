@@ -1,22 +1,39 @@
 <!-- Button to trigger modal --> 
 <!-- Modal Categories-->
 <div id="AddCategory" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel" aria-hidden="true">
+
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3 id="AddCategoryLabel"><%= t('document.main_title')%></h3>
+    <h3 id="AddCategoryLabel"><%= t('categories.main_title')%></h3>
   </div>
-  <div class="modal-body">
 
+  <div class="modal-body">
     <!--TITULO-->
-    <legend><%= t('document.leyend.title')%></legend>
-    <input type="text" placeholder="<%= t('document.title_input')%>">
+    <legend><%= t('categories.leyend.title')%></legend>
+    <input type="text" placeholder="<%= t('categories.title_input')%>">
     
     <!--DESCRIPCION-->
-    <legend><%= t('document.leyend.description')%></legend>
-    <input type="text" placeholder="<%= t('document.input')%>">
-   
+    <legend><%= t('categories.leyend.description')%></legend>
+    <input type="text" placeholder="<%= t('categories.input')%>">
+  </div>
+
+   <div class="modal-footer">
+     <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
+     <button class="btn" id="logIn" type="button" rel="popover" data-placement="top" data-original-title="¿Como creo una categoría?" aria-hidden="true"> ? </button>
+      <div id="popover_content_wrapper" style="display: none">
+        <div><%= t('document.help.info1_html')%>  <br/>
+             <%= t('document.help.info2_html')%>  <br/>
+             <%= t('document.help.info3_html')%>  <br/>
+             <%= t('document.help.info4_html')%>  <br/>
+             <%= t('document.help.info5_html')%>  <br/>
+             <%= t('document.help.info6_html')%>  <br/>
+             <%= t('document.help.info7_html')%>  <br/>
+             <%= t('document.help.info8_html')%></div>
+      </div>
+    <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
+    <!--<b id="foo" rel="popover">Ayuda </b>-->
     
-    <button class="btn btn-primary"> <%= t('document.upload')%></button>
+    <button class="btn btn-primary"> <%= t('categories.save')%></button>
   </div>
 </div>
 <%= content_for :javascript do %> 

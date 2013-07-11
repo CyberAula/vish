@@ -44,14 +44,14 @@ li{
 [class^="icon_"]:hover, [class*=" icon-"]:hover {
   background-image: url("icons/nav/navbar_ico-20.png");
   background-position:22px 22px;
-  background-color: $red-1;
+  //background-color: $red-1;
   background-repeat:no-repeat no-repeat;
   display:inline-block;
   height:30px;
   width:30px;
   line-height:22px;
   vertical-align:text-top;
-  border-radius: 50px
+  //border-radius: 50px
 
 
 }
@@ -80,13 +80,13 @@ li{
 .icon_navbar-notification_notification {background-position:-96px -26px;}
 .icon_navbar-notification_myroom {background-position:-95px -27px;}
 /* hover*/
-.icon_navbar-home:hover { background-position:3px 0;}
-.icon_navbar-message:hover {background-position:-29px 0;}
-.icon_navbar-followers:hover {background-position:-61px 0;}
-.icon_navbar-myroom:hover {background-position:-92px 0;}
-.icon_navbar-quiz:hover {background-position:-165px 0;}
-.icon_navbar-settings:hover {background-position:-126px 2px;}
-.icon_navbar-notification:hover {background-position:-13px 0;}
+.icon_navbar-home:hover { background-position:3px -26px;}
+.icon_navbar-message:hover {background-position:-29px -26px;}
+.icon_navbar-followers:hover {background-position:-61px -26px;}
+.icon_navbar-myroom:hover {background-position:-92px -26px;}
+.icon_navbar-quiz:hover {background-position:-165px -26px;}
+.icon_navbar-settings:hover {background-position:-126px -26px;}
+.icon_navbar-notification:hover {background-position:-13px -26px;}
 
 
 .iconnav-mashme { background-position: 0 -78px ;}

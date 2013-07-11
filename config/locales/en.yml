@@ -31,6 +31,14 @@ en:
     body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
   author: "author"
   cancel: "Cancel"
+  categories:
+    input: "Add a description"
+    leyend:
+      title: "Title"
+      description: "Description"
+    main_title: "Create new categories and organize your tours"
+    title_input: "Name for this category"
+    save: "Save"
   close: "Close"
   conditions:
     check_message: "By clicking Accept, you agree to our "  
@@ -195,7 +203,7 @@ en:
   go:
     repository: "go to repository"
   help: "help"
-  help_page: "ViSH help"
+  help_page: "ViSH HELP"
   help_manual: "Download user manual"
   lang:
     independent: "Language independent"
@@ -269,7 +277,7 @@ en:
     tags:
       default: "VisHub, virtual, excursion"
       other: "Areas of interest"
-  project: "GLOBAL EXCURSION"      
+  project: "Global Excursion"      
   published: "Published"
   quiz:
     answer:
@@ -365,10 +373,11 @@ en:
     other: "users"
   username: "username"
   vish:
-    about: "About VISH"    
-    sentence1: "Create your account with VISH"
-    sentence2: "VISH is a social science platform"
-    team: "The VISH Team"    
+    about: "About ViSH"    
+    sentence1: "Create your account with ViSH"
+    sentence2: "ViSH is a social science platform"
+    team: "The ViSH Team" 
+    starterguide: "Starter Guide"   
   views:
     pagination:
       next: "»"

@@ -38,6 +38,7 @@ header.header
     margin-top: 7px
     margin-bottom: -20px
     border-right: 1px solid rgb(214, 214, 214)
+    
     @extend hidden-phone
     .dropdown
       list-style: none
@@ -46,6 +47,12 @@ header.header
       .caret
         margin-left: 10px
         margin-right: 10px
+    a 
+      color: $gray
+      &:hover
+        color: $black
+        text-decoration: none
+        font-family: $secondFontFamily 
 
   div.add-toolbar
     border-right: 1px solid #ccc
