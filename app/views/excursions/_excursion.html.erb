@@ -1,32 +1,35 @@
 <li class="excursions-item">
-
+<!--Badges-->
   <div class="badges">
     <%= image_tag("badges/badge-bronce.png") %>
   </div>
-
-  <%= link_to image_tag("items/exc-prev.png",  :class=> "" ), "#" %>
+<!--IMG excursuion-->
+  <%= link_to image_tag("items/exc-prev.png",  :class=> "img-excursion" ), "#" %>
+<!--INFO excursuion-->
   <div class="info">
+<!--Title -->
     <h5 class="name">
       <a>
         excursion name excur excursion name sion name   
       </a>
     </h5>
-    <div class="views">
-      <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23"><%= image_tag("icons/eye.png",  :class=> "count" ) %> </a>
-
-       
-    </div>
-
+<!--like -->
+      <div class="like">    
+        <h5 class="count">32</h5>
+        <%= link_to image_tag("icons/likes/star-active.png",  :class=> "" ), "#" %>
+      </div>
+<!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
-      <h5 class="author">
-        by 
+<!--Autor -->
+      <div class="author"> 
         <a>author name</a>   
-       <div class="like">    
-      <h5 class="count">32</h5>
-      <%= link_to image_tag("icons/likes/star-active.png",  :class=> "" ), "#" %>
+      </div>
+<!--views -->
+      <div class="views">2500
+        <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23"><%= image_tag("icons/eye.png",  :class=> "count" ) %> </a>
+      </div>
     </div>
-    </h5>
   </div>
 </li>
 

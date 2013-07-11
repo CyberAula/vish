@@ -1,16 +1,16 @@
-/********fonts**********/
+/************* typography*******/
 
 @font-face{
-  font-family:DsignesBold;
-  src: url(vish/fonts/DsignesBold.ttf);
+  font-family:"OpenSans";
+  src: url(vish/fonts/opensans/OpenSans-Regular.ttf);
 }
 
 @font-face{
-  font-family:DsignesLight;
-  src: url(vish/fonts/DsignesLight.ttf);
+  font-family:"OpenSansBold";
+  src: url(vish/fonts/opensans/OpenSans-Semibold.ttf);
 }
 
 @font-face{
-  font-family:DsignesRegular;
-  src: url(vish/fonts/DsignesRegular.ttf);
+  font-family:"OpenSansLight";
+  src: url(vish/fonts/opensans/OpenSans-Light.ttf);
 }

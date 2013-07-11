@@ -10,7 +10,8 @@ Vish::Application.routes.draw do
   match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
   match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
   match 'qs/:id' => 'quiz_sessions#show'
-
+  match 'help' => 'help#index'
+  match 'legal_notice' => 'legal_notice#index'
   #get 'excursions' => 'excursions#index', :as => :home
 
   

@@ -2,13 +2,28 @@
   <nav class="footercontent">
     <ul>
       <li>
-        <%= t('conditions.other') %>
+        <a href="/legal_notice"><%= t('conditions.other') %></a>     
       </li>
 
       <li>
-         <%= t('help') %>
+        <a href="/help"><%= t('help') %></a> 
       </li>
-
+      
+      <!--<li class="btn-group dropup">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="idioma"><#%= t('help') %></span>
+          <span class="caret"></span>
+        </button>   
+          <ul class="dropdown-menu">
+              <li class="">
+                <a href="/help">Ayuda VISH</a>
+                <!--<<#%= link_to  t('excursion.how'), "/help"%>-->
+             <!-- </li>
+              <li class="">
+                <a href="#">Manual Usuario</a>
+              </li>
+          </ul>
+      </li>-->
       <li class="btn-group dropup">
         <button data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="idioma"><%= t('lang.title') %></span>
@@ -25,7 +40,7 @@
       </li>
 
       <li>
-         user manual 
+         <a href="#">user manual</a> 
       </li>
 
       <li>

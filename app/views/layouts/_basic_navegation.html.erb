@@ -2,7 +2,7 @@
   <%= link_to(raw("<i class='icon_navbar-home'></i> "), excursions_path, :class => "btn-header tooltip-header", :title =>  t('navigation.home'), :rel => 'tooltip') %>
   <%= link_to(raw("<i class='icon_navbar-message" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
  <%= link_to(raw("<i class='icon_navbar-followers'></i> "),
-                  followings_path,
+                  contacts_path,
                   :class => "btn-header tooltip-header",
                   :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
                   :rel => 'tooltip') %>
@@ -29,3 +29,4 @@
     </ul>
   </li>
 </nav>
+

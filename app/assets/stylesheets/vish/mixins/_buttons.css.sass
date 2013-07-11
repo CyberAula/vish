@@ -1,3 +1,7 @@
+@mixin btn-group
+  .open
+    @include btn-primary
+
 @mixin btn-primary
   @include ie7-inline-block()
   @include ie7-restore-left-whitespace()
@@ -32,10 +36,11 @@
     cursor: default
     @include opacity(85)
     background-color: $firstColor
-
+  
+  &.dropdown-toggle
+    background-color: $firstColor 
 
 @mixin btn-secundary
-
   @include gradient-radial($innerColor: $white, $outerColor: #fbf9ff)
   margin-right: 7px
   display: inline-block
@@ -108,4 +113,26 @@
       @include btn-primary
       width: 100%
 
-   
+
+@mixin btn-add
+  font-size: 10px
+  .btn-group
+    button
+      @include btn-primary
+      &:hover
+        .caret
+          @include transition (border 1s, color, 1s)
+          border-top-color: $thirdColor  
+          border-bottom-color: $thirdColor  
+          
+        border-top-color: $thirdColor  
+        border-bottom-color: $thirdColor  
+        &:hover
+          border-top-color: $thirdColor  
+          border-bottom-color: $thirdColor  
+
+  .open
+    .btn
+      .caret
+        border-top-color: $thirdColor  
+        border-bottom-color: $thirdColor  

@@ -43,9 +43,11 @@ $gray-search:           #A1A1A1 ;
 
 // ViSH color
 // -------------------------
-$firstColor:            #ff005d ;
-$secondColor:           #3366ff ;
-$thirdColor :           #40CC7F ;
+//$firstColor:            #ff005d ;
+$firstColor:			#e82365;
+//$secondColor:           #3366ff ;
+$secondColor: 			#007cc8;
+$thirdColor :           #40CC7F;
 
 
 // Scaffolding
@@ -62,21 +64,21 @@ $linkColorHover:        darken($linkColor, 15%) !default;
 
 // Typography
 // -------------------------
-$sansFontFamily:        Helvetica Neue, Helvetica, "Arial", sans-serif !default;
+$sansFontFamily:        "OpenSansLight", Arial, Helvetica Neue, Helvetica, sans-serif !default;
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
-$firstFontFamily:       "DsignesLight";
-$secondFontFamily:      "DsignesRegulaR";
-$thirdFontFamily:       "DsignesBold";
+$firstFontFamily:       "OpenSansLight";
+$secondFontFamily:      "OpenSans";
+$thirdFontFamily:       "OpenSansBold";
 
 $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;
 
-$headingsFontFamily:    $firstFontFamily; // empty to use BS default, $baseFontFamily
-$headingsFontWeight:    normal ;    // instead of browser default, bold
+$headingsFontFamily:    $sansFontFamily; // empty to use BS default, $baseFontFamily
+$headingsFontWeight:    300;    // instead of browser default, bold
 $headingsColor:         $grayLight ; // empty to use BS default, $textColor
 
 
@@ -142,7 +144,7 @@ $inputHeight:                   $baseLineHeight + 10px; // base line-height + 8p
 // Forms
 // ----------------------new
 
-$inputBorderRadius:             15px;
+$inputBorderRadius:             5px;
 
 $inputFrontPage:                156px;
 $inputFormulate:                240px;

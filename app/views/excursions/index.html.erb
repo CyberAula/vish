@@ -4,16 +4,21 @@
       <li><h1>excursions</h1></li>
       <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
       <li><a href="#tab2" data-toggle="tab">mine</a></li>
+      <li><a href="#tab3" data-toggle="tab">examples</a></li>
     </ul>
     <div class="tab-content">
         
       <div class="tab-pane active" id="tab1">
         <%= render partial: 'excursions/excursions' %>
-        <%= render partial: 'repositories/form' %>
+
       </div>
 
       <div class="tab-pane" id="tab2">
         <%= render partial: 'excursions/excursions' %>
+      </div>
+
+      <div class="tab-pane" id="tab3">
+        <%= render partial: 'excursions/show' %>
       </div>
     </ul>
   </div>

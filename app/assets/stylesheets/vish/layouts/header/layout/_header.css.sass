@@ -1,19 +1,28 @@
 header.navbar,
 header.header
-  @include box-shadow (0px -1px 30px rgba(50, 51, 51, 0.15))
+  .nav
+    li
+      a
+        padding-bottom: 4px !important
+        padding-top: 4px !important
+        margin-right: 0px !important
+        img
+          margin-left: -8px !important
+          
+
+  @include box-shadow (0px -1px 10px rgba(50, 51, 51, 0.15))
   @extend .navbar-fixed-top
   display: block
   background-color: #fff
   padding: 10px 10px
   border-bottom: 1px solid #F3F3F3
   height: 34px
+
   .navbar-inner
     box-shadow: none
     background-color: transparent
     background-image: none
     border: none
-
-   
   
   nav.headernav
     float: left
@@ -36,34 +45,27 @@ header.header
         padding: 1px
       .caret
         margin-left: 10px
-        margin-right: 13px
-
-
-
+        margin-right: 10px
 
   div.add-toolbar
     border-right: 1px solid #ccc
     cursor: pointer
     padding: 4px 11px 0 1px
-
-
-
-
   
   ul.nav
-    background: #f0f0f0
-    border: 1px solid #ddd
     @include border-top-right-radius (5px)
     @include border-bottom-right-radius (5px)
-    a
-      padding: 4px 0px 4px 9px
+    @include border-top-left-radius (5px)
+    @include border-bottom-left-radius (5px)
+    a    
+      .btn-primary
+        padding: 4px
       img
         width: 31px
-        @include border-radius (15px)
+        @include border-radius (5px)
+
     ul.dropdown-menu
-      margin: 17px 40px 0 -120px
-
-
+      margin-top: 1px
 .logo,
 .logo-header-in 
   width: 94px
@@ -71,9 +73,6 @@ header.header
   img
     display: inline-block !important
     margin-top: 4px
-
-
-
 
 header.header
   width: 100%
@@ -90,7 +89,7 @@ header.header
     margin-bottom: -20px 
     margin-right: 17px
     padding-right: 22px
-
+  
   .signin
     border-right: 1px solid #d6d6d6
 

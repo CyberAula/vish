@@ -9,8 +9,13 @@
 
 @mixin excursion-box
   border: 1px solid #C0C0C0
-  @include border-bottom-right-radius(15px)
-  @include border-bottom-left-radius(15px)
+  @include border-top-radius($borderRadiusSmall)
+  @include border-bottom-radius($baseBorderRadius)
+
+@mixin excursion-box-small
+  border: 1px solid #C0C0C0
+  @include border-right-radius($baseBorderRadius)
+  @include border-bottom-left-radius($borderRadiusSmall)
 
 @mixin badge-grid
   position: absolute

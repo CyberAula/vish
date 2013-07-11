@@ -12,8 +12,12 @@
   width: 20px;
   height: 100%;
   background-color: $black;
+  }  
 }
-
+legend {
+  font-size: 16px;
+  font-family: $secondFontFamily;
+  color: $firstColor;
 }
 .accordion-group {
   border: none;
@@ -28,61 +32,56 @@
   text-decoration: none;
 }
 
- legend {
-   font-size: 16px;
-   font-style: bold;
-   color: $firstColor;
- }
-
+ 
 .modal-body{
    opacity: 1;
    background-color: $white;
+   color: $grayLight;
    z-index: 500;
  }
 
 .modal-header h3 {
-  font-style: bold;
-  font-family: Helvetica;
-  color: $white;
+  
+  font-family: $thirdFontFamily;
+  color: $firstColor;
   font-size: 18px;
 }
 .modal-header{
-  background-color: $firstColor;
+  background-color: $grayLighter;
+
   @include border-radius($baseBorderRadius);
   @include border-bottom-radius(0px);
 }
 
-.btn-primary {
-//color: white;
-//text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-background-color: $grayLight;
-background-image: none;
-filter: none;
-//background-image: -moz-linear-gradient(top, $red-2, $red-1);
-//background-image: -webkit-gradient(linear, 0 0, 0 100%, from($red-2), to($red-1));
-//background-image: -webkit-linear-gradient(top, $red-2, $red-1);
-//background-image: -o-linear-gradient(top, $red-2, $red-1);
-//background-image: linear-gradient(to bottom, $red-2, $red-1);
-//background-repeat: repeat-x;
-//filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-2', endColorstr='$red-1', GradientType=0);
-//border-color: $red-1 $red-1 $red-2;
-//border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-//filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+.btn-group.open .btn-primary.dropdown-toggle{
+  background-color: $firstColor;  
 }
-.btn-primary:hover {
-background-color: $firstColor;
+.btn-primary{
+  background-color: $firstColor;
+  background-image: none;
+  filter: none;
+  font-family: $secondFontFamily;
+
+  &:hover{
+    background-color: $firstColor;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$red-2', endColorstr='$red-1', GradientType=0); 
+  }
+  &:focus{
+    background-color: $firstColor;  
+  }
 }
- .input-append .btn:last-child {
+
+.input-append .btn:last-child {
   -webkit-border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
   border-radius: 0 $baseBorderRadius $baseBorderRadius 0;
   margin-left: -5px;
- }
+}
 
 
 .popover-title {
   padding: 8px 14px;
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: $firstColor;
   font-family: Helvetica;
   font-weight: bold;
@@ -107,12 +106,24 @@ background-color: $firstColor;
     text-align: left;
     top: 0;
     white-space: normal;
-    z-index: 1010;
+    z-index: 1030;
+    width: 400px;
 }
 
+.popover.top .arrow {
+    border-bottom-width: 0;
+    border-top-color: rgba(0, 0, 0, 0) !important;
+    bottom: -11px;
+    left: 50%;
+    margin-left: -11px;
+}
 
-
-
+.popover.top .arrow:after {
+    border-bottom-width: 0;
+    border-top-color: white;
+    bottom: 1px;
+    margin-left: -7px;
+}
 .popover .arrow, .popover .arrow:after {
     border-color: transparent;
     border-style: solid;
