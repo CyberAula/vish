@@ -1,0 +1,93 @@
+
+#excursions,
+#categories
+  ul
+    margin: 0
+    li.box-item
+      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include excursion-box
+      float: left
+      list-style: none
+      margin-left: 1.4%
+      margin-top: 20px
+      .badges
+        display: none
+        @include badge-grid
+      .info
+        padding: 5px 5px 0 5px
+        h5.name
+          
+          margin: 0
+          word-wrap: break-word
+          text-decoration: none
+          cursor: pointer
+          a
+            color: $grayDark
+        .author
+          color: $secondColor
+          font-size: 12px
+          text-decoration: none
+          cursor: pointer
+          a
+            @include ellipsis
+            width: 56%
+            display: initial
+        .author:before
+          content: "by"
+          color: $gray
+          font-size: 10px
+      .info-bottom
+        font-family: $firstFontFamily
+        clear: both
+        hr
+          margin: 0
+        .soften
+          margin-bottom: 1px
+        .like
+          font-size: 12px
+          float: left
+          @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .count
+            display: inline-block
+          a
+            display: inline-block
+            img.img-like
+              margin-top: -5px
+        .views
+          float: right
+          color: $gray
+          font-size: 12px
+        .views:after
+          content: "views"
+          color: $secondColor
+          font-size: 10px
+          font-family: $firstFontFamily
+  ul.small-box
+    margin: 0
+    li.box-item:first-child
+      margin-top: 0px
+    li.box-item
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include excursion-box-small
+      float: left
+      list-style: none
+      margin-left: 1.4%
+      margin-top: 10px
+      .img-box
+        @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        float: left
+      .info
+        @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        float: left
+        padding: 0
+        h5.name
+          font-size: 16px
+          padding-left: 10px
+          text-decoration: none
+          cursor: pointer
+        .author
+          padding-left: 10px
+          text-decoration: none
+          cursor: pointer
+      .info-bottom
+        padding-left: 10px

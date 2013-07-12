@@ -1,0 +1,21 @@
+#show_excursions
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  .visor
+    @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    float: left
+    height: 400px
+    background-color: $grayLighter
+  .activity
+    margin-top: 20px
+    @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    background-color: $gray
+    display: block
+    float: left
+    height: 400px
+
+  .recomended_excursion
+    display: block
+    float: left
+    height: 400px
+    @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)

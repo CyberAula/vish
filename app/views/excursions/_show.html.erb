@@ -1,16 +1,13 @@
-
 <div class="page-header"> Title excursion </div>
-
 <section id="show_excursions">
   <div class="visor"></div>
-  <div class="activity"></div>
   <div class="recomended_excursion">
-    <ul class="excursions">
+    <ul class="small-box">
       <% 10.times do %>
         <%= render partial: 'excursions/excursion' %>
       <% end %>
     </ul>
   </div>
-  <div class="activities_excursion"></div>
+  <div class="activity"></div>
 </section>
 
