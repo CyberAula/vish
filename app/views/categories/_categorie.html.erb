@@ -1,30 +1,38 @@
-<li class="categories-item">
+<li class="box-item">
 
-  <%= link_to image_tag("items/cat-prev.png",  :class=> "" ), "#" %>
+<!--IMG categories-->
+  <%= link_to image_tag("items/cat-prev.png",  :class=> "img-box" ), "#" %>
+<!--INFO categories-->
   <div class="info">
+<!--Title -->
     <h5 class="name">
       <a>
-      categorie name  
+        categorie name  
       </a>
     </h5>
-    <div class="like">    
-      <h5 class="count">32</h5>
-      <%= link_to image_tag("icons/likes/star-active.png",  :class=> "" ), "#" %>
+<!--Autor -->
+    <div class="author"> 
+      <a>author name</a>   
     </div>
-
+<!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
-      <h5 class="author">
-        by 
-        <a>author name</a>
-        <div class="views">
-          <span class="count">23</span>
-          views    
-        </div>
-      </h5>
+<!--like -->
+      <div class="like">    
+        <div class="count">32</div>
+        <%= link_to image_tag("icons/likes/star-active.png",  :class=> "img-like" ), "#" %>
+      </div>
+<!--views -->
+      <div class="views">2500
+        <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23">
+        </a>
+      </div>
     </div>
   </div>
 </li>
+
+
+
 
 
 

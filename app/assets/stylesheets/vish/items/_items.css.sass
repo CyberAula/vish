@@ -1,6 +1,6 @@
-
 #excursions,
-#categories
+#categories,
+#new
   ul
     margin: 0
     li.box-item
@@ -10,13 +10,15 @@
       list-style: none
       margin-left: 1.4%
       margin-top: 20px
+      background-color: $white
+      .img-box
+        @include border-top-radius($baseBorderRadius)
       .badges
         display: none
         @include badge-grid
       .info
         padding: 5px 5px 0 5px
         h5.name
-          
           margin: 0
           word-wrap: break-word
           text-decoration: none
@@ -29,9 +31,7 @@
           text-decoration: none
           cursor: pointer
           a
-            @include ellipsis
-            width: 56%
-            display: initial
+            word-wrap: break-word
         .author:before
           content: "by"
           color: $gray
@@ -62,6 +62,11 @@
           color: $secondColor
           font-size: 10px
           font-family: $firstFontFamily
+    li.new-item
+      height: 100%
+      background-color: $red
+
+
   ul.small-box
     margin: 0
     li.box-item:first-child
@@ -71,8 +76,8 @@
       @include excursion-box-small
       float: left
       list-style: none
-      margin-left: 1.4%
       margin-top: 10px
+      background-color: $white
       .img-box
         @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
@@ -91,3 +96,4 @@
           cursor: pointer
       .info-bottom
         padding-left: 10px
+
