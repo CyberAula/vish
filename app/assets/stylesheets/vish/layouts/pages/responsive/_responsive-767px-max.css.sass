@@ -5,10 +5,27 @@
 
 @media (max-width: 767px)
 
-
+  
 
 
 // UP TO LANDSCAPE PHONE
 // ---------------------
 
 @media (max-width: 480px)
+
+  li.excursions-item,
+  li.events-item,
+  li.categories-item,
+  li.repositories-item,
+  li.add-item
+    margin: 15px 24%
+    &:first-child
+      margin-left: 24%
+
+  .tabbable
+    ul.nav
+      li
+        &:first-child
+          h1
+            margin-top: -40px !important
+

@@ -1,25 +1,36 @@
 <!-- replace_contents 'ul.nav' -->
 <li>
-	<a class="options dropdown-toggle" data-toggle="dropdown" href="#">
-	  <div class="add-toolbar dropdown">
-	    <i class="icontool16-tool16_add"></i>
-	    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-	      <li><a tabindex="-1" href="#">Add Excursion</a></li>
-	      <li><a href="#AddCategory" data-toggle="modal">Add Category</a></li>
-	      <!--<li><a tabindex="-1" href="#">Add Event</a></li>-->
-	      <li><a href="#AddResource" data-toggle="modal">Add Resource</a></li>
-	    </ul>
-	  </div>
-	</a>
+  <div class="btn-group">
+    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+    +
+    </a>
+    <ul class="dropdown-menu">
+    <!-- dropdown menu links -->
+      <li><a href="#">Add Excursion</a></li>
+      <li><a href="#AddCategory" data-toggle="modal">Add Category</a></li>
+      <li><a href="#AddResource" data-toggle="modal">Add Resource</a></li>  
+    </ul>
+  </div>	
 </li>
 <li>
-  <%= link_to current_subject do %>
+  <#%= link_to current_subject do %>
+  
+    <a data-toggle="dropdown" href="#">
     <%= image_tag current_subject.logo.url(:small) %>
     <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %></span>
-  <% end %>
+    </a>
+    <ul class="dropdown-menu">
+    <!-- dropdown menu links -->
+      <li><a href="#">Perfil</a></li>
+      <li><a href="#" data-toggle="modal">Ajustes</a></li>
+      <li class="divider"></li>
+      <li><a href="#" data-toggle="modal">cerrar sesión</a></li>  
+    </ul>
+ 
+  <#% end %>
 </li>
 <li> 
-  <%= render partial: 'layouts/header_dropdown_menu' %>
+  <#%= render partial: 'layouts/header_dropdown_menu' %>
 </li>
 <!-- carga de modales -->
 <%= render partial: 'repositories/form' %>
