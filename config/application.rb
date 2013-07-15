@@ -70,6 +70,9 @@ module Vish
 
 
     end
-
+    
+    config.after_initialize do
+      I18n.available_locales = [:en, :es, :de, :nl, :hu, :fr]
+    end
   end
 end

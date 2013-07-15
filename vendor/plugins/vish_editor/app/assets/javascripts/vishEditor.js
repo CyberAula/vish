@@ -39,7 +39,7 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", 
 "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", 
 "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", 
-"i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, 
+"i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"Title", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, 
 "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.VERSION = "0.6";
@@ -12666,6 +12666,9 @@ VISH.Editor.Utils = function(V, $, undefined) {
       case "tab_object_repo":
         V.Editor.Object.Repository.onLoadTab();
         break;
+      case "tab_object_lre":
+        V.Editor.Object.LRE.onLoadTab();
+        break;
       case "tab_live_webcam":
         V.Editor.Object.Live.onLoadTab("webcam");
         break;
@@ -13129,6 +13132,7 @@ VISH.Editor.Object = function(V, $, undefined) {
   var urlDivId = "tab_object_from_url_content";
   var urlInputId = "object_embed_code";
   var init = function() {
+    V.Editor.Object.LRE.init();
     V.Editor.Object.Repository.init();
     V.Editor.Object.Live.init();
     V.Editor.Object.Web.init();
@@ -15769,7 +15773,6 @@ VISH.Configuration = function(V, $, undefined) {
       $("#tab_video_vimeo").css("display", "none")
     }
     if(!configuration["LRE"]) {
-      $("#tab_video_lre").css("display", "none");
       $("#tab_pic_lre").css("display", "none");
       $("#tab_object_lre").css("display", "none")
     }
@@ -17243,7 +17246,8 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
       return
     }
     $.each(data.pictures, function(index, image) {
-      var myImg = $("<img src=" + image.src + " >");
+      var myTitle = image.title;
+      var myImg = $("<img src='" + image.src + "' title='" + myTitle + "' >");
       carrouselImages.push(myImg);
       currentImages[image.id] = image
     });
@@ -17264,7 +17268,9 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
   };
   var _onClickCarrouselElement = function(event) {
     var image_url = $(event.target).attr("src");
-    V.Editor.Image.addContent(image_url)
+    V.Editor.Image.drawImage(image_url);
+    $.fancybox.close();
+    V.Editor.Tools.loadToolsForZone(V.Editor.getCurrentArea())
   };
   return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
@@ -17339,10 +17345,12 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.LRE = function(V, $, undefined) {
   var VISH_LRE_URL = "";
+  var LRE_THUMBNAILS_URL = "http://lrethumbnails.eun.org/";
   var DEFAULT_LIMIT = 40;
   var DEFAULT_MAXAGE = 20;
   var DEFAULT_MINAGE = 4;
   var DEFAULT_LANGUAGE = "en";
+  var PROVIDERS_TO_REMOVE = ["KHAN", "OPENLEARN"];
   var init = function(lang) {
     VISH_LRE_URL = V.SearchLREPath;
     if(lang != "en") {
@@ -17352,13 +17360,17 @@ VISH.Editor.LRE = function(V, $, undefined) {
     }
   };
   var requestImages = function(text, successCallback, failCallback) {
-    var query = _composeLREQuery(text.split(" "), "image");
-    _requestLRE(query, DEFAULT_LIMIT, successCallback, failCallback)
+    var query = _composeLREQuery(text.split(" "), ["image"]);
+    _requestLRE(query, DEFAULT_LIMIT, "image", successCallback, failCallback)
   };
-  var _requestLRE = function(query, limit, successCallback, failCallback) {
+  var requestObjects = function(text, successCallback, failCallback) {
+    var query = _composeLREQuery(text.split(" "), ["audio", "video", "data", "text"]);
+    _requestLRE(query, DEFAULT_LIMIT, "object", successCallback, failCallback)
+  };
+  var _requestLRE = function(query, limit, response_type, successCallback, failCallback) {
     $.ajax({type:"GET", url:VISH_LRE_URL + "?q=" + query + "&limit=" + limit, dataType:"json", success:function(response) {
       if(typeof successCallback == "function") {
-        var formatedResponse = formatLREImagesResponse(response);
+        var formatedResponse = formatLREResponse(response, response_type);
         successCallback(formatedResponse)
       }
     }, error:function(xhr, ajaxOptions, thrownError) {
@@ -17375,35 +17387,64 @@ VISH.Editor.LRE = function(V, $, undefined) {
     for(var i = 0;i < terms.length;i++) {
       query += "((content[" + terms[i] + "]))"
     }
-    if(lrt) {
-      query += "((lrt[" + lrt + "]))"
+    if(lrt && lrt.length > 0) {
+      query += "(";
+      for(var j = 0;j < lrt.length;j++) {
+        query += "(lrt[" + lrt[j] + "])"
+      }
+      query += ")"
     }
     return query
   };
-  var formatLREImagesResponse = function(lre_response) {
+  var formatLREResponse = function(lre_response, type) {
+    var the_array = new Array;
+    var the_return_list = {};
     if(lre_response && lre_response["results"]) {
-      var imageList = {};
-      imageList.pictures = new Array;
       var results_array = lre_response["results"];
       for(var i = 0;i < results_array.length;i++) {
-        var img_elem = _formatLREImageElem(results_array[i]);
-        if(img_elem) {
-          imageList.pictures.push(img_elem)
+        var the_elem = _formatLREElem(results_array[i], type);
+        if(the_elem) {
+          the_array.push(the_elem)
         }
       }
+      switch(type) {
+        case "image":
+          the_return_list.pictures = the_array;
+          break;
+        case "object":
+          the_return_list = the_array;
+          break
+      }
     }
-    return imageList
+    return the_return_list
   };
-  var _formatLREImageElem = function(img_element) {
-    if(_checkValidImgElem(img_element)) {
-      var tmp_img_elem = {};
-      tmp_img_elem.id = img_element.meta.id;
-      tmp_img_elem.author = img_element.meta.provider;
-      var title_and_desc = _getTitleAndDescInMyLang(img_element.meta.langBlocks);
-      tmp_img_elem.title = title_and_desc.title;
-      tmp_img_elem.description = title_and_desc.description;
-      tmp_img_elem.src = _getValidImgSRC(img_element);
-      return tmp_img_elem
+  var _formatLREElem = function(the_element, type) {
+    if(type === "object" || type === "image" && _checkValidImgElem(the_element)) {
+      var tmp_elem = {};
+      tmp_elem.id = the_element.meta.id;
+      if($.inArray(the_element.meta.provider, PROVIDERS_TO_REMOVE) >= 0) {
+        return null
+      }
+      tmp_elem.author = the_element.meta.provider;
+      var title_and_desc = _getTitleAndDescInMyLang(the_element.meta.langBlocks);
+      tmp_elem.title = title_and_desc.title;
+      tmp_elem.description = title_and_desc.description;
+      switch(type) {
+        case "image":
+          tmp_elem.src = _getValidSRC(the_element, type);
+          if(!tmp_elem.src) {
+            return null
+          }
+          break;
+        case "object":
+          tmp_elem.object = _getValidSRC(the_element, type);
+          if(!tmp_elem.object) {
+            return null
+          }
+          break
+      }
+      tmp_elem.thumbnail = LRE_THUMBNAILS_URL + tmp_elem.id.toString().slice(-3) + "/" + tmp_elem.id.toString() + ".png";
+      return tmp_elem
     }
   };
   var _isValidImageUrl = function(url, callback) {
@@ -17417,16 +17458,20 @@ VISH.Editor.LRE = function(V, $, undefined) {
     };
     img.src = url
   };
-  var _getValidImgSRC = function(img_element) {
-    if(!img_element) {
+  var _getValidSRC = function(my_element, type) {
+    if(!my_element) {
       return""
     }
-    if(img_element.meta && img_element.meta.expressions) {
-      for(var i = 0;i < img_element.meta.expressions.length;i++) {
-        var exp = img_element.meta.expressions[i];
+    if(my_element.meta && my_element.meta.expressions) {
+      for(var i = 0;i < my_element.meta.expressions.length;i++) {
+        var exp = my_element.meta.expressions[i];
         for(var j = 0;j < exp.manifestations.length;j++) {
-          if(exp.manifestations[j].player == "webBrowser") {
+          if(type === "image" && exp.manifestations[j].player == "webBrowser") {
             return exp.manifestations[j].urls[0]
+          }else {
+            if(type === "object" && (exp.manifestations[j].player == "webBrowser" || exp.manifestations[j].player == "landingPage" || exp.manifestations[j].player == "printable")) {
+              return exp.manifestations[j].urls[0]
+            }
           }
         }
       }
@@ -17452,25 +17497,30 @@ VISH.Editor.LRE = function(V, $, undefined) {
   var _getTitleAndDescInMyLang = function(langBlocks) {
     var filled_lang = false;
     var title_and_desc = {};
-    var english_title_and_desc = {};
+    var default_title_and_desc = {};
+    if(langBlocks.length == 1) {
+      default_title_and_desc.title = langBlocks[0].title;
+      default_title_and_desc.description = langBlocks[0].description;
+      return default_title_and_desc
+    }
     for(var i = 0;i < langBlocks.length;i++) {
       if(langBlocks[i].language == DEFAULT_LANGUAGE) {
         title_and_desc.title = langBlocks[i].title;
         title_and_desc.description = langBlocks[i].description;
         filled_lang = true
       }
-      if(langBlocks[i].language == "en") {
-        english_title_and_desc.title = langBlocks[i].title;
-        english_title_and_desc.description = langBlocks[i].description
+      if(langBlocks[i].language == "en" || langBlocks[i].language == "en-GB") {
+        default_title_and_desc.title = langBlocks[i].title;
+        default_title_and_desc.description = langBlocks[i].description
       }
     }
     if(filled_lang) {
       return title_and_desc
     }else {
-      return english_title_and_desc
+      return default_title_and_desc
     }
   };
-  return{init:init, requestImages:requestImages, formatLREImagesResponse:formatLREImagesResponse}
+  return{init:init, requestImages:requestImages, requestObjects:requestObjects, formatLREResponse:formatLREResponse}
 }(VISH, jQuery);
 VISH.Editor.MenuTablet = function(V, $, undefined) {
   var init = function() {
@@ -17523,6 +17573,103 @@ VISH.Editor.Object.Flash = function(V, $, undefined) {
     $("#" + idToDrag).draggable({cursor:"move"})
   };
   return{drawFlashObjectWithSource:drawFlashObjectWithSource}
+}(VISH, jQuery);
+VISH.Editor.Object.LRE = function(V, $, undefined) {
+  var carrouselDivId = "tab_object_lre_content_carrousel";
+  var previewDivId = "tab_object_lre_content_preview";
+  var footId = "tab_object_lre_content_preview_foot";
+  var currentObject = new Array;
+  var selectedObject = null;
+  var init = function() {
+    var myInput = $("#tab_object_lre_content").find("input[type='search']");
+    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).keydown(function(event) {
+      if(event.keyCode == 13) {
+        _requestData($(myInput).val());
+        $(myInput).blur()
+      }
+    })
+  };
+  var onLoadTab = function() {
+    _cleanObjectPreview();
+    $("#" + footId).find(".okButton").hide()
+  };
+  var _requestData = function(text) {
+    _prepareRequest();
+    V.Editor.LRE.requestObjects(text, _onDataReceived, _onAPIError)
+  };
+  var _prepareRequest = function() {
+    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+    $("#" + carrouselDivId).hide();
+    _cleanObjectPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
+    currentObject = new Array;
+    var carrouselImages = [];
+    var carrouselImagesTitles = [];
+    var content = "";
+    if(!data || !data.length || data.length == 0) {
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
+      $("#" + carrouselDivId).show();
+      return
+    }
+    $.each(data, function(index, objectItem) {
+      var objectInfo = V.Object.getObjectInfo(objectItem.object);
+      var myImg = $("<img src='" + objectItem.thumbnail + "' objectId='" + objectItem.id + "'>");
+      carrouselImages.push(myImg);
+      carrouselImagesTitles.push(objectItem.title);
+      currentObject[objectItem.id] = objectItem
+    });
+    V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
+  };
+  var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
+    $("#" + carrouselDivId).show();
+    var options = new Array;
+    options["rows"] = 1;
+    options["callback"] = _onClickCarrouselElement;
+    options["rowItems"] = 5;
+    options["styleClass"] = "title";
+    V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
+  };
+  var _onAPIError = function() {
+    V.Debugging.log("Error")
+  };
+  var _onClickCarrouselElement = function(event) {
+    var objectId = $(event.target).attr("objectid");
+    if(typeof objectId != "undefined") {
+      var renderedObject = V.Editor.Object.renderObjectPreview(currentObject[objectId].object);
+      _renderObjectPreview(renderedObject, currentObject[objectId]);
+      selectedObject = currentObject[objectId]
+    }
+  };
+  var _renderObjectPreview = function(renderedObject, object) {
+    var objectArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_object");
+    var metadataArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_metadata");
+    $(objectArea).html("");
+    $(metadataArea).html("");
+    if(renderedObject && object) {
+      $(objectArea).append(renderedObject);
+      var table = V.Editor.Utils.generateTable(object.author, object.title, object.description);
+      $(metadataArea).html(table);
+      $("#" + footId).find(".okButton").show()
+    }
+  };
+  var _cleanObjectPreview = function() {
+    var objectArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_object");
+    var metadataArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_metadata");
+    $(objectArea).html("");
+    $(metadataArea).html("");
+    $("#" + footId).find(".okButton").hide()
+  };
+  var addSelectedObject = function() {
+    if(selectedObject != null) {
+      V.Editor.Object.drawObject(selectedObject.object);
+      $.fancybox.close()
+    }
+  };
+  return{init:init, onLoadTab:onLoadTab, addSelectedObject:addSelectedObject}
 }(VISH, jQuery);
 VISH.Editor.Object.Live = function(V, $, undefined) {
   var carrouselDivId = "tab_live_webcam_content_carrousel";
@@ -17681,9 +17828,9 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
   var onLoadTab = function() {
     var previousSearch = $("#tab_object_repo_content").find("input[type='search']").val() != "";
     if(!previousSearch) {
-      _cleanObjectPreview();
       _requestInicialData()
     }
+    _cleanObjectPreview();
     $("#" + footId).find(".okButton").hide()
   };
   var _requestInicialData = function() {

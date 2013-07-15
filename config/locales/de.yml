@@ -1,0 +1,326 @@
+de:
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        tag: "Interessensbereiche"
+  activity:
+    empty: "Deine Timeline ist leer"
+    more: "Mehr ansehen..."
+    new_user: "Willkommen beim ViSH! Poste und teile deine Ideen, Links, Videos mit deinen Followern."
+    newmessage: "Das ist deine Timeline. Du kannst Bilder, Videos, Links und mehr hochladen und teilen."
+    timeline: "Timeline"
+    title:
+      other: "Aktivität"
+    verb:
+       make-friend:
+        User:
+          title: "%{subject} und %{contact} folgen einander."
+          message: "%{name} folgt dir auch."
+  activity2:
+    title:
+      other: "Aktivität"
+  activity_action:
+    follow: "+ Follow"
+    unfollow: "UnFollow"
+  all: "Alle"
+  announce: 
+    title: "Ankündigung"
+    body: ""
+  author: "Author"
+  cancel: "Cancel"
+  close: "Schließen"
+  conditions:
+    check_message: "Duch anklicken von Aktzeptieren, stimmt du zu "  
+    check_message_1: "Bedingungen."
+    other: "Konditionen"
+  contact:
+    pending:
+      other: "Folgt dir"
+  devise:
+    invalid_login: "Gib bitte deine Email und Passwort ein, um fortzufahren."
+  disjunction:
+    or: "oder"
+  document:
+    document: "Dokument"
+    help:
+      title: "Ressourcen hochladen"
+      info1_html: "1. Klicke auf <b>Dokumente</b>, <b>Links</b> oder <b>Embed</b> tab.<br>"
+      info2_html: "2. Wenn du ein Dokument hochladen willst, klicke auf <b>browse</b> und wähle das File von deinem Computer aus. Wenn deine Ressource ein Link ist oder woanders eingebunden ist, kannst du es in die Textbox <b>kopieren</b>.<br>"
+      info3_html: "3. Gib einen <b>Titel</b> und eine <b>Bechreibung</b> ein.<br>"
+      info4_html: "4. Füge zugehörige <b>Tags</b> zu deiner Ressource. Deine Interessensgebiete wurden automatisch zugeordnet. Du kannst sie löschen oder neue tags dazufügen.<br>"
+      info5_html: "5. Wähle eine <b>Sprache</b>, falls nötig.<br>"
+      info6_html: "6. Wähle eine <b>Alters </b>gruppe. Diese Information wird für Empfehlungen verwendet.<br>"
+      info7_html: "7. Wenn du ein Live Streaming Video einbauen möchtest, klicke auf <b>Live</b> Option.<br>"
+      info8_html: "8. Zuletzt klicke auf <b> Speichern </b> um deine Ressource hochzuladen."
+    how: "Wie man eine Ressource teilt"
+    info:
+      title: "Titel"
+      description: "Beschreibung"
+      tags:
+        title: "Thema"
+        addMessage: "Tags dazufügen"
+        limitMessage: "Limit erreicht"
+      age: "Alter"
+    recommended_age: "Empfohlenes Alter"
+    recommended_age_detail: "Von %{min} bis %{max} Jahre"
+    input: "Füg hier eine Beschreibung dazu"
+    new: "Ressource hinzufügen"
+    screencast: "VISH's Screencast"
+    title_input: "Name dieser Ressource"
+  email:
+    regards: "Mit freundlichen Grüßen,<br/>"
+    welcome: "Herzlich Willkommen und vielen Dank, dass du dich im Virtual Science Hub angemeldet hast.<br/>Wir empfehlen dir <a href=\"%{{profile}}\"> ein eigenes Profile</a> aufzusetzen, um besser von unserem Service zu profitieren.<br/>"
+  embed:
+    confirm_delete: "Eingebundenen Inhalt löschen?"
+    content: "Live Inhalt"
+    embed: "Einbinden"
+    input: "Füge deinen eingebundenen Inhalt hier ein"
+    name: "Einbinden"
+  evaluation:
+    teaching: "Ergebnisse der Erfahrungen im Unterricht..."
+    contribute: "Willst du etwas beitragen?"
+    evaluation: "Bewerte diesen Inhalt"
+    experience: "Erfahrungen im Unterricht"
+    phrase0: "Bewerte die Qualität des Inhalts von dieser Exkursion"
+    phrase1: "Waren die Schüler motiviert, an den Aktivitäten im Zusammenhang mit dieser Exkursion teilzunehmen?"
+    phrase2: "Hat die Exkursion zur aktiven Einbindung der Schüler und zum Erreichen der Lernziele beitgetragen?"
+    phrase3: "Waren interdisziplinäre Aktivitäten in die Exkursion eingebaut? Waren diese Aktivitäten hilfreich?"
+    phrase4: "Würdest du diese Exkursion in der Zukunft noch einmal im Unterricht verwenden?"
+    disagree: "stimme nicht zu"
+    agree: "stimme zu"
+  excursion:
+    actions:
+      bookmark: "Lesezeichen"
+      clone: "Klonen"
+      delete: "Löschen"
+      download: "Download"            
+      edit: "Bearbeiten"
+      show: "Anzeigen"
+      share: "Teilen"
+      scorm: "Scorm"
+    clone:
+      confirm: "Diese Exkursion wird in deiner Ablage geklont"
+      not_found: "Exkursion wurde nicht gefunden"
+      ok: "Erfolgreich geklont"
+      owner: "Du hast diese Exkursion bereits"
+    confirm_delete: "Exkursion löschen?"
+    confirm_delete_offline: "Diese Exkursion wird von der Liste gestrichen. Sie ist aber weiterhin auf dem Server gespeichert und abrufbar. Bist du sicher?"
+    contributors:
+      name: "Mit Inhalten von"
+    created: "Erstellt"
+    favorites: "Favoriten"    
+    how: "Wie man eine Exkursion erstellt"
+    invite:
+      email:
+        body: "Hallo,%0A%0ASieh%20dir%20diese%20Exkursion%20auf%20ViSH an:%0A%0A%{url}%0A%0AI%20hope%20you%20like%20it!%0A%0A%{name}"
+        link: "E-mail"
+        subject: "Sieh%20dir%20diese%20Exkursion%20auf%20http://vishub.org%20:%20%{title}an"
+    is_draft: "[DRAFT]"
+    my: "Meine"
+    name: "Exkursion"
+    net: "Netzwerk"
+    network: "Exkursionen meines Netzwerks"
+    network2: "Mein Netzwerk"
+    newmy_html: "Du hast noch keine Exkursion erstellt. Du kannst eine neue Exkursion hinzuufügen indem du auf Hinzufügen klickst oder hier "    
+    newnet_html: "Hier siehts du die Exkursionen von Benutzern, denen du folgst. Finde Benutzer, denen du folgen willst <a href='/search?type=user'>here</a>."
+    newfav_html: "Du hast noch keine Favoriten bei den Exkursionen. Du kannst zu deinen favorite erklären indem du auf den Stern klickst <img src='/assets/icons/star-off.png'>"
+    one: "ExKursion"
+    other: "Exkursionen"
+    others: "Andere Exkursionen"
+    session_start: "Session starten"
+    suggestion:
+      other: "Exkursionen"
+    title:
+      other: "Exkursionen"
+    upcomming: "Demnächste"
+    unload_warning: "Die Exkursion wurde nicht gespeichert!"
+    top: "für mich"
+  external: "extern"
+  filter: "Filter"
+  follow:
+    add_favorite: "Favorit hinzufügen"
+    contacts: "Kontakte"
+    favorites: "Favoriten"
+    find: "Finden"
+    followers: "Followers"
+    followings: "folgen"
+    is_favorite: "Ist Favorite"
+    views: "Ansichten"
+  frontpage:
+    nanotechnology: "Nanotechnologie"
+    gridComputing: "Grid Computing"
+    lifesciences: "Lebenswissenschaften"
+    biotechnology: "Biotechnologie"
+  go:
+    repository: "Zur Ablage"
+  help: "Hilfe"
+  lang:
+    independent: "Sprachunabhängig"
+    changed: "Sprache ändern auf %{lang}"
+    error: "Sprache \"%{lang}\" ist nicht möglich"
+    title: "Sprache"   
+    others: Andere 
+  link:
+    one: "Link"
+    other: "Links"
+    confirm_delete: "Link löschen?"
+    go: "Zum Link gehen"
+  translate:
+    change: "Sprache ändern"
+  message:
+    send: "Nachricht senden"
+    new: "Neue Nachricht"
+    unread: " ungelesen"
+  more: "mehr"
+  mashme:
+    header_html: "In <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a> ansehen" 
+    invite_header: "Kontakte einladen"
+    invitesubject: "Sieh dir auch diese Exkursion auf MashMeTV an!"
+    invitebody_html: "Zum Ansehen hier klicken: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
+    launch: "Starten"
+    room_name: "Name des Raums"
+  navigation:
+    home: "Home"
+  no_bio: "Dieser Benutzer hat keine Biorgraphie bereitgestellt."
+  notification:
+    config_html: "Möchtest du den Benachrichtigungsservice ändern? Dann klicke <a href='%{url}'>here</a>"
+    makefriend:
+      user: "%{sender} folgt %{who}."
+    unread: " ungelesen"  
+  officedoc:
+    confirm_delete: "Dokument löschen?"
+    title: "Office Dokumente"
+    mine: "Meine Dokumente"
+    name: "Dokument"
+    not_mine: "Dokumente"
+    one: "Ein Dokument"
+    title:
+      one: "Dokument"
+      other: "Dokumente"
+  offline:
+    title: "Offline Modus"
+  options:
+    add: "hinzufügen"
+    new: "Neu"
+  organization:
+    one: "Organisation"
+    other: "Organisationen"
+  organizer:
+    one: "Veranstalter"
+    other: "Veranstalter"
+  password: "Passwort"
+  post:
+    input: "Teile deine Ideen, Links, Videos, und mehr, hier!"
+    search_name: "Status Update"
+  profile:
+    occupation: 
+      label: "Beruf"
+      other: "Andere"
+      scientist: "Wissenschafter"
+      select: "Wähle deinen Beruf aus"
+      teacher: "Lehrer"
+    tags:
+      default: "VisHub, Virtuelle Exkursion"
+      other: "Interessensgebiete"
+  project: "Global Excursion"      
+  published: "Publiziert"
+  quiz:
+    answer:
+      title:
+        other: "Quiz Antworten"
+    from_excursion: "Von der Exkursion"
+    no: "Nein"
+    no_answers: "Bisher keine Antwort!"
+    no_title: "<Untitled>"
+    one: "Quiz"
+    ongoing: "laufend"
+    open: "offen"
+    other: "Quizzes"
+    past: "Frühere"
+    possible_answers: "Mögliche Antworten"
+    yes: "Ja"
+  recommended: "empfohlen"
+  recsys:
+    recommended:
+      excursions:
+        explain_html: "Wurde von Benutzern, die deine Interessen teilen, angesehen:"
+      resources:
+        explain_html: " Wurde von Benutzern, die deine Interessen teilen, angesehen:"
+  repository:
+    one: "Ablage"
+    other: "Ablagen"
+    title: "Ressourcen"
+  resource:
+    empty: "Du"    
+    network: "Ressourcen meines Netzwerks"
+    newmy_html: "DU hast noch keine Ressources hochgeladen. Du kannst eine neue Ressource hinzufügen indem du auf Upload klickst oder hier "    
+    newnet_html: "Hier siehst du Ressourcen, die von den Benutzern, denen du folgst, hochgeladen wurden. Find Benutzer, denen du folgen willst <a href='/search?type=user'>here</a>."
+    newfav_html: "Du hast noch keine Ressourcen als Favoriten. Kennzeichne Ressourcen als Favoriten indem du auf den Stern klickst <img src='/assets/icons/star-off.png'>"
+    my: "Meine"
+    net: "Netzwerk"
+    title:
+      one: "Ressource"
+      other: "Ressourcen"
+    top: "für mich"
+    upload: "Upload"
+  search:
+    110slides: "1-10 Slides"
+    1020slides: "10-20 Slides"
+    20slides: "20+ Slides"
+    always: "jederzeit"
+    anyslides: "Alle Slides"
+    audio: "Audio"
+    flash: "Flash"
+    followers: "Followers"
+    document: "Dokument"
+    embed: "Eingebundener Inhalt"
+    excursions: "Exkursionen"
+    image: "Bild"
+    last_day: "gestern"
+    last_month: "letzten Monat"
+    last_week: "letzte Woche"
+    last_year: "letztes Jahr"
+    mostviewed: "am moisten gesehen"
+    mostfav: "am beliebtesten"
+    mostslides: "die moisten Slides"
+    newest: "neueste"
+    link: "Link"
+    recent: "aktuelle"
+    resources: "Ressourcen"
+    orderby: "sortieren nach"
+    quiz: "Quiz"
+    relevance: "Bedeutung"
+    slides: "Slides"
+    time_constraint: "Erstellungsdatum"
+    type: "Art"
+    video: "Video"
+  send:
+    send: "Senden"
+  share: "Post"
+  sign_up: "Registrieren"
+  site:
+    name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "SWF löschen?"
+  today: "Heute"
+  top10: "Top 10"
+  url:
+    input: "Kopiere deinen Link hier"
+  user:
+    one: "Benutzer"
+    other: "Benutzer"
+  username: "Benutzername"
+  vish:
+    about: "Über VISH"    
+    sentence1: "Erstelle dein eigenes Benutzerkonto auf VISH"
+    sentence2: "VISH ist eine soziale Plattform"
+    team: "Das VISH Team"    
+  views:
+    pagination:
+      next: "Â»"
+      previous: "Â«"            
+      truncate: "..."
+  view_all: "Alle ansehen"
+  yesterday: "Gestern"
+

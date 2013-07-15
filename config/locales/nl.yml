@@ -1,0 +1,325 @@
+nl:
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        tag: "Aandachtsvelden"
+  activity:
+    empty: "Uw tijdlijn is leeg"
+    more: "Zie meer..."
+    new_user: "Welkom bij ViSH! Post en deel uw gedachten, links, video’s met uw volgers."
+    newmessage: "Dit is uw tijdlijn. U kunt afbeeldingen, video’s, links en meer uploaden en delen."
+    timeline: "tijdlijn"
+    title:
+      other: "activiteit"
+    verb:
+       make-friend:
+        User:
+          title: "%{subject} en %{contact} volgen elkaar."
+          message: "%{name} volgt u op zijn/haar beurt."
+  activity2:
+    title:
+      other: "activiteit"
+  activity_action:
+    follow: "+ Volgen"
+    unfollow: "Ontvolgen"
+  all: "alle"
+  announce: 
+    title: "Mededeling"
+    body: ""
+  author: "auteur"
+  cancel: "Annuleren"
+  close: "Sluiten"
+  conditions:
+    check_message: "Door op Accepteren te klikken stemt u in met onze "  
+    check_message_1: "Algemene Voorwaarden."
+    other: "voorwaarden"
+  contact:
+    pending:
+      other: "Bezig u te volgen"
+  devise:
+    invalid_login: "Voer uw email en wachtwoord in om verder te gaan."
+  disjunction:
+    or: "of"
+  document:
+    document: "document"
+    help:
+      title: "Leermiddelen uploaden"
+      info1_html: "1. Klik op <b>documenten</b>, <b>links</b> of <b>embedden</b> tab.<br>"
+      info2_html: "2. Als u een document wilt uploaden, klik op <b>browse</b> om een bestand te selecteren van uw computer. Als uw leermiddel een link of embed-code is, kunt u deze <b>plakken</b> in het tekstvenster.<br>"
+      info3_html: "3. Typ een <b>titel</b> en <b>beschrijving</b>.<br>"
+      info4_html: "4. Voeg gerelateerde <b>tags</b> toe aan uw leermiddel. Uw aandachtsvelden zijn standaard toegewezen. U kunt deze echter verwijderen of nieuwe tags toevoegen.<br>"
+      info5_html: "5. Kies zo nodig een gewenste <b>taal</b>.<br>"
+      info6_html: "6. Selecteer een <b>leeftijd </b>categorie. Deze informatie wordt gebruikt voor aanbevelingsdoeleinden.<br>"
+      info7_html: "7. Als u een live streaming video wilt embedden, klik dan op de <b>Live</b> optie.<br>"
+      info8_html: "8. Klik ten slotte op <b> opslaan </b> om uw leermiddel te uploaden."
+    how: "Hoe u een leermiddel kunt delen"
+    info:
+      title: "Titel"
+      description: "Beschrijving"
+      tags:
+        title: "Onderwerpen"
+        addMessage: "Voeg tags toe"
+        limitMessage: "limiet bereikt"
+      age: "Leeftijd"
+    recommended_age: "Aanbevolen leeftijd"
+    recommended_age_detail: "Van %{min} tot %{max} jaar"
+    input: "Voeg hier een beschrijving toe"
+    new: "Voeg leermiddel toe"
+    screencast: "Screencast van VISH"
+    title_input: "Naam voor dit leermiddel"
+  email:
+    regards: "Vriendelijke groeten,<br/>"
+    welcome: "Welkom en bedankt voor uw aanmelding bij Virtual Science Hub (Centrum voor Virtuele Wetenschap).<br/>We zouden u willen aanmoedigen <a href=\"%{{profile}}\"> uw profiel op te stellen</a> om van een betere service te kunnen genieten.<br/>"
+  embed:
+    confirm_delete: "Embed-code verwijderen?"
+    content: "Live inhoud"
+    embed: "embed-code"
+    input: "Plak uw embed-code hier"
+    name: "embed-code"
+  evaluation:
+    teaching: "resultaten van leservaring..."
+    contribute: "Wilt u bijdragen?"
+    evaluation: "evalueer het"
+    experience: "leservaring"
+    phrase0: "Geef een waardering voor de kwaliteit van de inhoud die gebruikt wordt in deze online presentatie"
+    phrase1: "Waren de leerlingen gemotiveerd om deel te nemen aan de activiteiten die betrekking hadden op deze presentatie?"
+    phrase2: "Droeg deze presentatie bij aan de betrokkenheid van de leerlingen en aan het bewerkstelligen van hun leerdoelen?"
+    phrase3: "Hebt u nog interdisciplinaire activiteiten opgenomen in de presentatie? Waren deze activiteiten nuttig?"
+    phrase4: "Zou u deze presentatie weer voor uw les gebruiken?"
+    disagree: "oneens"
+    agree: "eens"
+  excursion:
+    actions:
+      bookmark: "bookmarken"
+      clone: "kopiëren"
+      delete: "verwijderen"
+      download: "downloaden"            
+      edit: "bewerken"
+      show: "tonen"
+      share: "delen"
+      scorm: "scormen"
+    clone:
+      confirm: "Dit zal deze presentatie kopiëren naar uw eigen leermiddelenbank"
+      not_found: "Presentatie niet gevonden"
+      ok: "Succesvol gekopieerd"
+      owner: "U bezit deze presentatie al"
+    confirm_delete: "Presentatie verwijderen?"
+    confirm_delete_offline: "U gaat de presentatie uit deze lijst verwijderen, maar zij zal toegankelijk blijven op de server. Weet u dat zeker?"
+    contributors:
+      name: "Met inhoud van"
+    created: "gecreëerd"
+    favorites: "Favorieten"    
+    how: "Hoe kunt u een presentatie maken"
+    invite:
+      email:
+        body: "Hallo,%0A%0ABekijk%20deze%20presentatie%20op%20ViSH:%0A%0A%{url}%0A%0AIk%20hoop%20dat%20u%20die%20leuk%20vindt!%0A%0A%{name}"
+        link: "email"
+        subject: "Bekijk%20deze%20presentatie%20op%20http://vishub.org%20:%20%{title}"
+    is_draft: "[ONTWERP]"
+    my: "mijn"
+    name: "presentatie"
+    net: "netwerk"
+    network: "mijn netwerkpresentaties"
+    network2: "mijn netwerk"
+    newmy_html: "U hebt nog geen presentaties gemaakt. U kunt een nieuwe toevoegen door te klikken op de knop toevoegen of op deze"    
+    newnet_html: "Hier ziet u de presentaties die gemaakt zijn door gebruikers die u volgt. Zoek <a href='/search?type=user'>hier</a> een aantal gebruikers om te volgen."
+    newfav_html: "U hebt nog geen favoriete presentaties. Markeer iedere presentatie die u wilt als favoriet door op het ster-icoontje te klikken <img src='/assets/icons/star-off.png'>"
+    one: "presentatie"
+    other: "presentaties"
+    others: "overige presentaties"
+    session_start: "start sessie"
+    suggestion:
+      other: "Presentaties"
+    title:
+      other: "presentaties"
+    upcoming: "komend"
+    unload_warning: "De presentatie is niet opgeslagen!"
+    top: "voorMij"
+  external: "extern"
+  filter: "filter"
+  follow:
+    add_favorite: "Voeg favoriet toe"
+    contacts: "contacten"
+    favorites: "Favorieten"
+    find: "zoek"
+    followers: "volgers"
+    followings: "gevolgde"
+    is_favorite: "Is favoriet"
+    views: "meningen"
+  frontpage:
+    nanotechnology: "nanotechnologie"
+    gridComputing: "grid computing"
+    lifesciences: "biowetenschappen"
+    biotechnology: "biotechnologie"
+  go:
+    repository: "ga naar de leermiddelenbank"
+  help: "hulp"
+  lang:
+    independent: "Taalonafhankelijk"
+    changed: "Taal gewijzigd in %{lang}"
+    error: "Taal \"%{lang}\" niet beschikbaar"
+    title: "taal"   
+    others: Overige 
+  link:
+    one: "link"
+    other: "links"
+    confirm_delete: "Link verwijderen?"
+    go: "Ga naar link"
+  translate:
+    change: "Wijzig taal"
+  message:
+    send: "Verzend bericht"
+    new: "Nieuw bericht"
+    unread: " ongelezen"
+  more: "meer"
+  mashme:
+    header_html: "Bekijk op <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    invite_header: "Nodig uw contacten uit"
+    invitesubject: "Kijk samen met mij naar deze presentatie op MashMeTV!"
+    invitebody_html: "Klik hier om te kijken: <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
+    launch: "Start"
+    room_name: "Naam kamer"
+  navigation:
+    home: "Home"
+  no_bio: "Deze gebruiker heeft geen biografie geüpload."
+  notification:
+    config_html: "Als u de berichtendienst wilt wijzigen. Klik <a href='%{url}'>hier</a>"
+    makefriend:
+      user: "%{sender} volgt %{who}."
+    unread: " ongelezen"  
+  officedoc:
+    confirm_delete: "Document verwijderen?"
+    title: "Office Documenten"
+    mine: "Mijn documenten"
+    name: "document"
+    not_mine: "Documenten"
+    one: "een document"
+    title:
+      one: "Document"
+      other: "Documenten"
+  offline:
+    title: "Offline Modus"
+  options:
+    add: "voeg toe"
+    new: "nieuw"
+  organization:
+    one: "organisatie"
+    other: "organisaties"
+  organizer:
+    one: "organisator"
+    other: "organisatoren"
+  password: "wachtwoord"
+  post:
+    input: "Deel uw gedachten, links, video’s en nog meer, hier!"
+    search_name: "status update"
+  profile:
+    occupation: 
+      label: "Beroep"
+      other: "Overig"
+      scientist: "Wetenschapper"
+      select: "Selecteer uw beroep"
+      teacher: "Leerkracht"
+    tags:
+      default: "VisHub, virtueel, presentatie"
+      other: "Aandachtsvelden"
+  project: "Mondiale Presentatie"      
+  published: "Gepubliceerd"
+  quiz:
+    answer:
+      title:
+        other: "Antwoorden quiz"
+    from_excursion: "Van presentatie"
+    no: "Nee"
+    no_answers: "Nog geen antwoorden!"
+    no_title: "<Zonder titel>"
+    one: "quiz"
+    ongoing: "bezig"
+    open: "open"
+    other: "quizzen"
+    past: "verleden"
+    possible_answers: "Mogelijke antwoorden"
+    yes: "Ja"
+  recommended: "aanbevolen"
+  recsys:
+    recommended:
+      excursions:
+        explain_html: "Bekeken door gebruikers die uw interesses delen:"
+      resources:
+        explain_html: "Bekeken door gebruikers die uw interesses delen:"
+  repository:
+    one: "leermiddelenbank"
+    other: "leermiddelenbanken"
+    title: "Leermiddelen"
+  resource:
+    empty: "U"    
+    network: "mijn netwerkleermiddelen"
+    newmy_html: "U hebt nog geen leermiddelen geüpload. U kunt een nieuw toevoegen door te klikken op de upload knop of op deze "    
+    newnet_html: "Hier ziet u de leermiddelen die geüpload zijn door gebruikers die u volgt. Zoek <a href='/search?type=user'>hier</a> een aantal gebruikers om te volgen."
+    newfav_html: "U hebt nog geen favoriete leermiddelen. Markeer ieder leermiddel dat u wilt als favoriet door te klikken op het ster-icoontje <img src='/assets/icons/star-off.png'>"
+    my: "mijn"
+    net: "netwerk"
+    title:
+      one: "leermiddel"
+      other: "leermiddelen"
+    top: "voorMij"
+    upload: "upload"
+  search:
+    110slides: "1-10 dia’s"
+    1020slides: "10-20 dia’s"
+    20slides: "20+ dia’s"
+    always: "op ieder willekeurig moment"
+    anyslides: "Welke dia’s dan ook"
+    audio: "audio"
+    flash: "flash"
+    followers: "volgers"
+    document: "document"
+    embed: "embedden"
+    excursions: "presentaties"
+    image: "afbeelding"
+    last_day: "gisteren"
+    last_month: "vorige maand"
+    last_week: "vorige week"
+    last_year: "vorig jaar"
+    mostviewed: "meest bekeken"
+    mostfav: "meest toegevoegd aan favorieten"
+    mostslides: "meeste dia’s"
+    newest: "laatste"
+    link: "link"
+    recent: "recent"
+    resources: "leermiddelen"
+    orderby: "rangschikken naar"
+    quiz: "quiz"
+    relevance: "relevantie"
+    slides: "dia’s"
+    time_constraint: "productiedatum"
+    type: "type"
+    video: "video"
+  send:
+    send: "Verzenden"
+  share: "Posten"
+  sign_up: "Aanmelden"
+  site:
+    name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "SWF verwijderen?"
+  today: "Vandaag"
+  top10: "Top 10"
+  url:
+    input: "Plak uw link hier"
+  user:
+    one: "gebruiker"
+    other: "gebruikers"
+  username: "gebruikersnaam"
+  vish:
+    about: "Over VISH"    
+    sentence1: "Maak uw account aan bij VISH"
+    sentence2: "VISH is een platform voor sociale wetenschap"
+    team: "Het VISH Team"    
+  views:
+    pagination:
+      next: "Â»"
+      previous: "Â«"            
+      truncate: "..."
+  view_all: "bekijk alle"
+  yesterday: "Gisteren"

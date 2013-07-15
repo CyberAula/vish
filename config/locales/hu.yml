@@ -1,0 +1,326 @@
+hu:
+  activerecord:
+    attributes:
+      user:
+        email: "Email"
+        tag: "Érdeklődési kör"
+  activity:
+    empty: "Idővonalad kitöltetlen"
+    more: "Bővebben..."
+    new_user: "Üdvözlünk a ViSH-nél! Posztold és oszd meg gondolataidat, linkjeidet, videóidat ismerőseiddel."
+    newmessage: "Ez a te idővonalad. Feltölthetsz ide és megoszthatod képeidet, videóidat, linkjeidet és még sok minden mást."
+    timeline: "idővonal"
+    title:
+      other: "tevékenység"
+    verb:
+       make-friend:
+        User:
+          title: "%{subject} és %{contact} egymáshoz tartoznak."
+          message: "%{name} visszatért hozzád."
+  activity2:
+    title:
+      other: "tevékenység"
+  activity_action:
+    follow: "+ Követés"
+    unfollow: "Nemkövetés"
+  all: "all"
+  announce: 
+    title: "Közlemény"
+    body: ""
+  author: "szerző"
+  cancel: "Mégse"
+  close: "Bezár"
+  conditions:
+    check_message: "Az Elfogadásra kattintva, egyetértessz a mi "  
+    check_message_1: "Feltételek és kikötések"
+    other: "feltételek"
+  contact:
+    pending:
+      other: "Követnek téged"
+  devise:
+    invalid_login: "Kérjük, hogy a folyatáshoz írd be email címedet és jelszavadat."
+  disjunction:
+    or: "vagy"
+  document:
+    document: "dokumentum"
+    help:
+      title: "Források feltöltése"
+      info1_html: "1. Kattints a <b>dokumentumra</b>-ra, <b>linkekre</b> vagy a <b>beágyazott</b> fülre.<br>"
+      info2_html: "2. Ha fel akarsz tölteni egy dokumentumot, akkor kattints a <b>böngészés</b>-re hogy ki tudjad választani a megfelelő fájlt a gépedről. Ha forrásod egy link vagy beágyazott tartalom, <b>beillesztheted</b> azt a szövegdobozba.<br>"
+      info3_html: "3. Írd be a <b>címet</b> és a <b>leírást</b>.<br>"
+      info4_html: "4. Adj a forrásodhoz kapcsolódó <b>címkéket</b>. Érdeklődési köröd alapértelmezett beállítású. Törölheted vagy hozzá is tehetsz címkéket. <br>"
+      info5_html: "5. Válaszd ki a <b>nyelvet</b>, ha szükséges.<br>"
+      info6_html: "6. Válassz egy <b>kor</b> intervallumot. Erre az információra ajánlásoknál van szükség.<br>"
+      info7_html: "7. Ha élő videófelvételt akarsz beágyazni, kattints az <b>Élő</b> lehetőségre.<br>"
+      info8_html: "8. Végül kattints a<b> mentés </b> gombra a feltöltéshez."
+    how: "How to share a resource"
+    info:
+      title: "Cím"
+      description: "Leírás"
+      tags:
+        title: "Témák"
+        addMessage: "Címkék hozzáadása"
+        limitMessage: "elérted a határértéket"
+      age: "Kor"
+    recommended_age: "Ajánlott kor"
+    recommended_age_detail: "%{min}-tól %{max}-évig"
+    input: "Adjál hozzá leírást"
+    new: "Forrás hozzáadása"
+    screencast: "VISH képernyő"
+    title_input: "A forrás neve"
+  email:
+    regards: "Szívélyes üdvözlettel,<br/>"
+    welcome: "Üdvözlünk és köszönjük hogy regisztráltál a Virtuális Tudományos Hubon.<br/>Szeretnénk javasolni neked  <a href=\"%{{profile}}\"> hogy a még jobb szolgáltatások elérése céljából hozd létre saját profilodat </a>.<br/>"
+  embed:
+    confirm_delete: "Beágyazott tartalom törlése?"
+    content: "Élő tartalom"
+    embed: "beágyazott tartalom"
+    input: "Másold ide a beágyazni kívánt tartalmat"
+    name: "beágyazott tartalom"
+  evaluation:
+    teaching: "oktatási gyakorlati benyomások..."
+    contribute: "Részt kívánsz venni?"
+    evaluation: "értékeld"
+    experience: "oktatási benyomások"
+    phrase0: "Értékeld az ennek a virtuális sétának a tartalmát"
+    phrase1: "Szerinted cselekvésre késztette a tanulókat ez a virtuális séta?"
+    phrase2: "Hozzájárult ez a virtuális séta a tanulói munkához és a tanulmányi célok eléréséhez?"
+    phrase3: "Találtál bármilyen felhasználható interdiszciplináris elemet ebben a virtuális sétában? Hasznos volt ez?"
+    phrase4: "Használnád újra oktatásra ezt a virtuális sétát?"
+    disagree: "nem értek egyet"
+    agree: "egyetértek"
+  excursion:
+    actions:
+      bookmark: "könyvjelző"
+      clone: "másol"
+      delete: "töröl"
+      download: "letölt"            
+      edit: "szerkeszt"
+      show: "megmutat"
+      share: "megoszt"
+      scorm: "scorm"
+    clone:
+      confirm: "Ez a virtuális séta át lesz másolva a te táradra"
+      not_found: "A virtulis séta nem található"
+      ok: "Sikeresen átmásolva"
+      owner: "Már a tied a virtuális séta"
+    confirm_delete: "Törlöd a virtuális sétát?"
+    confirm_delete_offline: "A virtuális séta törlésre kerül ebből a listából, ám még a szerveren elérhető. Biztos vagy benne?"
+    contributors:
+      name: "Tartalommal együtt"
+    created: "létrehozva"
+    favorites: "Kedvencek"    
+    how: "Hogy lehet virtuális sétát készíteni"
+    invite:
+      email:
+        body: "Szia,%0A%0ANézd%20meg%20ezt%20a%20virtuális%20sétát%20a%20ViSH:%0A%0A%{url}%0A%0ARemélem%20tetszik%0A%0A%{name}"
+        link: "e-mail"
+        subject: "Nézd%20meg%20a%2020virtuális%20sétám%20http://vishub.org%20:%20%{title}"
+    is_draft: "[DRAFT]"
+    my: "my"
+    name: "virtuális séta"
+    net: "háló"
+    network: "az én hálózati sétáim"
+    network2: "az én hálóm"
+    newmy_html: "Még nem hoztál létre saját virtuális sétát. Hozzáadhatsz egyet az add gomb megnyomásával vagy ha ide kattintasz."    
+    newnet_html: "Itt találod az általad követett felhasználók virtuális sétáit. Keress felhasználót <a href='/search?type=user'> itt</a>."
+    newfav_html: "Még nincs kedvenc virtuális sétád. Jelöld ki bármelyiket a csillag ikonra kattintva.<img src='/assets/icons/star-off.png'>"
+    one: "virtuális séta"
+    other: "virtuális séták"
+    others: "egyéb virtuális séták"
+    session_start: "munkamenet indítása"
+    suggestion:
+      other: "Virtuális séták"
+    title:
+      other: "virtuális séták"
+    upcomming: "következő"
+    unload_warning: "A virtuális séta nincs elmentve!"
+    top: "nekem"
+  external: "külső"
+  filter: "szűrő"
+  follow:
+    add_favorite: "Add meg a kedvencet"
+    contacts: "kapcsolatok"
+    favorites: "Kedvencek"
+    find: "keres"
+    followers: "követők"
+    followings: "követés"
+    is_favorite: "kedvenc"
+    views: "nézetek"
+  frontpage:
+    nanotechnology: "nanotechnológia"
+    gridComputing: "grid számítástechnika"
+    lifesciences: "élettudományok"
+    biotechnology: "biotechnológia"
+  go:
+    repository: "menj a tárházhoz"
+  help: "súgó"
+  lang:
+    independent: "Nyelv független"
+    changed: "Nyelv változtatása %{lang}-ra"
+    error: "A \"%{lang}\" nyelv nem elérhető "
+    title: "nyelv"   
+    others: Others 
+  link:
+    one: "link"
+    other: "linkek"
+    confirm_delete: "Törlöd a linket?"
+    go: "Menj a linkhez"
+  translate:
+    change: "Nyelv módosítása"
+  message:
+    send: "Üzenet küldése"
+    new: "Új üzenet"
+    unread: " olvasatlan"
+  more: "még"
+  mashme:
+    header_html: "Nézd a <a href='http://mashme.tv/' target='_blank'>MashMe.TV-t</a>" 
+    invite_header: "Hívd meg kapcsolataidat"
+    invitesubject: "Csatlakozz hozzánk és nézd a MashMeTV-n a következő virtuális sétát!"
+    invitebody_html: "Kattints ide hogy megnézd:<a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
+    launch: "Indítás"
+    room_name: "szoba neve"
+  navigation:
+    home: "Főoldal"
+  no_bio: "Ez a felhasználó nem frissítette az önéletrajzát."
+  notification:
+    config_html: "Ha módosítani akarod az értesítési szolgáltatást, kattints <a href='%{url}'>ide</a>"
+    makefriend:
+      user: "%{sender} a követője %{who}-nek."
+    unread: " olvasatlan"  
+  officedoc:
+    confirm_delete: "Törlöd a dokumentumot?"
+    title: "Irodai dokumentumok"
+    mine: "Saját dokumentumok"
+    name: "dokumentum"
+    not_mine: "Dokumentumok"
+    one: "egy dokumentum"
+    title:
+      one: "Dokumentum"
+      other: "Dokumentumok"
+  offline:
+    title: "Offline mód"
+  options:
+    add: "hozzáadás"
+    new: "új"
+  organization:
+    one: "szervezet"
+    other: "organizations"
+  organizer:
+    one: "szervező"
+    other: "szervezők"
+  password: "Jelszó"
+  post:
+    input: "Oszd meg gondolataidat, linkjeidet, videóidat itt!"
+    search_name: "státusz fissítése"
+  profile:
+    occupation: 
+      label: "Foglalkozás"
+      other: "Egyéb"
+      scientist: "Kutató"
+      select: "Válaszd ki a foglalkozásodat"
+      teacher: "Tanár"
+    tags:
+      default: "VisHub, virtuális, séta"
+      other: "Érdeklődési körök"
+  project: "Global Excursion"      
+  published: "Publikálva"
+  quiz:
+    answer:
+      title:
+        other: "Kvíz kérdések"
+    from_excursion: "a virtuális sétából"
+    no: "Nem"
+    no_answers: "Nincs még válasz!"
+    no_title: "<Untitled>"
+    one: "kvíz"
+    ongoing: "folyamatban lévő"
+    open: "nyílt"
+    other: "kvízek"
+    past: "elmúlt"
+    possible_answers: "Lehetséges válaszok"
+    yes: "Yes"
+  recommended: "ajánlott"
+  recsys:
+    recommended:
+      excursions:
+        explain_html: "Hasonló érdeklődésű felhasználók által megtekintve:"
+      resources:
+        explain_html: " Hasonló érdeklődésű felhasználók által megtekintve:"
+  repository:
+    one: "tár"
+    other: "tárak"
+    title: "Források"
+  resource:
+    empty: "Te"    
+    network: "saját hálózati forrásaim"
+    newmy_html: "Még nem töltöttél fel forrást. Hozzáadhatod az upload gomb megnyomásával, vagy ha ide kattintasz"    
+    newnet_html: "Itt láthatod az általatt követett felhasználók feltöltött forrásait. Keress felhasználót <a href='/search?type=user'>itt</a>."
+    newfav_html: "Nincs még kedven forrásod. Kijelölheted a csillag ikonra kattintással <img src='/assets/icons/star-off.png'>"
+    my: "enyém"
+    net: "hálózat"
+    title:
+      one: "forrás"
+      other: "források"
+    top: "nekem"
+    upload: "feltöltés"
+  search:
+    110slides: "1-10 dia"
+    1020slides: "10-20 dia"
+    20slides: "20+ dia"
+    always: "bármikor"
+    anyslides: "bármelyik dia"
+    audio: "audió"
+    flash: "flash"
+    followers: "követők"
+    document: "dokumentum"
+    embed: "beágyaz"
+    excursions: "virtuális séták"
+    image: "kép"
+    last_day: "tegnap"
+    last_month: "múlt hónapban"
+    last_week: "múlt héten"
+    last_year: "múl évben"
+    mostviewed: "legnézettebb"
+    mostfav: "legkedveltebb"
+    mostslides: "most slides"
+    newest: "legújabb"
+    link: "link"
+    recent: "friss"
+    resources: "források"
+    orderby: "rendezve"
+    quiz: "kvíz"
+    relevance: "fontosság"
+    slides: "diák"
+    time_constraint: "létrehozás ideje"
+    type: "típus"
+    video: "video"
+  send:
+    send: "Küldés"
+  share: "Megosztás"
+  sign_up: "Regisztrálás"
+  site:
+    name: "Virtual Science Hub"
+  swf:
+    confirm_delete: "Törlöd az SWF-t?"
+  today: "Ma"
+  top10: "Top 10"
+  url:
+    input: "Másold ide a linkedet"
+  user:
+    one: "felhasználó"
+    other: "felhasználók"
+  username: "felhasználónév"
+  vish:
+    about: "A VISH-ről"    
+    sentence1: "Hozz létre fiókot a VISH-sel"
+    sentence2: "A VISH egy közösségi tudományos platform"
+    team: "A VISH csapata"    
+  views:
+    pagination:
+      next: "Â»"
+      previous: "Â«"            
+      truncate: "..."
+  view_all: "mindent mutat"
+  yesterday: "Tegnap"
+

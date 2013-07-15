@@ -41,7 +41,7 @@ class LreController < ApplicationController
 		      logger.fatal "There was an error with the json returned. The json was: " + response.body
 		      error = t("lre.json_error")
 		    end
-			if parsed_json["error"]
+			if parsed_json && parsed_json["error"]
 				error = parsed_json["error"]
 			else
 				#let's get the data for those ids returned
@@ -64,8 +64,8 @@ class LreController < ApplicationController
   	#method to get the data for the ids, this calls to LRE_DATA_URL to ask for the metadata
   	#it will return a json object to return it to the ViSH editor
   	def getJSONForIds(ids)
-  		logger.info "We are going to request the LRE for these ids: " + ids
-  		ids_alone = ids.delete "{}"
+  		ids_alone = extend_ids(ids)
+  		logger.info "We are going to request the LRE for these ids: " + ids_alone
   		if ids_alone == ""
   			return []
   		end
@@ -83,6 +83,33 @@ class LreController < ApplicationController
 		    
 	  		return parsed_json #lre returns an array with the contents
 		end	
+  	end
+
+  	#method to prepare the ids to send them to the lredata
+  	#example {593,619}[709,711]{719,868,882} should return "593,619,709,710,711,719,868,882"
+  	#other possibilities:
+  	#   [709,711]{719,868,882}
+  	#   {459,311}{719,868,882}  sometimes it introduces extra brackets
+  	#[this_is_a_interval]
+  	def extend_ids(ids)
+  		if(ids.index("["))  			
+  			#unflat the interval
+  			interval = ids[ids.index("[")+1..ids.index("]")-1]
+			first_number = interval[0..interval.index(",")-1]
+			second_number = interval[interval.index(",")+1..-1]
+			flat_interval = first_number.to_i.upto(second_number.to_i).to_a.join(",")
+			final_ids = ids.sub(/\[.*?\]/,","+flat_interval+",")
+			if(final_ids[0]==",")
+				final_ids[0]=""
+			elsif(final_ids[-1]==",")
+				final_ids[-1]=""
+			end
+			puts final_ids
+  		else
+  			final_ids = ids
+  		end
+  		final_ids.sub!("}{", ",")
+  		final_ids.delete "{}"
   	end
 
 end

@@ -730,7 +730,7 @@
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre')" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo2.png'/></a></li>
+				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre')" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo2.png'/><span>LRE</span></a></li>
 				  </ul>
 				  <img class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
 				  <img class='help_in_fancybox' id='tab_pic_upload_help' src='/assets/icons/helptutorial_circle_blank.png'/>
@@ -885,6 +885,7 @@
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
 						<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
+						<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre')" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo2.png'/><span>LRE</span></a></li>
 				  </ul>
 				  <img class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
 					<img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/icons/helptutorial_circle_blank.png'/>
@@ -970,7 +971,7 @@
 			</div>
 		</div>	
 				
-				<div id='tab_object_snapshot_content' class="fancy_tab_content">
+		<div id='tab_object_snapshot_content' class="fancy_tab_content">
           <div class="box1 box1fancy1">
             <p class="textfancy">Web Snapshot</p></br>
             <img class="image_add_url" src="/assets/icons/url_img.png"/>
@@ -983,7 +984,25 @@
                   </div>
           </div>
         </div>
-				 
+			
+		<div id='tab_object_lre_content' class="fancy_tab_content">	
+			<div class="box1 box1fancy2">
+				<img id="lrelogo_in_tab" src="/assets/logos/lrelogo.gif" class="imagelogotab">			  
+				<div class="search_container">
+				<input id="search_object_lre" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+				</div>
+
+				<div id="tab_object_lre_content_carrousel"></div>
+				<div id="tab_object_lre_content_preview" class="content_preview">
+					<div id="tab_object_lre_content_preview_object" class="content_preview_data"></div>
+					<div id="tab_object_lre_content_preview_metadata" class="content_preview_metadata"></div>
+					<div id="tab_object_lre_content_preview_foot" class="content_preview_foot">
+						<button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.LRE.addSelectedObject()">Add</button>
+					</div>
+				</div>				
+			</div>			
+		</div>	
+
 	    </div>
 	  </div>
   
