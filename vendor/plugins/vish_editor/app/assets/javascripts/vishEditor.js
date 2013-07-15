@@ -17191,7 +17191,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
         return
       }
       $.each(data.items, function(i, item) {
-        var myImg = $("<img id=img_flkr" + i + " src=" + item.media.m.replace(/_m/i, "") + " imageFlikrId=" + i + "/>");
+        var myImg = $("<img id=img_flkr" + i + " src='" + item.media.m.replace(/_m/i, "") + "'" + " imageFlikrId='" + i + "' title='" + item.title + "'/>");
         carrouselImages.push(myImg)
       });
       V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
@@ -17318,7 +17318,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
       return
     }
     $.each(data.pictures, function(index, image) {
-      var myImg = $("<img src=" + image.src + " >");
+      var myImg = $("<img src='" + image.src + "' title='" + image.title + "' >");
       carrouselImages.push(myImg);
       currentImages[image.id] = image
     });
@@ -17616,7 +17616,7 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
     }
     $.each(data, function(index, objectItem) {
       var objectInfo = V.Object.getObjectInfo(objectItem.object);
-      var myImg = $("<img src='" + objectItem.thumbnail + "' objectId='" + objectItem.id + "'>");
+      var myImg = $("<img src='" + objectItem.thumbnail + "' objectId='" + objectItem.id + "' title='" + objectItem.title + "'>");
       carrouselImages.push(myImg);
       carrouselImagesTitles.push(objectItem.title);
       currentObject[objectItem.id] = objectItem
@@ -17878,7 +17878,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
           imageSource = V.ImagesPath + "carrousel/object.png";
           break
       }
-      var myImg = $("<img src='" + imageSource + "' objectId='" + objectItem.id + "'>");
+      var myImg = $("<img src='" + imageSource + "' objectId='" + objectItem.id + "' title='" + objectItem.title + "'>");
       carrouselImages.push(myImg);
       carrouselImagesTitles.push(objectItem.title);
       currentObject[objectItem.id] = objectItem
@@ -19745,7 +19745,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     }
     $.each(data.videos, function(index, video) {
       if(video) {
-        var myImg = $("<img src='" + video.poster + "' videoId='" + video.id + "'/>");
+        var myImg = $("<img src='" + video.poster + "' videoId='" + video.id + "' title='" + video.title + "'/>");
         carrouselImages.push(myImg);
         currentVideos[video.id] = video
       }
@@ -19914,7 +19914,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
       currentVideos[videoID].author = author;
       currentVideos[videoID].subtitle = subtitle;
       var image_url = "http://img.youtube.com/vi/" + videoID + "/0.jpg";
-      var myImg = $("<img videoID=" + videoID + " src=" + image_url + " />");
+      var myImg = $("<img videoID='" + videoID + "' src='" + image_url + "' title='" + title + "'/>");
       carrouselImages.push(myImg)
     });
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
