@@ -294,6 +294,7 @@ es:
     ongoing: "abiertos"
     open: "open"
     other: "cuestionarios"
+    page_title: "MIS CUESTIONARIOS"
     past: "cerrados"
     possible_answers: "Posibles respuestas"
     yes: "Si"

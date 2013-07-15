@@ -15,8 +15,8 @@
   }  
 }
 legend {
-  font-size: 16px;
-  font-family: $secondFontFamily;
+  font-size: 14px;
+  font-family: $thirdFontFamily;
   color: $firstColor;
 }
 .accordion-group {
@@ -50,7 +50,7 @@ legend {
   @include border-radius($baseBorderRadius);
   @include border-bottom-radius(0px);
   h3 {
-    font-family: $secondFontFamily;
+    font-family: $thirdFontFamily;
     color: $grayLight;
     font-size: 18px;
   }
@@ -66,7 +66,8 @@ legend {
   background-color: $firstColor;
   background-image: none;
   filter: none;
-  font-family: $secondFontFamily;
+  font-family: $thirdFontFamily;
+  font-size: 12px;
 
   &:hover{
     background-color: $firstColor;
