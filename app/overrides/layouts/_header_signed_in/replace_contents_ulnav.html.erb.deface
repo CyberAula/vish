@@ -21,16 +21,22 @@
     </a>
     <ul class="dropdown-menu">
     <!-- dropdown menu links -->
-      <li><a href="#">Perfil</a></li>
-      <li><a href="#" data-toggle="modal">Ajustes</a></li>
+      <li class="settings-menu">
+        <%= link_to t('profile.one'), current_subject %>
+      </li>
+      <li class="settings-menu">
+        <%= link_to t('dropdown.settings'), settings_path, :id => "btn_menu_settings" %>
+      </li>
       <li class="divider"></li>
-      <li><a href="#" data-toggle="modal">cerrar sesión</a></li>  
+      <li>
+        <%= link_to t('sign_out'), destroy_user_session_path, :method => :delete  %>
+      </li>
     </ul>
  
   <#% end %>
 </li>
 <li> 
-  <#%= render partial: 'layouts/header_dropdown_menu' %>
+  <%#= render partial: 'layouts/header_dropdown_menu' %>
 </li>
 <!-- carga de modales -->
 <%= render partial: 'repositories/form' %>
