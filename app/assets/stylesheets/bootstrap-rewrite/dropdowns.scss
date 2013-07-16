@@ -1,0 +1,10 @@
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+	@include border-radius($baseBorderRadius);
+}
+
+.dropdown-menu{
+  padding: 1px
+}
