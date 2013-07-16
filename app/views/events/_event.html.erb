@@ -1,26 +1,37 @@
-<li class="events-item">
 
-  <%= link_to image_tag("items/evt-prev.png",  :class=> "" ), "#" %>
+
+<li class="box-item">
+<!--IMG excursuion-->
+  <%= link_to image_tag("items/evt-prev.png",  :class=> "img-box" ), "#" %>
+<!--INFO excursuion-->
   <div class="info">
+<!--Title -->
     <h5 class="name">
       <a>
         event name  
       </a>
     </h5>
-    <div class="like">    
-      <h5 class="count">32</h5>
-      <%= link_to image_tag("icons/likes/star-active.png",  :class=> "" ), "#" %>
+<!--Autor -->
+    <div class="author"> 
+      <a>author name</a>   
     </div>
-
+    <div class="date">
+      01/01/13    
+    </div>
+<!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
-      <h5 class="author">
-        by 
-        <a>author name</a>
-        <div class="date">
-          01/01/13    
-        </div>
-      </h5>
+<!--like -->
+      <div class="like">    
+        <div class="count">32</div>
+        <%= link_to image_tag("icons/likes/star-active.png",  :class=> "img-like" ), "#" %>
+      </div>
+<!--views -->
+      <div class="views">2500
+        <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23">
+          <%#= image_tag("icons/eye.png",  :class=> "count" ) %> 
+        </a>
+      </div>
     </div>
   </div>
 </li>
