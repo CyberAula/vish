@@ -1,10 +1,22 @@
+<style>
+  #draggable { width: 95%; height: 150px; padding: 0.5em; }
+</style>
+<script>
+  $(function() {
+  $( "#draggable" ).draggable();
+  });
+</script>
 <section id="quiz">
   <div class="whiteframe">
     <legend>MY QUIZS</legend>
-    <div class="textrow"></div>
-    <div class="textrow"></div>
-        
-    
-
+    <div class="textrow">
+      <h4><b>Cuestionarios abiertos (arrastra)</b></h4>
+      <div id="draggable" class="quiz_item">¿que he aprendido del tema 1?</div>
+      <div id="draggable" class="quiz_item">¿que he aprendido del tema 2?</div>
+    </div>
+    <div class="textrow">
+      <h4><b>Cuestionarios cerrados</b></h4>
+    </div>
   </div>
 </section>
+

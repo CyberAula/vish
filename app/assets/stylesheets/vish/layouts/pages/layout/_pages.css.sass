@@ -26,10 +26,22 @@ li.add-item
   .textrow
     @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
     @include border-radius($baseBorderRadius)
+    border-width: 2px
+    border-color: $grayLight
     border-style: solid
-    border-color: $firstColor
-    height: 80px
     display: block
     float: left
-    margin-left: 10px
+    margin-left: 5px
+    padding-left: 20px
+    padding-right: 20px
+    width: 45%
+    min-height: 300px
+    .quiz_item
+      border-width: 1px
+      border-color: $grayLight
+      border-style: solid
+      height: 40px
+      @include border-radius($baseBorderRadius)
+      padding: 10px
+      background-color: $white
 
