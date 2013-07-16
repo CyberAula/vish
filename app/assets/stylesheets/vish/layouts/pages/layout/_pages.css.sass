@@ -23,3 +23,13 @@ li.add-item
 #help,
 #legal_notice
   @include help
+  .textrow :first-child
+    margin-left: 0 !important
+  .textrow
+    @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    background-color: $red
+    height: 80px
+    display: block
+    float: left
+    margin-left: 20px
+
