@@ -3,6 +3,7 @@
 #categories,
 #events,
 #new,
+#search-all
   @include columns-webkit
   margin-top: 20px
   ul
@@ -91,6 +92,7 @@
 .recomended_excursion
   ul.small-box
     margin: 0
+    margin-left: 20px
     li.box-item:first-child
       margin-top: 0px
     li.box-item
@@ -107,6 +109,7 @@
         img
           @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
+          max-height: 70px
       .info
         @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left

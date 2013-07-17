@@ -15,15 +15,15 @@
     <input type="text" placeholder="search.placeholder"></input>
 
     <div class="tab-content">
-      <%= render partial: 'layouts/loading' %>
-
-     
-
-
-      <div class="tab-pane active" id="tab1">
-        <ul>  
-          <%= render partial: 'repositories/resources' %>
-        </ul>
+      <%#= render partial: 'layouts/loading' %>
+      <div class="tab-pane active" id="tab1 ">
+        <div id="search-all">
+          <ul>  
+            <% 10.times do %>
+              <%= render partial: 'events/event' %>
+            <% end %>
+          </ul>
+        </div>
       </div>
 
       <div class="tab-pane" id="tab2">

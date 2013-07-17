@@ -1,11 +1,19 @@
 #show_excursions
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  .visor
+  .container-visor
+    display: inline-block
+    position: relative
     @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    display: block
     float: left
-    height: 70%
-    background-color: $grayLighter
+    .elemento-visor
+      padding-top: 81%
+    .caja-visor
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+
   .activity
     margin-top: 20px
     @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
