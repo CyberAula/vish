@@ -1,22 +1,37 @@
-<style>
-  #draggable { width: 95%; height: 150px; padding: 0.5em; }
-</style>
+
 <script>
-  $(function() {
-  $( "#draggable" ).draggable();
-  });
+$(function() {
+  $( "#sortable1, #sortable2" ).sortable({
+    connectWith: ".connectedSortable"
+  }).disableSelection();
+});
 </script>
 <section id="quiz">
   <div class="whiteframe">
     <legend>MY QUIZS</legend>
     <div class="textrow">
-      <h4><b>Cuestionarios abiertos (arrastra)</b></h4>
-      <div id="draggable" class="quiz_item">¿que he aprendido del tema 1?</div>
-      <div id="draggable" class="quiz_item">¿que he aprendido del tema 2?</div>
-    </div>
-    <div class="textrow">
-      <h4><b>Cuestionarios cerrados</b></h4>
+      <h4>Cuestionarios Abiertos</h4>
+      <ul id="sortable1" class="connectedSortable">  
+        <li class="ui-state-default">Cuestionario 1</li>
+        <li class="ui-state-default">Cuestionario 2</li>
+        <li class="ui-state-default">Cuestionario 3</li>
+        <li class="ui-state-default">Cuestionario 4</li>
+        <li class="ui-state-default">Cuestionario 5</li>
+      </ul>
+    </div> 
+    <div class="textrow"> 
+      <h4>Cuestionarios Cerrados</h4>
+      <ul id="sortable2" class="connectedSortable">  
+        <li class="ui-state-highlight">Cuestionario 6</li>
+        <li class="ui-state-highlight">Cuestionario 7</li>
+        <li class="ui-state-highlight">Cuestionario 8</li>
+        <li class="ui-state-highlight">Cuestionario 9</li>
+        <li class="ui-state-highlight">Cuestionario 10</li>
+      </ul>      
     </div>
   </div>
 </section>
+
+
+
 

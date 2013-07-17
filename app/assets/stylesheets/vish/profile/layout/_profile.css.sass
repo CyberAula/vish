@@ -1,32 +1,49 @@
 .user
   header
     .avatar
+      margin: 5px
+      width: 23%
+  
       img.avatar_img
-        border: 5px solid $grayLighter
+        border: 15px solid $white
+        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        
+        //border: 5px solid $grayLighter
     .information
-      margin-top: 20px
-      border: 1px solid $grayLighter
+      margin-top: 25px
+      padding: 1%
+      width: 73%
+      @include border-radius($baseBorderRadius)
+      @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+      //border: 1px solid $grayLighter
       background-color: $white
       h1, h2, h3, h4, h5, h6 
         line-height: 25px
         display: inline-block
-        margin-left: 5px
+        margin-left: 10px
       h2
-        color: $secondColor 
+        color: $gray
+        font-family: $thirdFontFamily
       button
         float: right
         display: inline-block
         margin-top: 7px
       hr
-        margin: 5px 0
-      h3.name-roll
+        //margin: 5px 0
+        border: none
+      h3.name-roll,h3.karma
+        color: $firstColor
+        font-size: 20px
+        font-family: $thirdFontFamily
       p.description
         color: $gray
       span
-        color: $thirdColor  
+        color: $black  
       h3.achievements
         border-left: 1px solid $grayLighter
-        color: $blue-2
+        color: $secondColor
+        font-size: 20px
+        font-family: $thirdFontFamily
 
 .info-profile
   .follow-tab
@@ -39,7 +56,10 @@
         font-size: 1.1em
       span:after
         content: " "
-
+  
+  .tabbable
+    h3
+      color: $firstColor          
 
 
 

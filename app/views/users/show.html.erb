@@ -6,7 +6,7 @@
         <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
       </div>
       <div class="information">
-        <h2> <%= @user.name %></h2>
+        <h2><%= @user.name %></h2>
         <% if profile_subject != current_subject %>
           <button>
             <%= link_to new_message_path(receiver: profile_subject.slug) do %>
