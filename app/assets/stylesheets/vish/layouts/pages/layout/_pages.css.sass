@@ -24,24 +24,30 @@ li.add-item
 #legal_notice
   @include help
   .textrow
-    @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    @include border-radius($baseBorderRadius)
-    border-width: 2px
-    border-color: $grayLight
-    border-style: solid
-    display: block
-    float: left
-    margin-left: 5px
-    padding-left: 20px
-    padding-right: 20px
+    margin: 5px 
+    padding: 0 0 2.5em
+    float: left 
+    margin-right: 10px     
     width: 45%
     min-height: 300px
-    .quiz_item
-      border-width: 1px
-      border-color: $grayLight
-      border-style: solid
-      height: 40px
-      @include border-radius($baseBorderRadius)
-      padding: 10px
-      background-color: $white
+    h4
+      margin-bottom: 20px
+  
+  #sortable1, #sortable2  
+    list-style-type: none 
+    
+  #sortable1 li, #sortable2 li  
+    margin: 0 5px 5px 5px 
+    padding: 5px 
+    font-size: 1.2em 
+    //width: 140px 
+    border-width: 1px
+    border-color: $grayLight
+    border-style: solid
+    height: 30px
+    @include border-radius($baseBorderRadius)
+    padding: 10px
+    background-color: $white
+ 
+    
 
