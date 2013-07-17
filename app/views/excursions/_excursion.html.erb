@@ -4,29 +4,28 @@
     <%= image_tag("badges/badge-bronce.png") %>
   </div>
 <!--IMG excursuion-->
-  <%= link_to image_tag("items/exc-prev.png",  :class=> "img-box" ), "#" %>
+  <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="info">
 <!--Title -->
     <h5 class="name">
-      <a>
-        excursion name excur excursion name 
-      </a>
+      <%= link_to excursion.title, excursion %>
     </h5>
 <!--Autor -->
     <div class="author"> 
-      <a>author name</a>   
+      <%= link_to excursion.author, excursion %>
     </div>
 <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
 <!--like -->
       <div class="like">    
-        <div class="count">32</div>
+        <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
         <%= link_to image_tag("icons/likes/star-active.png",  :class=> "img-like" ), "#" %>
+        <%= link_like(excursion.post_activity)%>
       </div>
 <!--views -->
-      <div class="views">2500
+      <div class="views"><%=excursion.visit_count.to_s%>
         <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23">
           <%#= image_tag("icons/eye.png",  :class=> "count" ) %> 
         </a>
@@ -34,10 +33,4 @@
     </div>
   </div>
 </li>
-
-
-
-
-
-
 

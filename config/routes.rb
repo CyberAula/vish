@@ -13,7 +13,8 @@ Vish::Application.routes.draw do
   match 'help' => 'help#index'
   match 'legal_notice' => 'legal_notice#index'
   #get 'excursions' => 'excursions#index', :as => :home
-
+  
+  #resources :excursions
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

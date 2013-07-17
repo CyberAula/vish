@@ -57,22 +57,28 @@ namespace :db do
 
         def generate_slide
           img_right = rand() > 0.5
+          slide_id = "article#{@slide_id+=1}"
+
           { # Slide N
-            :id => "vish#{@slide_id+=1}",
+            :id => slide_id,
             :template => 't1',
+            :type => 'standard',
             :elements => [
               { # Element 1
                 :type => 'text',
+                :id => slide_id + "_zone1",
                 :areaid => 'header',
                 :body => Forgery::LoremIpsum.words(1+rand(4),:random => true)
               },
               { # Element 2
                 :type => ( img_right ? 'image' : 'text' ),
+                :id => slide_id + "_zone2",
                 :areaid => 'right',
                 :body => ( img_right ? @sample_images[rand(@sample_images.size)] : Forgery::LoremIpsum.paragraph(:random => true) )
               },
               { # Element 3
                 :type => ( img_right ? 'text' : 'image' ),
+                :id => slide_id + "_zone3",
                 :areaid => 'left',
                 :body => ( img_right ? Forgery::LoremIpsum.paragraph(:random => true) : @sample_images[rand(@sample_images.size)] )
               }
@@ -89,6 +95,7 @@ namespace :db do
           e = Excursion.create! :json => {  :title => "#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
                                             :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
                                             :author => author.name,
+                                            :avatar => @sample_images[rand(@sample_images.size)],
                                             :slides => Array.new(1+rand(9)).map{ generate_slide }
                                          }.to_json,
                                 :created_at => Time.at(rand(updated.to_i)),
@@ -97,6 +104,29 @@ namespace :db do
                                 :owner_id   => owner.id,
                                 :user_author_id => user_author.id,
                                 :relation_ids => [Relation::Public.instance.id]
+          e.save!
+        end
+
+        #create one draft per actor
+        @available_actors.each do |a|
+          updated = Time.at(rand(Time.now.to_i))
+          author = a
+          owner  = author
+          user_author =  ( author.subject_type == "User" ? author : author.user_author )
+
+          e = Excursion.create! :json => {  :title => "#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
+                                            :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
+                                            :author => author.name,
+                                            :avatar => @sample_images[rand(@sample_images.size)],
+                                            :slides => Array.new(1+rand(9)).map{ generate_slide }
+                                         }.to_json,
+                                :created_at => Time.at(rand(updated.to_i)),
+                                :updated_at => updated,
+                                :author_id  => author.id,
+                                :owner_id   => owner.id,
+                                :user_author_id => user_author.id,
+                                :relation_ids => [Relation::Public.instance.id],
+                                :draft => true
           e.save!
         end
 

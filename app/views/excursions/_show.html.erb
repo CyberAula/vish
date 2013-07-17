@@ -3,8 +3,8 @@
   <div class="visor"></div>
   <div class="recomended_excursion">
     <ul class="small-box">
-      <% 10.times do %>
-        <%= render partial: 'excursions/excursion' %>
+      <% Excursion.first(5).each do |excursion| %>
+        <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
       <% end %>
     </ul>
   </div>

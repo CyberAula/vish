@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-  revision: 7d1833343bbd093c8cb5761cc9dcc3aa604ef81a
+  revision: 2e68dc1c028a98f5089c9d374192e0e6a41b7e19
   branch: master
   specs:
     social_stream-base (2.1.0)
@@ -180,6 +180,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
+    kgio (2.8.0)
     linkser (0.0.15)
       ging-opengraph (~> 0.0.4)
       nokogiri (>= 1.4.0)
@@ -280,6 +281,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
+    raindrops (0.11.0)
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -358,6 +360,10 @@ GEM
     uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    unicorn (4.6.2)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.3)
@@ -400,3 +406,4 @@ DEPENDENCIES
   social_stream-ostatus!
   sqlite3
   uglifier (>= 1.2.3)
+  unicorn (= 4.6.2)

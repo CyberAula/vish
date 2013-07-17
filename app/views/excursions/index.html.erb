@@ -5,16 +5,15 @@
 <section id="excursions">
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      <li><h1>excursions</h1></li>
-      <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
-      <li><a href="#tab2" data-toggle="tab">mine</a></li>
+      <li><h1><%= t("excursion.other")%></h1></li>
+      <li class="active"><a href="#tab1" data-toggle="tab"><%= t("excursion.all")%></a></li>
+      <li><a href="#tab2" data-toggle="tab"><%= t("excursion.other")%></a></li>
       <li><a href="#tab3" data-toggle="tab">examples</a></li>
     </ul>
     <div class="tab-content">
         
       <div class="tab-pane active" id="tab1">
         <%#= render partial: 'excursions/excursions' %>
-
       </div>
 
       <div class="tab-pane" id="tab2">
