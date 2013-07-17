@@ -3,13 +3,7 @@
 #categories,
 #events,
 #new,
-.recomended_excursion
-  -moz-column-count: 5
-  -moz-column-gap: 15px
-  -moz-column-fill: auto
-  column-count: 5
-  column-gap: 15px
-  column-fill: auto
+  @include columns-webkit
   margin-top: 20px
   ul
     margin: 0
@@ -21,9 +15,6 @@
       box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
       display: inline-block
       margin: 0 5px 20px
-
-
-
       a.img-box
         img
           @include border-top-radius($baseBorderRadius)
@@ -83,6 +74,8 @@
       background-color: $red
 
 
+
+.recomended_excursion
   ul.small-box
     margin: 0
     li.box-item:first-child
@@ -94,6 +87,9 @@
       list-style: none
       margin-top: 10px
       background-color: $white
+      .badges
+        display: none
+        @include badge-grid
       a.img-box
         img
           @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -103,16 +99,50 @@
         float: left
         padding: 0
         h5.name
-          font-size: 16px
           padding-left: 10px
+          margin: 0
+          word-wrap: break-word
           text-decoration: none
           cursor: pointer
+          a
+            color: $grayDark
         .author
           padding-left: 10px
+          color: $secondColor
+          font-size: 10px
           text-decoration: none
           cursor: pointer
+          a
+            word-wrap: break-word
+        .author:before
+          content: "by"
+          color: $gray
+          font-size: 10px
       .info-bottom
         padding-left: 10px
+        hr
+          margin: 0
+        .soften
+          margin-bottom: 1px
+        .like
+          font-size: 12px
+          float: left
+          @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .count
+            display: inline-block
+          a
+            display: inline-block
+            img.img-like
+              margin-top: -5px
+        .views
+          float: right
+          color: $gray
+          font-size: 12px
+        .views:after
+          content: "views"
+          color: $secondColor
+          font-size: 10px
+          font-family: $firstFontFamily
 
 
 
