@@ -58,6 +58,7 @@ namespace :db do
         puts 'Excursion population'
         excursions_start = Time.now
         @slide_id=0
+        @available_actors = Actor.all
 
         # Some sample science images in the public domain
         @sample_images = %w{

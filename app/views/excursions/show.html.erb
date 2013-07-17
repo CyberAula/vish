@@ -1,14 +1,17 @@
+<%= render :partial => 'objects/show',
+           :locals  => { :object => @excursion } %>
+
 <div class="page-header"> Title excursion </div>
 <section id="show_excursions">
 
 
-<div class="container-visor">
-  <div class="elemento-visor"></div>
-  <div class="caja-visor">
-    <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
-    </iframe>
+  <div class="container-visor">
+    <div class="elemento-visor"></div>
+    <div class="caja-visor">
+      <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
+      </iframe>
+    </div>
   </div>
-</div>
 
 
   <div class="recomended_excursion">
@@ -18,6 +21,15 @@
       <% end %>
     </ul>
   </div>
-  <div class="activity"></div>
+  
+  <div class="activity">
+    <div id="comments" class="comments">
+      <h2>Comments</h2>
+      <div class="new-comments-box">
+        <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
+      </div>
+    </div>
+    <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
+  </div>
 </section>
 

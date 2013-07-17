@@ -1,4 +1,13 @@
 module ActivitiesHelper
+
+  def like_status object
+    [ 'like', 'unlike' ].tap do |s|
+      if user_signed_in? && object.liked_by?(current_subject)
+        s.reverse!
+      end
+    end
+  end
+
   # Javascript line to fetch or create the modal dialog
   def modal_for(object)
     if object.acts_as_actor?
