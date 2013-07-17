@@ -33,6 +33,8 @@ es:
   author: "autor"
   cancel: "Cancelar"
   categories:
+    actions:
+      add: "Añadir categoría"
     input: "Añade una descripción"
     leyend:
       title: "Título"
@@ -142,8 +144,12 @@ es:
     strong_disagree_a: "Muy malo"
     alert: "Por favor rellena las cinco preguntas de evaluación. Gracias."
     success: "Tus respuestas se han guardado. Gracias por ayudar a evaluar esta excursión."
+  event:
+    actions:
+      add: "Añadir evento"
   excursion:
     actions:
+      add: "Añadir excursion"
       bookmark: "marcardor"      
       clone: "clonar"
       delete: "Borrar"
@@ -310,6 +316,8 @@ es:
     other: "repositorios"
     title: "Recursos"
   resource:
+    actions: 
+      add: "Añadir recurso"
     empty: "No"    
     network: "recursos de mi red"
     newmy_html: "Aún no has creado ningún recurso. Puedes crear uno nuevo haciendo click en el botón subir o en este "    

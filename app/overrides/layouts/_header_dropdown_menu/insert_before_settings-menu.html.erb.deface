@@ -1,6 +1,6 @@
 <!-- insert_before '.settings-menu' -->
 
-<li><a tabindex="-1" href="#">Add Excursion</a></li>
-<li><a tabindex="-1" href="#">Add Category</a></li>
-<li><a tabindex="-1" href="#">Add Event</a></li>
-<li><a tabindex="-1" href="#">Add Resource</a></li>
+<li><%= link_to t('excursion.actions.add'),new_excursion_path, :tabindex => "-1"  %></li>
+<li><%= link_to t('categories.actions.add'),new_category_path, :tabindex => "-1"  %></li>
+<li><%= link_to t('event.actions.add'),new_event_path, :tabindex => "-1"  %></li>
+<li><%= link_to t('resource.actions.add'),new_resource_path, :tabindex => "-1"  %></li>

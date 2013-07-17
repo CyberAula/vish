@@ -32,6 +32,8 @@ en:
   author: "author"
   cancel: "Cancel"
   categories:
+    actions:
+      add: "Add category"
     input: "Add a description"
     leyend:
       title: "Title"
@@ -137,8 +139,12 @@ en:
     disagree_a: "Poor"
     strong_disagree_a: "Very Poor"
     success: "Your answers were succesfully recorded. Thank you for contributing."
+  event:
+    actions:
+      add: "Add event"
   excursion:
     actions:
+      add: "Add excursion"
       bookmark: "bookmark"
       clone: "clone"
       delete: "delete"
@@ -308,6 +314,8 @@ en:
     other: "repositories"
     title: "Resources"
   resource:
+    actions:
+      add: "Add resource"
     empty: "You"    
     network: "my network resources"
     newmy_html: "You have not uploaded any resources yet. You can add a new one by clicking on the upload button or on this "    

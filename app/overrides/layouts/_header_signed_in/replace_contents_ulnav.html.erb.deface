@@ -6,9 +6,9 @@
     </a>
     <ul class="dropdown-menu">
     <!-- dropdown menu links -->
-      <li><a href="#">Add Excursion</a></li>
-      <li><a href="#AddCategory" data-toggle="modal">Add Category</a></li>
-      <li><a href="#AddResource" data-toggle="modal">Add Resource</a></li>  
+      <li><%= link_to t('excursion.actions.add'), new_excursion_path %></li>
+      <li><a href="#AddCategory" data-toggle="modal"><%=t('categories.actions.add')%></a></li>
+      <li><a href="#AddResource" data-toggle="modal"><%=t('resource.actions.add')%></a></li>  
     </ul>
   </div>	
 </li>

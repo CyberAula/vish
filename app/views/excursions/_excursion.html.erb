@@ -4,7 +4,7 @@
     <%= image_tag("badges/badge-bronce.png") %>
   </div>
 <!--IMG excursuion-->
-  <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "img-box" %>
+  <%= link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="info">
 <!--Title -->
@@ -13,7 +13,7 @@
     </h5>
 <!--Autor -->
     <div class="author"> 
-      <%= link_to excursion.author, excursion %>
+      <%= link_to excursion.author.name, excursion %>
     </div>
 <!--____________________ -->
     <div class="info-bottom">
