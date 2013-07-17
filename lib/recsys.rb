@@ -1,6 +1,15 @@
 module RecSys
   module ActorRecSys
+    
     def contact_suggestions(size=1)
+      if Site.current.config[:recommender_system] and Site.current.config[:recommender_system]==true
+        return rec_contact_suggestions(size)
+      else
+        return Contact.last(size)
+      end
+    end
+
+    def rec_contact_suggestions(size=1)
       sgs = (
        RecsysUser.
          find_all_by_id(id).
@@ -23,6 +32,31 @@ module RecSys
     end
 
     def excursion_suggestions(size=4)
+      if Site.current.config[:recommender_system] and Site.current.config[:recommender_system]==true
+        excursions = rec_excursion_suggestions(size)
+      else
+        excursions = Excursion.last(size)
+      end
+
+      rec_excursions = [];
+
+      #remove user excursions and drafts
+      excursions.each do |ex|
+        if (!(defined? current_subject).nil? && ex.author.subject == current_subject) || ex.draft
+          next
+        end
+        rec_excursions.push(ex)
+      end
+
+      #Avoid empty data
+      if rec_excursions.length == 0
+        rec_excursions = Excursion.last(size)
+      end
+
+      return rec_excursions
+    end
+
+    def rec_excursion_suggestions(size=4)
       sgs = (
        RecsysUser.
          find_all_by_id(id).
@@ -39,6 +73,14 @@ module RecSys
     end
 
     def resource_suggestions(size=6)
+      if Site.current.config[:recommender_system] and Site.current.config[:recommender_system]==true
+        return rec_resource_suggestions(size)
+      else
+        return Document.last(size)
+      end
+    end
+
+    def rec_resource_suggestions(size=6)
       sgs = (
        RecsysUser.
          find_all_by_id(id).
@@ -53,6 +95,7 @@ module RecSys
       # TODO: Filter by consummed resources
       sgs
     end
+
   end
 end
 

@@ -15,7 +15,12 @@ Vish::Application.routes.draw do
   #get 'excursions' => 'excursions#index', :as => :home
   
   #resources :excursions
-  
+  match 'excursions/last_slide' => 'excursions#last_slide'
+
+
+  #PDF to Excursion
+  resources :pdfexes
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
