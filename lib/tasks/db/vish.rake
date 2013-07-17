@@ -8,12 +8,13 @@ namespace :db do
     # Clear existing tasks
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
+    task('create:groups').clear
 
     # User 12 logos
     ENV['LOGOS_TOTAL'] = 12.to_s
 
     desc "Create populate data for ViSH"
-    task :create => 'create:excursions'
+    task :create => [ 'create:occupations', 'create:excursions']
     #task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_documents, :create_avatars ]
 
 
@@ -37,6 +38,19 @@ namespace :db do
 
         ties_end = Time.now
         puts '   -> ' +  (ties_end - ties_start).round(4).to_s + 's'
+      end
+
+      desc "Assign an occupation to users"
+      task :occupations do
+        puts 'Occupation population'
+        occupations_start = Time.now
+
+        User.all.each do |u|
+          u.update_attributes(:occupation => rand(Occupation.size))
+        end
+
+        occupations_end = Time.now
+        puts '   -> ' +  (occupations_end - occupations_start).round(4).to_s + 's'
       end
 
       desc "Populate excursions to the database"
