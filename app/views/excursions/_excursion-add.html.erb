@@ -1,8 +1,10 @@
 <li class="new-item">
-<%= link_to image_tag("icons/add.svg"), "#" ,  :class=> "img-box" %>
-  <div class="action-name">
-    Create New Excursion  
-  </div>
+	<%= link_to new_excursion_path do %>
+		<%= image_tag("icons/add.svg", :class=> "img-box") %>
+  	<div class="action-name">
+    	Create New Excursion  
+  	</div>
+  <% end %>
 </li>
 
 
