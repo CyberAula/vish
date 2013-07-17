@@ -2,7 +2,7 @@
   header
     .avatar
       margin: 5px
-      width: 23%
+      //width: 23%
   
       img.avatar_img
         border: 15px solid $white
@@ -10,9 +10,8 @@
         
         //border: 5px solid $grayLighter
     .information
-      margin-top: 25px
-      padding: 1%
-      width: 73%
+      padding: 2%
+      width: 79%
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
       //border: 1px solid $grayLighter
@@ -23,7 +22,7 @@
         margin-left: 10px
       h2
         color: $gray
-        font-family: $thirdFontFamily
+        font-family: $secondFontFamily
       button
         float: right
         display: inline-block
@@ -34,7 +33,10 @@
       h3.name-roll,h3.karma
         color: $firstColor
         font-size: 20px
-        font-family: $thirdFontFamily
+        font-family: $firstFontFamily
+        border-left: 1px solid $grayLighter
+        padding-left: 20px
+      
       p.description
         color: $gray
       span
@@ -43,11 +45,11 @@
         border-left: 1px solid $grayLighter
         color: $secondColor
         font-size: 20px
-        font-family: $thirdFontFamily
+        font-family: $firstFontFamily
 
 .info-profile
   .follow-tab
-
+    
     a
       background-color: $white !important
       font-size: 1em 
@@ -58,8 +60,10 @@
         content: " "
   
   .tabbable
+    @include border-radius($baseBorderRadius)
     h3
-      color: $firstColor          
+      color: $firstColor 
+
 
 
 
