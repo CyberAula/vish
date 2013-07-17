@@ -148,6 +148,24 @@ namespace :db do
         excursions_end = Time.now
         puts '   -> ' +  (excursions_end - excursions_start).round(4).to_s + 's'
       end
+
+      desc "Create excursion comments"
+      task :comments do
+        puts 'Excursion comments population'
+        comments_start = Time.now
+
+        def fake_comment(activity)
+          Comment.new(:owner_id => Actor.normalize_id(activity.receiver), :_activity_parent_id => activity.id, :text => "Hola")
+        end
+
+        Excursion.all.each do |e|
+          fake_comment(e.post_activity)
+        end
+
+        comments_end = Time.now
+        puts '   -> ' +  (comments_end - comments_start).round(4).to_s + 's'
+      end
+
     end
   end
 end
