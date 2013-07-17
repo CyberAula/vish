@@ -279,10 +279,11 @@ es:
   profile:
     occupation:
       label: "Dedicación"
-      other: "Otra"
-      scientist: "Ciencia"
-      select: "Selecciona tu ocupación"
-      teacher: "Educación"
+      options:
+        other: "Otra"
+        scientist: "Ciencia"
+        select: "Selecciona tu ocupación"
+        teacher: "Educación"
     tags:
       default: "VisHub, virtual, excursión"
       other: "Áreas de interés"
