@@ -2,19 +2,33 @@
 #resources,
 #categories,
 #events,
-#new
+#new,
+.recomended_excursion
+  -moz-column-count: 5
+  -moz-column-gap: 15px
+  -moz-column-fill: auto
+  column-count: 5
+  column-gap: 15px
+  column-fill: auto
+  margin-top: 20px
   ul
     margin: 0
+
     li.box-item
-      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      @include excursion-box
-      float: left
-      list-style: none
-      margin-left: 1.4%
-      margin-top: 20px
-      background-color: $white
-      .img-box
-        @include border-top-radius($baseBorderRadius)
+      column-break-inside: avoid
+      background: $white
+      @include excursion-box-small
+      box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+      display: inline-block
+      margin: 0 5px 20px
+
+
+
+      a.img-box
+        img
+          @include border-top-radius($baseBorderRadius)
+          width: 100%
+          border-bottom: 1px solid $grayLighter
       .badges
         display: none
         @include badge-grid
@@ -29,7 +43,7 @@
             color: $grayDark
         .author
           color: $secondColor
-          font-size: 12px
+          font-size: 10px
           text-decoration: none
           cursor: pointer
           a
@@ -80,9 +94,10 @@
       list-style: none
       margin-top: 10px
       background-color: $white
-      .img-box
-        @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        float: left
+      a.img-box
+        img
+          @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
       .info
         @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
@@ -98,4 +113,8 @@
           cursor: pointer
       .info-bottom
         padding-left: 10px
+
+
+
+
 
