@@ -7,6 +7,11 @@
   z-index: 1
   margin-left: 1%
 
+@mixin add-new
+  border: 2px dashed $secondColor
+  @include border-top-radius($borderRadiusSmall)
+  @include border-bottom-radius($baseBorderRadius)
+
 @mixin excursion-box
   border: 1px solid $grayLighter
   @include border-top-radius($borderRadiusSmall)
