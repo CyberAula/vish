@@ -22,14 +22,15 @@
     </ul>
   </div>
   
-  <div class="activity">
+  <section class="activity">
     <div id="comments" class="comments">
       <h2>Comments</h2>
       <div class="new-comments-box">
         <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
       </div>
-    </div>
-    <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
+        <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
+    </section>
+
   </div>
 </section>
 
