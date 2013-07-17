@@ -193,3 +193,33 @@
           left: 3px
           right: 0
 
+#comments
+
+  h2
+  .new-comments-box
+    .new_comment
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .avatar
+        @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+        img
+          @include border-radius (50px)
+      form#new_comment
+        @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        float: left
+        display: block
+        textarea
+          margin-top: 3px
+          @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          display: block
+          margin-left: 20px
+
+        input.btn
+          @include btn-primary
+          margin-left: 10px
+          display: block
+          margin-top: 15px
+          float: left
+        
