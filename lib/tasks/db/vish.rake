@@ -8,12 +8,13 @@ namespace :db do
     # Clear existing tasks
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
+    task('create:groups').clear
 
     # User 12 logos
     ENV['LOGOS_TOTAL'] = 12.to_s
 
     desc "Create populate data for ViSH"
-    task :create => 'create:excursions'
+    task :create => [ 'create:occupations', 'create:excursions']
     #task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_documents, :create_avatars ]
 
 
@@ -39,11 +40,25 @@ namespace :db do
         puts '   -> ' +  (ties_end - ties_start).round(4).to_s + 's'
       end
 
+      desc "Assign an occupation to users"
+      task :occupations do
+        puts 'Occupation population'
+        occupations_start = Time.now
+
+        User.all.each do |u|
+          u.update_attributes(:occupation => rand(Occupation.size))
+        end
+
+        occupations_end = Time.now
+        puts '   -> ' +  (occupations_end - occupations_start).round(4).to_s + 's'
+      end
+
       desc "Populate excursions to the database"
       task :excursions do
         puts 'Excursion population'
         excursions_start = Time.now
         @slide_id=0
+        @available_actors = Actor.all
 
         # Some sample science images in the public domain
         @sample_images = %w{
@@ -133,6 +148,24 @@ namespace :db do
         excursions_end = Time.now
         puts '   -> ' +  (excursions_end - excursions_start).round(4).to_s + 's'
       end
+
+      desc "Create excursion comments"
+      task :comments do
+        puts 'Excursion comments population'
+        comments_start = Time.now
+
+        def fake_comment(activity)
+          Comment.new(:owner_id => Actor.normalize_id(activity.receiver), :_activity_parent_id => activity.id, :text => "Hola")
+        end
+
+        Excursion.all.each do |e|
+          fake_comment(e.post_activity)
+        end
+
+        comments_end = Time.now
+        puts '   -> ' +  (comments_end - comments_start).round(4).to_s + 's'
+      end
+
     end
   end
 end

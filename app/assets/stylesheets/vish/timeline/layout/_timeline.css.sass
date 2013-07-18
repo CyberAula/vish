@@ -193,3 +193,77 @@
           left: 3px
           right: 0
 
+section.activity
+  margin-bottom: 50px
+  #comments
+    margin-left: 10px
+    h2
+    .new-comments-box
+      .new_comment
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .avatar
+          @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+          img
+            margin-left: 10px
+            @include border-radius (50px)
+        form#new_comment
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          display: block
+          textarea
+            margin-top: 3px
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            float: left
+            display: block
+            margin-left: 20px
+          input.btn
+            @include btn-primary
+            margin-left: 10px
+            display: block
+            margin-top: 15px
+            float: left
+  .comments
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    float: left
+    .activity
+      .avatar
+        @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+        img
+          margin-left: 10px
+          @include border-radius (50px)
+      .media-heading
+        display: block
+        margin-left: 2%
+        float: left
+        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        h6
+          margin: 3px 0
+          font-size: 16px
+      .media-body
+        display: block
+        float: left
+        margin-left: 5%
+        @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .objects
+          p
+        .actions
+          width: 100%
+          display: inline-block
+          margin-bottom: 10px
+          .post_time_ago
+            display: inline-block
+            float: right
+            font-style: italic
+            font-size: 10px
+          .to_comment,
+          .to_like
+            display: inline-block
+          .audience
+            display: inline-block
+
+        

@@ -1,12 +1,13 @@
 
   <section class="user">
     <header>
+      <li><h3>Profile</h3></li>
       <div class="avatar">
         <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
         <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
       </div>
       <div class="information">
-        <h2> <%= @user.name %></h2>
+        <h2><%= @user.name %></h2>
         <% if profile_subject != current_subject %>
           <button>
             <%= link_to new_message_path(receiver: profile_subject.slug) do %>
@@ -17,10 +18,7 @@
             <%#= contact_to(profile_subject) %>
           </button> -->
         <% end %>
-        <hr class="soften">
-        <h3 class="name-roll"> 
-          <%= profile_subject.occupation_t %>
-        </h3>
+        
         <p class="description">
             <% if @user.profile.description? %>
               <%= @user.profile.description%>
@@ -28,7 +26,13 @@
               <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
             <% end %>
         </p>
+    
+       
+        
         <hr class="soften">
+         <h3 class="name-roll"> 
+          <%= profile_subject.occupation_t %>
+        </h3>
         <h3 class="karma">Karma
           <span> 65 <!--nivel karma--></span>
         </h3>
