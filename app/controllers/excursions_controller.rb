@@ -20,13 +20,36 @@ class ExcursionsController < ApplicationController
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
-  skip_load_and_authorize_resource :only => [ :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+
+  # Enable CORS for last_slide method (http://www.tsheffler.com/blog/?p=428)
+  before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
+  after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
+
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   include SocialStream::Controllers::Objects
   #include HomeHelper
 
+  def cors_set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    headers['Access-Control-Max-Age'] = "1728000"
+  end
+
+  # If this is a preflight OPTIONS request, then short-circuit the
+  # request, return only the necessary headers and return an empty
+  # text/plain.
+  def cors_preflight_check
+    if request.method == :options
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version'
+      headers['Access-Control-Max-Age'] = '1728000'
+      render :text => '', :content_type => 'text/plain'
+    end
+  end
+
   def manifest
     headers['Last-Modified'] = Time.now.httpdate
-
     @excursion = Excursion.find_by_id(params[:id])
     render 'cache.manifest', :layout => false, :content_type => 'text/cache-manifest'
   end
@@ -174,12 +197,21 @@ class ExcursionsController < ApplicationController
 
   def last_slide
     excursions = []
-    current_subject.excursion_suggestions(6).each do |ex|
-    #Excursion.first(6).each do |ex|
+    current_subject.excursion_suggestions(20).each do |ex|
       excursions.push ex.reduced_json(self)
     end
-    respond_to do |format|  
-      format.json { render :json => excursions}
+    respond_to do |format|
+      format.json { render :json => excursions.sample(6) }
+    end
+  end
+
+  def iframe_api
+    respond_to do |format|
+      format.js {
+        render :file => "#{Rails.root}/vendor/plugins/vish_editor/app/assets/javascripts/VISH.IframeAPI.js",
+          :content_type => 'application/javascript',
+          :layout => false
+      }
     end
   end
 
@@ -231,6 +263,26 @@ class ExcursionsController < ApplicationController
         send_file "#{filePath}", :type => 'application/json', :disposition => 'attachment', :filename => "#{filename}.json"
       }
     end
+  end
+
+  def excursion_thumbnails
+    thumbnails = Hash.new
+    thumbnails["pictures"] = [];
+
+    81.times do |index|
+      index = index+1
+      thumbnail = Hash.new
+      thumbnail["title"] = "Thumbnail " + index.to_s
+      thumbnail["description"] = "Sample Thumbnail"
+      tnumber = index.to_s
+      if index<10
+        tnumber = "0" + tnumber
+      end
+      thumbnail["src"] = Site.current.config[:documents_hostname] + "assets/logos/original/excursion-"+tnumber+".png"
+      thumbnails["pictures"].push(thumbnail)
+    end
+
+    render :json => thumbnails
   end
 
   private

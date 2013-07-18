@@ -111,10 +111,10 @@ en:
     input: "Paste your embed here"
     name: "embed"
   evaluation:
-    teaching: "teaching experience results"
+    teaching: "Rating"
     contribute: "Want to contribute?"
     evaluation: "evaluate it"
-    experience: "teaching experience"
+    experience: "Teaching Experience"
     phrase0: "Rate the quality of the content used in this excursion"
     phrase1: "Rate the quality of this excursion design"
     phrase2: "Were the students motivated to participate in the activities related to this excursion?"
@@ -223,6 +223,10 @@ en:
     other: "links"
     confirm_delete: "Delete link?"
     go: "Go to link"
+  lre:
+    data_error: "There was an error and the data server responded with a code %{code}"
+    json_error: "There was an error with the returned contents, try with another search terms"
+    search_error: "There was an error and the search server responded with a code %{code}"
   translate:
     change: "Change language"
   message:

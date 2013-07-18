@@ -27,7 +27,7 @@
         var fileref=document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", "assets/vish/browser/ie.css");
+        fileref.setAttribute("href", "/assets/vish/browser/ie.css");
         document.getElementsByTagName("head")[0].appendChild(fileref);        
       } 
   </script>
@@ -47,7 +47,7 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      $(".flash_close").on("click", function(){
+      $(".flash_close").on("click", function(event){
         $(event.target).parent(".alert").hide("slow");
       });
       

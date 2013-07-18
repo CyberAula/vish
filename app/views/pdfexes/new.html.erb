@@ -1,0 +1,10 @@
+<p> Upload pdfex </p>
+
+<%= form_for @pdfex, :html => { :multipart => true } do |f| %>
+	<p>
+		<b> attachment </b>
+		<%= f.file_field :attach %>
+	</p>
+
+	<%= f.submit %>
+<%end%>

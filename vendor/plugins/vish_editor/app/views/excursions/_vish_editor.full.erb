@@ -79,6 +79,9 @@
 									<li class="liInsertJson">
 										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertJSON">JSON</a>
 									</li>
+									<li>
+										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertPDFex">PDF Slideshow</a>
+									</li>
 								</ul>
 							</li>
 							<li>
@@ -150,8 +153,14 @@
     <a id="addQuizFancybox" href="#quizcontent" style="display: none;"></a>
     <!-- Hidden link to open fancybox when adding a json  -->
     <a id="addJSONFancybox" href="#json_fancybox" style="display: none;"></a>
+    <!-- Hidden link to open fancybox when adding a pdf slideshow as excursion  -->
+    <a id="addPDFexFancybox" href="#pdfex_fancybox" style="display: none;"></a>
     <!-- Hidden link to open fancybox when creating a new presentation -->
     <a id="launch_presentation_details" href="#presentationdetails" style="display: none;"></a>
+    <!-- Hidden link for loading fancybox -->
+    <a id="fancyLoad" href="#loading_fancy" style="display: none;"></a>
+
+
 
     <!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
     <div style='display:none'>    
@@ -487,6 +496,44 @@
 	    </div>
 	  </div>
 
+	  <!-- PDFex fancybox -->
+	  <div style='display:none'>
+	    <div id="pdfex_fancybox" class="outer_box">
+				<div class="fancy_tabs" id="pdfex_fancy_tabs_id">
+				  <ul>
+				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex')" id="tab_pdfex" class="fancy_tab">file</a></li>
+				  </ul>
+				  <img class='help_in_fancybox' id='tab_pdfex_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+				</div>
+
+				<div id='tab_pdfex_content' class="fancy_tab_content">
+					<div class="box1 box1fancy3">
+						<p class="textfancy">Add slideshow from PDF file</p></br>
+						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+
+						<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
+							<input id="upload_file_input" type="file" name="pdfex[attach]" class="upload_file_input">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
+
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
+
+					</div>
+				</div>
+	    </div>
+	  </div>
+
+
+					
+
+
+
+
 
 	  <!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
 	  <div style='display:none'>
@@ -502,37 +549,64 @@
 	  	</div>
 	  </div>
   
-	 <!-- PROMPT USER WHEN NOT MET MINIMUM REQUIREMENTS -->
-    <div style='display:none'>
-      <div id='requirements_form_wrapper'>
-      	<div id='requirements_form'>      
-
-	        <span i18n-key="i.browserrequirements" class="deltext requirementsText">Your browser does not meet the minimum requirements to init Vish Editor, please update your browser.</span> 
-					<div id="recomended_browsers">
-						<div class="recomended_browser">
-						  <span class="browserTitle">Google Chrome</span>
-						  <a target="_blank" href="https://www.google.com/chrome"><img class="browser_img" src="/assets/browsers/google_chrome.png"/></a>
-						</div>
-						<div class="recomended_browser">
-              <span class="browserTitle">Mozilla Firefox</span>
-              <a target="_blank" href="http://www.mozilla.org/en-US/firefox/new"><img class="browser_img" src="/assets/browsers/firefox.png"/></a>
-            </div>
-						<div class="recomended_browser">
-              <span class="browserTitle">Internet Explorer 9</span>
-              <a target="_blank" href="http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie-9/worldwide-languages"><img class="browser_img" src="/assets/browsers/internetexplorer.png"/></a>
-            </div>
-						<div class="recomended_browser">
-              <span class="browserTitle">Opera</span>
-              <a target="_blank" href="http://www.opera.com/download"><img class="browser_img" src="/assets/browsers/opera.png"/></a>
-            </div>
+	 <!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
+	<div style='display:none'>
+		<div id='requirements_form_wrapper'>
+			<div id='requirements_form' class='fancy_msg_advert'>      
+				<span i18n-key="i.browserrequirements" class="adverttext">Your browser does not meet the minimum requirements to init Vish Editor, please update your browser.</span> 
+				<div id="recomended_browsers">
+					<div class="recomended_browser">
+						<span class="browserTitle">Google Chrome</span>
+						<a target="_blank" href="https://www.google.com/chrome"><img class="browser_img" src="/assets/browsers/google_chrome.png"/></a>
 					</div>
-					<div class="buttons_requirements_wrapper">
-            <a href="#" onclick="$.fancybox.close();" class="button buttons_requirements" i18n-key="i.OK">OK</a>
-          </div>
+					<div class="recomended_browser">
+						<span class="browserTitle">Mozilla Firefox</span>
+						<a target="_blank" href="http://www.mozilla.org/en-US/firefox/new"><img class="browser_img" src="/assets/browsers/firefox.png"/></a>
+					</div>
+					<div class="recomended_browser">
+						<span class="browserTitle">Internet Explorer 9</span>
+						<a target="_blank" href="http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie-9/worldwide-languages"><img class="browser_img" src="/assets/browsers/internetexplorer.png"/></a>
+					</div>
+					<div class="recomended_browser">
+						<span class="browserTitle">Opera</span>
+						<a target="_blank" href="http://www.opera.com/download"><img class="browser_img" src="/assets/browsers/opera.png"/></a>
+					</div>
 				</div>
-      </div>
-    </div>
+				<div class="button_advert_wrapper">
+				<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- NOTIFY USER WHEN PRESENTATION IS NOT VALID -->
+	<div style='display:none'>
+		<div id='presentation_not_valid_wrapper'>
+			<div id='presentation_not_valid' class='fancy_msg_advert'>      
+				<span i18n-key="i.pNotValid" class="adverttext">
+				This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.
+				</span> 
+				<div class="button_advert_wrapper">
+					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+				</div>
+				</div>
+		</div>
+	</div>
   
+  	<!-- NOTIFY USER WHEN A PDF FILE COULDN'T BE TRANSFORMED TO A PRESENTATION -->
+	<div style='display:none'>
+		<div id='pdf2p_not_valid_wrapper'>
+			<div id='pdf2p_not_valid' class='fancy_msg_advert'>      
+				<span i18n-key="i.PDFNotValid" class="adverttext">
+					An error has occurred. Ensure that the PDF file is valid.
+				</span>
+				<div class="button_advert_wrapper">
+					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+				</div>
+				</div>
+		</div>
+	</div>
+
   	  <!-- PROMPT USER IF SHE IS SURE TO SAVE THE SLIDE -->
 	  <div style='display:none'>
 	  	<input type="hidden" id="save_answer" value="cancel"></input>
@@ -548,7 +622,7 @@
 	  	</div>
 	  </div>
 	  
-	  <!-- PROMPT WHEN THERE IS NO SLIDES AND TRY TO SAVE -->
+	  <!-- NOTIFY WHEN THERE IS NO SLIDES AND TRY TO SAVE -->
 	  <div style='display:none'>
 	  	<div id='message1_form'>
 	  		<div class="text_in_fancybox">
@@ -579,7 +653,7 @@
 	  	</div>
 	</div>
 
-	  <!-- PROMPT WHEN CLICK ON ADD SLIDE IN FLASHCARD MODE -->
+	  <!-- NOTIFY WHEN CLICK ON ADD SLIDE IN FLASHCARD MODE -->
 	  <div style='display:none'>
 	  	<div id='message2_form'>
 	  		<div class="text_in_fancybox">
@@ -592,7 +666,7 @@
 	  	</div>
 	  </div>
 
-	  <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE FLASHCARD-->
+	  <!-- NOTIFY WHEN TRY TO SAVE AND THERE IS NO POIS IN THE FLASHCARD-->
 	  <div style='display:none'>
 	  	<div id='message3_form'>
 	  		<div class="text_in_fancybox">
@@ -605,7 +679,7 @@
 	  	</div>
 	  </div>
 
-	  <!-- PROMPT WHEN TRY TO SAVE AND BACKGROUND IS NOT SET-->
+	  <!-- NOTIFY WHEN TRY TO SAVE AND BACKGROUND IS NOT SET-->
 	  <div style='display:none'>
 	  	<div id='message4_form'>
 	  		<div class="text_in_fancybox">
@@ -618,7 +692,7 @@
 	  	</div>
 	  </div>
 
-	<!-- PROMPT WHEN TRY TO CHANGE TO FLASHCARD AND THERE IS NO SLIDES-->
+	<!-- NOTIFY WHEN TRY TO CHANGE TO FLASHCARD AND THERE IS NO SLIDES-->
     <div style='display:none'>
       <div id='message5_form'>
         <div class="text_in_fancybox">
@@ -631,7 +705,7 @@
       </div>
     </div>
 
-      <!-- PROMPT WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
+      <!-- NOTIFY WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
 	  <div style='display:none'>
 	  	<div id='message6_form'>
 	  		<div class="text_in_fancybox">
@@ -656,6 +730,7 @@
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
+				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre')" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				  </ul>
 				  <img class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
 				  <img class='help_in_fancybox' id='tab_pic_upload_help' src='/assets/icons/helptutorial_circle_blank.png'/>
@@ -674,38 +749,42 @@
                 				<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
                 			</div>
             			</div>
-				</div>      
+				</div> 
+
+
 				<div id='tab_pic_upload_content' class="fancy_tab_content">
-              <div class="box1 box1fancy3">
-				  			<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
-                <img class="image_add_url" src="/assets/icons/url_upl.png"/>
-								
-							    <form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-							        <input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
-							        <input type="hidden" name="document[title]">
-							        <input type="hidden" name="document[description]">
-							        <input type="hidden" name="document[owner_id]">
-							        <input type="hidden" name="authenticity_token">
-									<input type="hidden" name="document[tag_list]">
-							        <input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-							    </form>
-							    
-							    <div class="upload_progress_bar_wrapper">
-							        <div class="upload_progress_bar"></div >
-							        <div class="upload_progress_bar_percent">0%</div >
-							    </div>
-									
-									<div class="tagBoxUpload">
-				            <ul class="tagList"></ul>
-                  </div>
-									
-							</div>
-              <div class="box2 box2_upload">
-            				<div class="previewimgbox">
-                				<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
-                    </div>
-							</div>
-        </div>            
+					<div class="box1 box1fancy3">
+						<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
+						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+
+						<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+							<input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
+							<input type="hidden" name="document[title]">
+							<input type="hidden" name="document[description]">
+							<input type="hidden" name="document[owner_id]">
+							<input type="hidden" name="authenticity_token">
+							<input type="hidden" name="document[tag_list]">
+							<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+						</form>
+
+						<div class="upload_progress_bar_wrapper">
+							<div class="upload_progress_bar"></div >
+							<div class="upload_progress_bar_percent">0%</div >
+						</div>
+
+						<div class="tagBoxUpload">
+							<ul class="tagList"></ul>
+						</div>
+					</div>
+
+					<div class="box2 box2_upload">
+						<div class="previewimgbox">
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
+						</div>
+					</div>
+				</div>  
+
+
 				<div id='tab_pic_repo_content' class="fancy_tab_content">
 					<div class="box1 box1fancy2">
 						<img src="/assets/repositoryimg.png" class="imagelogotab"/>				  		  
@@ -726,8 +805,17 @@
 				      	<div class="search_container">
 				  	   		<input id="search_flickr_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
     				     </div>	
-				<div id="tab_flikr_content_carrousel"></div>
-                </div>
+						<div id="tab_flikr_content_carrousel"></div>
+                	  </div>
+			    </div>
+			    <div id='tab_pic_lre_content' class="fancy_tab_content">
+                	  <div class="box1 box1fancy2">
+                      <img id="lrelogo_in_tab" src="/assets/logos/lrelogo.gif" class="imagelogotab">
+				      	<div class="search_container">
+				  	   		<input id="search_lre_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+    				     </div>	
+						<div id="tab_lre_content_carrousel"></div>
+                	  </div>
 			    </div>
 	    </div>
 	  </div>
@@ -797,6 +885,7 @@
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
 						<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
+						<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre')" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				  </ul>
 				  <img class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
 					<img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/icons/helptutorial_circle_blank.png'/>
@@ -882,7 +971,7 @@
 			</div>
 		</div>	
 				
-				<div id='tab_object_snapshot_content' class="fancy_tab_content">
+		<div id='tab_object_snapshot_content' class="fancy_tab_content">
           <div class="box1 box1fancy1">
             <p class="textfancy">Web Snapshot</p></br>
             <img class="image_add_url" src="/assets/icons/url_img.png"/>
@@ -895,7 +984,25 @@
                   </div>
           </div>
         </div>
-				 
+			
+		<div id='tab_object_lre_content' class="fancy_tab_content">	
+			<div class="box1 box1fancy2">
+				<img id="lrelogo_in_tab" src="/assets/logos/lrelogo.gif" class="imagelogotab">			  
+				<div class="search_container">
+				<input id="search_object_lre" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+				</div>
+
+				<div id="tab_object_lre_content_carrousel"></div>
+				<div id="tab_object_lre_content_preview" class="content_preview">
+					<div id="tab_object_lre_content_preview_object" class="content_preview_data"></div>
+					<div id="tab_object_lre_content_preview_metadata" class="content_preview_metadata"></div>
+					<div id="tab_object_lre_content_preview_foot" class="content_preview_foot">
+						<button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.LRE.addSelectedObject()">Add</button>
+					</div>
+				</div>				
+			</div>			
+		</div>	
+
 	    </div>
 	  </div>
   
@@ -1000,7 +1107,7 @@
         <div class="fancy_tabs" id="live_fancy_tabs_id">    
           <ul>
             <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_webcam')" id="tab_live_webcam" class="fancy_tab">Webcams</a></li>
-            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
+            <li><a style='display:none' href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
           </ul>
           <img class='help_in_fancybox' id='tab_live_webcam_help' src='/assets/icons/helptutorial_circle_blank.png'/> 
         </div>
@@ -1026,7 +1133,8 @@
         </div>  
       </div>
     </div>
-	
+
+    
 	
 	<!-- WALKTHROUGH HELP SECTION -->
 		<!-- help for initial screen -->
@@ -1425,9 +1533,6 @@
 		</li>
 		</ol>
 
-
-
-
 		<ol id="upload_object_form_help" class="joyRideTipContent">
 		<li data-id="object_file_input" data-text="Next" i18n-key="i.Next" class="custom" data-options="tipLocation:bottom;">
 		 <h2 i18n-key="i.AddObjectContentUpload">Adding Object content by upload</h2>
@@ -1559,6 +1664,13 @@
 		</li>
 	</ol> 
 
-	<iframe id="hiddenIframeForAjaxDownloads"></iframe>
+	<iframe id="hiddenIframeForAjaxDownloads" style="border:0" iframeborder="0" frameborder="0" iframeelement.frameborder="0;"></iframe>
+
+	<!-- Loading fancybox -->
+    <div id='loading_fancy_wrapper' style='display:none'>
+        <div id='loading_fancy'>
+        	<img class="loading_fancy_img" src='/assets/lightbox-ico-loading.gif'></img>
+        </div>
+    </div>
 
 	<!-- Copy HTML until here -->

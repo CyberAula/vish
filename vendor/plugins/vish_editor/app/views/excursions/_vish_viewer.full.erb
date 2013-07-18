@@ -7,8 +7,11 @@
     <div id="viewbar" class="viewbar" style="display:none">
         <a href="#" target="_blank"><div id="embedWatermark" class="watermark" style="display:none"></div></a>
         <button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
-		<button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
-	    <div id="slide-counter"></div>
+		<button id="page-switcher-start" class="page-switcher" tabindex="2"></button>	    
+        <div id="slide-counter-div" style="">
+            <input id="slide-counter-input" type="text" name="goToSlide" maxlength="2" value="1">
+            <span id="slide-counter-span"></span>
+        </div>
 	    <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
     </div> 
 
@@ -21,10 +24,10 @@
         <div class="selectSlidesButtons3">
             <div class="selectSlidesSelection">
                 <p id="ssbsp" class="selected_n_slides addslidetrans"></p>
-                <img  class="addt" src="/assets/templatesthumbs/addt.png"/>
+                <img  class="addt"/>
             </div>
             <div class="selectSlidesButtonWrapper">
-                <button id="ssbdone" class="button buttonconfirm">Add Slides</button>
+                <button id="ssbdone" class="viewer_button buttonconfirm">Add Slides</button>
             </div>
         </div>
         <div class="selectSlidesButtons2">
@@ -44,7 +47,7 @@
         <div id='fancy_recommendations'>
             <div class="rec-first-row">
                 <span class="textrec1" i18n-key="i.evaluateTitle">Want to contribute evaluating the excursion?</span>
-                <button onclick="window.opener.document.getElementById('evaluation-button-id').click();" id='evaluate_excursion' submit='disable' class='button' i18n-key="i.evaluate">Evaluate</button>
+                <button onclick="window.parent.document.getElementById('evaluation-button-id').click();" id='evaluate_excursion' submit='disable' class='recbutton' i18n-key="i.evaluate">Evaluate</button>
             </div>
             <div class="rec-second-row">
                 <span class="textrec1" i18n-key="i.recommendationsTitle">Recommended excursions for you:</span>
@@ -79,7 +82,7 @@
                     <a target="_blank" href="#" id='tab_quiz_session_share_gPlus'><img src='/assets/icons/social/gplus.svg' class='socialButton'/></a>
                 </div>
                 <div class="quizQr"></div>
-                <input type='button2' class='quizButton button quizStopButton' value='Stop'/>
+                <input class='quizButton button quizStopButton' value='Stop'/>
             </div>
             <div id='tab_quiz_stats_content' class="fancy_viewer_tab_content">
                 <canvas id="quiz_chart" width="400" height="400"></canvas>
@@ -148,6 +151,20 @@
         </div>
     </div>
 
+    <!-- PROMPT USER WHEN PRESENTATION IS NOT VALID -->
+    <div style='display:none'>
+        <div id='presentation_not_valid_wrapper'>
+            <div id='presentation_not_valid' class='fancy_msg_advert'>      
+                <span i18n-key="i.NotValid" class="adverttext">
+                This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.
+                </span> 
+                <div class="button_advert_wrapper">
+                    <a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+                </div>
+                </div>
+        </div>
+    </div>
+
 
     <!-- WALKTHROUGH HELP SECTION -->
     <!--help for quiz session-->
@@ -174,9 +191,9 @@
 <li data-id="viewbar" data-text="Close" i18n-key="i.Close" class="addslidestut custom tut_template tut_without_arrow" data-options="tipLocation:none">
         <h2 i18n-key="i.AddingSlideinto">Adding slides into your excursion</h2>
         <p i18n-key="i.walk84">In this window you can preview the slides of the excursion that you had already choosen in order to add all or some of the slides into your excursion.This preview offers you some options (at the bottom) which are:</p>
-        <p i18n-key="i.walk85"><img src="/assets/tutorial/selectall.png"/>This button will select all the slides in order to add them to your excursion.</p>
-        <p i18n-key="i.walk86"><img src="/assets/tutorial/unselectall.png"/>This button will unselect all the slides.</p>
-        <p i18n-key="i.walk87"><img src="/assets/tutorial/selectslides.png"/> Also, you can add or remove any slide by clicking the button in the lower center space below the number of the slide.</p>
+        <p i18n-key="i.walk85"><img id="tutorialSelectAllImage"/>This button will select all the slides in order to add them to your excursion.</p>
+        <p i18n-key="i.walk86"><img id="tutorialUnselectAllImage"/>This button will unselect all the slides.</p>
+        <p i18n-key="i.walk87"><img id="tutorialSelectSlidesImage"/> Also, you can add or remove any slide by clicking the button in the lower center space below the number of the slide.</p>
         <p i18n-key="i.walk88">Every time you select an slide it will show its border green</p>
         <p i18n-key="i.walk89">and if you remove it it will show a red border.</p>
         <p i18n-key="i.walk90">You will know how many slides you are going to add to your excursion by checking the cuantity at the right bottom of the screen.Example: <i style="color: green; font-size: 1.4em">"+4"</i></p>

@@ -38,10 +38,11 @@ var i18n = {"vish":{"es":{"i.walk1":"Puedes utilizar el icono tutorial", "i.walk
 "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectTheme":"Seleccionar tema", 
 "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", 
 "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", "i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", 
-"i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido"}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", 
-"i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"T\u00edtulo", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", 
+"i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", "i.Title":"Title", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content"}}, 
+"standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.5";
+VISH.VERSION = "0.6";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -10563,13 +10564,11 @@ if(!window["YT"]) {
 }
 if(!YT.Player) {
   (function() {
-    var s = "http:" + "//s.ytimg.com/yts/jsbin/www-widgetapi-vfl3iLqI8.js";
     var a = document.createElement("script");
-    a.src = s;
+    a.src = "https:" + "//s.ytimg.com/yts/jsbin/www-widgetapi-vflop0WbJ.js";
     a.async = true;
     var b = document.getElementsByTagName("script")[0];
-    b.parentNode.insertBefore(a, b);
-    YT.embed_template = '<iframe width="425" height="344" src="" frameborder="0" allowfullscreen></iframe>'
+    b.parentNode.insertBefore(a, b)
   })()
 }
 ;VISH.Renderer = function(V, $, undefined) {
@@ -10660,7 +10659,7 @@ if(!YT.Player) {
       all_slides += _renderStandardSlide(subslide, "subslide", "<div class='close_subslide' id='close" + subslide.id + "'></div>")
     }
     var div_for_slides_hidden = "<div class='subslides' >" + all_slides + "</div>";
-    return $("<article class='" + extra_classes + " flashcard_slide' type='flashcard' avatar='" + slide.background + "' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
+    return $("<article class='" + extra_classes + " slideset_slide flashcard_slide' type='flashcard' avatar='" + slide.background + "' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
   };
   var _renderVirtualTourSlide = function(slide, extra_classes, extra_buttons) {
     var all_slides = "";
@@ -10669,7 +10668,7 @@ if(!YT.Player) {
       all_slides += _renderStandardSlide(subslide, "subslide", "<div class='close_subslide' id='close" + subslide.id + "'></div>")
     }
     var div_for_slides_hidden = "<div class='subslides' >" + all_slides + "</div>";
-    return $("<article class='" + extra_classes + " virtualTour_slide' type='" + V.Constant.VTOUR + "' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
+    return $("<article class='" + extra_classes + " slideset_slide virtualTour_slide' type='" + V.Constant.VTOUR + "' id='" + slide.id + "'>" + extra_buttons + div_for_slides_hidden + "</article>")
   };
   var _afterDrawSlide = function(slide) {
     switch(slide.type) {
@@ -10698,8 +10697,13 @@ if(!YT.Player) {
     return"<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + " " + template + "_text" + "'></div>"
   };
   var _renderImage = function(element, template) {
+    if(typeof element["style"] == "undefined") {
+      style = "max-height: 100%; max-width: 100%;"
+    }else {
+      style = element["style"]
+    }
     var div = $("<div id='" + element["id"] + "' class='" + template + "_" + element["areaid"] + "'></div>");
-    var img = $("<img class='" + template + "_image' src='" + element["body"] + "' style='" + element["style"] + "' />");
+    var img = $("<img class='" + template + "_image' src='" + element["body"] + "' style='" + style + "' />");
     if(element["hyperlink"]) {
       var a = $("<a href='" + element["hyperlink"] + "' target='blank_'></a>");
       $(a).append(img);
@@ -10826,7 +10830,7 @@ VISH.Status = function(V, $, undefined) {
     return _isInIframe
   };
   var getIframe = function() {
-    if(_isInIframe) {
+    if(_isInIframe && !_isAnotherDomain) {
       return window.frameElement
     }else {
       return null
@@ -11074,37 +11078,150 @@ VISH.Utils = function(V, undefined) {
     }
   };
   var fixPresentation = function(presentation) {
-    if(typeof presentation.type == "undefined") {
-      presentation.type = V.Constant.STANDARD
+    if(typeof presentation == "undefined" || presentation === null || typeof presentation.slides == "undefined") {
+      return null
     }
     if(typeof presentation.VEVersion == "undefined") {
       presentation.VEVersion = "0.1"
     }
-    presentation = _fixIds(presentation);
+    presentation = _fixTypes(presentation);
+    if(!_checkIds(presentation)) {
+      presentation = _overwriteIds(presentation)
+    }
     return presentation
   };
-  var _fixIds = function(presentation) {
+  var _fixTypes = function(presentation) {
+    if(typeof presentation.type == "undefined") {
+      presentation.type = V.Constant.STANDARD
+    }
+    var slides = presentation.slides;
+    var sL = slides.length;
+    for(var i = 0;i < sL;i++) {
+      var slide = slides[i];
+      switch(slide.type) {
+        case V.Constant.STANDARD:
+          break;
+        case V.Constant.FLASHCARD:
+        ;
+        case V.Constant.VTOUR:
+          var subslides = slide.slides;
+          if(subslides) {
+            var ssL = subslides.length;
+            for(var j = 0;j < ssL;j++) {
+              if(typeof subslides[j].type == "undefined") {
+                subslides[j].type = V.Constant.STANDARD
+              }
+            }
+          }
+          break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
+        default:
+          slide.type = V.Constant.STANDARD;
+          break
+      }
+    }
+    return presentation
+  };
+  var _checkIds = function(presentation) {
     var slides = presentation.slides;
     var sL = slides.length;
     for(var i = 0;i < sL;i++) {
       var slide = slides[i];
       if(!slide.id.match(/^article[0-9]+/g)) {
-        slide.id = getId("article")
-      }else {
-        slide.id = getId(slide.id, true)
-      }
-      if(typeof slide.type == "undefined") {
-        slide.type = V.Constant.STANDARD
+        return false
       }
       switch(slide.type) {
         case V.Constant.STANDARD:
-          slide = _fixIdsStandardSlide(slide);
+          if(!_checkIdsStandardSlide(slide)) {
+            return false
+          }
           break;
         case V.Constant.FLASHCARD:
-          slide = _fixIdsFlashcardSlide(slide);
+          if(!_checkIdsFlashcardSlide(slide)) {
+            return false
+          }
           break;
         case V.Constant.VTOUR:
-          slide = _fixIdsVTourSlide(slide);
+          if(!_checkIdsVTourSlide(slide)) {
+            return false
+          }
+          break;
+        case V.Constant.QUIZ_SIMPLE:
+          break;
+        default:
+          break
+      }
+    }
+    return true
+  };
+  var _checkIdsStandardSlide = function(slide) {
+    var elements = slide.elements;
+    var eL = elements.length;
+    for(var j = 0;j < eL;j++) {
+      if(elements[j].id.match(new RegExp("^" + slide.id, "g")) === null) {
+        return false
+      }
+    }
+    return true
+  };
+  var _checkIdsFlashcardSlide = function(slide) {
+    return _checkSlideset(slide)
+  };
+  var _checkIdsVTourSlide = function(slide) {
+    return _checkSlideset(slide)
+  };
+  var _checkSlideset = function(slideset) {
+    var subslides = slideset.slides;
+    var subslidesIds = [];
+    if(subslides) {
+      var ssL = subslides.length;
+      for(var i = 0;i < ssL;i++) {
+        var subslide = subslides[i];
+        if(typeof subslide.id != "undefined") {
+          subslidesIds.push(subslide.id)
+        }
+        if(!_checkIdsStandardSlide(subslide)) {
+          return false
+        }
+      }
+    }
+    var pois = slideset.pois;
+    if(typeof pois != "undefined") {
+      var pL = pois.length;
+      for(var j = 0;j < pL;j++) {
+        var poi = pois[j];
+        if(poi.id.match(new RegExp("^" + slideset.id + "_poi[0-9]+", "g")) === null) {
+          return false
+        }
+        if(typeof poi.slide_id == "undefined") {
+          return false
+        }
+        if(poi.slide_id.match(new RegExp("^" + slideset.id + "_article[0-9]+", "g")) === null) {
+          return false
+        }
+        if(subslidesIds.indexOf(poi.slide_id) === -1) {
+          return false
+        }
+      }
+    }
+    return true
+  };
+  var _overwriteIds = function(presentation) {
+    var slides = presentation.slides;
+    var sL = slides.length;
+    for(var i = 0;i < sL;i++) {
+      var slide = slides[i];
+      slide.id = "article" + (i + 1).toString();
+      switch(slide.type) {
+        case V.Constant.STANDARD:
+          slide = _overwriteIdsStandardSlide(slide);
+          break;
+        case V.Constant.FLASHCARD:
+          slide = _overwriteIdsFlashcardSlide(slide);
+          break;
+        case V.Constant.VTOUR:
+          slide = _overwriteIdsVTourSlide(slide);
           break;
         case V.Constant.QUIZ_SIMPLE:
           break;
@@ -11114,32 +11231,51 @@ VISH.Utils = function(V, undefined) {
     }
     return presentation
   };
-  var _fixIdsStandardSlide = function(slide) {
+  var _overwriteIdsStandardSlide = function(slide) {
     var elements = slide.elements;
     var eL = elements.length;
     for(var j = 0;j < eL;j++) {
-      if(elements[j].id.match(new RegExp("^" + slide.id, "g")) === null) {
-        elements[j].id = getId(slide.id + "_zone")
-      }else {
-        elements[j].id = getId(elements[j].id, true)
-      }
+      elements[j].id = slide.id + "_zone" + (j + 1).toString()
     }
     return slide
   };
-  var _fixIdsFlashcardSlide = function(slide) {
-    return slide
+  var _overwriteIdsFlashcardSlide = function(slide) {
+    return _overwriteIdsSlideset(slide)
   };
-  var _fixIdsVTourSlide = function(slide) {
-    var slides = slide.slides;
-    if(slides) {
-      var sL = slides.length;
-      for(var i = 0;i < sL;i++) {
-        if(typeof slides[i].type == "undefined") {
-          slides[i].type = V.Constant.STANDARD
+  var _overwriteIdsVTourSlide = function(slide) {
+    return _overwriteIdsSlideset(slide)
+  };
+  var _overwriteIdsSlideset = function(slideset) {
+    var subslides = slideset.slides;
+    var subslidesIds = new Array;
+    if(subslides) {
+      var ssL = subslides.length;
+      for(var i = 0;i < ssL;i++) {
+        var subslide = subslides[i];
+        var oldId = subslide.id;
+        subslide.id = slideset.id + "_article" + (i + 1).toString();
+        subslidesIds[oldId] = subslide.id;
+        subslide = _overwriteIdsStandardSlide(subslide)
+      }
+    }
+    var newPois = [];
+    var pois = slideset.pois;
+    if(typeof pois != "undefined") {
+      var pL = pois.length;
+      for(var j = 0;j < pL;j++) {
+        var poi = pois[j];
+        poi.id = slideset.id + "_poi" + (j + 1).toString();
+        if(typeof subslidesIds[poi.slide_id] != "undefined") {
+          poi.slide_id = subslidesIds[poi.slide_id];
+          newPois.push(poi)
         }
       }
+      slideset.pois = newPois
     }
-    return slide
+    return slideset
+  };
+  var showPNotValidDialog = function() {
+    $.fancybox($("#presentation_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -11408,7 +11544,7 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, loadDeviceCSS:loadDeviceCSS, loadCSS:loadCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showPNotValidDialog:showPNotValidDialog}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initialPresentation = false;
@@ -11453,6 +11589,7 @@ VISH.Editor = function(V, $, undefined) {
     V.Renderer.init();
     V.Slides.init();
     V.User.init(options);
+    V.Editor.LRE.init(options.lang);
     if(V.Debugging.isDevelopping()) {
       if(options.configuration.mode == V.Constant.NOSERVER && V.Debugging.getActionInit() == "loadSamples" && !presentation) {
         presentation = V.Debugging.getPresentationSamples()
@@ -11464,6 +11601,10 @@ VISH.Editor = function(V, $, undefined) {
     $("#age_range").val(V.Constant.AGE_RANGE);
     if(presentation) {
       presentation = V.Utils.fixPresentation(presentation);
+      if(presentation === null) {
+        V.Utils.showPNotValidDialog();
+        return
+      }
       initialPresentation = true;
       setPresentation(presentation);
       V.Editor.Renderer.init(presentation);
@@ -11482,6 +11623,16 @@ VISH.Editor = function(V, $, undefined) {
     }});
     $("a#addJSONFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":300, "padding":0, "onComplete":function(data) {
       V.Editor.Utils.loadTab("tab_json_file")
+    }});
+    $("a#addPDFexFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":300, "padding":0, "onComplete":function(data) {
+      V.Editor.Utils.loadTab("tab_pdfex")
+    }});
+    $("#fancyLoad").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":true, "width":"100%", "height":"100%", "padding":0, "margin":0, "overlayOpacity":0, "overlayColor":"#fff", "showCloseButton":false, "onComplete":function(data) {
+      $("#fancybox-outer").css("background", "rgba(255,255,255,0.9)");
+      $("#fancybox-wrap").css("margin-top", "20px");
+      $("#fancybox-wrap").css("margin-left", "20px")
+    }, "onClosed":function(data) {
+      $("#fancybox-outer").css("background", "white")
     }});
     if(!eventsLoaded) {
       eventsLoaded = true;
@@ -11514,6 +11665,7 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.Image.init();
     V.Editor.Video.init();
     V.Editor.Object.init();
+    V.Editor.PDFex.init();
     V.Editor.Presentation.Repository.init();
     V.Editor.Slideset.Repository.init();
     V.Editor.Thumbnails.init();
@@ -12130,6 +12282,9 @@ VISH.Editor = function(V, $, undefined) {
       if(V.Editor.Flashcard.hasFlascards()) {
         return false
       }
+      if(V.Editor.VirtualTour.hasVirtualTours()) {
+        return false
+      }
       return true
     }
     return true
@@ -12511,6 +12666,9 @@ VISH.Editor.Utils = function(V, $, undefined) {
       case "tab_object_repo":
         V.Editor.Object.Repository.onLoadTab();
         break;
+      case "tab_object_lre":
+        V.Editor.Object.LRE.onLoadTab();
+        break;
       case "tab_live_webcam":
         V.Editor.Object.Live.onLoadTab("webcam");
         break;
@@ -12519,6 +12677,9 @@ VISH.Editor.Utils = function(V, $, undefined) {
         break;
       case "tab_json_file":
         V.Editor.Presentation.File.onLoadTab();
+        break;
+      case "tab_pdfex":
+        V.Editor.PDFex.onLoadTab();
         break;
       default:
         break
@@ -12591,7 +12752,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     }
     config.width = "100%";
     config.height = $(current_area).height();
-    config.fontSize_defaultLabel = "12px";
+    config.fontSize_defaultLabel = "12";
     var ckeditorBasePath = CKEDITOR.basePath.substr(0, CKEDITOR.basePath.indexOf("editor/"));
     config.skin = "vEditor," + ckeditorBasePath + "editor/skins/vEditor/";
     var ckeditor = CKEDITOR.appendTo(wysiwygContainerId, config);
@@ -12782,6 +12943,7 @@ VISH.Editor.Image = function(V, $, undefined) {
   var init = function() {
     V.Editor.Image.Flikr.init();
     V.Editor.Image.Repository.init();
+    V.Editor.Image.LRE.init();
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(V.Police.validateObject($("#" + urlInputId).val())[0]) {
         contentToAdd = V.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
@@ -12941,7 +13103,13 @@ VISH.Editor.Image = function(V, $, undefined) {
     if(!style) {
       var theImg = $("#" + idToDragAndResize);
       $(theImg).load(function() {
+        $(current_area).parent().addClass("temp_shown");
+        $(current_area).addClass("temp_shown");
+        $(theImg).addClass("temp_shown");
         var dimentionsToDraw = V.Editor.Utils.dimentionToDraw($(current_area).width(), $(current_area).height(), $(theImg).width(), $(theImg).height());
+        $(current_area).parent().removeClass("temp_shown");
+        $(current_area).removeClass("temp_shown");
+        $(theImg).removeClass("temp_shown");
         $(theImg).width(dimentionsToDraw.width);
         if(dimentionsToDraw.height > 0) {
           $(theImg).height(dimentionsToDraw.height)
@@ -12964,6 +13132,7 @@ VISH.Editor.Object = function(V, $, undefined) {
   var urlDivId = "tab_object_from_url_content";
   var urlInputId = "object_embed_code";
   var init = function() {
+    V.Editor.Object.LRE.init();
     V.Editor.Object.Repository.init();
     V.Editor.Object.Live.init();
     V.Editor.Object.Web.init();
@@ -13329,6 +13498,12 @@ VISH.Editor.Presentation = function(V, $, undefined) {
       $.fancybox.close();
       return
     }
+    presentationJSON = V.Utils.fixPresentation(presentationJSON);
+    if(presentationJSON === null) {
+      V.Utils.showPNotValidDialog();
+      $.fancybox.close();
+      return
+    }
     var selectedSlides = [];
     var flashcards = [];
     var vts = [];
@@ -13405,14 +13580,19 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedExcursions(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestExcursions(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId), {style:"loading_presentation_carrousel"})
+  };
+  var _onDataReceived = function(data) {
     currentExcursions = new Array;
     var carrouselImages = [];
     var content = "";
@@ -13430,6 +13610,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onClickCarrouselElement;
@@ -13559,7 +13740,7 @@ VISH.Editor.VirtualTour = function(V, $, undefined) {
     }
   };
   var hasVirtualTours = function() {
-    return $("section.slides > .VirtualTour_slide[type='VirtualTour']").length > 0
+    return $("section.slides > .virtualTour_slide[type='VirtualTour']").length > 0
   };
   var getSlideset = function(id) {
     return getVirtualTour(id)
@@ -13647,14 +13828,19 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedSmartcards(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestSmartcards(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId), {style:"loading_presentation_carrousel"})
+  };
+  var _onDataReceived = function(data) {
     currentSmartcards = new Array;
     var carrouselImages = [];
     var content = "";
@@ -13681,6 +13867,7 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onClickCarrouselElement;
@@ -13809,8 +13996,61 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var testText = '{"VEVersion":"0.5","title":"Test samples","id":"213123123","type":"flashcard","author":"Basic","avatar":"http://vishub.org/assets/logos/original/excursion-15.png","slides":[{"id":"article4","type":"flashcard","background":"url(http://farm9.staticflickr.com/8140/8772901348_dc29ab8ab3.jpg)","pois":[{"id":"article4_poi1","x":"14.375","y":"44.166666666666664","slide_id":"article4_article1"},{"id":"article4_poi2","x":"41","y":"29","slide_id":"article4_article2"},{"id":"article4_poi3","x":"74.875","y":"50.333333333333336","slide_id":"article4_article3"}],"slides":[{"id":"article4_article1","type":"standard","template":"t2","elements":[{"id":"article4_article1_zone1","areaid":"left"}]},{"id":"article4_article2","type":"standard","template":"t12","elements":[{"id":"article4_article2_zone1","areaid":"left1"},{"id":"article4_article2_zone2","areaid":"right1"},{"id":"article4_article2_zone3","areaid":"left2"},{"id":"article4_article2_zone4","areaid":"right2"}]},{"id":"article4_article3","type":"standard","template":"t7","elements":[{"id":"article4_article3_zone1","areaid":"header"},{"id":"article4_article3_zone2","areaid":"left"},{"id":"article4_article3_zone3","areaid":"center"},{"id":"article4_article3_zone4","areaid":"subheader"}]}]}]}';
-  var test = JSON.parse(testText);
+  var test = {"VEVersion":"0.4", "id":"2874", "type":"presentation", "title":"Geomorfolog\u00eda Volcanica", "description":"Colecci\u00f3n de fotograf\u00edas de estructuras geomorfologicas propias de un volc\u00e1n.\nRealizado por: Alejandro Sanchez Balsa y Esteban Iglesias Rivas", "avatar":"/assets/logos/original/excursion-10.png", "tags":["Education", "Geomorfologia", "Volcanoes"], "theme":"theme7", "age_range":"4 - 20", "subject":["Unspecified"], "language":"independent", "educational_objectives":"", 
+  "adquired_competencies":"", "author":"Jose Vi\u00f1as", "slides":[{"id":"article1", "type":"standard", "template":"t3", "elements":[{"id":"article1_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center; ">\n\t<u><em><strong><span style="font-size:36px;"><font class="Apple-style-span" face="\'comic sans ms\', cursive">Geomorfolog&iacute;a volc&aacute;nica</font></span></strong></em></u></p>\n'}, {"id":"article1_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org//pictures/551.jpg", 
+  "style":"position: relative; width:105.01432664756447%; height:110.04464285714286%; top:-2.232142857142857%; left:-1.146131805157593%;"}]}, {"id":"article3", "type":"standard", "template":"t1", "elements":[{"id":"article3_zone1", "type":"image", "areaid":"left", "body":"http://en.academic.ru/pictures/enwiki/80/PanoCrat%C3%A8re2.jpg", "style":"position: relative; width:306.5400843881857%; height:100.78947368421052%; top:0%; left:-109.07172995780591%;"}, {"id":"article3_zone2", "type":"text", "areaid":"header", 
+  "body":'<p>\n\t<span style="font-size:14px;">Esta fotograf&iacute;a representa un <strong><span style="color:#ee82ee;">cr&aacute;ter volc&aacute;nico</span></strong>. Los <strong><span style="color:#ee82ee;">Cr&aacute;teres Volc&aacute;nicos</span></strong> <font face="sans-serif"><span style="line-height: 19.1875px;">son depresiones volc&aacute;nicas causadas por actividad volv&aacute;nica, generalmente funcionan como abertura o boca de erupci&oacute;n del volc&aacute;n y suelen estar situados en su cima. Suelen tener forma de cono imbertido.</span></font></span></p>\n'}, 
+  {"id":"article3_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span autocolor="true"><span style="font-size:18px;">Cr&aacute;ter Volc&aacute;nico Nevado en Los Andes (Ecuador)&shy;</span></span></strong></p>\n'}]}, {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"image", "areaid":"left", "body":"http://www.earthrandom.com/wp-content/uploads/2013/01/Aogashima-Island1.jpg", "style":"position: relative; width:110.12658227848101%; height:103.94736842105263%; top:0%; left:-2.742616033755274%;"}, 
+  {"id":"article4_zone2", "type":"text", "areaid":"header", "body":'<p>\n\t<span style="font-size:18px;">Esta Isla es otro <strong><span style="color:#ee82ee;">ejemplo</span></strong> de <strong><span style="color:#ee82ee;">cr&aacute;ter volcanico</span></strong> que se ve a simple vista y adem&aacute;s en su interior, aparece un nuevo volc&aacute;n.</span></p>\n'}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span style="font-size:20px;"><span autocolor="true" style="color:#000;"><span style="color: rgb(34, 34, 34);">Aogashima Volcanic Island</span></span></span></strong></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}]}, 
+  {"id":"article5", "type":"standard", "template":"t1", "elements":[{"id":"article5_zone1", "type":"image", "areaid":"left", "body":"http://images.nationalgeographic.com/wpf/media-live/photos/000/600/cache/hverfjall-iceland-haarberg_60070_990x742.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:-4.219409282700422%;"}, {"id":"article5_zone2", "type":"text", "areaid":"header", "body":'<p>\n\t<span style="font-size:18px;">Otro<strong><span style="color:#ee82ee;"> ejemplo</span></strong> de <strong><span style="color:#ee82ee;">cr&aacute;ter volc&aacute;nico</span></strong>, esta vez helado en Islandia.</span></p>\n'}, 
+  {"id":"article5_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span autocolor="true" style="color:#000;"><span style="font-size:20px;"><span style="color: rgb(34, 34, 34);">Hverfjall Crater - Iceland&nbsp;</span></span></span></strong></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}]}, {"id":"article6", "type":"standard", "template":"t1", "elements":[{"id":"article6_zone1", 
+  "type":"image", "areaid":"left", "body":"http://imagenes.nationalgeographic.com.es/medio/2009/09/27/metatada_120.jpg", "style":"position: relative; width:105.0632911392405%; height:98.15789473684211%; top:0%; left:-2.320675105485232%;"}, {"id":"article6_zone2", "type":"text", "areaid":"header", "body":'<p>\n\t<span style="font-size:18px;">Otro <span style="color:#ee82ee;"><strong>ejemplo</strong></span> m&aacute;s de un <strong><span style="color:#ee82ee;">cr&aacute;ter volc&aacute;nico</span></strong>, este situado en el Desierto del Sahara , dentro de el podemos observar incluso un peque&ntilde;o lago.</span></p>\n'}, 
+  {"id":"article6_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;"><span style="color: rgb(34, 34, 34);">Waw an-Namus Volcano (Sahara Desert)</span></span></strong></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}]}, {"id":"article7", "type":"standard", "template":"t1", "elements":[{"id":"article7_zone1", 
+  "type":"image", "areaid":"left", "body":"http://acbconsultores.com/Geologia%20general/Vulcanismo/Vulcanismo1/Image10.jpg", "style":"position: relative; width:121.51898734177215%; height:100%; top:0%; left:-9.071729957805907%;"}, {"id":"article7_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Bomba Volc&aacute;nica</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es un globulo de roca fundida. Fragmentos de lava solidificados, arrojados por u cr&aacute;ter volc&aacute;nico.&shy;</span></span></p>\n'}, 
+  {"id":"article7_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;"><strong>Bombas Volc&aacute;nicas</strong>&shy;</span></span></p>\n'}]}, {"id":"article8", "type":"standard", "template":"t1", "elements":[{"id":"article8_zone1", "type":"image", "areaid":"left", "body":"http://www.shelios.com/ima01a/expe/rgb500/181m.jpg", "style":"position: relative; width:127.21518987341773%; height:102.89473684210526%; top:0%; left:-4.219409282700422%;"}, 
+  {"id":"article8_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Bomba Volc&aacute;nica&shy;</strong></span></span></span></p>\n'}, 
+  {"id":"article8_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Bomba Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article9", "type":"standard", "template":"t1", "elements":[{"id":"article9_zone1", "type":"image", "areaid":"left", "body":"http://www.shelios.com/ima01a/expe/rgb500/186m.jpg", "style":"position: relative; width:127.42616033755274%; height:102.89473684210526%; top:0%; left:-22.573839662447256%;"}, 
+  {"id":"article9_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de varias </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Bombas Volc&aacute;nicas.&shy;</span></span></span></p>\n'}, 
+  {"id":"article9_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Bombas Volc&aacute;nicas&shy;</span></strong></span></p>\n'}]}, {"id":"article10", "type":"standard", "template":"t1", "elements":[{"id":"article10_zone1", "type":"image", "areaid":"left", "body":"http://www.mp3stahuj.cz/img_db/2009/March/Ozivlesopky/6347.jpg", "style":"position: relative; width:121.51898734177215%; height:101.05263157894737%; top:1.0526315789473684%; left:-10.759493670886076%;"}, 
+  {"id":"article10_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Colada Volc&aacute;nica </strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;">es un manto de lava flu&iacute;da emitida por un volc&aacute;n durante sus erupciones.&shy;</span></span></p>\n'}, 
+  {"id":"article10_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Colada Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article11", "type":"standard", "template":"t1", "elements":[{"id":"article11_zone1", "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/--KT-tgWOn5g/TXZ8cNS6C5I/AAAAAAAAAAU/Xx0WVHSFE58/s1600/kilauea%2BHawaii.jpg", "style":"position: relative; width:98.73417721518987%; height:115.78947368421052%; top:-0.2631578947368421%; left:0%;"}, 
+  {"id":"article11_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro</span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"> ejemplo</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>colada volc&aacute;nica&shy;</strong></span></span></span></p>\n'}, 
+  {"id":"article11_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Colada Volcanica ( Hawaii )&shy;</span></strong></span></p>\n'}]}, {"id":"article12", "type":"standard", "template":"t1", "elements":[{"id":"article12_zone1", "type":"image", "areaid":"left", "body":"http://www.ecofield.com.ar/images-blog/IMAGES/220410x2.jpg", "style":"position: relative; width:115.61181434599156%; height:98.6842105263158%; top:0%; left:-1.4767932489451476%;"}, 
+  {"id":"article12_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Este </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">polvo volc&aacute;nico</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es, generalmente, ceniza que expulsa en volc&aacute;n cu&aacute;ndo entra en erupci&oacute;n.&shy;</span></span></p>\n'}, 
+  {"id":"article12_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong>Polvo Volc&aacute;nico</strong></span></p>\n'}]}, {"id":"article13", "type":"standard", "template":"t1", "elements":[{"id":"article13_zone1", "type":"image", "areaid":"left", "body":"http://vuelasinmiedo.files.wordpress.com/2010/04/volcanic.jpg", "style":"position: relative; width:148.52320675105486%; height:110.78947368421052%; top:-1.5789473684210527%; left:-14.345991561181435%;"}, 
+  {"id":"article13_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Polvo Volc&aacute;nico&shy;</span></span></span></strong></p>\n'}, 
+  {"id":"article13_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;">Polvo Volc&aacute;nico&shy;</span></span></strong></p>\n'}]}, {"id":"article14", "type":"standard", "template":"t1", "elements":[{"id":"article14_zone1", "type":"image", "areaid":"left", "body":"http://img1.liveinternet.ru/images/attach/c/5/87/829/87829817_12.jpg", "style":"position: relative; width:121.94092827004219%; height:101.05263157894737%; top:2.1052631578947367%; left:-9.49367088607595%;"}, 
+  {"id":"article14_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Caldera Volc&aacute;nica</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es una depresi&oacute;n central formada tras las explosiones que destruyen la parte central del edificio volc&aacute;nico.</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">&shy;</span></span></p>\n'}, 
+  {"id":"article14_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Caldera Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article15", "type":"standard", "template":"t1", "elements":[{"id":"article15_zone1", "type":"image", "areaid":"left", "body":"http://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Aniakchak-caldera_alaska.jpg/800px-Aniakchak-caldera_alaska.jpg", 
+  "style":"position: relative; width:121.94092827004219%; height:101.3157894736842%; top:0%; left:-9.915611814345992%;"}, {"id":"article15_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>ejemplo</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>caldera volc&aacute;nica</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;">, nevada.&shy;</span></span></p>\n'}, 
+  {"id":"article15_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Caldera Volc&aacute;nica nevada ( Alaska )&shy;</span></strong></span></p>\n'}]}, {"id":"article16", "type":"standard", "template":"t1", "elements":[{"id":"article16_zone1", "type":"image", "areaid":"left", "body":"http://www.ux1.eiu.edu/~cfrbj/parks/MSHE/lapilli.jpg", "style":"position: relative; width:116.03375527426161%; height:102.36842105263158%; top:0.2631578947368421%; left:-6.118143459915612%;"}, 
+  {"id":"article16_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">El </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Lapilli</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son los peque&ntilde;os fragmentos expulsados en una erupci&oacute;n volc&aacute;nica.</span></span></p>\n'}, 
+  {"id":"article16_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong><span style="font-size:22px;"><span autocolor="true" style="color:#000;">Lapilli&shy;</span></span></strong></p>\n'}]}, {"id":"article17", "type":"standard", "template":"t1", "elements":[{"id":"article17_zone1", "type":"image", "areaid":"left", "body":"http://ismafer.files.wordpress.com/2008/10/t047655a.jpg", "style":"position: relative; width:131.64556962025316%; height:100%; top:0%; left:-21.30801687763713%;"}, 
+  {"id":"article17_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Los </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">volcanes hawaianos</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son caracteristicos por tener efusiones abundantes y tranquilas de lavas bs&aacute;lticas fundidas.</span></span></p>\n'}, 
+  {"id":"article17_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<strong>Volc&aacute;n hawaiano</strong></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<strong><span style="font-size:24px;">Volc&aacute;n Hawaiano</span></strong></p>\n'}]}, {"id":"article18", "type":"standard", "template":"t1", "elements":[{"id":"article18_zone1", "type":"image", "areaid":"left", "body":"http://img63.imageshack.us/img63/3029/kilauea2.jpg", 
+  "style":"position: relative; width:116.03375527426161%; height:108.15789473684211%; top:0%; left:-2.742616033755274%;"}, {"id":"article18_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Otro </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">ejemplo</span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> de un </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Volc&aacute;n Hawaiano&shy;</span></span></span></strong></p>\n'}, 
+  {"id":"article18_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:20px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Hawaiano&shy;</span></strong></span></p>\n'}]}, {"id":"article19", "type":"standard", "template":"t1", "elements":[{"id":"article19_zone1", "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/-xhv4jyK60fA/Te0WLZzEMmI/AAAAAAAAAEw/YAkhQ1aF3T4/s1600/images241.jpg", "style":"position: relative; width:105.0632911392405%; height:98.15789473684211%; top:0%; left:-2.320675105485232%;"}, 
+  {"id":"article19_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Un </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Volc&aacute;n Stromboliano&shy;</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> resulta de la alternancia sistem&aacute;tica de lavas y cenizas e incluso de fragmentos de su interior. Es un volc&aacute;n de cono compuesto.</span></span></p>\n'}, 
+  {"id":"article19_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Stromboliano&shy;</span></strong></span></p>\n'}]}, {"id":"article21", "type":"standard", "template":"t1", "elements":[{"id":"article21_zone1", "type":"image", "areaid":"left", "body":"http://3.bp.blogspot.com/_x7lgZJ_8v8U/TRQazxU5FlI/AAAAAAAAAA8/O148IytO2u8/s1600/1289153709volcan_merapi.jpg", "style":"position: relative; width:110.33755274261604%; height:102.89473684210526%; top:0%; left:-1.6877637130801688%;"}, 
+  {"id":"article21_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true"><span style="font-size:18px;">Otro <span style="color:#ee82ee;"><strong>ejemplo</strong></span> de <strong><span style="color:#ee82ee;">volc&aacute;n Stromboliano</span></strong>&shy;</span></span></p>\n'}, {"id":"article21_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Stromboliano&shy;</span></strong></span></p>\n'}]}, 
+  {"id":"article22", "type":"standard", "template":"t1", "elements":[{"id":"article22_zone1", "type":"image", "areaid":"left", "body":"http://www.arciduca.it/wp-content/themes/arciduca/images/vulcan-3.jpg", "style":"position: relative; width:198.73417721518987%; height:95%; top:-1.0526315789473684%; left:-58.438818565400844%;"}, {"id":"article22_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Los </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Volcanes Vulcanianos</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> se forman por erupciones muy violentas con fuerte explosividad, su cono se compone fundamentalmente de cenizas y escoria.&shy;</span></span></p>\n'}, 
+  {"id":"article22_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Vulcaniano&shy; ( Islas L&iacute;pari)</span></strong></span></p>\n'}]}, {"id":"article23", "type":"standard", "template":"t1", "elements":[{"id":"article23_zone1", "type":"image", "areaid":"left", "body":"http://sobrecaribe.com/wp-content/uploads/2009/12/monte-pelee-2.jpg", "style":"position: relative; width:105.0632911392405%; height:98.6842105263158%; top:0%; left:-1.8987341772151898%;"}, 
+  {"id":"article23_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Un </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Volc&aacute;n Peleano</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> se forma por la extrusi&oacute;n de lavas poco fluidas, viscosas, acompa&ntilde;adas de nubes ardientes.</span></span></p>\n'}, 
+  {"id":"article23_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Volc&aacute;n Peleano ( Monte Pel&eacute;)&shy;</span></strong></span></p>\n'}]}, {"id":"article24", "type":"standard", "template":"t1", "elements":[{"id":"article24_zone1", "type":"image", "areaid":"left", "body":"http://grupoportuguesa.files.wordpress.com/2012/07/espeleologia-volcanica-ricardo_fernandez_barrueco.jpg", 
+  "style":"position: relative; width:128.0590717299578%; height:106.05263157894737%; top:0%; left:0%;"}, {"id":"article24_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>sima volc&aacute;nica</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es una fisura abierta en la superficie que se ensancha hacia abajo, suelen conducir a cuevas.&shy;</span></span></p>\n'}, 
+  {"id":"article24_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Sima Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article26", "type":"standard", "template":"t1", "elements":[{"id":"article26_zone1", "type":"image", "areaid":"left", "body":"http://farm5.staticflickr.com/4108/5019759679_b1e1823c07_n.jpg", "style":"position: relative; width:134.59915611814347%; height:109.73684210526316%; top:0%; left:-21.729957805907173%;"}, 
+  {"id":"article26_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Una </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">dolina volc&aacute;nica</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> es una peque&ntilde;a depresi&oacute;n cerrada de forma redondeada, que muchas veces se encuentra inundada.&shy;</span></span></p>\n'}, 
+  {"id":"article26_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Dolina o Torca Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}, {"id":"article27", "type":"standard", "template":"t1", "elements":[{"id":"article27_zone1", "type":"image", "areaid":"left", "body":"http://sugeowiki.wikispaces.com/file/view/uvala.jpg/368819824/404x256/uvala.jpg", "style":"position: relative; width:128.0590717299578%; height:100%; top:0%; left:-8.649789029535865%;"}, 
+  {"id":"article27_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Las </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>Uvalas Volc&aacute;nicas</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son depresiones volc&aacute;nicas, generalmente de mayor tama&ntilde;o que las dolinas.&shy;</span></span></p>\n'}, 
+  {"id":"article27_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Uvalas Volc&aacute;nicas&shy;</span></strong></span></p>\n'}]}, {"id":"article28", "type":"standard", "template":"t1", "elements":[{"id":"article28_zone1", "type":"image", "areaid":"left", "body":"http://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Polj%C3%A9_de_Comellas.jpg/300px-Polj%C3%A9_de_Comellas.jpg", 
+  "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, {"id":"article28_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Los </span></span><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;"><strong>polj&eacute;s volc&aacute;nicos</strong></span></span></span><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> son grandes depresiones de forma alargada con fondo plano, y de gran longitud.&shy;</span></span></p>\n'}, 
+  {"id":"article28_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Polj&eacute;s Volc&aacute;nicos&shy;</span></strong></span></p>\n'}]}, {"id":"article29", "type":"standard", "template":"t1", "elements":[{"id":"article29_zone1", "type":"image", "areaid":"left", "body":"http://cloudconnected.pblogs.gr/files/f/160305-solstice_35_bg_062203.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, 
+  {"id":"article29_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000;"><span style="font-size:18px;">Alguna fotografia, interesante como esta </span></span><strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">chimenea volc&aacute;nica exterior.&shy;&nbsp;</span></span></span></strong></p>\n'}, {"id":"article29_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:16px;"><strong><span autocolor="true" style="color:#000;">Chimenea Volc&aacute;nica Exterior&shy; ( Parque de Yellowstone)</span></strong></span></p>\n'}]}, 
+  {"id":"article30", "type":"standard", "template":"t1", "elements":[{"id":"article30_zone1", "type":"image", "areaid":"left", "body":"http://www.diasdehistoria.com.ar/userfiles/image/vesubio-erupcion.jpg", "style":"position: relative; width:101.26582278481013%; height:141.05263157894737%; top:0%; left:0%;"}, {"id":"article30_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Columna Volc&aacute;nica del Vesubio </span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;">que provoco el sepultamiento de la ciudad de Pompeya.&shy;</span></span></p>\n'}, 
+  {"id":"article30_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Columna Volc&aacute;nica del Vesubio&shy;</span></strong></span></p>\n'}]}, {"id":"article31", "type":"standard", "template":"t1", "elements":[{"id":"article31_zone1", "type":"image", "areaid":"left", "body":"http://rutasymapas.com/wp-content/uploads/2012/06/cuerpos-enterrados-en-pompeya.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, 
+  {"id":"article31_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Cuerpos sepultados</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> en la antigua ciudad de Pompeya por la lava volc&aacute;nica.&shy;</span></span></p>\n'}, {"id":"article31_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Cuerpos sepultados en Pompeya&shy;</span></strong></span></p>\n'}]}, 
+  {"id":"article32", "type":"standard", "template":"t1", "elements":[{"id":"article32_zone1", "type":"image", "areaid":"left", "body":"http://photography.nationalgeographic.com/staticfiles/NGS/Shared/StaticFiles/Photography/Images/POD/m/mt-kilauea-night-sw.jpg", "style":"position: relative; width:110.33755274261604%; height:103.15789473684211%; top:0%; left:0%;"}, {"id":"article32_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<strong><span style="color:#ee82ee;"><span autocolor="true"><span style="font-size:18px;">Erupci&oacute;n Volc&aacute;nica</span></span></span></strong><span autocolor="true" style="color:#000;"><span style="font-size:18px;"> en el Monte Kilauea ( Hawaii )&shy;</span></span></p>\n'}, 
+  {"id":"article32_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span style="font-size:22px;"><strong><span autocolor="true" style="color:#000;">Erupci&oacute;n Volc&aacute;nica&shy;</span></strong></span></p>\n'}]}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -13895,8 +14135,33 @@ VISH.Samples.API = function(V, undefined) {
   {"title":"Thumbnail 20", "description":"Sample excursion thumbnail 20", "src":"/vishEditor/images/excursion_thumbnails/excursion-20.png"}, {"title":"Thumbnail 21", "description":"Sample excursion thumbnail 21", "src":"/vishEditor/images/excursion_thumbnails/excursion-21.png"}, {"title":"Thumbnail 22", "description":"Sample excursion thumbnail 22", "src":"/vishEditor/images/excursion_thumbnails/excursion-22.png"}, {"title":"Thumbnail 23", "description":"Sample excursion thumbnail 23", "src":"/vishEditor/images/excursion_thumbnails/excursion-23.png"}, 
   {"title":"Thumbnail 24", "description":"Sample excursion thumbnail 24", "src":"/vishEditor/images/excursion_thumbnails/excursion-24.png"}, {"title":"Thumbnail 25", "description":"Sample excursion thumbnail 25", "src":"/vishEditor/images/excursion_thumbnails/excursion-25.png"}, {"title":"Thumbnail 26", "description":"Sample excursion thumbnail 26", "src":"/vishEditor/images/excursion_thumbnails/excursion-26.png"}, {"title":"Thumbnail 27", "description":"Sample excursion thumbnail 27", "src":"/vishEditor/images/excursion_thumbnails/excursion-27.png"}, 
   {"title":"Thumbnail 28", "description":"Sample excursion thumbnail 28", "src":"/vishEditor/images/excursion_thumbnails/excursion-28.png"}, {"title":"Thumbnail 29", "description":"Sample excursion thumbnail 29", "src":"/vishEditor/images/excursion_thumbnails/excursion-29.png"}, {"title":"Thumbnail 30", "description":"Sample excursion thumbnail 30", "src":"/vishEditor/images/excursion_thumbnails/excursion-30.png"}]};
+  var LREImageList = {"results":[{"meta":{"id":157132, "provider":"ILBE", "langBlocks":[{"language":"x-mt-it", "title":"Fauna e Floara dell'Israele", "description":"Questa risorsa ha le fotografie, le descrizioni di alcuna della flora e fauna dell'Israele"}, {"language":"x-mt-fr", "title":"Faune et Floara de l'Israel", "description":"Cette ressource a des photographies, des descriptions d'une partie de la flore et la faune de l'Israel"}, {"language":"x-mt-de", "title":"Fauna und Floara von Israel", 
+  "description":"Dieses Hilfsmittel hat Fotographien, Beschreibungen von etwas von der Flora und Fauna von Israel"}, {"language":"x-mt-es", "title":"Fauna y Floara de Israel", "description":"Este recurso tiene las fotograf\u00edas, las descripciones de algo de la flora y fauna de Israel"}, {"language":"en", "title":"Fauna and Floara of Israel", "description":"This resource has photographs, descriptions of some of the flora and Fauna of Israel"}, {"language":"x-mt-pt", "title":"Fauna e Floara de Israel", 
+  "description":"Este recurso tem fotografias, descri\u00e7\u00f5es de algum do flora e fauna de Israel"}, {"language":"x-mt-el", "title":"\u03a0\u03b1\u03bd\u03af\u03b4\u03b1 \u03ba\u03b1\u03b9 Floara \u03c4\u03bf\u03c5 \u0399\u03c3\u03c1\u03b1\u03ae\u03bb", "description":"\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03bf \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03c6\u03bf\u03c1\u03ac\u03c2 \u03ad\u03c7\u03b5\u03b9 \u03c4\u03b9\u03c2 \u03c6\u03c9\u03c4\u03bf\u03b3\u03c1\u03b1\u03c6\u03af\u03b5\u03c2, \u03c0\u03b5\u03c1\u03b9\u03b3\u03c1\u03b1\u03c6\u03ad\u03c2 \u03bc\u03b5\u03c1\u03b9\u03ba\u03ad\u03c2 \u03b1\u03c0\u03cc \u03c4\u03b7 \u03c7\u03bb\u03c9\u03c1\u03af\u03b4\u03b1 \u03ba\u03b1\u03b9 \u03c4\u03b7\u03bd \u03c0\u03b1\u03bd\u03af\u03b4\u03b1 \u03c4\u03bf\u03c5 \u0399\u03c3\u03c1\u03b1\u03ae\u03bb"}], 
+  "rights":{"cc":false, "url":"", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"webBrowser", "urls":["http://oer.eun.org/VWClc0HZLsQohR_gIPB3Tm41jgwk"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":157132, "manifestationID":0, "socialID":"157132/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, 
+  {"meta":{"id":249838, "provider":"TD", "langBlocks":[{"language":"en", "title":"Design Inspired by Nature", "description":"In this stills collage produced for Teachers' Domain, see several examples of everyday inventions that were either inspired by nature or are similar in form and function to plants or animals."}], "rights":{"cc":false, "url":"http://www.teachersdomain.org/terms_of_use.html", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", 
+  "urls":["http://oer.eun.org/VWClc0LSLsIrhB_gIPJ4Rgn51X81"]}, {"player":"webBrowser", "urls":["http://oer.eun.org/VWClc0LSLsIrhR_gIPJ4RgU23uqf"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":249838, "manifestationID":0, "socialID":"249838/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, {"meta":{"id":253883, "provider":"NASAPHOTOJOURNAL", "langBlocks":[{"language":"x-mt-it", 
+  "title":"Hamersley ': Non abbastanza Come 'Il Cratere Dell'Aquila '", "description":'Questo mosaico approssimativo di immagine di allineare-colore dalla macchina fotografica panoramica sull\'occasione del vagabondo di esplorazione del Marte mostra l\'obiettivo nicknamed "Hamersley" all\'interno "del cratere di Fram." La natura del materiale dell\'affioramento visto in questa posizione si interrompe visibilmente. Alcune zone egualmente hanno fare uno strato di che pu\u00f2 essere distintivo da che cosa gli scienziati hanno visto precedentemente in "cratere dell\'aquila." L\'occasione sta viaggiando verso "una resistenza dubbed grande cratere." Pu\u00f2 ritornare a Fram per ulteriore analisi delle relativi roccie e terrenise permessi di tempo. Le immagini in questo mosaico sono state prese sul solenoide 87 con le macchine fotografiche panoramica 480 -, 530- ed i filtri 600-nanometer.'}, 
+  {"language":"x-mt-de", "title":"Hamersley ': Nicht Durchaus Wie ' Adler-Krater '", "description":'Dieses ungef\u00e4hre Zutreffendfarbe Bildmosaik von der panoramischen Kamera auf der Mars Erforschung-Vagabund-Gelegenheit zeigt das Ziel, das nicknamed ist "Hamersley" innerhalb "des Fram Kraters." Die Natur des Zutageliegenmaterials, das in diesen Standort gesehen wird, wird sichtbar gest\u00f6rt. Etwas Bereiche haben auch das \u00dcberlagern, das sein kann unterscheidend von, was Wissenschaftler sahen vorher in "Adler-Krater." Gelegenheit reist in Richtung zu einer gro\u00dfer Krater betitelten "Ausdauer." Sie kann zu Fram f\u00fcr weitere Analyse seiner Felsen und Bodens zur\u00fcckgehen wenn Zeiterlaubnis. Die Bilder in diesem Mosaik wurden auf Solenoid 87 mit der panoramischen Kamera 480 -, 530- und Filter 600-nanometer genommen.'}, 
+  {"language":"x-mt-fr", "title":"Hamersley ': Pas tout \u00e0 fait Comme Le 'Crat\u00e8re d'Aigle '", "description":"Cette mosa\u00efque approximative d'image de vrai-couleur de l'appareil-photo panoramique sur l'occasion de vagabond d'exploration de Mars montre la cible surnomm\u00e9e \"Hamersley\" dans le \"crat\u00e8re de Fram.\" La nature du mat\u00e9riel d'affleurement vu dans cet emplacement est visiblement perturb\u00e9e. Quelques zones ont \u00e9galement poser qui peut \u00eatre distinctif dece que les scientifiques ont vu pr\u00e9c\u00e9demment en \"crat\u00e8re d'aigle.\" L'occasion voyage vers une \"r\u00e9sistance doubl\u00e9e grand par crat\u00e8re.\" Elle peut retourner \u00e0 Fram pour davantage d'analyse de ses roches et sols si des laisux de temps. Les images dans cette mosa\u00efque ont \u00e9t\u00e9 prises sur le sol\u00e9no\u00efde 87 avec l'appareil-photo panoramique 480 -, 530- et filtres 600-nanometer."}, 
+  {"language":"x-mt-es", "title":"Hamersley ': No absolutamente Como El ' Cr\u00e1ter Del \u00c1guila '", "description":'Este mosaico aproximado de la imagen del verdadero-color de la c\u00e1mara fotogr\u00e1fica panor\u00e1mica en la oportunidad del rover de la exploraci\u00f3n de Marte muestra la blanco apodada "Hamersley" dentro del "cr\u00e1ter de Fram." La naturaleza del material del afloramiento considerado en esta localizaci\u00f3n se interrumpe visiblemente. Algunas \u00e1reas tambi\u00e9n tienen acodar que pueda ser distintivo de lo que vieron los cient\u00edficos previamenteen "cr\u00e1ter del \u00e1guila." La oportunidad est\u00e1 viajando hacia una "resistencia doblada cr\u00e1ter grande." Puede volver a Fram para el an\u00e1lisis adicional de sus rocas y suelos si los permisos del tiempo. Las im\u00e1genes en este mosaico fueron adquiridas el solenoide 87 con la c\u00e1mara fotogr\u00e1fica panor\u00e1mica 480 -, 530- y filtros 600-nanometer.'}, 
+  {"language":"en", "title":"Hamersley' : Not Quite Like 'Eagle Crater'", "description":'This approximate true-color image mosaic from the panoramic camera on the Mars Exploration Rover Opportunity shows the target nicknamed "Hamersley" within "Fram Crater." The nature of the outcrop material seen in this location is visibly disrupted. Some areas also have layering that may be distinctive from what scientists saw previously in "Eagle Crater." Opportunity is traveling toward a large crater dubbed "Endurance." It may return to Fram for further analysis of its rocks and soils if time permits. The images in this mosaic were taken on sol 87 with the panoramic camera\'s 480-, 530- and 600-nanometer filters.'}, 
+  {"language":"x-mt-pt", "title":"Hamersley ': N\u00e3o completamente Como ' A Cratera Da \u00c1guia '", "description":'Este mosaic aproximado da imagem da verdadeiro-cor da c\u00e2mera panoramic na oportunidade do vagabundo da explora\u00e7\u00e3o de Marte mostra o alvo nicknamed "Hamersley" dentro de "da cratera Fram." A natureza do material do outcrop visto nestaposi\u00e7\u00e3o disrupted visivelmente. Algumas \u00e1reas t\u00eam tamb\u00e9m mergulhar que pode ser distintivo de o que os cientistas viram previamente da "na cratera \u00e1guia." A oportunidade est\u00e1 viajando para cratera grande uma "resist\u00eancia dubbed." Pode retornar a Fram para uma an\u00e1lise mais adicional de seus rochas e solos se licen\u00e7as do tempo. As imagens neste mosaic foram feitas exame no solen\u00f3ide 87 com a c\u00e2mera panoramic 480 -, 530- e filtros 600-nanometer.'}], 
+  "rights":{"cc":false, "url":"http://creativecommons.org/publicdomain/mark/1.0/", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", "urls":["http://oer.eun.org/VWClc0HbKM4qhR_gIPB5TFHGMCw1"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":253883, "manifestationID":0, "socialID":"253883/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, 
+  "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, {"meta":{"id":253896, "provider":"NASAPHOTOJOURNAL", "langBlocks":[{"language":"x-mt-it", "title":"Roccie Sedimentarie Di Schiaparelli", "description":"Versione no. MOC2-403, il 26 di MGS MOC giugno 2003 alcuni dei risultati di formazione immagine di alta risoluzione pi\u00f9 importanti del centro globale di esperimento della macchina fotografica del orbiter del Marte dell'ispettore del Marte (MGS) (MOC)sulle scoperte circa la presenza e la natura del record sedimentario della roccia su Marte. Questo vecchio cratere di effetto del meteor in bacino nordoccidentale di Schiaparelli esibisce una vista spettacolare della roccia fatta uno strato di e sedimentaria. Ilcratere (1.4 miglio) largo 2.3 chilometri pu\u00f2 completamente essere riempito una volta di sedimento; il materiale pi\u00f9 successivamente \u00e8 stato corroso alla relativa forma attuale. Ledozzine degli strati di spessore simile e le propriet\u00e0 fisiche ora sono espresse nelle nozze raggrum-come la pila nel mezzo del cratere. La luce solare che illumina la scena dalla parte di sinistra indica che il cerchio, o la parte superiore di MESA, alla met\u00e0 del cratere si leva in piedi pi\u00f9 superiore agli altri strati scala-fatti un passo. Le propriet\u00e0 fisiche dell'uniforme e l'assestamento di questi strati potrebbero indicare che originalmente sono state depositate in un lago (\u00e8 possibile che il cratere era allaparte inferiore di lago molto pi\u00f9 grande, di un bacino riempientesi di Schiaparelli); alternativamente, gli strati sono stati depositati sistemandosi dell'atmosfera in un ambiente asciutto. Questa immagine \u00e8 stata acquistata il 3 giugno 2003 ed \u00e8 situata vicino a 0.9S, 346.2W."}, 
+  {"language":"en", "title":"Schiaparelli Sedimentary Rocks", "description":"MGS MOC Release No. MOC2-403, 26 June 2003 Some of the most important high resolution imaging results of the Mars Global Surveyor (MGS) Mars Orbiter Camera (MOC) experiment center on discoveries about the presence and nature of the sedimentary rock record on Mars. This old meteor impact crater in northwestern Schiaparelli Basin exhibits a spectacular view of layered, sedimentary rock. The 2.3 kilometer (1.4 miles) wide crater may have once been completely filled with sediment; the material was later eroded to its present form. Dozens of layers of similar thickness and physical properties are now expressed in a wedding cake-like stack in the middle of the crater. Sunlight illuminating the scene from the left shows that the circle, or mesa top, at the middle of the crater stands higher than the other stair-stepped layers. The uniform physical properties and bedding of these layers might indicate that they were originally deposited in a lake (it is possible that the crater was at the bottom of a much larger lake, filling Schiaparelli Basin); alternatively, the layers were deposited by settling out of the atmosphere in a dry environment. This picture was acquired on June 3, 2003, and is located near 0.9S, 346.2W."}, 
+  {"language":"x-mt-pt", "title":"Rochas Sedimentary De Schiaparelli", "description":"Libera\u00e7\u00e3o no. MOC2-403 de MGS MOC, 26 junho 2003alguns dos resultados de alta resolu\u00e7\u00e3o os mais importantes da imagem latente do centro global da experi\u00eancia da c\u00e2mera do orbiter de Marte do surveyor de Marte (MGS) (MOC) em descobertas sobre a presen\u00e7a e a natureza do registro sedimentary da rocha em Marte. Esta cratera velha do impacto do meteoro na bacia do noroeste deSchiaparelli exibe uma vista espectacular da rocha mergulhada, sedimentary. A cratera de 2.3 quil\u00f4metros (1.4 milha) de largura pode uma vez completamente ter sido enchida com o sedimento; o material foi corro\u00eddo mais tarde a seu formul\u00e1rio atual. As d\u00fazias das camadas de espessura similar e as propriedades f\u00edsicas s\u00e3o expressadas agora em um casamento endure\u00e7-como a pilha no meio da cratera. A luz solar que ilumina a cena da esquerda mostra que o c\u00edrculo, ou o alto do mesa, no meio da cratera est\u00e3o mais altamente do que as outras camadas escada-pisadas. As propriedades f\u00edsicas e o fundamento uniformes destas camadas puderam indicar que estiveram depositadas originalmente em um lago (\u00e9 poss\u00edvel que a cratera estava no fundo de um lago muito maior, de umabacia de enchimento de Schiaparelli); alternativamente, as camadas foram depositadas estabelecindo-se fora da atmosfera em um ambiente seco. Este retrato foi adquirido junho em 3, 2003, e \u00e9ficado situado perto de 0.9S, 346.2W."}], 
+  "rights":{"cc":false, "url":"http://creativecommons.org/publicdomain/mark/1.0/", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", "urls":["http://oer.eun.org/VWClc0HbKMcpgh_gIPB5TLh4hjKH"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":253896, "manifestationID":0, "socialID":"253896/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, 
+  "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}, {"meta":{"id":253900, "provider":"NASAPHOTOJOURNAL", "langBlocks":[{"language":"x-mt-it", "title":"Banda del radar de 28 ottobre 2005, flyby di Titan", "description":"Questo programma della luna Titan del Saturno mostra la posizione tracciata con il rilevamento del radar di Cassini usando il relativo modo sintetico di formazione immagine del radar dell'apertura durante 28 ottobre 2005, flyby. La banda del radar\u00e8 sovrapposta su un'immagine di falso-colore fatta dalle osservazionidal telescopio dello spazio del Hubble della NASA. La posizione del luogo di atterraggio di Huygens \u00e8 contrassegnata nel colore rossoall'estrema destra. La sovrapposizione fra i dati di Huygens e la volont\u00e0 di dati del radar d\u00e0 i nuovi indizii alla natura della superficie vista dalla sonda di Huygens, che ha atterrato su Titan nelmese di gennaio del 2005. Del 28 la banda ottobre \u00e8 di lunghezza circa 6.150 chilometri (3.821 miglio), estendendosi del nordda 7 gradi fino 18 gradi di latitudine del sud ed ad ovest da 179 gradi fino 320 gradi di longitudine ad ovest. La risoluzione spaziale delle immagini del radar varia da circa 300 tester (980 piedi) per il pixel a circa 1.5 chilometro (0.93 miglia) per il pixel.Quattro passaggi del radar del Cassini hanno rivelato una variet\u00e0 di caratteristiche geologiche, compreso i crateri di effetto,di depositi vento-saltati, di scanalature e di caratteristiche cryovolcanic. La missione di Cassini-Huygens \u00e8 un progetto cooperativo della NASA, dell'Ente Spaziale Europeo e dell'agenzia italiana dello spazio. Il laboratorio di propulsione del getto, una divisione della California Institute of Technology A Pasadena, gestisce la missione per la direzione di missione di scienza della NASA, Washington, D.C. The Cassini che il orbiter \u00e8 stato progettato,sviluppato e montato a JPL. Lo strumento del radar \u00e8 stato costruito da JPL e l'agenzia italiana dello spazio, funzionante con i membri della squadra dal unito Dichiara e parecchi paesi europei. Per le pi\u00f9 informazioni sulla chiamata di missione di Cassini-Huygens"}, 
+  {"language":"x-mt-de", "title":"Radar-Schwade von Okt. 28, 2005, Titan Flyby", "description":"Diese Karte von Mond Titan Saturns zeigt den Standort, der mit dem Cassini Radarkartographen mit seinem synthetischen Blenden\u00f6ffnung Radar-Belichtung Modus w\u00e4hrend des Okt.28, 2005, Flyby abgebildet wird. Die RadarSchwade wird auf einem Falschfarbe Bild gelegt, das von den Beobachtungen durch Platz-Teleskop Hubble NASAs gebildet wird. Der Standort der Huygens Landungsites wird im Rot auf dem weit rechten gekennzeichnet. Die Deckung zwischen den Huygens Daten und dem Radardatenwillen geben neue Anhaltspunkte zur Natur der Oberfl\u00e4che, die durch die Huygens Pr\u00fcfspitze gesehen wird, die auf Titan im Januar 2005 landete. Die Okt. 28 Schwade ist ungef\u00e4hr 6.150 Kilometer (3.821 Meilen) lang und dehnt sich von 7 Grad Nord auf 18 Grad S\u00fcdbreite und von 179 Grad West auf 320 Grad Westl\u00e4nge aus. Die r\u00e4umliche Zerlegung der Radarbilder reicht von ungef\u00e4hr 300 Metern (980 Fu\u00df) pro Pixel bis zu ungef\u00e4hr 1.5 Kilometern (0.93 Meilen) pro Pixel. Cassinis deckten vier Radardurchl\u00e4ufe eine Vielzahl der geologischen Merkmale, einschlie\u00dflich Auswirkung Krater,der Wind-durchgebrannten Ablagerungen, der F\u00fchrungen und der cryovolcanic Merkmale auf. Die Cassini-Huygens Mission ist ein kooperatives Projekt der NASAS, der Europ\u00e4ischen Weltraumorganisationund der italienischen Platz-Agentur. Das Strahl Antrieb-Labor, eine Abteilung der California Institutes of Technology in Pasadena, handhat die Mission f\u00fcr Direktorat Mission Wissenschaft der NASAS, Washington, D.C. The Cassini, das Orbiter konzipiert war, sich entwickelt und an JPL zusammengebaut. Das Radarinstrument wurde durch JPL und die italienische Platz-Agentur aufgebaut und arbeitete mit Teambauteilen von den Vereinigten Staaten und von einigen europ\u00e4ischen L\u00e4ndern. Zu mehr Information \u00fcber den Cassini-Huygens Mission Besuch"}, 
+  {"language":"x-mt-fr", "title":"Bandage de radar oct. de 28, 2005, flyby de Titan", "description":"Cette carte du Titan de la lune de Saturne montre l'emplacement trac\u00e9 avec le cartographe de radar de Cassini enutilisant son mode synth\u00e9tique de formation image de radar d'ouverture pendant oct. 28, 2005, flyby. Le bandage de radar est superpos\u00e9 \u00e0 une image de faux-couleur faite \u00e0 partir des observations par le t\u00e9lescope de l'espace de Hubble de NASA's. L'emplacement du site d'atterrissage de Huygens est marqu\u00e9 dansle rouge sur loin le droit. La superposition entre les donn\u00e9es de Huygens et la volont\u00e9 de donn\u00e9es de radar donnent de nouveaux indices \u00e0 la nature de la surface vue par la sonde de Huygens, qui a d\u00e9barqu\u00e9 sur le Titan en janvier 2005. Le bandage oct. de 28 est d'environ 6.150 kilom\u00e8tres de long (3.821 milles), s'\u00e9tendant de 7 degr\u00e9s de du nord \u00e0 18 degr\u00e9s de latitude du sud et de 179 degr\u00e9s d'occidental \u00e0 320 degr\u00e9s de longitude occidentale. La r\u00e9solution spatiale des images de radar s'\u00e9tend d'environ 300 m\u00e8tres (980 pieds) par Pixel \u00e0 environ 1.5 kilom\u00e8tre (0.93 mille) par Pixel. Quatre passages du radar de Cassini ont indiqu\u00e9 une vari\u00e9t\u00e9 de dispositifs g\u00e9ologiques, y compris des crat\u00e8res d'impact, de d\u00e9p\u00f4ts vent-souffl\u00e9s, de canaux et de dispositifs cryovolcanic. La mission de Cassini-Huygens est un projet coop\u00e9ratif de la NASA, de l'Agence europ\u00e9enne de l'espace et de l'agence italienne de l'espace. Le laboratoire depropulsion de Voyager en jet, une division de la California Institute of Technology \u00c0 Pasadena, contr\u00f4le la mission pour la direction de mission de la Science de la NASA, Washington, D.C. The Cassini que la navette spatiale a \u00e9t\u00e9 con\u00e7ue, d\u00e9velopp\u00e9 et r\u00e9uni \u00e0 JPL. L'instrument de radar a \u00e9t\u00e9 construit par JPL et l'agence italienne de l'espace, fonctionnant avec des membres d'\u00e9quipe des Etats-Unis et plusieurs pays europ\u00e9ens. Pour plus d'informations sur la visite de mission de Cassini-Huygens"}, 
+  {"language":"x-mt-es", "title":"Andana del radar del de oct. 28 de 2005, flyby delTit\u00e1n", "description":"Esta correspondencia del Tit\u00e1n de la luna de Saturno muestra la localizaci\u00f3n asociada con el mapper del radar de Cassini usando su modo sintetizado de la proyecci\u00f3n de imagen del radar de la abertura durante de oct. el 28 de 2005, flyby. La andana del radar se sobrepone en una imagen del falso-color hecha de observaciones por el telescopio del espacio de Hubble de NAS\u00c1s. La localizaci\u00f3n del sitio del aterrizaje de Huygens est\u00e1 marcada en rojo en el lejos derecho. El traslapo entre los datosde Huygens y la voluntad de los datos del radar da nuevas pistas a la naturaleza de la superficie considerada por la punta de prueba de Huygens, que aterriz\u00f3 en Tit\u00e1n en enero de 2005. La andanade oct. del 28 tiene cerca de 6.150 kil\u00f3metros de largo (3.821 millas), extendiendo a partir de 7 grados de del norte a 18 grados de latitud del sur y de 179 grados de del oeste a 320 grados de longitud del oeste. La resoluci\u00f3n espacial de las im\u00e1genes del radar seextiende de cerca de 300 contadores (980 pies) por el pixel a cerca de1.5 kil\u00f3metros (0.93 milla) por el pixel. Cuatro pasos del radar de Cassini revelaron una variedad de caracter\u00edsticas geol\u00f3gicas, incluyendo los cr\u00e1teres del impacto, de dep\u00f3sitos viento-soplados, de canales y de caracter\u00edsticas cryovolcanic. La misi\u00f3n de Cassini-Huygens es un proyecto cooperativo de la NASA, de la Agencia Espacial Europea y de la agencia italiana del espacio. El laboratorio de la propulsi\u00f3n del jet, divisi\u00f3n de la California Institute of Technology En Pasadena, maneja la misi\u00f3n para la direcci\u00f3n de la misi\u00f3n de la ciencia de la NASA, Washington,D.C. The Cassini que el orbiter fue dise\u00f1ado, convertido y ensambladoen JPL. El instrumento del radar fue construido por JPL y la agencia italiana del espacio, trabajando con los miembros del equipo de los Estados Unidos y de varios pa\u00edses europeos. Para m\u00e1s informaci\u00f3n sobre la visita de la misi\u00f3n de Cassini-Huygens"}, 
+  {"language":"en", "title":"Radar Swath of Oct. 28, 2005, Titan Flyby", "description":"This map of Saturn's moon Titan shows the location mapped with the Cassini radar mapper using its synthetic aperture radar imaging mode during the Oct. 28, 2005, flyby. The radar swath is superimposed on a false-color image made from observations by NASA's Hubble Space Telescope. The location of the Huygens landing site is marked in red on the far right. The overlap between the Huygens data and the radar data will give new clues to the nature of the surface seen by the Huygens probe, which landed on Titan in January 2005. The Oct. 28 swath is about 6,150 kilometers long (3,821 miles), extending from 7 degrees north to 18 degrees south latitude and 179 degrees west to 320 degrees west longitude. The spatial resolution of the radar images ranges from about 300 meters (980 feet) per pixel to about 1.5 kilometers (0.93 miles) per pixel. Cassini's four radar passes revealed a variety of geologic features, including impact craters, wind-blown deposits, channels and cryovolcanic features. The Cassini-Huygens mission is a cooperative project of NASA, the European Space Agency and the Italian Space Agency. The Jet Propulsion Laboratory, a division of the California Institute of Technology in Pasadena, manages the mission for NASA's Science Mission Directorate, Washington, D.C. The Cassini orbiter was designed, developed and assembled at JPL. The radar instrument was built by JPL and the Italian Space Agency, working with team members from the United States and several European countries. For more information about the Cassini-Huygens mission visit"}, 
+  {"language":"x-mt-pt", "title":"Swath do radar outubro de 28, 2005, demostra\u00e7\u00e3o a\u00e9rea de Titan", "description":"Este mapa da lua Titan de Saturno mostra a posi\u00e7\u00e3o tra\u00e7ada com o cart\u00f3grafo do radar de Cassini usando sua modalidade sint\u00e9tica da imagem latente do radar da abertura durante outubro o 28, 2005, demostra\u00e7\u00e3o a\u00e9rea. O swath do radar \u00e9 sobreposto em uma imagem da falso-cor feita das observa\u00e7\u00f5es pelo telesc\u00f3pio do espa\u00e7o de Hubble de NASA. A posi\u00e7\u00e3o do local da aterragem de Huygens \u00e9 marcada no vermelho no distante direito. A sobreposi\u00e7\u00e3o entre os dados de Huygens e a vontade dos dadosdo radar d\u00e1 ind\u00edcios novos \u00e0 natureza da superf\u00edcie vista pela ponta de prova de Huygens, que aterrou em Titan em janeiro 2005. O swath outubro de 28 tem aproximadamente 6.150 quil\u00f4metros de comprimento (3.821 milhas), estendendo de 7 graus norte a 18 graus de latitude sul e de 179 graus ocidental a 320 graus de longitude ocidental. A defini\u00e7\u00e3o spatial das imagens do radar varia de aproximadamente 300 medidores (980 p\u00e9s) por o pixel a aproximadamente1.5 quil\u00f4metro (0.93 milha) por o pixel. Passagens do radar de Cassini quatro revelaram uma variedade de caracter\u00edsticas geologic, including crateras do impacto, de dep\u00f3sitos vento-fundidos, de canaletas e de caracter\u00edsticas cryovolcanic. A miss\u00e3o de Cassini-Huygens \u00e9 um projeto cooperativo da NASA, da ag\u00eancia de espa\u00e7o europ\u00e9ia e da ag\u00eancia italiana do espa\u00e7o. O laborat\u00f3rio da propuls\u00e3o do jato, uma divis\u00e3o da California Institute of Technology Em Pasadena, controla a miss\u00e3o para o directorate da miss\u00e3o da ci\u00eancia da NASA, Washington, C.C.  Cassini que o orbiter foi projetado, tornado e montado em JPL. O instrumento do radar foi constru\u00eddo por JPL e pela ag\u00eancia italiana do espa\u00e7o, trabalhando com membros da equipe dos estados unidos e de diversos pa\u00edses europeus. Para mais informa\u00e7\u00e3o sobre a visitada miss\u00e3o de Cassini-Huygens"}], 
+  "rights":{"cc":false, "url":"http://creativecommons.org/publicdomain/mark/1.0/", "by":false, "nc":false, "nd":false, "sa":false}, "expressions":[{"language":"en", "manifestations":[{"player":"landingPage", "urls":["http://oer.eun.org/VWClc0LSJcMhih_gIPJ5TpiQpQej"]}]}]}, "para":{"commentsInfo":{"count":0}, "favouritesInfo":{"count":0}, "idsTuple":{"expressionID":0, "globalLREID":253900, "manifestationID":0, "socialID":"253900/0/0"}, "opinionsInfo":{"downCount":0, "upCount":0}, "ratingsInfo":{"average":0, 
+  "count":0, "sum":0}, "tagsInfo":{"labels":[]}}}]};
   return{recommendationList:recommendationList, excursionsList:excursionsList, smartcardList:smartcardList, flashcardList:flashcardList, imageList:imageList, imageListLittle:imageListLittle, imageListDummy:imageListDummy, videoList:videoList, videoListLittle:videoListLittle, videoListDummy:videoListDummy, flashList:flashList, flashListLittle:flashListLittle, flashListDummy:flashListDummy, liveList:liveList, liveListLittle:liveListLittle, liveListDummy:liveListDummy, objectList:objectList, objectListLittle:objectListLittle, 
-  objectListDummy:objectListDummy, tagsList:tagsList, thumbnailsList:thumbnailsList}
+  objectListDummy:objectListDummy, tagsList:tagsList, thumbnailsList:thumbnailsList, LREImageList:LREImageList}
 }(VISH);
 VISH.Slides = function(V, $, undefined) {
   var slideEls;
@@ -14121,6 +14386,15 @@ VISH.Slides = function(V, $, undefined) {
   var backwardOneSlide = function() {
     goToSlide(curSlideIndex)
   };
+  var moveSlides = function(n) {
+    if(n > 0 && !V.Editing && isCurrentLastSlide() && V.Status.getDevice().desktop) {
+      V.Recommendations.showFancybox();
+      return
+    }
+    var no = curSlideIndex + n + 1;
+    no = Math.min(Math.max(1, no), slideEls.length);
+    goToSlide(no)
+  };
   var goToSlide = function(no, triggeredByUser) {
     if(no === getCurrentSlideNumber()) {
       return
@@ -14153,6 +14427,11 @@ VISH.Slides = function(V, $, undefined) {
     if(V.Editing) {
       $(".selectable").css("border-style", "none");
       V.Editor.Tools.cleanZoneTools();
+      var firstCarrouselNumber = parseInt($($("div.carrousel_element_single_row_slides")[0]).find("img.carrousel_element_single_row_slides[slidenumber]").attr("slidenumber"));
+      var lastCarrouselNumber = firstCarrouselNumber + 7;
+      if(no < firstCarrouselNumber || no > lastCarrouselNumber) {
+        V.Editor.Thumbnails.moveCarrouselToSlide(no)
+      }
       V.Editor.Thumbnails.selectThumbnail(no)
     }else {
       V.SlideManager.updateSlideCounter()
@@ -14223,7 +14502,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   return{init:init, getSlides:getSlides, setSlides:setSlides, updateSlides:updateSlides, updateSlideEls:updateSlideEls, setCurrentSlideIndex:setCurrentSlideIndex, getCurrentSlide:getCurrentSlide, getCurrentSubSlide:getCurrentSubSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, 
-  isCurrentLastSlide:isCurrentLastSlide, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides, isSlideset:isSlideset}
+  isCurrentLastSlide:isCurrentLastSlide, moveSlides:moveSlides, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, closeAllSlides:closeAllSlides, isSlideset:isSlideset, triggerEnterEvent:triggerEnterEvent, triggerLeaveEvent:triggerLeaveEvent}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var eMobile;
@@ -14249,6 +14528,11 @@ VISH.Events = function(V, $, undefined) {
     });
     $(document).on("click", "#page-switcher-end", function() {
       V.Slides.forwardOneSlide()
+    });
+    $(document).on("keypress", "#slide-counter-input", function(e) {
+      if(e.which == 13) {
+        V.Slides.goToSlide($("#slide-counter-input").val())
+      }
     });
     $(document).on("click", "#closeButton", function(event) {
       event.stopPropagation();
@@ -14354,12 +14638,16 @@ VISH.Events = function(V, $, undefined) {
   };
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
+      case 34:
+      ;
       case 38:
       ;
       case 39:
         V.Slides.forwardOneSlide();
         event.preventDefault();
         break;
+      case 33:
+      ;
       case 37:
       ;
       case 40:
@@ -14651,11 +14939,11 @@ VISH.Quiz = function(V, $, undefined) {
   var renderButtons = function(selfA) {
     var quizButtons = $("<div class='quizButtons'></div>");
     if(quizMode === V.Constant.QZ_MODE.SELFA && (V.Configuration.getConfiguration().mode === V.Constant.VISH || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) && V.User.isLogged() && !V.Utils.getOptions().preview) {
-      var startButton = $("<input type='button' class='button2 quizStartButton' value='Launch'/>");
+      var startButton = $("<input type='button' class='buttonQuiz quizStartButton' value='Launch'/>");
       $(quizButtons).prepend(startButton)
     }
     if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
-      var answerButton = $("<input type='button' class='button2 quizAnswerButton' value='Answer'/>");
+      var answerButton = $("<input type='button' class='buttonQuiz quizAnswerButton' value='Answer'/>");
       $(quizButtons).prepend(answerButton)
     }
     return quizButtons
@@ -15401,7 +15689,9 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
             _initListener();
             if(V.Status.getIsInIframe()) {
               var helloEcho = JSON.parse(VEMessage);
-              helloEcho.origin = V.Status.getIframe().id;
+              if(V.Status.getIframe() != null) {
+                helloEcho.origin = V.Status.getIframe().id
+              }
               VEMessage = JSON.stringify(helloEcho)
             }
             _sendMessage(VEMessage)
@@ -15450,7 +15740,9 @@ VISH.Configuration = function(V, $, undefined) {
     V.StylesheetsPath = configuration["StylesheetsPath"];
     V.UploadImagePath = configuration["uploadImagePath"];
     V.UploadObjectPath = configuration["uploadObjectPath"];
-    V.UploadPresentationPath = configuration["uploadPresentationPath"]
+    V.UploadPresentationPath = configuration["uploadPresentationPath"];
+    V.UploadPDF2PPath = configuration["uploadPDF2PPath"];
+    V.SearchLREPath = configuration["SearchLREPath"]
   };
   var applyConfiguration = function() {
     if(configuration["presentationSettings"]) {
@@ -15479,6 +15771,10 @@ VISH.Configuration = function(V, $, undefined) {
     }
     if(!configuration["Vimeo"]) {
       $("#tab_video_vimeo").css("display", "none")
+    }
+    if(!configuration["LRE"]) {
+      $("#tab_pic_lre").css("display", "none");
+      $("#tab_object_lre").css("display", "none")
     }
     if(!configuration["Flickr"]) {
       $("#tab_pic_flikr").css("display", "none")
@@ -15613,7 +15909,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.excursionsList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15623,7 +15921,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.excursionsList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15633,7 +15933,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.smartcardList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15643,7 +15945,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.smartcardList;
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15663,7 +15967,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result["videos"] = V.Debugging.shuffleJson(V.Samples.API.videoList["videos"])
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15674,43 +15980,13 @@ VISH.Editor.API = function(V, $, undefined) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.videoList;
         result["videos"] = V.Debugging.shuffleJson(V.Samples.API.videoList["videos"]);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
     _requestByType("video", "", successCallback, failCallback)
-  };
-  var requestFlashes = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = jQuery.extend({}, V.Samples.API.flashList);
-        switch(text) {
-          case "dummy":
-            result["flashes"] = V.Samples.API.flashListDummy["flashes"];
-            break;
-          case "little":
-            result["flashes"] = V.Debugging.shuffleJson(V.Samples.API.flashListLittle["flashes"]);
-            break;
-          default:
-            result["flashes"] = V.Debugging.shuffleJson(V.Samples.API.flashList["flashes"])
-        }
-        successCallback(result)
-      }
-      return
-    }
-    _requestByType("swfs", text, successCallback, failCallback)
-  };
-  var requestRecomendedFlashes = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.flashList;
-        result["flashes"] = V.Debugging.shuffleJson(V.Samples.API.flashList["flashes"]);
-        successCallback(result)
-      }
-      return
-    }else {
-      _requestByType("swfs", "", successCallback, failCallback)
-    }
   };
   var requestImages = function(text, successCallback, failCallback) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
@@ -15726,7 +16002,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result["pictures"] = V.Debugging.shuffleJson(V.Samples.API.imageList["pictures"])
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15737,7 +16015,9 @@ VISH.Editor.API = function(V, $, undefined) {
       if(typeof successCallback == "function") {
         var result = V.Samples.API.imageList;
         result["pictures"] = V.Debugging.shuffleJson(V.Samples.API.imageList["pictures"]);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15757,7 +16037,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result = V.Debugging.shuffleJson(V.Samples.API.liveList)
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15767,7 +16049,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Debugging.shuffleJson(V.Samples.API.liveList);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15787,7 +16071,9 @@ VISH.Editor.API = function(V, $, undefined) {
           default:
             result = V.Debugging.shuffleJson(V.Samples.API.objectList)
         }
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15797,7 +16083,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         var result = V.Debugging.shuffleJson(V.Samples.API.objectList);
-        successCallback(result)
+        setTimeout(function() {
+          successCallback(result)
+        }, 2E3)
       }
       return
     }
@@ -15860,7 +16148,9 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         tags = V.Samples.API.tagsList["tags"];
-        successCallback(V.Samples.API.tagsList["tags"])
+        setTimeout(function() {
+          successCallback(V.Samples.API.tagsList["tags"])
+        }, 2E3)
       }
       return
     }
@@ -15884,7 +16174,9 @@ VISH.Editor.API = function(V, $, undefined) {
   var requestThumbnails = function(successCallback, failCallback) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
-        successCallback(V.Samples.API.thumbnailsList)
+        setTimeout(function() {
+          successCallback(V.Samples.API.thumbnailsList)
+        }, 2E3)
       }
       return
     }
@@ -15898,13 +16190,32 @@ VISH.Editor.API = function(V, $, undefined) {
       }
     }})
   };
-  var uploadTmpJSON = function(json) {
+  var uploadTmpJSON = function(json, successCallback, failCallback) {
+    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
+      if(typeof successCallback == "function") {
+        setTimeout(function() {
+          var iframe = $("#hiddenIframeForAjaxDownloads");
+          $(iframe).attr("src", "http://vishub.org/excursions/tmpJson.json?fileId=1");
+          successCallback()
+        }, 2E3)
+      }
+      return
+    }
     $.ajax({async:false, type:"POST", url:"/excursions/tmpJson.json", dataType:"json", data:{"authenticity_token":V.User.getToken(), "json":JSON.stringify(json)}, success:function(data) {
       if(data && data.fileId) {
-        V.Editor.API.downloadTmpJSON(data.fileId)
+        V.Editor.API.downloadTmpJSON(data.fileId);
+        if(typeof successCallback == "function") {
+          successCallback()
+        }
+      }else {
+        if(typeof failCallback == "function") {
+          failCallback()
+        }
       }
     }, error:function(xhr, ajaxOptions, thrownError) {
-      V.Debugging.log("uploadTmpJSON error")
+      if(typeof failCallback == "function") {
+        failCallback(xhr, ajaxOptions, thrownError)
+      }
     }})
   };
   var downloadTmpJSON = function(fileId) {
@@ -15912,8 +16223,8 @@ VISH.Editor.API = function(V, $, undefined) {
     var iframe = $("#hiddenIframeForAjaxDownloads");
     $(iframe).attr("src", "/excursions/tmpJson.json?fileId=" + fileId + "&filename=" + filename)
   };
-  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestFlashes:requestFlashes, requestRecomendedFlashes:requestRecomendedFlashes, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, 
-  requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, downloadTmpJSON:downloadTmpJSON}
+  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, 
+  requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, downloadTmpJSON:downloadTmpJSON}
 }(VISH, jQuery);
 VISH.Editor.AvatarPicker = function(V, $, undefined) {
   var avatars = null;
@@ -15933,7 +16244,9 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
       selectedAvatar = mySelectedAvatar
     }
     if(avatars === null) {
-      $("#" + thumbnailsDetailsId).hide();
+      V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+      $("#" + carrouselDivId).hide();
+      V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId), {style:"loading_avatars"});
       V.Editor.API.requestThumbnails(_onThumbnailsReceived, _onThumbnailsError)
     }else {
       _selectAvatarInCarrousel(selectedAvatar)
@@ -15998,7 +16311,6 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
   };
   var _onThumbnailsReceived = function(data) {
     avatars = data;
-    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     var content = "";
     var carrouselImages = [];
     carrouselImages.push($("<img class='uploadThumbnail' src='" + V.ImagesPath + "icons/addThumbnail.png'/>")[0]);
@@ -16015,7 +16327,8 @@ VISH.Editor.AvatarPicker = function(V, $, undefined) {
     V.Debugging.log("ERROR!" + thrownError)
   };
   var _onImagesLoaded = function() {
-    $("#" + thumbnailsDetailsId).show();
+    $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onAvatarSelected;
@@ -16206,7 +16519,7 @@ VISH.Editor.Carrousel = function(V, $, undefined) {
     if(!start) {
       start = 0
     }
-    $("#" + id).carouFredSel({circular:false, infinite:false, auto:false, width:width, scroll:{items:scrollItems, duration:1E3, timeoutDuration:2E3}, items:{visible:{min:rowItems, max:rowItems}, start:start}, prev:{button:"#carrousel_prev" + widgetsId, key:"left"}, next:{button:"#carrousel_next" + widgetsId, key:"right"}, pagination:"#carrousel_pag" + widgetsId, onCreate:afterCreateCarruselFunction});
+    $("#" + id).carouFredSel({circular:false, infinite:false, auto:false, width:width, scroll:{items:scrollItems, duration:1E3, timeoutDuration:2E3}, items:{visible:{min:rowItems, max:rowItems}, start:start}, prev:{button:"#carrousel_prev" + widgetsId}, next:{button:"#carrousel_next" + widgetsId}, pagination:"#carrousel_pag" + widgetsId, onCreate:afterCreateCarruselFunction});
     if(synchronizeIds) {
       $(synchronizeIds).each(function(index, value) {
         $("#" + id).trigger("configuration", ["synchronise", "#" + value])
@@ -16436,13 +16749,21 @@ VISH.Editor.Events = function(V, $, undefined) {
     switch(event.keyCode) {
       case 39:
         if(V.Editor.Slides.isSlideFocused()) {
-          V.Slides.forwardOneSlide();
+          if(!ctrlDown) {
+            V.Slides.forwardOneSlide()
+          }else {
+            V.Slides.moveSlides(10)
+          }
           event.preventDefault()
         }
         break;
       case 37:
         if(V.Editor.Slides.isSlideFocused()) {
-          V.Slides.backwardOneSlide();
+          if(!ctrlDown) {
+            V.Slides.backwardOneSlide()
+          }else {
+            V.Slides.moveSlides(-10)
+          }
           event.preventDefault()
         }
         break;
@@ -16856,13 +17177,11 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
     })
   };
   var onLoadTab = function() {
-    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
-    $("#" + carrouselDivId).hide();
-    $("#tab_pic_flikr_content").find("input[type='search']").attr("value", "")
   };
   var listImages = function(text) {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId));
     var url_flikr = "http://api.flickr.com/services/feeds/photos_public.gne?tags=" + text + "&tagmode=any&format=json&jsoncallback=?";
     var carrouselImages = [];
     $.getJSON(url_flikr, function(data) {
@@ -16872,7 +17191,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
         return
       }
       $.each(data.items, function(i, item) {
-        var myImg = $("<img id=img_flkr" + i + " src=" + item.media.m.replace(/_m/i, "") + " imageFlikrId=" + i + "/>");
+        var myImg = $("<img id=img_flkr" + i + " src='" + item.media.m.replace(/_m/i, "") + "'" + " imageFlikrId='" + i + "' title='" + item.title + "'/>");
         carrouselImages.push(myImg)
       });
       V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
@@ -16883,6 +17202,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
     V.Editor.Image.addContent(image_url)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 2;
@@ -16892,6 +17212,67 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
     V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
   };
   return{init:init, onLoadTab:onLoadTab, listImages:listImages, addImage:addImage}
+}(VISH, jQuery);
+VISH.Editor.Image.LRE = function(V, $, undefined) {
+  var carrouselDivId = "tab_lre_content_carrousel";
+  var init = function() {
+    var myInput = $("#tab_pic_lre_content").find("input[type='search']");
+    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).keydown(function(event) {
+      if(event.keyCode == 13) {
+        _requestData($(myInput).val());
+        $(myInput).blur()
+      }
+    })
+  };
+  var onLoadTab = function() {
+  };
+  var _requestData = function(text) {
+    _prepareRequest();
+    V.Editor.LRE.requestImages(text, _onDataReceived, _onAPIError)
+  };
+  var _prepareRequest = function() {
+    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+    $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
+    currentImages = new Array;
+    var carrouselImages = [];
+    var content = "";
+    if(!data.pictures || data.pictures.length == 0) {
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
+      $("#" + carrouselDivId).show();
+      return
+    }
+    $.each(data.pictures, function(index, image) {
+      var myTitle = image.title;
+      var myImg = $("<img src='" + image.src + "' title='" + myTitle + "' >");
+      carrouselImages.push(myImg);
+      currentImages[image.id] = image
+    });
+    V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
+  };
+  var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
+    $("#" + carrouselDivId).show();
+    var options = new Array;
+    options["rows"] = 2;
+    options["callback"] = _onClickCarrouselElement;
+    options["rowItems"] = 4;
+    options["scrollItems"] = 4;
+    V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
+  };
+  var _onAPIError = function() {
+    V.Debugging.log("API error")
+  };
+  var _onClickCarrouselElement = function(event) {
+    var image_url = $(event.target).attr("src");
+    V.Editor.Image.drawImage(image_url);
+    $.fancybox.close();
+    V.Editor.Tools.loadToolsForZone(V.Editor.getCurrentArea())
+  };
+  return{init:init, onLoadTab:onLoadTab}
 }(VISH, jQuery);
 VISH.Editor.Image.Repository = function(V, $, undefined) {
   var carrouselDivId = "tab_pic_repo_content_carrousel";
@@ -16915,14 +17296,19 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedImages(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestImages(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentImages = new Array;
     var carrouselImages = [];
     var content = "";
@@ -16932,13 +17318,14 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
       return
     }
     $.each(data.pictures, function(index, image) {
-      var myImg = $("<img src=" + image.src + " >");
+      var myImg = $("<img src='" + image.src + "' title='" + image.title + "' >");
       carrouselImages.push(myImg);
       currentImages[image.id] = image
     });
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 2;
@@ -16955,6 +17342,185 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
     V.Editor.Image.addContent(image_url)
   };
   return{init:init, onLoadTab:onLoadTab}
+}(VISH, jQuery);
+VISH.Editor.LRE = function(V, $, undefined) {
+  var VISH_LRE_URL = "";
+  var LRE_THUMBNAILS_URL = "http://lrethumbnails.eun.org/";
+  var DEFAULT_LIMIT = 40;
+  var DEFAULT_MAXAGE = 20;
+  var DEFAULT_MINAGE = 4;
+  var DEFAULT_LANGUAGE = "en";
+  var PROVIDERS_TO_REMOVE = ["KHAN", "OPENLEARN"];
+  var init = function(lang) {
+    VISH_LRE_URL = V.SearchLREPath;
+    if(lang != "en") {
+      DEFAULT_LANGUAGE = "x-mt-" + lang
+    }else {
+      DEFAULT_LANGUAGE = lang
+    }
+  };
+  var requestImages = function(text, successCallback, failCallback) {
+    var query = _composeLREQuery(text.split(" "), ["image"]);
+    _requestLRE(query, DEFAULT_LIMIT, "image", successCallback, failCallback)
+  };
+  var requestObjects = function(text, successCallback, failCallback) {
+    var query = _composeLREQuery(text.split(" "), ["audio", "video", "data", "text"]);
+    _requestLRE(query, DEFAULT_LIMIT, "object", successCallback, failCallback)
+  };
+  var _requestLRE = function(query, limit, response_type, successCallback, failCallback) {
+    $.ajax({type:"GET", url:VISH_LRE_URL + "?q=" + query + "&limit=" + limit, dataType:"json", success:function(response) {
+      if(typeof successCallback == "function") {
+        var formatedResponse = formatLREResponse(response, response_type);
+        successCallback(formatedResponse)
+      }
+    }, error:function(xhr, ajaxOptions, thrownError) {
+      if(typeof failCallback == "function") {
+        failCallback()
+      }
+    }})
+  };
+  var _composeLREQuery = function(terms, lrt) {
+    var query = "";
+    if(terms.length == 0) {
+      failCallback("Search terms can\u00b4t be blank")
+    }
+    for(var i = 0;i < terms.length;i++) {
+      query += "((content[" + terms[i] + "]))"
+    }
+    if(lrt && lrt.length > 0) {
+      query += "(";
+      for(var j = 0;j < lrt.length;j++) {
+        query += "(lrt[" + lrt[j] + "])"
+      }
+      query += ")"
+    }
+    return query
+  };
+  var formatLREResponse = function(lre_response, type) {
+    var the_array = new Array;
+    var the_return_list = {};
+    if(lre_response && lre_response["results"]) {
+      var results_array = lre_response["results"];
+      for(var i = 0;i < results_array.length;i++) {
+        var the_elem = _formatLREElem(results_array[i], type);
+        if(the_elem) {
+          the_array.push(the_elem)
+        }
+      }
+      switch(type) {
+        case "image":
+          the_return_list.pictures = the_array;
+          break;
+        case "object":
+          the_return_list = the_array;
+          break
+      }
+    }
+    return the_return_list
+  };
+  var _formatLREElem = function(the_element, type) {
+    if(type === "object" || type === "image" && _checkValidImgElem(the_element)) {
+      var tmp_elem = {};
+      tmp_elem.id = the_element.meta.id;
+      if($.inArray(the_element.meta.provider, PROVIDERS_TO_REMOVE) >= 0) {
+        return null
+      }
+      tmp_elem.author = the_element.meta.provider;
+      var title_and_desc = _getTitleAndDescInMyLang(the_element.meta.langBlocks);
+      tmp_elem.title = title_and_desc.title;
+      tmp_elem.description = title_and_desc.description;
+      switch(type) {
+        case "image":
+          tmp_elem.src = _getValidSRC(the_element, type);
+          if(!tmp_elem.src) {
+            return null
+          }
+          break;
+        case "object":
+          tmp_elem.object = _getValidSRC(the_element, type);
+          if(!tmp_elem.object) {
+            return null
+          }
+          break
+      }
+      tmp_elem.thumbnail = LRE_THUMBNAILS_URL + tmp_elem.id.toString().slice(-3) + "/" + tmp_elem.id.toString() + ".png";
+      return tmp_elem
+    }
+  };
+  var _isValidImageUrl = function(url, callback) {
+    var img = new Image;
+    img.onerror = function() {
+      V.Debugger("This is not an image: " + url);
+      callback(url, false)
+    };
+    img.onload = function() {
+      callback(url, true)
+    };
+    img.src = url
+  };
+  var _getValidSRC = function(my_element, type) {
+    if(!my_element) {
+      return""
+    }
+    if(my_element.meta && my_element.meta.expressions) {
+      for(var i = 0;i < my_element.meta.expressions.length;i++) {
+        var exp = my_element.meta.expressions[i];
+        for(var j = 0;j < exp.manifestations.length;j++) {
+          if(type === "image" && exp.manifestations[j].player == "webBrowser") {
+            return exp.manifestations[j].urls[0]
+          }else {
+            if(type === "object" && (exp.manifestations[j].player == "webBrowser" || exp.manifestations[j].player == "landingPage" || exp.manifestations[j].player == "printable")) {
+              return exp.manifestations[j].urls[0]
+            }
+          }
+        }
+      }
+    }
+    return""
+  };
+  var _checkValidImgElem = function(img_element) {
+    if(!img_element) {
+      return false
+    }
+    if(img_element.meta && img_element.meta.expressions) {
+      for(var i = 0;i < img_element.meta.expressions.length;i++) {
+        var exp = img_element.meta.expressions[i];
+        for(var j = 0;j < exp.manifestations.length;j++) {
+          if(exp.manifestations[j].player == "webBrowser") {
+            return true
+          }
+        }
+      }
+    }
+    return false
+  };
+  var _getTitleAndDescInMyLang = function(langBlocks) {
+    var filled_lang = false;
+    var title_and_desc = {};
+    var default_title_and_desc = {};
+    if(langBlocks.length == 1) {
+      default_title_and_desc.title = langBlocks[0].title;
+      default_title_and_desc.description = langBlocks[0].description;
+      return default_title_and_desc
+    }
+    for(var i = 0;i < langBlocks.length;i++) {
+      if(langBlocks[i].language == DEFAULT_LANGUAGE) {
+        title_and_desc.title = langBlocks[i].title;
+        title_and_desc.description = langBlocks[i].description;
+        filled_lang = true
+      }
+      if(langBlocks[i].language == "en" || langBlocks[i].language == "en-GB") {
+        default_title_and_desc.title = langBlocks[i].title;
+        default_title_and_desc.description = langBlocks[i].description
+      }
+    }
+    if(filled_lang) {
+      return title_and_desc
+    }else {
+      return default_title_and_desc
+    }
+  };
+  return{init:init, requestImages:requestImages, requestObjects:requestObjects, formatLREResponse:formatLREResponse}
 }(VISH, jQuery);
 VISH.Editor.MenuTablet = function(V, $, undefined) {
   var init = function() {
@@ -17008,6 +17574,103 @@ VISH.Editor.Object.Flash = function(V, $, undefined) {
   };
   return{drawFlashObjectWithSource:drawFlashObjectWithSource}
 }(VISH, jQuery);
+VISH.Editor.Object.LRE = function(V, $, undefined) {
+  var carrouselDivId = "tab_object_lre_content_carrousel";
+  var previewDivId = "tab_object_lre_content_preview";
+  var footId = "tab_object_lre_content_preview_foot";
+  var currentObject = new Array;
+  var selectedObject = null;
+  var init = function() {
+    var myInput = $("#tab_object_lre_content").find("input[type='search']");
+    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).keydown(function(event) {
+      if(event.keyCode == 13) {
+        _requestData($(myInput).val());
+        $(myInput).blur()
+      }
+    })
+  };
+  var onLoadTab = function() {
+    _cleanObjectPreview();
+    $("#" + footId).find(".okButton").hide()
+  };
+  var _requestData = function(text) {
+    _prepareRequest();
+    V.Editor.LRE.requestObjects(text, _onDataReceived, _onAPIError)
+  };
+  var _prepareRequest = function() {
+    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+    $("#" + carrouselDivId).hide();
+    _cleanObjectPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
+    currentObject = new Array;
+    var carrouselImages = [];
+    var carrouselImagesTitles = [];
+    var content = "";
+    if(!data || !data.length || data.length == 0) {
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'> No results found </p>");
+      $("#" + carrouselDivId).show();
+      return
+    }
+    $.each(data, function(index, objectItem) {
+      var objectInfo = V.Object.getObjectInfo(objectItem.object);
+      var myImg = $("<img src='" + objectItem.thumbnail + "' objectId='" + objectItem.id + "' title='" + objectItem.title + "'>");
+      carrouselImages.push(myImg);
+      carrouselImagesTitles.push(objectItem.title);
+      currentObject[objectItem.id] = objectItem
+    });
+    V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
+  };
+  var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
+    $("#" + carrouselDivId).show();
+    var options = new Array;
+    options["rows"] = 1;
+    options["callback"] = _onClickCarrouselElement;
+    options["rowItems"] = 5;
+    options["styleClass"] = "title";
+    V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
+  };
+  var _onAPIError = function() {
+    V.Debugging.log("Error")
+  };
+  var _onClickCarrouselElement = function(event) {
+    var objectId = $(event.target).attr("objectid");
+    if(typeof objectId != "undefined") {
+      var renderedObject = V.Editor.Object.renderObjectPreview(currentObject[objectId].object);
+      _renderObjectPreview(renderedObject, currentObject[objectId]);
+      selectedObject = currentObject[objectId]
+    }
+  };
+  var _renderObjectPreview = function(renderedObject, object) {
+    var objectArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_object");
+    var metadataArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_metadata");
+    $(objectArea).html("");
+    $(metadataArea).html("");
+    if(renderedObject && object) {
+      $(objectArea).append(renderedObject);
+      var table = V.Editor.Utils.generateTable(object.author, object.title, object.description);
+      $(metadataArea).html(table);
+      $("#" + footId).find(".okButton").show()
+    }
+  };
+  var _cleanObjectPreview = function() {
+    var objectArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_object");
+    var metadataArea = $("#" + previewDivId).find("#tab_object_lre_content_preview_metadata");
+    $(objectArea).html("");
+    $(metadataArea).html("");
+    $("#" + footId).find(".okButton").hide()
+  };
+  var addSelectedObject = function() {
+    if(selectedObject != null) {
+      V.Editor.Object.drawObject(selectedObject.object);
+      $.fancybox.close()
+    }
+  };
+  return{init:init, onLoadTab:onLoadTab, addSelectedObject:addSelectedObject}
+}(VISH, jQuery);
 VISH.Editor.Object.Live = function(V, $, undefined) {
   var carrouselDivId = "tab_live_webcam_content_carrousel";
   var previewDivId = "tab_live_webcam_content_preview";
@@ -17036,15 +17699,20 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
     $("#" + footId).find(".okButton").hide()
   };
   var _requestInicialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedLives(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestLives(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     _cleanObjectPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentObject = new Array;
     var carrouselImages = [];
     var carrouselImagesTitles = [];
@@ -17084,6 +17752,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
   };
   var _onImagesLoaded = function() {
     $("#" + carrouselDivId).show();
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     var options = new Array;
     options["rows"] = 1;
     options["callback"] = _onClickCarrouselElement;
@@ -17159,21 +17828,26 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
   var onLoadTab = function() {
     var previousSearch = $("#tab_object_repo_content").find("input[type='search']").val() != "";
     if(!previousSearch) {
-      _cleanObjectPreview();
       _requestInicialData()
     }
+    _cleanObjectPreview();
     $("#" + footId).find(".okButton").hide()
   };
   var _requestInicialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedObjects(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestObjects(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     _cleanObjectPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentObject = new Array;
     var carrouselImages = [];
     var carrouselImagesTitles = [];
@@ -17204,7 +17878,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
           imageSource = V.ImagesPath + "carrousel/object.png";
           break
       }
-      var myImg = $("<img src='" + imageSource + "' objectId='" + objectItem.id + "'>");
+      var myImg = $("<img src='" + imageSource + "' objectId='" + objectItem.id + "' title='" + objectItem.title + "'>");
       carrouselImages.push(myImg);
       carrouselImagesTitles.push(objectItem.title);
       currentObject[objectItem.id] = objectItem
@@ -17212,6 +17886,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId, carrouselImagesTitles)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 1;
@@ -17424,6 +18099,137 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
   };
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
 }(VISH, jQuery);
+VISH.Editor.PDFex = function(V, $, undefined) {
+  var uploadDivId = "tab_pdfex_content";
+  var init = function() {
+    var options = V.Editor.getOptions();
+    var bar = $("#" + uploadDivId + " .upload_progress_bar");
+    var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
+    $("#" + uploadDivId + " input[name='pdfex[attach]']").change(function() {
+      var filterFilePath = V.Editor.Utils.filterFilePath($("#" + uploadDivId + " input:file").val());
+      $("#" + uploadDivId + " input[name='pdfex[title]']").val(filterFilePath);
+      _resetUploadFields();
+      $("#" + uploadDivId + " form" + " .button").show();
+      $("#" + uploadDivId + " .upload_progress_bar_wrapper").hide()
+    });
+    $("#" + uploadDivId + " #upload_pdfex_submit").click(function(event) {
+      if(!V.Police.validateFileUpload($("#" + uploadDivId + " input[name='pdfex[attach]']").val())[0]) {
+        event.preventDefault()
+      }else {
+        if(options) {
+          $("#" + uploadDivId + " input[name='pdfex[owner_id]']").val(V.User.getId());
+          $("#" + uploadDivId + " input[name='authenticity_token']").val(V.User.getToken());
+          $("#" + uploadDivId + " .documentsForm").attr("action", V.UploadPDF2PPath);
+          $("#" + uploadDivId + " .upload_progress_bar_wrapper").show()
+        }
+      }
+    });
+    $("#" + uploadDivId + " form").ajaxForm({beforeSend:function() {
+      var percentVal = "0%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, uploadProgress:function(event, position, total, percentComplete) {
+      var percentVal = percentComplete + "%";
+      bar.width(percentVal);
+      percent.html(percentVal);
+      if(percentVal === "100%") {
+        V.Utils.Loader.startLoading()
+      }
+    }, success:function(responseText, statusText, xhr, form) {
+      switch(V.Configuration.getConfiguration()["mode"]) {
+        case V.Constant.VISH:
+          processResponse(responseText);
+          break;
+        case V.Constant.STANDALONE:
+          processResponse(responseText);
+          break;
+        default:
+          break
+      }
+      var percentVal = "100%";
+      bar.width(percentVal);
+      percent.html(percentVal)
+    }, complete:function(xhr) {
+      switch(V.Configuration.getConfiguration()["mode"]) {
+        case V.Constant.NOSERVER:
+          setTimeout(function() {
+            var responseTest = {};
+            responseTest.urls = [];
+            for(var v = 0;v < 13;v++) {
+              responseTest.urls.push("http://localhost/vishEditor/examples/contents/pdf2p/Presentacion_INTED2013_VishViewer-" + v + ".jpg")
+            }
+            processResponse(responseTest)
+          }, 1E4);
+          break;
+        case V.Constant.VISH:
+        ;
+        case V.Constant.STANDALONE:
+        ;
+        default:
+          break
+      }
+    }, error:function(error) {
+      if(V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
+        return
+      }
+      setTimeout(function() {
+        V.Utils.Loader.onCloseLoading();
+        _showErrorDialog()
+      }, 800)
+    }})
+  };
+  var onLoadTab = function() {
+    $("#" + uploadDivId + " form" + " .button").hide();
+    $("#" + uploadDivId + " .upload_progress_bar_wrapper").hide();
+    $("#" + uploadDivId + " input[name='pdfex[attach]']").val("");
+    _resetUploadFields()
+  };
+  var _resetUploadFields = function() {
+    var bar = $("#" + uploadDivId + " .upload_progress_bar");
+    var percent = $("#" + uploadDivId + " .upload_progress_bar_percent");
+    bar.width("0%");
+    percent.html("0%")
+  };
+  var _showErrorDialog = function() {
+    $.fancybox($("#pdf2p_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
+  };
+  var processResponse = function(jsonResponse) {
+    try {
+      var presentation = generatePresentationWithImgArray(jsonResponse.urls);
+      V.Editor.Presentation.previewPresentation(presentation);
+      V.Utils.Loader.onCloseLoading()
+    }catch(e) {
+      V.Utils.Loader.stopLoading()
+    }
+  };
+  var generatePresentationWithImgArray = function(imgs) {
+    var presentation = {};
+    presentation.VEVersion = V.VERSION;
+    presentation.type = V.Constant.PRESENTATION;
+    presentation.theme = V.Constant.Themes.Default;
+    presentation.slides = [];
+    for(var i = 0;i < imgs.length;i++) {
+      var imageUrl = imgs[i];
+      presentation.slides.push(_generateSlideWithImg(i, imageUrl))
+    }
+    return presentation
+  };
+  var _generateSlideWithImg = function(index, imgUrl) {
+    var slide = {};
+    slide.id = "article" + index;
+    slide.type = V.Constant.STANDARD;
+    slide.template = "t10";
+    slide.elements = [];
+    var element = {};
+    element.areaid = "center";
+    element.body = imgUrl;
+    element.id = slide.id + "_zone1";
+    element.type = V.Constant.IMAGE;
+    slide.elements.push(element);
+    return slide
+  };
+  return{init:init, onLoadTab:onLoadTab}
+}(VISH, jQuery);
 VISH.Editor.Presentation.File = function(V, $, undefined) {
   var fileDivId = "tab_json_file_content";
   var inputFilesId = "json_file_input";
@@ -17457,9 +18263,9 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
     }(file);
     reader.readAsText(file)
   };
-  var exportToJSON = function() {
+  var exportToJSON = function(successCallback, failCallback) {
     var presentation = V.Editor.savePresentation();
-    V.Editor.API.uploadTmpJSON(presentation)
+    V.Editor.API.uploadTmpJSON(presentation, successCallback, failCallback)
   };
   return{init:init, onLoadTab:onLoadTab, exportToJSON:exportToJSON}
 }(VISH, jQuery);
@@ -18089,9 +18895,11 @@ VISH.Editor.Slides = function(V, $, undefined) {
         return
       }
     }
+    $(article_to_move).addClass("temp_shown");
     V.Editor.Utils.refreshDraggables(article_to_move);
     _cleanTextAreas(article_to_move);
     _loadTextAreasOfSlide(article_to_move, textAreas);
+    $(article_to_move).removeClass("temp_shown");
     V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
     if(moving_current_slide) {
       V.Slides.setCurrentSlideIndex(V.Slides.getNumberOfSlide(article_to_move))
@@ -18115,7 +18923,7 @@ VISH.Editor.Slides = function(V, $, undefined) {
     }
     var slideToCopyType = V.Slides.getSlideType(slideToCopy);
     var slidesetModule = V.Editor.Slideset.getModule(slideToCopyType);
-    if(typeof slidesetModule !== "undefined") {
+    if(typeof slidesetModule != "undefined" && slidesetModule != null) {
       var slidesetModule = V.Editor.Slideset.getModule(slideToCopyType);
       var slidesetId = $(slideToCopy).attr("id");
       if(!options.JSON) {
@@ -18137,14 +18945,13 @@ VISH.Editor.Slides = function(V, $, undefined) {
         _loadTextAreasOfSlide(slideCopied, options.textAreas)
       }
     }
-    if(typeof slidesetModule !== "undefined") {
+    if(typeof slidesetModule != "undefined" && slidesetModule != null) {
       slidesetModule.postCopyActions(slideToCopyJSON, slideCopied)
     }
     V.Slides.setSlides(document.querySelectorAll("section.slides > article"));
     V.Slides.updateSlideEls();
     V.Editor.Thumbnails.redrawThumbnails(function() {
       if(currentSlide) {
-        V.Editor.Thumbnails.moveCarrouselToSlide(V.Slides.getCurrentSlideNumber() + 1);
         V.Slides.goToSlide(V.Slides.getCurrentSlideNumber() + 1)
       }else {
         V.Slides.goToSlide(1);
@@ -18735,8 +19542,16 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var insertJSON = function() {
     $("#addJSONFancybox").trigger("click")
   };
+  var insertPDFex = function() {
+    $("#addPDFexFancybox").trigger("click")
+  };
   var exportToJSON = function() {
-    VISH.Editor.Presentation.File.exportToJSON()
+    V.Utils.Loader.startLoading();
+    V.Editor.Presentation.File.exportToJSON(function() {
+      V.Utils.Loader.stopLoading()
+    }, function() {
+      V.Utils.Loader.stopLoading()
+    })
   };
   var _hideMenuAfterAction = function() {
     if(_hoverMenu) {
@@ -18746,7 +19561,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       }, 50)
     }
   };
-  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertJSON:insertJSON, exportToJSON:exportToJSON, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, 
+  return{init:init, updateMenuAfterAddSlide:updateMenuAfterAddSlide, disableMenu:disableMenu, enableMenu:enableMenu, displaySettings:displaySettings, insertPresentation:insertPresentation, insertSmartcard:insertSmartcard, insertSlide:insertSlide, insertJSON:insertJSON, insertPDFex:insertPDFex, exportToJSON:exportToJSON, onSettings:onSettings, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, 
   onSaveButtonClicked:onSaveButtonClicked, preview:preview, help:help, switchToPresentation:switchToPresentation, switchToFlashcard:switchToFlashcard, switchToVirtualTour:switchToVirtualTour}
 }(VISH, jQuery);
 VISH.Editor.Utils.Loader = function(V, $, undefined) {
@@ -18906,15 +19721,20 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     }
   };
   var _requestInitialData = function() {
+    _prepareRequest();
     V.Editor.API.requestRecomendedVideos(_onDataReceived, _onAPIError)
   };
   var _requestData = function(text) {
+    _prepareRequest();
     V.Editor.API.requestVideos(text, _onDataReceived, _onAPIError)
   };
-  var _onDataReceived = function(data) {
+  var _prepareRequest = function() {
     V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
     $("#" + carrouselDivId).hide();
     _cleanVideoPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId))
+  };
+  var _onDataReceived = function(data) {
     currentVideos = new Array;
     var carrouselImages = [];
     var content = "";
@@ -18925,7 +19745,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     }
     $.each(data.videos, function(index, video) {
       if(video) {
-        var myImg = $("<img src='" + video.poster + "' videoId='" + video.id + "'/>");
+        var myImg = $("<img src='" + video.poster + "' videoId='" + video.id + "' title='" + video.title + "'/>");
         carrouselImages.push(myImg);
         currentVideos[video.id] = video
       }
@@ -18933,6 +19753,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 1;
@@ -19062,15 +19883,16 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
     _cleanVideoPreview()
   };
   var requestYoutubeData = function(text) {
+    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
+    $("#" + carrouselDivId).hide();
+    _cleanVideoPreview();
+    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId));
     var url_youtube = "http://gdata.youtube.com/feeds/api/videos?q=" + text + "&alt=json-in-script&callback=?&max-results=" + queryMaxMaxNumberYoutubeVideo + "&start-index=1";
     jQuery.getJSON(url_youtube, function(data) {
       _onDataReceived(data)
     })
   };
   var _onDataReceived = function(data) {
-    V.Editor.Carrousel.cleanCarrousel(carrouselDivId);
-    $("#" + carrouselDivId).hide();
-    _cleanVideoPreview();
     currentVideos = new Array;
     var carrouselImages = [];
     var content = "";
@@ -19092,12 +19914,13 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
       currentVideos[videoID].author = author;
       currentVideos[videoID].subtitle = subtitle;
       var image_url = "http://img.youtube.com/vi/" + videoID + "/0.jpg";
-      var myImg = $("<img videoID=" + videoID + " src=" + image_url + " />");
+      var myImg = $("<img videoID='" + videoID + "' src='" + image_url + "' title='" + title + "'/>");
       carrouselImages.push(myImg)
     });
     V.Utils.Loader.loadImagesOnCarrousel(carrouselImages, _onImagesLoaded, carrouselDivId)
   };
   var _onImagesLoaded = function() {
+    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
     $("#" + carrouselDivId).show();
     var options = new Array;
     options["rows"] = 1;
@@ -20111,7 +20934,7 @@ VISH.Messenger.Helper = function(V, undefined) {
   }
   var createMessage = function(VEevent, params, origin, destination) {
     if(!origin) {
-      if(V.Status.getIsInIframe()) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null) {
         origin = V.Status.getIframe().id
       }
     }
@@ -20133,7 +20956,7 @@ VISH.Messenger.Helper = function(V, undefined) {
       if(!VEMessageObject.VEevent) {
         return false
       }
-      if(V.Status.getIsInIframe() && params && params.allowSelfMessages === false) {
+      if(V.Status.getIsInIframe() && V.Status.getIframe() != null && params && params.allowSelfMessages === false) {
         if(VEMessageObject.origin === V.Status.getIframe().id) {
           return false
         }
@@ -20844,32 +21667,41 @@ VISH.Recommendations = function(V, $, undefined) {
   var user_id;
   var presentation_id;
   var generated;
+  var _isRecVisible;
   var init = function(options) {
     user_id = V.User.getId();
     presentation_id = V.SlideManager.getCurrentPresentation().id;
+    _isRecVisible = false;
     if(options && options["urlToGetRecommendations"]) {
       url_to_get_recommendations = options["urlToGetRecommendations"]
     }
     generated = false;
     $("#fancyRec").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":false, "width":"100%", "height":"100%", "padding":0, "overlayOpacity":0, "onComplete":function(data) {
       $("#fancybox-outer").css("background", "rgba(0,0,0,.7)");
-      $("#fancybox-wrap").css("margin-top", "0px")
+      $("#fancybox-wrap").css("margin-top", "0px");
+      V.Slides.triggerLeaveEvent(V.Slides.getCurrentSlideNumber() - 1);
+      _isRecVisible = true
     }, "onClosed":function(data) {
       $("#fancybox-outer").css("background", "white");
-      $("#fancybox-wrap").css("margin-top", "-14px")
+      $("#fancybox-wrap").css("margin-top", "-14px");
+      V.Slides.triggerEnterEvent(V.Slides.getCurrentSlideNumber() - 1);
+      _isRecVisible = false
     }})
   };
   var generateFancybox = function() {
     if(!generated) {
-      if(url_to_get_recommendations !== undefined) {
-        var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
-        $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
-          _fillFancyboxWithData(data)
-        }})
+      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
+        if(url_to_get_recommendations !== undefined) {
+          var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:9};
+          $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
+            _fillFancyboxWithData(data)
+          }})
+        }
       }else {
-        _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+        if(V.Configuration.getConfiguration()["mode"] == "noserver") {
+          _fillFancyboxWithData(VISH.Samples.API.recommendationList)
+        }
       }
-      generated = true
     }
   };
   var _fillFancyboxWithData = function(data) {
@@ -20883,17 +21715,18 @@ VISH.Recommendations = function(V, $, undefined) {
       if(V.Status.getIsEmbed()) {
         result += '<a href="' + ex.url + '.full">'
       }
-      result += '<div class="rec-excursion" id="recom-' + ex.id + '" number="' + ex.id + '">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
+      result += '<div class="rec-excursion" id="recom-' + ex.id + '" number="' + i + '">' + '<ul class="rec-thumbnail">' + '<li class="rec-img-excursion">' + '<img src="' + ex.image + '">' + '<div class="rec-number_pages">' + ex.number_of_slides + "</div>" + "</li>" + '<li class="rec-info-excursion">' + '<div class="rec-title-excursion">' + ex.title + "</div>" + '<div class="rec-by">by <span class="rec-name">' + ex.author + "</span></div>" + '<span class="rec-visits">' + ex.views + '</span> <span class="rec-views">views</span>' + 
       '<div class="rec-likes">' + ex.favourites + '<img class="rec-menu_icon" src="http://vishub.org/assets/icons/star-on10.png"></div>' + "</li>" + "</ul>" + "</div>";
       if(V.Status.getIsEmbed()) {
         result += "</a>"
       }
     }
     $("#fancy_recommendations .rec-grid").html(result);
+    generated = true;
     if(!V.Status.getIsEmbed()) {
       for(var i = data.length - 1;i >= 0;i--) {
         $("#recom-" + data[i].id).click(function(my_event) {
-          V.Utils.sendParentToURL(data[$(my_event.toElement).closest(".rec-excursion").attr("number")].url)
+          V.Utils.sendParentToURL(data[$(my_event.target).closest(".rec-excursion").attr("number")].url)
         })
       }
     }
@@ -20902,9 +21735,18 @@ VISH.Recommendations = function(V, $, undefined) {
     if(V.Utils.getOptions() && V.Utils.getOptions().preview) {
       return
     }
+    if(V.Configuration.getConfiguration()["mode"] != V.Constant.NOSERVER && typeof url_to_get_recommendations == "undefined") {
+      return
+    }
+    if(isRecVisible()) {
+      return
+    }
     $("#fancyRec").trigger("click")
   };
-  return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox}
+  var isRecVisible = function() {
+    return _isRecVisible
+  };
+  return{init:init, generateFancybox:generateFancybox, showFancybox:showFancybox, isRecVisible:isRecVisible}
 }(VISH, jQuery);
 VISH.Renderer.Filter = function(V, $, undefined) {
   var init = function() {
@@ -20978,6 +21820,10 @@ VISH.SlideManager = function(V, $, undefined) {
     V.Debugging.log(JSON.stringify(presentation));
     V.Utils.init();
     presentation = V.Utils.fixPresentation(presentation);
+    if(presentation === null) {
+      V.Utils.showPNotValidDialog();
+      return
+    }
     current_presentation = presentation;
     setPresentationType(presentation.type);
     V.Status.init(function() {
@@ -21132,7 +21978,8 @@ VISH.SlideManager = function(V, $, undefined) {
     if(number_of_slides === 0) {
       slide_number = 0
     }
-    $("#slide-counter").html(slide_number + "/" + number_of_slides)
+    $("#slide-counter-input").val(slide_number);
+    $("#slide-counter-span").html("/" + number_of_slides)
   };
   var getCurrentPresentation = function() {
     return current_presentation
@@ -21257,9 +22104,9 @@ VISH.SlidesSelector = function(V, $, undefined) {
   };
   _updateButtonValue = function(slideNumber) {
     if(slides[slideNumber - 1] === true) {
-      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_wrong.png"/>Remove Slide')
+      $(acceptButton).html('<img class="imgbutton" src="' + V.ImagesPath + 'quiz/checkbox_wrong.png"/>Remove Slide')
     }else {
-      $(acceptButton).html('<img class="imgbutton" src="/vishEditor/images/quiz/checkbox_checked.png"/>Add Slide')
+      $(acceptButton).html('<img class="imgbutton" src="' + V.ImagesPath + 'quiz/checkbox_checked.png"/>Add Slide')
     }
   };
   return{init:init}
@@ -21529,7 +22376,14 @@ VISH.Storage = function(V, $, undefined) {
   return{init:init, add:add, get:get, addPresentation:addPresentation, checkLocalStorageSupport:checkLocalStorageSupport, clear:clear, setTestingMode:setTestingMode}
 }(VISH, jQuery);
 VISH.Text = function(V, $, undefined) {
+  var disableConversion = false;
   var init = function() {
+    if(V.Status.getDevice().browser.name === V.Constant.IE && V.Status.getDevice().browser.version < 9) {
+      disableConversion = true
+    }
+    if(disableConversion) {
+      return
+    }
     _adaptPs($("article > div.VEtextArea > p"));
     _adaptPs($("article > div.quizzContainer > div > p"));
     _adaptPs($("article > div.quizzContainer").find("td > p"));
@@ -21560,47 +22414,24 @@ VISH.Text = function(V, $, undefined) {
   };
   var _adaptPs = function(selector) {
     $(selector).each(function(index, p) {
-      if($(p).children().length === 0) {
-        _setStyleInEm(p);
-        return
-      }
+      _setStyleInRem(p);
       _adaptSpans($(p).find("span"));
       _adaptFonts($(p).find("font"))
     })
   };
   var _adaptSpans = function(spans) {
-    var oldStyle = null;
-    var newStyle = null;
-    var lastFontSizeCandidate = null;
-    var lastFontSize = null;
     $(spans).each(function(index, span) {
-      oldStyle = $(span).attr("style");
-      lastFontSizeCandidate = parseInt(V.Utils.getFontSizeFromStyle(oldStyle));
-      if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-        lastFontSize = lastFontSizeCandidate
+      var oldStyle = $(span).attr("style");
+      if(typeof oldStyle == "undefined") {
+        return
       }
-      if($(span).find("span").length !== 0) {
-        newStyle = V.Utils.removeFontSizeInStyle(oldStyle);
-        if(newStyle === null || newStyle === "; ") {
-          $(span).removeAttr("style")
-        }else {
-          $(span).attr("style", newStyle)
-        }
-      }else {
-        var fontSize;
-        if(typeof lastFontSizeCandidate === "number" && !isNaN(lastFontSizeCandidate)) {
-          fontSize = lastFontSizeCandidate
-        }else {
-          if(lastFontSize !== null) {
-            fontSize = lastFontSize
-          }else {
-            fontSize = V.Constant.TextDefault
-          }
-        }
-        var em = fontSize / V.Constant.TextBase + "em";
-        newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
-        $(span).attr("style", newStyle)
+      fontSize = parseInt(V.Utils.getFontSizeFromStyle(oldStyle));
+      if(typeof fontSize != "number" || isNaN(fontSize)) {
+        return
       }
+      var rem = fontSize / V.Constant.TextBase + "rem";
+      newStyle = V.Utils.addFontSizeToStyle(oldStyle, rem);
+      $(span).attr("style", newStyle)
     })
   };
   var _adaptFonts = function(fonts) {
@@ -21615,32 +22446,30 @@ VISH.Text = function(V, $, undefined) {
       }
       $(font).hide();
       var pxfontSize = _font_to_px(fontSize);
-      var em = pxfontSize / V.Constant.TextBase + "em";
-      var span = $("<span style='font-size:" + em + "'></span>");
+      var rem = pxfontSize / V.Constant.TextBase + "rem";
+      var span = $("<span style='font-size:" + rem + "'></span>");
       $(span).html($(font).html());
       $(font).parent().prepend(span);
       $(font).remove()
     })
   };
-  var _setStyleInEm = function(el) {
+  var _setStyleInRem = function(el) {
     var oldStyle = $(el).attr("style");
-    var fontSize;
     if(typeof oldStyle !== "string") {
-      oldStyle = ""
-    }else {
-      fontSize = V.Utils.getFontSizeFromStyle(oldStyle)
+      return
     }
-    if(typeof fontSize !== "number" || isNaN(fontSize)) {
-      fontSize = V.Constant.TextDefault
+    var fontSize = V.Utils.getFontSizeFromStyle(oldStyle);
+    if(typeof fontSize != "number" || isNaN(fontSize)) {
+      return
     }
-    var em = fontSize / V.Constant.TextBase + "em";
-    var newStyle = V.Utils.addFontSizeToStyle(oldStyle, em);
+    var rem = fontSize / V.Constant.TextBase + "rem";
+    var newStyle = V.Utils.addFontSizeToStyle(oldStyle, rem);
     $(el).attr("style", newStyle)
   };
   var aftersetupSize = function(increase) {
     increase = increase * _correctionFactor(increase);
     var reference_font_size = V.Constant.TextBase;
-    var texts = $("article, #fancybox-content");
+    var texts = $("html");
     $(texts).css("font-size", reference_font_size * increase + "px")
   };
   var _correctionFactor = function(factor) {
@@ -21945,7 +22774,48 @@ VISH.Utils.Loader = function(V, undefined) {
     }
     _loadGoogleLibraryCallback = undefined
   };
-  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded}
+  var t1Loading;
+  var startLoading = function() {
+    if(!_isFullLoadingActive()) {
+      t1Loading = Date.now();
+      $("#fancyLoad").trigger("click")
+    }
+  };
+  var stopLoading = function(callback) {
+    var diff = Date.now() - t1Loading;
+    if(diff < 800) {
+      setTimeout(function() {
+        stopLoading(callback)
+      }, 800)
+    }else {
+      var closed = false;
+      if(_isFullLoadingActive()) {
+        $.fancybox.close();
+        closed = true
+      }
+      if(typeof callback == "function") {
+        callback(closed)
+      }
+    }
+  };
+  var onCloseLoading = function() {
+    $("#fancybox-outer").css("background", "white")
+  };
+  var _isFullLoadingActive = function() {
+    return $("#loading_fancy").is(":visible")
+  };
+  var startLoadingInContainer = function(container, options) {
+    $(container).html($("#loading_fancy_wrapper").html());
+    $(container).addClass("loadingtmpShown");
+    if(options && options.style) {
+      $(container).find(".loading_fancy_img").addClass(options.style)
+    }
+  };
+  var stopLoadingInContainer = function(container) {
+    $(container).find(".loading_fancy_img").parent().remove();
+    $(container).removeClass("loadingtmpShown")
+  };
+  return{getImage:getImage, getVideo:getVideo, loadImage:loadImage, loadVideo:loadVideo, loadImagesOnCarrousel:loadImagesOnCarrousel, loadImagesOnCarrouselOrder:loadImagesOnCarrouselOrder, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.VideoPlayer.CustomPlayer = function(V, $, undefined) {
   var progressBarTimer;
@@ -22388,8 +23258,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var fs_button;
   var can_use_nativeFs;
   var embed;
-  var display_recommendations;
+  var scorm;
   var showViewbar;
+  var isInexternalSite;
+  var isInVishSite;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
@@ -22409,11 +23281,14 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     embed = V.Status.getIsEmbed();
     showViewbar = _defaultViewbar();
     if(options) {
-      if(typeof render_full !== "boolean") {
+      if(typeof render_full != "boolean") {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
       }
-      if(typeof options["preview"] === "boolean") {
+      if(typeof options["preview"] == "boolean") {
         is_preview = options["preview"]
+      }
+      if(typeof options["scorm"] == "boolean") {
+        scorm = options["scorm"]
       }
       close_button = V.Status.getDevice().mobile && !V.Status.getIsInIframe() && options["comeBackUrl"];
       can_use_nativeFs = V.Status.getDevice().features.fullscreen;
@@ -22428,11 +23303,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       fs_button = can_use_nativeFs && V.Status.getIsInIframe() || enter_fs_button && exit_fs_button;
       fs_button = fs_button && !is_preview;
       fs_button = fs_button && !embed;
-      if(V.Configuration.getConfiguration()["mode"] === V.Constant.VISH) {
-        $(".rec-first-row").hide()
-      }else {
-        $(".rec-first-row").show()
-      }
       page_is_fullscreen = render_full && !V.Status.getIsInIframe()
     }else {
       render_full = false;
@@ -22441,8 +23311,11 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       enter_fs_button = false;
       exit_fs_button = false;
       fs_button = false;
-      can_use_nativeFs = false
+      can_use_nativeFs = false;
+      scorm = false
     }
+    isInexternalSite = embed || scorm;
+    isInVishSite = !isInexternalSite && V.Configuration.getConfiguration()["mode"] === V.Constant.VISH;
     is_preview_insertMode = false;
     if(is_preview) {
       var presentation = V.SlideManager.getCurrentPresentation();
@@ -22474,16 +23347,25 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("div#viewerpreview").show()
     }
     if(is_preview_insertMode) {
+      $("#selectSlidesBar").find("img.addt").attr("src", V.ImagesPath + "templatesthumbs/addt.png");
+      $("#tutorialSelectAllImage").attr("src", V.ImagesPath + "tutorial/selectall.png");
+      $("tutorialUnselectAllImage").attr("src", V.ImagesPath + "tutorial/unselectall.png");
+      $("tutorialSelectSlidesImage").attr("src", V.ImagesPath + "tutorial/selectslides.png");
       $("#selectSlidesBar").show();
       $("#viewbar").css("bottom", $("#selectSlidesBar").height() + "px");
       $("#viewbar").css("border-bottom", "none");
       V.SlidesSelector.init()
     }
-    if(embed) {
+    if(isInexternalSite) {
       if(options && typeof options.watermarkURL == "string") {
-        $("#embedWatermark").parent().attr("href", options.watermarkURL)
+        $("#embedWatermark").parent().attr("href", options.watermarkURL);
+        $("#embedWatermark").show()
       }
-      $("#embedWatermark").show()
+    }
+    if(isInVishSite || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
+      $(".rec-first-row").show()
+    }else {
+      $(".rec-first-row").hide()
     }
     if(close_button) {
       $("button#closeButton").show()

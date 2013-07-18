@@ -1,0 +1,325 @@
+fr:
+  activerecord:
+    attributes:
+      user:
+        email: "Adresse électronique"
+        tag: "Centres d'intérêt"
+  activity:
+    empty: "Votre ligne du temps est vide"
+    more: "Plus..."
+    new_user: "Bienvenue sur la plateforme ViSH ! Publiez et partagez vos points de vue, vos liens et vos vidéos avec vos abonnés."
+    newmessage: "Ceci est votre ligne du temps. Vous pouvez publier et partager des photos, des vidéos, des liens et bien plus encore."
+    timeline: "ligne du temps"
+    title:
+      other: "activité"
+    verb:
+       make-friend:
+        User:
+          title: "%{subject} et %{contact} se suivent mutuellement."
+          message: "%{name} vous suit également."
+  activity2:
+    title:
+      other: "activité"
+  activity_action:
+    follow: "+ Suivre"
+    unfollow: "Se désabonner"
+  all: "toutes"
+  announce: 
+    title: "Annonce"
+    body: ""
+  author: "auteur"
+  cancel: "Annuler"
+  close: "Fermer"
+  conditions:
+    check_message: "En cliquant sur le bouton Accepter, vous vous engagez à respecter nos "  
+    check_message_1: "conditions générales."
+    other: "conditions"
+  contact:
+    pending:
+      other: "Abonnés"
+  devise:
+    invalid_login: "Veuillez saisir votre adresse électronique et votre mot de passe pour continuer."
+  disjunction:
+    or: "ou"
+  document:
+    document: "document"
+    help:
+      title: "Publication de ressources"
+      info1_html: "1. Cliquez sur l'onglet <b>documents</b>, <b>liens</b> ou <b>code incorporé</b>.<br>"
+      info2_html: "2. Si vous souhaitez publier un document, cliquez sur <b>parcourir</b> pour sélectionner un fichier sur votre ordinateur. Si votre ressource est un lien ou un code incorporé, vous pouvez la <b>coller</b> dans la zone de texte.<br>"
+      info3_html: "3. Saisissez un <b>titre</b> et une <b>description</b>.<br>"
+      info4_html: "4. Ajoutez des <b>mots-clés</b> à votre ressource. Vos centres d'intérêt ont été attribués par défaut. Vous pouvez toutefois les supprimer ou ajouter de nouveaux mots-clés.<br>"
+      info5_html: "5. Choisissez une <b>langue</b> requise, si nécessaire.<br>"
+      info6_html: "6. Sélectionnez une tranche d'<b>âge </b>. Ces informations seront utilisées à des fins de recommandation.<br>"
+      info7_html: "7. Si vous souhaitez intégrer un flux vidéo en direct, cliquez sur l'option <b>En direct</b>.<br>"
+      info8_html: "8. Pour finir, cliquez sur le bouton <b> enregistrer </b> pour publier votre ressource."
+    how: "Comment partager une ressource"
+    info:
+      title: "Titre"
+      description: "Description"
+      tags:
+        title: "Sujets"
+        addMessage: "Ajouter des mots-clés"
+        limitMessage: "limite atteinte"
+      âge: "Âge"
+    recommended_age: "Âge recommandé"
+    recommended_age_detail: "De %{min} à %{max} ans"
+    input: "Ajoutez une description ici"
+    new: "Ajouter une ressource"
+    screencast: "Capture vidéo de la plateforme VISH"
+    title_input: "Nom pour cette ressource"
+  email:
+    regards: "Cordialement,<br/>"
+    welcome: "Nous vous souhaitons la bienvenue et vous remercions de votre inscription sur la plateforme VISH.<br/>Nous aimerions vous encourager à <a href=\"%{{profile}}\"> définir votre profil</a> afin que vous puissiez bénéficier d'un meilleur service.<br/>"
+  embed:
+    confirm_delete: "Supprimer le code intégré ?"
+    content: "Contenu en direct"
+    embed: "code intégré"
+    input: "Collez votre code intégré ici"
+    name: "code intégré"
+  evaluation:
+    teaching: "résultats concernant l'expérience d'enseignement..."
+    contribute: "Vous souhaitez contribuer ?"
+    evaluation: "évaluez-la"
+    experience: "expérience d'enseignement"
+    phrase0: "Évaluez la qualité du contenu utilisé dans cette excursion"
+    phrase1: "Les élèves étaient-ils motivés pour participer aux activités en rapport avec cette excursion ?"
+    phrase2: "L'excursion a-t-elle contribué à encourager la participation des élèves et les a-t-elle aidés à atteindre leurs objectifs d'apprentissage ?"
+    phrase3: "Avez-vous intégré des activités interdisciplinaires dans l'excursion ? Ces activités étaient-elles utiles ?"
+    phrase4: "Utiliseriez-vous à nouveau cette excursion dans le cadre de votre enseignement ?"
+    disagree: "pas d'accord"
+    agree: "d'accord"
+  excursion:
+    actions:
+      bookmark: "signet"
+      clone: "cloner"
+      delete: "supprimer"
+      download: "télécharger"            
+      edit: "éditer"
+      show: "afficher"
+      share: "partager"
+      scorm: "scorm"
+    clone:
+      confirm: "Cette action clonera cette excursion dans votre propre bibliothèque"
+      not_found: "Excursion introuvable"
+      ok: "Clonage réussi"
+      owner: "Cette excursion vous appartient déjà"
+    confirm_delete: "Supprimer l'excursion ?"
+    confirm_delete_offline: "Vous allez supprimer l'excursion de cette liste, mais elle restera accessible sur le serveur. Êtes-vous sûr(e) ?"
+    contributors:
+      name: "Avec du contenu de"
+    created: "créée"
+    favorites: "Favoris"    
+    how: "Comment créer une excursion"
+    invite:
+      email:
+        body: "Salut,%0A%0AJette%20un%20coup%20d'œil%20à%20cette%20excursion%20sur%20la%20plateforme%20ViSH%20:%0A%0A%{url}%0A%0Aj'%20espère%20qu'elle%20te%20plaîra%20!%0A%0A%{name}"
+        link: "adresse électronique"
+        subject: "Jette%20un%20coup%20d'œuil%20à%20cette%20excursion%20sur%20le%20site%20http://vishub.org%20:%20%{title}"
+    is_draft: "[BROUILLON]"
+    my: "mon"
+    name: "excursion"
+    net: "réseau"
+    network: "mes excursions de mon réseau de contacts"
+    network2: "mon réseau"
+    newmy_html: "Vous n'avez pas encore créé d'excursions. Vous pouvez ajouter une nouvelle excursion en cliquant ici sur le bouton ajouter "    
+    newnet_html: "Ici vous pourrez consulter les excursions créées par les utilisateurs que vous suivez. Recherchez <a href='/search?type=user'>ici</a> quelques utilisateurs à suivre."
+    newfav_html: "Vous n'avez pas encore d'excursions favorites. Marquez n'importe quelle excursion comme favorite en cliquant sur l'icône de l'étoile<img src='/assets/icons/star-off.png'>"
+    one: "excursion"
+    other: "excursions"
+    others: "autres excursions"
+    session_start: "démarrer une session"
+    suggestion:
+      other: "Excursions"
+    title:
+      other: "excursions"
+    upcomming: "à venir"
+    unload_warning: "L'excursion n'a pas été enregistrée !"
+    top: "pourMoi"
+  external: "externe"
+  filter: "filtre"
+  follow:
+    add_favorite: "Ajouter un favori"
+    contacts: "contacts"
+    favorites: "Favoris"
+    find: "rechercher"
+    followers: "abonnés"
+    followings: "abonnements"
+    is_favorite: "Est favorite"
+    views: "vues"
+  frontpage:
+    nanotechnology: "nanotechnologies"
+    gridComputing: "informatique en grille"
+    lifesciences: "sciences de la vie"
+    biotechnology: "biotechnologies"
+  go:
+    repository: "accéder à la bibliothèque"
+  help: "aide"
+  lang:
+    independent: "Indépendant de la langue"
+    changed: "Afficher le site en %{lang}"
+    error: "Langue \"%{lang}\" non disponible"
+    title: "langue"   
+    others: Others 
+  link:
+    one: "lien"
+    other: "liens"
+    confirm_delete: "Supprimer le lien ?"
+    go: "Accéder au lien"
+  translate:
+    change: "Modifier la langue"
+  message:
+    send: "Envoyer un message"
+    new: "Nouveau message"
+    unread: " non lus"
+  more: "plus"
+  mashme:
+    header_html: "Regarder sur <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
+    invite_header: "Invitez vos contacts"
+    invitesubject: "Regardez cette excursion avec moi sur MashMeTV !"
+    invitebody_html: "Cliquez ici pour la regarder : <a href='http://www.mashme.tv/M/%{room}?name=%{username}'><img src='http://%{domain}/assets/mashme_button.png' /></a>"
+    launch: "Lancer"
+    room_name: "Nom de la salle"
+  navigation:
+    home: "Accueil"
+  no_bio: "Cet utilisateur n'a pas publié de biographie."
+  notification:
+    config_html: "Si vous souhaitez modifier le service de notification, cliquez <a href='%{url}'>ici</a>"
+    makefriend:
+      user: "%{sender} suit %{who}."
+    unread: " non lus"  
+  officedoc:
+    confirm_delete: "Supprimer le document ?"
+    title: "Documents Office"
+    mine: "Mes documents"
+    name: "document"
+    not_mine: "Documents"
+    one: "un document"
+    title:
+      one: "Document"
+      other: "Documents"
+  offline:
+    title: "Mode hors ligne"
+  options:
+    add: "ajouter"
+    new: "nouveau"
+  organization:
+    one: "organisation"
+    other: "organisations"
+  organizer:
+    one: "organisateur"
+    other: "organisateurs"
+  password: "mot de passe"
+  post:
+    input: "Partagez vos points de vue, vos liens, vos vidéos et bien plus encore ici !"
+    search_name: "mise à jour du statut"
+  profile:
+    occupation: 
+      label: "Profession"
+      other: "Autre"
+      scientist: "Scientifique"
+      select: "Sélectionnez votre profession"
+      teacher: "Enseignant"
+    tags:
+      default: "VisHub, virtuel, excursion"
+      other: "Centres d'intérêt"
+  project: "Global Excursion"      
+  published: "Publiée"
+  quiz:
+    answer:
+      title:
+        other: "Réponses au quiz"
+    from_excursion: "De l'excursion"
+    no: "Non"
+    no_answers: "Pas encore de réponses !"
+    no_title: "<Sans titre>"
+    one: "quiz"
+    ongoing: "en cours"
+    open: "à questions ouvertes"
+    other: "quiz"
+    past: "derniers"
+    possible_answers: "Réponses possibles"
+    yes: "Oui"
+  recommended: "recommandées"
+  recsys:
+    recommended:
+      excursions:
+        explain_html: "Consulté(e) par des utilisateurs qui partagent vos intérêts :"
+      resources:
+        explain_html: "Consulté(e) par des utilisateurs qui partagent vos intérêts :"
+  repository:
+    one: "bibliothèque"
+    other: "bibliothèques"
+    title: "Ressources"
+  resource:
+    empty: "Vous"    
+    network: "mes ressources réseau"
+    newmy_html: "Vous n'avez pas encore publié de ressources. Vous pouvez en ajouter une en cliquant ici ou sur le bouton de téléchargement "    
+    newnet_html: "Ici vous pourrez consulter les ressources publiées par les utilisateurs que vous suivez. Recherchez <a href='/search?type=user'>ici</a> quelques utilisateurs à suivre."
+    newfav_html: "Vous n'avez pas encore de ressources favorites. Marquez la ressource de votre choix comme favorite en cliquant sur l'icône de l'étoile<img src='/assets/icons/star-off.png'>"
+    my: "Ma/mes"
+    net: "réseau"
+    title:
+      one: "ressource"
+      other: "ressources"
+    top: "pourMoi"
+    upload: "publier"
+  search:
+    110slides: "1-10 diapositives"
+    1020slides: "10-20 diapositives"
+    20slides: "20+ diapositives"
+    always: "à tout moment"
+    anyslides: "Nombre indéterminé de diapositives"
+    audio: "clip audio"
+    flash: "flash"
+    followers: "abonnés"
+    document: "document"
+    embed: "code intégré"
+    excursions: "excursions"
+    image: "photo"
+    last_day: "hier"
+    last_month: "le mois dernier"
+    last_week: "la semaine dernière"
+    last_year: "l'année dernière"
+    mostviewed: "les plus consultées"
+    mostfav: "les plus souvent marquées comme favorites"
+    mostslides: "le plus grand nombre de diapositives"
+    newest: "les plus récentes"
+    link: "lien"
+    recent: "récentes"
+    resources: "ressources"
+    orderby: "classer par"
+    quiz: "quiz"
+    relevance: "pertinence"
+    slides: "diapositives"
+    time_constraint: "date de création"
+    type: "type"
+    video: "vidéo"
+  send:
+    send: "Envoyer"
+  share: "Publier"
+  sign_up: "Inscription"
+  site:
+    name: "Plateforme des sciences virtuelles"
+  swf:
+    confirm_delete: "Supprimer SWF?"
+  today: "Aujourd'hui"
+  top10: "Top 10"
+  url:
+    input: "Collez votre lien ici"
+  user:
+    one: "utilisateur"
+    other: "utilisateurs"
+  username: "nom d'utilisateur"
+  vish:
+    about: "À propos de la plateforme VISH"    
+    sentence1: "Créez votre compte VISH"
+    sentence2: "VISH est une plateforme de sciences sociales"
+    team: "L'équipe VISH"    
+  views:
+    pagination:
+      next: "Â»"
+      previous: "Â«"            
+      truncate: "..."
+  view_all: "tout afficher"
+  yesterday: "Hier"

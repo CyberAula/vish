@@ -46,6 +46,8 @@ class Excursion < ActiveRecord::Base
       require 'zip/zip'
       require 'zip/zipfilesystem'  
       t = File.open("#{Rails.root}/public/scorm/excursions/#{self.id}.zip", 'w')
+
+      #Generate Manifest and HTML file
       Zip::ZipOutputStream.open(t.path) do |zos|
         xml_manifest = self.generate_scorm_manifest
         zos.put_next_entry("imsmanifest.xml")
@@ -53,11 +55,62 @@ class Excursion < ActiveRecord::Base
 
         zos.put_next_entry("excursion.html")
         zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>self}, :layout => false  
+      end
+      
+      #Copy SCORM assets (image, javascript and css files)
+      dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
+      zip_folder(t.path,dir,nil)
 
-        self.update_column(:scorm_timestamp, Time.now)
-      end    
+      #Add theme
+      themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
+      theme = "theme1" #Default theme
+      if JSON(self.json)["theme"] and File.exists?(themesPath + JSON(self.json)["theme"])
+        theme = JSON(self.json)["theme"]
+      end
+      #Copy excursion theme
+      zip_folder(t.path,"#{Rails.root}/vendor/plugins/vish_editor/app/assets",themesPath + theme)
+
       t.close
+      self.update_column(:scorm_timestamp, Time.now)
     end
+
+  end
+
+
+  def zip_folder(zipFilePath,root,dir)
+
+    unless dir 
+      dir = root
+    end
+
+    #Get subdirectories
+    Dir.chdir(dir)
+    subdir_list=Dir["*"].reject{|o| not File.directory?(o)}
+    subdir_list.each do |subdirectory|
+      subdirectory_path = "#{dir}/#{subdirectory}"
+      zip_folder(zipFilePath,root,subdirectory_path)
+    end
+
+    #Look for files
+    Zip::ZipFile.open(zipFilePath, Zip::ZipFile::CREATE) { |zipfile|
+
+      Dir.foreach(dir) do |item|
+        item_path = "#{dir}/#{item}"
+        if File.file?item_path
+          rpath = String.new(item_path)
+          rpath.slice! root + "/"
+          # puts "###########################"
+          # puts "Full Path"
+          # puts item_path
+          # puts "root"
+          # puts root
+          # puts "relative path"
+          # puts rpath
+          # puts "###########################"
+          zipfile.add(rpath,item_path)
+        end
+      end
+    }
   end
 
   def scorm_needs_generate
@@ -69,19 +122,205 @@ class Excursion < ActiveRecord::Base
   end
 
   def generate_scorm_manifest
+    ejson = JSON(self.json)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    myxml.manifest('xsi:schemaLocation'=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd", 'identifier'=>"MANIFEST-A2F3004F6186AC9480285D4AEDCD6BAF", 'xmlns:adlcp'=>"http://www.adlnet.org/xsd/adlcp_rootv1p2", 'xmlns:xsi'=>"http://www.w3.org/2001/XMLSchema-instance", 'xmlns:imsmd'=>"http://www.imsglobal.org/xsd/imsmd_rootv1p2p1", 'xmlns'=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2") do
-      myxml.organizations('default'=>"ITEM") do       
-        
+    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + self.id.to_s,
+      "version"=>"1.0", 
+      "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3.xsd http://www.imsglobal.org/xsd/imsss_v1p0.xsd http://ltsc.ieee.org/xsd/LOM/lom.xsd",
+      "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
+      "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+      "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
+      "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
+      "xmlns:lom"=>"http://ltsc.ieee.org/xsd/LOM/lom.xsd" ) do
+
+
+      myxml.metadata() do
+        myxml.schema("ADL SCORM");
+        myxml.schemaversion("CAM 1.3");
+
+        myxml.lom do
+          myxml.general do
+            myxml.identifier("VISH_VIRTUAL_EXCURSION_"+ self.id.to_s);
+            myxml.title do
+              myxml.langstring(self.title);
+            end
+            myxml.language(ejson["language"]);
+            myxml.description do
+              myxml.langstring(self.title + ". A Virtual Excursion provided by http://vishub.org.");
+            end
+            self.tags.each do |tag|
+              myxml.keyword do
+                myxml.langstring(tag.name.to_s);
+              end
+            end
+            myxml.structure do
+              myxml.source do
+                myxml.langstring("LOMv1.0");
+              end
+              myxml.value do
+                myxml.langstring("hierarchical");
+              end
+            end
+            myxml.aggregationlevel do
+              myxml.source do
+                myxml.langstring("LOMv1.0");
+              end
+              myxml.value do
+                myxml.langstring("4");
+              end
+            end
+          end
+
+          myxml.lifecycle do
+            myxml.version do
+              myxml.langstring("1.0");
+            end
+            myxml.status do
+              myxml.source do
+                myxml.langstring("LOMv1.0");
+              end
+              myxml.value do
+                myxml.langstring("final");
+              end
+            end
+            myxml.contribute do
+              myxml.role do
+                myxml.source do
+                  myxml.langstring("LOMv1.0");
+                end
+                myxml.value do
+                  myxml.langstring("author");
+                end
+              end
+              myxml.centity do
+                myxml.vcard("begin:vcard\n n:"+self.author.name+"\n fn:\n end:vcard");
+              end
+              myxml.date do
+                myxml.datetime(self.updated_at.strftime("%d/%m/%y"));
+              end
+            end
+          end
+
+          myxml.technical do
+            myxml.format("text/html")
+            myxml.location("http://vishub.org/excursions/"+self.id.to_s);
+            myxml.requirement do
+              myxml.type do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring("browser")
+                end
+              end
+              myxml.name do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring("any")
+                end
+              end
+            end
+            myxml.otherplatformrequirements do
+              myxml.langstring("HTML5-compliant web browser")
+            end
+          end
+
+          myxml.educational do
+            myxml.interactivitytype do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("mixed")
+              end
+            end
+            myxml.learningresourcetype do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("slide")
+              end
+            end
+            myxml.interactivitylevel do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("very high")
+              end
+            end
+            myxml.intendedenduserrole do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("learner")
+              end
+            end
+            myxml.typicalagerange do
+              myxml.langstring(self.age_min.to_s + "-" + self.age_max.to_s)
+            end
+            myxml.difficulty do
+              myxml.source do
+                myxml.langstring("LOMv1.0")
+              end
+              myxml.value do
+                myxml.langstring("medium")
+              end
+            end
+            myxml.typicallearningtime do
+              #Inferred
+              # 1 min per slide
+              inferredTPL = (self.slide_count * 1).to_s
+              myxml.duration("PT"+inferredTPL+"M0S")
+            end
+            myxml.description do
+              myxml.langstring(ejson["educational_objectives"])
+            end
+            myxml.language(ejson["language"])
+          end
+        end
       end
+
+
+      myxml.organizations('default'=>"ViSH",'structure'=>"hierarchical") do
+        myxml.organization('identifier'=>"ViSH") do
+          myxml.title("Virtual Science Hub");
+          myxml.metadata() do
+            myxml.schema("ADL SCORM");
+            myxml.schemaversion("CAM 1.3");
+            myxml.lom do
+              myxml.general do
+                myxml.identifier("ViSH");
+                myxml.title do
+                  myxml.langstring("Virtual Science Hub");
+                end
+                myxml.description do
+                  myxml.langstring("Virtual Science Hub. http://vishub.org.");
+                end
+              end
+            end
+          end
+          myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + self.id.to_s,'identifierref'=>"VIRTUAL_EXCURSION_" + self.id.to_s + "_RESOURCE") do
+            myxml.title(self.title);
+          end
+        end
+      end
+
+
       myxml.resources do         
-        myxml.resource('identifier'=>"RES-" + self.id.to_s, 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
+        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + self.id.to_s + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
           myxml.file('href'=> "excursion.html")
         end
-      end       
+      end
+
     end    
-    return myxml 
+
+    return myxml
   end
 
   def remove_scorm
@@ -212,15 +451,14 @@ class Excursion < ActiveRecord::Base
   end
 
   #method used to return json objects to the recommendation in the last slide
-  def reduced_json(controller)  
-      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :id=>self.id);
-      
+  def reduced_json(controller)
+      excursion_url = controller.excursion_url(:id => self.id)
       { :id => id,
         :url => excursion_url,
         :title => title,
         :author => author.name,
         :description => description,
-        :image => thumbnail_url ? thumbnail_url : "/assets/logos/original/excursion-00.png",
+        :image => thumbnail_url ? thumbnail_url : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png",
         :views => visit_count,
         :favourites => like_count,
         :number_of_slides => slide_count
@@ -232,7 +470,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def averageEvaluation
-    evaluations = [];
+    evaluations = []
     if self.evaluations.length > 0
       6.times do |ind|
         evaluations.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))

@@ -1,18 +1,1 @@
-/*
- *	Styles for Internet Explorer 9+
- */
- 
-.slides {
-	background-color: #ededed;
-	background-position: top;
-	background-image:url(/assets/background_ie.png);
-	background-repeat: no-repeat !important;	
-}
-
-#menubar_background{
-	z-index: 0;
-}
-
-#toolbar_text {
-	margin-top: -30px !important;
-}
+.slides{background-color:#ededed;background-position:top;background-image:url(/assets/background_ie.png);background-repeat:no-repeat!important;}#menubar_background{z-index:0;}#toolbar_text{margin-top:-30px!important;}#forward_arrow:hover{cursor:url(right-pointer.png),url(/assets/cursor/right-pointer.png),default;}#back_arrow:hover{cursor:url(left-pointer.png),url(/assets/cursor/left-pointer.png),default;}

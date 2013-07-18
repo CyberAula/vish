@@ -1,0 +1,5 @@
+<form action="/lre/search_lre" method="get" id="main_search_form" data-remote="true" class="search_box">
+        <%= hidden_field_tag :limit, "6"%>
+        <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
+        <%= submit_tag t('mailboxer.send'), :name => :send_message, :class => "btn btn-primary" %>
+</form>

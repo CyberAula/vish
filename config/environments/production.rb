@@ -12,7 +12,11 @@ Vish::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  if ENV['VISH_TEST']
+    config.assets.compress = false
+  else
+    config.assets.compress = true
+  end
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = true
