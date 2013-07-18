@@ -32,22 +32,41 @@ li.add-item
     min-height: 300px
     h4
       margin-bottom: 20px
+      color: $secondColor
   
   #sortable1, #sortable2  
     list-style-type: none 
     
   #sortable1 li, #sortable2 li  
-    margin: 0 5px 5px 5px 
-    padding: 5px 
-    font-size: 1.2em 
+    @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+    margin: 0 5px 5px 5px  
+    font-size: 1.1em 
+    color: $black
+    font-family: $secondFontFamily
     //width: 140px 
     border-width: 1px
-    border-color: $grayLight
+    border-color: $firstColor
     border-style: solid
-    height: 30px
+    height: 35px
     @include border-radius($baseBorderRadius)
     padding: 10px
     background-color: $white
+    .creation_date
+      font-size: 0.9em 
+      color: $grayLight
+    button
+      font-family: $thirdFontFamily
+      float: right
+      display: block
+      margin-top: 4px
+      margin-left: 2px
+
+    &:hover
+      background-color: $firstColor
+      .creation_date
+        color: $white  
+
+
  
     
 

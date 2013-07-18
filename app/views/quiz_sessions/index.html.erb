@@ -4,29 +4,35 @@ $(function() {
   $( "#sortable1, #sortable2" ).sortable({
     connectWith: ".connectedSortable"
   }).disableSelection();
+  
+  $('#close').click(function() {
+    $('#it1').remove();
+  });
+
 });
 </script>
+
 <section id="quiz">
   <div class="whiteframe">
     <legend>MY QUIZS</legend>
     <div class="textrow">
       <h4>Cuestionarios Abiertos</h4>
       <ul id="sortable1" class="connectedSortable">  
-        <li class="ui-state-default">Cuestionario 1</li>
-        <li class="ui-state-default">Cuestionario 2</li>
-        <li class="ui-state-default">Cuestionario 3</li>
-        <li class="ui-state-default">Cuestionario 4</li>
-        <li class="ui-state-default">Cuestionario 5</li>
+        <li id="it1" class="ui-state-default">Cuestionario 1<button id="close" class="btn" onclick="eliminaitem">x</button><button id="explode" class="btn"><i class="icon-list"></i></button><p class="creation_date">16/07/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 2<button class="btn">x</button><p class="creation_date">18/07/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 3<button class="btn">x</button><p class="creation_date">12/07/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 4<button class="btn">x</button><p class="creation_date">02/06/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 5<button class="btn">x</button><p class="creation_date">30/05/2013 17:07</p></li>
       </ul>
     </div> 
     <div class="textrow"> 
       <h4>Cuestionarios Cerrados</h4>
       <ul id="sortable2" class="connectedSortable">  
-        <li class="ui-state-highlight">Cuestionario 6</li>
-        <li class="ui-state-highlight">Cuestionario 7</li>
-        <li class="ui-state-highlight">Cuestionario 8</li>
-        <li class="ui-state-highlight">Cuestionario 9</li>
-        <li class="ui-state-highlight">Cuestionario 10</li>
+        <li class="ui-state-default">Cuestionario 6<button class="btn">x</button><p class="creation_date">16/07/2013 17:07 - 18/07/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 7<button class="btn">x</button><p class="creation_date">10/07/2013 17:07 - 16/07/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 8<button class="btn">x</button><p class="creation_date">12/07/2013 17:07 - 13/07/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 9<button class="btn">x</button><p class="creation_date">02/06/2013 17:07 - 04/06/2013 17:07</p></li>
+        <li class="ui-state-default">Cuestionario 10<button class="btn">x</button><p class="creation_date">20/05/2013 17:07 - 30/05/2013 17:07</p></li>
       </ul>      
     </div>
   </div>
