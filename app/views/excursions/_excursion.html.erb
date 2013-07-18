@@ -21,8 +21,7 @@
 <!--like -->
       <div class="like">    
         <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
-        <%= link_to image_tag("icons/likes/star-active.png",  :class=> "img-like" ), "#" %>
-        <%#= link_like(excursion.post_activity)%>
+        <%= link_like(excursion.post_activity)%>
       </div>
 <!--views -->
       <div class="views"><%=excursion.visit_count.to_s%>

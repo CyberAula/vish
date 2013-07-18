@@ -1,0 +1,5 @@
+$(".verb_like.like_size_small.like_<%= dom_id(@like.object) %>").html("<%= escape_javascript(link_like(@like.object, :size => :small) ) %>");
+$(".verb_like.like_size_big.like_<%= dom_id(@like.object) %>").html("<%= escape_javascript(link_like(@like.object, :size => :big) ) %>");
+var new_num = parseInt($(".like_count_<%= dom_id(@like.object) %>").html()) + 1;
+$(".like_count_<%= dom_id(@like.object) %>").html(new_num);
+
