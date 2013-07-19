@@ -13,10 +13,12 @@
     li.box-item
       column-break-inside: avoid
       background: $white
-      @include excursion-box-small
-      box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+      //@include excursion-box-small
+      //box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
       display: inline-block
       margin: 0 5px 20px
+      border-left: solid 1px $secondColor
+      @include border-top-radius($baseBorderRadius)
       a.img-box
         img
           @include border-top-radius($baseBorderRadius)
@@ -26,12 +28,14 @@
         display: none
         @include badge-grid
       .info
+        font-family: $secondFontFamily
         padding: 5px 5px 0 5px
         h5.name
           margin: 0
           word-wrap: break-word
           text-decoration: none
           cursor: pointer
+          font-family: $thirdFontFamily
           a
             color: $grayDark
         .author
