@@ -743,7 +743,7 @@ li{list-style-type:none}
 
 /*.................. icon message 20 x 20 px...........SOCIAL...........*/
 
-[class^="message-"], [class*="message-"] {
+[class^="icon_message-"], [class*="icon_message-"] {
   height:31px;
   width:52px;
   background-image: url("icons/mess_ico-50.png");
@@ -751,7 +751,7 @@ li{list-style-type:none}
 }
 
 .icon_message-new     { background-position: -9px -50px;}
-.icon_message-sentbox { background-position: -68px -49px;}
+.icon_message-sentbox { background-position: -68px -50px;}
 .icon_message-inbox   { background-position: -129px -50px;}
 .icon_message-trash   { background-position: -188px -50px;}
 

@@ -91,9 +91,10 @@
 #new_message
   #toolbar
     @include gray-box
+    @include border-radius($baseBorderRadius)
     nav.toolbar_menu
       background-color: $white
-      @include border-radius($radius)
+      @include border-radius($baseBorderRadius)
       ul
         li
           .active
