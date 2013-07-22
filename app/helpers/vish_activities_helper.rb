@@ -1,4 +1,4 @@
-module ActivitiesHelper
+module VishActivitiesHelper
 
   def like_status object
     [ 'like', 'unlike' ].tap do |s|
