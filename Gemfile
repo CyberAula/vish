@@ -21,9 +21,9 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 gem 'selenium-webdriver', '=2.30.0'
 
-gem 'social_stream-base', '~> 1.1.10'
-gem 'social_stream-documents', '~> 1.1.3'
-gem 'social_stream-linkser', '~> 1.1.1'
+gem 'social_stream-base', '~> 1.1.11'
+gem 'social_stream-documents', '~> 1.1.4'
+gem 'social_stream-linkser', '~> 1.1.2'
 gem 'social_stream-ostatus', '~> 1.1.1'
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap
