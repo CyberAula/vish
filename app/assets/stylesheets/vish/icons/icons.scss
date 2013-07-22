@@ -742,8 +742,9 @@ li{list-style-type:none}
 
 
 /*.................. icon message 20 x 20 px...........SOCIAL...........*/
+li{list-style-type:none}
 
-[class^="icon_message-"], [class*="icon_message-"] {
+[class^="message-"], [class*="message-"] {
   height:31px;
   width:52px;
   background-image: url("icons/mess_ico-50.png");
@@ -756,10 +757,10 @@ li{list-style-type:none}
 .icon_message-trash   { background-position: -188px -50px;}
 
 /*hover*/
-.icon_message-new:hover     { background-position: -9px -10px;}
-.icon_message-sentbox:hover { background-position: -68px -10px;}
-.icon_message-inbox:hover  { background-position: -129px -10px;}
-.icon_message-trash:hover  { background-position: -188px -10px;}
+.icon_message-new:hover     { background-position: -9px -10px !important;background-image: url("icons/mess_ico-50.png");width:52px;height:31px;} 
+.icon_message-sentbox:hover { background-position: -68px -10px !important;background-image: url("icons/mess_ico-50.png");width:52px;height:31px;} 
+.icon_message-inbox:hover  { background-position: -129px -10px !important;background-image: url("icons/mess_ico-50.png");width:52px;height:31px;} 
+.icon_message-trash:hover  { background-position: -188px -10px !important;background-image: url("icons/mess_ico-50.png");width:52px;height:31px;} 
 
 
 

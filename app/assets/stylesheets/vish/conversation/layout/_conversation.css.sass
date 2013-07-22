@@ -54,6 +54,9 @@
 
 #conversation
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  h2
+    font-size: 1.8em
+    color: $secondColor
   .conversation_full
     width: 76%
     float: left
@@ -100,28 +103,38 @@
     #ck_editor    
       .cleditorMain
         @include cleditorMain-box
+        @include border-radius($baseBorderRadius)
+        .cleditorToolbar
+          @include border-radius($baseBorderRadius)
 
 #conversations,
 #conversation,
 #new_message
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  margin: 0 1% 0
+  margin: 0 2% 0
   #toolbar
-    width: 171px
+    width: 110px
     float: left
-    margin: 0 15px 0 0px
+    //margin: 15px
     padding: 2px 1px
     nav
-      padding-left: 26px
+      padding-left: 10px
+      padding-top: 10px
+      padding-bottom: 10px
+      padding-right: 10px
+
       ul
         margin: 0 0 1px 0 
         li
           display: block
+          margin-top: 5px
+          margin-bottom: 5px 
           a
+            font-family: $thirdFontFamily
+            font-size: 14px
+            color: $firstColor
             i
-              padding: 9px 27px
-
-
+              //padding: 9px 27px
 
 #content
   .read_all

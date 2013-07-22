@@ -113,6 +113,22 @@
       @include btn-primary
       width: 100%
 
+@mixin quarter-btn-primary
+  margin-top: 10px
+  input
+    &[type="submit"]
+      @include border-radius(5px)
+      @include btn-primary
+      width: 25%
+
+@mixin percent-btn-primary
+  margin-top: 10px
+  input
+    &[type="submit"]
+      @include border-radius(5px)
+      @include btn-primary
+      width: 15%
+      margin-top: 5px
 
 @mixin btn-add
   font-size: 10px

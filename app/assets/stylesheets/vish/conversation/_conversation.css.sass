@@ -68,10 +68,11 @@
   .message
     border-bottom: 1px solid #f1f1f1
     background-color: $white
+    @include border-radius($baseBorderRadius)
     .media
       .pull-left
         img
-          @include border-radius (5px)
+          @include border-radius ($baseBorderRadius)
       .date
         color: #999
         font-size: 13px
@@ -83,8 +84,12 @@
         &[type="submit"]
           float: right
           margin-top: 10px
+
+        &[type="text"]
+          //width: 100%  
+
   #subject
-    width: 96.8% !important
+    //width: 96.8% !important
 
 #conversations,
 #conversation,
@@ -99,12 +104,13 @@
         li
           .active
             background-position: -9px -10px
+          
           a
             &:hover
               background-color: transparent
 
 #conversation
-  @include full-btn-primary
+  @include percent-btn-primary
 
 #content
   .notification
