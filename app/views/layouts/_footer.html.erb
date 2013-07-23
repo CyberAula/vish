@@ -4,26 +4,22 @@
       <li>
         <a href="/legal_notice"><%= t('conditions.other') %></a>     
       </li>
-
-      <li>
-        <a href="/help"><%= t('help') %></a> 
-      </li>
       
-      <!--<li class="btn-group dropup">
+      <li class="btn-group dropup">
         <button data-toggle="dropdown" class="btn dropdown-toggle">
-          <span class="idioma"><#%= t('help') %></span>
+          <span class="idioma"><%= t('help') %></span>
           <span class="caret"></span>
         </button>   
           <ul class="dropdown-menu">
               <li class="">
-                <a href="/help">Ayuda VISH</a>
-                <!--<<#%= link_to  t('excursion.how'), "/help"%>-->
-             <!-- </li>
+                <%= link_to t('help_page'), '/help' %>
+              </li>
               <li class="">
-                <a href="#">Manual Usuario</a>
+                <%= link_to t('help_manual'), '/user_manual' %>
               </li>
           </ul>
-      </li>-->
+      </li>
+
       <li class="btn-group dropup">
         <button data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="idioma"><%= t('lang.title') %></span>
@@ -36,10 +32,6 @@
               </li>
             <% end %>
           </ul>
-      </li>
-
-      <li>
-         <a href="#">user manual</a> 
       </li>
 
       <li>
