@@ -1,0 +1,113 @@
+
+<%#= javascript_tag do %>
+<%#= modal_for(@excursion.author.subject) %>
+<%# @excursion.contributors.each do |c| %>
+<%#= modal_for(c.subject) %>
+<%#end%>
+<%# end %>
+
+
+<!--tittle-->
+
+  <%#= t('document.info.title') %>
+
+  <%= @excursion.title %>
+
+<!--autor-->
+
+  <%#= t('author').capitalize %>
+
+<a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %> modal-no-trigger">
+<%= truncate_name(@excursion.author.name, :length => 50) %>
+</a>
+<% unless @excursion.contributors.blank? %>
+<!--contributors-->
+
+<%= t('excursion.contributors.name').capitalize %>
+
+<% @excursion.contributors.each do |c| %>
+  <a data-toggle="modal" href="#user-modal-<%= c.slug %>" class="user-modal-button-<%= c.slug %> modal-no-trigger">
+      <%= truncate_name(c.name, :length => 50) %>
+  </a>, 
+<%end%>
+
+<%end%>
+<% unless @excursion.description.blank? %>
+<!--description-->
+
+<%= t('info.description') %>
+
+<%= truncate(@excursion.description, :length => 200) %>
+
+<% end %>
+<% unless @excursion.tag_list.blank? %>
+<!--tags-->
+
+  <%= t('info.tags') %>
+
+  <ul class="tagit-suggestions">
+    <% @excursion.tag_list.each do |tag| %>
+      <li class="tagit-choice">
+        <%= link_to tag, search_path(:q => tag) %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>
+<% unless @excursion.language.blank? %>
+
+<!--language-->
+
+
+<%= t('lang.title').capitalize %>
+
+
+<%= case @excursion.language
+        when '';
+          t('lang.independent')
+        when 'de';
+          'Deutsch'
+        when 'en';
+          'English'
+        when 'es';
+          'Español'
+        when 'fr';
+          'Français'
+        when 'it';
+          'Italiano'
+        when 'pt';
+          'Português'
+        when 'ru';
+          'Русский'
+        else
+          ; t('lang.others')
+      end %>
+
+<% end %>
+<% if @excursion.respond_to? :age_min and @excursion.respond_to? :age_max %>
+<!--recomended age-->
+
+<%= t('document.recommended_age') %>
+
+<%= t('document.recommended_age_detail', :min => @excursion.age_min, :max => @excursion.age_max) %>
+
+<% end %>
+<!--date-create
+<div class="tittle-notebook">
+<%= t('document.info.date.created_at') %>
+</div>
+
+<div class="text-notebook">
+<%= I18n.localize @excursion.created_at, :format => :long %>
+</div>
+-->
+<!--date-upload-->
+
+<%= t('document.info.date.updated_at') %>
+
+<%= I18n.localize @excursion.updated_at, :format => :long %>
+
+
+
+
+
