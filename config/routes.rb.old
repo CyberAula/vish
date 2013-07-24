@@ -24,6 +24,11 @@ Vish::Application.routes.draw do
 
   match 'excursions/last_slide' => 'excursions#last_slide'
 
+  match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
+  match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
+
+  match '/apis/iframe_api' => 'excursions#iframe_api'
+
   match 'excursions/preview' => 'excursions#preview'
 
   match 'excursions/:id/clone' => 'excursions#clone'
@@ -32,12 +37,14 @@ Vish::Application.routes.draw do
 
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
 
-  match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
+  match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
 
   #Download JSON
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
+
+  match 'lre/search' => 'lre#search_lre'
 
   resources :excursions
   resources :slides
@@ -100,6 +107,9 @@ Vish::Application.routes.draw do
 
   #Download the user manual and count the number of downloads
   match 'user_manual' => 'help#download_user_manual'
+
+  #PDF to Excursion
+  resources :pdfexes
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -17,6 +17,8 @@ Vish::Application.routes.draw do
   #resources :excursions
   match 'excursions/last_slide' => 'excursions#last_slide'
 
+  match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
+  match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
 
   #PDF to Excursion
   resources :pdfexes

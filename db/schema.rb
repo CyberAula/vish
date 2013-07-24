@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709155010) do
+ActiveRecord::Schema.define(:version => 20130724100323) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -103,10 +103,10 @@ ActiveRecord::Schema.define(:version => 20130709155010) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",              :default => "",   :null => false
+    t.string   "email",                 :default => "",   :null => false
     t.string   "slug"
     t.string   "subject_type"
-    t.boolean  "notify_by_email",    :default => true
+    t.boolean  "notify_by_email",       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "activity_object_id"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130709155010) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "notification_settings"
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -286,6 +287,15 @@ ActiveRecord::Schema.define(:version => 20130709155010) do
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
+
+  create_table "pdfexes", :force => true do |t|
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "attach_file_name"
+    t.string   "attach_content_type"
+    t.integer  "attach_file_size"
+    t.datetime "attach_updated_at"
+  end
 
   create_table "permissions", :force => true do |t|
     t.string   "action"
