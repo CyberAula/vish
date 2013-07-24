@@ -11,6 +11,7 @@
         //border: 5px solid $grayLighter
     .information
       @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      width: 50% !important
       //padding: 2%
       //width: 79%
       @include border-radius($baseBorderRadius)
@@ -41,7 +42,8 @@
       p.description
         color: $gray
       span
-        color: $black  
+        color: $black 
+        font-family: $secondFontFamily 
       h3.achievements
         border-left: 1px solid $grayLighter
         color: $secondColor
@@ -55,7 +57,7 @@
       background-color: $white !important
       font-size: 1em 
       span
-        color: $thirdColor
+        color: $black
         font-size: 1.1em
       span:after
         content: " "
