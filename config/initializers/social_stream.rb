@@ -22,10 +22,8 @@ SocialStream.setup do |config|
   # config.activity_forms = [ :post, :document, :foo, :bar ]
 
   # There are not custom relations in the ViSH
-  config.custom_relations = {
-    user: {},
-    group: {}
-  }
+  config.custom_relations['user']  = {}
+  config.custom_relations['group'] = {}
 
   # The relation used is Relation::Follow
   config.system_relations = {
