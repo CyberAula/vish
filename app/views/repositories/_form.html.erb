@@ -77,7 +77,7 @@
   
   <div class="modal-footer">
      <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-     <button class="btn" id="logIn" type="button" rel="popover" data-placement="top" data-original-title="¿Como subo un recurso?" aria-hidden="true"> ? </button>
+     <button class="btn" id="help3" type="button" rel="popover" data-placement="top" data-original-title="¿Como subo un recurso?" aria-hidden="true"> ? </button>
       <div id="popover_content_wrapper" style="display: none">
         <div><%= t('document.help.info1_html')%>  <br/>
              <%= t('document.help.info2_html')%>  <br/>
@@ -97,7 +97,7 @@
 <%= content_for :javascript do %> 
     //popover
 $(document).ready(function(){
-  $('#logIn').popover({
+  $('#help3').popover({
     html : true,
     content: function() {
       return $('#popover_content_wrapper').html();

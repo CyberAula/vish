@@ -1,10 +1,10 @@
 <!-- Button to trigger modal --> 
 <!-- Modal Categories-->
-<div id="AddCategory" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel" aria-hidden="true">
+<div id="QuizAnalitycs" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3 id="AddCategoryLabel"><%= t('categories.main_title')%></h3>
+    <h3 id="QuizLabel"><%= t('categories.main_title')%></h3>
   </div>
 
   <div class="modal-body">
@@ -19,16 +19,9 @@
 
    <div class="modal-footer">
      <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-     <button class="btn" id="help1" type="button" rel="popover" data-placement="top" data-original-title="¿Como creo una categoría?" aria-hidden="true"> ? </button>
-      <div id="popover_category" style="display: none">
-        <div><%= t('document.help.info1_html')%>  <br/>
-             <%= t('document.help.info2_html')%>  <br/>
-             <%= t('document.help.info3_html')%>  <br/>
-             <%= t('document.help.info4_html')%>  <br/>
-             <%= t('document.help.info5_html')%>  <br/>
-             <%= t('document.help.info6_html')%>  <br/>
-             <%= t('document.help.info7_html')%>  <br/>
-             <%= t('document.help.info8_html')%></div>
+     <button class="btn" id="help2" type="button" rel="popover" data-placement="top" data-original-title="¿Que son todos estos datos?" aria-hidden="true"> ? </button>
+      <div id="popover_quiz" style="display: none">
+        <div><%= t('document.helpquiz.info1_html')%></div>
       </div>
     <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
     <!--<b id="foo" rel="popover">Ayuda </b>-->
@@ -39,10 +32,10 @@
 <%= content_for :javascript do %> 
     //popover
 $(document).ready(function(){
-  $('#help1').popover({
+  $('#help2').popover({
     html : true,
     content: function() {
-      return $('#popover_category').html();
+      return $('#popover_quiz').html();
     }
   });
 });

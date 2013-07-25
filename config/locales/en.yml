@@ -70,6 +70,8 @@ en:
       info6_html: "6. Select an <b>age </b>range. This information will be used for recommendation purposes.<br>"
       info7_html: "7. If you want to embed a live streaming video, click on <b>Live</b> option.<br>"
       info8_html: "8. Finally, click on <b> save </b> button to upload your resource."
+    helpquiz:
+      info1_html: "1. Prueba de ayuda 1 para el quiz<br>"  
     how: "How to share a resource"
     info:
       title: "Title"

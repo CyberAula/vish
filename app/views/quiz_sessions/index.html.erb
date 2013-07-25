@@ -18,7 +18,7 @@ $(function() {
     <div class="textrow">
       <h4>Cuestionarios Abiertos</h4>
       <ul id="sortable1" class="connectedSortable">  
-        <li id="it1" class="ui-state-default">Cuestionario 1<button id="close" class="btn" onclick="eliminaitem">x</button><button id="explode" class="btn"><i class="icon-list"></i></button><p class="creation_date">16/07/2013 17:07</p></li>
+        <li id="it1" class="ui-state-default" href="#QuizAnalitycs" data-toggle="modal">Cuestionario 1<button id="close" class="btn" onclick="eliminaitem">x</button><p class="creation_date">16/07/2013 17:07</p></li>
         <li class="ui-state-default">Cuestionario 2<button class="btn">x</button><p class="creation_date">18/07/2013 17:07</p></li>
         <li class="ui-state-default">Cuestionario 3<button class="btn">x</button><p class="creation_date">12/07/2013 17:07</p></li>
         <li class="ui-state-default">Cuestionario 4<button class="btn">x</button><p class="creation_date">02/06/2013 17:07</p></li>
@@ -37,6 +37,8 @@ $(function() {
     </div>
   </div>
 </section>
+
+<%= render partial: 'quiz_sessions/form' %>
 
 
 
