@@ -13,7 +13,7 @@ gem 'mysql2'
 # in production environments by default.
 gem 'sass-rails', '~> 3.2.4'
 gem 'bootstrap-sass'
-gem 'coffee-rails', '~> 3.2.2'
+gem 'coffee-rails'
 gem 'uglifier', '>= 1.2.3'
 
 gem 'jquery-rails', '>=2.0.2'
