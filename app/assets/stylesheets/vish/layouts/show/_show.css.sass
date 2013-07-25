@@ -1,41 +1,70 @@
 #show_excursions
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  .container-visor
-    display: inline-block
-    position: relative
-    @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    float: left
-    .elemento-visor
-      padding-top: 81%
-    .caja-visor
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
-  .excursion_tool
+  .show-left
     @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: inline-block
     float: left
-  .excursion_description
-    display: inline-block
-    float: left
-    @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    h2
-    
+    .container-visor
+      display: inline-block
+      position: relative
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      .elemento-visor
+        padding-top: 81%
+      .caja-visor
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+    .excursion_tool
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: inline-block
+      float: left
+    .excursion_description
+      display: inline-block
+      float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      h2
+        padding-left: 20px
 
-  section.activity
-    margin-top: 20px
-    @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    background-color: $white
-    border-radius: $baseBorderRadius
-    @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
-    display: block
-    float: left
 
-
-  .recomended_excursion
-    display: block
-    float: left
-
+    section.activity
+      margin-top: 20px
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      background-color: $white
+      border-radius: $baseBorderRadius
+      @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+      display: block
+      float: left
+  .show-right
     @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: inline-block
+    float: left
+    .recomended_excursion
+      display: block
+      float: right
+      
+
+.toggler
+  position: relative
+
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  background-color: $white
+  border-radius: $baseBorderRadius
+  @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+  display: block
+#showMore
+  @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  @include center-block()
+  text-align: center
+  margin-top: 10px
+
+#effect
+  position: relative
+.newClass
+  height: 0px
+  overflow: hidden
+.anotherNewClass
+  height: auto
+  overflow: auto

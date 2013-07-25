@@ -1,42 +1,44 @@
 <%= render :partial => 'objects/show',
            :locals  => { :object => @excursion } %>
 
-<!--div class="page-header"> Title excursion </div-->
+<div class="page-header"><%= @excursion.title %></div>
 <section id="show_excursions">
 
-
-  <div class="container-visor">
-    <div class="elemento-visor"></div>
-    <div class="caja-visor">
-      <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
-      </iframe>
-    </div>
-  </div>
-
-  <div class="excursion_tool">
-  </div>
-  <div class="excursion_description">
-    <%= render :partial => 'excursions/excursion-info' %>
-  </div>
-
-
-  <div class="recomended_excursion">
-    <ul class="small-box">
-      <% Excursion.first(5).each do |excursion| %>
-        <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
-      <% end %>
-    </ul>
-  </div>
-
-  <section class="activity">
-    <div id="comments" class="comments">
-      <h2>Comments</h2>
-      <div class="new-comments-box">
-        <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
+  <div class="show-left">
+<!--visor-->
+    <div class="container-visor">
+      <div class="elemento-visor"></div>
+      <div class="caja-visor">
+        <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
+        </iframe>
       </div>
-      <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
-  </section>
-
+    </div>
+<!--tool-->
+    <div class="excursion_tool">
+    </div>
+<!--description-->
+    <div class="excursion_description">
+      <%= render :partial => 'excursions/excursion-info' %>
+    </div>
+<!--activity-->
+    <section class="activity">
+      <div id="comments" class="comments">
+        <h2>Comments</h2>
+        <div class="new-comments-box">
+          <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
+        </div>
+        <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
+    </section>
+  </div>
+<!--recomended-->
+  <div class="show-right">
+    <div class="recomended_excursion">
+      <ul class="small-box">
+        <% Excursion.first(5).each do |excursion| %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </section>
 
