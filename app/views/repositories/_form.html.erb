@@ -77,18 +77,6 @@
   
   <div class="modal-footer">
      <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-<<<<<<< HEAD
-     <button class="btn" id="help3" type="button" rel="popover" data-placement="top" data-original-title="¿Como subo un recurso?" aria-hidden="true"> ? </button>
-      <div id="popoverR" style="display: none">
-        <div><%= t('document.help.info1_html')%>  <br/>
-             <%= t('document.help.info2_html')%>  <br/>
-             <%= t('document.help.info3_html')%>  <br/>
-             <%= t('document.help.info4_html')%>  <br/>
-             <%= t('document.help.info5_html')%>  <br/>
-             <%= t('document.help.info6_html')%>  <br/>
-             <%= t('document.help.info7_html')%>  <br/>
-             <%= t('document.help.info8_html')%></div>
-=======
 
     <button class='helpResources btn' data-placement='top' aria-hidden="true" data-original-title="¿Como subo un recurso?" href='#'> ? </a>
 
@@ -102,7 +90,6 @@
         <%= t('document.help.info6_html')%>  <br/>
         <%= t('document.help.info7_html')%>  <br/>
         <%= t('document.help.info8_html')%>
->>>>>>> 329910c9cf19fd9fff850a6f2149dd20dbcd394b
       </div>
     </div>
     <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
@@ -111,20 +98,6 @@
     <button class="btn btn-primary"> <%= t('document.upload')%></button>
   </div>
 </div>
-<<<<<<< HEAD
-<%= content_for :javascript do %> 
-    //popover
-  $(document).ready(function(){
-    $('#help3').popover({
-      html : true,
-      content: function() {
-        return $('#popoverR').html();
-      }
-    });
-  });
-<% end %>
-=======
-
 
 <script>
   $(document).ready(function(){
@@ -137,5 +110,3 @@
   });
 </script>
 
-
->>>>>>> 329910c9cf19fd9fff850a6f2149dd20dbcd394b
