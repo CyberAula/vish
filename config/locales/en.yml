@@ -297,6 +297,8 @@ en:
       title:
         other: "Quiz answers"
     from_excursion: "From excursion"
+    modal:
+      main_title: "Pupils think... (answers percents)"
     no: "No"
     no_answers: "No answers yet!"
     no_title: "<Untitled>"
