@@ -14,16 +14,14 @@
       column-break-inside: avoid
       background: $white
       //@include excursion-box-small
-      //box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+      box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
       display: inline-block
       margin: 0 5px 20px
-      border-left: solid 1px $secondColor
       @include border-top-radius($baseBorderRadius)
-      a.img-box
-        img
-          @include border-radius($baseBorderRadius)
-          width: 100%
-          border-bottom: 1px solid $grayLighter
+      width: 100%
+      .img-box
+        height: 100px
+        width: 100%
       .badges
         display: none
         @include badge-grid
