@@ -38,8 +38,27 @@ $(function() {
   </div>
 </section>
 
+<section id="quiz">
+  <div class="whiteframe">
+    <legend>MY QUIZS</legend>
+    <div class="textrow">
+      <h4>Cuestionarios Abiertos</h4>
+      <ul id="sortable1" class="connectedSortable">
+        <% @quiz_active_sessions.each do |q| %>
+          <li class="ui-state-default" href="#QuizAnalitycs" data-toggle="modal"><%= q.name %><button id="close" class="btn" onclick="eliminaitem">x</button><p class="creation_date"><%= q.created_at %></p></li>
+        <% end %>
+      </ul>
+    </div> 
+    <div class="textrow"> 
+      <h4>Cuestionarios Cerrados</h4>
+      <ul id="sortable2" class="connectedSortable">
+        <% @quiz_inactive_sessions.each do |q| %>
+          <li class="ui-state-default"><%= q.name %><button class="btn">x</button><p class="creation_date"><%= q.created_at %> - <%= q.closed_at %></p></li>
+        <% end %>
+      </ul>      
+    </div>
+  </div>
+</section>
+
 <%= render partial: 'quiz_sessions/form' %>
-
-
-
 
