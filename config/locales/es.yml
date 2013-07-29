@@ -294,6 +294,8 @@ es:
       title:
         other: "Cuestionarios"
     from_excursion: "De la excursión"
+    modal:
+      main_title: "Los alumnos piensan que... (porcentajes respuestas)"
     no: "No"
     no_answers: "No answers yet!"
     no_title: "<Sin título>"

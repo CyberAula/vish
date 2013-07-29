@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require social_stream-base
 //= require social_stream-documents
+//= require jquery.backstretch.min
 //= require_tree .

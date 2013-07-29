@@ -4,38 +4,51 @@
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3 id="QuizLabel"><%= t('categories.main_title')%></h3>
+    <h3 id="QuizLabel"><%= t('quiz.modal.main_title')%></h3>
   </div>
 
   <div class="modal-body">
     <!--TITULO-->
-    <legend><%= t('categories.leyend.title')%></legend>
-    <input type="text" placeholder="<%= t('categories.title_input')%>">
+    <legend>Cuestionario 1</legend>
+    <canvas id="quiz_chart" width="400" height="400"></canvas>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var canvas = $("#quiz_chart");
+        //var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quiz %>);
+        var quizParams = VISH.QuizCharts.getQuizParams(<%= raw QuizSession.first %>);
+        var quizType = quizParams.quizType;
+        var nAnswers = quizParams.nAnswers;
+        var answersList = <%= raw @results %>;
+
+        var options = {
+          "first": true
+        }
     
-    <!--DESCRIPCION-->
-    <legend><%= t('categories.leyend.description')%></legend>
-    <input type="text" placeholder="<%= t('categories.input')%>">
+      VISH.QuizCharts.drawQuizChart(canvas,quizType,nAnswers,answersList,options);
+      });
+    </script>
   </div>
 
-   <div class="modal-footer">
+  <div class="modal-footer">
      <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-     <button class="btn" id="help2" type="button" rel="popover" data-placement="top" data-original-title="¿Que son todos estos datos?" aria-hidden="true"> ? </button>
-      <div id="popover_quiz" style="display: none">
-        <div><%= t('document.helpquiz.info1_html')%></div>
-      </div>
+    <button class="btn" id="help2" type="button" rel="popover" data-placement="top" data-original-title="¿Que son todos estos datos?" aria-hidden="true"> ? </button>
+    <div id="popover" style="display: none">
+      <div><%= t('document.helpquiz.info1_html')%></div>
+    </div>
     <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
     <!--<b id="foo" rel="popover">Ayuda </b>-->
     
-    <button class="btn btn-primary"> <%= t('categories.save')%></button>
+    <!--<<button class="btn btn-primary"> <#%= t('categories.save')%></button>-->
   </div>
 </div>
 <%= content_for :javascript do %> 
-    //popover
+    //popover_quiz
 $(document).ready(function(){
   $('#help2').popover({
     html : true,
     content: function() {
-      return $('#popover_quiz').html();
+      return $('#popover').html();
     }
   });
 });
