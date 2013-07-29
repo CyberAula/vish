@@ -30,9 +30,19 @@
        
         
         <hr class="soften">
-         <h3 class="name-roll"> 
-          <%= profile_subject.occupation_t %>
-        </h3>
+         
+        <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
+          <h3 class="name-roll">
+            <%= t('profile.occupation.label') %>
+            <!-- Selectable dropdown -->
+          </h3>
+        <% elsif !profile_subject_is_current? && profile_subject.occupation_sym != :select %>
+          <h3 class="name-roll">
+            <%= t('profile.occupation.label') %>
+            <span><%= profile_subject.occupation_t %></span>
+          </h3>
+        <% end %>
+
         <h3 class="karma">Karma
           <span> 65 <!--nivel karma--></span>
         </h3>
