@@ -8,13 +8,17 @@ namespace :db do
     # Clear existing tasks
     task(:create_ties).prerequisites.clear
     task(:create_ties).clear
-    task('create:groups').clear
+#    task('create:groups').clear
+#    task(:create).prerequisites.delete('db:seed')
+    %w( db:seed create:groups ).each do |t|
+      task(:create).prerequisites.delete(t)
+    end
 
     # User 12 logos
     ENV['LOGOS_TOTAL'] = 12.to_s
 
     desc "Create populate data for ViSH"
-    task :create => [ 'create:occupations', 'create:excursions']
+    task :create => [ 'create:occupations', 'create:excursions', 'create:current_site']
     #task :create => [ :read_environment, :create_users, :create_ties, :create_posts, :create_messages, :create_excursions, :create_documents, :create_avatars ]
 
 
@@ -166,6 +170,17 @@ namespace :db do
         puts '   -> ' +  (comments_end - comments_start).round(4).to_s + 's'
       end
 
+      desc "Create current site"
+      task :current_site do
+        puts 'Current site population'
+        current_site_start = Time.now
+
+        Site.current.config[:documents_hostname] = "http://localhost:3000/"
+        Site.current.save!
+
+        current_site_end = Time.now
+        puts '   -> ' +  (current_site_end - current_site_start).round(4).to_s + 's'
+      end
     end
   end
 end

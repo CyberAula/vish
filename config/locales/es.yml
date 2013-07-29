@@ -278,7 +278,7 @@ es:
     search_name: "actualización de estado"
   profile:
     occupation:
-      label: "Dedicación"
+      label: "Ocupación"
       options:
         other: "Otra"
         scientist: "Ciencia"
