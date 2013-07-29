@@ -20,7 +20,7 @@
    <div class="modal-footer">
      <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
      <button class="btn" id="help1" type="button" rel="popover" data-placement="top" data-original-title="¿Como creo una categoría?" aria-hidden="true"> ? </button>
-      <div id="popover3" style="display: none">
+      <div id="popover" style="display: none">
         <div><%= t('document.help.info1_html')%>  <br/>
              <%= t('document.help.info8_html')%></div>
       </div>
@@ -31,13 +31,13 @@
   </div>
 </div>
 <%= content_for :javascript do %> 
-    //popover
-$(document).ready(function(){
-  $('#help1').popover({
-    html : true,
-    content: function() {
-      return $('#popover3').html();
-    }
+  //popover
+  $(document).ready(function(){
+    $('#help1').popover({
+      html : true,
+      content: function() {
+        return $('#popover').html();
+      }
+    });
   });
-});
 <% end %>

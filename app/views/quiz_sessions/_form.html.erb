@@ -44,12 +44,12 @@
 </div>
 <%= content_for :javascript do %> 
     //popover_quiz
-$(document).ready(function(){
-  $('#help2').popover({
-    html : true,
-    content: function() {
-      return $('#popover').html();
-    }
+  $(document).ready(function(){
+    $('#help2').popover({
+      html : true,
+      content: function() {
+        return $('#popover').html();
+      }
+    });
   });
-});
 <% end %>

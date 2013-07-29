@@ -83,7 +83,7 @@ legend {
 }
 
 
-.popover-title, .popover2-title, .popover3-title   {
+.popover-title {
   padding: 8px 14px;
   margin: 0;
   font-size: 14px;
@@ -97,7 +97,7 @@ legend {
   -moz-border-radius: $baseBorderRadius $baseBorderRadius 0 0;
   border-radius: $baseBorderRadius $baseBorderRadius 0 0;
 }
-.popover, .popover2, .popover3  {
+.popover  {
     background-clip: padding-box;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -115,7 +115,7 @@ legend {
     width: 400px;
 }
 
-.popover.top .arrow,.popover2.top .arrow,.popover3.top .arrow {
+.popover.top .arrow {
     border-bottom-width: 0;
     border-top-color: rgba(0, 0, 0, 0) !important;
     bottom: -11px;
@@ -123,7 +123,7 @@ legend {
     margin-left: -11px;
 }
 
-.popover.top .arrow:after,.popover2.top .arrow:after,.popover3.top .arrow:after {
+.popover.top .arrow:after{
     border-bottom-width: 0;
     border-top-color: white;
     bottom: 1px;
