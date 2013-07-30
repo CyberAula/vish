@@ -4,9 +4,13 @@
   <h2><%= @excursion.title %></h2>
 <!--autor-->
   <!--dt><%#= t('author').capitalize %></dt-->
-  <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %> modal-no-trigger">
+  <%= link_to @excursion.author.subject do %>
+    <%= image_tag @excursion.author.logo.url(:small) %>
     <dd><%= truncate_name(@excursion.author.name, :length => 50) %></dd>
-  </a>
+  <% end %>
+  <div class="add">
+    <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
+  </div>
 
   <div id="effect" class="newClass ui-corner-all">
     <%#= javascript_tag do %>
@@ -19,17 +23,17 @@
     
       <% unless @excursion.contributors.blank? %>
 <!--contributors-->
-      <dt><%= t('excursion.contributors.name').capitalize %></dt>
-      <% @excursion.contributors.each do |c| %>
-        <a data-toggle="modal" href="#user-modal-<%= c.slug %>" class="user-modal-button-<%= c.slug %> modal-no-trigger">
-          <dd><%= truncate_name(c.name, :length => 50) %></dd>
-        </a>, 
-      <%end%>
+        <dt><%= t('excursion.contributors.name').capitalize %></dt>
+        <% @excursion.contributors.each do |c| %>
+          <a data-toggle="modal" href="#user-modal-<%= c.slug %>" class="user-modal-button-<%= c.slug %> modal-no-trigger">
+            <dd><%= truncate_name(c.name, :length => 50) %></dd>
+          </a>, 
+        <%end%>
       <%end%>
       <% unless @excursion.description.blank? %>
 <!--description-->
-      <dt><%= t('info.description') %></dt>
-      <dd><%= truncate(@excursion.description, :length => 200) %></dd>
+        <dt><%= t('info.description') %></dt>
+        <dd><%= truncate(@excursion.description, :length => 200) %></dd>
       <% end %>
       <% unless @excursion.tag_list.blank? %>
 <!--tags-->
