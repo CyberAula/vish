@@ -1,3 +1,5 @@
+<%=javascript_include_tag "RegaddiChart" %>
+<%=javascript_include_tag "VISH.QuizCharts" %>
 
 <script>
 $(function() {
@@ -14,35 +16,9 @@ $(function() {
 
 <section id="quiz">
   <div class="whiteframe">
-    <legend>MY QUIZS</legend>
+    <legend>CUESTIONARIOS</legend>
     <div class="textrow">
-      <h4>Cuestionarios Abiertos</h4>
-      <ul id="sortable1" class="connectedSortable">  
-        <li id="it1" class="ui-state-default" href="#QuizAnalitycs" data-toggle="modal">Cuestionario 1<button id="close" class="btn" onclick="eliminaitem">x</button><p class="creation_date">16/07/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 2<button class="btn">x</button><p class="creation_date">18/07/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 3<button class="btn">x</button><p class="creation_date">12/07/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 4<button class="btn">x</button><p class="creation_date">02/06/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 5<button class="btn">x</button><p class="creation_date">30/05/2013 17:07</p></li>
-      </ul>
-    </div> 
-    <div class="textrow"> 
-      <h4>Cuestionarios Cerrados</h4>
-      <ul id="sortable2" class="connectedSortable">  
-        <li class="ui-state-default">Cuestionario 6<button class="btn">x</button><p class="creation_date">16/07/2013 17:07 - 18/07/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 7<button class="btn">x</button><p class="creation_date">10/07/2013 17:07 - 16/07/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 8<button class="btn">x</button><p class="creation_date">12/07/2013 17:07 - 13/07/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 9<button class="btn">x</button><p class="creation_date">02/06/2013 17:07 - 04/06/2013 17:07</p></li>
-        <li class="ui-state-default">Cuestionario 10<button class="btn">x</button><p class="creation_date">20/05/2013 17:07 - 30/05/2013 17:07</p></li>
-      </ul>      
-    </div>
-  </div>
-</section>
-
-<section id="quiz">
-  <div class="whiteframe">
-    <legend>MY QUIZS</legend>
-    <div class="textrow">
-      <h4>Cuestionarios Abiertos</h4>
+      <h4>Cuestionarios por responder</h4>
       <ul id="sortable1" class="connectedSortable">
         <% @quiz_active_sessions.each do |q| %>
           <li class="ui-state-default" href="#QuizAnalitycs" data-toggle="modal"><%= q.name %><button id="close" class="btn" onclick="eliminaitem">x</button><p class="creation_date"><%= q.created_at %></p></li>
@@ -50,7 +26,7 @@ $(function() {
       </ul>
     </div> 
     <div class="textrow"> 
-      <h4>Cuestionarios Cerrados</h4>
+      <h4>Cuestionarios respondidos</h4>
       <ul id="sortable2" class="connectedSortable">
         <% @quiz_inactive_sessions.each do |q| %>
           <li class="ui-state-default"><%= q.name %><button class="btn">x</button><p class="creation_date"><%= q.created_at %> - <%= q.closed_at %></p></li>
