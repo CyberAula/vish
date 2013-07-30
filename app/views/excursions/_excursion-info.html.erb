@@ -4,10 +4,10 @@
   <h2><%= @excursion.title %></h2>
 <!--autor-->
   <!--dt><%#= t('author').capitalize %></dt-->
-  <%= image_tag @excursion.author.logo.url(:small) %>
-  <a data-toggle="modal" href="#user-modal-<%= @excursion.author.slug %>" class="user-modal-button-<%= @excursion.author.slug %> modal-no-trigger">
+  <%= link_to @excursion.author.subject do %>
+    <%= image_tag @excursion.author.logo.url(:small) %>
     <dd><%= truncate_name(@excursion.author.name, :length => 50) %></dd>
-  </a>
+  <% end %>
   <div class="add">
     <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
   </div>
