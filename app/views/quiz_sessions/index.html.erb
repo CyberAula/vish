@@ -1,7 +1,7 @@
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "VISH.QuizCharts" %>
 
-<script>
+<!--<script>
 $(function() {
   $( "#sortable1, #sortable2" ).sortable({
     connectWith: ".connectedSortable"
@@ -13,12 +13,12 @@ $(function() {
 
 });
 </script>
-
+-->
 <section id="quiz">
   <div class="whiteframe">
     <legend>CUESTIONARIOS</legend>
     <div class="textrow">
-      <h4>Cuestionarios por responder</h4>
+      <h4>Lanzados (todavía se pueden responder)</h4>
       <ul id="sortable1" class="connectedSortable">
         <% @quiz_active_sessions.each do |q| %>
           <li class="ui-state-default" href="#QuizAnalitycs" data-toggle="modal"><%= q.name %><button id="close" class="btn" onclick="eliminaitem">x</button><p class="creation_date"><%= q.created_at %></p></li>
@@ -26,7 +26,7 @@ $(function() {
       </ul>
     </div> 
     <div class="textrow"> 
-      <h4>Cuestionarios respondidos</h4>
+      <h4>Respondidos</h4>
       <ul id="sortable2" class="connectedSortable">
         <% @quiz_inactive_sessions.each do |q| %>
           <li class="ui-state-default"><%= q.name %><button class="btn">x</button><p class="creation_date"><%= q.created_at %> - <%= q.closed_at %></p></li>
