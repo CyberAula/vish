@@ -2,15 +2,15 @@
 
 @font-face{
   font-family:"OpenSans";
-  src: url(vish/fonts/opensans/opensans-regular.ttf);
+  src: url(fonts/opensans/opensans-regular.ttf);
 }
 
 @font-face{
   font-family:"OpenSansBold";
-  src: url(vish/fonts/opensans/OpenSans-Semibold.ttf);
+  src: url(fonts/opensans/OpenSans-Semibold.ttf);
 }
 
 @font-face{
   font-family:"OpenSansLight";
-  src: url(vish/fonts/opensans/OpenSans-Light.ttf);
+  src: url(fonts/opensans/OpenSans-Light.ttf);
 }
