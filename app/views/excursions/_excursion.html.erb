@@ -7,7 +7,7 @@
 <div class="img-box"></div>
 <script>
   //$(".img-box").backstretch("http://dl.dropbox.com/u/515046/www/garfield-interior.jpg");
-  $(".img-box").backstretch(#{excursion_thumb_for(excursion)});
+  $(".img-box").backstretch("<%=excursion_raw_thumbail(excursion)%>");
 </script>
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->

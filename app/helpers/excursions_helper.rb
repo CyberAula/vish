@@ -8,6 +8,11 @@ module ExcursionsHelper
     image_tag (excursion.thumbnail_url || "/assets/logos/original/excursion-00.png")
   end
 
+  def excursion_raw_thumbail(excursion)
+    return "icons/draft.png" if excursion.draft
+    excursion.thumbnail_url || "/assets/logos/original/excursion-00.png"
+  end
+
   def num_slides(excursion)
     excursion.slide_count.to_s
   end
