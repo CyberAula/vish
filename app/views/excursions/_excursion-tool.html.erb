@@ -2,7 +2,30 @@
 
 <div class="btn-group">
 	<button class="btn"><i class="icon-code"></i> Embed</button>
-	<button class="btn"><i class="icon-share"></i> Share</button>
+
+	<button class='Share btn' data-placement='top' aria-hidden="true" data-original-title="¿Como subo un recurso?" href='#'><i class="icon-share"></i> Share</button>
+    <div class="contentShare" style="display: none">
+      <div>
+      	<button class="btn"><i class="icon-google-plus"></i></button>
+      	<button class="btn"><i class="icon-twitter"></i></button>
+      	<button class="btn"><i class="icon-facebook"></i></button>
+      	<button class="btn"><i class="icon-envelope"></i></button>
+      	<button class="btn"><i class="icon-user"></i></button>
+      </div>
+    </div>
+	<script>
+  $(document).ready(function(){
+    $('.Share').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentShare').html();
+      }
+    });
+  });
+</script>
+
+
+
 	<button class="btn"><i class="icon-copy"></i> Clone</button>
 	<button class="btn"><i class="icon-download"></i> Scorm</button>
 	<!--si es tuya la puedes eliminar o editar-->
@@ -13,3 +36,6 @@
 	<button class="btn"><%= image_tag("buttons/mashme.png",  :class=> "" ) %> Launch in Mashme</button>
 	<!--boton guardar en "categoria x"(proximamente)-->
 </div>
+
+
+
