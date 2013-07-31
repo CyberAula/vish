@@ -24,7 +24,7 @@
 <!--activity-->
     <section class="activity">
       <div id="comments" class="comments">
-        <h2>Comments</h2>
+        <h2><%=t('comment.other')%></h2>
         <div class="new-comments-box">
           <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
         </div>
