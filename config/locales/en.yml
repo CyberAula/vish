@@ -153,6 +153,8 @@ en:
       download: "download"            
       edit: "edit"
       show: "show"
+      show_fewer: "Show fewer"
+      show_more: "Show more"
       share: "share"
       scorm: "scorm"
     all: "all"
