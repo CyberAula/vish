@@ -22,10 +22,10 @@
       $(document).ready(function(){
         var canvas = $("#quiz_chart");
         //var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quiz %>);
-        var quizParams = VISH.QuizCharts.getQuizParams(<%= raw QuizSession.first.quizJSON %>);
+        var quizParams = VISH.QuizCharts.getQuizParams(<%= raw QuizSession.last.quizJSON %>);
         var quizType = quizParams.quizType;
         var nAnswers = quizParams.nAnswers;
-        var answersList = <%= QuizSession.first.results.to_json %>;
+        var answersList = <%= raw QuizSession.last.results.to_json %>;
 
         var options = {
           "first": true
