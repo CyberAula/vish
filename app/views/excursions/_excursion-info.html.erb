@@ -93,14 +93,20 @@
     </dl>
   </div>
 </div>
-<button href="#" id="showMore" class="ui-state-default ui-corner-all">show more</button>
+<button href="#" id="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
 
 <script>
   $(function() {
-  $( "#showMore" ).click(function(){
-  $( ".newClass" ).switchClass( "newClass", "anotherNewClass", 1000 );
-  $( ".anotherNewClass" ).switchClass( "anotherNewClass", "newClass", 1000 );
-  return false;
+  $("#showMore").click(function(){
+    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+    if($("#showMore").html()=== "<%=t('excursion.actions.show_more')%>"){
+      $("#showMore").html("<%=t('excursion.actions.show_fewer')%>");
+    }
+    else{
+      $("#showMore").html("<%=t('excursion.actions.show_more')%>");
+    }
+    return false;
   });
   });
 </script>
