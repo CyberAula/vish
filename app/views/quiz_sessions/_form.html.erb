@@ -9,17 +9,23 @@
 
   <div class="modal-body">
     <!--TITULO-->
-    <legend>Cuestionario 1</legend>
+    <legend>Quiz (verdadero / Falso)</legend>
+      <p>
+        a) Android es un ser vivo procedente del espacio</br>
+        c) Android es un sistema operativo</br>
+      </p>
+    <legend>Leyenda</legend>
+    <legend>Estadísticas</legend>
     <canvas id="quiz_chart" width="400" height="400"></canvas>
 
     <script type="text/javascript">
       $(document).ready(function(){
         var canvas = $("#quiz_chart");
         //var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quiz %>);
-        var quizParams = VISH.QuizCharts.getQuizParams(<%= raw QuizSession.first %>);
+        var quizParams = VISH.QuizCharts.getQuizParams(<%= raw QuizSession.first.quizJSON %>);
         var quizType = quizParams.quizType;
         var nAnswers = quizParams.nAnswers;
-        var answersList = <%= raw @results %>;
+        var answersList = <%= QuizSession.first.results.to_json %>;
 
         var options = {
           "first": true
@@ -42,6 +48,7 @@
     <!--<<button class="btn btn-primary"> <#%= t('categories.save')%></button>-->
   </div>
 </div>
+
 <%= content_for :javascript do %> 
     //popover_quiz
   $(document).ready(function(){
