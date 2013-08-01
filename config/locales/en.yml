@@ -113,7 +113,7 @@ en:
     input: "Paste your embed here"
     name: "embed"
   evaluation:
-    teaching: "Rating"
+    teaching: "Teaching experience"
     contribute: "%{num} people rated this excursion. Want to contribute?"
     evaluation: "evaluate it"
     experience: "Teaching Experience"
@@ -129,6 +129,7 @@ en:
     label3: "Engagement"
     label4: "Interdisciplinary"
     label5: "Use again"
+    learning: "Learning experience"
     alert: "Please fill in all evaluation questions. Thank you."
     strong_disagree_b: "Strongly disagree"
     disagree_b: "Disagree"
