@@ -1,4 +1,4 @@
-//
+// --------------------------------------------------
 // Variables
 // --------------------------------------------------
 
@@ -16,6 +16,12 @@ $grayLight:             #999 !default;
 $grayLighter:           #eee !default;
 $white:                 #fff !default;
 
+//new grays
+//------------------------------------
+$gray1:                 #767676;
+$gray2:                 #b2b2b2;
+$gray3:                 #dddddd;
+$gray4:                 #fbfbfb;
 
 // Accent colors
 // -------------------------
@@ -30,7 +36,8 @@ $purple:                #7a43b6 !default;
 
 // ViSH color
 // -------------------------
-$background:            #f9f9f9 ;
+
+$background:            #f2f2f2;
 $red-1:                 #ff005d ;
 $red-2:                 #FE99C4 ;
 $linkgray:              #6e6e6e ;
@@ -43,9 +50,12 @@ $gray-search:           #A1A1A1 ;
 
 // ViSH color
 // -------------------------
-$firstColor:			#e82365;
-$secondColor: 			#007cc8;
-$thirdColor :           #40CC7F;
+//$firstColor:      #e82365;
+//Nestor//$secondColor:    #3366ff; 
+
+$firstColor:            #e90055;
+$secondColor:           #007cc8;
+$thirdColor :           #40CC7F; //verde
 
 
 // Scaffolding
@@ -56,7 +66,7 @@ $textColor:             $gray ;
 
 // Links
 // -------------------------
-$linkColor:             #08c !default;
+$linkColor:             $secondColor;
 $linkColorHover:        darken($linkColor, 15%) !default;
 
 
@@ -70,7 +80,7 @@ $firstFontFamily:       "OpenSansLight";
 $secondFontFamily:      "OpenSans";
 $thirdFontFamily:       "OpenSansBold";
 
-$baseFontSize:          14px !default;
+$baseFontSize:          16px !default;
 $baseFontFamily:        $sansFontFamily !default;
 $baseLineHeight:        20px !default;
 $altFontFamily:         $serifFontFamily !default;

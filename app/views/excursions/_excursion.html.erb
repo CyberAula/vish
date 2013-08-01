@@ -7,35 +7,36 @@
 <%= link_to(excursion) do %>
     <div class="img-box" id="excursion-<%=excursion.id%>"></div>
 <% end %>
-<script>
-  $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
-</script>
+  <script>
+    $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+  </script>
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="info">
 <!--Title -->
-    <h5 class="name">
+    <div class="name">
       <%= link_to excursion.title, excursion %>
-    </h5>
+    </div>
 <!--Autor -->
     <div class="author"> 
       <%= link_to excursion.author.name, excursion.author.subject %>
     </div>
-<!--____________________ -->
+    <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
-<!--like -->
+      <!--like -->
       <div class="like">    
         <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
         <%= link_like(excursion.post_activity)%>
       </div>
-<!--views -->
+      <!--views -->
       <div class="views"><%=excursion.visit_count.to_s%>
         <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23">
           <%#= image_tag("icons/eye.png",  :class=> "count" ) %> 
         </a>
       </div>
     </div>
+
   </div>
 </li>
 

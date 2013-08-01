@@ -25,7 +25,7 @@ class ExcursionsController < ApplicationController
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
 
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   include SocialStream::Controllers::Objects
   #include HomeHelper
 
@@ -119,6 +119,9 @@ class ExcursionsController < ApplicationController
     show! do |format|
       format.html {
         @evaluations = @excursion.averageEvaluation
+        @numberOfEvaluations = @excursion.numberOfEvaluations
+        @learningEvaluations = @excursion.averageLearningEvaluation
+        @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
         if @excursion.draft and (can? :edit, @excursion)
           redirect_to edit_excursion_path(@excursion)
         else
@@ -186,6 +189,18 @@ class ExcursionsController < ApplicationController
       @excursion_evaluation.send("answer_#{ind}=", params[("excursion_evaluation_#{ind}").to_sym])
     end
     @excursion_evaluation.save!
+    respond_to do |format|   
+      format.js {render :text => "Thank you", :status => 200}
+    end
+  end
+
+  def learning_evaluate
+    @excursion_learning_evaluation = ExcursionLearningEvaluation.new(:excursion => Excursion.find_by_id(params[:id]))
+    @excursion_learning_evaluation.ip = request.remote_ip
+    6.times do |ind|
+      @excursion_learning_evaluation.send("answer_#{ind}=", params[("excursion_evaluation_#{ind}").to_sym])
+    end
+    @excursion_learning_evaluation.save!
     respond_to do |format|   
       format.js {render :text => "Thank you", :status => 200}
     end
