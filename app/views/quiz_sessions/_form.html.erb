@@ -8,34 +8,7 @@
   </div>
 
   <div class="modal-body">
-
-    <!--TITULO-->
-    <legend>Quiz (verdadero / Falso)</legend>
-      <p>
-        a) Android es un ser vivo procedente del espacio</br>
-        c) Android es un sistema operativo</br>
-      </p>
-    <legend>Leyenda</legend>
-    <legend>Estadísticas</legend>
-    <canvas id="quiz_chart" width="400" height="400"></canvas>
-
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var canvas = $("#quiz_chart");
-        //var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quiz %>);
-        var quizParams = VISH.QuizCharts.getQuizParams(<%= raw QuizSession.last.quizJSON %>);
-        var quizType = quizParams.quizType;
-        var nAnswers = quizParams.nAnswers;
-        var answersList = <%= raw QuizSession.last.results.to_json %>;
-
-        var options = {
-          "first": true
-        }
-    
-      VISH.QuizCharts.drawQuizChart(canvas,quizType,nAnswers,answersList,options);
-      });
-    </script>
-
+    <!-- This body is replaced with statistics.js.erb every time the modal is called -->
   </div>
 
   <div class="modal-footer">
