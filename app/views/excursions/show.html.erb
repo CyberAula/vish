@@ -45,6 +45,26 @@
   triggerEvaluation = function(){
     $("#evaluation-button-id").trigger("click");
   };
+
+  //LEARNING EVALUATION
+  //Get the context of the canvas element we want to select
+  var learning_ctx = document.getElementById("evalLearningChart").getContext("2d");
+
+  var learning_data = {
+    labels : ["<%=t('evaluation.qlabel0')%>","<%=t('evaluation.qlabel1')%>","<%=t('evaluation.qlabel2')%>","<%=t('evaluation.qlabel3')%>","<%=t('evaluation.qlabel4')%>","<%=t('evaluation.qlabel5')%>"],
+    datasets : [
+      {
+        fillColor : "rgba(151,187,205,0.5)",
+        strokeColor : "rgba(151,187,205,1)",
+        pointColor : "rgba(151,187,205,1)",
+        pointStrokeColor : "#fff",
+        data : <%=@learningEvaluations%>
+      }
+    ]
+  };
+
+  var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
+
 <%end%>
 
 <%= render :partial => 'objects/show',
@@ -77,6 +97,7 @@
         <ul class="nav nav-tabs">      
           <li class="active"><a href="#tab1" data-toggle="tab"><%=t('comment.other')%></a></li>
           <li><a href="#tab2" data-toggle="tab"><%=t('evaluation.teaching')%></a></li>
+          <li><a href="#tab3" data-toggle="tab"><%=t('evaluation.learning')%></a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
@@ -91,12 +112,22 @@
                 <div class="btn-evalue">
                   <%= t('evaluation.contribute', :num => @numberOfEvaluations) %>
                   <!-- Button to trigger modal -->
-                  <a id="evaluation-button-id" href="#myModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+                  <a id="evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
                 </div>
                 <div class="excursion-eval-results">
-                  <canvas id="evalChart" width="800" height="500"></canvas>
+                  <canvas id="evalChart" width="600" height="600"></canvas>
                 </div>
-              </div>
+            </div>
+            <div class="tab-pane" id="tab3">              
+                <div class="btn-evalue">
+                  <%= t('evaluation.contribute', :num => @numberOfLearningEvaluations) %>
+                  <!-- Button to trigger modal -->
+                  <a id="learning_evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+                </div>
+                <div class="excursion-eval-results">
+                  <canvas id="evalLearningChart" width="600" height="600"></canvas>
+                </div>
+            </div>
         </div>
       </div>       
     </section>
@@ -104,6 +135,7 @@
 
   <!-- Modal -->
   <%= render :partial => "excursions/excursion_evaluate" %>
+  <%= render :partial => "excursions/excursion_learning_evaluate" %>
 
 <!--recomended-->
   <div class="show-right">

@@ -1,6 +1,6 @@
-          <div id="myModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div id="myTeachingModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <%= content_for :javascript do%>
-              $('input.star').rating({
+              $('#myTeachingModal input.star').rating({
                 focus: function(value, link){
                   var tip = $(this).siblings(".eval_tip");
                   tip[0].data = tip[0].data || tip.html();
@@ -13,7 +13,7 @@
               });
             <%end%>
             <%= javascript_tag do %>              
-              $(document).on("click",".evaluation_form_button",function() {
+              $(document).on("click","#myTeachingModal .evaluation_form_button",function() {
                 var is_ok = true;
                 //validate empty radio buttons
                 $(':radio').each(function() { // loop through each radio button
