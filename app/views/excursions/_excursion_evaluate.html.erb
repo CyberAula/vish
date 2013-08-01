@@ -1,0 +1,78 @@
+          <div id="myModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <%= content_for :javascript do%>
+              $('input.star').rating({
+                focus: function(value, link){
+                  var tip = $(this).siblings(".eval_tip");
+                  tip[0].data = tip[0].data || tip.html();
+                  tip.html(link.title || 'value: '+value);
+                },
+                blur: function(value, link){
+                  var tip = $(this).siblings(".eval_tip");
+                  $(tip).html(tip[0].data || '');
+                }
+              });
+            <%end%>
+            <%= javascript_tag do %>              
+              $(document).on("click",".evaluation_form_button",function() {
+                var is_ok = true;
+                //validate empty radio buttons
+                $(':radio').each(function() { // loop through each radio button
+                    nam = $(this).attr('name'); // get the name of its set
+                    if (!$(':radio[name="'+nam+'"]:checked').length) { 
+                        // see if any button in the set is checked
+                        alert('<%=t("evaluation.alert")%>');
+                        is_ok = false;
+                        return false; //equivalent to break each loop, not return the function!
+                    }
+                });
+
+                if(is_ok){
+                  //everything ok, send via Ajax
+                  $.ajax({
+                    type: "post",
+                    url: "/excursions/<%=@excursion.id%>/evaluate",
+                    dataType: "text",
+                    data: $("#myModal .evaluation_form").serialize(), // serializes the form's elements.
+                    success: function(data){
+                      $(".btn-modal-footer").html("<h3><%=t('evaluation.success')%></h3>");
+                      setTimeout(function(){$(".modal-header button").click();},1000);                      
+                    }
+                  });
+                }
+                else{
+                  return;
+                }
+               });   
+            <%end%>
+
+            <%= form_tag("/excursions/#{ @excursion.id }/evaluate", :class => 'evaluation_form') do %>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
+                </div>
+                <div class="modal-body evaluation_body">
+                  <% 6.times do |ind| %>
+                    <%scale = (ind==0 || ind==1) ? "a" : "b" %>
+                    <div class="evaluate">
+                      <p>
+                        <a><%= (ind+1).to_s %></a>
+                        <%= t('evaluation.phrase'+ind.to_s) %>
+                      </p>
+                      <div class="escale">
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_disagree_'+scale)%>" class="star" value="1" />
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.disagree_'+scale)%>" class="star" value="2"/>
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.neutral_'+scale)%>" class="star" value="3"/>
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.agree_'+scale)%>" class="star" value="4"/>
+                        <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_agree_'+scale)%>" class="star" value="5"/>
+                        
+                        <span class="eval_tip" style="margin:0 0 0 20px;"></span>
+                      </div>
+                    </div>
+                  <% end %>
+
+                </div>
+                <% end %>
+                <div class="evaluation_form_button_div btn-modal-footer">
+                  <button type="button" class="btn btn-primary evaluation_form_button"><%=t('save')%></button>
+                </div>            
+          </div>

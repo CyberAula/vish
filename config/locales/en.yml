@@ -114,7 +114,7 @@ en:
     name: "embed"
   evaluation:
     teaching: "Rating"
-    contribute: "Want to contribute?"
+    contribute: "%{num} people rated this excursion. Want to contribute?"
     evaluation: "evaluate it"
     experience: "Teaching Experience"
     phrase0: "Rate the quality of the content used in this excursion"
@@ -129,7 +129,7 @@ en:
     label3: "Engagement"
     label4: "Interdisciplinary"
     label5: "Use again"
-    alert: "Please fill in all five evaluation questions. Thank you."
+    alert: "Please fill in all evaluation questions. Thank you."
     strong_disagree_b: "Strongly disagree"
     disagree_b: "Disagree"
     neutral_b: "Neutral"

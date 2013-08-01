@@ -119,6 +119,7 @@ class ExcursionsController < ApplicationController
     show! do |format|
       format.html {
         @evaluations = @excursion.averageEvaluation
+        @numberOfEvaluations = @excursion.numberOfEvaluations
         if @excursion.draft and (can? :edit, @excursion)
           redirect_to edit_excursion_path(@excursion)
         else

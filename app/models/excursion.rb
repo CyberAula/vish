@@ -481,6 +481,9 @@ class Excursion < ActiveRecord::Base
     evaluations
   end
 
+  def numberOfEvaluations
+    ExcursionEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
+  end
 
   private
 
