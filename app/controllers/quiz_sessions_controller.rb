@@ -85,6 +85,11 @@ class QuizSessionsController < ApplicationController
         @quiz = @quiz_session.quizJSON
         render :show_results
       }
+      format.js {
+        @results = @results.to_json
+        @quiz = @quiz_session.quizJSON
+        render :statistics
+      }
     end
   end
 
