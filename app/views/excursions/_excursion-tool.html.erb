@@ -4,8 +4,10 @@
 		<i class="icon-code"></i> Embed
 	</button>
 	<div class="contentembed" style="display: none">
-	 	<textarea rows="1"></textarea>
-	 	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="copy to clipBoard"><i class="icon-copy"></i></button>
+  	<div class="input-append url-input">
+    	<input class="shortUrl" placeholder="embed" id="appendedInputButton" type="text">
+    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="copy to clipBoard"><i class="icon-copy"></i></button>
+    </div>
   </div>
 	<script>
 	  $(document).ready(function(){
@@ -22,12 +24,25 @@
 		<i class="icon-share"></i> Share
 	</button>
   <div class="contentShare" style="display: none">
-  	<textarea ></textarea>
-  	<button class="btn"><i class="icon-google-plus"></i></button>
-  	<button class="btn"><i class="icon-twitter"></i></button>
-  	<button class="btn"><i class="icon-facebook"></i></button>
-  	<button class="btn"><i class="icon-envelope"></i></button>
-  	<button class="btn"><i class="icon-user"></i></button>
+
+  	<div class="input-append url-input">
+    	<input class="shortUrl" placeholder="short url" id="appendedInputButton" type="text">
+    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="copy to clipBoard"><i class="icon-copy"></i></button>
+    </div>
+
+    <div class="input-append contact-input" style="display: none">
+    	<input class="shortUrl" placeholder="friend's name" id="appendedInputButton" type="text">
+    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
+    </div>
+
+  	<div class="btn-group">
+	  	<button class="btn"><i class="icon-google-plus"></i></button>
+	  	<button class="btn"><i class="icon-twitter"></i></button>
+	  	<button class="btn"><i class="icon-facebook"></i></button>
+	  	<button class="btn"><i class="icon-envelope"></i></button>
+	  	<button class="btn"><i class="icon-user"></i></button>
+  	</div>
+
   </div>
 	<script>
 	  $(document).ready(function(){
@@ -40,15 +55,67 @@
 	  });
 	</script>
 <!--clone-->
-	<button class="btn"><i class="icon-copy"></i> Clone</button>
-	<button class="btn"><i class="icon-download"></i> Scorm</button>
+	<button class="clone btn" data-placement='top' aria-hidden="true" data-original-title="Clone" href='#'><i class="icon-copy"></i> Clone</button>
+
+
+	<div class="contentclone" style="display: none">
+
+
+		<span class="icon-stack">
+			<i class="icon-circle  icon-stack-base"></i>
+			<i class="icon-info  icon-light"></i>
+		</span>
+		<p class="info">This will clone this excursion to your own repository</p>
+		<div class="actions-clone">
+			<a href="#" class="btn">cancel</a>
+			<a href="#" class="btn btn-primary">Save</a>
+		</div>
+  </div>
+
+	<script>
+	  $(document).ready(function(){
+	    $('.clone').popover({ 
+	      html : true,
+	      content: function() {
+	        return $('.contentclone').html();
+	      }
+	    });
+	  });
+	</script>
+
+
+
+	<button class="btn"><i class="icon-download"></i> Download</button>
 	<!--si es tuya la puedes eliminar o editar-->
 	<button class="btn"><i class="icon-edit"></i> Edit</button>
-	<button class="btn"><i class="icon-remove"></i> Delete</button>
+<!--remove-->
+	<button class="delete btn" data-placement='top' aria-hidden="true" data-original-title="Delete" href='#'><i class="icon-remove"></i> Delete</button>
+
+	<div class="contentdelete" style="display: none">
+		<i class="icon-remove-sign"></i>
+		<p class="delete">Delete excursion?</p>
+		<div class="actions-clone">
+			<a href="#" class="btn">cancel</a>
+			<a href="#" class="btn btn-primary">Delete</a>
+		</div>
+  </div>
+
+	<script>
+	  $(document).ready(function(){
+	    $('.delete').popover({ 
+	      html : true,
+	      content: function() {
+	        return $('.contentdelete').html();
+	      }
+	    });
+	  });
+	</script>
 	
 	<button class="btn"><i class="icon-star"></i> Favourite</button>
 	<button class="btn"><i class="icon-facetime-video"></i> my room</button>
-	<!--boton guardar en "categoria x"(proximamente)-->
+	<!--boton guardar en "categoria x"(proximamente)
+	<button class="btn"><i class="icon-plus"></i> add to categories</button>
+	-->
 </div>
 
 
