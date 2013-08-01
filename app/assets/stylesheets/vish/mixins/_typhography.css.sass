@@ -39,7 +39,27 @@
   .views:after
     color: $secondColor
  
-    
+@mixin tab_title
+  li
+    a
+      font-family: $firstFontFamily !important
+      font-size: 1.05em
+      color: $gray
+      span
+        color: $secondColor
+        font-family: $secondFontFamily  
+  li.active
+    a
+      font-family: $secondFontFamily !important
+      font-size: 1.3em
+      color: $gray
+      span
+        color: $secondColor
+
+@mixin page_footer
+  a
+    &:hover
+      text-decoration: none 
 
 //PLAIN TEXT
 // --------------------------------------------------

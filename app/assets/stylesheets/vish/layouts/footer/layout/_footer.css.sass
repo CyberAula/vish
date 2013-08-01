@@ -6,20 +6,25 @@ footer.container-fluid
   height: 38px
   width: 100%
   nav.footercontent
+    @include page_footer
     margin-left: -22%
-    margin-top: 6px
+ 
     ul
+      margin-top: 5px
+      margin-right: 0px
+      margin-left: 0px
+      margin-bottom: 0px
       padding: 0
       text-align: center
       li
         display: inline
-        padding: 0 2%
+        padding-left: 2%
+        padding-right: 2%
       li.social-img     
         img
           width: 30px
       li.dropup
         .dropdown-menu
-          margin-bottom: 20px
           border-radius: $baseBorderRadius
           min-width: 122px
           li
@@ -29,11 +34,10 @@ footer.container-fluid
                 color: $white
                 //align-self: center
 
-
           li.languaje
             display: block
             padding: 0
-            margin-bottom: 4px
+      
             &:last-child
               margin-bottom: 0
             img   
