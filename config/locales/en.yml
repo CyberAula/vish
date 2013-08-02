@@ -114,7 +114,10 @@ en:
     name: "embed"
   evaluation:
     teaching: "Teaching experience"
-    contribute: "%{num} people rated this excursion. Want to contribute?"
+    contribute:
+      zero: "Nobody has rated this excursion yet. Want to be the first?"
+      one: "1 person rated this excursion. Want to contribute?"
+      other: "%{count} people rated this excursion. Want to contribute?"
     evaluation: "evaluate it"
     experience: "Teaching Experience"
     phrase0: "Rate the quality of the content used in this excursion"

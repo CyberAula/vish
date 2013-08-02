@@ -1,6 +1,6 @@
-          <div id="myTeachingModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div id="myLearningModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <%= content_for :javascript do%>
-              $('#myTeachingModal input.star').rating({
+              $('#myLearningModal input.star').rating({
                 focus: function(value, link){
                   var tip = $(this).siblings(".eval_tip");
                   tip[0].data = tip[0].data || tip.html();
@@ -13,7 +13,7 @@
               });
             <%end%>
             <%= javascript_tag do %>              
-              $(document).on("click","#myTeachingModal .evaluation_form_button",function() {
+              $(document).on("click","#myLearningModal .evaluation_form_button",function() {
                 var is_ok = true;
                 //validate empty radio buttons
                 $(':radio').each(function() { // loop through each radio button
@@ -30,9 +30,9 @@
                   //everything ok, send via Ajax
                   $.ajax({
                     type: "post",
-                    url: "/excursions/<%=@excursion.id%>/evaluate",
+                    url: "/excursions/<%=@excursion.id%>/learning_evaluate",
                     dataType: "text",
-                    data: $("#myTeachingModal .evaluation_form").serialize(), // serializes the form's elements.
+                    data: $("#myLearningModal .evaluation_form").serialize(), // serializes the form's elements.
                     success: function(data){
                       $(".btn-modal-footer").html("<h3><%=t('evaluation.success')%></h3>");
                       setTimeout(function(){$(".modal-header button").click();},1000);                      
@@ -45,10 +45,10 @@
                });   
             <%end%>
 
-            <%= form_tag("/excursions/#{ @excursion.id }/evaluate", :class => 'evaluation_form') do %>
+            <%= form_tag("/excursions/#{ @excursion.id }/learning_evaluate", :class => 'evaluation_form') do %>
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                  <h3 id="myModalLabel"><%= t('evaluation.experience') %></h3>
+                  <h3 id="myLearningModalLabel"><%= t('evaluation.experience') %></h3>
                 </div>
                 <div class="modal-body evaluation_body">
                   <% 6.times do |ind| %>
@@ -56,7 +56,7 @@
                     <div class="evaluate">
                       <p>
                         <a><%= (ind+1).to_s %></a>
-                        <%= t('evaluation.phrase'+ind.to_s) %>
+                        <%= t('evaluation.question'+ind.to_s) %>
                       </p>
                       <div class="escale">
                         <input name="excursion_evaluation_<%= ind %>" type="radio" title="<%= t('evaluation.strong_disagree_'+scale)%>" class="star" value="1" />
