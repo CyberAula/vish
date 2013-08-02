@@ -117,7 +117,10 @@ es:
     name: "embed"
   evaluation:
     teaching: "Experiencia de enseñanza"
-    contribute: "¿quieres contribuir?"
+    contribute: 
+      zero: "Nadie ha evaluado esta excursión todavía. ¿Quieres ser el primero?"
+      one: "1 persona ha valorado esta excursión. ¿Quieres contribuir?"
+      other: "%{count} personas han valorado esta excursión. ¿Quieres contribuir?"
     experience: "Tu experiencia de profesor con esta excursión"
     evaluation: "evalúa"    
     phrase0: "Evalúa el contenido de esta excursión"
