@@ -1,0 +1,65 @@
+// TITLES
+// --------------------------------------------------
+
+@mixin main_title
+
+@mixin second_title
+
+@mixin box_title
+  font-family: $thirdFontFamily
+  font-size: 1.3em
+  word-wrap: break-word
+  text-decoration: none
+  cursor: pointer
+  a
+    color: $gray
+  a:hover
+    text-decoration: none
+    color: $firstColor
+            
+@mixin author
+  font-family: $firstFontFamily
+  font-size: 0.75em
+  .author
+    color: $black
+    text-decoration: none
+    cursor: pointer
+    a
+      word-wrap: break-word
+      &:hover
+        text-decoration: none
+  .author:before
+    color: $grayLight
+
+@mixin footer_box_info
+  font-family: $secondFontFamily !important
+  font-size: $baseFontSize
+  .views
+    color: $gray
+  .views:after
+    color: $secondColor
+ 
+@mixin tab_title
+  li
+    a
+      font-family: $firstFontFamily !important
+      font-size: 1.05em
+      color: $gray
+      span
+        color: $secondColor
+        font-family: $secondFontFamily  
+  li.active
+    a
+      font-family: $secondFontFamily !important
+      font-size: 1.3em
+      color: $gray
+      span
+        color: $secondColor
+
+@mixin page_footer
+  a
+    &:hover
+      text-decoration: none 
+
+//PLAIN TEXT
+// --------------------------------------------------

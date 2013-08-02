@@ -68,21 +68,15 @@
 @mixin header-tabbable
   clear: both
   margin-top: 10px
-  ul.nav
-    margin-bottom: 6px
-    li
-      margin-right: 10px
-      a
-        font-size: 15px
-        color: $grayLight
-        background-color: #D8D8D8
-        border: 1px solid #DDD
-        border-bottom-color: transparent
+  ul.nav,
+  ul.nav-tabs 
+    border-bottom: 1px solid $grayLight
+    @include tab_title
+    li      
+      a             
         cursor: default
         padding: 6px 30px 5px 30px
-        
         margin-top: 5px
-        @include border-top-radius(15px)
 
       h1
         line-height: 38px
@@ -90,9 +84,10 @@
         font-size: 33.5px
     li.active
       a
-        margin-bottom: -1px
-        color: $firstColor
-        background-color: $white
+        border-bottom: 3px solid $firstColor
+        border-left: none
+        border-right: none
+        border-top: none
         padding: 6px 30px 6px 30px
 
 @mixin header-tabbable-search
