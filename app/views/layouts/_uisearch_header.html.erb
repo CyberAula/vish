@@ -1,53 +1,43 @@
-  <%#= form_tag search_path, method: 'get', id: "search-box", class: "navbar-search pull-left search-mobile" do %>
-    <%#= text_field_tag :q, nil, autocomplete: :off, class: "search-query-mobile input-small icon_tool16-searcher", placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
-    <%# end %>
-    <%#= javascript_tag do %>
-  <!--
-    $(function() {
-    SocialStream.SearchHeader.show();
-  });
-  -->
-  <%# end %>
-<!--
-  
-  
-  <div class="search-nav hidden-phone hidden-tablet">
-    <%= form_tag search_path, method: 'get', class: "navbar-search pull-left" do %>
-    <%= text_field_tag :q, nil, autocomplete: :off, class: 'search-query input-small', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
-    <% end %>
-    <%= javascript_tag do %>
-    $(function() {
-    SocialStream.SearchHeader.show();
-  });
-  <% end %>
-  <div class="mat">
-    <%= render partial: 'layouts/loading' %>
 
-    <div class="query_too_short">
-      <%= t 'search.at_least', count: SocialStream::Search::MIN_QUERY %>
-    </div>
 
-    <div class="no_results">
-      <%= t 'search.nothing' %>
-    </div>
-
-    <div class="results">
-    </div>
-  </div>
-</div>
--->
-        
 <div class="box-search">
   <div id="sb-search" class="sb-search">
     <form>
-      <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
-      <input class="sb-search-submit" type="submit" value="">
-      <span class="sb-icon-search"><i class="icon-search"></i></span>
-    </form>
+
+
+      <%= form_tag search_path, method: 'get', class: "navbar-search pull-left" do %>
+      <%= text_field_tag :q, nil, autocomplete: :off, id: "search", class: 'search-query sb-search-input ', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
+      <% end %>
+      <%= javascript_tag do %>
+      $(function() {
+      SocialStream.SearchHeader.show();
+    });
+    <% end %>
+ <!--   <div class="mat">
+      <%= render partial: 'layouts/loading' %>
+
+      <div class="query_too_short">
+        <%= t 'search.at_least', count: SocialStream::Search::MIN_QUERY %>
+      </div>
+
+      <div class="no_results">
+        <%= t 'search.nothing' %>
+      </div>
+
+      <div class="results">
+      </div>
+    </div>
   </div>
+-->
+
+
+  <input class="sb-search-submit" type="submit" value="">
+  <span class="sb-icon-search"><i class="icon-search"></i></span>
+</form>
+</div>
 </div>
 
 
 <script>
-  new UISearch( document.getElementById( 'sb-search' ) );
+new UISearch( document.getElementById( 'sb-search' ) );
 </script>

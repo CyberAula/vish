@@ -1,4 +1,0 @@
-<!-- replace '.brand' -->
-  <%= render partial: 'layouts/basic_navegation' %>
-
-

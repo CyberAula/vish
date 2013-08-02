@@ -1,14 +1,16 @@
 <header class="navbar">
   <nav class="navbar-inner">
-    <div class="logo">
+    <div class="brand">
       <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => "logo"); %>
-      <h4>virtual science hub</h4>
+      <div class="vish-name">virtual science hub</div>
     </div>
     <!-- FIXME: search javascript functionality in 'layouts/search' -->
     <div class="navegation">
-      <%= render partial: 'layouts/browse_header' %>
-      <%= render partial: 'layouts/uisearch_header' %>
       <%= render partial: 'layouts/basic_navegation' %>
+      <%= render partial: 'layouts/uisearch_header' %>
+      <%#= render partial: 'layouts/browse_header' %>
+      
+      
     </div>
 
 
@@ -50,7 +52,7 @@
           </li>
         </ul>
 
-        <#% end %>
+        <% end %>
       </li>
       <li> 
         <%#= render partial: 'layouts/header_dropdown_menu' %>
