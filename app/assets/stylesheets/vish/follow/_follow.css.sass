@@ -27,44 +27,5 @@
       color: #777
       font-family: $firstFontFamily
   .add
-    clear: both
-    text-align: center
-    display: block
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    @include center-block()
-    color: $white
-
-    form
-      margin: 0px
-      input
-        height: 20px
-        border: 0px none 
-        width: 100px
-        display: block
-        background-color: $blue-1
-        @include border-radius($baseBorderRadius)
-        color: $white
-        @include center-block()
-
-
-    .following-button
-      @include center-block()
-      display: block
-      background-color: $green-vish
-      height: 20px
-      width: 100px
-      @include border-radius($baseBorderRadius)
-    .unfollow-button
-      form
-        margin: 0px
-        input
-          @include center-block()
-          height: 20px
-          border: 0px none 
-          width: 100px
-          display: block
-          background-color: $red-1
-          @include border-radius($baseBorderRadius)
-          color: $white
-
+    @include follow
 
