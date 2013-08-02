@@ -33,7 +33,6 @@
           input.shortUrl
             width: 134px
           .btn-group
-            
             display: block
             margin-top: -5px
             width: 170px
@@ -132,6 +131,15 @@
         @include center-block()
         text-align: center
         margin-top: 0px
+        background-color: #CFCFCF
+        border: none
+        border-bottom: 1px solid $grayLight
+        @include border-bottom-radius($baseBorderRadius)
+        -webkit-box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        a
+          padding-top: 3px
+
     section.activity
       margin-top: 20px
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -140,6 +148,11 @@
       @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
       display: block
       float: left
+      .tabbable
+        .tab-content
+          overflow: hidden
+
+
   .show-right
     @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: inline-block
