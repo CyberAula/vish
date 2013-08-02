@@ -56,12 +56,10 @@
           .actions-clone
             display: block
             margin-left: 49px
-
     .excursion_description
       display: inline-block
       float: left
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
       .toggler
         position: relative
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -69,58 +67,58 @@
         border-radius: $baseBorderRadius
         @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
         display: block
+        float: left
         h2
           padding-left: 20px
+          font-family: $secondFontFamily
+          color: $grayDark
         .author
           margin-left: 20px
+          display: block
+          float: left
           @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          img
-            @include border-radius(500px)
+          a
             display: block
             float: left
-          dd
+            @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            img
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-radius(500px)
+              margin-bottom: 20px
+          p
+            font-size: 1.2em
+            margin-left: 20px
+            margin-bottom: 5px
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
             float: left
-            clear: right
+            color: $gray
           .add
-            float: left
-            text-align: center
             display: block
-            clear: right
-            color: $white
-            form
-              margin: 0px
-              input
-                height: 20px
-                border: 0px none 
-                width: 100px
-                display: block
-                background-color: $blue-1
-                @include border-radius($baseBorderRadius)
-                color: $white
-
-            .following-button
-
-              display: block
-              background-color: $green-vish
-              height: 20px
-              width: 100px
-              @include border-radius($baseBorderRadius)
-            .unfollow-button
-              form
-                margin: 0px
-                input
-
-                  height: 20px
-                  border: 0px none 
-                  width: 100px
-                  display: block
-                  background-color: $red-1
-                  @include border-radius($baseBorderRadius)
-                  color: $white
-
-
-
+            float: left
+            padding-left: 20px
+            @include follow
+        .viewsAndConunt
+          margin-left: 32%
+          float: left
+          display: block
+          .like
+            margin-top: 5px 
+            float: right
+            width: auto
+            .count
+              font-size: 1.6em
+              display: inline-block
+            a
+              display: inline-block
+              .icon-star-empty, 
+              .icon-star
+                font-size: 1.8em
+          .views
+            font-size: 2em
+            span
+              font-size: 0.5em
+              color: $secondColor
         #effect
           position: relative
         .newClass
@@ -129,21 +127,11 @@
         .anotherNewClass
           height: auto
           overflow: auto
-
-
-
       #showMore
         @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
         @include center-block()
         text-align: center
-        margin-top: 10px
-
-
-
-
-
-
-
+        margin-top: 0px
     section.activity
       margin-top: 20px
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -159,9 +147,3 @@
     .recomended_excursion
       display: block
       float: right
-      
-
-
-
-
-

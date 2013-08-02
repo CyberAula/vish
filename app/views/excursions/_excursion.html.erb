@@ -30,10 +30,9 @@
         <%= link_like(excursion.post_activity)%>
       </div>
       <!--views -->
-      <div class="views"><%=excursion.visit_count.to_s%>
-        <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23">
-          <%#= image_tag("icons/eye.png",  :class=> "count" ) %> 
-        </a>
+      <div class="views">
+        <%=excursion.visit_count.to_s%>
+        <%=t('follow.views')%>
       </div>
     </div>
 

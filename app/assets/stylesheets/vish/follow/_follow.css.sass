@@ -27,5 +27,9 @@
       color: #777
       font-family: $firstFontFamily
   .add
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include center-block()
+    display: block
+    clear: both
     @include follow
 

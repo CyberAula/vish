@@ -7,18 +7,31 @@
   <div class="author">
     <%= link_to @excursion.author.subject do %>
     <%= image_tag @excursion.author.logo.url(:small) %>
-    <dd><%= truncate_name(@excursion.author.name, :length => 50) %></dd>
+    
     <% end %>
+    <p><%= truncate_name(@excursion.author.name, :length => 50) %></p>
+
     <div class="add">
       <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
     </div>
   </div>
+  <div class="viewsAndConunt">
+    
 
-  <div class="views"><%=@excursion.visit_count.to_s%><span><%=t('follow.views')%></span></div>
-  <div class="like">    
-    <div class="count"><%=@excursion.post_activity.likes.count.to_s%></div>
-    <%= link_like(@excursion.post_activity)%>
-  </div>
+    
+    <div class="views">
+      <%=@excursion.visit_count.to_s%> 
+      <span>
+        <%=t('follow.views')%>
+      </span>   
+    </div>
+
+
+    <div class="like">    
+      <div class="count"><%=@excursion.post_activity.likes.count.to_s%></div>
+      <%= link_like(@excursion.post_activity)%>
+    </div>
+  </div>  
   <div id="effect" class="newClass ui-corner-all">
     <%#= javascript_tag do %>
     <%#= modal_for(@excursion.author.subject) %>
@@ -27,7 +40,7 @@
     <%#end%>
     <%# end %>
     <dl class="dl-horizontal">
-      
+
       <% unless @excursion.contributors.blank? %>
       <!--contributors-->
       <dt><%= t('excursion.contributors.name').capitalize %></dt>
