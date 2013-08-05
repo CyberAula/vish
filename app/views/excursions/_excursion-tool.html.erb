@@ -74,10 +74,7 @@
 	
 
 <%end%>
-<div class="facebook_toolbar_excursion">
-        <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
-      </div>
-      
+
 <div class="btn-group">
 <!--embed-->
 	<button class='embed btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Embed" href='#'>
@@ -111,7 +108,9 @@
       <div class="twitter_toolbar_excursion">
         <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
       </div>
-      
+      <div class="facebook_toolbar_excursion">
+        <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+      </div>
       <div class="gplus_toolbar_excursion ">
         <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
       </div>
