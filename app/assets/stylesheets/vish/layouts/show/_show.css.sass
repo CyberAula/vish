@@ -25,17 +25,19 @@
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         margin-top: 5px
       .popover
-        width: 210px
+        width: 310px
         .embed
         .popover-content
           textarea
             width: 140px
           input.shortUrl
-            width: 134px
+            width: 210px
           .btn-group
             display: block
             margin-top: -5px
             width: 170px
+          .url-input
+            width: 100%
           .icon-stack
             display: inline-block
             font-size: 20px
@@ -55,6 +57,14 @@
           .actions-clone
             display: block
             margin-left: 49px
+          .social_toolbar_excursion
+            display: inline-block
+            height: 19px
+            .twitter_toolbar_excursion,
+            .facebook_toolbar_excursion,
+            .gplus_toolbar_excursion,
+            .email_toolbar_excursion
+              float: left            
     .excursion_description
       display: inline-block
       float: left

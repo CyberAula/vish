@@ -74,7 +74,10 @@
 	
 
 <%end%>
-
+<div class="facebook_toolbar_excursion">
+        <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+      </div>
+      
 <div class="btn-group">
 <!--embed-->
 	<button class='embed btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Embed" href='#'>
@@ -104,13 +107,18 @@
     	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
     </div>
 
-  	<div class="btn-group">
-	  	<button class="btn"><i class="icon-google-plus"></i></button>
-	  	<button class="btn"><i class="icon-twitter"></i></button>
-	  	<button class="btn"><i class="icon-facebook"></i></button>
-	  	<button class="btn"><i class="icon-envelope"></i></button>
-	  	<button class="btn"><i class="icon-user"></i></button>
-  	</div>
+    <div class="social_toolbar_excursion">
+      <div class="twitter_toolbar_excursion">
+        <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
+      </div>
+      
+      <div class="gplus_toolbar_excursion ">
+        <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+      </div>
+      <div class="email_toolbar_excursion">
+        <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+      </div>
+     </div>
 
   </div>
 

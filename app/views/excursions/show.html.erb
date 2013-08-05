@@ -1,4 +1,10 @@
+<%= content_for :title do %><%= @excursion.title %> - <%= @excursion.author.slug %><% end %>
+<%= content_for :description do %><%= @excursion.description %><% end %>
+<%= content_for :keywords do %><%= @excursion.tag_list %><% end %>
+<%= content_for :og_type do %>excursion<% end %>
 <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) ) %>
+<%= content_for :og_url do %><%= shortURL %><% end %>
+<%= content_for :og_image do %><%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
 
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "jquery.rating" %>
