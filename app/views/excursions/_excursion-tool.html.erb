@@ -1,35 +1,4 @@
 <%= content_for :javascript do %> 
-	$('.embed').popover({ 
-      html : true,
-      content: function() {
-        return $('.contentembed').html();
-      }
-    });
-
-    $('.embed').on('shown.bs.popover', function () {
-	  $('button#btn_copy_embed').zclip({
-	        path:'/assets/ZeroClipboard.swf',
-	        copy:function(){
-	        	return $('#appendedInputButton').text();
-	    	},
-	    	afterCopy: function(){}
-	    });
-
-	    $("#appendedInputButton").mouseup(function(e){
-	        // fixes safari/chrome problem
-	        e.preventDefault();
-	    })
-	    .focus(function(e){
-	        mytxt = $(this).text();
-	        $(this).select();
-	        
-	    })
-	    .click(function(e){
-	        mytxt = $(this).text();
-	        $(this).select();
-	    });
-	});
-
 	//to close the popovers
 	$(':not(#anything_not_present)').on('click', function (e) {
 	    $('.popover-link').each(function () {
@@ -42,6 +11,68 @@
 	    });
 	});
 
+	//EMBED POPOVER
+	$('.embed').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentembed').html();
+      }
+    });
+
+    //apply events when opening the embed popover
+    $('.embed').on('shown.bs.popover', function () {
+	  $('button#btn_copy_embed').zclip({
+	        path:'/assets/ZeroClipboard.swf',
+	        copy:function(){
+	        	return $('#textarea_for_iframe').text();
+	    	},
+	    	afterCopy: function(){}
+	    });
+
+	    $("#textarea_for_iframe").mouseup(function(e){
+	        // fixes safari/chrome problem
+	        e.preventDefault();
+	    }).focus(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    }).click(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    });
+
+	});
+
+	//SHARE POPOVER
+	$('.share').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentShare').html();
+      }
+    });
+
+     $('.share').on('shown.bs.popover', function () {
+	  $('button#btn_copy_share').zclip({
+	        path:'/assets/ZeroClipboard.swf',
+	        copy:function(){
+	        	return $('#input_with_shorturl').val();
+	    	},
+	    	afterCopy: function(){}
+	    });
+
+	    $("#input_with_shorturl").mouseup(function(e){
+	        // fixes safari/chrome problem
+	        e.preventDefault();
+	    }).focus(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    }).click(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    });
+
+	});
+	
+
 <%end%>
 
 <div class="btn-group">
@@ -51,28 +82,26 @@
 	</button>
 	<div class="contentembed" style="display: none">
   	<div class="input-append url-input">
-    	<textarea class="shortUrl" id="appendedInputButton" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
-    	<button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="copy to clipBoard"><i class="icon-copy"></i></button>
+    	<textarea class="shortUrl" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
+    	<button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
     </div>
   </div>
-	<script>
-	  $(document).ready(function(){
-	    
-	  });
-	</script>
+
 <!--share-->
-	<button class='Share btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Share" href='#'>
+	<button class='share btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Share" href='#'>
 		<i class="icon-share"></i> <%=t('excursion.actions.share')%>
 	</button>
+
   <div class="contentShare" style="display: none">
 
   	<div class="input-append url-input">
-    	<input class="shortUrl" placeholder="short url" id="appendedInputButton" type="text">
-    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="copy to clipBoard"><i class="icon-copy"></i></button>
+  		<%binding.pry%>
+    	<input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+    	<button class="btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
     </div>
 
     <div class="input-append contact-input" style="display: none">
-    	<input class="shortUrl" placeholder="friend's name" id="appendedInputButton" type="text">
+    	<input class="shortUrl" placeholder="friend's name" id="" type="text">
     	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
     </div>
 
@@ -85,16 +114,7 @@
   	</div>
 
   </div>
-	<script>
-	  $(document).ready(function(){
-	    $('.Share').popover({ 
-	      html : true,
-	      content: function() {
-	        return $('.contentShare').html();
-	      }
-	    });
-	  });
-	</script>
+
 <!--clone-->
 	<button class="clone btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Clone" href='#'><i class="icon-copy"></i> <%=t('excursion.actions.clone')%></button>
 

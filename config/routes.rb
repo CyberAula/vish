@@ -29,6 +29,9 @@ Vish::Application.routes.draw do
   #Download the user manual and count the number of downloads
   match 'user_manual' => 'help#download_user_manual'
 
+  # Add this at the end so other URLs take prio
+  match '/s/:id' => "shortener/shortened_urls#show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

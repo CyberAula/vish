@@ -49,6 +49,7 @@ en:
   contact:
     pending:
       other: "Following you"
+  copy_to_clip: "Copy to clipboard"
   devise:
     invalid_login: "Please enter your email and password to continue."
     tags: "tags"

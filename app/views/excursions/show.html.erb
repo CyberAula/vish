@@ -1,3 +1,5 @@
+<% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) ) %>
+
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "jquery.rating" %>
 <%=javascript_include_tag "jquery.zclip.min" %>
@@ -86,7 +88,7 @@
     </div>
 <!--tool-->
     <div class="excursion_tool">
-    <%= render :partial => 'excursions/excursion-tool' %>
+    <%= render :partial => 'excursions/excursion-tool', :locals => { :shortURL => shortURL} %>
     </div>
 <!--description-->
     <div class="excursion_description">

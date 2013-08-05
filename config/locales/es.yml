@@ -50,6 +50,7 @@ es:
   contact:
     pending:
       other: "Te siguen"
+  copy_to_clip: "Copiar al portapapeles"
   devise:
     email: "Email"
     name: "Nombre"
