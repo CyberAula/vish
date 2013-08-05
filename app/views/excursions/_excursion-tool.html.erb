@@ -1,27 +1,68 @@
+<%= content_for :javascript do %> 
+	$('.embed').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentembed').html();
+      }
+    });
+
+    $('.embed').on('shown.bs.popover', function () {
+	  $('button#btn_copy_embed').zclip({
+	        path:'/assets/ZeroClipboard.swf',
+	        copy:function(){
+	        	return $('#appendedInputButton').text();
+	    	},
+	    	afterCopy: function(){}
+	    });
+
+	    $("#appendedInputButton").mouseup(function(e){
+	        // fixes safari/chrome problem
+	        e.preventDefault();
+	    })
+	    .focus(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	        
+	    })
+	    .click(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    });
+	});
+
+	//to close the popovers
+	$(':not(#anything_not_present)').on('click', function (e) {
+	    $('.popover-link').each(function () {
+	        //the 'is' for buttons that trigger popups
+	        //the 'has' for icons and other elements within a button that triggers a popup
+	        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+	            $(this).popover('hide');
+	            return;
+	        }
+	    });
+	});
+
+<%end%>
+
 <div class="btn-group">
 <!--embed-->
-	<button class='embed btn' data-placement='top' aria-hidden="true" data-original-title="Embed" href='#'>
-		<i class="icon-code"></i> Embed
+	<button class='embed btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Embed" href='#'>
+		<i class="icon-code"></i> <%=t('excursion.actions.embed')%>
 	</button>
 	<div class="contentembed" style="display: none">
   	<div class="input-append url-input">
-    	<input class="shortUrl" placeholder="embed" id="appendedInputButton" type="text">
-    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="copy to clipBoard"><i class="icon-copy"></i></button>
+    	<textarea class="shortUrl" id="appendedInputButton" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
+    	<button class="btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="copy to clipBoard"><i class="icon-copy"></i></button>
     </div>
   </div>
 	<script>
 	  $(document).ready(function(){
-	    $('.embed').popover({ 
-	      html : true,
-	      content: function() {
-	        return $('.contentembed').html();
-	      }
-	    });
+	    
 	  });
 	</script>
 <!--share-->
-	<button class='Share btn' data-placement='top' aria-hidden="true" data-original-title="Share" href='#'>
-		<i class="icon-share"></i> Share
+	<button class='Share btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Share" href='#'>
+		<i class="icon-share"></i> <%=t('excursion.actions.share')%>
 	</button>
   <div class="contentShare" style="display: none">
 
@@ -55,7 +96,7 @@
 	  });
 	</script>
 <!--clone-->
-	<button class="clone btn" data-placement='top' aria-hidden="true" data-original-title="Clone" href='#'><i class="icon-copy"></i> Clone</button>
+	<button class="clone btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Clone" href='#'><i class="icon-copy"></i> <%=t('excursion.actions.clone')%></button>
 
 
 	<div class="contentclone" style="display: none">
@@ -65,10 +106,10 @@
 			<i class="icon-circle  icon-stack-base"></i>
 			<i class="icon-info  icon-light"></i>
 		</span>
-		<p class="info">This will clone this excursion to your own repository</p>
+		<p class="info"><%=t('excursion.clone.confirm')%></p>
 		<div class="actions-clone">
-			<a href="#" class="btn">cancel</a>
-			<a href="#" class="btn btn-primary">Save</a>
+			<a href="#" class="btn"><%=t('cancel')%></a>
+			<a href="#" class="btn btn-primary"><%=t('save')%></a>
 		</div>
   </div>
 
@@ -85,18 +126,18 @@
 
 
 
-	<button class="btn"><i class="icon-download"></i> Download</button>
+	<button class="btn"><i class="icon-download"></i> <%=t('excursion.actions.download')%></button>
 	<!--si es tuya la puedes eliminar o editar-->
-	<button class="btn"><i class="icon-edit"></i> Edit</button>
+	<button class="btn"><i class="icon-edit"></i> <%=t('excursion.actions.edit')%></button>
 <!--remove-->
-	<button class="delete btn" data-placement='top' aria-hidden="true" data-original-title="Delete" href='#'><i class="icon-remove"></i> Delete</button>
+	<button class="delete btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Delete" href='#'><i class="icon-remove"></i> <%=t('excursion.actions.delete')%>	</button></button>
 
 	<div class="contentdelete" style="display: none">
 		<i class="icon-remove-sign"></i>
-		<p class="delete">Delete excursion?</p>
+		<p class="delete"><%=t('excursion.confirm_delete')%></p>
 		<div class="actions-clone">
-			<a href="#" class="btn">cancel</a>
-			<a href="#" class="btn btn-primary">Delete</a>
+			<a href="#" class="btn"><%=t('cancel')%></a>
+			<a href="#" class="btn btn-primary"><%=t('excursion.actions.delete')%></a>
 		</div>
   </div>
 
@@ -111,8 +152,8 @@
 	  });
 	</script>
 	
-	<button class="btn"><i class="icon-star"></i> Favourite</button>
-	<button class="btn"><i class="icon-facetime-video"></i> my room</button>
+	<button class="btn"><i class="icon-star"></i> <%=t('excursion.actions.favorite')%></button>
+	<button class="btn"><i class="icon-facetime-video"></i> <%=t('excursion.actions.my_room')%></button>
 	<!--boton guardar en "categoria x"(proximamente)
 	<button class="btn"><i class="icon-plus"></i> add to categories</button>
 	-->
