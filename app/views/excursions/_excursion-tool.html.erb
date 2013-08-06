@@ -160,7 +160,7 @@
 		</div>
   </div>
 
-	<button class="btn"><i class="icon-download"></i> <%=t('excursion.actions.download')%></button>
+	<a class="btn" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a>
 	<!--si es tuya la puedes eliminar o editar-->
 	<button class="btn" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i> <%=t('excursion.actions.edit')%></button>
 
