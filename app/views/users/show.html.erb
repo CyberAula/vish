@@ -18,11 +18,17 @@
         <div class="briefing">
           <h2><%= @user.name %></h2>
           <% if !profile_subject_is_current? %>
-          <button>
-            <%= link_to new_message_path(receiver: profile_subject.slug) do %>
-            <%= image_tag("icons/chat/icon-message.png",  :class=> "avatar_img") %> <%= t 'mailboxer.send' %>
-            <% end %>
-          </button>
+            <section class="contact">
+              <div class="add">
+                <%= contact_button(profile_subject) %>
+              </div>
+              <button>
+                <%= link_to new_message_path(receiver: profile_subject.slug) do %>
+                  <i class="icon-envelope-alt"></i>
+                  <%= t 'mailboxer.send' %>
+                <% end %>
+              </button>
+            </section>
         <!-- <button>
           <%#= contact_to(profile_subject) %>
         </button> -->
