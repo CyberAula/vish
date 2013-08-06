@@ -11,8 +11,6 @@ es:
     new_user: "¡Bienvenido al Virtual Science Hub! Desde aquí podrás compartir y enviar mensajes, enlaces, imágenes, vídeos, etc"
     newmessage: "Esta es tu timeline. Comparte con tus seguidores tus opiniones, sube imágenes, enlaces, vídeos..."
     timeline: "timeline"
-    title:
-      other: "actividad"
     verb:
       make-friend:
         User:

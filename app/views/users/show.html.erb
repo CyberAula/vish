@@ -70,6 +70,11 @@
 
       <div class="update">
         <% if can?(:update, @profile) %>
+          <header>
+            <h4>
+              <%= t("profile.#{ @profile.subject.class.to_s.downcase }.info") %>
+            </h4>
+          </header>
           <%= form_for(current_subject, :url => [current_subject]) do |f| %>
           <span class="required">*</span>
           <%= f.label t('actor.name') %>
@@ -89,6 +94,12 @@
           <%= javascript_tag do %>
             $('#user_description').val("<%= current_subject.description %>");
           <% end %>
+          <header>
+            <h4>
+              <%= t('avatar.profile_change') %>
+            </h4>
+          </header>
+          <%= render partial: 'profiles/avatar_edit' %>
         <% end %>        
       </div>
 

@@ -10,8 +10,6 @@ nl:
     new_user: "Welkom bij ViSH! Post en deel uw gedachten, links, video’s met uw volgers."
     newmessage: "Dit is uw tijdlijn. U kunt afbeeldingen, video’s, links en meer uploaden en delen."
     timeline: "tijdlijn"
-    title:
-      other: "activiteit"
     verb:
        make-friend:
         User:

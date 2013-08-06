@@ -10,8 +10,6 @@ fr:
     new_user: "Bienvenue sur la plateforme ViSH ! Publiez et partagez vos points de vue, vos liens et vos vidéos avec vos abonnés."
     newmessage: "Ceci est votre ligne du temps. Vous pouvez publier et partager des photos, des vidéos, des liens et bien plus encore."
     timeline: "ligne du temps"
-    title:
-      other: "activité"
     verb:
        make-friend:
         User:

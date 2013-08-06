@@ -10,8 +10,6 @@ en:
     new_user: "Welcome to ViSH! Post and share your thoughts, links, videos with your followers."
     newmessage: "This is your timeline. You can upload and share images, videos, links and more."
     timeline: "timeline"
-    title:
-      other: "activity"
     verb:
        make-friend:
         User:

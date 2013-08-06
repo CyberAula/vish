@@ -10,8 +10,6 @@ hu:
     new_user: "Üdvözlünk a ViSH-nél! Posztold és oszd meg gondolataidat, linkjeidet, videóidat ismerőseiddel."
     newmessage: "Ez a te idővonalad. Feltölthetsz ide és megoszthatod képeidet, videóidat, linkjeidet és még sok minden mást."
     timeline: "idővonal"
-    title:
-      other: "tevékenység"
     verb:
        make-friend:
         User:
