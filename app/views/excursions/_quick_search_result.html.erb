@@ -1,1 +1,14 @@
-<div>Hola Juancar</div>
+<div>
+  <div style="width:50px;">
+    <%= link_to(excursion) do %>
+      <%= excursion_thumb_for(excursion) %>
+    <% end %>
+  </div>
+
+  <div class="name">
+    <%= link_to excursion.title, excursion %>
+  </div>
+  <div class="author"> 
+    <%= link_to excursion.author.name, excursion.author.subject %>
+  </div>
+</div>
