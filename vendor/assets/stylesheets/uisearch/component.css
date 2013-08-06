@@ -1,36 +1,5 @@
 
 
 
-.sb-search-input::-webkit-input-placeholder {
-	color: #efb480;
-}
 
-.sb-search-input:-moz-placeholder {
-	color: #efb480;
-}
 
-.sb-search-input::-moz-placeholder {
-	color: #efb480;
-}
-
-.sb-search-input:-ms-input-placeholder {
-	color: #efb480;
-}
-
-/* Open state */
-.sb-search.sb-search-open,
-.no-js .sb-search {
-	width: 100%;
-}
-
-.sb-search.sb-search-open .sb-icon-search,
-.no-js .sb-search .sb-icon-search {
-	background: #e90055;
-	color: #fff;
-	z-index: 11;
-}
-
-.sb-search.sb-search-open .sb-search-submit,
-.no-js .sb-search .sb-search-submit {
-	z-index: 90;
-}

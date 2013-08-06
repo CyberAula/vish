@@ -14,29 +14,29 @@ module VishActivitiesHelper
     params = Array.new
     if !user_signed_in?
       params << if options[:size] == :small
-                  link_to(raw("<i class='icon-star-empty '></i> "), :class => "")
+                  raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
                 else
-                  link_to(raw("<i class='icon-star-empty '></i> "), :class => "")
+                  raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
                 end
       params << new_user_session_path
-      params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)}
+      params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)+ " " + options[:class].to_s}
     else
       if (object.liked_by?(current_subject))
         params << if options[:size] == :small
-                    link_to(raw("<i class='icon-star '></i> "), :class => "")
+                    raw("<i class='icon-star '></i> ") + options[:text].to_s
                   else
-                    link_to(raw("<i class='icon-star '></i> "), :class => "")
+                    raw("<i class='icon-star '></i> ") + options[:text].to_s
                   end
         params << [object, :like]
-        params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object),:method => :delete, :remote => true}
+        params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)+ " " + options[:class].to_s,:method => :delete, :remote => true}
       else
         params << if options[:size] == :small
-                    link_to(raw("<i class='icon-star-empty '></i> "), :class => "")
+                    raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
                   else
-                    link_to(raw("<i class='icon-star-empty '></i> "), :class => "")
+                    raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
                   end
         params << [object, :like]
-        params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object),:method => :post, :remote => true}
+        params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object) + " " + options[:class].to_s,:method => :post, :remote => true}
       end
     end
   end

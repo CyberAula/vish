@@ -20,6 +20,8 @@ Vish::Application.routes.draw do
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
 
+  match 'excursions/:id/clone' => 'excursions#clone'
+
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
   match '/excursions/:id/learning_evaluate' => 'excursions#learning_evaluate'
 

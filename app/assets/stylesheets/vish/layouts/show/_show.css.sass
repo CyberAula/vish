@@ -24,12 +24,24 @@
       .btn-group
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         margin-top: 5px
+      .share
+        .popover
+          width: 310px
+      .embed
+        .popover
+          .arrow
+            left: 30%
+      .clone
+        .popover
+          width: 220px
+      .delete
+        .popover
+          width: 220px
       .popover
-        width: 310px
-        .embed
         .popover-content
           textarea
-            width: 140px
+            width: 310px
+            height: 100px
           input.shortUrl
             width: 210px
           .btn-group
@@ -38,6 +50,8 @@
             width: 170px
           .url-input
             width: 100%
+            .copy_btn
+              margin-left: 10px
           .icon-stack
             display: inline-block
             font-size: 20px
