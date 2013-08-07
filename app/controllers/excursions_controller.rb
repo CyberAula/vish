@@ -212,8 +212,12 @@ class ExcursionsController < ApplicationController
 
   def last_slide
     excursions = []
-    current_subject.excursion_suggestions(20).each do |ex|
-      excursions.push ex.reduced_json(self)
+    if user_signed_in?
+      current_subject.excursion_suggestions(20).each do |ex|
+        excursions.push ex.reduced_json(self)
+      end
+    else
+      Excursion.joins(:activity_object).order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(20)
     end
     respond_to do |format|
       format.json { render :json => excursions.sample(6) }
