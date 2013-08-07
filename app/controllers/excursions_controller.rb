@@ -88,7 +88,7 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.save!
-    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
+    render :json => { :url => (@excursion.draft ? profile_path : excursion_path(resource)) }
   end
 
   def update
@@ -100,7 +100,7 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.update_attributes!(params[:excursion])
-    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
+    render :json => { :url => (@excursion.draft ? profile_path : excursion_path(resource)) }
   end
 
   def destroy
