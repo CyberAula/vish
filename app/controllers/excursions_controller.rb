@@ -88,7 +88,7 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.save!
-    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
+    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)) }
   end
 
   def update
@@ -100,12 +100,12 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.update_attributes!(params[:excursion])
-    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
+    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)) }
   end
 
   def destroy
     destroy! do |format|
-      format.all { redirect_to home_path }
+      format.all { redirect_to excursions_path }
     end
   end
 
@@ -212,8 +212,12 @@ class ExcursionsController < ApplicationController
 
   def last_slide
     excursions = []
-    current_subject.excursion_suggestions(20).each do |ex|
-      excursions.push ex.reduced_json(self)
+    if user_signed_in?
+      current_subject.excursion_suggestions(20).each do |ex|
+        excursions.push ex.reduced_json(self)
+      end
+    else
+      Excursion.joins(:activity_object).order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(20)
     end
     respond_to do |format|
       format.json { render :json => excursions.sample(6) }

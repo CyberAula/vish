@@ -1,40 +1,68 @@
-<section id="search" class="sub-content-full">
+<section id="search" class="sub-content-full cbp-spmenu-push">
   <%= render partial: 'search/toolbar-search' %>
 
-<div class="search">
-  <div class="tabbable">
+  <div class="search">
+    <div class="tabbable">
 
-    <ul class="nav nav-tabs">
-      <li><h1>search</h1></li>
-      <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
-      <li><a href="#tab2" data-toggle="tab">excursions</a></li>
-      <li><a href="#tab3" data-toggle="tab">users</a></li>
-      <li><a href="#tab4" data-toggle="tab">resources</a></li>
-      <li><a href="#tab5" data-toggle="tab">activity</a></li>
-    </ul>
-    <input type="text" placeholder="search.placeholder"></input>
-
-    <div class="tab-content">
-      <%#= render partial: 'layouts/loading' %>
-      <div class="tab-pane active" id="tab1 ">
-        <div id="search-all">
-          <ul>  
-            <% 10.times do %>
+      <ul class="nav nav-tabs">
+        <li><h1>search</h1></li>
+        <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
+        <li><a href="#tab2" data-toggle="tab">excursions</a></li>
+        <li><a href="#tab3" data-toggle="tab">users</a></li>
+        <li><a href="#tab4" data-toggle="tab">resources</a></li>
+        <li><a href="#tab5" data-toggle="tab">activity</a></li>
+      </ul>
+      <input type="text" placeholder="search.placeholder"></input>
+      <button id="showLeft">Show/Hide Left Slide Menu</button>
+      <div class="tab-content">
+        <%#= render partial: 'layouts/loading' %>
+        <div class="tab-pane active" id="tab1 ">
+          <div id="search-all">
+            <ul>  
+              <% 10.times do %>
               <%= render partial: 'events/event' %>
-            <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab2">
+          <ul>  
+            <%= render partial: 'repositories/resources' %>
           </ul>
         </div>
       </div>
-
-      <div class="tab-pane" id="tab2">
-        <ul>  
-          <%= render partial: 'repositories/resources' %>
-        </ul>
-      </div>
     </div>
+
+    <%= javascript_tag do %>
+    SocialStream.Repository.show();
+    <% end %>
   </div>
 
-  <%= javascript_tag do %>
-    SocialStream.Repository.show();
-  <% end %>
-</div>
+
+
+
+
+  <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+  <script src="js/classie.js"></script>
+  <script>
+    var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+
+    body = document.body;
+
+    showLeft.onclick = function() {
+      classie.toggle( this, 'active' );
+      classie.toggle( menuLeft, 'cbp-spmenu-open' );
+      disableOther( 'showLeft' );
+    };
+
+
+    function disableOther( button ) {
+      if( button !== 'showLeft' ) {
+        classie.toggle( showLeft, 'disabled' );
+      }
+
+    }
+  </script>
+</section>
+

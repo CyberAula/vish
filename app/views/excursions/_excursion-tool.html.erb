@@ -97,8 +97,11 @@
 
 <%end%>
 
+<% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
+
 <div class="btn-group">
-<!--embed-->
+  <% unless editingToolbar %>
+    <!--embed-->
 	<button class='embed btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Embed" href='#'>
 		<i class="icon-code"></i> <%=t('excursion.actions.embed')%>
 	</button>
@@ -114,36 +117,36 @@
 		<i class="icon-share"></i> <%=t('excursion.actions.share')%>
 	</button>
 
-  <div class="contentShare" style="display: none">
+	  <div class="contentShare" style="display: none">
 
-  	<div class="input-append url-input">
-    	<input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-    	<button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
-    </div>
+	  	<div class="input-append url-input">
+	    	<input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+	    	<button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
+	    </div>
 
-    <div class="input-append contact-input" style="display: none">
-    	<input class="shortUrl" placeholder="friend's name" id="" type="text">
-    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
-    </div>
+	    <div class="input-append contact-input" style="display: none">
+	    	<input class="shortUrl" placeholder="friend's name" id="" type="text">
+	    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
+	    </div>
 
-    <div class="social_toolbar_excursion">
-      <div class="twitter_toolbar_excursion">
-        <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
-      </div>
-      <div class="facebook_toolbar_excursion">
-        <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
-      </div>
-      <div class="gplus_toolbar_excursion ">
-        <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
-      </div>
-      <div class="email_toolbar_excursion">
-        <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-      </div>
-     </div>
+	    <div class="social_toolbar_excursion">
+	      <div class="twitter_toolbar_excursion">
+	        <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
+	      </div>
+	      <div class="facebook_toolbar_excursion">
+	        <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+	      </div>
+	      <div class="gplus_toolbar_excursion ">
+	        <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+	      </div>
+	      <div class="email_toolbar_excursion">
+	        <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+	      </div>
+	     </div>
 
-  </div>
+	  </div>
 
-<!--clone-->
+    <!--clone-->
 	<button class="clone btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Clone"><i class="icon-copy"></i> <%=t('excursion.actions.clone')%></button>
 
 
@@ -161,12 +164,17 @@
   </div>
 
 	<a class="btn" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a>
+	<% if user_signed_in? and (can? :update, @excursion) %>
 	<!--si es tuya la puedes eliminar o editar-->
 	<button class="btn" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i> <%=t('excursion.actions.edit')%></button>
+	<%end%>
 
+  <%end%>
 
-<!--remove-->
+  <% if user_signed_in? and can?(:destroy, @excursion) %>
+	<!--remove-->
 	<button class="delete btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Delete"><i class="icon-remove"></i> <%=t('excursion.actions.delete')%></button>
+  <%end%>
 
 	<div class="contentdelete" style="display: none">
 		<i class="icon-remove-sign"></i>
@@ -178,11 +186,13 @@
 		</div>
   </div>
 	
+	<% unless editingToolbar %>
 	<%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>
 	<button class="btn"><i class="icon-facetime-video"></i> <%=t('excursion.actions.my_room')%></button>
 	<!--boton guardar en "categoria x"(proximamente)
 	<button class="btn"><i class="icon-plus"></i> add to categories</button>
 	-->
+	<%end%>
 </div>
 
 

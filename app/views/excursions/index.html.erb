@@ -1,5 +1,5 @@
 <section id="excursions">
-  <%= render partial: 'excursions/excursions' %>
+  <%= render partial: 'excursions/excursions', :locals => { :scope => :net } %>
 </section>
 <!--
 <section id="excursions">
@@ -13,11 +13,11 @@
     <div class="tab-content">
         
       <div class="tab-pane active" id="tab1">
-        <%#= render partial: 'excursions/excursions' %>
+        <%#= render partial: 'excursions/excursions', :locals => { :scope => :net } %>
       </div>
 
       <div class="tab-pane" id="tab2">
-        <%#= render partial: 'excursions/excursions' %>
+        <%#= render partial: 'excursions/excursions', :locals => { :scope => :net } %>
       </div>
 
       <div class="tab-pane" id="tab3">
