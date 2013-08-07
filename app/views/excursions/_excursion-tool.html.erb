@@ -97,7 +97,10 @@
 
 <%end%>
 
+<% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
+
 <div class="btn-group">
+	<% unless editingToolbar %>
 <!--embed-->
 	<button class='embed btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Embed" href='#'>
 		<i class="icon-code"></i> <%=t('excursion.actions.embed')%>
@@ -163,7 +166,7 @@
 	<a class="btn" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a>
 	<!--si es tuya la puedes eliminar o editar-->
 	<button class="btn" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i> <%=t('excursion.actions.edit')%></button>
-
+	<%end%>
 
 <!--remove-->
 	<button class="delete btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Delete"><i class="icon-remove"></i> <%=t('excursion.actions.delete')%></button>
@@ -178,11 +181,13 @@
 		</div>
   </div>
 	
+	<% unless editingToolbar %>
 	<%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>
 	<button class="btn"><i class="icon-facetime-video"></i> <%=t('excursion.actions.my_room')%></button>
 	<!--boton guardar en "categoria x"(proximamente)
 	<button class="btn"><i class="icon-plus"></i> add to categories</button>
 	-->
+	<%end%>
 </div>
 
 
