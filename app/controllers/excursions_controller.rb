@@ -105,7 +105,7 @@ class ExcursionsController < ApplicationController
 
   def destroy
     destroy! do |format|
-      format.all { redirect_to home_path }
+      format.all { redirect_to excursions_path }
     end
   end
 
