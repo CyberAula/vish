@@ -14,16 +14,35 @@ Vish::Application.routes.draw do
   match 'legal_notice' => 'legal_notice#index'
   #get 'excursions' => 'excursions#index', :as => :home
   
+  # Match the filter before the individual resources
+  match 'excursions/search' => 'excursions#search'
+  match 'excursions/recommended' => 'excursions#recommended'
+
   #resources :excursions
   match 'excursions/last_slide' => 'excursions#last_slide'
 
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
 
+  match '/apis/iframe_api' => 'excursions#iframe_api'
+
+  match 'excursions/preview' => 'excursions#preview'
+
+
   match 'excursions/:id/clone' => 'excursions#clone'
 
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
   match '/excursions/:id/learning_evaluate' => 'excursions#learning_evaluate'
+
+  match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
+
+
+  #Download JSON
+  match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
+  match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
+
+  match 'lre/search' => 'lre#search_lre'
+
 
   #PDF to Excursion
   resources :pdfexes
