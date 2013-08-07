@@ -12,7 +12,11 @@
     <p><%= truncate_name(@excursion.author.name, :length => 50) %></p>
 
     <div class="add">
-      <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
+      <% if user_signed_in?%>
+        <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
+      <%else%>
+        <%= contact_button(@excursion.author) %>
+      <%end%>
     </div>
   </div>
   <div class="viewsAndConunt">
