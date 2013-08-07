@@ -1,0 +1,11 @@
+<!-- replace_contents '.action' -->
+<%= link_to(raw("<i class='icon-remove'></i> "), 
+  conversation_path(conversation, :location => @box,
+    :box => @box,
+    :page => params[:page]),
+  :alt => t('mailboxer.delete'), 
+  :title => t('mailboxer.delete'),
+  :confirm => t('mailboxer.delete_confirm',
+    :object => conversation.subject),
+  :method => :delete,
+  :remote => true) %>
