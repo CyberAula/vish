@@ -1,61 +1,20 @@
-<header class="header navbar-fixed-top">
-  <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => "logo"); %>
-
-  <h4>virtual science hub</h4>
-
-
-  <nav class="browse">
-    <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        Browse
-        <b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-        <li><a tabindex="-1" href="#">Popular</a></li>
-        <li class="divider"></li>
-        <li><a tabindex="-1" href="#">Excursions</a></li>
-        <li><a tabindex="-1" href="#">Categories</a></li>
-        <li><a tabindex="-1" href="#">Events</a></li>
-        <li><a tabindex="-1" href="#">Resources</a></li>
-      </ul>
-    </li>
-  </nav>
-
-  <%= form_tag search_path, method: 'get', id: "search-box", class: "navbar-search pull-left search-mobile" do %>
-        <%= text_field_tag :q, nil, autocomplete: :off, class: "search-query-mobile input-small icon_tool16-searcher", placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
-      <% end %>
-      <%= javascript_tag do %>
-        $(function() {
-          SocialStream.SearchHeader.show();
-        });
-      <% end %>
-
-  
-    
-  <div class="search-nav hidden-phone hidden-tablet">
-    <%= form_tag search_path, method: 'get', class: "navbar-search pull-left" do %>
-      <%= text_field_tag :q, nil, autocomplete: :off, class: 'search-query input-small', placeholder: t('search.name'), "data-min_query" => SocialStream::Search::MIN_QUERY %>
-    <% end %>
-    <%= javascript_tag do %>
-      $(function() {
-        SocialStream.SearchHeader.show();
-      });
-    <% end %>
-    <div class="mat">
-      <%= render partial: 'layouts/loading' %>
-
-      <div class="query_too_short">
-        <%= t 'search.at_least', count: SocialStream::Search::MIN_QUERY %>
-      </div>
-
-      <div class="no_results">
-        <%= t 'search.nothing' %>
-      </div>
-
-      <div class="results">
-      </div>
+<header class="navbar">
+  <nav class="navbar-inner">
+    <div class="brand">
+      <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => "logo"); %>
+      <div class="vish-name">virtual science hub</div>
     </div>
-  </div>
+    <!-- FIXME: search javascript functionality in 'layouts/search' -->
+    <div class="navegation">
+      
+      <%= render partial: 'layouts/uisearch_header' %>
+      <%= render partial: 'layouts/browse_header' %>
+      
+      
+    </div>
+
+
+   
 
   
   <div class="login dropdown">
@@ -67,7 +26,10 @@
       <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
         <%= f.email_field :email, :id => "username" %>
         <%= f.password_field :password, :id => "password"  %>
-        <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>    
+        <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+        <label class="checkbox">
+          <input type="checkbox"> Remember me
+        </label>    
       <% end %>
       <%= javascript_tag do %>
         $(function() {
@@ -86,4 +48,6 @@
     Sign up
   </a>
 
+
+</nav>
 </header>
