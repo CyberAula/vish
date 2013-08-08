@@ -8,17 +8,17 @@
     <div class="navegation">
       <%= render partial: 'layouts/basic_navegation' %>
       <%= render partial: 'layouts/uisearch_header' %>
-      <%= render partial: 'layouts/browse_header' %>
+      <%#= render partial: 'layouts/browse_header' %>
       
       
     </div>
 
 
-    <ul class="nav user-tool">
+    <ul class="nav pull-right">
       <li>
         <div class="btn-group">
           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="icon-plus"></i>
+            +
           </a>
           <ul class="dropdown-menu">
             <!-- dropdown menu links -->
@@ -28,17 +28,16 @@
           </ul>
         </div>  
       </li>
-      <li class ="user-settings">
+      <li>
       <%= link_to current_subject do %>
 
-        <a data-toggle="dropdown" href="#" class="logo-small">
+        <a data-toggle="dropdown" href="#">
           <%= image_tag current_subject.logo.url(:small) %>
           <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %></span>
         </a>
         <ul class="dropdown-menu">
           <!-- dropdown menu links -->
           <li class="settings-menu">
-            <i class="icon-user"></i>
             <%= link_to t('profile.one'), current_subject %>
           </li>
           <li class="settings-menu">
