@@ -33,11 +33,11 @@
 
 
 .conversations
+  .unread
+    opacity: 1 !important
   .conversation
     @include opacity (50)
 
-.unread
-  @include opacity (100)
 
 .conversation_full
   h3
@@ -60,6 +60,7 @@
       color: $gray
     .cleditorMain
       @include cleditorMain-box
+      height: 150px !important
     .actions
       @mixin full-btn-primary
 
@@ -111,7 +112,32 @@
 
 #conversation
   @include percent-btn-primary
+  .cleditorMain
+    width: 150px !important
 
 #content
   .notification
     color: $gray
+
+//messages profile
+
+#new_message_profile
+  .select2-container
+    ul
+      margin: 0 0 9px 1px
+      li
+        list-style: none
+        input
+          text-decoration: none !important
+          max-width: 389px
+
+  .cleditorMain
+    width: 389px !important
+    float: left
+    iframe
+      height: 50px  !important
+  .btn 
+    margin-right: 28px !important
+    width: 28% !important
+
+  

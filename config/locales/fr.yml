@@ -166,6 +166,8 @@ fr:
     go: "Accéder au lien"
   translate:
     change: "Modifier la langue"
+  mailboxer:
+    new_message_for: "Nouveau message pour"
   message:
     send: "Envoyer un message"
     new: "Nouveau message"

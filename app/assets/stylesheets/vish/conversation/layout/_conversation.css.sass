@@ -42,10 +42,12 @@
         .action
           float: right
           display: inline-block
+          a:link
+            color: grey
           a:hover
-            color: red
-            .icon-remove
-              color: grey 
+            color: #e90055
+            text-decoration: none
+
        
 
   form.new_message
@@ -113,6 +115,8 @@
         .cleditorToolbar
           @include border-radius($baseBorderRadius)
 
+
+
 #conversations,
 #conversation,
 #new_message
@@ -151,3 +155,5 @@
 
     .notification
       margin-bottom: 20px
+
+

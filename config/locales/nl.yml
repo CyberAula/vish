@@ -166,6 +166,8 @@ nl:
     go: "Ga naar link"
   translate:
     change: "Wijzig taal"
+  mailboxer:
+    new_message_for: "Nieuwe boodschap voor"
   message:
     send: "Verzend bericht"
     new: "Nieuw bericht"

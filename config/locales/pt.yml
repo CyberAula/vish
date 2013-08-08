@@ -55,6 +55,8 @@ pt:
     error: "%{lang}"
   translate:
     change: ""
+  mailboxer:
+    new_message_for: "Nova mensagem para"
   message:
     new: ""
   more: "mais"
