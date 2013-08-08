@@ -38,18 +38,29 @@
         <ul class="dropdown-menu">
           <!-- dropdown menu links -->
           <li class="settings-menu">
-            <i class="icon-user"></i>
-            <%= link_to t('profile.one'), current_subject %>
+            <%= link_to current_subject do %>
+              <i class="icon-user"></i>
+              <%= t('profile.one') %>
+            <% end %>
           </li>
           <li class="settings-menu">
-            <%= link_to t('dropdown.settings'), settings_path, :id => "btn_menu_settings" %>
+            <%= link_to settings_path do %>
+              <i class="icon-cog"></i>
+              <%= t('dropdown.settings') %>
+            <% end %>
           </li>
           <li class="settings-menu">
-            <%= link_to t('quiz_sessions'), quiz_sessions_path %>
+            <%= link_to quiz_sessions_path do %>
+              <i class="icon-puzzle-piece"></i>
+              <%= t('quiz_sessions') %>
+            <% end %>
           </li>
           <li class="divider"></li>
           <li>
-            <%= link_to t('sign_out'), destroy_user_session_path, :method => :delete  %>
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+              <i class="icon-signout"></i>
+              <%= t('sign_out') %>
+            <% end %>
           </li>
         </ul>
 
