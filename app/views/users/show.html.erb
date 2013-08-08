@@ -77,7 +77,7 @@
           </header>
           <%= form_for(current_subject, :url => [current_subject]) do |f| %>
           <span class="required">*</span>
-          <%= f.label t('actor.name') %>
+          <legend><%= f.label t('actor.name') %></legend>
           <%= f.text_field :name, :class => "required" %>
           
           <%= f.label :description, t("profile.#{ current_subject.class.to_s.downcase }.about") %>
