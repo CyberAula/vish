@@ -10,17 +10,18 @@
         <li><a href="#tab2" data-toggle="tab">excursions</a></li>
         <li><a href="#tab3" data-toggle="tab">users</a></li>
         <li><a href="#tab4" data-toggle="tab">resources</a></li>
-        <li><a href="#tab5" data-toggle="tab">activity</a></li>
       </ul>
-      <input type="text" placeholder="search.placeholder"></input>
+      <input type="text" placeholder="<%=t('search.placeholder')%>"></input>
       <button id="showLeft">advanced options </button>
       <div class="tab-content">
         <%#= render partial: 'layouts/loading' %>
         <div class="tab-pane active" id="tab1 ">
           <div id="search-all">
             <ul>  
-              <% 10.times do %>
-              <%= render partial: 'events/event' %>
+              <% @search_result.each do |r| %>
+                <%binding.pry%>
+                <%= render partial: "#{ r.class.to_s.tableize }/search_result",
+                           locals:  { r.class.to_s.underscore.to_sym => r }  %>
               <% end %>
             </ul>
           </div>
@@ -28,7 +29,7 @@
 
         <div class="tab-pane" id="tab2">
           <ul>  
-            <%= render partial: 'repositories/resources' %>
+            <%#= render partial: 'repositories/resources' %>
           </ul>
         </div>
       </div>

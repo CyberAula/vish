@@ -1,0 +1,6 @@
+<%if user_signed_in? %>
+	<%= render current_subject.contact_to(user) %>
+<%else%>
+	<%= render contact_to(user) %>
+<%end%>
+
