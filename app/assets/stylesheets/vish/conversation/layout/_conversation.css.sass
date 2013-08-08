@@ -11,6 +11,8 @@
         float: left
         .avatar
           display: inline
+          img
+            border-radius: 50px
         header
           width: 103px
           display: inline-block
@@ -29,7 +31,7 @@
           font-size: 14px
           display: inline
           a
-            width: 89%
+            width: 89
 
         .briefing
           width: 85%
@@ -40,6 +42,12 @@
         .action
           float: right
           display: inline-block
+          a:link
+            color: grey
+          a:hover
+            color: #e90055
+            text-decoration: none
+
        
 
   form.new_message
@@ -107,6 +115,8 @@
         .cleditorToolbar
           @include border-radius($baseBorderRadius)
 
+
+
 #conversations,
 #conversation,
 #new_message
@@ -145,3 +155,5 @@
 
     .notification
       margin-bottom: 20px
+
+

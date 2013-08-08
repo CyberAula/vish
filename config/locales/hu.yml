@@ -166,6 +166,8 @@ hu:
     go: "Menj a linkhez"
   translate:
     change: "Nyelv módosítása"
+  mailboxer:
+    new_message_for: "Új üzenet"
   message:
     send: "Üzenet küldése"
     new: "Új üzenet"

@@ -251,6 +251,8 @@ en:
     search_error: "There was an error and the search server responded with a code %{code}"
   translate:
     change: "Change language"
+  mailboxer:
+    new_message_for: "New message for"
   message:
     send: "Send mesage"
     new: "New message"

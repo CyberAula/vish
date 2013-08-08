@@ -247,6 +247,8 @@ es:
     go: "Ir al enlace"
   translate:
     change: "Cambiar idioma"
+  mailboxer:
+    new_message_for: "Nuevo mensaje para"
   message:
     send: "Enviar mensaje"
     new: "Mensaje nuevo"
