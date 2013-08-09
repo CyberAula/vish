@@ -25,7 +25,7 @@
 
       <div class="tab-pane" id="tab3">
         <div id="resources">
-        <%= render partial: 'repositories/resources' %>
+        <%= render partial: 'repositories/resources', :locals => { :scope => :me } %>
         </div>
       </div>
 
