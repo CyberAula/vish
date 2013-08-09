@@ -1,0 +1,18 @@
+<section class="contact" id="<%= dom_id user %>">
+  <div class="avatar">
+    <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+  </div>
+
+  <div class="data">
+    <div class="name">
+      <%= link_to(truncate_name(user.name), user.subject)%>
+    </div>
+
+    <div class="info">
+      <%= contact_count(user) %>
+    </div>
+  </div>
+  <div class="add">
+    <%= contact_button(user) %>
+  </div>  
+</section>

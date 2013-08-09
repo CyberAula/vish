@@ -6,21 +6,34 @@
 
       <ul class="nav nav-tabs">
         <li><h1>search</h1></li>
-        <li class="active"><a href="#tab1" data-toggle="tab">all</a></li>
-        <li><a href="#tab2" data-toggle="tab">excursions</a></li>
-        <li><a href="#tab3" data-toggle="tab">users</a></li>
-        <li><a href="#tab4" data-toggle="tab">resources</a></li>
+        <li class="<%= 'active' if params[:type].blank? %>">
+          <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
+        </li>
+        <% SocialStream::Search.keys(:extended).each do |key| %>
+          <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
+        <% end %>
       </ul>
-      <input type="text" placeholder="<%=t('search.placeholder')%>"></input>
+
+      <form action="<%=search_path%>" method="get" id="main_search_form" data-remote="true" class="search_box">
+        <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
+        <%= hidden_field_tag :page, '1', :id => 'main_search_form_page' %>
+        <%= hidden_field_tag :type, '', :id => 'main_search_form_type' %>
+        <%= hidden_field_tag :time, '', :id => 'main_search_form_time' %>
+        <%= hidden_field_tag :class, '', :id => 'main_search_form_class' %>
+        <%= hidden_field_tag :sort, '', :id => 'main_search_form_sort' %>
+        <%= hidden_field_tag :slides, '', :id => 'main_search_form_slides' %>
+        <%= hidden_field_tag :quiz, '', :id => 'main_search_form_quiz' %>
+      </form>
+
       <button id="showLeft">advanced options </button>
       <div class="tab-content">
         <%#= render partial: 'layouts/loading' %>
         <div class="tab-pane active" id="tab1 ">
           <div id="search-all">
             <ul>  
-              <% @search_result.each do |r| %>
-                <%= render partial: "#{ r.class.to_s.tableize }/search_result",
-                           locals:  { r.class.to_s.underscore.to_sym => r }  %>
+              <% @search_result.each do |r| %>              
+                  <%= render partial: "#{ r.class.to_s.tableize }/search_result",
+                             locals:  { r.class.to_s.underscore.to_sym => r }  %>
               <% end %>
             </ul>
           </div>

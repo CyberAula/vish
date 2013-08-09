@@ -1,10 +1,7 @@
 <ul class="repository-item">
 	<%= render partial: 'repositories/resource-add' %> 
   <% subject_resources(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |resource| %>
-    <!--FIXME, WHY IS RESOURCE NIL FOR USER DEMO???-->
-    <%if resource%>
     	<%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
-    <%end%>
   <% end %> 
 </ul>
 

@@ -1,6 +1,10 @@
 <li class="box-item">
 <!--IMG resource-->
-  <%= link_to icon(resource, 50), resource, :title => resource.file_file_name %>
+  <%if resource.class==Link%>
+    <i class='icon_file_50-link'></i>
+  <%else%>
+    <%= link_to icon(resource, 50), resource, :title => resource.file_file_name %>
+  <%end%>
 <!--INFO resource-->
   <div class="info">
 <!--Title -->
