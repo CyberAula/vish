@@ -5,8 +5,9 @@
   <% end %> 
 </ul>
 
-
-
-
-
-
+<%= content_for :javascript do %>
+  $(document).ready(function() {
+    console.log($(".resource").width());
+    $(".resource").fitText(0.4);
+  });
+<% end %>
