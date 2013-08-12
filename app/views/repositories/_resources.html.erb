@@ -1,8 +1,8 @@
 <ul class="repository-item">
-	<%= render partial: 'repositories/resource-add' %>
-  <% 10.times do %>
-    <%= render partial: 'repositories/resource' %>
-  <% end %>
+	<%= render partial: 'repositories/resource-add' %> 
+  <% subject_resources(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |resource| %>
+    	<%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+  <% end %> 
 </ul>
 
 

@@ -25,7 +25,7 @@
 
       <div class="tab-pane" id="tab3">
         <div id="resources">
-        <%= render partial: 'repositories/resources' %>
+        <%= render partial: 'repositories/resources', :locals => { :scope => :me } %>
         </div>
       </div>
 
@@ -36,16 +36,11 @@
       </div>
 
       <div class="tab-pane" id="tab5">
-        <%= render profile_subject.
-          followers.
-          map { |f| current_subject.contact_to!(f) } %>
+        <%= render partial: 'users/user', collection: profile_subject.followers %>
       </div>
 
       <div class="tab-pane" id="tab6">
-        <%= render profile_subject.
-          following_actor_objects.
-          includes(:actor).
-          map { |f| current_subject.contact_to!(f) } %>
+        <%= render partial: 'users/user', collection: profile_subject.followings.where(object_type: 'Actor').includes(:actor).map(&:actor) %>
       </div>
 
     </div>
