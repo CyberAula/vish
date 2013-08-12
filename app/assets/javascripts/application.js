@@ -13,6 +13,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.fittext
 //= require social_stream-base
 //= require social_stream-linkser
 //= require social_stream-documents
