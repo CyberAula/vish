@@ -37,6 +37,7 @@
               <% end %>
             </ul>
           </div>
+          <div id="loader_pagination"></div>
         </div>
 
         <div class="tab-pane" id="tab2">
@@ -47,8 +48,20 @@
       </div>
     </div>
 
-    <%= javascript_tag do %>
+   <%= content_for :javascript do %>
     SocialStream.Repository.show();
+
+    $('#search-all ul').pageless({ 
+                        totalPages: <%=@search_result.num_pages%>,
+                        url: window.location.href,
+                        loaderMsg: 'Loading more results',
+                        currentPage: <%=@search_result.current_page%>,
+                        loader: '#loader_pagination',
+                        loaderImage: 'assets/load.gif'
+
+
+                       });
+
     <% end %>
   </div>
 
@@ -57,7 +70,6 @@
 
 
   <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-  <script src="js/classie.js"></script>
   <script>
     var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
 
