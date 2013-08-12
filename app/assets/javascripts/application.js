@@ -19,6 +19,7 @@
 //= require social_stream-documents
 //= require jquery.backstretch.min
 //= require classie
+//= require jquery.pageless
 //= require modernizr.custom
 //= require uisearch
 //= require_tree .
