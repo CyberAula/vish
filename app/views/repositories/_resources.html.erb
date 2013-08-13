@@ -6,8 +6,7 @@
 </ul>
 
 <%= content_for :javascript do %>
-  $(document).ready(function() {
-    console.log($(".resource").width());
+  $('a[href="#tab3"]').on('shown', function (e) {
     $(".resource").fitText(0.4);
   });
 <% end %>
