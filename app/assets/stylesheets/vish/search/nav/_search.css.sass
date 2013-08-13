@@ -19,6 +19,7 @@
       margin-left: 8px
       margin-top: 35px
       width: 300px
+      @include border-bottom-radius (5px)
       .query_too_short
         display: block
         @include border-left-radius (5px)
@@ -45,28 +46,59 @@
           margin: 0
           li
             list-style: none
-            .contact 
+            height: 68px
+            .contact,
+            .quick_search
+
               margin-top: 10px
               float: left
               margin-bottom: 10px
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              .avatar
+              &:hover
+                background: rgba(255, 255, 255, 0.1)
+              .avatar,
+              .photo
+                margin-left: 20px
                 @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 display: block
                 float: left
                 padding: 0
                 img
                   border: 1px solid $white
+              .photo
+                img
+                  width: 60px
+                  height: 45px
+                  @include border-radius (5px)
               .data
-                @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 display: block
                 float: left
                 text-align: left
                 .name
+                  @include ellipsis
                   a
+                    text-decoration: none
                     color: $white
-                .info
-                  color: $grayLighter
+                    font-family: $secondFontFamily
+                .info,
+                .author
+                  a
+                    color: $grayLighter
+
+          .more
+            display: block
+            clear: both
+            text-align: center
+            background: rgba(255, 255, 255, 0.2)
+            width: 100%
+            height: 20px
+            a
+              color: $white
+              font-family: $secondFontFamily
+              text-decoration: none
+            &:hover
+              background: rgba(255, 255, 255, 0.4)
 
 
 
@@ -154,7 +186,7 @@
 
 .sb-search.sb-search-open, .no-js .sb-search
   width: 300px
-  height: 300px
+  height: 530px
 
 .sb-search.sb-search-open .sb-icon-search, .no-js .sb-search .sb-icon-search
   background: #e90055
