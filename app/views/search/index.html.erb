@@ -6,7 +6,7 @@
 
       <ul class="nav nav-tabs">
         <!--li><h1>search</h1></li-->
-        <li class="<%= 'active' if params[:type].blank? %>">
+        <li class="all_results <%= 'active' if params[:type].blank? %>">
           <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
         </li>
         <% SocialStream::Search.keys(:extended).each do |key| %>
@@ -67,10 +67,64 @@
                         end: function(){
                           $('#loader_pagination').hide();
                           $("#last_content_shown").show();
+                        },
+                        scrape: function(data){
+                          final_data = "";
+                          //hide elements from the results depending on the active tab
+                          if($("#search ul.nav li.active").hasClass("user")){
+                            //hide everything but contacts
+                            $(data).each(function(index, value){ 
+                              if(value.nodeType===3){
+                                return; //same as continue;
+                              }
+                              if(!$(value).hasClass("contact")){
+                                $(value).hide();
+                              }
+                              //add content to the final data string
+                              final_data += value.outerHTML;
+                            });
+                          }
+                          else if ($("#search ul.nav li.active").hasClass("excursion")){                            
+                            //hide everything but contacts
+                            $(data).each(function(index, value){ 
+                              if(value.nodeType===3){
+                                return; //same as continue;
+                              }
+                              if(!$(value).hasClass("box-item")){
+                                $(value).hide();
+                              }
+                              //add content to the final data string
+                              final_data += value.outerHTML;
+                            });
+                          }
+                          else{
+                            data = final_data;
+                          }                      
+                          return final_data;
+                          
                         }
 
 
-                       });
+    });
+
+    //tab filtering, show only excursions, users, resources, etc.
+    $("#search .all_results").click(function(){
+      $("#search-all > ul").children().show();
+    });
+    $("#search .excursion").not(".disabled").click(function(){
+      $("#search-all > ul").children(".box-item").show();
+      $("#search-all > ul").children().not(".box-item").hide();
+    });
+    $("#search .user").not(".disabled").click(function(){
+      $("#search-all > ul").children(".contact").show();
+      $("#search-all > ul").children().not(".contact").hide();
+    });
+    $("#search .resource").not(".disabled").click(function(){
+      console.log("resource");
+    });
+
+
+
 
     <% end %>
   </div>
