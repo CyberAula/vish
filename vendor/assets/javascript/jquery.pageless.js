@@ -201,15 +201,15 @@
     var totalPages = settingOrFunc('totalPages');
 
     // listener was stopped or we've run out of pages
-    if (totalPages <= currentPage) {
+    //MODIFIED BY KIKE. Added !isLoading to still wait for the last page, this was a bug
+    //XXX
+    if (totalPages <= currentPage && !isLoading) {
       if (!$.isFunction(settings.currentPage) && !$.isFunction(settings.totalPages)) {
         stopListener();
-        // if there is a afterStopListener callback we call it  
-        //MODIFIED BY KIKE. Moved to success callback (lines 249 y ss)
-        //XXX
-        //if (settings.end) {
-        //  settings.end.call();
-        //}     
+        // if there is a afterStopListener callback we call it          
+        if (settings.end) {
+          settings.end.call();
+        } 
       }
       return;
     }
@@ -246,8 +246,9 @@
             element.append(data);
           //}
           loading(false);
+
           //MODIFIED BY KIKE. Added next 5 lines to call end function only when success of last page load
-          //XXX
+          //XXX            
           if (totalPages <= currentPage) {
             if (settings.end) {
               settings.end.call();
