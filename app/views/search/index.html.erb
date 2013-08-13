@@ -98,10 +98,9 @@
                             });
                           }
                           else{
-                            data = final_data;
+                            final_data = data;
                           }                      
-                          return final_data;
-                          
+                          return final_data;                          
                         }
 
 
@@ -114,10 +113,14 @@
     $("#search .excursion").not(".disabled").click(function(){
       $("#search-all > ul").children(".box-item").show();
       $("#search-all > ul").children().not(".box-item").hide();
+      //call for more results
+      $('#search-all ul').trigger("scroll.pageless");
     });
     $("#search .user").not(".disabled").click(function(){
       $("#search-all > ul").children(".contact").show();
       $("#search-all > ul").children().not(".contact").hide();
+      //call for more results
+      //$('#search-all ul').trigger("scroll.pageless");
     });
     $("#search .resource").not(".disabled").click(function(){
       console.log("resource");
