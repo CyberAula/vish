@@ -36,11 +36,15 @@
       </div>
 
       <div class="tab-pane" id="tab5">
-        <%= render partial: 'users/user', collection: profile_subject.followers %>
+        <ul>
+          <%= render partial: 'users/user', collection: profile_subject.followers %>
+        </ul>
       </div>
 
       <div class="tab-pane" id="tab6">
-        <%= render partial: 'users/user', collection: profile_subject.followings.where(object_type: 'Actor').includes(:actor).map(&:actor) %>
+        <ul>
+          <%= render partial: 'users/user', collection: profile_subject.followings.where(object_type: 'Actor').includes(:actor).map(&:actor) %>
+        </ul>
       </div>
 
     </div>

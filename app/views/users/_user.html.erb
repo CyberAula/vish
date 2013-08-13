@@ -1,4 +1,4 @@
-<section class="contact" id="<%= dom_id user %>">
+<li class="contact" id="<%= dom_id user %>">
   <div class="avatar">
     <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
   </div>
@@ -15,4 +15,4 @@
   <div class="add">
     <%= contact_button(user) %>
   </div>  
-</section>
+</li>
