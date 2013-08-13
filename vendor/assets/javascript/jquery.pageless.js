@@ -191,12 +191,37 @@
   // * bind a scroll event
   // * trigger is once in case of reload
   function startListener() {
+    my_num = 0;
     $container
       .bind(SCROLL + ' ' + RESIZE, watch)
       .trigger(SCROLL);
   }
 
+  /*
+   * Function created by KIKE to append one element at a time and with an animation
+   * xxx
+   */
+  function animateSlowAppendAndFinishLoading(element, arr){ 
+    var tmp_elem = arr.pop();
+    if(tmp_elem.style && tmp_elem.style.display!=="none"){
+      $(tmp_elem).hide().appendTo($(element)).fadeIn();
+    }
+    else{
+      element.append(tmp_elem);
+    }   
+
+    if(arr.length>0){
+      console.log("date " + new Date() +" leng " +arr.length )
+      window.setTimeout(function(){animateSlowAppendAndFinishLoading(element, arr)}, 200);
+    }
+    else{
+      loading(false);
+    }
+  }
+
   function watch() {
+    console.log("watch " + my_num);
+    my_num++;
     var currentPage = settingOrFunc('currentPage');
     var totalPages = settingOrFunc('totalPages');
 
@@ -229,12 +254,15 @@
       // set up ajax query params
       $.extend(requestParams, { page: currentPage });
       // finally ajax query
+      console.log("ajax call "  + new Date());
       $.ajax({
         data: requestParams,
         dataType: 'html',
         url: url,
+        async: true,
         method: settings.method,
         success: function (data) {
+          console.log("ajax succ "  + new Date());
           if ($.isFunction(settings.scrape)) {
             data = settings.scrape(data);
           }
@@ -243,9 +271,11 @@
           //if (loader) {
           //   loader.before(data);
           //} else {
-            element.append(data);
+            console.log("append "  + new Date());
+            animateSlowAppendAndFinishLoading(element, jQuery.makeArray($(data)) );
+            console.log("end append "  + new Date());
           //}
-          loading(false);
+          
 
           //MODIFIED BY KIKE. Added next 5 lines to call end function only when success of last page load
           //XXX            
@@ -260,6 +290,7 @@
           }
         }
       });
+      console.log("ajax call end "  + new Date());
     }
   }
 })(jQuery, window);
