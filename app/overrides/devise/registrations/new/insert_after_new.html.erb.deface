@@ -43,7 +43,7 @@
     });
 		
 		$(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
-      watermarkAllowMessage: '<%=t('document.info.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.info.tags.limitMessage')%>' ,
+      watermarkAllowMessage: '<%=t('document.tags.areasOfInterestMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' ,
 		  tagsChanged:function (tag, action) {
 			  //Check if the element popped is a suggestion
 			  if(action=="popped"){

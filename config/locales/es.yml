@@ -76,14 +76,7 @@ es:
       info8_html: "8. Finalmente, haga click en el botón <b> guardar </b>para actualizar su recurso."
     how: "Cómo compartir un recurso"
     info:
-      title: "Título"
-      description: "Descripción"
-      tags:
-        title: "Temas"
-        addMessage: "Añadir tags"
-        limitMessage: "Límite alcanzado"
       age: "Edad"
-    
     input: "Descripción del recurso"
     language:
       option1: "(No depende del lenguaje)"
@@ -93,7 +86,6 @@ es:
       tags: "Etiquetas"
       title: "Título"
       recommended_age: "Edad recomendada"
-
     main_title: "Sube videos, imágenes y otros recursos"
     new: "Añadir recurso" 
     options:
@@ -103,6 +95,11 @@ es:
       browse: "Buscar"
     recommended_age_detail: "De %{min} a %{max} años"
     screencast: "Screencast de VISH"
+    tags:
+      title: "Temas"
+      areasOfInterestMessage: "Escribe aquí tus áreas de interés"
+      addMessage: "Añadir tags"
+      limitMessage: "Límite alcanzado"
     title_input: "Ponle título al recurso"
     upload: "Subir"
   email:

@@ -1,60 +1,67 @@
 <!-- Button to trigger modal -->
 
- 
+
 <!-- Modal -->
 <div id="AddResource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
 
   <div class="modal-body">
-    
+
     <p><%= t('document.body.title1')%></p>
     
     <div class="accordion" id="accordion2">
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-          <i class="icon-folder-open"></i> <%= t('document.options.documents')%>
-        </a>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+            <i class="icon-folder-open"></i> <%= t('document.options.documents')%>
+          </a>
+        </div>
+        <div id="collapseOne" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            <!-- <div class="input-append">
+              <input class="small" id="appendedInputButtons" type="text">
+              <button class="btn" type="button"><%= t('document.options.browse')%></button>
+            </div> -->
+            <% d = Document.new %>
+            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+            <%= f.hidden_field :owner_id %>
+            <%= f.file_field :file %>
+          </div>
+        </div>
       </div>
-      <div id="collapseOne" class="accordion-body collapse in">
-        <div class="accordion-inner">
-          <div class="input-append">
-            <input class="small" id="appendedInputButtons" type="text">
-            <button class="btn" type="button"><%= t('document.options.browse')%></button>
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            <i class="iconLink"></i> <%= t('document.options.links')%> / <%= t('document.options.embed')%> 
+          </a>
+        </div>
+        <div id="collapseTwo" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <textarea rows="5"></textarea>
           </div>
         </div>
       </div>
     </div>
+    <br>
 
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-          <i class="iconLink"></i> <%= t('document.options.links')%> / <%= t('document.options.embed')%> 
-        </a>
-      </div>
-      <div id="collapseTwo" class="accordion-body collapse">
-        <div class="accordion-inner">
-          <textarea rows="5"></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
-  <br>
-  
-  <p><%= t('document.body.title2')%></p>
+    <p><%= t('document.body.title2')%></p>
 
     <!--TITULO-->
     <legend><%= t('document.leyend.title')%></legend>
-    <input type="text" placeholder="<%= t('document.title_input')%>">
+    <!-- <input type="text" placeholder="<%= t('document.title_input')%>"> -->
+    <%= f.text_field :title, :class => "" %>
     
     <!--DESCRIPCION-->
     <legend><%= t('document.leyend.description')%></legend>
-    <input type="text" placeholder="<%= t('document.input')%>">
+    <!-- <input type="text" placeholder="<%= t('document.input')%>"> -->
+    <%= f.text_area :description, :cols => 10, :rows => 5, :class => "" %>
 
     <legend><%= t('document.leyend.tags')%></legend>
-   
+
     
     <legend><%= t('document.leyend.language')%></legend>
-    <select>
+<!--     <select>
       <option><%= t('document.language.option1')%></option>
       <option>Deutsch</option>
       <option>English</option>
@@ -63,9 +70,20 @@
       <option>Italiano</option>
       <option>Português</option>
       <option>Otros</option>
+    </select> -->
+    <select class="" name="document[language]">
+      <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+      <option value="de">Deutsch</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="it">Italiano</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="ot"><%= t('lang.others') %></option>
     </select>
     
-<!-- Age (With slider) -->
+    <!-- Age (With slider) -->
 
     <div class="form">    
       <legend><%= t('document.leyend.recommended_age')%></legend>
@@ -73,7 +91,7 @@
   </div><!-- CIERRA BODY-->
   
   <div class="modal-footer">
-     <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
+   <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
 
     <button class='helpResources btn' data-placement='top' aria-hidden="true" data-original-title="¿Como subo un recurso?" href='#'> ? </button>
 
@@ -89,21 +107,23 @@
         <%= t('document.help.info8_html')%>
       </div>
     </div>
-    <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
-    <!--<b id="foo" rel="popover">Ayuda </b>-->
-    
-    <button class="btn btn-primary"> <%= t('document.upload')%></button>
+  <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
+  <!--<b id="foo" rel="popover">Ayuda </b>-->
+
+    <!-- <button class="btn btn-primary"> <%= t('document.upload')%></button> -->
+    <%= f.submit t('button.save'), :class => "btn btn-primary", :tab => "file" %>
+    <% end %>
   </div>
 </div>
 
 <script>
-  $(document).ready(function(){
-    $('.helpResources').popover({ 
-      html : true,
-      content: function() {
-        return $('.contentHelpResources').html();
-      }
-    });
+$(document).ready(function(){
+  $('.helpResources').popover({ 
+    html : true,
+    content: function() {
+      return $('.contentHelpResources').html();
+    }
   });
+});
 </script>
 

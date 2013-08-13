@@ -73,15 +73,7 @@ en:
       info1_html: "1. Prueba de ayuda 1 para el quiz<br>"  
     how: "How to share a resource"
     info:
-      title: "Title"
-      description: "Description"
-      tags:
-        title: "Topics"
-        areasOfInterestMessage: "Type here your areas of interest"
-        addMessage: "Add tags"
-        limitMessage: "limit reached"
       age: "Age"
-
     input: "Add a description here"
     language:
       option1: "(Not depends on the language)"
@@ -100,6 +92,11 @@ en:
       browse: "Browse"
     recommended_age_detail: "From %{min} to %{max} years"
     screencast: "VISH's screencast"
+    tags:
+      title: "Topics"
+      areasOfInterestMessage: "Type here your areas of interest"
+      addMessage: "Add tags"
+      limitMessage: "limit reached"
     title_input: "Name for this resource"
     upload: "Upload"
   email:
