@@ -37,7 +37,15 @@
               <% end %>
             </ul>
           </div>
-          <div id="loader_pagination"></div>
+          <div id="loader_pagination">
+            <div id="pageless-loader" style="text-align:center;width:100%;">
+              <div class="msg" style="font-size:2em">
+                <%=t('search.loading')%>
+              </div>
+              <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
+            </div>
+          </div>
+          <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
         </div>
 
         <div class="tab-pane" id="tab2">
@@ -54,10 +62,12 @@
     $('#search-all ul').pageless({ 
                         totalPages: <%=@search_result.num_pages%>,
                         url: window.location.href,
-                        loaderMsg: 'Loading more results',
                         currentPage: <%=@search_result.current_page%>,
                         loader: '#loader_pagination',
-                        loaderImage: 'assets/load.gif'
+                        end: function(){
+                          $('#loader_pagination').hide();
+                          $("#last_content_shown").show();
+                        }
 
 
                        });

@@ -48,6 +48,8 @@
 //  * www.unspace.ca/discover/pageless/
 //  * famspam.com/facebox
 // =======================================================================
+//MODIFIED BY KIKE
+//XXX
 
 /*global document:true, jQuery:true, location:true, window:true*/
 
@@ -133,7 +135,10 @@
 
   $.fn.pageless = function (opts) {
     var $el = $(this);
-    var $loader = $(opts.loader, $el);
+    //MODIFIED BY KIKE
+    //XXX
+    //var $loader = $(opts.loader, $el);
+    var $loader = $(opts.loader);
 
     init(opts);
     element = $el;
@@ -196,13 +201,15 @@
     var totalPages = settingOrFunc('totalPages');
 
     // listener was stopped or we've run out of pages
-    if (totalPages <= currentPage) {
+    //MODIFIED BY KIKE. Added !isLoading to still wait for the last page, this was a bug
+    //XXX
+    if (totalPages <= currentPage && !isLoading) {
       if (!$.isFunction(settings.currentPage) && !$.isFunction(settings.totalPages)) {
         stopListener();
-        // if there is a afterStopListener callback we call it
+        // if there is a afterStopListener callback we call it          
         if (settings.end) {
           settings.end.call();
-        }
+        } 
       }
       return;
     }
@@ -231,12 +238,22 @@
           if ($.isFunction(settings.scrape)) {
             data = settings.scrape(data);
           }
-          if (loader) {
-            loader.before(data);
-          } else {
+          //MODIFIED BY KIKE. It appended the results before the loader. We want them in their place
+          //XXX
+          //if (loader) {
+          //   loader.before(data);
+          //} else {
             element.append(data);
-          }
+          //}
           loading(false);
+
+          //MODIFIED BY KIKE. Added next 5 lines to call end function only when success of last page load
+          //XXX            
+          if (totalPages <= currentPage) {
+            if (settings.end) {
+              settings.end.call();
+            }
+          }
           // if there is a complete callback we call it
           if (settings.complete) {
             settings.complete.call();
