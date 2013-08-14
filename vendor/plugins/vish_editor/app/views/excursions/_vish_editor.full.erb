@@ -1,133 +1,105 @@
-  	<!-- Copy HTML from here -->
-  	
-	<section class="slides layout-regular template-default" id="slides_panel">
-		
-    <div id="flashcard-background" style="display:none">
-		<div id="flashcard_help_button"><img id="help_flashcard" src="/assets/icons/helptutorial_circle.png"/>
-		</div>
-		<div id="fc_change_bg_big" class="change_bg_button_class"></div>
-    </div>
-    <div id="vtour-background" style="display:none">
-		<div id="vtour_help_button"><img id="help_vtour" src="/assets/icons/helptutorial_circle.png"/></div>
-		<div id="vt_canvas"></div>
-		<div id="vt_search">
-			<input id="vt_search_input" type="text" placeholder="Search places"></input>
-			<button id="vt_search_button">
-				<img id="vt_search_button_img" src="/assets/vtour/gsearch.png"/>
-			</button>
-		</div>
-    </div>
-    <div id="menubarbg" class="menubarcolor"></div>
-    <div id="menubar_helpsection"><img src="/assets/menubar_helpsection.png"/></div>
-    <div id="menubar_helpsection2"><img src="/assets/menubar_helpsection2.png"/></div>
-		<div id="joyride_help_button"><img id="help_right" src="/assets/icons/helptutorial_circle.png"/></div>
-        <div id="preview"><img id="preview_circle" src="/assets/icons/preview_circle.png"/></div>        
-		<div id='menubar'>
-			<div id="menubar_background"><img src="/assets/menubar.png"/></div>
-			<div id="menubarButtons">
-				<a id="edit_presentation_details" href="#presentationdetails">
-					<div id="config_div" class='barbuttonaddsave noSelectableElement' title="Edit details"></div>
-				</a>
-				<a id="save">
-					<div id="save_div" class='barbuttonaddsave' i18n-key="i.SaveSlides" title="Save slides"></div>
-				</a>
-			</div>	
-			<div id="menubarCarrousel">
-			<div id="slides_carrousel"></div>   
-			</div>
-		</div>
-		
-		<div id="menubar-viewer" style="display:none">
-			<button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
-	    <div id="viewbar" class="viewbar">
-		  <button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
-	      <div id="slide-counter"></div>
-	  	  <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
-		</div>
-		</div>
-		
-		
+	<!-- Copy HTML from here -->
+
+	<section id="slides_panel" class="slides slides_editor layout-regular template-default">
+
 		<!-- Toolbar -->
 		<div id="toolbar_wrapper">
 			<div id="toolbar_menu">
-
 				<!-- MENU -->
 				<ul id="menu" style="display:none">
 					<li class="current">
 						<a class="menu_option_main" href="#">
-							<img class="toolbar_icon" id="menuButton" src="/assets/toolbar/menu_button.png"/>
+							<img id="menuButton" src="/assets/toolbar/menu_button.png"/>
 						</a>
 						<ul class="menu_option_main">
 							<li>
-								<a class="menu_option menu_action menu_all" action="onSaveButtonClicked" i18n-key="i.Save">Save</a>
+								<a class="menu_option menu_action" action="onSaveButtonClicked" i18n-key="i.Save"><i class="icon-button icon-save"></i> Save</a>
 							</li>
 							<li>
-								<a class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
+								<a class="menu_option menu_action" action="onPublishButtonClicked" i18n-key="i.Publish"><i class="icon-button icon-rotate-270 icon-download-alt"></i> Publish</a>
+							</li>
+							<li>
+								<a class="menu_option menu_action" action="insertSlide" i18n-key="i.NewSlide"><i class="icon-button icon-plus"></i> Add Slide</a>
+							</li>
+							<li>
+								<a class="menu_option" href="#" i18n-key="i.Import"><i class="icon-button icon-rotate-180 icon-download-alt"></i> Import</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
+										<a class="menu_option menu_action" action="insertPDFex">PDF Slideshow</a>
 									</li>
 									<li>
-										<a style="display:none" class="menu_option menu_action" i18n-key="i.File">File</a>
+										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSmartcard" i18n-key="i.Smartcard">Smartcard</a>
+										<a class="menu_option menu_action" action="insertSmartcard" i18n-key="i.Smartcard">Smartcard</a>
 									</li>
 									<li class="liInsertJson">
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertJSON">JSON</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertPDFex">PDF Slideshow</a>
+										<a class="menu_option menu_action" action="insertJSON">JSON</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option menu_all" href="#" i18n-key="i.Export">Export</a>
+								<a class="menu_option" href="#" i18n-key="i.Export"><i class="icon-button icon-rotate-360 icon-download-alt"></i> Export</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action menu_all" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
-									</li>
-								</ul>
-							</li>							
-							<li>
-								<a class="menu_option menu_all" i18n-key="i.ConvertTo">Convert to</a>
-								<ul>
-									<li>
-										<a class="menu_option menu_action menu_flashcard menu_game menu_vtour" action="switchToPresentation" i18n-key="i.Presentation">Presentation</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_standard_presentation menu_game menu_vtour" action="switchToFlashcard" i18n-key="i.Flashcard">Flashcard</a>
-									</li>
-									<li>
-										<a style="display:none" class="menu_option menu_action" action="switchToGame" i18n-key="i.Game">Game</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_standard_presentation menu_flashcard menu_game" action="switchToVirtualTour" i18n-key="i.VirtualTour">Virtual Tour</a>
+										<a class="menu_option menu_action" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option menu_action menu_all" action="preview" i18n-key="i.preview">Preview</a>
+								<a class="menu_option menu_action" action="preview" i18n-key="i.preview"><i class="icon-button icon-eye-open"></i> Preview</a>
 							</li>
 							<li>
-								<a class="menu_option menu_action menu_all" action="displaySettings" i18n-key="i.Settings">Settings</a>
+								<a class="menu_option menu_action" action="displaySettings" i18n-key="i.Settings"><i class="icon-button icon-edit"></i> Settings</a>
 							</li>
 							<li>
-								<a class="menu_option menu_action menu_all" action="help" i18n-key="i.Help">Help</a>
+								<a class="menu_option menu_action" action="help" i18n-key="i.Help"><i class="icon-button icon-question"></i> Help</a>
 							</li
 						</ul>
 					</li>
 				</ul>
-
 			</div>
+
 			<div id="toolbar_presentation">
-				<img id="toolbarborder" class="toolbar_icon toolbar_presentation" style="display:none" 
-				action="selectTheme" src="/assets/toolbar/flashcard_background.png" title="Select theme"/>
-				<img id="change_background_fc" class="toolbar_icon toolbar_flashcard" style="display:none" 
-				action="changeFlashcardBackground" src="/assets/toolbar/flashcard_background.png" title="Change background"/>
+				<div class="toolbar_presentation_wrapper">
+					<a id="toolbar_save" class="tool_action" action="save" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-save"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title"> Save </p>
+				</div>
+				<div class="toolbar_presentation_wrapper">
+					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title"> Publish </p>
+				</div>
+				<div class="toolbar_presentation_wrapper">
+					<a id="toolbar_preview" class="tool_action" action="preview" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-eye-open"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title"> Preview </p>
+				</div>
+				<div class="toolbar_presentation_wrapper lasticonborder ">
+					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-adjust"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title"> Style </p>
+				</div>
+				<div class="toolbar_presentation_wrapper bgtoolpos">
+					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+ 							<i class="icon-button icon-picture"></i>
+ 						</button></a>
+					<p class="toolbar_prseentation_title"> Background </p>
+				</div>
 			</div>
 			<div id="toolbar_element">
 				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" 
@@ -145,22 +117,68 @@
 			</div>
 		</div>
 		
+		<div id="leftside">
+			<div id="slides_list_actions">
+			<a id="addSlideButton" href="#"><button type="button" class="btn btn-small slidesScrollbarButton">
+			<i class="icon-plus"></i>  Add Slide</button></a>
+			<a id="importButton" href="#"><button type="button" class="btn btn-small slidesScrollbarButton">
+			<i class="icon-rotate-180 icon-download-alt"></i>  Import</button></a>
+			</div>
+			<div id="slides_list"></div>
+		</div>
+
+		<div id="bottomside" style="display:none">
+			<div id="subslide_selected">
+				<img id="subslide_selected_img" class="image_barbutton" src="/assets/templatesthumbs/t2.png">
+			</div>
+			<div id="subslides_wrapper">
+				<div id="subslides_list_actions">
+					<a id="addSlideButtonOnSubslides" href="#">
+						<button type="button" class="btn btn-small slidesScrollbarButton">
+							<i class="icon-plus"></i>  
+							Add Slide
+						</button>
+					</a>
+					<a id="importButtonOnSubslides" href="#">
+						<button type="button" class="btn btn-small slidesScrollbarButton downimport">
+							<i class="icon-rotate-180 icon-download-alt"></i>  
+							Import
+						</button>
+					</a>
+				</div>
+				<div id="subslides_list"></div>
+			</div>
+		</div>
+
+		<div id="menubar-viewer" style="display:none">
+			<!-- TODO -->
+			<div id="viewbar" class="viewbar">
+				<button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
+				<div id="slide-counter"></div>
+				<button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
+			</div>
+		</div>
+
     </section>
 
-    <!-- Hidden link to open fancybox when adding a slide -->
-    <a id="addSlideFancybox" href="#thumbcontent" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when adding a quiz inside a slide -->
-    <a id="addQuizFancybox" href="#quizcontent" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when adding a json  -->
-    <a id="addJSONFancybox" href="#json_fancybox" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when adding a pdf slideshow as excursion  -->
-    <a id="addPDFexFancybox" href="#pdfex_fancybox" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when creating a new presentation -->
-    <a id="launch_presentation_details" href="#presentationdetails" style="display: none;"></a>
-    <!-- Hidden link for loading fancybox -->
-    <a id="fancyLoad" href="#loading_fancy" style="display: none;"></a>
-
-
+    <div id="hidden_links" style="display: none;">
+    	<!-- Hidden link to open presentation settings -->
+    	<a id="edit_presentation_details" href="#presentationdetails"></a>
+    	<!-- Hidden link to open walkthrough -->
+		<a id="help_right"></a>
+		<!-- Hidden link to open preview -->
+		<a id="preview_action"></a>
+	    <!-- Hidden link to open fancybox when adding a slide -->
+	    <a id="addSlideFancybox" href="#thumbcontent"></a>
+	    <!-- Hidden link to open fancybox when adding a quiz inside a slide -->
+	    <a id="addQuizFancybox" href="#quizcontent"></a>
+	    <!-- Hidden link to open fancybox when adding a json  -->
+	    <a id="addJSONFancybox" href="#json_fancybox"></a>
+	    <!-- Hidden link to open fancybox when creating a new presentation -->
+	    <a id="launch_presentation_details" href="#presentationdetails"></a>
+	    <!-- Hidden link for loading fancybox -->
+	    <a id="fancyLoad" href="#loading_fancy"></a>
+    </div>
 
     <!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
     <div style='display:none'>    
@@ -182,7 +200,6 @@
 	          <div class="tagBoxIntro">
 	            <ul id="tagindex" class="tagList"></ul>
 	          </div>
-	          
       	  </div>
 	        <div id="thumbnails_in_presentation_details">
 	          <label for="presentation_avatar">
@@ -260,7 +277,6 @@
 				  </select>
 			  </div>
 
-
 			  <div id="language_tag_box">
 		          <label for="language_tag">
 		            <div id="language_text" class="textintro1 textmarginbottom"><span i18n-key="i.language">Language</span></div>
@@ -298,29 +314,18 @@
         </div>
       </form>
     </div>  
-      
-      <!--
-	  <div class="attachmentIntro">
-      	<span id="attachmentIntroSpan" i18n-key="i.TeachingGuidelines">Teaching guidelines</span>
-      	<form  id="attachment_intro_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-                  <input type="file" name="document[file]" class="upload_file_input">
-                  <input type="hidden" name="document[title]">
-                  <input type="hidden" name="document[description]">
-                  <input type="hidden" name="document[owner_id]">
-                  <input type="hidden" name="authenticity_token">					  
-                  <input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-        </form>
-      </div>
-      -->
-      
-    <!-- Thumbnails fancybox -->
+
+	<!-- Thumbnails fancybox -->
 	<div style='display:none'>
 		<div id='thumbcontent'>
 			
 			<div class='fancy_tabs' id='thumcontent_tabs'>
 				<ul>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_slides')" id="tab_slides" class="fancy_tab tabbable" i18n-key="i.Templates">Slides</a>
+					</li>
+					<li>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex')" id="tab_pdfex" class="fancy_tab">PDF</a>
 					</li>
 					<li>
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo')" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursions">Excursions</a>
@@ -331,55 +336,93 @@
 				</ul>
 			</div> 
 
-			<div id='tab_templates_content' class="fancy_tab_content" style='display:none' > 
+			<div id='tab_slides_content' class="fancy_tab_content" style='display:none' > 
 				<img id='help_template_selection' src='/assets/icons/helptutorial_circle_blank.png'/>
-				<div class="tab_templates_content">
-				<div class='templatethumb' template='1'>
-					<img src='/assets/templatesthumbs/t1.png' />
-				</div>
-				<div class='templatethumb' template='2'>
-					<img src='/assets/templatesthumbs/t2.png' />
-				</div>
-				<div class='templatethumb' template='3'>
-					<img src='/assets/templatesthumbs/t3.png' />
-				</div>
-				<div class='templatethumb' template='4'>
-					<img src='/assets/templatesthumbs/t4.png' />
-				</div>
-				<div class='templatethumb' template='5'>
-					<img src='/assets/templatesthumbs/t5.png' />
-				</div>
-				<div class='templatethumb' template='6'>
-					<img src='/assets/templatesthumbs/t6.png' />
-				</div>
-				<div class='templatethumb' template='7'>
-					<img src='/assets/templatesthumbs/t7.png' />
-				</div>
-				<div class='templatethumb' template='8'>
-					<img src='/assets/templatesthumbs/t8.png' />
-				</div>
-				<div class='templatethumb' template='9'>
-					<img src='/assets/templatesthumbs/t9.png' />
-				</div>
-				<div class='templatethumb' template='10'>
-					<img src='/assets/templatesthumbs/t10.png' />
-				</div>
-				<div class='templatethumb' template='11'>
-					<img src='/assets/templatesthumbs/t11.png' />
-				</div>
-				<div class='templatethumb' template='12'>
-					<img src='/assets/templatesthumbs/t12.png' />
-				</div>
-				<div class='templatethumb' template='13'>
-					<img src='/assets/templatesthumbs/t13.png' />
-				</div>
-				<div class='templatethumb' template='14'>
-					<img src='/assets/templatesthumbs/t14.png' />
-				</div>
-				<div class='templatethumb' template='15'>
-					<img src='/assets/templatesthumbs/t15.png' />
+				<div class="tab_slides_content">
+
+					<div class="tab_slides_templates">
+						<p class="select_text"> Templates </p>
+						<div class="templateselectlist">
+							<div class='slidethumb templatethumb' template='1'>
+								<img src='/assets/templatesthumbs/t1.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='2'>
+								<img src='/assets/templatesthumbs/t2.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='3'>
+								<img src='/assets/templatesthumbs/t3.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='4'>
+								<img src='/assets/templatesthumbs/t4.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='5'>
+								<img src='/assets/templatesthumbs/t5.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='6'>
+								<img src='/assets/templatesthumbs/t6.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='7'>
+								<img src='/assets/templatesthumbs/t7.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='8'>
+								<img src='/assets/templatesthumbs/t8.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='9'>
+								<img src='/assets/templatesthumbs/t9.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='10'>
+								<img src='/assets/templatesthumbs/t10.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='11'>
+								<img src='/assets/templatesthumbs/t11.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='12'>
+								<img src='/assets/templatesthumbs/t12.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='13'>
+								<img src='/assets/templatesthumbs/t13.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='14'>
+								<img src='/assets/templatesthumbs/t14.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='15'>
+								<img src='/assets/templatesthumbs/t15.png' />
+							</div>
+						</div>
+					</div>
+					<div class="tab_slides_smartcards">
+						<p class="select_text"> Smartcards </p>
+						<div class="templateselectlist2">
+						<div class='slidethumb fcthumb' type='flashcard'>
+							<img src='/assets/templatesthumbs/flashcard_template.png' />
+						</div>
+						<div class='slidethumb vtthumb' type='VirtualTour'>
+							<img src='/assets/templatesthumbs/tVTour.png' />
+						</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			<div id='tab_pdfex_content' class="fancy_tab_content" style='display:none'>
+				<img class='help_in_fancybox' id='tab_pdfex_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+				<div class="box1 box1fancy3">
+					<p class="textfancy">Add slideshow from PDF file</p></br>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+
+					<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
+						<input id="upload_file_input" type="file" name="pdfex[attach]" class="upload_file_input">
+						<input type="hidden" name="document[owner_id]">
+						<input type="hidden" name="authenticity_token">
+						<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+					</form>
+
+					<div class="upload_progress_bar_wrapper">
+						<div class="upload_progress_bar"></div >
+						<div class="upload_progress_bar_percent">0%</div >
+					</div>
+
+				</div>
 			</div>
 
 			<div id='tab_presentations_repo_content' class="fancy_tab_content" style='display:none'> 
@@ -417,7 +460,6 @@
 					</div> 	
 				</div>	
 			</div>
-
 		</div>
 	</div>
 
@@ -449,9 +491,7 @@
 		</div>
 	</div>
 
-
-  	  <div style='display:none'>
-	  	
+	<div style='display:none'>
 		<div id='menuselect' class="menuselect_hide">
 			<a class='all' href="#">
 				<div class='thumbicon textthumb' i18n-key="i.Text" title="Text"></div>
@@ -472,10 +512,8 @@
 				<div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
 			</a>
 		</div>
-	    
-	  </div>
+	</div>
 	  	
-
     <!-- JSON fancybox -->
 	  <div style='display:none'>
 	    <div id="json_fancybox" class="outer_box">
@@ -495,45 +533,6 @@
 				</div> 
 	    </div>
 	  </div>
-
-	  <!-- PDFex fancybox -->
-	  <div style='display:none'>
-	    <div id="pdfex_fancybox" class="outer_box">
-				<div class="fancy_tabs" id="pdfex_fancy_tabs_id">
-				  <ul>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex')" id="tab_pdfex" class="fancy_tab">file</a></li>
-				  </ul>
-				  <img class='help_in_fancybox' id='tab_pdfex_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				</div>
-
-				<div id='tab_pdfex_content' class="fancy_tab_content">
-					<div class="box1 box1fancy3">
-						<p class="textfancy">Add slideshow from PDF file</p></br>
-						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-
-						<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
-							<input id="upload_file_input" type="file" name="pdfex[attach]" class="upload_file_input">
-							<input type="hidden" name="document[owner_id]">
-							<input type="hidden" name="authenticity_token">
-							<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-						</form>
-
-						<div class="upload_progress_bar_wrapper">
-							<div class="upload_progress_bar"></div >
-							<div class="upload_progress_bar_percent">0%</div >
-						</div>
-
-					</div>
-				</div>
-	    </div>
-	  </div>
-
-
-					
-
-
-
-
 
 	  <!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
 	  <div style='display:none'>
@@ -611,7 +610,7 @@
 	  <div style='display:none'>
 	  	<input type="hidden" id="save_answer" value="cancel"></input>
 	  	<div id='save_form'>
-	  		<img id="saveimg" class="delete_img" src="/assets/icons/save_document.png">
+	  		<img id="saveimg" class="delete_img" src="/assets/toolbar/save_document.png">
 	  		<span i18n-key="i.sure" class="deltext">are you sure?</span> 		
 	  		<div class="buttons_together">
 	  			<a save-option-id="save" href="#" onclick="$('#save_answer').val('save'); $.fancybox.close();" class=" button" i18n-key="i.save">Save</a>
@@ -1217,12 +1216,12 @@
 		  <li><h1 i18n-key="i.link">Link Image to Url</h1></li> <img class="tutaddlink" src="/assets/toolbar/addLink.png"/>
 		  <li><h1 i18n-key="i.resize">Resize content</h1></li> <img class="tutresize" src="/assets/toolbar/zoomLess.png"/> <img class="tutresize2" src="/assets/toolbar/zoomMore.png"/>
 		  <li><h1 i18n-key="i.text">Text Editor</h1></li> <img class="tuttext" src="/assets/textedimg.png"/>
-		  <li><h1 i18n-key="i.flashcardbg">Flashcard Background</h1></li> <img class="tutflashbg" src="/assets/toolbar/flashcard_background.png"/>
+		  <li><h1 i18n-key="i.flashcardbg">Flashcard Background</h1></li> <img class="tutflashbg" src="/assets/toolbar/cBackground.png"/>
 		</ul>
 		<p i18n-key="i.walk69"> Every time that you add or select content in your excursion this toolbar will provide you tools to interact with that content.</p>
 		</li>
 
-		   <li data-id="addslidebutton" class="tut_addslide tut_with_arrow" data-text="Close" i18n-key="i.Close">
+		   <li data-id="addSlideButton" class="tut_addslide tut_with_arrow" data-text="Close" i18n-key="i.Close">
 		 <h2 i18n-key="i.AddSlide">Add new slide button</h2>
 		   <p i18n-key="i.walk13">This icon will get you to the templates selection screen to add your slide to your excursion. As you add the slides they will appear at the time-line as an icon providing you with the pagination of it inside the presentation. Click on "Close" to finish this walk through and start adding content to your excursion.</p>
 		</li>
@@ -1230,7 +1229,7 @@
 
 		<!--help for flashcard -->
 		<ol id="fc_help" class="joyRideTipContent">
-			<li data-id="change_background_fc" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
+			<li data-id="toolbar_wrapper" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
 				<h2>Flashcards</h2>
 				<p i18n-key="i.walk56">
 					A flashcard, is an application that will help you represent your excursion as an infographic, using an image to represent the concept of the excursion and mark zones of the image for the user to interact with them in order to see the pages of the excursion.
@@ -1249,21 +1248,21 @@
 				</ul>
 				<p i18n-key="i.walk59">Once, you finish this step, you can "drag and drop" the arrows in the lower zone of the editor (on top of the slides) into the flashcard background image to mark the zones that you want the user to interact with.</p>
 				<img src="/assets/tutorial/icons_flashcard_tut2.png"/>
-				<p><span i18n-key="i.walk60">You can click on the "preview button" to test the flashcard before you save it.</span><img src="/assets/icons/preview_circle.png"/></p>
+				<p><span i18n-key="i.walk60">You can click on the "preview button" to test the flashcard before you save it.</span><img src="/assets/toolbar/preview_circle.png"/></p>
 				<p i18n-key="i.walk61">If you save your presentation as a flashcard, it will be shown on the Vish web page as a flashcard, but you can always edit your excursion back and save it as a presentation.</p>
 			</li>
 		</ol>
 
 		<!--help for vtours -->
 		<ol id="vt_help" class="joyRideTipContent">
-			<li data-id="change_background_fc" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
+			<li data-id="toolbar_wrapper" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
 				<h2>Virtual Tours</h2>
 				<p i18n-key="i.walk79">A virtual tour is a represententation of your excursion as a map.</p>
 				<p i18n-key="i.walk80">Just "drag and drop" the arrows in the lower zone of the editor (on top of the slides) into the map.</p>
 				<img src="/assets/tutorial/icons_flashcard_tut2.png"/>
 				<p i18n-key="i.walk81">The arrows will be converted into a pin, which you can moved across the map.</p>
 				<p i18n-key="i.walk82">To remove a pin from the map, just click the desired pin.</p>
-				<p i18n-key="i.walk83">You can click on the "preview button" to show the resulting virtual tour before you save it.<img src="/assets/icons/preview_circle.png"/>
+				<p i18n-key="i.walk83">You can click on the "preview button" to show the resulting virtual tour before you save it.<img src="/assets/toolbar/preview_circle.png"/>
 				</p>
 			</li>
 		</ol>
@@ -1667,10 +1666,10 @@
 	<iframe id="hiddenIframeForAjaxDownloads" style="border:0" iframeborder="0" frameborder="0" iframeelement.frameborder="0;"></iframe>
 
 	<!-- Loading fancybox -->
-    <div id='loading_fancy_wrapper' style='display:none'>
-        <div id='loading_fancy'>
-        	<img class="loading_fancy_img" src='/assets/lightbox-ico-loading.gif'></img>
-        </div>
-    </div>
+	<div id='loading_fancy_wrapper' style='display:none'>
+		<div id='loading_fancy'>
+			<img class="loading_fancy_img" src='/assets/lightbox-ico-loading.gif'></img>
+		</div>
+	</div>
 
 	<!-- Copy HTML until here -->
