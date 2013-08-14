@@ -172,6 +172,8 @@ es:
       my_room: "mi sala"
       show: "Visualizar"
       share: "compartir"
+      show_more: "Expandir"
+      show_fewer: "Reducir"
       scorm: "scorm"
     clone:
       confirm: "Esto clonará la excursión en tu propio repositorio"
