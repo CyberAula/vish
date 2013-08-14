@@ -22,9 +22,13 @@
           </a>
           <ul class="dropdown-menu">
             <!-- dropdown menu links -->
-            <li><%= link_to t('excursion.actions.add'), new_excursion_path %></li>
-            <li><a href="#AddCategory" data-toggle="modal"><%=t('categories.actions.add')%></a></li>
-            <li><a href="#AddResource" data-toggle="modal"><%=t('resource.actions.add')%></a></li>
+            <li>
+              <%= link_to new_excursion_path do %>
+              <i class="icon-list-alt"></i> <%= t('excursion.actions.add') %>
+              <% end %>
+            </li>
+            <li><a href="#AddCategory" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+            <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
           </ul>
         </div>
       </li>

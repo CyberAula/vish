@@ -2,9 +2,9 @@
   <%= link_to(raw("<i class='icon-home icon-2x'></i> "), excursions_path, :class => "btn-header tooltip-header", :title =>  t('navigation.home'), :rel => 'tooltip') %>
   <%= link_to(raw("<i class='icon-envelope-alt icon-2x" + (current_subject.unread_messages_count > 0 ? " iconnav-notification_message" : "") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
  <%= link_to(raw("<i class='icon-bell icon-2x'></i> "),
-                  contacts_path,
+                  activities_path,
                   :class => "btn-header tooltip-header",
-                  :title => current_subject.followers.count.to_s + ' ' + t('follow.followers') + ' / ' + current_subject.following_actor_objects.includes(:actor).count.to_s + ' ' + t('follow.followings'),
+                  :title => t('activity.other'),
                   :rel => 'tooltip') %>
   <%= link_to(raw("<i class='icon-facetime-video icon-2x'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
   <%# unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>

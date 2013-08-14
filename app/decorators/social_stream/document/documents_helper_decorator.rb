@@ -1,7 +1,7 @@
 DocumentsHelper.module_eval do
 
   # Return the right icon based on {#document}'s mime type
-  def icon document
+  def icon document, size=50
 
     icon_name = case icon_mime_type document
       when :default then "file"
