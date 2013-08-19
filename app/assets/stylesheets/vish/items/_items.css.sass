@@ -4,37 +4,38 @@
 #events,
 #new,
 #search-all
-  @include content-columns(5, $columnGap: 10px) 
+  background-color: $grayLighter
   margin-top: 20px
+  height: 500px
   ul
     margin: 0
+
     li.box-item:hover
-      .name
-        a
-          text-decoration: none
-          color: $firstColor
+
     li.box-item
-      //float: left
-      column-break-inside: avoid
+      position: relative
+      float: left
+      overflow: hidden
+      width: -webkit-calc(96% / 5)
+      width: calc(96% / 5)
+      margin-right: 0.4%
+      margin-left: 0.4%
+      margin-top: 15px
       background: $white
-      //@include excursion-box-small
       box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
-      display: inline-block
-      margin: 0 5px 20px
-      @include border-top-radius($baseBorderRadius)
-      width: 100%
+      @include border-radius($baseBorderRadius)
       .img-box
         height: 100px
         width: 100%
       .badges
         display: none
-        @include badge-grid
       .info
         font-family: $secondFontFamily
         padding: 5px 5px 0 5px
         .name
           @include box_title
           margin: 0
+          height: 40px
           .author:before
             content: "by"
         @include author
@@ -53,26 +54,17 @@
         margin-top: 20px
         a
           text-decoration: none
-
-        
-
-
-
-    li.new-item
-      column-break-inside: avoid
-      background: $white
-      @include add-new
-      display: inline-block
-      margin: 0 5px 20px
-      img
-        width: 100%
-        border-bottom: none
       .action-name
         text-align: center
         font-family: $secondFontFamily
         color: $secondColor
         font-size: 18px
         margin-bottom: 5px
+
+        
+
+
+
 
 
 
