@@ -5,20 +5,21 @@
 #new,
 #activity,
 #search-all
-  background-color: $grayLighter
+  //background-color: $grayLighter
   margin-top: 20px
   height: 500px
   ul
     margin: 0
 
     li.box-item:hover
+      text-decoration: none
 
     li.box-item
       position: relative
       float: left
       overflow: hidden
-      width: -webkit-calc(96% / 5)
-      width: calc(96% / 5)
+      width: -webkit-calc(96% / 6)
+      width: calc(95% / 6)
       margin-right: 0.4%
       margin-left: 0.4%
       margin-top: 15px
@@ -28,15 +29,19 @@
       .img-box
         height: 100px
         width: 100%
+        float: left
       .badges
         display: none
       .info
         font-family: $secondFontFamily
         padding: 5px 5px 0 5px
+        float: left
+        width: 96%
         .name
           @include box_title
           margin: 0
-          height: 40px
+          height: 30px
+          line-height: 15px
           .author:before
             content: "by"
         @include author
@@ -55,12 +60,29 @@
         margin-top: 20px
         a
           text-decoration: none
+
+    .add-item
+
+      text-align: center
+      list-style: none
+      display: block
+      &:hover
+        text-decoration: none
+      .icon-box
+        background-color: $grayLighter
+        height: 92px
+        width: 100%
+        display: block
+        padding-top: 8px
+        i.icon-plus
+          font-size: 92px
+          display: block
       .action-name
+        @include box_title
         text-align: center
-        font-family: $secondFontFamily
-        color: $secondColor
-        font-size: 18px
-        margin-bottom: 5px
+        padding-top: 44px
+        margin-bottom: 14px
+
 
         
 
@@ -89,7 +111,7 @@
         img
           @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
-          max-height: 70px
+          height: 70px
       .info
         @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
