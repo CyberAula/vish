@@ -1,0 +1,26 @@
+<section id="toolbar" class="toolbar-conversations">
+  <nav class="toolbar_menu">
+    <ul class="nav">
+    <li>
+      <%= link_to new_message_path do %>
+        <i class='icon-edit <%= 'active' if controller.action_name == 'new' %>'></i> <%= t('message.new') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to conversations_path(box: :inbox) do %>
+        <i class='icon-inbox <%= 'active' if params[:box] == 'inbox' %>'></i> <%= t('message.inbox') %> (<%= current_subject.unread_messages_count %>)
+      <% end %>
+    </li>
+    <li>
+      <%= link_to conversations_path(box: :sentbox) do %>
+        <i class='icon-signout icon-rotate-270 <%= 'active' if params[:box] == 'sentbox' %>'></i> <%= t('message.sentbox') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to conversations_path(box: :trash) do %>
+        <i class='icon-trash <%= 'active' if params[:box] == 'trash' %>'></i> <%= t('message.trash') %>
+      <% end %>
+    </li>
+    </ul>
+  </nav>
+</section>
