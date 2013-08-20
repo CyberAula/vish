@@ -69,7 +69,6 @@
                           $("#last_content_shown").show();
                         },
                         scrape: function(data){
-                          console.log("empieza scrape " + new Date());
                           final_data = "";
                           //hide elements from the results depending on the active tab
                           if($("#search ul.nav li.active").hasClass("user")){
@@ -91,7 +90,20 @@
                               if(value.nodeType===3){
                                 return; //same as continue;
                               }
-                              if(!$(value).hasClass("box-item")){
+                              if(!$(value).hasClass("excursion-item")){
+                                $(value).hide();
+                              }
+                              //add content to the final data string
+                              final_data += value.outerHTML;
+                            });
+                          }
+                          else if ($("#search ul.nav li.active").hasClass("resource")){                            
+                            //hide everything but contacts
+                            $(data).each(function(index, value){ 
+                              if(value.nodeType===3){
+                                return; //same as continue;
+                              }
+                              if(!$(value).hasClass("resource-item")){
                                 $(value).hide();
                               }
                               //add content to the final data string
@@ -100,8 +112,7 @@
                           }
                           else{
                             final_data = data;
-                          }                    
-                          console.log("fin scrape "  + new Date());  
+                          }                     
                           return final_data;                          
                         }
     });
@@ -128,10 +139,7 @@
       //call for more results
       $('#search-all ul').trigger("scroll.pageless");
     });
-    $("#search .resource").not(".disabled").click(function(){
-      console.log("resource");
-    });
-
+    
     <% end %>
   </div>
 
