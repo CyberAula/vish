@@ -5,18 +5,17 @@
       //width: 23%
       @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
       img.avatar_img
-        border: 15px solid $white
+        //border: $baseBorderRadius solid $white
         @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        border-radius: $baseBorderRadius
+        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
         
-        //border: 5px solid $grayLighter
     .information
-      @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      width: 50% !important
-      //padding: 2%
-      //width: 79%
+      //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      width: 79% !important
+      
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
-      //border: 1px solid $grayLighter
       background-color: $white
       h1, h2, h3, h4, h5, h6 
         line-height: 25px

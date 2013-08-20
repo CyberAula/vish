@@ -17,109 +17,91 @@
 
         <div class="briefing">
           <h2><%= @user.name %></h2>
-          <% if !profile_subject_is_current? %>
-            <section class="contact">
-              <div class="add">
-                <%= contact_button(profile_subject) %>
-              </div>
-              <button href="#new_messages_profile" role="button" class="btn" data-toggle="modal">
+          
+        <!-- Button to trigger modal --> 
+          <!-- Modal -->
+          <div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+            <div class="modal-body">
+              <section id="new_message_profile">
+                <%##= render partial: 'toolbar/messages' %>
+                <%= render :partial => 'messages/new' %>
+
+                <%= javascript_tag do %>
+                  $(function() {
+                  SocialStream.Message.new_();
+                  });
+                <% end %>
+              </section>
+            </div>
+            <!--   <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div> -->
+          </div>
+        
+          <p class="description">
+            <% if @user.profile.description? %>
+            <%= @user.profile.description%>
+            <% else %>
+            <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
+            <% end %>
+          </p>
+
+          <hr class="soften">
+
+          <!-- Occupation -->
+          <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
+          <h3 class="select">
+            <%= link_to profile_subject.occupation_t, '#' %>
+          </h3>
+          <% elsif profile_subject.occupation_sym != :select %>
+          <h3 class="name-roll">
+            <%= t('profile.occupation.label') %>
+            <span><%= profile_subject.occupation_t %></span>
+          </h3>
+          <% end %>
+
+          <h3 class="karma">Karma
+            <span> 65 <!--nivel karma--></span>
+          </h3>
+
+          <h3 class="achievements">
+            Achievements
+          </h3>
+          <!--agregar medallas-->
+          <!--<div class="img-achievements"></div> -->
+          <button href="#new_messages_profile" role="button" class="btn" data-toggle="modal">
                 <%= link_to new_message_path(receiver: profile_subject.slug) do %>
                   <i class="icon-envelope-alt"></i>
                   <%= t 'mailboxer.send' %>
                 <% end %>
               </button>
-            </section>
-        <!-- <button>
-          <%#= contact_to(profile_subject) %>
-        </button> -->
-        <% end %>
-
-        <!-- Button to trigger modal -->
-
- 
-<!-- Modal -->
-<div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  
-  <div class="modal-body">
-    <section id="new_message_profile">
-
-  <%##= render partial: 'toolbar/messages' %>
-
-  <%= render :partial => 'messages/new' %>
-
-  <%= javascript_tag do %>
-    $(function() {
-      SocialStream.Message.new_();
-    });
-  <% end %>
-</section>
-  </div>
-<!--   <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div> -->
-</div>
+        </div>
 
 
 
-
-
-
-        <p class="description">
-          <% if @user.profile.description? %>
-          <%= @user.profile.description%>
-          <% else %>
-          <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
-          <% end %>
-        </p>
-
-        <hr class="soften">
-
-        <!-- Occupation -->
-        <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
-        <h3 class="select">
-          <%= link_to profile_subject.occupation_t, '#' %>
-        </h3>
-        <% elsif profile_subject.occupation_sym != :select %>
-        <h3 class="name-roll">
-          <%= t('profile.occupation.label') %>
-          <span><%= profile_subject.occupation_t %></span>
-        </h3>
-        <% end %>
-
-        <h3 class="karma">Karma
-          <span> 65 <!--nivel karma--></span>
-        </h3>
-
-        <h3 class="achievements">
-          Achievements
-        </h3>
-        <!--agregar medallas-->
-        <!--<div class="img-achievements"></div> -->
-      </div>
-
-
-      <div class="update">
-        <% if can?(:update, @profile) %>
-          <header>
-            <h4>
-              <%= t("profile.#{ @profile.subject.class.to_s.downcase }.info") %>
-            </h4>
-          </header>
-          <%= form_for(current_subject, :url => [current_subject]) do |f| %>
+        <div class="update">
+          <% if can?(:update, @profile) %>
+            <header>
+              <h4>
+                <%= t("profile.#{ @profile.subject.class.to_s.downcase }.info") %>
+              </h4>
+            </header>
+            <%= form_for(current_subject, :url => [current_subject]) do |f| %>
           
-          <legend><span class="required">(*)</span><%= f.label t('actor.name') %></legend>
-          <%= f.text_field :name, :class => "required" %>
+            <legend><span class="required">(*)</span><%= f.label t('actor.name') %></legend>
+            <%= f.text_field :name, :class => "required" %>
           
-          <legend><%= f.label :description, t("profile.#{ current_subject.class.to_s.downcase }.about") %></legend>
-          <%= f.text_area :description, :maxlength => 200, :rows => 10 %>
+            <legend><%= f.label :description, t("profile.#{ current_subject.class.to_s.downcase }.about") %></legend>
+            <%= f.text_area :description, :maxlength => 200, :rows => 10 %>
           
-          <hr class="soften">
-          <legend><%= f.label t('profile.occupation.label'), :class => "text" %></legend>
-          <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], current_subject.occupation)) %>
-          <p>
-            <%= t('required') %>
-          </p>
-          <%= f.submit %>
+            <hr class="soften">
+            <legend><%= f.label t('profile.occupation.label'), :class => "text" %></legend>
+            <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], current_subject.occupation)) %>
+            <p>
+              <%= t('required') %>
+            </p>
+            <%= f.submit %>
           <% end %>
           <%= javascript_tag do %>
             $('#user_description').val("<%= current_subject.description %>");
@@ -130,12 +112,22 @@
             </h4>
           </header>
           <%= render partial: 'profiles/avatar_edit' %>
-        <% end %>        
-      </div>
-
-    </section>
-  </div>
-</header>
+          <% end %>        
+        </div>
+      </section>
+    </div>
+    <% if !profile_subject_is_current? %>
+            <section class="contact">
+              <div class="add">
+                <%= contact_button(profile_subject) %>
+              </div>
+              
+            </section>
+        <!-- <button>
+          <%#= contact_to(profile_subject) %>
+        </button> -->
+        <% end %>
+  </header>
 
 <%= render partial: 'users/profile-info' %>
 
