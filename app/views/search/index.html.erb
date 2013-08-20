@@ -62,53 +62,6 @@
                         end: function(){
                           $('#loader_pagination').hide();
                           $("#last_content_shown").show();
-                        },
-                        scrape: function(data){
-                          final_data = "";
-                          //hide elements from the results depending on the active tab
-                          if($("#search ul.nav li.active").hasClass("user")){
-                            //hide everything but contacts
-                            $(data).each(function(index, value){ 
-                              if(value.nodeType===3){
-                                return; //same as continue;
-                              }
-                              if(!$(value).hasClass("contact")){
-                                $(value).hide();
-                              }
-                              //add content to the final data string
-                              final_data += value.outerHTML;
-                            });
-                          }
-                          else if ($("#search ul.nav li.active").hasClass("excursion")){                            
-                            //hide everything but contacts
-                            $(data).each(function(index, value){ 
-                              if(value.nodeType===3){
-                                return; //same as continue;
-                              }
-                              if(!$(value).hasClass("excursion-item")){
-                                $(value).hide();
-                              }
-                              //add content to the final data string
-                              final_data += value.outerHTML;
-                            });
-                          }
-                          else if ($("#search ul.nav li.active").hasClass("resource")){                            
-                            //hide everything but contacts
-                            $(data).each(function(index, value){ 
-                              if(value.nodeType===3){
-                                return; //same as continue;
-                              }
-                              if(!$(value).hasClass("resource-item")){
-                                $(value).hide();
-                              }
-                              //add content to the final data string
-                              final_data += value.outerHTML;
-                            });
-                          }
-                          else{
-                            final_data = data;
-                          }                     
-                          return final_data;                          
                         }
     });
 
