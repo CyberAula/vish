@@ -14,11 +14,22 @@
           <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#')%>
         </div>
         <% end %>
+        <!-- follow -->
+        <% if !profile_subject_is_current? %>
+            <section class="contact">
+              <div class="add">
+                <%= contact_button(profile_subject) %>
+              </div>
+              
+            </section>
+        <!-- <button>
+          <%#= contact_to(profile_subject) %>
+        </button> -->
+        <% end %>
 
         <div class="briefing">
           <h2><%= @user.name %></h2>
-          
-        <!-- Button to trigger modal --> 
+          <!-- Button to trigger modal --> 
           <!-- Modal -->
           <div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   
@@ -116,17 +127,7 @@
         </div>
       </section>
     </div>
-    <% if !profile_subject_is_current? %>
-            <section class="contact">
-              <div class="add">
-                <%= contact_button(profile_subject) %>
-              </div>
-              
-            </section>
-        <!-- <button>
-          <%#= contact_to(profile_subject) %>
-        </button> -->
-        <% end %>
+    
   </header>
 
 <%= render partial: 'users/profile-info' %>

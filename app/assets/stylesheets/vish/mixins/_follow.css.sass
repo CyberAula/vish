@@ -1,27 +1,30 @@
 @mixin follow
-
   text-align: center
-  color: $white
+  color: $firstColor
+  font-family: $secondFontFamily
   form
     margin: 0px
     input
       height: 20px
       border: 0px none 
-      width: 100px
+      width: 87px
       display: block
       background-color: $firstColor
       @include border-radius($baseBorderRadius)
       color: $white
       @include center-block()
-
-
+      margin-top: 0px
+      padding: 0px
+      font-family: $firstFontFamily
   .following-button
     @include center-block()
     display: block
     background-color: $secondColor
     height: 20px
-    width: 100px
+    width: 87px
     @include border-radius($baseBorderRadius)
+    color: $white
+    font-family: $firstFontFamily
   .unfollow-button
     form
       margin: 0px
@@ -29,8 +32,11 @@
         @include center-block()
         height: 20px
         border: 0px none 
-        width: 100px
+        width: 87px
         display: block
         background-color: $gray
         @include border-radius($baseBorderRadius)
         color: $white
+        margin-top: 0px
+        padding: 0px
+        font-family: $firstFontFamily

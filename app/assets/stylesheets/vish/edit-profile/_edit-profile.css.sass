@@ -23,9 +23,10 @@
     
 
     form.edit_profile
+      @include btn-primary
       input
         &[type="submit"]
-          @include btn-primary
+          
     .personal
       form.edit_profile
         h6 
@@ -40,7 +41,7 @@
           &[type="submit"]
             float: right
             margin: -10px 24px 0 0px
-        
+            @include btn-primary
     h5
       color: $grayLighter
       font-size: 17px
