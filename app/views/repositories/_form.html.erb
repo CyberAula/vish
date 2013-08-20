@@ -57,7 +57,51 @@
     <!-- <input type="text" placeholder="<%= t('document.input')%>"> -->
     <%= f.text_area :description, :cols => 10, :rows => 5, :class => "" %>
 
+    <!--TAGS-->
+    <!-- Tags preloaded -->
+    <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+    <ul id="preloadTagList" style="display:none">
+      <%@tags.each do |tag| %>
+        <li><%=tag.name%></li>
+      <%end%>
+    </ul>
+
+    <!-- User tags -->
+    <%@user_tags = current_user.tags%>
+    <ul id="preloadUserTagList" style="display:none">
+      <%@user_tags.each do |tag| %>
+        <li><%=tag.name%></li>
+      <%end%>
+    </ul>
+
     <legend><%= t('document.leyend.tags')%></legend>
+    <input type="hidden" name="document[tag_list][]"></input>
+    <div class="tagBoxDocument span">
+       <ul class="tagList"></ul>
+    </div>
+    <div class="clearfloat"></div>
+    <div class="line"></div>
+    <div class="clearfloat"></div>
+
+    <script>
+      var tagList = $(".tagList");
+      var tags = [];
+      
+      //Load tags
+      $.each($("#preloadTagList li"), function(index, element) {
+         tags.push($(element).html());
+      });
+              
+      if ($(tagList).children().length == 0){
+        $.each($("#preloadUserTagList li"), function(index, element) {
+           $(tagList).append("<li>" + $(element).html() + "</li>")
+        });
+
+        $(tagList).tagit({tagSource:tags, sortable:true, maxLength:15, maxTags:8 , 
+          watermarkAllowMessage: '<%=t('document.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' });
+      } 
+    </script>
+
 
     <!--LANGUAGE-->
     <legend><%= t('document.leyend.language')%></legend>
@@ -122,6 +166,13 @@
           $(".age-slider").before($(".limits"));
           positionLimits();
 
+
+          //TAGS
+          var allButtons = $("input[value='Save'][type='submit'][name='commit']");
+          $(allButtons).click(function(event) {
+            var tagList = $("#AddResource .tagList");
+            $("#AddResource input[name='document[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+          });
         });
       </script>
 

@@ -23,4 +23,5 @@
 //= require modernizr.custom
 //= require uisearch
 //= require bootstrap-slider/bootstrap-slider
+//= require tagit
 //= require_tree .
