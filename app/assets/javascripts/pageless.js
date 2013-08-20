@@ -1,7 +1,11 @@
 // =======================================================================
 // PageLess - endless page
 //
-// Pageless is a jQuery plugin.
+// Pageless is a jQuery plugin. 
+// MODIFIED BY KIKE. THAT IS WHY IT IS HERE AND NOT IN VENDOR
+//
+//
+//
 // As you scroll down you see more results coming back at you automatically.
 // It provides an automatic pagination in an accessible way : if javascript
 // is disabled your standard pagination is supposed to work.
@@ -199,20 +203,29 @@
 
   /*
    * Function created by KIKE to append one element at a time and with an animation
+   * also show the element or hide it depending on the tab selected
    * xxx
    */
   function animateSlowAppendAndFinishLoading(element, arr){ 
     var tmp_elem = arr.pop();
-    if(tmp_elem.style && tmp_elem.style.display!=="none"){
-      $(tmp_elem).hide().appendTo($(element)).fadeIn();
+    var active_tab = $("#search ul.nav li.active");
+    var hidden_elem = $(tmp_elem).hide().appendTo($(element));
+    //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
+    if(active_tab.hasClass("all_results")){
+      hidden_elem.fadeIn();
     }
-    else{
-      element.append(tmp_elem);
-    }   
-
+    else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
+      hidden_elem.fadeIn();
+    }
+    else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
+      hidden_elem.fadeIn();
+    }
+    else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
+      hidden_elem.fadeIn();
+    }
+    
     if(arr.length>0){
-      console.log("date " + new Date() +" leng " +arr.length )
-      window.setTimeout(function(){animateSlowAppendAndFinishLoading(element, arr)}, 200);
+      window.setTimeout(function(){animateSlowAppendAndFinishLoading(element, arr)}, 20);
     }
     else{
       loading(false);
@@ -254,7 +267,6 @@
       // set up ajax query params
       $.extend(requestParams, { page: currentPage });
       // finally ajax query
-      console.log("ajax call "  + new Date());
       $.ajax({
         data: requestParams,
         dataType: 'html',
@@ -262,7 +274,6 @@
         async: true,
         method: settings.method,
         success: function (data) {
-          console.log("ajax succ "  + new Date());
           if ($.isFunction(settings.scrape)) {
             data = settings.scrape(data);
           }
@@ -271,9 +282,7 @@
           //if (loader) {
           //   loader.before(data);
           //} else {
-            console.log("append "  + new Date());
             animateSlowAppendAndFinishLoading(element, jQuery.makeArray($(data)) );
-            console.log("end append "  + new Date());
           //}
           
 
@@ -290,7 +299,6 @@
           }
         }
       });
-      console.log("ajax call end "  + new Date());
     }
   }
 })(jQuery, window);

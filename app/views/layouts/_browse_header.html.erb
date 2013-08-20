@@ -5,12 +5,11 @@
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-      <li><a tabindex="-1" href="#">Popular</a></li>
+      <li><a tabindex="-1" href="<%=search_path()%>">Popular</a></li>
       <li class="divider"></li>
-      <li><a tabindex="-1" href="#">Excursions</a></li>
-      <li><a tabindex="-1" href="#">Categories</a></li>
-      <li><a tabindex="-1" href="#">Events</a></li>
-      <li><a tabindex="-1" href="#">Resources</a></li>
+      <li><a tabindex="-1" href="<%=search_path(:type => "excursion")%>">Excursions</a></li>
+      <li><a tabindex="-1" href="<%=search_path(:type => "user")%>">Users</a></li>
+      <li><a tabindex="-1" href="<%=search_path(:type => "resource")%>">Resources</a></li>
     </ul>
   </li>
 </div>
