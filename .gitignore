@@ -69,3 +69,6 @@ lib/tasks/compile
 # Chrome Driver
 C:\\nppdf32Log\\debuglog.txt
 chromedriver.log
+
+# Mac files
+.DS_Store

@@ -59,18 +59,8 @@
 
     <legend><%= t('document.leyend.tags')%></legend>
 
-    
+    <!--LANGUAGE-->
     <legend><%= t('document.leyend.language')%></legend>
-<!--     <select>
-      <option><%= t('document.language.option1')%></option>
-      <option>Deutsch</option>
-      <option>English</option>
-      <option>Español</option>
-      <option>Français</option>
-      <option>Italiano</option>
-      <option>Português</option>
-      <option>Otros</option>
-    </select> -->
     <select class="" name="document[language]">
       <option value="" selected="1">(<%= t('lang.independent') %>)</option>
       <option value="de">Deutsch</option>
@@ -85,9 +75,56 @@
     
     <!-- Age (With slider) -->
 
-    <div class="form">    
       <legend><%= t('document.leyend.recommended_age')%></legend>
-    </div>
+      <%= f.hidden_field :age_min, :value => "4" %>
+      <%= f.hidden_field :age_max, :value => "20" %>
+      <div class="limits">
+        <div class="limit1">4</div>
+        <div class="limit2">20</div>
+      </div>
+      <!-- this.tooltip[0].style[this.stylePos] = this.size * this.percentage[0]/100 - (this.orientation === 'vertical' ? this.tooltip.outerHeight()/2 : this.tooltip.outerWidth()/2) +'px'; -->
+      <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+
+      <script>
+        $("#AddResource").on('shown', function() {
+          var min = 0;
+          var max = 30;
+          var step = 1;
+          var diff = max - min;
+
+          var positionLimits = function() {
+            var value1 = $('.age-slider').data('slider').getValue()[0];
+            var value2 = $('.age-slider').data('slider').getValue()[1];
+
+            $('input[name="document[age_min]"]').val(value1);
+            $('input[name="document[age_max]"]').val(value2);
+            $('.limit1').text(value1);
+            $('.limit2').text(value2);
+
+            var percentage =[
+              (value1-min)*100/diff,
+              (value2-min)*100/diff,
+              step*100/diff
+            ];
+            $(".limit1").css("left", function(ev) {
+              return $('.slider').width() * percentage[0]/100 - $(".limit1").width()/2 + 'px';
+            });
+            $(".limit2").css("left", function(ev) {
+              return $('.slider').width() * percentage[1]/100 - $(".limit2").width()/2 + 'px';
+            });
+          };
+
+          $(".age-slider").slider()
+            .on('slide', function(ev){
+              positionLimits();
+            });
+
+          $(".age-slider").before($(".limits"));
+          positionLimits();
+
+        });
+      </script>
+
   </div><!-- CIERRA BODY-->
   
   <div class="modal-footer">

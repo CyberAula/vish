@@ -22,4 +22,5 @@
 //= require jquery.pageless
 //= require modernizr.custom
 //= require uisearch
+//= require bootstrap-slider/bootstrap-slider
 //= require_tree .
