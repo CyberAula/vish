@@ -11,6 +11,10 @@
     <div class="author"> 
       <%= link_to excursion.author.name, excursion.author.subject %>
     </div>
+    <!--description-->
+    <% unless excursion.description.blank? %>
+      <%= truncate(excursion.description, :length => 200) %>
+    <% end %>
 
   </div>
 </div>
