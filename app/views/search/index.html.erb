@@ -59,7 +59,6 @@
    <%= content_for :javascript do %>
     SocialStream.Repository.show();
     
-    
     $('#search-all ul').pageless({ 
                         totalPages: <%=@search_result.num_pages%>,
                         url: window.location.href,
@@ -112,8 +111,8 @@
       $("#search-all > ul").children().show();
     });
     $("#search .excursion").not(".disabled").click(function(){
-      $("#search-all > ul").children(".box-item").show();
-      $("#search-all > ul").children().not(".box-item").hide();
+      $("#search-all > ul").children(".excursion-item").show();
+      $("#search-all > ul").children().not(".excursion-item").hide();
       //call for more results
       $('#search-all ul').trigger("scroll.pageless");
     });
@@ -122,6 +121,12 @@
       $("#search-all > ul").children().not(".contact").hide();
       //call for more results
       //$('#search-all ul').trigger("scroll.pageless");
+    });
+    $("#search .resource").not(".disabled").click(function(){
+      $("#search-all > ul").children(".resource-item").show();
+      $("#search-all > ul").children().not(".resource-item").hide();
+      //call for more results
+      $('#search-all ul').trigger("scroll.pageless");
     });
     $("#search .resource").not(".disabled").click(function(){
       console.log("resource");
