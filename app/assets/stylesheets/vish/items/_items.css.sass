@@ -77,11 +77,16 @@
         i.icon-plus
           font-size: 92px
           display: block
+          &:hover
+            text-decoration: none
       .action-name
         @include box_title
         text-align: center
         padding-top: 44px
         margin-bottom: 14px
+        &:hover
+          text-decoration: none
+
 
 
         
@@ -104,19 +109,20 @@
       list-style: none
       margin-top: 10px
       background-color: $white
-      .badges
-        display: none
-        @include badge-grid
-      a.img-box
+
+      .img-box
+        width: 70px
+        float: left
+        height: 70px
+        display: block
+        @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
         img
-          @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          float: left
-          height: 70px
+
       .info
-        @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
         padding: 0
-        h5.name
+        .name
           padding-left: 10px
           margin: 0
           word-wrap: break-word
