@@ -26,16 +26,12 @@
     <div class="accordion" id="accordion2">
       <div class="accordion-group">
         <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#document">
             <i class="icon-folder-open"></i> <%= t('document.options.documents')%>
           </a>
         </div>
-        <div id="collapseOne" class="accordion-body collapse in">
+        <div id="document" class="accordion-body collapse in">
           <div class="accordion-inner">
-            <!-- <div class="input-append">
-              <input class="small" id="appendedInputButtons" type="text">
-              <button class="btn" type="button"><%= t('document.options.browse')%></button>
-            </div> -->
             <% d = Document.new %>
             <% d.owner_id = Actor.normalize_id(current_user) %>
             <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
@@ -43,11 +39,11 @@
               <%= f.file_field :file %>
               <%= f.hidden_field :title%>
               <%= f.hidden_field :description%>
-              <input type="hidden" class="tag_list" name="document[tag_list][]"></input>
+              <%= f.hidden_field :tag_list, :multiple => true %>
               <%= f.hidden_field :language, :value => "" %>
               <%= f.hidden_field :age_min, :value => "4" %>
               <%= f.hidden_field :age_max, :value => "20" %>
-              <%= f.submit t('button.save'), :class => "hide", :tab => "file" %>
+              <%= f.submit t('button.save'), :class => "document hide"%>
             <% end %>
           </div>
         </div>
@@ -55,13 +51,28 @@
 
       <div class="accordion-group">
         <div class="accordion-heading">
-          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#link">
             <i class="icon-link"></i> <%= t('document.options.links')%> / <%= t('document.options.embed')%> 
           </a>
         </div>
-        <div id="collapseTwo" class="accordion-body collapse">
+        <div id="link" class="accordion-body collapse">
           <div class="accordion-inner">
-            <textarea rows="5"></textarea>
+            <% d = Link.new %>
+            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= f.hidden_field :owner_id %>
+              <%= f.hidden_field :callback_url %>
+              <%= f.hidden_field :loaded %>
+              <%#= f.hidden_field :image %>
+              <%= f.text_field :url %>
+              <%= f.hidden_field :title%>
+              <%= f.hidden_field :description%>
+              <%= f.hidden_field :tag_list, :multiple => true %>
+              <%= f.hidden_field :language, :value => "" %>
+              <%= f.hidden_field :age_min, :value => "4" %>
+              <%= f.hidden_field :age_max, :value => "20" %>
+              <%= f.submit t('button.save'), :class => "link hide"%>
+            <% end %>
           </div>
         </div>
       </div>
@@ -73,17 +84,13 @@
     <!--TITULO-->
     <legend><%= t('document.leyend.title')%></legend>
     <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
-    <%#= f.text_field :title, :class => "" %>
     
     <!--DESCRIPCION-->
     <legend><%= t('document.leyend.description')%></legend>
     <input type="text" class="description" placeholder="<%= t('document.input')%>">
-    <%#= f.text_area :description, :cols => 10, :rows => 5, :class => "" %>
 
     <!--TAGS-->
     <legend><%= t('document.leyend.tags')%></legend>
-    <!-- <input type="hidden" name="document[tag_list][]"></input> -->
-    <!-- <input type="hidden" class="tag_list" name="document[tag_list][]"></input> -->
     <div class="tagBoxDocument span">
        <ul class="tagList"></ul>
     </div>
@@ -118,10 +125,7 @@
 
   <!-- FOOTER -->
   <div class="modal-footer">
-    <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-
     <input type="button" class='helpResources btn' data-placement='top' aria-hidden="true" data-original-title="¿Como subo un recurso?" href='#' value="?"/>
-    <!-- <button class='helpResources btn' data-placement='top' aria-hidden="true" data-original-title="¿Como subo un recurso?" href='#'> ? </button> -->
 
     <div class="contentHelpResources" style="display: none">
       <div>
@@ -135,11 +139,8 @@
         <%= t('document.help.info8_html')%>
       </div>
     </div>
-  <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
-  <!--<b id="foo" rel="popover">Ayuda </b>-->
+
     <input type="button" class="btn btn-primary" value="<%= t('document.upload')%>"/>
-    <!-- <button class="btn btn-primary"><%= t('document.upload')%></button> -->
-    <%#= f.submit t('button.save'), :class => "btn btn-primary", :tab => "file" %>
   </div>
 </div>
 
@@ -196,22 +197,23 @@ $(document).ready(function(){
     //COMMON FIELDS
     var allButtons = $(".btn-primary");
     $(allButtons).click(function(event) {
+      var resource_type = $(".accordion-body.collapse.in").attr('id');
       //TITLE
-      $("#AddResource input[name='document[title]']").val($(".title").val());
+      $("#AddResource input[name='"+resource_type+"[title]']").val($(".title").val());
       //DESCRIPTION
-      $("#AddResource input[name='document[description]']").val($(".description").val());
+      $("#AddResource input[name='"+resource_type+"[description]']").val($(".description").val());
       //TAGS
       var tagList = $("#AddResource .tagList");
-      $("#AddResource input[name='document[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+      $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
       //LANGUAGE
-      $("#AddResource input[name='document[language]']").val($(".language").val());
+      $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
       //AGE
       var value1 = $('.age-slider').data('slider').getValue()[0];
       var value2 = $('.age-slider').data('slider').getValue()[1];
-      $('input[name="document[age_min]"]').val(value1);
-      $('input[name="document[age_max]"]').val(value2);
+      $('input[name="'+resource_type+'[age_min]"]').val(value1);
+      $('input[name="'+resource_type+'[age_max]"]').val(value2);
       //SUBMIT
-      $("input[value='Save'][type='submit'][name='commit']").click();
+      $("input[value='Save'][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
     });
   });
 </script>
