@@ -1,6 +1,6 @@
 <ul class="">
   <%= render partial: 'excursions/excursion-add' %>
-  <% subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |excursion| %>
+  <% subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}).each do |excursion| %>
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %> 
 </ul>

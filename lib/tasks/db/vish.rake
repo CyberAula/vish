@@ -105,7 +105,7 @@ namespace :db do
           }
         end
 
-        50.times do
+        500.times do
           updated = Time.at(rand(Time.now.to_i))
           author = @available_actors[rand(@available_actors.size)]
           owner  = author

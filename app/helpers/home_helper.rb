@@ -1,4 +1,6 @@
 module HomeHelper
+  PER_PAGE_IN_HOME = 16
+
   def current_subject_excursions(options = {})
     subject_excursions current_subject, options
   end
@@ -39,6 +41,7 @@ module HomeHelper
     options[:limit] ||= 4
     options[:scope] ||= :net
     options[:offset] ||= 0
+    options[:page] ||= 1
 
     following_ids = subject.following_actor_ids
     #following_ids |= [ subject.actor_id ]
@@ -83,6 +86,9 @@ module HomeHelper
             else
               query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
             end
+
+    # pagination
+    query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
 
     return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
