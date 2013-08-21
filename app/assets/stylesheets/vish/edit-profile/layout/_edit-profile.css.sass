@@ -1,14 +1,13 @@
 @import 'avatars_for_rails'
 
 #profile
-  width: 440px
+  //width: 100% !important
   margin: 0 auto 0
   #toolbar,
   #sidebar
     display: none
-  #profile-info
+  #profile-info   
     .briefing
-      padding: 1px 0px 16px
       min-height: 35px
       span
         margin-left: 11px
@@ -21,23 +20,22 @@
       float: left
       padding: 8px 27px 9px 27px
     .update
-      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       background-color: $white
       margin-left: 0px
       padding: 12px 0px 32px 0px !important
-      form.edit_profile
-        @include btn-primary
-        padding: 0 14px
-        textarea
-          resize: none
-          height: 50px
-        input
-          &[type="submit"]
-            @include btn-primary
-            float: right
-            margin-top: 10px
-            margin-right: 9px
-      
+      form
+        .edit_profile
+          @include btn-primary
+          padding: 0 14px
+          textarea
+            resize: none
+            height: 50px
+          input
+            &[type="submit"]
+              @include btn-primary
+              float: right
+              margin-top: 10px
+              margin-right: 9px 
 
     .personal,
     .comunication-info,
