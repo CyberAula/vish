@@ -1,12 +1,12 @@
 <nav class="headernav">
-  <%= link_to(raw("<i class='icon-home icon-2x'></i> "), excursions_path, :class => "btn-header tooltip-header", :title =>  t('navigation.home'), :rel => 'tooltip') %>
-  <%= link_to(raw("<i class='icon-2x" + (current_subject.unread_messages_count > 0 ? " icon-envelope notification" : " icon-envelope-alt") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
- <%= link_to(raw("<i class='icon-bell icon-2x'></i> "),
+  <%= link_to(raw("<i class='icon-home icon-large icon-border'></i> "), excursions_path, :class => "btn-header tooltip-header", :title =>  t('navigation.home'), :rel => 'tooltip') %>
+  <%= link_to(raw("<i class='icon-large icon-border" + (current_subject.unread_messages_count > 0 ? " icon-envelope notification" : " icon-envelope-alt") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
+ <%= link_to(raw("<i class='icon-bell icon-large icon-border'></i> "),
                   activities_path,
                   :class => "btn-header tooltip-header",
                   :title => t('activity.other'),
                   :rel => 'tooltip') %>
-  <%= link_to(raw("<i class='icon-facetime-video icon-2x'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
+  <%= link_to(raw("<i class='icon-facetime-video icon-large icon-border'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
   <%# unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
   <%#= link_to(raw("<i class='icon_navbar-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>
   <%# end %>
