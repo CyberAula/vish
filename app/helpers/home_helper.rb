@@ -88,7 +88,7 @@ module HomeHelper
             end
 
     # pagination
-    if options[:page]
+    if options[:page] != 0
       query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
     end
 
