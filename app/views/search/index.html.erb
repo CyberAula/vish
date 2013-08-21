@@ -14,15 +14,8 @@
         <% end %>
       </ul>
 
-      <form action="<%=search_path%>" method="get" id="main_search_form" data-remote="true" class="search_box">
+      <form action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
         <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
-        <%= hidden_field_tag :page, '1', :id => 'main_search_form_page' %>
-        <%= hidden_field_tag :type, '', :id => 'main_search_form_type' %>
-        <%= hidden_field_tag :time, '', :id => 'main_search_form_time' %>
-        <%= hidden_field_tag :class, '', :id => 'main_search_form_class' %>
-        <%= hidden_field_tag :sort, '', :id => 'main_search_form_sort' %>
-        <%= hidden_field_tag :slides, '', :id => 'main_search_form_slides' %>
-        <%= hidden_field_tag :quiz, '', :id => 'main_search_form_quiz' %>
       </form>
 
       <button id="showLeft">advanced options </button>
