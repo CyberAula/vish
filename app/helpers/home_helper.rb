@@ -41,7 +41,7 @@ module HomeHelper
     options[:limit] ||= 4
     options[:scope] ||= :net
     options[:offset] ||= 0
-    options[:page] ||= 1
+    options[:page] ||= 0 #page 0 means without pagination
 
     following_ids = subject.following_actor_ids
     #following_ids |= [ subject.actor_id ]
@@ -88,7 +88,9 @@ module HomeHelper
             end
 
     # pagination
-    query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
+    if options[:page]
+      query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
+    end
 
     return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
