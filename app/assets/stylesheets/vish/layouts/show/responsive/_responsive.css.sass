@@ -1,0 +1,22 @@
+
+@media (max-width: 767px)
+
+@media (min-width: 768px) and (max-width: 979px)
+
+
+#show_excursions
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  .box-show
+    @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: inline-block
+    float: left
+  .description-activity
+    @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: inline-block
+    float: left
+
+  .recomended-items
+    @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: inline-block
+    float: left
+@media (min-width: 979px) and (max-width: 1200px)

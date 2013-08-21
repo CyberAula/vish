@@ -83,7 +83,7 @@
 <!--div class="page-header"><%= @excursion.title %></div-->
 <section id="show_excursions">
 
-  <div class="show-left">
+  <div class="box-show">
 <!--visor-->
     <div class="container-visor">
       <div class="elemento-visor"></div>
@@ -96,12 +96,15 @@
     <div class="excursion_tool">
     <%= render :partial => 'excursions/excursion-tool', :locals => { :shortURL => shortURL} %>
     </div>
+
+  </div>
+  <div class="description-activity">
 <!--description-->
-    <div class="excursion_description">
+    <div class="box_description">
       <%= render :partial => 'excursions/excursion-info' %>
     </div>
 <!--activity-->
-    <section class="activity">
+    <div class="activity">
       <div class="tabbable">
 
         <ul class="nav nav-tabs">      
@@ -138,20 +141,20 @@
                   <canvas id="evalLearningChart" width="600" height="600"></canvas>
                 </div>
             </div>
-        </div>
-      </div>       
-    </section>
-  </div>
+          </div>
+        </div>       
+      </div>
+    </div>
 
   <!-- Modal -->
   <%= render :partial => "excursions/excursion_evaluate" %>
   <%= render :partial => "excursions/excursion_learning_evaluate" %>
 
 <!--recomended-->
-  <div class="show-right">
+  <div class="recomended-items">
     <div class="recomended_excursion">
       <ul class="small-box">
-        <% Excursion.first(5).each do |excursion| %>
+        <% Excursion.first(15).each do |excursion| %>
           <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
         <% end %>
       </ul>
