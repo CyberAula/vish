@@ -7,6 +7,9 @@
   .small{
     @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth);
   }
+  input[type="button"] {
+    width: auto;
+  }
   .prueba{
   float: left;
   width: 20px;
