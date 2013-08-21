@@ -35,8 +35,8 @@ header.navbar
           i
             color: $grayLight
             text-decoration: none
-            padding-top: 11px
-            margin-left: 15px
+            padding: 10px
+            margin: 3px
             display: block
             float: left
           i:hover
@@ -89,13 +89,15 @@ header.navbar
             margin-top: 13px
       li.user-settings
         a.logo-small
-          padding: 0 15px
+          padding: 0px
+          margin-left: 5px
           margin-top: -15px
           img
-            @include border-radius(500px)
+            @include border-radius($baseBorderRadius)
             height: 40px
             width: 40px
-
+          .name.hidden-phone
+            margin-left: 5px  
     .login
       float: right
       margin-top: 10px

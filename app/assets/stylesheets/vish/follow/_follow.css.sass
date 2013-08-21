@@ -16,6 +16,9 @@
     float: left
     display: block
     .name
+      height: 40px
+      width: 65px
+      @include center-block()
       margin-top: 5px
       a
         color: $black
@@ -33,6 +36,7 @@
       font-size: 11px
       color: #777
       font-family: $firstFontFamily
+      
   .add
     //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     //@include center-block()
