@@ -98,6 +98,19 @@
     </div>
 
   </div>
+
+
+  <!--recomended-->
+  <div class="recomended-items">
+    <div class="recomended_excursion">
+      <ul class="small-box">
+        <% Excursion.first(10).each do |excursion| %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
   <div class="description-activity">
 <!--description-->
     <div class="box_description">
@@ -150,15 +163,6 @@
   <%= render :partial => "excursions/excursion_evaluate" %>
   <%= render :partial => "excursions/excursion_learning_evaluate" %>
 
-<!--recomended-->
-  <div class="recomended-items">
-    <div class="recomended_excursion">
-      <ul class="small-box">
-        <% Excursion.first(15).each do |excursion| %>
-          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
-        <% end %>
-      </ul>
-    </div>
-  </div>
+
 </section>
 
