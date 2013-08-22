@@ -11,24 +11,22 @@
   h1  
     border-bottom: 1px solid $grayLight
 
-
-
 /*REMEMBER PASSWORD*/
-
-
 /*REGISTER*/
+
 #registration,
 #new_session
   h3
-    font-size: 31.5px
+    font-size: 26px
+    padding: 10px
+    color: $gray
   form#new_user
-    @include gray-box
-
+    @include white-box
+    height: 180px
     .reg-labels,
     .login_data
-      @include border-radius($radius)
-      background-color: #FFF
-
+      @include border-radius($baseBorderRadius)
+      //background-color: $white
       input
         border: none
         box-shadow: none
@@ -39,13 +37,11 @@
         &[type="submit"]
           @include btn-primary
 
-
 .tags-suggestions
   @include box-shadow (0 1px 3px rgba(0, 0, 0, 0.15))  
   @include border-bottom-right-radius($radius)  
   @include border-top-right-radius($radius)  
   background-color: $white
-
   a
     @include rotate(-90deg)
     color: gray
