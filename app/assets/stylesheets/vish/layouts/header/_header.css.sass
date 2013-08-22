@@ -28,20 +28,24 @@ header.navbar
         font-size: 72%
         clear: both
         padding-left: 7%
+
     .navegation
       @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .headernav
         a
           i
-            color: $grayLight
+            color: $grayLighter
+            font-size: 20px
             text-decoration: none
-            padding: 10px
-            margin: 3px
+            padding: 8px
+            margin: 5px 3px
             display: block
             float: left
+
           i:hover
             color: $firstColor
             text-decoration: none
+            border-color: $firstColor
           .notification
             color: $secondColor
 

@@ -81,12 +81,14 @@
           </h3>
           <!--agregar medallas-->
           <!--<div class="img-achievements"></div> -->
-          <button href="#new_messages_profile" role="button" class="btn" data-toggle="modal">
-                <%= link_to new_message_path(receiver: profile_subject.slug) do %>
-                  <i class="icon-envelope-alt"></i>
-                  <%= t 'mailboxer.send' %>
-                <% end %>
-              </button>
+          <% if !profile_subject_is_current? %>
+            <button href="#new_messages_profile" role="button" class="btn" data-toggle="modal">
+              <%= link_to new_message_path(receiver: profile_subject.slug) do %>
+                <i class="icon-envelope-alt"></i>
+                <%= t 'mailboxer.send' %>
+              <% end %>
+            </button>
+          <% end %>
         </div>
 
         <div class="update">
