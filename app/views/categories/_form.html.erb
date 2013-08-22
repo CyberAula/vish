@@ -8,18 +8,20 @@
   </div>
 
   <div class="modal-body">
+    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :remote => false do |f| %>
+    <%= f.hidden_field :owner_id %>
     <!--TITULO-->
     <legend><%= t('categories.leyend.title')%></legend>
-    <input type="text" placeholder="<%= t('categories.title_input')%>">
+    <%= f.text_field :title, :placeholder => t('categories.title_input') %>
     
     <!--DESCRIPCION-->
     <legend><%= t('categories.leyend.description')%></legend>
-    <input type="text" placeholder="<%= t('categories.input')%>">
+    <%= f.text_field :description, :placeholder => t('categories.title_input') %>
   </div>
 
    <div class="modal-footer">
      <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-    <button class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#'> ? </a>
+    <input type="button" class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
 
     <div class="contentHelpCategories" style="display: none">
       <div>
@@ -30,8 +32,8 @@
 
     <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
     <!--<b id="foo" rel="popover">Ayuda </b>-->
-    
-    <button class="btn btn-primary"> <%= t('categories.save')%></button>
+    <%= f.submit t('categories.save')%>
+    <% end %>
   </div>
 </div>
 
