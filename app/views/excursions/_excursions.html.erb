@@ -1,6 +1,20 @@
-<ul class="">
-  <%= render partial: 'excursions/excursion-add' %>
-  <% subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}).each do |excursion| %>
+  <% excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
+  <% excursions.each do |excursion| %>
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %> 
-</ul>
+
+
+<%- if controller_name == 'excursions' && page != 0%>
+	<%= content_for :javascript do %>
+	    $('#excursions ul').pageless({ 
+	                        totalPages: <%=excursions.num_pages%>,
+	                        url: window.location.href,
+	                        currentPage: <%=excursions.current_page%>,
+	                        loader: '#loader_pagination',
+	                        end: function(){
+	                          $('#loader_pagination').hide();
+	                          $("#last_content_shown").show();
+	                        }
+	    });
+  	<% end %>
+<%end%>

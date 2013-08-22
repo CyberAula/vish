@@ -1,5 +1,18 @@
 <section id="excursions">
-  <%= render partial: 'excursions/excursions', :locals => { :scope => :net, :page => params[:page] || 1 } %>
+  <ul class="">
+    <%= render partial: 'excursions/excursion-add' %>
+    <%= render partial: 'excursions/excursions', :locals => { :scope => :net, :page => params[:page] || 1 } %>
+  </ul>
+  <div id="loader_pagination">
+    <div id="pageless-loader" style="text-align:center;width:100%;">
+      <div class="msg" style="font-size:2em">
+        <%=t('search.loading')%>
+      </div>
+      <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
+    </div>
+  </div>
+  <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div>
+
 </section>
 <!--
 <section id="excursions">
@@ -27,3 +40,4 @@
   </div>
 </section>
 -->
+  

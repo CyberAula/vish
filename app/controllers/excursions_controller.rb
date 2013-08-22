@@ -67,6 +67,18 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def index
+    index! do |format|
+      format.html{
+        if !params[:page]
+          render "index"
+        else
+          render :partial => "excursions/excursions", :locals => {:scope => :net, :limit => 0, :page=> params[:page]}, :layout => false
+        end
+      }
+    end
+  end
+
   def new
     new! do |format|
       format.full { render :layout => 'iframe' }

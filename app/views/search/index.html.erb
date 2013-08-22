@@ -55,50 +55,67 @@
                         end: function(){
                           $('#loader_pagination').hide();
                           $("#last_content_shown").show();
+                        },
+                        finishedAddingHiddenElem: function(hidden_elem){
+                            var active_tab = $("#search ul.nav li.active");
+                        
+                            //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
+                            if(active_tab.hasClass("all_results")){
+                              hidden_elem.fadeIn();
+                            }
+                            else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
+                              hidden_elem.fadeIn();
+                            }
+                            else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
+                              hidden_elem.fadeIn();
+                            }
+                            else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
+                              hidden_elem.fadeIn();
+                            }
                         }
     });
 
     
-    <%if params[:type]%>
-      //if "popular" links used, the tabs are links to other "popular" searches
-      $("#search .all_results").click(function(){
-        window.location.href = '<%=search_path()%>';
-      });
-      $("#search .excursion").click(function(){
-        window.location.href = '<%=search_path(:type => "excursion")%>';
-      });
-      $("#search .user").click(function(){
-        window.location.href = '<%=search_path(:type => "user")%>';
-      });
-      $("#search .resource").click(function(){
-        window.location.href = '<%=search_path(:type => "resource")%>';
-      });
-    <%else%>
-      //if search is manual, the tabs are like filters, so done with js
-      //tab filtering, show only excursions, users, resources, etc.
-      $("#search .all_results").click(function(){
-        $("#search-all > ul").children().show();
-      });
-      $("#search .excursion").not(".disabled").click(function(){
-        $("#search-all > ul").children(".excursion-item").show();
-        $("#search-all > ul").children().not(".excursion-item").hide();
-        //call for more results
-        $('#search-all ul').trigger("scroll.pageless");
-      });
-      $("#search .user").not(".disabled").click(function(){
-        $("#search-all > ul").children(".contact").show();
-        $("#search-all > ul").children().not(".contact").hide();
-        //call for more results
-        //$('#search-all ul').trigger("scroll.pageless");
-      });
-      $("#search .resource").not(".disabled").click(function(){
-        $("#search-all > ul").children(".resource-item").show();
-        $("#search-all > ul").children().not(".resource-item").hide();
-        //call for more results
-        $('#search-all ul').trigger("scroll.pageless");
-      });
+      <%if params[:type]%>
+        //if "popular" links used, the tabs are links to other "popular" searches
+        $("#search .all_results").click(function(){
+          window.location.href = '<%=search_path()%>';
+        });
+        $("#search .excursion").click(function(){
+          window.location.href = '<%=search_path(:type => "excursion")%>';
+        });
+        $("#search .user").click(function(){
+          window.location.href = '<%=search_path(:type => "user")%>';
+        });
+        $("#search .resource").click(function(){
+          window.location.href = '<%=search_path(:type => "resource")%>';
+        });
+      <%else%>
+        //if search is manual, the tabs are like filters, so done with js
+        //tab filtering, show only excursions, users, resources, etc.
+        $("#search .all_results").click(function(){
+          $("#search-all > ul").children().show();
+        });
+        $("#search .excursion").not(".disabled").click(function(){
+          $("#search-all > ul").children(".excursion-item").show();
+          $("#search-all > ul").children().not(".excursion-item").hide();
+          //call for more results
+          $('#search-all ul').trigger("scroll.pageless");
+        });
+        $("#search .user").not(".disabled").click(function(){
+          $("#search-all > ul").children(".contact").show();
+          $("#search-all > ul").children().not(".contact").hide();
+          //call for more results
+          //$('#search-all ul').trigger("scroll.pageless");
+        });
+        $("#search .resource").not(".disabled").click(function(){
+          $("#search-all > ul").children(".resource-item").show();
+          $("#search-all > ul").children().not(".resource-item").hide();
+          //call for more results
+          $('#search-all ul').trigger("scroll.pageless");
+        });
 
-    <%end%>
+      <%end%>
 
     <% end %>
   </div>

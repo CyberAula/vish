@@ -29,6 +29,8 @@
 //
 // Callback Parameters:
 //    scrape: A function to modify the incoming data.
+//    finishedAddingHiddenElem(hidden_elem): function created by KIKE XXX. All the elements are added as hidden. And then this function decides if they should be shown or not.
+//                              if this function does not exist the elements are shown with a fadeIn() by default
 //    complete: A function to call when a new page has been loaded (optional)
 //    end: A function to call when the last page has been loaded (optional)
 //
@@ -208,19 +210,13 @@
    */
   function animateSlowAppendAndFinishLoading(element, arr){ 
     var tmp_elem = arr.pop();
-    var active_tab = $("#search ul.nav li.active");
+   
     var hidden_elem = $(tmp_elem).hide().appendTo($(element));
-    //we check this each time because it can change. We show the elem if the tab is active or if it is "all" tab
-    if(active_tab.hasClass("all_results")){
-      hidden_elem.fadeIn();
+    
+    if ($.isFunction(settings.finishedAddingHiddenElem)) {
+      settings.finishedAddingHiddenElem(hidden_elem);
     }
-    else if (active_tab.hasClass("excursion") && hidden_elem.hasClass("excursion-item")){
-      hidden_elem.fadeIn();
-    }
-    else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
-      hidden_elem.fadeIn();
-    }
-    else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
+    else{
       hidden_elem.fadeIn();
     }
     

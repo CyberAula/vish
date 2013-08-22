@@ -87,7 +87,7 @@ module HomeHelper
               query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
             end
 
-    # pagination
+    # pagination, 0 means without pagination
     if options[:page] != 0
       query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
     end

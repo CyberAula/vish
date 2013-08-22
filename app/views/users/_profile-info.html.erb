@@ -13,7 +13,10 @@
 
       <div class="tab-pane active" id="tab1">
         <div id="excursions">
+        <ul class="">
+          <%= render partial: 'excursions/excursion-add' %>
           <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 0 } %>
+        </ul>
         </div>
       </div>
 
