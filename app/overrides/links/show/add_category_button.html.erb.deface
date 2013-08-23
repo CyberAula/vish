@@ -1,0 +1,16 @@
+<!-- insert_after '#link' -->
+<button class="category btn popover-link" data-placement='top' aria-hidden="true" data-original-title="categorize"><i class="icon-th-large"></i> <%=t('categories.actions.verb')%></button>
+
+  <div class="contentcategory" style="display: none">
+    <%= render :partial=>'categories/categorize_form', :locals => { :item => @link } %>
+  </div>
+
+  <%= content_for :javascript do %> 
+    $('.category').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentcategory').html();
+      },
+      container: ".category"
+  });
+  <% end %>

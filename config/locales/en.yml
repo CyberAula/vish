@@ -32,6 +32,8 @@ en:
   categories:
     actions:
       add: "Add category"
+      verb: "categorize"
+    info: "Add it to one of your categories"
     input: "Add a description"
     leyend:
       title: "Title"

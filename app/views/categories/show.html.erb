@@ -1,8 +1,34 @@
-<div>This is the category show view</div>
+<section id="category">
+  <h1><%= t('categories.leyend.title') %>: <%= @category.title %></h1>
+  <h2><%= t('categories.leyend.description') %>: <%= @category.description %></h2>
+  <div id="excursions">
+    <ul class="">
+    <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
+    
+      <% @category.property_objects.each do |item| %>
+      <% resources = [Picture, Document, Embed, Link] %>
+      <% if resources.include?(item.object.class) %>
+        <%= render :partial => 'repositories/resource', :locals => { :resource => item.object } %>
+      <% else %>
+        <%= render :partial => "#{item.object.class.to_s.tableize}/#{item.object.class.to_s.underscore}", :locals => { item.object.class.to_s.underscore.to_sym => item.object } %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+<!--   <div id="loader_pagination">
+    <div id="pageless-loader" style="text-align:center;width:100%;">
+      <div class="msg" style="font-size:2em">
+        <%=t('search.loading')%>
+      </div>
+      <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
+    </div>
+  </div>
+  <div id="last_content_shown" style="display:none"> <%=t('search.end')%></div> -->
 
-<div><%= @category.title %></div>
-<div><%= @category.description %></div>
+</section>
 
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= content_for :javascript do %>
+  $(document).ready(function() {
+    $(".resource").fitText(0.4);
+  });
+<% end %>
