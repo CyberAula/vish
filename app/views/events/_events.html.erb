@@ -1,5 +1,7 @@
 <ul class="events">
-  <%= render partial: 'events/event-add' %>
+  <% if profile_subject_is_current? %>
+    <%= render partial: 'events/event-add' %>
+  <% end %>
   <%#= render partial: 'events/event-myroom' %>	
   <% 10.times do %>
     <%= render partial: 'events/event' %>
