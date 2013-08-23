@@ -1,31 +1,32 @@
 <li class="box-item">
 
 <!--IMG categories-->
-  <%= link_to image_tag("items/cat-prev.png"), "#",  :class=> "img-box"  %>
+  <%#= link_to image_tag("items/cat-prev.png"), "#",  :class=> "img-box"  %>
+  <div class="category">
+    <%= link_to "<i class='icon-th-large'></i>".html_safe, category, :title => category.title %>
+  </div>
 <!--INFO categories-->
   <div class="info">
 <!--Title -->
     <h5 class="name">
-      <a>
-        category name  
-      </a>
+      <%= link_to truncate(category.title, :length => 15), category %>
     </h5>
 <!--Autor -->
     <div class="author"> 
-      <a>author name</a>   
+      <a><%= raw t('document.by', author: link_to(category.author.name, category.author_subject)) %></a>
     </div>
 <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
 <!--like -->
       <div class="like">    
-        <div class="count">32</div>
-        <%= link_to image_tag("icons/likes/star-active.png",  :class=> "img-like" ), "#" %>
+        <div class="count"><%=category.post_activity.likes.count.to_s%></div>
+        <%= link_like(category.post_activity)%>
       </div>
 <!--views -->
-      <div class="views">2500
-        <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23">
-        </a>
+      <div class="views">
+        <%=category.visit_count.to_s%>
+        <%=t('follow.views')%>
       </div>
     </div>
   </div>

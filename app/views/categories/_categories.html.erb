@@ -1,10 +1,15 @@
 <ul class="categories">
   <%= render partial: 'categories/category-add' %>
-  <% 10.times do %>
-    <%= render partial: 'categories/category' %>
-  <% end %>
+  <% subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |category| %>
+      <%= render :partial => 'categories/category', :locals => { :category => category } %>
+  <% end %> 
 </ul>
 
+<%= content_for :javascript do %>
+  $('a[href="#tab4"]').on('shown', function (e) {
+    $(".category").fitText(0.4);
+  });
+<% end %>
 
 
 

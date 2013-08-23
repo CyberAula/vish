@@ -33,6 +33,8 @@ es:
   categories:
     actions:
       add: "Añadir categoría"
+      verb: "categorizar"
+    info: "Añádelo a una de tus categorías"
     input: "Añade una descripción"
     leyend:
       title: "Título"

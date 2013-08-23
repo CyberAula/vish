@@ -37,6 +37,14 @@ module HomeHelper
     subject_content subject, [Document, Embed, Link], options
   end
 
+  def current_subject_categories(options = {})
+    subject_categories current_subject, options
+  end
+
+  def subject_categories(subject, options = {})
+    subject_content subject, Category, options
+  end
+
   def subject_content(subject, klass, options = {})
     options[:limit] ||= 4
     options[:scope] ||= :net

@@ -34,7 +34,7 @@
 
       <div class="tab-pane" id="tab4">
         <div id="categories">
-          <%= render partial: 'categories/categories' %>
+          <%= render partial: 'categories/categories', :locals => { :scope => :me } %>
         </div>
       </div>
 
