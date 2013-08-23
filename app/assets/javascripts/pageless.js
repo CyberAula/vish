@@ -80,11 +80,11 @@
   var container;
   var $container;
 
-  $.pageless = function (opts) {
-    if ($.isFunction(opts)) {
-      opts.call();
-    } else {
-      init(opts);
+  //changed by KIKE XXX it was a function before
+  //now we can access watch function
+  $.pageless = {
+    watch: function(){
+      watch();
     }
   };
 
@@ -225,11 +225,14 @@
     }
     else{
       loading(false);
+      // if there is a complete callback we call it
+      if (settings.complete) {
+        settings.complete.call();
+      }
     }
   }
 
   function watch() {
-    console.log("watch " + my_num);
     my_num++;
     var currentPage = settingOrFunc('currentPage');
     var totalPages = settingOrFunc('totalPages');
@@ -288,10 +291,6 @@
             if (settings.end) {
               settings.end.call();
             }
-          }
-          // if there is a complete callback we call it
-          if (settings.complete) {
-            settings.complete.call();
           }
         }
       });

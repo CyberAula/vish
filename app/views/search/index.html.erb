@@ -72,6 +72,11 @@
                             else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
                               hidden_elem.fadeIn();
                             }
+                        },
+                        complete: function(){
+                          //when we complete one page and there is no scroll, there cannot be another call
+                          //so we do a manual watch to bring all pages needed until we have a scroll
+                          $.pageless.watch();
                         }
     });
 
