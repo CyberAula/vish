@@ -1,16 +1,15 @@
-<li class="box-item">
+<li class="box-item excursion-item">
 
 <!--IMG categories-->
-  <%#= link_to image_tag("items/cat-prev.png"), "#",  :class=> "img-box"  %>
   <div class="category">
     <%= link_to "<i class='icon-th-large'></i>".html_safe, category, :title => category.title %>
   </div>
 <!--INFO categories-->
   <div class="info">
 <!--Title -->
-    <h5 class="name">
+    <div class="name">
       <%= link_to truncate(category.title, :length => 15), category %>
-    </h5>
+    </div>
 <!--Autor -->
     <div class="author"> 
       <a><%= raw t('document.by', author: link_to(category.author.name, category.author_subject)) %></a>

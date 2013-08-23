@@ -7,8 +7,16 @@
   z-index: 1
   margin-left: 1%
 
-
-
+@mixin white-box
+  @include border-radius($baseBorderRadius)
+  //border-top: 1px solid #F2F2F2
+  background-color: $white
+  @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+  position: relative
+  width: 100%
+  z-index: 1
+  margin-left: 1%
+ 
 @mixin excursion-box
   border: 1px solid $grayLighter
   @include border-top-radius($borderRadiusSmall)

@@ -1,0 +1,199 @@
+<%= content_for :javascript do %> 
+	//to close the popovers
+	$(':not(#anything_not_present)').on('click', function (e) {
+	    $('.popover-link').each(function () {
+	        //the 'is' for buttons that trigger popups
+	        //the 'has' for icons and other elements within a button that triggers a popup
+	        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+	            $(this).popover('hide');
+	            return;
+	        }
+	    });
+	});
+
+	//EMBED POPOVER
+	$('.embed').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentembed').html();
+      },
+      container: ".embed"
+    });
+
+    //apply events when opening the embed popover
+    $('.embed').on('shown.bs.popover', function () {
+	  $('button#btn_copy_embed').zclip({
+	        path:'/assets/ZeroClipboard.swf',
+	        copy:function(){
+	        	return $('#textarea_for_iframe').text();
+	    	},
+	    	afterCopy: function(){}
+	    });
+
+	    $("#textarea_for_iframe").mouseup(function(e){
+	        // fixes safari/chrome problem
+	        e.preventDefault();
+	    }).focus(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    }).click(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    });
+
+	});
+
+	//SHARE POPOVER
+	$('.share').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentShare').html();
+      },
+      container: ".share"
+    });
+
+     $('.share').on('shown.bs.popover', function () {
+	  $('button#btn_copy_share').zclip({
+	        path:'/assets/ZeroClipboard.swf',
+	        copy:function(){
+	        	return $('#input_with_shorturl').val();
+	    	},
+	    	afterCopy: function(){}
+	    });
+
+	    $("#input_with_shorturl").mouseup(function(e){
+	        // fixes safari/chrome problem
+	        e.preventDefault();
+	    }).focus(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    }).click(function(e){
+	        mytxt = $(this).text();
+	        $(this).select();
+	    });
+
+	});
+	
+	$('.clone').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentclone').html();
+      },
+      container: ".clone"
+	});
+
+	$('.delete').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentdelete').html();
+      },
+      container: ".delete"
+	});
+	
+
+	$('.btn_cancel').click(function(){
+		$('.popover').popover('hide');
+	});
+
+<%end%>
+
+<% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
+
+<div class="btn-group">
+  <% unless editingToolbar %>
+    <!--embed-->
+	<button class='embed btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Embed" href='#'>
+		<i class="icon-code"></i> <%=t('excursion.actions.embed')%>
+	</button>
+	<div class="contentembed" style="display: none">
+  	<div class="input-append url-input">
+    	<textarea class="shortUrl" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
+    	<button class="btn copy_btn" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
+    </div>
+  </div>
+
+<!--share-->
+	<button class='share btn popover-link' data-placement='top' aria-hidden="true" data-original-title="Share" href='#'>
+		<i class="icon-share"></i> <%=t('excursion.actions.share')%>
+	</button>
+
+	  <div class="contentShare" style="display: none">
+
+	  	<div class="input-append url-input">
+	    	<input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+	    	<button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
+	    </div>
+
+	    <div class="input-append contact-input" style="display: none">
+	    	<input class="shortUrl" placeholder="friend's name" id="" type="text">
+	    	<button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
+	    </div>
+
+	    <div class="social_toolbar_excursion">
+	      <div class="twitter_toolbar_excursion">
+	        <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
+	      </div>
+	      <div class="facebook_toolbar_excursion">
+	        <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+	      </div>
+	      <div class="gplus_toolbar_excursion ">
+	        <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+	      </div>
+	      <div class="email_toolbar_excursion">
+	        <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+	      </div>
+	     </div>
+
+	  </div>
+
+    <!--clone-->
+	<button class="clone btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Clone"><i class="icon-copy"></i> <%=t('excursion.actions.clone')%></button>
+
+
+	<div class="contentclone" style="display: none">
+
+		<span class="icon-stack">
+			<i class="icon-circle  icon-stack-base"></i>
+			<i class="icon-info  icon-light"></i>
+		</span>
+		<p class="info"><%=t('excursion.clone.confirm')%></p>
+		<div class="actions-clone">
+			<a class="btn btn_cancel"><%=t('cancel')%></a>
+			<a href="<%=excursion_path(@excursion) + '/clone'%>" class="btn btn-primary"><%=t('save')%></a>
+		</div>
+  </div>
+
+	<a class="btn" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a>
+	<% if user_signed_in? and (can? :update, @excursion) %>
+	<!--si es tuya la puedes eliminar o editar-->
+	<button class="btn" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i> <%=t('excursion.actions.edit')%></button>
+	<%end%>
+
+  <%end%>
+
+  <% if user_signed_in? and can?(:destroy, @excursion) %>
+	<!--remove-->
+	<button class="delete btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Delete"><i class="icon-remove"></i> <%=t('excursion.actions.delete')%></button>
+  <%end%>
+
+	<div class="contentdelete" style="display: none">
+		<i class="icon-remove-sign"></i>
+		<p class="delete_p"><%=t('excursion.confirm_delete')%></p>
+		<div class="actions-clone">
+			<a class="btn btn_cancel"><%=t('cancel')%></a>
+			<%= link_to t('excursion.actions.delete'),  @excursion,
+                      :method => :delete, :class => 'btn btn-primary' %>
+		</div>
+  </div>
+	
+	<% unless editingToolbar %>
+	<%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>
+	<button class="btn"><i class="icon-facetime-video"></i> <%=t('excursion.actions.my_room')%></button>
+	<!--boton guardar en "categoria x"(proximamente)
+	<button class="btn"><i class="icon-plus"></i> add to categories</button>
+	-->
+	<%end%>
+</div>
+
+
+

@@ -1,6 +1,5 @@
 #profile
   #profile-info
-    @include gray-box
     z-index: 0
     h2
       margin-bottom: 10px
@@ -21,12 +20,11 @@
         border-top: 5px solid $white
         background-color: none
     
-
-    form.edit_profile
-      @include btn-primary
-      input
-        &[type="submit"]
-          
+    .update
+      form.edit_user
+        input
+          &[type="submit"]
+            @include btn-primary  
     .personal
       form.edit_profile
         h6 

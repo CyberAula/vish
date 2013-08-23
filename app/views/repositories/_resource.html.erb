@@ -10,9 +10,9 @@
 <!--INFO resource-->
   <div class="info">
 <!--Title -->
-    <h5 class="name">
-      <%= link_to truncate(resource.title, :length => 15), resource %>
-    </h5>
+    <div class="name">
+        <%= link_to truncate(resource.title, :length => 15), resource %>
+    </div>
 <!--Autor -->
     <div class="author"> 
       <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a>   
