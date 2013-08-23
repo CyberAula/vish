@@ -4,10 +4,22 @@
 </span>
 <p class="info"><%=t('categories.info')%></p>
 <div class="actions-clone">
-  <%= form_for item, :remote => true do |f| %>
-    <% categories_array = subject_categories(current_subject, {:scope => :me, :limit => 0}).map { |category| [category.title, category.id] } %>
-    <%= f.select(:add_holder_category_id, options_for_select(categories_array)) %>
+  <% categories = subject_categories(current_subject, {:scope => :me, :limit => 0}) %>
+  <% categories_array = categories.map { |category| [category.title, category.id] } %>
+  <%= select_tag(:category_id, options_for_select(categories_array)) %>
+
+
+  <%= form_for categories.first, :remote => true do |f| %>
+    <%= f.hidden_field :item_type, :value => item.class.to_s %>
+    <%= f.hidden_field :item_id, :value => item.id %>
     <a class="btn btn_cancel"><%=t('cancel')%></a>
     <%= f.submit t('button.save')%>
   <% end %>
+
+  <script>
+    $("#category_id").change(function() {
+      $(".edit_category").attr("action", "/categories/" + $(this).val());
+      $(".edit_category").attr("id", "edit_category_" + $(this).val());
+    });
+  </script>
 </div>
