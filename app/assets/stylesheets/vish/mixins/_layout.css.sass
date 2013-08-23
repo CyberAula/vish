@@ -68,7 +68,10 @@
 @mixin header-tabbable
   clear: both
   margin-top: 10px
+  .tab-content
+    overflow: visible
   ul.nav,
+
   ul.nav-tabs 
     border-bottom: 1px solid $grayLight
     @include tab_title
