@@ -9,7 +9,7 @@ ul.single-line-tags {
 
 ul.tagit-suggestions li.tagit-choice {
     float: left;
-    background-color: #0066ff;
+    background-color: $secondColor;
     opacity: 0.5;
     color: #fff;
     padding: 2px 4px 3px 4px;
@@ -22,7 +22,7 @@ ul.tagit-suggestions li.tagit-choice {
 }
 
 ul.tagit-suggestions li.tagit-choice:hover {
-    background-color: #0066ff;
+    background-color: $secondColor;
     opacity: 0.7;
     border-color: #6d95e0;
 }
@@ -108,8 +108,6 @@ div.tagBoxNew .tagit{
 
 div.tagBoxNew ul.tagit li.tagit-choice {
     font-size: 13px;
-
-
 }
 
 
@@ -165,11 +163,11 @@ select.tagit-hiddenSelect{
 }
 
 ul.tagit {
-    cursor: text;
-    overflow: auto;
+  cursor: text;
+  overflow: auto;
   background-color: #FFFFFF;
   border: 1px solid #CCCCCC;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: $baseBorderRadius;
   display: inline-block;
   font-size: 13px;
   height: auto;
@@ -196,12 +194,15 @@ ul.tagit.ui-sortable li.tagit-choice a.ui-icon.ui-icon-grip-dotted-vertical{
 }
 
 ul.tagit li.tagit-choice {
-    background-color: #0066ff;
+    background-color: $secondColor;
     opacity: 0.5;
     color: #fff;
-    padding: 2px 13px 3px 4px;
-    font-size: 15px;
-    font-family: Helvetica;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    font-size: 14px;
+    font-family: $firstFontFamily;
     margin-bottom: 5px;
 }
 
@@ -211,16 +212,14 @@ ul.tagit li.tagit-choice.selected {
 }
 
 ul.tagit li.tagit-choice:hover {
-    background-color: #0066ff;
-    opacity: 0.7;
+    background-color: $secondColor;
+    opacity: 1;
     border-color: #6d95e0;
 }
 
 ul.tagit li.tagit-new {
     width: 270px;
-    padding: 2px 4px 3px;
-    padding: 2px 4px 1px;
-    padding: 2px 4px 1px 0;
+    padding: 5px
 }
 
 ul.tagit li.tagit-choice input {
@@ -234,31 +233,22 @@ ul.tagit li.tagit-choice input {
 ul.tagit li.tagit-choice a.tagit-close {
     color: #000c6e;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     outline: medium none;
-    padding: 2px 0 2px 3px;
+    padding-left: 5px;
     text-decoration: none;
     position: absolute;
     display: block;
     top: 0;
     right: 3px;
-    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+    //text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 ul.tagit li.tagit-choice a.tagit-close:hover {
     color: #535353;
+    text-decoration: none;
 }
-
-// ul.tagit input[type="text"] {
-//     -moz-box-sizing: border-box;
-//     border: none !important;
-//     margin: 0 !important;
-//     padding: 0 !important;
-//     width: inherit !important;
-//     outline: none;
-//     box-shadow: none;
-// }
 
 .tagit-hiddenSelect {
     display:none;
@@ -335,7 +325,7 @@ ul.tagit li.tagit-choice a.tagit-close:hover {
   overflow: auto;
   background-color: #FFFFFF;
   border: 1px solid #CCCCCC;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: $baseBorderRadius;
   display: inline-block;
   font-size: 13px;
   height: auto;

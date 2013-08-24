@@ -12,7 +12,7 @@
   background-color: $firstColor
   font-size: $baseFontSize
   line-height: $baseLineHeight
-  vertical-align: middle
+  //vertical-align: middle
   cursor: pointer
   color: $white
   background-image: none
@@ -50,7 +50,7 @@
   border-bottom: none
   border-color: $white
   padding: 4px 6px 4px 6px
-  @include border-radius(7px)
+  @include border-radius($baseBorderRadius)
   -webkit-box-shadow: 3px 1px 4px rgba(50, 50, 50, 0.1)
   -moz-box-shadow: 3px 1px 4px rgba(50, 50, 50, 0.1)
   box-shadow: 3px 1px 4px rgba(50, 50, 50, 0.1)
@@ -109,7 +109,7 @@
   margin-top: 10px
   input
     &[type="submit"]
-      @include border-radius(5px)
+      @include border-radius($baseBorderRadius)
       @include btn-primary
       width: 100%
 
@@ -117,7 +117,7 @@
   margin-top: 10px
   input
     &[type="submit"]
-      @include border-radius(5px)
+      @include border-radius($baseBorderRadius)
       @include btn-primary
       width: 25%
 
@@ -125,7 +125,7 @@
   margin-top: 10px
   input
     &[type="submit"]
-      @include border-radius(5px)
+      @include border-radius($baseBorderRadius)
       @include btn-primary
       width: 15%
       margin-top: 5px

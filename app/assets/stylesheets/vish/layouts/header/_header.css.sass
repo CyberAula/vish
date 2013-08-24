@@ -66,9 +66,7 @@ header.navbar
             padding: 1px
             border-radius: $baseBorderRadius
             a 
-              color: $gray
-
-              
+              color: $gray              
               &:hover
                 color: $white
           .caret
@@ -92,6 +90,11 @@ header.navbar
             display: block
             margin-top: 13px
       li.user-settings
+        .dropdown-menu
+          &:before
+            border: none
+          &:after
+            border: none
         a.logo-small
           padding: 0px
           margin-left: 5px

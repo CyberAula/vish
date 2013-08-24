@@ -1,6 +1,6 @@
 .modal{
   textarea,
-  input, 
+  input[type="text"] , 
   {
     @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth);
   }
@@ -104,7 +104,7 @@ legend {
     background-clip: padding-box;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6px 6px 6px 6px;
+    border-radius: $baseBorderRadius;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     display: none;
     left: 0;

@@ -3,6 +3,10 @@
 
 <!-- Modal -->
 <div id="AddResource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="AddResourceLabel"><%= t('document.main_title')%></h3>
+  </div>
 
   <div class="modal-body">
     <!-- Tags preloaded -->
@@ -94,8 +98,7 @@
     <div class="tagBoxDocument span">
        <ul class="tagList"></ul>
     </div>
-    <div class="clearfloat"></div>
-    <div class="line"></div>
+
     <div class="clearfloat"></div>
     
     <!--LANGUAGE-->
@@ -119,7 +122,7 @@
       <div class="limit2">20</div>
     </div>
     <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
-
+    <br>
   </div><!-- CIERRA BODY-->
 
 
@@ -143,8 +146,6 @@
     <input type="button" class="btn btn-primary" value="<%= t('document.upload')%>"/>
   </div>
 </div>
-
-
 
 <!-- SCRIPTS -->
 <script>

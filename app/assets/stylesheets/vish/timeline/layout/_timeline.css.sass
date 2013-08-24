@@ -207,7 +207,7 @@ section.activity
           float: left
           img
             margin-left: 10px
-            @include border-radius (50px)
+            @include border-radius ($baseBorderRadius)
         form#new_comment
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
@@ -235,7 +235,7 @@ section.activity
         float: left
         img
           margin-left: 10px
-          @include border-radius (50px)
+          @include border-radius ($baseBorderRadius)
       .media-heading
         display: block
         margin-left: 2%

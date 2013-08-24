@@ -2,31 +2,34 @@
 
 #conversations
   .conversations
-    width: 76%
+    width: 100%
     .conversation
-      height: 85px
+      height: 65px
+      margin-bottom: 5px
       clear: both
-      .content_left
-        display: inline
+      .content_left        
         float: left
         .avatar
-          display: inline
+          float: left
+          padding-right: 10px
           img
-            border-radius: 50px
+            border-radius: $baseBorderRadius
+            
         header
-          width: 103px
-          display: inline-block
+          //width: 103px
+          width: 150px
+          float: left
           h5
             margin-top: 0
             margin-bottom: 0  
             a
-              display: block
+              //display: inline
       .content_right
         display: inline-block
         margin-bottom: 15px
         float: left
         margin-left: 14px
-        width: 68%
+        width: auto
         .subject
           font-size: 14px
           display: inline
@@ -121,31 +124,35 @@
 #conversation,
 #new_message
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-  margin: 0 2% 0
   #toolbar
-    width: 110px
+    width: auto
     float: left
     margin-right: 20px
-    padding: 2px 1px
+    margin-top: 20px
+    background-color: $white
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    //padding: 2px 1px
     nav
-      padding-left: 10px
-      padding-top: 10px
-      padding-bottom: 10px
-      padding-right: 10px
-
+      padding-bottom: 1px
+      padding-top: 1px
+      //padding-right: 10px
+      //padding-left: 10px
       ul
-        margin: 0 0 1px 0 
         li
+          //@include border-radius($baseBorderRadius)
+          float: left
           display: block
-          margin-top: 5px
-          margin-bottom: 5px 
+          padding: 10px 
           a
-            font-family: $thirdFontFamily
+            font-family: $secondFontFamily
             font-size: 14px
-            color: $firstColor
+            color: $gray
             i
-              //padding: 9px 27px
-
+              padding-right: 3px
+          &:hover
+            border-bottom: 3px solid $firstColor
+            a
+              color: $firstColor  
 #content
   .read_all
     float: right

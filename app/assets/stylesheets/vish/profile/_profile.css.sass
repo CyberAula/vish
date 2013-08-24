@@ -7,9 +7,9 @@
       float: left
       padding: 0px
       img.avatar_img
-        @include border-radius(500px)
-        margin-top: 20px
-        margin-bottom: 20px
+        @include border-radius($baseBorderRadius)
+        //margin-top: 20px
+        //margin-bottom: 20px
 
         //@include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .information
@@ -17,12 +17,13 @@
       margin-bottom: 20px
       margin-right: 10px
       background-color: $white
-      float: left
+      min-height: 149px
+      //float: left
       padding: 13px
       h1, h2, h3, h4, h5, h6 
         line-height: 25px
         display: inline-block
-        margin-left: 5px
+        //margin-left: 5px
       h2
         width: 55%
         

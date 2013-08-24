@@ -1,3 +1,11 @@
+.dropdown-menu{
+  padding: 1px;
+  width: auto;
+}
+
+.dropdown-menu > li > a,.dropdown-menu > li > a > i{
+  padding: 5px;
+}
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus,
 .dropdown-submenu:hover > a,
@@ -5,6 +13,6 @@
 	@include border-radius($baseBorderRadius);
 }
 
-.dropdown-menu{
-  padding: 1px
+.dropdown-menu > li.divider{
+  margin: 1px;
 }

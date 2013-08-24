@@ -29,44 +29,45 @@
           </ul>
         </div>
       </li>
-      <li class ="user-settings">
-      <%= link_to current_subject do %>
+      
+        <li class ="user-settings">
+        <%= link_to current_subject do %>
 
-        <a data-toggle="dropdown" href="#" class="logo-small">
-          <%= image_tag current_subject.logo.url(:small) %>
-          <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %></span>
-        </a>
-        <ul class="dropdown-menu">
-          <!-- dropdown menu links -->
-          <li class="settings-menu">
-            <%= link_to current_subject do %>
-              <i class="icon-user"></i>
-              <%= t('profile.one') %>
-            <% end %>
-          </li>
-          <li class="settings-menu">
-            <%= link_to settings_path do %>
-              <i class="icon-cog"></i>
-              <%= t('dropdown.settings') %>
-            <% end %>
-          </li>
-          <li class="settings-menu">
-            <%= link_to quiz_sessions_path do %>
-              <i class="icon-puzzle-piece"></i>
-              <%= t('quiz_sessions') %>
-            <% end %>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <%= link_to destroy_user_session_path, :method => :delete do %>
-              <i class="icon-signout"></i>
-              <%= t('sign_out') %>
-            <% end %>
-          </li>
-        </ul>
-
+          <a data-toggle="dropdown" href="#" class="logo-small">
+            <%= image_tag current_subject.logo.url(:small) %>
+            <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %></span>
+          </a>
+          <ul class="dropdown-menu">
+            <!-- dropdown menu links -->
+            <li class="settings-menu">
+              <%= link_to current_subject do %>
+                <i class="icon-user"></i>
+                <%= t('profile.one') %>
+              <% end %>
+            </li>
+            <li class="settings-menu">
+              <%= link_to settings_path do %>
+                <i class="icon-cog"></i>
+                <%= t('dropdown.settings') %>
+              <% end %>
+            </li>
+            <li class="settings-menu">
+              <%= link_to quiz_sessions_path do %>
+                <i class="icon-puzzle-piece"></i>
+                <%= t('quiz_sessions') %>
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to destroy_user_session_path, :method => :delete do %>
+                <i class="icon-signout"></i>
+                <%= t('sign_out') %>
+              <% end %>
+            </li>
+          </ul>
         <% end %>
-      </li>
+        </li>
+      
       <li> 
         <%#= render partial: 'layouts/header_dropdown_menu' %>
       </li>
