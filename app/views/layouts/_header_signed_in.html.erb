@@ -1,8 +1,8 @@
 <header class="navbar">
   <nav class="navbar-inner">
     <div class="brand">
-      <%= link_to(image_tag('logo/logo.png', :alt => t('site.name')), '/', :class => "logo"); %>
-      <div class="vish-name">virtual science hub</div>
+      <%= link_to(image_tag('logo/lbrand.png', :alt => t('site.name')), '/', :class => "logo"); %>
+      <div id="fittext2" class=" vish-name"><%=t("site.current.title")%></div>
     </div>
     <!-- FIXME: search javascript functionality in 'layouts/search' -->
     <div class="navegation">
@@ -78,3 +78,8 @@
     </ul>
   </nav>
 </header>
+<script type="text/javascript">
+
+$("#fittext2").fitText(0.96);
+
+</script>

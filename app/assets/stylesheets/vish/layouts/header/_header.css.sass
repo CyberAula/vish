@@ -5,7 +5,7 @@ header.navbar
     height: 50px
     background: $white
     .brand
-      height: 55px
+      height: auto
       @include border-bottom-radius($radius)
       width: 11%
       max-width: 136px
@@ -17,17 +17,17 @@ header.navbar
       img
         float: left
         display: block
-        max-height: 40px
         max-width: 135px
         clear: both
         width: 100%
       .vish-name
         display: block
-        float: left
+        margin-left: auto
+        margin-right: auto
         font-family: $firstFontFamily
-        font-size: 72%
+        width: 100%
         clear: both
-        padding-left: 7%
+        text-align: center
 
     .navegation
       @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -107,21 +107,20 @@ header.navbar
             margin-left: 5px  
     .login
       float: right
-      margin-top: 10px
+      margin-top: 14px
+      font-family: $secondFontFamily
       
       ul.dropdown-menu
         margin: 7px 40px 0 -175px
         padding: 6px 7px
         #remember
           @include check-box
-          input
-          &[type="submit"]
-            @include btn-primary
-            float: right
+
     .signin
       float: right
       margin-right: 20px
-      margin-top: 10px
+      font-family: $secondFontFamily
+      margin-top: 14px
 
 
 
