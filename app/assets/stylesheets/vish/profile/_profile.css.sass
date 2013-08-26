@@ -2,7 +2,7 @@
   margin-bottom: 20px
   header
     #profile-info
-      margin-top: 20px
+      //margin-top: 20px
       margin-bottom: 20px
       margin-right: 10px
       background-color: $white
@@ -10,12 +10,14 @@
       //float: left
       display: block
       float: left
-      padding: 13px
+      
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
 
       .avatar
+        position: relative
+        z-index: 1
         //@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: left
@@ -27,7 +29,22 @@
           @include border-radius($baseBorderRadius)
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
+        .edit_icon
+          bottom: 0px
+          right: 16px
+          position: absolute
+          z-index: 2
+          a
+            @include btn-primary
+        .contact
+          bottom: 0px
+          right: 16px
+          position: absolute
+          z-index: 2
+          a
+            @include btn-primary
       .information
+        padding: 10px
         @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
         h1, h2, h3, h4, h5, h6 
           line-height: 25px
@@ -80,6 +97,7 @@
             padding: 0 14px
             display: block
             float: left
+            @include grid-fluid-offset(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
             @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
 
             textarea
@@ -91,9 +109,6 @@
                 float: right
                 margin-top: 20px
                 margin-right: 9px 
-
-
-
 
     
     .modal

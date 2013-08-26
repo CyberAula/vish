@@ -4,11 +4,7 @@
     
     <div id="profile-info">
       <div class="avatar">
-      <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
-      <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
-    </div>
-      <section class="information">
-        <!-- Edit your profile -->
+      <!-- Edit your profile -->
         <% @profile = profile_or_current_subject.profile %>
         <% if can?(:update, @profile) %>
         <div class="edit_icon">
@@ -27,6 +23,12 @@
           <%#= contact_to(profile_subject) %>
         </button> -->
         <% end %>
+      <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
+      <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
+    </div>
+      <section class="information">
+        
+        
 
         <div class="briefing">
           <h2><%= @user.name %></h2>
