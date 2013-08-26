@@ -1,133 +1,138 @@
-header.navbar
+header.navbar,
+.navbar-fixed-top
+  
   .navbar-inner
     padding-left: 5%
     padding-right: 5%
     height: 50px
     background: $white
-    .brand
-      height: auto
-      @include border-bottom-radius($radius)
-      width: 11%
-      max-width: 136px
-      float: left
-      margin-top: 0px
-      display: block
-      background-color: $white
-      border-bottom: 1px solid #D4D4D4
-      img
+    .container
+      width: auto
+
+      .brand
+        height: auto
+        @include border-bottom-radius($radius)
+        width: 11%
+        max-width: 136px
         float: left
+        margin-top: 0px
         display: block
-        max-width: 135px
-        clear: both
-        width: 100%
-      .vish-name
-        display: block
-        margin-left: auto
-        margin-right: auto
-        font-family: $firstFontFamily
-        width: 100%
-        clear: both
-        text-align: center
-
-    .navegation
-      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      .headernav
-        a
-          i
-            color: $grayLighter
-            font-size: 20px
-            text-decoration: none
-            padding: 8px
-            margin: 5px 3px
-            display: block
-            float: left
-
-          i:hover
-            color: $firstColor
-            text-decoration: none
-            border-color: $firstColor
-          .notification
-            color: $secondColor
-
-      .box-search
- 
-      .browse
-        margin-left: 2%
-        float: left
-        margin-top: 15px
-        border-left: 1px solid rgb(214, 214, 214)
-        
-        @extend hidden-phone
-        .dropdown
-          list-style: none
-          a
-            padding-left: 10px
-          .dropdown-menu
-            padding: 1px
-            border-radius: $baseBorderRadius
-            a 
-              color: $gray              
-              &:hover
-                color: $white
-          .caret
-            margin-left: 10px
-            margin-right: 10px
-        a 
-          color: $gray
-          &:hover
-            color: $black
-            text-decoration: none   
-
-    .user-tool
-      float: right
-      .btn-group
-        .btn-primary
-          height: 38px
-          width: 38px
-        .btn
-          padding: 0px
-          i
-            display: block
-            margin-top: 13px
-      li.user-settings
-        .dropdown-menu
-          &:before
-            border: none
-          &:after
-            border: none
-        a.logo-small
-          padding: 0px
-          margin-left: 5px
-          margin-top: -15px
-          img
-            @include border-radius($baseBorderRadius)
-            height: 40px
-            width: 40px
-          .name.hidden-phone
-            margin-left: 5px  
-    .login
-      float: right
-      margin-top: 14px
-      font-family: $secondFontFamily
-      
-      ul.dropdown-menu
-        margin: 7px 40px 0 -175px
-        padding: 6px 7px
-        .btn-primary
-          float: right
-          display: inline-block
-          width: 40%
-        .checkbox
-          @include check-box
+        background-color: $white
+        border-bottom: 1px solid #D4D4D4
+        img
           float: left
-          display: inline-block
-          margin-top: 10px
+          display: block
+          max-width: 135px
+          clear: both
+          width: 100%
+        .vish-name
+          display: block
+          margin-left: auto
+          margin-right: auto
+          font-family: $firstFontFamily
+          width: 100%
+          clear: both
+          text-align: center
+      .nav-collapse
+        .navegation
+          @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .headernav
+            a
+              i
+                color: $grayLighter
+                font-size: 20px
+                text-decoration: none
+                padding: 8px
+                margin: 5px 3px
+                display: block
+                float: left
 
-    .signin
-      float: right
-      margin-right: 20px
-      font-family: $secondFontFamily
-      margin-top: 14px
+              i:hover
+                color: $firstColor
+                text-decoration: none
+                border-color: $firstColor
+              .notification
+                color: $secondColor
+
+          .box-search
+     
+        .browse
+          margin-left: 2%
+          float: left
+          margin-top: 15px
+          border-left: 1px solid rgb(214, 214, 214)
+          
+          @extend hidden-phone
+          .dropdown
+            list-style: none
+            a
+              padding-left: 10px
+            .dropdown-menu
+              padding: 1px
+              border-radius: $baseBorderRadius
+              a 
+                color: $gray              
+                &:hover
+                  color: $white
+            .caret
+              margin-left: 10px
+              margin-right: 10px
+          a 
+            color: $gray
+            &:hover
+              color: $black
+              text-decoration: none   
+
+        .user-tool
+          float: right
+          .btn-group
+            .btn-primary
+              height: 38px
+              width: 38px
+            .btn
+              padding: 0px
+              i
+                display: block
+                margin-top: 13px
+          li.user-settings
+            .dropdown-menu
+              &:before
+                border: none
+              &:after
+                border: none
+            a.logo-small
+              padding: 0px
+              margin-left: 5px
+              margin-top: -15px
+              img
+                @include border-radius($baseBorderRadius)
+                height: 40px
+                width: 40px
+              .name.hidden-phone
+                margin-left: 5px  
+        .login
+          float: right
+          margin-top: 14px
+          font-family: $secondFontFamily
+          
+          ul.dropdown-menu
+            margin: 7px 40px 0 -175px
+            padding: 6px 7px
+            .btn-primary
+              float: right
+              display: inline-block
+              width: 40%
+            .checkbox
+              @include check-box
+              float: left
+              display: inline-block
+              margin-top: 10px
+
+        .signin
+          float: right
+          margin-right: 20px
+          font-family: $secondFontFamily
+          margin-top: 14px
 
 
 

@@ -1,17 +1,40 @@
-<header class="navbar">
-  <nav class="navbar-inner">
-    <div class="brand">
-      <%= link_to(image_tag('logo/lbrand.png', :alt => t('site.name')), '/', :class => "logo"); %>
-      <div id="fittext2" class=" vish-name"><%=t("site.current.title")%></div>
-    </div>
-    <!-- FIXME: search javascript functionality in 'layouts/search' -->
-    <div class="navegation">
-      <%= render partial: 'layouts/basic_navegation' %>
-      <%= render partial: 'layouts/uisearch_header' %>
-      <%= render partial: 'layouts/browse_header' %>      
-    </div>
+<header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
 
-    <ul class="nav user-tool">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <!--logo-->
+      <div class="brand">
+        <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
+        <div id="fittext2" class=" vish-name hidden-phone"><%=t("site.current.title")%></div>
+      </div>
+
+
+      <div class="nav-collapse collapse">
+        <!-- FIXME: search javascript functionality in 'layouts/search' -->
+        <!--search web-->
+        <li class="navegation  hidden-phone">
+          <%= render partial: 'layouts/basic_navegation' %>
+          <%= render partial: 'layouts/uisearch_header' %>
+        </li>
+
+        <!--search mobile-->
+        <li class="navegation hidden-tablet hidden-desktop visible-phone ">
+          <%= render partial: 'layouts/basic_navegation' %>
+          <%= render partial: 'layouts/search_mobile' %>
+        </li>
+
+        <!--browse-->
+        <%= render partial: 'layouts/browse_header' %>
+        
+        <!--login-->
+        <ul class="nav user-tool">
       <li>
         <div class="btn-group">
           <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
@@ -76,10 +99,51 @@
       <%= render partial: 'categories/form' %>
 
     </ul>
-  </nav>
+
+      </div>
+    </div>
+  </div>
 </header>
+
+
+<script src="jquery.fittext.js"></script>
 <script type="text/javascript">
-
 $("#fittext2").fitText(0.96);
-
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

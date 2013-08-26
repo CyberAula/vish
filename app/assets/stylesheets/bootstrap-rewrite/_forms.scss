@@ -26,3 +26,7 @@ select{
 input[type="submit"]{
   @include btn-primary
 }
+
+li{
+  list-style: none
+}
