@@ -15,7 +15,7 @@ input[type="tel"],
 input[type="color"], 
 .uneditable-input {
   @include border-radius($baseBorderRadius);
-  width: 95%;
+
 
 }
 
