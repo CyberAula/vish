@@ -1,0 +1,101 @@
+.picture,
+.audio,
+.video,
+.documents
+  .central
+    .show
+      @include border-radius(10px)
+      border: 1px solid #f7f7f7
+      @include gradient-radial ($innerColor: #666, $outerColor: #333)
+      text-align: center
+      h6
+        color: $white
+        font-size: 15px
+      .actions
+        border: 1px solid #333
+        @include border-radius (3px)
+        border-bottom-color: #444
+        background-color: rgba(50, 50, 50, 0.3)
+      .video
+        .video-container
+          @include centered
+          width: 100%
+          .jp-type-single
+            .jp-player
+              width: 100%
+              background-color: #222 !important
+            .jp-interface
+              min-height: 60px
+              .jp.controls
+                .jp-play,
+                .jp-pause
+                  left: -2px !important
+                  top: 21px !important
+                .jp-stop
+                  left: 38px !important
+                  top: 28px !important
+                .jp-mute,
+                .jp-unmute
+                  left: 73px !important
+                  top: 35px !important
+              .jp-volume-bar
+                left: 95px !important
+                top: 40px !important
+              .jp-current-time
+                left: 137px !important
+                  top: 32px !important
+
+    .tabbable
+      .tab-content
+        .media
+          background-color: $white
+          border-bottom: 1px solid #ddd
+          border-left: 1px solid #ddd
+          &:last-child
+            border-bottom: none
+          .actions
+            .post_time_ago
+              color: $gray
+
+            .tooltip
+              @include opacity (90)
+              @include border-radius (5px)
+              background: $gray
+              color: whitesmoke
+              .audience_logo
+                img
+                  @include border-radius (5px)
+
+  .details
+    @extend .hidden-phone
+    h4
+      color: #999
+      font-size: 15px
+    .tabbable
+      ul
+        li.active
+          a
+            background-color: #f3f3f3 
+    .tab-content
+      color: $blue
+      border-left: 1px solid #dddddd
+      background-color: #f3f3f3
+
+
+#document-info
+  .counters
+    color: $grayLight
+    .counter
+      color: #00C3FF
+      font-sixe: 15px
+
+ 
+
+#comments
+  div.new_comment
+    form.new_comment
+      input
+        &[type="submit"]
+          @include btn-secundary
+
+     

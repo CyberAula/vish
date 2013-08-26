@@ -21,10 +21,14 @@
         background-color: none
     
     .update
-      form.edit_user
+      .edit_user
+        display: block
+        float: left
+        @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
         input
           &[type="submit"]
-            @include btn-primary  
+            @include btn-primary
+
     .personal
       form.edit_profile
         h6 

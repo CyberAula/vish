@@ -1,0 +1,83 @@
+//
+// Responsive: Landscape phone to desktop/tablet
+// --------------------------------------------------
+
+
+@media (max-width: 767px)
+  #user,
+  #home,
+  #groups
+    .activities
+      .wall_input
+        #new_post
+          .document_description
+            width: 96%
+      .timeline
+        .objects
+          .thumb
+            float: none
+          .text
+            h6
+              clear: both
+              font-size: 13px
+              @include ellipsis
+  .picture,
+  .audio,
+  .video,
+  .document
+    .tab-content
+      width: 100% !important
+      overflow: initial
+    .central
+      width: 100% !important
+      margin-left: 0px !important
+      margin-top: 20px
+      .comments
+        .avatar
+          float: left
+        .media-heading
+          font-size: 16px
+        .media-body
+          float: left
+          display: inline-block
+          width: 73%
+          p
+            font-size: 15px
+        .event
+          .details 
+            margin-left: 10px
+      #comments 
+        div.new_comment
+          min-height: 80px
+          height: auto
+          width: 100%
+          .avatar
+            width: 15%
+          form.new_comment
+            width: 80.8%
+
+  #repository
+    .repository
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  
+// UP TO LANDSCAPE PHONE
+// ---------------------
+
+@media (max-width: 480px)
+
+  #user,
+  #home,
+  #groups
+    .activities
+      .timeline
+        .comments
+          .child
+            .avatar
+              margin-right: 5px
+              .media-object
+                a
+                  img
+                    width: 40px
+
+
+  
