@@ -14,7 +14,9 @@
         <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
         <div id="fittext2" class=" vish-name hidden-phone"><%=t("site.current.title")%></div>
       </div>
-
+      <li class="navegation hidden-tablet hidden-desktop visible-phone ">
+        <%= render partial: 'layouts/search_mobile' %>
+      </li>
 
       <div class="nav-collapse collapse">
         <!-- FIXME: search javascript functionality in 'layouts/search' -->
