@@ -1,50 +1,100 @@
 .user
   margin-bottom: 20px
   header
-    .avatar
-      //@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      display: block
-      float: left
-      padding: 0px
-      img.avatar_img
-        @include border-radius($baseBorderRadius)
-        //margin-top: 20px
-        //margin-bottom: 20px
-
-        //@include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .information
+    #profile-info
       margin-top: 20px
       margin-bottom: 20px
       margin-right: 10px
       background-color: $white
       min-height: 149px
       //float: left
+      display: block
+      float: left
       padding: 13px
-      h1, h2, h3, h4, h5, h6 
-        line-height: 25px
-        display: inline-block
-        //margin-left: 5px
-      h2
-        width: 55%
-        
-      button
-        float: right
-        display: inline-block
-        margin-top: 7px
-      hr
-        margin: 5px 0
-      h3.name-roll
-        //@include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        vertical-align: top
-      p.description
-        //@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include border-radius($baseBorderRadius)
+      @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+
+      .avatar
+        //@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
-        margin-left: 10px
-      span
-      h3.achievements
-        padding-left: 20px
-        margin-left: 20px
-        margin-right: 10px
+        float: left
+        padding: 0px
+        @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        img.avatar_img
+          //border: $baseBorderRadius solid $white
+          @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+          @include border-radius($baseBorderRadius)
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+      .information
+        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        h1, h2, h3, h4, h5, h6 
+          line-height: 25px
+          display: inline-block
+          //margin-left: 5px
+        h2
+          width: 55%
+          color: $gray
+          font-family: $secondFontFamily
+          
+        button
+          float: right
+          display: inline-block
+          margin-top: 7px
+        hr
+          margin: 5px 0
+          border: none
+
+        h3.name-roll,h3.karma,h3.select
+          color: $firstColor
+          font-size: 20px
+          font-family: $firstFontFamily
+          border-left: 1px solid $grayLighter
+          padding-left: 20px
+
+        h3.name-roll
+          //@include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          vertical-align: top
+        p.description
+          //@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          margin-left: 10px
+          color: $gray
+        span
+          color: $black 
+          font-family: $secondFontFamily 
+        h3.achievements
+          padding-left: 20px
+          margin-left: 20px
+          margin-right: 10px
+          border-left: 1px solid $grayLighter
+          color: $secondColor
+          font-size: 20px
+          font-family: $firstFontFamily
+        .update
+          background-color: $white
+          margin-left: 0px
+          padding: 12px 0px 32px 0px !important
+          form.edit_user
+            padding: 0 14px
+            display: block
+            float: left
+            @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+            textarea
+              resize: none
+              height: 50px
+            input
+              &[type="submit"]
+                @include btn-primary
+                float: right
+                margin-top: 20px
+                margin-right: 9px 
+
+
+
+
     
     .modal
       width: 450px
@@ -56,11 +106,17 @@
         height: 100px !important
 .info-profile
   .follow-tab
+    @include tab_title
     float: right
     a
       span
       span:after
         content: " "
+  .tabbable
+    @include border-radius($baseBorderRadius)
+    h3
+      color: $firstColor 
+
 
 
 
