@@ -4,6 +4,8 @@
   .conversations
     margin-top: 20px
     .conversation
+      height: 50px !important
+      margin-bottom: 15px !important
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
       @include selection-1
@@ -19,6 +21,7 @@
 
       .content_right
         color: $gray
+        width: 77.6% !important
         .subject
           font-weight: normal
           font-size: 14px
@@ -28,12 +31,24 @@
             font-weight: bold
             &:hover
               text-decoration: none
+        .action
+          font-size: 18px
+          opacity: 0
+          padding-top: 15px
+  
+
+                  
         .briefing
           @include ellipsis
           color: $gray
         .date
           color: $gray
           font-size: 11px
+
+      &:hover
+        .action
+          opacity: 1
+    
 
 
 .conversations

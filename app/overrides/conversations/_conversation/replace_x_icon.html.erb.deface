@@ -1,5 +1,5 @@
 <!-- replace_contents '.action' -->
-<%= link_to(raw("<i class='icon-remove'></i> "), 
+<%= link_to(raw("<i class='icon-trash'></i> "), 
   conversation_path(conversation, :location => @box,
     :box => @box,
     :page => params[:page]),
