@@ -12,7 +12,7 @@
       <!--logo-->
       <div class="brand">
         <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
-        <div id="fittext2" class=" vish-name hidden-phone"><%=t("site.current.title")%></div>
+
       </div>
       <li class="navegation hidden-tablet hidden-desktop visible-phone ">
         <%= render partial: 'layouts/search_mobile' %>
@@ -21,12 +21,12 @@
       <div class="nav-collapse collapse">
         <!-- FIXME: search javascript functionality in 'layouts/search' -->
         <!--search web-->
-        <li class="navegation  hidden-phone">
+        <li class=" hidden-phone">
           <%= render partial: 'layouts/uisearch_header' %>
         </li>
 
         <!--search mobile-->
-        <li class="navegation hidden-tablet hidden-desktop visible-phone ">
+        <li class=" hidden-tablet hidden-desktop visible-phone ">
           <%= render partial: 'layouts/search_mobile' %>
         </li>
 
@@ -68,9 +68,3 @@
     </div>
   </div>
 </header>
-
-
-<script src="jquery.fittext.js"></script>
-<script type="text/javascript">
-$("#fittext2").fitText(0.96);
-</script>
