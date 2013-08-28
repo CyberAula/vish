@@ -1,20 +1,22 @@
 <div class="excursion-timeline">
-  <div class="photo">
-    <%= link_to(excursion) do %>
-      <%= excursion_thumb_for(excursion) %>
-    <% end %>
-  </div>
-  <div class="data">
-    <div class="name">
-      <%= link_to excursion.title, excursion %>
+  <div class="box-item excursion-item">
+    <div class="photo">
+      <%= link_to(excursion) do %>
+        <%= excursion_thumb_for(excursion) %>
+      <% end %>
     </div>
-    <div class="author"> 
-      <%= link_to excursion.author.name, excursion.author.subject %>
-    </div>
-    <!--description-->
-    <% unless excursion.description.blank? %>
-      <%= truncate(excursion.description, :length => 200) %>
-    <% end %>
+    <div class="data">
+      <div class="name">
+        <%= link_to excursion.title, excursion %>
+      </div>
+      <div class="author"> 
+        <%= link_to excursion.author.name, excursion.author.subject %>
+      </div>
+      <!--description-->
+      <% unless excursion.description.blank? %>
+        <%= truncate(excursion.description, :length => 200) %>
+      <% end %>
 
-  </div>
+    </div>
+  </div> 
 </div>
