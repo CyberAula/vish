@@ -1,12 +1,20 @@
 footer.container-fluid
   background-color: #D5D5D5
+  opacity: 0
+  &:hover
+    opacity: 1
   nav.footercontent
     ul
       li
+
         color: #555
         a
           color: #555
       li.btn-group
+        .dropdown-menu
+          li
+            a
+              float: left
         button
           background-color: transparent
           border: none
@@ -17,3 +25,12 @@ footer.container-fluid
           background-color: transparent !important
           background-image: none
           box-shadow: none
+#main 
+  overflow:auto
+  padding-bottom: 150px  /* must be same height as the footer */
+
+#footer 
+  position: relative
+  margin-top: -150px /* negative value of footer height */
+  height: 150px
+  clear:both 

@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <!-- replace_contents '.action' -->
 <%= link_to(raw("<i class='icon-trash'></i> "), 
   conversation_path(conversation, :location => @box,
@@ -9,3 +11,4 @@
     :object => conversation.subject),
   :method => :delete,
   :remote => true) %>
+>>>>>>> 20499ec8c40cab119121d3f757a712d5e41eda23
