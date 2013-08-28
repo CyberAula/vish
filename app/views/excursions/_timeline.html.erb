@@ -1,11 +1,11 @@
-<div class="excursion-timeline">
-  <div class="box-item excursion-item">
-    <div class="photo">
+<div class="items_timeline">
+  <li class="box-item">
+    <div class="img-box">
       <%= link_to(excursion) do %>
         <%= excursion_thumb_for(excursion) %>
       <% end %>
     </div>
-    <div class="data">
+    <div class="info">
       <div class="name">
         <%= link_to excursion.title, excursion %>
       </div>
@@ -13,10 +13,11 @@
         <%= link_to excursion.author.name, excursion.author.subject %>
       </div>
       <!--description-->
+      <div class="description"> 
       <% unless excursion.description.blank? %>
         <%= truncate(excursion.description, :length => 200) %>
       <% end %>
-
+      </div>
     </div>
-  </div> 
+  </li> 
 </div>
