@@ -15,95 +15,90 @@
 
       </div>
 
+      <!--browse-->
+      <%= render partial: 'layouts/browse_header' %>
 
-      <div class="nav-collapse collapse">
+
         <!-- FIXME: search javascript functionality in 'layouts/search' -->
         <!--search web-->
-        <li class="navegation  hidden-phone">
-          <%= render partial: 'layouts/uisearch_header' %>
-        </li>
-        <!--search mobile-->
-        <li class="navegation hidden-tablet hidden-desktop visible-phone ">
-          <%= render partial: 'layouts/search_mobile' %>
-        </li>
-
-        <!--browse-->
-        <%= render partial: 'layouts/browse_header' %>
-        <li class="navegation  pull-right">
-          <%= render partial: 'layouts/basic_navegation' %>
-
-        </li>
-        <!--login-->
+        <!--add-->
         <ul class="nav user-tool">
-      <li>
-        <div class="btn-group">
-          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="icon-plus"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <!-- dropdown menu links -->
-            <li>
-              <%= link_to new_excursion_path do %>
-              <i class="icon-list-alt"></i> <%= t('excursion.actions.add') %>
-              <% end %>
-            </li>
-            <li><a href="#AddCategory" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
-            <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
-          </ul>
-        </div>
-      </li>
-      
-        <li class ="user-settings">
-        <%= link_to current_subject do %>
+          
 
-          <a data-toggle="dropdown" href="#" class="logo-small">
-            <%= image_tag current_subject.logo.url(:small) %>
-            <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %></span>
-          </a>
-          <ul class="dropdown-menu">
-            <!-- dropdown menu links -->
-            <li class="settings-menu">
-              <%= link_to current_subject do %>
+          <li class ="user-settings">
+            <%= link_to current_subject do %>
+
+            <a data-toggle="dropdown" href="#" class="logo-small">
+              <%= image_tag current_subject.logo.url(:small) %>
+              <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- dropdown menu links -->
+              <li class="settings-menu">
+                <%= link_to current_subject do %>
                 <i class="icon-user"></i>
                 <%= t('profile.one') %>
-              <% end %>
-            </li>
-            <li class="settings-menu">
-              <%= link_to settings_path do %>
+                <% end %>
+              </li>
+              <li class="settings-menu">
+                <%= link_to settings_path do %>
                 <i class="icon-cog"></i>
                 <%= t('dropdown.settings') %>
-              <% end %>
-            </li>
-            <li class="settings-menu">
-              <%= link_to quiz_sessions_path do %>
+                <% end %>
+              </li>
+              <li class="settings-menu">
+                <%= link_to quiz_sessions_path do %>
                 <i class="icon-puzzle-piece"></i>
                 <%= t('quiz_sessions') %>
-              <% end %>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <%= link_to destroy_user_session_path, :method => :delete do %>
+                <% end %>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to destroy_user_session_path, :method => :delete do %>
                 <i class="icon-signout"></i>
                 <%= t('sign_out') %>
-              <% end %>
-            </li>
-          </ul>
-        <% end %>
-        </li>
-      
-      <li> 
-        <%#= render partial: 'layouts/header_dropdown_menu' %>
-      </li>
-      <!-- carga de modales -->
-      <%= render partial: 'repositories/form' %>
-      <%= render partial: 'categories/form' %>
+                <% end %>
+              </li>
+            </ul>
+            <% end %>
+          </li>
+          <li class="add_nav">
+            <div class="btn-group">
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-plus"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- dropdown menu links -->
+                <li>
+                  <%= link_to new_excursion_path do %>
+                  <i class="icon-list-alt"></i> <%= t('excursion.actions.add') %>
+                  <% end %>
+                </li>
+                <li><a href="#AddCategory" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+                <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="navegation ">
+            <%= render partial: 'layouts/basic_navegation' %>
+          </li>
+          <li> 
+            <%#= render partial: 'layouts/header_dropdown_menu' %>
+          </li>
+          <li class="search-ui ">
+            <%= render partial: 'layouts/uisearch_header' %>
+          </li>
 
-    </ul>
+
+          <!-- carga de modales -->
+          <%= render partial: 'repositories/form' %>
+          <%= render partial: 'categories/form' %>
+        </ul>
+
 
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
 
 
