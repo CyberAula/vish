@@ -35,16 +35,67 @@ header.navbar,
           width: 100%
           clear: both
           text-align: center
-      .collapse.in
-        background-color: $grayLighter
-      .nav-collapse
-
+      .browse
+        margin-left: 2%
+        float: left
+        margin-top: 15px
+        border-left: 1px solid rgb(214, 214, 214)
+        @extend hidden-phone
+        .dropdown
+          list-style: none
+          a
+            padding-left: 10px
+          .dropdown-menu
+            padding: 1px
+            border-radius: $baseBorderRadius
+            a 
+              color: $gray              
+              &:hover
+                color: $white
+          .caret
+            margin-left: 10px
+            margin-right: 10px
+        a 
+          color: $gray
+          &:hover
+            color: $black
+            text-decoration: none   
+      .user-tool
+        float: right
+        .add_nav
+          float: right
+          .btn-primary
+            height: 38px
+            width: 38px
+          .btn
+            padding: 0px
+            i
+              display: block
+              margin-top: 13px
+        .user-settings
+          float: right
+          .dropdown-menu
+            &:before
+              border: none
+            &:after
+              border: none
+          a.logo-small
+            padding: 0px
+            margin-left: 5px
+            margin-top: -15px
+            img
+              @include border-radius($baseBorderRadius)
+              height: 40px
+              width: 40px
+            .name.hidden-phone
+              margin-left: 5px  
         .navegation
-         
+          float: right
+          margin-right: 3px
           .headernav
             a
               i
-                color: $grayLighter
+                color: #c8c8c8
                 font-size: 20px
                 text-decoration: none
                 padding: 8px
@@ -58,63 +109,23 @@ header.navbar,
                 border-color: $firstColor
               .notification
                 color: $secondColor
-
-          .box-search
-     
-        .browse
-          margin-left: 2%
-          float: left
-          margin-top: 15px
-          border-left: 1px solid rgb(214, 214, 214)
-          
-          @extend hidden-phone
-          .dropdown
-            list-style: none
-            a
-              padding-left: 10px
-            .dropdown-menu
-              padding: 1px
-              border-radius: $baseBorderRadius
-              a 
-                color: $gray              
-                &:hover
-                  color: $white
-            .caret
-              margin-left: 10px
-              margin-right: 10px
-          a 
-            color: $gray
-            &:hover
-              color: $black
-              text-decoration: none   
-
-        .user-tool
+        .search-ui
           float: right
-          .btn-group
-            .btn-primary
-              height: 38px
-              width: 38px
-            .btn
-              padding: 0px
-              i
-                display: block
-                margin-top: 13px
-          li.user-settings
-            .dropdown-menu
-              &:before
-                border: none
-              &:after
-                border: none
-            a.logo-small
-              padding: 0px
-              margin-left: 5px
-              margin-top: -15px
-              img
-                @include border-radius($baseBorderRadius)
-                height: 40px
-                width: 40px
-              .name.hidden-phone
-                margin-left: 5px  
+          i
+            color: #c8c8c8
+            font-size: 20px
+            text-decoration: none
+            padding: 8px
+            margin: 0px 5px 5px 
+            display: block
+            float: left
+
+
+
+     
+
+
+        
         .login
           float: right
           margin-top: 14px

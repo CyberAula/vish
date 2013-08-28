@@ -1,3 +1,18 @@
+<!-- replace '.central' -->
+
+<div class="container-visor">
+  <div class="elemento-visor"></div>
+  <div class="caja-visor">
+    <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
+                   locals: { document.class.to_s.underscore.to_sym => document } %>
+  </div>
+</div>
+
+
+
+
+
+
 <!-- insert_after '.actions' -->
 <button class="category btn popover-link" data-placement='top' aria-hidden="true" data-original-title="categorize"><i class="icon-th-large"></i> <%=t('categories.actions.verb')%></button>
 
