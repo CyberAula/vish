@@ -56,7 +56,8 @@
           .author:before
             content: "by"
         @include author
-      .info-bottom       
+      .info-bottom
+        @mixin footer_box_info       
         clear: both
         hr
           margin: 0
@@ -99,53 +100,59 @@
       margin-top: 0px
     li.box-item
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      //@include excursion-box-small
-      @include border-radius(5px)
-      overflow: hidden
+      @include excursion-box-small
       float: left
       list-style: none
       margin-top: 10px
       background-color: $white
 
       .img-box
-        //width: 70px
+        width: 70px
         float: left
         height: 70px
         display: block
-        @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        //@include border-radius($baseBorderRadius)
-        .backstrech
-          @include border-radius($baseBorderRadius)
-          img
-            
+        @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
         img
-            
+
       .info
-        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
-        //margin-top: 5px
+        padding: 0
         .name
-          margin-left: 5px
-          @include ellipsis
-          @include box_title         
+          padding-left: 10px
+          margin: 0
+          word-wrap: break-word
+          text-decoration: none
+          cursor: pointer
           a
             color: $grayDark
-          .author:before
-            margin-left: 5px
-            content: "by"
-        @include author
+        .author
+          padding-left: 10px
+          color: $secondColor
+          font-size: 10px
+          text-decoration: none
+          cursor: pointer
+          a
+            word-wrap: break-word
+        .author:before
+          content: "by"
+          color: $gray
+          font-size: 10px
       .info-bottom
-        margin-left: 5px
-        padding: 3px  
-        clear: both
+        padding-left: 10px
         hr
           margin: 0
         .soften
           margin-bottom: 1px
-        .views
-          float: right
 
-
+.excursion-timeline
+  .photo
+    float: left
+    margin-top: 70px
+    .img
+      width: 100px
+  .data
+    float: right  
 
 
 
