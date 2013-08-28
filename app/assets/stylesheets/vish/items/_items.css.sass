@@ -53,8 +53,8 @@
           margin: 0
           height: 30px
           line-height: 15px
-          .author:before
-            content: "by"
+        .author:before
+          content: "by"
         @include author
       .info-bottom
         @mixin footer_box_info       
@@ -65,6 +65,10 @@
           margin-bottom: 1px
         .views
           float: right
+        .like
+          a
+            i
+              text-decoration: none
 
     .add-item
 
@@ -100,8 +104,8 @@
       margin-top: 0px
     li.box-item
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      //@include excursion-box-small
-      @include border-radius(5px)
+      box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+      @include border-radius($baseBorderRadius)
       overflow: hidden
       float: left
       list-style: none
@@ -127,14 +131,17 @@
         //margin-top: 5px
         .name
           margin-left: 5px
+          height: 20px
           @include ellipsis
           @include box_title         
           a
             color: $grayDark
-          .author:before
-            margin-left: 5px
-            content: "by"
+        .author:before  
+          margin-left: 5px
+          content: "by"
+        
         @include author
+
       .info-bottom
         margin-left: 5px
         padding: 3px  
@@ -145,6 +152,10 @@
           margin-bottom: 1px
         .views
           float: right
+        .like
+          a
+            i
+              text-decoration: none
 
 .items_timeline
   li.box-item
@@ -174,6 +185,7 @@
         cursor: pointer
         a
           color: $grayDark
+
       .author
         padding-left: 10px
         color: $secondColor
@@ -182,10 +194,12 @@
         cursor: pointer
         a
           word-wrap: break-word
-      .author:before
+        
+        &:before
         content: "by"
         color: $gray
         font-size: 10px
+      
       .description
         padding-left: 10px
         color: $secondColor

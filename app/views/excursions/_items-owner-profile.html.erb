@@ -1,0 +1,34 @@
+<div class="toggler">
+  <h2><%= @excursion.title %></h2>
+    <!--autor-->
+    <!--dt><%#= t('author').capitalize %></dt-->
+  <div class="author">
+    <%= link_to @excursion.author.subject do %>
+    <%= image_tag @excursion.author.logo.url(:small) %>
+    
+    <% end %>
+    <p><%= truncate_name(@excursion.author.name, :length => 50) %></p>
+
+    <div class="add">
+      <% if user_signed_in?%>
+        <%= contact_button(current_subject.contact_to!(@excursion.author)) %>
+      <%else%>
+        <%= contact_button(@excursion.author) %>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="viewsAndConunt">        
+    <div class="views">
+      <%=@excursion.visit_count.to_s%> 
+      <span>
+        <%=t('follow.views')%>
+      </span>   
+    </div>
+
+    <div class="like">    
+      <div class="count"><%=@excursion.post_activity.likes.count.to_s%></div>
+      <%= link_like(@excursion.post_activity)%>
+    </div>
+  </div>  
+</div>

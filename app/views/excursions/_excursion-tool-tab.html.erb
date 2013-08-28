@@ -99,6 +99,17 @@
 
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+     <li class="active"><a href="#"><i class="icon-align-left"></i> descripción</a></li>
+    <li><a href="#"><i class="icon-code"></i> <%=t('excursion.actions.embed')%></a></li>
+    <li><a href="#"><i class="icon-share"></i> <%=t('excursion.actions.share')%></a></li>
+    <li><a href="#"><i class="icon-copy"></i> <%=t('excursion.actions.clone')%></a></li>
+    <li><a href="#"><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a></li>
+    
+  </ul>
+</div>
+
 <div class="btn-group">
   <% unless editingToolbar %>
     <!--embed-->
