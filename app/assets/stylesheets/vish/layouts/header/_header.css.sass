@@ -5,7 +5,9 @@ header.navbar,
     padding-left: 5%
     padding-right: 5%
     height: 50px
-    background: $white
+    background-color: none
+    background: rgba( 255, 255, 255, 0.98)
+
     .container
       width: auto
       height: 30px
@@ -126,26 +128,26 @@ header.navbar,
 
 
         
-        .login
-          float: right
-          margin-top: 14px
-          font-family: $secondFontFamily
-          
-          ul.dropdown-menu
-            margin: 7px 40px 0 -175px
-            padding: 6px 7px
-            .btn-primary
-              float: right
-              display: inline-block
-              width: 40%
-            .checkbox
-              @include check-box
-              float: left
-              display: inline-block
-              margin-top: 10px
+      .login
+        float: right
+        margin-top: 14px
+        font-family: $secondFontFamily
+        
+        ul.dropdown-menu
+          margin: 7px 40px 0 -175px
+          padding: 6px 7px
+          .btn-primary
+            float: right
+            display: inline-block
+            width: 40%
+          .checkbox
+            @include check-box
+            float: left
+            display: inline-block
+            margin-top: 10px
 
-        .signin
-          float: right
-          margin-right: 20px
-          font-family: $secondFontFamily
-          margin-top: 14px
+      .signin
+        float: right
+        margin-right: 20px
+        font-family: $secondFontFamily
+        margin-top: 14px

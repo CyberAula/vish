@@ -71,30 +71,44 @@
               text-decoration: none
 
     .add-item
+      
 
+      height: 174px
       text-align: center
       list-style: none
       display: block
       &:hover
         text-decoration: none
       .icon-box
-        background-color: $grayLighter
-        height: 92px
+        background-image: url('items/malla.png')
+        height: 174px
         width: 100%
         display: block
-        padding-top: 8px
+        padding-top: 45px
+        opacity: 1
+        .action-name
+          display: none
+        &:hover
+          text-decoration: none
+
+          .action-name
+            display: block
+            @include box_title
+            text-align: center
+            text-decoration: none
+            background: rgba( 255, 255, 255, 0.95)
+            height: 25px
+            width: 90%
+            margin-left: auto
+            margin-right: auto
+            @include border-radius($baseBorderRadius)
+            a:hover
+              text-decoration: none
         i.icon-plus
           font-size: 92px
           display: block
-          &:hover
-            text-decoration: none
-      .action-name
-        @include box_title
-        text-align: center
-        padding-top: 44px
-        margin-bottom: 14px
-        &:hover
-          text-decoration: none
+
+
 
 .recomended_excursion
   ul.small-box
