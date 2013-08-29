@@ -5,35 +5,75 @@
     clear: both
   .characteristics
     margin: 30px auto 0
-    .inspiration
-      @include grid-core-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
-      img
-        width: 90%
-        margin: 0 9%
-    .description
-      @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
-      margin-left: 12%
-      hr
-        margin: 12px 0
-      .redes
-        @include makeColumn(2, 0)
-        margin-left: 0 
-        a
-          display: block
-          margin: 10px 10px 10px 0px
-      .email
-        @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        margin-left: 2%
+    height: 308px
+    .carrusel
+      position: absolute
+      .inspiration
+        @include grid-core-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
-  
+        img
+          width: 90%
+          margin: 0 9%
+      .img_carousel
+        position: relative
+        z-index: 0
+      .description
+        position: relative
+        z-index: 1
+        float: left
+        @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        
+        margin-left: 8%
+        hr
+          margin: 12px 0
+        .redes
+          @include makeColumn(2, 0)
+          margin-left: 0 
+          a
+            display: block
+            margin: 10px 10px 10px 0px
+        .email
+          @include grid-core-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          margin-left: 2%
+          float: left
+      ol.carousel-indicators
+        position: absolute
+        top: 314px
+        right: 52%
+        z-index: 5
+        margin: 0
+        list-style: none
+        li
+          background-color: grey
+        li.active
+          background-color: $firstColor !important
+
 ul.excursions
   clear: both
   padding-top: 10px
   margin: 0 auto
   overflow-y: hidden
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+.info_frontpage
+  margin-top: 50px
+  width: 85%
+  height: 15%
+  margin-bottom: 15px
+  margin-right: auto
+  margin-left: auto
+  li
+    display: inline-block
+    .image_info
+      float: left
+      width: 65px
+      height: auto
+    .text_info
+      float: left
+      width: 200px
+      height: auto
+      margin-right: 13px
+      margin-left: 12px
 
 
 
