@@ -97,6 +97,12 @@
 
 <%end%>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("[rel=tooltip]").tooltip({ placement: 'top'});
+  });
+</script>
+
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
 <div class="tabbable">
@@ -108,11 +114,12 @@
     <li><a href="#tab5" data-toggle="tab"><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a></li>
     <!--si es tuya la puedes eliminar o editar-->
     <% if user_signed_in? and (can? :update, @excursion) %>
-      <button class="btn" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+      <button class="btn" rel="tooltip" title="edit excursion" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
     <%end%>
+    
     <!--remove-->
     <% if user_signed_in? and can?(:destroy, @excursion) %>
-      <button class="delete btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Delete"><i class="icon-trash"></i></button>
+      <button class="delete btn popover-link" rel="tooltip" title="delete excursion" data-placement='top' aria-hidden="true" data-original-title="Delete"><i class="icon-trash"></i></button>
     <%end%>
 
     <div class="contentdelete" style="display: none">
@@ -127,9 +134,9 @@
   
     <% unless editingToolbar %>
       <!--<#%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>-->
-      <button class="btn"><i class="icon-facetime-video"></i></button>
+      <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
       <!--boton guardar en "categoria x"(proximamente)-->
-      <button class="btn"><i class="icon-th-large"></i></button>
+      <button class="btn" rel="tooltip" title="add to category"><i class="icon-th-large"></i></button>
     <%end%>
   </ul>
 </div>
