@@ -116,57 +116,7 @@
     </div>
   </div>
 
-  <div class="description-activity">
-<!--description-->
-    <div class="box_description">
-      <%= render :partial => 'excursions/excursion-info' %>
-    </div>
-<!--activity-->
-    <div class="activity">
-      <div class="tabbable">
-
-        <ul class="nav nav-tabs">      
-          <li class="active"><a href="#tab1" data-toggle="tab"><%=t('comment.other')%></a></li>
-          <li><a href="#tab2" data-toggle="tab"><%=t('evaluation.teaching')%></a></li>
-          <li><a href="#tab3" data-toggle="tab"><%=t('evaluation.learning')%></a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-              <div id="comments" class="comments">
-                <div class="new-comments-box">
-                  <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
-                </div>
-                <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
-              </div>
-            </div>
-            <div class="tab-pane" id="tab2">              
-                <div class="btn-evalue">
-                  <%= t('evaluation.contribute', :count => @numberOfEvaluations) %>
-                  <!-- Button to trigger modal -->
-                  <a id="evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-                </div>
-                <div class="excursion-eval-results">
-                  <canvas id="evalChart" width="600" height="600"></canvas>
-                </div>
-            </div>
-            <div class="tab-pane" id="tab3">              
-                <div class="btn-evalue">
-                  <%= t('evaluation.contribute', :count => @numberOfLearningEvaluations) %>
-                  <!-- Button to trigger modal -->
-                  <a id="learning_evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-                </div>
-                <div class="excursion-eval-results">
-                  <canvas id="evalLearningChart" width="600" height="600"></canvas>
-                </div>
-            </div>
-          </div>
-        </div>       
-      </div>
-    </div>
-
-  <!-- Modal -->
-  <%= render :partial => "excursions/excursion_evaluate" %>
-  <%= render :partial => "excursions/excursion_learning_evaluate" %>
+  
 
 
 </section>

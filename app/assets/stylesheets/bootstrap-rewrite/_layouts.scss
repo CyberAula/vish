@@ -4,11 +4,16 @@
   padding-left: 10%;
   @include clearfix();
 }
+//tabs
 .tab-content > .active,
 .pill-content > .active {
   display: block;
   margin-top: 20px;
 }
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: $background;
+}
+
 //clear
 .clearfloat{
   clear: both;

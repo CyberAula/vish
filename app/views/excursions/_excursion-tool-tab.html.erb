@@ -101,15 +101,183 @@
 
 <div class="tabbable">
   <ul class="nav nav-tabs">
-     <li class="active"><a href="#"><i class="icon-align-left"></i> descripción</a></li>
-    <li><a href="#"><i class="icon-code"></i> <%=t('excursion.actions.embed')%></a></li>
-    <li><a href="#"><i class="icon-share"></i> <%=t('excursion.actions.share')%></a></li>
-    <li><a href="#"><i class="icon-copy"></i> <%=t('excursion.actions.clone')%></a></li>
-    <li><a href="#"><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a></li>
-    
+    <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-align-left"></i> descripción</a></li>
+    <li><a href="#tab2" data-toggle="tab"><i class="icon-code"></i> <%=t('excursion.actions.embed')%></a></li>
+    <li><a href="#tab3" data-toggle="tab"><i class="icon-share"></i> <%=t('excursion.actions.share')%></a></li>
+    <li><a href="#tab4" data-toggle="tab"><i class="icon-copy"></i> <%=t('excursion.actions.clone')%></a></li>
+    <li><a href="#tab5" data-toggle="tab"><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a></li>
+    <!--si es tuya la puedes eliminar o editar-->
+    <% if user_signed_in? and (can? :update, @excursion) %>
+      <button class="btn" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+    <%end%>
+    <!--remove-->
+    <% if user_signed_in? and can?(:destroy, @excursion) %>
+      <button class="delete btn popover-link" data-placement='top' aria-hidden="true" data-original-title="Delete"><i class="icon-trash"></i></button>
+    <%end%>
+
+    <div class="contentdelete" style="display: none">
+      <i class="icon-remove-sign"></i>
+      <p class="delete_p"><%=t('excursion.confirm_delete')%></p>
+      <div class="actions-clone">
+        <a class="btn btn_cancel"><%=t('cancel')%></a>
+        <%= link_to t('excursion.actions.delete'),  @excursion,
+                      :method => :delete, :class => 'btn btn-primary' %>
+      </div>
+    </div>
+  
+    <% unless editingToolbar %>
+      <!--<#%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>-->
+      <button class="btn"><i class="icon-facetime-video"></i></button>
+      <!--boton guardar en "categoria x"(proximamente)-->
+      <button class="btn"><i class="icon-th-large"></i></button>
+    <%end%>
   </ul>
 </div>
+<div class="tab-content">
+  <!-- tab1 / description -->
+  <div class="tab-pane active" id="tab1">
+    <div class="description-activity">
+      <!--description-->
+      <div class="box_description">
+        <%= render :partial => 'excursions/excursion-info' %>
+      </div>
+    </div>
+  </div>
 
+  <!-- tab2 / embed -->
+  <div class="tab-pane" id="tab2">
+    <div class="description-activity">
+    <div class="box_description">
+    <div class="toggler">   
+      <div class="contentembed">
+        <div class="input-append url-input">
+          <textarea class="shortUrl" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
+          <button class="btn btn-primary" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- tab3 / share -->
+  <div class="tab-pane" id="tab3">
+    <div class="description-activity">
+    <div class="box_description">
+    <div class="toggler">   
+      
+      <div class="contentShare">
+        <div class="input-append url-input">
+          <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+          <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
+        </div>
+
+        <div class="input-append contact-input" style="display: none">
+          <input class="shortUrl" placeholder="friend's name" id="" type="text">
+          <button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
+        </div>
+
+        <div class="social_toolbar_excursion">
+          <div class="twitter_toolbar_excursion">
+            <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) )} %>
+          </div>
+          <div class="facebook_toolbar_excursion">
+            <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+          </div>
+          <div class="gplus_toolbar_excursion ">
+            <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+          </div>
+          <div class="email_toolbar_excursion">
+            <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+          </div>
+         </div>
+      </div>
+    </div>
+    </div>
+    </div>  
+  </div> 
+  <!-- tab4 / clone -->
+  <div class="tab-pane" id="tab4">
+    <div class="description-activity">
+    <div class="box_description">
+    <div class="toggler">  
+      <div class="contentclone">
+        <span class="icon-stack">
+          <i class="icon-circle  icon-stack-base"></i>
+          <i class="icon-info  icon-light"></i>
+        </span>
+        <p class="info"><%=t('excursion.clone.confirm')%></p>
+        <div class="actions-clone">
+          <!--<a class="btn btn_cancel"><#%=t('cancel')%></a>-->
+          <a href="<%=excursion_path(@excursion) + '/clone'%>" class="btn btn-primary"><%=t('save')%></a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div> 
+  </div> 
+
+  <!-- tab5 / scorm -->
+  <div class="tab-pane" id="tab5">
+    <div class="description-activity">
+    <div class="box_description">
+    <div class="toggler"> 
+        <div class="contentscorm">
+          <p>Descarga el código HTML e integra el recurso en cualquier web</p>
+          <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a> 
+        </div> 
+    </div>
+    </div>
+    </div> 
+  </div> 
+
+</div>
+
+<div class="description-activity">
+    <!--activity-->
+    <div class="activity">
+      <div class="tabbable">
+        <ul class="nav nav-tabs">      
+          <li class="active"><a href="#tab1" data-toggle="tab"><%=t('comment.other')%></a></li>
+          <li><a href="#tab2" data-toggle="tab"><%=t('evaluation.teaching')%></a></li>
+          <li><a href="#tab3" data-toggle="tab"><%=t('evaluation.learning')%></a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab1">
+            <div id="comments" class="comments">
+              <div class="new-comments-box">
+                <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
+              </div>
+              <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab2">              
+            <div class="btn-evalue">
+              <%= t('evaluation.contribute', :count => @numberOfEvaluations) %>
+                <!-- Button to trigger modal -->
+              <a id="evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+            </div>
+            <div class="excursion-eval-results">
+              <canvas id="evalChart" width="600" height="600"></canvas>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab3">              
+            <div class="btn-evalue">
+              <%= t('evaluation.contribute', :count => @numberOfLearningEvaluations) %>
+                <!-- Button to trigger modal -->
+              <a id="learning_evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+            </div>
+            <div class="excursion-eval-results">
+              <canvas id="evalLearningChart" width="600" height="600"></canvas>
+            </div>
+          </div>  
+        </div>
+      </div>    
+    </div>
+    <!-- Modal -->
+  <%= render :partial => "excursions/excursion_evaluate" %>
+  <%= render :partial => "excursions/excursion_learning_evaluate" %>
+</div>  
 <!--<div class="btn-group">
   <#% unless editingToolbar %>-->
     <!--embed-->
@@ -172,11 +340,13 @@
 			<a class="btn btn_cancel"><#%=t('cancel')%></a>
 			<a href="<#%=excursion_path(@excursion) + '/clone'%>" class="btn btn-primary"><#%=t('save')%></a>
 		</div>
-  </div>
+  </div>-->
 
-	<a class="btn" href='<#%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <#%=t('excursion.actions.scorm')%></a>
-	<#% if user_signed_in? and (can? :update, @excursion) %>-->
-	<!--si es tuya la puedes eliminar o editar-->
+  <!--scorm-->
+	<!--<a class="btn" href='<#%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <#%=t('excursion.actions.scorm')%></a>-->
+	
+  <!--si es tuya la puedes eliminar o editar-->
+  <!--<#% if user_signed_in? and (can? :update, @excursion) %>-->
 	<!--<button class="btn" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i> <#%=t('excursion.actions.edit')%></button>
 	<#%end%>
 
