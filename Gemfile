@@ -22,12 +22,10 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 gem 'selenium-webdriver', '=2.30.0'
 
-git 'git://github.com/ging/social_stream.git', branch: "master" do
-  gem 'social_stream-base'
-  gem 'social_stream-documents'
-  gem 'social_stream-linkser'
-  gem 'social_stream-ostatus'
-end
+gem 'social_stream-base', :path => "/home/ebarra/trabajo/social_stream/base"
+gem 'social_stream-documents', :path => "/home/ebarra/trabajo/social_stream/documents"
+gem 'social_stream-linkser', :path => "/home/ebarra/trabajo/social_stream/linkser"
+gem 'social_stream-ostatus', :path => "/home/ebarra/trabajo/social_stream/ostatus"
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap
 gem 'avatars_for_rails', '~> 1.1.0'

@@ -1,11 +1,10 @@
 <!-- insert_after '#link' -->
 
 <% categories = subject_categories(current_subject, {:scope => :me, :limit => 0}) %>
-<% categories_array = categories.map { |category| [category.title, category.id] } %>
-<% more_options = options_for_select(["-----", [t('categories.actions.add')]], disabled: "-----") %>
-<%= select_tag(:category_id, options_for_select(categories_array))%>
-
-<%= render partial: 'categories/form' %>
+<% subject_categories_array = categories.map { |category| [category.title, category.id] }.sort_by! {|cat| cat[0]} %>
+<% categories_selection_array = [] %>
+<% @link.holder_categories.map { |category| categories_selection_array << category.id }%>
+<%= select_tag(:category_id, options_for_select(subject_categories_array, categories_selection_array), :multiple => true)%>
 
 <%= content_for :javascript do %> 
     $("#category_id").multiselect({
@@ -38,7 +37,7 @@
 
 <% end %>
 
-
+<%= render partial: 'categories/form' %>
 
 <button class="category btn popover-link" data-placement='top' aria-hidden="true" data-original-title="categorize"><i class="icon-th-large"></i> <%=t('categories.actions.verb')%></button>
 
