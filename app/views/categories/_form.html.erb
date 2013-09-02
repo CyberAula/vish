@@ -8,7 +8,7 @@
   </div>
 
   <div class="modal-body">
-    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :remote => remote do |f| %>
+    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :html => {:'data-type' => :json}, :remote => remote do |f| %>
       <%= f.hidden_field :owner_id %>
       <!--TITULO-->
       <legend><%= t('categories.leyend.title')%></legend>

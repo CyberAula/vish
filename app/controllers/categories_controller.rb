@@ -5,13 +5,13 @@ class CategoriesController < ApplicationController
 
   def create
     create! do |format|
-      format.js {render :text => "Thank you", :status => 200}
+      format.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }
     end
   end
 
   def update
     update! do |format|
-      format.json {render :text => "Thank you", :status => 200}
+      format.json {render :json => { :success => true }}
     end
   end
 

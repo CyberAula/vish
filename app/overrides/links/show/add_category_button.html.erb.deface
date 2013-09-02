@@ -4,13 +4,14 @@
 <% subject_categories_array = categories.map { |category| [category.title, category.id] }.sort_by! {|cat| cat[0]} %>
 <% categories_selection_array = [] %>
 <% @link.holder_categories.map { |category| categories_selection_array << category.id }%>
-<%= select_tag(:category_id, options_for_select(subject_categories_array, categories_selection_array), :multiple => true)%>
+<%= select_tag(:category_id, options_for_select(subject_categories_array, categories_selection_array), {:multiple => true, :style => 'width: 125px' })%>
 
 <%= content_for :javascript do %> 
     $("#category_id").multiselect({
       header: false,
       classes: "categorize_select",
-      height: "auto",
+      height: "190px",
+      minWidth: "auto",
       noneSelectedText: '<i class="icon-th-large"></i> <%=t("categories.actions.verb")%> <b class="caret"></b>',
       selectedText: '<i class="icon-th-large"></i> # <%=t("categories.selected")%> <b class="caret"></b>',
       click: function(event, ui){
@@ -28,19 +29,27 @@
           
           $(".ui-multiselect-menu.categorize_select").append(piece);
           $("#add_category").click(function(){
-             $('#AddCategory').modal();
+            $("#category_id").multiselect("close");
+            $('#AddCategory').modal();
           });
 
         }
       }
       });
 
+      $('#AddCategory .new_category').bind('ajax:success', function(evt, data, status, xhr){
+        $('#AddCategory').modal('hide');
+        //add the new entry to categories
+        opt = $('<option />', {
+          value: data.id,
+          text: data.title
+        });               
+        opt.appendTo($("#category_id"));
+        $("#category_id").multiselect("refresh");
+        $("#category_id").multiselect("open");
+      });
+
 <% end %>
 
 <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
 
-<button class="category btn popover-link" data-placement='top' aria-hidden="true" data-original-title="categorize"><i class="icon-th-large"></i> <%=t('categories.actions.verb')%></button>
-
-  <div class="contentcategory" style="display: none">
-    <%#= render :partial=>'categories/categorize_form', :locals => { :item => @link } %>
-  </div>
