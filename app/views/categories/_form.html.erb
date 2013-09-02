@@ -1,6 +1,6 @@
 <!-- Button to trigger modal --> 
 <!-- Modal Categories-->
-<div id="AddCategory" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel" aria-hidden="true">
+<div id="<%=div_id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel" aria-hidden="true">
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -8,31 +8,31 @@
   </div>
 
   <div class="modal-body">
-    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :remote => false do |f| %>
-    <%= f.hidden_field :owner_id %>
-    <!--TITULO-->
-    <legend><%= t('categories.leyend.title')%></legend>
-    <%= f.text_field :title, :placeholder => t('categories.title_input') %>
-    
-    <!--DESCRIPCION-->
-    <legend><%= t('categories.leyend.description')%></legend>
-    <%= f.text_field :description, :placeholder => t('categories.description_input') %>
-  </div>
-
-   <div class="modal-footer">
-     <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
-    <input type="button" class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
-
-    <div class="contentHelpCategories" style="display: none">
-      <div>
-        <%= t('document.help.info1_html')%>  <br/>
-        <%= t('document.help.info8_html')%>
-      </div>
+    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :remote => remote do |f| %>
+      <%= f.hidden_field :owner_id %>
+      <!--TITULO-->
+      <legend><%= t('categories.leyend.title')%></legend>
+      <%= f.text_field :title, :placeholder => t('categories.title_input') %>
+      
+      <!--DESCRIPCION-->
+      <legend><%= t('categories.leyend.description')%></legend>
+      <%= f.text_field :description, :placeholder => t('categories.description_input') %>
     </div>
 
-    <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
-    <!--<b id="foo" rel="popover">Ayuda </b>-->
-    <%= f.submit t('categories.save')%>
+     <div class="modal-footer">
+       <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
+      <input type="button" class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
+
+      <div class="contentHelpCategories" style="display: none">
+        <div>
+          <%= t('document.help.info1_html')%>  <br/>
+          <%= t('document.help.info8_html')%>
+        </div>
+      </div>
+
+      <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
+      <!--<b id="foo" rel="popover">Ayuda </b>-->
+      <%= f.submit t('categories.save')%>
     <% end %>
   </div>
 </div>

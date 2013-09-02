@@ -37,7 +37,7 @@
 
 <% end %>
 
-<%= render partial: 'categories/form' %>
+<%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
 
 <button class="category btn popover-link" data-placement='top' aria-hidden="true" data-original-title="categorize"><i class="icon-th-large"></i> <%=t('categories.actions.verb')%></button>
 

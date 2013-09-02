@@ -74,7 +74,7 @@
                   <i class="icon-list-alt"></i> <%= t('excursion.actions.add') %>
                   <% end %>
                 </li>
-                <li><a href="#AddCategory" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+                <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
                 <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
               </ul>
             </div>
@@ -92,7 +92,7 @@
 
           <!-- carga de modales -->
           <%= render partial: 'repositories/form' %>
-          <%= render partial: 'categories/form' %>
+          <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => false} %>
         </ul>
 
 

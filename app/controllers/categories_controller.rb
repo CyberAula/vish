@@ -3,6 +3,12 @@ class CategoriesController < ApplicationController
 
   before_filter :add_item_to_category, :only => [:create, :update]
 
+  def create
+    create! do |format|
+      format.js {render :text => "Thank you", :status => 200}
+    end
+  end
+
   def update
     update! do |format|
       format.json {render :text => "Thank you", :status => 200}
