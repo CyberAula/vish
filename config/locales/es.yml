@@ -179,6 +179,8 @@ es:
       show_more: "Expandir"
       show_fewer: "Reducir"
       scorm: "scorm"
+    all: "todos"
+    download_scorm: "Descarga el código HTML e integra el recurso en cualquier LMS"
     clone:
       confirm: "Esto clonará la excursión en tu propio repositorio"
       not_found: "Excursion no encontrada"

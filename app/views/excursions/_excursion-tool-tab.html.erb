@@ -103,6 +103,10 @@
   });
 </script>
 
+<%= content_for :javascript do %> 
+    <%= render partial: 'shared/multiselect', :locals => {:item => @excursion} %>
+<% end %>
+
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
 <div class="tabbable">
@@ -136,7 +140,8 @@
       <!--<#%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>-->
       <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
       <!--boton guardar en "categoria x"(proximamente)-->
-      <button class="btn" rel="tooltip" title="add to category"><i class="icon-th-large"></i></button>
+      <%=categories_select(:category_id, @excursion)%>
+      <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
     <%end%>
   </ul>
 </div>
@@ -230,7 +235,7 @@
     <div class="box_description">
     <div class="toggler"> 
         <div class="contentscorm">
-          <p>Descarga el código HTML e integra el recurso en cualquier web</p>
+          <p><%=t("excursion.download_scorm")%></p>
           <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a> 
         </div> 
     </div>

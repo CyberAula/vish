@@ -14,18 +14,11 @@
 
 
 <!-- insert_after '.actions' -->
-<button class="category btn popover-link" data-placement='top' aria-hidden="true" data-original-title="categorize"><i class="icon-th-large"></i> <%=t('categories.actions.verb')%></button>
+<%= content_for :javascript do %> 
+    <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
+<% end %>
 
-  <div class="contentcategory" style="display: none">
-    <%= render :partial=>'categories/categorize_form', :locals => { :item => document } %>
-  </div>
+<%=categories_select(:category_id, document)%>
 
-  <%= content_for :javascript do %> 
-    $('.category').popover({ 
-      html : true,
-      content: function() {
-        return $('.contentcategory').html();
-      },
-      container: ".category"
-  });
-  <% end %>
+<%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+

@@ -1,54 +1,9 @@
 <!-- insert_after '#link' -->
 
-<% categories = subject_categories(current_subject, {:scope => :me, :limit => 0}) %>
-<% subject_categories_array = categories.map { |category| [category.title, category.id] }.sort_by! {|cat| cat[0]} %>
-<% categories_selection_array = [] %>
-<% @link.holder_categories.map { |category| categories_selection_array << category.id }%>
-<%= select_tag(:category_id, options_for_select(subject_categories_array, categories_selection_array), {:multiple => true, :style => 'width: 125px' })%>
+<%=categories_select(:category_id, @link)%>
 
 <%= content_for :javascript do %> 
-    $("#category_id").multiselect({
-      header: false,
-      classes: "categorize_select",
-      height: "190px",
-      minWidth: "auto",
-      noneSelectedText: '<i class="icon-th-large"></i> <%=t("categories.actions.verb")%> <b class="caret"></b>',
-      selectedText: '<i class="icon-th-large"></i> # <%=t("categories.selected")%> <b class="caret"></b>',
-      click: function(event, ui){
-          console.log("category id: " + ui.value + " text: " + ui.text + " checked: " + ui.checked);
-          $.ajax({
-            url: '/categories/'+ui.value,
-            type: 'PUT',
-            dataType: "json",
-            data: { item_type:"<%=@link.class.to_s%>", item_id:"<%=@link.id.to_s%>", insert: ui.checked }
-          });
-        },
-      beforeopen: function(event, ui){
-        if($(".ui-multiselect-menu.categorize_select").children(".separator_line").length==0){
-          var piece = '<div class="separator_line"></div><li class=" "><label id="add_category" title="" class="ui-corner-all ui-state-hover"><span>Add category</span></label></li>';
-          
-          $(".ui-multiselect-menu.categorize_select").append(piece);
-          $("#add_category").click(function(){
-            $("#category_id").multiselect("close");
-            $('#AddCategory').modal();
-          });
-
-        }
-      }
-      });
-
-      $('#AddCategory .new_category').bind('ajax:success', function(evt, data, status, xhr){
-        $('#AddCategory').modal('hide');
-        //add the new entry to categories
-        opt = $('<option />', {
-          value: data.id,
-          text: data.title
-        });               
-        opt.appendTo($("#category_id"));
-        $("#category_id").multiselect("refresh");
-        $("#category_id").multiselect("open");
-      });
-
+    <%= render partial: 'shared/multiselect', :locals => {:item => @link} %>
 <% end %>
 
 <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
