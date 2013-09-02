@@ -24,4 +24,5 @@
 //= require uisearch
 //= require bootstrap-slider/bootstrap-slider
 //= require tagit
+//= require jquery.multiselect
 //= require_tree .

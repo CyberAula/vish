@@ -33,6 +33,7 @@ en:
     actions:
       add: "Add category"
       verb: "categorize"
+    description_input: "Description for this category"
     info: "Add it to one of your categories"
     input: "Add a description"
     leyend:
@@ -41,6 +42,7 @@ en:
     main_title: "Create new categories and organize your tours"
     title_input: "Name for this category"
     save: "Save"
+    selected: "categories"
   close: "Close"
   conditions:
     check_message: "By clicking Accept, you agree to our "  

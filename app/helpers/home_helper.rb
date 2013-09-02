@@ -52,7 +52,7 @@ module HomeHelper
     options[:page] ||= 0 #page 0 means without pagination
 
     following_ids = subject.following_actor_ids
-    #following_ids |= [ subject.actor_id ]
+    following_ids |= [ subject.actor_id ]
 
     query = klass
     if klass.is_a?(Array)

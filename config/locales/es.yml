@@ -41,7 +41,8 @@ es:
       description: "Descripción"
     main_title: "Crea nuevas categorías y organiza tus visitas virtuales"  
     title_input: "Dale un nombre a tu categoría"
-    save: "Guardar"
+    save: "Guardar"    
+    selected: "categorias"
   close: "Cerrar"
   conditions:
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "

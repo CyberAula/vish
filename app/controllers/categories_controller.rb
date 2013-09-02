@@ -3,13 +3,25 @@ class CategoriesController < ApplicationController
 
   before_filter :add_item_to_category, :only => [:create, :update]
 
+  def update
+    update! do |format|
+      format.json {render :text => "Thank you", :status => 200}
+    end
+  end
+
   private
 
   def add_item_to_category
-    if params[:category][:item_type].present?
-      @category.property_objects << params[:category][:item_type].constantize.find(params[:category][:item_id]).activity_object
-      params[:category].delete :item_type
-      params[:category].delete :item_id
+    if params[:item_type].present?
+      included = @category.property_objects.include? params[:item_type].constantize.find(params[:item_id]).activity_object
+      if params[:insert]=="true" && !included
+        @category.property_objects << params[:item_type].constantize.find(params[:item_id]).activity_object
+      elsif params[:insert]=="false" && included
+        #we remove it
+        @category.property_objects.delete(params[:item_type].constantize.find(params[:item_id]).activity_object)
+      end
+      params.delete :item_type
+      params.delete :item_id
     end
   end
 
