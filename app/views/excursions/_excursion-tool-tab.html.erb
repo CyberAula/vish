@@ -97,11 +97,7 @@
 
 <%end%>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-  $("[rel=tooltip]").tooltip({ placement: 'top'});
-  });
-</script>
+
 
 <%= content_for :javascript do %> 
     <%= render partial: 'shared/multiselect', :locals => {:item => @excursion} %>
@@ -140,8 +136,11 @@
       <!--<#%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>-->
       <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
       <!--boton guardar en "categoria x"(proximamente)-->
-      <%=categories_select(:category_id, @excursion)%>
-      <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+      
+      <button class="btn" rel="tooltip" title="add to categories"><i class="icon-th-large"></i></button>
+      <!--
+      <#%=categories_select(:category_id, @excursion)%>
+      <#%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>-->
     <%end%>
   </ul>
 </div>
@@ -151,8 +150,12 @@
     <div class="description-activity">
       <!--description-->
       <div class="box_description">
-        <%= render :partial => 'excursions/excursion-info' %>
+        <div class="toggler">
+          <%= render :partial => 'excursions/items-owner-profile', :locals => { :shortURL => shortURL} %>
+          <%= render :partial => 'excursions/excursion-info' %>
+        </div>
       </div>
+     
     </div>
   </div>
 
