@@ -1,5 +1,7 @@
-PATH
-  remote: /home/ebarra/trabajo/social_stream/base
+GIT
+  remote: git://github.com/ging/social_stream.git
+  revision: 45db6d35883d64945bbfa1a31130f29bc342532f
+  branch: master
   specs:
     social_stream-base (2.2.1)
       acts-as-taggable-on (~> 2.2.2)
@@ -31,26 +33,14 @@ PATH
       stringex (~> 1.5.1)
       strong_parameters (~> 0.2.1)
       thinking-sphinx (~> 2.0.8)
-
-PATH
-  remote: /home/ebarra/trabajo/social_stream/documents
-  specs:
     social_stream-documents (2.2.0)
       delayed_paperclip (>= 2.6.1)
       paperclip (~> 3.5.1)
       paperclip-ffmpeg (~> 0.11.0)
       social_stream-base (~> 2.2.0)
-
-PATH
-  remote: /home/ebarra/trabajo/social_stream/linkser
-  specs:
     social_stream-linkser (2.2.0)
       linkser (~> 0.0.12)
       social_stream-base (~> 2.2.0)
-
-PATH
-  remote: /home/ebarra/trabajo/social_stream/ostatus
-  specs:
     social_stream-ostatus (2.2.0)
       nokogiri (> 1.4.4)
       proudhon (>= 0.3.6)
