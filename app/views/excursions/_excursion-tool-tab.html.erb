@@ -1,18 +1,18 @@
 <%= content_for :javascript do %> 
-	//to close the popovers
-	$(':not(#anything_not_present)').on('click', function (e) {
-	    $('.popover-link').each(function () {
-	        //the 'is' for buttons that trigger popups
-	        //the 'has' for icons and other elements within a button that triggers a popup
-	        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-	            $(this).popover('hide');
-	            return;
-	        }
-	    });
-	});
+  //to close the popovers
+  $(':not(#anything_not_present)').on('click', function (e) {
+      $('.popover-link').each(function () {
+          //the 'is' for buttons that trigger popups
+          //the 'has' for icons and other elements within a button that triggers a popup
+          if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+              $(this).popover('hide');
+              return;
+          }
+      });
+  });
 
-	//EMBED POPOVER
-	$('.embed').popover({ 
+  //EMBED POPOVER
+  $('.embed').popover({ 
       html : true,
       content: function() {
         return $('.contentembed').html();
@@ -22,29 +22,29 @@
 
     //apply events when opening the embed popover
     $('.embed').on('shown.bs.popover', function () {
-	  $('button#btn_copy_embed').zclip({
-	        path:'/assets/ZeroClipboard.swf',
-	        copy:function(){
-	        	return $('#textarea_for_iframe').text();
-	    	},
-	    	afterCopy: function(){}
-	    });
+    $('button#btn_copy_embed').zclip({
+          path:'/assets/ZeroClipboard.swf',
+          copy:function(){
+            return $('#textarea_for_iframe').text();
+        },
+        afterCopy: function(){}
+      });
 
-	    $("#textarea_for_iframe").mouseup(function(e){
-	        // fixes safari/chrome problem
-	        e.preventDefault();
-	    }).focus(function(e){
-	        mytxt = $(this).text();
-	        $(this).select();
-	    }).click(function(e){
-	        mytxt = $(this).text();
-	        $(this).select();
-	    });
+      $("#textarea_for_iframe").mouseup(function(e){
+          // fixes safari/chrome problem
+          e.preventDefault();
+      }).focus(function(e){
+          mytxt = $(this).text();
+          $(this).select();
+      }).click(function(e){
+          mytxt = $(this).text();
+          $(this).select();
+      });
 
-	});
+  });
 
-	//SHARE POPOVER
-	$('.share').popover({ 
+  //SHARE POPOVER
+  $('.share').popover({ 
       html : true,
       content: function() {
         return $('.contentShare').html();
@@ -53,51 +53,55 @@
     });
 
      $('.share').on('shown.bs.popover', function () {
-	  $('button#btn_copy_share').zclip({
-	        path:'/assets/ZeroClipboard.swf',
-	        copy:function(){
-	        	return $('#input_with_shorturl').val();
-	    	},
-	    	afterCopy: function(){}
-	    });
+    $('button#btn_copy_share').zclip({
+          path:'/assets/ZeroClipboard.swf',
+          copy:function(){
+            return $('#input_with_shorturl').val();
+        },
+        afterCopy: function(){}
+      });
 
-	    $("#input_with_shorturl").mouseup(function(e){
-	        // fixes safari/chrome problem
-	        e.preventDefault();
-	    }).focus(function(e){
-	        mytxt = $(this).text();
-	        $(this).select();
-	    }).click(function(e){
-	        mytxt = $(this).text();
-	        $(this).select();
-	    });
+      $("#input_with_shorturl").mouseup(function(e){
+          // fixes safari/chrome problem
+          e.preventDefault();
+      }).focus(function(e){
+          mytxt = $(this).text();
+          $(this).select();
+      }).click(function(e){
+          mytxt = $(this).text();
+          $(this).select();
+      });
 
-	});
-	
-	$('.clone').popover({ 
+  });
+  
+  $('.clone').popover({ 
       html : true,
       content: function() {
         return $('.contentclone').html();
       },
       container: ".clone"
-	});
+  });
 
-	$('.delete').popover({ 
+  $('.delete').popover({ 
       html : true,
       content: function() {
         return $('.contentdelete').html();
       },
       container: ".delete"
-	});
-	
+  });
+  
 
-	$('.btn_cancel').click(function(){
-		$('.popover').popover('hide');
-	});
+  $('.btn_cancel').click(function(){
+    $('.popover').popover('hide');
+  });
 
 <%end%>
 
-
+<script type="text/javascript">
+  $(document).ready(function(){
+  $("[rel=tooltip]").tooltip({ placement: 'top'});
+  });
+</script>
 
 <%= content_for :javascript do %> 
     <%= render partial: 'shared/multiselect', :locals => {:item => @excursion} %>
@@ -105,8 +109,6 @@
 
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
-
-<h2><%= @excursion.title %></h2>
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-align-left"></i> descripción</a></li>
@@ -137,30 +139,16 @@
     <% unless editingToolbar %>
       <!--<#%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>-->
       <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
-
-
-    <%end%>
-          <!--boton guardar en "categoria-->
+      <!--boton guardar en "categoria x"(proximamente)-->
       <%=categories_select(:category_id, @excursion)%>
       <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+    <%end%>
   </ul>
 </div>
-<button >
-
-</button>
 <div class="tab-content">
   <!-- tab1 / description -->
   <div class="tab-pane active" id="tab1">
-    <div class="description-activity">
-      <!--description-->
-      <div class="box_description">
-        <div class="toggler">
-          <%= render :partial => 'excursions/items-owner-profile', :locals => { :shortURL => shortURL} %>
-          <%= render :partial => 'excursions/excursion-info' %>
-        </div>
-      </div>
-     
-    </div>
+    
   </div>
 
   <!-- tab2 / embed -->
@@ -251,9 +239,4 @@
   </div> 
 
 </div>
-
-  
-
-
-
 

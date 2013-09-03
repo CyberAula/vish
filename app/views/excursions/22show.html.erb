@@ -92,26 +92,14 @@
         </iframe>
       </div>
     </div>
-<!--owner-profile-->
-    <div class="box_description">
-      <%= render :partial => 'excursions/items-owner-profile', :locals => { :shortURL => shortURL} %>
-    </div>
-    
 <!--tool-->
     <div class="excursion_tool">
-    <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
+    <%= render :partial => 'excursions/excursion-tool', :locals => { :shortURL => shortURL} %>
     </div>
 
   </div>
-<!--description-->
-  <div class="description">
-    <!--description-->
-    <div class="box_description">
-      <%= render :partial => 'excursions/excursion-info' %>
-    </div>
-  </div>
 
-  <!--recomended-->
+    <!--recomended-->
   <div class="recomended-items">
     <div class="recomended_excursion">
       <ul class="small-box">
@@ -121,10 +109,13 @@
       </ul>
     </div>
   </div>
+<!--excursion title-->
+    
 
-  <!--activity-->
-  <div class="description-activity">
-    <%= render :partial => 'excursions/evaluate-activity'%>
-  </div>
+
+
+
+
+
 </section>
 
