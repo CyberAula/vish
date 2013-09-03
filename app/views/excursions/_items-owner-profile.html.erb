@@ -17,16 +17,4 @@
     </div>
   </div>
 
-  <div class="viewsAndConunt">        
-    <div class="views">
-      <%=@excursion.visit_count.to_s%> 
-      <span>
-        <%=t('follow.views')%>
-      </span>   
-    </div>
 
-    <div class="like">    
-      <div class="count"><%=@excursion.post_activity.likes.count.to_s%></div>
-      <%= link_like(@excursion.post_activity)%>
-    </div>
-  </div>  

@@ -150,7 +150,21 @@
     
   </ul>
 </div>
-<div class="tab-content">
+<h2><%= @excursion.title %></h2>
+<div class="viewsAndConunt">        
+  <div class="views">
+    <%=@excursion.visit_count.to_s%> 
+    <span>
+      <%=t('follow.views')%>
+    </span>   
+  </div>
+
+  <div class="like">    
+    <div class="count"><%=@excursion.post_activity.likes.count.to_s%></div>
+    <%= link_like(@excursion.post_activity)%>
+  </div>
+</div>  
+<div class="tab-content excursion-social">
   <!-- tab1 / description -->
   <div class="tab-pane active" id="tab1">
     
