@@ -109,6 +109,8 @@
 
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
+<!--BTN ACTIONS-->
+<div class="btn-group">
 <!--si es tuya la puedes eliminar o editar-->
     <% if user_signed_in? and (can? :update, @excursion) %>
       <button class="btn" rel="tooltip" title="edit excursion" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
@@ -136,8 +138,8 @@
       <%=categories_select(:category_id, @excursion)%>
       <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
     <%end%>
-
-    
+</div>
+<!--TABS-->
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-align-left"></i> descripción</a></li>
