@@ -112,6 +112,19 @@
 <!--excursion title-->
     
 
+    <div class="description-activity">
+
+      <!--description-->
+      <div class="box_description">
+        <div class="toggler">
+          <h2><%= @excursion.title %></h2>
+          <%= render :partial => 'excursions/items-owner-profile', :locals => { :shortURL => shortURL} %>
+          <%= render :partial => 'excursions/excursion-info' %>
+        </div>
+      </div>
+     <%= render :partial => 'excursions/desctiption-activity' %>
+    </div>
+
 
 
 

@@ -1,0 +1,535 @@
+
+
+#show_excursions2
+  .box-show
+    .box_description
+      min-height: 50px
+      display: inline-block
+      float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .toggler
+        position: relative
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        background-color: $white
+        border-radius: $baseBorderRadius
+        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        display: block
+        float: left
+        h2
+          padding-left: 20px
+          font-family: $secondFontFamily
+          color: $grayDark
+        .author
+          margin-left: 20px
+          display: block
+          float: left
+          @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          a
+            display: block
+            float: left
+            @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            img
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-radius($baseBorderRadius)
+              margin-bottom: 20px
+          p
+            font-size: 1.2em
+            margin-left: 20px
+            margin-bottom: 5px
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+            color: $gray
+          .add
+            display: block
+            float: left
+            padding-left: 20px
+            @include follow
+        .viewsAndConunt
+          font-family: $secondFontFamily 
+          margin-right: 20px
+          float: right
+          display: block
+          //font-size: 1.2em
+          .like
+            margin-top: 5px 
+            float: right
+            width: auto
+            .count
+              //font-size: 1.6em 
+                          
+              display: inline-block
+            a
+              &:hover
+                text-decoration: none
+              display: inline-block
+              .icon-star-empty, 
+              .icon-star
+                //font-size: 1.8em
+          .views
+            //font-size: 2em
+            color: $secondColor
+            span
+              //font-size: 0.5em
+              //color: $secondColor
+
+    .container-visor
+      display: inline-block
+      position: relative
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+      float: left
+      .elemento-visor
+        padding-top: 79%
+      .caja-visor
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+    .excursion_tool
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: inline-block
+      float: left
+      .tabbable
+        @include header-tabbable
+        .nav
+          //@include tab_title
+      .btn-group
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin-top: 5px
+      .share
+        .popover
+          width: 310px
+      .embed
+        .popover
+          .arrow
+            left: 30%
+      .clone
+        .popover
+          width: 220px
+      .delete
+        .popover
+          width: 220px
+      .category
+        .popover
+          width: 220px
+      .popover
+        .popover-content
+          textarea
+            width: 310px
+            height: 100px
+          input.shortUrl
+            width: 210px
+          .btn-group
+            display: block
+            margin-top: -5px
+            width: 170px
+          .url-input
+            width: 100%
+            .copy_btn
+              margin-left: 10px
+          .icon-stack
+            display: inline-block
+            font-size: 20px
+            vertical-align: 4px
+          .icon-remove-sign
+            display: inline-block
+            font-size: 40px
+            vertical-align: -10px
+          p.info
+            display: inline-block
+            width: 130px
+            margin-left: 5px
+          p.delete
+            display: inline-block
+            width: 130px
+            margin-left: 5px
+          .actions-clone
+            display: block
+            margin-left: 49px
+          .social_toolbar_excursion
+            display: inline-block
+            height: 19px
+            .twitter_toolbar_excursion,
+            .facebook_toolbar_excursion,
+            .gplus_toolbar_excursion,
+            .email_toolbar_excursion
+              float: left
+            .twitter_toolbar_excursion
+              width: 85px
+            .facebook_toolbar_excursion
+              width: 85px
+            .gplus_toolbar_excursion
+              width: 70px
+  .description-activity
+    .activity
+      background-color: $white
+      border-radius: $baseBorderRadius
+      @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+
+      .tabbable
+        .tab-content
+          overflow: hidden
+    .box_description
+      
+      display: inline-block
+      float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .toggler
+        min-height: 50px
+        position: relative
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        background-color: $white
+        border-radius: $baseBorderRadius
+        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        display: block
+        float: left
+        h2
+          padding-left: 20px
+          font-family: $secondFontFamily
+          color: $grayDark
+        .author
+          margin-left: 20px
+          display: block
+          float: left
+          @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          a
+            display: block
+            float: left
+            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            img
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-radius($baseBorderRadius)
+              margin-bottom: 20px
+          p
+            font-size: 1.2em
+            margin-left: 20px
+            margin-bottom: 5px
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+            color: $gray
+          .add
+            display: block
+            float: left
+            padding-left: 20px
+            @include follow
+        .viewsAndConunt
+          margin-left: 32%
+          float: left
+          display: block
+          .like
+            margin-top: 5px 
+            float: right
+            width: auto
+            .count
+              font-size: 1.6em
+              display: inline-block
+            a
+              display: inline-block
+              .icon-star-empty, 
+              .icon-star
+                font-size: 1.8em
+          .views
+            font-size: 2em
+            span
+              font-size: 0.5em
+              color: $secondColor
+        #effect
+          position: relative
+        .newClass
+          height: 0px
+          overflow: hidden
+        .anotherNewClass
+          height: auto
+          overflow: auto
+          clear: both
+      #showMore
+        @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include center-block()
+        text-align: center
+        margin-top: 0px
+        background-color: #CFCFCF
+        border: none
+        border-bottom: 1px solid $grayLight
+        @include border-bottom-radius($baseBorderRadius)
+        -webkit-box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        clear: both
+        a
+          padding-top: 3px
+
+  .recomended-items
+    .recomended_excursion
+      display: block
+      float: right
+
+//show old
+
+
+#show_excursions
+  .box-show
+    .box_description
+      min-height: 50px
+      display: inline-block
+      float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .toggler
+        position: relative
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        background-color: $white
+        border-radius: $baseBorderRadius
+        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        display: block
+        float: left
+        h2
+          padding-left: 20px
+          font-family: $secondFontFamily
+          color: $grayDark
+        .author
+          margin-left: 20px
+          display: block
+          float: left
+          @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          a
+            display: block
+            float: left
+            @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            img
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-radius($baseBorderRadius)
+              margin-bottom: 20px
+          p
+            font-size: 1.2em
+            margin-left: 20px
+            margin-bottom: 5px
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+            color: $gray
+          .add
+            display: block
+            float: left
+            padding-left: 20px
+            @include follow
+        .viewsAndConunt
+          font-family: $secondFontFamily 
+          margin-right: 20px
+          float: right
+          display: block
+          //font-size: 1.2em
+          .like
+            margin-top: 5px 
+            float: right
+            width: auto
+            .count
+              //font-size: 1.6em 
+                          
+              display: inline-block
+            a
+              &:hover
+                text-decoration: none
+              display: inline-block
+              .icon-star-empty, 
+              .icon-star
+                //font-size: 1.8em
+          .views
+            //font-size: 2em
+            color: $secondColor
+            span
+              //font-size: 0.5em
+              //color: $secondColor
+
+    .container-visor
+      display: inline-block
+      position: relative
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+      float: left
+      .elemento-visor
+        padding-top: 79%
+      .caja-visor
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+    .excursion_tool
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: inline-block
+      float: left
+      .tabbable
+        @include header-tabbable
+        .nav
+          //@include tab_title
+      .btn-group
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin-top: 5px
+      .share
+        .popover
+          width: 310px
+      .embed
+        .popover
+          .arrow
+            left: 30%
+      .clone
+        .popover
+          width: 220px
+      .delete
+        .popover
+          width: 220px
+      .category
+        .popover
+          width: 220px
+      .popover
+        .popover-content
+          textarea
+            width: 310px
+            height: 100px
+          input.shortUrl
+            width: 210px
+          .btn-group
+            display: block
+            margin-top: -5px
+            width: 170px
+          .url-input
+            width: 100%
+            .copy_btn
+              margin-left: 10px
+          .icon-stack
+            display: inline-block
+            font-size: 20px
+            vertical-align: 4px
+          .icon-remove-sign
+            display: inline-block
+            font-size: 40px
+            vertical-align: -10px
+          p.info
+            display: inline-block
+            width: 130px
+            margin-left: 5px
+          p.delete
+            display: inline-block
+            width: 130px
+            margin-left: 5px
+          .actions-clone
+            display: block
+            margin-left: 49px
+          .social_toolbar_excursion
+            display: inline-block
+            height: 19px
+            .twitter_toolbar_excursion,
+            .facebook_toolbar_excursion,
+            .gplus_toolbar_excursion,
+            .email_toolbar_excursion
+              float: left
+            .twitter_toolbar_excursion
+              width: 85px
+            .facebook_toolbar_excursion
+              width: 85px
+            .gplus_toolbar_excursion
+              width: 70px
+  .description-activity
+    .activity
+      background-color: $white
+      border-radius: $baseBorderRadius
+      @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+
+      .tabbable
+        .tab-content
+          overflow: hidden
+    .box_description
+      
+      display: inline-block
+      float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .toggler
+        min-height: 50px
+        position: relative
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        background-color: $white
+        border-radius: $baseBorderRadius
+        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        display: block
+        float: left
+        h2
+          padding-left: 20px
+          font-family: $secondFontFamily
+          color: $grayDark
+        .author
+          margin-left: 20px
+          display: block
+          float: left
+          @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          a
+            display: block
+            float: left
+            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            img
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-radius($baseBorderRadius)
+              margin-bottom: 20px
+          p
+            font-size: 1.2em
+            margin-left: 20px
+            margin-bottom: 5px
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+            color: $gray
+          .add
+            display: block
+            float: left
+            padding-left: 20px
+            @include follow
+        .viewsAndConunt
+          margin-left: 32%
+          float: left
+          display: block
+          .like
+            margin-top: 5px 
+            float: right
+            width: auto
+            .count
+              font-size: 1.6em
+              display: inline-block
+            a
+              display: inline-block
+              .icon-star-empty, 
+              .icon-star
+                font-size: 1.8em
+          .views
+            font-size: 2em
+            span
+              font-size: 0.5em
+              color: $secondColor
+        #effect
+          position: relative
+        .newClass
+          height: 0px
+          overflow: hidden
+        .anotherNewClass
+          height: auto
+          overflow: auto
+          clear: both
+      #showMore
+        @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include center-block()
+        text-align: center
+        margin-top: 0px
+        background-color: #CFCFCF
+        border: none
+        border-bottom: 1px solid $grayLight
+        @include border-bottom-radius($baseBorderRadius)
+        -webkit-box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        clear: both
+        a
+          padding-top: 3px
+
+  .recomended-items
+    .recomended_excursion
+      display: block
+      float: right
+

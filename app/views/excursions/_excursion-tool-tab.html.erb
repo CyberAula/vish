@@ -105,6 +105,8 @@
 
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
+
+<h2><%= @excursion.title %></h2>
 <div class="tabbable">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab"><i class="icon-align-left"></i> descripción</a></li>
@@ -135,14 +137,17 @@
     <% unless editingToolbar %>
       <!--<#%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>-->
       <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
-      <!--boton guardar en "categoria x"(proximamente)-->
-      
-      
+
+
+    <%end%>
+          <!--boton guardar en "categoria-->
       <%=categories_select(:category_id, @excursion)%>
       <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
-    <%end%>
   </ul>
 </div>
+<button >
+
+</button>
 <div class="tab-content">
   <!-- tab1 / description -->
   <div class="tab-pane active" id="tab1">
@@ -247,51 +252,7 @@
 
 </div>
 
-<div class="description-activity">
-    <!--activity-->
-    <div class="activity">
-      <div class="tabbable">
-        <ul class="nav nav-tabs">      
-          <li class="active"><a href="#tab1" data-toggle="tab"><%=t('comment.other')%></a></li>
-          <li><a href="#tab2" data-toggle="tab"><%=t('evaluation.teaching')%></a></li>
-          <li><a href="#tab3" data-toggle="tab"><%=t('evaluation.learning')%></a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="tab1">
-            <div id="comments" class="comments">
-              <div class="new-comments-box">
-                <%= render :partial => 'comments/new', :locals => { :activity => @excursion.post_activity } %>
-              </div>
-              <%= render :partial => 'activities/comments', :locals => { :activity => @excursion.post_activity } %>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab2">              
-            <div class="btn-evalue">
-              <%= t('evaluation.contribute', :count => @numberOfEvaluations) %>
-                <!-- Button to trigger modal -->
-              <a id="evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-            </div>
-            <div class="excursion-eval-results">
-              <canvas id="evalChart" width="600" height="600"></canvas>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab3">              
-            <div class="btn-evalue">
-              <%= t('evaluation.contribute', :count => @numberOfLearningEvaluations) %>
-                <!-- Button to trigger modal -->
-              <a id="learning_evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-            </div>
-            <div class="excursion-eval-results">
-              <canvas id="evalLearningChart" width="600" height="600"></canvas>
-            </div>
-          </div>  
-        </div>
-      </div>    
-    </div>
-    <!-- Modal -->
-  <%= render :partial => "excursions/excursion_evaluate" %>
-  <%= render :partial => "excursions/excursion_learning_evaluate" %>
-</div>  
+  
 
 
 
