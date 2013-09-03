@@ -1,5 +1,7 @@
-#show_excursions
 
+
+
+#show_excursions
   .box-show
     .box_description
       min-height: 50px
@@ -22,7 +24,7 @@
           margin-left: 20px
           display: block
           float: left
-          @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
           a
             display: block
             float: left
@@ -71,6 +73,7 @@
             span
               //font-size: 0.5em
               //color: $secondColor
+
     .container-visor
       display: inline-block
       position: relative
@@ -191,11 +194,11 @@
           margin-left: 20px
           display: block
           float: left
-          @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
           a
             display: block
             float: left
-            @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
             img
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
               @include border-radius($baseBorderRadius)
@@ -254,6 +257,7 @@
         @include border-bottom-radius($baseBorderRadius)
         -webkit-box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
         box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        clear: both
         a
           padding-top: 3px
 
@@ -261,3 +265,4 @@
     .recomended_excursion
       display: block
       float: right
+

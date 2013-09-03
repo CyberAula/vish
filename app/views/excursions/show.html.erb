@@ -94,7 +94,13 @@
     </div>
 <!--owner-profile-->
     <div class="box_description">
+      <h2><%= @excursion.title %></h2>
+      <!--author-->
+      <div class="toggler">
       <%= render :partial => 'excursions/items-owner-profile', :locals => { :shortURL => shortURL} %>
+      <!--description-->
+      <%= render :partial => 'excursions/excursion-info' %>
+    </div>
     </div>
     
 <!--tool-->
@@ -103,13 +109,8 @@
     </div>
 
   </div>
-<!--description-->
-  <div class="description">
-    <!--description-->
-    <div class="box_description">
-      <%= render :partial => 'excursions/excursion-info' %>
-    </div>
-  </div>
+
+
 
   <!--recomended-->
   <div class="recomended-items">
