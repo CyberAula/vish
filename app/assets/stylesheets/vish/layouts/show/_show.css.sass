@@ -53,17 +53,57 @@
           display: inline-block
         .tab-content
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        .contentembed
+        .contentembed,
+        .contentShare,
+        .contentclone,
+        .contentscorm
           margin-left: 20px
+          margin-bottom: 10px
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
           float: left
+          textarea
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .input-append
+            @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+          .social_toolbar_excursion
+            @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
 
-          .input-append,
-          .input-prepend
-            width: 100%
-            textarea
-              @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            .twitter_toolbar_excursion,
+            .facebook_toolbar_excursion,
+            .gplus_toolbar_excursion,
+            .email_toolbar_excursion
+              float: left
+              display: inline-block
+             
+            .twitter_toolbar_excursion
+              width: 85px
+
+            .facebook_toolbar_excursion
+              width: 85px
+
+            .gplus_toolbar_excursion
+              width: 70px
+          span
+            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+          .info,
+          p
+            @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+          .actions-clone,
+          a
+            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+
+
 
           
         .viewsAndConunt
@@ -156,20 +196,7 @@
             .actions-clone
               display: block
               margin-left: 49px
-            .social_toolbar_excursion
-              display: inline-block
-              height: 19px
-              .twitter_toolbar_excursion,
-              .facebook_toolbar_excursion,
-              .gplus_toolbar_excursion,
-              .email_toolbar_excursion
-                float: left
-              .twitter_toolbar_excursion
-                width: 85px
-              .facebook_toolbar_excursion
-                width: 85px
-              .gplus_toolbar_excursion
-                width: 70px
+
 
       //description
       .toggler

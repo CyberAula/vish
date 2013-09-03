@@ -179,30 +179,24 @@
   <div class="tab-pane" id="tab2">
 
       <div class="contentembed">
-        <div class="input-append url-input">
+        
           <textarea class="shortUrl" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
-          <button class="btn btn-primary" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
-        </div>
+          <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy large"></i></button>
+        
       </div>
 
   </div>
 
   <!-- tab3 / share -->
   <div class="tab-pane" id="tab3">
-    <div class="description-activity">
-    <div class="box_description">
-    <div class="toggler">   
+
       
       <div class="contentShare">
         <div class="input-append url-input">
           <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-          <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
+          <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button>
         </div>
 
-        <div class="input-append contact-input" style="display: none">
-          <input class="shortUrl" placeholder="friend's name" id="" type="text">
-          <button class="btn" href="#" data-toggle="tooltip" data-placement="right" title="share friend"><i class="icon-share-alt"></i></button>
-        </div>
 
         <div class="social_toolbar_excursion">
           <div class="twitter_toolbar_excursion">
@@ -214,20 +208,16 @@
           <div class="gplus_toolbar_excursion ">
             <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
           </div>
-          <div class="email_toolbar_excursion">
+          <button class="email_toolbar_excursion">
             <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-          </div>
+          </button>
          </div>
       </div>
-    </div>
-    </div>
-    </div>  
+ 
   </div> 
   <!-- tab4 / clone -->
   <div class="tab-pane" id="tab4">
-    <div class="description-activity">
-    <div class="box_description">
-    <div class="toggler">  
+
       <div class="contentclone">
         <span class="icon-stack">
           <i class="icon-circle  icon-stack-base"></i>
@@ -238,24 +228,17 @@
           <!--<a class="btn btn_cancel"><#%=t('cancel')%></a>-->
           <a href="<%=excursion_path(@excursion) + '/clone'%>" class="btn btn-primary"><%=t('save')%></a>
         </div>
-      </div>
-    </div>
-    </div>
-    </div> 
+        </div>
   </div> 
 
   <!-- tab5 / scorm -->
   <div class="tab-pane" id="tab5">
-    <div class="description-activity">
-    <div class="box_description">
-    <div class="toggler"> 
+
         <div class="contentscorm">
           <p><%=t("excursion.download_scorm")%></p>
           <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a> 
         </div> 
-    </div>
-    </div>
-    </div> 
+
   </div> 
 
 </div>

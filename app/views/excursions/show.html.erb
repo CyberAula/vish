@@ -93,36 +93,27 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
       </div>
     </div>
   </div>
-  <!--owner-profile-->
-  <div class="description-activity">
-    <div class="box_description">
-
-
-      <!--tool-->
-      <div class="excursion_tool">
-        <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
-      </div>
-
-
-      
-      
-    </div>
-  </div>
-
   <!--recomended-->
   <div class="recomended-items">
     <div class="recomended_excursion">
       <ul class="small-box">
-        <% Excursion.first(10).each do |excursion| %>
+        <% Excursion.first(15).each do |excursion| %>
         <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
         <% end %>
       </ul>
     </div>
   </div>
-
+  <!--owner-profile-->
+  <div class="description-activity">
+    <div class="box_description">
+      <!--tool-->
+      <div class="excursion_tool">
+        <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
+      </div>     
+    </div>
+  </div>
   <!--activity-->
   <div class="activity-box">
     <%= render :partial => 'excursions/evaluate-activity'%>
   </div>
 </section>
-
