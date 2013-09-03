@@ -20,7 +20,7 @@
 
   //description
   .description-activity
-    @include border-bottom-radius($radius)
+    @include border-bottom-radius(5px)
     background-color: $white
     @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
     .box_description
@@ -38,14 +38,59 @@
           @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
           clear: none
           margin-top: 0px
+          height: 50px
+        .tab-content > .active, .pill-content > .active
+          display: block
+          margin-top: 0px !important
         h2
+          margin-top: 0px
           padding-left: 20px
           font-family: $secondFontFamily
           color: $grayDark
           @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          margin-top: 5px
+          
           float: left
           display: inline-block
+        .tab-content
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .contentembed
+          margin-left: 20px
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+
+          .input-append,
+          .input-prepend
+            width: 100%
+            textarea
+              @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+          
+        .viewsAndConunt
+          float: left
+          display: block
+          margin-top: 5px
+          .like
+            float: left
+            width: auto
+            display: inline-block
+            .count
+              font-size: 1.6em
+              display: inline-block
+            a
+              display: inline-block
+              .icon-star-empty, 
+              .icon-star
+                font-size: 1.8em
+          .views:after
+            content: " / "
+          .views
+            font-size: 2em
+            float: left
+            display: inline-block
+            span
+              font-size: 0.5em
+              
 
         .excursion-social
           float: left
@@ -58,6 +103,8 @@
           .btn:first-child
 
             border-top-left-radius: 0px
+          .btn
+            padding: 8px 12px
 
         .share
           .popover
@@ -129,61 +176,44 @@
         min-height: 50px
         position: relative
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        background-color: $white
-        border-radius: $baseBorderRadius
-        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
         display: block
         float: left
 
-        .author
-          margin-left: 20px
-          display: block
-          float: left
-          @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          a
+
+        
+        #effect
+          position: relative
+          min-height: 55px
+          .author
+            margin-left: 20px
             display: block
             float: left
-            @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            img
-              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              @include border-radius($baseBorderRadius)
-              margin-bottom: 20px
-          p
-            font-size: 1.2em
-            margin-left: 20px
-            margin-bottom: 5px
+            @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            a
+              display: block
+              float: left
+              @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              img
+                @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                @include border-radius($baseBorderRadius)     
+            p
+              font-size: 1em
+              margin-left: 20px
+              margin-bottom: 5px
+              @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              display: block
+              float: left
+              color: $gray
+            .add
+              display: block
+              float: left
+              padding-left: 20px
+              @include follow
+          .dl-horizontal
             @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
             float: left
-            color: $gray
-          .add
-            display: block
-            float: left
-            padding-left: 20px
-            @include follow
-        .viewsAndConunt
-          margin-left: 32%
-          float: left
-          display: block
-          .like
-            margin-top: 5px 
-            float: right
-            width: auto
-            .count
-              font-size: 1.6em
-              display: inline-block
-            a
-              display: inline-block
-              .icon-star-empty, 
-              .icon-star
-                font-size: 1.8em
-          .views
-            font-size: 2em
-            span
-              font-size: 0.5em
-              color: $secondColor
-        #effect
-          position: relative
+
         .newClass
           height: 0px
           overflow: hidden
@@ -196,12 +226,13 @@
         @include center-block()
         text-align: center
         margin-top: 0px
-        background-color: #CFCFCF
+        background-color: $grayLighter
         border: none
         border-bottom: 1px solid $grayLight
-        @include border-bottom-radius($baseBorderRadius)
-        -webkit-box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
-        box-shadow: inset 0px 5px 3px 0px rgba(0, 0, 0, 0.1)
+        @include border-radius($baseBorderRadius)
+
+        margin-top: 5px
+        margin-bottom: 5px
         a
           padding-top: 3px
 
@@ -241,7 +272,7 @@
   font-size: 14px
   line-height: 20px
   margin-bottom: 0
-  padding: 4px 12px
+  padding: 8px 12px
   text-align: center
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)
   vertical-align: middle

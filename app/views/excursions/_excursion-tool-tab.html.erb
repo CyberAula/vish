@@ -132,7 +132,7 @@
     </div>
   
     <% unless editingToolbar %>
-      <!--<#%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>-->
+      <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>
       <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
       <!--boton guardar en "categoria x"(proximamente)-->
       <%=categories_select(:category_id, @excursion)%>
@@ -168,22 +168,23 @@
   <!-- tab1 / description -->
   <div class="tab-pane active" id="tab1">
     
+      <div class="toggler">
+
+        <!--description-->
+        <%= render :partial => 'excursions/excursion-info' %>
+      </div>
   </div>
 
   <!-- tab2 / embed -->
   <div class="tab-pane" id="tab2">
-    <div class="description-activity">
-    <div class="box_description">
-    <div class="toggler">   
+
       <div class="contentembed">
         <div class="input-append url-input">
           <textarea class="shortUrl" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
           <button class="btn btn-primary" id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy"></i></button>
         </div>
       </div>
-    </div>
-    </div>
-    </div>
+
   </div>
 
   <!-- tab3 / share -->

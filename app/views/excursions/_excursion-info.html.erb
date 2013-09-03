@@ -3,6 +3,8 @@
   
 
  <div id="effect" class="newClass ui-corner-all">
+          <!--author-->
+        <%= render :partial => 'excursions/items-owner-profile' %>
     <%= javascript_tag do %>
     <%#= modal_for(@excursion.author.subject) %>
     <% @excursion.contributors.each do |c| %>
