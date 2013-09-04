@@ -1,7 +1,16 @@
+
 <section id="category">
-  <h1><%= t('categories.leyend.title') %>: <%= @category.title %></h1>
-  <h2><%= t('categories.leyend.description') %>: <%= @category.description %></h2>
-  <h2><%= t('categories.leyend.items') %>:</h2>
+  <div class="category_info">
+    <div class="icon-box">
+      <i class="icon-th-large"></i>
+    </div>  
+    <!--<h1><#%= t('categories.leyend.title') %>: <%= @category.title %></h1>
+    <h2><#%= t('categories.leyend.description') %>: <%= @category.description %></h2>
+    <h2><#%= t('categories.leyend.items') %>:</h2>-->
+    <h1><%= @category.title %></h1>
+    <h2><%= @category.description %></h2>
+  </div>
+  
   <div id="excursions">
     <ul class="">
     <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>

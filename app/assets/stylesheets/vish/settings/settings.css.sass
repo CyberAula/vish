@@ -13,6 +13,7 @@
             text-decoration: none  
       
     .settings_content
+      border-radius: $baseBorderRadius
       @include gradient-vertical-three-colors($startColor: #f3f3f3, $midColor: #f7f7f7, $colorStop: 3%, $endColor: #f1f1f1)
       .accordion-toggle
         @include ellipsis
@@ -39,9 +40,12 @@
 
     #cancel_account
       &:hover
-        border-color: $red !important
+        border-color: $firstColor !important
+        text-decoration: none
         a
-          color: $red !important
+          color: $firstColor !important
       #cancel_account_content
         a
-          color: $red !important
+          color: $secondColor !important
+          &:hover
+            text-decoration: none

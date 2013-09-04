@@ -77,6 +77,7 @@ header.navbar,
         .user-settings
           float: right
           .dropdown-menu
+            position: relative
             &:before
               border: none
             &:after
@@ -85,12 +86,14 @@ header.navbar,
             padding: 0px
             margin-left: 5px
             margin-top: -15px
+            outline: none  
             img
               @include border-radius($baseBorderRadius)
               height: 40px
               width: 40px
             .name.hidden-phone
-              margin-left: 5px  
+              margin-left: 5px
+
         .navegation
           float: right
           margin-right: 3px
