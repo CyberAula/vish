@@ -4,9 +4,11 @@
 
 
 @media (max-width: 767px)
-  #document
+  #document,
+  #picture
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .document
+    .document,
+    .picture
       .box-show
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
@@ -31,9 +33,11 @@
 // ---------------------
 
 @media (max-width: 480px)
-  #document
+  #document,
+  #picture
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .document
+    .document,
+    .picture
       .box-show
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block

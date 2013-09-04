@@ -16,72 +16,71 @@
       </div>
     </div>
   </div>
-    <!--owner-profile-->
+  <!--owner-profile-->
+  <div class="description-activity">
+    <div class="box_description">
+      <!--tool-->
+      <div class="excursion_tool">
+        <!--BTN ACTIONS-->
+        <div class="btn-group">
+          <button class="btn" rel="tooltip" title="Donwload document" >
+            <%= link_to raw("<i class='icon-save'></i> "), download_document_path(document), title: t('document.actions.download') %>
+          </button>
+          <% if can? :destroy, document %>
+          <button class="btn" rel="tooltip" title="Remove document" >
 
-
-    
-    <div class="description-activity">
-      <div class="box_description">
-        <!--tool-->
-        <div class="excursion_tool">
-          <h2>
-            <%= document.title %>
-          </h2>
-          <div class="actions">
-            <%= link_to raw("<i class='icon_tool16-save'></i> "), download_document_path(document), title: t('document.actions.download') %>
-
-            <% if can? :destroy, document %>
-            <%= link_to raw("<i class='icon_tool16-trash'></i> "),  document,
+            <%= link_to raw("<i class='icon-remove-sign'></i> "),  document,
             confirm: t('confirm_delete', scope: document.class.to_s.underscore),
             title: t('document.actions.delete'),
             method: :delete %>
             <% end %>
-          </div>
-
+          </button>
           <%= content_for :javascript do %> 
           <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
           <% end %>
 
           <%=categories_select(:category_id, document)%>
-
           <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+        </div>
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="<%= document_details_tab_class document, :info %>">
+              <%= link_to (raw("<i class='icon-align-left'></i> ")) + t('document.details.info'), '#document-info', 'data-toggle' => 'tab' %>
+            </li>
 
+            <% if can? :update, document %>
+            <li class="<%= document_details_tab_class document, :edit %>">
 
-          <div class="details">
-            <div class="tabbable">
-              <ul class="nav nav-tabs">
-                <li class="<%= document_details_tab_class document, :info %>">
-                  <%= link_to t('document.details.info'), '#document-info', 'data-toggle' => 'tab' %>
-                </li>
-
-                <% if can? :update, document %>
-                <li class="<%= document_details_tab_class document, :edit %>">
-
-                  <%= link_to (raw("<i class='icon_tool16-edit'></i> ")), '#document-edit', 'data-toggle' => 'tab' %>
-                  <!--alt: t('document.actions.edit'),-->
-
-                </li>
-                <% end %>
-              </ul>
-            </div>
-
-            <div class="tab-content">
-              <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
-                <%= render partial: "common_documents/info", locals: { document: document } %>
-              </div>
-              <% if can? :update, document %>
-              <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
-                <%= render partial: 'common_documents/form', locals: { document: document } %>
-              </div>
-              <% end %>
+              <%= link_to (raw("<i class='icon-edit'></i> ")) + t('document.actions.edit'), '#document-edit', 'data-toggle' => 'tab' %>
+              <!--alt: t('document.actions.edit'),-->
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <h2>
+          <%= document.title %>
+        </h2>
+        <div class="viewsAndConunt">
+          <%= render partial: 'objects/counters', locals: { object: document } %>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
+            <div class="toggler">
+              <%= render partial: "common_documents/info", locals: { document: document } %>
             </div>
           </div>
-        </div>     
-      </div>
+          <% if can? :update, document %>
+          <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
+            <%= render partial: 'common_documents/form', locals: { document: document } %>
+          </div>
+          <% end %>
+        </div>
+      </div>     
     </div>
-
-    <!--activity-->
-    <div class="activity-box">
+  </div>
+  <!--activity-->
+  <div class="activity-box">
+    <div class="activity">
       <div class="tabbable">
         <ul class="nav nav-tabs">
           <li class="active">
@@ -90,18 +89,19 @@
             </a>
           </li>
         </ul>
-
-        <div class="tab-content">
+        <div class="tab-pane active" id="coment1">
           <div id="comments" class="comments">
+            <div class="new-comments-box">
+              <%= render :partial => 'comments/new', :locals => { :activity => document.post_activity } %>
+            </div>
             <%= render :partial => 'activities/comments', :locals => { :activity => document.post_activity } %>
-            <%= render :partial => 'comments/new', :locals => { :activity => document.post_activity } %>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-  <% end %>
+</div>
+<% end %>
 </section>
 
 

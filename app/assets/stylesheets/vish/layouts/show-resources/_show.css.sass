@@ -1,14 +1,13 @@
-#document
-  
-  .document
-
+#document,
+#picture
+  .document,
+  .picture
     .box-show
       //visor
       .container-visor
         display: inline-block
         position: relative
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
         float: left
         .elemento-visor
           padding-top: 79%
@@ -19,9 +18,6 @@
           left: 0
           right: 0
           background-color: $grayLight
-
-      
-
     //description
     .description-activity
       @include border-bottom-radius(5px)
@@ -31,7 +27,6 @@
         display: inline-block
         float: left
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
         //tool
         .excursion_tool
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -52,64 +47,42 @@
             font-family: $secondFontFamily
             color: $grayDark
             @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            
             float: left
             display: inline-block
           .tab-content
             @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          .contentembed,
-          .contentShare,
-          .contentclone,
-          .contentscorm
-            margin-left: 20px
-            margin-bottom: 10px
-            @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            display: block
-            float: left
-            textarea
-              @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            .input-append
-              @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              display: block
+            #document-edit
+              @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              margin-left: 20px
               float: left
-            .social_toolbar_excursion
-              @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              display: block
-              float: left
-
-              .twitter_toolbar_excursion,
-              .facebook_toolbar_excursion,
-              .gplus_toolbar_excursion,
-              .email_toolbar_excursion
+              .upload
+                @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 float: left
-                display: inline-block
-               
-              .twitter_toolbar_excursion
-                width: 85px
+              .title
+                @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                float: left
+              .description
 
-              .facebook_toolbar_excursion
-                width: 85px
+                @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                float: left
+                textarea
+                  width: 93%
+                  height: 100px
 
-              .gplus_toolbar_excursion
-                width: 70px
-            span
-              @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              display: block
-              float: left
-            .info,
-            p
-              @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              display: block
-              float: left
-            .actions-clone,
-            a
-              @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              display: block
-              float: left
+              .tags
+                @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                float: left
+                display: none
+              .btn
+                float: left
+                clear: both
+                background-image: none
+                margin-bottom: 10px
 
 
 
-            
+
+
           .viewsAndConunt
             float: left
             display: block
@@ -134,74 +107,17 @@
               display: inline-block
               span
                 font-size: 0.5em
-                
-
           .excursion-social
             float: left
             display: inline-block
           .btn-group
-
             margin-top: 0px
             float: right
             display: inline-block
             .btn:first-child
-
               border-top-left-radius: 0px
             .btn
               padding: 8px 12px
-
-          .share
-            .popover
-              width: 310px
-          .embed
-            .popover
-              .arrow
-                left: 30%
-          .clone
-            .popover
-              width: 220px
-          .delete
-            .popover
-              width: 220px
-          .category
-            .popover
-              width: 220px
-          .popover
-            .popover-content
-              textarea
-                width: 310px
-                height: 100px
-              input.shortUrl
-                width: 210px
-              .btn-group
-                display: block
-                margin-top: -5px
-                width: 170px
-              .url-input
-                width: 100%
-                .copy_btn
-                  margin-left: 10px
-              .icon-stack
-                display: inline-block
-                font-size: 20px
-                vertical-align: 4px
-              .icon-remove-sign
-                display: inline-block
-                font-size: 40px
-                vertical-align: -10px
-              p.info
-                display: inline-block
-                width: 130px
-                margin-left: 5px
-              p.delete
-                display: inline-block
-                width: 130px
-                margin-left: 5px
-              .actions-clone
-                display: block
-                margin-left: 49px
-
-
         //description
         .toggler
           min-height: 50px
@@ -209,9 +125,6 @@
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
           float: left
-
-
-          
           #effect
             position: relative
             min-height: 55px
@@ -244,7 +157,6 @@
               @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
               display: block
               float: left
-
           .newClass
             height: 0px
             overflow: hidden
@@ -261,18 +173,14 @@
           border: none
           border-bottom: 1px solid $grayLight
           @include border-radius($baseBorderRadius)
-
           margin-top: 5px
           margin-bottom: 5px
           a
             padding-top: 3px
-
     .recomended-items
       .recomended_excursion
         display: block
         float: right
-
-
     .activity-box
       .activity
         background-color: $white
@@ -282,7 +190,6 @@
           @include header-tabbable
           .tab-content
             overflow: hidden
-
   .ui-multiselect
     -moz-border-bottom-colors: none
     -moz-border-left-colors: none

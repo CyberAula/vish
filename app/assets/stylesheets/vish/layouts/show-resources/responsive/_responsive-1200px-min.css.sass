@@ -4,15 +4,15 @@
 
 
 @media (min-width: 1348px)
-  #document
+  #document,
+  #picture
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .document
+    .document,
+    .picture
       .box-show
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: left
-        .container-visor
-          
       .description-activity
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
