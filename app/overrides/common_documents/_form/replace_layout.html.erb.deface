@@ -1,0 +1,8 @@
+
+
+<!-- insert_before '.description' -->
+    <section class="tags">
+      <%= f.label :tag_list, t('document.info.tags') %>
+      <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
+    </section>
+	
