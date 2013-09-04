@@ -1,0 +1,315 @@
+#document
+  
+  .document
+
+    .box-show
+      //visor
+      .container-visor
+        display: inline-block
+        position: relative
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+        float: left
+        .elemento-visor
+          padding-top: 79%
+        .caja-visor
+          position: absolute
+          top: 0
+          bottom: 0
+          left: 0
+          right: 0
+          background-color: $grayLight
+
+      
+
+    //description
+    .description-activity
+      @include border-bottom-radius(5px)
+      background-color: $white
+      @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+      .box_description
+        display: inline-block
+        float: left
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+        //tool
+        .excursion_tool
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: inline-block
+          float: left
+          .tabbable
+            @include header-tabbable
+            @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            clear: none
+            margin-top: 0px
+            height: 50px
+          .tab-content > .active, .pill-content > .active
+            display: block
+            margin-top: 0px !important
+          h2
+            margin-top: 0px
+            padding-left: 20px
+            font-family: $secondFontFamily
+            color: $grayDark
+            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            
+            float: left
+            display: inline-block
+          .tab-content
+            @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .contentembed,
+          .contentShare,
+          .contentclone,
+          .contentscorm
+            margin-left: 20px
+            margin-bottom: 10px
+            @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            float: left
+            textarea
+              @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            .input-append
+              @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              display: block
+              float: left
+            .social_toolbar_excursion
+              @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              display: block
+              float: left
+
+              .twitter_toolbar_excursion,
+              .facebook_toolbar_excursion,
+              .gplus_toolbar_excursion,
+              .email_toolbar_excursion
+                float: left
+                display: inline-block
+               
+              .twitter_toolbar_excursion
+                width: 85px
+
+              .facebook_toolbar_excursion
+                width: 85px
+
+              .gplus_toolbar_excursion
+                width: 70px
+            span
+              @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              display: block
+              float: left
+            .info,
+            p
+              @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              display: block
+              float: left
+            .actions-clone,
+            a
+              @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              display: block
+              float: left
+
+
+
+            
+          .viewsAndConunt
+            float: left
+            display: block
+            margin-top: 5px
+            .like
+              float: left
+              width: auto
+              display: inline-block
+              .count
+                font-size: 1.6em
+                display: inline-block
+              a
+                display: inline-block
+                .icon-star-empty, 
+                .icon-star
+                  font-size: 1.8em
+            .views:after
+              content: " / "
+            .views
+              font-size: 2em
+              float: left
+              display: inline-block
+              span
+                font-size: 0.5em
+                
+
+          .excursion-social
+            float: left
+            display: inline-block
+          .btn-group
+
+            margin-top: 0px
+            float: right
+            display: inline-block
+            .btn:first-child
+
+              border-top-left-radius: 0px
+            .btn
+              padding: 8px 12px
+
+          .share
+            .popover
+              width: 310px
+          .embed
+            .popover
+              .arrow
+                left: 30%
+          .clone
+            .popover
+              width: 220px
+          .delete
+            .popover
+              width: 220px
+          .category
+            .popover
+              width: 220px
+          .popover
+            .popover-content
+              textarea
+                width: 310px
+                height: 100px
+              input.shortUrl
+                width: 210px
+              .btn-group
+                display: block
+                margin-top: -5px
+                width: 170px
+              .url-input
+                width: 100%
+                .copy_btn
+                  margin-left: 10px
+              .icon-stack
+                display: inline-block
+                font-size: 20px
+                vertical-align: 4px
+              .icon-remove-sign
+                display: inline-block
+                font-size: 40px
+                vertical-align: -10px
+              p.info
+                display: inline-block
+                width: 130px
+                margin-left: 5px
+              p.delete
+                display: inline-block
+                width: 130px
+                margin-left: 5px
+              .actions-clone
+                display: block
+                margin-left: 49px
+
+
+        //description
+        .toggler
+          min-height: 50px
+          position: relative
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+
+
+          
+          #effect
+            position: relative
+            min-height: 55px
+            .author
+              margin-left: 20px
+              display: block
+              float: left
+              @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              a
+                display: block
+                float: left
+                @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                img
+                  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                  @include border-radius($baseBorderRadius)     
+              p
+                font-size: 1em
+                margin-left: 20px
+                margin-bottom: 5px
+                @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                display: block
+                float: left
+                color: $gray
+              .add
+                display: block
+                float: left
+                padding-left: 20px
+                @include follow
+            .dl-horizontal
+              @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              display: block
+              float: left
+
+          .newClass
+            height: 0px
+            overflow: hidden
+          .anotherNewClass
+            height: auto
+            overflow: auto
+            clear: both
+        #showMore
+          @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          @include center-block()
+          text-align: center
+          margin-top: 0px
+          background-color: $grayLighter
+          border: none
+          border-bottom: 1px solid $grayLight
+          @include border-radius($baseBorderRadius)
+
+          margin-top: 5px
+          margin-bottom: 5px
+          a
+            padding-top: 3px
+
+    .recomended-items
+      .recomended_excursion
+        display: block
+        float: right
+
+
+    .activity-box
+      .activity
+        background-color: $white
+        border-radius: $baseBorderRadius
+        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        .tabbable
+          @include header-tabbable
+          .tab-content
+            overflow: hidden
+
+  .ui-multiselect
+    -moz-border-bottom-colors: none
+    -moz-border-left-colors: none
+    -moz-border-right-colors: none
+    -moz-border-top-colors: none
+    background-color: #F5F5F5
+    background-image: linear-gradient(to bottom, white, #E6E6E6)
+    background-repeat: repeat-x
+    border-color: #CCCCCC #CCCCCC #B3B3B3
+    border-image: none
+    border-radius: 0px 0px 5px 0px
+    border-style: solid
+    border-width: 1px
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05)
+    color: #333333
+    cursor: pointer
+    display: inline-block
+    font-size: 14px
+    line-height: 20px
+    margin-bottom: 0
+    padding: 8px 12px
+    text-align: center
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)
+    vertical-align: middle
+    span
+      .caret
+        border-left: 5px solid transparent
+        border-right: 5px solid transparent
+        border-top: 5px solid black
+        margin-left: 5px

@@ -1,0 +1,55 @@
+//
+// Responsive: Landscape phone to desktop/tablet
+// --------------------------------------------------
+
+
+@media (max-width: 767px)
+  #document
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .document
+      .box-show
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        margin-left: auto
+        margin-right: auto
+        float: none 
+        clear: both
+        .container-visor
+          min-width: 460px
+
+      .description-activity
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+        
+      .recomended-items
+        display: none
+  
+
+
+// UP TO LANDSCAPE PHONE
+// ---------------------
+
+@media (max-width: 480px)
+  #document
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .document
+      .box-show
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        margin-left: auto
+        margin-right: auto
+        float: none 
+        clear: both
+        .container-visor
+          min-width: 200px
+
+      .description-activity
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+        
+      .recomended-items
+        display: none
+
+

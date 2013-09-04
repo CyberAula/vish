@@ -1,0 +1,29 @@
+//
+// Responsive: Large desktop and up
+// --------------------------------------------------
+
+
+@media (min-width: 1348px)
+  #document
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .document
+      .box-show
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+        .container-visor
+          
+      .description-activity
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+
+      .recomended-items
+        @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: right
+
+      .activity-box
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
