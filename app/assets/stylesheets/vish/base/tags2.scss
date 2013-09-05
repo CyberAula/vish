@@ -1,36 +1,12 @@
-ul.tagit-suggestions {
-    list-style: none;
-}
 
 ul.single-line-tags {
     height: 23px; /* This smells a bit */
     overflow: hidden;
 }
 
-ul.tagit-suggestions li.tagit-choice {
-    float: left;
-    background-color: $secondColor;
-    opacity: 0.5;
-    color: #fff;
-    padding: 2px 4px 3px 4px;
-    font-size: 13px;
-    font-family: Helvetica;
-    margin-bottom: 5px;
-    margin-right: 5px;
-    display: block;
-    border-radius: 5px;
-}
 
-ul.tagit-suggestions li.tagit-choice:hover {
-    background-color: $secondColor;
-    opacity: 0.7;
-    border-color: #6d95e0;
-}
 
-ul.tagit-suggestions li.tagit-choice a,
-ul.tagit-suggestions li.tagit-choice a:hover {
-    color: #fff;
-}
+
 
 .tagBoxDocument {
     padding: 0px;
@@ -93,60 +69,7 @@ select.tagit-hiddenSelect{
 
 /** Taggit simple blue style **/
 
-.ui-autocomplete {
-    background-color: #fff;
-    cursor: default;
-    list-style: none;
-    margin: 25px 0 0;
-    padding: 0;
-    border: 1px solid #E5E5E5;
-    border-top: none;
-    -moz-border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
-    -moz-box-shadow: 0 3px 5px #888;
-    -webkit-box-shadow: 0 3px 5px #888;
-    box-shadow: 0 3px 5px #888;
-    font-size: 12px;
-}
 
-.ui-autocomplete .ui-menu-item {
-    padding: 0;
-    margin: 0;
-}
-
-.ui-autocomplete  .ui-menu-item a {
-    display: block;
-    padding: 4px 6px;
-    margin: 0;
-    text-decoration: none;
-    line-height: 12px;
-    border-bottom: 1px solid #E5E5E5;
-    border-top: 1px solid #fff;
-    color: #78959D;
-    
-}
-
-.ui-autocomplete .ui-menu-item a.ui-state-hover,
-.ui-autocomplete .ui-menu-item a.ui-state-active {
-    background-color: #c0d1e2;
-    color: #555;
-    border-color: #a6cef7;
-}
-
-.ui-autocomplete-loading {
-    /* background: white url(ui-anim_basic_16x16.gif) right center no-repeat; */
-}
-
-
-
-
-
-ul.tagit.ui-sortable li.tagit-choice a.ui-icon.ui-icon-grip-dotted-vertical{
-    float: left;
-    width: 12px;
-    margin-left: -5px;
-    cursor: move;
-}
 
 
 
@@ -203,58 +126,3 @@ ul.tagit.ui-sortable li.tagit-choice a.ui-icon.ui-icon-grip-dotted-vertical{
 
 /** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** rewrite ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** **/
 
-.repository_box .tagBoxDocument {
-  padding: 0px;
-  color: #7a8fa9;
-  font-size: 14px;
-  -moz-border-radius: 0;
-  -khtml-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-  max-height:none;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-bottom: 9px;
-  margin-right: 0;
-  margin-left: 0px;
-
-}
-.repository_box .upload01 .tagBoxDocument  {
-  margin-right: 0px !important ;
-
-}
-
-
-.repository_box div.tagBoxDocument .tagit{
-  width: 277px;
-}
-
-.repository_box ul.tagit {
-  cursor: text;
-  overflow: auto;
-  background-color: #FFFFFF;
-  border: 1px solid #CCCCCC;
-  border-radius: $baseBorderRadius;
-  display: inline-block;
-  font-size: 13px;
-  height: auto;
-  line-height: 18px;
-  margin-bottom: 0px;
-  padding: 10px;
-  margin-left: 0px;
-  width: 277px;
-}
-
-
-ul.tagit{
-  border: none;
-}
-
-.form_field_edit_resource ul.tagit{
-  border: 1px solid #CCCCCC;
-}
-
-
-li.tagit-choice{
-  list-style-type: disk;
-}
