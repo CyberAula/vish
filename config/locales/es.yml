@@ -415,6 +415,7 @@ es:
   username: "usuario"
   vish:
     about: "Acerca de ViSH"    
+    description: "ViSH es una red social colaborativa para profesores, científicos y estudiantes. Para encontrarse, conocerse y colaborar. !Registrate ahora y comienza a crear contenidos increibles!"
     sentence1: "Crea tu cuenta con ViSH"
     sentence2: "ViSH es una plataforma social de ciencia"
     team: "El equipo de ViSH"  
