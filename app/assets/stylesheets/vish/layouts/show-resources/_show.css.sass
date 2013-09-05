@@ -182,14 +182,16 @@
         display: block
         float: right
     .activity-box
+      background-color: $white
+      border-radius: $baseBorderRadius
+      @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
       .activity
-        background-color: $white
-        border-radius: $baseBorderRadius
-        @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+        
         .tabbable
           @include header-tabbable
           .tab-content
             overflow: hidden
+
   .ui-multiselect
     -moz-border-bottom-colors: none
     -moz-border-left-colors: none

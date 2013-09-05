@@ -21,9 +21,6 @@
       <div class="nav-collapse collapse">
         <!-- FIXME: search javascript functionality in 'layouts/search' -->
         <!--search web-->
-        <li class=" hidden-phone">
-          <%= render partial: 'layouts/uisearch_header' %>
-        </li>
 
         <!--search mobile-->
         <li class=" hidden-tablet hidden-desktop visible-phone ">
@@ -64,6 +61,10 @@
         <a href="<%=new_user_registration_path%>"class="signin">
           <%=t("sign_up")%>
         </a>
+        <li class=" hidden-phone box-search-sign-out">
+          <%= render partial: 'layouts/uisearch_header' %>
+        </li>
+
       </div>
     </div>
   </div>
