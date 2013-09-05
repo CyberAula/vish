@@ -5,7 +5,9 @@
   <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]])) %>
 
   <%= f.label t('activerecord.attributes.user.tag') %>
-
+  <div class="tagBoxNew">
+    <ul class="tagList"></ul>
+  </div>
   <%= f.hidden_field :tag_list, :class => "form_tag", :id => "input_tag_list", :placeholder => t('devise.tags')   %>
 
   <% @tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
@@ -16,11 +18,10 @@
       </li>
     <%end%>
   </ul>
-  <div class="tagBoxNew">
-    <ul class="tagList devisetags"></ul>
-  </div>
+
       
   <hr class="soften">
+  <div class="conditions">
   <%= f.label t('conditions.check_message'), :class =>"sentence-rules" %>
 
   <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
@@ -28,6 +29,7 @@
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
     <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>.
   <% end -%>
+  </div>
 
 
 
