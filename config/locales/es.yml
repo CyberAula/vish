@@ -34,6 +34,7 @@ es:
     actions:
       add: "Añadir categoría"
       verb: "categorizar"
+    description_input: "Descripción para esta categoría"
     info: "Añádelo a una de tus categorías"
     input: "Añade una descripción"
     leyend:
