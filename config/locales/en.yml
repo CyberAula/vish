@@ -418,7 +418,8 @@ en:
     other: "users"
   username: "username"
   vish:
-    about: "About ViSH"    
+    about: "About ViSH"   
+    description: "ViSH is a social network collaborative site for teachers, scientists and students to meet, share and collaborate. Register now and start creating amazing contents!" 
     sentence1: "Create your account with ViSH"
     sentence2: "ViSH is a social science platform"
     team: "The ViSH Team" 

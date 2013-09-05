@@ -127,9 +127,10 @@ $(document).ready(function(){
   <% unless editingToolbar %>
   <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>
   <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
-  <!--boton guardar en "categoria x"(proximamente)-->
-  <%=categories_select(:category_id, @excursion)%>
-  <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+    <%if current_subject %>
+      <%=categories_select(:category_id, @excursion)%>
+      <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+    <%end%>
   <%end%>
 </div>
 <!--TABS-->
