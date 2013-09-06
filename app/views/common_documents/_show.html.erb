@@ -44,12 +44,15 @@
             method: :delete %>
             <% end %>
           </button>
-          <%= content_for :javascript do %> 
-          <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
-          <% end %>
 
-          <%=categories_select(:category_id, document)%>
+          <%if current_subject%>
+            <%= content_for :javascript do %> 
+            <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
+            <% end %>
+
+            <%=categories_select(:category_id, document)%>
           <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+          <%end%>
         </div>
         <div class="tabbable">
           <ul class="nav nav-tabs">
