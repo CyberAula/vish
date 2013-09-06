@@ -16,6 +16,15 @@
       </div>
     </div>
   </div>
+  <div class="recomended-items">
+    <div class="recomended_documents">
+      <ul class="small-box">
+        <% Document.first(15).each do |resource| %>
+          <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
   <!--owner-profile-->
   <div class="description-activity">
     <div class="box_description">
