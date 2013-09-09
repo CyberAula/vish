@@ -26,7 +26,7 @@
       <hr class="soften">
       <!--like -->
       <div class="like">  
-        <%#Next if is only to deploy in production until it is solved, because for excursion 181
+        <%#TODO Next if is only to deploy in production until it is solved, because for excursion 181
         excursion.post_activity is nil%>
          <% if excursion.post_activity%>
           <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>

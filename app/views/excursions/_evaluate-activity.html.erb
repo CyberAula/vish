@@ -5,7 +5,7 @@
         <ul class="nav nav-tabs">      
           <li class="active"><a href="#coment1" data-toggle="tab"><%=t('comment.other')%></a></li>
           <li><a href="#evaluation1" data-toggle="tab"><%=t('evaluation.teaching')%></a></li>
-          <li><a href="#evaluation2" data-toggle="tab"><%=t('evaluation.learning')%></a></li>
+          <!--<li><a href="#evaluation2" data-toggle="tab"><%#=t('evaluation.learning')%></a></li>-->
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="coment1">
@@ -26,19 +26,20 @@
               <canvas id="evalChart" width="600" height="600"></canvas>
             </div>
           </div>
+          <!--
           <div class="tab-pane" id="evaluation2">              
             <div class="btn-evalue">
-              <%= t('evaluation.contribute', :count => @numberOfLearningEvaluations) %>
-                <!-- Button to trigger modal -->
-              <a id="learning_evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
+              <%#= t('evaluation.contribute', :count => @numberOfLearningEvaluations) %>
+              <a id="learning_evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%#= t('evaluation.evaluation') %></a>
             </div>
             <div class="excursion-eval-results">
               <canvas id="evalLearningChart" width="600" height="600"></canvas>
             </div>
           </div>  
+        -->
         </div>
       </div>    
     </div>
     <!-- Modal -->
   <%= render :partial => "excursions/excursion_evaluate" %>
-  <%= render :partial => "excursions/excursion_learning_evaluate" %>
+  <%#= render :partial => "excursions/excursion_learning_evaluate" %>
