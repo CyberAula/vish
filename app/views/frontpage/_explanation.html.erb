@@ -2,14 +2,14 @@
   <div class="carrusel">
       <div id="myCarousel" class="carousel slide">
         <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="0" data-interval="10000" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1" data-interval="10000"></li>
+          <li data-target="#myCarousel" data-slide-to="2" data-interval="10000"></li>
         </ol>  
         <div class="carousel-inner">
           
           <div class="active item">
-            <div class="img_carousel inspiration"><%= image_tag("carrusel/prueba1.png",  :class=> "" ) %></div>
+            <div class="img_carousel inspiration"><%= image_tag("carrusel/background1.png",  :class=> "" ) %></div>
             <div class="description">
               <h1> Virtual Science Hub </h1>
               <!--<hr class="soften">-->
@@ -37,11 +37,25 @@
           </div>
 
           <div class="item"> 
-            
+            <div class="img_carousel inspiration"><%= image_tag("carrusel/background3.png",  :class=> "" ) %></div>  
+            <div class="description">
+              <h1> ViSHEditor: Crea y comparte excursiones </h1>
+              <!--<hr class="soften">-->
+              <p>
+                <%=t("vish.description2")%>
+              </p>
+              
+            </div>
           </div>
 
           <div class="item">
-            
+            <div class="img_carousel inspiration"><%= image_tag("carrusel/background1.png",  :class=> "" ) %></div>
+            <div class="description">
+              <h1> Categorías, eventos, recursos...<br>Descubre <br>el universo ViSH </h1>
+              <!--<hr class="soften">-->
+              
+             
+            </div>
           </div>
 
         </div>
