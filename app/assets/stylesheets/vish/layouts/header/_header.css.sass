@@ -67,15 +67,37 @@ header.navbar,
         .add_nav
           float: right
           .btn-primary
-            height: 38px
-            width: 38px
+
           .btn
             padding: 0px
+            height: 38px
+            width: 38px
+            background-color: $white
+            background-image: none
+            box-shadow: none
+            border: 1px solid #EEEEEE
+            border-radius: 3px 
+
             i
               display: block
-              margin-top: 13px
+              margin-top: 10px
+              margin-left: 11px
+              color: #c8c8c8
+              font-size: 20px
+              text-decoration: none
+              display: block
+              float: left
+            &:hover
+              
+
+              text-decoration: none
+              border-color: $firstColor
+              i
+                color: $firstColor
+
         .user-settings
           float: right
+          width: 170px
           .dropdown-menu
             position: relative
             &:before
@@ -87,12 +109,27 @@ header.navbar,
             margin-left: 5px
             margin-top: -15px
             outline: none  
+            float: left
             img
               @include border-radius($baseBorderRadius)
               height: 40px
               width: 40px
-            .name.hidden-phone
+              float: left
+            .name
               margin-left: 5px
+              text-overflow: ellipsis
+              float: left
+              overflow: hidden
+              height: 30px
+              width: 120px
+              margin-top: 10px
+            i
+              float: right
+              margin-top: 3px
+              &:hover
+                color: $firstColor
+                text-decoration: none
+                border-color: $firstColor
 
         .navegation
           float: right
@@ -116,14 +153,7 @@ header.navbar,
                 color: $secondColor
         .search-ui
           float: right
-          i
-            color: #c8c8c8
-            font-size: 20px
-            text-decoration: none
-            padding: 8px
-            margin: 0px 5px 5px 
-            display: block
-            float: left
+
 
 
 
