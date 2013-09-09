@@ -54,7 +54,8 @@ ul.sugestions-tags
   display: block
   @include white-box-style
   z-index: 2
-  .registration
+  .registration,
+  #sign_in
     @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
     @include center-block()
     h3
@@ -73,6 +74,13 @@ ul.sugestions-tags
       float: left
     select
       padding-right: 10px
+    #remember
+      display: block
+      @include check-box
+      input[type="checkbox"]
+        margin-top: 15px
+        margin-right: 10px
+        color: $gray
     .conditions
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       @include center-block()
@@ -99,3 +107,6 @@ ul.sugestions-tags
       clear: both
     .tagBoxNew
       width: 64.957%
+
+
+
