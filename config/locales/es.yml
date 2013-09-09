@@ -42,6 +42,7 @@ es:
       description: "Descripción"
       items: "Elementos en esta categoría"
     main_title: "Crea nuevas categorías y organiza tus visitas virtuales"  
+    other: "categories"
     title_input: "Dale un nombre a tu categoría"
     save: "Guardar"    
     selected: "categorias"

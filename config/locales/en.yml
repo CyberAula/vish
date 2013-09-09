@@ -41,6 +41,7 @@ en:
       description: "Description"
       items: "Items in this category"
     main_title: "Create new categories and organize your tours"
+    other: "categories"
     title_input: "Name for this category"
     save: "Save"
     selected: "categories"
