@@ -54,7 +54,7 @@ end
 gem 'god'
 
 # Use exception notification
-gem 'exception_notification'
+gem 'exception_notification', '=3.0.1'
 
 # Be able to pass tests
 gem 'rspec-rails', '=2.9.0'

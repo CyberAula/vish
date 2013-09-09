@@ -29,7 +29,7 @@
 
         @include border-left-radius (5px)
         color: $white
-        background-color: $secondColor
+        background-color: #c8c8c8
         margin-top: -28px
         margin-left: 81px
         padding: 3px
@@ -108,9 +108,9 @@
         
 #search
   margin-top: 5px
-  padding-left: 10px
+  padding-left: 5px
 .sb-search
-  min-width: 40px
+  min-width: 250px
   min-height: 40px
   float: left
   overflow: hidden
@@ -141,8 +141,7 @@
 
 .sb-icon-search,
 .sb-search-submit  
-  width: 40px
-  height: 40px
+
   display: block
   position: absolute
   right: 0
@@ -163,10 +162,10 @@
   outline: none
   z-index: -1
 
-
+//button
 .sb-icon-search 
-  color: $white
-  background: $secondColor
+  color: #C8C8C8
+  background: $white
   z-index: 90
   font-size: 20px
   speak: none
@@ -175,18 +174,32 @@
   font-variant: normal
   text-transform: none
   -webkit-font-smoothing: antialiased
-  @include border-radius (5px)
+
+
+  i
+    color: #c8c8c8
+    font-size: 20px
+    text-decoration: none
+    padding: 8px
+    margin: 0px 3px 0px 0px
+    display: block
+    float: left
+  i:hover
+    color: $firstColor
+    text-decoration: none
+    border-color: $firstColor
   
 
 
 // Open state
 
 .sb-search.sb-search-open, .no-js .sb-search
-  width: 350px
+  width: 250px
   padding-left: 20px
 
+
 .sb-search.sb-search-open .sb-icon-search, .no-js .sb-search .sb-icon-search
-  background: #e90055
+
   color: #fff
   z-index: 11
 

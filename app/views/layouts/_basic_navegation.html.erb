@@ -1,7 +1,7 @@
 <nav class="headernav">
   <%#= link_to(raw("<i class='icon-home icon-border'></i> "), excursions_path, :class => "btn-header tooltip-header", :title =>  t('navigation.home'), :rel => 'tooltip') %>
   <%= link_to(raw("<i class=' icon-border" + (current_subject.unread_messages_count > 0 ? " icon-envelope notification" : " icon-envelope-alt") + "'></i> "), messages_path, :class => "btn-header tooltip-header", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :rel => 'tooltip') %>
-  <%= link_to(raw("<i class='icon-bell icon-border'></i> "),
+  <%= link_to(raw("<i class='icon-globe icon-border'></i> "),
                   activities_path,
                   :class => "btn-header tooltip-header",
                   :title => t('activity.other'),
