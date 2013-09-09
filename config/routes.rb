@@ -43,6 +43,8 @@ Vish::Application.routes.draw do
 
   match 'lre/search' => 'lre#search_lre'
 
+  #redirect /home to /excursions
+  match '/home' => 'excursions#index'
 
   #PDF to Excursion
   resources :pdfexes
