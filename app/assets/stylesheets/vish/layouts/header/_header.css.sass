@@ -67,13 +67,34 @@ header.navbar,
         .add_nav
           float: right
           .btn-primary
-            height: 38px
-            width: 38px
+
           .btn
             padding: 0px
+            height: 38px
+            width: 38px
+            background-color: $white
+            background-image: none
+            box-shadow: none
+            border: 1px solid #EEEEEE
+            border-radius: 3px 
+
             i
               display: block
-              margin-top: 13px
+              margin-top: 10px
+              margin-left: 11px
+              color: #c8c8c8
+              font-size: 20px
+              text-decoration: none
+              display: block
+              float: left
+            &:hover
+              
+
+              text-decoration: none
+              border-color: $firstColor
+              i
+                color: $firstColor
+
         .user-settings
           float: right
           .dropdown-menu
@@ -116,14 +137,7 @@ header.navbar,
                 color: $secondColor
         .search-ui
           float: right
-          i
-            color: #c8c8c8
-            font-size: 20px
-            text-decoration: none
-            padding: 8px
-            margin: 0px 5px 5px 
-            display: block
-            float: left
+
 
 
 
