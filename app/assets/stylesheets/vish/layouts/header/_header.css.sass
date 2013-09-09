@@ -97,6 +97,7 @@ header.navbar,
 
         .user-settings
           float: right
+          width: 170px
           .dropdown-menu
             position: relative
             &:before
@@ -108,12 +109,27 @@ header.navbar,
             margin-left: 5px
             margin-top: -15px
             outline: none  
+            float: left
             img
               @include border-radius($baseBorderRadius)
               height: 40px
               width: 40px
-            .name.hidden-phone
+              float: left
+            .name
               margin-left: 5px
+              text-overflow: ellipsis
+              float: left
+              overflow: hidden
+              height: 30px
+              width: 120px
+              margin-top: 10px
+            i
+              float: right
+              margin-top: 3px
+              &:hover
+                color: $firstColor
+                text-decoration: none
+                border-color: $firstColor
 
         .navegation
           float: right
