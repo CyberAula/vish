@@ -56,7 +56,7 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#link">
-            <i class="icon-link"></i> <%= t('document.options.links')%> / <%= t('document.options.embed')%> 
+            <i class="icon-link"></i> <%= t('document.options.links')%> 
           </a>
         </div>
         <div id="link" class="accordion-body collapse">
@@ -76,6 +76,32 @@
               <%= f.hidden_field :age_min, :value => "4" %>
               <%= f.hidden_field :age_max, :value => "20" %>
               <%= f.submit t('button.save'), :class => "link hide"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#embed">
+            <i class="icon-code"></i> <%= t('document.options.embed')%> 
+          </a>
+        </div>
+        <div id="embed" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <% d = Embed.new %>
+            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= f.hidden_field :owner_id %>
+              <%#= f.hidden_field :image %>
+              <%= f.text_field :fulltext %>
+              <%= f.hidden_field :title%>
+              <%= f.hidden_field :description%>
+              <%= f.hidden_field :tag_list, :multiple => true %>
+              <%= f.hidden_field :language, :value => "" %>
+              <%= f.hidden_field :age_min, :value => "4" %>
+              <%= f.hidden_field :age_max, :value => "20" %>
+              <%= f.submit t('button.save'), :class => "embed hide"%>
             <% end %>
           </div>
         </div>
@@ -217,7 +243,7 @@ $(document).ready(function(){
     $('input[name="'+resource_type+'[age_min]"]').val(value1);
     $('input[name="'+resource_type+'[age_max]"]').val(value2);
     //SUBMIT
-    $("input[value='Save'][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
+    $("input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
   });
 </script>
 
