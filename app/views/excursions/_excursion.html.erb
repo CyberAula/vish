@@ -1,11 +1,15 @@
 <li class="box-item excursion-item">
-<!--Badges-->
-  <!--div class="badges">
-    <%= image_tag("badges/badge-bronce.png") %>
-  </div-->
-<!--IMG excursuion-->
+
 <%= link_to(excursion) do %>
-    <div class="img-box" id="excursion-<%=excursion.id%>"></div>
+
+
+  <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element">
+          <div class="img-box" id="excursion-<%=excursion.id%>"></div>
+      </div>
+  </div>
+    
 <% end %>
   <script>
     $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  

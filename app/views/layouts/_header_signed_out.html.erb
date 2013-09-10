@@ -14,18 +14,10 @@
         <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
 
       </div>
-      <li class="navegation hidden-tablet hidden-desktop visible-phone ">
-        <%#= render partial: 'layouts/search_mobile' %>
-      </li>
+
 
       <div class="nav-collapse collapse">
-        <!-- FIXME: search javascript functionality in 'layouts/search' -->
-        <!--search web-->
 
-        <!--search mobile-->
-        <li class=" hidden-tablet hidden-desktop visible-phone ">
-          <%#= render partial: 'layouts/search_mobile' %>
-        </li>
 
         <!--browse-->
         <%= render partial: 'layouts/browse_header' %>
