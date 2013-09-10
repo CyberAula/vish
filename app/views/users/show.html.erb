@@ -97,42 +97,7 @@
           <% end %>
         </div>
 
-        <div class="update">
-          <% if can?(:update, @profile) %>
-            <header>
-              <legend>
-                <%= t('avatar.profile_change') %>
-              </legend>
-            </header>
-            <%= render partial: 'profiles/avatar_edit' %>
-
-            <header>
-              <h4>
-                <%#= t("profile.#{ @profile.subject.class.to_s.downcase }.info") %>
-              </h4>
-            </header>
-            <%= form_for(current_subject, :url => [current_subject]) do |f| %>
-          
-            <legend><%= f.label t('actor.name') %></legend>
-            <%= f.text_field :name, :class => "required" %>
-          
-            <legend><%= f.label :description, t("profile.#{ current_subject.class.to_s.downcase }.about") %></legend>
-            <%= f.text_area :description, :maxlength => 200, :rows => 10 %>
-          
-            <hr class="soften">
-            <legend><%= f.label t('profile.occupation.label'), :class => "text" %></legend>
-            <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], current_subject.occupation)) %>
-            <p>
-              <%= t('required') %>
-            </p>
-            <%= f.submit %>
-          <% end %>
-          <%= javascript_tag do %>
-            $('#user_description').val("<%= current_subject.description %>");
-          <% end %>
-          
-          <% end %>        
-        </div>
+        <%= render :partial => 'users/form_update_profile' %>
       </section>
     </div>
     
