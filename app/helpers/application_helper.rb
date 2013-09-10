@@ -7,4 +7,13 @@ module ApplicationHelper
 	  select_tag(select_id, options_for_select(subject_categories_array, categories_selection_array), {:multiple => true, :style => 'width: 125px' })
 	end
 
+
+	def popular_excursions(number=10)
+		# We take visits and likes for now...
+    	Excursion.joins(:activity_object).order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(number)
+	end
+
+	def popular_resources(number=10)
+		ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(number).map{|ao| ao.object}
+	end
 end
