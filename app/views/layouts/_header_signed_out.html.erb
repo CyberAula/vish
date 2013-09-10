@@ -14,18 +14,10 @@
         <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
 
       </div>
-      <li class="navegation hidden-tablet hidden-desktop visible-phone ">
-        <%#= render partial: 'layouts/search_mobile' %>
-      </li>
+
 
       <div class="nav-collapse collapse">
-        <!-- FIXME: search javascript functionality in 'layouts/search' -->
-        <!--search web-->
 
-        <!--search mobile-->
-        <li class=" hidden-tablet hidden-desktop visible-phone ">
-          <%#= render partial: 'layouts/search_mobile' %>
-        </li>
 
         <!--browse-->
         <%= render partial: 'layouts/browse_header' %>
@@ -38,12 +30,13 @@
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
             <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
-            <%= f.email_field :email, :id => "username" %>
-            <%= f.password_field :password, :id => "password"  %>
-            <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
-            <label class="checkbox">
-              <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
-            </label>    
+              <%= f.email_field :email, :id => "username" %>
+              <%= f.password_field :password, :id => "password"  %>
+              <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+              <label class="checkbox">
+                <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
+              </label>
+              <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name) %>
             <% end %>
             <%= javascript_tag do %>
             $(function() {
