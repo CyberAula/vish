@@ -23,47 +23,57 @@
       position: absolute
       margin-left: 8px
       margin-top: 35px
-      width: 300px
+      width: 250px
       @include border-bottom-radius (5px)
       .query_too_short
 
         @include border-left-radius (5px)
         color: $white
-        background-color: #c8c8c8
+        background-color: $gray
         margin-top: -28px
-        margin-left: 81px
+        position: absolute
+        margin-left: -181px
+        text-align: right
         padding: 3px
-        text-align: center
-        opacity: 0.6
+        text-align: right
+        font-size: 12px
+        width: 165px
+        padding-right: 10px
+
       .no_results
         display: block
         @include border-left-radius (5px)
         color: $white
         background-color: $firstColor
         margin-top: -28px
-        margin-left: 157px
+        position: absolute
+        margin-left: -181px
+        text-align: right
         padding: 3px
-        text-align: center
-        opacity: 0.6
+        text-align: right
+        font-size: 12px
+        width: 165px
+        padding-right: 10px
       .results
         background: rgba( 0, 0, 0, 0.75)
+        width: 95%
         ul
           margin: 0
           li
             list-style: none
-            height: 68px
+            height: 57px
             .contact,
             .quick_search
 
-              margin-top: 10px
+              margin-top: 5px
               float: left
-              margin-bottom: 10px
+              margin-bottom: 5px
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
               &:hover
                 background: rgba(255, 255, 255, 0.1)
               .avatar,
               .photo
-                margin-left: 20px
+                margin-left: 15px
                 @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 display: block
                 float: left
@@ -80,6 +90,7 @@
                 display: block
                 float: left
                 text-align: left
+                padding-left: 10px
                 .name
                   @include ellipsis
                   a
@@ -106,9 +117,10 @@
               background: rgba(255, 255, 255, 0.4)
 
         
-#search
+input#search
   margin-top: 5px
   padding-left: 5px
+  border: 1px solid #EEEEEE
 .sb-search
   min-width: 250px
   min-height: 40px
@@ -137,6 +149,7 @@
   color: #2c3e50
   margin-top: -5px
   @include border-radius (5px)
+
 
 .sb-icon-search,
 .sb-search-submit  

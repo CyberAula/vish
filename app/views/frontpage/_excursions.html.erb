@@ -1,5 +1,5 @@
 <ul>
-  <% Excursion.first(6).each do |excursion| %>
+  <% Excursion.first(24).each do |excursion| %>
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %>
 </ul>
