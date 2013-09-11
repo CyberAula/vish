@@ -7,11 +7,6 @@
     </header>
     <%= render partial: 'profiles/avatar_edit' %>
 
-    <header>
-      <h4>
-        <%#= t("profile.#{ @profile.subject.class.to_s.downcase }.info") %>
-      </h4>
-    </header>
     <%= form_for(current_subject, :url => [current_subject]) do |f| %>
   
         <legend><%= f.label t('actor.name') %></legend>
