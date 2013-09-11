@@ -62,6 +62,8 @@
           li
             list-style: none
             height: 57px
+            .picture,
+            .document,
             .contact,
             .quick_search
 
@@ -72,35 +74,51 @@
               &:hover
                 background: rgba(255, 255, 255, 0.1)
               .avatar,
-              .photo
+              .photo,
+              .thumb
                 margin-left: 15px
                 @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 display: block
                 float: left
                 padding: 0
+                text-align: center
                 img
                   border: 1px solid $white
-              .photo
+                a
+                  
+                  font-size: 20px
+                  i
+                    padding-top: 10px
+
+              .photo,
+              .thumb
                 img
                   width: 60px
                   height: 45px
                   @include border-radius (5px)
-              .data
+              .data,
+              .brifing
                 @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 display: block
                 float: left
                 text-align: left
                 padding-left: 10px
-                .name
+                color: $white
+                .name,
+                h5
                   @include ellipsis
                   a
                     text-decoration: none
                     color: $white
                     font-family: $secondFontFamily
+                h5
+                  margin: 0
+                .counters
+                  display: none
                 .info,
                 .author
                   a
-                    color: $grayLighter
+                    color: $white
 
           .more
             display: block
