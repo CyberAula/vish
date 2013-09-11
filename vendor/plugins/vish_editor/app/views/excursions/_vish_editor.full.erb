@@ -176,6 +176,8 @@
 		<a id="edit_presentation_details" href="#presentationdetails"></a>
 		<!-- Hidden link for loading fancybox -->
 		<a id="fancyLoad" href="#loading_fancy"></a>
+		<!-- Hidden link to open notification template -->
+		<a id="link_to_notification_template" href="#notification_template"></a>
 	</div>
 
 	<!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
@@ -617,6 +619,40 @@
 			</div> 
 		</div>
 	</div>
+  
+	<!-- FANCYBOX ADD A LINK TO A ELEMENT (IMAGE,etc) -->
+	<div style='display:none' isFancyBoxContainer="true">
+		<div id='tools_addUrl'>	  		
+			<div class="box1 box1fancy1">
+				<p class="textfancy">Url</p></br>
+				<img class="image_add_link" src="/assets/icons/url_img.png"/>
+				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
+				<div class="addUrlButtons">
+					<button type="button" class="addUrlButton" i18n-key="i.Add" 
+					onclick="VISH.Editor.Tools.addUrl()">Add</button>
+					<button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
+					onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- NOTIFICATIONS -->
+
+	<!-- NOTIFICATION TEMPLATE -->
+	<div style='display:none'>
+		<div id='notification_template'>
+			<div class="notification_row1">
+				<img class="notificationIcon">
+				<span class="notification_text"></span>
+			</div>
+			<div class="notification_row2">
+			</div>
+		</div>
+	</div>
 
 	<!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
 	<div style='display:none'>
@@ -705,49 +741,6 @@
 		</div>
 	</div>
 
-	<!-- NOTIFY WHEN THERE IS NO SLIDES AND TRY TO SAVE -->
-	<div style='display:none'>
-		<div id='message1_form'>
-			<div class="text_in_fancybox">
-				<img class="alertDialogIcon" src="/assets/zonethumbs/content_fail.png">
-				<span class="deltext" i18n-key="i.oneSlideAlert">Create at least one slide before saving.</span>
-			</div> 		
-			<div id="button_accept_when_fail">
-				<a href="#" onclick="$.fancybox.close();" class="button buttonfail">accept</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- NOTIFY USERS THAT THEY MUST FILL ALL MANDATORY FIELDS IN THE SETTINGS PANEL BEFORE PUBLISH -->
-	<div style='display:none'>
-		<div id='message2_form'>
-			<div class="text_in_fancybox">
-				<img class="alertDialogIcon" src="/assets/zonethumbs/content_fail.png">
-				<span class="deltext" i18n-key="i.oneSlideAlert">You need to write a title for the excursion and select an avatar before publish the excursion.</span>
-			</div> 		
-			<div id="button_accept_when_fail">
-				<a href="#" onclick="$.fancybox.close();" class="button buttonfail">Go to Settings</a>
-			</div>
-		</div>
-	</div>
-	  
-	<!-- PROMPT TO ADD A LINK TO A ELEMENT (IMAGE,etc) -->
-	<div style='display:none' isFancyBoxContainer="true">
-		<div id='tools_addUrl'>	  		
-			<div class="box1 box1fancy1">
-				<p class="textfancy">Url</p></br>
-				<img class="image_add_link" src="/assets/icons/url_img.png"/>
-				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
-				<div class="addUrlButtons">
-					<button type="button" class="addUrlButton" i18n-key="i.Add" 
-					onclick="VISH.Editor.Tools.addUrl()">Add</button>
-					<button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
-					onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
 
 	<!-- IMAGE -->
 	<a id="hidden_button_to_launch_picture_fancybox_for_flashcard" href="#picture_fancybox" style="display:none" i18n-key="i.changeBackground">Change background</a>

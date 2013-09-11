@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<iframe class="vishEditorIframe" id="presentation_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
+<div id="editor_wrapper">
+  <iframe class="vishEditorIframe" id="presentation_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
+
+</div>
 
 <% if user_signed_in? and can?(:destroy, @excursion) %>
    <%= render :partial => 'excursions/excursion-tool', :locals => { :shortURL => nil} %>

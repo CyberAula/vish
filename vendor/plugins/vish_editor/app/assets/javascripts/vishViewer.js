@@ -10417,7 +10417,8 @@ VISH.Utils = function(V, undefined) {
     jQuery.fn.cssNumber = function(prop) {
       var v = parseInt(this.css(prop), 10);
       return isNaN(v) ? 0 : v
-    }
+    };
+    jQuery.fn.reverse = [].reverse
   };
   var getOptions = function() {
     if(V.Editing) {
@@ -10448,6 +10449,11 @@ VISH.Utils = function(V, undefined) {
       return full_id
     }else {
       return getId(full_id_prefix, false, separator)
+    }
+  };
+  var registerId = function(id) {
+    if(ids.indexOf(id) === -1) {
+      ids.push(id)
     }
   };
   var fixPresentation = function(presentation) {
@@ -10567,9 +10573,6 @@ VISH.Utils = function(V, undefined) {
       var pL = pois.length;
       for(var j = 0;j < pL;j++) {
         var poi = pois[j];
-        if(poi.id.match(new RegExp("^" + slideset.id + "_poi[0-9]+", "g")) === null) {
-          return false
-        }
         if(typeof poi.slide_id == "undefined") {
           return false
         }
@@ -10640,7 +10643,6 @@ VISH.Utils = function(V, undefined) {
       var pL = pois.length;
       for(var j = 0;j < pL;j++) {
         var poi = pois[j];
-        poi.id = slideset.id + "_poi" + (j + 1).toString();
         if(typeof subslidesIds[poi.slide_id] != "undefined") {
           poi.slide_id = subslidesIds[poi.slide_id];
           newPois.push(poi)
@@ -10892,8 +10894,8 @@ VISH.Utils = function(V, undefined) {
     });
     return filterStyle
   };
-  return{init:init, getOptions:getOptions, getId:getId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, sendParentToURL:sendParentToURL, 
-  addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showPNotValidDialog:showPNotValidDialog}
+  return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showPNotValidDialog:showPNotValidDialog}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;
@@ -11815,14 +11817,15 @@ VISH.Flashcard = function(V, $, undefined) {
   };
   var addArrow = function(fcId, poi, sync) {
     var flashcard_div = $("#" + fcId);
-    var div_to_add = "<div class='fc_poi' id='" + poi.id + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'></div>";
+    var poiId = V.Utils.getId(fcId + "_poi");
+    var div_to_add = "<div class='fc_poi' id='" + poiId + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'></div>";
     flashcard_div.append(div_to_add);
     if(typeof flashcards[fcId] === "undefined") {
       flashcards[fcId] = new Object;
       flashcards[fcId].arrows = []
     }
     var arrow = new Object;
-    arrow.id = poi.id;
+    arrow.id = poiId;
     if(sync) {
       arrow.position = 0
     }else {
@@ -11831,7 +11834,10 @@ VISH.Flashcard = function(V, $, undefined) {
     }
     arrow.slide_id = poi.slide_id;
     flashcards[fcId].arrows.push(arrow);
-    pois[arrow.id] = arrow
+    pois[arrow.id] = arrow;
+    $("#" + poiId).click(function(event) {
+      V.Events.onFlashcardPoiClicked(poiId)
+    })
   };
   var animateArrows = function(slideId) {
     if(!slideId || typeof flashcards[slideId] === "undefined") {
@@ -12622,20 +12628,6 @@ VISH.Events = function(V, $, undefined) {
       V.Slides.forwardOneSlide()
     });
     $(document).on("click", ".close_subslide", onFlashcardCloseSlideClicked);
-    var presentation = V.Viewer.getCurrentPresentation();
-    for(index in presentation.slides) {
-      var slide = presentation.slides[index];
-      switch(slide.type) {
-        case V.Constant.FLASHCARD:
-          for(ind in slide.pois) {
-            var poi = slide.pois[ind];
-            $(document).on("click", "#" + poi.id, {poi_id:poi.id}, onFlashcardPoiClicked)
-          }
-          break;
-        case V.Constant.VTOUR:
-          break
-      }
-    }
     if(typeof applicationCache !== "undefined") {
       applicationCache.addEventListener("cached", function() {
         V.Storage.addPresentation(presentation)
@@ -12688,20 +12680,6 @@ VISH.Events = function(V, $, undefined) {
     $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
     $(document).off("click", "#closeButton");
     $(document).off("click", ".close_subslide", onFlashcardCloseSlideClicked);
-    var presentation = V.Viewer.getCurrentPresentation();
-    for(index in presentation.slides) {
-      var slide = presentation.slides[index];
-      switch(slide.type) {
-        case V.Constant.FLASHCARD:
-          for(ind in slide.pois) {
-            var poi = slide.pois[ind];
-            $(document).off("click", "#" + poi.id, onFlashcardPoiClicked)
-          }
-          break;
-        case V.Constant.VTOUR:
-          break
-      }
-    }
     if(typeof applicationCache !== "undefined") {
       applicationCache.removeEventListener("cached", function() {
         V.Storage.addPresentation(presentation)
@@ -12735,16 +12713,7 @@ VISH.Events = function(V, $, undefined) {
         break
     }
   };
-  var onFlashcardPoiClicked = function(event) {
-    if(typeof event === "string") {
-      var poiId = event
-    }else {
-      if(typeof event === "object") {
-        var poiId = event.data.poi_id
-      }else {
-        return
-      }
-    }
+  var onFlashcardPoiClicked = function(poiId) {
     var poi = V.Flashcard.getPoiData(poiId);
     if(poi !== null) {
       V.Slides.openSubslide(poi.slide_id, true)
