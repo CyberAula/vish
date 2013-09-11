@@ -1,17 +1,52 @@
-<li class="contact" id="<%= dom_id user %>">
-  <div class="avatar">
-    <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+
+
+
+
+<li class="box-item excursion-item contact" id="<%= dom_id user %>">
+
+
+
+
+  <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element">
+      <div class="avatar">
+        <%= link_to(image_tag(user.logo.url(:medium)), user.subject) %>
+      </div>
+      </div>
   </div>
-  <div class="add">
-    <%= contact_button(user) %>
-  </div> 
-  <div class="data">
+    
+
+<%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
+<!--INFO excursuion-->
+  <div class="info">
+<!--Title -->
     <div class="name">
       <%= link_to(truncate_name(user.name), user.subject)%>
     </div>
-    <div class="info">
-      <%= contact_count(user) %>
+<!--Autor -->
+ 
+
+      <div class="add">
+        <%= contact_button(user) %>
+      </div> 
+
+    <!--____________________ -->
+    <div class="info-bottom">
+      <hr class="soften">
+      <%#= contact_count(user) %>
+
     </div>
+
   </div>
-   
 </li>
+
+
+
+
+
+
+
+
+
+

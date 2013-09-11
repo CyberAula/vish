@@ -5,9 +5,11 @@
 @media (min-width: 768px) and (max-width: 818px)
   #document,
   #picture
+  #embed
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
-    .picture
+    .picture,
+    .embed
       .box-show
         width: 750px
         display: block
@@ -30,9 +32,11 @@
 @media (min-width: 819px) and (max-width: 1347px)
   #document,
   #picture
+  #embed
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
-    .picture
+    .picture,
+    .embed
       .box-show
         width: 800px
         display: block

@@ -5,10 +5,12 @@
 
 @media (max-width: 767px)
   #document,
-  #picture
+  #picture,
+  #embed
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
-    .picture
+    .picture,
+    .embed
       .box-show
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block

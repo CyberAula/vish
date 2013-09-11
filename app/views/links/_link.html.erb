@@ -1,16 +1,32 @@
+
+
 <li class="box-item resource-item link">
-  <div class="thumb">
-    <i class='icon_file_50-link'></i>
+<!--IMG resource-->
+
+  <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element resource-center">
+          <i class="icon-link"></i>
+      </div>
   </div>
-  <div class="brifing">
-    <h5>
+
+<!--INFO resource-->
+  <div class="info">
+<!--Title -->
+    <div class="name">
       <%= link_to truncate(link.title), link.url %>
-    </h5>
-
-    <%= link_to truncate(link.url), link.url %>
-
-    <div class="author">
+    </div>
+<!--Autor -->
+    <div class="author"> 
       <%= raw t('link.by', author: link_to(link.author.name, link.author_subject)) %>
+    </div>
+<!--____________________ -->
+    <div class="info-bottom">
+        <%#= link_to truncate(link.url), link.url %>
+
+
+      <hr class="soften">
+      
     </div>
   </div>
 </li>

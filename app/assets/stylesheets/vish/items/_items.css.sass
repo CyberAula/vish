@@ -39,6 +39,7 @@
           left: 0
           right: 0
           overflow: hidden
+          text-align: center
           .img-box
             height: 200px
             width: 100%
@@ -47,6 +48,18 @@
               float: left
               width: 100%
               height: 100%
+          i
+            font-size: 70px
+            color: $secondColor
+          .avatar
+            a
+              img
+                margin-top: 20%
+                @include center-block()
+                @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                @include border-radius($baseBorderRadius)
+        .resource-center
+          padding-top: 20%
               
       .event-img,
       .category-img
@@ -63,6 +76,9 @@
         height: 80px
         a
           text-decoration: none
+        i
+          font-size: 30px
+          color: $secondColor
       .badges
         display: none
       .info
@@ -70,6 +86,7 @@
         padding: 5px 5px 0 5px
         float: left
         width: 96%
+        height: 69px
         .name
           @include box_title
           margin: 0
@@ -81,6 +98,7 @@
       .info-bottom
         @mixin footer_box_info       
         clear: both
+
         hr
           margin: 0
         .soften

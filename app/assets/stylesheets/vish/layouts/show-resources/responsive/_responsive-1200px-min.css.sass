@@ -6,9 +6,12 @@
 @media (min-width: 1348px)
   #document,
   #picture
+  #embed
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
-    .picture
+    .picture,
+    .embed
+    
       .box-show
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
