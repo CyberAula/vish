@@ -12203,7 +12203,17 @@ VISH.Utils = function(V, undefined) {
     return slideset
   };
   var showPNotValidDialog = function() {
-    $.fancybox($("#presentation_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
+    var options = {};
+    options.width = 650;
+    options.height = 220;
+    options.text = "This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.";
+    var button1 = {};
+    button1.text = "Ok";
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    options.buttons = [button1];
+    V.Utils.showDialog(options)
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -12444,8 +12454,81 @@ VISH.Utils = function(V, undefined) {
     });
     return filterStyle
   };
+  var showDialog = function(options) {
+    var id = "notification_template";
+    if($("#" + id).length === 0) {
+      return
+    }
+    if(!options || !options.text) {
+      return
+    }
+    var width = 350;
+    var height = 200;
+    var showCloseButton = false;
+    var notificationIconSrc = V.ImagesPath + "zonethumbs/content_fail.png";
+    if(options.width) {
+      width = options.width
+    }
+    if(options.height) {
+      height = options.height
+    }
+    if(options.showCloseButton) {
+      showCloseButton = options.showCloseButton
+    }
+    if(options.notificationIconSrc) {
+      notificationIconSrc = options.notificationIconSrc
+    }
+    $("a#link_to_notification_template").fancybox({"autoDimensions":false, "autoScale":false, "scrolling":"no", "width":width, "height":height, "padding":0, "hideOnOverlayClick":true, "hideOnContentClick":false, "showCloseButton":showCloseButton, "onStart":function(data) {
+      _cleanDialog(id);
+      var text_wrapper = $("#" + id).find(".notification_row1");
+      var buttons_wrapper = $("#" + id).find(".notification_row2");
+      $(text_wrapper).find(".notificationIcon").attr("src", notificationIconSrc);
+      $(text_wrapper).find(".notification_text").html(options.text);
+      if(options.notificationIconClass) {
+        $(text_wrapper).find(".notificationIcon").addClass(options.notificationIconClass)
+      }
+      if(options.buttons) {
+        var obLength = options.buttons.length;
+        $(options.buttons).reverse().each(function(index, button) {
+          var bNumber = obLength - index;
+          $(buttons_wrapper).append('<a href="#" buttonNumber="' + bNumber + '" class="button notification_button">' + button.text + "</a>");
+          $(buttons_wrapper).find(".button[buttonNumber='" + bNumber + "']").click(function(event) {
+            event.preventDefault();
+            button.callback()
+          })
+        })
+      }
+    }, "onComplete":function(data) {
+      var text_wrapper = $("#fancybox-content").find(".notification_row1");
+      var buttons_wrapper = $("#fancybox-content").find(".notification_row2");
+      var adjustedHeight = $(text_wrapper).outerHeight(true) + $(buttons_wrapper).outerHeight(true);
+      if($("#fancybox-content").height() < adjustedHeight) {
+        var transitionTimeMs = 500;
+        var adjustedHeightWithPadding = adjustedHeight + $("#" + id).cssNumber("padding-top") + $("#" + id).cssNumber("padding-bottom");
+        $("#" + id).animate({height:adjustedHeight + "px"}, transitionTimeMs);
+        $("#fancybox-content").animate({height:adjustedHeightWithPadding + "px"}, transitionTimeMs);
+        $("#fancybox-content > div").animate({height:adjustedHeightWithPadding + "px"}, transitionTimeMs)
+      }
+    }, "onClosed":function(data) {
+      _cleanDialog(id);
+      if(options && typeof options.onClosedCallback == "function") {
+        options.onClosedCallback()
+      }
+    }});
+    var _cleanDialog = function(id) {
+      var text_wrapper = $("#" + id).find(".notification_row1");
+      var buttons_wrapper = $("#" + id).find(".notification_row2");
+      $(buttons_wrapper).html("");
+      var icon = $(text_wrapper).find(".notificationIcon");
+      $(icon).removeAttr("src");
+      $(icon).removeClass().addClass("notificationIcon");
+      $(text_wrapper).find(".notification_text").html("");
+      $("#" + id).removeAttr("style")
+    };
+    $("a#link_to_notification_template").trigger("click")
+  };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showPNotValidDialog:showPNotValidDialog}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initialPresentation = false;
@@ -12634,33 +12717,55 @@ VISH.Editor = function(V, $, undefined) {
   };
   var onDeleteItemClicked = function() {
     setCurrentArea($(this).parent());
-    $("#image_template_prompt").attr("src", V.ImagesPath + "zonethumbs/" + getCurrentArea().attr("type") + ".png");
-    $.fancybox($("#prompt_form").html(), {"autoDimensions":false, "scrolling":"no", "width":350, "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
-      if($("#prompt_answer").val() === "true") {
-        $("#prompt_answer").val("false");
-        var area = getCurrentArea();
-        area.html("");
-        area.removeAttr("type");
-        area.addClass("editable");
-        V.Editor.Tools.addTooltipToZone(area);
-        selectArea(null)
-      }
-    }})
+    var options = {};
+    options.width = 375;
+    options.height = 135;
+    options.notificationIconSrc = V.ImagesPath + "zonethumbs/" + getCurrentArea().attr("type") + ".png";
+    options.text = "are you sure?";
+    var button1 = {};
+    button1.text = "no";
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    var button2 = {};
+    button2.text = "delete";
+    button2.callback = function() {
+      var area = getCurrentArea();
+      area.html("");
+      area.removeAttr("type");
+      area.addClass("editable");
+      V.Editor.Tools.addTooltipToZone(area);
+      selectArea(null);
+      $.fancybox.close()
+    };
+    options.buttons = [button1, button2];
+    V.Utils.showDialog(options)
   };
   var onDeleteSlideClicked = function() {
     article_to_delete = $(this).parent()[0];
-    var thumb = V.Editor.Thumbnails.getThumbnailURL(article_to_delete);
-    $("#image_template_prompt").attr("src", thumb);
-    $.fancybox($("#prompt_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
-      if($("#prompt_answer").val() === "true") {
-        $("#prompt_answer").val("false");
-        if(V.Editor.Slides.isSubslide(article_to_delete)) {
-          V.Editor.Slides.removeSubslide(article_to_delete)
-        }else {
-          V.Editor.Slides.removeSlide(V.Slides.getCurrentSlide())
-        }
+    var options = {};
+    options.width = 375;
+    options.height = 130;
+    options.notificationIconSrc = V.Editor.Thumbnails.getThumbnailURL(article_to_delete);
+    options.notificationIconClass = "notificationIconDelete";
+    options.text = "are you sure?";
+    var button1 = {};
+    button1.text = "no";
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    var button2 = {};
+    button2.text = "delete";
+    button2.callback = function() {
+      if(V.Editor.Slides.isSubslide(article_to_delete)) {
+        V.Editor.Slides.removeSubslide(article_to_delete)
+      }else {
+        V.Editor.Slides.removeSlide(V.Slides.getCurrentSlide())
       }
-    }})
+      $.fancybox.close()
+    };
+    options.buttons = [button1, button2];
+    V.Utils.showDialog(options)
   };
   var onSelectableClicked = function(event) {
     selectArea($(this));
@@ -12902,13 +13007,7 @@ VISH.Editor = function(V, $, undefined) {
     switch(V.Configuration.getConfiguration().mode) {
       case V.Constant.NOSERVER:
         if(V.Debugging && V.Debugging.isDevelopping()) {
-          if(V.Debugging.getActionSave() == "view") {
-            V.Debugging.initVishViewer()
-          }else {
-            if(V.Debugging.getActionSave() == "edit") {
-              V.Debugging.initVishEditor()
-            }
-          }
+          V.Editor.Preview.preview()
         }
         break;
       case V.Constant.VISH:
@@ -17264,7 +17363,7 @@ VISH.Debugging = function(V, $, undefined) {
     if(settings) {
       return settings.actionSave
     }else {
-      return"view"
+      return"preview"
     }
   };
   var getActionInit = function() {
@@ -17282,55 +17381,7 @@ VISH.Debugging = function(V, $, undefined) {
       return null
     }
   };
-  var initVishViewer = function() {
-    var mypresentation = null;
-    if(V.Editing) {
-      if(!presentationOptions) {
-        log("VISH.Debugging Error: Specify presentationOptions");
-        return
-      }
-      mypresentation = V.Editor.getSavedPresentation();
-      if(mypresentation === null) {
-        mypresentation = V.Editor.savePresentation()
-      }
-    }else {
-      log("You are already in Vish Viewer");
-      return
-    }
-    $("article").remove();
-    $("#menubar").hide();
-    $("#menubar_helpsection").hide();
-    $("#menubar_helpsection2").hide();
-    $("#joyride_help_button").hide();
-    $("#preview_action").hide();
-    V.Editor.Tools.cleanZoneTools();
-    V.Editor.Tools.disableToolbar();
-    $("#menubar-viewer").show();
-    V.Viewer.init(presentationOptions, mypresentation)
-  };
-  var initVishEditor = function() {
-    var mypresentation = null;
-    if(V.Editing) {
-      log("You are already in Vish Editor");
-      return
-    }else {
-      if(!presentationOptions) {
-        log("VISH.Debugging Error: Specify presentationOptions");
-        return
-      }
-      mypresentation = V.Editor.getSavedPresentation()
-    }
-    $("article").remove();
-    $("#menubar").show();
-    $("#menubar_helpsection").show();
-    $("#menubar_helpsection2").show();
-    $("#joyride_help_button").show();
-    $("#preview_action").show();
-    V.Editor.Tools.enableToolbar();
-    $("#menubar-viewer").hide();
-    V.Editor.init(presentationOptions, mypresentation)
-  };
-  return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getPresentationSamples:getPresentationSamples, initVishViewer:initVishViewer, initVishEditor:initVishEditor}
+  return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getPresentationSamples:getPresentationSamples}
 }(VISH, jQuery);
 VISH.Editor.API = function(V, $, undefined) {
   var init = function() {
@@ -20023,7 +20074,17 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     percent.html("0%")
   };
   var _showErrorDialog = function() {
-    $.fancybox($("#pdf2p_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
+    var options = {};
+    options.width = 650;
+    options.height = 190;
+    options.text = "An error has occurred. Ensure that the PDF file is valid.";
+    var button1 = {};
+    button1.text = "Ok";
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    options.buttons = [button1];
+    V.Utils.showDialog(options)
   };
   var processResponse = function(jsonResponse) {
     try {
@@ -21600,7 +21661,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
         V.Editor.Settings.displaySettings()
       };
       options.buttons = [button1];
-      _showDialog(options);
+      V.Utils.showDialog(options);
       return
     }
     if(V.Slides.getSlides().length === 0) {
@@ -21614,100 +21675,46 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
         $.fancybox.close()
       };
       options.buttons = [button1];
-      _showDialog(options);
+      V.Utils.showDialog(options);
       return
     }
-    switch(V.Configuration.getConfiguration()["mode"]) {
-      case V.Constant.NOSERVER:
-        $("a[save-option-id='save']").hide();
-        break;
-      case V.Constant.VISH:
-        if(V.Editor.isPresentationDraft()) {
-          $("a[save-option-id='save']").hide()
-        }else {
-          $("a[save-option-id='draft']").hide();
-          $("a[save-option-id='publish']").hide()
-        }
-        break;
-      case V.Constant.STANDALONE:
-        $("a[save-option-id='publish']").hide();
-        $("a[save-option-id='draft']").hide();
-        break
-    }
-    $.fancybox($("#save_form").html(), {"autoDimensions":false, "width":350, "scrolling":"no", "height":150, "showCloseButton":false, "padding":0, "onClosed":function() {
-      var response = $("#save_answer").val();
-      if(response !== "cancel") {
-        $("#save_answer").val("cancel");
+    var options = {};
+    options.width = 400;
+    options.height = 140;
+    options.notificationIconSrc = V.ImagesPath + "toolbar/save_document.png";
+    options.text = "are you sure?";
+    options.buttons = [];
+    var button1 = {};
+    button1.text = "cancel";
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    options.buttons.push(button1);
+    if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH && V.Editor.isPresentationDraft() || V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+      var button2 = {};
+      button2.text = "draft";
+      button2.callback = function() {
         var presentation = V.Editor.savePresentation();
-        V.Editor.afterSavePresentation(presentation, response)
-      }else {
-        return false
+        V.Editor.afterSavePresentation(presentation, "draft");
+        $.fancybox.close()
+      };
+      options.buttons.push(button2)
+    }
+    var button3 = {};
+    if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH || V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+      button3.text = "publish"
+    }else {
+      if(V.Configuration.getConfiguration()["mode"] == V.Constant.STANDALONE) {
+        button3.text = "save"
       }
-    }})
-  };
-  var _showDialog = function(options) {
-    var id = "notification_template";
-    if($("#" + id).length === 0) {
-      return
     }
-    if(!options || !options.text) {
-      return
-    }
-    var width = 350;
-    var height = 200;
-    var showCloseButton = false;
-    var notificationIconSrc = V.ImagesPath + "zonethumbs/content_fail.png";
-    if(options.width) {
-      width = options.width
-    }
-    if(options.height) {
-      height = options.height
-    }
-    if(options.showCloseButton) {
-      showCloseButton = options.showCloseButton
-    }
-    if(options.notificationIconSrc) {
-      notificationIconSrc = options.notificationIconSrc
-    }
-    $("a#link_to_notification_template").fancybox({"autoDimensions":false, "autoScale":false, "scrolling":"no", "width":width, "height":height, "padding":0, "hideOnOverlayClick":true, "hideOnContentClick":false, "showCloseButton":showCloseButton, "onStart":function(data) {
-      var text_wrapper = $("#" + id).find(".notification_row1");
-      var buttons_wrapper = $("#" + id).find(".notification_row2");
-      $(text_wrapper).find(".notificationIcon").attr("src", notificationIconSrc);
-      $(text_wrapper).find(".notification_text").html(options.text);
-      if(options.buttons) {
-        var obLength = options.buttons.length;
-        $(options.buttons).reverse().each(function(index, button) {
-          var bNumber = obLength - index;
-          $(buttons_wrapper).append('<a href="#" buttonNumber="' + bNumber + '" class="button notification_button">' + button.text + "</a>");
-          $(buttons_wrapper).find(".button[buttonNumber='" + bNumber + "']").click(function(event) {
-            event.preventDefault();
-            button.callback()
-          })
-        })
-      }
-    }, "onComplete":function(data) {
-      var text_wrapper = $("#fancybox-content").find(".notification_row1");
-      var buttons_wrapper = $("#fancybox-content").find(".notification_row2");
-      var adjustedHeight = $(text_wrapper).outerHeight(true) + $(buttons_wrapper).outerHeight(true);
-      if($("#fancybox-content").height() < adjustedHeight + 10) {
-        $("#" + id).height(adjustedHeight);
-        var wrapperPadding = $("#" + id).cssNumber("padding-bottom") + $("#" + id).cssNumber("padding-top");
-        var adjustedHeightWithPadding = adjustedHeight + wrapperPadding;
-        $("#fancybox-content").height(adjustedHeightWithPadding);
-        $("#fancybox-content > div").height(adjustedHeightWithPadding)
-      }
-    }, "onClosed":function(data) {
-      var text_wrapper = $("#" + id).find(".notification_row1");
-      var buttons_wrapper = $("#" + id).find(".notification_row2");
-      $(buttons_wrapper).html("");
-      $(text_wrapper).find(".notificationIcon").removeAttr("src", notificationIconSrc);
-      $(text_wrapper).find(".notification_text").html("");
-      $("#" + id).removeAttr("style");
-      if(options && typeof options.onClosedCallback == "function") {
-        options.onClosedCallback()
-      }
-    }});
-    $("a#link_to_notification_template").trigger("click")
+    button3.callback = function() {
+      var presentation = V.Editor.savePresentation();
+      V.Editor.afterSavePresentation(presentation, "publish");
+      $.fancybox.close()
+    };
+    options.buttons.push(button3);
+    V.Utils.showDialog(options)
   };
   var preview = function() {
     V.Editor.Preview.preview()

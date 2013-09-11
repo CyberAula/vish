@@ -654,24 +654,10 @@
 		</div>
 	</div>
 
-	<!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
-	<div style='display:none'>
-		<input type="hidden" id="prompt_answer" value="false"></input>
-		<div id='prompt_form'>
-			<img id="image_template_prompt" class="delete_img" src="/assets/templatesthumbs/default.png"/>
-			<img id="delimg" class="delimg" src="/assets/icons/ve_delete_border.png"/>
-			<span i18n-key="i.sure" class="deltext">are you sure?</span>
-			<div class="buttons_together">
-				<a href="#" onclick="$('#prompt_answer').val('true'); $.fancybox.close();" class="button" i18n-key="i.delete">delete</a>
-				<a href="#" onclick="$('#prompt_answer').val('false'); $.fancybox.close();" class="button" i18n-key="i.no">no</a>
-			</div>
-		</div>
-	</div>
-
 	<!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
 	<div style='display:none'>
 		<div id='requirements_form_wrapper'>
-			<div id='requirements_form' class='fancy_msg_advert'>      
+			<div id='requirements_form'>      
 				<span i18n-key="i.browserrequirements" class="adverttext">Your browser does not meet the minimum requirements to init Vish Editor, please update your browser.</span> 
 				<div id="recomended_browsers">
 					<div class="recomended_browser">
@@ -686,61 +672,17 @@
 						<span class="browserTitle">Internet Explorer 9</span>
 						<a target="_blank" href="http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie-9/worldwide-languages"><img class="browser_img" src="/assets/browsers/internetexplorer.png"/></a>
 					</div>
-					<div class="recomended_browser">
+<!-- 					<div class="recomended_browser">
 						<span class="browserTitle">Opera</span>
 						<a target="_blank" href="http://www.opera.com/download"><img class="browser_img" src="/assets/browsers/opera.png"/></a>
-					</div>
+					</div> -->
 				</div>
 				<div class="button_advert_wrapper">
-				<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+					<a href="#" onclick="$.fancybox.close();" class="button button_advert" i18n-key="i.OK">OK</a>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<!-- NOTIFY USER WHEN PRESENTATION IS NOT VALID -->
-	<div style='display:none'>
-		<div id='presentation_not_valid_wrapper'>
-			<div id='presentation_not_valid' class='fancy_msg_advert'>      
-				<span i18n-key="i.pNotValid" class="adverttext">
-				This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.
-				</span> 
-				<div class="button_advert_wrapper">
-					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
-				</div>
-				</div>
-		</div>
-	</div>
-
-	<!-- NOTIFY USER WHEN A PDF FILE COULDN'T BE TRANSFORMED TO A PRESENTATION -->
-	<div style='display:none'>
-		<div id='pdf2p_not_valid_wrapper'>
-			<div id='pdf2p_not_valid' class='fancy_msg_advert'>      
-				<span i18n-key="i.PDFNotValid" class="adverttext">
-					An error has occurred. Ensure that the PDF file is valid.
-				</span>
-				<div class="button_advert_wrapper">
-					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
-				</div>
-				</div>
-		</div>
-	</div>
-
-	<!-- PROMPT USER IF SHE IS SURE TO SAVE THE SLIDE -->
-	<div style='display:none'>
-		<input type="hidden" id="save_answer" value="cancel"></input>
-		<div id='save_form'>
-			<img id="saveimg" class="delete_img" src="/assets/toolbar/save_document.png">
-			<span i18n-key="i.sure" class="deltext">are you sure?</span> 		
-			<div class="buttons_together">
-				<a save-option-id="save" href="#" onclick="$('#save_answer').val('save'); $.fancybox.close();" class=" button" i18n-key="i.save">Save</a>
-				<a save-option-id="publish" href="#" onclick="$('#save_answer').val('publish'); $.fancybox.close();" class=" button" i18n-key="i.publish">Publish</a>
-				<a save-option-id="draft" href="#" onclick="$('#save_answer').val('draft'); $.fancybox.close();" class="button" i18n-key="i.draft">Draft</a>
-				<a save-option-id="cancel" i18n-key="i.cancel" href="#" onclick="$('#save_answer').val('cancel'); $.fancybox.close();" class="button">cancel</a>
-			</div>
-		</div>
-	</div>
-
 
 	<!-- IMAGE -->
 	<a id="hidden_button_to_launch_picture_fancybox_for_flashcard" href="#picture_fancybox" style="display:none" i18n-key="i.changeBackground">Change background</a>

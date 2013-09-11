@@ -9246,7 +9246,7 @@ VISH.Debugging = function(V, $, undefined) {
     if(settings) {
       return settings.actionSave
     }else {
-      return"view"
+      return"preview"
     }
   };
   var getActionInit = function() {
@@ -9264,55 +9264,7 @@ VISH.Debugging = function(V, $, undefined) {
       return null
     }
   };
-  var initVishViewer = function() {
-    var mypresentation = null;
-    if(V.Editing) {
-      if(!presentationOptions) {
-        log("VISH.Debugging Error: Specify presentationOptions");
-        return
-      }
-      mypresentation = V.Editor.getSavedPresentation();
-      if(mypresentation === null) {
-        mypresentation = V.Editor.savePresentation()
-      }
-    }else {
-      log("You are already in Vish Viewer");
-      return
-    }
-    $("article").remove();
-    $("#menubar").hide();
-    $("#menubar_helpsection").hide();
-    $("#menubar_helpsection2").hide();
-    $("#joyride_help_button").hide();
-    $("#preview_action").hide();
-    V.Editor.Tools.cleanZoneTools();
-    V.Editor.Tools.disableToolbar();
-    $("#menubar-viewer").show();
-    V.Viewer.init(presentationOptions, mypresentation)
-  };
-  var initVishEditor = function() {
-    var mypresentation = null;
-    if(V.Editing) {
-      log("You are already in Vish Editor");
-      return
-    }else {
-      if(!presentationOptions) {
-        log("VISH.Debugging Error: Specify presentationOptions");
-        return
-      }
-      mypresentation = V.Editor.getSavedPresentation()
-    }
-    $("article").remove();
-    $("#menubar").show();
-    $("#menubar_helpsection").show();
-    $("#menubar_helpsection2").show();
-    $("#joyride_help_button").show();
-    $("#preview_action").show();
-    V.Editor.Tools.enableToolbar();
-    $("#menubar-viewer").hide();
-    V.Editor.init(presentationOptions, mypresentation)
-  };
-  return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getPresentationSamples:getPresentationSamples, initVishViewer:initVishViewer, initVishEditor:initVishEditor}
+  return{init:init, log:log, shuffleJson:shuffleJson, enableDevelopingMode:enableDevelopingMode, disableDevelopingMode:disableDevelopingMode, isDevelopping:isDevelopping, getActionSave:getActionSave, getActionInit:getActionInit, getPresentationSamples:getPresentationSamples}
 }(VISH, jQuery);
 VISH.Presentation = function(V, undefined) {
   var mySlides = null;
@@ -10653,7 +10605,17 @@ VISH.Utils = function(V, undefined) {
     return slideset
   };
   var showPNotValidDialog = function() {
-    $.fancybox($("#presentation_not_valid_wrapper").html(), {"autoDimensions":false, "width":650, "height":250, "showCloseButton":false, "padding":0})
+    var options = {};
+    options.width = 650;
+    options.height = 220;
+    options.text = "This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.";
+    var button1 = {};
+    button1.text = "Ok";
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    options.buttons = [button1];
+    V.Utils.showDialog(options)
   };
   var getOuterHTML = function(tag) {
     if(typeof $(tag)[0].outerHTML == "undefined") {
@@ -10894,8 +10856,81 @@ VISH.Utils = function(V, undefined) {
     });
     return filterStyle
   };
+  var showDialog = function(options) {
+    var id = "notification_template";
+    if($("#" + id).length === 0) {
+      return
+    }
+    if(!options || !options.text) {
+      return
+    }
+    var width = 350;
+    var height = 200;
+    var showCloseButton = false;
+    var notificationIconSrc = V.ImagesPath + "zonethumbs/content_fail.png";
+    if(options.width) {
+      width = options.width
+    }
+    if(options.height) {
+      height = options.height
+    }
+    if(options.showCloseButton) {
+      showCloseButton = options.showCloseButton
+    }
+    if(options.notificationIconSrc) {
+      notificationIconSrc = options.notificationIconSrc
+    }
+    $("a#link_to_notification_template").fancybox({"autoDimensions":false, "autoScale":false, "scrolling":"no", "width":width, "height":height, "padding":0, "hideOnOverlayClick":true, "hideOnContentClick":false, "showCloseButton":showCloseButton, "onStart":function(data) {
+      _cleanDialog(id);
+      var text_wrapper = $("#" + id).find(".notification_row1");
+      var buttons_wrapper = $("#" + id).find(".notification_row2");
+      $(text_wrapper).find(".notificationIcon").attr("src", notificationIconSrc);
+      $(text_wrapper).find(".notification_text").html(options.text);
+      if(options.notificationIconClass) {
+        $(text_wrapper).find(".notificationIcon").addClass(options.notificationIconClass)
+      }
+      if(options.buttons) {
+        var obLength = options.buttons.length;
+        $(options.buttons).reverse().each(function(index, button) {
+          var bNumber = obLength - index;
+          $(buttons_wrapper).append('<a href="#" buttonNumber="' + bNumber + '" class="button notification_button">' + button.text + "</a>");
+          $(buttons_wrapper).find(".button[buttonNumber='" + bNumber + "']").click(function(event) {
+            event.preventDefault();
+            button.callback()
+          })
+        })
+      }
+    }, "onComplete":function(data) {
+      var text_wrapper = $("#fancybox-content").find(".notification_row1");
+      var buttons_wrapper = $("#fancybox-content").find(".notification_row2");
+      var adjustedHeight = $(text_wrapper).outerHeight(true) + $(buttons_wrapper).outerHeight(true);
+      if($("#fancybox-content").height() < adjustedHeight) {
+        var transitionTimeMs = 500;
+        var adjustedHeightWithPadding = adjustedHeight + $("#" + id).cssNumber("padding-top") + $("#" + id).cssNumber("padding-bottom");
+        $("#" + id).animate({height:adjustedHeight + "px"}, transitionTimeMs);
+        $("#fancybox-content").animate({height:adjustedHeightWithPadding + "px"}, transitionTimeMs);
+        $("#fancybox-content > div").animate({height:adjustedHeightWithPadding + "px"}, transitionTimeMs)
+      }
+    }, "onClosed":function(data) {
+      _cleanDialog(id);
+      if(options && typeof options.onClosedCallback == "function") {
+        options.onClosedCallback()
+      }
+    }});
+    var _cleanDialog = function(id) {
+      var text_wrapper = $("#" + id).find(".notification_row1");
+      var buttons_wrapper = $("#" + id).find(".notification_row2");
+      $(buttons_wrapper).html("");
+      var icon = $(text_wrapper).find(".notificationIcon");
+      $(icon).removeAttr("src");
+      $(icon).removeClass().addClass("notificationIcon");
+      $(text_wrapper).find(".notification_text").html("");
+      $("#" + id).removeAttr("style")
+    };
+    $("a#link_to_notification_template").trigger("click")
+  };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showPNotValidDialog:showPNotValidDialog}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;
