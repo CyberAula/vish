@@ -30,6 +30,8 @@ es:
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
   author: "autor"
   cancel: "Cancelar"
+  category:
+    confirm_delete: "Borrar categoria?"
   categories:
     actions:
       add: "Añadir categoría"
