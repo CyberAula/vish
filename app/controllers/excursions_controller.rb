@@ -229,7 +229,9 @@ class ExcursionsController < ApplicationController
         excursions.push ex.reduced_json(self)
       end
     else
-      Excursion.joins(:activity_object).order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(20)
+      Excursion.joins(:activity_object).order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(20).each do |ex|
+        excursions.push ex.reduced_json(self)
+      end
     end
     respond_to do |format|
       format.json { render :json => excursions.sample(6) }
