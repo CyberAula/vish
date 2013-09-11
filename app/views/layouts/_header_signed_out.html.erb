@@ -36,7 +36,7 @@
               <label class="checkbox">
                 <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
               </label>
-              <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name) %>
+              <%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
             <% end %>
             <%= javascript_tag do %>
             $(function() {

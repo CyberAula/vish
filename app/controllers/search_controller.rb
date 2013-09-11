@@ -10,9 +10,9 @@ class SearchController < ApplicationController
       elsif params[:q].strip.size < SocialStream::Search::MIN_QUERY
         Kaminari.paginate_array([])
       elsif params[:mode] == "quick"
-        search "quick"
+        search :quick
       else
-        search "extended"
+        search :extended
       end
 
     respond_to do |format|
@@ -43,8 +43,8 @@ class SearchController < ApplicationController
   private
 
   def search mode
-    page =  ( mode == "quick" ? 1 : params[:page] )
-    limit = ( mode == "quick" ? 7 : RESULTS_SEARCH_PER_PAGE )
+    page =  ( mode == :quick ? 1 : params[:page] )
+    limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
 
     SocialStream::Search.search(params[:q],
                                 current_subject,

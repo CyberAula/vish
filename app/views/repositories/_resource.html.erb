@@ -17,7 +17,8 @@
     </div>
 <!--Autor -->
     <div class="author"> 
-      <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a>   
+      <!-- <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a> -->
+      <%= link_to resource.author.name, resource.author.subject %>
     </div>
 <!--____________________ -->
     <div class="info-bottom">

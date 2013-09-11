@@ -176,6 +176,8 @@
 		<a id="edit_presentation_details" href="#presentationdetails"></a>
 		<!-- Hidden link for loading fancybox -->
 		<a id="fancyLoad" href="#loading_fancy"></a>
+		<!-- Hidden link to open notification template -->
+		<a id="link_to_notification_template" href="#notification_template"></a>
 	</div>
 
 	<!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
@@ -617,17 +619,37 @@
 			</div> 
 		</div>
 	</div>
+  
+	<!-- FANCYBOX ADD A LINK TO A ELEMENT (IMAGE,etc) -->
+	<div style='display:none' isFancyBoxContainer="true">
+		<div id='tools_addUrl'>	  		
+			<div class="box1 box1fancy1">
+				<p class="textfancy">Url</p></br>
+				<img class="image_add_link" src="/assets/icons/url_img.png"/>
+				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
+				<div class="addUrlButtons">
+					<button type="button" class="addUrlButton" i18n-key="i.Add" 
+					onclick="VISH.Editor.Tools.addUrl()">Add</button>
+					<button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
+					onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
+				</div>
 
-	<!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- NOTIFICATIONS -->
+
+	<!-- NOTIFICATION TEMPLATE -->
 	<div style='display:none'>
-		<input type="hidden" id="prompt_answer" value="false"></input>
-		<div id='prompt_form'>
-			<img id="image_template_prompt" class="delete_img" src="/assets/templatesthumbs/default.png"/>
-			<img id="delimg" class="delimg" src="/assets/icons/ve_delete_border.png"/>
-			<span i18n-key="i.sure" class="deltext">are you sure?</span>
-			<div class="buttons_together">
-				<a href="#" onclick="$('#prompt_answer').val('true'); $.fancybox.close();" class="button" i18n-key="i.delete">delete</a>
-				<a href="#" onclick="$('#prompt_answer').val('false'); $.fancybox.close();" class="button" i18n-key="i.no">no</a>
+		<div id='notification_template'>
+			<div class="notification_row1">
+				<img class="notificationIcon">
+				<span class="notification_text"></span>
+			</div>
+			<div class="notification_row2">
 			</div>
 		</div>
 	</div>
@@ -635,7 +657,7 @@
 	<!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
 	<div style='display:none'>
 		<div id='requirements_form_wrapper'>
-			<div id='requirements_form' class='fancy_msg_advert'>      
+			<div id='requirements_form'>      
 				<span i18n-key="i.browserrequirements" class="adverttext">Your browser does not meet the minimum requirements to init Vish Editor, please update your browser.</span> 
 				<div id="recomended_browsers">
 					<div class="recomended_browser">
@@ -650,101 +672,14 @@
 						<span class="browserTitle">Internet Explorer 9</span>
 						<a target="_blank" href="http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie-9/worldwide-languages"><img class="browser_img" src="/assets/browsers/internetexplorer.png"/></a>
 					</div>
-					<div class="recomended_browser">
+<!-- 					<div class="recomended_browser">
 						<span class="browserTitle">Opera</span>
 						<a target="_blank" href="http://www.opera.com/download"><img class="browser_img" src="/assets/browsers/opera.png"/></a>
-					</div>
+					</div> -->
 				</div>
 				<div class="button_advert_wrapper">
-				<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+					<a href="#" onclick="$.fancybox.close();" class="button button_advert" i18n-key="i.OK">OK</a>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- NOTIFY USER WHEN PRESENTATION IS NOT VALID -->
-	<div style='display:none'>
-		<div id='presentation_not_valid_wrapper'>
-			<div id='presentation_not_valid' class='fancy_msg_advert'>      
-				<span i18n-key="i.pNotValid" class="adverttext">
-				This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.
-				</span> 
-				<div class="button_advert_wrapper">
-					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
-				</div>
-				</div>
-		</div>
-	</div>
-
-	<!-- NOTIFY USER WHEN A PDF FILE COULDN'T BE TRANSFORMED TO A PRESENTATION -->
-	<div style='display:none'>
-		<div id='pdf2p_not_valid_wrapper'>
-			<div id='pdf2p_not_valid' class='fancy_msg_advert'>      
-				<span i18n-key="i.PDFNotValid" class="adverttext">
-					An error has occurred. Ensure that the PDF file is valid.
-				</span>
-				<div class="button_advert_wrapper">
-					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
-				</div>
-				</div>
-		</div>
-	</div>
-
-	<!-- PROMPT USER IF SHE IS SURE TO SAVE THE SLIDE -->
-	<div style='display:none'>
-		<input type="hidden" id="save_answer" value="cancel"></input>
-		<div id='save_form'>
-			<img id="saveimg" class="delete_img" src="/assets/toolbar/save_document.png">
-			<span i18n-key="i.sure" class="deltext">are you sure?</span> 		
-			<div class="buttons_together">
-				<a save-option-id="save" href="#" onclick="$('#save_answer').val('save'); $.fancybox.close();" class=" button" i18n-key="i.save">Save</a>
-				<a save-option-id="publish" href="#" onclick="$('#save_answer').val('publish'); $.fancybox.close();" class=" button" i18n-key="i.publish">Publish</a>
-				<a save-option-id="draft" href="#" onclick="$('#save_answer').val('draft'); $.fancybox.close();" class="button" i18n-key="i.draft">Draft</a>
-				<a save-option-id="cancel" i18n-key="i.cancel" href="#" onclick="$('#save_answer').val('cancel'); $.fancybox.close();" class="button">cancel</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- NOTIFY WHEN THERE IS NO SLIDES AND TRY TO SAVE -->
-	<div style='display:none'>
-		<div id='message1_form'>
-			<div class="text_in_fancybox">
-				<img class="alertDialogIcon" src="/assets/zonethumbs/content_fail.png">
-				<span class="deltext" i18n-key="i.oneSlideAlert">Create at least one slide before saving.</span>
-			</div> 		
-			<div id="button_accept_when_fail">
-				<a href="#" onclick="$.fancybox.close();" class="button buttonfail">accept</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- NOTIFY USERS THAT THEY MUST FILL ALL MANDATORY FIELDS IN THE SETTINGS PANEL BEFORE PUBLISH -->
-	<div style='display:none'>
-		<div id='message2_form'>
-			<div class="text_in_fancybox">
-				<img class="alertDialogIcon" src="/assets/zonethumbs/content_fail.png">
-				<span class="deltext" i18n-key="i.oneSlideAlert">You need to write a title for the excursion and select an avatar before publish the excursion.</span>
-			</div> 		
-			<div id="button_accept_when_fail">
-				<a href="#" onclick="$.fancybox.close();" class="button buttonfail">Go to Settings</a>
-			</div>
-		</div>
-	</div>
-	  
-	<!-- PROMPT TO ADD A LINK TO A ELEMENT (IMAGE,etc) -->
-	<div style='display:none' isFancyBoxContainer="true">
-		<div id='tools_addUrl'>	  		
-			<div class="box1 box1fancy1">
-				<p class="textfancy">Url</p></br>
-				<img class="image_add_link" src="/assets/icons/url_img.png"/>
-				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
-				<div class="addUrlButtons">
-					<button type="button" class="addUrlButton" i18n-key="i.Add" 
-					onclick="VISH.Editor.Tools.addUrl()">Add</button>
-					<button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
-					onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
-				</div>
-
 			</div>
 		</div>
 	</div>
