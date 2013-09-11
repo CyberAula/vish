@@ -46,7 +46,8 @@ ul.sugestions-tags
 /*REGISTER*/
 
 #registration,
-#new_session
+#new_session,
+#forgot-pass
   @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
   margin-left: auto
   margin-right: auto
@@ -55,7 +56,8 @@ ul.sugestions-tags
   @include white-box-style
   z-index: 2
   .registration,
-  #sign_in
+  #sign_in,
+  .forgot
     @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
     @include center-block()
     h3
@@ -96,6 +98,7 @@ ul.sugestions-tags
         margin-right: 5px
         padding-top: 0px
     input.btn
+      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       background-image: none
       margin-bottom: 10px
       float: right

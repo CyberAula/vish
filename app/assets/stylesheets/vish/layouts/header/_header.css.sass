@@ -154,18 +154,13 @@ header.navbar,
         .search-ui
           float: right
 
-
-
-
-     
-
-
-        
       .login
         float: right
         margin-top: 14px
         font-family: $secondFontFamily
-        
+        a 
+          &:hover,&:active,&:focus
+            text-decoration: none        
         ul.dropdown-menu
           margin: 7px 40px 0 -175px
           padding: 6px 7px
@@ -178,9 +173,21 @@ header.navbar,
             float: left
             display: inline-block
             margin-top: 10px
+          a 
+            padding-top: 10px
+            padding-left: 25px
+            float: left
+            display: block
+            &:hover
+              text-decoration: none
 
       .signin
         float: right
         margin-right: 20px
         font-family: $secondFontFamily
         margin-top: 14px
+        a 
+          &:hover,&:active,&:focus
+            text-decoration: none  
+
+            
