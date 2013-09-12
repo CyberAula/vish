@@ -165,7 +165,14 @@ input#search
   transition: width 1s
   -webkit-backface-visibility: hidden
 
-
+section#search
+  .search
+    .tabbable
+      li.disabled
+        a
+          @include opacity (20)
+          &:hover
+            border-color: $grayLight
 .sb-search-input 
   position: absolute
   top: 0
