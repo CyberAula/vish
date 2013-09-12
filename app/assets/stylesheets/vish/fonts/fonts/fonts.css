@@ -1,0 +1,16 @@
+/************* typography*******/
+
+@font-face{
+  font-family:"OpenSans";
+  src: url(vish/fonts/opensans/OpenSans-Regular.ttf);
+}
+
+@font-face{
+  font-family:"OpenSansBold";
+  src: url(vish/fonts/opensans/OpenSans-Semibold.ttf);
+}
+
+@font-face{
+  font-family:"OpenSansLight";
+  src: url(vish/fonts/opensans/OpenSans-Light.ttf);
+}
