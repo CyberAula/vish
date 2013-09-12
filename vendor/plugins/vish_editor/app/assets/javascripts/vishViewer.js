@@ -13364,8 +13364,8 @@ VISH.Quiz.TF = function(V, $, undefined) {
     for(var i = 0;i < slide.choices.length;i++) {
       var option = slide.choices[i];
       var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
-      var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true' value='" + index + "'/></td>");
-      var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' value='" + index + "'/></td>");
+      var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
+      var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
       var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
       $(optionText).html(option.wysiwygValue);
