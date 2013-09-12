@@ -14,14 +14,23 @@
     <dl class="dl-horizontal">
 
       <% unless @excursion.contributors.blank? %>
-      <!--contributors-->
-      <dt><%= t('excursion.contributors.name').capitalize %></dt>
-      <% @excursion.contributors.each do |c| %>
-      <a data-toggle="modal" href="#user-modal-<%= c.slug %>" class="user-modal-button-<%= c.slug %> modal-no-trigger">
-        <dd><%= truncate_name(c.name, :length => 50) %></dd>
-      </a>, 
+        <!--contributors-->
+        <dt><%= t('excursion.contributors.name').capitalize %></dt>
+        <dd>
+          <% isFirst = true %>
+          <% @excursion.contributors.each do |c| %>
+            <% if !isFirst %>
+              ,
+            <% else %>
+              <%isFirst = false%>
+            <% end %>
+            <a data-toggle="modal" href="#user-modal-<%= c.slug %>" class="user-modal-button-<%= c.slug %> modal-no-trigger">
+              <%= truncate_name(c.name, :length => 50) %>
+            </a> 
+          <%end%>
+        </dd>
       <%end%>
-      <%end%>
+
       <% unless @excursion.description.blank? %>
       <!--description-->
       <dt><%= t('info.description') %></dt>

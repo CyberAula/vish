@@ -13663,6 +13663,13 @@ VISH.Editor.Text = function(V, $, undefined) {
     ckeditor.on("instanceReady", function() {
       if(initial_text) {
         ckeditor.setData(initial_text, function() {
+          if(isQuiz) {
+            var slide = $("article").has(current_area);
+            $(slide).addClass("temp_shown");
+            var iframeContent = _getCKEditorIframeContentFromInstance(ckeditor);
+            myHeight = $(iframeContent).find("html").height();
+            $(slide).removeClass("temp_shown")
+          }
           ckeditor.resize(myWidth, myHeight);
           _fixCKEDITORBug(ckeditor)
         });
@@ -13672,6 +13679,8 @@ VISH.Editor.Text = function(V, $, undefined) {
           }
         }
       }
+    });
+    ckeditor.on("resize", function(event) {
     });
     ckeditor.on("focus", function(event) {
       if(options && options.placeholder === true) {
@@ -13721,6 +13730,9 @@ VISH.Editor.Text = function(V, $, undefined) {
     if(!editor) {
       return null
     }
+    return _getCKEditorIframeContentFromInstance(editor)
+  };
+  var _getCKEditorIframeContentFromInstance = function(editor) {
     var iframe = $(document.getElementById("cke_contents_" + editor.name)).find("iframe")[0];
     return $(iframe).contents()[0]
   };
@@ -15591,17 +15603,17 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Virtual Tour NUI", "description":"Ejemplo de Virtual Tour con la nueva version", "author":"ebarra", "avatar":"http://oer.eun.org/VWClc0HeKsEugB_gIP9_RzX7t9bC", "tags":["Virtual", "tour", "China", "Lince"], "theme":"theme1", "age_range":"4 - 7", "subject":["Natural Sciences"], "language":"es", "educational_objectives":"Test", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "areaid":"left"}, 
-  {"id":"article1_zone2", "areaid":"header"}, {"id":"article1_zone3", "areaid":"subheader"}]}, {"id":"article2", "type":"VirtualTour", "map_service":"Google Maps", "center":{"lat":"22.737851464162567", "lng":"-41.76953125000001"}, "zoom":"3", "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"lat":"33.797408767572534", "lng":"-82.6116943359375", "slide_id":"article2_article1"}, {"lat":"-8.276727101164033", "lng":"-41.21795654296875", "slide_id":"article2_article2"}, {"lat":"37.82280243352756", 
-  "lng":"-7.46795654296875", "slide_id":"article2_article3"}, {"lat":"9.405710041600022", "lng":"5.36407470703125", "slide_id":"article2_article4"}], "slides":[{"id":"article2_article1", "type":"standard", "template":"t1", "elements":[{"id":"article2_article1_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="font-size:72px;"><span autocolor="true" style="color:#000">A&shy;</span></span></p>\n'}, 
-  {"id":"article2_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span></span></div>\n'}, {"id":"article2_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; ">\n\t<span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span></span></div>\n'}]}, 
-  {"id":"article2_article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_article2_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size: 72px; text-align: center;">B</span></span></p>\n<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">&shy;</span></span></p>\n'}]}, 
-  {"id":"article2_article3", "type":"standard", "template":"t6", "elements":[{"id":"article2_article3_zone1", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; ">\n\t<span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span></span></div>\n'}, 
-  {"id":"article2_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:381.01851851851853%; height:218.72340425531914%; top:-36.183510638297875%; left:-58.695023148148145%;", "hyperlink":"http://www.google.es"}, {"id":"article2_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:356.94444444444446%; height:205.31914893617022%; top:-45.359042553191486%; left:-194.78443287037038%;"}, 
-  {"id":"article2_article3_zone5", "type":"text", "areaid":"right", "body":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="font-size:72px;"><span autocolor="true" style="color:#000">C&shy;</span></span></p>\n'}]}, {"id":"article2_article4", 
-  "type":"standard", "template":"t2", "elements":[{"id":"article2_article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span style="font-size:72px;"><span autocolor="true" style="color:#000">D&shy;</span></span></p>\n'}]}]}, 
-  {"id":"article3", "type":"flashcard", "background":"url(http://oer.eun.org/VWClc0HfKsUsgR_gIP9-R0Yoa9AV)", "pois":[{"x":"15", "y":"36.375", "slide_id":"article3_article1"}, {"x":"35.5", "y":"31.708333333333332", "slide_id":"article3_article2"}, {"x":"60.75", "y":"40.208333333333336", "slide_id":"article3_article3"}], "slides":[{"id":"article3_article1", "type":"standard", "template":"t2", "elements":[{"id":"article3_article1_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">A&shy;</span></span></p>\n'}]}, 
-  {"id":"article3_article2", "type":"standard", "template":"t2", "elements":[{"id":"article3_article2_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">B&shy;</span></span></p>\n'}]}, {"id":"article3_article3", "type":"standard", "template":"t3", "elements":[{"id":"article3_article3_zone1", "areaid":"header"}, {"id":"article3_article3_zone2", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">C&shy;</span></span></p>\n'}]}]}]};
+  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "author":"Aldo", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "slides":[{"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?What is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?What is the oldest ancient weapon?What is the oldest ancient weapon?</span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', 
+  "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"Aldo", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", 
+  "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?What is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', 
+  "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":false}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", 
+  "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', "answer":true}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"Aldo", "type":"quiz_simple", "slides":[{"id":"article1", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_zone1", 
+  "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', 
+  "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', 
+  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -20220,7 +20232,6 @@ VISH.Editor.Preview = function(V, $, undefined) {
   return{init:init, preview:preview, getPreview:getPreview}
 }(VISH, jQuery);
 VISH.Editor.Quiz.MC = function(V, $, undefined) {
-  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
   var addQuizOptionButtonClass = "add_quiz_option_mc";
   var deleteQuizOptionButtonClass = "delete_quiz_option_mc";
   var mcCheckbox = "mcCheckbox";
@@ -20306,17 +20317,9 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
     _refreshChoicesIndexs(area)
   };
   var _refreshChoicesIndexs = function(area) {
-    var nChoices = $(area).find("li.mc_option").size();
     $(area).find("li.mc_option").each(function(index, option_element) {
-      $(option_element).find(".mc_option_index").text(_getChoiceLetter(nChoices, index + 1))
+      $(option_element).find(".mc_option_index").text(String.fromCharCode(96 + index + 1) + ")")
     })
-  };
-  var _getChoiceLetter = function(nChoices, nChoice) {
-    if(nChoices <= choicesLetters.length) {
-      return choicesLetters[nChoice - 1]
-    }else {
-      return nChoice + ")"
-    }
   };
   var _launchTextEditorForQuestion = function(area, question) {
     var textArea = $(area).find(".mc_question_wrapper");
@@ -20384,8 +20387,8 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
   };
   var draw = function(area, quiz) {
     $(area).append(_getDummy());
-    $(area).attr("type", "quiz");
-    $(area).attr("quiztype", VISH.Constant.QZ_TYPE.MCHOICE);
+    $(area).attr("type", V.Constant.QUIZ);
+    $(area).attr("quiztype", V.Constant.QZ_TYPE.MCHOICE);
     _launchTextEditorForQuestion(area, quiz.question.wysiwygValue);
     V.Editor.addDeleteButton(area);
     $(quiz.choices).each(function(index, choice) {
@@ -20401,7 +20404,6 @@ VISH.Editor.Quiz.MC = function(V, $, undefined) {
   return{init:init, add:add, save:save, draw:draw}
 }(VISH, jQuery);
 VISH.Editor.Quiz.TF = function(V, $, undefined) {
-  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
   var addQuizOptionButtonClass = "add_quiz_option_tf";
   var deleteQuizOptionButtonClass = "delete_quiz_option_tf";
   var tfCheckbox = "tfCheckbox";
@@ -20502,17 +20504,9 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
     _refreshChoicesIndexs(area)
   };
   var _refreshChoicesIndexs = function(area) {
-    var nChoices = $(area).find("li.mc_option").size();
     $(area).find("li.mc_option").each(function(index, option_element) {
-      $(option_element).find(".mc_option_index").text(_getChoiceLetter(nChoices, index + 1))
+      $(option_element).find(".mc_option_index").text(String.fromCharCode(96 + index + 1) + ")")
     })
-  };
-  var _getChoiceLetter = function(nChoices, nChoice) {
-    if(nChoices <= choicesLetters.length) {
-      return choicesLetters[nChoice - 1]
-    }else {
-      return nChoice + ")"
-    }
   };
   var _launchTextEditorForQuestion = function(area, question) {
     var textArea = $(area).find(".mc_question_wrapper");
@@ -20573,8 +20567,8 @@ VISH.Editor.Quiz.TF = function(V, $, undefined) {
   };
   var draw = function(area, quiz) {
     $(area).append(_getDummy());
-    $(area).attr("type", "quiz");
-    $(area).attr("quiztype", VISH.Constant.QZ_TYPE.TF);
+    $(area).attr("type", V.Constant.QUIZ);
+    $(area).attr("quiztype", V.Constant.QZ_TYPE.TF);
     _launchTextEditorForQuestion(area, quiz.question.wysiwygValue);
     V.Editor.addDeleteButton(area);
     $(quiz.choices).each(function(index, choice) {
@@ -23431,8 +23425,8 @@ VISH.Quiz.TF = function(V, $, undefined) {
     for(var i = 0;i < slide.choices.length;i++) {
       var option = slide.choices[i];
       var optionWrapper = $("<tr class='mc_option' nChoice='" + (i + 1) + "'></tr>");
-      var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true' value='" + index + "'/></td>");
-      var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' value='" + index + "'/></td>");
+      var optionBox1 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='true'  /></td>");
+      var optionBox2 = $("<td><input class='tf_radio' type='radio' name='tf_radio" + i + "' column='false' /></td>");
       var optionIndex = $("<td><span class='mc_option_index mc_option_index_viewer'>" + String.fromCharCode(96 + i + 1) + ") </span></td>");
       var optionText = $("<td><div class='mc_option_text mc_option_text_viewer'></div></td>");
       $(optionText).html(option.wysiwygValue);
