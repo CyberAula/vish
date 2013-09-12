@@ -300,6 +300,10 @@ fr:
   share: "Publier"
   sign_up: "Inscription"
   site:
+    current:
+      description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
+      keywords: "VisHub,virtual,excursion"
+      title: "Virtual Science Hub"
     name: "Plateforme des sciences virtuelles"
   swf:
     confirm_delete: "Supprimer SWF?"
