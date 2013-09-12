@@ -1,0 +1,4 @@
+<!-- replace "code[erb-loud]:contains('btn')" -->
+  
+<%= f.submit t('activity.to_comment'), :class => "btn btn-primary" %>
+

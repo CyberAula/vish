@@ -158,9 +158,12 @@ header.navbar,
         float: right
         margin-top: 14px
         font-family: $secondFontFamily
+   
         a 
           &:hover,&:active,&:focus
-            text-decoration: none        
+            text-decoration: none 
+            outline: none     
+
         ul.dropdown-menu
           margin: 7px 40px 0 -175px
           padding: 6px 7px
@@ -180,14 +183,15 @@ header.navbar,
             display: block
             &:hover
               text-decoration: none
-
+      a 
+        &:hover,&:active,&:focus
+          text-decoration: none  
       .signin
         float: right
         margin-right: 20px
+        margin-left: 20px
         font-family: $secondFontFamily
         margin-top: 14px
-        a 
-          &:hover,&:active,&:focus
-            text-decoration: none  
+          
 
             
