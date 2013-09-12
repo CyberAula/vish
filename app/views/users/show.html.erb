@@ -112,12 +112,6 @@ section: "<%= params[:section ] %>"
 });
 });
 
-$("#profile-info .select a[href=#]").click(function(event){
-event.preventDefault();
-var section = $(this).closest('section')[0];
-$(section).find('.briefing').toggle('slow');
-$(section).find('.update').toggle('slow');
-});
 <% end %>
 
 
