@@ -64,7 +64,7 @@
           </li>
           <li class="add_nav">
             <div class="btn-group">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <a class="btn dropdown-toggle tooltip-header" data-original-title="<%=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
                 <i class="icon-plus"></i>
               </a>
               <ul class="dropdown-menu">
@@ -100,8 +100,9 @@
     </div>
   </header>
 
+  <script type="text/javascript">
+      $(document).ready(function() {          
+         $('.tooltip-header').tooltip({ placement: 'bottom'});
+      });
+  </script>
 
-
-  <%= content_for :javascript do %>              
-      $('.tooltip-header').tooltip({ placement: 'bottom'});
-  <% end %>
