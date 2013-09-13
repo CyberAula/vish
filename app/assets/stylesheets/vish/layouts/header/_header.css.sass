@@ -15,7 +15,7 @@ header.navbar,
       .brand
         height: auto
         @include border-bottom-radius($radius)
-        width: 11%
+        width: 100px
         max-width: 136px
         float: left
         margin-top: 0px
@@ -65,7 +65,7 @@ header.navbar,
       .user-tool
         float: right
         .add_nav
-          float: right
+          float: left
           .btn-primary
 
           .btn
@@ -88,8 +88,6 @@ header.navbar,
               display: block
               float: left
             &:hover
-              
-
               text-decoration: none
               border-color: $firstColor
               i
@@ -132,9 +130,9 @@ header.navbar,
                 border-color: $firstColor
 
         .navegation
-          float: right
+          float: left
           margin-right: 3px
-          .headernav
+          .headernav            
             a
               i
                 color: #c8c8c8
@@ -152,10 +150,10 @@ header.navbar,
               .notification
                 color: $secondColor
         .search-ui
-          float: right
+          float: left
 
       .login
-        float: right
+        float: left
         margin-top: 14px
         font-family: $secondFontFamily
    
@@ -193,5 +191,16 @@ header.navbar,
         font-family: $secondFontFamily
         margin-top: 14px
           
+          
+.clearfix:after 
+  content: "."
+  display: block
+  clear: both
+  visibility: hidden
+  line-height: 0
+  height: 0
+ 
+.clearfix 
+  display: inline-block
 
             

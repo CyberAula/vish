@@ -240,6 +240,9 @@ es:
     gridComputing: "grid computing"
     lifesciences: "ciencias naturales"
     biotechnology: "biotecnología"
+  header:
+    tooltip: 
+      add_button: "Crea excursiones, recursos, etc."
   help: "ayuda"
   help_page: "AYUDA DE ViSH"
   help_manual: "Descargar el manual de usuario"
@@ -429,6 +432,7 @@ es:
     sentence2: "ViSH es una plataforma social de ciencia"
     team: "El equipo de ViSH"  
     starterguide: "Guía del principiante"    
+    register_with: "Registrate con tu "
   views:
     pagination:
       next: "»"

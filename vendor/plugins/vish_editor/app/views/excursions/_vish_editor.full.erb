@@ -16,13 +16,22 @@
 								<a class="menu_option menu_action" action="onSaveButtonClicked" i18n-key="i.Save"><i class="icon-button icon-save"></i> Save</a>
 							</li> -->
 							<li>
-								<a class="menu_option menu_action" action="onPublishButtonClicked" i18n-key="i.Publish"><i class="icon-button icon-rotate-270 icon-download-alt"></i> Publish</a>
+								<a class="menu_option menu_action" action="onPublishButtonClicked">
+									<i class="icon-button icon-rotate-270 icon-download-alt"></i> 
+									<span i18n-key="i.Publish">Publish</span>
+								</a>
 							</li>
 							<li>
-								<a class="menu_option menu_action" action="insertSlide" i18n-key="i.NewSlide"><i class="icon-button icon-plus"></i> Add Slide</a>
+								<a class="menu_option menu_action" action="insertSlide">
+									<i class="icon-button icon-plus"></i> 
+									<span i18n-key="i.NewSlide">Add Slide</span>
+								</a>
 							</li>
 							<li>
-								<a class="menu_option" href="#" i18n-key="i.Import"><i class="icon-button icon-rotate-180 icon-download-alt"></i> Import</a>
+								<a class="menu_option" href="#">
+									<i class="icon-button icon-rotate-180 icon-download-alt"></i>
+									<span i18n-key="i.Import">Import</span>
+								</a>
 								<ul>
 									<li>
 										<a class="menu_option menu_action" action="insertPDFex">PDF Slideshow</a>
@@ -39,7 +48,10 @@
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option" href="#" i18n-key="i.Export"><i class="icon-button icon-rotate-360 icon-download-alt"></i> Export</a>
+								<a class="menu_option" href="#">
+									<i class="icon-button icon-rotate-360 icon-download-alt"></i>
+									<span i18n-key="i.Export">Export</span>
+								</a>
 								<ul>
 									<li>
 										<a class="menu_option menu_action" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
@@ -47,13 +59,22 @@
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option menu_action" action="preview" i18n-key="i.preview"><i class="icon-button icon-eye-open"></i> Preview</a>
+								<a class="menu_option menu_action" action="preview">
+									<i class="icon-button icon-eye-open"></i>
+									<span i18n-key="i.preview">Preview</span>
+								</a>
 							</li>
 							<li>
-								<a class="menu_option menu_action" action="displaySettings" i18n-key="i.Settings"><i class="icon-button icon-edit"></i> Settings</a>
+								<a class="menu_option menu_action" action="displaySettings">
+									<i class="icon-button icon-edit"></i>
+									<span i18n-key="i.Settings">Settings</span>
+								</a>
 							</li>
 							<li>
-								<a class="menu_option menu_action" action="help" i18n-key="i.Help"><i class="icon-button icon-question"></i> Help</a>
+								<a class="menu_option menu_action" action="help">
+									<i class="icon-button icon-question"></i>
+									<span i18n-key="i.Help">Help</span>
+								</a>
 							</li
 						</ul>
 					</li>
@@ -170,8 +191,6 @@
 		<a id="addSlideFancybox" href="#thumbcontent"></a>
 		<!-- Hidden link to open fancybox when adding a quiz inside a slide -->
 		<a id="addQuizFancybox" href="#quizcontent"></a>
-		<!-- Hidden link to open fancybox when adding a json  -->
-		<a id="addJSONFancybox" href="#json_fancybox"></a>
 		<!-- Hidden link to open presentation settings -->
 		<a id="edit_presentation_details" href="#presentationdetails"></a>
 		<!-- Hidden link for loading fancybox -->
@@ -202,7 +221,7 @@
 								</div>
 							</div>
 							<div id="presentation_details_preview_addtitle">
-								<span>add a title</span>
+								<input id="presentation_details_preview_addtitle_input" type="text" maxLength="120" placeholder="add a title"></input>
 							</div>
 							<div id="presentation_details_preview_author">
 								<span>by </span><span id="author_span_in_preview"></span>
@@ -399,7 +418,8 @@
 		</form>
 	</div>
 
-	<!-- Thumbnails fancybox -->
+
+	<!-- Import and Add slide fancybox -->
 	<div style='display:none'>
 		<div id='thumbcontent'>
 			
@@ -417,13 +437,15 @@
 					<li>
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_smartcards_repo')" id="tab_smartcards_repo" class="fancy_tab tabbable" i18n-key="i.Smartcards">Smartcards</a>
 					</li>
+					<li>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file')" id="tab_json_file" class="fancy_tab">JSON</a>
+					</li>
 				</ul>
 			</div> 
 
 			<div id='tab_slides_content' class="fancy_tab_content" style='display:none' > 
 				<img class='help_in_fancybox' id='tab_slides_help' src='/assets/icons/helptutorial_circle_blank.png'/>
 				<div class="tab_slides_content">
-
 					<div class="tab_slides_templates">
 						<p class="select_text"> Templates </p>
 						<div class="templateselectlist">
@@ -544,6 +566,17 @@
 					</div> 	
 				</div>	
 			</div>
+
+			<div id='tab_json_file_content' class="fancy_tab_content" style='display:none'>
+				<img class='help_in_fancybox' id='tab_json_file_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+				<div class="box1 box1fancy3">
+					<p class="textfancy">Add Excursion or Smartcard from JSON file</p></br>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<input id="json_file_input" type="file" id="files" name="files[]" multiple />
+					<button id="json_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
@@ -595,28 +628,6 @@
 			<a class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
 				<div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
 			</a>
-		</div>
-	</div>
-
-	<!-- JSON fancybox -->
-	<div style='display:none'>
-		<div id="json_fancybox" class="outer_box">
-			<div class="fancy_tabs" id="json_fancy_tabs_id">  
-				<ul>
-					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file')" id="tab_json_file" class="fancy_tab">file</a>
-					</li>
-				</ul>
-				<img class='help_in_fancybox' id='tab_json_file_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-			</div>
-			<div id='tab_json_file_content' class="fancy_tab_content">
-				<div class="box1 box1fancy3">
-					<p class="textfancy">Add Excursion or Smartcard from JSON file</p></br>
-					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-					<input id="json_file_input" type="file" id="files" name="files[]" multiple />
-					<button id="json_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
-				</div>
-			</div> 
 		</div>
 	</div>
   
@@ -692,7 +703,7 @@
 		<div id="picture_fancybox" class="outer_box">
 			<div class="fancy_tabs" id="images_fancy_tabs_id">	   
 				<ul>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails')" id="tab_pic_thumbnails" class="fancy_tab tabbable" style="display:none" i18n-key="i.url">thumbnails</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails')" id="tab_pic_thumbnails" class="fancy_tab tabbable" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
 					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
@@ -1271,10 +1282,22 @@
 		</li>
 		</ol>
 
-.		<ol id="help_pdfex_help" class="joyRideTipContent">
+		<!-- Help uploading PDF -->
+		<ol id="help_pdfex_help" class="joyRideTipContent">
 			<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="custom tut_templatesel tut_without_arrow" data-options="tipLocation:none">
 				 <h2>Insert a PDF presentation</h2>
 				 <p>Select a presentation in PDF format and upload the file. Only files with PDF format are allowed.</p>
+			</li>
+		</ol>
+
+		<!-- Help importing JSON -->
+		<ol id="help_iJSON_help" class="joyRideTipContent">
+			<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="custom tut_templatesel tut_without_arrow" data-options="tipLocation:none">
+				 <h2>Add Excursion or Smartcard from JSON file</h2>
+				 <p>Select a file in JSON format (.json) and click on the preview button.</p>
+				 <p>A new screen will appear to select the slides to import.</p>
+				 <p>You can also save the presentation in JSON format by clicking on Menu -> Export -> toJSON .</p>
+				 <br/>
 			</li>
 		</ol>
 

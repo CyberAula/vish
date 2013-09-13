@@ -126,9 +126,9 @@ $(document).ready(function(){
   </div>  
 
   <% unless editingToolbar %>
-  <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :text=>t('excursion.actions.favorite')})%>
+  <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn'})%>
   
-  <button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>
+  <!--<button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>-->
     <%if current_subject %>
       <%=categories_select(:category_id, @excursion)%>
       <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>

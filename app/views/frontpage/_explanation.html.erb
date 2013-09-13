@@ -17,16 +17,17 @@
               </p>
               <!--<hr class="soften">-->
               <div class="log-in">
+                <!--
                 <div class="redes">
                   <a href="#">
                     <%= image_tag("buttons/facebook_signin.png" ) %>
                   </a>
                   <a href="#">
                     <%= image_tag("buttons/twitter_signin.png" ) %>
-                  </a>
-                </div>
+                  </a>                
+                </div>-->
                 <h4 class="email">
-                  or register with your 
+                  <%=t("vish.register_with")%>
                   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
                     <%= link_to t('devise.links.email'), new_registration_path(resource_name) %>
                   <% end -%>

@@ -237,6 +237,9 @@ en:
     biotechnology: "biotechnology"
   go:
     repository: "go to repository"
+  header:
+    tooltip: 
+      add_button: "Create excursions, resources, etc."
   help: "help"
   help_page: "ViSH HELP"
   help_manual: "Download user manual"
@@ -432,6 +435,7 @@ en:
     sentence2: "ViSH is a social science platform"
     team: "The ViSH Team" 
     starterguide: "Starter Guide"   
+    register_with: "Register with your "
   views:
     pagination:
       next: "»"
