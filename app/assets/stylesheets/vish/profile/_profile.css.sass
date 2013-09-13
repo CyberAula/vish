@@ -97,13 +97,13 @@
           background-color: $white
           margin-left: 0px
           padding: 12px 0px 32px 0px !important
+          width: 55%
+          float: left
           form.edit_user
-            padding: 0 14px
             display: block
-            float: left
-            @include grid-fluid-offset(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
+            #user_name,
+            textarea
+              width: 96%
             textarea
               resize: none
               height: 50px
