@@ -5,7 +5,7 @@
       <div class="element resource-center">
 
         <%if resource.class==Link%>
-          <%= link_to "<i class='icon-link'></i>".html_safe, resource %>
+          <%= link_to "<i class='icon-link'></i>".html_safe, completeURL(resource.url), :target => "_blank" %>
         <%elsif resource.class==Embed%>
           <%= link_to "<i class='icon-code'></i>".html_safe, resource %>
         <%else%>
@@ -15,14 +15,15 @@
       </div>
   </div>
 
-
-
-
 <!--INFO resource-->
   <div class="info">
 <!--Title -->
     <div class="name">
-        <%= link_to truncate(resource.title, :length => 15), resource %>
+        <%if resource.class==Link%>
+          <%= link_to truncate(resource.title, :length => 15), completeURL(resource.url) %>
+        <%else%>
+          <%= link_to truncate(resource.title, :length => 15), resource %>
+        <%end%>
     </div>
 <!--Autor -->
     <div class="author"> 

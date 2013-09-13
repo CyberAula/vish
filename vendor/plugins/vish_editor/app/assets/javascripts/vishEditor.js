@@ -16298,7 +16298,6 @@ VISH.Quiz = function(V, $, undefined) {
     quizModule.disableQuiz(quiz);
     _loadingAnswerButton(quiz);
     var answers = report.answers;
-    V.Debugging.log(answers);
     V.Quiz.API.sendAnwers(answers, quizSessionId, function(data) {
       disableAnswerButton(quiz);
       _showAlert("prompt4_alert")
@@ -16334,16 +16333,12 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.startQuizSession(quiz, quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
   };
   var _onQuizSessionReceived = function(quiz, quizSession) {
-    V.Debugging.log("_onQuizSessionReceived");
-    V.Debugging.log(quizSession);
     currentQuiz = quiz;
     currentQuizSession = quizSession;
     _runningLaunchButton(quiz);
     $("a#addQuizSessionFancybox").trigger("click")
   };
   var _onQuizSessionReceivedError = function(quiz, error) {
-    V.Debugging.log("_OnQuizSessionReceivedError");
-    V.Debugging.log(error);
     _enableLaunchButton(quiz)
   };
   var _getQuizJSONFromQuiz = function(quiz) {
@@ -16513,67 +16508,6 @@ VISH.Quiz = function(V, $, undefined) {
     var width = height;
     var qrOptions = {render:"canvas", width:width, height:height, color:"#000", bgColor:"#fff", text:url.toString()};
     $(container).qrcode(qrOptions)
-  };
-  var _onClickQR = function() {
-    var changeToFs = false;
-    var changeFromFs = false;
-    var elem = $(".quizQr")[0];
-    if(V.Status.getIsInIframe() && isFullscreen(parent.document)) {
-      return
-    }
-    if(isFullscreen(document)) {
-      changeFromFS = cancelFullScreen(document)
-    }else {
-      changeToFS = requestFullScreen(elem)
-    }
-    if(changeToFs) {
-      $(".quizQr").attr("disabledTitle", $(".quizQr").attr("title"));
-      $(".quizQr").removeAttr("title")
-    }else {
-      if(changeFromFs) {
-        $(".quizQr").attr("title", $(".quizQr").attr("disabledTitle"))
-      }
-    }
-    if(changeToFs || changeFromFs) {
-      _loadQr(currentQuizSession.url)
-    }
-  };
-  var isFullscreen = function(myDoc) {
-    return myDoc.fullScreen || myDoc.mozFullScreen || myDoc.webkitIsFullScreen
-  };
-  var cancelFullScreen = function(myDoc) {
-    if(myDoc.cancelFullScreen) {
-      myDoc.cancelFullScreen();
-      return true
-    }else {
-      if(myDoc.mozCancelFullScreen) {
-        myDoc.mozCancelFullScreen();
-        return true
-      }else {
-        if(myDoc.webkitCancelFullScreen) {
-          myDoc.webkitCancelFullScreen();
-          return true
-        }
-      }
-    }
-    return false
-  };
-  var requestFullScreen = function(elem) {
-    if(elem.requestFullscreen) {
-      elem.requestFullscreen();
-      return true
-    }else {
-      if(elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-        return true
-      }else {
-        if(elem.webkitRequestFullscreen) {
-          elem.webkitRequestFullscreen();
-          return true
-        }
-      }
-    }
-    return false
   };
   var _loadStats = function() {
     _cleanResults();
@@ -18967,17 +18901,17 @@ VISH.Editor.Image.Thumbnails = function(V, $, undefined) {
   var beforeLoadTab = function() {
   };
   var onLoadTab = function() {
-    if(!thumbnailsRequested) {
-      thumbnailsRequested = true;
-      _requestInitialData()
-    }else {
-      if(dataDrawed === false) {
-        _prepareRequest();
-        setTimeout(function() {
+    setTimeout(function() {
+      if(!thumbnailsRequested) {
+        thumbnailsRequested = true;
+        _requestInitialData()
+      }else {
+        if(dataDrawed === false) {
+          _prepareRequest();
           _loadData(thumbnailsData)
-        }, 1E3)
+        }
       }
-    }
+    }, 1E3)
   };
   var _requestInitialData = function() {
     _prepareRequest();

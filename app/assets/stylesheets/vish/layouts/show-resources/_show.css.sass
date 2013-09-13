@@ -10,6 +10,7 @@
         display: inline-block
         position: relative
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
         float: left
         .elemento-visor
           padding-top: 79%
@@ -20,6 +21,16 @@
           left: 0
           right: 0
           background-color: $grayLight
+          @include border-radius($baseBorderRadius)
+          .picture_show
+            margin: 0 auto
+            img
+              @include border-radius($baseBorderRadius)
+              position: absolute
+              top: 50% 
+              left: 50% 
+              transform: translate(-50%, -50%)
+              
     //description
     .description-activity
       @include border-bottom-radius(5px)
@@ -80,10 +91,6 @@
                 clear: both
                 background-image: none
                 margin-bottom: 10px
-
-
-
-
 
           .viewsAndConunt
             float: left
@@ -224,3 +231,4 @@
         border-right: 5px solid transparent
         border-top: 5px solid black
         margin-left: 5px
+
