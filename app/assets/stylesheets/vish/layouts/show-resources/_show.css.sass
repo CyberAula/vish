@@ -5,6 +5,7 @@
   .picture,
   .embed
     .box-show
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
       //visor
       .container-visor
         display: inline-block
@@ -36,6 +37,8 @@
       @include border-bottom-radius(5px)
       background-color: $white
       @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+      float: left
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .box_description
         display: inline-block
         float: left
@@ -187,6 +190,12 @@
           a
             padding-top: 3px
     .recomended-items
+      .recomended_documents
+        display: block
+        float: right
+        width: 25%
+        margin-bottom: 80px
+
       .recomended_excursion
         display: block
         float: right
@@ -194,6 +203,9 @@
       background-color: $white
       border-radius: $baseBorderRadius
       @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      margin-bottom: 80px
       .activity
         
         .tabbable
