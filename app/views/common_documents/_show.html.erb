@@ -69,12 +69,12 @@
             <% end %>
           </ul>
         </div>
-        <h2>
-          <%= document.title %>
-        </h2>
         <div class="viewsAndConunt">
           <%= render partial: 'objects/counters', locals: { object: document } %>
         </div>
+        <h2>
+          <%= document.title %>
+        </h2>
         <div class="tab-content">
           <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
             <div class="toggler">
