@@ -10,17 +10,19 @@ hu:
     new_user: "Üdvözlünk a ViSH-nél! Posztold és oszd meg gondolataidat, linkjeidet, videóidat ismerőseiddel."
     newmessage: "Ez a te idővonalad. Feltölthetsz ide és megoszthatod képeidet, videóidat, linkjeidet és még sok minden mást."
     timeline: "idővonal"
+    title:
+      other: "tevékenység"
     verb:
-       make-friend:
+      make-friend:
         User:
-          title: "%{subject} és %{contact} egymáshoz tartoznak."
+          title: "%{subject} és %{contact} kapcsolódnak."
           message: "%{name} visszatért hozzád."
   activity2:
     title:
       other: "tevékenység"
   activity_action:
     follow: "+ Követés"
-    unfollow: "Nemkövetés"
+    unfollow: "Követés megszüntetése"
   all: "all"
   announce: 
     title: "Közlemény"
@@ -29,61 +31,61 @@ hu:
   cancel: "Mégse"
   close: "Bezár"
   conditions:
-    check_message: "Az Elfogadásra kattintva, egyetértessz a mi "  
-    check_message_1: "Feltételek és kikötések"
+    check_message: "Az Elfogadásra kattintva, egyetértesz a "  
+    check_message_1: "Felhasználási feltételekkel"
     other: "feltételek"
   contact:
     pending:
       other: "Követnek téged"
   devise:
-    invalid_login: "Kérjük, hogy a folyatáshoz írd be email címedet és jelszavadat."
+    invalid_login: "Kérjük, hogy a folyatáshoz írd be az email címedet és a jelszavadat."
   disjunction:
     or: "vagy"
   document:
     document: "dokumentum"
     help:
       title: "Források feltöltése"
-      info1_html: "1. Kattints a <b>dokumentumra</b>-ra, <b>linkekre</b> vagy a <b>beágyazott</b> fülre.<br>"
-      info2_html: "2. Ha fel akarsz tölteni egy dokumentumot, akkor kattints a <b>böngészés</b>-re hogy ki tudjad választani a megfelelő fájlt a gépedről. Ha forrásod egy link vagy beágyazott tartalom, <b>beillesztheted</b> azt a szövegdobozba.<br>"
+      info1_html: "1. Kattints a <b>dokumentum</b>, a <b>linkek</b> vagy a <b>beágyazott tartalom</b> fülekre.<br>"
+      info2_html: "2. Ha fel akarsz tölteni egy dokumentumot, akkor kattints a <b>böngészés</b>-re hogy ki tudd választani a megfelelő fájlt a gépedről. Ha a forrásod egy link vagy beágyazott tartalom, <b>beillesztheted</b> a szövegdobozba.<br>"
       info3_html: "3. Írd be a <b>címet</b> és a <b>leírást</b>.<br>"
-      info4_html: "4. Adj a forrásodhoz kapcsolódó <b>címkéket</b>. Érdeklődési köröd alapértelmezett beállítású. Törölheted vagy hozzá is tehetsz címkéket. <br>"
+      info4_html: "4. Adj a forrásodhoz kapcsolódó <b>címkéket</b>. Alapértelmezetten az érdeklődési körödnél megadott címkék jelennek meg. Törölheted vagy hozzá is tehetsz új címkéket. <br>"
       info5_html: "5. Válaszd ki a <b>nyelvet</b>, ha szükséges.<br>"
-      info6_html: "6. Válassz egy <b>kor</b> intervallumot. Erre az információra ajánlásoknál van szükség.<br>"
+      info6_html: "6. Válassz egy <b>kor</b> intervallumot. Erre az információra az ajánlásoknál van szükség.<br>"
       info7_html: "7. Ha élő videófelvételt akarsz beágyazni, kattints az <b>Élő</b> lehetőségre.<br>"
-      info8_html: "8. Végül kattints a<b> mentés </b> gombra a feltöltéshez."
-    how: "How to share a resource"
+      info8_html: "8. Végül kattints a <b>mentés</b> gombra a feltöltéshez."
+    how: "Hogy töltsünk fel forrásokat"
     info:
       title: "Cím"
       description: "Leírás"
       tags:
         title: "Témák"
         addMessage: "Címkék hozzáadása"
-        limitMessage: "elérted a határértéket"
-      age: "Kor"
-    recommended_age: "Ajánlott kor"
-    recommended_age_detail: "%{min}-tól %{max}-évig"
-    input: "Adjál hozzá leírást"
+        limitMessage: "Elérted a maximálisan hozzáadható mennyiséget."
+      age: "Korosztály"
+    recommended_age: "Ajánlott korosztály"
+    recommended_age_detail: "%{min}-%{max} évig"
+    input: "Adj hozzá leírást"
     new: "Forrás hozzáadása"
-    screencast: "VISH képernyő"
+    screencast: "ViSH képernyő"
     title_input: "A forrás neve"
   email:
     regards: "Szívélyes üdvözlettel,<br/>"
-    welcome: "Üdvözlünk és köszönjük hogy regisztráltál a Virtuális Tudományos Hubon.<br/>Szeretnénk javasolni neked  <a href=\"%{{profile}}\"> hogy a még jobb szolgáltatások elérése céljából hozd létre saját profilodat </a>.<br/>"
+    welcome: "Üdvözlünk és köszönjük, hogy regisztráltál a Virtuális Tudományos Hubon.<br/>Szeretnénk javasolni, hogy a még jobb szolgáltatások elérése céljából hozd létre a <a href=\"%{{profile}}\">saját profilodat</a>.<br/>"
   embed:
     confirm_delete: "Beágyazott tartalom törlése?"
     content: "Élő tartalom"
-    embed: "beágyazott tartalom"
+    embed: "Beágyazott tartalom"
     input: "Másold ide a beágyazni kívánt tartalmat"
     name: "beágyazott tartalom"
   evaluation:
-    teaching: "oktatási gyakorlati benyomások..."
+    teaching: "Oktatás gyakorlati vélemények..."
     contribute: "Részt kívánsz venni?"
     evaluation: "értékeld"
-    experience: "oktatási benyomások"
-    phrase0: "Értékeld az ennek a virtuális sétának a tartalmát"
+    experience: "oktatási vélemények"
+    phrase0: "Értékeld a virtuális séta tartalmát"
     phrase1: "Szerinted cselekvésre késztette a tanulókat ez a virtuális séta?"
     phrase2: "Hozzájárult ez a virtuális séta a tanulói munkához és a tanulmányi célok eléréséhez?"
-    phrase3: "Találtál bármilyen felhasználható interdiszciplináris elemet ebben a virtuális sétában? Hasznos volt ez?"
+    phrase3: "Találtál bármilyen felhasználható interdiszciplináris elemet ebben a virtuális sétában? Hasznos volt?"
     phrase4: "Használnád újra oktatásra ezt a virtuális sétát?"
     disagree: "nem értek egyet"
     agree: "egyetértek"
@@ -98,16 +100,16 @@ hu:
       share: "megoszt"
       scorm: "scorm"
     clone:
-      confirm: "Ez a virtuális séta át lesz másolva a te táradra"
+      confirm: "Ez a virtuális séta át lesz másolva a te fiókodba"
       not_found: "A virtulis séta nem található"
       ok: "Sikeresen átmásolva"
-      owner: "Már a tied a virtuális séta"
+      owner: "Már tied a virtuális séta"
     confirm_delete: "Törlöd a virtuális sétát?"
     confirm_delete_offline: "A virtuális séta törlésre kerül ebből a listából, ám még a szerveren elérhető. Biztos vagy benne?"
     contributors:
-      name: "Tartalommal együtt"
+      name: "Együttműködők"
     created: "létrehozva"
-    favorites: "Kedvencek"    
+    favorites: "Kedvenc"    
     how: "Hogy lehet virtuális sétát készíteni"
     invite:
       email:
@@ -115,16 +117,16 @@ hu:
         link: "e-mail"
         subject: "Nézd%20meg%20a%2020virtuális%20sétám%20http://vishub.org%20:%20%{title}"
     is_draft: "[DRAFT]"
-    my: "my"
+    my: "saját"
     name: "virtuális séta"
-    net: "háló"
-    network: "az én hálózati sétáim"
-    network2: "az én hálóm"
-    newmy_html: "Még nem hoztál létre saját virtuális sétát. Hozzáadhatsz egyet az add gomb megnyomásával vagy ha ide kattintasz."    
+    net: "kapcsolataim"
+    network: "a kapcsolataim virtuális sétái"
+    network2: "a kapcsolataim"
+    newmy_html: "Még nem hoztál létre saját virtuális sétát. Hozzáadhatsz egyet a hozzáadás gomb megnyomásával vagy ha ide kattintasz."    
     newnet_html: "Itt találod az általad követett felhasználók virtuális sétáit. Keress felhasználót <a href='/search?type=user'> itt</a>."
     newfav_html: "Még nincs kedvenc virtuális sétád. Jelöld ki bármelyiket a csillag ikonra kattintva.<img src='/assets/icons/star-off.png'>"
     one: "virtuális séta"
-    other: "virtuális séták"
+    other: "virtuális séta"
     others: "egyéb virtuális séták"
     session_start: "munkamenet indítása"
     suggestion:
@@ -133,18 +135,18 @@ hu:
       other: "virtuális séták"
     upcomming: "következő"
     unload_warning: "A virtuális séta nincs elmentve!"
-    top: "nekem"
+    top: "ajánlott"
   external: "külső"
   filter: "szűrő"
   follow:
     add_favorite: "Add meg a kedvencet"
     contacts: "kapcsolatok"
     favorites: "Kedvencek"
-    find: "keres"
+    find: "keresés"
     followers: "követők"
-    followings: "követés"
+    followings: "követett"
     is_favorite: "kedvenc"
-    views: "nézetek"
+    views: "megtekintés"
   frontpage:
     nanotechnology: "nanotechnológia"
     gridComputing: "grid számítástechnika"
@@ -166,8 +168,6 @@ hu:
     go: "Menj a linkhez"
   translate:
     change: "Nyelv módosítása"
-  mailboxer:
-    new_message_for: "Új üzenet"
   message:
     send: "Üzenet küldése"
     new: "Új üzenet"
@@ -215,13 +215,13 @@ hu:
     search_name: "státusz fissítése"
   profile:
     occupation: 
-      label: "Foglalkozás"
+      label: "Munkaterület"
       other: "Egyéb"
       scientist: "Kutató"
-      select: "Válaszd ki a foglalkozásodat"
+      select: "Válaszd ki a foglalkozásod"
       teacher: "Tanár"
     tags:
-      default: "VisHub, virtuális, séta"
+      default: "ViSHub, virtuális, séta"
       other: "Érdeklődési körök"
   project: "Global Excursion"      
   published: "Publikálva"
@@ -256,13 +256,13 @@ hu:
     network: "saját hálózati forrásaim"
     newmy_html: "Még nem töltöttél fel forrást. Hozzáadhatod az upload gomb megnyomásával, vagy ha ide kattintasz"    
     newnet_html: "Itt láthatod az általatt követett felhasználók feltöltött forrásait. Keress felhasználót <a href='/search?type=user'>itt</a>."
-    newfav_html: "Nincs még kedven forrásod. Kijelölheted a csillag ikonra kattintással <img src='/assets/icons/star-off.png'>"
-    my: "enyém"
-    net: "hálózat"
+    newfav_html: "Nincs még kedvenc forrásod? Kijelölheted a csillag ikonra kattintva <img src='/assets/icons/star-off.png'>"
+    my: "saját"
+    net: "kapcsolataim"
     title:
       one: "forrás"
       other: "források"
-    top: "nekem"
+    top: "ajánlott"
     upload: "feltöltés"
   search:
     110slides: "1-10 dia"
@@ -280,10 +280,10 @@ hu:
     last_day: "tegnap"
     last_month: "múlt hónapban"
     last_week: "múlt héten"
-    last_year: "múl évben"
+    last_year: "múlt évben"
     mostviewed: "legnézettebb"
     mostfav: "legkedveltebb"
-    mostslides: "most slides"
+    mostslides: "legtöbb dia"
     newest: "legújabb"
     link: "link"
     recent: "friss"
@@ -310,16 +310,16 @@ hu:
   today: "Ma"
   top10: "Top 10"
   url:
-    input: "Másold ide a linkedet"
+    input: "Másold ide a linket"
   user:
     one: "felhasználó"
     other: "felhasználók"
   username: "felhasználónév"
   vish:
-    about: "A VISH-ről"    
-    sentence1: "Hozz létre fiókot a VISH-sel"
-    sentence2: "A VISH egy közösségi tudományos platform"
-    team: "A VISH csapata"    
+    about: "A ViSH-ről"    
+    sentence1: "Regisztrálj egy fiókot a ViSH-en,"
+    sentence2: "a közösségi tudományos platformon!"
+    team: "A ViSH csapata"    
   views:
     pagination:
       next: "Â»"
@@ -327,4 +327,3 @@ hu:
       truncate: "..."
   view_all: "mindent mutat"
   yesterday: "Tegnap"
-
