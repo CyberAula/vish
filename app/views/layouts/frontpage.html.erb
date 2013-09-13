@@ -54,17 +54,17 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
       </script>
-      <div class="wrapper container-fluid">
-        <%= render :partial => "layouts/header" %>
-        <%= flashy %>
-        <div class="push"></div>
-      </div>  
+   
+      <%= render :partial => "layouts/header" %>
+      <%= flashy %>
+
+    
       <div class="container_carousel">
         <%= render :partial => "frontpage/explanation" %>
       </div>
       <div class="wrapper container-fluid">
         <%= yield %>
-        <div class="push"></div>
+  
       </div>  
     </div>
     <div id="footer">
