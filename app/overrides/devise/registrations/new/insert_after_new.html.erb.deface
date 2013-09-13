@@ -67,8 +67,8 @@
     });
 
     //Fill tag_list hidden input before send
-     var button = $("#submit_new_user_button");
-     $(".accept-btn").click(function(event) {
+     var button = $("input[type='submit'][class='btn pull-right']");
+      $(button).click(function(event) {
        var tagList = $(".tagList");
        $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
        return true;
