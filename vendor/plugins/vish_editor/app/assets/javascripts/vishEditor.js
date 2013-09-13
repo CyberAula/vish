@@ -18901,17 +18901,17 @@ VISH.Editor.Image.Thumbnails = function(V, $, undefined) {
   var beforeLoadTab = function() {
   };
   var onLoadTab = function() {
-    if(!thumbnailsRequested) {
-      thumbnailsRequested = true;
-      _requestInitialData()
-    }else {
-      if(dataDrawed === false) {
-        _prepareRequest();
-        setTimeout(function() {
+    setTimeout(function() {
+      if(!thumbnailsRequested) {
+        thumbnailsRequested = true;
+        _requestInitialData()
+      }else {
+        if(dataDrawed === false) {
+          _prepareRequest();
           _loadData(thumbnailsData)
-        }, 1E3)
+        }
       }
-    }
+    }, 1E3)
   };
   var _requestInitialData = function() {
     _prepareRequest();
