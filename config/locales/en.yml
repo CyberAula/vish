@@ -432,6 +432,7 @@ en:
     sentence2: "ViSH is a social science platform"
     team: "The ViSH Team" 
     starterguide: "Starter Guide"   
+    register_with: "Register with your "
   views:
     pagination:
       next: "»"
