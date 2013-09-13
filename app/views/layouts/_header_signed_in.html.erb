@@ -95,43 +95,13 @@
           <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => false} %>
         </ul>
 
-
+        
       </div>
     </div>
   </header>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <%= content_for :javascript do %>              
+      $('.tooltip-header').tooltip({ placement: 'bottom'});
+  <% end %>
