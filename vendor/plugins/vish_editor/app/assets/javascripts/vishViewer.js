@@ -10693,11 +10693,18 @@ VISH.Utils = function(V, undefined) {
     return true
   };
   var getSrcFromCSS = function(css) {
-    if(css.indexOf("url") === 0) {
-      return css.substring(4, css.length - 1)
-    }else {
-      return css
+    try {
+      if(typeof css == "string" && css.indexOf("url") === 0 && css.length > 3) {
+        var quote = css[4];
+        if(quote == '"' || quote == "'") {
+          return css.substring(5, css.length - 2)
+        }else {
+          return css.substring(4, css.length - 1)
+        }
+      }
+    }catch(e) {
     }
+    return css
   };
   var getZoomInStyle = function(zoom) {
     var style = "";
