@@ -74,29 +74,32 @@
   ul.nav-tabs 
     border-bottom: 1px solid $grayLight
     @include tab_title
-    li       
+    li   
+      &:hover,
+      &:focus
+        background-color: none !important
+        border: none
+        border-bottom: 3px solid $secondColor      
       a             
-        cursor: default
+        border-left: none
+        border-right: none
+        border-top: none
         padding: 6px 10px 6px 10px
         margin-top: 5px
-        &:hover,
-        &:focus
-          background-color: none !important
-          border: none
-          border-bottom: 3px solid $secondColor  
       
       h1
         line-height: 38px
         margin: 1px 10px 0 0 
         font-size: 33.5px
     li.active
-      &:hover
-        border-bottom: none
+      background-color: none !important
+      border: none
+      border-bottom: 3px solid $firstColor
       a
-        border-bottom: 3px solid $firstColor
         border-left: none
         border-right: none
         border-top: none
+        margin-top: 5px
         padding: 6px 10px 6px 10px
       
 
