@@ -2,7 +2,6 @@
 
 <div id="editor_wrapper">
   <iframe class="vishEditorIframe" id="presentation_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
-
 </div>
 
 <% if user_signed_in? and can?(:destroy, @excursion) %>
@@ -12,7 +11,7 @@
 <%=javascript_include_tag "VISH.IframeAPI" %>
 
 <% content_for :javascript do %>
-    function setFavicon() {
+    function setFavicon(){
       var link = $('link[type="image/vnd.microsoft.icon"]').remove().attr("href");
       $('<link href="'+ link +'" rel="shortcut icon" type="image/x-icon" />').appendTo('head');
     }
@@ -20,7 +19,7 @@
     location.href = "#presentation_iframe";
     setFavicon();
 
-    $(window).bind("beforeunload", function(e) {
+    $(window).bind("beforeunload", function(e){
       if(false) {
         return I18n.t("excursion.unload_warning");
       }
@@ -31,7 +30,7 @@
     };
     function onConnect(origin){
       //console.log("Communication stablished with " + origin);
-    } 
+    }
 <%end%>
 
 
