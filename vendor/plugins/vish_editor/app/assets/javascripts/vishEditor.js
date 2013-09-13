@@ -12291,11 +12291,18 @@ VISH.Utils = function(V, undefined) {
     return true
   };
   var getSrcFromCSS = function(css) {
-    if(css.indexOf("url") === 0) {
-      return css.substring(4, css.length - 1)
-    }else {
-      return css
+    try {
+      if(typeof css == "string" && css.indexOf("url") === 0 && css.length > 3) {
+        var quote = css[4];
+        if(quote == '"' || quote == "'") {
+          return css.substring(5, css.length - 2)
+        }else {
+          return css.substring(4, css.length - 1)
+        }
+      }
+    }catch(e) {
     }
+    return css
   };
   var getZoomInStyle = function(zoom) {
     var style = "";
@@ -15166,7 +15173,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
   };
   var draw = function(slidesetJSON, scaffoldDOM) {
     if(slidesetJSON) {
-      if(slidesetJSON.background) {
+      if(typeof slidesetJSON.background == "string" && slidesetJSON.background != "none") {
         onBackgroundSelected(V.Utils.getSrcFromCSS(slidesetJSON.background))
       }
       if(slidesetJSON.pois) {
@@ -15321,7 +15328,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     var fc = V.Slides.getCurrentSlide();
     if($(fc).attr("type") === V.Constant.FLASHCARD) {
       $(fc).css("background-image", "url(" + contentToAdd + ")");
-      $(fc).attr("avatar", "url(" + contentToAdd + ")");
+      $(fc).attr("avatar", "url('" + contentToAdd + "')");
       $(fc).find("div.change_bg_button").hide();
       V.Editor.Slideset.updateThumbnails(fc)
     }
@@ -15603,17 +15610,15 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "author":"Aldo", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "slides":[{"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?What is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?What is the oldest ancient weapon?What is the oldest ancient weapon?</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', 
-  "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"Aldo", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", 
-  "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?What is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', 
-  "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', 
-  "answer":false}], "extras":{"multipleAnswer":false}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", 
-  "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', "answer":true}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"Aldo", "type":"quiz_simple", "slides":[{"id":"article1", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_zone1", 
-  "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', 
-  "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', 
-  "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}]};
+  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Hipatia, the tiny little cat", "description":"Hipatia, rescued at 3 days age, grows rapidly and adorably.", "author":"Enrique", "avatar":"/pictures/959.jpg", "tags":["hipatia", "cat"], "theme":"theme9", "age_range":"4 - 20", "subject":["Unspecified"], "language":"independent", "educational_objectives":"", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", 
+  "body":"/pictures/962.jpg", "style":"position: relative; width:69.53781512605042%; height:115.5015197568389%; top:0%; left:14.495798319327731%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\tHipatia, 5 days old.</p>\n<p style="text-align: center;">\n\tCats are born with their eyes closed. Kittens this age almost can&#39;t hear anything, and they just trust on their smell to find their mom&#39;s breast.</p>\n'}, {"id":"article1_zone3", "areaid":"subheader"}]}, 
+  {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t1_object" id="resizableunicID3" src="http://www.youtube.com/embed/IceSE4aipN0?wmode=opaque" frameborder="0"></iframe>', "style":"position: relative; width:95.3781512605042%; height:115.5015197568389%; top:0%; left:0%;"}, {"id":"article4_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;</span></span>Once they reach about 10 days old, kittens open their eyes, but they almost can&#39;t see anything until they are two or three weeks old. They start&nbsp; using their ears and exploring their environment at that time.</p>\n'}, 
+  {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:12px;">Hipatia kitten, 15 days old</span></span></span></p>\n'}]}, {"id":"article2", "type":"flashcard", "background":'url("http://vishub-test.dit.upm.es/excursions/341/none")', "pois":[], "slides":[{"id":"article2_article2", "type":"standard", "template":"t3", "elements":[{"id":"article2_article2_zone1", 
+  "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;1 month old kitten</span></span></p>\n'}, {"id":"article2_article2_zone2", "type":"image", "areaid":"left", "body":"http://lovemeow.com/wp-content/gallery/oct-cat-photos/reddie.jpg", "style":"position: relative; width:87.28571428571429%; height:141.28878281622912%; top:0%; left:0%;"}]}, {"id":"article2_article3", "type":"standard", "template":"t3", 
+  "elements":[{"id":"article2_article3_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;2 months old kitten</span></span></p>\n'}, {"id":"article2_article3_zone2", "type":"image", "areaid":"left", "body":"http://www.dailykitten.com/wp-content/uploads/2006/11/1161700277Spankys-First-Day.jpg", "style":"position: relative; width:78.42857142857143%; height:141.28878281622912%; top:0%; left:0%;"}]}]}, 
+  {"id":"article5", "type":"standard", "template":"t1", "elements":[{"id":"article5_zone1", "type":"image", "areaid":"left", "body":"/pictures/963.jpg", "style":"position: relative; width:76.68067226890756%; height:100.6079027355623%; top:0.303951367781155%; left:11.134453781512605%;"}, {"id":"article5_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;Cats are considered adult once they reach 1 year old.</span></span></p>\n'}, 
+  {"id":"article5_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:11px;">1 year old cat</span></span></span></p>\n'}]}, {"id":"article3", "type":"flashcard", "background":'url("http://farm8.staticflickr.com/7352/9731186840_c1cf4abbf6.jpg")', "pois":[{"x":"6.625", "y":"54.54444376627604", "slide_id":"article3_article1"}], "slides":[{"id":"article3_article1", "type":"standard", 
+  "template":"t2", "elements":[{"id":"article3_article1_zone1", "type":"image", "areaid":"left", "body":"http://farm4.staticflickr.com/3758/9735663058_a9fa192d2d.jpg", "style":"position: relative; width:35%; height:75.05070993914808%; top:0.2028397565922921%; left:25.857142857142858%;"}]}]}], "id":"5702"};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -17660,9 +17665,7 @@ VISH.Editor.API = function(V, $, undefined) {
     if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
       if(typeof successCallback == "function") {
         setTimeout(function() {
-          var iframe = $("#hiddenIframeForAjaxDownloads");
-          $(iframe).attr("src", "http://vishub.org/excursions/tmpJson.json?fileId=1");
-          successCallback()
+          failCallback()
         }, 2E3)
       }
       return
@@ -18122,6 +18125,7 @@ VISH.Editor.Events = function(V, $, undefined) {
         }
       });
       $(document).on("keyup", "#presentation_details_input_title", V.Editor.Settings.onKeyUpOnTitle);
+      $(document).on("keyup", "#presentation_details_preview_addtitle_input", V.Editor.Settings.onKeyUpOnPreviewTitle);
       $(document).on("click", "#pedagogical_clasification_button", V.Editor.Settings.onPedagogicalButtonClicked);
       $(document).on("click", "#done_in_pedagogical", V.Editor.Settings.onDonePedagogicalButtonClicked);
       $(document).on("click", "#fill_details_later_button", function(event) {
@@ -18168,9 +18172,6 @@ VISH.Editor.Events = function(V, $, undefined) {
       }});
       $("a#addQuizFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":385, "height":340, "padding":0, "onStart":function(data) {
         V.Editor.Utils.loadTab("tab_quizes")
-      }});
-      $("a#addJSONFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":300, "padding":0, "onComplete":function(data) {
-        V.Editor.Utils.loadTab("tab_json_file")
       }});
       $("#hidden_button_to_launch_theme_fancybox").fancybox({"autoDimensions":false, "width":600, "scrolling":"no", "height":400, "padding":0});
       $("#fancyLoad").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":true, "width":"100%", "height":"100%", "padding":0, "margin":0, "overlayOpacity":0, "overlayColor":"#fff", "showCloseButton":false, "onComplete":function(data) {
@@ -18225,6 +18226,9 @@ VISH.Editor.Events = function(V, $, undefined) {
     });
     $(document).on("click", "#tab_pdfex_help", function() {
       V.Tour.startTourWithId("help_pdfex_help", "bottom")
+    });
+    $(document).on("click", "#tab_json_file_help", function() {
+      V.Tour.startTourWithId("help_iJSON_help", "bottom")
     });
     $(document).on("click", "#tab_presentations_lre_help", function() {
       V.Tour.startTourWithId("tab_presentations_lre_help", "bottom")
@@ -20770,8 +20774,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
       _addThumbnail(presentation.avatar)
     }
     if(presentation.title) {
-      var previewTitleDOM = $("#presentation_details_preview_addtitle").find("span");
-      $(previewTitleDOM).html(presentation.title);
+      $("#presentation_details_preview_addtitle_input").val(presentation.title);
       $("#presentation_details_input_title").val(presentation.title)
     }
     var author;
@@ -20895,13 +20898,24 @@ VISH.Editor.Settings = function(V, $, undefined) {
     presentationThumbnail = thumbnail_url
   };
   var onKeyUpOnTitle = function(event) {
-    var input = $("#presentation_details_input_title");
-    var span = $("#presentation_details_preview_addtitle").find("span");
-    var title = $("#presentation_details_input_title").val();
+    var inputData = $("#presentation_details_input_title");
+    var inputPreview = $("#presentation_details_preview_addtitle_input");
+    var title = $(inputData).val();
     if(title.trim() != "") {
-      $(span).html($("#presentation_details_input_title").val())
+      $(inputPreview).val(title)
     }else {
-      $(span).html("add a title")
+      $(inputPreview).val("")
+    }
+    _checkIfEnableContinueButton()
+  };
+  var onKeyUpOnPreviewTitle = function(event) {
+    var inputData = $("#presentation_details_input_title");
+    var inputPreview = $("#presentation_details_preview_addtitle_input");
+    var title = $(inputPreview).val();
+    if(title.trim() != "") {
+      $(inputData).val(title)
+    }else {
+      $(inputData).val("")
     }
     _checkIfEnableContinueButton()
   };
@@ -20976,8 +20990,6 @@ VISH.Editor.Settings = function(V, $, undefined) {
     }
     draftPresentation.subject = $("#subject_tag").val();
     draftPresentation.educational_objectives = $("#educational_objectives_textarea").val();
-    V.Debugging.log("draftPresentation");
-    V.Debugging.log(draftPresentation);
     V.Editor.setPresentation(draftPresentation);
     $.fancybox.close()
   };
@@ -21021,7 +21033,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
     $("#pedagogical_options_fields").slideUp();
     $("#presentation_details_fields").slideDown()
   };
-  return{init:init, displaySettings:displaySettings, loadPresentationSettings:loadPresentationSettings, onChangeThumbnailClicked:onChangeThumbnailClicked, onThumbnailSelected:onThumbnailSelected, selectTheme:selectTheme, onKeyUpOnTitle:onKeyUpOnTitle, onTLTchange:onTLTchange, checkMandatoryFields:checkMandatoryFields, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked}
+  return{init:init, displaySettings:displaySettings, loadPresentationSettings:loadPresentationSettings, onChangeThumbnailClicked:onChangeThumbnailClicked, onThumbnailSelected:onThumbnailSelected, selectTheme:selectTheme, onKeyUpOnTitle:onKeyUpOnTitle, onKeyUpOnPreviewTitle:onKeyUpOnPreviewTitle, onTLTchange:onTLTchange, checkMandatoryFields:checkMandatoryFields, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked}
 }(VISH, jQuery);
 VISH.Editor.Slides = function(V, $, undefined) {
   var showSlides = function() {
@@ -21382,7 +21394,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
       var srcURL = getThumbnailURL(s);
       if(srcURL) {
         slideElements += 1;
-        imagesArray.push($("<img id='slideThumbnail" + slideElements + "' class='image_barbutton' slideNumber='" + slideElements + "' action='goToSlide' src='" + srcURL + "' />"));
+        imagesArray.push($("<img id='slideThumbnail" + slideElements + "' class='image_barbutton' slideNumber='" + slideElements + "' action='goToSlide' src='" + srcURL + "'/>"));
         imagesArrayTitles.push(slideElements)
       }
     });
@@ -21668,7 +21680,8 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.Utils.loadTab("tab_slides")
   };
   var insertJSON = function() {
-    $("#addJSONFancybox").trigger("click")
+    $("#addSlideFancybox").trigger("click");
+    V.Editor.Utils.loadTab("tab_json_file")
   };
   var insertPDFex = function() {
     $("#addSlideFancybox").trigger("click");
@@ -21679,7 +21692,20 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.Presentation.File.exportToJSON(function() {
       V.Utils.Loader.stopLoading()
     }, function() {
-      V.Utils.Loader.stopLoading()
+      setTimeout(function() {
+        V.Utils.Loader.onCloseLoading();
+        var options = {};
+        options.width = 600;
+        options.height = 185;
+        options.text = "An error has ocurred. Is not possible to export the presentation to JSON.";
+        var button1 = {};
+        button1.text = "Ok";
+        button1.callback = function() {
+          $.fancybox.close()
+        };
+        options.buttons = [button1];
+        V.Utils.showDialog(options)
+      }, 500)
     })
   };
   var displaySettings = function() {
