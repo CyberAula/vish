@@ -20,9 +20,9 @@
 <!--Title -->
     <div class="name">
         <%if resource.class==Link%>
-          <%= link_to truncate(resource.title, :length => 15), completeURL(resource.url) %>
+          <%= link_to resource.title, completeURL(resource.url) %>
         <%else%>
-          <%= link_to truncate(resource.title, :length => 15), resource %>
+          <%= link_to resource.title, resource %>
         <%end%>
     </div>
 <!--Autor -->
