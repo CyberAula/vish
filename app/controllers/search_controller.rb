@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
-  RESULTS_SEARCH_PER_PAGE=16
+  RESULTS_SEARCH_PER_PAGE=24
 
   def index
     @search_result =
