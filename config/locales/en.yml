@@ -181,6 +181,7 @@ en:
       share: "share"
       scorm: "scorm"
     all: "all"
+    description: "description"
     download_scorm: "Download this excursion as scorm and integrate it in any LMS"
     clone:
       confirm: "This will clone this excursion to your own repository"

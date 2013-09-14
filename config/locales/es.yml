@@ -184,6 +184,7 @@ es:
       show_fewer: "Reducir"
       scorm: "scorm"
     all: "todos"
+    description: "descripción"
     download_scorm: "Descarga el código HTML e integra el recurso en cualquier LMS"
     clone:
       confirm: "Esto clonará la excursión en tu propio repositorio"
