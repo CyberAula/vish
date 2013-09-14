@@ -202,19 +202,19 @@
       .new_comment
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         .avatar
-          @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          width: 60px
           display: block
           float: left
           img
             margin-left: 10px
             @include border-radius ($baseBorderRadius)
         form#new_comment
-          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          width: 65%
           float: left
           display: block
           textarea
             margin-top: 3px
-            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            width: 65%
             float: left
             display: block
             margin-left: 20px

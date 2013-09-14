@@ -62,7 +62,7 @@
             padding-left: 20px
             font-family: $secondFontFamily
             color: $grayDark
-            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            width: 80%
             float: left
             display: inline-block
           .tab-content
@@ -201,11 +201,11 @@
         float: right
     .activity-box
       background-color: $white
-      border-radius: $baseBorderRadius
-      @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
-      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      border-radius-bottom: $baseBorderRadius
+    
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       float: left
-      margin-bottom: 80px
+      margin-bottom: 20px
       .activity
         
         .tabbable

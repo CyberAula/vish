@@ -35,6 +35,7 @@
         float: left
         .tabbable
           @include header-tabbable
+          @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
           @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
           clear: none
           margin-top: 0px
@@ -47,7 +48,7 @@
           padding-left: 20px
           font-family: $secondFontFamily
           color: $grayDark
-          @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          width: 80%
           
           float: left
           display: inline-block
@@ -215,7 +216,7 @@
             margin-left: 20px
             display: block
             float: left
-            @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            width: 180px
             a
               display: block
               float: left
@@ -249,7 +250,7 @@
           overflow: auto
           clear: both
       #showMore
-        @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        width: 22%
         @include center-block()
         text-align: center
         margin-top: 0px
@@ -258,7 +259,7 @@
         border-bottom: 1px solid $grayLight
         @include border-radius($baseBorderRadius)
 
-        margin-top: 5px
+        margin-top: 15px
         margin-bottom: 5px
         a
           padding-top: 3px
