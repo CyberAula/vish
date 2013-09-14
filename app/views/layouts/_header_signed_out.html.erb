@@ -20,8 +20,20 @@
 
 
         <!--browse-->
-        <%= render partial: 'layouts/browse_header' %>
-        
+        <div class="hidden-phone">
+          <%= render partial: 'layouts/browse_header' %>
+        </div>
+
+        <li class="search-ui ">
+          <%= render partial: 'layouts/uisearch_header' %>
+        </li>
+        <li class="sign_up">
+           <!--sign_up-->
+          <a href="<%=new_user_registration_path%>"class="signin">
+            <%=t("sign_up")%>
+          </a>
+        </li>
+
         <!--login-->
         <li class="login dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -49,13 +61,6 @@
             });
             <% end %>
           </ul>
-        </li>
-        <!--sign_up-->
-        <a href="<%=new_user_registration_path%>"class="signin">
-          <%=t("sign_up")%>
-        </a>
-        <li class="search-ui ">
-          <%= render partial: 'layouts/uisearch_header' %>
         </li>
 
       </div>
