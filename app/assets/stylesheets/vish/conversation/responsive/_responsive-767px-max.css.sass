@@ -19,19 +19,16 @@
     margin-left: 0px
     float: none
     #toolbar
-      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       @include border-radius(5px)
+      width: 290px  
       display: block !important
       .toolbar_menu
-        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)  
         margin-left: 0px
       ul
-        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         height: 70px
-        width: 94%
         margin: 0 0 0 6%
         li
-          @include grid-core-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          @include grid-core-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: inline
           margin-bottom: 0px
           float: left
