@@ -11,7 +11,7 @@
     .picture,
     .embed
       .box-show
-        width: 750px
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         margin-left: auto
         margin-right: auto
@@ -21,7 +21,7 @@
           min-width: 750px
 
       .description-activity
-        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: left
 
