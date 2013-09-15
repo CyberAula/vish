@@ -60,3 +60,24 @@
         float: right
   #showMore
     margin-top: 5px
+
+@media (min-width: 819px) and (max-width: 979px)
+  #show_items 
+    .description-activity
+      width: 100%
+
+
+@media (min-width: 980px) and (max-width: 1347px)
+  #show_items 
+    .box-show
+      .container-visor
+        @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .description-activity
+      .activity-box
+        width: 100%
+        display: block
+ 
+   
+
+
+
