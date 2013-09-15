@@ -1,6 +1,7 @@
 <ul class="categories">
   <% if profile_subject_is_current? %>
     <%= render partial: 'categories/category-add' %>
+    <%= render partial: 'categories/category-favorit' %>
   <% end %>
   <% subject_categories(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |category| %>
       <%= render :partial => 'categories/category', :locals => { :category => category } %>
