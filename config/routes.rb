@@ -14,6 +14,8 @@ Vish::Application.routes.draw do
   match 'legal_notice' => 'legal_notice#index'
   #get 'excursions' => 'excursions#index', :as => :home
   
+  match 'users/:user_id/resources' => 'users#resources'
+
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
   match 'excursions/recommended' => 'excursions#recommended'

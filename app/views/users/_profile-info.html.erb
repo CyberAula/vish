@@ -1,3 +1,18 @@
+<%= content_for :javascript do %>
+   /*
+   $.ajax({
+          type : "GET",
+          url : "<%= user_url(profile_subject) %>"+"/resources",
+          success : function(html) {      
+            $("#resources").append(html);
+          },
+          error: function(){
+            console.log("error");
+         }
+        });
+        */
+<%end%>
+
 <section class="info-profile">
   <div class="tabbable">
     <ul class="nav nav-tabs">
