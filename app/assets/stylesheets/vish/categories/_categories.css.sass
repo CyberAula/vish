@@ -13,6 +13,10 @@
     
     h2
       font-size: 1.8em
+    &:hover
+      a
+        i.icon-trash
+          @include opacity(100)
 
     .icon-box
       @include border-radius($baseBorderRadius)
@@ -30,3 +34,13 @@
         font-size: 92px
         display: block
         text-align: center
+    a
+      i.icon-trash
+        @include opacity(0)
+        float: right
+        margin-right: 63px
+        font-size: 28px
+        color: $grayLight
+        &:hover
+          color: $gray
+          text-decoration: none
