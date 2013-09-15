@@ -112,9 +112,10 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
         <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
       </div>     
     </div>
-  </div>
-  <!--activity-->
-  <div class="activity-box">
-    <%= render :partial => 'excursions/evaluate-activity'%>
+    
+    <!--activity-->
+    <div class="activity-box">
+      <%= render :partial => 'excursions/evaluate-activity'%>
+    </div>
   </div>
 </section>

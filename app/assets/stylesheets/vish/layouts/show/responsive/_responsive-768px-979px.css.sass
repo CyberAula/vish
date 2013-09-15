@@ -3,6 +3,7 @@
 // --------------------------------------------------
 
 @media (min-width: 768px) and (max-width: 818px)
+
   #show_items
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
@@ -13,7 +14,7 @@
       float: none 
       clear: both
       .container-visor
-        min-width: 750px
+        width: 100% !important
 
     .description-activity
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
