@@ -18,7 +18,7 @@
   </div>
   <div class="recomended-items">
     <div class="recomended_documents">
-      <ul class="small-box">
+      <ul class="small-box clearfix">
         <% ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(15).map{|ao| ao.object}.each do |resource| %>
           <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
         <% end %>

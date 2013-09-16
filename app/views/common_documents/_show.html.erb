@@ -18,7 +18,7 @@
   </div>
   <div class="recomended-items  hidden-tablet hidden-phone">
     <div class="recomended_documents">
-      <ul class="small-box">
+      <ul class="small-box clearfix">
         <% popular_resources(6).each do |resource| %>
           <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
         <% end %>

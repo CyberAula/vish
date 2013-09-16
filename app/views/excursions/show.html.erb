@@ -97,7 +97,7 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
   <!--recomended-->
   <div class="recomended-items hidden-tablet hidden-phone">
     <div class="recomended_excursion">
-      <ul class="small-box">
+      <ul class="small-box clearfix">
         <% popular_excursions(6).each do |excursion| %>
           <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
         <% end %>
