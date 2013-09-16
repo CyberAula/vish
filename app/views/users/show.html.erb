@@ -8,7 +8,7 @@
         <% @profile = profile_or_current_subject.profile %>
         <% if can?(:update, @profile) %>
             <div class="edit_icon">
-              <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#')%>
+              <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#', :id => "edit_icon_link") %> 
             </div>
         <% end %>
         <!-- follow -->
@@ -66,7 +66,7 @@
           <!-- Occupation -->
           <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
             <h3 class="select">
-              <%= link_to t('profile.occupation.select'), '#' %>
+              <%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %> 
             </h3>
             <% elsif profile_subject.occupation_sym != :select %>
             <h3 class="name-roll">
@@ -110,6 +110,10 @@ $(function() {
   SocialStream.Profile.show({
   section: "<%= params[:section ] %>"
   });
+});
+
+$("#select_occupation_link").click(function(){
+  $("#edit_icon_link").click();
 });
 
 <% end %>
