@@ -14,7 +14,11 @@
 
       </div>
   </div>
-
+  <%if resource.class != Link && resource.type =="Picture"%>
+    <script>
+      $("#document-<%=resource.id%>").backstretch("<%=resource.file%>?style=500");  
+    </script>
+  <%end%>
 <!--INFO resource-->
   <div class="info">
 <!--Title -->
