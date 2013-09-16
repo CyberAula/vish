@@ -11,6 +11,9 @@
          }
         });
         */
+  $("#resources_tab").click(function(){
+    re_apply_backstrech();
+  });
 <%end%>
 
 <section class="info-profile">
@@ -19,7 +22,7 @@
       
       <li class="active"><a href="#tab1" data-toggle="tab"><%=t('excursion.other')%></a></li>
       <!--<li><a href="#tab2" data-toggle="tab">events</a></li>-->
-      <li><a href="#tab3" data-toggle="tab"><%=t('resource.other')%></a></li>
+      <li><a id="resources_tab" href="#tab3" data-toggle="tab"><%=t('resource.other')%></a></li>
       <li><a href="#tab4" data-toggle="tab"><%=t('categories.other')%></a></li>
       <li class="follow-tab"><a href="#tab5" data-toggle="tab"><span><%= profile_subject.followers.count.to_s %></span><%= t('follow.followers') %></a></li>
       <li class="follow-tab"><a href="#tab6" data-toggle="tab"><span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span><%= t('follow.followings') %></a></li>

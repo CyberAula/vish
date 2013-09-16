@@ -12,7 +12,7 @@ DocumentsHelper.module_eval do
     end
     if icon_name == "picture"
       #TAPI XXX HOW CAN THIS BE DONE IN A BETTER WAY?. What are the possible styles?
-      "<img class='vish_picture_thumbnail' src='#{document.file}?style=500'></img>".html_safe
+      "<div class='img-box' id='document-#{document.id}'></div><i class=\"icon-#{ icon_name }\"></i>".html_safe
     else
       "<i class=\"icon-#{ icon_name }\"></i>".html_safe
     end
