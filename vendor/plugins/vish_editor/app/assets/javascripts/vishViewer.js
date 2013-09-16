@@ -10982,6 +10982,17 @@ VISH.Utils.Loader = function(V, undefined) {
         }
       });
       $(image).error(function(response) {
+        if(options && options.defaultOnError) {
+          var defaultSrc = $(image).attr("defaultsrc");
+          if(typeof defaultSrc == "string") {
+            $(image).removeAttr("defaultsrc");
+            $(image).attr("src", defaultSrc);
+            if(typeof options.onImageErrorCallback == "function") {
+              options.onImageErrorCallback(image)
+            }
+            return
+          }
+        }
         imagesLoaded = imagesLoaded + 1;
         validImagesArray.splice(validImagesArray.indexOf(image), 1);
         if(imagesLoaded == imagesLength) {

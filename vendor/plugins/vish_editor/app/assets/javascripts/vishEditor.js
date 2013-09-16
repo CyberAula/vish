@@ -15324,8 +15324,10 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
       return[]
     }
   };
-  var onBackgroundSelected = function(contentToAdd) {
-    var fc = V.Slides.getCurrentSlide();
+  var onBackgroundSelected = function(contentToAdd, fc) {
+    if(!fc) {
+      fc = V.Slides.getCurrentSlide()
+    }
     if($(fc).attr("type") === V.Constant.FLASHCARD) {
       $(fc).css("background-image", "url(" + contentToAdd + ")");
       $(fc).attr("avatar", "url('" + contentToAdd + "')");
@@ -15339,14 +15341,35 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     if(avatar) {
       return V.Utils.getSrcFromCSS(avatar)
     }else {
-      return V.ImagesPath + "templatesthumbs/flashcard_template.png"
+      return getDefaultThumbnailURL()
     }
+  };
+  var getDefaultThumbnailURL = function() {
+    return V.ImagesPath + "templatesthumbs/flashcard_template.png"
+  };
+  var onThumbnailLoadFail = function(fc) {
+    var thumbnailURL = getDefaultThumbnailURL();
+    $(fc).css("background-image", "none");
+    $(fc).attr("dirtyavatar", $(fc).attr("avatar"));
+    $(fc).attr("avatar", "url('" + thumbnailURL + "')");
+    $(fc).find("div.change_bg_button").show();
+    if(V.Slides.getCurrentSlide() == fc) {
+      $("#subslide_selected > img").attr("src", thumbnailURL)
+    }
+    var slideThumbnail = V.Editor.Thumbnails.getThumbnailForSlide(fc);
+    $(slideThumbnail).attr("src", thumbnailURL)
   };
   var getSlideHeader = function(fc) {
     var slide = {};
     slide.id = $(fc).attr("id");
     slide.type = V.Constant.FLASHCARD;
-    slide.background = $(fc).css("background-image");
+    var currentBackground = $(fc).css("background-image");
+    var dirtyAvatar = $(fc).attr("dirtyavatar");
+    if(currentBackground == "none" && dirtyAvatar) {
+      slide.background = dirtyAvatar
+    }else {
+      slide.background = currentBackground
+    }
     if(V.Slides.getCurrentSlide() === fc) {
       _savePoisToDom(fc)
     }
@@ -15358,7 +15381,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
   };
   var postCopyActions = function(fcJSON, fcDOM) {
   };
-  return{init:init, getDummy:getDummy, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, loadSlideset:loadSlideset, unloadSlideset:unloadSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, getSlideHeader:getSlideHeader, onBackgroundSelected:onBackgroundSelected, getThumbnailURL:getThumbnailURL, preCopyActions:preCopyActions, postCopyActions:postCopyActions}
+  return{init:init, getDummy:getDummy, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, loadSlideset:loadSlideset, unloadSlideset:unloadSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, getSlideHeader:getSlideHeader, onBackgroundSelected:onBackgroundSelected, getThumbnailURL:getThumbnailURL, getDefaultThumbnailURL:getDefaultThumbnailURL, onThumbnailLoadFail:onThumbnailLoadFail, preCopyActions:preCopyActions, postCopyActions:postCopyActions}
 }(VISH, jQuery);
 VISH.Editor.Slideset.Repository = function(V, $, undefined) {
   var containerDivId = "tab_smartcards_repo_content";
@@ -15611,14 +15634,14 @@ VISH.Samples = function(V, undefined) {
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
   var test = {"VEVersion":"0.7", "type":"presentation", "title":"Hipatia, the tiny little cat", "description":"Hipatia, rescued at 3 days age, grows rapidly and adorably.", "author":"Enrique", "avatar":"/pictures/959.jpg", "tags":["hipatia", "cat"], "theme":"theme9", "age_range":"4 - 20", "subject":["Unspecified"], "language":"independent", "educational_objectives":"", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", 
-  "body":"/pictures/962.jpg", "style":"position: relative; width:69.53781512605042%; height:115.5015197568389%; top:0%; left:14.495798319327731%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\tHipatia, 5 days old.</p>\n<p style="text-align: center;">\n\tCats are born with their eyes closed. Kittens this age almost can&#39;t hear anything, and they just trust on their smell to find their mom&#39;s breast.</p>\n'}, {"id":"article1_zone3", "areaid":"subheader"}]}, 
-  {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t1_object" id="resizableunicID3" src="http://www.youtube.com/embed/IceSE4aipN0?wmode=opaque" frameborder="0"></iframe>', "style":"position: relative; width:95.3781512605042%; height:115.5015197568389%; top:0%; left:0%;"}, {"id":"article4_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;</span></span>Once they reach about 10 days old, kittens open their eyes, but they almost can&#39;t see anything until they are two or three weeks old. They start&nbsp; using their ears and exploring their environment at that time.</p>\n'}, 
-  {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:12px;">Hipatia kitten, 15 days old</span></span></span></p>\n'}]}, {"id":"article2", "type":"flashcard", "background":'url("http://vishub-test.dit.upm.es/excursions/341/none")', "pois":[], "slides":[{"id":"article2_article2", "type":"standard", "template":"t3", "elements":[{"id":"article2_article2_zone1", 
-  "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;1 month old kitten</span></span></p>\n'}, {"id":"article2_article2_zone2", "type":"image", "areaid":"left", "body":"http://lovemeow.com/wp-content/gallery/oct-cat-photos/reddie.jpg", "style":"position: relative; width:87.28571428571429%; height:141.28878281622912%; top:0%; left:0%;"}]}, {"id":"article2_article3", "type":"standard", "template":"t3", 
-  "elements":[{"id":"article2_article3_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;2 months old kitten</span></span></p>\n'}, {"id":"article2_article3_zone2", "type":"image", "areaid":"left", "body":"http://www.dailykitten.com/wp-content/uploads/2006/11/1161700277Spankys-First-Day.jpg", "style":"position: relative; width:78.42857142857143%; height:141.28878281622912%; top:0%; left:0%;"}]}]}, 
-  {"id":"article5", "type":"standard", "template":"t1", "elements":[{"id":"article5_zone1", "type":"image", "areaid":"left", "body":"/pictures/963.jpg", "style":"position: relative; width:76.68067226890756%; height:100.6079027355623%; top:0.303951367781155%; left:11.134453781512605%;"}, {"id":"article5_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;Cats are considered adult once they reach 1 year old.</span></span></p>\n'}, 
-  {"id":"article5_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:11px;">1 year old cat</span></span></span></p>\n'}]}, {"id":"article3", "type":"flashcard", "background":'url("http://farm8.staticflickr.com/7352/9731186840_c1cf4abbf6.jpg")', "pois":[{"x":"6.625", "y":"54.54444376627604", "slide_id":"article3_article1"}], "slides":[{"id":"article3_article1", "type":"standard", 
-  "template":"t2", "elements":[{"id":"article3_article1_zone1", "type":"image", "areaid":"left", "body":"http://farm4.staticflickr.com/3758/9735663058_a9fa192d2d.jpg", "style":"position: relative; width:35%; height:75.05070993914808%; top:0.2028397565922921%; left:25.857142857142858%;"}]}]}], "id":"5702"};
+  "body":"/pictures/962.jpg", "style":"position: relative; width:69.11764705882354%; height:154.10334346504558%; top:0%; left:14.489233193277311%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\tHipatia, 5 days old.</p>\n<p style="text-align: center;">\n\tCats are born with their eyes closed. Kittens this age almost can&#39;t hear anything, and they just trust on their smell to find their mom&#39;s breast.</p>\n'}, {"id":"article1_zone3", "areaid":"subheader"}]}, 
+  {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t1_object" id="resizableunicID3" src="http://www.youtube.com/embed/IceSE4aipN0?wmode=opaque" frameborder="0"></iframe>', "style":"position: relative; width:94.95798319327731%; height:115.5015197568389%; top:0%; left:0%;"}, {"id":"article4_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;</span></span>Once they reach about 10 days old, kittens open their eyes, but they almost can&#39;t see anything until they are two or three weeks old. They start&nbsp; using their ears and exploring their environment at that time.</p>\n'}, 
+  {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:12px;">Hipatia kitten, 15 days old</span></span></span></p>\n'}]}, {"id":"article2", "type":"flashcard", "background":"url(http://farm4.staticflickr.com/3793/9610090335_5e9ced7d33.jpg)", "pois":[{"x":"21.25", "y":"61.541666666666664", "slide_id":"article2_article2"}, {"x":"21", "y":"71.54166666666667", 
+  "slide_id":"article2_article3"}], "slides":[{"id":"article2_article2", "type":"standard", "template":"t3", "elements":[{"id":"article2_article2_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;1 month old kitten</span></span></p>\n'}, {"id":"article2_article2_zone2", "type":"image", "areaid":"left", "body":"http://lovemeow.com/wp-content/gallery/oct-cat-photos/reddie.jpg", "style":"position: relative; width:86.71428571428571%; height:162.05250596658712%; top:0%; left:0%;"}]}, 
+  {"id":"article2_article3", "type":"standard", "template":"t3", "elements":[{"id":"article2_article3_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;2 months old kitten</span></span></p>\n'}, {"id":"article2_article3_zone2", "type":"image", "areaid":"left", "body":"http://www.dailykitten.com/wp-content/uploads/2006/11/1161700277Spankys-First-Day.jpg", "style":"position: relative; width:77.85714285714286%; height:162.05250596658712%; top:0%; left:0%;"}]}]}, 
+  {"id":"article5", "type":"standard", "template":"t1", "elements":[{"id":"article5_zone1", "type":"image", "areaid":"left", "body":"/pictures/963.jpg", "style":"position: relative; width:75.84033613445378%; height:134.04255319148936%; top:0.303951367781155%; left:11.131171218487395%;"}, {"id":"article5_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;Cats are considered adult once they reach 1 year old.</span></span></p>\n'}, 
+  {"id":"article5_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:11px;">1 year old cat</span></span></span></p>\n'}]}, {"id":"article3", "type":"flashcard", "background":"url(http://asdad/)", "pois":[{"x":"49.625", "y":"59.2109375", "slide_id":"article3_article1"}], "slides":[{"id":"article3_article1", "type":"standard", "template":"t2", "elements":[{"id":"article3_article1_zone1", 
+  "type":"image", "areaid":"left", "body":"http://farm4.staticflickr.com/3758/9735663058_a9fa192d2d.jpg", "style":"position: relative; width:34.714285714285715%; height:86.00405679513185%; top:0.2028397565922921%; left:25.857142857142858%;"}]}]}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -21392,9 +21415,10 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     var slideElements = 0;
     $(".slides > article").each(function(index, s) {
       var srcURL = getThumbnailURL(s);
+      var defaultURL = getDefaultThumbnailURL(s);
       if(srcURL) {
         slideElements += 1;
-        imagesArray.push($("<img id='slideThumbnail" + slideElements + "' class='image_barbutton' slideNumber='" + slideElements + "' action='goToSlide' src='" + srcURL + "'/>"));
+        imagesArray.push($("<img id='slideThumbnail" + slideElements + "' class='image_barbutton' slideNumber='" + slideElements + "' action='goToSlide' src='" + srcURL + "' defaultsrc='" + defaultURL + "'/>"));
         imagesArrayTitles.push(slideElements)
       }
     });
@@ -21402,7 +21426,20 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     options.order = true;
     options.titleArray = imagesArrayTitles;
     options.callback = _onImagesLoaded;
+    options.defaultOnError = true;
+    options.onImageErrorCallback = _onImageError;
     V.Utils.Loader.loadImagesOnContainer(imagesArray, thumbnailsDivId, options)
+  };
+  var _onImageError = function(image) {
+    var slideNumber = $(image).attr("slidenumber");
+    var slide = V.Slides.getSlideWithNumber(slideNumber);
+    var isSlideset = V.Editor.Slideset.isSlideset(slide);
+    if(isSlideset) {
+      var creator = V.Editor.Slideset.getCreatorModule(slide);
+      if(typeof creator.onThumbnailLoadFail == "function") {
+        creator.onThumbnailLoadFail(slide)
+      }
+    }
   };
   var _onImagesLoaded = function() {
     $("#" + thumbnailsDivId).find("img.image_barbutton").each(function(index, img) {
@@ -21483,6 +21520,21 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
       }
     }
     return thumbnailURL
+  };
+  var getDefaultThumbnailURL = function(slide) {
+    var slideType = $(slide).attr("type");
+    if(slideType == V.Constant.STANDARD) {
+      return getThumbnailURL(slide)
+    }else {
+      if(V.Editor.Slideset.isSlideset(slideType)) {
+        var creatorModule = V.Editor.Slideset.getCreatorModule(slideType);
+        if(typeof creatorModule.getDefaultThumbnailURL == "function") {
+          return creatorModule.getDefaultThumbnailURL(slide)
+        }else {
+          return creatorModule.getThumbnailURL(slide)
+        }
+      }
+    }
   };
   var drawSlidesetThumbnails = function(subslides, successCallback) {
     drawSlidesetThumbnailsCallback = successCallback;
@@ -24411,6 +24463,17 @@ VISH.Utils.Loader = function(V, undefined) {
         }
       });
       $(image).error(function(response) {
+        if(options && options.defaultOnError) {
+          var defaultSrc = $(image).attr("defaultsrc");
+          if(typeof defaultSrc == "string") {
+            $(image).removeAttr("defaultsrc");
+            $(image).attr("src", defaultSrc);
+            if(typeof options.onImageErrorCallback == "function") {
+              options.onImageErrorCallback(image)
+            }
+            return
+          }
+        }
         imagesLoaded = imagesLoaded + 1;
         validImagesArray.splice(validImagesArray.indexOf(image), 1);
         if(imagesLoaded == imagesLength) {
