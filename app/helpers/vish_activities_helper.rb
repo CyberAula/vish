@@ -13,30 +13,18 @@ module VishActivitiesHelper
   def link_like_params(object,options)
     params = Array.new
     if !user_signed_in?
-      params << if options[:size] == :small
-                  raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
-                else
-                  raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
-                end
+      params << raw("<i class='icon-star-empty '></i> ") + options[:text].to_s                
       params << new_user_session_path
-      params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)+ " " + options[:class].to_s}
+      params << {:class => "with_tooltip verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)+ " " + options[:class].to_s, :title => options[:title].to_s}
     else
       if (object.liked_by?(current_subject))
-        params << if options[:size] == :small
-                    raw("<i class='icon-star '></i> ") + options[:text].to_s
-                  else
-                    raw("<i class='icon-star '></i> ") + options[:text].to_s
-                  end
+        params << raw("<i class='icon-star '></i> ") + options[:text].to_s                  
         params << [object, :like]
-        params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)+ " " + options[:class].to_s,:method => :delete, :remote => true}
+        params << {:class => "with_tooltip verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object)+ " " + options[:class].to_s,:method => :delete, :remote => true, :title => options[:title].to_s}
       else
-        params << if options[:size] == :small
-                    raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
-                  else
-                    raw("<i class='icon-star-empty '></i> ") + options[:text].to_s
-                  end
+        params << raw("<i class='icon-star-empty '></i> ") + options[:text].to_s                  
         params << [object, :like]
-        params << {:class => "verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object) + " " + options[:class].to_s,:method => :post, :remote => true}
+        params << {:class => "with_tooltip verb_like like_size_" + options[:size].to_s + " like_" + dom_id(object) + " " + options[:class].to_s,:method => :post, :remote => true, :title => options[:title].to_s}
       end
     end
   end

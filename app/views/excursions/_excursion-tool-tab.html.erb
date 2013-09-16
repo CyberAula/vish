@@ -98,7 +98,7 @@ $('.popover').popover('hide');
 <%end%>
 <script type="text/javascript">
 $(document).ready(function(){
-  $("[rel=tooltip]").tooltip({ placement: 'top'});
+  $(".with_tooltip").tooltip({ placement: 'top'});
 });
 </script>
 <%= content_for :javascript do %> 
@@ -109,11 +109,11 @@ $(document).ready(function(){
 <div class="btn-group">
   <!--si es tuya la puedes eliminar o editar-->
   <% if user_signed_in? and (can? :update, @excursion) %>
-  <button class="btn" rel="tooltip" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+  <button class="with_tooltip btn" rel="tooltip" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
   <%end%>
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-  <button class="delete btn popover-link" rel="tooltip" title="<%=t('excursion.actions.delete')%>" data-placement='top' aria-hidden="true" data-original-title="<%=t('excursion.actions.delete')%>"><i class="icon-trash"></i></button>
+  <button class="with_tooltip delete btn popover-link" rel="tooltip" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
   <%end%>
   <div class="contentdelete" style="display: none">
     <i class="icon-remove-sign"></i>
@@ -125,7 +125,7 @@ $(document).ready(function(){
   </div>  
 
   <% unless editingToolbar %>
-  <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn'})%>
+  <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
   
   <!--<button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>-->
     <%if current_subject %>
