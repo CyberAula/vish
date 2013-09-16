@@ -11,27 +11,18 @@
         display: inline-block
         position: relative
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
         float: left
-        .elemento-visor
-          padding-top: 79%
         .caja-visor
-          position: absolute
-          top: 0
-          bottom: 0
-          left: 0
-          right: 0
           background-color: $grayLight
           @include border-radius($baseBorderRadius)
-          .picture_show
-            margin: 0 auto
+          .picture_show,
+          .embed_show
+            padding: 10px 0px
             img
               @include border-radius($baseBorderRadius)
-              position: absolute
-              top: 50% 
-              left: 50% 
-              transform: translate(-50%, -50%)
-              
+              margin: 0 auto
+              display: block
+
     //description
     .description-activity
       @include border-bottom-radius(5px)
@@ -194,10 +185,6 @@
         display: block
         float: right
         margin-bottom: 80px
-
-      .recomended_excursion
-        display: block
-        float: right
     .activity-box
       background-color: $white
       border-radius-bottom: $baseBorderRadius

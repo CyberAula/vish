@@ -131,7 +131,7 @@ $(document).ready(function(){
   <%= link_like(@excursion.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
   
   <!--<button class="btn" rel="tooltip" title="my room"><i class="icon-facetime-video"></i></button>-->
-    <%if current_subject %>
+    <%if user_signed_in? %>
       <%=categories_select(:category_id, @excursion)%>
       <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
     <%end%>
@@ -229,7 +229,7 @@ $(document).ready(function(){
   <!-- tab5 / scorm -->
   <div class="tab-pane" id="tab5">
     <div class="contentscorm">
-      <p><%=t("excursion.download_scorm")%></p>
+      <p><%=t("excursion.download_scorm")%></p><br/>
       <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a> 
     </div> 
   </div> 

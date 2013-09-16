@@ -71,6 +71,9 @@ es:
       title1: "Selecciona el tipo de contenido que subirás"
       title2: "Identifica tu recurso"
     close: "Cerrar"
+    details:
+      info: "Info"
+    download_explanation: "Descargate este recurso a tu dispositivo"
     document: "documento"
     help:
       title: "Subir recursos"
@@ -288,6 +291,7 @@ es:
     title: "Modo sin conexión"
   officedoc:
     confirm_delete: "¿Borrar documento?"
+    download: "descargar"
     title: "Documentos"
     mine: "Mis documentos"
     name: "documento"
