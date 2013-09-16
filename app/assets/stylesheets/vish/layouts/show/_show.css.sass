@@ -16,8 +16,6 @@
         left: 0
         right: 0
 
-    
-
   //description
   .description-activity
     @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -40,7 +38,7 @@
         float: left
         .tabbable
           @include header-tabbable
-          @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+          //@include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
           @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
           clear: none
           margin-top: 0px
@@ -222,6 +220,7 @@
             display: block
             float: left
             width: 180px
+
             a
               display: block
               float: left
@@ -234,6 +233,9 @@
               margin-left: 20px
               margin-bottom: 5px
               @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
               display: block
               float: left
               color: $gray
