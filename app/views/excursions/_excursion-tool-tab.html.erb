@@ -109,19 +109,18 @@ $(document).ready(function(){
 <div class="btn-group">
   <!--si es tuya la puedes eliminar o editar-->
   <% if user_signed_in? and (can? :update, @excursion) %>
-  <button class="btn" rel="tooltip" title="edit excursion" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+  <button class="btn" rel="tooltip" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
   <%end%>
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-  <button class="delete btn popover-link" rel="tooltip" title="delete excursion" data-placement='top' aria-hidden="true" data-original-title="Delete"><i class="icon-trash"></i></button>
+  <button class="delete btn popover-link" rel="tooltip" title="<%=t('excursion.actions.delete')%>" data-placement='top' aria-hidden="true" data-original-title="<%=t('excursion.actions.delete')%>"><i class="icon-trash"></i></button>
   <%end%>
   <div class="contentdelete" style="display: none">
     <i class="icon-remove-sign"></i>
     <p class="delete_p"><%=t('excursion.confirm_delete')%></p>
     <div class="actions-clone">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
-      <%= link_to t('excursion.actions.delete'),  @excursion,
-      :method => :delete, :class => 'btn btn-primary' %>
+      <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
     </div>
   </div>  
 
