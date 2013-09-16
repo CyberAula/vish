@@ -220,22 +220,33 @@ $(document).ready(function(){
   var uploadButton = $("input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
   $(uploadButton).click(function(event) {
     var resource_type = $(".accordion-body.collapse.in").attr('id');
-    //TITLE
-    $("#AddResource input[name='"+resource_type+"[title]']").val($(".title").val());
-    //DESCRIPTION
-    $("#AddResource input[name='"+resource_type+"[description]']").val($(".description").val());
-    //TAGS
-    var tagList = $("#AddResource .resourceTagList");
-    $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
-    //LANGUAGE
-    $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
-    //AGE
-    var value1 = $('.age-slider').data('slider').getValue()[0];
-    var value2 = $('.age-slider').data('slider').getValue()[1];
-    $('input[name="'+resource_type+'[age_min]"]').val(value1);
-    $('input[name="'+resource_type+'[age_max]"]').val(value2);
-    //SUBMIT
-    $("input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
+
+    if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == "") {
+      alert("<%= t('document.body.title3')%>");
+    } else if (resource_type == "link" && $("#AddResource input[name='"+resource_type+"[url]']").val() == "") {
+      alert("<%= t('link.title3')%>");
+    } else if (resource_type == "embed" && $("#AddResource input[name='"+resource_type+"[fulltext]']").val() == "") {
+      alert("<%= t('embed.title3')%>");
+    } else if($(".title").val() == "") {
+      alert("<%= t('document.title_alert')%>");
+    } else {
+      //TITLE
+      $("#AddResource input[name='"+resource_type+"[title]']").val($(".title").val());
+      //DESCRIPTION
+      $("#AddResource input[name='"+resource_type+"[description]']").val($(".description").val());
+      //TAGS
+      var tagList = $("#AddResource .resourceTagList");
+      $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+      //LANGUAGE
+      $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
+      //AGE
+      var value1 = $('.age-slider').data('slider').getValue()[0];
+      var value2 = $('.age-slider').data('slider').getValue()[1];
+      $('input[name="'+resource_type+'[age_min]"]').val(value1);
+      $('input[name="'+resource_type+'[age_max]"]').val(value2);
+      //SUBMIT
+      $("input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
+    }
   });
 </script>
 
