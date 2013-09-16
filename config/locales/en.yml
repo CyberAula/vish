@@ -66,7 +66,10 @@ en:
       title1: "Select the type of content that you upload"
       title2: "Identify your resource"
     close: "Close"
+    details:
+      info: "Info"
     document: "document"
+    download_explanation: "Download this resource to your device"
     help:
       title: "Uploading resources"
       info1_html: "1. Click on <b>documents</b> or <b>links</b> / <b>embed</b> option.<br>"
@@ -287,6 +290,7 @@ en:
     unread: " unread"  
   officedoc:
     confirm_delete: "Delete document?"
+    download: "download"
     title: "Office Documents"
     mine: "My documents"
     name: "document"

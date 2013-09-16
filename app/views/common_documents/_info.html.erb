@@ -17,20 +17,26 @@
   </div>
 
   <dl class="dl-horizontal">
-    <dt><%= t 'document.info.description' %></dt>
-    <dd><%= document.description %></dd>
+    <% unless document.description.blank? %>
+      <dt><%= t 'document.info.description' %></dt>
+      <dd><%= document.description %></dd>
+    <%end%>
     
-    <dt><%= t 'document.info.tags' %></dt>
-    <dd><%= tag_list document %></dd>
-    
+    <% unless document.tag_list.blank? %>
+      <dt><%= t 'document.info.tags' %></dt>
+     <dd><%= tag_list document %></dd>
+    <%end%>
+
     <dt><%= t('document.info.date.created_at') %></dt>
     <dd><%= I18n.localize document.created_at, :format => :long %></dd>
-
+    
     <dt><%= t('document.info.date.updated_at') %></dt>
     <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
-
-    <dt><%= t('document.info.size') %></dt>
-    <dd><%= number_to_human_size document.file_file_size %></dd>
+    
+    <% unless document.file_file_size.blank? %>
+      <dt><%= t('document.info.size') %></dt>
+      <dd><%= number_to_human_size document.file_file_size %></dd>
+    <%end%>
   </dl>
 </div>
 
