@@ -12854,27 +12854,11 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.Tools.loadToolsForZone(area)
   };
   var savePresentation = function(options) {
+    var presentation = {};
+    presentation = V.Editor.Settings.saveSettings(presentation);
+    presentation.slides = [];
     V.Editor.Utils.Loader.loadAllObjects();
     $(".object_wrapper, .snapshot_wrapper").show();
-    var presentation = {};
-    presentation.VEVersion = V.VERSION;
-    presentation.type = V.Constant.PRESENTATION;
-    if(draftPresentation) {
-      presentation.title = draftPresentation.title;
-      presentation.description = draftPresentation.description;
-      presentation.author = draftPresentation.author;
-      presentation.avatar = draftPresentation.avatar;
-      presentation.tags = draftPresentation.tags;
-      presentation.theme = draftPresentation.theme;
-      presentation.age_range = draftPresentation.age_range;
-      presentation.subject = draftPresentation.subject;
-      presentation.language = draftPresentation.language;
-      presentation.educational_objectives = draftPresentation.educational_objectives;
-      presentation.adquired_competencies = draftPresentation.adquired_competencies
-    }else {
-      presentation.author = ""
-    }
-    presentation.slides = [];
     $("section.slides > article").each(function(index, slideDOM) {
       var slide = {};
       if(!V.Editor.Slideset.isSlideset(slideDOM)) {
@@ -12889,9 +12873,9 @@ VISH.Editor = function(V, $, undefined) {
       }
       presentation.slides.push(slide)
     });
-    savedPresentation = presentation;
     V.Editor.Utils.Loader.unloadAllObjects();
     V.Editor.Utils.Loader.loadObjectsInEditorSlide(V.Slides.getCurrentSlide());
+    savedPresentation = presentation;
     return savedPresentation
   };
   var _saveStandardSlide = function(slideDOM, presentation, isSubslide) {
@@ -15633,15 +15617,7 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Hipatia, the tiny little cat", "description":"Hipatia, rescued at 3 days age, grows rapidly and adorably.", "author":"Enrique", "avatar":"/pictures/959.jpg", "tags":["hipatia", "cat"], "theme":"theme9", "age_range":"4 - 20", "subject":["Unspecified"], "language":"independent", "educational_objectives":"", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", 
-  "body":"/pictures/962.jpg", "style":"position: relative; width:69.11764705882354%; height:154.10334346504558%; top:0%; left:14.489233193277311%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\tHipatia, 5 days old.</p>\n<p style="text-align: center;">\n\tCats are born with their eyes closed. Kittens this age almost can&#39;t hear anything, and they just trust on their smell to find their mom&#39;s breast.</p>\n'}, {"id":"article1_zone3", "areaid":"subheader"}]}, 
-  {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t1_object" id="resizableunicID3" src="http://www.youtube.com/embed/IceSE4aipN0?wmode=opaque" frameborder="0"></iframe>', "style":"position: relative; width:94.95798319327731%; height:115.5015197568389%; top:0%; left:0%;"}, {"id":"article4_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;</span></span>Once they reach about 10 days old, kittens open their eyes, but they almost can&#39;t see anything until they are two or three weeks old. They start&nbsp; using their ears and exploring their environment at that time.</p>\n'}, 
-  {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:12px;">Hipatia kitten, 15 days old</span></span></span></p>\n'}]}, {"id":"article2", "type":"flashcard", "background":"url(http://farm4.staticflickr.com/3793/9610090335_5e9ced7d33.jpg)", "pois":[{"x":"21.25", "y":"61.541666666666664", "slide_id":"article2_article2"}, {"x":"21", "y":"71.54166666666667", 
-  "slide_id":"article2_article3"}], "slides":[{"id":"article2_article2", "type":"standard", "template":"t3", "elements":[{"id":"article2_article2_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;1 month old kitten</span></span></p>\n'}, {"id":"article2_article2_zone2", "type":"image", "areaid":"left", "body":"http://lovemeow.com/wp-content/gallery/oct-cat-photos/reddie.jpg", "style":"position: relative; width:86.71428571428571%; height:162.05250596658712%; top:0%; left:0%;"}]}, 
-  {"id":"article2_article3", "type":"standard", "template":"t3", "elements":[{"id":"article2_article3_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;2 months old kitten</span></span></p>\n'}, {"id":"article2_article3_zone2", "type":"image", "areaid":"left", "body":"http://www.dailykitten.com/wp-content/uploads/2006/11/1161700277Spankys-First-Day.jpg", "style":"position: relative; width:77.85714285714286%; height:162.05250596658712%; top:0%; left:0%;"}]}]}, 
-  {"id":"article5", "type":"standard", "template":"t1", "elements":[{"id":"article5_zone1", "type":"image", "areaid":"left", "body":"/pictures/963.jpg", "style":"position: relative; width:75.84033613445378%; height:134.04255319148936%; top:0.303951367781155%; left:11.131171218487395%;"}, {"id":"article5_zone2", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;Cats are considered adult once they reach 1 year old.</span></span></p>\n'}, 
-  {"id":"article5_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#666"><span style="font-size:18px;">&shy;<span style="font-size:11px;">1 year old cat</span></span></span></p>\n'}]}, {"id":"article3", "type":"flashcard", "background":"url(http://asdad/)", "pois":[{"x":"49.625", "y":"59.2109375", "slide_id":"article3_article1"}], "slides":[{"id":"article3_article1", "type":"standard", "template":"t2", "elements":[{"id":"article3_article1_zone1", 
-  "type":"image", "areaid":"left", "body":"http://farm4.staticflickr.com/3758/9735663058_a9fa192d2d.jpg", "style":"position: relative; width:34.714285714285715%; height:86.00405679513185%; top:0.2028397565922921%; left:25.857142857142858%;"}]}]}]};
+  var test = {"VEVersion":"0.7", "type":"presentation", "author":"agordillo", "theme":"theme1", "language":"independent", "age_range":"4 - 20", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "areaid":"left"}, {"id":"article1_zone2", "areaid":"header"}, {"id":"article1_zone3", "areaid":"subheader"}]}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -20987,34 +20963,86 @@ VISH.Editor.Settings = function(V, $, undefined) {
     if($(event.target).hasClass("buttonDisabledOnSettings")) {
       return
     }
-    var draftPresentation = V.Editor.getPresentation();
-    if(!draftPresentation) {
-      draftPresentation = {}
+    var updatedPresentation = saveSettings();
+    V.Editor.setPresentation(updatedPresentation);
+    $.fancybox.close()
+  };
+  var saveSettings = function(presentation) {
+    var draftPresentation;
+    if(typeof presentation == "object") {
+      draftPresentation = presentation
+    }else {
+      draftPresentation = V.Editor.getPresentation();
+      if(!draftPresentation) {
+        draftPresentation = {}
+      }
     }
-    draftPresentation.title = $("#presentation_details_input_title").val();
-    draftPresentation.description = $("#presentation_details_textarea").val();
+    draftPresentation.VEVersion = V.VERSION;
+    draftPresentation.type = V.Constant.PRESENTATION;
+    var title = $("#presentation_details_input_title").val();
+    if(typeof title == "string" && title.trim() != "") {
+      draftPresentation.title = title
+    }
+    var description = $("#presentation_details_textarea").val();
+    if(typeof description == "string" && description.trim() != "") {
+      draftPresentation.description = description
+    }
     if(presentationThumbnail) {
       draftPresentation.avatar = presentationThumbnail
     }
-    draftPresentation.author = $("#author_span_in_preview").html();
-    draftPresentation.tags = V.Editor.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
-    if(typeof $(".theme_selected_in_scrollbar").attr("themeNumber") == "string") {
-      draftPresentation.theme = "theme" + $(".theme_selected_in_scrollbar").attr("themeNumber")
+    var author = $("#author_span_in_preview").html();
+    if(typeof author == "string" && author.trim() != "") {
+      draftPresentation.author = author
+    }
+    var tags = V.Editor.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
+    if(tags.length > 1) {
+      draftPresentation.tags = tags
+    }
+    var themeNumber = $(".theme_selected_in_scrollbar").attr("themeNumber");
+    if(typeof themeNumber == "string") {
+      draftPresentation.theme = "theme" + themeNumber
     }else {
       draftPresentation.theme = V.Constant.Themes.Default
     }
-    draftPresentation.language = $("#language_tag").val();
-    draftPresentation.context = $("#context_tag").val();
-    draftPresentation.age_range = $("#age_range").val();
-    draftPresentation.difficulty = $("#difficulty_range").val();
+    var language = $("#language_tag").val();
+    if(typeof language == "string") {
+      draftPresentation.language = language
+    }
+    var context = $("#context_tag").val();
+    if(typeof context == "string" && context != "unspecified") {
+      draftPresentation.context = context
+    }
+    var age_range = $("#age_range").val();
+    if(typeof age_range == "string") {
+      draftPresentation.age_range = age_range
+    }
+    var difficulty = $("#difficulty_range").val();
+    if(typeof difficulty == "string" && difficulty != "unspecified") {
+      draftPresentation.difficulty = difficulty
+    }
     var TLT = _getTLT();
     if(typeof TLT == "string") {
       draftPresentation.TLT = TLT
     }
-    draftPresentation.subject = $("#subject_tag").val();
-    draftPresentation.educational_objectives = $("#educational_objectives_textarea").val();
-    V.Editor.setPresentation(draftPresentation);
-    $.fancybox.close()
+    var subjectsToSave = [];
+    var subjects = $("#subject_tag").val();
+    var sL = subjects.length;
+    if(typeof sL == "number" && sL > 0) {
+      for(var sI = 0;sI < sL;sI++) {
+        var subject = subjects[sI];
+        if(subject != "Unspecified") {
+          subjectsToSave.push(subject)
+        }
+      }
+      if(subjectsToSave.length > 0) {
+        draftPresentation.subject = subjectsToSave
+      }
+    }
+    var educational_objectives = $("#educational_objectives_textarea").val();
+    if(typeof educational_objectives == "string" && educational_objectives.trim() != "") {
+      draftPresentation.educational_objectives = educational_objectives
+    }
+    return draftPresentation
   };
   var _getTLT = function() {
     var TLT = "PT";
@@ -21056,7 +21084,8 @@ VISH.Editor.Settings = function(V, $, undefined) {
     $("#pedagogical_options_fields").slideUp();
     $("#presentation_details_fields").slideDown()
   };
-  return{init:init, displaySettings:displaySettings, loadPresentationSettings:loadPresentationSettings, onChangeThumbnailClicked:onChangeThumbnailClicked, onThumbnailSelected:onThumbnailSelected, selectTheme:selectTheme, onKeyUpOnTitle:onKeyUpOnTitle, onKeyUpOnPreviewTitle:onKeyUpOnPreviewTitle, onTLTchange:onTLTchange, checkMandatoryFields:checkMandatoryFields, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, onPedagogicalButtonClicked:onPedagogicalButtonClicked, onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked}
+  return{init:init, displaySettings:displaySettings, loadPresentationSettings:loadPresentationSettings, onChangeThumbnailClicked:onChangeThumbnailClicked, onThumbnailSelected:onThumbnailSelected, selectTheme:selectTheme, onKeyUpOnTitle:onKeyUpOnTitle, onKeyUpOnPreviewTitle:onKeyUpOnPreviewTitle, onTLTchange:onTLTchange, checkMandatoryFields:checkMandatoryFields, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, saveSettings:saveSettings, onPedagogicalButtonClicked:onPedagogicalButtonClicked, 
+  onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked}
 }(VISH, jQuery);
 VISH.Editor.Slides = function(V, $, undefined) {
   var showSlides = function() {
