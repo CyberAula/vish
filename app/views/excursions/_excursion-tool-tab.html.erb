@@ -98,7 +98,7 @@ $('.popover').popover('hide');
 <%end%>
 <script type="text/javascript">
 $(document).ready(function(){
-  $(".with_tooltip").tooltip({ placement: 'top'});
+  $(".with_tooltip").tooltip({ placement: 'bottom'});
 });
 </script>
 <%= content_for :javascript do %> 
@@ -109,11 +109,11 @@ $(document).ready(function(){
 <div class="btn-group">
   <!--si es tuya la puedes eliminar o editar-->
   <% if user_signed_in? and (can? :update, @excursion) %>
-  <button class="with_tooltip btn" rel="tooltip" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+  <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
   <%end%>
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-  <button class="with_tooltip delete btn popover-link" rel="tooltip" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+  <button class="with_tooltip delete btn popover-link" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
   <%end%>
   <div class="contentdelete" style="display: none">
     <i class="icon-remove-sign"></i>

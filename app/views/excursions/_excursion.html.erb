@@ -34,7 +34,7 @@
         excursion.post_activity is nil%>
          <% if excursion.post_activity%>
           <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
-          <%= link_like(excursion.post_activity)%>
+          <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
         <%else%>
           <div class="count">0</div>
         <%end%>
