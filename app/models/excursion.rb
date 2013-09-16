@@ -121,6 +121,8 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+  # Metadata based on LOM (Learning Object Metadata) standard
+  # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
   def generate_scorm_manifest
     ejson = JSON(self.json)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -145,7 +147,9 @@ class Excursion < ActiveRecord::Base
             myxml.title do
               myxml.langstring(self.title);
             end
-            myxml.language(ejson["language"]);
+            if ejson["language"]
+              myxml.language(ejson["language"]);
+            end
             myxml.description do
               myxml.langstring(self.title + ". A Virtual Excursion provided by http://vishub.org.");
             end
@@ -154,6 +158,15 @@ class Excursion < ActiveRecord::Base
                 myxml.langstring(tag.name.to_s);
               end
             end
+            #Add subjects as additional keywords
+            if ejson["subject"]
+              ejson["subject"].each do |subject|
+                myxml.keyword do
+                  myxml.langstring(subject);
+                end 
+              end
+            end
+
             myxml.structure do
               myxml.source do
                 myxml.langstring("LOMv1.0");
@@ -261,27 +274,49 @@ class Excursion < ActiveRecord::Base
                 myxml.langstring("learner")
               end
             end
-            myxml.typicalagerange do
-              myxml.langstring(self.age_min.to_s + "-" + self.age_max.to_s)
-            end
-            myxml.difficulty do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
+            if ejson["context"]
+              myxml.context do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring(ejson["context"])
+                end
               end
-              myxml.value do
-                myxml.langstring("medium")
+            end
+            if self.age_min
+              myxml.typicalagerange do
+                myxml.langstring(self.age_min.to_s + "-" + self.age_max.to_s)
               end
             end
-            myxml.typicallearningtime do
-              #Inferred
-              # 1 min per slide
-              inferredTPL = (self.slide_count * 1).to_s
-              myxml.duration("PT"+inferredTPL+"M0S")
+            if ejson["difficulty"]
+              myxml.difficulty do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring(ejson["difficulty"])
+                end
+              end
             end
-            myxml.description do
-              myxml.langstring(ejson["educational_objectives"])
+            myxml.typicalLearningTime do
+              if ejson["TLT"]
+                myxml.duration(ejson["TLT"])
+              else
+                 #Inferred
+                # 1 min per slide
+                inferredTPL = (self.slide_count * 1).to_s
+                myxml.duration("PT"+inferredTPL+"M0S")
+              end
             end
-            myxml.language(ejson["language"])
+            if ejson["educational_objectives"]
+              myxml.description do
+                  myxml.langstring(ejson["educational_objectives"])
+              end
+            end
+            if ejson["language"]
+              myxml.language(ejson["language"]);
+            end
           end
         end
       end
