@@ -107,13 +107,16 @@ $(document).ready(function(){
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 <!--BTN ACTIONS-->
 <div class="btn-group">
+  <% if user_signed_in? and (can? :update, @excursion) %>
+    <button class="with_tooltip btn" title="<%=t('excursion.actions.clone')%>" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><i class="icon-copy"></i></button>
+  <%end%>
   <!--si es tuya la puedes eliminar o editar-->
   <% if user_signed_in? and (can? :update, @excursion) %>
-  <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+    <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
   <%end%>
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-  <button class="with_tooltip delete btn popover-link" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+    <button class="with_tooltip delete btn popover-link" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
   <%end%>
   <div class="contentdelete" style="display: none">
     <i class="icon-remove-sign"></i>
@@ -160,15 +163,7 @@ $(document).ready(function(){
           <%=t('excursion.actions.share')%>
         </span>
       </a>
-    </li>
-    <li>
-      <a href="#tab4" data-toggle="tab">
-        <i class="icon-copy"></i> 
-        <span class="hidden-tablet hidden-phone">
-          <%=t('excursion.actions.clone')%>
-        </span>
-      </a>
-    </li>
+    </li>    
     <li>
       <a href="#tab5" data-toggle="tab">
         <i class="icon-download"></i> 
@@ -230,20 +225,7 @@ $(document).ready(function(){
       </div>
     </div>
   </div> 
-  <!-- tab4 / clone -->
-  <div class="tab-pane" id="tab4">
-    <div class="contentclone">
-      <span class="icon-stack">
-        <i class="icon-circle  icon-stack-base"></i>
-        <i class="icon-info  icon-light"></i>
-      </span>
-      <p class="info"><%=t('excursion.clone.confirm')%></p>
-      <div class="actions-clone">
-        <!--<a class="btn btn_cancel"><#%=t('cancel')%></a>-->
-        <a href="<%=excursion_path(@excursion) + '/clone'%>" class="btn btn-primary"><%=t('save')%></a>
-      </div>
-    </div>
-  </div> 
+   
   <!-- tab5 / scorm -->
   <div class="tab-pane" id="tab5">
     <div class="contentscorm">
