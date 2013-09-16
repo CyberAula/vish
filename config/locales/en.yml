@@ -38,6 +38,7 @@ en:
     description_input: "Description for this category"
     info: "Add it to one of your categories"
     input: "Add a description"
+    item_inside: "items inside"
     leyend:
       title: "Title"
       description: "Description"
