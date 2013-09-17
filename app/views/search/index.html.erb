@@ -13,11 +13,11 @@
           <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
         <% end %>
       </ul>
-
+      <!--search tab
       <form action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
         <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
       </form>
-
+      -->
       <!--button id="showLeft">advanced options </button-->
       <div class="tab-content">
         <%#= render partial: 'layouts/loading' %>
