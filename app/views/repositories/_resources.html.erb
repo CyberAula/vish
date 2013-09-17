@@ -10,7 +10,6 @@
 
 <script>
 	function re_apply_backstrech(){
-		console.log("reaply")
 		<% all_resources.each do |resource| %>
     		<%if resource.class != Link && resource.type =="Picture"%>
     			$("#document-<%=resource.id%>").backstretch("<%=resource.file%>?style=500");  
