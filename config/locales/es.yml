@@ -55,6 +55,7 @@ es:
     check_message_1: "Condiciones de Uso"
     other: "condiciones"
   contact:
+    footer: "contacto"
     pending:
       other: "Te siguen"
   copy_to_clip: "Copiar al portapapeles"
