@@ -113,7 +113,37 @@
             margin-right: 10px
             .add
               @include follow-profile
+              display: block
+              clear: both
+              text-align: center
+              div
+                .following-button
+                  display: block
+                  margin-left: 0
+                  display: block
+                  background-color: #007CC8
+                  height: 20px
+                  width: 87px
+                  @include border-radius(5px)
+                  color: #FFF
+                  font-family: "OpenSansLight"
 
+              .unfollow-button 
+                form
+                  margin: 0px
+                  input
+                    display: block
+                    margin-left: 0
+                    height: 20px
+                    border: 0px none
+                    width: 87px
+                    display: block
+                    background-color: #555
+                    @include border-radius(5px)
+                    color: #FFF
+                    margin-top: 0px
+                    padding: 0px
+                    font-family: "OpenSansLight"
 
           // EDIT
           .edit_icon
@@ -157,6 +187,7 @@
               font-size: 12px
 
     
+
     .modal
       width: 450px
       margin-left: -240px
@@ -182,6 +213,11 @@
       //font-size: 0.75em
       //margin: 0 0 1px
         
+.name-required  
+  label 
+    display: inline 
+    span
+      color: #888
 .info-profile
   .follow-tab
     @include tab_title

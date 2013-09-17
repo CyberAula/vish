@@ -89,27 +89,34 @@
           .viewsAndConunt
             float: left
             display: block
-            margin-top: 5px
+            margin-top: 11px
             .like
               float: left
               width: auto
               display: inline-block
               .count
-                font-size: 1.6em
+                font-size: 1.5em
+                font-family: $thirdFontFamily
                 display: inline-block
+                margin-left: 5px
               a
                 display: inline-block
                 .icon-star-empty, 
                 .icon-star
-                  font-size: 1.8em
+                  font-size: 1.4em
+                  margin-right: 5px
+                &:hover
+                  text-decoration: none
             .views:after
               content: " / "
             .views
-              font-size: 2em
+              font-size: 1.5em
+              font-family: $thirdFontFamily
               float: left
               display: inline-block
               span
-                font-size: 0.5em
+                font-size: 1em
+                font-family: $firstFontFamily
           .excursion-social
             float: left
             display: inline-block
