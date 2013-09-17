@@ -54,6 +54,7 @@ en:
     check_message_1: "Terms and Conditions."
     other: "conditions"
   contact:
+    footer: "contact"
     pending:
       other: "Following you"
   copy_to_clip: "Copy to clipboard"
