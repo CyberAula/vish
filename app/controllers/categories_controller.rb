@@ -15,6 +15,16 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    super do |format|
+      format.html {
+        redirect_to user_path(current_user)
+       }
+
+      format.js
+    end
+   end
+
   private
 
   def add_item_to_category
