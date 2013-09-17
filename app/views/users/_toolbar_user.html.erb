@@ -4,7 +4,7 @@
 <% @profile = profile_or_current_subject.profile %>
 <% if can?(:update, @profile) %>
 <div class="edit_icon">
-  <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#', :id => "edit_icon_link") %> 
+  <%= link_to(raw("<i class='icon-edit '></i>")+ t('edit profile'), '#', :id => "edit_icon_link") %> 
 </div>
 <% end %>
 
@@ -27,7 +27,7 @@
 <!--BTN MESSAGE-->
 
 <% if !profile_subject_is_current? %>
-<button href="#new_messages_profile" role="button" class="btn" data-toggle="modal">
+<button href="#new_messages_profile" id="mesage-profile" role="button" class="btn" data-toggle="modal">
   <%= link_to new_message_path(receiver: profile_subject.slug) do %>
   <i class="icon-envelope-alt"></i>
   <%= t 'mailboxer.send' %>
@@ -36,7 +36,7 @@
 <% end %>
 
 
-<!-- BTN follow -->
+
 
 <!-- Button to trigger modal --> 
 <!-- Modal -->
