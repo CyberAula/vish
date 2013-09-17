@@ -14,7 +14,7 @@
 
       </div>
   </div>
-  <%if resource.class != Link && resource.type =="Picture"%>
+  <%if resource.class != Link && resource.class != Embed && resource.type =="Picture"%>
     <script>
       $("#document-<%=resource.id%>").backstretch("<%=resource.file%>?style=500");  
     </script>
