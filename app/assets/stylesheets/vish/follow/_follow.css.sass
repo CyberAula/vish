@@ -1,35 +1,30 @@
-
-
-
 .tab-pane
   ul
     margin: 0
     .contact
       position: relative
       float: left
-      overflow: hidden
-      width: -webkit-calc(96% / 6)
-      width: calc(95% / 6)
-      margin-right: 0.4%
-      margin-left: 0.4%
+      overflow: inherit
+      width: 170px
+      margin-right: 8px
+      margin-left: 8px
       margin-top: 15px
       list-style: none
-
+      background: $white
+      box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+      @include border-radius($baseBorderRadius)
       .avatar
         a
           img
             @include center-block()
             @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
             @include border-radius($baseBorderRadius)
-
       .data
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         text-align: center
         float: left
         display: block
         .name
-
-
           @include center-block()
           margin-top: 5px
           a
@@ -48,7 +43,6 @@
           font-size: 11px
           color: #777
           font-family: $firstFontFamily
-          
       .add
         //@include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         //@include center-block()
