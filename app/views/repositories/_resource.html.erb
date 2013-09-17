@@ -14,6 +14,7 @@
 
       </div>
   </div>
+
   <%if resource.respond_to?(:type) && resource.type =="Picture"%>
     <script>
       $("#document-<%=resource.id%>").backstretch("<%=resource.file%>?style=500");  
