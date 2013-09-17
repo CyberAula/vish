@@ -12856,6 +12856,11 @@ VISH.Editor = function(V, $, undefined) {
   var savePresentation = function(options) {
     var presentation = {};
     presentation = V.Editor.Settings.saveSettings(presentation);
+    if(!presentation.tags) {
+      if(draftPresentation && draftPresentation.tags) {
+        presentation.tags = draftPresentation.tags
+      }
+    }
     presentation.slides = [];
     V.Editor.Utils.Loader.loadAllObjects();
     $(".object_wrapper, .snapshot_wrapper").show();
@@ -20994,9 +20999,12 @@ VISH.Editor.Settings = function(V, $, undefined) {
     if(typeof author == "string" && author.trim() != "") {
       draftPresentation.author = author
     }
-    var tags = V.Editor.Utils.convertToTagsArray($("#tagindex").tagit("tags"));
-    if(tags.length > 1) {
-      draftPresentation.tags = tags
+    var tagIndex = $("#tagindex");
+    if(tagIndex.length > 0 && $(tagIndex).hasClass("tagit")) {
+      var tags = V.Editor.Utils.convertToTagsArray($(tagIndex).tagit("tags"));
+      if(tags.length > 1) {
+        draftPresentation.tags = tags
+      }
     }
     var themeNumber = $(".theme_selected_in_scrollbar").attr("themeNumber");
     if(typeof themeNumber == "string") {
