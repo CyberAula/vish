@@ -38,6 +38,7 @@ en:
     description_input: "Description for this category"
     info: "Add it to one of your categories"
     input: "Add a description"
+    item_inside: "items inside"
     leyend:
       title: "Title"
       description: "Description"
@@ -65,6 +66,7 @@ en:
     body:
       title1: "Select the type of content that you upload"
       title2: "Identify your resource"
+      title3: "Choose the file you want to upload"
     close: "Close"
     details:
       info: "Info"
@@ -109,6 +111,7 @@ en:
       addMessage: "Add tags"
       limitMessage: "limit reached"
     title_input: "Name for this resource"
+    title_alert: "Write the title for this resource"
     upload: "Upload"
   email:
     regards: "Kind regards,<br/>"
@@ -119,6 +122,7 @@ en:
     embed: "embed"
     input: "Paste your embed here"
     name: "embed"
+    title3: "Write the embed you want to upload"
   evaluation:
     teaching: "Teaching experience"
     contribute:
@@ -258,6 +262,7 @@ en:
     other: "links"
     confirm_delete: "Delete link?"
     go: "Go to link"
+    title3: "Write the link you want to upload"
   lre:
     data_error: "There was an error and the data server responded with a code %{code}"
     json_error: "There was an error with the returned contents, try with another search terms"

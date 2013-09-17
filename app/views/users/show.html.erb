@@ -7,9 +7,9 @@
       <!-- Edit your profile -->
         <% @profile = profile_or_current_subject.profile %>
         <% if can?(:update, @profile) %>
-        <div class="edit_icon">
-          <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#')%>
-        </div>
+            <div class="edit_icon">
+              <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#', :id => "edit_icon_link") %> 
+            </div>
         <% end %>
         <!-- follow -->
         <% if !profile_subject_is_current? %>
@@ -43,7 +43,7 @@
 
                 <%= javascript_tag do %>
                   $(function() {
-                  SocialStream.Message.new_();
+                    SocialStream.Message.new_();
                   });
                 <% end %>
               </section>
@@ -55,9 +55,9 @@
         
           <p class="description">
             <% if @user.profile.description? %>
-            <%= @user.profile.description%>
+              <%= @user.profile.description%>
             <% else %>
-            <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
+              <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
             <% end %>
           </p>
 
@@ -65,14 +65,14 @@
 
           <!-- Occupation -->
           <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
-          <h3 class="select">
-            <%= link_to profile_subject.occupation_t, '#' %>
-          </h3>
-          <% elsif profile_subject.occupation_sym != :select %>
-          <h3 class="name-roll">
-            <%= t('profile.occupation.label') %>
-            <span><%= profile_subject.occupation_t %></span>
-          </h3>
+            <h3 class="select">
+              <%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %> 
+            </h3>
+            <% elsif profile_subject.occupation_sym != :select %>
+            <h3 class="name-roll">
+              <%= t('profile.occupation.label') %>
+              <span><%= profile_subject.occupation_t %></span>
+            </h3>
           <% end %>
 
           <!--
@@ -107,9 +107,13 @@
 
 <%= javascript_tag do %>
 $(function() {
-SocialStream.Profile.show({
-section: "<%= params[:section ] %>"
+  SocialStream.Profile.show({
+  section: "<%= params[:section ] %>"
+  });
 });
+
+$("#select_occupation_link").click(function(){
+  $("#edit_icon_link").click();
 });
 
 <% end %>

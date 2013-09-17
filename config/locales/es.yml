@@ -39,6 +39,7 @@ es:
     description_input: "Descripción para esta categoría"
     info: "Añádelo a una de tus categorías"
     input: "Añade una descripción"
+    item_inside: "elementos"
     leyend:
       title: "Título"
       description: "Descripción"
@@ -70,6 +71,7 @@ es:
     body:
       title1: "Selecciona el tipo de contenido que subirás"
       title2: "Identifica tu recurso"
+      title3: "Elige el archivo que deseas subir"
     close: "Cerrar"
     details:
       info: "Info"
@@ -112,6 +114,7 @@ es:
       addMessage: "Añadir tags"
       limitMessage: "Límite alcanzado"
     title_input: "Ponle título al recurso"
+    title_alert: "Escribe el título del recurso"
     upload: "Subir"
   email:
     regards: "Un cordial saludo,<br/>"
@@ -122,6 +125,7 @@ es:
     embed: "embed"
     input: "Pega aquí el recurso a insertar"
     name: "embed"
+    title3: "Escribe el recurso a insertar"
   evaluation:
     teaching: "Experiencia de enseñanza"
     contribute: 
@@ -261,6 +265,7 @@ es:
     other: "enlaces"
     confirm_delete: "¿Borrar enlace?"
     go: "Ir al enlace"
+    title3: "Escribe el enlace que quieres subir"
   translate:
     change: "Cambiar idioma"
   mailboxer:

@@ -1,10 +1,6 @@
 GIT
   remote: git://github.com/ging/social_stream.git
-<<<<<<< HEAD
-  revision: d741ca96f865a812614041642e2ccf8927c7342f
-=======
-  revision: 1c4f5ba2c225f8bf268b0ded780d5d07d735eb82
->>>>>>> b539ea4419ff8db4555d90f4d7a75810a508c4ac
+  revision: 53e05fbc12e0205139f796b049d9fe530471b4e9
   branch: master
   specs:
     social_stream-base (2.2.1)
@@ -245,7 +241,7 @@ GEM
       mime-types
     paperclip-ffmpeg (0.11.0)
       paperclip (>= 2.5.2)
-    pg (0.16.0)
+    pg (0.17.0)
     polyglot (0.3.3)
     proudhon (0.3.7)
       json
