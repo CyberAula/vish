@@ -1,0 +1,60 @@
+
+
+<!-- Edit your profile -->
+<% @profile = profile_or_current_subject.profile %>
+<% if can?(:update, @profile) %>
+<div class="edit_icon">
+  <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#', :id => "edit_icon_link") %> 
+</div>
+<% end %>
+
+
+<!--BTN ADD-->
+
+<% if !profile_subject_is_current? %>
+    <section class="contact">
+      <div class="add">
+        <%= contact_button(profile_subject) %>
+      </div>
+      
+    </section>
+<!-- <button>
+  <%#= contact_to(profile_subject) %>
+</button> -->
+<% end %>
+
+
+<!--BTN MESSAGE-->
+
+<% if !profile_subject_is_current? %>
+<button href="#new_messages_profile" role="button" class="btn" data-toggle="modal">
+  <%= link_to new_message_path(receiver: profile_subject.slug) do %>
+  <i class="icon-envelope-alt"></i>
+  <%= t 'mailboxer.send' %>
+  <% end %>
+</button>
+<% end %>
+
+
+<!-- BTN follow -->
+
+<!-- Button to trigger modal --> 
+<!-- Modal -->
+<div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-body">
+    <section id="new_message_profile">
+      <%##= render partial: 'toolbar/messages' %>
+      <%= render :partial => 'messages/new' %>
+
+      <%= javascript_tag do %>
+      $(function() {
+      SocialStream.Message.new_();
+    });
+    <% end %>
+    </section>
+  </div>
+  <!--   <div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div> -->
+</div>
