@@ -10,11 +10,9 @@
       //float: left
       display: block
       float: left
-      
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
-
       .avatar
         position: relative
         z-index: 1
@@ -28,17 +26,11 @@
           @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
           @include border-radius($baseBorderRadius)
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-
-        .edit_icon
-          bottom: 0px
-          right: 16px
+        .badge-teacher-active
           position: absolute
-          z-index: 2
-          a
-            @include btn-primary
-            display: inline-block
-        
-
+          top: 30%
+          left: -15px
+          display: none
       .information
         padding: 10px
         @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -52,10 +44,7 @@
           color: $gray
           font-family: $secondFontFamily
           
-        button
-          float: right
-          display: inline-block
-          margin-top: 7px
+
         hr
           margin: 5px 0
           border: none
@@ -67,6 +56,9 @@
           border-right: 1px solid $grayLighter
           padding-right: 15px
           vertical-align: top
+          float: left
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
         h3.karma
           padding-left: 15px
           color: $firstColor
@@ -76,7 +68,6 @@
         p.description
           //@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
-          margin-left: 10px
           color: $gray
         span
           color: $black 
@@ -109,40 +100,62 @@
                 float: right
                 margin-top: 20px
                 margin-right: 9px 
-        .contact
-          .add
-            display: block
-            clear: both
-            margin-top: 3px
-            text-align: center
-            div
-              .following-button
-                display: block
-                margin-left: 0
-                display: block
-                background-color: #007CC8
-                height: 20px
-                width: 87px
-                @include border-radius(5px)
-                color: #FFF
-                font-family: "OpenSansLight"
-            .unfollow-button 
-              form
-                margin: 0px
-                input
+        .toolbar
+          @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          display: inline
+          height: 30px
+          // CONTACT
+          .contact
+            float: left
+            display: block 
+            margin-right: 20px
+            .add
+              display: block
+              clear: both
+              text-align: center
+              div
+                .following-button
                   display: block
                   margin-left: 0
-                  height: 20px
-                  border: 0px none
-                  width: 87px
                   display: block
-                  background-color: #555
+                  background-color: #007CC8
+                  height: 20px
+                  width: 87px
                   @include border-radius(5px)
                   color: #FFF
-                  margin-top: 0px
-                  padding: 0px
                   font-family: "OpenSansLight"
+
+              .unfollow-button 
+                form
+                  margin: 0px
+                  input
+                    display: block
+                    margin-left: 0
+                    height: 20px
+                    border: 0px none
+                    width: 87px
+                    display: block
+                    background-color: #555
+                    @include border-radius(5px)
+                    color: #FFF
+                    margin-top: 0px
+                    padding: 0px
+                    font-family: "OpenSansLight"
+          // EDIT
+          .edit_icon
+            float: left
+            display: block 
+            a
+              @include btn-primary
+              display: inline-block
+          // ADD
+          button
+            float: left
+            display: inline-block
+
     
+
     .modal
       width: 450px
       margin-left: -240px
@@ -151,7 +164,27 @@
         max-height: 340px 
       .cleditorMain
         height: 100px !important
+  .badge-active
+    position: absolute
+    left: -15px
+    z-index: 10
+
+  .container-img
+    display: inline-block
+    position: relative
+    width: 100%
+    .dummy
+      padding-top: 34px
+  .info-bottom
+    .soften
+      font-size: 0.75em
+      margin: 0 0 1px
         
+.name-required  
+  label 
+    display: inline 
+    span
+      color: #888
 .info-profile
   .follow-tab
     @include tab_title
@@ -165,6 +198,8 @@
     h3
       color: $firstColor 
     .contact
+      min-height: 170px
+
       .name
         text-align: center
 
