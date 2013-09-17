@@ -1,0 +1,65 @@
+.recomended-items
+  width: 25%
+  float: right
+  .recomended-items,
+  .recomended_excursion,
+  .recomended_documents
+    ul.small-box
+      margin: 0
+      margin-left: 20px
+      li.box-item:first-child
+        margin-top: 0px
+      li.box-item
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+        @include border-radius($baseBorderRadius)
+        overflow: hidden
+        float: left
+        list-style: none
+        margin-top: 10px
+        background-color: $white
+        .resource-center
+          text-align: center
+          i
+            display: block
+            font-size: 34px
+            margin-top: 20px
+        .img-box,
+        .resource,
+        .resource-center
+          float: left
+          height: 70px
+          display: block
+          @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          //@include border-radius($baseBorderRadius)
+          .backstrech
+            @include border-radius($baseBorderRadius)
+        .info
+          @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          //margin-top: 5px
+          .name
+            margin-left: 5px
+            height: 20px
+            @include ellipsis
+            @include box_title         
+            a
+              color: $grayDark
+          .author:before  
+            margin-left: 5px
+            content: "by"
+          @include author
+        .info-bottom
+          margin-left: 5px
+          padding: 3px  
+          clear: both
+          hr
+            margin: 0
+          .soften
+            margin-bottom: 1px
+          .views
+            float: right
+          .like
+            a
+              i
+                text-decoration: none
