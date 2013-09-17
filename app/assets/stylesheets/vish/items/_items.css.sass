@@ -13,7 +13,7 @@
     li.box-item
       position: relative
       float: left
-      overflow: hidden
+      overflow: inherit
       width: 170px
       margin-right: 8px
       margin-left: 8px
@@ -22,6 +22,12 @@
       background: $white
       box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
       @include border-radius($baseBorderRadius)
+      .badge-active
+        position: absolute
+        top: 15px
+        left: -15px
+        z-index: 10
+        display: none
       .container-img
         display: inline-block
         position: relative
@@ -37,6 +43,9 @@
           overflow: hidden
           text-align: center
           width: 100%
+          @include border-top-radius($baseBorderRadius)
+
+
           .img-box
             width: 100%
             padding-bottom: 66.666%
