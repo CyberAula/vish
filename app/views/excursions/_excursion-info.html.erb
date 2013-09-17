@@ -18,7 +18,7 @@
         <dt><%= t('excursion.contributors.name').capitalize %></dt>
         <dd>
           <% isFirst = true %>
-          <% @excursion.contributors.each do |c| %>
+          <% @excursion.contributors.uniq.each do |c| %>
             <% if !isFirst %>
               ,
             <% else %>
