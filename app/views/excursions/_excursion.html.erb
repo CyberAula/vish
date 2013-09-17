@@ -1,12 +1,14 @@
 <li class="box-item excursion-item">
-
-<%= link_to(excursion) do %>
-
-
+  <div class="badge-active">
+    <%= image_tag("badges/excursionofthemonth.png" ) %>
+  </div>
+  <%= link_to(excursion) do %>
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
-          <div class="img-box" id="excursion-<%=excursion.id%>"></div>
+
+        <div class="img-box" id="excursion-<%=excursion.id%>"></div>
+
       </div>
   </div>
     
