@@ -6,23 +6,12 @@
       <div class="avatar">
       <!-- Edit your profile -->
         <% @profile = profile_or_current_subject.profile %>
-        <% if can?(:update, @profile) %>
+          <% if can?(:update, @profile) %>
             <div class="edit_icon">
               <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#', :id => "edit_icon_link") %> 
             </div>
         <% end %>
-        <!-- follow -->
-        <% if !profile_subject_is_current? %>
-            <section class="contact">
-              <div class="add">
-                <%= contact_button(profile_subject) %>
-              </div>
-              
-            </section>
-        <!-- <button>
-          <%#= contact_to(profile_subject) %>
-        </button> -->
-        <% end %>
+        
       <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
       <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
     </div>
@@ -32,6 +21,8 @@
 
         <div class="briefing">
           <h2><%= @user.name %></h2>
+          <!-- follow -->
+          
           <!-- Button to trigger modal --> 
           <!-- Modal -->
           <div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -60,7 +51,17 @@
               <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
             <% end %>
           </p>
-
+          <% if !profile_subject_is_current? %>
+              <section class="contact">
+                <div class="add">
+                  <%= contact_button(profile_subject) %>
+                </div>
+                
+              </section>
+          <!-- <button>
+            <%#= contact_to(profile_subject) %>
+          </button> -->
+          <% end %>
           <hr class="soften">
 
           <!-- Occupation -->
