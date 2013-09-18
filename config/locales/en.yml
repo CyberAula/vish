@@ -28,6 +28,9 @@ en:
     title: "Announcement"
     body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
   author: "author"
+  browse:
+    title: "browse"
+    popular: "popular content"
   cancel: "Cancel"
   category:
     confirm_delete: "Delete category?"

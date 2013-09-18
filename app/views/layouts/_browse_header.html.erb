@@ -1,15 +1,15 @@
 <div class="browse">
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      Browse
+      <%=t('browse.title')%>
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-      <li><a tabindex="-1" href="<%=search_path()%>">Popular</a></li>
+      <li><a tabindex="-1" href="<%=search_path()%>"><%=t('browse.popular')%></a></li>
       <li class="divider"></li>
-      <li><a tabindex="-1" href="<%=search_path(:type => "excursion")%>">Excursions</a></li>
-      <li><a tabindex="-1" href="<%=search_path(:type => "user")%>">Users</a></li>
-      <li><a tabindex="-1" href="<%=search_path(:type => "resource")%>">Resources</a></li>
+      <li><a tabindex="-1" href="<%=search_path(:type => "excursion")%>"><%=t('excursion.other')%></a></li>
+      <li><a tabindex="-1" href="<%=search_path(:type => "user")%>"><%=t('user.other')%></a></li>
+      <li><a tabindex="-1" href="<%=search_path(:type => "resource")%>"><%=t('resource.other')%></a></li>
     </ul>
   </li>
 </div>
