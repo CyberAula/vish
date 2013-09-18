@@ -96,6 +96,9 @@ $('.popover').popover('hide');
 });
 
 <%end%>
+
+
+
 <script type="text/javascript">
 $(document).ready(function(){
   $(".with_tooltip").tooltip({ placement: 'bottom'});
@@ -143,7 +146,7 @@ $(document).ready(function(){
     <li class="active">
       <a href="#tab1" data-toggle="tab">
         <i class="icon-align-left"></i> 
-        <span class="hidden-tablet hidden-phone">
+        <span class=" hidden-tablet hidden-phone">
           <%=t('excursion.description')%>
         </span>
       </a>
@@ -151,7 +154,7 @@ $(document).ready(function(){
     <li>
       <a href="#tab2" data-toggle="tab">
         <i class="icon-code"></i> 
-        <span class="hidden-tablet hidden-phone">
+        <span class=" hidden-tablet hidden-phone">
           <%=t('excursion.actions.embed') %>
         </span>
       </a>
@@ -159,7 +162,7 @@ $(document).ready(function(){
     <li>
       <a href="#tab3" data-toggle="tab">
         <i class="icon-share"></i>
-        <span class="hidden-tablet hidden-phone">
+        <span class=" hidden-tablet hidden-phone">
           <%=t('excursion.actions.share')%>
         </span>
       </a>
@@ -167,13 +170,16 @@ $(document).ready(function(){
     <li>
       <a href="#tab5" data-toggle="tab">
         <i class="icon-download"></i> 
-        <span class="hidden-tablet hidden-phone">
+        <span class=" hidden-tablet hidden-phone">
           <%=t('excursion.actions.scorm')%>
         </span>
       </a>
     </li>    
   </ul>
 </div>
+
+
+
 <h2><%= @excursion.title %></h2>
 <div class="viewsAndConunt">        
   <div class="views">
@@ -199,7 +205,7 @@ $(document).ready(function(){
   <div class="tab-pane" id="tab2">
     <div class="contentembed">
       <textarea class="shortUrl" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
-      <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy large"></i></button>
+      <!--button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy large"></i></button-->
     </div>
   </div>
   <!-- tab3 / share -->
@@ -207,7 +213,7 @@ $(document).ready(function(){
     <div class="contentShare">
       <div class="input-append url-input">
         <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-        <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button>
+        <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button-->
       </div>
       <div class="social_toolbar_excursion">
         <div class="twitter_toolbar_excursion">
