@@ -3,30 +3,79 @@
 // --------------------------------------------------
 
 
-@media (min-width: 1348px)
+@media (min-width: 1200px)
   #document,
-  #picture
+  #picture,
   #embed
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
     .picture,
     .embed
-    
-      .box-show
+      .box-show-resource
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: left
-      .description-activity
+        //visor
+        .container-visor-resource
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .caja-visor-resource
+            .picture_show,
+            .embed_show
+              padding: 10px 0px
+              img
+                @include border-radius($baseBorderRadius)
+                margin: 0 auto
+                display: block
+      .description-activity-resource
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: left
 
-      .recomended-items
+      .recomended-items-resource
         @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: right
 
-      .activity-box
+      .activity-box-resource
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+
+
+@media (min-width: 980px) and (max-width: 1199px)
+  #document,
+  #picture,
+  #embed
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .document,
+    .picture,
+    .embed
+      .box-show-resource
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+        //visor
+        .container-visor-resource
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .caja-visor-resource
+            .picture_show,
+            .embed_show
+              padding: 10px 0px
+              img
+                @include border-radius($baseBorderRadius)
+                margin: 0 auto
+                display: block
+      .description-activity-resource
+        @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+
+      .recomended-items-resource
+        @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: right
+
+      .activity-box-resource
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: left

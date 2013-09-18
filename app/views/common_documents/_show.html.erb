@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="recomended-items  hidden-tablet hidden-phone">
+    <div class="recomended-items-resource ">
       <div class="recomended_documents">
         <ul class="small-box clearfix">
           <% popular_resources(6).each do |resource| %>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-  <div class="description-activity">
+  <div class="description-activity-resource">
     <div class="box_description">
       <!--tool-->
       <div class="excursion_tool">
@@ -35,7 +35,7 @@
     </div>
     
     <!--activity-->
-    <div class="activity-box">
+    <div class="activity-box-resource">
       <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
     </div>
   </div>
