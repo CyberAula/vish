@@ -18,6 +18,9 @@
           <legend><%= f.label t('profile.organization'), :class => "text" %></legend>
           <%= f.text_field :organization, :class => "input_settings" %>
 
+          <legend><%= f.label t('profile.website'), :class => "text" %></legend>
+          <%= f.text_field :website, :class => "input_settings" %>
+
           <legend><%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday'), :class => "text" %></legend>
           <%= date_select "user", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
           
