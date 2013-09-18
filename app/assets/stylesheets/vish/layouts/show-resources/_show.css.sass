@@ -4,15 +4,15 @@
   .document,
   .picture,
   .embed
-    .box-show
+    .box-show-resource
       @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
       //visor
-      .container-visor
+      .container-visor-resource
         display: inline-block
         position: relative
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
-        .caja-visor
+        .caja-visor-resource
           background-color: $grayLight
           @include border-radius($baseBorderRadius)
           .picture_show,
