@@ -24,9 +24,10 @@
       <%= link_to excursion.title, excursion %>
     </div>
 <!--Autor -->
-    <div class="author"> 
+    <%=t('by')%>
+    <span class="author"> 
       <%= link_to excursion.author.name, excursion.author.subject %>
-    </div>
+    </span>
     <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">

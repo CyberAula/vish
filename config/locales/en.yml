@@ -31,6 +31,7 @@ en:
   browse:
     title: "browse"
     popular: "popular content"
+  by: "by"
   cancel: "Cancel"
   category:
     confirm_delete: "Delete category?"
