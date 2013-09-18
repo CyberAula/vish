@@ -58,7 +58,11 @@
           <p>
             <%= t('required') %>
           </p>
+
+
           <%= f.submit %>
+          <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-primary"%>
+
         <% end %>
 
         <%= javascript_tag do %>
@@ -109,6 +113,11 @@
                var tagList = $(".tagList");
                $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
                return true;
+             });
+
+             $("#hide_profile_form").click(function(){
+                $(".update").hide("slow");
+                $(".briefing").show("slow");
              });
 
           });

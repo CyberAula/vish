@@ -256,6 +256,7 @@ en:
   help: "help"
   help_page: "ViSH HELP"
   help_manual: "Download user manual"
+  hide: "Hide"
   lang:
     independent: "Language independent"
     changed: "Changed language to %{lang}"
