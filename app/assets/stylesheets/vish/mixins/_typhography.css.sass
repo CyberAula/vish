@@ -62,6 +62,26 @@
       color: $black
       span
         color: $secondColor
+        
+@mixin tab_title_show
+  li
+    a
+      font-family: $firstFontFamily !important
+      font-size: 12px
+      color: $gray
+      outline: 0px
+      span
+        color: $secondColor
+        font-family: $secondFontFamily  
+    
+      
+  li.active
+    a
+      font-family: $secondFontFamily !important
+      font-size: 12px
+      color: $black
+      span
+        color: $secondColor
 
 @mixin page_footer
   a

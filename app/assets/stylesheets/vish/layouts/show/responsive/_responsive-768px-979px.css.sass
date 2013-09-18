@@ -2,58 +2,27 @@
 // Responsive: Tablet to desktop
 // --------------------------------------------------
 
-@media (min-width: 768px) and (max-width: 818px)
-
+      
+@media (min-width: 768px) and (max-width: 979px)
   #show_items
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
-      margin-left: auto
-      margin-right: auto
-      float: none 
-      clear: both
+      float: left
       .container-visor
-        width: 100% !important
-
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .description-activity
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      display: block
-      float: left
-
-    .recomended-items
-      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      display: none
-      float: right
-
-    #showMore
-      margin-top: 5px
-  .documents
-    .description-activity
-      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      display: block
-      float: left
-
-      
-@media (min-width: 819px) and (max-width: 1346px)
-
-  #show_excursions
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .box-show
-      width: 800px
-      display: block
-      margin-left: auto
-      margin-right: auto
-      float: none 
-      clear: both
-
-    .description-activity
-      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
       float: left
 
     .recomended-items
       @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: none
-      float: right
-  #showMore
-    margin-top: 5px
+      float: left
+
+    .activity-box
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left

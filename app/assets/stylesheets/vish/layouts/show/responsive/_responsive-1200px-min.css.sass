@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 
-@media (min-width: 1347px)
+@media (min-width: 1200px)
   #show_items
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
@@ -11,7 +11,7 @@
       display: block
       float: left
       .container-visor
-        min-width: 800px
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .description-activity
       @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
@@ -20,7 +20,31 @@
     .recomended-items
       @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
-      float: right
+      float: left
+
+    .activity-box
+      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+
+@media (min-width: 980px) and (max-width: 1199px)
+  #show_items
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .box-show
+      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+      .container-visor
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .description-activity
+      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+
+    .recomended-items
+      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
 
     .activity-box
       @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)

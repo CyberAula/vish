@@ -3,7 +3,7 @@ $("#category_id").multiselect({
       classes: "categorize_select",
       height: "190px",
       minWidth: "auto",
-      noneSelectedText: '<i class="icon-th-large"></i> <span class="hidden-tablet hidden-phone"><%=t("categories.actions.verb")%> </span><b class="caret"></b>',
+      noneSelectedText: '<i class="icon-th-large"></i> <!--span class="hidden-tablet hidden-phone"><%#=t("categories.actions.verb")%> </span--><b class="caret"></b>',
       selectedText: '<i class="icon-th-large"></i> <span class="hidden-tablet hidden-phone"> # <%=t("categories.selected")%> </span><b class="caret"></b>',
       click: function(event, ui){
           $.ajax({
