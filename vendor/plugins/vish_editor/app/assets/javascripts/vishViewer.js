@@ -10224,6 +10224,8 @@ VISH.Viewer = function(V, $, undefined) {
     V.Renderer.init();
     V.Slides.init();
     V.Utils.Loader.loadDeviceCSS();
+    V.I18n.init(options.lang);
+    V.Utils.Loader.loadLanguageCSS();
     V.User.init(options);
     V.Storage.init();
     V.Recommendations.init(options);
@@ -10608,9 +10610,9 @@ VISH.Utils = function(V, undefined) {
     var options = {};
     options.width = 650;
     options.height = 220;
-    options.text = "This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.";
+    options.text = V.I18n.getTrans("i.resourceNonCompatibleNotification");
     var button1 = {};
-    button1.text = "Ok";
+    button1.text = V.I18n.getTrans("i.Ok");
     button1.callback = function() {
       $.fancybox.close()
     };
@@ -11096,6 +11098,13 @@ VISH.Utils.Loader = function(V, undefined) {
         break
     }
   };
+  var loadLanguageCSS = function() {
+    var languagesWithCSS = ["es"];
+    var language = V.I18n.getLanguage();
+    if(languagesWithCSS.indexOf(language) != -1) {
+      loadCSS("language/" + language + ".css")
+    }
+  };
   var t1Loading;
   var startLoading = function() {
     if(!_isFullLoadingActive()) {
@@ -11137,7 +11146,7 @@ VISH.Utils.Loader = function(V, undefined) {
     $(container).find(".loading_fancy_img").parent().remove();
     $(container).removeClass("loadingtmpShown")
   };
-  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
+  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, loadLanguageCSS:loadLanguageCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
   var _device;
