@@ -67,7 +67,7 @@
           display: block
           float: left
           textarea
-            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           .input-append
             @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
@@ -103,9 +103,10 @@
             float: left
           .actions-clone,
           a
-            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
             display: block
             float: left
+            margin-right: 20px
           
         .viewsAndConunt
           width: 20%
@@ -155,57 +156,7 @@
           .btn
             padding: 8px 12px
 
-        .share
-          .popover
-            width: 310px
-        .embed
-          .popover
-            .arrow
-              left: 30%
-        .clone
-          .popover
-            width: 220px
-        .delete
-          .popover
-            width: 220px
-        .category
-          .popover
-            width: 220px
-        .popover
-          .popover-content
-            textarea
-              width: 310px
-              height: 100px
-            input.shortUrl
-              width: 210px
-            .btn-group
-              display: block
-              margin-top: -5px
-              width: 170px
-            .url-input
-              width: 100%
-              .copy_btn
-                margin-left: 10px
-            .icon-stack
-              display: inline-block
-              font-size: 20px
-              vertical-align: 4px
-            .icon-remove-sign
-              display: inline-block
-              font-size: 40px
-              vertical-align: -10px
-            p.info
-              display: inline-block
-              width: 130px
-              margin-left: 5px
-            p.delete
-              display: inline-block
-              width: 130px
-              margin-left: 5px
-            .actions-clone
-              display: block
-              margin-left: 49px
-
+        
 
       //description
       .toggler
