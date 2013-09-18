@@ -61,7 +61,7 @@
 							<li>
 								<a class="menu_option menu_action" action="preview">
 									<i class="icon-button icon-eye-open"></i>
-									<span i18n-key="i.preview">Preview</span>
+									<span i18n-key="i.Preview">Preview</span>
 								</a>
 							</li>
 							<li>
@@ -209,29 +209,29 @@
 
 					<div id="presentation_details_fields_row1_column1">
 						<img id='presentation_details_logo' src="/assets/logo.png"/>
-						<p id="presentation_details_preview_title" class="presentation_details_column_title"> Preview </p>
+						<p id="presentation_details_preview_title" class="presentation_details_column_title" i18n-key="i.Preview">Preview</p>
 						<div id="presentation_details_preview">
 							<div id="presentation_details_preview_thumbnail">
 								<div title="Click to add an avatar. You should select an avatar to identify your excursion" id="presentation_details_preview_thumbnail_img_wrapper">
 									<img id='presentation_details_preview_thumbnail_img' class="addThumbnailPlus" src="/assets/icons/addThumbnail2.png"/>
 								</div>
-								<p class="addthumbtitle">Add an avatar *</p>
+								<p class="addthumbtitle" i18n-key="i.Addanavatar">Add an avatar *</p>
 								<div id="editthumb">
-									<p>edit</p>
+									<p i18n-key="i.edit">edit</p>
 								</div>
 							</div>
 							<div id="presentation_details_preview_addtitle">
-								<input id="presentation_details_preview_addtitle_input" type="text" maxLength="120" placeholder="add a title"></input>
+								<input id="presentation_details_preview_addtitle_input" type="text" maxLength="120" placeholder="add a title" i18n-key="i.addatitle"></input>
 							</div>
 							<div id="presentation_details_preview_author">
-								<span>by </span><span id="author_span_in_preview"></span>
+								<span i18n-key="i.by">by</span> <span id="author_span_in_preview"></span>
 							</div>
 						</div>
 					</div>
 
 					<div id="presentation_details_fields_row1_column2">
 
-						<p class="presentation_details_column_title"> Excursion Details </p>
+						<p i18n-key="i.ExcursionDetails" class="presentation_details_column_title"> Excursion Details </p>
 
 						<div id="presentation_details_title">
 							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.Title">Title *</span>
@@ -252,14 +252,14 @@
 					</div>
 
 					<div id="presentation_details_fields_row1_column3">
-						<p id="selectthemeshelp" class="presentation_details_column_title"> Select Theme </p>
+						<p id="selectthemeshelp" class="presentation_details_column_title" i18n-key="i.SelectTheme"> Select Theme </p>
 						<div id="scrollbar_themes_list"></div>
 					</div>
 				</div>
 
 				<div id="presentation_details_fields_row2">
-					<button id='pedagogical_clasification_button' submit='disable' class='button buttonpedagogical' i18n-key="i.pedagogicalClasification">Pedagogical Aspects</button>
-					<button id='fill_details_later_button' submit='disable' class='button'>Fill later</button>
+					<button id='pedagogical_clasification_button' submit='disable' class='button' i18n-key="i.PedagogicalAspects">Pedagogical Aspects</button>
+					<button id='fill_details_later_button' submit='disable' class='button' i18n-key="i.Filllater">Fill later</button>
 					<button id='save_presentation_details' disabled="true" submit='disable' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.continue">Continue</button>
 				</div>
 			</div>
@@ -268,7 +268,7 @@
 			<div id="pedagogical_options_fields" style="display:none">
 				<img class='help_in_settings' id='help_pedagogical_selection' src="/assets/icons/helptutorial_circle_blank.png"/>
 				<div>
-					<p class="pedagogical_title">Pedagogical Aspects</p>
+					<p class="pedagogical_title" i18n-key="i.PedagogicalAspects">Pedagogical Aspects</p>
 				</div>
 
 				<div id="pedagogical_options_fields_row1">
@@ -277,10 +277,10 @@
 
 						<div id="language_tag_box">
 							<div id="language_tag_box_text">
-								<span i18n-key="i.language">Language</span>
+								<span i18n-key="i.Language">Language</span>
 							</div>
 							<select id="language_tag" class="ped_box_fields2">
-								<option value="independent" selected="1">(Language independent)</option>
+								<option value="independent" selected="1" i18n-key="i.Languageindependent">Language independent</option>
 								<option value="de">Deutsch</option>
 								<option value="en">English</option>
 								<option value="es">Español</option>
@@ -288,21 +288,22 @@
 								<option value="it">Italiano</option>
 								<option value="pt">Português</option>
 								<option value="ru">Русский</option>
-								<option value="ot">Others</option>
+								<option value="ot" i18n-key="i.Other">Other</option>
 							</select>
 						</div>
 
 						<div id="context_tag_box" class="content_tag_box_class margin_for_new_field_settings">
 							<div id="context_tag_box_text">
-								<span i18n-key="i.context">Context</span>
+								<span i18n-key="i.Context">Context</span>
 							</div>
 							<select id="context_tag" class="ped_box_fields">
-								<option value="unspecified" selected="1">Unspecified</option>
-								<option value="school">School</option>
-								<option value="higher education">Higher Education</option>
-								<option value="university">University</option>
-								<option value="training">Training</option>
-								<option value="other">Other</option>
+								<option value="unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
+								<option value="preschool" i18n-key="i.Preschool">Preschool</option>
+								<option value="school" i18n-key="i.School">School</option>
+								<option value="higher education" i18n-key="i.HigherEducation">Higher Education</option>
+								<option value="university" i18n-key="i.University">University</option>
+								<option value="training" i18n-key="i.Training">Training</option>
+								<option value="other" i18n-key="i.Other">Other</option>
 							</select>
 						</div>
 
@@ -311,7 +312,7 @@
 					<div id="pedagogical_options_fields_row1_column2">
 						
 						<div id="age_range_wrapper">
-							<div class="range_text"><span i18n-key="i.age_range">Age range:</span></div>
+							<div class="range_text"><span i18n-key="i.Age_range">Age range</span>:</div>
 							<div class="slider_wrapper">
 								<input type="text" id="age_range" class="slider_range_input"/>
 								<div id="slider-age" class="slider_bar"></div>
@@ -319,7 +320,7 @@
 						</div>
 
 						<div id="difficulty_wrapper" class="margin_for_new_field_settings">
-							<div class="range_text"><span i18n-key="i.difficulty">Difficulty:</span></div>
+							<div class="range_text"><span i18n-key="i.Difficulty">Difficulty</span>:</div>
 							<div class="slider_wrapper">
 								<input type="text" id="difficulty_range" class="slider_range_input"/>
 								<div id="slider-difficulty" class="slider_bar"></div>
@@ -327,19 +328,19 @@
 						</div>
 
 						<div id="tlt_wrapper" class="margin_for_new_field_settings">
-							<div class="range_text"><span i18n-key="i.TLT">Typical Learning Time:</span></div>
+							<div class="range_text"><span i18n-key="i.Typicallearningtime">Typical learning time</span>:</div>
 							<input type="text" id="tlt_current_value" class="slider_range_input"/>
 							<div class="tlt_inputs_wrapper">
 								<div class="tlt_input_wrapper">
-									<p class="tlt_input_title" i18n-key="i.Hours"> Hours </p>
+									<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
 									<input type="number" value="0" min="0" max="23" id="tlt_hours" class="tlt_input"/>
 								</div>
 								<div class="tlt_input_wrapper">
-									<p class="tlt_input_title" i18n-key="i.Minutes"> Minutes </p>
+									<p class="tlt_input_title" i18n-key="i.Minutes">Minutes</p>
 									<input type="number" value="0" min="0" max="59" id="tlt_minutes" class="tlt_input"/>
 								</div>
 								<div class="tlt_input_wrapper">
-									<p class="tlt_input_title" i18n-key="i.Seconds"> Seconds </p>
+									<p class="tlt_input_title" i18n-key="i.Seconds">Seconds</p>
 									<input type="number" value="0" min="0" max="59" step="5" id="tlt_seconds" class="tlt_input"/>
 								</div>
 							</div>
@@ -352,48 +353,42 @@
 								<span i18n-key="i.Subject">Subject</span>
 							</div>
 							<select id="subject_tag" size="4" multiple="multiple">
-								<option value="Unspecified" selected="1">Unspecified</option>
-								<option value="Art">Art</option>
-								<option value="Astronomy">Astronomy</option>
-								<option value="Biology">Biology</option>
-								<option value="Chemistry">Chemistry</option>
-								<option value="Citizenship">Citizenship</option>
-								<option value="Classical Languages">Classical Languages</option>
-								<option value="Cross Curricular education">Cross Curricular Education</option>
-								<option value="Computer Science">Computer Science</option>
-								<option value="Culture">Culture</option>
-								<option value="Economics">Economics</option>
-								<option value="Educational Administration">Educational Administration</option>
-								<option value="Electronics">Electronics</option>
-								<option value="Environmental Education">Environmental Education</option>
-								<option value="Ethics">Ethics</option>
-								<option value="Foreign Languages">Foreign Languages</option>
-								<option value="Geography">Geography</option>
-								<option value="Geology">Geology</option>
-								<option value="Health Education">Health Education</option>
-								<option value="History">History</option>
-								<option value="Home Economics">Home Economics</option>
-								<option value="Informatics">Informatics</option>
-								<option value="Language and Literature">Language and Literature</option>
-								<option value="Law">Law</option>
-								<option value="Mathematics">Mathematics</option>
-								<option value="Media Education">Media Education</option>
-								<option value="Music">Music</option>
-								<option value="Natural Sciences">Natural Sciences</option>
-								<option value="Philosophy">Philosophy</option>
-								<option value="Physical Education">Physical Education</option>
-								<option value="Physics">Physics</option>
-								<option value="Politics">Politics</option>
-								<option value="Pre-school Subjects">Pre-school Subjects</option>
-								<option value="Primary School Subjects">Primary School Subjects</option>
-								<option value="Psychology">Psychology</option>
-								<option value="Religion">Religion</option>
-								<option value="School-community Relationship">School-community Relationship</option>
-								<option value="Social Sciences">Social Sciences</option>
-								<option value="Software Engineering">Software Engineering</option>
-								<option value="Special (needs) Education">Special (needs) Education</option>
-								<option value="Technology">Technology</option>
-								<option value="Telecommunications">Telecommunications</option>
+								<option value="Unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
+								<option value="Art" i18n-key="i.Art">Art</option>
+								<option value="Astronomy" i18n-key="i.Astronomy">Astronomy</option>
+								<option value="Biology" i18n-key="i.Biology">Biology</option>
+								<option value="Chemistry" i18n-key="i.Chemistry">Chemistry</option>
+								<option value="Citizenship" i18n-key="i.Citizenship">Citizenship</option>
+								<option value="Classical Languages" i18n-key="i.ClassicalLanguages">Classical Languages</option>
+								<option value="Cross Curricular Education" i18n-key="i.CrossCurricularEducation">Cross Curricular Education</option>
+								<option value="Computer Science" i18n-key="i.ComputerScience">Computer Science</option>
+								<option value="General Culture" i18n-key="i.GeneralCulture">General Culture</option>
+								<option value="Economics" i18n-key="i.Economics">Economics</option>
+								<option value="Education" i18n-key="i.Education">Education</option>
+								<option value="Electronics" i18n-key="i.Electronics">Electronics</option>
+								<option value="Environmental Education" i18n-key="i.EnvironmentalEducation">Environmental Education</option>
+								<option value="Ethics" i18n-key="i.Ethics">Ethics</option>
+								<option value="Foreign Languages" i18n-key="i.ForeignLanguages">Foreign Languages</option>
+								<option value="Geography" i18n-key="i.Geography">Geography</option>
+								<option value="Geology" i18n-key="i.Geology">Geology</option>
+								<option value="Health Education" i18n-key="i.HealthEducation">Health Education</option>
+								<option value="History" i18n-key="i.History">History</option>
+								<option value="Home Economics" i18n-key="i.HomeEconomics">Home Economics</option>
+								<option value="Literature" i18n-key="i.Literature">Literature</option>
+								<option value="Law" i18n-key="i.Law">Law</option>
+								<option value="Mathematics" i18n-key="i.Mathematics">Mathematics</option>
+								<option value="Music" i18n-key="i.Music">Music</option>
+								<option value="Natural Sciences" i18n-key="i.NaturalSciences">Natural Sciences</option>
+								<option value="Philosophy" i18n-key="i.Philosophy">Philosophy</option>
+								<option value="Physical Education" i18n-key="i.PhysicalEducation">Physical Education</option>
+								<option value="Physics" i18n-key="i.Physics">Physics</option>
+								<option value="Politics" i18n-key="i.Politics">Politics</option>
+								<option value="Psychology" i18n-key="i.Psychology">Psychology</option>
+								<option value="Religion" i18n-key="i.Religion">Religion</option>
+								<option value="Social Sciences" i18n-key="i.SocialSciences">Social Sciences</option>
+								<option value="Software Engineering" i18n-key="i.SoftwareEngineering">Software Engineering</option>
+								<option value="Technology" i18n-key="i.Technology">Technology</option>
+								<option value="Telecommunications" i18n-key="i.Telecommunications">Telecommunications</option>
 							</select>
 						</div>
 					</div>
@@ -403,9 +398,9 @@
 				<div id="pedagogical_options_fields_row2">
 					<div>
 						<div id="educational_objectives_title">
-							<span i18n-key="i.Educational">Educational Objectives</span>
+							<span i18n-key="i.EducationalObjectives">Educational Objectives</span>
 						</div>
-						<textarea id='educational_objectives_textarea' name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalPlaceholder"></textarea>
+						<textarea id='educational_objectives_textarea' name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalObjectivesPlaceholder"></textarea>
 					</div>
 				</div>
 
@@ -573,7 +568,7 @@
 					<p class="textfancy">Add Excursion or Smartcard from JSON file</p></br>
 					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
 					<input id="json_file_input" type="file" id="files" name="files[]" multiple />
-					<button id="json_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
+					<button id="json_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 			</div>
 
@@ -727,7 +722,7 @@
 					<p i18n-key="i.pic.add" class="textfancy">add image url</p></br>
 					<img class="image_add_url" src="/assets/icons/url_img.png"/>
 					<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 				<div class="box2">
 					<div id="picture_preview" class="previewimgbox">
@@ -873,7 +868,7 @@
 					<p class="textfancy" i18n-key="i.embedObject">embed object</p></br>
 					<img class="image_add_url" src="/assets/icons/url_img.png"/>
 					<input id="object_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 				<div class="box2">
 					<div id="picture_preview" class="previewimgbox">
@@ -887,7 +882,7 @@
 					<p class="textfancy" i18n-key="i.embedWebsites">embed websites</p></br>
 					<img class="image_add_url" src="/assets/icons/url_img.png"/>
 					<input id="object_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 				<div class="box2">
 					<div id="picture_preview" class="previewimgbox">
@@ -949,7 +944,7 @@
 					<p class="textfancy">Web Snapshot</p></br>
 					<img class="image_add_url" src="/assets/icons/url_img.png"/>
 					<input id="object_snapshot_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 				<div class="box2">
 					<div class="previewimgbox">
@@ -1002,7 +997,7 @@
 					<p i18n-key="i.AddVideoUrl" class="textfancy">add video url</p></br>
 					<img id="image_add_url" class="image_add_url" src="/assets/icons/url_img.png"/>
 					<input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
-					<button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 				<div id="box2" class="box2">
 					<div id="previewimgbox" class="previewimgbox">
@@ -1363,7 +1358,7 @@
 				<h2 i18n-key="i.walkSettings6_1">Add tags to your excursion</h2>
 				<p i18n-key="i.walkSettings6_2">Here you can add tags (or keywords) to your excursion.</p>
 				<p i18n-key="i.walkSettings6_3">These keywords are very useful to categorize the excursion. Also, they are used as index terms in the ViSH platform (as well as in other repositories), and therefore add keywords to an excursion facilitates its searching and retrieval.</p>
-				<p><span i18n-key="i.walkSettings6_4">Tag examples</span>: <i i18n-key="i.nanoscience">nanoscience</i>, <i i18n-key="i.math">math</i> or <i i18n-key="i.biology">biology</i></p>
+				<p><span i18n-key="i.walkSettings6_4">Tag examples</span>: <i i18n-key="i.nanoscience">nanoscience</i>, <i i18n-key="i.math">math</i> <span i18n-key="i.or">or</span> <i i18n-key="i.biology">biology</i></p>
 				<p class="tut_space">&nbsp;</p>
 			</li>
 
@@ -1374,7 +1369,7 @@
 				<p><span i18n-key="i.walkSettings7_4">Details about the information that can be specified are explained in the   contextual help of the Pedagogical Aspects screen.</p>
 			</li>
 
-			<li class="tut_width500" data-id="save_presentation_details" class="tut_with_arrow" data-options="tipLocation:top" data-text="Close" i18n-key="i.Close">
+			<li class="tut_width500" data-id="save_presentation_details" class="tut_with_arrow" data-options="tipLocation:top" data-text="Finish" i18n-key="i.Finish">
 				<h2 i18n-key="i.walkSettings8_1">Start using ViSH Editor</h2>
 				<p i18n-key="i.walkSettings8_2">Once you have fulfilled the information of your excursion, at least the title and avatar, you can start to create your excursion with ViSH Editor by clicking on the 'Continue' button.</p>
 				<p i18n-key="i.walkSettings8_3">If you do not want to fulfill all the information now, you can also start using ViSH Editor by clicking on the “Fill later” button, but in this case remember that you should come back to the Settings screen and complete all the mandatory fields before publish the excursion.</p>
@@ -1385,7 +1380,7 @@
 
 		<!-- Help in pedagogical options settings -->
 		<ol id="help_pedagogical_selection_help" class="joyRideTipContent">
-			<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_pedagogical tut_without_arrow" data-options="tipLocation:none">
+			<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_pedagogical tut_without_arrow" data-options="tipLocation:none">
 				<h2 i18n-key="i.walkPedagogical1_1">Welcome to the Pedagogical Aspects screen</h2>
 				<p><span i18n-key="i.walkPedagogical1_2_1">In this screen you can specify more pedagogy related information (or metadata) about your excursion. These metadata are grounded on and are compliant with the Learning Object Metadata (LOM) standard. The last specification of this standard, which explains in a detailed way all fields of this screen, can be found</span> <a href="http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf" target="_blank"><span i18n-key="i.walkPedagogical1_2_2">here</span></a>.</p>
 				<p class="tut_space">&nbsp;</p>
