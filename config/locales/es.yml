@@ -53,7 +53,7 @@ es:
   conditions:
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
     check_message_1: "Condiciones de Uso"
-    other: "condiciones"
+    other: "términos de uso"
   contact:
     footer: "contacto"
     pending:

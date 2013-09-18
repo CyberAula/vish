@@ -52,7 +52,7 @@ en:
   conditions:
     check_message: "By clicking Accept, you agree to our "  
     check_message_1: "Terms and Conditions."
-    other: "conditions"
+    other: "terms of use"
   contact:
     footer: "contact"
     pending:
