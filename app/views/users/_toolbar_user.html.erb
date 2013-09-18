@@ -4,7 +4,7 @@
 <% @profile = profile_or_current_subject.profile %>
 <% if can?(:update, @profile) %>
 <div class="edit_icon">
-  <%= link_to(raw("<i class='icon-edit '></i>")+ t('edit profile'), '#', :id => "edit_icon_link") %> 
+  <%= link_to(raw("<i class='icon-edit '></i>")+ t('profile.profile'), '#', :id => "edit_icon_link") %> 
 </div>
 <% end %>
 
