@@ -11,7 +11,9 @@ var i18n = {"vish":{"es":{"i.walkSettings1_1":"Bienvenido a la pantalla de Ajust
 "i.Languageindependent":"Independiente del idioma", "i.Other":"Otro", "i.Others":"Otros", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.School":"Colegio", "i.HigherEducation":"Educaci\u00f3n Secundaria", "i.University":"Universidad", "i.Training":"Formaci\u00f3n Laboral", "i.Preschool":"Preescolar", "i.veryeasy":"muy f\u00e1cil", "i.easy":"f\u00e1cil", "i.medium":"medio", "i.difficult":"dif\u00edcil", "i.verydifficult":"muy dif\u00edcil", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", 
 "i.Biology":"Biolog\u00eda", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.GeneralCulture":"Cultura General", "i.Economics":"Econom\u00eda", "i.Education":"Educaci\u00f3n", "i.Electronics":"Electr\u00f3nica", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.Ethics":"\u00c9tica", "i.ForeignLanguages":"Idiomas", 
 "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Literature":"Literatura", "i.Law":"Derecho", "i.Mathematics":"Matem\u00e1ticas", "i.Music":"M\u00fasica", "i.NaturalSciences":"Ciencias Naturales", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.Politics":"Ciencias Pol\u00edticas", "i.Psychology":"Psicolog\u00eda", 
-"i.Religion":"Religi\u00f3n", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Technology":"Tecnolog\u00eda", "i.Telecommunications":"Telecomunicaciones", "i.invalidvalue":"valor inv\u00e1lido", "i.walk1":"Puedes utilizar el icono tutorial", "i.walk2":'durante las secciones de la aplicaci\u00f3n para servirte de ayuda a la hora de utilizar el "ViSH Editor". De esta manera podr\u00e1s aprender a utilizar el programa desde sus funciones b\u00e1sicas hasta la publicaci\u00f3n final de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', 
+"i.Religion":"Religi\u00f3n", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Technology":"Tecnolog\u00eda", "i.Telecommunications":"Telecomunicaciones", "i.invalidvalue":"valor inv\u00e1lido", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.Import":"Importar", "i.Export":"Exportar", "i.Style":"Estilo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", 
+"i.GotoSettings":"Ir a Ajustes", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.Ok":"Ok", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No es posible exportar la presentaci\u00f3n a un fichero JSON.", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.pdfErrorNotification":"Ha ocurrido un error. Asegurese de que el fichero PDF es v\u00e1lido.", 
+"i.cancel":"cancelar", "i.draft":"borrador", "i.publish":"publicar", "i.save":"guardar", "i.no":"no", "i.No":"No", "i.yes":"si", "i.Yes":"Si", "i.delete":"borrar", "i.walk1":"Puedes utilizar el icono tutorial", "i.walk2":'durante las secciones de la aplicaci\u00f3n para servirte de ayuda a la hora de utilizar el "ViSH Editor". De esta manera podr\u00e1s aprender a utilizar el programa desde sus funciones b\u00e1sicas hasta la publicaci\u00f3n final de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', 
 "i.walk3":'Este espacio te permite a\u00f1adir el t\u00edtulo de tu excursi\u00f3n.El t\u00edtulo de la excursi\u00f3n es obligatorio ya que gracias a el, otros usuarios podr\u00e1n encontrarla mas f\u00e1cilmente dentro del ViSH. Pulsa "Siguiente" para continuar.', "i.walk4":'En este espacio puedes explicar en mas detalle los conceptos e ideas de tu excursi\u00f3n, as\u00ed como los datos que consideres interesantes para que los usuarios sepan el contenido de esta. Pulsa "Siguiente" para continuar.', 
 "i.walk5":'A\u00f1ade palabras que vayan acorde con el tema de tu excursi\u00f3n para que esta aparezca a la hora de que los usuarios busquen temas dentro del ViSH. Pulsa "Siguiente" para continuar.', "i.walk6":'Escoge una de estas im\u00e1genes para representar tu excursi\u00f3n dentro del ViSH.Utiliza las flechas de los laterales o los circulos en la parte inferior de la galer\u00eda para ver todas las im\u00e1genes y escoger una. Pulsa "Siguiente" para continuar.', "i.walk7":"Para finalizar puedes hacer click en 'continuar' para salvar los detalles de tu excursi\u00f3n o hacer click en 'Rellenar luego' para hacerlo mas tarde y empezar a a\u00f1adir contenido a tu excursi\u00f3n", 
 "i.walk8":'Bienvenido, este es el escritorio de ViSH Editor, desde aqu\u00ed, aprender\u00e1s a realizar excursiones paso a paso. Pulsa "Siguiente" para continuar.', "i.walk9":'En esta zona podr\u00e1s ver las opciones principales para crear y editar una excursi\u00f3n virtual dentro de ViSH. Pulsa "Siguiente" para continuar.', "i.walk10":'Haciendo clic en este bot\u00f3n, podr\u00e1s volver a ver la pantalla principal donde a\u00f1adiste la informaci\u00f3n a tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', 
@@ -48,7 +50,7 @@ var i18n = {"vish":{"es":{"i.walkSettings1_1":"Bienvenido a la pantalla de Ajust
 "i.walk100":"Esta ventana te ofrece buscar flashcards o virtual tours desde el repositorio de Vish para a\u00f1adirlos en tus excursiones. Una flashcard o virtual tour es una p\u00e1gina interactiva que contiene otras p\u00e1ginas a su vez en forma de infograf\u00eda o mapa de contenidos.Haz click en cerrar para terminar el tutorial.", "i.walk101":"En este espacio puedes buscar im\u00e1genes en el repositiorio del LRE. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de im\u00e1genes de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz clic en cerrar para terminar este tutorial.", 
 "i.walk102":"En este espacio puedes buscar contenido en el repositiorio del LRE. Solamente escribe lo que busques y en la zona inferior te aparecer\u00e1 una galer\u00eda de contenido de las cuales solo debes pulsar encima de una de ellas para a\u00f1adirla a tu presentaci\u00f3n..Haz clic en cerrar para terminar este tutorial.", "i.Searchlrecontent":"Busqueda de contenido en el LRE", "i.flashvirtslidesmenu":"Este es el men\u00fa de contenido dentro de Flashcards y Virtual tours", "i.backforflash":"Fondos de flashcards", 
 "SearchImageslre":"Busqueda de Imagenes en el LRE", "i.addflashvirt":"A\u00f1adiendo flashcards o virtual tours", "i.pedagogical":"Aspectos pedag\u00f3gicos", "i.AddingSlideinto":"A\u00f1adir slides dentro de tu excursi\u00f3n", "i.import":"...o importa contenido", "i.link":"A\u00f1adir url", "i.resize":"Redimensionar", "i.flashcardbg":"Fondo de flashcard", "i.text":"Texto", "i.themesButton":"ViSH Editor Themes", "i.toolbarButton":"Barra de herramientas", "i.themesTitle":"Selecci\u00f3n de temas", 
-"i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.AddSlide":"A\u00f1adir bot\u00f3n de nueva slide", "i.Addv\u00eddeoUrl":"a\u00f1adir URL de v\u00eddeo", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", 
+"i.pic.add":"a\u00f1adir URL de imagen", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.accept":"aceptar", "i.Add":"A\u00f1adir", "i.add":"a\u00f1adir", "i.AddContent":"A\u00f1adir Contenido", "i.i.Addnewslidebutton":"A\u00f1adir bot\u00f3n de nueva slide", "i.Addv\u00eddeoUrl":"a\u00f1adir URL de v\u00eddeo", "i.AddTags":"A\u00f1ade tags a tu excursi\u00f3n", "i.AddSlideContent":"A\u00f1adiendo contenido a una slide", 
 "i.AddObjectContent":"A\u00f1adiendo contenido Object", "i.AddObjectContentUpload":"Subiendo contenido Object", "i.AddObjectContentUrl":"A\u00f1adiendo contenido Object por url", "i.AddImagesContent":"A\u00f1adiendo im\u00e1genes", "i.AddImagesContentUrl":"A\u00f1adiendo im\u00e1genes por url", "i.AddImagesContentUpload":"Subiendo im\u00e1genes", "i.Addv\u00eddeoContent":"A\u00f1adiendo v\u00eddeo", "i.Addv\u00eddeoContentUrl":"A\u00f1adiendo v\u00eddeo por url", "i.AddLiveContent":"A\u00f1adiendo Contenido en Directo", 
 "i.Age_range":"Rango de edad", "i.sure":"\u00bfest\u00e1 seguro?", "i.cancel":"cancelar", "i.closeOrDelete":"Borrar o Cerrar", "i.close":"cerrar", "i.Close":"Cerrar", "i.Competencies":"Competencias adquiridas", "i.CompetenciesPlaceholder":"Describa aqu\u00ed las competencias que los estudiantes adquirir\u00e1n con esta excursi\u00f3n", "i.continue":"Continuar", "i.Content":"Contenido", "i.done":"Hecho", "i.oneSlideAlert":"Debe crear al menos una slide antes de salvar", "i.thumbnailsChoosing":"Elige una imagen que representar\u00e1 tu excursi\u00f3n", 
 "i.configButton":"Bot\u00f3n de configuraci\u00f3n", "i.delete":"borrar", "i.deleteContent":"Borrar contenido", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", "i.Description":"Descripci\u00f3n", "i.Editdetails":"Editar detalles", "i.EducationalObjectives":"Objetivos Educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", 
@@ -57,9 +59,11 @@ var i18n = {"vish":{"es":{"i.walkSettings1_1":"Bienvenido a la pantalla de Ajust
 "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", "i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", 
 "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectSlides":"Seleccionando slides de excursiones externas", "i.selectTheme":"Seleccionar tema", "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo *", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", 
 "i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", 
-"i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", 
+"i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.Publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", 
 "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", 
-"i.Title":"Title", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content", "i.veryeasy":"very easy", "i.easy":"easy", "i.medium":"medium", "i.difficult":"difficult", "i.verydifficult":"very difficult", "i.invalidvalue":"invalid value", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.Title":"Title", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content", "i.veryeasy":"very easy", "i.easy":"easy", "i.medium":"medium", "i.difficult":"difficult", "i.verydifficult":"very difficult", "i.invalidvalue":"invalid value", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
+"i.GotoSettings":"i.Go to Settings", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.Ok":"Ok", "i.areyousureNotification":"are you sure?", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.cancel":"cancel", "i.draft":"draft", "i.publish":"publish", 
+"i.save":"save", "i.no":"no", "i.No":"No", "i.yes":"yes", "i.Yes":"Yes", "i.delete":"delete", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.VERSION = "0.7";
 VISH.AUTHORS = "GING";
@@ -12220,9 +12224,9 @@ VISH.Utils = function(V, undefined) {
     var options = {};
     options.width = 650;
     options.height = 220;
-    options.text = "This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.";
+    options.text = V.I18n.getTrans("i.resourceNonCompatibleNotification");
     var button1 = {};
-    button1.text = "Ok";
+    button1.text = V.I18n.getTrans("i.Ok");
     button1.callback = function() {
       $.fancybox.close()
     };
@@ -12582,7 +12586,8 @@ VISH.Editor = function(V, $, undefined) {
       return
     }
     V.Utils.Loader.loadDeviceCSS();
-    V.Editor.I18n.init(options.lang);
+    V.I18n.init(options.lang);
+    V.Utils.Loader.loadLanguageCSS();
     V.Editor.Dummies.init();
     V.EventsNotifier.init();
     V.Editor.Themes.init();
@@ -12742,14 +12747,14 @@ VISH.Editor = function(V, $, undefined) {
     options.width = 375;
     options.height = 135;
     options.notificationIconSrc = V.ImagesPath + "zonethumbs/" + getCurrentArea().attr("type") + ".png";
-    options.text = "are you sure?";
+    options.text = V.I18n.getTrans("i.areyousureNotification");
     var button1 = {};
-    button1.text = "no";
+    button1.text = V.I18n.getTrans("i.no");
     button1.callback = function() {
       $.fancybox.close()
     };
     var button2 = {};
-    button2.text = "delete";
+    button2.text = V.I18n.getTrans("i.delete");
     button2.callback = function() {
       var area = getCurrentArea();
       area.html("");
@@ -12769,14 +12774,14 @@ VISH.Editor = function(V, $, undefined) {
     options.height = 130;
     options.notificationIconSrc = V.Editor.Thumbnails.getThumbnailURL(article_to_delete);
     options.notificationIconClass = "notificationIconDelete";
-    options.text = "are you sure?";
+    options.text = V.I18n.getTrans("i.areyousureNotification");
     var button1 = {};
-    button1.text = "no";
+    button1.text = V.I18n.getTrans("i.no");
     button1.callback = function() {
       $.fancybox.close()
     };
     var button2 = {};
-    button2.text = "delete";
+    button2.text = V.I18n.getTrans("i.delete");
     button2.callback = function() {
       if(V.Editor.Slides.isSubslide(article_to_delete)) {
         V.Editor.Slides.removeSubslide(article_to_delete)
@@ -13229,7 +13234,7 @@ VISH.Editor.Utils = function(V, $, undefined) {
         title = "<a title='view resource' class='metadata_link' target='_blank' href='" + options.url + "'>" + title + "</a>"
       }
     }
-    return'<table class="' + tableClass + '">' + '<tr class="even">' + '<td class="title header_left">' + V.Editor.I18n.getTrans("i.Title") + "</td>" + '<td class="title header_right"><div class="height_wrapper">' + title + "</div></td>" + "</tr>" + '<tr class="odd">' + '<td class="title">' + V.Editor.I18n.getTrans("i.Author") + "</td>" + '<td class="info"><div class="height_wrapper">' + author + "</div></td>" + "</tr>" + '<tr class="even">' + '<td colspan="2" class="title_description">' + V.Editor.I18n.getTrans("i.Description") + 
+    return'<table class="' + tableClass + '">' + '<tr class="even">' + '<td class="title header_left">' + V.I18n.getTrans("i.Title") + "</td>" + '<td class="title header_right"><div class="height_wrapper">' + title + "</div></td>" + "</tr>" + '<tr class="odd">' + '<td class="title">' + V.I18n.getTrans("i.Author") + "</td>" + '<td class="info"><div class="height_wrapper">' + author + "</div></td>" + "</tr>" + '<tr class="even">' + '<td colspan="2" class="title_description">' + V.I18n.getTrans("i.Description") + 
     "</td>" + "</tr>" + '<tr class="odd">' + '<td colspan="2" class="info_description"><div class="height_wrapper_description">' + description + "</div></td>" + "</tr>" + "</table>"
   };
   var convertToTagsArray = function(tags) {
@@ -13925,7 +13930,7 @@ VISH.Editor.Image = function(V, $, undefined) {
   var _onTagsReceived = function(data) {
     var tagList = $("#" + uploadDivId + " .tagList");
     if($(tagList).children().length == 0) {
-      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:8, watermarkAllowMessage:V.Editor.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.Editor.I18n.getTrans("i.limitReached")})
+      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:8, watermarkAllowMessage:V.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.I18n.getTrans("i.limitReached")})
     }
   };
   var processResponse = function(response) {
@@ -14124,7 +14129,7 @@ VISH.Editor.Object = function(V, $, undefined) {
   var _onTagsReceived = function(data) {
     var tagList = $("#" + uploadDivId + " .tagList");
     if($(tagList).children().length == 0) {
-      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:8, watermarkAllowMessage:V.Editor.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.Editor.I18n.getTrans("i.limitReached")})
+      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:8, watermarkAllowMessage:V.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.I18n.getTrans("i.limitReached")})
     }
   };
   var processResponse = function(response) {
@@ -14445,7 +14450,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   var selectedPres = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -15397,7 +15402,7 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
   var selectedPres = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -16725,7 +16730,7 @@ VISH.Editor.Tools = function(V, $, undefined) {
       style = "style='display:none'";
       visible = "false"
     }
-    var tooltip = "<span class='zone_tooltip' visible='" + visible + "' " + style + " >" + V.Editor.I18n.getTrans("i.ZoneTooltip") + "</span>";
+    var tooltip = "<span class='zone_tooltip' visible='" + visible + "' " + style + " >" + V.I18n.getTrans("i.ZoneTooltip") + "</span>";
     $(zone).append(tooltip);
     tooltip = $(zone).find(".zone_tooltip");
     if(hidden === true) {
@@ -18379,7 +18384,7 @@ VISH.Editor.Events = function(V, $, undefined) {
   };
   var _exitConfirmation = function() {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH && confirmOnExit) {
-      return V.Editor.I18n.getTrans("i.exitConfirmation")
+      return V.I18n.getTrans("i.exitConfirmation")
     }else {
       return
     }
@@ -18417,141 +18422,6 @@ VISH.Editor.Filter = function(V, $, undefined) {
   };
   return{init:init}
 }(VISH, jQuery);
-VISH.Editor.I18n = function(V, $, undefined) {
-  var translations;
-  var defaultTranslations;
-  var language;
-  var init = function(lang) {
-    switch(V.Configuration.getConfiguration()["mode"]) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"]["default"] !== "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"]["default"] !== "undefined") {
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"]["default"] !== "undefined") {
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
-    if(typeof lang !== "undefined") {
-      language = lang
-    }else {
-      return
-    }
-    switch(V.Configuration.getConfiguration()["mode"]) {
-      case V.Constant.NOSERVER:
-        if(typeof i18n["vish"][language] !== "undefined") {
-          translations = i18n["vish"][language]
-        }
-        break;
-      case V.Constant.VISH:
-        if(typeof i18n["vish"][language] !== "undefined") {
-          translations = i18n["vish"][language];
-          defaultTranslations = i18n["vish"]["default"]
-        }
-        break;
-      case V.Constant.STANDALONE:
-        if(typeof i18n["standalone"][language] !== "undefined") {
-          translations = i18n["standalone"][language];
-          defaultTranslations = i18n["standalone"]["default"]
-        }
-        break
-    }
-    if(typeof translations === "undefined") {
-      return
-    }
-    $("[i18n-key]").each(function(index, elem) {
-      var translation = getTrans($(elem).attr("i18n-key"));
-      if(translation != null) {
-        switch(elem.tagName) {
-          case "INPUT":
-            _translateInput(elem, translation);
-            break;
-          case "TEXTAREA":
-            _translateTextArea(elem, translation);
-            break;
-          case "DIV":
-            _translateDiv(elem, translation);
-            break;
-          case "LI":
-            _translateLI(elem, translation);
-            break;
-          default:
-            _genericTranslate(elem, translation);
-            break
-        }
-      }
-    });
-    _translateTutorialImage()
-  };
-  var _translateInput = function(input, translation) {
-    if($(input).val() !== "") {
-      $(input).val(translation)
-    }
-    if($(input).attr("placeholder")) {
-      $(input).attr("placeholder", translation)
-    }
-  };
-  var _translateDiv = function(div, translation) {
-    if($(div).attr("title") != undefined) {
-      $(div).attr("title", translation)
-    }
-    if($(div).attr("data-text") != undefined) {
-      $(div).attr("data-text", translation)
-    }
-  };
-  var _translateTextArea = function(textArea, translation) {
-    $(textArea).attr("placeholder", translation)
-  };
-  var _translateLI = function(elem, translation) {
-    if($(elem).attr("data-text") != undefined) {
-      $(elem).attr("data-text", translation)
-    }else {
-      _genericTranslate(elem, translation)
-    }
-  };
-  var _genericTranslate = function(elem, translation) {
-    $(elem).text(translation)
-  };
-  var _translateTutorialImage = function() {
-    if(typeof translations != "undefined" && typeof language !== "undefined") {
-      var factor;
-      if(language === "es") {
-        factor = 2
-      }
-      var normal_pos = 360;
-      var hover_pos = 480;
-      $("#start_tutorial").css("background-position", "0px -" + normal_pos + "px");
-      $("#start_tutorial").hover(function() {
-        $("#start_tutorial").css("background-position", "0px -" + hover_pos + "px")
-      }, function() {
-        $("#start_tutorial").css("background-position", "0px -" + normal_pos + "px")
-      });
-      $("#contentusetut").attr("src", V.ImagesPath + "contentuse_" + language + ".png")
-    }
-  };
-  var getTrans = function(s) {
-    if(typeof translations !== "undefined" && translations[s]) {
-      return translations[s]
-    }
-    if(typeof defaultTranslations !== "undefined" && defaultTranslations[s]) {
-      return defaultTranslations[s]
-    }
-    var key_pattern = /^i\./g;
-    if(key_pattern.exec(s) != null) {
-      return null
-    }else {
-      return s
-    }
-  };
-  return{getTrans:getTrans, init:init}
-}(VISH, jQuery);
 VISH.Editor.Image.Flikr = function(V, $, undefined) {
   var containerDivId = "tab_pic_flikr_content";
   var carrouselDivId = "tab_pic_flikr_content_carrousel";
@@ -18559,7 +18429,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
   var timestampLastSearch;
   var init = function() {
     myInput = $("#tab_pic_flikr_content").find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -18684,7 +18554,7 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
   var timestampLastSearch;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -18802,7 +18672,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
   var timestampLastSearch;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -19271,7 +19141,7 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
   var selectedObject = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -19429,7 +19299,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
   var selectedObject = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -19617,7 +19487,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
   var selectedObject = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -20045,9 +19915,9 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     var options = {};
     options.width = 650;
     options.height = 190;
-    options.text = "An error has occurred. Ensure that the PDF file is valid.";
+    options.text = V.I18n.getTrans("i.pdfErrorNotification");
     var button1 = {};
-    button1.text = "Ok";
+    button1.text = V.I18n.getTrans("i.Ok");
     button1.callback = function() {
       $.fancybox.close()
     };
@@ -20131,7 +20001,7 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
   return{init:init, onLoadTab:onLoadTab, exportToJSON:exportToJSON}
 }(VISH, jQuery);
 VISH.Editor.Preview = function(V, $, undefined) {
-  var presentation_preview = null;
+  var presentationPreview = null;
   var init = function() {
     setTimeout(function() {
       _realInit()
@@ -20139,12 +20009,12 @@ VISH.Editor.Preview = function(V, $, undefined) {
   };
   var _realInit = function() {
     $("#preview_action").fancybox({"width":910, "height":680, "padding":0, "autoScale":false, "transitionIn":"none", "transitionOut":"none", "type":"iframe", "onStart":function() {
-      if(presentation_preview === null) {
+      if(presentationPreview === null) {
         _prepare()
       }
       V.Editor.Utils.Loader.unloadObjectsInEditorSlide(V.Slides.getCurrentSlide())
     }, "onClosed":function() {
-      presentation_preview = null;
+      presentationPreview = null;
       V.Editor.Utils.Loader.loadObjectsInEditorSlide(V.Slides.getCurrentSlide())
     }, "onComplete":function() {
       $("#fancybox-wrap").css("top", "45px");
@@ -20158,32 +20028,32 @@ VISH.Editor.Preview = function(V, $, undefined) {
   };
   var _prepare = function(options) {
     var slideNumberToPreview;
-    if(!options || !options["slideNumberToPreview"] || typeof options["slideNumberToPreview"] !== "number") {
+    if(!options || !options["slideNumberToPreview"] || typeof options["slideNumberToPreview"] != "number") {
       slideNumberToPreview = V.Slides.getCurrentSlideNumber()
     }else {
       slideNumberToPreview = options["slideNumberToPreview"]
     }
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
+    if(V.Configuration.getConfiguration().mode == V.Constant.VISH) {
       $("#preview_action").attr("href", "/excursions/preview#" + slideNumberToPreview)
     }else {
-      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
+      if(V.Configuration.getConfiguration().mode == V.Constant.NOSERVER) {
         $("#preview_action").attr("href", "/vishEditor/viewer.html#" + slideNumberToPreview)
       }else {
-        if(V.Configuration.getConfiguration()["mode"] == "node") {
+        if(V.Configuration.getConfiguration().mode == V.Constant.STANDALONE) {
         }
       }
     }
-    if(!options || !options["presentationJSON"] || typeof options["presentationJSON"] !== "object") {
-      presentation_preview = V.Editor.savePresentation({preview:true})
+    if(!options || !options["presentationJSON"] || typeof options["presentationJSON"] != "object") {
+      presentationPreview = V.Editor.savePresentation({preview:true})
     }else {
-      presentation_preview = options["presentationJSON"]
+      presentationPreview = options["presentationJSON"]
     }
     if(options && options["insertMode"] && typeof options["insertMode"] == "boolean") {
-      presentation_preview.insertMode = options["insertMode"]
+      presentationPreview.insertMode = options["insertMode"]
     }
   };
   var getPreview = function() {
-    return presentation_preview
+    return presentationPreview
   };
   return{init:init, preview:preview, getPreview:getPreview}
 }(VISH, jQuery);
@@ -20895,7 +20765,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
           })
         }
       }
-      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:6, watermarkAllowMessage:V.Editor.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.Editor.I18n.getTrans("i.limitReached")})
+      $(tagList).tagit({tagSource:data, sortable:true, maxLength:15, maxTags:6, watermarkAllowMessage:V.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.I18n.getTrans("i.limitReached")})
     }
   };
   var onChangeThumbnailClicked = function() {
@@ -20940,10 +20810,10 @@ VISH.Editor.Settings = function(V, $, undefined) {
   var onTLTchange = function() {
     var TLT = _getTLT();
     if(TLT === null) {
-      $("#tlt_current_value").val(V.Editor.I18n.getTrans("i.invalidvalue"))
+      $("#tlt_current_value").val(V.I18n.getTrans("i.invalidvalue"))
     }else {
       if(typeof TLT == "undefined") {
-        $("#tlt_current_value").val(V.Editor.I18n.getTrans("i.unspecified"))
+        $("#tlt_current_value").val(V.I18n.getTrans("i.unspecified"))
       }else {
         if(typeof TLT == "string") {
           $("#tlt_current_value").val(TLT)
@@ -21701,9 +21571,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       var options = {};
       options.width = 600;
       options.height = 220;
-      options.text = "You need to write a title for the excursion and select an avatar before publish the excursion.";
+      options.text = V.I18n.getTrans("i.MandatoryFieldsNotification");
       var button1 = {};
-      button1.text = "Go to Settings";
+      button1.text = V.I18n.getTrans("i.GotoSettings");
       button1.callback = function() {
         V.Editor.Settings.displaySettings()
       };
@@ -21715,9 +21585,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       var options = {};
       options.width = 600;
       options.height = 150;
-      options.text = "Create at least one slide before saving.";
+      options.text = V.I18n.getTrans("i.NoSlidesOnSaveNotification");
       var button1 = {};
-      button1.text = "Ok";
+      button1.text = V.I18n.getTrans("i.Ok");
       button1.callback = function() {
         $.fancybox.close()
       };
@@ -21729,17 +21599,17 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     options.width = 400;
     options.height = 140;
     options.notificationIconSrc = V.ImagesPath + "toolbar/save_document.png";
-    options.text = "are you sure?";
+    options.text = V.I18n.getTrans("i.areyousureNotification");
     options.buttons = [];
     var button1 = {};
-    button1.text = "cancel";
+    button1.text = V.I18n.getTrans("i.cancel");
     button1.callback = function() {
       $.fancybox.close()
     };
     options.buttons.push(button1);
     if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH && V.Editor.isPresentationDraft() || V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
       var button2 = {};
-      button2.text = "draft";
+      button2.text = V.I18n.getTrans("i.draft");
       button2.callback = function() {
         var presentation = V.Editor.savePresentation();
         V.Editor.afterSavePresentation(presentation, "draft");
@@ -21749,10 +21619,10 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     }
     var button3 = {};
     if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH || V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-      button3.text = "publish"
+      button3.text = V.I18n.getTrans("i.publish")
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.STANDALONE) {
-        button3.text = "save"
+        button3.text = V.I18n.getTrans("i.save")
       }
     }
     button3.callback = function() {
@@ -21804,9 +21674,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
         var options = {};
         options.width = 600;
         options.height = 185;
-        options.text = "An error has ocurred. Is not possible to export the presentation to JSON.";
+        options.text = V.I18n.getTrans("i.exportPresToJSONerrorNotification");
         var button1 = {};
-        button1.text = "Ok";
+        button1.text = V.I18n.getTrans("i.Ok");
         button1.callback = function() {
           $.fancybox.close()
         };
@@ -21832,12 +21702,12 @@ VISH.Editor.Utils.LOM = function(V, $, undefined) {
   var LOM_difficulty;
   var _init = function() {
     LOM_difficulty = new Array;
-    LOM_difficulty[0] = {value:"unspecified", text:V.Editor.I18n.getTrans("i.unspecified")};
-    LOM_difficulty[1] = {value:"very easy", text:V.Editor.I18n.getTrans("i.veryeasy")};
-    LOM_difficulty[2] = {value:"easy", text:V.Editor.I18n.getTrans("i.easy")};
-    LOM_difficulty[3] = {value:"medium", text:V.Editor.I18n.getTrans("i.medium")};
-    LOM_difficulty[4] = {value:"difficult", text:V.Editor.I18n.getTrans("i.difficult")};
-    LOM_difficulty[5] = {value:"very difficult", text:V.Editor.I18n.getTrans("i.verydifficult")}
+    LOM_difficulty[0] = {value:"unspecified", text:V.I18n.getTrans("i.unspecified")};
+    LOM_difficulty[1] = {value:"very easy", text:V.I18n.getTrans("i.veryeasy")};
+    LOM_difficulty[2] = {value:"easy", text:V.I18n.getTrans("i.easy")};
+    LOM_difficulty[3] = {value:"medium", text:V.I18n.getTrans("i.medium")};
+    LOM_difficulty[4] = {value:"difficult", text:V.I18n.getTrans("i.difficult")};
+    LOM_difficulty[5] = {value:"very difficult", text:V.I18n.getTrans("i.verydifficult")}
   };
   var getDifficulty = function() {
     if(typeof LOM_difficulty == "undefined") {
@@ -22047,7 +21917,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
   var selectedVideo = null;
   var init = function() {
     myInput = $("#tab_video_repo_content").find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -22228,7 +22098,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
   var MAX_VIDEOS = 20;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.Editor.I18n.getTrans("i.SearchContent"));
+    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -22668,6 +22538,126 @@ VISH.EventsNotifier = function(V, $, undefined) {
     }
   };
   return{init:init, notifyEvent:notifyEvent, registerCallback:registerCallback, unRegisterCallback:unRegisterCallback}
+}(VISH, jQuery);
+VISH.I18n = function(V, $, undefined) {
+  var translations;
+  var defaultTranslations;
+  var language;
+  var init = function(lang) {
+    switch(V.Configuration.getConfiguration().mode) {
+      case V.Constant.NOSERVER:
+        if(typeof i18n["vish"]["default"] != "undefined") {
+          defaultTranslations = i18n["vish"]["default"]
+        }
+        break;
+      case V.Constant.VISH:
+        if(typeof i18n["vish"]["default"] != "undefined") {
+          defaultTranslations = i18n["vish"]["default"]
+        }
+        break;
+      case V.Constant.STANDALONE:
+        if(typeof i18n["standalone"]["default"] != "undefined") {
+          defaultTranslations = i18n["standalone"]["default"]
+        }
+        break
+    }
+    if(typeof lang != "undefined") {
+      language = lang
+    }else {
+      return
+    }
+    switch(V.Configuration.getConfiguration().mode) {
+      case V.Constant.NOSERVER:
+        if(typeof i18n["vish"][language] != "undefined") {
+          translations = i18n["vish"][language]
+        }
+        break;
+      case V.Constant.VISH:
+        if(typeof i18n["vish"][language] != "undefined") {
+          translations = i18n["vish"][language];
+          defaultTranslations = i18n["vish"]["default"]
+        }
+        break;
+      case V.Constant.STANDALONE:
+        if(typeof i18n["standalone"][language] != "undefined") {
+          translations = i18n["standalone"][language];
+          defaultTranslations = i18n["standalone"]["default"]
+        }
+        break
+    }
+    if(typeof translations == "undefined") {
+      return
+    }
+    $("[i18n-key]").each(function(index, elem) {
+      var translation = getTrans($(elem).attr("i18n-key"));
+      if(translation != null) {
+        switch(elem.tagName) {
+          case "INPUT":
+            _translateInput(elem, translation);
+            break;
+          case "TEXTAREA":
+            _translateTextArea(elem, translation);
+            break;
+          case "DIV":
+            _translateDiv(elem, translation);
+            break;
+          case "LI":
+            _translateLI(elem, translation);
+            break;
+          default:
+            _genericTranslate(elem, translation);
+            break
+        }
+      }
+    })
+  };
+  var _translateInput = function(input, translation) {
+    if($(input).val() !== "") {
+      $(input).val(translation)
+    }
+    if($(input).attr("placeholder")) {
+      $(input).attr("placeholder", translation)
+    }
+  };
+  var _translateDiv = function(div, translation) {
+    if($(div).attr("title") != undefined) {
+      $(div).attr("title", translation)
+    }
+    if($(div).attr("data-text") != undefined) {
+      $(div).attr("data-text", translation)
+    }
+  };
+  var _translateTextArea = function(textArea, translation) {
+    $(textArea).attr("placeholder", translation)
+  };
+  var _translateLI = function(elem, translation) {
+    if($(elem).attr("data-text") != undefined) {
+      $(elem).attr("data-text", translation)
+    }else {
+      _genericTranslate(elem, translation)
+    }
+  };
+  var _genericTranslate = function(elem, translation) {
+    $(elem).text(translation)
+  };
+  var getTrans = function(s) {
+    if(typeof translations != "undefined" && translations[s]) {
+      return translations[s]
+    }
+    if(typeof defaultTranslations != "undefined" && defaultTranslations[s]) {
+      return defaultTranslations[s]
+    }
+    var key_pattern = /^i\./g;
+    if(key_pattern.exec(s) != null) {
+      return null
+    }else {
+      return s
+    }
+  };
+  var getLanguage = function() {
+    return language
+  };
+  return{init:init, getTrans:getTrans, getLanguage:getLanguage}
 }(VISH, jQuery);
 var VISH = VISH || {};
 VISH.Constant = VISH.Constant || {};
@@ -24638,6 +24628,13 @@ VISH.Utils.Loader = function(V, undefined) {
         break
     }
   };
+  var loadLanguageCSS = function() {
+    var languagesWithCSS = ["es"];
+    var language = V.I18n.getLanguage();
+    if(languagesWithCSS.indexOf(language) != -1) {
+      loadCSS("language/" + language + ".css")
+    }
+  };
   var t1Loading;
   var startLoading = function() {
     if(!_isFullLoadingActive()) {
@@ -24679,7 +24676,7 @@ VISH.Utils.Loader = function(V, undefined) {
     $(container).find(".loading_fancy_img").parent().remove();
     $(container).removeClass("loadingtmpShown")
   };
-  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
+  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, loadLanguageCSS:loadLanguageCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.VideoPlayer.CustomPlayer = function(V, $, undefined) {
   var progressBarTimer;
@@ -25153,6 +25150,8 @@ VISH.Viewer = function(V, $, undefined) {
     V.Renderer.init();
     V.Slides.init();
     V.Utils.Loader.loadDeviceCSS();
+    V.I18n.init(options.lang);
+    V.Utils.Loader.loadLanguageCSS();
     V.User.init(options);
     V.Storage.init();
     V.Recommendations.init(options);

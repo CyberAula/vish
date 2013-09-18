@@ -1,8 +1,15 @@
 User.class_eval do
-  attr_accessible :tag_list, :occupation, :description
+  attr_accessible :tag_list, :occupation, :description, :organization, :city, :country, :birthday, :website
 
-  delegate :description, :description=,
-           to: :profile
+  delegate  :description, :description=,
+            :organization, :organization=,
+            :city, :city=,
+            :country, :country=,
+            :website, :website=,
+            to: :profile
+
+  delegate_attributes :birthday, :birthday=,
+                      :to => :profile
   
   Occupation = [:select, :teacher, :scientist, :other]
 
