@@ -14,19 +14,19 @@
       <hr class="soften">
       <legend><%= f.label t('profile.occupation.label'), :class => "text" %></legend>
       <%= f.select(:occupation, options_for_select([[t('profile.occupation.options.select'), 0], [t('profile.occupation.options.teacher'), 1],[t('profile.occupation.options.scientist'),2], [t('profile.occupation.options.other'),3]], current_subject.occupation)) %>
-            <!--    
-            <legend><#%= f.label t('profile.organization'), :class => "text" %></legend>
-            <%#= f.text_field :organization, :class => "input_settings" %>
+             
+          <legend><%= f.label t('profile.organization'), :class => "text" %></legend>
+          <%= f.text_field :organization, :class => "input_settings" %>
 
-            <legend><#%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday'), :class => "text" %></legend>
-            <#%= date_select "profile", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
-            
-            <legend><#%= f.label t('profile.actualcity'), :class => "text" %></legend>
-            <%#= f.text_field :city, :class => "input_settings" %>
+          <legend><%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday'), :class => "text" %></legend>
+          <%= date_select "user", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
+          
+          <legend><%= f.label t('profile.actualcity'), :class => "text" %></legend>
+          <%= f.text_field :city, :class => "input_settings" %>
 
-            <legend><#%= f.label t('profile.country'), :class => "text" %></legend>
-            <%#= f.text_field :country, :class => "input_settings" %>
-          -->
+          <legend><%= f.label t('profile.country'), :class => "text" %></legend>
+          <%= f.text_field :country, :class => "input_settings" %>
+       
           <legend><%= f.label :description, t("profile.#{ current_subject.class.to_s.downcase }.about") %></legend>
           <%= f.text_area :description, :maxlength => 200, :rows => 10 %>
 
@@ -60,6 +60,8 @@
           </p>
           <%= f.submit %>
         <% end %>
+
+
 
         <%= javascript_tag do %>
           $('#user_description').val("<%= current_subject.description %>");
