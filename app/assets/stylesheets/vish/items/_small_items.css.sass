@@ -18,6 +18,12 @@
         list-style: none
         margin-top: 10px
         background-color: $white
+        .badge-excursion-active
+          position: absolute
+          top: 15px
+          left: -15px
+          z-index: 10
+          display: none
         .resource-center
           text-align: center
           i
@@ -45,9 +51,9 @@
             @include box_title         
             a
               color: $grayDark
-          .author:before  
-            margin-left: 5px
-            content: "by"
+          .author
+            .by  
+            padding-left: 5px
           @include author
         .info-bottom
           margin-left: 5px

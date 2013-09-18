@@ -8,7 +8,7 @@
     <%= render partial: 'profiles/avatar_edit' %>
 
     <%= form_for(current_subject, :url => [current_subject]) do |f| %>
-      <legend><%= f.label t('actor.name') %></legend>
+      <legend class="name-required"><%= f.label t('actor.name') %><span>*</span></legend>
       <%= f.text_field :name, :class => "required" %>
 
       <hr class="soften">
@@ -58,7 +58,11 @@
           <p>
             <%= t('required') %>
           </p>
+
+
           <%= f.submit %>
+          <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-primary"%>
+
         <% end %>
 
 
@@ -111,6 +115,11 @@
                var tagList = $(".tagList");
                $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
                return true;
+             });
+
+             $("#hide_profile_form").click(function(){
+                $(".update").hide("slow");
+                $(".briefing").show("slow");
              });
 
           });

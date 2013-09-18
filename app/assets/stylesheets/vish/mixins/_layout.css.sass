@@ -101,13 +101,50 @@
         border-top: none
         margin-top: 5px
         padding: 6px 10px 6px 10px
+
+@mixin header-tabbable-show
+  clear: both
+  margin-top: 10px
+  .tab-content
+    overflow: visible
+  ul.nav,
+  ul.nav-tabs 
+    border-bottom: 1px solid $grayLight
+    @include tab_title_show
+    li   
+      &:hover,
+      &:focus
+        background-color: none !important
+        border: none
+        border-bottom: 3px solid $secondColor      
+      a             
+        border-left: none
+        border-right: none
+        border-top: none
+        padding: 6px 10px 6px 10px
+        margin-top: 5px
+      
+      h1
+        line-height: 38px
+        margin: 1px 10px 0 0 
+        font-size: 33.5px
+    li.active
+      background-color: none !important
+      border: none
+      border-bottom: 3px solid $firstColor
+      a
+        border-left: none
+        border-right: none
+        border-top: none
+        margin-top: 5px
+        padding: 6px 10px 6px 10px
       
 
 @mixin header-tabbable-search
   @include header-tabbable
   ul.nav
     float: left
-    width: 70%
+    width: 100%
   input
     &[type="text"]
       width: 20%

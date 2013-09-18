@@ -11,15 +11,16 @@
       <%= link_to truncate(category.title, :length => 15), category %>
     </div>
 <!--Autor -->
-    <div class="author"> 
+    <%=t('by')%>
+    <span class="author"> 
       <!-- <a><%= raw t('document.by', author: link_to(category.author.name, category.author_subject)) %></a> -->
       <%= link_to category.author.name, category.author.subject %>
-    </div>
+    </span>
 <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
 <!--views -->
-      <div class="views">
+      <div class="number_elems">
         <%=category.property_objects.count.to_s%>
         <%=t('categories.item_inside')%>
       </div>

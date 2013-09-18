@@ -29,6 +29,10 @@ es:
     title: "Noticia"
     body: "Durante febrero, el proyecto GLOBAL excursion va a organizar dos sesiones online con científicos. Más información y registro en"
   author: "autor"
+  browse:
+    title: "explorar"
+    popular: "contenido popular"
+  by: "por"
   cancel: "Cancelar"
   category:
     confirm_delete: "Borrar categoria?"
@@ -53,7 +57,7 @@ es:
   conditions:
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
     check_message_1: "Condiciones de Uso"
-    other: "condiciones"
+    other: "términos de uso"
   contact:
     footer: "contacto"
     pending:
@@ -255,6 +259,7 @@ es:
   help: "ayuda"
   help_page: "AYUDA DE ViSH"
   help_manual: "Descargar el manual de usuario"
+  hide: "Ocultar"
   lang:
     independent: "No depende del lenguaje"
     changed: "Se cambia el idioma a %{lang}"

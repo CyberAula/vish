@@ -1,5 +1,7 @@
 <li class="box-item contact" id="<%= dom_id user %>">
-
+  <div class="badge-teacher-active">
+    <%= image_tag("badges/teacherofthemonth.png" ) %>
+  </div>
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
@@ -8,8 +10,6 @@
       </div>
       </div>
   </div>
-    
-
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="info">
@@ -18,19 +18,14 @@
       <%= link_to(truncate_name(user.name), user.subject)%>
     </div>
 <!--Autor -->
- 
-
       <div class="add">
         <%= contact_button(user) %>
       </div> 
-
     <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
       <%#= contact_count(user) %>
-
     </div>
-
   </div>
 </li>
 

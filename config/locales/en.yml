@@ -28,6 +28,10 @@ en:
     title: "Announcement"
     body: "In the course of February, the GLOBAL excursion project is organizing two live online sessions with scientists. More information and registration under"
   author: "author"
+  browse:
+    title: "browse"
+    popular: "popular content"
+  by: "by"
   cancel: "Cancel"
   category:
     confirm_delete: "Delete category?"
@@ -52,7 +56,7 @@ en:
   conditions:
     check_message: "By clicking Accept, you agree to our "  
     check_message_1: "Terms and Conditions."
-    other: "conditions"
+    other: "terms of use"
   contact:
     footer: "contact"
     pending:
@@ -252,6 +256,7 @@ en:
   help: "help"
   help_page: "ViSH HELP"
   help_manual: "Download user manual"
+  hide: "Hide"
   lang:
     independent: "Language independent"
     changed: "Changed language to %{lang}"

@@ -37,7 +37,7 @@
         display: inline-block
         float: left
         .tabbable
-          @include header-tabbable
+          @include header-tabbable-show
           //@include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
           @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
           clear: none
@@ -106,34 +106,38 @@
             @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
             float: left
-
-
-
           
         .viewsAndConunt
           float: left
           display: block
-          margin-top: 5px
+          margin-top: 11px
           .like
             float: left
             width: auto
             display: inline-block
             .count
-              font-size: 1.6em
+              font-size: 1.5em
+              font-family: $thirdFontFamily
               display: inline-block
+              margin-left: 5px
             a
               display: inline-block
               .icon-star-empty, 
               .icon-star
-                font-size: 1.8em
+                font-size: 1.4em
+                margin-right: 5px
+              &:hover
+                text-decoration: none
           .views:after
             content: " / "
           .views
-            font-size: 2em
+            font-size: 1.5em
+            font-family: $thirdFontFamily
             float: left
             display: inline-block
             span
-              font-size: 0.5em
+              font-size: 1em
+              font-family: $firstFontFamily
               
 
         .excursion-social
@@ -282,36 +286,13 @@
 
       .tabbable
         @include header-tabbable
+        ul
+          @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
         .tab-content
           overflow: hidden
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          #evaluation1
+            .excursion-eval-results
+              canvas
+                @include center-block()
 
-.ui-multiselect
-  -moz-border-bottom-colors: none
-  -moz-border-left-colors: none
-  -moz-border-right-colors: none
-  -moz-border-top-colors: none
-  background-color: #F5F5F5
-  background-image: linear-gradient(to bottom, white, #E6E6E6)
-  background-repeat: repeat-x
-  border-color: #CCCCCC #CCCCCC #B3B3B3
-  border-image: none
-  border-radius: 0px 0px 5px 0px
-  border-style: solid
-  border-width: 1px
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05)
-  color: #333333
-  cursor: pointer
-  display: inline-block
-  font-size: 14px
-  line-height: 20px
-  margin-bottom: 0
-  padding: 8px 12px
-  text-align: center
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)
-  vertical-align: middle
-  span
-    .caret
-      border-left: 5px solid transparent
-      border-right: 5px solid transparent
-      border-top: 5px solid black
-      margin-left: 5px

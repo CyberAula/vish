@@ -31,10 +31,11 @@
         <%end%>
     </div>
 <!--Autor -->
-    <div class="author"> 
+    <span class="author"> 
+      <span class="by"><%=t('by')%></span>
       <!-- <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a> -->
       <%= link_to resource.author.name, resource.author.subject %>
-    </div>
+    </span>
 <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">

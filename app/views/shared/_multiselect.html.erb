@@ -1,10 +1,11 @@
 $("#category_id").multiselect({
       header: false,
       classes: "categorize_select",
-      height: "190px",
+      height: 190,
       minWidth: "auto",
-      noneSelectedText: '<i class="icon-th-large"></i> <span class="hidden-tablet hidden-phone"><%=t("categories.actions.verb")%> </span><b class="caret"></b>',
-      selectedText: '<i class="icon-th-large"></i> <span class="hidden-tablet hidden-phone"> # <%=t("categories.selected")%> </span><b class="caret"></b>',
+      menuWidth: 125,
+      noneSelectedText: '<i class="icon-th-large"></i> <!--span class="hidden-tablet hidden-phone"><%#=t("categories.actions.verb")%> </span--><b class="caret"></b>',
+      selectedText: '<i class="icon-th-large"></i> <!--<span class="hidden-tablet hidden-phone"> # <%=t("categories.selected")%> </span>--><b class="caret"></b>',
       click: function(event, ui){
           $.ajax({
             url: '/categories/'+ui.value,

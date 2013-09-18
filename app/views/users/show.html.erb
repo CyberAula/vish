@@ -1,57 +1,16 @@
 <section class="user">
   <header>
     <!--<li><h3>Profile</h3></li>-->
-    
     <div id="profile-info">
       <div class="avatar">
-      <!-- Edit your profile -->
-        <% @profile = profile_or_current_subject.profile %>
-        <% if can?(:update, @profile) %>
-            <div class="edit_icon">
-              <%= link_to(raw("<i class='icon-edit icon-large'></i>"), '#', :id => "edit_icon_link") %> 
-            </div>
-        <% end %>
-        <!-- follow -->
-        <% if !profile_subject_is_current? %>
-            <section class="contact">
-              <div class="add">
-                <%= contact_button(profile_subject) %>
-              </div>
-              
-            </section>
-        <!-- <button>
-          <%#= contact_to(profile_subject) %>
-        </button> -->
-        <% end %>
       <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
-      <%#= image_tag("badges/badge-2.png",  :class=> "attachement" ) %>     
+        <div class="badge-teacher-active">
+          <%= image_tag("badges/teacherofthemonth.png" ) %>
+        </div>
     </div>
       <section class="information">
-        
-        
-
         <div class="briefing">
           <h2><%= @user.name %></h2>
-          <!-- Button to trigger modal --> 
-          <!-- Modal -->
-          <div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  
-            <div class="modal-body">
-              <section id="new_message_profile">
-                <%##= render partial: 'toolbar/messages' %>
-                <%= render :partial => 'messages/new' %>
-
-                <%= javascript_tag do %>
-                  $(function() {
-                    SocialStream.Message.new_();
-                  });
-                <% end %>
-              </section>
-            </div>
-            <!--   <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div> -->
-          </div>
         
           <p class="description">
             <% if @user.profile.description? %>
@@ -61,7 +20,7 @@
             <% end %>
           </p>
 
-          <hr class="soften">
+
 
           <!-- Occupation -->
           <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
@@ -86,15 +45,10 @@
           </h3>
           -->
 
-          <!--<div class="img-achievements"></div> -->
-          <% if !profile_subject_is_current? %>
-            <button href="#new_messages_profile" role="button" class="btn" data-toggle="modal">
-              <%= link_to new_message_path(receiver: profile_subject.slug) do %>
-                <i class="icon-envelope-alt"></i>
-                <%= t 'mailboxer.send' %>
-              <% end %>
-            </button>
-          <% end %>
+          <div class="toolbar">
+            <%= render :partial => 'users/toolbar_user' %>
+          </div>
+
         </div>
 
         <%= render :partial => 'users/form_update_profile' %>

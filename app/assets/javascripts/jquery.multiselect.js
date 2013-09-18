@@ -17,6 +17,9 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  *
+ * MODIFIED BY KIKE (SEE XXX AND KIKE ANNOTATIONS) TO CHANGE THE MENU WIDTH WITH AN OPTION
+ *
+ *
 */
 (function($, undefined){
 
@@ -39,7 +42,8 @@ $.widget("ech.multiselect", {
 		hide: null,
 		autoOpen: false,
 		multiple: true,
-		position: {}
+		position: {},
+		menuWidth: null  //XXX KIKE this is the new option
 	},
 
 	_create: function(){
@@ -415,8 +419,16 @@ $.widget("ech.multiselect", {
 
 	// set menu width
 	_setMenuWidth: function(){
-		var m = this.menu,
-			width = this.button.outerWidth()-
+		var m = this.menu;
+		//XXX KIKE next lines are new, for the new option
+		var o = this.options;
+		
+		if(o.menuWidth){
+			m.width(o.menuWidth);
+			return;
+		}
+		//up to here
+		var width = this.button.outerWidth()-
 				parseInt(m.css('padding-left'),10)-
 				parseInt(m.css('padding-right'),10)-
 				parseInt(m.css('border-right-width'),10)-
@@ -542,6 +554,10 @@ $.widget("ech.multiselect", {
 		var $container = menu.find('ul').last(),
 			effect = o.show,
 			pos = button.offset();
+			//XXX KIKE new lines to include the new option
+			if(o.menuWidth){
+				pos.left = pos.left - o.menuWidth + this.button.width() + 20; //20 are for the paddings
+			}
 
 		// figure out opening effects/speeds
 		if( $.isArray(o.show) ){

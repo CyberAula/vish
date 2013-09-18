@@ -4,30 +4,48 @@
 #events,
 #new,
 #activity,
-#search-all
+#search-all,
+.info-profile
   ul
     margin: 0
+
     li.box-item:hover
       text-decoration: none
-
     li.box-item
       position: relative
       float: left
-      overflow: hidden
+      overflow: inherit
       width: 170px
       margin-right: 8px
       margin-left: 8px
       margin-top: 15px
       list-style: none
-      background: $white
+      background-color: $white
       box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
       @include border-radius($baseBorderRadius)
+
+      //BAGDE EXCURSION
+      .badge-excursion-active
+        position: absolute
+        top: 15px
+        left: -15px
+        z-index: 10
+        display: none
+
+      .badge-active
+        position: absolute
+        left: -15px
+        z-index: 10
+
+      // IMG BOX
+
       .container-img
         display: inline-block
         position: relative
         width: 100%
         .dummy
           padding-top: 75% /* 4:3 aspect ratio */
+        
         .element
           position: absolute
           top: 0
@@ -37,6 +55,9 @@
           overflow: hidden
           text-align: center
           width: 100%
+          @include border-top-radius($baseBorderRadius)
+
+
           .img-box
             width: 100%
             padding-bottom: 66.666%
@@ -48,16 +69,13 @@
           i
             font-size: 70px
             color: $secondColor
-          .avatar
-            a
-              img
-                margin-top: 20%
-                @include center-block()
-                @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-                @include border-radius($baseBorderRadius)
+            &:hover
+              text-decoration: none
+
         .resource-center
           padding-top: 20%
-              
+      
+      //RESOURCES
       .event-img,
       .category-img
         overflow: hidden
@@ -76,8 +94,9 @@
         i
           font-size: 70px
           color: $gray
-      .badges
-        display: none
+
+
+      // NAME
       .info
         font-family: $secondFontFamily
         padding: 5px 5px 0 5px
@@ -90,9 +109,10 @@
           height: 30px
           line-height: 15px
           overflow: hidden
-        .author:before
-          content: "by"
         @include author
+      // VIEWS AND COUNT
+
+
       .info-bottom
         @mixin footer_box_info       
         clear: both
@@ -108,26 +128,31 @@
           a
             i
               text-decoration: none
+        .number_elems
+          float: right
+          widht: 100%
+          text-align: right
+
+    // ADD ITEM
     .add-item
       height: 205px
       text-align: center
       list-style: none
       display: block
+      background-image: url('items/malla.png') !important
+      overflow: hidden
+      
       &:hover
         text-decoration: none
       .icon-box
-        background-image: url('items/malla.png')
-        height: 100%
         width: 100%
         display: block
         padding-top: 60px
         opacity: 1
-        
         .action-name
           display: none
         &:hover
           text-decoration: none
-
           .action-name
             display: none
             @include box_title
@@ -145,49 +170,53 @@
           font-size: 92px
           display: block
 
-.items_timeline
-  li.box-item
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    @include excursion-box-small
-    float: left
-    list-style: none
-    margin-top: 10px
-    background-color: $white
-    .img-box
-      width: 150px
-      float: left
-      height: 150px
-      display: block
-      @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .info
-      @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      float: left
-      padding: 0
-      .name
-        padding-left: 10px
-        margin: 0
-        word-wrap: break-word
-        text-decoration: none
-        cursor: pointer
-        a
-          color: $grayDark
-      .author
-        padding-left: 10px
-        color: $secondColor
-        font-size: 10px
-        text-decoration: none
-        cursor: pointer
-        a
-          word-wrap: break-word
-        
-        &:before
-        content: "by"
-        color: $gray
-        font-size: 10px
-      .description
-        padding-left: 10px
-        color: $secondColor
-        font-size: 14px
-        text-decoration: none
-        cursor: pointer
-        
+    // USERS
+    .contact
+      background-color: transparent !important
+      box-shadow: none !important
+
+      //BAGDE EXCURSION
+      .badge-teacher-active
+        position: absolute
+        top: 36px
+        left: 33px
+        z-index: 10
+        display: none
+        img
+          width: 100%
+          height: 80px
+
+      // IMG BOX
+      .container-img
+        .avatar
+          a
+            img
+              margin-top: 20%
+              @include center-block()
+              @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-radius($baseBorderRadius)
+
+      .info
+        .name
+          text-align: center
+          margin: 0
+          height: 30px
+          line-height: 15px
+          overflow: hidden
+          a
+            color: $black
+            font-family: $firstFontFamily
+            text-decoration: none
+            &:hover
+              color: $firstColor
+
+        .add
+          display: block
+          clear: both
+          margin-top: 3px
+          @include follow
+      .info-bottom
+        hr
+          display: none
+
+
