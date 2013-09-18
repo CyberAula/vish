@@ -313,7 +313,7 @@ class ExcursionsController < ApplicationController
       end
       my_site = ""
       if !Site.current.config[:documents_hostname]
-        my_site = "http://vishub.org"
+        my_site = "http://vishub.org/"
       else
         my_site = Site.current.config[:documents_hostname]
       end
