@@ -113,14 +113,18 @@ $(document).ready(function(){
 
   <% if user_signed_in? && @excursion.author != current_subject.actor %>
     <button class="with_tooltip clone btn" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
+    
+    <div class="contentclone" style="display: none">
+      <p class=""><i class="icon-copy"></i>  <%=t('excursion clone')%></p>
+      <div class="actions">
+        <a class="btn btn_cancel"><%=t('cancel')%></a>
+        <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
+      </div>
+    </div>  
+
+
   <%end%>
-  <div class="contentclone" style="display: none">
-    <p class=""><i class="icon-copy"></i><%=t('excursion.clone.confirm')%></p>
-    <div class="actions">
-      <a class="btn btn_cancel"><%=t('cancel')%></a>
-      <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
-    </div>
-  </div>  
+
 
 
 
@@ -135,7 +139,7 @@ $(document).ready(function(){
 
 
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="icon-trash"></i> <%=t('excursion.confirm_delete')%></p>
+    <p class="delete_p"><i class="icon-trash"></i>  <%=t('excursion.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
