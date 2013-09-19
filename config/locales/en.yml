@@ -182,6 +182,7 @@ en:
       bookmark: "bookmark"
       clone: "clone"
       delete: "delete"
+      discard_draft: "Discard draft"
       download: "download"            
       edit: "edit"
       embed: "embed"
