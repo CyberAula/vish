@@ -32,6 +32,7 @@
 
       <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
       <!--<b id="foo" rel="popover">Ayuda </b>-->
+      <!-- <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/> -->
       <%= f.submit t('categories.save')%>
     <% end %>
   </div>
@@ -46,4 +47,14 @@
       }
     });
   });
+
+  // var saveCategoryButton = $("#AddCategoryHeader input[type='submit']");
+  // var categoryButton = $("#AddCategoryHeader input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
+  // $(categoryButton).click(function(event) {
+  //   if ($("input[name='category[title]']").val() == "") {
+  //     alert("<%= t('categories.title_input')%>");
+  //   } else {
+  //     $(saveCategoryButton).click();
+  //   }
+  // });
 </script>
