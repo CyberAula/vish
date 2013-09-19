@@ -32,9 +32,9 @@
       I18n.defaultLocale = "<%= I18n.default_locale %>";
       I18n.locale = "<%= I18n.locale %>";
     </script>
-
+    
     <script type="text/javascript">
-      $(document).ready(function() {          
+      $(document).ready(function() {  
         <%= yield :javascript%>
       });
     </script>
@@ -58,10 +58,10 @@
       <%= render :partial => "layouts/header" %>
       <%= flashy %>
 
-    
       <div class="container_carousel">
-        <%= render :partial => "frontpage/explanation" %>
+          <%= render :partial => "frontpage/explanation" %>
       </div>
+          
       <div class="wrapper container-fluid">
         <%= yield %>
   
