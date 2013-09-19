@@ -11,7 +11,7 @@ en:
     newmessage: "This is your timeline. You can upload and share images, videos, links and more."
     timeline: "timeline"
     verb:
-       make-friend:
+      make-friend:
         User:
           title: "%{subject} and %{contact} are following each other."
           message: "%{name} is following you back."
@@ -196,7 +196,7 @@ en:
     description: "description"
     download_scorm: "Download this excursion as scorm and integrate it in any LMS"
     clone:
-      confirm: "This will clone this excursion to your own repository"
+      confirm: "This will clone this excursion to your own repository and will open it for editing"
       not_found: "Excursion not found"
       ok: "Succesfully cloned"
       owner: "You already own this excursion"

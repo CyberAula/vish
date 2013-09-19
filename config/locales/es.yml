@@ -199,7 +199,7 @@ es:
     description: "descripción"
     download_scorm: "Descarga el código HTML e integra el recurso en cualquier LMS"
     clone:
-      confirm: "Esto clonará la excursión en tu propio repositorio"
+      confirm: "Esto clonará la excursión en tu propio repositorio y la abrirá para editarla"
       not_found: "Excursion no encontrada"
       ok: "Clonada con éxito"
       owner: "Esta excursión ya es tuya"
