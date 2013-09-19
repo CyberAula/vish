@@ -111,9 +111,7 @@ $(document).ready(function(){
 <!--BTN ACTIONS-->
 <div class="btn-group">
 
-
-
-  <% if user_signed_in? and (can? :update, @excursion) %>
+  <% if user_signed_in? && @excursion.author != current_subject.actor %>
     <button class="with_tooltip clone btn" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
     
     <div class="contentclone" style="display: none">

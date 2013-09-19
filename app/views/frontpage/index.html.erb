@@ -1,5 +1,12 @@
+<%= content_for :javascript do %>
+  $('.carousel').carousel({
+    interval: 4000
+  })
+<%end%>
+
+
+
 <section id="frontpage">
-  
   <!--<#%= render :partial => "frontpage/info" %>-->
   <div id="excursions">
     <%= render partial: 'frontpage/excursions' %>
