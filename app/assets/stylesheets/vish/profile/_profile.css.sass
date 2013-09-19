@@ -27,10 +27,15 @@
           @include border-radius($baseBorderRadius)
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
         .badge-teacher-active
+          background-image: url(" badges/teacherofthemonth.png" )
           position: absolute
-          top: 30%
+          top: 15px
           left: -15px
+          z-index: 10
           display: none
+          height: 110px
+          width: 75px
+
       .information
         padding: 10px
         @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)

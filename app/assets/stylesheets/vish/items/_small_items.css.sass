@@ -12,17 +12,24 @@
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
         @include border-radius($baseBorderRadius)
-        overflow: hidden
+        overflow: inherit
         float: left
         list-style: none
         margin-top: 10px
         background-color: $white
+        position: relative
         .badge-excursion-active
           position: absolute
-          top: 15px
-          left: -15px
+          top: 5px
+          left: -9px
           z-index: 10
           display: none
+          background-image: url(" badges/excursionofthemonth.png" )
+          background-size: 43px
+          width: 43px
+          height: 65px
+
+        
         .resource-center
           text-align: center
           i
@@ -36,9 +43,10 @@
           height: 70px
           display: block
           @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          //@include border-radius($baseBorderRadius)
+          @include border-left-radius($baseBorderRadius)
+          overflow: hidden
           .backstrech
-            @include border-radius($baseBorderRadius)
+            @include border-left-radius($baseBorderRadius)
         .info
           @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
