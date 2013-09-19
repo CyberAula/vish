@@ -185,6 +185,7 @@ es:
       bookmark: "marcardor"      
       clone: "clonar"
       delete: "Borrar"
+      discard_draft: "Descartar el borrador"
       download: "descargar"
       edit: "Editar"
       embed: "embed"

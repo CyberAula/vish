@@ -13,7 +13,8 @@ var i18n = {"vish":{"es":{"i.walkSettings1_1":"Bienvenido a la pantalla de Ajust
 "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Literature":"Literatura", "i.Law":"Derecho", "i.Mathematics":"Matem\u00e1ticas", "i.Music":"M\u00fasica", "i.NaturalSciences":"Ciencias Naturales", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.Politics":"Ciencias Pol\u00edticas", "i.Psychology":"Psicolog\u00eda", 
 "i.Religion":"Religi\u00f3n", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Technology":"Tecnolog\u00eda", "i.Telecommunications":"Telecomunicaciones", "i.invalidvalue":"valor inv\u00e1lido", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.Import":"Importar", "i.Export":"Exportar", "i.Style":"Estilo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", 
 "i.GotoSettings":"Ir a Ajustes", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.Ok":"Ok", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No es posible exportar la presentaci\u00f3n a un fichero JSON.", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.pdfErrorNotification":"Ha ocurrido un error. Asegurese de que el fichero PDF es v\u00e1lido.", 
-"i.cancel":"cancelar", "i.draft":"borrador", "i.publish":"publicar", "i.save":"guardar", "i.no":"no", "i.No":"No", "i.yes":"si", "i.Yes":"Si", "i.delete":"borrar", "i.walk1":"Puedes utilizar el icono tutorial", "i.walk2":'durante las secciones de la aplicaci\u00f3n para servirte de ayuda a la hora de utilizar el "ViSH Editor". De esta manera podr\u00e1s aprender a utilizar el programa desde sus funciones b\u00e1sicas hasta la publicaci\u00f3n final de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', 
+"i.cancel":"cancelar", "i.draft":"borrador", "i.publish":"publicar", "i.save":"guardar", "i.no":"no", "i.No":"No", "i.yes":"si", "i.Yes":"Si", "i.delete":"borrar", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Noresultsfound":"No se encontraron resultados", "i.Search places":"Buscar lugares", 
+"i.readJSONfileError":"Error al leer el fichero JSON", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", "i.Background":"Fondo", "i.walk1":"Puedes utilizar el icono tutorial", "i.walk2":'durante las secciones de la aplicaci\u00f3n para servirte de ayuda a la hora de utilizar el "ViSH Editor". De esta manera podr\u00e1s aprender a utilizar el programa desde sus funciones b\u00e1sicas hasta la publicaci\u00f3n final de tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', 
 "i.walk3":'Este espacio te permite a\u00f1adir el t\u00edtulo de tu excursi\u00f3n.El t\u00edtulo de la excursi\u00f3n es obligatorio ya que gracias a el, otros usuarios podr\u00e1n encontrarla mas f\u00e1cilmente dentro del ViSH. Pulsa "Siguiente" para continuar.', "i.walk4":'En este espacio puedes explicar en mas detalle los conceptos e ideas de tu excursi\u00f3n, as\u00ed como los datos que consideres interesantes para que los usuarios sepan el contenido de esta. Pulsa "Siguiente" para continuar.', 
 "i.walk5":'A\u00f1ade palabras que vayan acorde con el tema de tu excursi\u00f3n para que esta aparezca a la hora de que los usuarios busquen temas dentro del ViSH. Pulsa "Siguiente" para continuar.', "i.walk6":'Escoge una de estas im\u00e1genes para representar tu excursi\u00f3n dentro del ViSH.Utiliza las flechas de los laterales o los circulos en la parte inferior de la galer\u00eda para ver todas las im\u00e1genes y escoger una. Pulsa "Siguiente" para continuar.', "i.walk7":"Para finalizar puedes hacer click en 'continuar' para salvar los detalles de tu excursi\u00f3n o hacer click en 'Rellenar luego' para hacerlo mas tarde y empezar a a\u00f1adir contenido a tu excursi\u00f3n", 
 "i.walk8":'Bienvenido, este es el escritorio de ViSH Editor, desde aqu\u00ed, aprender\u00e1s a realizar excursiones paso a paso. Pulsa "Siguiente" para continuar.', "i.walk9":'En esta zona podr\u00e1s ver las opciones principales para crear y editar una excursi\u00f3n virtual dentro de ViSH. Pulsa "Siguiente" para continuar.', "i.walk10":'Haciendo clic en este bot\u00f3n, podr\u00e1s volver a ver la pantalla principal donde a\u00f1adiste la informaci\u00f3n a tu excursi\u00f3n. Pulsa "Siguiente" para continuar.', 
@@ -58,12 +59,13 @@ var i18n = {"vish":{"es":{"i.walkSettings1_1":"Bienvenido a la pantalla de Ajust
 "i.No":"No", "i.next":"siguiente", "i.Next":"Siguiente", "i.OK":"OK", "i.enterTitle":"Por favor, introduzca un t\u00edtulo", "i.Preview":"Vista previa", "i.save":"guardar", "i.Save":"Guardar", "i.SaveButton":"Bot\u00f3n de salvar", "i.SaveSlides":"Salvar las diapositivas", "i.SavePresentationDetails":"Salva los detalles de tu excursi\u00f3n", "i.SearchContent":"Buscar contenido", "i.SearchObjectContent":"Buscar contenido flash", "i.SearchImagesFlickr":"Buscar im\u00e1genes en Flickr", "i.SearchImagesVish":"Buscar im\u00e1genes en el repositorio ViSH", 
 "i.Searchv\u00eddeosVimeo":"Buscar v\u00eddeos en Vimeo", "i.Searchv\u00eddeosVish":"Buscar v\u00eddeos en el repositorio del ViSH", "i.Searchv\u00eddeosYoutube":"Buscar v\u00eddeos en Youtube", "i.SearchLiveContent":"Buscar contenido en directo", "i.SeeContentBefore":"Puedes ver el contenido antes de a\u00f1adirlo", "i.SeeImageBefore":"Puedes ver las im\u00e1genes antes de a\u00f1adirlas", "i.Seev\u00eddeoBefore":"Puedes ver el v\u00eddeo antes de a\u00f1adirlo", "i.selectPicture":"Seleccionar imagen para subir", 
 "i.selectObject":"Seleccionar archivo swf para subir", "i.selectSlide":"Seleccionando una slide", "i.selectSlides":"Seleccionando slides de excursiones externas", "i.selectTheme":"Seleccionar tema", "i.selectquiz":"Seleccionar Quiz", "i.slidesmenu":"Este es el menu de slides", "i.Subject":"Tema", "i.TeachingGuidelines":"Orientaciones did\u00e1cticas", "i.Title":"T\u00edtulo *", "i.thisIsVishEditor":"\u00a1Esto es el ViSH Editor!", "i.thisIsToolsMenu":"Esto es el men\u00fa de herramientas", "i.welcomeVishEditor":"\u00a1Bienvenidos a ViSH Editor!", 
-"i.Url":"Enlace", "i.url":"Enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"Subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", 
+"i.Url":"Enlace", "i.url":"enlace", "i.Upload":"Subir", "i.OwnImages":"Subir tus propias im\u00e1genes", "i.upload":"subir", "i.Thumbnail":"Miniatura", "i.WriteDescription":"Escribe una descripci\u00f3n (opcional)", "i.ConvertTo":"Convertir a", "i.Settings":"Ajustes", "i.Help":"Ayuda", "i.ExportAs":"Exportar como", "i.File":"Archivo", "i.Presentation":"Presentaci\u00f3n", "i.WysiwygInit":"Insertar texto aqu\u00ed", "i.embedObject":"embeber objeto", "i.embedWebsites":"embeber web", "i.html5App":"Aplicaci\u00f3n HTML5", 
 "i.Game":"Juego", "i.VirtualTour":"Virtual Tour", "i.vExperiment":"Experimento virtual", "i.changeBackground":"Cambiar fondo", "i.Microscopes":"Microscopios", "i.AddTags":"A\u00f1adir etiquetas", "i.limitReached":"limite alcanzado", "i.Templates":"Plantillas", "i.Author":"Autor", "i.draft":"Borrador", "i.Publish":"Publicar", "i.wysiwyg.addurl":"A\u00f1adir enlace", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.Remove":"Borrar", "i.ZoneTooltip":"Click aqu\u00ed para a\u00f1adir contenido", 
 "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto."}, "default":{"i.Author":"Author", "i.AddTags":"Add tags", "i.Add":"Add", "i.add":"add", "i.WysiwygInit":"Insert text here", "i.SearchContent":"Search Content", "i.Description":"Description", "i.limitReached":"limit reached", "i.wysiwyg.addurl":"Add link", 
 "i.Title":"Title", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.ZoneTooltip":"Click here to add content", "i.veryeasy":"very easy", "i.easy":"easy", "i.medium":"medium", "i.difficult":"difficult", "i.verydifficult":"very difficult", "i.invalidvalue":"invalid value", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
 "i.GotoSettings":"i.Go to Settings", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.Ok":"Ok", "i.areyousureNotification":"are you sure?", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.cancel":"cancel", "i.draft":"draft", "i.publish":"publish", 
-"i.save":"save", "i.no":"no", "i.No":"No", "i.yes":"yes", "i.Yes":"Yes", "i.delete":"delete", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid."}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.save":"save", "i.no":"no", "i.No":"No", "i.yes":"yes", "i.Yes":"Yes", "i.delete":"delete", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.Noresultsfound":"No results found", "i.Search places":"Search places", "i.readJSONfileError":"Error reading JSON file", 
+"i.NoJSONFileError":"You have to select a file to import in JSON format"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.VERSION = "0.7";
 VISH.AUTHORS = "GING";
@@ -13559,7 +13561,18 @@ VISH.Editor.Utils = function(V, $, undefined) {
         break
     }
   };
-  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, dimentionToDraw:dimentionToDraw, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForSlideJSON:replaceIdsForSlideJSON, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab}
+  var addTmpShown = function(els) {
+    $(els).each(function(index, el) {
+      $(el).addClass("temp_shown")
+    })
+  };
+  var removeTmpShown = function(els) {
+    $(els).each(function(index, el) {
+      $(el).removeClass("temp_shown")
+    })
+  };
+  return{setStyleInPixels:setStyleInPixels, addZoomToStyle:addZoomToStyle, getStylesInPercentages:getStylesInPercentages, dimentionToDraw:dimentionToDraw, refreshDraggables:refreshDraggables, replaceIdsForSlide:replaceIdsForSlide, replaceIdsForSlideJSON:replaceIdsForSlideJSON, prepareSlideToNest:prepareSlideToNest, undoNestedSlide:undoNestedSlide, generateTable:generateTable, convertToTagsArray:convertToTagsArray, autocompleteUrls:autocompleteUrls, filterFilePath:filterFilePath, loadTab:loadTab, 
+  addTmpShown:addTmpShown, removeTmpShown:removeTmpShown}
 }(VISH, jQuery);
 VISH.Editor.Text = function(V, $, undefined) {
   var initialized = false;
@@ -14531,13 +14544,14 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -14548,8 +14562,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
         options.styleClass = "presentation_repository";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -14917,10 +14930,10 @@ VISH.Editor.VirtualTour = function(V, $, undefined) {
           map.setCenter(location.address);
           map.fitBounds(location.bounds);
           $(currentInput).val("");
-          $(currentInput).attr("placeholder", "Search places")
+          $(currentInput).attr("placeholder", V.I18n.getTrans("i.Search places"))
         }else {
           $(currentInput).val("");
-          $(currentInput).attr("placeholder", "No results")
+          $(currentInput).attr("placeholder", V.I18n.getTrans("i.Noresultsfound"))
         }
       })
     }
@@ -15483,13 +15496,14 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -15500,8 +15514,7 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
         options.styleClass = "presentation_repository";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -18502,13 +18515,14 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to Flickr server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorFlickrConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options["rows"] = 2;
@@ -18517,8 +18531,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
         options["scrollItems"] = 4;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -18620,13 +18633,14 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorLREConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 2;
@@ -18635,8 +18649,7 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
         options.scrollItems = 4;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -18737,13 +18750,14 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 2;
@@ -18752,8 +18766,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
         options.scrollItems = 4;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -18857,13 +18870,14 @@ VISH.Editor.Image.Thumbnails = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 3;
@@ -18873,8 +18887,7 @@ VISH.Editor.Image.Thumbnails = function(V, $, undefined) {
         options.styleClass = "thumbnails";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -19214,13 +19227,14 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorLREConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -19230,8 +19244,7 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
         options.styleClass = "title";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -19391,13 +19404,14 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -19407,8 +19421,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
         options.styleClass = "title";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -19579,13 +19592,14 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -19595,8 +19609,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
         options.styleClass = "title";
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -19972,6 +19985,8 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
         var files = $("#" + inputFilesId)[0].files;
         if(files.length > 0) {
           _insertFile(files[0])
+        }else {
+          _showNoFileDialog()
         }
       });
       initialized = true
@@ -19988,11 +20003,37 @@ VISH.Editor.Presentation.File = function(V, $, undefined) {
           var json = JSON.parse(e.target.result);
           V.Editor.Presentation.previewPresentation(json)
         }catch(e) {
-          V.Debugging.log("Error reading JSON file")
+          _showErrorDialog()
         }
       }
     }(file);
     reader.readAsText(file)
+  };
+  var _showErrorDialog = function() {
+    var options = {};
+    options.width = 650;
+    options.height = 190;
+    options.text = V.I18n.getTrans("i.readJSONfileError");
+    var button1 = {};
+    button1.text = V.I18n.getTrans("i.Ok");
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    options.buttons = [button1];
+    V.Utils.showDialog(options)
+  };
+  var _showNoFileDialog = function() {
+    var options = {};
+    options.width = 650;
+    options.height = 190;
+    options.text = V.I18n.getTrans("i.NoJSONFileError");
+    var button1 = {};
+    button1.text = V.I18n.getTrans("i.Ok");
+    button1.callback = function() {
+      V.Editor.Tools.Menu.insertJSON()
+    };
+    options.buttons = [button1];
+    V.Utils.showDialog(options)
   };
   var exportToJSON = function(successCallback, failCallback) {
     var presentation = V.Editor.savePresentation();
@@ -21988,13 +22029,14 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.callback = _onClickCarrouselElement;
@@ -22002,8 +22044,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
         options.scrollItems = 5;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
@@ -22186,13 +22227,14 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
       _cleanCarrousel();
       return
     }
-    $("#" + containerDivId).addClass("temp_shown");
-    $("#" + carrouselDivId).addClass("temp_shown");
+    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
     if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "No results found" + "</p>")
+      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
+      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
     }else {
       if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + "Error connecting to ViSH server" + "</p>")
+        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorYoutubeConnection") + "</p>");
+        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
       }else {
         var options = new Array;
         options.rows = 1;
@@ -22201,8 +22243,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
         options.scrollItems = 5;
         options.afterCreateCarruselFunction = function() {
           setTimeout(function() {
-            $("#" + containerDivId).removeClass("temp_shown");
-            $("#" + carrouselDivId).removeClass("temp_shown")
+            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
           }, 100)
         };
         V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
