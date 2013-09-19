@@ -155,15 +155,25 @@
           float: left
           display: inline-block
         .btn-group
-
           margin-top: 0px
           float: right
           display: inline-block
+          i.icon-star
+            color: $firstColor
           .btn:first-child
-
             border-top-left-radius: 0px
           .btn
             padding: 8px 12px
+          .popover 
+            width: 180px
+            outline: none
+            z-index: 20
+            .actions
+              .btn
+                padding: 3px 12px
+                @include border-radius($baseBorderRadius)
+
+
 
         
 

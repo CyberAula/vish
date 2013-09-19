@@ -110,9 +110,22 @@ $(document).ready(function(){
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 <!--BTN ACTIONS-->
 <div class="btn-group">
+
+
+
   <% if user_signed_in? and (can? :update, @excursion) %>
-    <button class="with_tooltip btn" title="<%=t('excursion.actions.clone')%>" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><i class="icon-copy"></i></button>
+    <button class="with_tooltip clone btn" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
   <%end%>
+  <div class="contentclone" style="display: none">
+    <p class=""><i class="icon-copy"></i><%=t('excursion clone')%></p>
+    <div class="actions">
+      <a class="btn btn_cancel"><%=t('cancel')%></a>
+      <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
+    </div>
+  </div>  
+
+
+
   <!--si es tuya la puedes eliminar o editar-->
   <% if user_signed_in? and (can? :update, @excursion) %>
     <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
@@ -121,10 +134,11 @@ $(document).ready(function(){
   <% if user_signed_in? and can?(:destroy, @excursion) %>
     <button class="with_tooltip delete btn popover-link" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
   <%end%>
+
+
   <div class="contentdelete" style="display: none">
-    <i class="icon-remove-sign"></i>
-    <p class="delete_p"><%=t('excursion.confirm_delete')%></p>
-    <div class="actions-clone">
+    <p class="delete_p"><i class="icon-trash"></i> <%=t('excursion.confirm_delete')%></p>
+    <div class="actions">
       <a class="btn btn_cancel"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
     </div>
