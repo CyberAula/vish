@@ -176,8 +176,8 @@ namespace :vish_editor do
     #Rewrite CSS paths
     system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
-    system "sed -i 's/..\\\/font/\\\/assets\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/font-awesome/css/*css"
-    system "sed -i 's/..\\\/font/\\\/assets\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/open-sans/css/*css"
+    system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/font-awesome\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/font-awesome/css/*css"
+    system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/open-sans\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/open-sans/css/*css"
   end
 
 
