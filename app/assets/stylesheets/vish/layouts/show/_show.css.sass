@@ -1,4 +1,5 @@
 #show_items
+
   .box-show
     //visor
     .container-visor
@@ -272,3 +273,11 @@
               canvas
                 @include center-block()
 
+.popover 
+  width: 180px
+  outline: none
+  z-index: 20
+  .actions
+    .btn
+      padding: 3px 12px
+      @include border-radius($baseBorderRadius)

@@ -1,98 +1,90 @@
 <%= content_for :javascript do %> 
 //to close the popovers
 $(':not(#anything_not_present)').on('click', function (e) {
-$('.popover-link').each(function () {
-//the 'is' for buttons that trigger popups
-//the 'has' for icons and other elements within a button that triggers a popup
-if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-$(this).popover('hide');
-return;
-}
-});
+  $('.popover-link').each(function () {
+  //the 'is' for buttons that trigger popups
+  //the 'has' for icons and other elements within a button that triggers a popup
+  if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+  $(this).popover('hide');
+  return;
+  }
+  });
 });
 
-//EMBED POPOVER
-$('.embed').popover({ 
-html : true,
-content: function() {
-return $('.contentembed').html();
-},
-container: ".embed"
-});
 
 //apply events when opening the embed popover
 $('.embed').on('shown.bs.popover', function () {
-$('button#btn_copy_embed').zclip({
-path:'/assets/ZeroClipboard.swf',
-copy:function(){
-return $('#textarea_for_iframe').text();
-},
-afterCopy: function(){}
+  $('button#btn_copy_embed').zclip({
+  path:'/assets/ZeroClipboard.swf',
+  copy:function(){
+  return $('#textarea_for_iframe').text();
+  },
+  afterCopy: function(){}
 });
 
 $("#textarea_for_iframe").mouseup(function(e){
-// fixes safari/chrome problem
-e.preventDefault();
-}).focus(function(e){
-mytxt = $(this).text();
-$(this).select();
-}).click(function(e){
-mytxt = $(this).text();
-$(this).select();
-});
+  // fixes safari/chrome problem
+  e.preventDefault();
+  }).focus(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  }).click(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  });
 
-});
-
-//SHARE POPOVER
-$('.share').popover({ 
-html : true,
-content: function() {
-return $('.contentShare').html();
-},
-container: ".share"
 });
 
 $('.share').on('shown.bs.popover', function () {
-$('button#btn_copy_share').zclip({
-path:'/assets/ZeroClipboard.swf',
-copy:function(){
-return $('#input_with_shorturl').val();
-},
-afterCopy: function(){}
+  $('button#btn_copy_share').zclip({
+  path:'/assets/ZeroClipboard.swf',
+  copy:function(){
+  return $('#input_with_shorturl').val();
+  },
+  afterCopy: function(){}
 });
 
 $("#input_with_shorturl").mouseup(function(e){
-// fixes safari/chrome problem
-e.preventDefault();
-}).focus(function(e){
-mytxt = $(this).text();
-$(this).select();
-}).click(function(e){
-mytxt = $(this).text();
-$(this).select();
-});
+  // fixes safari/chrome problem
+  e.preventDefault();
+  }).focus(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  }).click(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  });
 
 });
 
 $('.clone').popover({ 
-html : true,
-content: function() {
-return $('.contentclone').html();
-},
-container: ".clone"
+  html : true,
+  content: function() {
+  return $('.contentclone').html();
+  },
+  container: "body"
+});
+
+$('.clone').on('shown.bs.popover', function () {
+  $('.btn_cancel').on("click",function(){
+    //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+    $('.clone').popover('hide');
+  });
 });
 
 $('.delete').popover({ 
-html : true,
-content: function() {
-return $('.contentdelete').html();
-},
-container: ".delete"
+  html : true,
+  content: function() {
+  return $('.contentdelete').html();
+  },
+  container: "body"
 });
 
-
-$('.btn_cancel').click(function(){
-$('.popover').popover('hide');
+$('.clone').on('shown.bs.popover', function () {
+  //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+  $('.btn_cancel').on("click",function(){
+    $('.delete').popover('hide');
+  });
 });
 
 <%end%>
@@ -112,7 +104,7 @@ $(document).ready(function(){
 <div class="btn-group">
 
   <% if user_signed_in? && @excursion.author != current_subject.actor %>
-    <button class="with_tooltip clone btn" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
+    <button class="with_tooltip clone btn popover-link" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
     
     <div class="contentclone" style="display: none">
       <p class=""><i class="icon-copy"></i>  <%=t('excursion clone')%></p>
@@ -134,7 +126,7 @@ $(document).ready(function(){
   <%end%>
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-    <button class="with_tooltip delete btn popover-link" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
   <%end%>
 
 
