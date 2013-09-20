@@ -1,13 +1,15 @@
 <div class="btn-group">
   <% if can? :destroy, document %>
-    <button class="btn" rel="tooltip" title="<%=t('document.actions.delete')%>" >
+   
 
     <%= link_to raw("<i class='icon-trash'></i> "),  document,
     confirm: t('confirm_delete', scope: document.class.to_s.underscore),
     title: t('document.actions.delete'),
-    method: :delete %>
+    method: :delete,
+    rel: "tooltip",
+    class: "btn" %>
     <% end %>
-  </button>
+  
 
   <%if user_signed_in?%>
     <%= content_for :javascript do %> 
@@ -15,7 +17,7 @@
     <% end %>
 
     <%=categories_select(:category_id, document)%>
-    <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+    <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
   <%end%>
 </div>
 
