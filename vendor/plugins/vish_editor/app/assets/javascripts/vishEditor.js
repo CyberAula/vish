@@ -15198,7 +15198,15 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
         onBackgroundSelected(V.Utils.getSrcFromCSS(slidesetJSON.background))
       }
       if(slidesetJSON.pois) {
-        _savePoisJSONToDom(scaffoldDOM, slidesetJSON.pois)
+        var validPois = [];
+        $(slidesetJSON.pois).each(function(index, poi) {
+          if(poi.x && poi.y && poi.x <= 100 && poi.y <= 100) {
+            validPois.push(poi)
+          }
+        });
+        if(validPois.length > 0) {
+          _savePoisJSONToDom(scaffoldDOM, validPois)
+        }
       }
     }
   };
@@ -15654,8 +15662,10 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"id":"281", "title":"The Scale Of The Universe", "description":"From quantum foam to galaxies on edges of the known universe, the infographic displays every image with approximate scaling comparisons to give you a sense of size.", "avatar":"/assets/logos/original/excursion-39.png", "author":"N\u00e9stor Toribio Ruiz", "slides":[{"id":"article1", "template":"t2", "elements":[{"id":"zone1", "type":"object", "areaid":"left", "body":'<embed wmode="opaque" src="http://scale2.s3.amazonaws.com/scale2.swf" class="t2_object" id="resizableunicID_1">', 
-  "style":"position: relative; width:100.01966666666667%; height:99.83269111969113%; top:0%; left:0%;"}]}]};
+  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Introduction to Android", "description":"This an introduction to Android OS.", "avatar":"http://farm3.staticflickr.com/2814/9817915243_f148e46bed.jpg", "author":"agordillo", "theme":"theme1", "language":"independent", "age_range":"4 - 20", "tags":["android", "os", "system"], "slides":[{"id":"article8", "type":"flashcard", "background":"url(http://upload.wikimedia.org/wikipedia/commons/a/a9/Planets2013.jpg)", "pois":[{"x":"242.15625", 
+  "y":"42.7109375", "slide_id":"article8_article4"}, {"x":"261.53125", "y":"41.7109375", "slide_id":"article8_article5"}, {"x":"93", "y":"91.7109375", "slide_id":"article8_article1"}, {"x":"57.125", "y":"24.2109375", "slide_id":"article8_article2"}], "slides":[{"id":"article8_article4", "type":"standard", "template":"t2", "elements":[{"id":"article8_article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">A&shy;</span></span></p>\n'}]}, 
+  {"id":"article8_article5", "type":"standard", "template":"t3", "elements":[{"id":"article8_article5_zone1", "areaid":"header"}, {"id":"article8_article5_zone2", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">B&shy;</span></span></p>\n'}]}, {"id":"article8_article1", "type":"standard", "template":"t1", "elements":[{"id":"article8_article1_zone1", "type":"text", "areaid":"left", "body":'<p>\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">&shy;<span style="font-size:20px;">C</span></span></span></p>\n'}, 
+  {"id":"article8_article1_zone2", "areaid":"header"}, {"id":"article8_article1_zone3", "areaid":"subheader"}]}, {"id":"article8_article2", "type":"standard", "template":"t1", "elements":[{"id":"article8_article2_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&shy;</span>D</span></p>\n'}, {"id":"article8_article2_zone2", "areaid":"header"}, {"id":"article8_article2_zone3", "areaid":"subheader"}]}]}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -16218,6 +16228,9 @@ VISH.Flashcard = function(V, $, undefined) {
     }
   };
   var addArrow = function(fcId, poi, sync) {
+    if(!poi || !poi.x || !poi.y || poi.x > 100 || poi.y > 100) {
+      return
+    }
     var flashcard_div = $("#" + fcId);
     var poiId = V.Utils.getId(fcId + "_poi");
     var div_to_add = "<div class='fc_poi' id='" + poiId + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'></div>";
@@ -18239,7 +18252,12 @@ VISH.Editor.Events = function(V, $, undefined) {
       }});
       window.onbeforeunload = _exitConfirmation;
       confirmOnExit = true;
-      $(window.document).on("click", function() {
+      $(window.document).on("click", function(ev) {
+        if(V.Status.getDevice().browser.name === V.Constant.IE) {
+          if(ev.target && $(ev.target).is(":input")) {
+            return
+          }
+        }
         window.focus()
       });
       bindedEventListeners = true

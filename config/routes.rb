@@ -45,6 +45,10 @@ Vish::Application.routes.draw do
 
   match 'lre/search' => 'lre#search_lre'
 
+  #redirect /home.json to the original path
+  #This way, ViSH Mobile login continue working
+  match '/home.json' => 'home#index', :format => :json
+
   #redirect /home to /excursions
   match '/home' => 'excursions#index'
 

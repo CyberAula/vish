@@ -12066,6 +12066,9 @@ VISH.Flashcard = function(V, $, undefined) {
     }
   };
   var addArrow = function(fcId, poi, sync) {
+    if(!poi || !poi.x || !poi.y || poi.x > 100 || poi.y > 100) {
+      return
+    }
     var flashcard_div = $("#" + fcId);
     var poiId = V.Utils.getId(fcId + "_poi");
     var div_to_add = "<div class='fc_poi' id='" + poiId + "' style='position:absolute;left:" + poi.x + "%;top:" + poi.y + "%'></div>";
