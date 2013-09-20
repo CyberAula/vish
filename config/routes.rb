@@ -45,6 +45,7 @@ Vish::Application.routes.draw do
 
   match 'lre/search' => 'lre#search_lre'
 
+  match '/home.json' => 'home#index.json'
   #redirect /home to /excursions
   match '/home' => 'excursions#index'
 
