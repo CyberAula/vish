@@ -10616,7 +10616,7 @@ VISH.Utils = function(V, undefined) {
   };
   var _fixTypes = function(presentation) {
     if(typeof presentation.type == "undefined") {
-      presentation.type = V.Constant.STANDARD
+      presentation.type = V.Constant.PRESENTATION
     }
     var slides = presentation.slides;
     var sL = slides.length;
