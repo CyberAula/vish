@@ -428,7 +428,9 @@ es:
     message:
       default: "El código y la imagen no coinciden"
       user: "El código y la imagen no coinciden"
-    error: "Hay un error con el código captcha. Por favor vuelve a introducir el código."   
+    error: "Hay un error con el código captcha. Por favor vuelve a introducir el código."
+    subtitle: "Introduce el valor de la imagen"
+    title: "Captcha"   
   site:
     current:
       description: "Un punto de encuentro para científicos y profesores basado en la idea de excursiones virtuales"

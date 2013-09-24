@@ -19,6 +19,9 @@
     <%end%>
   </ul>
 
+  <%= f.label t('simple_captcha.title') %>
+  <span class="register_sublabel"><%=t('simple_captcha.subtitle')%></span>
+
   <%= show_simple_captcha %>
       
   <hr class="soften">
