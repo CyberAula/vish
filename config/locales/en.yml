@@ -424,6 +424,15 @@ en:
     send: "Send"
   share: "Post"
   sign_up: "Register"
+  simple_captcha:
+    placeholder: "Enter the image value"
+    label: "Enter the code in the box:"
+    message:
+      default: "Secret Code did not match with the Image"
+      user: "The secret Image and code were different"
+    error: "There was an error with the captcha code below. Please re-enter the code."   
+    subtitle: "Enter the code in the box:"
+    title: "Captcha"
   site:
     current:
       description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
