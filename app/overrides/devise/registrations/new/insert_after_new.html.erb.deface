@@ -19,6 +19,7 @@
     <%end%>
   </ul>
 
+  <%= show_simple_captcha %>
       
   <hr class="soften">
   <div class="conditions">
