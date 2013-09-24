@@ -70,7 +70,8 @@
         .contentembed,
         .contentShare,
         .contentclone,
-        .contentscorm
+        .contentscorm,
+        .contentReport
           margin-left: 20px
           margin-bottom: 10px
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -78,6 +79,15 @@
           float: left
           textarea
             @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          textarea.report
+            margin-left: 20px
+            @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            clear: right
+            display: block
+          button.report
+            margin-left: 20px
+            float: right
+            clear: both
           .input-append
             @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block

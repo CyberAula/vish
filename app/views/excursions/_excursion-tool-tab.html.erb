@@ -113,11 +113,7 @@ $(document).ready(function(){
         <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
       </div>
     </div>  
-
-
   <%end%>
-
-
 
 
   <!--si es tuya la puedes eliminar o editar-->
@@ -176,13 +172,21 @@ $(document).ready(function(){
       </a>
     </li>    
     <li>
-      <a href="#tab5" data-toggle="tab">
+      <a href="#tab4" data-toggle="tab">
         <i class="icon-download"></i> 
         <span class=" hidden-tablet hidden-phone">
           <%=t('excursion.actions.scorm')%>
         </span>
       </a>
-    </li>    
+    </li>  
+    <li>
+      <a href="#tab5" data-toggle="tab">
+        <i class="icon-flag"></i> 
+        <!--span class=" hidden-tablet hidden-phone">
+          <%#=t('excursion.actions.scorm')%>
+        </span-->
+      </a>
+    </li>     
   </ul>
 </div>
 
@@ -240,12 +244,30 @@ $(document).ready(function(){
     </div>
   </div> 
    
-  <!-- tab5 / scorm -->
-  <div class="tab-pane" id="tab5">
+  <!-- tab4 / scorm -->
+  <div class="tab-pane" id="tab4">
     <div class="contentscorm">
       <a class="btn btn-primary" href='<%=excursion_path(@excursion) + '.scorm'%>'><i class="icon-download"></i> <%=t('excursion.actions.scorm')%></a> 
       <p><%=t("excursion.download_scorm")%></p><br/>
 
+    </div> 
+  </div> 
+  <!-- tab5 / scorm -->
+  <div class="tab-pane" id="tab5">
+    <div class="contentReport">
+      <dt>Report Excursion</dt>
+
+      <label class="radio">
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Inappropriate content
+      </label>
+      <label class="radio">
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+        Report an error in the Excursion
+      </label>
+      <textarea class="report" rows="1" placeholder="What is the issue?"></textarea>
+
+      <button class="report btn btn-primary"> Submit</button>
     </div> 
   </div> 
 </div>
