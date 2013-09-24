@@ -7,6 +7,6 @@ class Category < ActiveRecord::Base
 
   private
   def title_not_duplicated
-    errors.add(:base, "Title already exists") unless Category.all.map{ |category| category.id if(category.owner_id == self.owner_id && category.title == self.title) }.compact!.empty?
+    errors.add(:base, "Title already exists") unless Category.all.map{ |category| category.id if(category.owner_id == self.owner_id && category.title == self.title) }.compact.blank?
   end
 end
