@@ -62,7 +62,8 @@
             display: inline-block
           .tab-content
             @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            #document-edit
+            #document-edit,
+            .contentReport
               @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
               margin-left: 20px
               float: left
@@ -89,6 +90,15 @@
                 clear: both
                 background-image: none
                 margin-bottom: 10px
+            textarea.report
+              margin-left: 20px
+              @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              clear: right
+              display: block
+            button.report
+              margin-left: 20px
+              float: right !important
+              clear: both
 
           .viewsAndConunt
             width: 20%

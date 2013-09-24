@@ -36,6 +36,15 @@
     <li class="<%= document_details_tab_class document, :download %>">
         <%= link_to (raw("<i class='icon-download'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
     </li>
+
+    <li>
+      <a href="#tab3" data-toggle="tab">
+        <i class="icon-flag"></i> 
+        <!--span class=" hidden-tablet hidden-phone">
+          <%#=t('excursion.actions.scorm')%>
+        </span-->
+      </a>
+    </li>  
   </ul>
 </div>
 <div class="viewsAndConunt">
@@ -71,4 +80,23 @@
       <a class="btn btn-primary" href='<%=download_document_path(document)%>'><i class="icon-download"></i> <%=t('document.actions.download')%></a> 
     </div>
   </div>
+
+    <!-- tab5 / scorm -->
+  <div class="tab-pane" id="tab3">
+    <div class="contentReport">
+      <dt>Report Excursion</dt>
+
+      <label class="radio">
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Inappropriate content
+      </label>
+      <label class="radio">
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+        Report an error in the Excursion
+      </label>
+      <textarea class="report" rows="1" placeholder="What is the issue?"></textarea>
+
+      <button class="report btn btn-primary"> Submit</button>
+    </div> 
+  </div> 
 </div>
