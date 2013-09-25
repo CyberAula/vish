@@ -1,41 +1,57 @@
+
+
 <li class="box-item excursion-item">
-<!--IMG event-->
 
-    <%= link_to image_tag("items/evt-prev.png"), "#" ,  :class=> "img-box event-img" %>
+  <%#= link_to(excursion) do %>
+  <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element">
 
-<!--INFO event-->
+        <div class="img-box" id="excursion-<%#=excursion.id%>"><%= link_to image_tag("items/evt-prev.png") %></div>
+
+      </div>
+  </div>
+    
+<%# end %>
+  <!--script>
+    $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+  </script-->
+
+<!--INFO excursuion-->
   <div class="info">
 <!--Title -->
     <div class="name">
-      <a>
-        event name  
-      </a>
+      <%#= link_to excursion.title, excursion %>
     </div>
 <!--Autor -->
     <div class="author"> 
-      <a>author name</a>   
+      <span class="by"><%=t('by')%></span>
+      <%#= link_to excursion.author.name, excursion.author.subject %>
     </div>
-    <div class="date">
-      01/01/13    
-    </div>
-<!--____________________ -->
+    <!--____________________ -->
     <div class="info-bottom">
       <hr class="soften">
-<!--like -->
-      <div class="like">    
-        <div class="count">32</div>
-        <%= link_to image_tag("icons/likes/star-active.png",  :class=> "img-like" ), "#" %>
+      <!--like -->
+      <div class="like">  
+        <%#TODO Next if is only to deploy in production until it is solved, because for excursion 181
+        excursion.post_activity is nil%>
+
+         <%# if excursion.post_activity%>
+          <div class="count"><%#=excursion.post_activity.likes.count.to_s%></div>
+          <%#= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
+        <%#else%>
+          <div class="count">0</div>
+        <%#end%>
       </div>
-<!--views -->
-      <div class="views">2500
-        <a href="#" class="count" data-toggle="tooltip" title="first-tip" data-original-title="23">
-          <%#= image_tag("icons/eye.png",  :class=> "count" ) %> 
-        </a>
+      <!--views -->
+      <div class="views">
+        <%#=excursion.visit_count.to_s%>
+        <%=t('follow.views')%>
       </div>
     </div>
+
   </div>
 </li>
-
 
 
 
