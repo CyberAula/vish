@@ -1,4 +1,5 @@
-.tagBoxNew
+.tagBoxNew,
+.tagBoxDocument
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   display: block
   float: left
@@ -82,7 +83,7 @@
         top: -3px
         right: -3px
         &:hover
-          color: lighten($secondColor, 5%)
+          color: darken($secondColor, 30%)
 
   ul.ui-sortable
   ul.tagit-suggestions
