@@ -25,4 +25,5 @@
 //= require bootstrap-slider/bootstrap-slider
 //= require tagit
 //= require jquery.multiselect
+//= require jquery.jplayer
 //= require_tree .

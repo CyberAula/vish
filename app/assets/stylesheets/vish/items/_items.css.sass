@@ -110,9 +110,13 @@
           overflow: hidden
           width: 100%
         @include author
+        .author
+          width: 100%
+          height: 20px
+          overflow: hidden
+          word-wrap: break-word
+          text-overflow: ellipsis
       // VIEWS AND COUNT
-
-
       .info-bottom
         @mixin footer_box_info       
         clear: both

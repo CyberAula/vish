@@ -1,11 +1,13 @@
 @media (max-width: 767px)
   #document,
   #picture,
-  #embed
+  #embed,
+  #audio
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
     .picture,
-    .embed
+    .embed,
+    .audio
       .box-show-resource
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
@@ -39,11 +41,13 @@
 @media (max-width: 480px)  
   #document,
   #picture,
-  #embed
+  #embed,
+  #audio
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
     .picture,
-    .embed
+    .embed,
+    .audio
       .box-show-resource
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
