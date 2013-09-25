@@ -10,36 +10,9 @@
       border-bottom: none
   h1  
     border-bottom: 1px solid $grayLight
-
-
-
-.tags-suggestions
-  @include box-shadow (0 1px 3px rgba(0, 0, 0, 0.15))  
-  @include border-bottom-right-radius($radius)  
-  @include border-top-right-radius($radius)  
-  background-color: $white
-  a
-    @include rotate(-90deg)
-    color: gray
-    font-size: 18px
-
-    &:hover
-      text-decoration: none
-
-ul.sugestions-tags
-
-  li
-    list-style: none
-    background-color: #06F
-    color: #FFF
-    font-size: 13px
-    font-family: Helvetica
-    @include border-radius (5px)
-    @include opacity (50)
-
-    &:hover
-      @include opacity (60)
-      @include rotate(-2deg)
+  #excursions
+    display: block
+    margin-top: 20px
 
 
 /*NEW-SESSION*/
@@ -70,6 +43,11 @@ ul.sugestions-tags
       padding-top: 12px
       @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       clear: left
+    span
+      font-size: 10px
+      margin-left: 28%
+      float: left
+
     input,
     select
       width: 60%
@@ -77,6 +55,50 @@ ul.sugestions-tags
       float: left
     select
       padding-right: 10px
+    /*CAPTCHA*/
+    .simple_captcha
+
+
+      width: 60%
+      display: block
+      float: left
+      @include border-radius($baseBorderRadius)
+
+      .simple_captcha_image
+        border: 1px solid #ccc
+        margin: 0px 0px 2px 0px !important
+        padding: 0px !important
+        @include border-radius($baseBorderRadius)
+
+      .simple_captcha_image
+        width: 40%
+        display: block
+        float: left
+      .simple_captcha_image img
+        margin: 0px !important
+        padding: 0px !important
+        @include border-radius($baseBorderRadius)
+
+      .simple_captcha_label
+        font-size: 12px
+      .simple_captcha_field 
+        width: 50%
+        display: block
+        float: left
+        margin-left: 15px
+        @include border-radius($baseBorderRadius)
+
+        input
+          width: 100%
+          font-size: 12px
+          border: none
+          background-color:  $grayLighter
+          height: 24px
+          color: $black
+
+
+
+
     #remember
       display: block
       @include check-box
@@ -113,29 +135,5 @@ ul.sugestions-tags
     .tagBoxNew
       width: 60%
 
-  /*CAPTCHA*/
-  .register_sublabel
-    float: left
-    clear: both
-  .simple_captcha
-    border: 1px solid #ccc
-    padding: 5px !important
-    display: table
-    .simple_captcha_field,
-    .simple_captcha_image
-      border: 1px solid #ccc
-      margin: 0px 0px 2px 0px !important
-      padding: 0px !important
-    .simple_captcha_image img
-      margin: 0px !important
-      padding: 0px !important
-      width: 110px !important
-    .simple_captcha_label
-      font-size: 12px
-    .simple_captcha_field 
-      input
-        width: 150px !important
-        font-size: 16px
-        border: none
-        background-color: #efefef
+
 

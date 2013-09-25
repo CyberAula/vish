@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
         super
       else
         build_resource
-        clean_up_passwords(resource)
+        #clean_up_passwords(resource)
         flash.now[:alert] = t('simple_captcha.error')   
         flash.delete :recaptcha_error
         render :new

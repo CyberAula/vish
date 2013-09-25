@@ -37,7 +37,7 @@
           </div>
 
           <div class="item"> 
-            <div class="img_carousel inspiration"><%= image_tag("carrusel/background3.png",  :class=> "" ) %></div>  
+            <div class="img_carousel inspiration2"><%= image_tag("carrusel/background3.png",  :class=> "" ) %></div>  
             <div class="description">
               <h1> <%=t("vish.carousel_title2")%> </h1>
               <!--<hr class="soften">-->
@@ -64,3 +64,7 @@
        </div> 
    </div>
 </section>
+<script>
+ $(".img_carousel inspiration").backstretch("carrusel/background1.png");
+ $(".img_carousel inspiration2").backstretch("carrusel/background3.png");
+</script>

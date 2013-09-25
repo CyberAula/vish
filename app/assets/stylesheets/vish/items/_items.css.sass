@@ -8,22 +8,16 @@
 .info-profile
   ul
     margin: 0
-
     li.box-item:hover
       text-decoration: none
     li.box-item
       position: relative
       float: left
       overflow: inherit
-      width: 170px
-      margin-right: 8px
-      margin-left: 8px
-      margin-top: 15px
       list-style: none
       background-color: $white
       box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
       @include border-radius($baseBorderRadius)
-
       //BAGDE EXCURSION
       .badge-excursion-active
         position: absolute
@@ -35,16 +29,13 @@
         width: 75px
         pointer-events: none
 
-
       // IMG BOX
-
       .container-img
         display: inline-block
         position: relative
         width: 100%
         .dummy
           padding-top: 75% /* 4:3 aspect ratio */
-        
         .element
           position: absolute
           top: 0
@@ -55,11 +46,9 @@
           text-align: center
           width: 100%
           @include border-top-radius($baseBorderRadius)
-
-
           .img-box
             width: 100%
-            padding-bottom: 66.666%
+            padding-bottom: 75%
             float: left
             img
               float: left
@@ -85,7 +74,6 @@
             font-size: 20px
             text-shadow: $black 0.1em 0.1em 0.2em
 
-      
       //RESOURCES
       .event-img,
       .category-img
@@ -97,22 +85,22 @@
       .category
         width: 100%
         text-align: center
-        margin-top: 20px
+        margin-top: 20%
         float: left
-        height: 111px
+
         a
           text-decoration: none
         i
           font-size: 70px
           color: $gray
 
-
       // NAME
       .info
         font-family: $secondFontFamily
-        padding: 5px 5px 0 5px
-        float: left
-        width: 96%
+        display: block
+        width: 94%
+        margin-left: auto
+        margin-right: auto
         height: 69px
         .name
           @include box_title
@@ -120,6 +108,7 @@
           height: 32px
           line-height: 15px
           overflow: hidden
+          width: 100%
         @include author
       // VIEWS AND COUNT
 
@@ -133,7 +122,7 @@
           margin-bottom: 1px
         .views
           float: right
-          width: 55px
+          width: 80px
           text-align: right
         .like
           a
@@ -141,45 +130,26 @@
               text-decoration: none
         .number_elems
           float: right
-          widht: 100%
+          width: 100%
           text-align: right
 
     // ADD ITEM
     .add-item
-      height: 205px
       text-align: center
-      list-style: none
-      display: block
       background-image: url('items/malla.png') !important
       overflow: hidden
       
       &:hover
         text-decoration: none
-      .icon-box
+      i
         width: 100%
         display: block
         padding-top: 60px
         opacity: 1
-        .action-name
-          display: none
-        &:hover
-          text-decoration: none
-          .action-name
-            display: none
-            @include box_title
-            text-align: center
-            text-decoration: none
-            background: rgba( 255, 255, 255, 0.95)
-            height: 25px
-            width: 90%
-            margin-left: auto
-            margin-right: auto
-            @include border-radius($baseBorderRadius)
-            a:hover
-              text-decoration: none
-        i.icon-plus
-          font-size: 92px
-          display: block
+        font-size: 92px
+        display: block
+      .info
+        height: 75px !important
 
     // USERS
     .contact
@@ -197,7 +167,6 @@
         width: 55px
         background-size: 54px
         pointer-events: none
-          
 
       // IMG BOX
       .container-img
@@ -210,6 +179,7 @@
               @include border-radius($baseBorderRadius)
 
       .info
+        height: 75px !important
         .name
           text-align: center
           margin: 0
@@ -222,11 +192,7 @@
             text-decoration: none
             &:hover
               color: $firstColor
-
         .add
-          display: block
-          clear: both
-          margin-top: 3px
           @include follow
       .info-bottom
         hr
