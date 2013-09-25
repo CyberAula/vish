@@ -133,10 +133,9 @@ span.cke_skin_vEditor
 	width:100%;
 }
 
-.cke_skin_vEditor .cke_browser_ie .cke_editor,.cke_skin_vEditor .cke_browser_webkit .cke_editor
-{
-	display:table;
-	margin-top: 1.4px;
+.cke_skin_vEditor .cke_browser_ie .cke_editor,.cke_skin_vEditor .cke_browser_webkit .cke_editor{
+	display: table;
+	margin-top: 2px;
 }
 
 .cke_skin_vEditor .ltr .cke_browser_ie iframe
