@@ -1,6 +1,6 @@
 /*
  * VISH Iframe Messenger API
- * Provides an API that allows web applications to communicate with Vish Editor
+ * Provides an API that allows web applications to communicate with ViSH Editor
  * @author GING
  * @version 1.0
  */

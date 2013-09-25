@@ -4,8 +4,10 @@ class CategoriesController < ApplicationController
   before_filter :add_item_to_category, :only => [:create, :update]
 
   def create
-    create! do |format|
-      format.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }
+    create! do |success, failure|
+      success.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }
+      #failure.json { render :json => {"errors" => @category.errors}, :status => 400}
+      failure.json { render :json => {"errors" => @category.errors.full_messages.to_sentence}, :status => 400}
     end
   end
 

@@ -40,6 +40,8 @@ en:
       add: "Add category"
       verb: "categorize"
     description_input: "Description for this category"
+    errors:
+      duplicated: "You already have a category with this title. Please, give it another title."
     info: "Add it to one of your categories"
     input: "Add a description"
     item_inside: "items inside"

@@ -32,8 +32,8 @@
 
       <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
       <!--<b id="foo" rel="popover">Ayuda </b>-->
-      <!-- <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/> -->
-      <%= f.submit t('categories.save')%>
+      <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
+      <%= f.submit t('categories.save'), :class => "hidden", :id => "saveCategory" %>
     <% end %>
   </div>
 </div>
@@ -48,13 +48,29 @@
     });
   });
 
-  // var saveCategoryButton = $("#AddCategoryHeader input[type='submit']");
-  // var categoryButton = $("#AddCategoryHeader input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
-  // $(categoryButton).click(function(event) {
-  //   if ($("input[name='category[title]']").val() == "") {
-  //     alert("<%= t('categories.title_input')%>");
-  //   } else {
-  //     $(saveCategoryButton).click();
-  //   }
-  // });
+  $('#AddCategoryHeader .new_category').bind('ajax:success', function(evt, data, status, xhr){
+    $('#AddCategoryHeader').modal('hide');
+    window.location.href = "/categories/" + data.id;
+  });
+
+  $('#<%=div_id%> .new_category').bind('ajax:error', function(evt, data, status, xhr){
+    $("#<%=div_id%> .errors").remove();
+    var errors = data.responseJSON.errors;
+    if (errors.indexOf("duplicated") != -1) {
+      $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.errors.duplicated')%></div>");
+    } else {
+      $("#<%=div_id%> .new_category").after("<div class='errors'>" + errors + "</div>");
+    }
+  });
+
+  var saveCategoryButton = $("#<%=div_id%> input[type='submit']");
+  var categoryButton = $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
+  $(categoryButton).click(function(event) {
+    if ($("#<%=div_id%> input[name='category[title]']").val() == "") {
+      $("#<%=div_id%> .errors").remove();
+      $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.title_input')%></div>");
+    } else {
+      $(saveCategoryButton).click();
+    }
+  });
 </script>
