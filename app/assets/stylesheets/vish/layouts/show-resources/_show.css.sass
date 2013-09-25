@@ -92,6 +92,7 @@
                 clear: both
                 background-image: none
                 margin-bottom: 10px
+
             textarea.report
               margin-left: 20px
               @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -152,6 +153,12 @@
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
           float: left
+          .edit-document
+            float: right
+            margin-right: 20px
+            a
+              color: $black
+              font-size: 16px
           #effect
             position: relative
             min-height: 55px
@@ -185,7 +192,7 @@
                 padding-left: 20px
                 @include follow-profile
             .dl-horizontal
-              @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
               display: block
               float: left
           .newClass
