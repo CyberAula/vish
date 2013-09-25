@@ -1,12 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <div id="editor_wrapper">
+
+        <button class="discard_draft with_tooltip delete btn btn-primary popover-link" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+
   <div id="editor_and_bar">
     <div id="">
       <iframe class="vishEditorIframe" id="presentation_editor_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
     </div>
     <div>
-        <button class="discard_draft with_tooltip delete btn popover-link" title="<%=t('excursion.actions.discard_draft')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+
 
         <div class="contentdelete" style="display: none">
           <p class="delete_p"><i class="icon-trash"></i> <%=t('excursion.confirm_delete')%></p>
