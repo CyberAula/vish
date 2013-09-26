@@ -44,7 +44,7 @@ GIT
       paperclip (~> 3.5.1)
       paperclip-ffmpeg (~> 0.11.0)
       social_stream-base (~> 2.2.0)
-    social_stream-events (2.2.0)
+    social_stream-events (2.2.1)
       rails-scheduler (~> 0.1.2)
       social_stream-base (~> 2.2.2)
     social_stream-linkser (2.2.1)
