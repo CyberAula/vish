@@ -24,7 +24,7 @@
   &:focus 
     color: $white
     text-decoration: none
-    background-color: $firstColorDark
+    background-color: lighten($firstColor, 10%)
     // transition is only when going to hover/focus, otherwise the background
     // behind the gradient (there for IE<=9 fallback) gets mismatched
     @include transition(background-color .1s linear)
