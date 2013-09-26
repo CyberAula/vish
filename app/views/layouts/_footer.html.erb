@@ -5,20 +5,40 @@
         <a href="/legal_notice"><%= t('conditions.other') %></a>     
       </li>
       
+
+
+
       <li class="btn-group dropup">
+
         <button data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="idioma"><%= t('help') %></span>
           <span class="caret"></span>
-        </button>   
-          <ul class="dropdown-menu">
-              <li class="">
-                <%= link_to t('help_page'), '/help' %>
-              </li>
-              <li class="">
-                <%= link_to t('help_manual'), '/user_manual' %>
-              </li>
-          </ul>
+        </button>  
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          <li class="">
+            <%= link_to help_path do %>
+              <i class="icon-question-sign"> </i> <%=t('help_page')%>
+            <% end %>
+          </li>
+
+          <li class="">
+            <%= link_to user_manual_path do %>
+              <i class='icon-download'> </i> <%= t('help_manual')%>       
+            <% end %>
+          </li>
+        </ul>
       </li>
+
+
+
+
+
+
+
+
+
+
+
 
       <li class="btn-group dropup">
         <button data-toggle="dropdown" class="btn dropdown-toggle">
