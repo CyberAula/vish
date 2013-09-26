@@ -22,9 +22,10 @@
       <legend><%= t('event.leyend.description')%></legend>
       <%= f.text_field :description, :placeholder => t('event.description_input') %>
 
-      <%#= render :partial => 'scheduler/form',
+      <%= render :partial => 'scheduler/form',
              :locals  => { :f => f } %>
-
+             <!--- FIX this div close label in rails-scheduler -->
+           </div>
   </div><!-- CIERRA BODY-->
 
   <!-- FOOTER -->
