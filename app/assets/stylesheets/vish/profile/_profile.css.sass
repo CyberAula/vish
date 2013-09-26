@@ -2,30 +2,23 @@
   margin-bottom: 20px
   header
     #profile-info
-      //margin-top: 20px
       margin-bottom: 20px
-      margin-right: 10px
       background-color: $white
-      min-height: 149px
-      //float: left
       display: block
       float: left
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
       .avatar
-        position: relative
-        z-index: 1
-        //@include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
         float: left
         padding: 0px
+        margin-right: 10px
         @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
         img.avatar_img
           //border: $baseBorderRadius solid $white
-          @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
           @include border-radius($baseBorderRadius)
-          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         .badge-teacher-active
           background-image: url(" badges/teacherofthemonth.png" )
           position: absolute
@@ -37,86 +30,56 @@
           pointer-events: none
 
       .information
-        padding: 10px
-        @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
-        h1, h2, h3, h4, h5, h6 
-          line-height: 25px
-          display: inline-block
-          //margin-left: 5px
-        h2
+        .briefing
 
-          color: $gray
-          font-family: $secondFontFamily
-          
-        hr
-          margin: 5px 0
-          border: none
+          h1, h2, h3, h4, h5, h6 
+            line-height: 25px
+            display: inline-block
+            //margin-left: 5px
+          h2
 
-        h3.name-roll
-          color: $firstColor
-          font-size: 20px
-          font-family: $firstFontFamily
-          //border-right: 1px solid $grayLighter
-          padding-right: 15px
-          vertical-align: top
-          float: left
-          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          margin-top: 8px
+            color: $gray
+            font-family: $secondFontFamily
+            
+          hr
+            margin: 5px 0
+            border: none
 
-        h3.karma
-          padding-left: 15px
-          color: $firstColor
-          font-size: 20px
-          font-family: $firstFontFamily
-          
-        p.description
-          //@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          display: block
-          color: $gray
-        span
-          color: $black 
-          font-family: $secondFontFamily 
-        h3.achievements
-          padding-left: 20px
-          margin-left: 20px
-          margin-right: 10px
-          border-left: 1px solid $grayLighter
-          color: $secondColor
-          font-size: 20px
-          font-family: $firstFontFamily
-        .update
-          background-color: $white
-          margin-left: 0px
-          padding: 12px 0px 32px 0px !important
-          width: 55%
-          float: left
-          form.edit_user
+          h3.name-roll
+            color: $firstColor
+            font-size: 20px
+            font-family: $firstFontFamily
+            //border-right: 1px solid $grayLighter
+            padding-right: 15px
+            vertical-align: top
+            float: left
+            @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            margin-top: 8px
+
+          h3.karma
+            padding-left: 15px
+            color: $firstColor
+            font-size: 20px
+            font-family: $firstFontFamily
+            
+          p.description
+            //@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
-            #user_name,
-            textarea
-              width: 96%
-            textarea
-              resize: none
-              height: 50px
-            input
-              &[type="submit"]
-                @include btn-primary
-                float: right
-                margin-top: 20px
-                margin-right: 9px 
-            #hide_profile_form
-              float: right
-              margin-right: 20px
-              font-size: 14px
-              line-height: 20px
-              text-align: center
-              vertical-align: middle
-              margin-top: 20px
-              background-color: #e90055
-              color: white
-            #hide_profile_form:hover
-              background-color: #c60348
+            color: $gray
+          span
+            color: $black 
+            font-family: $secondFontFamily 
+          h3.achievements
+            padding-left: 20px
+            margin-left: 20px
+            margin-right: 10px
+            border-left: 1px solid $grayLighter
+            color: $secondColor
+            font-size: 20px
+            font-family: $firstFontFamily
+          
         .toolbar
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
@@ -252,6 +215,94 @@
 
       .name
         text-align: center
+
+
+
+
+
+
+
+.update
+  background-color: $white
+  margin-left: 0px
+  padding: 12px 0px 32px 0px !important
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  float: left
+  label
+    font-size: 14px
+    font-family: $secondFontFamily
+    color: $firstColor
+    display: block
+    float: left
+    padding-top: 12px
+    @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    clear: left
+  .avatar-edit
+    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    float: left
+    display: block
+    margin-bottom: 10px
+    .avatar-update
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .avatar-current
+        @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+        margin-right: 10px
+        img
+          @include border-radius($baseBorderRadius)
+      form.edit_actor
+        @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin: 0
+        margin-bottom: 10px
+        input
+          margin-top: 7px
+    #avatar-progress
+      display: none
+      float: left
+      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-top: 10px
+      .progress
+        margin-bottom: 0
+
+  form.edit_user
+    display: block
+    float: left
+    clear: both
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .birthday
+      select
+        width: 19%
+        display: block
+        float: left
+        margin-right: 10px
+    span
+      font-size: 10px
+      margin-left: 28%
+      float: left
+
+    input,
+    select,
+    textarea,
+    .tagBoxNew
+      @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+    select
+      padding-right: 10px
+
+    .actions
+      display: block
+      float: left
+      clear: both
+      width: 82%
+      input
+        width: auto
+        float: right
+      a
+        float: right
+        margin-right: 10px
+        background-color: $gray
 
 
 
