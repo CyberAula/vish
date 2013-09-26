@@ -1,32 +1,29 @@
-
-
 <li class="box-item excursion-item">
-
-  <%#= link_to(excursion) do %>
+  <%= link_to(event) do %>
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
 
-        <div class="img-box" id="excursion-<%#=excursion.id%>"><%= link_to image_tag("items/evt-prev.png") %></div>
+        <div class="img-box" id="event-<%=event.id%>"></div>
 
       </div>
   </div>
     
-<%# end %>
-  <!--script>
-    $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
-  </script-->
+<% end %>
 
+<!-- Falta el backstrech -->
+
+<%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="info">
 <!--Title -->
     <div class="name">
-      <%#= link_to excursion.title, excursion %>
+      <%= link_to event.title, event %>
     </div>
 <!--Autor -->
     <div class="author"> 
       <span class="by"><%=t('by')%></span>
-      <%#= link_to excursion.author.name, excursion.author.subject %>
+      <%= link_to event.author.name, event.author.subject %>
     </div>
     <!--____________________ -->
     <div class="info-bottom">
@@ -35,26 +32,20 @@
       <div class="like">  
         <%#TODO Next if is only to deploy in production until it is solved, because for excursion 181
         excursion.post_activity is nil%>
-
-         <%# if excursion.post_activity%>
-          <div class="count"><%#=excursion.post_activity.likes.count.to_s%></div>
-          <%#= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
-        <%#else%>
+         <% if event.post_activity%>
+          <div class="count"><%=event.post_activity.likes.count.to_s%></div>
+          <%= link_like(event.post_activity, :title =>t('excursion.actions.favorite'))%>
+        <%else%>
           <div class="count">0</div>
-        <%#end%>
+        <%end%>
       </div>
       <!--views -->
       <div class="views">
-        <%#=excursion.visit_count.to_s%>
+        <%=event.visit_count.to_s%>
         <%=t('follow.views')%>
       </div>
     </div>
 
   </div>
 </li>
-
-
-
-
-
 

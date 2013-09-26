@@ -27,6 +27,7 @@ git 'git://github.com/ging/social_stream.git', branch: "master" do
   gem 'social_stream-documents'
   gem 'social_stream-linkser'
   gem 'social_stream-ostatus'
+  gem 'social_stream-events'
 end
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap

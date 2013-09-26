@@ -178,6 +178,12 @@ en:
   event:
     actions:
       add: "Add event"
+    description_input: "Description for this event"
+    leyend:
+      title: "Title"
+      description: "Description"
+    main_title: "Create a new event"
+    title_input: "Name for this event"
   excursion:
     actions:
       add: "Add excursion"
