@@ -2,9 +2,9 @@
   <% if profile_subject_is_current? %>
     <%= render partial: 'events/event-add' %>
   <% end %>
-  <%#= render partial: 'events/event-myroom' %>	
-  <% 10.times do %>
-    <%#= render partial: 'events/event' %>
+
+  <% subject_events(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |event| %>
+      <%= render :partial => 'events/event', :locals => { :event => event } %>
   <% end %>
 </ul>
 

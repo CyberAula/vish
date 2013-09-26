@@ -26,4 +26,5 @@
 //= require tagit
 //= require jquery.multiselect
 //= require jquery.jplayer
+//= require social_stream-events
 //= require_tree .

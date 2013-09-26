@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130924143351) do
+ActiveRecord::Schema.define(:version => 20130926103246) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -197,7 +197,6 @@ ActiveRecord::Schema.define(:version => 20130924143351) do
 
   create_table "events", :force => true do |t|
     t.integer  "activity_object_id"
-    t.string   "title"
     t.datetime "start_at"
     t.datetime "end_at"
     t.boolean  "all_day"
@@ -212,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20130924143351) do
     t.integer  "interval_flag",      :default => 0
   end
 
+  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "excursion_contributors", :force => true do |t|
@@ -556,6 +556,7 @@ ActiveRecord::Schema.define(:version => 20130924143351) do
 
   add_foreign_key "documents", "activity_objects", :name => "documents_on_activity_object_id"
 
+  add_foreign_key "events", "activity_objects", :name => "events_on_activity_object_id"
   add_foreign_key "events", "rooms", :name => "index_events_on_room_id"
 
   add_foreign_key "groups", "actors", :name => "groups_on_actor_id"
@@ -576,8 +577,6 @@ ActiveRecord::Schema.define(:version => 20130924143351) do
   add_foreign_key "relations", "actors", :name => "relations_on_actor_id"
 
   add_foreign_key "remote_subjects", "actors", :name => "remote_subjects_on_actor_id"
-
-  add_foreign_key "rooms", "actors", :name => "index_rooms_on_actor_id"
 
   add_foreign_key "sites", "actors", :name => "index_sites_on_actor_id"
 

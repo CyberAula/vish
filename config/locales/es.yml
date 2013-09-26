@@ -181,6 +181,12 @@ es:
   event:
     actions:
       add: "Añadir evento"
+    description_input: "Descripción para este evento"
+    leyend:
+      title: "Título"
+      description: "Descripción"
+    main_title: "Crea un nuevo evento"
+    title_input: "Dale un nombre a tu evento"
   excursion:
     actions:
       add: "Añadir excursion"

@@ -45,6 +45,14 @@ module HomeHelper
     subject_content subject, Category, options
   end
 
+  def current_subject_events(options = {})
+    subject_events current_subject, options
+  end
+
+  def subject_events(subject, options = {})
+    subject_content subject, Event, options
+  end
+
   def subject_content(subject, klass, options = {})
     options[:limit] ||= 4
     options[:scope] ||= :net
