@@ -1,15 +1,20 @@
 <li class="box-item excursion-item">
-  <%= link_to(event) do %>
+  <%#= link_to(event) do %>
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
 
-        <div class="img-box" id="event-<%=event.id%>"></div>
+        <div class="img-box">
+          <div class="event">
+            <%= link_to "<i class='icon-facetime-video'></i>".html_safe, event, :title => event.title %>
+            <!-- <i class='icon-facetime-video-large'></i> -->
+          </div>
+        </div>
 
       </div>
   </div>
     
-<% end %>
+<%# end %>
 
 <!-- Falta el backstrech -->
 

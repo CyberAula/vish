@@ -8,7 +8,11 @@
   <% end %>
 </ul>
 
-
+<%= content_for :javascript do %>
+  $('a[href="#tab2"]').on('shown', function (e) {
+    $(".event").fitText(0.4);
+  });
+<% end %>
 
 
 
