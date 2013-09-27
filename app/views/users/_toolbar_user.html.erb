@@ -35,6 +35,7 @@
 </button>
 <% end %>
 
+<button href="#" id="showMore" class="btn" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
 
 
 
@@ -57,4 +58,24 @@
   <!--   <div class="modal-footer">
   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 </div> -->
+
 </div>
+
+
+<script>
+$(function() {
+  $("#showMore").click(function(){
+    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+    if($("#showMore").attr("status")=== "showMore"){
+      $("#showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showMore").attr("status", "showFewer");
+    }
+    else{
+      $("#showMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showMore").attr("status", "showMore");
+    }
+    return false;
+  });
+});
+</script>

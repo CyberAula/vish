@@ -170,3 +170,32 @@ ul.single-line-tags
     a.ui-state-hover,
     a.ui-state-active
       font-weight: normal
+
+
+.tags-profile
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  display: block
+  float: left
+  font-size: $baseFontSize
+  font-family: $firstFontFamily
+  .tagit-new
+    display: none
+  li.tagit-choice
+    float: left
+    //background-color: lighten($secondColor, 30%)
+    background-color: transparent
+    color: $gray
+    padding: 2px 
+    margin-bottom: 3px
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    @include border-radius($baseBorderRadius)
+    text-align: left
+    &:hover
+      background-color: lighten($secondColor, 20%)
+      border-color: #6d95e0
+      a,
+      a:hover
+        color: $white
+    .tagit-close
+      display: none

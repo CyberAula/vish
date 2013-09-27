@@ -9,6 +9,7 @@
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+      position: relative
       .avatar
         display: block
         float: left
@@ -28,193 +29,221 @@
           height: 110px
           width: 75px
           pointer-events: none
-
       .information
         @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: left
         .briefing
-
-          h1, h2, h3, h4, h5, h6 
-            line-height: 25px
-            display: inline-block
-            //margin-left: 5px
-          h2
-
-            color: $gray
-            font-family: $secondFontFamily
-            
-          hr
-            margin: 5px 0
-            border: none
-
-          h3.name-roll
+          h3
+            line-height: 15px
             color: $firstColor
             font-size: 20px
             font-family: $firstFontFamily
             //border-right: 1px solid $grayLighter
             padding-right: 15px
             vertical-align: top
-            float: left
-            @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            margin-top: 8px
-
-          h3.karma
-            padding-left: 15px
-            color: $firstColor
-            font-size: 20px
-            font-family: $firstFontFamily
-            
-          p.description
-            //@include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
-            color: $gray
+            float: left
           span
-            color: $black 
-            font-family: $secondFontFamily 
-          h3.achievements
-            padding-left: 20px
-            margin-left: 20px
-            margin-right: 10px
-            border-left: 1px solid $grayLighter
-            color: $secondColor
-            font-size: 20px
-            font-family: $firstFontFamily
-          
-        .toolbar
-          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          float: left
-          display: inline
-          height: 20px
-          margin-top: -5px
-          // CONTACT
-          .contact
+            color: $gray
+            @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
             float: left
-            margin-right: 10px
-            .add
-              @include follow-profile
-              display: block
-              clear: both
-              text-align: center
-              div
-                .following-button
-                  display: block
-                  margin-left: 0
-                  display: block
-                  background-color: #007CC8
-                  height: 20px
-                  width: 87px
-                  @include border-radius(5px)
-                  color: #FFF
-                  font-family: "OpenSansLight"
+            margin-top: 10px
+          .name
+            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            float: left
+            display: inline-block
+            h2
+              line-height: 25px
+              color: $gray
+              font-family: $secondFontFamily
+          .description
+            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            float: left
+            display: inline-block
+            color: $grayLight
+            font-size: 14px
 
-              .unfollow-button 
-                form
-                  margin: 0px
-                  input
-                    display: block
-                    margin-left: 0
-                    height: 20px
-                    border: 0px none
-                    width: 87px
-                    display: block
-                    background-color: #555
-                    @include border-radius(5px)
-                    color: #FFF
-                    margin-top: 0px
-                    padding: 0px
-                    font-family: "OpenSansLight"
+          .tags-profile
+            @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            float: right
+            display: none      
+            margin-top: 3px
+          .ocupation
+            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            float: left
+            display: inline-block
 
-          // EDIT
-          .edit_icon
-            height: 20px
-            border: 0px none 
-            width: 80px
+
+          #effect
+            position: relative
+            min-height: 0px
+            @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: inline-block
+            float: left
+          .newClass
+            height: 0px
+            overflow: hidden
+          .anotherNewClass
+            height: auto
+            overflow: auto
+
+
+
+            .organization     
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              float: left
+              display: inline-block 
+            .website
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              float: left
+              display: inline-block 
+            .birthday
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              float: left
+              display: inline-block
+            .city
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              float: left
+              display: inline-block
+            .county 
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              float: left
+              display: inline-block
+
+.modal
+  width: 450px
+  margin-left: -240px
+  top: 20% !important
+  .modal-body 
+    max-height: 340px 
+  .cleditorMain
+    height: 100px !important
+    .cleditorToolbar
+      display: none
+
+  .btn
+    background-image: none
+
+
+
+//toolbar-profile
+.toolbar-profile
+  @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  float: left
+  display: inline
+  height: 20px
+  margin-top: 10px
+  margin-bottom: 10px
+
+
+  // CONTACT
+  .contact
+    display: block
+    float: left
+    margin-right: 10px
+    .add
+      @include follow-profile
+      display: block
+      clear: both
+      text-align: center
+      div
+        .following-button
+          display: block
+          margin-left: 0
+          display: block
+          background-color: #007CC8
+          height: 20px
+          width: 87px
+          @include border-radius(5px)
+          color: #FFF
+          font-family: "OpenSansLight"
+
+      .unfollow-button 
+        form
+          margin: 0px
+          input
             display: block
-            @include border-radius($baseBorderRadius)
-            color: $black
-            background-color: $firstColor
-            margin-top: 0px
-            padding: 0px 15px
-            color: $white
-            font-family: $firstFontFamily
-            a,
-            span
-              color: $white
-              font-size: 12px
-
-              &:hover
-                text-decoration: none
-            span
-              padding-left: 5px
-          // message
-          button#mesage-profile
+            margin-left: 0
             height: 20px
-            border: 0px none 
-            width: auto
+            border: 0px none
+            width: 87px
             display: block
-            @include border-radius($baseBorderRadius)
-            color: $black
-            border-color: #CCCCCC #CCCCCC #B3B3B3
-            border-image: none
-            border-style: solid
-            border-width: 1px
+            background-color: #555
+            @include border-radius(5px)
+            color: #FFF
             margin-top: 0px
-            padding: 0px 15px
-            font-family: $firstFontFamily
-            a
-              color: $black
-              font-size: 12px
+            padding: 0px
+            font-family: "OpenSansLight"
 
-    
-
-    .modal
-      width: 450px
-      margin-left: -240px
-      top: 20% !important
-      .modal-body 
-        max-height: 340px 
-      .cleditorMain
-        height: 100px !important
-        .cleditorToolbar
-          display: none
-
-      .btn
-        background-image: none
-
-  //.container-img
-    //display: inline-block
-    //position: relative
-    //width: 100%
-    //.dummy
-      //padding-top: 34px
-  //.info-bottom
-    //.soften
-      //font-size: 0.75em
-      //margin: 0 0 1px
-        
-.name-required  
-  label 
-    display: inline 
-    span
-      color: #888
-.info-profile
-  .follow-tab
-    @include tab_title
-    float: right
-    a
-      span
-      span:after
-        content: " "
-  .tabbable
+  // EDIT
+  .edit_icon
+    height: 20px
+    border: 0px none 
+    width: 80px
+    display: block
     @include border-radius($baseBorderRadius)
-    h3
-      color: $firstColor 
-    .contact
-      min-height: 170px
+    color: $black
+    background-color: $firstColor
+    margin-top: 0px
+    padding: 0px 15px
+    color: $white
+    font-family: $firstFontFamily
+    display: block
+    float: left
+    margin-right: 10px
+    a,
+    span
+      color: $white
+      font-size: 12px
 
-      .name
-        text-align: center
+      &:hover
+        text-decoration: none
+    span
+      padding-left: 5px
+  // message
+  button#mesage-profile
+    height: 20px
+    border: 0px none 
+    width: auto
+    margin-right: 10px
+    @include border-radius($baseBorderRadius)
+    color: $black
+    border-color: #CCCCCC #CCCCCC #B3B3B3
+    border-image: none
+    border-style: solid
+    border-width: 1px
+    margin-top: 0px
+    padding: 0px 15px
+    font-family: $firstFontFamily
+    display: block
+    float: left
+    a
+      color: $black
+      font-size: 12px
+
+
+
+  #showMore
+    height: 20px
+    border: 0px none 
+    width: auto
+    @include border-radius($baseBorderRadius)
+    color: $black
+    border-color: #CCCCCC #CCCCCC #B3B3B3
+    border-image: none
+    border-style: solid
+    border-width: 1px
+    margin-top: 0px
+    padding: 0px 15px
+    font-family: $firstFontFamily
+    display: block
+    float: left
+    margin-right: 10px
+    a
+      color: $black
+      font-size: 12px
 
 
 
@@ -222,6 +251,24 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//FORMULARIO
 .update
   background-color: $white
   margin-left: 0px
@@ -303,6 +350,32 @@
         float: right
         margin-right: 10px
         background-color: $gray
+.name-required  
+  label 
+    display: inline 
+    span
+      color: #888
+
+
+//tabs
+.info-profile
+  .follow-tab
+    @include tab_title
+    float: right
+    a
+      span
+      span:after
+        content: " "
+  .tabbable
+    @include border-radius($baseBorderRadius)
+    h3
+      color: $firstColor 
+    .contact
+      min-height: 170px
+
+      .name
+        text-align: center
+
 
 
 
