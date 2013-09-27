@@ -183,8 +183,11 @@ es:
       add: "Añadir evento"
     description_input: "Descripción para este evento"
     leyend:
-      title: "Título"
+      date_and_time: "Fecha, hora y duración"
       description: "Descripción"
+      end_time: "Hora de finalización"
+      start_time: "Hora de comienzo"
+      title: "Título"
     main_title: "Crea un nuevo evento"
     title_input: "Dale un nombre a tu evento"
   excursion:
