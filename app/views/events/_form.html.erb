@@ -20,20 +20,40 @@
       
       <!--DESCRIPCION-->
       <legend><%= t('event.leyend.description')%></legend>
-      <%= f.text_field :description, :placeholder => t('event.description_input') %>
+      <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
 
-      <%= render :partial => 'scheduler/form',
-             :locals  => { :f => f } %>
-             <!--- FIX this div close label in rails-scheduler -->
-           </div>
+      <!--DATE AND TIME -->
+      <legend><%= t('event.leyend.date_and_time')%></legend>
+      <input type="date" name="event_day">
+      <%= t('event.leyend.start_time')%> <input type="time" name="event_start_time">
+      <%= t('event.leyend.end_time')%> <input type="time" name="event_end_time">
+
+      <script>
+        $(document).ready(function(){
+          var saveEventButton = $("#AddEvent input[type='submit']");
+          var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
+          $(eventButton).click(function(event) {
+            if ($("#AddEvent input[name='event[title]']").val() == "") {
+              $("#AddEvent .errors").remove();
+              $("#AddEvent .new_event").after("<div class='errors'><%= t('event.title_input')%></div>");
+            } else {
+              $("#AddEvent input[name='event[start_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_start_time']").val());
+              $("#AddEvent input[name='event[end_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_end_time']").val());
+              $(saveEventButton).click();
+            }
+          });
+        });
+
+      </script>
+
   </div><!-- CIERRA BODY-->
 
   <!-- FOOTER -->
   <div class="modal-footer">
       <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
       <!--<b id="foo" rel="popover">Ayuda </b>-->
-      <!-- <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/> -->
-      <%= f.submit t('categories.save'), :id => "saveEvent" %>
+      <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
+      <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
     <% end %>
   </div>
 </div>

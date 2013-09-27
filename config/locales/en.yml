@@ -180,8 +180,11 @@ en:
       add: "Add event"
     description_input: "Description for this event"
     leyend:
-      title: "Title"
+      date_and_time: "Date, time and duration"
       description: "Description"
+      end_time: "End time"
+      start_time: "Start time"
+      title: "Title"
     main_title: "Create a new event"
     title_input: "Name for this event"
   excursion:
