@@ -1,5 +1,5 @@
 <section class="characteristics">
-  <div class="carrusel">
+  <div class="carousel">
       <div id="myCarousel" class="carousel slide">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" data-interval="2000" class="active"></li>
@@ -8,7 +8,7 @@
         </ol>  
         <div class="carousel-inner">
           <div class="active item">
-            <div class="img_carousel inspiration"><%= image_tag("carrusel/front1.jpg",  :class=> "" ) %></div>
+            <div class="img_carousel "><%= image_tag("carrusel/front1.jpg",  :class=> "" ) %></div>
             <div class="description">
               <h1> <%=t("vish.carousel_title")%> </h1>
               <!--<hr class="soften">-->
@@ -37,7 +37,7 @@
           </div>
 
           <div class="item"> 
-            <div class="img_carousel inspiration2"><%= image_tag("carrusel/front2.jpg",  :class=> "" ) %></div>  
+            <div class="img_carousel "><%= image_tag("carrusel/front2.jpg",  :class=> "" ) %></div>  
             <div class="description">
               <h1> <%=t("vish.carousel_title2")%> </h1>
               <!--<hr class="soften">-->
@@ -49,7 +49,7 @@
           </div>
 
           <div class="item">
-            <div class="img_carousel inspiration"><%= image_tag("carrusel/front3.jpg",  :class=> "" ) %></div>
+            <div class="img_carousel "><%= image_tag("carrusel/front3.jpg",  :class=> "" ) %></div>
             <div class="description">
               <h1> <%=t("vish.carousel_title3")%> </h1>
               <!--<hr class="soften">-->
@@ -64,7 +64,4 @@
        </div> 
    </div>
 </section>
-<script>
- $(".img_carousel inspiration").backstretch("carrusel/background1.png");
- $(".img_carousel inspiration2").backstretch("carrusel/background3.png");
-</script>
+

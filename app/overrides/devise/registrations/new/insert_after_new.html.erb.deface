@@ -85,3 +85,9 @@
 
   });
 <% end %>
+
+<%= content_for :javascript do %>
+  $(document).ready(function() {
+    $("label").fitText(1.2, { minFontSize: '10px', maxFontSize: '20px' })
+  });
+<% end %>

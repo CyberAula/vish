@@ -3,21 +3,22 @@
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   margin-top: 50px
   .characteristics
-    .carrusel
-      //height: 450px
+    .carousel
+      max-height: 367px
       //height: 100%
       overflow: hidden
       float: left
       display: block
       position: relative
+      margin-bottom: 0
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .carousel-inner
-        height: 100%
+
         .img_carousel
-          height: 100%
+
           img
             @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            height: 100%
+
 
         .description
           position: absolute

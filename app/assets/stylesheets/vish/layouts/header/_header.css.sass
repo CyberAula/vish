@@ -1,15 +1,13 @@
-
-
-
 header.navbar,
 .navbar-fixed-top
   z-index: 2147483647 //maximum zindex
   .navbar-inner
     padding-left: 5%
     padding-right: 5%
-    height: 50px
+    height: 50px !important
     background-color: none
     background: rgba( 255, 255, 255, 0.98)
+
     .container
       max-width: 2000px
       margin-left: auto
@@ -17,6 +15,8 @@ header.navbar,
       display: block
       width: auto
       height: 30px
+      .btn-navbar
+        margin-top: 11px
 
       .brand
         height: auto
@@ -51,7 +51,6 @@ header.navbar,
         float: left
         margin-top: 15px
         border-left: 1px solid rgb(214, 214, 214)
-        @extend hidden-phone
         .dropdown
           list-style: none
           a

@@ -3,28 +3,54 @@
 // --------------------------------------------------
 
 
-@media (min-width: 768px) and (max-width: 979px)
-
+@media (min-width: 0px) and (max-width: 979px)
   .nav-collapse
-    background-color:  $white
+    @include white-box-style
     z-index: 99
-    padding: 0 20px
-    margin-left: -14px
-    margin-right: -14px
-    ul.dropdown-menu
-      margin: 13px 0 0
-      width: 219px
-      float: right
-    li.login
-      width: 115px
-    a.sigin
-      margin-right: 16px 
-      margin-left: 4px
+    li.search-mobile
+      .search-nav
+        form.navbar-search 
+          width: 100%
+          display: block
+          margin-bottom: 0px
+          clear: both
+          padding: 4px 0
+          input
+            width: 100% 
+            display: block
+            padding: 4px 0
+            margin-top: 0px
+    li
 
-  .user-tool
-    .search-ui,
-    .navegation,
-    .add_nav
-      float: left !important
-    .user-settings
-      width: 50px !important
+      width: 90%
+      margin: 0 5%
+      display: block
+      clear: both
+      border-bottom: 1px solid #EEEEEE
+      a
+        padding: 9px 0
+
+      form 
+        width: 100%
+        display: block
+        margin-bottom: 0px
+        clear: both
+        float: left
+        z-index: 100
+        
+
+        input[type="email"],
+        input[type="password"]
+          width: 100% 
+          display: block
+          padding: 4px 0
+        input[type="submit"]
+          float: right
+        a.forgot
+          color: $secondColor
+          clear: both
+          text-align: center
+          width: 100%
+          display: block
+          padding: 2px 0
+
