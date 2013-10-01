@@ -7,6 +7,7 @@
 
   <li class="sign_in_mobile dropdown open">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-signin"></i>
       <%=t("sign_in")%>
       <b class="caret"></b>
     </a>
@@ -39,12 +40,14 @@
 <!--sign_up-->
   <li class="sign_up_mobile">
     <a href="<%=new_user_registration_path%>"class="signin">
+      <i class="icon-edit-sign"></i>
       <%=t("sign_up")%>
     </a>
   </li>
 <!--lang-->
   <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-flag-checkered"></i>
       <%= t('lang.title') %>
       <b class="caret"></b>
     </a>
@@ -60,24 +63,19 @@
 
 <!--legal_notice-->
   <li>
-    <a href="/legal_notice"><%= t('conditions.other') %></a>     
+    <a href="/legal_notice">
+      <i class="icon-legal"></i>
+      <%= t('conditions.other') %>
+    </a>     
   </li>
 <!--manual-->
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      <%= t('help') %>
-      <b class="caret"></b>
-    </a>
-    <ul class="dropdown-menu">
+
       <li>
         <%= link_to help_path do %>
           <i class="icon-question-sign"> </i> <%=t('help_page')%>
         <% end %>
       </li>
 
-    
-    </ul>
-  </li>
 
 </ul>
 

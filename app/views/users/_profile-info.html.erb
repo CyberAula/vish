@@ -19,14 +19,52 @@
 <section class="info-profile">
   <div class="tabbable">
     <ul class="nav nav-tabs">
-      
-      <li class="active"><a href="#tab1" data-toggle="tab"><%=t('excursion.other')%></a></li>
-      <li><a href="#tab2" data-toggle="tab"><%=t('event.other')%></a></li>
-      <li><a id="resources_tab" href="#tab3" data-toggle="tab"><%=t('resource.other')%></a></li>
-      <li><a href="#tab4" data-toggle="tab"><%=t('categories.other')%></a></li>
-      <li class="follow-tab"><a href="#tab5" data-toggle="tab"><span><%= profile_subject.followers.count.to_s %></span><%= t('follow.followers') %></a></li>
-      <li class="follow-tab"><a href="#tab6" data-toggle="tab"><span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span><%= t('follow.followings') %></a></li>
+<!--excursions-->
+      <li class="active">
+        <a href="#tab1" data-toggle="tab">
+          <i class="icon-book"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
+        </a>
+      </li>
+<!--events-->
+      <li>
+        <a href="#tab2" data-toggle="tab">
+          <i class="icon-facetime-video"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
+        </a>
+      </li>
+<!--resources-->      
+      <li>
+        <a id="resources_tab" href="#tab3" data-toggle="tab">
+          <i class="icon-file"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('resource.other')%></span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#tab4" data-toggle="tab">
+          <i class="icon-th-large"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('categories.other')%></span>
+        </a>
+      </li>
+
+      <li class="follow-tab">
+        <a href="#tab5" data-toggle="tab">
+
+          <span><%= profile_subject.followers.count.to_s %></span>
+          <i class="icon-group "></i>
+          <span class=" hidden-phone hidden-tablet"><%= t('follow.followers') %></span>
+        </a>
+      </li>
+      <li class="follow-tab">
+        <a href="#tab6" data-toggle="tab">
+          <span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span>
+          <i class="icon-group green"></i>
+          <span class=" hidden-phone hidden-tablet"><%= t('follow.followings') %></span>
+        </a>
+      </li>
     </ul>
+
     <div class="tab-content">
 
       <div class="tab-pane active" id="tab1">

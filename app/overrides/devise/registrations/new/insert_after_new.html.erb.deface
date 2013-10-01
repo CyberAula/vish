@@ -28,7 +28,7 @@
       
   <hr class="soften">
   <div class="conditions">
-  <%= f.label t('conditions.check_message'), :class =>"sentence-rules" %>
+  <%= t('conditions.check_message') %>
 
   <%= link_to t('conditions.check_message_1'), '/legal_notice', :target=>'_blank' %>
 

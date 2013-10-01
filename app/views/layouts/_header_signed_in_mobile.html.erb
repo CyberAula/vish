@@ -1,39 +1,39 @@
 <ul class="nav">
+
+<!--search-->
   <li class="search-mobile">
     <%= render partial: 'layouts/search_mobile' %>
   </li>
-
-
-	<!--li class="navegation ">
-	<%#= render partial: 'layouts/basic_navegation' %>
-	</li-->
-
-
-
-
-
-  <li class="messages">
-    <%= link_to messages_path do %>
-    <i class="icon-envelope"></i>
-    <%= t('message.messages') %>
-    <% end %>
-  </li>
-    <li class="settings-menu">
-    <%= link_to activities_path do %>
-    <i class='icon-globe'></i> 
-    <%= t('notification.notifications') %>
-    <% end %>
-  </li>
-
-
-
-
 <!--user-->
-
+  <li class="user">
     <%= link_to current_subject do %>
       <%= image_tag current_subject.logo.url(:small) %>
-      <%= truncate_name(current_subject.name, length: 15) %>
+      <%= truncate_name(current_subject.name, length: 22) %>
     <% end %>
+  </li>
+<!--message-->
+  <li class="">
+    <%= link_to messages_path do %>
+      <i class="icon-envelope"></i>
+      <%= t('message.messages') %>
+    <% end %>
+  </li>
+<!--settings-->
+  <li class="">
+    <%= link_to activities_path do %>
+      <i class='icon-globe'></i> 
+      <%= t('notification.notifications') %>
+    <% end %>
+  </li>
+<!--quiz-->
+  <li class="">
+    <%= link_to quiz_sessions_path do %>
+    <i class="icon-puzzle-piece"></i>
+    <%= t('quiz_sessions') %>
+    <% end %>
+  </li>
+
+
 
 <!--profile-->
   <!--li class="settings-menu">
@@ -49,14 +49,41 @@
     <%= t('dropdown.settings') %>
     <% end %>
   </li>
-  <li class="settings-menu">
-    <%= link_to quiz_sessions_path do %>
-    <i class="icon-puzzle-piece"></i>
-    <%= t('quiz_sessions') %>
+
+
+  <!--lang-->
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-flag-checkered"></i>
+      <%= t('lang.title') %>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <% for locale in (I18n.available_locales) -%> 
+       <li class="">
+          <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+<!--legal_notice-->
+  <li>
+    <a href="/legal_notice">
+      <i class="icon-legal"></i>
+      <%= t('conditions.other') %>
+    </a>     
+  </li>
+<!--manual-->
+
+
+  <li>
+    <%= link_to help_path do %>
+      <i class="icon-question-sign"> </i> <%=t('help_page')%>
     <% end %>
   </li>
-  <li class="divider"></li>
-  <li>
+
+<!--sign out-->
+  <li class="active">
     <%= link_to destroy_user_session_path, :method => :delete do %>
     <i class="icon-signout"></i>
     <%= t('sign_out') %>

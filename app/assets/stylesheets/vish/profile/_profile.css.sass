@@ -67,7 +67,7 @@
           .tags-profile
             @include grid-fluid-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
             float: right
-            display: none      
+            display: block     
             margin-top: 3px
           .ocupation
             @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -365,15 +365,25 @@
       span
       span:after
         content: " "
-  .tabbable
-    @include border-radius($baseBorderRadius)
-    h3
-      color: $firstColor 
+      i.green
+        color: $green
+  .tabbable 
+    ul.nav-tabs 
+      li
+        a 
+          span
+            color: $gray
+      li.active 
+        a 
+          span
+            color: $grayDark
+        
     .contact
       min-height: 170px
 
       .name
         text-align: center
+
 
 
 
