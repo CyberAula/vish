@@ -22,5 +22,17 @@
   <div>
     <h3>Empieza el: <%= @event.start_at %></h3>
     <h3>Termina el: <%= @event.end_at %></h3> 
+    <div class="day">
+      <%= @event.start_at.day %>
+    </div>
+    <div class="month">
+      <%= l @event.start_at, :format => "%B" %>
+    </div>
+    <div class="hour">
+      <%= l @event.start_at, :format => "%H:%M" %>
+    </div>
+    <div class="hour">
+      <%= l @event.end_at, :format => "%H:%M" %>
+    </div>
   </div>
 </section>
