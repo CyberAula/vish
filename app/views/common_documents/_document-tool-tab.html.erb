@@ -27,12 +27,17 @@
       <%= link_to (raw("<i class='icon-align-left'></i> <span class='hidden-tablet hidden-phone'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
     </li>
 
+    <% if can? :update, document %>
+    <li class="<%= document_details_tab_class document, :edit %>">
 
+      <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+    </li>
+    <% end %>
     <li class="<%= document_details_tab_class document, :download %>">
         <%= link_to (raw("<i class='icon-download'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
     </li>
 
-    <li style="display:none">
+    <li>
       <a href="#tab3" data-toggle="tab">
         <i class="icon-flag"></i> 
         <!--span class=" hidden-tablet hidden-phone">
@@ -61,13 +66,6 @@
 <div class="tab-content">
   <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
     <div class="toggler">
-
-        <% if can? :update, document %>
-    <li class="btn  edit-document <%= document_details_tab_class document, :edit %>">
-
-      <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
-    </li>
-    <% end %>
       <%= render partial: "common_documents/info", locals: { document: document } %>
     </div>
   </div>
