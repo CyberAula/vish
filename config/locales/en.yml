@@ -450,6 +450,11 @@ en:
       keywords: "VisHub,virtual,excursion"
       title: "Virtual Science Hub"
     name: "Virtual Science Hub"
+  spam:
+    error_content: "There is an error in the excursion"
+    placeholder: "What is the issue?"
+    report_excursion: "Report excursion"
+    spam_content: "Spam or inappropriate content"
   swf:
     confirm_delete: "Delete SWF?"
   today: "Today"

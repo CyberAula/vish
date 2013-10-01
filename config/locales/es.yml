@@ -448,6 +448,11 @@ es:
       keywords: "VisHub,virtual,excursion"
       title: "Virtual Science Hub"
     name: "Virtual Science Hub"
+  spam:
+    error_content: "Reportar un error en la excursión"
+    placeholder: "¿Cúal es el problema?"
+    report_excursion: "Reportar excursión"
+    spam_content: "Contenido inapropiado o spam"
   swf:
     confirm_delete: "¿Borrar SWF?"
   today: "Hoy"
