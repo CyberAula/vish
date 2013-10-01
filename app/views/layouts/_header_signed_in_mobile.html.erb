@@ -1,0 +1,67 @@
+<ul class="nav">
+  <li class="search-mobile">
+    <%= render partial: 'layouts/search_mobile' %>
+  </li>
+
+
+	<!--li class="navegation ">
+	<%#= render partial: 'layouts/basic_navegation' %>
+	</li-->
+
+
+
+
+
+  <li class="messages">
+    <%= link_to messages_path do %>
+    <i class="icon-envelope"></i>
+    <%= t('message.messages') %>
+    <% end %>
+  </li>
+    <li class="settings-menu">
+    <%= link_to activities_path do %>
+    <i class='icon-globe'></i> 
+    <%= t('notification.notifications') %>
+    <% end %>
+  </li>
+
+
+
+
+<!--user-->
+
+    <%= link_to current_subject do %>
+      <%= image_tag current_subject.logo.url(:small) %>
+      <%= truncate_name(current_subject.name, length: 15) %>
+    <% end %>
+
+<!--profile-->
+  <!--li class="settings-menu">
+    <%= link_to current_subject do %>
+    <i class="icon-user"></i>
+    <%= t('profile.one') %>
+    <% end %>
+  </li-->
+
+  <li class="settings-menu">
+    <%= link_to settings_path do %>
+    <i class="icon-cog"></i>
+    <%= t('dropdown.settings') %>
+    <% end %>
+  </li>
+  <li class="settings-menu">
+    <%= link_to quiz_sessions_path do %>
+    <i class="icon-puzzle-piece"></i>
+    <%= t('quiz_sessions') %>
+    <% end %>
+  </li>
+  <li class="divider"></li>
+  <li>
+    <%= link_to destroy_user_session_path, :method => :delete do %>
+    <i class="icon-signout"></i>
+    <%= t('sign_out') %>
+    <% end %>
+  </li>
+
+
+</ul>

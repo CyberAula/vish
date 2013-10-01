@@ -1,38 +1,31 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-
       <!--logo-->
       <div class="brand">
         <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
       </div>
-      
       <!--BROWSE-->
       <div class="browse">
         <%= render partial: 'layouts/browse_header'%>
       </div>
-      <div class="nav-collapse collapse">
-
-
-          <!-- FIXME: search javascript functionality in 'layouts/search' -->
-          <!--search web-->
-          <!--add-->
+      <div class=" hidden-phone hidden-tablet">
           <ul class="nav user-tool">
+<!--search-->
             <li class="search-ui ">
               <%= render partial: 'layouts/uisearch_header' %>
             </li>
-            
+<!--navegation-->
             <li class="navegation ">
               <%= render partial: 'layouts/basic_navegation' %>
             </li>
-            
+<!--add-->
             <li class="add_nav">
               <div class="btn-group">
                 <a class="btn dropdown-toggle tooltip-header" data-original-title="<%=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
@@ -57,7 +50,7 @@
               <%#= render partial: 'layouts/header_dropdown_menu' %>
             </li>
           -->
-            
+<!--user-->
             <li class ="user-settings">
               <%= link_to current_subject do %>
               
@@ -105,6 +98,14 @@
           </ul>
 
         </div>
+
+  <!--________________________mobile/tablet-->
+        <div class="nav-collapse navbar-responsive-collapse collapse hidden-desktop  MOBILE ">
+          <%= render partial: 'layouts/header_signed_in_mobile' %>
+        </div>
+
+
+
       </div>
     </div>
   </header>
