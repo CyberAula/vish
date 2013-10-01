@@ -12,13 +12,14 @@
       <!--logo-->
       <div class="brand">
         <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
-
+      </div>
+      
+      <!--BROWSE-->
+      <div class="browse">
+        <%= render partial: 'layouts/browse_header'%>
       </div>
       <div class="nav-collapse collapse">
-        <!--browse-->
-        <div class="hidden-phone">
-          <%= render partial: 'layouts/browse_header' %>
-        </div>
+
 
           <!-- FIXME: search javascript functionality in 'layouts/search' -->
           <!--search web-->
