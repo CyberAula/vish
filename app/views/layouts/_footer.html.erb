@@ -1,15 +1,10 @@
-<footer id="footer" class="container-fluid hidden-phone">
+<footer id="footer" class="container-fluid hidden-phone hidden-tablet">
   <nav class="footercontent">
     <ul>
       <li>
         <a href="/legal_notice"><%= t('conditions.other') %></a>     
       </li>
-      
-
-
-
       <li class="btn-group dropup">
-
         <button data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="idioma"><%= t('help') %></span>
           <span class="caret"></span>
@@ -28,7 +23,6 @@
           </li>
         </ul>
       </li>
-
       <li class="btn-group dropup">
         <button data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="idioma"><%= t('lang.title') %></span>
@@ -42,20 +36,16 @@
             <% end %>
           </ul>
       </li>
-
       <li>
          <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript) %>
       </li>
-
       <li class="social-img">
         <%= link_to image_tag("footer/facebook-logo.png",  :class=> "social-img" ), "https://www.facebook.com/VirtualScienceHub", :target=> "_blank" %>
         <%= link_to image_tag("footer/twitter-logo.png",  :class=> "social-img " ), "https://twitter.com/ViSH_portal", :target=> "_blank" %>
       </li>
-
       <li>
         <%= link_to image_tag("footer/global.png",  :class=> "imgnoradio" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
-
     </ul>
   </nav>
 </footer>

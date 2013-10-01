@@ -5,43 +5,53 @@
 
 @media (max-width: 767px)
 
+
   #frontpage
     @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     
+  .navbar-fixed-top 
+    margin-bottom: 0px
+
+  .container_carousel
+    margin-bottom: 20px
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-top: 0
     .characteristics
-      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      
-      .inspiration
-        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        float: none
-        img
-          width: 60%
-          margin: 0 20%
-      
-      .description
-        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        float: none
-        h1,
-        p
-          width: 56%
-          margin-left: 4%
-          float: left
-        hr
-          @include hidden-phone
-        .redes
-          width: 38%
-          margin-top: -49px
-          margin-left: 6%
-          max-width: 136px
-          a
-            display: block
-            margin: 10px 10px 10px 0px
-            &:first:child
-              margin-top: 0
-        .email
-          width: 24%
-          margin-left: 6%
-  
+      .carousel
+        max-height: 367px
+        //height: 100%
+        overflow: hidden
+        float: left
+        display: block
+        position: relative
+        margin-bottom: 0
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .carousel-inner
+          .img_carousel
+            img
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .description
+            position: absolute
+            right: 5%
+            top: 5%
+            left: 5%
+            z-index: 2
+            width: auto
+            background: rgba( 0, 0, 0, 0.5)
+            @include border-radius($baseBorderRadius)
+            padding: 10px
+            h1
+              color: $white !important
+              font-family: $secondFontFamily
+              font-size: 25px
+            p
+              margin-bottom: 5px
+              line-height: 20px
+              color: $white 
+            .redes
+              margin-bottom: 30px
+     
+
 
 
   .tags-suggestions
@@ -63,37 +73,48 @@
 // ---------------------
 
 @media (max-width: 480px)
+  body.carousel
 
-  .carrusel
-    width: 111% !important
 
-  #frontpage
+  .container_carousel
+    margin-bottom: 20px
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-top: 0
     .characteristics
-      .inspiration
-        img
-          width: 90%
-          margin: 0 5%
-      .description
-        h1,
-        p
-          width: 90%
-          margin-left: 5%
-          float: none
-        hr
-          @include hidden-phone
-        .redes
-          width: 55%
-          margin-top: 0
-          margin-left: 4%
-          a
-            display: block
-            margin: 10px 10px 10px 0px
-            &:first:child
-              margin-top: 0
-        .email
-          width: 36%
-          margin-left: 4%
-          padding-top: 8px
+      .carousel
+        max-height: 367px
+        //height: 100%
+        overflow: hidden
+        float: left
+        display: block
+        position: relative
+        margin-bottom: 0
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .carousel-inner
+          .img_carousel
+            img
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .description
+            position: absolute
+            right: 5%
+            top: 5%
+            left: 5%
+            z-index: 2
+            width: auto
+            background: rgba( 0, 0, 0, 0.5)
+            @include border-radius($baseBorderRadius)
+            padding: 10px
+            h1
+              color: $white !important
+              font-family: $secondFontFamily
+              font-size: 25px
+            p
+              margin-bottom: 5px
+              line-height: 20px
+              color: $white 
+            .redes
+              margin-bottom: 30px
+     
           
   #registration,
   #new_session
