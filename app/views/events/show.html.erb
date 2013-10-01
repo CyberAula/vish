@@ -1,1 +1,26 @@
-<div>This is the show page for an event</div>
+<section id="event">
+  <div class="event_info">
+    <div class="icon-box" id="event-<%=@event.id%>">
+      <% if @event.poster.new_record? %>
+        <i class="icon-facetime-video"></i>
+      <% else %>
+        <script>
+          $("#event-<%=@event.id%>").addClass("high")
+          $("#event-<%=@event.id%>").backstretch("<%=@event.poster.file%>?style=500"); 
+        </script>
+      <% end %>
+      <% if can? :update, @event %>
+        <div class="poster">
+          <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true %>
+        </div>
+      <% end %>
+    </div>  
+    <h1><%= @event.title %></h1>
+    <h2><%= @event.description %></h2>
+    <%= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action" )%>
+  </div>
+  <div>
+    <h3>Empieza el: <%= @event.start_at %></h3>
+    <h3>Termina el: <%= @event.end_at %></h3> 
+  </div>
+</section>
