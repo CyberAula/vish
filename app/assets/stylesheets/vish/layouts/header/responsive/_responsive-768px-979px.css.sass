@@ -6,7 +6,7 @@
 @media (min-width: 0px) and (max-width: 979px)
   .nav-collapse
     @include white-box-style
-    z-index: 6
+    z-index: 99
     li.search-mobile
       .search-nav
         form.navbar-search 
@@ -20,38 +20,38 @@
             display: block
             padding: 4px 0
             margin-top: 0px
-
     li
       width: 90%
       margin: 0 5%
       display: block
       clear: both
       border-bottom: 1px solid #EEEEEE
-
+      height: auto
       a
         padding: 9px 0
-
-      form 
+      ul
+        height: auto
         width: 100%
-        display: block
-        margin-bottom: 0px
-        clear: both
-        float: left
-        z-index: 100
-        
-
-        input[type="email"],
-        input[type="password"]
-          width: 100% 
-          display: block
-          padding: 4px 0
-        input[type="submit"]
-          float: right
-        a.forgot
-          color: $secondColor
-          clear: both
-          text-align: center
+        form 
           width: 100%
           display: block
-          padding: 2px 0
+          margin-bottom: 0px
+          clear: both
+          float: left
+          height: auto
+          input[type="email"],
+          input[type="password"]
+            width: 100% 
+            display: block
+            padding: 4px 0
+            height: auto
+          input[type="submit"]
+            float: right
+          a.forgot
+            color: $secondColor
+            clear: both
+            text-align: center
+            width: 100%
+            display: block
+            padding: 2px 0
 
