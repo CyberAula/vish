@@ -27,4 +27,5 @@
 //= require jquery.multiselect
 //= require jquery.jplayer
 //= require social_stream-events
+//= require bootstrap-dropdown
 //= require_tree .
