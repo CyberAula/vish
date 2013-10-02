@@ -138,13 +138,13 @@
       data: {
         url: target_url,
         title: target_title,
-        theme: "vish"
+        theme: "vish",
       },
       success: function(data) {
         $.ajax({
           url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
         })
-        launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&delay=9000&app=cobrowser&media=<%= request.url + '.mashme' %>");
+        launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&delay=9000&app=meeting_mode");
       }
     });
     $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));
