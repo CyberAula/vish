@@ -35,7 +35,8 @@
     <span class="author"> 
       <span class="by"><%=t('by')%></span>
       <!-- <a><%= raw t('document.by', author: link_to(resource.author.name, resource.author_subject)) %></a> -->
-      <%= link_to resource.author.name, resource.author.subject %>
+      <%= link_to truncate_name(resource.author.name, length: 25), resource.author.subject %>
+
     </span>
 <!--____________________ -->
     <div class="info-bottom">
