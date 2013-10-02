@@ -28,4 +28,7 @@
 //= require jquery.jplayer
 //= require social_stream-events
 //= require bootstrap-dropdown
+//= require daterangepicker
+//= require moment
 //= require_tree .
+
