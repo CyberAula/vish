@@ -275,23 +275,37 @@
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   float: left
   label
-    font-size: 14px
+    font-size: 12px
     font-family: $secondFontFamily
     color: $firstColor
     display: block
     float: left
-    padding-top: 12px
-    @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     clear: left
+  span
+    font-size: 10px
+    float: left
+  input,
+  textarea
+    display: block
+    float: left
+    width: 96%
+    padding: 4px 2%
+  select
+    padding-right: 10px
+    display: block
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    float: left
+
   .avatar-edit
-    @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     float: left
     display: block
     margin-bottom: 10px
     .avatar-update
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .avatar-current
-        @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        width: 30px
         display: block
         float: left
         margin-right: 10px
@@ -300,14 +314,16 @@
       form.edit_actor
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         margin: 0
-        margin-bottom: 10px
         input
-          margin-top: 7px
+          margin-top: 0
+          width: 200px
+          padding: 0
     #avatar-progress
-      display: none
+      display: block
       float: left
       @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      margin-top: 10px
+      margin-top: 7px
+      margin-left: 5px
       .progress
         margin-bottom: 0
 
@@ -326,16 +342,6 @@
       font-size: 10px
       margin-left: 28%
       float: left
-
-    input,
-    select,
-    textarea,
-    .tagBoxNew
-      @include grid-fluid-span(7, $fluidGridColumnWidth, $fluidGridGutterWidth)
-      display: block
-      float: left
-    select
-      padding-right: 10px
 
     .actions
       display: block
