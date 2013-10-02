@@ -27,13 +27,12 @@
     @include center-block()
     h3
     label
-      font-size: 14px
+      font-size: 12px
       font-family: $secondFontFamily
       color: $firstColor
       display: block
       float: left
-      padding-top: 12px
-      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       clear: left
     span
       font-size: 10px
@@ -42,9 +41,10 @@
 
     input,
     select
-      width: 60%
+      
       display: block
       float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     select
       padding-right: 10px
     /*CAPTCHA*/
