@@ -87,6 +87,12 @@ $('.clone').on('shown.bs.popover', function () {
   });
 });
 
+$(".spam_radio").click(function(e) {
+  $(".textarea_spam").hide("slow");
+  $(e.target).siblings("textarea").show("slow");
+
+});
+
 <%end%>
 
 
@@ -255,19 +261,22 @@ $(document).ready(function(){
   <!-- tab5 / scorm -->
   <div class="tab-pane" id="tab5">
     <div class="contentReport">
-      <dt>Report Excursion</dt>
+      <dt><%=t('spam.report_excursion')%></dt>
 
-      <label class="radio">
-        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-        Inappropriate content
-      </label>
-      <label class="radio">
-        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-        Report an error in the Excursion
-      </label>
-      <textarea class="report" rows="1" placeholder="What is the issue?"></textarea>
-
-      <button class="report btn btn-primary"> Submit</button>
+      <%= form_tag spam_report_path, method: 'post', class: "" do %>
+        <%=hidden_field_tag "activity_object_id", @excursion.activity_object_id%>
+        <div class="radio">
+          <%=radio_button_tag 'option', "spam", false, class: "spam_radio"%><%=t('spam.spam_content')%>
+          <textarea class="textarea_spam report" rows="2" style="display:none" placeholder="<%=t('spam.placeholder')%>"></textarea>
+        </div>
+        <div class="radio">
+          <%=radio_button_tag 'option', "error", false, class: "spam_radio"%><%=t('spam.error_content')%>
+          <textarea class="textarea_spam report" rows="2" style="display:none" placeholder="<%=t('spam.placeholder')%>"></textarea>
+        </div>
+        <button class="report btn btn-primary"> <%=t('submit')%></button>
+      <% end %>
+          
+      
     </div> 
   </div> 
 </div>

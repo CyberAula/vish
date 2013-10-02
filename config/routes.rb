@@ -3,6 +3,7 @@ Vish::Application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations'}
 
   resource :session_locale
+  resource :spam_report
 
   resources :quiz_sessions do
     get "results", :on => :member
