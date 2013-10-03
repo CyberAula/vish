@@ -26,7 +26,7 @@
 
 <!--BTN MESSAGE-->
 
-<% if !profile_subject_is_current? %>
+<% if !profile_subject_is_current? && user_signed_in?%>
 <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn" data-toggle="modal">
   <%= link_to new_message_path(receiver: profile_subject.slug) do %>
   <i class="icon-envelope-alt"></i>
