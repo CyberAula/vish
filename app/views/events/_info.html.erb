@@ -1,42 +1,49 @@
 <div id="effect" class="newClass ui-corner-all">
 
   <div class="author">
-    <%= link_to document.author.subject do %>
-    <%= image_tag document.author.logo.url(:small) %>
+    <%= link_to @event.author.subject do %>
+    <%= image_tag @event.author.logo.url(:small) %>
     
     <% end %>
-    <p><%= truncate_name(document.author.name, :length => 50) %></p>
+    <p><%= truncate_name(@event.author.name, :length => 50) %></p>
 
     <div class="add">
       <% if user_signed_in?%>
-        <%= contact_button(current_subject.contact_to!(document.author)) %>
+        <%= contact_button(current_subject.contact_to!(@event.author)) %>
       <%else%>
-        <%= contact_button(document.author) %>
+        <%= contact_button(@event.author) %>
       <%end%>
     </div>
   </div>
 
   <dl class="dl-horizontal">
-    <% unless document.description.blank? %>
+    <%# unless document.description.blank? %>
       <dt><%= t 'document.info.description' %></dt>
-      <dd><%= document.description %></dd>
-    <%end%>
-    
-    <% unless document.tag_list.blank? %>
-      <dt><%= t 'document.info.tags' %></dt>
-     <dd><%= tag_list document %></dd>
-    <%end%>
+      <dd><%= @event.description %></dd>
+    <%# end%>
 
-    <dt><%= t('document.info.date.created_at') %></dt>
-    <dd><%= I18n.localize document.created_at, :format => :long %></dd>
-    
-    <dt><%= t('document.info.date.updated_at') %></dt>
-    <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
-    
-    <% unless document.file_file_size.blank? %>
-      <dt><%= t('document.info.size') %></dt>
-      <dd><%= number_to_human_size document.file_file_size %></dd>
-    <%end%>
+      <dt>Empieza el: </dt>
+      <dd><%= @event.start_at %></dd>
+
+      <dt>Termina el: </dt>
+      <dd><%= @event.end_at %></dd>
+      <div class="day">
+        <%= @event.start_at.day %>
+      </div>
+      <div class="month">
+        <%= l @event.start_at, :format => "%B" %>
+      </div>
+      <div class="hour">
+        <%= l @event.start_at, :format => "%H:%M" %>
+      </div>
+      <div class="hour">
+        <%= l @event.end_at, :format => "%H:%M" %>
+      </div>
+    <%# unless document.tag_list.blank? %>
+      <!--dt><%#= t 'document.info.tags' %></dt>
+     <dd><%#= tag_list document %></dd-->
+    <%#end%>
+
   </dl>
 </div>
 

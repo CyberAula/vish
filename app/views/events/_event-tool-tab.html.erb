@@ -1,0 +1,99 @@
+<div class="btn-group">
+<!--delete-->
+
+  <%= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
+  
+<!--categoriess-->
+  <%#if user_signed_in?%>
+    <%#= content_for :javascript do %> 
+      <%#= render partial: 'shared/multiselect', :locals => {:item => document} %>
+    <%# end %>
+
+    <%#=categories_select(:category_id, document)%>
+    <%#= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
+  <%#end%>
+  <%= render :partial => 'events/button-mashme'%>
+</div>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="<%= document_details_tab_class document, :info %>">
+      <%= link_to (raw("<i class='icon-align-left'></i> <span class='hidden-tablet hidden-phone'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
+    </li>
+<!--edit info-->
+    <%# if can? :update, document %>
+      <!--li class="<%#= document_details_tab_class document, :edit %>">
+
+        <%#= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+      </li-->
+    <%# end %>
+    <!--li class="<%#= document_details_tab_class document, :download %>">
+        <%#= link_to (raw("<i class='icon-download'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
+    </li-->
+
+    <li>
+      <a href="#tab3" data-toggle="tab">
+        <i class="icon-flag"></i> 
+        <!--span class=" hidden-tablet hidden-phone">
+          <%#=t('excursion.actions.scorm')%>
+        </span-->
+      </a>
+    </li>  
+  </ul>
+</div>
+<!--vistas-->
+<!--div class="viewsAndConunt">
+  <%#= render partial: 'objects/counters', locals: { object: @event } %>
+  <div class="views">
+    <%= @event.visit_count.to_s%> 
+    <span>
+      <%#=t('follow.views')%>
+    </span>   
+  </div>
+  <div class="like">    
+    <div class="count"><%= @event.post_activity.likes.count.to_s%></div>
+    <%= link_like(@event.post_activity)%>
+  </div>
+</div-->
+
+<h2>
+  <%= @event.title %>
+</h2>
+
+<div class="tab-content">
+  <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
+    <div class="toggler">
+      <%= render partial: "events/info", locals: { document: document } %>
+    </div>
+  </div>
+  <% if can? :update, document %>
+  <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
+    <%= render partial: 'common_documents/form', locals: { document: document } %>
+  </div>
+  <% end %>
+  <div class="tab-pane <%= document_details_tab_class document, :download %>" id="document-download">
+    <div class="toggler">
+      <p><%=t("document.download_explanation")%></p>
+      <a class="btn btn-primary" href='<%=download_document_path(document)%>'><i class="icon-download"></i> <%=t('document.actions.download')%></a> 
+    </div>
+  </div>
+
+    <!-- tab5 / scorm -->
+  <div class="tab-pane" id="tab3">
+    <div class="contentReport">
+      <dt>Report Resource</dt>
+
+      <label class="radio">
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Inappropriate content
+      </label>
+      <label class="radio">
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+        Report an error in the Excursion
+      </label>
+      <textarea class="report" rows="1" placeholder="What is the issue?"></textarea>
+
+      <button class="report btn btn-primary"> Submit</button>
+    </div> 
+  </div> 
+</div>
