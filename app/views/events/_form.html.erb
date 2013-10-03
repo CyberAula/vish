@@ -22,30 +22,51 @@
       <legend><%= t('event.leyend.description')%></legend>
       <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
 
-      <form class="form-horizontal">
-        <fieldset>
-          <div class="control-group">
-              <label class="control-label" for="reservationtime">Reservation dates:</label>
-                <div class="controls">
-                  <div class="input-prepend">
-                       <span class="add-on"><i class="glyphicon glyphicon-calendar icon-calendar"></i>
-                       </span>
-                   <input type="text" style="width: 300px" name="reservation" id="reservationtime" value="08/01/2013 1:00 PM - 08/01/2013 1:30 PM"  class="span4"/>
-                  </div>
-              </div>
-          </div>
-        </fieldset>
-      </form>
+      <!--DATE-->
+      <legend><%= t('event.leyend.fecha')%></legend>
+        <div id="date" class="input-append">
+          <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+          </span>
+        </div>
+      <!--HORA INICIO-->
+      <legend><%= t('event.leyend.Hora de Inicio')%></legend>
+        <div id="hourinit" class="input-append">
+          <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+          </span>
+        </div>
+      <!--HORA FINALIZACION-->
+      <legend><%= t('event.leyend.Hora de Finalizacion')%></legend>
+        <div id="hourfinish" class="input-append">
+          <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+          </span>
+        </div>
 
-               <script type="text/javascript">
-               $(document).ready(function() {
-                  $('#reservationtime').daterangepicker({
-                    timePicker: true,
-                    timePickerIncrement: 30,
-                    format: 'MM/DD/YYYY h:mm A'
-                  });
-               });
-               </script>
+      <script type="text/javascript">
+        $(function() {
+          $('#hourinit').datetimepicker({
+            pickDate: false
+          });
+        });
+        $(function() {
+          $('#hourfinish').datetimepicker({
+            pickDate: false
+          });
+        });
+        $(function() {
+          $('#date').datetimepicker({
+            pickTime: false
+          });
+        });
+      </script>
 
       <script>
         $(document).ready(function(){

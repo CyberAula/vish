@@ -1,24 +1,18 @@
 <div class="btn-group">
-  <% if can? :destroy, document %>
-   
-
-    <%= link_to raw("<i class='icon-trash'></i> "),  document,
-    confirm: t('confirm_delete', scope: document.class.to_s.underscore),
-    title: t('document.actions.delete'),
-    method: :delete,
-    rel: "tooltip",
-    class: "btn" %>
-    <% end %>
+<!--delete-->
+  <%= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
   
-
+<!--categoriess-->
   <%if user_signed_in?%>
     <%= content_for :javascript do %> 
-      <%= render partial: 'shared/multiselect', :locals => {:item => document} %>
+      <%= render partial: 'shared/multiselect', :locals => {:item => @event} %>
     <% end %>
 
-    <%=categories_select(:category_id, document)%>
+    <%=categories_select(:category_id, @event)%>
     <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
   <%end%>
+<!--mashme-->
+  <%= render :partial => 'events/button-mashme'%>
 </div>
 
 <div class="tabbable">
@@ -26,16 +20,16 @@
     <li class="<%= document_details_tab_class document, :info %>">
       <%= link_to (raw("<i class='icon-align-left'></i> <span class='hidden-tablet hidden-phone'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
     </li>
+<!--edit info-->
+    <%# if can? :update, document %>
+      <!--li class="<%#= document_details_tab_class document, :edit %>">
 
-    <% if can? :update, document %>
-    <li class="<%= document_details_tab_class document, :edit %>">
-
-      <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
-    </li>
-    <% end %>
-    <li class="<%= document_details_tab_class document, :download %>">
-        <%= link_to (raw("<i class='icon-download'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
-    </li>
+        <%#= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+      </li-->
+    <%# end %>
+    <!--li class="<%#= document_details_tab_class document, :download %>">
+        <%#= link_to (raw("<i class='icon-download'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.download')+ raw("</span>"), '#document-download', 'data-toggle' => 'tab' %>
+    </li-->
 
     <li>
       <a href="#tab3" data-toggle="tab">
@@ -47,26 +41,29 @@
     </li>  
   </ul>
 </div>
-<div class="viewsAndConunt">
-  <%#= render partial: 'objects/counters', locals: { object: document } %>
+<!--vistas-->
+<!--div class="viewsAndConunt">
+  <%#= render partial: 'objects/counters', locals: { object: @event } %>
   <div class="views">
-    <%=document.visit_count.to_s%> 
+    <%= @event.visit_count.to_s%> 
     <span>
-      <%=t('follow.views')%>
+      <%#=t('follow.views')%>
     </span>   
   </div>
   <div class="like">    
-    <div class="count"><%=document.post_activity.likes.count.to_s%></div>
-    <%= link_like(document.post_activity)%>
+    <div class="count"><%= @event.post_activity.likes.count.to_s%></div>
+    <%= link_like(@event.post_activity)%>
   </div>
-</div>
+</div-->
+
 <h2>
-  <%= document.title %>
+  <%= @event.title %>
 </h2>
+
 <div class="tab-content">
   <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
     <div class="toggler">
-      <%= render partial: "common_documents/info", locals: { document: document } %>
+      <%= render partial: "events/info", locals: { document: document } %>
     </div>
   </div>
   <% if can? :update, document %>
