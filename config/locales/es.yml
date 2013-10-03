@@ -453,6 +453,7 @@ es:
     placeholder: "¿Cúal es el problema?"
     report_excursion: "Reportar excursión"
     spam_content: "Contenido inapropiado o spam"
+    success: "Hemos recibido tu reporte. Lo miraremos en la mayor brevedad posible. Muchas gracias"
   swf:
     confirm_delete: "¿Borrar SWF?"
   today: "Hoy"

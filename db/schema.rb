@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926103246) do
+ActiveRecord::Schema.define(:version => 20131001164017) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -467,6 +467,15 @@ ActiveRecord::Schema.define(:version => 20130926103246) do
     t.datetime "updated_at",         :null => false
     t.integer  "activity_object_id"
     t.text     "json"
+  end
+
+  create_table "spam_reports", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.integer  "reporter_user_id"
+    t.string   "issue"
+    t.integer  "report_value"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "stats", :force => true do |t|
