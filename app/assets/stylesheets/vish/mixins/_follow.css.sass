@@ -2,10 +2,11 @@
   text-align: center
   color: $firstColor
   font-family: $secondFontFamily
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   form
-    margin: 0px
+    margin: 0 auto
     input
-      position: absolute
+
       height: 20px
       border: 0px none 
       width: 87px
@@ -14,13 +15,13 @@
       @include border-radius($baseBorderRadius)
       color: $white
       @include center-block()
-      margin-top: 0px
+      margin: 0 auto
       padding: 0px
       font-family: $firstFontFamily
-      margin-left: 39px
+
   .following-button
     @include center-block()
-    position: absolute
+
     display: block
     background-color: $secondColor
     height: 20px
@@ -28,12 +29,13 @@
     @include border-radius($baseBorderRadius)
     color: $white
     font-family: $firstFontFamily
-    margin-left: 39px
+    margin: 0 auto
+
   .unfollow-button
     form
-      margin: 0px
+      margin: 0 auto
       input
-        position: absolute
+
         @include center-block()
         height: 20px
         border: 0px none 
@@ -42,10 +44,10 @@
         background-color: $gray
         @include border-radius($baseBorderRadius)
         color: $white
-        margin-top: 0px
+
         padding: 0px
         font-family: $firstFontFamily
-        margin-left: 39px
+        margin: 0 auto
 
 @mixin follow-profile
   text-align: center

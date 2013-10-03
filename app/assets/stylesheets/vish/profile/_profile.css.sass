@@ -81,6 +81,7 @@
             @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: inline-block
             float: left
+            overflow: hidden
           .newClass
             height: 0px
             overflow: hidden
@@ -347,7 +348,7 @@
       display: block
       float: left
       clear: both
-      width: 82%
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       input
         width: auto
         float: right
