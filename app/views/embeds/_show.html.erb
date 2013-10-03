@@ -6,7 +6,7 @@
   <%= profile_subject.name + ": " + t('repository.title') %>
   <% end %>
   <%= div_for document do %>
-  <div class="box-show">
+  <div class="box-show-resource">
     <!--visor-->
     <div class="container-visor">
       <div class="elemento-visor"></div>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <div class="recomended-items">
+  <div class="recomended-items-resource">
     <div class="recomended_documents">
       <ul class="small-box clearfix">
         <% ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(15).map{|ao| ao.object}.each do |resource| %>
@@ -26,7 +26,7 @@
     </div>
   </div>
   <!--owner-profile-->
-  <div class="description-activity">
+  <div class="description-activity-resource">
     <div class="box_description">
       <!--tool-->
       <div class="excursion_tool">
@@ -91,7 +91,7 @@
     </div>
   </div>
   <!--activity-->
-  <div class="activity-box">
+  <div class="activity-box-resource">
     <div class="activity">
       <div class="tabbable">
         <ul class="nav nav-tabs">
