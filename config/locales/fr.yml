@@ -20,7 +20,7 @@ fr:
       other: "activité"
   activity_action:
     follow: "+ Suivre"
-    unfollow: "Se désabonner"
+    unfollow: "Arreter de suivre"
   all: "toutes"
   announce: 
     title: "Annonce"
