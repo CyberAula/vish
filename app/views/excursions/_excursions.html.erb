@@ -3,6 +3,14 @@
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %> 
 
+<script>
+	function re_apply_backstrech_on_home(){
+		console.log("reapploy")
+		<% excursions.each do |excursion| %>
+    		$("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>"); 
+  		<% end %> 
+	}
+</script>
 
 <%- if controller_name == 'excursions' && page != 0%>
 	<%= content_for :javascript do %>
@@ -16,5 +24,7 @@
 	                          //$("#last_content_shown").show();
 	                        }
 	    });
+
+	    re_apply_backstrech_on_home();
   	<% end %>
 <%end%>

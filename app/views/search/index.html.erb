@@ -28,6 +28,32 @@
                   <%= render partial: "#{ r.class.to_s.tableize }/search_result",
                              locals:  { r.class.to_s.underscore.to_sym => r }  %>
               <% end %>
+              <script>
+                var array_of_id_and_image = [];
+                var elem = {};
+
+                <% @search_result.each do |result| %>
+                  <%if result.respond_to?(:type) && result.type =="Picture"%>
+                    elem = {};
+                    elem.id = "#document-<%=result.id%>";
+                    elem.value = "<%=result.file%>?style=500";
+                    array_of_id_and_image.push(elem);
+                  <%end%>
+                  <% if result.class == Excursion %>
+                    elem = {};
+                    elem.id = "#excursion-<%=result.id%>";
+                    elem.value = "<%=excursion_raw_thumbail(result)%>";
+                    array_of_id_and_image.push(elem); 
+                  <%end%>
+                <% end %> 
+
+                function re_apply_backstrech_on_search(){
+                  //this will have to be done with an array, as the results array changes when we bring more pages
+                  for (var i = 0; i < array_of_id_and_image.length; i++) {
+                    $(array_of_id_and_image[i].id).backstretch(array_of_id_and_image[i].value); 
+                  }
+                }
+              </script>
             </ul>
           </div>
           <div id="loader_pagination">
@@ -121,6 +147,18 @@
         });
 
       <%end%>
+
+      re_apply_backstrech_on_search();
+
+      $(".search .excursion").click(function(){
+        re_apply_backstrech_on_search();
+      });
+      $(".search .user").click(function(){
+        re_apply_backstrech_on_search();
+      });
+      $(".search .resource").click(function(){
+        re_apply_backstrech_on_search();
+      });
 
     <% end %>
   </div>
