@@ -1,17 +1,17 @@
 <div class="btn-group">
 <!--delete-->
-
   <%= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
   
 <!--categoriess-->
-  <%#if user_signed_in?%>
-    <%#= content_for :javascript do %> 
-      <%#= render partial: 'shared/multiselect', :locals => {:item => document} %>
-    <%# end %>
+  <%if user_signed_in?%>
+    <%= content_for :javascript do %> 
+      <%= render partial: 'shared/multiselect', :locals => {:item => @event} %>
+    <% end %>
 
-    <%#=categories_select(:category_id, document)%>
-    <%#= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
-  <%#end%>
+    <%=categories_select(:category_id, @event)%>
+    <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
+  <%end%>
+<!--mashme-->
   <%= render :partial => 'events/button-mashme'%>
 </div>
 
