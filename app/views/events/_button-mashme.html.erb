@@ -1,116 +1,22 @@
-<!-- ESPACIO PARA QUE @HOLACAROL JUEGUE CON SUS BOTONES -->
-
-<% if user_signed_in? %>
-  <button data-toggle="modal" href="#mashme-modal" class="mashme-button mini btn"><span></span></button>
-  <div class="modal hide" style="text-align: left;" id="mashme-modal">
-    <div class="modal-header"><%= t('mashme.header_html') %></div>
-    <div class="modal-body">
-      <h3><%= t('mashme.room_name') %></h3>
-      <input type="text" id="mashme-room-id" value="<%= current_user.slug + '-' + rand(100000).to_s %>"></input>
-      <h3><%= t('mashme.invite_header') %></h3>
-      <div class="mashme-invites">
-        <% Actor.followed_by(current_user).each do |a| %>
-          <div class="span2"><a style="width: 80%; text-overflow: ellipsis; white-space: nowrap; overflow:hidden; text-align: left;" class="btn" id="mashme-invite-<%= a.id %>"><%= image_tag(a.logo.url(:actor), :alt => a.name, :size => "25x25") + " " + a.name %></a></div>
-        <% end %>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn btn-danger" data-dismiss="modal"><%=t('cancel')%></a>
-      <button class="mashme-button" id="mashme-button-excursion"><span><%=t('mashme.launch')%></span><div></div></button>
-    </div>
-  </div>
+<% name = if user_signed_in?; then current_user.name; else ""; end %>
+<% target_title =  @event.title.split(' ').map {|w| w.capitalize }.join('') unless @event.title.blank? %>
+<% if request.env['HTTP_HOST'] =~ /^localhost/ or request.env['HTTP_HOST'] =~ /^0.0.0.0/ %>
+  <% target_url = "http://FUUUUUUU" + request.path %>
+<% else %>
+  <% target_url = request.url %>
 <% end %>
 
-<style type="text/css">
-  .mashme-button {font-family: Helvetica, Arial, sans-serif; cursor: pointer; padding: 0; margin: 0; outline: 0; overflow: visible; font-weight: normal; font-weight: bold; text-decoration: none; text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25); text-align: center; background: transparent; border: none;}
-  .mashme-button span {float: left; font-size: 13px; height: 30px; line-height: 30px; padding: 0px 0px 0px 40px; background: url(http://www.mashme.tv/static/images/icons/mashme_button.png) left;}
-  .mashme-button div {float: left; width: 10px; height: 30px; background: url(http://www.mashme.tv/static/images/icons/mashme_button.png) right;}
-  .mashme-button div {background-position: right 0px;}
-  .mashme-button:hover div{background-position: right -32px;}
-  .mashme-button:active div{background-position: right -64px;}
-  .mashme-button span{background-position: 0 0px; color: #ddd;}
-  .mashme-button:hover span{background-position: 0 -32px; color: #fff;}
-  .mashme-button:active span{background-position: 0 -64px; color: #fff;}
+<!-- Place this tag where you want the button. -->
+<div class="mashme-button" data-username='<%=name%>' data-roomtheme="original" data-roomapp="meeting_mode" data-buttontext="Entrar al evento" data-maximized="true" data-webrtc="false"></div>
 
-  .mashme-button.mini span {float: left; font-size: 13px; height: 30px; line-height: 30px; padding: 0px 0px 0px 0px; width: 32px; background: url(http://www.mashme.tv/static/images/icons/mashme_button_mini.png) left;}
-  .mashme-button.mini span{background-position: 0 0px; color: #ddd;}
-  .mashme-button.mini:hover span{background-position: 0 -32px; color: #fff;}
-  .mashme-button.mini:active span{background-position: 0 -64px; color: #fff;}
-
-  .mashme-darkener {width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; position: fixed; top:0; left:0; text-align:center;}
-  .mashme-darkener iframe {width: 100%; height: 100%; border: 3px solid #000; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: url(http://www.mashme.tv/static/images/ani_logo.gif) no-repeat center center rgba(0,0,0,0.7);}
-  .mashme-darkener div {padding: 19px 22px;}
-  .mashme-darkener .close-iframe {padding: 0px; width: 32px; height: 32px; cursor: pointer; position: absolute; right: 10px; top: 10px; background: url(http://www.mashme.tv/static/images/icons/close.png);}
-</style>
-
-<%= content_for :javascript do %>
-  var launchIframe = function(src) {
-    var darkener = document.createElement('div');
-    darkener.setAttribute('class', 'mashme-darkener');
-
-    var iframeDiv = document.createElement('div');
-    darkener.appendChild(iframeDiv);
-
-    var closeIframeDiv = document.createElement('div');
-    closeIframeDiv.setAttribute('class', 'close-iframe');
-    darkener.appendChild(closeIframeDiv);
-    closeIframeDiv.onclick = function(){
-      darkener.parentNode.removeChild(darkener);
-    };
-
-    var iframe = document.createElement('iframe');
-    iframe.setAttribute('src', src);
-    iframeDiv.appendChild(iframe);
-
-    var resizeCallback = function() {
-      iframeDiv.style.height = '100%';
-      iframe.style.height = '100%';
-      var height = iframe.offsetHeight;
-      iframe.style.height = (height - 50) + 'px';
-      iframeDiv.style.height = '';
-    }
-    window.onresize = resizeCallback;
-    document.body.appendChild(darkener);
-    resizeCallback();
-  }
-
-  $('.mashme-invites .btn').on("click", function(){
-    $(this).toggleClass("btn-info");
-  });
-
-  $('#mashme-button-excursion').on("click", function(){
-    var invitees = [];
-    <% if request.env['HTTP_HOST'] =~ /^localhost/ or request.env['HTTP_HOST'] =~ /^0.0.0.0/ %>
-    var target_url = encodeURI("http://FUUUUUUU" + "<%= request.path %>" + "|||" + $('#mashme-room-id').val());
-    <% else %>
-    var target_url = encodeURI("<%= request.url %>" + "|||" + $('#mashme-room-id').val());
-    <% end %>
-    var target_title = encodeURI("<%= @event.title.split(' ').map {|w| w.capitalize }.join('') unless @event.title.blank? %>--" + $('#mashme-room-id').val());
-    $('.mashme-invites .btn-info').each(function(i,ele){
-      invitees.push($(ele).attr("id").substring(14));
-      $(ele).removeClass("btn-info");
-    });
-    name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
-    $.ajax({
-      url: "http://www.mashme.tv/api/buttons",
-      type: "POST",
-      data: {
-        url: target_url,
-        title: target_title,
-        theme: "vish",
-      },
-      success: function(data) {
-        $.ajax({
-          url: "/mashme_invite?targets=" + invitees.toString(",") + "&room=" + data,
-        })
-        launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&delay=9000&app=meeting_mode");
-      }
-    });
-    $('#mashme-room-id').val("<%= current_user.slug if user_signed_in? %>" + Math.floor(Math.random()*100000));
-    $("#mashme-modal").modal('hide');
-
-  });
-
-  $('.collapse').collapse({parent: "#excursion-share"});
-
-<% end %>
+<!-- Place this tag after the last button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement("script");
+    po.type = "text/javascript";
+    po.async = true;
+    po.src = "http://www.mashme.tv/static/js/button/mashme-buttons.js";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(po, s);
+  })();
+</script>
