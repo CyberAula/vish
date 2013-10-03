@@ -455,6 +455,7 @@ en:
     placeholder: "What is the issue?"
     report_excursion: "Report excursion"
     spam_content: "Spam or inappropriate content"
+    success: "We have received your report. We will take a look at it very shortly. Thank you"
   swf:
     confirm_delete: "Delete SWF?"
   today: "Today"
