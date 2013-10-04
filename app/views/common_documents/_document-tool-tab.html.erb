@@ -82,21 +82,24 @@
   </div>
 
     <!-- tab5 / scorm -->
-  <div class="tab-pane" id="tab3">
+  <div class="tab-pane" id="tab5">
     <div class="contentReport">
-      <dt>Report Resource</dt>
+      <dt><%=t('spam.report_excursion')%></dt>
 
-      <label class="radio">
-        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-        Inappropriate content
-      </label>
-      <label class="radio">
-        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-        Report an error in the Excursion
-      </label>
-      <textarea class="report" rows="1" placeholder="What is the issue?"></textarea>
-
-      <button class="report btn btn-primary"> Submit</button>
+      <%= form_tag spam_report_path, method: 'post', class: "" do %>
+        <%=hidden_field_tag "activity_object_id", document.activity_object_id%>
+        <div class="radio">
+          <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
+          <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
+        </div>
+        <div class="radio">
+          <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
+          <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
+        </div>
+        <button class="report btn btn-primary"> <%=t('send.send')%></button>
+      <% end %>
+          
+      
     </div> 
-  </div> 
+  </div>
 </div>

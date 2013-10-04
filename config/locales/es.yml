@@ -38,7 +38,7 @@ es:
     confirm_delete: "Borrar categoria?"
   categories:
     actions:
-      add: "Añadir categoría"
+      add: "Crear categoría"
       verb: "categorizar"
     description_input: "Descripción para esta categoría"
     errors:

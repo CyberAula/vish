@@ -5,7 +5,6 @@
 
 <script>
 	function re_apply_backstrech_on_home(){
-		console.log("reapploy")
 		<% excursions.each do |excursion| %>
     		$("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>"); 
   		<% end %> 

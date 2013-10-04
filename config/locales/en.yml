@@ -37,7 +37,7 @@ en:
     confirm_delete: "Delete category?"
   categories:
     actions:
-      add: "Add category"
+      add: "Create category"
       verb: "categorize"
     description_input: "Description for this category"
     errors:

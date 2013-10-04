@@ -1,7 +1,10 @@
 <%= content_for :javascript do %>
-  $('.carousel').carousel({
+  $('#desktop_carousel').carousel({
     interval: 8000
-  })
+  });
+  $('#mobile_carousel').carousel({
+    interval: 8000
+  });
 <%end%>
 
 
