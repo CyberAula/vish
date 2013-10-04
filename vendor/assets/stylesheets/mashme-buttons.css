@@ -1,0 +1,153 @@
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/static/fonts/Oswald.eot');
+  src: url('/static/fonts/Oswald.eot?#iefix') format('embedded-opentype'), url('/static/fonts/Oswald-Regular.ttf') format('truetype'), url('/static/fonts/Oswald.svg#Oswald') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.mashme-button {
+  margin: 0px;
+  background-color: #009bc7;
+  background-image: -moz-linear-gradient(top, #00afc3, #007dcc);
+  background-image: -ms-linear-gradient(top, #00afc3, #007dcc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00afc3), to(#007dcc));
+  background-image: -webkit-linear-gradient(top, #00afc3, #007dcc);
+  background-image: -o-linear-gradient(top, #00afc3, #007dcc);
+  background-image: linear-gradient(top, #00afc3, #007dcc);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00afc3', endColorstr='#007dcc', GradientType=0);
+  border: solid 1px #007dcc;
+  cursor: pointer;
+  position: relative;
+  height: 30px;
+  padding: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.mashme-button.mini span {
+  display: none;
+}
+.mashme-button:active,
+.mashme-button:hover {
+  background-color: #00acd2;
+  background-image: -moz-linear-gradient(top, #00bdce, #0093d7);
+  background-image: -ms-linear-gradient(top, #00bdce, #0093d7);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00bdce), to(#0093d7));
+  background-image: -webkit-linear-gradient(top, #00bdce, #0093d7);
+  background-image: -o-linear-gradient(top, #00bdce, #0093d7);
+  background-image: linear-gradient(top, #00bdce, #0093d7);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00bdce', endColorstr='#0093d7', GradientType=0);
+}
+.mashme-button:active .icon,
+.mashme-button:hover .icon {
+  opacity: 0.95;
+}
+.mashme-button:active .text,
+.mashme-button:hover .text {
+  color: rgba(255, 255, 255, 0.95);
+}
+.mashme-button .text {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  height: 23px;
+  line-height: 23px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  border-left: solid 1px rgba(255, 255, 255, 0.85);
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: Oswald;
+  width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mashme-button .icon {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  margin: 0 2px;
+  width: 30px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-image: url(/static/images/icons/login-mashme.png);
+  background-size: contain;
+  opacity: 0.85;
+}
+.mashme-button.light {
+  background-color: #d8d8d8;
+  background-image: -moz-linear-gradient(top, #e7e7e7, #c2c2c2);
+  background-image: -ms-linear-gradient(top, #e7e7e7, #c2c2c2);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e7e7e7), to(#c2c2c2));
+  background-image: -webkit-linear-gradient(top, #e7e7e7, #c2c2c2);
+  background-image: -o-linear-gradient(top, #e7e7e7, #c2c2c2);
+  background-image: linear-gradient(top, #e7e7e7, #c2c2c2);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='#c2c2c2', GradientType=0);
+  border: solid 1px #a5a5a5;
+  cursor: pointer;
+  position: relative;
+  height: 30px;
+  padding: 0;
+  margin-bottom: 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.mashme-button.light:active,
+.mashme-button.light:hover {
+  background-color: #c7c7c7;
+  background-image: -moz-linear-gradient(top, #dddddd, #a5a5a5);
+  background-image: -ms-linear-gradient(top, #dddddd, #a5a5a5);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dddddd), to(#a5a5a5));
+  background-image: -webkit-linear-gradient(top, #dddddd, #a5a5a5);
+  background-image: -o-linear-gradient(top, #dddddd, #a5a5a5);
+  background-image: linear-gradient(top, #dddddd, #a5a5a5);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#a5a5a5', GradientType=0);
+}
+.mashme-button.light .text {
+  color: #007dcc;
+  border-left: solid 1px #a4a4a4;
+}
+.mashme-button.light .icon {
+  opacity: 1;
+  background-image: url(/static/images/icons/login-mashme-dark.png);
+}
+.mashme-darkener {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 3000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+.mashme-darkener iframe {
+  width: 100%;
+  height: 100%;
+  border: 3px solid #000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: url(http://www.mashme.tv/static/images/ani_logo.gif) no-repeat center center rgba(0, 0, 0, 0.7);
+}
+.mashme-darkener div {
+  padding: 19px 22px;
+}
+.mashme-darkener .close-iframe {
+  padding: 0px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: url(http://www.mashme.tv/static/images/icons/close.png);
+}
