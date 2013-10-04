@@ -2,7 +2,7 @@
 <section id="category">
   <div class="category_info">
     <div class="icon-box">
-      <i class="icon-th-large"></i>
+      <%=category_thumbnail(@category)%>
     </div>  
     <!--<h1><#%= t('categories.leyend.title') %>: <%= @category.title %></h1>
     <h2><#%= t('categories.leyend.description') %>: <%= @category.description %></h2>
@@ -17,7 +17,7 @@
     <%# excursions = subject_excursions(profile_or_current_subject, {:scope => scope, :limit => 0, :page=> page}) %>
     
       <% @category.property_objects.each do |item| %>
-      <% resources = [Picture, Document, Embed, Link] %>
+      <% resources = [Picture, Document, Embed, Link, Video] %>
       <% if resources.include?(item.object.class) %>
         <%= render :partial => 'repositories/resource', :locals => { :resource => item.object } %>
       <% else %>

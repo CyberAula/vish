@@ -16,4 +16,39 @@ module ApplicationHelper
 	def popular_resources(number=10)
 		ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(number).map{|ao| ao.object}
 	end
+
+	def category_thumbnail(category)
+		default_thumb = link_to "<i class='icon-th-large'></i>".html_safe, category, :title => category.title
+
+		if category.property_objects.count < 2
+			return default_thumb
+		end
+		thumbs_array = []
+		category.property_objects.each do |item|
+			if item.object.class == Picture
+				thumbs_array << item.object.file.to_s+"?style=500"
+			elsif item.object.class == Excursion
+				thumbs_array << excursion_raw_thumbail(item.object)
+			elsif item.object.class == Event
+				thumbs_array << item.object.poster
+			end
+		end
+
+		if thumbs_array.size < 2
+			return default_thumb
+		else
+			result = "<div class='category_thumb'>"
+			for i in 0..3
+				if thumbs_array[i]
+					result += "<span class='category_thumb_"+i.to_s+"'><img href='"+thumbs_array[i]+"'/></span>"
+				else
+					result += "<span class='category_thumb_"+i.to_s+"'></span>"
+				end
+			end			
+			result += "</div>"
+			return raw result
+		end
+
+
+	end
 end
