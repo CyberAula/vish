@@ -19,7 +19,8 @@ module ApplicationHelper
 
 	def category_thumbnail(category)
 		default_thumb = link_to "<i class='icon-th-large'></i>".html_safe, category, :title => category.title
-
+		return default_thumb
+		
 		if category.property_objects.count < 2
 			return default_thumb
 		end
