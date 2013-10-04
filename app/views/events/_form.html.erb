@@ -78,7 +78,13 @@
               $("#AddEvent .new_event").after("<div class='errors'><%= t('event.title_input')%></div>");
             } else {
               $("#AddEvent input[name='event[start_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_start_time']").val());
+              if ($("#AddEvent input[name='event_end_time']").val() < $("#AddEvent input[name='event_start_time']").val()) {
+                var d = new Date($("#AddEvent input[name='event_day']").val());
+                d.setDate(d.getDate()+1);
+                $("#AddEvent input[name='event[end_at]']").val(d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + $("#AddEvent input[name='event_end_time']").val());
+              } else {
               $("#AddEvent input[name='event[end_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_end_time']").val());
+              }
               $(saveEventButton).click();
             }
           });
