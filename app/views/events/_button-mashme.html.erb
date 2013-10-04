@@ -1,7 +1,10 @@
 <!-- ESPACIO PARA QUE @HOLACAROL JUEGUE CON SUS BOTONES -->
 
 <% if user_signed_in? %>
-  <button class="mashme-button" id="mashme-button-excursion"><%=t('mashme.launch')%></button>
+  <button class="mashme-button" id="mashme-button-excursion">
+    <i class="icon"></i>
+    <span class="text"><%=t('mashme.launch')%></span>
+  </button>
 <% end %>
 
 <%= content_for :javascript do %>
