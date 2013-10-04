@@ -41,15 +41,38 @@
       float: left
       .container-visor
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
     .description-activity
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
       float: left
+      .box_description
+        .tabbable
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+        .btn-group
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+        h2
+          margin-top: 0px
+          padding-left: 5px
+          font-family: $secondFontFamily
+          color: $grayDark
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          font-size: 20px
+          float: left
+          display: inline-block
+        .viewsAndConunt
+          float: left !important
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          padding-left: 20px
 
     .recomended-items
-      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: none
-      float: left
+
 
     .activity-box
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
