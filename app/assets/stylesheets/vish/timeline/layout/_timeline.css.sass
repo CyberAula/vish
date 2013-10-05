@@ -5,6 +5,7 @@
     margin: 0 auto
     .root,
     .media
+      border-bottom: 1px solid $grayLight
       .avatar
         width: 50px
         height: 50px
@@ -16,6 +17,7 @@
         display: block
         text-align: center
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin-bottom: 0px
         h3
           margin: 0px
           a
@@ -27,24 +29,75 @@
 
       .media-body
         hr
-          @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
-          margin: 5px auto
+          margin: 0px auto 5px
 
 
         .objects
+          @include border-radius($baseBorderRadius)
+          //border-top: 1px solid #F2F2F2
+          background-color: rgba(255,255,255,0.55)
+          @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+
           .post
             text-align: center
+            padding: 10px
         .actions
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          margin: 10px auto 10px
           .post_time_ago
-            @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            text-align: center
-            color: lighten($firstColor, 20%)
+            float: left
+            color: $grayLight
             font-style: italic
-          hr.decoration
-            @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            display: block
-            margin: 5px auto
+          .to_comment
+            float: right
+            margin-right: 20px
+            a
+              color: $gray
+          .to_like
+            float: right
+            a
+              color: lighten($firstColor, 20%)
+
+
+        .comments
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          margin: 0px auto 
+          clear: both
+        .new_comment
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          margin: 10px auto 10px
+          clear: both
+          .avatar
+            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: inline-block
+            float: left
+          form#new_comment
+            @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: inline-block
+            float: left
+            margin: 0
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
