@@ -56,43 +56,7 @@
   .open
     @include btn-primary
 
-@mixin btn-primaryold
-  @include ie7-inline-block()
-  @include ie7-restore-left-whitespace()
-  @include border-radius($baseBorderRadius)
-  @include animation(background 1s, color, 1s)
-  padding: 4px 12px
-  //border-top: 1px solid $grayLight
-  background-color: $firstColor
-  font-size: $baseFontSize
-  line-height: $baseLineHeight
-  //vertical-align: middle
-  cursor: pointer
-  color: $white
-  background-image: none
-  text-shadow: none
-  &:hover
-    background-color: $firstColor
-    color: $white
-  .caret
-    border-top-color: $white
-    border-bottom-color: $white
-  
-  &:focus 
-    @include tab-focus()
-  
-  &.active
-    background-color: $firstColor
-    color: $white
 
-  &.disabled,
-  &[disabled] 
-    cursor: default
-    @include opacity(85)
-    background-color: $firstColor
-  
-  &.dropdown-toggle
-    background-color: $firstColor 
 
 @mixin btn-secundary
   @include gradient-radial($innerColor: $white, $outerColor: #fbf9ff)
