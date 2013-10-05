@@ -1,269 +1,52 @@
-@import 'chosen'
-#user,
-#group,
-#home,
-#time-line,
+#time-line
   .timeline
-    @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    .comments
-    .media
-      padding-bottom: 13px
-      .avatar
-        img
-          width: 60px
-      .media-body
-        .media-heading
-          .x
-            display: inline
-            float: right
-            a
-              float: right
-
-        .objects
-          min-height: 22px
-          .thumb
-            float: left
-            width: auto
-            margin-right: 10px
-            img
-              width: 170px
-            .play_button
-              width: auto
-              margin-left: -107px
-          .text
-            h6
-              margin-bottom: 3px
-              font-size: 13px
-          .description
-            margin: 0 0 4px
-            p
-              a
-                display: block
-
-        .actions
-          width: 100%
-          display: inline-block
-          margin-bottom: 10px
-          .post_time_ago
-            display: inline-block
-          .to_comment,
-          .to_like
-            display: inline-block
-          .audience
-            display: inline-block
-            
-          .tooltip
-            width: 28%
-            margin-top: 26px 0px 0px 53px
-            .audience_logo
-              display: inline-block
-          textarea
-            width: 100%
-
-
-          div .new_comment
-            margin-top: 24px
-            margin-left: 89px
-
-        .comments
-          .child
-            padding: 9px 6px 11px 12px
-            margin-bottom: 19px
-            a
-              .avatar
-                width: 40px !important
-            .actions
-            margin-bottom: 0px
-
-          .hidden_comments
-            margin: 0px 2px -6px 0 
-
-
-  #new_comment
-    margin-left: 63px
-    .btn
-      float: right
-
-  .new_comment
-    margin-left: 0px
-    margin-top: 25px
-    .avatar
-      float: left
-      margin: -2px 6px 0 -11px
-      img
-        margin-left: 9px
-        width: 50px !important 
-    .new_comment
-      @include border-radius (5px)
-      margin: -20px 0 0 82px
-      width: 84%
-
-#wrapper_activities
-  .new_comment
-    .avatar
-      margin: 8px 0 0 77px
-    form
-      margin: -18px 0 20px 81px
-      padding: 10px 0 7px 0 
-      height: 66px
-      width: 84%
-      textarea
-        width: 81%
-        float: right
-        margin-right: 5px
-      input
-        &[type="submit"]
-          margin: -4px 6px 0 0
-
-   
-
-.activity_avatar
-  @include border-radius (5px)
-  @include makeColumn(1, 0)
-  display: inline
-  margin: 13px -10px 0px 4px
-
-.activity_content 
-  @include makeColumn(7, 0)
-  display: inline-block
-  margin-left: 5px
-
-  h5
-    @include makeColumnoMargin(6, 0)
-
-  .x
-    margin-left: 0px
-    padding-top: 14px 5px 0px 0px
-    a
-      float: right
-        
-  textarea
-    resize: none
-    width: 100%
-
-    
-.activity_options
-  @include makeColumn(6, 0)
-  margin-left: 56px 
-  .post_time_ago
-    display: inline
-  .to_comment,
-  .to_like,
-  .audience
-    display: inline-block
-    font-size: 14px
-
-
-  .audience
-    .audience_logo
-      a
-        img
-          display: inline
-
-.timeline
-  .more
-    @include see-more
-    a
-      width: 54%
-      position: absolute
-      z-index: 2
-      float: left
-    .loading
-      z-index: 200
-      position: relative
-  .modal
-    top: 4% !important
-    .modal-body
-      height: auto
-      max-height: 600px
-      #modal-carousel
-        img
-          margin-left: auto
-          margin-right: auto
-        .carousel-control
-          padding-top: 7%
-          padding-bottom: 9%
-          top: 43%
-          left: 1
-          height: auto
-          top: 81%
-        .carousel-indicators
-          position: relative
-          top: 13px
-          left: 3px
-          right: 0
-
-.activity
-  margin-bottom: 50px
-  #comments
-    margin-left: 10px
-    h2
-    .new-comments-box
-      .new_comment
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        .avatar
-          width: 60px
-          display: block
-          float: left
-          img
-            margin-left: 10px
-            @include border-radius ($baseBorderRadius)
-        form#new_comment
-          width: 65%
-          float: left
-          display: block
-          textarea
-            margin-top: 3px
-            width: 65%
-            float: left
-            display: block
-            margin-left: 20px
-          input.btn
-            @include btn-primary
-            margin-left: 10px
-            display: block
-            margin-top: 15px
-            float: left
-  .comments
-    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: block
-    float: left
-    .activity
+    margin: 0 auto
+    .root,
+    .media
       .avatar
-        @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        width: 50px
+        height: 50px
         display: block
-        float: left
+        margin: 0 auto
         img
-          margin-left: 10px
-          @include border-radius ($baseBorderRadius)
+          @include border-radius($baseBorderRadius)
       .media-heading
         display: block
-        margin-left: 2%
-        float: left
-        @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        h6
-          margin: 3px 0
-          font-size: 16px
-      .media-body
-        display: block
-        float: left
-        margin-left: 5%
-        @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        .objects
-          p
-        .actions
-          width: 100%
-          display: inline-block
-          margin-bottom: 10px
-          .post_time_ago
-            display: inline-block
-            float: right
-            font-style: italic
-            font-size: 10px
-          .to_comment,
-          .to_like
-            display: inline-block
-          .audience
-            display: inline-block
+        text-align: center
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        h3
+          margin: 0px
+          a
+            color: $gray
+            &:hover
+              text-decoration: none
+        .x
+          display: none
 
-        
+      .media-body
+        hr
+          @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          margin: 5px auto
+
+
+        .objects
+          .post
+            text-align: center
+        .actions
+          .post_time_ago
+            @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            text-align: center
+            color: lighten($firstColor, 20%)
+            font-style: italic
+          hr.decoration
+            @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            display: block
+            margin: 5px auto
+
+
+
+
+
