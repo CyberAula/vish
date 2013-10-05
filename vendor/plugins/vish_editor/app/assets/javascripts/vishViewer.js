@@ -8335,7 +8335,7 @@ if(!YT.Player) {
 }
 ;(function($) {
   $.fn.joyride = function(options) {
-    var settings = {"tipLocation":"bottom", "scrollSpeed":300, "timer":0, "startTimerOnClick":false, "nextButton":true, "tipAnimation":"fade", "tipAnimationFadeSpeed":300, "cookieMonster":false, "cookieName":"JoyRide", "cookieDomain":false, "tipContainer":"body", "inline":false, "tipContent":"#joyRideTipContent", "postRideCallback":$.noop, "postStepCallback":$.noop};
+    var settings = {"tipLocation":"bottom", "scrollSpeed":300, "timer":0, "startTimerOnClick":false, "nextButton":true, "tipAnimation":"fade", "tipAnimationFadeSpeed":300, "cookieMonster":false, "cookieName":"JoyRide", "cookieDomain":false, "tipContainer":"body", "inline":false, "tipContent":"#joyRideTipContent", "postRideCallback":$.noop, "postStepCallback":$.noop, "postInitCallback":$.noop};
     var options = $.extend(settings, options);
     return this.each(function() {
       if($(options.tipContent).length === 0) {
@@ -8387,7 +8387,10 @@ if(!YT.Player) {
               }
             }
           }
-          $("#joyRidePopup" + index).hide()
+          $("#joyRidePopup" + index).hide();
+          if(index === 0) {
+            $("#joyRidePopup" + index).addClass("joyRideCurrent")
+          }
         })
       }
       showNextTip = function() {
@@ -8410,10 +8413,15 @@ if(!YT.Player) {
             break
           }
         }
+        if(count === 0 && settings.onInitCallback != $.noop) {
+          settings.onInitCallback()
+        }
         var windowHalf = Math.ceil($(window).height() / 2), currentTip = $("#joyRidePopup" + count), currentTipPosition = parentElement.offset(), currentParentHeight = parentElement.outerHeight(), currentTipHeight = currentTip.outerHeight(), nubHeight = Math.ceil($(".joyride-nub").outerHeight() / 2), tipOffset = 0;
         if(currentTip.length === 0) {
           return
         }
+        $(".joyRideCurrent").removeClass("joyRideCurrent");
+        $(currentTip).addClass("joyRideCurrent");
         if(count < tipContent.length) {
           if(settings.tipAnimation == "pop") {
             $(".joyride-timer-indicator").width(0);
@@ -8577,6 +8585,7 @@ if(!YT.Player) {
         if(settings.postRideCallback != $.noop) {
           settings.postRideCallback()
         }
+        $(".joyRideCurrent").removeClass("joyRideCurrent")
       };
       $(".joyride-close-tip").click(function(e) {
         endTip(e, interval_id, settings.cookieMonster, this)
@@ -14064,20 +14073,49 @@ VISH.Recommendations = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Tour = function(V, $, undefined) {
   var startTourWithId = function(helpid, tipLocation) {
-    clear();
+    _clean();
     var loc;
     if(tipLocation === undefined) {
       loc = "top"
     }else {
       loc = tipLocation
     }
-    $(window).joyride({"tipLocation":loc, "tipContent":"#" + helpid, "postRideCallback":V.Tour.clear})
+    $(window).joyride({"tipLocation":loc, "tipContent":"#" + helpid, "postRideCallback":_onTourFinish, "postStepCallback":_onStepFinish, "onInitCallback":_onInit})
   };
-  var clear = function() {
+  var _onInit = function() {
+  };
+  var _onStepFinish = function(count) {
+    _adjustMaxHeightOfCurrentTour()
+  };
+  var _onTourFinish = function(el) {
+    _clean()
+  };
+  var _clean = function() {
     $(".joyride-tip-guide").each(function() {
       $(this).remove()
     })
   };
-  return{clear:clear, startTourWithId:startTourWithId}
+  var getCurrentTour = function() {
+    var currentJoyride = $(".joyRideCurrent");
+    if(currentJoyride.length > 0) {
+      return currentJoyride
+    }
+  };
+  var _adjustMaxHeightOfCurrentTour = function() {
+    var currentJoyride = getCurrentTour();
+    if(typeof currentJoyride != "undefined") {
+      var joyRideWrapper = $(currentJoyride).find(".joyride-content-wrapper");
+      var top = $(currentJoyride).cssNumber("top");
+      var paddingTop = $(joyRideWrapper).cssNumber("padding-top");
+      var paddingBottom = $(joyRideWrapper).cssNumber("padding-bottom");
+      var heightPercentage = (top + paddingTop + paddingBottom) * 100 / $(currentJoyride).parent().width();
+      var maxHeightPercentage = Math.floor(100 - heightPercentage);
+      if(maxHeightPercentage > 1) {
+        maxHeightPercentage = maxHeightPercentage - 1
+      }
+      $(currentJoyride).css("max-height", maxHeightPercentage + "%")
+    }
+  };
+  return{startTourWithId:startTourWithId, getCurrentTour:getCurrentTour}
 }(VISH, jQuery);
 
