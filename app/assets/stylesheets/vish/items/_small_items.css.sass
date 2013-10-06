@@ -76,32 +76,25 @@
               display: block
               font-size: 34px
               margin-top: 20px
-            i.icon-picture,
-            i.icon-facetime-video
+            i.icon-picture
+
               padding-top: 0
               position: absolute
               top: 10px
               right: 10px
-
-
               z-index: 2
               color: $white
               font-size: 20px
               text-shadow: $black 0.1em 0.1em 0.2em
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            i.icon-facetime-video
+              padding-top: 0
+              position: absolute
+              left: 45%
+              right: 50%
+              z-index: 2
+              font-size: 34px
+              text-align: center
+              //text-shadow: $black 0.1em 0.1em 0.2em
         .info
           @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
