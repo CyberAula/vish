@@ -7,9 +7,6 @@
         <div class="elemento-visor-resource"></div>
         <div class="caja-visor-resource">
 
-
-
-
           <div class="icon-box" id="event-<%=@event.id%>">
             <% if @event.poster.new_record? %>
               <i class="icon-facetime-video"></i>
@@ -21,14 +18,11 @@
               </script>
             <% end %>
             <% if can? :update, @event %>
-              <div class="poster">
+              <div class="poster btn btn-primary">
                 <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true %>
               </div>
             <% end %>
           </div>  
-
-
-
         </div>
       </div>
     </div>
@@ -52,7 +46,7 @@
     
     <!--activity-->
     <div class="activity-box-resource">
-      <%#= render :partial => 'common_documents/activity', :locals => { :document => document } %>
+      <%= render :partial => 'common_documents/activity', :locals => { :document => @event } %>
     </div>
   </div>
 
