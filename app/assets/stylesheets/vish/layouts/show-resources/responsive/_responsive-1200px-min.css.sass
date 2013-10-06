@@ -50,12 +50,14 @@
   #document,
   #picture,
   #embed,
-  #audio
+  #audio,
+  #event
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .document,
     .picture,
     .embed,
-    .audio
+    .audio,
+    .event
       .box-show-resource
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         display: block
