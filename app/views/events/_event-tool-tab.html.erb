@@ -20,6 +20,14 @@
     <li class="<%= document_details_tab_class document, :info %>">
       <%= link_to (raw("<i class='icon-align-left'></i> <span class='hidden-tablet hidden-phone'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
     </li>
+    <li>
+      <a href="#tab3" data-toggle="tab">
+        <i class="icon-share"></i>
+        <span class=" hidden-tablet hidden-phone">
+          <%=t('excursion.actions.share')%>
+        </span>
+      </a>
+    </li>  
 <!--edit info-->
     <%# if can? :update, document %>
       <!--li class="<%#= document_details_tab_class document, :edit %>">
@@ -77,6 +85,31 @@
       <a class="btn btn-primary" href='<%=download_document_path(document)%>'><i class="icon-download"></i> <%=t('document.actions.download')%></a> 
     </div>
   </div>
+
+  <!-- tab3 / share -->
+  <div class="tab-pane" id="tab3">
+    <div class="contentShare">
+      <div class="input-append url-input">
+        <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) ) %>
+        <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+        <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button-->
+      </div>
+      <div class="social_toolbar_excursion">
+        <div class="twitter_toolbar_excursion">
+          <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) )} %>
+        </div>
+        <div class="facebook_toolbar_excursion">
+          <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+        </div>
+        <div class="gplus_toolbar_excursion ">
+          <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+        </div>
+        <button class="email_toolbar_excursion">
+          <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @event.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+        </button>
+      </div>
+    </div>
+  </div> 
 
     <!-- tab5 / spam -->
   <div class="tab-pane" id="tab5">

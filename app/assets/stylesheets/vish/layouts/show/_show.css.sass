@@ -1,4 +1,5 @@
-#show_items
+#show_items,
+#event
 
   .box-show
     //visor
@@ -26,7 +27,8 @@
           pointer-events: none
 
   //description
-  .description-activity
+  .description-activity,
+  .description-activity-resource
     @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
     @include border-bottom-radius(5px)
     background-color: $white
