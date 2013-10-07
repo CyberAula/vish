@@ -1,11 +1,14 @@
 .recomended-items,
 .recomended-items-resource
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   .recomended-items,
   .recomended_excursion,
   .recomended_documents
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     ul.small-box
       margin: 0
       margin-left: 20px
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       li.box-item:first-child
         margin-top: 0px
       li.box-item:hover
