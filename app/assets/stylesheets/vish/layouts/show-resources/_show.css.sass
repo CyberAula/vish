@@ -25,12 +25,18 @@
             font-size: 50px
             width: 50px
             height: 70px
-            margin: 0px auto
+            left: 0
+            right: 0
+            top: 35%
+            margin-left: auto
+            margin-right: auto
             display: block
             vertical-align: middle
-
+            position: absolute
+            z-index: 3
           .picture_show,
-          .embed_show
+          .embed_show,
+          .event-img
             padding: 10px 0px
             img
               @include border-radius($baseBorderRadius)
@@ -44,9 +50,19 @@
               margin: 0 auto
               display: block
             .poster
-              margin: 0 auto
-              display: block
               width: 150px
+              text-align: center
+              left: 0
+              right: 0
+              top: 50%
+              margin-left: auto
+              margin-right: auto
+              display: block
+              vertical-align: middle
+              position: absolute
+              z-index: 3
+
+
               @mixin btn-primary
               a
                 color: $white

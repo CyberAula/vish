@@ -1,22 +1,38 @@
 <li class="box-item excursion-item">
-  <%#= link_to(event) do %>
+  <%= link_to(event) do %>
   <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element">
+    <div class="dummy"></div>
+    <div class="element resource-center">
+
 
         <div class="img-box resource-center">
           <div class="event">
             <%= link_to "<i class='icon-facetime-video'></i>".html_safe, event, :title => event.title %>
             <!-- <i class='icon-facetime-video-large'></i> -->
+            <%= link_to(image_tag('items/rec2.jpg'),event); %>
           </div>
         </div>
+
+
 
       </div>
   </div>
     
-<%# end %>
+
+
+
+
+
 
 <!-- Falta el backstrech -->
+
+
+
+
+
+
+
+
 
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
@@ -52,5 +68,6 @@
     </div>
 
   </div>
+  <% end %>
 </li>
 
