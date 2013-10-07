@@ -1,0 +1,13 @@
+    <%if @user %>
+      <%=@user.name %> has sent a spam or error report
+    <%else%>
+      There was an anonymous spam or error report
+    <%end%>
+    ======================================================================
+   
+    The option in the report was spam(0), error(1): <%=@report_value%>
+    The activity_object_id was: <%=@activity_object_id%>
+    <%=link_to "access the resource in ViSH", ActivityObject.find(@activity_object_id).object %>
+    The issue was: <%=@issue%>
+
+    
