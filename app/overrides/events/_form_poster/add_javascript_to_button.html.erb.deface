@@ -1,0 +1,15 @@
+<!-- insert_after 'code[erb-loud]:contains("form_for")' -->
+
+<script>
+  $(document).ready(function(){
+    $("#edit_picture_<%=@event.poster.id%> input[name='commit']").addClass("hidden");
+  });
+
+  function showButton() {
+    if ($("#picture_file").val() != "") {
+      $("#edit_picture_<%=@event.poster.id%> input[name='commit']").removeClass("hidden");
+    } else {
+      $("#edit_picture_<%=@event.poster.id%> input[name='commit']").addClass("hidden");
+    }
+  }
+</script>
