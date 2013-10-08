@@ -1,12 +1,13 @@
-<div id="effect" class="newClass ui-corner-all">
+<div class="left-info">
+<div class="author">
 
-  <div class="author">
+  <div class="avatar">
     <%= link_to document.author.subject do %>
     <%= image_tag document.author.logo.url(:small) %>
-    
     <% end %>
+  </div>
+  <div class="right-name">
     <p><%= truncate_name(document.author.name, :length => 50) %></p>
-
     <div class="add">
       <% if user_signed_in?%>
         <%= contact_button(current_subject.contact_to!(document.author)) %>
@@ -15,6 +16,25 @@
       <%end%>
     </div>
   </div>
+</div>
+  <div class="viewsAndConunt">
+  <%#= render partial: 'objects/counters', locals: { object: document } %>
+  <div class="views">
+    <%=document.visit_count.to_s%> 
+    <span>
+      <%=t('follow.views')%>
+    </span>   
+  </div>
+  <div class="like">    
+    <div class="count"><%=document.post_activity.likes.count.to_s%></div>
+    <%= link_like(document.post_activity)%>
+  </div>
+</div>
+
+</div>
+<div id="effect" class="newClass ui-corner-all">
+
+
 
   <dl class="dl-horizontal">
     <% unless document.description.blank? %>

@@ -1,0 +1,20 @@
+
+    <!--autor-->
+    <!--dt><%#= t('author').capitalize %></dt-->
+<div class="author">
+  <div class="avatar">
+    <%= link_to document.author.subject do %>
+    <%= image_tag document.author.logo.url(:small) %>
+    <% end %>
+  </div>
+  <div class="right-name">
+    <p><%= truncate_name(document.author.name, :length => 50) %></p>
+    <div class="add">
+      <% if user_signed_in?%>
+        <%= contact_button(current_subject.contact_to!(document.author)) %>
+      <%else%>
+        <%= contact_button(document.author) %>
+      <%end%>
+    </div>
+  </div>
+</div>

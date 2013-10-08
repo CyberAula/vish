@@ -6,27 +6,29 @@
     <%= profile_subject.name + ": " + t('repository.title') %>
   <% end %>
   <%= div_for document do %>
-    <div class="box-show-resource">
+    <div class="box-show">
       <!--visor-->
-      <div class="container-visor-resource">
-        <div class="elemento-visor-resource"></div>
-        <div class="caja-visor-resource">
+      <div class="container-visor">
+        <!--div class="elemento-visor"></div-->
+        <div class="caja-elementos">
           <%= render partial: "#{ document.class.to_s.tableize }/#{ document.class.to_s.underscore }_show",
           locals: { document.class.to_s.underscore.to_sym => document } %>
         </div>
+
       </div>
     </div>
-    <div class="recomended-items-resource ">
-      <div class="recomended_documents">
+    <!--recomended-->
+    <div class="recomended">
+      <div class="recomended-items">
         <ul class="small-box clearfix">
-          <% popular_resources(6).each do |resource| %>
+          <% popular_resources(16).each do |resource| %>
             <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
           <% end %>
         </ul>
       </div>
     </div>
 
-  <div class="description-activity-resource">
+  <div class="description-activity">
     <div class="box_description">
       <!--tool-->
       <div class="excursion_tool">
@@ -35,7 +37,7 @@
     </div>
     
     <!--activity-->
-    <div class="activity-box-resource">
+    <div class="activity-box">
       <%= render :partial => 'common_documents/activity', :locals => { :document => document } %>
     </div>
   </div>
