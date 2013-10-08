@@ -1196,7 +1196,7 @@
 				</tr>
 				<tr>
 					<td>
-						<img src="/assets/tutorial/textedimg.png"/>
+						<img src="/assets/tutorial/tut_textedimg.png"/>
 					</td>
 					<td><p i18n-key="i.walkWelcome11_a_4">Text Toolbar</p></td>
 				</tr>
@@ -1209,7 +1209,7 @@
 		<li data-id="menuButton" class="tut_menubuttonpresentation tut_with_arrow" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
 			<h2 i18n-key="i.walkWelcome12_1">ViSH Editor Menu</h2>
 			<p i18n-key="i.walkWelcome12_2">This button displays the ViSH Editor menu, where you can find all the functionalities of the application.</p>
-			<img id="tutMenuImage" src="/assets/tutorial/menutut.png"/>
+			<img id="tutMenuImage" i18n-key="i.img.tut_menu" src="/assets/tutorial/tut_menu.png"/>
 			<p i18n-key="i.walkWelcome12_3">Many of these options are also available on the ViSH Editor toolbar, but you always can access to any of them through this menu.</p>
 			<p i18n-key="i.walkWelcome12_4">Using this menu you can save and publish your presentation as well as export it to a external file, you can also preview the presentation before publish or export it, add new slides, import new contents, change the information of the presentation through the 'Settings' option, and start again this tutorial every time you want with the 'Help' option.</p>
 			<p class="tut_space">&nbsp;</p>
@@ -1220,7 +1220,10 @@
 			<table>
 				<tr>
 					<td><p i18n-key="i.walkWelcome13_2">If you have any doubt, you can always click on any of these "contextual help icons" to see additional help and instructions relative to the screen on which you are or to the element on which the icon is placed.</p></td>
-					<td class="tut_contextualhelp_icon"><img src="/assets/vicons/helptutorial_circle.png"/><span i18n-key="i.walkWelcome15_3">Contextual Help Icon</span></td>
+					<td class="tut_contextualhelp_icon">
+						<img src="/assets/vicons/helptutorial_circle.png"/>
+						<p class="tut_withouttopspace"><span i18n-key="i.walkWelcome13_3">Contextual Help Icon</span></p>
+					</td>
 				</tr>
 			</table>
 			<p class="tut_space">&nbsp;</p>
@@ -1347,7 +1350,7 @@
 			<p class="tut_withlittlebottomspace">
 				<span i18n-key="i.walkSlide1_5">If you select the text icon, a text toolbar will appear on the top, allowing you to define among others the typeface, text style, alignment and size.</span>
 			</p>
-			<img src="/assets/tutorial/textedimg.png"/>
+			<img src="/assets/tutorial/tut_textedimg.png"/>
 
 			<p>
 				<span i18n-key="i.walkSlide1_6">If you select the quizzes icon, a new screen will pop up for you to choose the type of quiz (multiple choice, true/false, ...) to add.</span>
@@ -1477,7 +1480,7 @@
 
 	<!-- Help in Flashcards -->
 	<ol id="fc_help" class="joyRideTipContent">
-		<li data-id="toolbar_wrapper" data-text="Next" i18n-key="i.Next" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+		<li data-id="toolbar_wrapper" data-text="Finish" i18n-key="i.Finish" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.CreatingFlashcards">Creating Flashcards</h2>
 			<p i18n-key="i.flashcardDef" class="tut_withoutbottomspace">Flashcards are resources presented as an image background with 'hot zones' identified by arrows on which the user can click to see additional contents that had been previously tagged.</p>
 
@@ -1499,13 +1502,6 @@
 			<button type="button" class="btn btn-primary btn-small">
 				<i class="icon-button icon-picture"></i>
 			</button>
-
-			<p i18n-key="i.walkContinueWalkthrough">Click on "Next" to continue with this walkthrough.</p>
-			<p class="tut_space">&nbsp;</p>
-		</li>
-
-		<li data-id="toolbar_wrapper" data-text="Close" i18n-key="i.Close" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.CreatingFlashcards">Creating Flashcards</h2>
 
 			<p i18n-key="i.walkFlashcard_4">When you are creating a Flashcard, a new panel is displayed at the bottom of the screen. We will refer to this panel as the 'Flashcard panel'.</p>
 			<img src="/assets/tutorial/tut_flashcard1.png"/>
@@ -1530,13 +1526,14 @@
 
 			<p><span i18n-key="i.walkRememberPreview">Remember that you can preview the object you are creating at any time by clicking on the 'Preview' button placed in the toolbar</span> <button type="button" class="btn btn-primary btn-small"><i class="icon-button icon-eye-open"></i></button> .</p>
 			<p class="tut_space">&nbsp;</p>
+			
 		</li>
 
 	</ol>
 
 	<!-- Help in Virtual Tours -->
 	<ol id="vt_help" class="joyRideTipContent">
-		<li data-id="toolbar_wrapper" data-text="Next" i18n-key="i.Next" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+		<li data-id="toolbar_wrapper" data-text="Finish" i18n-key="i.Finish" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.CreatingVirtualTours">Creating Virtual Tours</h2>
 			<p i18n-key="i.vtDef" class="tut_withoutbottomspace">Virtual Tours are similar to Flashcards, but instead of being presented as static background images, they are presented as interactive maps where the 'hot zones' are places identified by map pins. This way, when users click on a map pin (a tagged location), they will see additional contents.</p>
 
@@ -1553,31 +1550,15 @@
 
 			<p><span i18n-key="i.walkVirtualTour_2a">When you are creating a Virtual Tour, an interactive map is displayed with a search box on its top. You can use this box to look for places and locations. Type the location you want to search, for example</span> <i>Madrid</i>. <span i18n-key="i.walkVirtualTour_2b">A list of results will be shown at the bottom of the search box. You can pick any of them or just press the 'enter' key to automatically select the first one. After this, the map will show the selected location.</span></p>
 
-			<p i18n-key="i.walkContinueWalkthrough">Click on "Next" to continue with this walkthrough.</p>
-			<p class="tut_space">&nbsp;</p>
-		</li>
-
-		<li data-id="toolbar_wrapper" data-text="Next" i18n-key="i.Next" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.CreatingVirtualTours">Creating Virtual Tours</h2>
-
 			<p i18n-key="i.walkVirtualTour_3">When you are creating a Virtual Tour, a new panel is displayed at the bottom of the screen. We will refer to this panel as the 'Virtual Tour panel'.</p>
-			<img src="/assets/tutorial/tut_flashcard1.png"/>
+			<img src="/assets/tutorial/tut_vt1.png"/>
 			<p class="tut_space">&nbsp;</p>
 
 			<p i18n-key="i.walkVirtualTour_4">To add a new slide to the Virtual Tour click on the 'Add slide' button placed in the 'Virtual Tour panel' and continue with the usual process. After add it, the thumbnail of the new slide will appear in the panel and the slide will be displayed in the screen.</p>
-			<img src="/assets/tutorial/tut_flashcard2.png"/>
+			<img src="/assets/tutorial/tut_vt2.png"/>
 			<p class="tut_space">&nbsp;</p>
 
-			<p i18n-key="i.walkVirtualTour_5">When a slide is selected, is displayed in the screen and you can edit and remove it the same way as you do with common slides. To select a slide just click on it in the 'Virtual Tour panel'. If you want to select the Virtual Tour again to edit it, you have to click on the Virtual Tour icon placed at the left of the 'Virtual Tour panel'. </p>
-
-			<p class="tut_space">&nbsp;</p>
-		</li>
-
-		<li data-id="toolbar_wrapper" data-text="Close" i18n-key="i.Close" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.CreatingVirtualTours">Creating Virtual Tours</h2>
-
-			<p class="tut_space">&nbsp;</p>
-			<img src="/assets/tutorial/tut_flashcard2.png"/>
+			<p i18n-key="i.walkVirtualTour_5">When a slide is selected, is displayed in the screen and you can edit and remove it the same way as you do with common slides. To select a slide just click on it in the 'Virtual Tour panel'. If you want to select the Virtual Tour again to edit it, you have to click on the Virtual Tour icon placed at the left of the 'Virtual Tour panel'.</p>
 
 			<table class="tut_table_imagewithsubtitle_row2">
 				<tr>
@@ -1585,7 +1566,7 @@
 						<p i18n-key="i.walkVirtualTour_6">The slides have draggable arrows on their top. You can drag any of them into the map to create a new location. Once you dragged an arrow into the map, a new map pin will appear in the selected location. This way, when users click on this map pin they will see the associated slide. The map pins are also draggables, so you can drag them across the map. To remove a map pin, just click on it.</p>
 					</td>
 					<td>
-						<img src="/assets/tutorial/tut_pois_flashcard.png"/>
+						<img src="/assets/tutorial/tut_pois_vt.png"/>
 					</td>
 				</tr>
 			</table>
@@ -1594,6 +1575,7 @@
 
 			<p class="tut_space">&nbsp;</p>
 		</li>
+
 	</ol>
 
 	<!-- Help inserting images [URL, Upload, ViSH, Flickr, LRE] -->

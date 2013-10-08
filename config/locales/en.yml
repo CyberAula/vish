@@ -339,7 +339,7 @@ en:
     search_name: "status update"
   profile:
     occupation: 
-      label: "Occupation area"
+      label: "Occupational field"
       options:
         select: "Select"
         scientist: "Science"
