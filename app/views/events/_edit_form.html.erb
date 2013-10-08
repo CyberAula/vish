@@ -1,0 +1,83 @@
+<%= form_for @event || Event.new(:owner_id => profile_or_current_subject.actor_id, :interval => 1) do |f| %>
+  <%= f.hidden_field :owner_id  %>
+  <%= f.hidden_field :start_at %>
+  <%= f.hidden_field :end_at %>
+  <%= f.hidden_field :all_day %>
+  <!--TITULO-->
+  <legend><%= t('event.leyend.title')%></legend>
+  <%= f.text_field :title, :placeholder => t('event.title_input') %>
+  
+  <!--DESCRIPCION-->
+  <legend><%= t('event.leyend.description')%></legend>
+  <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
+
+  <!--DATE-->
+  <legend><%= t('event.leyend.fecha')%></legend>
+    <div id="editdate" class="input-append">
+      <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+        </i>
+      </span>
+    </div>
+  <!--HORA INICIO-->
+  <legend><%= t('event.leyend.Hora de Inicio')%></legend>
+    <div id="edithourinit" class="input-append">
+      <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+        </i>
+      </span>
+    </div>
+  <!--HORA FINALIZACION-->
+  <legend><%= t('event.leyend.Hora de Finalizacion')%></legend>
+    <div id="edithourfinish" class="input-append">
+      <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+        </i>
+      </span>
+    </div>
+  <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
+  <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
+
+  <script>
+    $(document).ready(function(){
+      $(function() {
+        $('#edithourinit').datetimepicker({
+          pickDate: false
+        });
+      });
+      $(function() {
+        $('#edithourfinish').datetimepicker({
+          pickDate: false
+        });
+      });
+      $(function() {
+        $('#editdate').datetimepicker({
+          pickTime: false
+        });
+      });
+      var saveEventButton = $("#AddEvent input[type='submit']");
+      var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
+      $(eventButton).click(function(event) {
+        if ($("#AddEvent input[name='event[title]']").val() == "") {
+          $("#AddEvent .errors").remove();
+          $("#AddEvent .new_event").after("<div class='errors'><%= t('event.title_input')%></div>");
+        } else {
+          $("#AddEvent input[name='event[start_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_start_time']").val());
+          if ($("#AddEvent input[name='event_end_time']").val() < $("#AddEvent input[name='event_start_time']").val()) {
+            var d = new Date($("#AddEvent input[name='event_day']").val());
+            d.setDate(d.getDate()+1);
+            $("#AddEvent input[name='event[end_at]']").val(d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() + " " + $("#AddEvent input[name='event_end_time']").val());
+          } else {
+          $("#AddEvent input[name='event[end_at]']").val($("#AddEvent input[name='event_day']").val() + " " + $("#AddEvent input[name='event_end_time']").val());
+          }
+          $(saveEventButton).click();
+        }
+      });
+    });
+
+  </script>
+  
+<% end %>
