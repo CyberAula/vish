@@ -4,8 +4,8 @@ $("#category_id").multiselect({
       height: 190,
       minWidth: "auto",
       menuWidth: 125,
-      noneSelectedText: '<i class="icon-th-large"></i> <!--span class="hidden-tablet hidden-phone"><%#=t("categories.actions.verb")%> </span--><b class="caret"></b>',
-      selectedText: '<i class="icon-th-large"></i> <!--<span class="hidden-tablet hidden-phone"> # <%=t("categories.selected")%> </span>--><b class="caret"></b>',
+      noneSelectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
+      selectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
       click: function(event, ui){
           $.ajax({
             url: '/categories/'+ui.value,
