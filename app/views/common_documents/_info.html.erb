@@ -52,11 +52,18 @@
     
     <dt><%= t('document.info.date.updated_at') %></dt>
     <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
-    
-    <% unless document.file_file_size.blank? %>
-      <dt><%= t('document.info.size') %></dt>
-      <dd><%= number_to_human_size document.file_file_size %></dd>
+    <%if resource.class==Embed%>
+      
+    <%else%>
+      <% unless document.file_file_size.blank? %>
+        <dt><%= t('document.info.size') %></dt>
+        <dd><%= number_to_human_size document.file_file_size %></dd>
+      <%end%>
     <%end%>
+
+
+
+
   </dl>
 </div>
 

@@ -33,11 +33,26 @@
       //resources
       .caja-elementos
         display: block
-        .picture_show
+        text-align: center
+        font-size: 40px
+        i
+          margin-top: 10px
+          margin-bottom: 10px
+          display: block
+        .picture_show,
+        .embed_show
           max-width: 500px
           display: block
           margin: 10px auto
+          iframe
+            width: 100% !important
+            z-index: 1
+            position: relative
 
+          textarea
+            width: 96% !important
+            padding: 2%
+            height: 100% !important
 
   //description
   .description-activity,
@@ -207,8 +222,10 @@
               float: left
               @include follow-profile
               text-align: left
-              input
+              input,
+              .following-button
                 float: left
+                text-align: center
 
         .viewsAndConunt
           width: 90%
