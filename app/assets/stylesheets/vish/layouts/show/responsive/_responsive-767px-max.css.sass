@@ -4,7 +4,12 @@
 
 
 @media (max-width: 767px)
-  #show_items
+  #show_items,
+  #document,
+  #picture,
+  #embed,
+  #audio,
+  #event
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -36,7 +41,12 @@
 // ---------------------
 
 @media (max-width: 480px)
-  #show_items
+  #show_items,
+  #document,
+  #picture,
+  #embed,
+  #audio,
+  #event
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -72,14 +82,62 @@
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
           display: inline-block
+        .author
+          width: 60% !important
+          .avatar
+            display: block
+            float: left
+            @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            a
+              img
+                width: 80% !important
+
+          .right-name
+            display: block
+            float: left
+            @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            p
+              font-size: 1.2em
+              margin-bottom: 5px
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
+              display: block
+              float: left
+              color: $gray
+            .add
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              margin-top: -2px
+              display: block
+              float: left
+              @include follow-profile
+              text-align: left
+              input
+                float: left
+
+        .viewsAndConunt
+          width: 100px !important
+          margin-left: none
+          float: right !important
+          display: block
+          margin-top: 5px
+          text-align: right
+
+
+
+
+
         #effect
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left
           display: inline-block
           .dl-horizontal
             margin-left: 0
-            dt
-              text-align: center
+
+
+        #showMore
+
     .recomended-items
       display: none
 
