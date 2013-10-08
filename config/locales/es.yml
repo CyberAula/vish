@@ -39,6 +39,7 @@ es:
   categories:
     actions:
       add: "Crear categoría"
+      apply: "Aplicar"
       verb: "categorizar"
     description_input: "Descripción para esta categoría"
     errors:

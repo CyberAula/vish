@@ -38,6 +38,7 @@ en:
   categories:
     actions:
       add: "Create category"
+      apply: "Apply"
       verb: "categorize"
     description_input: "Description for this category"
     errors:

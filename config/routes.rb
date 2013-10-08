@@ -44,6 +44,8 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
+  match '/categories/add_items' => 'categories#add_items', :via => :post
+
   match 'lre/search' => 'lre#search_lre'
 
   #redirect /home.json to the original path
