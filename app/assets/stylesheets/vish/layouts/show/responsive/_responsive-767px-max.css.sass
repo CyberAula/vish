@@ -68,11 +68,18 @@
           font-size: 20px
           float: left
           display: inline-block
-        .viewsAndConunt
-          float: left !important
+        .left-info
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          padding-left: 20px
-
+          float: left
+          display: inline-block
+        #effect
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          display: inline-block
+          .dl-horizontal
+            margin-left: 0
+            dt
+              text-align: center
     .recomended-items
       display: none
 

@@ -127,9 +127,6 @@
             display: block
             float: left
             margin-right: 20px
-          
-        
-              
 
         .excursion-social
           float: left
@@ -153,10 +150,6 @@
                 padding: 3px 12px
                 @include border-radius($baseBorderRadius)
 
-
-
-        
-
       //description
       .toggler
         min-height: 50px
@@ -172,31 +165,38 @@
           display: block
           float: left
           width: 100%
-
-          a
+          .avatar
             display: block
             float: left
             @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
-            img
+            a
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              @include border-radius($baseBorderRadius)     
-          p
-            font-size: 1em
-            margin-left: 20px
-            margin-bottom: 5px
-
-            white-space: nowrap
-            overflow: hidden
-            text-overflow: ellipsis
+              img
+                @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                @include border-radius($baseBorderRadius)     
+          .right-name
             display: block
             float: left
-            color: $gray
-          .add
-            margin-top: -2px
-            display: block
-            float: left
-            padding-left: 20px
-            @include follow-profile
+            @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            p
+              font-size: 1em
+              margin-bottom: 5px
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
+              display: block
+              float: left
+              color: $gray
+            .add
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              margin-top: -2px
+              display: block
+              float: left
+              @include follow-profile
+              text-align: left
+              input
+                float: left
 
         .viewsAndConunt
           width: 90%
@@ -212,13 +212,11 @@
               font-size: 16px
               font-family: $thirdFontFamily
               display: inline-block
-
             a
               display: inline-block
               .icon-star-empty, 
               .icon-star
                 font-size: 12px
-
               &:hover
                 text-decoration: none
           .views:after
