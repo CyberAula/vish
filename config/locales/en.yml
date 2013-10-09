@@ -55,6 +55,7 @@ en:
     title_input: "Name for this category"
     save: "Save"
     selected: "categories"
+    success: "Categories saved succesfully"
   close: "Close"
   conditions:
     check_message: "By clicking Accept, you agree to our "  

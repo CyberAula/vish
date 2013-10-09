@@ -147,6 +147,8 @@ $(document).ready(function(){
     <%if user_signed_in? %>
       <%=categories_select(:category_id, @excursion)%>
       <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true} %>
+      <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
+
     <%end%>
   <%end%>
 

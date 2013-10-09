@@ -56,6 +56,7 @@ es:
     title_input: "Dale un nombre a tu categoría"
     save: "Guardar"    
     selected: "categorias"
+    success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
   conditions:
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
