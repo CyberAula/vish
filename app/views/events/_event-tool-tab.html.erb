@@ -10,6 +10,7 @@
 
     <%=categories_select(:category_id, @event)%>
     <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
+    <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
   <%end%>
 <!--mashme-->
   <%= render :partial => 'events/button-mashme'%>

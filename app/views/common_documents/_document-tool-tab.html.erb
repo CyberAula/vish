@@ -17,6 +17,7 @@
 
     <%=categories_select(:category_id, document)%>
     <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
+    <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
   <%end%>
 </div>
 
