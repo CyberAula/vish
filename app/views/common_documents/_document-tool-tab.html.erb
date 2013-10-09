@@ -1,7 +1,6 @@
+
 <div class="btn-group">
   <% if can? :destroy, document %>
-   
-
     <%= link_to raw("<i class='icon-trash'></i> "),  document,
     confirm: t('confirm_delete', scope: document.class.to_s.underscore),
     title: t('document.actions.delete'),
@@ -47,19 +46,7 @@
     </li>  
   </ul>
 </div>
-<div class="viewsAndConunt">
-  <%#= render partial: 'objects/counters', locals: { object: document } %>
-  <div class="views">
-    <%=document.visit_count.to_s%> 
-    <span>
-      <%=t('follow.views')%>
-    </span>   
-  </div>
-  <div class="like">    
-    <div class="count"><%=document.post_activity.likes.count.to_s%></div>
-    <%= link_like(document.post_activity)%>
-  </div>
-</div>
+
 <h2>
   <%= document.title %>
 </h2>

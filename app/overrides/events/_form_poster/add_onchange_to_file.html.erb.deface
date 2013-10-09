@@ -1,0 +1,3 @@
+<!-- replace 'code[erb-loud]:contains("f.file_field")' -->
+
+<%= f.file_field :file, onchange: 'showButton()' %>
