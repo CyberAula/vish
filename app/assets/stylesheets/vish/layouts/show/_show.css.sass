@@ -91,6 +91,7 @@
           width: 95%
           font-size: 25px
           display: block
+          text-overflow: ellipsis
         .tab-content
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
         .contentembed,
@@ -211,10 +212,11 @@
               white-space: nowrap
               overflow: hidden
               text-overflow: ellipsis
+              word-wrap: break-word
               display: block
               float: left
               color: $gray
-              margin-top: -5px
+              margin-top: -2px
             .add
               @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
               margin-top: -2px
