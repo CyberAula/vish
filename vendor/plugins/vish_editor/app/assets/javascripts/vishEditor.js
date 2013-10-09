@@ -52,26 +52,28 @@ var i18n = {"vish":{"es":{"i.walkWelcome1_1":"\u00a1Bienvenido a ViSH Editor!", 
 "i.walkQuizzes_4":"Despu\u00e9s de que lances un cuestionario en vivo usando el bot\u00f3n 'Lanzar' situado en la parte inferior del cuestionario, una nueva pantalla aparecer\u00e1 ('pantalla de cuestionario en vivo') mostrando diversos elementos", "i.walkQuizzes_5a":"Un hiperenlace al cuestionario en vivo, por ejemplo", "i.walkQuizzes_5b":"Este hiperenlace es utilizado para responder al cuestionario. Cualquier persona que acceda a esta direcci\u00f3n de internet podr\u00e1 responder al cuestionario en vivo. Por lo tanto puedes compartir tu cuestionario en vivo mediante este hiperenlace, por ejemplo envi\u00e1ndolo por correo electr\u00f3nico o peg\u00e1ndolo en un foro.", 
 "i.walkQuizzes_6":"Algunos logos de redes sociales populares (Twitter, Facebook, Google+, ...). Puedes compartir el hiperenalce del cuestionario en vivo en cualquiera de estas redes sociales pulsando sobre el logo correspondiente.", "i.walkQuizzes_7":"Un c\u00f3digo QR para dispositivos m\u00f3viles. Cualquier dispositivo puede obtener autom\u00e1ticamente el hiperenlace del cuestionario en vivo escaneando este c\u00f3digo QR.", "i.walkQuizzes_8":"Una pesta\u00f1a 'Resultados' situada en la parte superior, que permite ver en tiempo real los resultados del cuestionario. Dependiendo del tipo de cuestionario, la representaci\u00f3n de los resultados ser\u00e1 diferente (gr\u00e1fico circular, de barras, etc.).", 
 "i.walkQuizzes_9":"Si quieres 'cerrar' el cuestionario en vivo debes hacer click en el bot\u00f3n 'Detener' situado en la parte inferior derecha. Despu\u00e9s de cerrar un cuestionario, no se admitir\u00e1n ni guardar\u00e1n m\u00e1s respuestas. Tambi\u00e9n puedes cerrar un cuestionario en cualquier momento desde la plataforma ViSH. Cuando cierras un cuestionario en vivo, puedes, opcionalmente, especificar un nombre para facilitar su b\u00fasqueda posterior en el ViSH.", "i.walkQuizzes_10":"Si sales de la pantalla de cuestionarios en vivo, puedes regresar en cualquier momento haciendo click sobre el bot\u00f3n 'Opciones' situado en la parte inferior del cuestionario. Tenga en cuenta que si un cuestionario ha sido lanzado, el bot\u00f3n 'Lanzar' es reemplazado por un bot\u00f3n 'Opciones'. Cuando se cierre el cuestionario, el bot\u00f3n 'Lanzar' volver\u00e1 a aparecer. Finalmente, tenga en cuenta que no puede lanzar m\u00e1s de un cuestionario en vivo a la vez.", 
-"i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.AddingSlideinto":"A\u00f1adir slides dentro de tu excursi\u00f3n", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", 
-"i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.addvideourl":"a\u00f1adir URL de video (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
-"i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", 
+"i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", 
+"i.AddTags":"A\u00f1adir etiquetas", "i.addvideourl":"a\u00f1adir URL de video (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", 
+"i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", 
 "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", 
 "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursions":"Excursiones", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", 
 "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No es posible exportar la presentaci\u00f3n a un fichero JSON.", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", 
 "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Secundaria", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Import":"Importar", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.Language":"Idioma", "i.Languageindependent":"Independiente del idioma", "i.Law":"Derecho", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", 
 "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", "i.Minutes":"Minutos", "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", "i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", 
-"i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pdfErrorNotification":"Ha ocurrido un error. Asegurese de que el fichero PDF es v\u00e1lido.", "i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
-"i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
-"i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.Quiz":"Quiz", "i.QuizAnswer":"Responder", "i.QuizButtonAnswer":"Responder", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios antes de lanzar uno nuevo", 
-"i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizOptions":"Opciones", "i.QuizResults":"Resultados", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes", "i.QuizzesTrans":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resize":"Redimensionar", 
-"i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.SearchImagesViSH":"Buscar im\u00e1genes en el repositorio ViSH", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", 
-"i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", 
-"i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.Training":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", 
-"i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", 
-"i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", 
-"i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.GotoSettings":"i.Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", 
-"i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.Ok":"Ok", "i.OK":"OK", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.publish":"publish", "i.QuizAnswer":"Answer", "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizLaunch":"Launch", "i.QuizOptions":"Options", "i.QuizStop":"Stop", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", 
-"i.save":"save", "i.Save":"Save", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
+"i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un video HTML5 o de YouTube", "i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Asegurese de que el fichero PDF es v\u00e1lido.", 
+"i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Preescolar", 
+"i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", 
+"i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", 
+"i.readJSONfileError":"Error al leer el fichero JSON", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", 
+"i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", 
+"i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.Training":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.veryeasy":"muy f\u00e1cil", 
+"i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", 
+"i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", 
+"i.exitConfirmation":"You are about to leave this website. You will lose any changes you have not saved.", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", 
+"i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.publish":"publish", "i.QuizButtonAnswer":"Answer", 
+"i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", 
+"i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", 
+"i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
 VISH.VERSION = "0.7";
 VISH.AUTHORS = "GING";
@@ -12501,22 +12503,23 @@ VISH.Utils = function(V, undefined) {
     return filterStyle
   };
   var showDialog = function(options) {
-    var id = "notification_template";
-    if($("#" + id).length === 0) {
+    _cleanDialog();
+    var rootTemplate = $("#notification_template");
+    if($(rootTemplate).length === 0) {
       return
     }
     if(!options || !options.text) {
       return
     }
-    var width = 350;
-    var height = 200;
+    var width = "90%";
+    var height;
     var showCloseButton = false;
-    var notificationIconSrc = V.ImagesPath + "zonethumbs/content_fail.png";
+    var notificationIconSrc;
+    if(V.Editing) {
+      notificationIconSrc = V.ImagesPath + "zonethumbs/content_fail.png"
+    }
     if(options.width) {
       width = options.width
-    }
-    if(options.height) {
-      height = options.height
     }
     if(options.showCloseButton) {
       showCloseButton = options.showCloseButton
@@ -12524,54 +12527,109 @@ VISH.Utils = function(V, undefined) {
     if(options.notificationIconSrc) {
       notificationIconSrc = options.notificationIconSrc
     }
-    $("a#link_to_notification_template").fancybox({"autoDimensions":false, "autoScale":false, "scrolling":"no", "width":width, "height":height, "padding":0, "hideOnOverlayClick":true, "hideOnContentClick":false, "showCloseButton":showCloseButton, "onStart":function(data) {
-      _cleanDialog(id);
-      var text_wrapper = $("#" + id).find(".notification_row1");
-      var buttons_wrapper = $("#" + id).find(".notification_row2");
-      $(text_wrapper).find(".notificationIcon").attr("src", notificationIconSrc);
-      $(text_wrapper).find(".notification_text").html(options.text);
-      if(options.notificationIconClass) {
-        $(text_wrapper).find(".notificationIcon").addClass(options.notificationIconClass)
+    if(!notificationIconSrc) {
+      options.textWrapperClass = "forceCenter"
+    }
+    if(typeof width == "string" && width.indexOf("%") != 0) {
+      width = width.split("%")[0].trim();
+      width = width * $(window).width() / 100
+    }
+    var notificationParent = $(rootTemplate).parent();
+    $(rootTemplate).width(width);
+    var text_wrapper = $(rootTemplate).find(".notification_row1");
+    var buttons_wrapper = $(rootTemplate).find(".notification_row2");
+    var imgIcon = $(text_wrapper).find(".notificationIcon");
+    if(notificationIconSrc) {
+      $(imgIcon).attr("src", notificationIconSrc);
+      $(imgIcon).css("display", "inline")
+    }
+    if(options.notificationIconClass) {
+      $(imgIcon).addClass(options.notificationIconClass)
+    }
+    if(options.textWrapperClass) {
+      $(text_wrapper).addClass(options.textWrapperClass)
+    }
+    if(options.buttonsWrapperClass) {
+      $(buttons_wrapper).addClass(options.buttonsWrapperClass)
+    }
+    $(text_wrapper).find(".notification_text").html(options.text);
+    if(options.buttons) {
+      var obLength = options.buttons.length;
+      $(options.buttons).reverse().each(function(index, button) {
+        var bNumber = obLength - index;
+        var buttonDOM = $('<a href="#" buttonNumber="' + bNumber + '" class="button notification_button">' + button.text + "</a>");
+        if(button.extraclass) {
+          $(buttonDOM).addClass(button.extraclass)
+        }
+        $(buttons_wrapper).append(buttonDOM)
+      })
+    }
+    if(options.middlerow) {
+      var middlerow = document.createElement("div");
+      $(middlerow).addClass("notification_middlerow");
+      $(middlerow).append(options.middlerow);
+      if(options.middlerowExtraClass) {
+        $(middlerow).addClass(options.middlerowExtraClass)
       }
-      if(options.buttons) {
-        var obLength = options.buttons.length;
-        $(options.buttons).reverse().each(function(index, button) {
-          var bNumber = obLength - index;
-          $(buttons_wrapper).append('<a href="#" buttonNumber="' + bNumber + '" class="button notification_button">' + button.text + "</a>");
-          $(buttons_wrapper).find(".button[buttonNumber='" + bNumber + "']").click(function(event) {
-            event.preventDefault();
-            button.callback()
-          })
+      $(buttons_wrapper).before(middlerow)
+    }
+    $(notificationParent).addClass("temp_shown");
+    var adjustedHeight = $(text_wrapper).outerHeight(true) + $(buttons_wrapper).outerHeight(true);
+    if(options.middlerow) {
+      var middlerow = $(rootTemplate).find(".notification_middlerow");
+      adjustedHeight = adjustedHeight + $(middlerow).outerHeight(true)
+    }
+    $(notificationParent).removeClass("temp_shown");
+    var cloneTemplate = $(rootTemplate).clone();
+    $(cloneTemplate).attr("id", "notification_template_cloned");
+    $(notificationParent).append(cloneTemplate);
+    var notification = $("#notification_template_cloned");
+    if(options.buttons) {
+      buttons_wrapper = $(notification).find(".notification_row2");
+      $(buttons_wrapper).html("");
+      var obLength = options.buttons.length;
+      $(options.buttons).reverse().each(function(index, button) {
+        var bNumber = obLength - index;
+        var buttonDOM = $('<a href="#" buttonNumber="' + bNumber + '" class="button notification_button">' + button.text + "</a>");
+        if(button.extraclass) {
+          $(buttonDOM).addClass(button.extraclass)
+        }
+        $(buttons_wrapper).append(buttonDOM);
+        $(buttons_wrapper).find(".button[buttonNumber='" + bNumber + "']").click(function(event) {
+          event.preventDefault();
+          button.callback()
         })
-      }
+      })
+    }
+    $("a#link_to_notification_template").fancybox({"autoDimensions":false, "autoScale":true, "scrolling":"no", "width":width, "height":adjustedHeight, "padding":0, "hideOnOverlayClick":true, "hideOnContentClick":false, "showCloseButton":showCloseButton, "onStart":function(data) {
     }, "onComplete":function(data) {
-      var text_wrapper = $("#fancybox-content").find(".notification_row1");
-      var buttons_wrapper = $("#fancybox-content").find(".notification_row2");
-      var adjustedHeight = $(text_wrapper).outerHeight(true) + $(buttons_wrapper).outerHeight(true);
-      if($("#fancybox-content").height() < adjustedHeight) {
-        var transitionTimeMs = 500;
-        var adjustedHeightWithPadding = adjustedHeight + $("#" + id).cssNumber("padding-top") + $("#" + id).cssNumber("padding-bottom");
-        $("#" + id).animate({height:adjustedHeight + "px"}, transitionTimeMs);
-        $("#fancybox-content").animate({height:adjustedHeightWithPadding + "px"}, transitionTimeMs);
-        $("#fancybox-content > div").animate({height:adjustedHeightWithPadding + "px"}, transitionTimeMs)
-      }
     }, "onClosed":function(data) {
-      _cleanDialog(id);
+      _cleanDialog();
       if(options && typeof options.onClosedCallback == "function") {
         options.onClosedCallback()
       }
     }});
-    var _cleanDialog = function(id) {
-      var text_wrapper = $("#" + id).find(".notification_row1");
-      var buttons_wrapper = $("#" + id).find(".notification_row2");
-      $(buttons_wrapper).html("");
-      var icon = $(text_wrapper).find(".notificationIcon");
-      $(icon).removeAttr("src");
-      $(icon).removeClass().addClass("notificationIcon");
-      $(text_wrapper).find(".notification_text").html("");
-      $("#" + id).removeAttr("style")
-    };
     $("a#link_to_notification_template").trigger("click")
+  };
+  var _cleanDialog = function() {
+    var notificationWrapper = $("#notification_template_wrapper");
+    $(notificationWrapper).html("");
+    var notificationTemplate = document.createElement("div");
+    $(notificationTemplate).attr("id", "notification_template");
+    var row1 = document.createElement("div");
+    $(row1).addClass("notification_row1");
+    var img = document.createElement("img");
+    $(img).addClass("notificationIcon");
+    $(img).attr("style", "display:none");
+    var span = document.createElement("span");
+    $(span).addClass("notification_text");
+    $(row1).append(img);
+    $(row1).append(span);
+    $(notificationTemplate).append(row1);
+    var row2 = document.createElement("div");
+    $(row2).addClass("notification_row2");
+    $(notificationTemplate).append(row2);
+    $(notificationWrapper).append(notificationTemplate)
   };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
   sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog}
@@ -13804,14 +13862,12 @@ VISH.Editor.Text = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Editor.Video = function(V, $, undefined) {
   var urlDivId = "tab_video_from_url_content";
-  var urlInputId = "video_url";
   var init = function() {
     V.Editor.Video.HTML5.init();
     V.Editor.Video.Repository.init();
     V.Editor.Video.Youtube.init();
     V.Editor.Video.Vimeo.init();
-    var urlInput = $("#" + urlInputId);
-    $(urlInput).watermark("Paste video URL");
+    var urlInput = $("#" + urlDivId).find("input");
     $("#tab_video_from_url_content .previewButton").click(function(event) {
       if(V.Police.validateObject($(urlInput).val())[0]) {
         contentToAdd = V.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
@@ -14037,8 +14093,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     V.Editor.Object.Web.init();
     V.Editor.Object.PDF.init();
     V.Editor.Object.Snapshot.init();
-    var urlInput = $(urlDivId).find("input");
-    $(urlInput).watermark("Paste SWF file URL");
+    var urlInput = $("#" + urlDivId).find("input");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(V.Police.validateObject($("#" + urlInputId).val())[0]) {
         contentToAdd = V.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
@@ -16295,7 +16350,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var init = function() {
-    $("#prompt2name").watermark("Quiz Session Name");
+    $("#quizSessionNameInput").watermark(V.I18n.getTrans("i.QuizSessionName"));
     V.Quiz.API.init();
     V.Quiz.MC.init();
     V.Quiz.TF.init();
@@ -16338,7 +16393,16 @@ VISH.Quiz = function(V, $, undefined) {
       return
     }
     if(report.empty === true) {
-      _showAlert("prompt3_alert");
+      var options = {};
+      options.width = "80%";
+      options.text = V.I18n.getTrans("i.QuizEmptyAnswerAlert");
+      var button1 = {};
+      button1.text = V.I18n.getTrans("i.Ok");
+      button1.callback = function() {
+        $.fancybox.close()
+      };
+      options.buttons = [button1];
+      V.Utils.showDialog(options);
       return
     }
     quizModule.disableQuiz(quiz);
@@ -16346,10 +16410,28 @@ VISH.Quiz = function(V, $, undefined) {
     var answers = report.answers;
     V.Quiz.API.sendAnwers(answers, quizSessionId, function(data) {
       disableAnswerButton(quiz);
-      _showAlert("prompt4_alert")
+      var options = {};
+      options.width = "80%";
+      options.text = V.I18n.getTrans("i.QuizSubmittedAlert");
+      var button1 = {};
+      button1.text = V.I18n.getTrans("i.Ok");
+      button1.callback = function() {
+        $.fancybox.close()
+      };
+      options.buttons = [button1];
+      V.Utils.showDialog(options)
     }, function(error) {
       disableAnswerButton(quiz);
-      _showAlert("prompt5_alert")
+      var options = {};
+      options.width = "80%";
+      options.text = V.I18n.getTrans("i.QuizNotSubmittedAlert");
+      var button1 = {};
+      button1.text = V.I18n.getTrans("i.Ok");
+      button1.callback = function() {
+        $.fancybox.close()
+      };
+      options.buttons = [button1];
+      V.Utils.showDialog(options)
     })
   };
   var _onStartQuiz = function(event) {
@@ -16371,7 +16453,16 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _startNewQuizSession = function(quiz) {
     if(currentQuizSession) {
-      _showAlert("prompt1_alert");
+      var options = {};
+      options.width = "80%";
+      options.text = V.I18n.getTrans("i.QuizMultipleLaunchAlert");
+      var button1 = {};
+      button1.text = V.I18n.getTrans("i.Ok");
+      button1.callback = function() {
+        $.fancybox.close()
+      };
+      options.buttons = [button1];
+      V.Utils.showDialog(options);
       return
     }
     _loadingLaunchButton(quiz);
@@ -16411,25 +16502,56 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var _onStopQuiz = function(event) {
-    $.fancybox($("#prompt2_alert").html(), {"autoDimensions":false, "scrolling":"no", "width":$(".current").width(), "height":Math.min(200, $(".current").height()), "showCloseButton":false, "padding":5, "onCleanup":function() {
-    }, "onClosed":function() {
-    }})
+    var options = {};
+    options.width = "80%";
+    options.text = V.I18n.getTrans("i.QuizSaveConfirmation");
+    options.buttons = [];
+    var button1 = {};
+    button1.text = V.I18n.getTrans("i.cancel");
+    button1.extraclass = "quizSession_button_cancel";
+    button1.callback = function() {
+      V.Quiz.onCloseQuizSession("cancel")
+    };
+    options.buttons.push(button1);
+    var button2 = {};
+    button2.text = V.I18n.getTrans("i.No");
+    button2.extraclass = "quizSession_button_no";
+    button2.callback = function() {
+      V.Quiz.onCloseQuizSession("no")
+    };
+    options.buttons.push(button2);
+    var button3 = {};
+    button3.text = V.I18n.getTrans("i.Yes");
+    button3.extraclass = "quizSession_button_yes";
+    button3.callback = function() {
+      V.Quiz.onCloseQuizSession("yes")
+    };
+    options.buttons.push(button3);
+    var input = document.createElement("input");
+    $(input).attr("id", "quizSessionNameInput");
+    $(input).attr("title", V.I18n.getTrans("i.tooltip.QSInput"));
+    $(input).addClass("quizSessionNameInput");
+    $(input).watermark(V.I18n.getTrans("i.QuizSessionName"));
+    options.middlerow = $(input);
+    options.middlerowExtraClass = "mr_quizSession";
+    options.buttonsWrapperClass = "forceCenter";
+    V.Utils.showDialog(options)
   };
   var onCloseQuizSession = function(saving) {
     var name = undefined;
     switch(saving) {
       case "yes":
-        $(".prompt2name").each(function(index, pn) {
+        $(".quizSessionNameInput").each(function(index, pn) {
           if($(pn).is(":visible")) {
             name = $(pn).val()
           }
         });
-        $(".prompt_button_viewer2").addClass("quizStartButtonLoading");
+        $(".quizSession_button_yes").addClass("quizStartButtonLoading");
         _closeQuizSession(name);
         break;
       case "no":
-        $(".prompt_button_viewer1").addClass("quizStartButtonLoading");
-        _closeQuizSession();
+        $(".quizSession_button_no").addClass("quizStartButtonLoading");
+        _deleteQuizSession();
         break;
       case "cancel":
       ;
@@ -16441,12 +16563,15 @@ VISH.Quiz = function(V, $, undefined) {
   var _closeQuizSession = function(name) {
     V.Quiz.API.closeQuizSession(currentQuizSession.id, name, function(data) {
       $.fancybox.close();
-      $(".prompt_button_viewer1").removeClass("quizStartButtonLoading");
-      $(".prompt_button_viewer2").removeClass("quizStartButtonLoading");
+      $(".quizSession_button_no").removeClass("quizStartButtonLoading");
+      $(".quizSession_button_yes").removeClass("quizStartButtonLoading");
       _enableLaunchButton(currentQuiz);
       currentQuiz = null;
       currentQuizSession = null
     })
+  };
+  var _deleteQuizSession = function() {
+    _closeQuizSession()
   };
   var render = function(slide, template) {
     var quizModule = _getQuizModule(slide.quiztype);
@@ -16461,7 +16586,7 @@ VISH.Quiz = function(V, $, undefined) {
       $(quizButtons).append(startButton)
     }
     if(selfA || quizMode === V.Constant.QZ_MODE.RT) {
-      var answerButton = $("<input type='button' class='buttonQuiz quizAnswerButton' value='" + V.I18n.getTrans("i.QuizAnswer") + "'/>");
+      var answerButton = $("<input type='button' class='buttonQuiz quizAnswerButton' value='" + V.I18n.getTrans("i.QuizButtonAnswer") + "'/>");
       $(quizButtons).append(answerButton)
     }
     return quizButtons
@@ -16504,7 +16629,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(startButton).removeAttr("disabled");
     $(startButton).removeClass("quizStartButtonLoading");
     $(startButton).attr("quizStatus", "running");
-    $(startButton).attr("value", V.I18n.getTrans("i.QuizOptions"))
+    $(startButton).attr("value", V.I18n.getTrans("i.QuizButtonOptions"))
   };
   var loadTab = function(tab_id) {
     $(".fancy_viewer_tab_content").hide();
@@ -16635,9 +16760,6 @@ VISH.Quiz = function(V, $, undefined) {
         $(checkbox).attr("src", imagePathRoot + ".png");
         break
     }
-  };
-  var _showAlert = function(alertId) {
-    $.fancybox($("#" + alertId).html(), {"autoDimensions":false, "scrolling":"no", "width":$(".current").width(), "height":Math.min(200, $(".current").height()), "showCloseButton":false, "padding":5})
   };
   var aftersetupSize = function(increase) {
     setTimeout(function() {
@@ -19715,8 +19837,7 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
   var urlDivId = "tab_object_snapshot_content";
   var urlInputId = "object_snapshot_code";
   var init = function() {
-    var urlInput = $(urlDivId).find("input");
-    $(urlInput).watermark("Paste website URL");
+    var urlInput = $("#" + urlDivId).find("input");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(V.Police.validateObject($("#" + urlInputId).val())[0]) {
         contentToAdd = V.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
@@ -19851,8 +19972,7 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
   var urlDivId = "tab_object_from_web_content";
   var urlInputId = "object_embedWeb_code";
   var init = function() {
-    var urlInput = $(urlDivId).find("input");
-    $(urlInput).watermark("Paste website URL");
+    var urlInput = $("#" + urlDivId).find("input");
     $("#" + urlDivId + " .previewButton").click(function(event) {
       if(V.Police.validateObject($("#" + urlInputId).val())[0]) {
         contentToAdd = V.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
@@ -23448,7 +23568,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     if(V.Configuration.getConfiguration()["mode"] == "vish") {
       var send_type = "GET";
       var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
-      if(typeof name == "string") {
+      if(typeof name == "string" && name.trim() != "") {
         params["name"] = name
       }
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/close", data:params, success:function(data) {

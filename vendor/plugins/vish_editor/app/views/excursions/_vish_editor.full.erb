@@ -202,7 +202,7 @@
 		<!-- Hidden link for loading fancybox -->
 		<a id="fancyLoad" href="#loading_fancy"></a>
 		<!-- Hidden link to open notification template -->
-		<a id="link_to_notification_template" href="#notification_template"></a>
+		<a id="link_to_notification_template" href="#notification_template_cloned"></a>
 	</div>
 
 	<!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
@@ -650,20 +650,10 @@
 	</div>
 
 
-
 	<!-- NOTIFICATIONS -->
 
 	<!-- NOTIFICATION TEMPLATE -->
-	<div style='display:none'>
-		<div id='notification_template'>
-			<div class="notification_row1">
-				<img class="notificationIcon">
-				<span class="notification_text"></span>
-			</div>
-			<div class="notification_row2">
-			</div>
-		</div>
-	</div>
+	<div id="notification_template_wrapper" style='display:none'></div>
 
 	<!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
 	<div style='display:none'>
@@ -1000,7 +990,7 @@
 				<div id="box1" class="box1 box1fancy1">
 					<p class="textfancy"><span i18n-key="i.addvideourl">add video url (YouTube, HTML5)</span>.</p></br>
 					<img id="image_add_url" class="image_add_url" src="/assets/icons/url_img.png"/>
-					<input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
+					<input class="input_text_fancy formsizefancy1 marginsfancy1">
 					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 				<div id="box2" class="box2">
@@ -1332,7 +1322,7 @@
 					</td>
 					<td>
 						<img src="/assets/zonethumbs/quiz.png"/>
-						<h1 i18n-key="i.QuizzesTrans">Quizzes</h1>
+						<h1 i18n-key="i.Quizzes">Quizzes</h1>
 					</td>
 				</tr>
 				<tr>

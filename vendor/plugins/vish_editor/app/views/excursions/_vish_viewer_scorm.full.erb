@@ -109,66 +109,14 @@
 		</div>
 	</div>
 
-	<!-- PROMPT WHEN TRY TO LAUNCH TWO QUIZZES AT THE SAME TIME -->
-	<div style='display:none'>
-		<div id='prompt1_alert'>
-			<div class="prompt_text_container_viewer">
-				<span i18n-key="i.QuizMultipleLaunchAlert" class="prompt_text_viewer">Please stop all quizzes before launch another one.</span>
-			</div>
-			<div>
-				<a i18n-key="i.Ok" href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">Ok</a>
-			</div>
-		</div>
-	</div>
 
-	<!-- PROMPT WHEN SAVE A QUIZ SESSION -->
-	<div style='display:none'>
-		<div id='prompt2_alert'>
-			<div class="prompt_text_container_viewer prompt_text_container_viewer2">
-				<p><span i18n-key="i.QuizSaveConfirmation" class="prompt_text_viewer">Do you want to save the quiz results?</span></p>
-				<p><input type="text" id="prompt2name" title="Enter a name for the quiz session" class="prompt2name"></input></p>
-				<a i18n-key="i.Yes" href="#" onclick="VISH.Quiz.onCloseQuizSession('yes');" class="prompt_button_viewer prompt_button_viewer2">Yes</a>
-				<a i18n-key="i.No" href="#" onclick="VISH.Quiz.onCloseQuizSession('no');" class="prompt_button_viewer prompt_button_viewer1">No</a>
-				<a i18n-key="i.Cancel" href="#" onclick="VISH.Quiz.onCloseQuizSession('cancel');" class="prompt_button_viewer prompt_button_viewer3">Cancel</a>
-			</div>
-		</div>
-	  </div>
+	<!-- NOTIFICATIONS -->
 
-	<!-- PROMPT WHEN TRY TO SEND AN EMPTY ANSWER-->
-	<div style='display:none'>
-		<div id='prompt3_alert'>
-			<div class="prompt_text_container_viewer">
-				<span i18n-key="i.QuizEmptyAnswerAlert" class="prompt_text_viewer">Please, answer the quiz before send</span>
-			</div>
-			<div>
-				<a i18n-key="i.Ok" href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">Ok</a>
-			</div>
-		</div>
-	</div>
+	<!-- Hidden link to open notification template -->
+	<a id="link_to_notification_template" href="#notification_template_cloned"></a>
 
-	<!-- PROMPT AFTER SEND ANSWER-->
-	<div style='display:none'>
-		<div id='prompt4_alert'>
-			<div class="prompt_text_container_viewer">
-				<span i18n-key="i.QuizSubmittedAlert" class="prompt_text_viewer">Your answer has been submitted</span>
-			</div>
-			<div>
-				<a i18n-key="i.Ok" href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">Ok</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- PROMPT AFTER ERROR ON SENDING ANSWER-->
-	<div style='display:none'>
-		<div id='prompt5_alert'>
-			<div class="prompt_text_container_viewer">
-				<span i18n-key="i.QuizNotSubmittedAlert" class="prompt_text_viewer">Sorry, your answer couldn't be sent</span>
-			</div>
-			<div>
-				<a i18n-key="i.Ok" href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer_viewer4">Ok</a>
-			</div>
-		</div>
-	</div>
+	<!-- NOTIFICATION TEMPLATE -->
+	<div id="notification_template_wrapper" style='display:none'></div>
 
 
 	<!-- WALKTHROUGH HELP SECTION -->
