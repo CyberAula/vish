@@ -1,10 +1,11 @@
-<div id="effect" class="newClass ui-corner-all">
-
+<div class="left-info">
   <div class="author">
-    <%= link_to @event.author.subject do %>
-    <%= image_tag @event.author.logo.url(:small) %>
-    
-    <% end %>
+    <div class="avatar">
+      <%= link_to @event.author.subject do %>
+      <%= image_tag @event.author.logo.url(:small) %>
+      <% end %>
+    </div>
+  <div class="right-name">
     <p><%= truncate_name(@event.author.name, :length => 50) %></p>
 
     <div class="add">
@@ -15,7 +16,10 @@
       <%end%>
     </div>
   </div>
+</div>
+</div>
 
+<div id="effect" class="newClass ui-corner-all">
   <dl class="dl-horizontal">
     <%# unless document.description.blank? %>
       <dt><%= t 'document.info.description' %></dt>

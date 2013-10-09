@@ -1,11 +1,11 @@
 <section id="event">
 
   <div class="event">
-    <div class="box-show-resource">
+    <div class="box-show">
       <!--visor-->
-      <div class="container-visor-resource">
-        <div class="elemento-visor-resource"></div>
-        <div class="caja-visor-resource">
+      <div class="container-visor">
+        <!--div class="elemento-visor"></div-->
+        <div class="caja-elementos">
 
           <div class="icon-box" id="event-<%=@event.id%>">
             <% if @event.poster.new_record? %>
@@ -26,8 +26,8 @@
         </div>
       </div>
     </div>
-    <div class="recomended-items-resource ">
-      <div class="recomended_documents">
+    <div class="recomended">
+      <div class="recomended-items">
         <ul class="small-box clearfix">
           <% popular_resources(6).each do |resource| %>
             <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-  <div class="description-activity-resource">
+  <div class="description-activity">
     <div class="box_description">
       <!--tool-->
       <div class="excursion_tool">
@@ -45,7 +45,7 @@
     </div>
     
     <!--activity-->
-    <div class="activity-box-resource">
+    <div class="activity-box">
       <%= render :partial => 'common_documents/activity', :locals => { :document => @event } %>
     </div>
   </div>
