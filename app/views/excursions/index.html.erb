@@ -1,7 +1,7 @@
 <section class="clearfix" id="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
-    <%if current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
+    <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
         scope = :more
       else
         scope = :net
