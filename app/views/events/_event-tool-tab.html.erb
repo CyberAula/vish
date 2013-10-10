@@ -30,19 +30,17 @@
       </a>
     </li>  
 <!--edit info-->
+  <!--
     <% if can? :update, document %>
       <li class="<%= document_details_tab_class document, :edit %>">
 
         <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
       </li>
     <% end %>
-
+-->
     <li>
       <a href="#tab5" data-toggle="tab">
         <i class="icon-flag"></i> 
-        <!--span class=" hidden-tablet hidden-phone">
-          <%#=t('excursion.actions.scorm')%>
-        </span-->
       </a>
     </li>  
   </ul>
@@ -74,7 +72,7 @@
   </div>
   <% if can? :update, document %>
   <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
-    <%= render partial: 'events/edit_form', locals: { event: @event } %>
+    <%#= render partial: 'events/edit_form', locals: { event: @event } %>
   </div>
   <% end %>
 

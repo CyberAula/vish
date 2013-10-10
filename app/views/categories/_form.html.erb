@@ -54,7 +54,10 @@
 
   $('#<%=div_id%> .new_category').bind('ajax:error', function(evt, data, status, xhr){
     $("#<%=div_id%> .errors").remove();
-    var errors = data.responseJSON.errors;
+    var errors = "There was an unexpected error on the server. Please contact the technical support so they can solve it.";
+    if(data.responseJSON!=undefined){
+      errors = data.responseJSON.errors;
+    }
     if (errors.indexOf("duplicated") != -1) {
       $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.errors.duplicated')%></div>");
     } else {
