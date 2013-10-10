@@ -151,6 +151,10 @@ namespace :vish_editor do
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/zonethumbs"
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/templatesthumbs"
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/excursion_thumbnails"
+    #VEditor icons, ViSH Viewer icons are in the vicons folder
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/icons"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/jquery-ui"
+
     #Remove themes
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/themes/* "
 
