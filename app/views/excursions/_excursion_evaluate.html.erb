@@ -16,9 +16,9 @@
               $(document).on("click","#myTeachingModal .evaluation_form_button",function() {
                 var is_ok = true;
                 //validate empty radio buttons
-                $(':radio').each(function() { // loop through each radio button
+                $(':radio.star').each(function() { // loop through each radio button
                     nam = $(this).attr('name'); // get the name of its set
-                    if (!$(':radio[name="'+nam+'"]:checked').length) { 
+                    if (!$(':radio.star[name="'+nam+'"]:checked').length) { 
                         // see if any button in the set is checked
                         alert('<%=t("evaluation.alert")%>');
                         is_ok = false;

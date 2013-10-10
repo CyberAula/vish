@@ -550,8 +550,8 @@ class Excursion < ActiveRecord::Base
 
   def parse_for_meta
     parsed_json = JSON(json)
-    activity_object.title = parsed_json["title"]
-    activity_object.description = parsed_json["description"]
+    activity_object.title = parsed_json["title"] ? parsed_json["title"] : "Title"
+    activity_object.description = parsed_json["description"] 
     activity_object.tag_list = parsed_json["tags"]
     begin
       ageRange = parsed_json["age_range"]
@@ -567,7 +567,7 @@ class Excursion < ActiveRecord::Base
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
-    self.update_column :thumbnail_url, parsed_json["avatar"]
+    self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png"
   end
 
   def fix_relation_ids_drafts
