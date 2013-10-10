@@ -178,7 +178,7 @@ es:
     neutral_a: "Medio"
     disagree_a: "Malo"
     strong_disagree_a: "Muy malo"
-    alert: "Por favor rellena las cinco preguntas de evaluación. Gracias."
+    alert: "Por favor rellena todas las preguntas de evaluación. Gracias."
     success: "Tus respuestas se han guardado. Gracias por ayudar a evaluar esta excursión."
   event:
     actions:
