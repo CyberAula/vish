@@ -23,6 +23,7 @@
   text-align: center
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75)
   vertical-align: middle
+
   span
     .caret
       border-left: 5px solid transparent
@@ -30,13 +31,36 @@
       border-top: 5px solid black
       margin-left: 5px
 
+.ui-multiselect-menu
+  @include white-box-style
+  background-color: $grayLighter
+  .ui-multiselect-checkboxes 
+    padding: 0
+    margin: 0
+    overflow-x: hidden
+    li
+      label
+        cursor: pointer
+        display: block
+        border: 1px solid transparent
+        padding: 3px 1px
 
-.ui-multiselect-checkboxes 
-  label
-    cursor:pointer
-    display:block
-    border: 1px solid transparent
-    padding: 3px 1px
+        input[type="checkbox"]
+          margin-right: 5px
+          display: block
+          float: left
+          outline: none
+        span
+          width: 150px
+          text-overflow: ellipsis
+          display: block
+          overflow: hidden
+          float: left
+          white-space: nowrap
+          word-wrap: normal
+  button
+    width: 100%
+
 
 .separator_line
   border-top: 1px solid #ebebeb
@@ -51,11 +75,9 @@
   .caret 
     vertical-align: middle
 
-.ui-multiselect-checkboxes
-  padding: 0
-  margin: 0
-.ui-multiselect-menu
-  background-color: #f2f2f2
+
+
+
 
 //BTN
 #category_id
