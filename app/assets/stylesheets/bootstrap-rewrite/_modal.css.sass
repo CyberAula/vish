@@ -1,0 +1,40 @@
+.modal
+  .accordion
+    a
+      color: $grayLight
+  form
+    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    margin: 0 auto
+  label
+    font-size: 12px
+    font-family: $secondFontFamily
+    color: $firstColor
+    display: block
+    float: left
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    clear: left
+  span
+    font-size: 10px
+    float: left
+  input[type="text"],
+  textarea
+    display: block
+    float: left
+    width: 96%
+    padding: 4px 2%
+  select
+    display: block
+    float: left
+    width: 96%
+    padding: 4px 2%
+  .input-append
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    input
+      display: block
+      float: left
+      width: 83%
+    .add-on
+      display: block
+      float: left
+      width: 10%
