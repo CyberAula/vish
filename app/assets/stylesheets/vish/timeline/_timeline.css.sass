@@ -1,25 +1,44 @@
 #time-line
   .timeline
-    @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: block
     margin: 0 auto
+    .root:hover,
+    .media:hover
+      .media-heading
+        .x
+          display: block
+          float: right
+          margin-top: 5px
+          a
+            color: $gray
     .root,
     .media
       border-bottom: 1px solid $white
+      overflow: visible
+      display: block
+      float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .avatar
-        width: 50px
-        height: 50px
+        width: 30px
+        height: 30px
         display: block
-        margin: 0 auto
+        float: left
         img
           @include border-radius($baseBorderRadius)
       .media-heading
         display: block
-        text-align: center
-        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        text-align: left
+        @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
         margin-bottom: 0px
+        float: left
+        clear: right
         h3
           margin: 0px
+          font-size: 18px
+          padding-left: 10px
+          display: block
+          float: left
           a
             color: $gray
             &:hover
@@ -27,12 +46,18 @@
         .x
           display: none
       .media-body
+        clear: both
+        display: block
+        overflow: visible
+        width: 100%
+        float: left
         hr
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
           margin: 0px auto 5px
+          clear: both
         .objects
-          margin-bottom: 10px
+          margin-bottom: 5px
           .post
             @include border-radius($baseBorderRadius)
             //border-top: 1px solid #F2F2F2
@@ -40,43 +65,22 @@
             @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
             text-align: center
             padding: 10px
-
-
-        .recomended-items
-          .recomended_excursion
+        .recomended
+          .recomended-items
             ul
               @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
               clear: both
               display: block
-              margin: 10px auto 20px
+              margin: 5px auto 10px
               height: 90px
               p.info_action
-                @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
-                text-align: center
+                @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                text-align: left
                 margin: 0px auto 
               hr
                 margin: 0 auto
                 li.box-item
                   margin-bottom: 10px
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         .actions
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
@@ -94,7 +98,9 @@
             float: right
             a
               color: lighten($firstColor, 20%)
-
+    .more
+      display: block
+      float: left
 
 .comments
   @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -117,7 +123,7 @@
       margin-top: 10px
       width: 90% !important
       margin-left: 10px
-      clear: right
+      clear: right !important
       h6
         margin: 0
         line-height: 0
@@ -125,10 +131,12 @@
         a
           color: $grayDarker
     .media-body
-      @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
       clear: both
       display: block
       margin: 0px auto 
+      overflow: visible
+      width: 100%
+      float: left
       .objects
         .comment
           font-size: 12px
