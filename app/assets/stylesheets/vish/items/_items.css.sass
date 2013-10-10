@@ -10,14 +10,22 @@
     margin: 0
     li.box-item:hover
       text-decoration: none
-      box-shadow: 5px 5px 5px rgba(20,20,20, 0.4)
+      box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
+      transform: scale(1.05)
+      -ms-transform: scale(1.05)
+      -webkit-transform: scale(1.05)
+      transition: all 0.2s ease 0s
+      -ms-transition: all 0.2s ease 0s
+      -webkit-transition: all 0.2s ease 0s
+
     li.box-item
+      //animation: 0.8s ease-out 0s normal none 1 zemslideup, 1s ease-out 0s normal none 1 zemfadein
       position: relative
       float: left
       overflow: inherit
       list-style: none
       background-color: $white
-      box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
       @include border-radius($baseBorderRadius)
       //BAGDE EXCURSION
       .badge-excursion-active
