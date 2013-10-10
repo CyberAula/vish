@@ -1,4 +1,5 @@
-var i18n = {"vish":{"es":{"i.walkWelcome1_1":"\u00a1Bienvenido a ViSH Editor!", "i.walkWelcome1_2":"ViSH Editor es una aplicaci\u00f3n web innovadora que permite crear increibles presentaciones web y recursos educativos novedosos como Excursiones Virtuales.", "i.walkWelcome1_3":"En este tutorial aprender\u00e1s como empezar a utilizar esta herramienta.", "i.walkWelcome2_1":"Panel de diapositivas", "i.walkWelcome2_2":"En este panel aparecen las diapositivas actuales de tu presentaci\u00f3n. Si seleccionas cualquiera de ellas podr\u00e1s visualizarla, editar y borrarla.", 
+var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Editor tienes a tu disposici\u00f3n varios videotutoriales en nuestro", "i.YouTubeChannel":"canal de YouTube", "i.walkMenuHelp1b":"Estos tutoriales cubren desde el uso b\u00e1sico para principiantes hasta funcionalidades avanzadas de la herramienta.", "i.walkMenuHelp2":"El siguiente videotutorial te ense\u00f1ar\u00e1 como empezar a utilizar esta herramienta en unos pocos minutos.", "i.walkMenuHelp3":"Si lo prefieres puedes hacer click aqu\u00ed para ver un tutorial textual que te ense\u00f1ar\u00e1 r\u00e1pidamente los conceptos b\u00e1sicos para empezar a utilizar ViSH Editor.", 
+"i.walkWelcome1_1":"\u00a1Bienvenido a ViSH Editor!", "i.walkWelcome1_2":"ViSH Editor es una aplicaci\u00f3n web innovadora que permite crear increibles presentaciones web y recursos educativos novedosos como Excursiones Virtuales.", "i.walkWelcome1_3":"En este tutorial aprender\u00e1s como empezar a utilizar esta herramienta.", "i.walkWelcome2_1":"Panel de diapositivas", "i.walkWelcome2_2":"En este panel aparecen las diapositivas actuales de tu presentaci\u00f3n. Si seleccionas cualquiera de ellas podr\u00e1s visualizarla, editar y borrarla.", 
 "i.walkWelcome3_1":"A\u00f1adir una nueva diapositiva", "i.walkWelcome3_2":"Puedes a\u00f1adir una nueva diapositiva a tu presentaci\u00f3n mediante este bot\u00f3n.", "i.walkWelcome3_3":"Despu\u00e9s de pulsarlo, aparecer\u00e1 una nueva pantalla para que elijas la plantilla de tu nueva diapositiva.", "i.walkWelcome4_1":"Importar contenido", "i.walkWelcome4_2":"Este icono mostrar\u00e1 la pantalla de importaci\u00f3n, que te permitir\u00e1 importar diapositivas de diferentes fuentes.", "i.walkWelcome4_3":"Importar diapositivas de una presentaci\u00f3n en formato PDF.", 
 "i.walkWelcome4_4":"Importar diapositivas de otras presentaciones creadas con ViSH Editor.", "i.walkWelcome5_1":"Barra de Herramientas de ViSH Editor", "i.walkWelcome5_2":"Esta barra de herramientas ofrece diferentes funcionalidades para gestionar y componer la presentaci\u00f3n.", "i.walkWelcome5_3":"Pulsa en siguiente para ver una explicaci\u00f3n de los diferentes elementos de esta barra de herramientas.", "i.walkWelcome6_1":"Este bot\u00f3n te permite salvar tu presentaci\u00f3n como borrador.", 
 "i.walkWelcome7_1":"Este bot\u00f3n te permite publicar tu presentaci\u00f3n en la plataforma ViSH. Si no has terminado tu presentaci\u00f3n, puedes guardarla como borrador para mantenerla privada y terminarla despu\u00e9s.", "i.walkWelcome8_1":"Este bot\u00f3n te permite previsualizar la presentaci\u00f3n. Podr\u00e1s ver la presentaci\u00f3n de la misma forma que lo har\u00e1n los usuarios tras su publicaci\u00f3n.", "i.walkWelcome9_1":"Este bot\u00f3n te permite elegir un tema visual para la presentaci\u00f3n.", 
@@ -52,9 +53,9 @@ var i18n = {"vish":{"es":{"i.walkWelcome1_1":"\u00a1Bienvenido a ViSH Editor!", 
 "i.walkQuizzes_4":"Despu\u00e9s de que lances un cuestionario en vivo usando el bot\u00f3n 'Lanzar' situado en la parte inferior del cuestionario, una nueva pantalla aparecer\u00e1 ('pantalla de cuestionario en vivo') mostrando diversos elementos", "i.walkQuizzes_5a":"Un hiperenlace al cuestionario en vivo, por ejemplo", "i.walkQuizzes_5b":"Este hiperenlace es utilizado para responder al cuestionario. Cualquier persona que acceda a esta direcci\u00f3n de internet podr\u00e1 responder al cuestionario en vivo. Por lo tanto puedes compartir tu cuestionario en vivo mediante este hiperenlace, por ejemplo envi\u00e1ndolo por correo electr\u00f3nico o peg\u00e1ndolo en un foro.", 
 "i.walkQuizzes_6":"Algunos logos de redes sociales populares (Twitter, Facebook, Google+, ...). Puedes compartir el hiperenalce del cuestionario en vivo en cualquiera de estas redes sociales pulsando sobre el logo correspondiente.", "i.walkQuizzes_7":"Un c\u00f3digo QR para dispositivos m\u00f3viles. Cualquier dispositivo puede obtener autom\u00e1ticamente el hiperenlace del cuestionario en vivo escaneando este c\u00f3digo QR.", "i.walkQuizzes_8":"Una pesta\u00f1a 'Resultados' situada en la parte superior, que permite ver en tiempo real los resultados del cuestionario. Dependiendo del tipo de cuestionario, la representaci\u00f3n de los resultados ser\u00e1 diferente (gr\u00e1fico circular, de barras, etc.).", 
 "i.walkQuizzes_9":"Si quieres 'cerrar' el cuestionario en vivo debes hacer click en el bot\u00f3n 'Detener' situado en la parte inferior derecha. Despu\u00e9s de cerrar un cuestionario, no se admitir\u00e1n ni guardar\u00e1n m\u00e1s respuestas. Tambi\u00e9n puedes cerrar un cuestionario en cualquier momento desde la plataforma ViSH. Cuando cierras un cuestionario en vivo, puedes, opcionalmente, especificar un nombre para facilitar su b\u00fasqueda posterior en el ViSH.", "i.walkQuizzes_10":"Si sales de la pantalla de cuestionarios en vivo, puedes regresar en cualquier momento haciendo click sobre el bot\u00f3n 'Opciones' situado en la parte inferior del cuestionario. Tenga en cuenta que si un cuestionario ha sido lanzado, el bot\u00f3n 'Lanzar' es reemplazado por un bot\u00f3n 'Opciones'. Cuando se cierre el cuestionario, el bot\u00f3n 'Lanzar' volver\u00e1 a aparecer. Finalmente, tenga en cuenta que no puede lanzar m\u00e1s de un cuestionario en vivo a la vez.", 
-"i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", "i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", 
-"i.AddTags":"A\u00f1adir etiquetas", "i.addvideourl":"a\u00f1adir URL de video (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", "i.by":"por", 
-"i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", 
+"i.vtTitle_GStarted":"Introducci\u00f3n a ViSH Editor", "i.accept":"aceptar", "i.add":"a\u00f1adir", "i.Add":"A\u00f1adir", "i.Addanavatar":"A\u00f1adir avatar *", "i.addatitle":"a\u00f1ade un t\u00edtulo", "i.AddContent":"A\u00f1adir Contenido", "i.addembeddedobject":"a\u00f1adir objeto embebido", "i.AddFromJSONfile":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.addpicurl":"a\u00f1adir URL de imagen", "i.AddSlide":"A\u00f1adir diapositiva", "i.AddSlideMin":"A\u00f1adir", 
+"i.AddSlides":"A\u00f1adir Diapositivas", "i.AddslideshowPDF":"A\u00f1adir presentaci\u00f3n de un fichero PDF", "i.AddTags":"A\u00f1adir etiquetas", "i.addvideourl":"a\u00f1adir URL de video (YouTube, HTML5)", "i.Age range":"Rango de edad", "i.areyousureNotification":"\u00bfest\u00e1s seguro?", "i.Art":"Arte", "i.Astronomy":"Astronom\u00eda", "i.Author":"Autor", "i.Background":"Fondo", "i.biology":"biolog\u00eda", "i.Biology":"Biolog\u00eda", "i.browserrequirements":"El navegador que estas utilizando no cumple los requisitos minimos para utilizar esta aplicaci\u00f3n. Por favor, actualiza tu navegador", 
+"i.by":"por", "i.cancel":"cancelar", "i.Cancel":"Cancelar", "i.Chemistry":"Qu\u00edmica", "i.Citizenship":"Educaci\u00f3n para la Ciudadan\u00eda", "i.ClassicalLanguages":"Lenguas Cl\u00e1sicas", "i.close":"cerrar", "i.Close":"Cerrar", "i.content":"contenido", "i.Content":"Contenido", "i.Context":"Contexto", "i.continue":"continuar", "i.Continue":"Continuar", "i.CrossCurricularEducation":"Educaci\u00f3n Multidisciplinar", "i.ComputerScience":"Inform\u00e1tica", "i.delete":"borrar", "i.Description":"Descripci\u00f3n", 
 "i.difficult":"dif\u00edcil", "i.Difficulty":"Dificultad", "i.done":"hecho", "i.Done":"Hecho", "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", 
 "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.errorFlickrConnection":"Error conectando con Flickr", "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursions":"Excursiones", "i.exitConfirmation":"Vas a abandonar esta pagina. Se perder\u00e1n todos los cambios que no hayas salvado.", 
 "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No es posible exportar la presentaci\u00f3n a un fichero JSON.", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", "i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", 
@@ -11460,16 +11461,20 @@ VISH.Status = function(V, $, undefined) {
   var _checkDomain = function() {
     _isAnotherDomain = false;
     if(_checkIframe()) {
-      var parent = window.parent;
-      while(parent != window.top) {
-        if(typeof parent.location.href === "undefined") {
-          _isAnotherDomain = true;
-          break
-        }else {
-          parent = parent.parent
+      try {
+        var parent = window.parent;
+        while(parent != window.top) {
+          if(typeof parent.location.href === "undefined") {
+            _isAnotherDomain = true;
+            break
+          }else {
+            parent = parent.parent
+          }
         }
-      }
-      if(typeof window.top.location.href === "undefined") {
+        if(typeof window.top.location.href === "undefined") {
+          _isAnotherDomain = true
+        }
+      }catch(e) {
         _isAnotherDomain = true
       }
     }
@@ -14224,16 +14229,23 @@ VISH.Tour = function(V, $, undefined) {
   var _adjustMaxHeightOfCurrentTour = function() {
     var currentJoyride = getCurrentTour();
     if(typeof currentJoyride != "undefined") {
+      var joyRideParent = $(currentJoyride).parent();
       var joyRideWrapper = $(currentJoyride).find(".joyride-content-wrapper");
       var top = $(currentJoyride).cssNumber("top");
       var paddingTop = $(joyRideWrapper).cssNumber("padding-top");
       var paddingBottom = $(joyRideWrapper).cssNumber("padding-bottom");
-      var heightPercentage = (top + paddingTop + paddingBottom) * 100 / $(currentJoyride).parent().width();
-      var maxHeightPercentage = Math.floor(100 - heightPercentage);
-      if(maxHeightPercentage > 1) {
-        maxHeightPercentage = maxHeightPercentage - 1
+      var outerPercentage = (top + paddingTop + paddingBottom) * 100 / $(joyRideParent).width();
+      var maxHeightPercentage = Math.floor(100 - outerPercentage);
+      if(maxHeightPercentage > 1.5) {
+        maxHeightPercentage = maxHeightPercentage - 1.5
       }
-      $(currentJoyride).css("max-height", maxHeightPercentage + "%")
+      $(currentJoyride).css("max-height", maxHeightPercentage + "%");
+      if(top === 0) {
+        var currentHeightPercentage = $(currentJoyride).height() * 100 / $(window).height();
+        currentHeightPercentage = Math.min(currentHeightPercentage, maxHeightPercentage);
+        var topPorcentage = (100 - currentHeightPercentage) / 2;
+        $(currentJoyride).css("top", topPorcentage + "%")
+      }
     }
   };
   return{startTourWithId:startTourWithId, getCurrentTour:getCurrentTour}
