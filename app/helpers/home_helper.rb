@@ -62,13 +62,6 @@ module HomeHelper
     following_ids = subject.following_actor_ids
     following_ids |= [ subject.actor_id ]
 
-    #XXX TODO change.
-    #this can be improved. Now if you only have 3 or less contacts in home we display
-    #"more" scope
-    if following_ids.size < 4
-      options[:scope] = :more
-    end
-
     query = klass
     if klass.is_a?(Array)
       query = ActivityObject.where(:object_type => klass.map{|t| t.to_s})
