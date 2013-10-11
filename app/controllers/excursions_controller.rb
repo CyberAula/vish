@@ -185,9 +185,9 @@ class ExcursionsController < ApplicationController
      
       format.json {
         results = Hash.new
-        results["excursions"] = [];
+        results["excursions"] = []
         @found_excursions.each do |excursion|
-          results["excursions"].push(JSON(excursion.json));
+          results["excursions"].push(JSON(excursion.json))
         end
         render :json => results
       }
@@ -337,7 +337,7 @@ class ExcursionsController < ApplicationController
       params[:type] = "flashcard|virtualTour"
     end
 
-    # Allow  me to search only (e.g.) Flashcards
+    # Allow me to search only one type (e.g.) Flashcards
     opts.deep_merge!({
       :conditions => { :excursion_type => params[:type] }
     }) unless params[:type].blank?
