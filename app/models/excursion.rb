@@ -153,17 +153,25 @@ class Excursion < ActiveRecord::Base
             myxml.description do
               myxml.langstring(self.title + ". A Virtual Excursion provided by http://vishub.org.");
             end
-            self.tags.each do |tag|
-              myxml.keyword do
-                myxml.langstring(tag.name.to_s);
+            if self.tags && self.tags.kind_of?(Array)
+              self.tags.each do |tag|
+                myxml.keyword do
+                  myxml.langstring(tag.name.to_s);
+                end
               end
             end
             #Add subjects as additional keywords
             if ejson["subject"]
-              ejson["subject"].each do |subject|
+              if ejson["subject"].kind_of?(Array)
+                ejson["subject"].each do |subject|
+                  myxml.keyword do
+                    myxml.langstring(subject);
+                  end 
+                end
+              elsif ejson["subject"].kind_of?(String)
                 myxml.keyword do
-                  myxml.langstring(subject);
-                end 
+                    myxml.langstring(ejson["subject"]);
+                end
               end
             end
 
