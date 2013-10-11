@@ -21046,7 +21046,6 @@ VISH.Editor.Settings = function(V, $, undefined) {
     }
   };
   var checkMandatoryFields = function() {
-  	return true;
     var title = $("#presentation_details_input_title").val();
     var thumbnailURL = presentationThumbnail;
     if(typeof title != "string" || title.trim() == "") {
