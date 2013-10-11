@@ -6,3 +6,5 @@
 
 User-agent: *
 Disallow: /search
+Disallow: /excursions/new
+
