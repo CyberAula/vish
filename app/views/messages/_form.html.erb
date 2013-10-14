@@ -1,7 +1,3 @@
-<h2 class="colorfont">
-  <%= t('mailbox.message.new') %>
-</h2>
-
 <%= form_tag messages_path, :method => :post , :class => "new_message" do %>
   <% if @receipt and @receipt.errors.any? %>
     <div class="error">
