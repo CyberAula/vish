@@ -32,9 +32,7 @@
     <div class="info-bottom">
       <hr class="soften">
       <!--like -->
-      <div class="like">  
-        <%#TODO Next if is only to deploy in production until it is solved, because for excursion 181
-        excursion.post_activity is nil%>
+      <div class="like">        
          <% if excursion.post_activity%>
           <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
           <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>

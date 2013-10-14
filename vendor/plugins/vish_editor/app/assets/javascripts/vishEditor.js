@@ -13755,10 +13755,14 @@ VISH.Editor.Text = function(V, $, undefined) {
             var slide = $("article").has(current_area);
             $(slide).addClass("temp_shown");
             var iframeContent = _getCKEditorIframeContentFromInstance(ckeditor);
-            myHeight = $(iframeContent).find("html").height();
-            $(slide).removeClass("temp_shown")
+            var newMyHeight = $(iframeContent).find("html").height();
+            $(slide).removeClass("temp_shown");
+            if(newMyHeight > myHeight) {
+              ckeditor.resize(myWidth, newMyHeight)
+            }
+          }else {
+            ckeditor.resize(myWidth, myHeight)
           }
-          ckeditor.resize(myWidth, myHeight);
           _fixCKEDITORBug(ckeditor)
         });
         if(newInstance) {
@@ -15731,6 +15735,12 @@ VISH.Samples = function(V, undefined) {
   "y":"42.7109375", "slide_id":"article8_article4"}, {"x":"261.53125", "y":"41.7109375", "slide_id":"article8_article5"}, {"x":"93", "y":"91.7109375", "slide_id":"article8_article1"}, {"x":"57.125", "y":"24.2109375", "slide_id":"article8_article2"}], "slides":[{"id":"article8_article4", "type":"standard", "template":"t2", "elements":[{"id":"article8_article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">A&shy;</span></span></p>\n'}]}, 
   {"id":"article8_article5", "type":"standard", "template":"t3", "elements":[{"id":"article8_article5_zone1", "areaid":"header"}, {"id":"article8_article5_zone2", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">B&shy;</span></span></p>\n'}]}, {"id":"article8_article1", "type":"standard", "template":"t1", "elements":[{"id":"article8_article1_zone1", "type":"text", "areaid":"left", "body":'<p>\n\t<span autocolor="true" style="color:#000"><span style="font-size:36px;">&shy;<span style="font-size:20px;">C</span></span></span></p>\n'}, 
   {"id":"article8_article1_zone2", "areaid":"header"}, {"id":"article8_article1_zone3", "areaid":"subheader"}]}, {"id":"article8_article2", "type":"standard", "template":"t1", "elements":[{"id":"article8_article2_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><span autocolor="true" style="color:#000">&shy;</span>D</span></p>\n'}, {"id":"article8_article2_zone2", "areaid":"header"}, {"id":"article8_article2_zone3", "areaid":"subheader"}]}]}]};
+  test = {"VEVersion":"0.7", "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "author":"agordillo", "theme":"theme1", "language":"independent", "age_range":"4 - 20", "slides":[{"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What are ancient weapons?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', 
+  "answer":true}, {"id":"4", "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":true}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"agordillo", "type":"quiz_simple", "slides":[{"id":"article3", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", 
+  "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What are ancient weapons?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', 
+  "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":true}}], "containsQuiz":true}]}}], "containsQuiz":true}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {

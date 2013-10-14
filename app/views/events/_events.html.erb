@@ -3,7 +3,8 @@
     <%= render partial: 'events/event-add' %>
   <% end %>
 
-  <% subject_events(profile_or_current_subject, {:scope => scope, :limit => 0}).each do |event| %>
+  <% all_events = subject_events(profile_or_current_subject, {:scope => scope, :limit => 0})%>
+  <% all_events.each do |event| %>
       <%= render :partial => 'events/event', :locals => { :event => event } %>
   <% end %>
 </ul>
@@ -15,5 +16,12 @@
 <% end %>
 
 
+<script>
+	function re_apply_events_backstrech(){
+		<% all_events.each do |event| %>
+    		$("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
+  		<% end %> 
+	}
 
+</script>
 
