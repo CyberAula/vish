@@ -21,37 +21,29 @@ module ApplicationHelper
 		ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(number).map{|ao| ao.object}
 	end
 
-	def category_thumbnail(category)
-		default_thumb = link_to "<i class='icon-th-large'></i>".html_safe, category, :title => category.title
-		
-		if category.property_objects.count < 2
-			return default_thumb
-		end
+	def category_thumbnail(category)		
 		thumbs_array = []
 		category.property_objects.each do |item|
 			if item.object.class == Picture
 				thumbs_array << item.object.file.to_s+"?style=500"
 			elsif item.object.class == Excursion
 				thumbs_array << excursion_raw_thumbail(item.object)
-			elsif item.object.class == Event
+			elsif item.object.class == Event && !item.object.poster.file_file_name.nil?
 				thumbs_array << item.object.poster
 			end
 		end
+		
+		result = "<div class='category_thumb'>"
+		for i in 0..3
+			if thumbs_array[i]
+				result += "<div class='category_thumb_"+i.to_s+"'><img src='"+thumbs_array[i]+"'/></div>"
+			else
+				result += "<div class='category_thumb_"+i.to_s+"'></div>"
+			end
+		end			
+		result += "</div>"
+		return raw result
 
-		if thumbs_array.size < 2
-			return default_thumb
-		else
-			result = "<div class='category_thumb'>"
-			for i in 0..3
-				if thumbs_array[i]
-					result += "<div class='category_thumb_"+i.to_s+"'><img src='"+thumbs_array[i]+"'/></div>"
-				else
-					result += "<div class='category_thumb_"+i.to_s+"'></div>"
-				end
-			end			
-			result += "</div>"
-			return raw result
-		end
 
 
 	end
