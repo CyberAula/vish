@@ -1,10 +1,165 @@
 <section id="faq">
-  <div class="">
-    <legend><%= t('faq.title')%></legend>
-    <div>
-    <span><%=t('faq.question1')%></span>
-    <span><%=t('faq.answer1')%></span>
+  <div class="faq">
+  <legend>
+    <%= t('faq.title')%>
+    <div class="input-append">
+      <input class="span2" id="appendedInputButton" type="text">
+      <button class="btn" type="button">Filter</button>
     </div>
+  </legend>
+
+
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+<!--______________CONTENT INDEX________________-->
+    <li class="active"><a href="#tab1" data-toggle="tab">ViSHub</a></li>
+    <li><a href="#tab2" data-toggle="tab">ViSH EDITOR</a></li>
+    <li><a href="#tab3" data-toggle="tab">Resources</a></li>
+    <li><a href="#tab4" data-toggle="tab">Events</a></li>
+  </ul>
+
+<!--______________CONTENT FAQS________________-->
+
+  <div class="tab-content">
+<!--______________CONTENT VISH________________-->
+    <div class="tab-pane active" id="tab1">
+
+
+      <div class="accordion" id="accordion_faq_vish">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_1">
+              <%=t('faq.question1')%>
+            </a>
+          </div>
+          <div id="faq_vish_1" class="accordion-body collapse ">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_2">
+              C<%=t('faq.question1')%>
+            </a>
+          </div>
+          <div id="faq_vish_2" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+<!--______________CONTENT VISHEDITOR________________-->
+    <div class="tab-pane" id="tab2">
+
+
+      <div class="accordion" id="accordion_faq_vish_editor">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_1">
+              <%=t('faq.question1')%> editor
+            </a>
+          </div>
+          <div id="faq_vish_editor_1" class="accordion-body collapse ">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%> editor
+            </div>
+          </div>
+        </div>
+
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_2">
+              <%=t('faq.question1')%>editor2
+            </a>
+          </div>
+          <div id="faq_vish_editor_2" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%> editor2
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--______________CONTENT resources________________-->
+    <div class="tab-pane" id="tab3">
+
+      <div class="accordion" id="accordion_faq_resources">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_resources_1">
+              <%=t('faq.question1')%>resource
+            </a>
+          </div>
+          <div id="faq_resources_1" class="accordion-body collapse ">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%>resource
+            </div>
+          </div>
+        </div>
+
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_resources_2">
+              <%=t('faq.question1')%>resource2
+            </a>
+          </div>
+          <div id="faq_resources_2" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%>resource2
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--______________CONTENT events________________-->
+    <div class="tab-pane" id="tab4">
+
+      <div class="accordion" id="accordion_faq_resources">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_event_1">
+              <%=t('faq.question1')%>event
+            </a>
+          </div>
+          <div id="faq_event_1" class="accordion-body collapse ">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%>event
+            </div>
+          </div>
+        </div>
+
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_event_2">
+              <%=t('faq.question1')%>event
+            </a>
+          </div>
+          <div id="faq_event_2" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%>event
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
+</div>
+<p class="help">Was the content on this page helpful to you? <a>Yes</a> / <a>No</a></p>
+</div>
+
 </section>
+
 

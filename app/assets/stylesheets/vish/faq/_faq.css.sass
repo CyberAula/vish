@@ -1,0 +1,50 @@
+#faq
+  @include white-box
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  .faq
+    display: block
+    margin: 20px auto
+    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    legend
+      margin-top: 20px
+      .input-append
+        float: right
+        margin-top: 5px
+        margin-bottom: 0px
+    .tabbable
+      ul
+        @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        a
+          color: $firstColor
+          font-weight: bold
+      .tab-content > .active
+        margin-top: 0px
+
+        .accordion
+          .accordion-group
+            border: none
+            .accordion-heading
+
+              a
+                color: $gray
+                font-weight: bold
+                &:hover
+                  text-decoration: none
+                  color: $black
+            .accordion-body
+              .accordion-inner
+                border-top: none
+                padding: 0px 30px 9px
+    .help
+      display: block
+      text-align: right
+      margin-top: 10px
+      margin-bottom: 10px
+      a
+        cursor: pointer
+      a:first-child
+        margin-left: 20px
+
+
+
+        
