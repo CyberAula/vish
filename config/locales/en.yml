@@ -247,6 +247,12 @@ en:
     unload_warning: "The excursion is not saved!"
     top: "forMe"
   external: "external"
+  faq:
+    title: "Frequently Answered Questions"
+    question1: "What is ViSH?"
+    answer1: "I don't know"
+    question2: "What is a virtual excursion?"
+    answer2: "I don't know"
   filter: "filter"
   follow:
     add_favorite: "Add favorite"
