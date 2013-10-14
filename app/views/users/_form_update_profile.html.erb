@@ -22,7 +22,7 @@
           <%= f.label t('profile.' + current_subject.class.to_s.downcase + '.birthday'), :class => "text" %>
           <%= date_select "user", "birthday", :order => [:day, :month, :year], :end_year => Date.today.year, :start_year => (Date.today.year - 100), :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>
           </div>
-          <%= f.label t('profile.actualcity'), :class => "text" %>
+          <%= f.label t('profile.city'), :class => "text" %>
           <%= f.text_field :city, :class => "input_settings" %>
 
           <%= f.label t('profile.country'), :class => "text" %>
