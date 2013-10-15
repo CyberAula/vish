@@ -9,7 +9,7 @@
   </div>
 
   <div class="modal-body">
-  <form>
+  <div class="layoutform">
     <!-- Tags preloaded -->
     <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
     <ul id="resourcePreloadTagList" style="display:none">
@@ -101,9 +101,9 @@
       </div>
     </div>
     <br>
-    </form>
+    </div>
     
-    <form>
+    <div class="layoutform">
     <p><%= t('document.body.title2')%></p>
     <!--TITULO-->
     <label><%= t('document.leyend.title')%></label>
@@ -144,7 +144,7 @@
     </div>
     <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
     <br>
-    </form>
+    </div>
   </div><!-- CIERRA BODY-->
 
 
