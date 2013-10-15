@@ -18,10 +18,10 @@
 <!--______________________________desktop-->
       <div class=" hidden-phone hidden-tablet">
 <!--login-->
-        <li class="login  dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <li class=" dropdown log">
+          <a class="login dropdown-toggle" data-toggle="dropdown" href="#">
             <%=t("sign_in")%>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
+            <b class="caret"></b>
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
             <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
@@ -46,11 +46,11 @@
           </ul>
         </li>
 <!--sign_up-->
-        <li class=" sign_up">
-          <a href="<%=new_user_registration_path%>"class="signin">
+        <a class=" sign_up btn" href="<%=new_user_registration_path%>">
+
             <%=t("sign_up")%>
-          </a>
-        </li>
+
+        </a>
 <!--search-->
         <li class="search-ui ">
           <%= render partial: 'layouts/uisearch_header' %>

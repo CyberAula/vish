@@ -24,12 +24,12 @@
 <!--______________CONTENT VISH________________-->
     <div class="tab-pane active" id="tab1">
 
-
+    
       <div class="accordion" id="accordion_faq_vish">
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_1">
-              <%=t('faq.question1')%>
+               <div class="number">1. </div><%=t('faq.question1')%>
             </a>
           </div>
           <div id="faq_vish_1" class="accordion-body collapse ">
@@ -43,7 +43,7 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_2">
-              C<%=t('faq.question1')%>
+              <div class="number">2. </div><%=t('faq.question1')%>
             </a>
           </div>
           <div id="faq_vish_2" class="accordion-body collapse">
@@ -52,41 +52,53 @@
             </div>
           </div>
         </div>
-      </div>
 
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_3">
+              <div class="number">3. </div><%=t('faq.question1')%>
+            </a>
+          </div>
+          <div id="faq_vish_3" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%=t('faq.answer1')%>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
 
 <!--______________CONTENT VISHEDITOR________________-->
     <div class="tab-pane" id="tab2">
-
-
       <div class="accordion" id="accordion_faq_vish_editor">
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_1">
-              <%=t('faq.question1')%> editor
-            </a>
-          </div>
-          <div id="faq_vish_editor_1" class="accordion-body collapse ">
-            <div class="accordion-inner">
-              <%=t('faq.answer1')%> editor
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_1">
+                <%=t('faq.question1')%> editor
+              </a>
+            </div>
+            <div id="faq_vish_editor_1" class="accordion-body collapse ">
+              <div class="accordion-inner">
+                <%=t('faq.answer1')%> editor
+              </div>
             </div>
           </div>
-        </div>
 
-
-        <div class="accordion-group">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_2">
-              <%=t('faq.question1')%>editor2
-            </a>
-          </div>
-          <div id="faq_vish_editor_2" class="accordion-body collapse">
-            <div class="accordion-inner">
-              <%=t('faq.answer1')%> editor2
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_2">
+                <%=t('faq.question1')%>editor2
+              </a>
+            </div>
+            <div id="faq_vish_editor_2" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%=t('faq.answer1')%> editor2
+              </div>
             </div>
           </div>
-        </div>
+
       </div>
     </div>
 <!--______________CONTENT resources________________-->
@@ -157,47 +169,14 @@
 
   </div>
 </div>
-<p class="help">Was the content on this page helpful to you? <a>Yes</a> / <a>No</a></p>
+<p class="help">
+  Was the content on this page helpful to you? 
+  <a>Yes</a> / 
+  <a href="#faqmodal" role="button" class="" data-toggle="modal">No</a>
+</p>
 </div>
 
 </section>
 
-<div class="toggler">
-<div id="effect" class="ui-widget-content ui-corner-all">
-<h3 class="ui-widget-header ui-corner-all">Show</h3>
-<p>
-Etiam libero neque, luctus a, eleifend nec, semper at, lorem. Sed pede. Nulla lorem metus, adipiscing ut, luctus sed, hendrerit vitae, mi.
-</p>
-</div>
-</div>
-<script>
-  $(function() {
-  // run the currently selected effect
-  function runEffect() {
-  // get effect type from
-  var selectedEffect = $( "#effectTypes" ).val();
-  // most effect types need no options passed by default
-  var options = {};
-  // some effects have required parameters
-  if ( selectedEffect === "scale" ) {
-  options = { percent: 100 };
-  } else if ( selectedEffect === "size" ) {
-  options = { to: { width: 280, height: 185 } };
-  }
-  // run the effect
-  $( "#effect" ).show( slide, options, 500, callback );
-  };
-  //callback function to bring a hidden box back
-  function callback() {
-  setTimeout(function() {
-  $( "#effect:visible" ).removeAttr( "style" ).fadeOut();
-  }, 1000 );
-  };
-  // set effect from select menu value
-  $( "#button" ).click(function() {
-  runEffect();
-  return false;
-  });
-  $( "#effect" ).hide();
-  });
-</script>
+
+<%= render :partial => 'form'%>
