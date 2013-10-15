@@ -21,7 +21,7 @@
         <li class="login  dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
             <%=t("sign_in")%>
-            <b class="caret"></b>
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
             <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
