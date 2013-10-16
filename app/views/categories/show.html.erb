@@ -7,9 +7,10 @@
     <!--<h1><#%= t('categories.leyend.title') %>: <%= @category.title %></h1>
     <h2><#%= t('categories.leyend.description') %>: <%= @category.description %></h2>
     <h2><#%= t('categories.leyend.items') %>:</h2>-->
-    <h1><%= @category.title %></h1>
-    <h2><%= @category.description %></h2>
+    <h2><%= @category.title %></h2>
     <%= link_to(raw("<i class='icon-trash'></i>") , @category, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action" )%>
+    <h4><%= @category.description %></h3>
+
   </div>
   
   <div id="excursions">

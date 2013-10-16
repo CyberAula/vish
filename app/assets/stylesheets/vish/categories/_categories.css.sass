@@ -8,19 +8,34 @@
     @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
     height: 160px
 
-    h1
+    h2
       color: $gray
       font-family: $secondFontFamily
       line-height: 25px
-      padding-top: 33px
+      height: 50px
+      overflow: hidden
+      word-wrap: break-word
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      display: block
     
-    h2
-      font-size: 1.8em
-    &:hover
-      a
-        i.icon-trash
-          @include opacity(100)
+    h4
 
+      word-wrap: break-word
+      @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      float: left
+      display: block
+
+    a
+      i.icon-trash
+        float: right
+        font-size: 28px
+        color: $grayLight
+        margin-top: 10px
+        margin-right: 10px
+        &:hover
+          color: $gray
+          text-decoration: none
     .icon-box
       @include border-radius($baseBorderRadius)
       @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
@@ -86,16 +101,7 @@
         font-size: 92px
         display: block
         text-align: center
-    a
-      i.icon-trash
-        @include opacity(0)
-        float: right
-        margin-right: 63px
-        font-size: 28px
-        color: $grayLight
-        &:hover
-          color: $gray
-          text-decoration: none
+
 
 .helpCategories
   margin-top: 0px !important
