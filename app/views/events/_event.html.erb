@@ -3,24 +3,17 @@
     <div class="container-img">
       <div class="dummy"></div>
       <div class="element resource-center">
-
-
-          <div class="img-box resource-center" id="event-<%=event.id%>">
-            <div class="event">
-              <i class='icon-facetime-video'></i>
-            </div>
+        <div class="img-box resource-center" id="event-<%=event.id%>">
+          <div class="event">
+            <i class='icon-facetime-video'></i>
           </div>
-
-
-
         </div>
+      </div>
     </div>
-
   <% end %>
   <script>
     $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
   </script>    
-
 
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
@@ -52,7 +45,6 @@
         <%=t('follow.views')%>
       </div>
     </div>
-
   </div>
 </li>
 
