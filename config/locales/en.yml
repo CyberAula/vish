@@ -39,7 +39,7 @@ en:
     actions:
       add: "Create category"
       apply: "Apply"
-      verb: "categorize"
+      verb: "Categorize"
     description_input: "Description for this category"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."

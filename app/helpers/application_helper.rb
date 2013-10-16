@@ -3,7 +3,7 @@ module ApplicationHelper
 	  categories = subject_categories(current_subject, {:scope => :me, :limit => 0})
 	  subject_categories_array = categories.map { |category| [category.title, category.id] }.sort_by! {|cat| cat[0]} 
 	  categories_selection_array = get_initial_categories(item)
-	  select_tag(select_id, options_for_select(subject_categories_array, categories_selection_array), {:multiple => true })
+	  select_tag(select_id, options_for_select(subject_categories_array, categories_selection_array), {:title=> t("categories.actions.verb") ,:multiple => true })
 	end
 
 	def get_initial_categories(item)	
