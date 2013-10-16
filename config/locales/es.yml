@@ -40,7 +40,7 @@ es:
     actions:
       add: "Crear categoría"
       apply: "Aplicar"
-      verb: "categorizar"
+      verb: "Categorizar"
     description_input: "Descripción para esta categoría"
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
