@@ -18,9 +18,9 @@
               </script>
             <% end %>
             <% if (can?(:update, @event) && @event.poster.new_record?) %>
-              <div class="poster btn btn-primary">
-                <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true %>
-              </div>
+
+                <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
+
             <% end %>
           </div>  
         </div>
