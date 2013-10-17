@@ -1,6 +1,6 @@
 <%= content_for :javascript do %>
   if(window.location.hash!=""){
-    var hash = window.location.hash;
+    var hash = window.location.hash.substring(1);
     var link = $("a[href=" + hash+"]");
     if(link.size() > 0){
       var tab_id = link.parents(".tab-pane").attr("id");
@@ -12,7 +12,7 @@
 
   $(".accordion-toggle").click(function(){
     var href = $(this).attr("href");
-    window.location.hash = href;
+    window.location.hash = href+"a";
   });
 
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -23,7 +23,7 @@
 
     //finally add the hash
     var href2 = $("#" + the_id + " .accordion-toggle:first").attr("href");
-    window.location.hash = href2;
+    window.location.hash = href2 + "a";
   });
 
   $("#launch_uservoice").click(function(){
