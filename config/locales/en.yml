@@ -250,9 +250,20 @@ en:
   faq:
     title: "Frequently Answered Questions"
     question1: "What is ViSH?"
-    answer1: "I don't know"
-    question2: "What is a virtual excursion?"
-    answer2: "I don't know"
+    answer1: "The Virtual Science Hub is a meeting point for scientists and teachers and is based around the idea of “Virtual Excursions”, the online analog to an on-site visit, during which the students discover science in Europe’s top scientific centers. Several media such as flashcards, video-conference and virtual experiments help them feel the science rather than just study it. ViSH will be using Social Stream as a social networking library and it is entering its development phase. You can find the code at the GING github page."
+    question2: "What is Global Excursion?"
+    answer2: "It is a FP7 European Project, funded by the European Commission under the 7th Framework Programme. It is coordinated by ZSI and the consortium is formed by UPM, EUN, SZTAKI, UCAM and UNIZAR. Check this http://www.globalexcursion-project.eu"
+    question3: "What is the eScience?"
+    answer3: "eScience stands for “enhanced” science, in the sense of transdisciplinarity, global teams addressing large scale challenges, thanks to the use of new ICT tools and facilities. Include topics like high performance computing, large storage of data, complex networks of sensors, broadband communications, open repositories, new instrumentation, visualization tools…"
+    question4: "Do I need to register in Vishub?"
+    answer4: "Yes, if you want to create a new eExcursion and participate. If you just want to hang around, or see what others have created, you may see all the contents without registering."
+    question5: "Frequently Answered Questions"
+    answer5: "What is ViSH?"
+    
+    editor_question1: "What is ViSH Editor?"
+    editor_answer1: "Vish Editor i is a HTML5 application to create web presentations in a simple and friendly way."
+    editor_question2: "It is difficult to create a new excursion?"
+    editor_answer2: "It is very easy and straightforward. You will find it very familiar and intuitive! Prepare the content to be included, organize it in a didactical and understandable manner, and then drag and drop or select the shape of the slides."
   filter: "filter"
   follow:
     add_favorite: "Add favorite"
