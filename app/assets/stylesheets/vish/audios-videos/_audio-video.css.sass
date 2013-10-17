@@ -4,8 +4,10 @@
   float: left
   margin: 10px
 
-.video
-  .video-container
+.video,
+.audio
+  .video-container,
+  .audio-container
     margin: 0 auto
     display: block
     width: 480px
@@ -36,10 +38,16 @@
         font-size: 14px
         width: 150px
         right: 10px
-        left: 60%
+        left: 50%
       .jp-mute
         left: 150px
         top: 35px
+  .audio-container
+    width: 100%
+  .jp-interface
+    height: 60px !important
+
+
 
 
 @media (max-width: 600px)
