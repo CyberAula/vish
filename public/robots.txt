@@ -7,9 +7,10 @@
 User-agent: *
 Disallow: /search
 Disallow: /excursions/new
+Disallow: /*/*/profile
 
 user-agent: AhrefsBot
 disallow: /excursions/new
 disallow: /search
-
+Disallow: /*/*/profile
 
