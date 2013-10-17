@@ -1,3 +1,34 @@
+<%= content_for :javascript do %>
+  if(window.location.hash!=""){
+    var hash = window.location.hash;
+    var link = $("a[href=" + hash+"]");
+    if(link.size() > 0){
+      var tab_id = link.parents(".tab-pane").attr("id");
+      var tab_to_click = $("a[href=#" + tab_id+"]");  //we will click the tab with href, the tab-pane id
+      tab_to_click.click();
+      link.click();
+    }
+  };
+
+  $(".accordion-toggle").click(function(){
+    var href = $(this).attr("href");
+    window.location.hash = href;
+  });
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    var href = $(e.target).attr("href");
+    var the_id = href.substring(1); //remove the #
+  
+    $("#" + the_id + " .accordion-body:first").collapse("show");
+
+    //finally add the hash
+    var href2 = $("#" + the_id + " .accordion-toggle:first").attr("href");
+    window.location.hash = href2;
+  });
+
+<%end%>
+
+
 <section id="faq">
   <div class="faq">
   <legend>
@@ -69,7 +100,7 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish" href="#faq_vish_4">
-              <div class="number">3. </div><%=t('faq.question4')%>
+              <div class="number">4. </div><%=t('faq.question4')%>
             </a>
           </div>
           <div id="faq_vish_4" class="accordion-body collapse">
