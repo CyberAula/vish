@@ -650,20 +650,10 @@
 	</div>
 
 
-
 	<!-- NOTIFICATIONS -->
 
 	<!-- NOTIFICATION TEMPLATE -->
-	<div style='display:none'>
-		<div id='notification_template'>
-			<div class="notification_row1">
-				<img class="notificationIcon" style="display:none">
-				<span class="notification_text"></span>
-			</div>
-			<div class="notification_row2">
-			</div>
-		</div>
-	</div>
+	<div id="notification_template_wrapper" style='display:none'></div>
 
 	<!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
 	<div style='display:none'>
@@ -1000,7 +990,7 @@
 				<div id="box1" class="box1 box1fancy1">
 					<p class="textfancy"><span i18n-key="i.addvideourl">add video url (YouTube, HTML5)</span>.</p></br>
 					<img id="image_add_url" class="image_add_url" src="/assets/icons/url_img.png"/>
-					<input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
+					<input class="input_text_fancy formsizefancy1 marginsfancy1">
 					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
 				<div id="box2" class="box2">
@@ -1098,10 +1088,23 @@
 
 	<!-- WALKTHROUGH HELP SECTION -->
 
-	<!-- Help in menu -->
+	<!-- Menu Help -->
+	<ol id="menubar_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkWelcome1_1">Welcome to ViSH Editor!</h2>
+			<p i18n-key="i.walkWelcome1_2">ViSH Editor is an innovative web application that allows you to create amazing web slideshows and novel educational resources such as Virtual Excursions.</p>
+			<p><span i18n-key="i.walkMenuHelp1a">To learn how to use ViSH Editor you can watch several video tutorials in our</span> <a i18n-key="i.YouTubeChannel" class="tut_tutlink" href="http://www.youtube.com/watch?v=tZ8qirSTIIs&list=PLve_ezrFIJJxujiqCZid6KcgxPh4ksSp2&vq=hd720" target="_blank">YouTube Channel</a>. <span i18n-key="i.walkMenuHelp1b">These tutorials cover from basic usage for beginners to advanced features.</span></p>
+			<p i18n-key="i.walkMenuHelp2">The following video tutorial will teach you how to getting started with ViSH Editor in a few minutes.</p>
+			<p i18n-key="i.vtTitle_GStarted" class="tut_video_title">Getting Started with ViSH Editor</p>
+			<iframe class="tut_iframe_yt" width="625" height="400" src="//www.youtube.com/embed/fBSNZxs8m0I?list=PLve_ezrFIJJxujiqCZid6KcgxPh4ksSp2" frameborder="0" allowfullscreen></iframe>
+			<p class="tut_space">&nbsp;</p>
+			<p><span class="tut_tutlink" onClick="VISH.Tour.startTourWithId('getting_started_help', 'top');" i18n-key="i.walkMenuHelp3">If you prefer you can click here to see a text tutorial which will teach you quickly the basics to get started.</span></p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
 
 	<!-- Getting started tutorial -->
-	<ol id="menubar_help" class="joyRideTipContent">
+	<ol id="getting_started_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_width500_center tut_without_arrow" data-options="tipLocation:none">
 			<h2 i18n-key="i.walkWelcome1_1">Welcome to ViSH Editor!</h2>
 			<p i18n-key="i.walkWelcome1_2">ViSH Editor is an innovative web application that allows you to create amazing web slideshows and novel educational resources such as Virtual Excursions.</p>
@@ -1332,7 +1335,7 @@
 					</td>
 					<td>
 						<img src="/assets/zonethumbs/quiz.png"/>
-						<h1 i18n-key="i.QuizzesTrans">Quizzes</h1>
+						<h1 i18n-key="i.Quizzes">Quizzes</h1>
 					</td>
 				</tr>
 				<tr>
