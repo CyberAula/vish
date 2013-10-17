@@ -26,6 +26,11 @@
     window.location.hash = href2;
   });
 
+  $("#launch_uservoice").click(function(){
+    UserVoice.showPopupWidget();
+    event.preventDefault();
+  });
+
 <%end%>
 
 
@@ -216,11 +221,8 @@
 <p class="help">
   Was the content on this page helpful to you? 
   <a>Yes</a> / 
-  <a href="#faqmodal" role="button" class="" data-toggle="modal">No</a>
+  <a id="launch_uservoice" href="" role="button" class="">No</a>
 </p>
 </div>
 
 </section>
-
-
-<%= render :partial => 'form'%>
