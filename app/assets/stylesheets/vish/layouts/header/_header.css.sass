@@ -162,18 +162,20 @@ header.navbar,
         .search-ui
           float: left
 
-      .login
+      .log
         float: right
-        margin-top: 10px
-        font-family: $secondFontFamily
-        border: 1px solid #EEEEEE
-        @include border-radius($baseBorderRadius)
-        @include btn-primary
         
 
         .caret
           color: $white
           border-top: 4px solid $white
+        .login
+          float: right
+          margin-top: 10px
+          font-family: $secondFontFamily
+          border: 1px solid #EEEEEE
+          @include border-radius($baseBorderRadius)
+          @include btn-primary
         a.dropdown-toggle
           color: $white
         a
@@ -181,7 +183,7 @@ header.navbar,
             text-decoration: none 
             outline: none     
         ul.dropdown-menu
-          margin: 7px 40px 0 -175px
+          margin: 7px 40px 0 -148px
           padding: 6px 7px
           .btn-primary
             float: right
@@ -212,6 +214,7 @@ header.navbar,
         @include btn-primary
         background-color: $secondColor
         margin-right: 10px
+        background-image: none
         margin-left: 10px
         a 
           color: $white

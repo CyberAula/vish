@@ -4,7 +4,13 @@
 
 
 @media (min-width: 1200px)
-  #show_items
+  #show_items,
+  #document,
+  #picture,
+  #embed,
+  #audio,
+  #event,
+  #video
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
       @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -17,7 +23,7 @@
       display: block
       float: left
 
-    .recomended-items
+    .recomended
       @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
       float: right
@@ -28,7 +34,13 @@
       float: left
 
 @media (min-width: 980px) and (max-width: 1199px)
-  #show_items
+  #show_items,
+  #document,
+  #picture,
+  #embed,
+  #audio,
+  #event,
+  #video
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     .box-show
       @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -41,7 +53,7 @@
       display: block
       float: left
 
-    .recomended-items
+    .recomended
       @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
       display: block
       float: right

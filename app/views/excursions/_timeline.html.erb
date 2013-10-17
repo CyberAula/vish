@@ -1,61 +1,8 @@
+<div class="recomended">
   <div class="recomended-items">
-    <div class="recomended_excursion">
-      <ul class="small-box clearfix">
-
-        <li class="box-item excursion-item">
-          <%if excursion.id==55%>
-          <div class="badge-excursion-active"></div>
-          <%end%>
-          <%= link_to(excursion) do %>
-          <div class="container-img">
-            <div class="dummy"></div>
-            <div class="element">
-
-              <div class="img-box" id="excursion-<%=excursion.id%>"></div>
-
-            </div>
-          </div>
-          
-          <% end %>
-          <script>
-            $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
-          </script>
-          <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
-          <!--INFO excursuion-->
-          <div class="info">
-            <!--Title -->
-            <div class="name">
-              <%= link_to excursion.title, excursion %>
-            </div>
-            <!--Autor -->
-            <div class="author"> 
-              <span class="by"><%=t('by')%></span>
-              <%= link_to excursion.author.name, excursion.author.subject %>
-            </div>
-            <!--____________________ -->
-            <div class="info-bottom">
-              <hr class="soften">
-              <!--like -->
-              <div class="like">  
-        <%#TODO Next if is only to deploy in production until it is solved, because for excursion 181
-        excursion.post_activity is nil%>
-        <% if excursion.post_activity%>
-        <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
-        <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
-        <%else%>
-        <div class="count">0</div>
-        <%end%>
-      </div>
-      <!--views -->
-      <div class="views">
-        <%=excursion.visit_count.to_s%>
-        <%=t('follow.views')%>
-      </div>
-    </div>
-
+    <ul class="small-box">
+      <p class="info_action"> Added Excursion</p>
+      <%= render :partial => "excursions/excursion" , locals: { excursion: excursion}%>
+    </ul>
   </div>
-</li>
-
-</ul>
-</div>
 </div>

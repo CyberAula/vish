@@ -10,15 +10,9 @@
     <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
       <%= devise_error_messages! %>
 
-    <h4>
-      <%= t('devise.passwords.instructions') %>
-    </h4>
-  
-
-    
       <%= f.label :email %>
 
-      <%= f.text_field :email, :class => "form_tag" %>
+      <%= f.text_field :email, :class => "form_tag", :placeholder => t('devise.passwords.instructions') %>
         
       <%= f.submit t('action.send'), :class => "btn" %>
       

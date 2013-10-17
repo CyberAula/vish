@@ -4,7 +4,7 @@
 	<button id="back_arrow" class="vish_arrow" style="display:none" tabindex="2"><</button>
 	<button id="forward_arrow" class="vish_arrow" style="display:none" tabindex="2">></button>
 
-	<div id="viewbar" class="viewbar" style="display:none">
+	<div id="viewbar" style="display:none">
 		<a href="#" target="_blank"><div id="embedWatermark" class="watermark" style="display:none"></div></a>
 		<button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent; display: none;" tabindex="2"></button>
 		<button id="page-switcher-start" class="page-switcher" tabindex="2"></button>	    
@@ -15,28 +15,49 @@
 		<button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
 	</div> 
 
-	<div id="selectSlidesBar" class="selectSlidesBar" style="display:none">
-		<img id='help_addslides_selection' src='/assets/icons/helptutorial_circle_blank.png'/>
+	<div id="selectSlidesBar" style="display:none">
+		<img id='help_addslides_selection' src='/assets/vicons/helptutorial_circle_blank.png'/>
 		<div class="selectSlidesButtons1">
-			<button id="ssbAll" class="buttonadd selectall"><img class="imgbutton" src="/assets/quiz/checkbox_checked.png"/>Select All</button>
-			<button id="ssbuAll" class="buttonadd unselectall"><img class="imgbutton" src="/assets/quiz/checkbox_wrong.png"/>Unselect All</button>
+			<button id="ssbAll" class="selectSlidesButton">
+				<table class="selectSlidesTable">
+					<tr>
+						<td><img class="selectSlidesimgbutton" src="/assets/quiz/checkbox_checked.png"/></td>
+						<td><span i18n-key="i.SelectAll">Select All</span></td>
+					</tr>
+				</table>
+			</button>
+			<button id="ssbuAll" class="selectSlidesButton">
+				<table class="selectSlidesTable">
+					<tr>
+						<td><img class="selectSlidesimgbutton" src="/assets/quiz/checkbox_wrong.png"/></td>
+						<td><span i18n-key="i.UnselectAll">Unselect All</span></td>
+					</tr>
+				</table>
+			</button>
 		</div>
 		<div class="selectSlidesButtons3">
 			<div class="selectSlidesSelection">
 				<p id="ssbsp" class="selected_n_slides addslidetrans"></p>
-				<img  class="addt"/>
+				<img id="SelectedSlidesToAdd"/>
 			</div>
 			<div class="selectSlidesButtonWrapper">
-				<button id="ssbdone" class="viewer_button buttonconfirm">Add Slides</button>
+				<button i18n-key="i.AddSlides" id="ssbdone" class="viewer_button">Add Slides</button>
 			</div>
 		</div>
 		<div class="selectSlidesButtons2">
-			<button id="ssbaccept" class="buttoncenter buttonadd"><img class="imgbutton" src="/assets/quiz/checkbox_wrong.png"/>Unselect Slide</button>
+			<button id="ssbaccept" class="buttoncenter selectSlidesButton">
+				<table class="selectSlidesTable">
+					<tr>
+						<td><img class="selectSlidesimgbutton" src="/assets/quiz/checkbox_wrong.png"/></td>
+						<td><span i18n-key="i.UnselectSlide">Unselect Slide</span></td>
+					</tr>
+				</table>
+			</button>
 		</div>
 	</div>
 
 	<div style="display:none" id="viewerpreview"><span i18n-key="i.Preview">Preview</span></div>
-	<button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/icons/back_icon.png"/></button>
+	<button id="closeButton" style="display:none" ><img id="closeButtonImg" src="/assets/vicons/back_icon.png"/></button>
 
 	<!-- Hidden link to open fancybox to display recommendations in the end -->
 	<a id="fancyRec" href="#fancy_recommendations" style="display: none;"></a>
@@ -66,21 +87,21 @@
 		<div id="start_quiz_fancybox" class="outer_box_viewer">
 			<div class="fancy_viewer_tabs" id="images_fancy_tabs_id">     
 				<ul>
-					<li><a href="#" id="tab_quiz_session" onclick="VISH.Quiz.loadTab('tab_quiz_session')" class="fancy_viewer_tab tabbable">Quiz Session</a></li>
-					<li><a href="#" id="tab_quiz_stats" onclick="VISH.Quiz.loadTab('tab_quiz_stats')"class="fancy_viewer_tab">Stats</a></li>
+					<li><a i18n-key="i.LiveQuiz" href="#" id="tab_quiz_session" onclick="VISH.Quiz.loadTab('tab_quiz_session')" class="fancy_viewer_tab tabbable">Live Quiz</a></li>
+					<li><a i18n-key="i.QuizResults" href="#" id="tab_quiz_stats" onclick="VISH.Quiz.loadTab('tab_quiz_stats')"class="fancy_viewer_tab">Results</a></li>
 				</ul>
-				<img class='help_in_fancybox_viewer' id='tab_quiz_session_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				<img class='help_in_fancybox_viewer' id='tab_quiz_stats_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox_viewer' id='tab_quiz_session_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox_viewer' id='tab_quiz_stats_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 			</div>
 			<div id='tab_quiz_session_content' class="tab_quiz_session_content fancy_viewer_tab_content">
 				<a target="_blank" id='tab_quiz_session_url_link'></a>
 				<div class="quizSharebuttons">
-					<a target="_blank" href="#" id='tab_quiz_session_share_twitter'><img src='/assets/icons/social/twitter.png' class='socialButton'/></a>
-					<a target="_blank" href="#" id='tab_quiz_session_share_facebook'><img src='/assets/icons/social/facebook.svg' class='socialButton'/></a>
-					<a target="_blank" href="#" id='tab_quiz_session_share_gPlus'><img src='/assets/icons/social/gplus.svg' class='socialButton'/></a>
+					<a target="_blank" href="#" id='tab_quiz_session_share_twitter'><img src='/assets/vicons/social/twitter.png' class='socialButton'/></a>
+					<a target="_blank" href="#" id='tab_quiz_session_share_facebook'><img src='/assets/vicons/social/facebook.svg' class='socialButton'/></a>
+					<a target="_blank" href="#" id='tab_quiz_session_share_gPlus'><img src='/assets/vicons/social/gplus.svg' class='socialButton'/></a>
 				</div>
 				<div class="quizQr"></div>
-				<input class='quizButton button quizStopButton' value='Stop'/>
+				<input i18n-key="i.QuizStop" class='quizButton button quizStopButton' value='Stop'/>
 			</div>
 			<div id='tab_quiz_stats_content' class="fancy_viewer_tab_content">
 				<canvas id="quiz_chart" width="400" height="400"></canvas>
@@ -88,103 +109,76 @@
 		</div>
 	</div>
 
-	<!-- PROMPT WHEN TRY TO LAUNCH TWO QUIZZES AT THE SAME TIME -->
-	<div style='display:none'>
-		<div id='prompt1_alert'>
-			<div class="prompt_text_container_viewer">
-				<span class="prompt_text_viewer">Please stop all quizzes before launch another one.</span>
-			</div>
-			<div>
-				<a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
-			</div>
-		</div>
-	</div>
 
-	<!-- PROMPT WHEN SAVE A QUIZ SESSION -->
-	<div style='display:none'>
-		<div id='prompt2_alert'>
-			<div class="prompt_text_container_viewer prompt_text_container_viewer2">
-				<p><span class="prompt_text_viewer">Do you want to save the quiz?</span></p>
-				<p><input type="text" id="prompt2name" title="Enter a name for the quiz session" class="prompt2name"></input></p>
-				<a href="#" onclick="VISH.Quiz.onCloseQuizSession('yes');" class="prompt_button_viewer prompt_button_viewer2">Yes</a>
-				<a href="#" onclick="VISH.Quiz.onCloseQuizSession('no');" class="prompt_button_viewer prompt_button_viewer1">No</a>
-				<a href="#" onclick="VISH.Quiz.onCloseQuizSession('cancel');" class="prompt_button_viewer prompt_button_viewer3">Cancel</a>
-			</div>
-		</div>
-	  </div>
+	<!-- NOTIFICATIONS -->
 
-	<!-- PROMPT WHEN TRY TO SEND AN EMPTY ANSWER-->
-	<div style='display:none'>
-		<div id='prompt3_alert'>
-			<div class="prompt_text_container_viewer">
-				<span class="prompt_text_viewer">Please, answer the quiz before send</span>
-			</div>
-			<div>
-				<a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
-			</div>
-		</div>
-	</div>
+	<!-- Hidden link to open notification template -->
+	<a id="link_to_notification_template" href="#notification_template_cloned"></a>
 
-	<!-- PROMPT AFTER SEND ANSWER-->
-	<div style='display:none'>
-		<div id='prompt4_alert'>
-			<div class="prompt_text_container_viewer">
-				<span class="prompt_text_viewer">Your answer has been submitted</span>
-			</div>
-			<div>
-				<a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer4">accept</a>
-			</div>
-		</div>
-	</div>
-
-	<!-- PROMPT AFTER ERROR ON SENDING ANSWER-->
-	<div style='display:none'>
-		<div id='prompt5_alert'>
-			<div class="prompt_text_container_viewer">
-				<span class="prompt_text_viewer">Sorry, your answer can be submitted.</span>
-			</div>
-			<div>
-				<a href="#" onclick="$.fancybox.close();" class="prompt_button_viewer prompt_button_viewer_viewer4">accept</a>
-			</div>
-		</div>
-	</div>
+	<!-- NOTIFICATION TEMPLATE -->
+	<div id="notification_template_wrapper" style='display:none'></div>
 
 
 	<!-- WALKTHROUGH HELP SECTION -->
 
-	<!-- Help for quiz session -->
-	<ol id="quiz_session_help" class="joyRideTipContent">>
-		<li data-id="tab_quiz_session_content" class="custom tut_quiz tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
-			<h2 i18n-key="i.themesTitle">Quiz session</h2>
-			<p i18n-key="i.walk92">This window offers you a Qr-code and a link that you can give or show to the users that you want to participate in your simple quiz, or multiple-choice session, you can check in real-time too the results by clicking on the "stats" tab in the upper section of this window.<br>
-			You can share this session in other social networks by clicking on their icon.<br>
-			If you click on the close button in the superior zone of this windows you can always go back here by clicking the options button in the slide of the excursion.<br>
-			You can save all the results once you finish by clicking on the button Stop in the button "Stop" in the inferior section of this window.<br>A new window will appear for naming and saving the session in your profile.<br>Click on close button to finish this tutorial.</p>
-		</li>
-	</ol>
+	<!-- Help for Live Quizzes -->
+	<ol id="quiz_session_help" class="joyRideTipContent">
+		<li data-id="tab_quiz_session_content" class="tut_full_viewer tut_without_arrow" data-options="tipLocation:none;" data-text="Finish" i18n-key="i.Finish">
+			<h2 i18n-key="i.walkQuizzes_1">Live Quizzes</h2>
+			<p i18n-key="i.walkQuizzes_2">
+				Live Quizzes allows you to launch quizzes and polls in real time to get instant feedback.
+			</p>
+			<p i18n-key="i.walkQuizzes_3">
+				 To launch a 'Live Quiz' you have to access to a presentation and click on the 'Launch' button placed at the bottom of the quiz you want to use. Take into account that the 'Launch' button is not present when you are previewing a presentation with the editor. When you launch a live quiz, a 'quiz session' is created on the ViSH platform, which will store all the quiz results and stats. Once a 'quiz session' is created, you will be able to access it (and therefore to view the results and stats) on the ViSH Platform at any time.
+			</p>
+			<p>
+				<span i18n-key="i.walkQuizzes_4">After you launch a live quiz using the 'Launch' button placed at the bottom of the quiz, a new screen will pop up ('live quiz screen') displaying several elements</span>:
+			</p>
+			<ul>
+				<li>
+					<p><span i18n-key="i.walkQuizzes_5a">A hyperlink to the live quiz, for instance</span>: 'http://vishub.org/qs/1234'. <span i18n-key="i.walkQuizzes_5b">This hyperlink is use to answer the quiz. Anyone accessing this internet address will be able to answer the live quiz. Therefore you can share your live quiz through this hyperlink, for example sending it by email or pasting it in a forum.</span></p>
+				</li>
+				<li>
+					<p i18n-key="i.walkQuizzes_6">
+						Some logos of popular social networks (Twitter, Facebook, Google+, ...). You can share the hyperlink of the live quiz on any of these social networks by clicking on the corresponding logo.
+					</p>
+				</li>
+				<li>
+					<p i18n-key="i.walkQuizzes_7">
+						A QR code for mobile devices. Any device can automatically get the live quiz hyperlink by scanning this QR code.
+					</p>
+				</li>
+				<li>
+					<p i18n-key="i.walkQuizzes_8">
+						A 'Results' tab placed at the top, that allows you to view in real time the quiz results. Depending on the type of the quiz, the representation of the results will vary (pie chart, graph bar, etc.).
+					</p>
+				</li>
+			</ul>
+			<p i18n-key="i.walkQuizzes_9">
+				If you want to 'close' the live quiz you should click on the 'Stop' button placed at the bottom right. After you close a live quiz no more answers will be allowed and stored. You can also close a live quiz from the ViSH platform at any time. When you close a live quiz, you can optionally specify a name to facilitate its later searching on the ViSH.
+			</p>
 
-	<!-- Help for quiz stats -->
-	<ol id="quiz_stats_help" class="joyRideTipContent">>
-		<li data-id="tab_quiz_stats_content" class="custom tut_quiz tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
-			<h2 i18n-key="i.themesTitle">Quiz Session stats</h2>
-			<p i18n-key="i.walk93">This window offers you stadistics of your Quiz session, if you are offering a session with a simple quiz the stadistics the results will be shown as a circle shape separating every option in a different area.<br> If you are offering a session of multiple-choice you will get the results in a bar graph, you can always go back, close or save the results by clicking in the quiz session tab which is located in upper zone of this windows. Click "close" to finsih this tutorial.</p>
+			<p i18n-key="i.walkQuizzes_10">
+				If you exit from the live quiz screen, you can come back at any time by clicking on the 'Options' button placed at the bottom of the quiz. Notice that if a quiz has been launched, the 'Launch' button is replaced by a 'Options' button. Once you close the live quiz, the 'Launch' button will appear again. Finally, bear in mind that you can not launch more than one live quiz at the same time.
+			</p>
 		</li>
+
 	</ol>
 
 	<!-- Help selecting slides from a previewed presentation -->
 	<ol id="addslides_help" class="joyRideTipContent">
-		<li data-id="viewbar" data-text="Close" i18n-key="i.Close" class="addslidestut tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.AddingSlideinto">Adding slides into your excursion</h2>
-			<p i18n-key="i.walk84">In this window you can preview the slides of the excursion that you had already choosen in order to add all or some of the slides into your excursion.This preview offers you some options (at the bottom) which are:</p>
-			<p i18n-key="i.walk85">This button will select all the slides in order to add them to your excursion.</p>
-			<p i18n-key="i.walk86">This button will unselect all the slides.</p>
-			<p i18n-key="i.walk87">Also, you can add or remove any slide by clicking the button in the lower center space below the number of the slide.</p>
-			<p i18n-key="i.walk88">Every time you select an slide it will show its border green</p>
-			<div class="selectSlidesGreen"></div>
-			<p i18n-key="i.walk89">and if you remove it it will show a red border.</p>
-			<div class="selectSlidesRed"></div>
-			<p i18n-key="i.walk90">You will know how many slides you are going to add to your excursion by checking the cuantity at the right bottom of the screen.Example: <i style="color: green; font-size: 1.4em">"+4"</i></p>
-			<p i18n-key="i.walk91">If you finished your selection you can finally add your slides to you excursion by click the button "add slides" at the right bottom in the screen. Click on "Close" to finish the tutorial.</p><br>
+		<li data-id="viewbar" data-text="Close" i18n-key="i.Close" class="tut_width800_center addslidestut tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkSelectSlides_1">Adding external slides to your presentation</h2>
+			<p i18n-key="i.walkSelectSlides_2">Here you can see a preview of the presentation that you have decided to import. You can insert all the slides of the presentation or select the ones that you want to insert.</p>
+			<p i18n-key="i.walkSelectSlides_3">Taking into account that all slides are selected by default, if you want to insert the whole presentation you just have to click on the 'Add Slides' button placed at the bottom right.</p>
+			<p><span i18n-key="i.walkSelectSlides_4">If you want to select specific slides to import, the following instructions will help you</span>:</p>
+			<p class="tut_withouttopspace"><span i18n-key="i.walkSelectSlides_5a">Use the arrows</span> <img src="/assets/tutorial/tut_arrow.png"/> <span i18n-key="i.walkSelectSlides_5b">placed at the bottom to navigate between the slides of the presentation.</span></p>
+			<p class="tut_withouttopspace"><span i18n-key="i.walkSelectSlides_6a">Selected slides have a green border</span> <img src="/assets/tutorial/tut_selectedSlideBoxGreen.png"/> <span i18n-key="i.walkSelectSlides_6b">while unselected slides have a red border</span> <img src="/assets/tutorial/tut_selectedSlideBoxRed.png"/>.</p>
+			<p class="tut_withmediumbottomspace" i18n-key="i.walkSelectSlides_7">To select or unselect the current slide you are viewing, click on the 'Select/Unselect Slide' button placed at the bottom center.</p>
+			<img class="addslidestut_button" i18n-key="i.img.tut_selects" src="/assets/tutorial/tut_selects.png"/> <img class="addslidestut_button" i18n-key="i.img.tut_unselects" src="/assets/tutorial/tut_unselects.png"/>
+			<p class="tut_withmediumbottomspace" i18n-key="i.walkSelectSlides_8">Moreover, you can use the following buttons to select or unselect all the slides at once.</p>
+			<img class="addslidestut_button" i18n-key="i.img.tut_selectAll" src="/assets/tutorial/tut_selectall.png"/> <img class="addslidestut_button" i18n-key="i.img.tut_unselectAll" src="/assets/tutorial/tut_unselectall.png"/>
+			<p i18n-key="i.walkSelectSlides_9">Finally, to insert the selected slides you have to click on the 'Add slides' button placed at the bottom right. Notice that the quantity of slides that you are going to insert is indicated at the left of this button.  </p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 	</ol>

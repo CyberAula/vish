@@ -11,16 +11,15 @@
     <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :html => {:'data-type' => :json}, :remote => remote do |f| %>
       <%= f.hidden_field :owner_id %>
       <!--TITULO-->
-      <legend><%= t('categories.leyend.title')%></legend>
+      <label><%= t('categories.leyend.title')%></label>
       <%= f.text_field :title, :placeholder => t('categories.title_input') %>
       
       <!--DESCRIPCION-->
-      <legend><%= t('categories.leyend.description')%></legend>
+      <label><%= t('categories.leyend.description')%></label>
       <%= f.text_field :description, :placeholder => t('categories.description_input') %>
     </div>
 
-     <div class="modal-footer">
-       <!--<a href="#" id="logIn" class="logpover" rel="popover" data-placement="left" data-original-title="Subir recursos">Help</a>-->
+     <div class="modal-footer">      
       <input type="button" class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
 
       <div class="contentHelpCategories" style="display: none">
@@ -55,7 +54,10 @@
 
   $('#<%=div_id%> .new_category').bind('ajax:error', function(evt, data, status, xhr){
     $("#<%=div_id%> .errors").remove();
-    var errors = data.responseJSON.errors;
+    var errors = "There was an unexpected error on the server. Please contact the technical support so they can solve it.";
+    if(data.responseJSON!=undefined){
+      errors = data.responseJSON.errors;
+    }
     if (errors.indexOf("duplicated") != -1) {
       $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.errors.duplicated')%></div>");
     } else {

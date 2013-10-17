@@ -1,46 +1,9 @@
-  <div class="recomended-items">
-    <div class="recomended_excursion">
+  <div class="recomended">
+    <div class="recomended-items">
       <ul class="small-box clearfix">
+      	<p class="info_action"> Added Category</p>
+        <%= render :partial => "categories/category" , :locals => {:category => category}%>
 
-<li class="box-item excursion-item">
-
-  <div class="container-img">
-      <div class="dummy"></div>
-      <div class="element">
-
-        <div class="img-box resource-center">
-        <!--IMG categories-->
-          <div class="category ">
-            <%= link_to "<i class='icon-th-large'></i>".html_safe, category, :title => category.title %>
-          </div>
-
-        </div>
-
-      </div>
-  </div>
-    
-<!--INFO excursuion-->
-  <div class="info">
-<!--Title -->
-    <div class="name">
-      <%= link_to truncate(category.title, :length => 15), category %>
-    </div>
-<!--Autor -->
-    <div class="author"> 
-      <span class="by"><%=t('by')%></span>
-      <%= link_to category.author.name, category.author.subject %>
-    </div>
-    <!--____________________ -->
-    <div class="info-bottom">
-      <hr class="soften">
-      <!--like -->
-      <div class="like">  
-        <%=category.property_objects.count.to_s%>
-        <%=t('categories.item_inside')%>
-    </div>
-
-  </div>
-</li>
 </ul>
 </div>
 </div>

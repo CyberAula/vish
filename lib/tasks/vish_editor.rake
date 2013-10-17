@@ -151,6 +151,10 @@ namespace :vish_editor do
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/zonethumbs"
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/templatesthumbs"
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/excursion_thumbnails"
+    #VEditor icons, ViSH Viewer icons are in the vicons folder
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/icons"
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/jquery-ui"
+
     #Remove themes
     system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/images/themes/* "
 
@@ -160,6 +164,9 @@ namespace :vish_editor do
     system "rm " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/all/*"
     system "cp " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/all/vishViewer.css " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/all/vishViewer.css"
     
+    #Remove unused fonts (font-awesome is only used in VEditor)
+    system "rm -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/libs/font-awesome"
+
     #Rewrite paths for SCORM
     system "sed -i 's/\\\/vishEditor\\\/images/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
     system "sed -i 's/\\\/vishEditor\\\/images/..\\\/..\\\/images/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/*/*css"
@@ -177,7 +184,7 @@ namespace :vish_editor do
     system "sed -i 's/..\\\/..\\\/images/\\\/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/vishEditor\\\/images/assets/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/*/*css"
     system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/font-awesome\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/font-awesome/css/*css"
-    system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/open-sans\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/open-sans/css/*css"
+    #system "sed -i 's/..\\\/font/\\\/assets\\\/libs\\\/open-sans\\\/font/g' " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/libs/open-sans/css/*css"
   end
 
 

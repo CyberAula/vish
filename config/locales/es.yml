@@ -38,8 +38,9 @@ es:
     confirm_delete: "Borrar categoria?"
   categories:
     actions:
-      add: "Añadir categoría"
-      verb: "categorizar"
+      add: "Crear categoría"
+      apply: "Aplicar"
+      verb: "Categorizar"
     description_input: "Descripción para esta categoría"
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
@@ -55,6 +56,7 @@ es:
     title_input: "Dale un nombre a tu categoría"
     save: "Guardar"    
     selected: "categorias"
+    success: "Las categorías se han salvado con éxito"
   close: "Cerrar"
   conditions:
     check_message: "Al hacer clic en Aceptar, estás aceptando nuestras "
@@ -176,7 +178,7 @@ es:
     neutral_a: "Medio"
     disagree_a: "Malo"
     strong_disagree_a: "Muy malo"
-    alert: "Por favor rellena las cinco preguntas de evaluación. Gracias."
+    alert: "Por favor rellena todas las preguntas de evaluación. Gracias."
     success: "Tus respuestas se han guardado. Gracias por ayudar a evaluar esta excursión."
   event:
     actions:
@@ -209,7 +211,7 @@ es:
       scorm: "scorm"
     all: "todos"
     description: "descripción"
-    download_scorm: "Descarga el código HTML e integra el recurso en cualquier LMS"
+    download_scorm: "Un paquete SCORM es un conjunto de archivos que se empaquetan conforme a un estándar para  objetos de aprendizaje. Los paquetes SCORM son ficheros zip que pueden ser integrados en cualquier plataforma de aprendizaje que soporte el estándar (Moodle, Blackboard, …) y que pueden ser utilizados para la presentación de contenidos multimedia y como herramientas de evaluación. Por tanto, puedes integrar tu Excursión Virtual en Moodle y otras plataformas de aprendizaje descargándola como SCORM."
     clone:
       confirm: "Esto clonará la excursión en tu propio repositorio y la abrirá para editarla"
       not_found: "Excursion no encontrada"

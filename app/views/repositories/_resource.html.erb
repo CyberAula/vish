@@ -18,7 +18,7 @@
   <%if resource.respond_to?(:type) && resource.type =="Picture"%>
     <script>
       $("#document-<%=resource.id%>").addClass("img-box");
-      $("#document-<%=resource.id%>").backstretch("<%=resource.file%>?style=500");  
+      $("#document-<%=resource.id%>").backstretch("<%= thumb_file_for(resource, '500') %>");  
     </script>
   <%end%>
 <!--INFO resource-->

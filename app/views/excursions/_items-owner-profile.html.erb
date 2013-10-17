@@ -1,11 +1,13 @@
 
     <!--autor-->
     <!--dt><%#= t('author').capitalize %></dt-->
-  <div class="author">
+<div class="author">
+  <div class="avatar">
     <%= link_to @excursion.author.subject do %>
     <%= image_tag @excursion.author.logo.url(:small) %>
-    
     <% end %>
+  </div>
+  <div class="right-name">
     <p><%= truncate_name(@excursion.author.name, :length => 50) %></p>
 
     <div class="add">
@@ -16,5 +18,5 @@
       <%end%>
     </div>
   </div>
-
+</div>
 

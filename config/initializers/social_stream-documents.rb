@@ -14,19 +14,19 @@ SocialStream::Documents.setup do |config|
      webma: {
        format: 'webm',
        processors: [ :ffmpeg ]
-     },
+     }
      # You need to add the `paperclip_waveform` gem to your Gemfile
      # to get pngs with the audio wave form
-     waveform: {
-       format: :png,
-       convert_options: {
-         color: :transparent,
-         background_color: '#333333',
-         width: 460,
-         height: 75
-       },
-       processors: [ :waveform ]
-     }
+     # waveform: {
+     #   format: :png,
+     #   convert_options: {
+     #     color: :transparent,
+     #     background_color: '#333333',
+     #     width: 460,
+     #     height: 75
+     #   },
+     #   processors: [ :waveform ]
+     # }
   }
 
 #  Configure video thumbnails
@@ -62,6 +62,6 @@ SocialStream::Documents.setup do |config|
     subtypes: []
   }
 
-   #config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf]
+  config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf, :pdf]
 
 end

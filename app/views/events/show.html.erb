@@ -1,39 +1,33 @@
 <section id="event">
 
   <div class="event">
-    <div class="box-show-resource">
+    <div class="box-show">
       <!--visor-->
-      <div class="container-visor-resource">
-        <div class="elemento-visor-resource"></div>
-        <div class="caja-visor-resource">
-
-
-
+      <div class="container-visor">
+        <!--div class="elemento-visor"></div-->
+        <div class="caja-elementos">
 
           <div class="icon-box" id="event-<%=@event.id%>">
             <% if @event.poster.new_record? %>
               <i class="icon-facetime-video"></i>
+              <%= link_to(image_tag('items/rec2.jpg'),:class=> "event-img"); %>
             <% else %>
               <%= image_tag(@event.poster.file) %>
               <script>
                 $("#event-<%=@event.id%>").addClass("high")
-
               </script>
             <% end %>
-            <% if can? :update, @event %>
-              <div class="poster">
-                <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true %>
-              </div>
+            <% if (can?(:update, @event) && @event.poster.new_record?) %>
+
+                <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
+
             <% end %>
           </div>  
-
-
-
         </div>
       </div>
     </div>
-    <div class="recomended-items-resource ">
-      <div class="recomended_documents">
+    <div class="recomended">
+      <div class="recomended-items">
         <ul class="small-box clearfix">
           <% popular_resources(6).each do |resource| %>
             <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
@@ -42,7 +36,7 @@
       </div>
     </div>
 
-  <div class="description-activity-resource">
+  <div class="description-activity">
     <div class="box_description">
       <!--tool-->
       <div class="excursion_tool">
@@ -51,8 +45,8 @@
     </div>
     
     <!--activity-->
-    <div class="activity-box-resource">
-      <%#= render :partial => 'common_documents/activity', :locals => { :document => document } %>
+    <div class="activity-box">
+      <%= render :partial => 'common_documents/activity', :locals => { :document => @event } %>
     </div>
   </div>
 

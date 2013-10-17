@@ -1,78 +1,25 @@
-.activities
-  header h2
-  .wall_input
-    padding: 5px 13px
-    background-color: $grayLighter
-    margin-bottom: 20px
-    @include border-radius (5px)
-    @include box-shadow (rgba(0, 0, 0, .15) 0 1px 3px)
-    label
-      font-size: 14px
-    input
-      margin-top: 8px
-      display: block
-      &[type="submit"]
-        @include size (auto, auto)
-        @include btn-secundary
-        padding: 3px 11px 4px 11px
-        margin-top: 0px
-        float: right
-      &[type="checkbox"]
-        width: auto
-        margin: 4px 0px 5px 0px
-        display: inline
-      &[type="text"]
-        padding: 1% 2%
-    #link_preview
-      .link
-        margin-left: 0px
-
-    .thumbnail
-      @include center-block()
-      width: 43%
-      float: left
-      img
-        max-height: 134px
-        float: right
-    .info
-      width: 53%
-      display: inline-block
-      margin-left: 1%
-      .description
+#time-line
+  .activities
+    header
+      h2
+        text-align: center
+    .wall_input
+      @include white-box-style
+      border-bottom-right-radius: 0px
+      form
+        label
+          text-align: center
         textarea
-          min-height: 80px
+          background-color: $grayLighter
+          resize: none
+      .wall_input-actions
+        input
+          &[type="submit"]
+            @include btn-primary
+            @include border-top-radius(0px)
+            @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
+        .btn
+          background-image: none
+          @include border-top-radius(0px)
+        .new_document
 
-    .wall_input-actions
-      margin-top: 10px
-      .form-privacy
-        .icon_tool16-private
-          background-position: -10px -87px
-        .icon_tool16-public
-          background-position: -40px -87px
-        &:hover
-          .icon_tool16-private
-            background-position: -10px -211px
-          .icon_tool16-public
-            background-position: -40px -211px
-
-    .new_document
-      display: inline
-      padding: 1px 6px 4px 6px
-
-.form-privacy
-  display: inline-block
-
-  .btn-group
-    button
-      padding: 4px 12px 4px 8px
-    label
-      font-size: 14px
-      font-weight: bold
-      letter-spacing: 1px
-      line-height: 20px
-      color: #333
-
-      
-
-#post_text
-  margin-bottom: 0px

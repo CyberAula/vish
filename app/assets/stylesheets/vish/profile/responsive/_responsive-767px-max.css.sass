@@ -3,13 +3,12 @@
 // --------------------------------------------------
 
 
-@media (max-width: 767px)
 
 
 // UP TO LANDSCAPE PHONE
 // ---------------------
 
-@media (max-width: 480px)
+@media (max-width: 767px)
   .user
     margin-bottom: 20px
     header
@@ -82,7 +81,7 @@
               display: block
               color: $grayLight
               font-size: 14px
-              text-align: justify
+              text-align: center
               margin: 5px auto
 
             .tags-profile
@@ -132,3 +131,142 @@
                 @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 float: left
                 display: inline-block
+
+
+  //toolbar-profile
+  .toolbar-profile
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    float: left
+    display: block
+    height: auto
+    margin: 10px auto
+
+
+
+    // CONTACT
+    .contact
+      display: block
+      float: none
+      margin: 5px auto
+      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .add
+        @include follow-profile
+        display: block
+        clear: both
+        text-align: center
+        div
+          .following-button
+            display: block
+            float: none
+            margin: 5px auto
+            background-color: #007CC8
+            height: 20px
+            width: 87px
+            @include border-radius(5px)
+            color: #FFF
+            font-family: "OpenSansLight"
+
+        .unfollow-button 
+          form
+            margin: 0px
+            input
+              display: block
+              float: none
+              margin: 5px auto
+              height: 20px
+              border: 0px none
+              width: 87px
+
+              background-color: #555
+              @include border-radius(5px)
+              color: #FFF
+
+              padding: 0px
+              font-family: "OpenSansLight"
+
+    // EDIT
+    .edit_icon
+      height: 20px
+      border: 0px none 
+      width: 80px
+      display: block
+      float: none
+      margin: 5px auto
+      @include border-radius($baseBorderRadius)
+      color: $black
+      background-color: $firstColor
+
+      padding: 0px 15px
+      color: $white
+      font-family: $firstFontFamily
+      display: block
+      float: none
+
+      a,
+      span
+        color: $white
+        font-size: 12px
+
+        &:hover
+          text-decoration: none
+      span
+        padding-left: 5px
+
+    // message
+    button#mesage-profile
+
+      display: block
+      float: none
+      margin: 5px auto
+
+      height: 20px
+      border: 0px none 
+      width: 150px
+
+      @include border-radius($baseBorderRadius)
+      color: $black
+      border-color: #CCCCCC #CCCCCC #B3B3B3
+      border-image: none
+      border-style: solid
+      border-width: 1px
+
+      padding: 0px 15px
+      font-family: $firstFontFamily
+
+      a
+        color: $black
+        font-size: 12px
+
+
+
+    #showMore
+      display: block
+      float: none !important
+      margin: 5px auto 5px auto !important
+      height: 20px
+      border: 0px none 
+      width: 140px
+      @include border-radius($baseBorderRadius)
+      color: $black
+      border-color: #CCCCCC #CCCCCC #B3B3B3
+      border-image: none
+      border-style: solid
+      border-width: 1px
+      margin-top: 0px
+      padding: 0px 15px
+      font-family: $firstFontFamily
+      display: block
+      float: left
+      margin-right: 10px
+      a
+        color: $black
+        font-size: 12px
+
+  .update
+    background-color: $white
+    margin-left: auto
+    margin-right: auto
+    padding: 0
+    @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    float: none
+

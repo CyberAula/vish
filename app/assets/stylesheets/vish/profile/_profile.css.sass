@@ -81,6 +81,7 @@
             @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: inline-block
             float: left
+            overflow: hidden
           .newClass
             height: 0px
             overflow: hidden
@@ -111,19 +112,7 @@
               float: left
               display: inline-block
 
-.modal
-  width: 450px
-  margin-left: -240px
-  top: 20% !important
-  .modal-body 
-    max-height: 340px 
-  .cleditorMain
-    height: 100px !important
-    .cleditorToolbar
-      display: none
 
-  .btn
-    background-image: none
 
 
 
@@ -347,7 +336,7 @@
       display: block
       float: left
       clear: both
-      width: 82%
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       input
         width: auto
         float: right

@@ -4,14 +4,12 @@
 
 
 @media (max-width: 767px)
-
-  .timeline
-    .more
-      a
-        width: 89% !important
-    .modal
-      .modal-body
-        max-height: 400px
+  #time-line
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .timeline
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      margin: 0 auto
 
 
 
@@ -21,8 +19,10 @@
 // ---------------------
 
 @media (max-width: 480px)
+  #time-line
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .timeline
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      margin: 0 auto
 
-  .timeline
-    .more
-      a
-        width: 85% !important

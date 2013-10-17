@@ -79,6 +79,7 @@
             .picture,
             .document,
             .contact,
+            .video,
             .quick_search
 
               margin-top: 5px
@@ -88,6 +89,7 @@
 
               .avatar,
               .photo,
+              .video,
               .thumb
                 @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 display: block
@@ -105,6 +107,7 @@
                       text-decoration: none
 
               .photo,
+              .video,
               .thumb
                 img
                   @include size (45px, 45px)

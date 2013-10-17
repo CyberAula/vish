@@ -6,10 +6,11 @@
 
         <div class="img-box">
         <!--IMG categories-->
-          <div class="category">
-            <%= link_to "<i class='icon-th-large'></i>".html_safe, category, :title => category.title %>
-          </div>
-
+          <%= link_to(category) do %>
+            <div class="category">
+              <%=category_thumbnail(category)%>            
+            </div>
+          <% end %>
         </div>
 
       </div>
@@ -19,7 +20,7 @@
   <div class="info">
 <!--Title -->
     <div class="name">
-      <%= link_to truncate(category.title, :length => 15), category %>
+      <%= link_to category.title, category %>
     </div>
 <!--Autor -->
     <div class="author"> 

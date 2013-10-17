@@ -9,6 +9,7 @@
   </div>
 
   <div class="modal-body">
+  <div class="layoutform">
     <!-- Tags preloaded -->
     <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
     <ul id="resourcePreloadTagList" style="display:none">
@@ -100,19 +101,20 @@
       </div>
     </div>
     <br>
-
+    </div>
+    
+    <div class="layoutform">
     <p><%= t('document.body.title2')%></p>
-
     <!--TITULO-->
-    <legend><%= t('document.leyend.title')%></legend>
+    <label><%= t('document.leyend.title')%></label>
     <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
     
     <!--DESCRIPCION-->
-    <legend><%= t('document.leyend.description')%></legend>
+    <label><%= t('document.leyend.description')%></label>
     <input type="text" class="description" placeholder="<%= t('document.input')%>">
 
     <!--TAGS-->
-    <legend><%= t('document.leyend.tags')%></legend>
+    <label><%= t('document.leyend.tags')%></label>
 
     <div class="tagBoxDocument">
        <ul class="resourceTagList"></ul>
@@ -121,7 +123,7 @@
     <div class="clearfloat"></div>
     
     <!--LANGUAGE-->
-    <legend><%= t('document.leyend.language')%></legend>
+    <label><%= t('document.leyend.language')%></label>
     <select class="language">
       <option value="" selected="1">(<%= t('lang.independent') %>)</option>
       <option value="de">Deutsch</option>
@@ -135,13 +137,14 @@
     </select>
     
     <!--AGE SLIDER-->
-    <legend><%= t('document.leyend.recommended_age')%></legend>
+    <label><%= t('document.leyend.recommended_age')%></label>
     <div class="limits">
       <div class="limit1">4</div>
       <div class="limit2">20</div>
     </div>
     <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
     <br>
+    </div>
   </div><!-- CIERRA BODY-->
 
 

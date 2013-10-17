@@ -29,8 +29,8 @@
 <% if !profile_subject_is_current? && user_signed_in?%>
 <button href="#new_messages_profile" id="mesage-profile" role="button" class="btn" data-toggle="modal">
   <%= link_to new_message_path(receiver: profile_subject.slug) do %>
-  <i class="icon-envelope-alt"></i>
-  <%= t 'mailboxer.send' %>
+    <i class="icon-envelope-alt"></i>
+    <%= t 'mailboxer.send' %>
   <% end %>
 </button>
 <% end %>
@@ -45,14 +45,15 @@
 
   <div class="modal-body">
     <section id="new_message_profile">
-      <%##= render partial: 'toolbar/messages' %>
-      <%= render :partial => 'messages/new' %>
+      <%= render :partial => 'messages/new', :locals => {:@recipient => Actor.find_by_slug(profile_subject.slug)} %>
 
       <%= javascript_tag do %>
-      $(function() {
-      SocialStream.Message.new_();
-    });
-    <% end %>
+        $(function() {
+          $('#new_messages_profile').on('shown', function () {
+          SocialStream.Message.new_();
+          })
+        });
+      <% end %>
     </section>
   </div>
   <!--   <div class="modal-footer">

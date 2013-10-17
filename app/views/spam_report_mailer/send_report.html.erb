@@ -11,10 +11,10 @@
     <%end%>
 
     <div>
-      <span>The option in the report was spam(0), error(1): <%=@report_value%></span>
-      <span>The activity_object_id was: <%=@activity_object_id%></span>
-      <span><%=link_to "access the resource in ViSH", ActivityObject.find(@activity_object_id).object %></span>
-      <span>The issue was: <%=@issue%></span>
+      <span>The option in the report was spam(0), error(1): <%=@report_value%></span><br/>
+      <span>The activity_object_id was: <%=@activity_object_id%></span><br/>
+      <span><%=link_to "Access the resource in ViSH", polymorphic_url(ActivityObject.find(@activity_object_id).object) %></span><br/>
+      <span>The issue was: <%=@issue%></span><br/>
 
     </div>
 

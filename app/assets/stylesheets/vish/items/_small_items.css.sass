@@ -1,19 +1,26 @@
-.recomended-items,
-.recomended-items-resource
-  .recomended-items,
-  .recomended_excursion,
-  .recomended_documents
+.recomended
+  @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  .recomended-items
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     ul.small-box
       margin: 0
       margin-left: 20px
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       li.box-item:first-child
         margin-top: 0px
       li.box-item:hover
         text-decoration: none
-        box-shadow: 5px 5px 5px rgba(20,20,20, 0.4)
+        box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
+        transform: scale(1.05)
+        -ms-transform: scale(1.05)
+        -webkit-transform: scale(1.05)
+        transition: all 0.2s ease 0s
+        -ms-transition: all 0.2s ease 0s
+        -webkit-transition: all 0.2s ease 0s
+
       li.box-item
         @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-        box-shadow: 0 1px 3px rgba(20,20,20, 0.4)
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
         @include border-radius($baseBorderRadius)
         overflow: inherit
         float: left
@@ -32,36 +39,129 @@
           width: 43px
           height: 65px
 
-        
-        .resource-center
-          text-align: center
-          i
-            display: block
-            font-size: 34px
-            margin-top: 20px
-        .img-box,
-        .resource,
-        .resource-center
-          float: left
-          height: 70px
-          display: block
-          @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
-          @include border-left-radius($baseBorderRadius)
-          overflow: hidden
-          .backstrech
-            @include border-left-radius($baseBorderRadius)
-        .resource-center
-          position: relative
-          i.icon-picture
-            padding-top: 0
-            position: absolute
-            width: 100%
-            z-index: 2
-            color: $white
-            font-size: 20px
-            text-shadow: $gray 0.1em 0.1em 0.2em
-            font-size: 34px
 
+
+        // IMG BOX
+        .container-img
+          display: inline-block
+          position: relative
+          float: left
+          @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .dummy
+            height: 70px
+          .element
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            overflow: hidden
+            text-align: center
+            width: 100%
+            @include border-left-radius($baseBorderRadius)
+            .img-box,
+            .resource,
+            .resource-center
+              float: left
+              height: 70px
+              display: block
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-left-radius($baseBorderRadius)
+              overflow: hidden
+              position: relative
+              .backstrech
+                @include border-left-radius($baseBorderRadius)
+                @include border-right-radius(0px)
+              img
+                float: left
+                width: 100%
+                height: 100%
+              .category
+                text-align: center
+                .category_thumb
+                  img
+                    margin-top: -25%
+                    min-width: 125%
+                    min-height: 500%
+                  .category_thumb_0
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                  .category_thumb_1
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                  .category_thumb_2
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                  .category_thumb_3
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                i
+                  display: block
+                  font-size: 34px
+                  margin-top: 20px
+
+
+          .resource-center
+            text-align: center
+            i
+              display: block
+              font-size: 34px
+              margin-top: 20px
+            i.icon-picture
+
+              padding-top: 0
+              position: absolute
+              top: 10px
+              right: 10px
+              z-index: 2
+              color: $white
+              font-size: 20px
+              text-shadow: $black 0.1em 0.1em 0.2em
+            i.icon-facetime-video
+              padding-top: 0
+              position: absolute
+              left: 45%
+              right: 50%
+              z-index: 2
+              font-size: 34px
+              text-align: center
+              //text-shadow: $black 0.1em 0.1em 0.2em
         .info
           @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
           float: left

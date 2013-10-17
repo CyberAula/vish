@@ -1,10 +1,22 @@
-
+<div class="left-info">
+  <!--author-->
+  <%= render :partial => 'excursions/items-owner-profile' %>
   <!--tittle-->
-  
-
+  <div class="viewsAndConunt">        
+    <div class="views">
+      <%=@excursion.visit_count.to_s%> 
+      <span>
+        <%=t('follow.views')%>
+      </span>   
+    </div>
+    <div class="like">    
+      <div class="count"><%=@excursion.post_activity.likes.count.to_s%></div>
+      <%= link_like(@excursion.post_activity)%>
+    </div>
+  </div>  
+</div>
  <div id="effect" class="newClass ui-corner-all">
-          <!--author-->
-        <%= render :partial => 'excursions/items-owner-profile' %>
+
     <%= javascript_tag do %>
     <%#= modal_for(@excursion.author.subject) %>
     <% @excursion.contributors.each do |c| %>

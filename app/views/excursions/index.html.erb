@@ -1,7 +1,12 @@
 <section class="clearfix" id="excursions">
   <ul class="">
     <%= render partial: 'excursions/excursion-add' %>
-    <%= render partial: 'excursions/excursions', :locals => { :scope => :net, :page => params[:page] || 1 } %>
+    <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
+        scope = :more
+      else
+        scope = :net
+      end%>
+    <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => params[:page] || 1 } %>
   </ul>
   <div id="loader_pagination">
     <div id="pageless-loader" style="text-align:center;width:100%;">

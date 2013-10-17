@@ -1,22 +1,19 @@
 <li class="box-item excursion-item">
-  <%#= link_to(event) do %>
-  <div class="container-img">
+  <%= link_to(event) do %>
+    <div class="container-img">
       <div class="dummy"></div>
-      <div class="element">
-
-        <div class="img-box">
+      <div class="element resource-center">
+        <div class="img-box resource-center" id="event-<%=event.id%>">
           <div class="event">
-            <%= link_to "<i class='icon-facetime-video'></i>".html_safe, event, :title => event.title %>
-            <!-- <i class='icon-facetime-video-large'></i> -->
+            <i class='icon-facetime-video'></i>
           </div>
         </div>
-
       </div>
-  </div>
-    
-<%# end %>
-
-<!-- Falta el backstrech -->
+    </div>
+  <% end %>
+  <script>
+    $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
+  </script>    
 
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
@@ -35,9 +32,7 @@
       <hr class="soften">
       <!--like -->
       <div class="like">  
-        <%#TODO Next if is only to deploy in production until it is solved, because for excursion 181
-        excursion.post_activity is nil%>
-         <% if event.post_activity%>
+        <% if event.post_activity%>
           <div class="count"><%=event.post_activity.likes.count.to_s%></div>
           <%= link_like(event.post_activity, :title =>t('excursion.actions.favorite'))%>
         <%else%>
@@ -50,7 +45,6 @@
         <%=t('follow.views')%>
       </div>
     </div>
-
   </div>
 </li>
 

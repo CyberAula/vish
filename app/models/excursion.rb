@@ -153,17 +153,25 @@ class Excursion < ActiveRecord::Base
             myxml.description do
               myxml.langstring(self.title + ". A Virtual Excursion provided by http://vishub.org.");
             end
-            self.tags.each do |tag|
-              myxml.keyword do
-                myxml.langstring(tag.name.to_s);
+            if self.tags && self.tags.kind_of?(Array)
+              self.tags.each do |tag|
+                myxml.keyword do
+                  myxml.langstring(tag.name.to_s);
+                end
               end
             end
             #Add subjects as additional keywords
             if ejson["subject"]
-              ejson["subject"].each do |subject|
+              if ejson["subject"].kind_of?(Array)
+                ejson["subject"].each do |subject|
+                  myxml.keyword do
+                    myxml.langstring(subject);
+                  end 
+                end
+              elsif ejson["subject"].kind_of?(String)
                 myxml.keyword do
-                  myxml.langstring(subject);
-                end 
+                    myxml.langstring(ejson["subject"]);
+                end
               end
             end
 
@@ -550,8 +558,8 @@ class Excursion < ActiveRecord::Base
 
   def parse_for_meta
     parsed_json = JSON(json)
-    activity_object.title = parsed_json["title"]
-    activity_object.description = parsed_json["description"]
+    activity_object.title = parsed_json["title"] ? parsed_json["title"] : "Title"
+    activity_object.description = parsed_json["description"] 
     activity_object.tag_list = parsed_json["tags"]
     begin
       ageRange = parsed_json["age_range"]
@@ -567,7 +575,7 @@ class Excursion < ActiveRecord::Base
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
-    self.update_column :thumbnail_url, parsed_json["avatar"]
+    self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png"
   end
 
   def fix_relation_ids_drafts
