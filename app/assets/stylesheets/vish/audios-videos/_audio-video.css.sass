@@ -1,0 +1,53 @@
+.processing_text
+  font-size: 14px
+  display: block
+  float: left
+  margin: 10px
+
+.video
+  .video-container
+    margin: 0 auto
+    display: block
+    width: 480px
+    .jp-type-single
+      .jp-player
+        width: 100%
+        background-color: #222 !important
+      
+
+      a.jp-play,
+      a.jp-pause
+        left: 10px !important
+        top: 15px !important
+
+      a.jp-stop
+        left: 55px !important
+        top: 21px !important
+
+
+      .jp-volume-bar
+        left: 95px !important
+        top: 40px !important
+        background-color: $grayLight
+        .jp-volume-bar-value
+          background-color: $grayDark
+      .jp-current-time,
+      .jp-duration
+        font-size: 14px
+        width: 150px
+        right: 10px
+        left: 60%
+      .jp-mute
+        left: 150px
+        top: 35px
+
+
+@media (max-width: 600px)
+  .video
+    .video-container
+      margin: 0 auto
+      display: block
+      width: 100%
+      .jp-jplayer
+        width: 100% !important
+
