@@ -48,17 +48,25 @@
     }
 
     $(".with_tooltip").tooltip({ placement: 'bottom'});
-      $('.delete').popover({ 
+    
+    $('.delete').popover({ 
       html : true,
       content: function() {
       return $('.contentdelete').html();
       },
-      container: ".delete"
+      container: "body"
     });
 
     $('.btn_cancel').click(function(){
       $('.popover').popover('hide');
     });
+
+    $('.delete').on('shown.bs.popover', function () {
+      //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+      $('.btn_cancel').on("click",function(){
+        $('.delete').popover('hide');
+      });
+     });
 
     //to close the popovers
     $(':not(#anything_not_present)').on('click', function (e) {
