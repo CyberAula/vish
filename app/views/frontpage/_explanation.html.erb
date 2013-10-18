@@ -5,9 +5,26 @@
           <li data-target="#myCarousel2" data-slide-to="0" data-interval="2000" class="active"></li>
           <li data-target="#myCarousel2" data-slide-to="1" data-interval="2000"></li>
           <li data-target="#myCarousel2" data-slide-to="2" data-interval="2000"></li>
+          <li data-target="#myCarousel2" data-slide-to="3" data-interval="2000"></li>
         </ol>  
         <div class="carousel-inner">
-          <div class="active item">
+
+
+          <div class="item active"> 
+            <div class="img_carousel "><%= image_tag("carrusel/mobile/4.jpg",  :class=> "" ) %></div>  
+            <div class="description">
+              <h1> <%=t("vish.carousel_title2")%> </h1>
+              <!--<hr class="soften">-->
+              <p>
+<!--competitions-->
+                <%=t("vish.description2")%>
+              </p>
+              
+            </div>
+          </div>
+
+
+          <div class=" item">
             <div class="img_carousel "><%= image_tag("carrusel/mobile/1.jpg",  :class=> "" ) %></div>
             <div class="description">
               <h1> <%=t("vish.carousel_title")%> </h1>
@@ -72,9 +89,26 @@
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
           <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>  
         <div class="carousel-inner">
-          <div class="active item">
+
+          <div class="item active"> 
+            <div class="img_carousel "><%= image_tag("carrusel/front4.jpg",  :class=> "" ) %></div>  
+            <div class="description">
+              <h1> <%=t("vish.carousel_title2")%> </h1>
+              <!--<hr class="soften">-->
+              <p>
+              <!--competitions-->
+                <%=t("vish.description2")%>
+              </p>
+              
+            </div>
+          </div>
+
+
+
+          <div class=" item">
             <div class="img_carousel "><%= image_tag("carrusel/front1.jpg",  :class=> "" ) %></div>
             <div class="description">
               <h1> <%=t("vish.carousel_title")%> </h1>
