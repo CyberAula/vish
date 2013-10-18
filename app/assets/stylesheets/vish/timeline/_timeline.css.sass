@@ -100,7 +100,18 @@
               color: lighten($firstColor, 20%)
     .more
       display: block
-      float: left
+      width: 100px
+      text-align: center
+      @include btn-primary
+      height: 20px
+      margin: 0 auto
+      float: none
+      clear: both
+      a
+        color: $white
+        &:hover
+          text-decoration: none
+
 
 .comments
   @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
