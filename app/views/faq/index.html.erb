@@ -1,6 +1,6 @@
 <%= content_for :javascript do %>
   if(window.location.hash!=""){
-    var hash = window.location.hash.substring(1);
+    var hash = window.location.hash.slice(0,-1);
     var link = $("a[href=" + hash+"]");
     if(link.size() > 0){
       var tab_id = link.parents(".tab-pane").attr("id");
