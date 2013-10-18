@@ -252,15 +252,34 @@ en:
     question1: "What is ViSH?"
     answer1: "The Virtual Science Hub is a meeting point for scientists and teachers and is based around the idea of “Virtual Excursions”, the online analog to an on-site visit, during which the students discover science in Europe’s top scientific centers. Several media such as flashcards, video-conference and virtual experiments help them feel the science rather than just study it. ViSH will be using Social Stream as a social networking library and it is entering its development phase. You can find the code at the GING github page."
     question2: "What is Global Excursion?"
-    answer2: "It is a FP7 European Project, funded by the European Commission under the 7th Framework Programme. It is coordinated by ZSI and the consortium is formed by UPM, EUN, SZTAKI, UCAM and UNIZAR. Check this http://www.globalexcursion-project.eu"
+    answer2: "It is a FP7 European Project, funded by the European Commission under the 7th Framework Programme. It is coordinated by ZSI and the consortium is formed by UPM, AGORA SYSTEMS, EUN, SZTAKI, UCAM and UNIZAR. Check this <a href='http://www.globalexcursion-project.eu' target='_blank'>http://www.globalexcursion-project.eu</a>"
     question3: "What is the eScience?"
     answer3: "eScience stands for “enhanced” science, in the sense of transdisciplinarity, global teams addressing large scale challenges, thanks to the use of new ICT tools and facilities. Include topics like high performance computing, large storage of data, complex networks of sensors, broadband communications, open repositories, new instrumentation, visualization tools…"
     
     editor_question1: "What is ViSH Editor?"
-    editor_answer1: "Vish Editor i is a HTML5 application to create web presentations in a simple and friendly way."
-    editor_question2: "It is difficult to create a new excursion?"
-    editor_answer2: "It is very easy and straightforward. You will find it very familiar and intuitive! Prepare the content to be included, organize it in a didactical and understandable manner, and then drag and drop or select the shape of the slides."
+    editor_answer1: "Vish Editor i is a HTML5 application to create web presentations in a simple and friendly way. It is integrated in ViSH and you can use it to create your eExcursions. If you are registered you can try it in: <a target='_blank' href='http://vishub.org/excursions/new'>http://vishub.org/excursions/new</a>"
+    editor_question2: "What is a eExcursion?"
+    editor_answer2: "It is a  kind of presentation created with multimedia didactical material which allows a better understanding of a scientific infrastructure, equipment of facility. eExcursions are didactical units used for science teaching, either shown in class or to be explored by students on their own. Check this video (English only) <a target='_blank' href='http://www.youtube.com/watch?v=tZ8qirSTIIs'>http://www.youtube.com/watch?v=tZ8qirSTIIs</a>"
+    editor_question3: "It is difficult to create a new eExcursion?"
+    editor_answer3: "It is very easy and straightforward. You will find it very familiar and intuitive! Prepare the content to be included, organize it in a didactical and understandable manner, and then drag and drop or select the shape of the slides. See a tutorial in <a target='_blank' href='http://www.youtube.com/watch?v=fBSNZxs8m0I&list=PLve_ezrFIJJxujiqCZid6KcgxPh4ksSp2&index=2'>Youtube ViSH channel</a>"
     
+
+    events_question1: "What is a eVisit?"
+    events_answer1: "It is a virtual visit or videoconference to any e-Infrastructure or scientific center, performed among scientists, researchers, teachers and pupils. They are done inside ViSH using a videoconference tool called <a href='http://mashme.tv' target='_blank'>MashMe.tv</a>"
+    events_question2: "How can I organize a eVisit?"
+    events_answer2: "Creating a eVisit in ViSH is very easy. You can do it from any page in the + button that is in the headbar, they are called events. After creating the event you will have to invite the rest of the people that will participate."
+    events_question3: "Can I use the events with my pupils or with other people?"
+    events_answer3: "Of course. You can create an event in ViSH and invite whoever you want."
+    
+
+    resources_question1: "What is a resource?"
+    resources_answer1: "They are any kind of digital material that can be uploaded to the ViSH to be used in the eExcursions. For example, websites, live webcams, embed codes, links, flash objects, images, videos, audios, pdf files, etc."
+    resources_question2: "How can I upload a new resource?"
+    resources_answer2: "This can be done very easily. In the + button in the headbar you can select 'add resource' and in the form that appears upload the file, or select the embed code or link."
+    resources_question3: "How can I integrate a resource into my eExcursion?"
+    resources_answer3: "In the ViSH Editor, when creating a eExcursion you can add any resource from the panels that appear. The tab is called ViSH and has a search field to search in ViSH repository."
+    
+
     competitions_question1: "Do I need to register in Vishub?"
     competitions_answer1: "Yes, if you want to create a new eExcursion and participate in this competition. If you just want to hang around, or see what others have created, you may see all the contents without registering."
     competitions_question2: "Can I participate in more than one category?"

@@ -49,9 +49,9 @@
   <ul class="nav nav-tabs">
 <!--______________CONTENT INDEX________________-->
     <li class="active"><a href="#tab1" data-toggle="tab">ViSHub</a></li>
-    <li><a href="#tab2" data-toggle="tab">ViSH Editor</a></li>
+    <li><a href="#tab2" data-toggle="tab">eExcursions</a></li>
     <li><a href="#tab3" data-toggle="tab">Resources</a></li>
-    <li><a href="#tab4" data-toggle="tab">Events</a></li>
+    <li><a href="#tab4" data-toggle="tab">eVisits</a></li>
     <li><a href="#tab5" data-toggle="tab">Competitions</a></li>
   </ul>
 
@@ -85,7 +85,7 @@
           </div>
           <div id="faq_vish_2" class="accordion-body collapse">
             <div class="accordion-inner">
-              <%=t('faq.answer2')%>
+              <%=raw t('faq.answer2')%>
             </div>
           </div>
         </div>
@@ -117,7 +117,7 @@
             </div>
             <div id="faq_vish_editor_1" class="accordion-body collapse ">
               <div class="accordion-inner">
-                <%=t('faq.editor_answer1')%>
+                <%=raw t('faq.editor_answer1')%>
               </div>
             </div>
           </div>
@@ -130,7 +130,20 @@
             </div>
             <div id="faq_vish_editor_2" class="accordion-body collapse">
               <div class="accordion-inner">
-                <%=t('faq.editor_answer2')%>
+                <%=raw t('faq.editor_answer2')%>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_vish_editor" href="#faq_vish_editor_3">
+                <%=t('faq.editor_question3')%>
+              </a>
+            </div>
+            <div id="faq_vish_editor_3" class="accordion-body collapse">
+              <div class="accordion-inner">
+                <%=raw t('faq.editor_answer3')%>
               </div>
             </div>
           </div>
@@ -144,12 +157,12 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_resources_1">
-              <%=t('faq.question1')%>resource
+              <%=t('faq.resources_question1')%>
             </a>
           </div>
           <div id="faq_resources_1" class="accordion-body collapse ">
             <div class="accordion-inner">
-              <%=t('faq.answer1')%>resource
+              <%=t('faq.resources_answer1')%>
             </div>
           </div>
         </div>
@@ -158,12 +171,12 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_resources" href="#faq_resources_2">
-              <%=t('faq.question2')%>resource2
+              <%=t('faq.resources_question2')%>
             </a>
           </div>
           <div id="faq_resources_2" class="accordion-body collapse">
             <div class="accordion-inner">
-              <%=t('faq.answer2')%>resource2
+              <%=t('faq.resources_answer2')%>
             </div>
           </div>
         </div>
@@ -176,12 +189,12 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_events" href="#faq_event_1">
-              <%=t('faq.question1')%>event
+              <%=t('faq.events_question1')%>
             </a>
           </div>
           <div id="faq_event_1" class="accordion-body collapse ">
             <div class="accordion-inner">
-              <%=t('faq.answer1')%>event
+              <%=raw t('faq.events_answer1')%>
             </div>
           </div>
         </div>
@@ -190,15 +203,29 @@
         <div class="accordion-group">
           <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_events" href="#faq_event_2">
-              <%=t('faq.question1')%>event
+              <%=t('faq.events_question2')%>
             </a>
           </div>
           <div id="faq_event_2" class="accordion-body collapse">
             <div class="accordion-inner">
-              <%=t('faq.answer1')%>event
+              <%=t('faq.events_answer2')%>
             </div>
           </div>
         </div>
+
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_faq_events" href="#faq_event_3">
+              <%=t('faq.events_question3')%>
+            </a>
+          </div>
+          <div id="faq_event_3" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <%=t('faq.events_answer3')%>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
