@@ -255,15 +255,28 @@ en:
     answer2: "It is a FP7 European Project, funded by the European Commission under the 7th Framework Programme. It is coordinated by ZSI and the consortium is formed by UPM, EUN, SZTAKI, UCAM and UNIZAR. Check this http://www.globalexcursion-project.eu"
     question3: "What is the eScience?"
     answer3: "eScience stands for “enhanced” science, in the sense of transdisciplinarity, global teams addressing large scale challenges, thanks to the use of new ICT tools and facilities. Include topics like high performance computing, large storage of data, complex networks of sensors, broadband communications, open repositories, new instrumentation, visualization tools…"
-    question4: "Do I need to register in Vishub?"
-    answer4: "Yes, if you want to create a new eExcursion and participate. If you just want to hang around, or see what others have created, you may see all the contents without registering."
-    question5: "Frequently Answered Questions"
-    answer5: "What is ViSH?"
     
     editor_question1: "What is ViSH Editor?"
     editor_answer1: "Vish Editor i is a HTML5 application to create web presentations in a simple and friendly way."
     editor_question2: "It is difficult to create a new excursion?"
     editor_answer2: "It is very easy and straightforward. You will find it very familiar and intuitive! Prepare the content to be included, organize it in a didactical and understandable manner, and then drag and drop or select the shape of the slides."
+    
+    competitions_question1: "Frequently Answered Questions"
+    competitions_answer1: "What is ViSH?"
+    competitions_question2: "Do I need to register in Vishub?"
+    competitions_answer2: "Yes, if you want to create a new eExcursion and participate in this competition. If you just want to hang around, or see what others have created, you may see all the contents without registering."
+    competitions_question3: "Can I participate in more than one category?"
+    competitions_answer3: "Sure! the more the better. Make use of your network, your contents, your ideas… and you will have more chances to win. But you can only win in one single category, so if you are initially selected as winner in two categories, you will be asked to choose the one you prefer."
+    competitions_question4: "I am not a professional, do I have any chance?"
+    competitions_answer4: "Yes, definitively. We believe in the power of open science. All the contributions are welcome, sometimes amateurs perform better that professionals, let’s try!"
+    competitions_question5: "Can I use my regional language?"
+    competitions_answer5: "Sorry, despite we understand the value of local actions and regional knowledge, it is too complicated for us to evaluate in languages we are not experts. The languages covered are English, German, French, Spanish, Dutch, Hungarian, Romanian, Greek and Italian."
+    competitions_question6: "What is an Amazon voucher?"
+    competitions_answer6: "It is a promotional code for the online store Amazon that will allow you to buy whatever you may consider interesting for your work: books, little technological equipment… "
+    competitions_question7: "What does the trip to Brussels award include?"
+    competitions_answer7: "We’ll pay you (one person) the travel expenses (economy class train or flight ticket, hotel room, subsistence) from you city to Brussels. We kindly invite you to join the Global Excursion Final Conference with other stakeholders and experts from the European e-learning environment. "
+
+
   filter: "filter"
   follow:
     add_favorite: "Add favorite"
