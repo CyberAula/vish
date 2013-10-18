@@ -101,6 +101,7 @@ class ExcursionsController < ApplicationController
     end
     @excursion.save!
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)) }
+    #render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)) }
   end
 
   def update

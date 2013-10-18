@@ -229,6 +229,12 @@ en:
         link: "e-mail"
         subject: "Check%20out%20this%20excursion%20at%20http://vishub.org%20:%20%{title}"
     is_draft: "[DRAFT]"
+    modal: 
+      title: "Congratulations"
+      competitions_body: "Congratulations. You have succesfully created this excursion and registered it to participate in the competitions. Winners will be announced on the 23rd of December on ViSH, our <a href='https://www.facebook.com/VirtualScienceHub' target='_blank'>Facebook page</a> and we will tell them by email."
+      normal_body: "Congratulations. You have succesfully created this excursion."
+      survey: "Now you can fill in a quick survey to help us improve this tool. It will only take you 3 minutes. <a href='http://googledocs.link' target='_blank'>Fill in the survey</a>"
+      thank: "Thank you very much for your time and effort"
     my: "my"
     name: "excursion"
     net: "network"

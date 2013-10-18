@@ -12,6 +12,13 @@
 
 
 <%= content_for :javascript do %> 
+  if(window.location.search != ""){
+    console.log("ff " + window.location.search);
+    $("#congratulations-button").click();
+  }
+
+
+
 //Get the context of the canvas element we want to select
 var ctx = document.getElementById("evalChart").getContext("2d");
 
@@ -122,3 +129,20 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
     </div>
   </div>
 </section>
+
+<a id="congratulations-button" href="#CongratModal" role="button" class="" style="display:none" data-toggle="modal"></a>
+<div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
+  </div>
+  <div class="modal-body evaluation_body">
+    <%if @excursion.tag_list.include? "ViSHCompetition2013"%>
+      <p><%=t("excursion.modal.competitions_body")%></p>
+    <%else%>
+      <p><%=t("excursion.modal.normal_body")%></p>
+    <%end%>
+    <p><%=raw t("excursion.modal.survey")%></p>
+    <p><%=raw t("excursion.modal.thank")%></p>
+  </div>
+</div>
