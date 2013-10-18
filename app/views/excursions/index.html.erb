@@ -1,5 +1,6 @@
 <section class="clearfix" id="excursions">
   <ul class="">
+    <div class="competitions_ad"><p><%=raw t("competitions.home")%></p></div>
     <%= render partial: 'excursions/excursion-add' %>
     <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
         scope = :more
