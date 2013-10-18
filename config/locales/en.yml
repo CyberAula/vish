@@ -57,6 +57,8 @@ en:
     selected: "categories"
     success: "Categories saved succesfully"
   close: "Close"
+  competitions: 
+    home: "ViSH competition period is open now! You can participate easily creating new excursions. Get the <a href='http://vishub.org/ViSH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
   conditions:
     check_message: "By clicking Accept, you agree to our "  
     check_message_1: "Terms and Conditions."
