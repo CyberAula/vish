@@ -1,0 +1,13 @@
+<div class="quick_search">
+  <div class="photo">
+    <%= embed_to icon(embed), embed, :title => embed.file_file_name %>
+  </div>
+  <div class="data">
+    <div class="name">
+      <%= embed_to embed.title, embed %>
+    </div>
+    <div class="author"> 
+      <%= embed_to truncate_name(embed.author.name, length: 25), embed.author.subject %>
+    </div>
+  </div>
+</div>
