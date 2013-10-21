@@ -58,7 +58,7 @@ en:
     success: "Categories saved succesfully"
   close: "Close"
   competitions: 
-    home: "ViSH competition period is open now! You can participate easily creating new excursions. Get the <a href='http://vishub.org/ViSH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
+    home: "ViSH competition period is open now! You can participate easily creating new excursions. Get the <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
   conditions:
     check_message: "By clicking Accept, you agree to our "  
     check_message_1: "Terms and Conditions."
@@ -233,7 +233,7 @@ en:
       title: "Congratulations"
       competitions_body: "Congratulations. You have succesfully created this excursion and registered it to participate in the competitions. Winners will be announced on the 23rd of December on ViSH, our <a href='https://www.facebook.com/VirtualScienceHub' target='_blank'>Facebook page</a> and we will tell them by email."
       normal_body: "Congratulations. You have succesfully created this excursion."
-      survey: "Now you can fill in a quick survey to help us improve this tool. It will only take you 3 minutes. <a href='http://googledocs.link' target='_blank'>Fill in the survey</a>"
+      survey: "Now you can fill in a quick survey to help us improve this tool. It will only take you about 3 minutes. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Fill in the survey</a>"
       thank: "Thank you very much for your time and effort"
     my: "my"
     name: "excursion"
@@ -533,7 +533,7 @@ en:
     description2: "Virtual excursions are visual knowledge resources designed for proyection in the virtual or phisical classroom integrating multimedia content brought in real time from the local repository or from the internet using HTML5 and JSON."   
     description3: "ViSH allows you to organize and announce meetings in MashMe virtual rooms to show virtual excursions in real time to remote participants."
     description4: "ViSH competition period is open now! You can participate easily creating new excursions."
-    description41: "Get the <a href='http://vishub.org/ViSH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
+    description41: "Get the <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
     sentence1: "Create your account with ViSH"
     sentence2: "ViSH is a social science platform"
     team: "The ViSH Team" 

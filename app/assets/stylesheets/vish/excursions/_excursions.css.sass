@@ -15,15 +15,14 @@ section
       position: relative
       text-transform: uppercase
       /*A little shadow for 3d effect*/
-      /*Finally another shadow to negate some aspects of the :after element to complete the effect. This drops a shrinked shadow over the :after element with the same color like that of the background. The shadow is shrinked by the same offset amount = 18. And it is moved down by twice the offset amount to cover the entire height of the :after element*/*
-      box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1), 0 36px 0 -18px #000
+      /*Finally another shadow to negate some aspects of the :after element to complete the effect. This drops a shrinked shadow over the :after element with the same color like that of the background. The shadow is shrinked by the same offset amount = 18. And it is moved down by twice the offset amount to cover the entire height of the :after element*/
       &:before
         content: ''
         position: absolute
         top: 18px
-        left: -15%
+        left: -4%
         z-index: -1
-        width: 130%
+        width: 108%
         /*We will be using the triangle logic - 2 sided borders and 0 height. That will create negative triangles on the left and right*/
         height: 0
         border: 28px solid rgba(138, 138, 138, 0.1)
