@@ -18185,6 +18185,7 @@ VISH.Editor.Competitions = function(V, $, undefined) {
   var competitionTag = "ViSHCompetition2013";
   var competitionCategories = ["Maths", "Physics", "Chemistry", "Biology", "EnvironmentalStudies", "Geography", "Engineering", "Humanities", "NaturalScience", "ComputerScience"];
   var misleadingTags = ["ViSHCompetitions2013"];
+  var specialTags = [];
   var init = function() {
   };
   var addCompetitionTags = function(tagsArray) {
@@ -18277,7 +18278,18 @@ VISH.Editor.Competitions = function(V, $, undefined) {
     }
     return result
   };
-  return{init:init, addCompetitionTags:addCompetitionTags, generateForm:generateForm, isValidCandidate:isValidCandidate}
+  var specialTagSelected = function(event) {
+    var tagList = $("#tagBoxIntro .tagList");
+    if($(event.target).is(":checked")) {
+      $(tagList).tagit("add", $(event.target).val())
+    }else {
+      $(tagList).tagit("remove", $(event.target).val())
+    }
+  };
+  var getSpecialTags = function() {
+    return specialTags
+  };
+  return{init:init, addCompetitionTags:addCompetitionTags, generateForm:generateForm, getSpecialTags:getSpecialTags, isValidCandidate:isValidCandidate, specialTagSelected:specialTagSelected}
 }(VISH, jQuery);
 VISH.Editor.Dummies = function(V, undefined) {
   var dummies = [];
@@ -18421,6 +18433,7 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).on("click", ".delete_slide", V.Editor.onDeleteSlideClicked);
       $(document).on("click", "#theme_fancybox img[theme]", V.Editor.Themes.onThemeSelected);
       $(document).on("click", ".change_bg_button", V.Editor.Tools.changeBackground);
+      $(document).on("click", ".comp_checkbox input", V.Editor.Competitions.specialTagSelected);
       $(document).bind("keydown", handleBodyKeyDown);
       $(document).bind("keyup", handleBodyKeyUp);
       $("article").live("slideenter", V.Editor.onSlideEnterEditor);
@@ -20924,7 +20937,12 @@ VISH.Editor.Settings = function(V, $, undefined) {
       $("#difficulty_range").val(LOM_Difficulty[ui.value].text)
     }});
     $("#difficulty_range").attr("difficulty", V.Constant.DIFFICULTY);
-    $("#difficulty_range").val(LOM_Difficulty[V.Constant.DIFFICULTY].text)
+    $("#difficulty_range").val(LOM_Difficulty[V.Constant.DIFFICULTY].text);
+    if(V.Configuration.getConfiguration()["presentationTags"] && !tagsLoaded) {
+      $("#tagBoxIntro").attr("HTMLcontent", $("#tagBoxIntro").html());
+      V.Utils.Loader.startLoadingInContainer($("#tagBoxIntro"), {style:"loading_tags"});
+      V.Editor.API.requestTags(_onInitialTagsReceived)
+    }
   };
   var displaySettings = function() {
     $("a#edit_presentation_details").fancybox({"autoDimensions":false, "autoScale":true, "scrolling":"no", "width":1E3, "height":700, "padding":0, "hideOnOverlayClick":false, "hideOnContentClick":false, "showCloseButton":false, "onComplete":function(data) {
@@ -20942,11 +20960,6 @@ VISH.Editor.Settings = function(V, $, undefined) {
   var _onDisplaySettings = function() {
     var options = V.Utils.getOptions();
     var presentation = V.Editor.getPresentation();
-    if(V.Configuration.getConfiguration()["presentationTags"] && !tagsLoaded) {
-      $("#tagBoxIntro").attr("HTMLcontent", $("#tagBoxIntro").html());
-      V.Utils.Loader.startLoadingInContainer($("#tagBoxIntro"), {style:"loading_tags"});
-      V.Editor.API.requestTags(_onInitialTagsReceived)
-    }
     if(!themeScrollbarCreated) {
       V.Editor.Scrollbar.cleanScrollbar(themeScrollbarDivId);
       $("#" + themeScrollbarDivId).hide();
@@ -21084,8 +21097,13 @@ VISH.Editor.Settings = function(V, $, undefined) {
             $(tagList).append("<li>" + tag + "</li>")
           })
         }
+        if(V.Editor.Competitions.getSpecialTags()) {
+          $.each(V.Editor.Competitions.getSpecialTags(), function(index, tag) {
+            $(tagList).append("<li>" + tag + "</li>")
+          })
+        }
       }
-      $(tagList).tagit({tagSource:data, sortable:true, maxLength:20, maxTags:6, watermarkAllowMessage:V.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.I18n.getTrans("i.limitReached")})
+      $(tagList).tagit({tagSource:data, sortable:true, maxLength:20, maxTags:8, watermarkAllowMessage:V.I18n.getTrans("i.AddTags"), watermarkDenyMessage:V.I18n.getTrans("i.limitReached")})
     }
   };
   var onChangeThumbnailClicked = function() {
@@ -21846,7 +21864,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
 VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var _initialized = false;
   var _hoverMenu = false;
-  var _competitionsModalShown = true;
+  var _competitionsModalShown = false;
   var init = function() {
     if(!_initialized) {
       if(!V.Status.getDevice().desktop) {
