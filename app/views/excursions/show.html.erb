@@ -12,12 +12,9 @@
 
 
 <%= content_for :javascript do %> 
-  if(window.location.search != ""){
-    console.log("ff " + window.location.search);
-    $("#congratulations-button").click();
-  }
-
-
+    if(window.location.search != ""){
+      $("#congratulations-button").click();
+    }
 
 //Get the context of the canvas element we want to select
 var ctx = document.getElementById("evalChart").getContext("2d");
