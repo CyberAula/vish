@@ -43,22 +43,32 @@
 <!-- Modal -->
 <div id="new_messages_profile" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
+  <div class="modal-header">
+    <h4><%=t('message.new')%></h4>
+  </div>
   <div class="modal-body">
     <section id="new_message_profile">
       <%= render :partial => 'messages/new', :locals => {:@recipient => Actor.find_by_slug(profile_subject.slug)} %>
-
-      <%= javascript_tag do %>
-        $(function() {
-          $('#new_messages_profile').on('shown', function () {
-          SocialStream.Message.new_();
-          })
-        });
-      <% end %>
     </section>
   </div>
-  <!--   <div class="modal-footer">
-  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-</div> -->
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
+  </div>
+  <%= javascript_tag do %>
+    $(function() {
+      var sendMessage = $("input[name='send_message']");
+      var send = $("input[type='button'][value='<%=t('mailboxer.send')%>']");
+      $(sendMessage).addClass("hidden");
+      $(send).click(function(event) {
+        $(sendMessage).click();
+      });
+      $('#new_messages_profile').on('shown', function () {
+      SocialStream.Message.new_();
+      })
+    });
+  <% end %>
+
 
 </div>
 
