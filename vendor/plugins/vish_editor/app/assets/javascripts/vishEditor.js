@@ -18185,7 +18185,7 @@ VISH.Editor.Competitions = function(V, $, undefined) {
   var competitionTag = "ViSHCompetition2013";
   var competitionCategories = ["Maths", "Physics", "Chemistry", "Biology", "EnvironmentalStudies", "Geography", "Engineering", "Humanities", "NaturalScience", "ComputerScience"];
   var misleadingTags = ["ViSHCompetitions2013"];
-  var specialTags = [];
+  var vishCompetitionTagAdded = false;
   var init = function() {
   };
   var addCompetitionTags = function(tagsArray) {
@@ -18281,15 +18281,15 @@ VISH.Editor.Competitions = function(V, $, undefined) {
   var specialTagSelected = function(event) {
     var tagList = $("#tagBoxIntro .tagList");
     if($(event.target).is(":checked")) {
+      if(!vishCompetitionTagAdded) {
+        $(tagList).tagit("add", "ViSHCompetition2013")
+      }
       $(tagList).tagit("add", $(event.target).val())
     }else {
       $(tagList).tagit("remove", $(event.target).val())
     }
   };
-  var getSpecialTags = function() {
-    return specialTags
-  };
-  return{init:init, addCompetitionTags:addCompetitionTags, generateForm:generateForm, getSpecialTags:getSpecialTags, isValidCandidate:isValidCandidate, specialTagSelected:specialTagSelected}
+  return{init:init, addCompetitionTags:addCompetitionTags, generateForm:generateForm, isValidCandidate:isValidCandidate, specialTagSelected:specialTagSelected}
 }(VISH, jQuery);
 VISH.Editor.Dummies = function(V, undefined) {
   var dummies = [];
@@ -21094,11 +21094,6 @@ VISH.Editor.Settings = function(V, $, undefined) {
       }else {
         if(draftPresentation.tags) {
           $.each(draftPresentation.tags, function(index, tag) {
-            $(tagList).append("<li>" + tag + "</li>")
-          })
-        }
-        if(V.Editor.Competitions.getSpecialTags()) {
-          $.each(V.Editor.Competitions.getSpecialTags(), function(index, tag) {
             $(tagList).append("<li>" + tag + "</li>")
           })
         }
