@@ -1,0 +1,13 @@
+<div class="quick_search">
+  <div class="photo">
+    <%= link_to "<i class=\"icon-code\"></i>".html_safe, embed, :title => embed.title %>
+  </div>
+  <div class="data">
+    <div class="name">
+      <%= embed_to embed.title, embed %>
+    </div>
+    <div class="author"> 
+      <%= embed_to truncate_name(embed.author.name, length: 25), embed.author.subject %>
+    </div>
+  </div>
+</div>

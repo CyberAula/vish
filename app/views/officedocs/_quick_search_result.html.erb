@@ -1,0 +1,13 @@
+<div class="quick_search">
+  <div class="photo">
+    <%= link_to icon(officedoc), officedoc, :title => officedoc.file_file_name %>
+  </div>
+  <div class="data">
+    <div class="name">
+      <%= link_to officedoc.title, officedoc %>
+    </div>
+    <div class="author"> 
+      <%= link_to truncate_name(officedoc.author.name, length: 25), officedoc.author.subject %>
+    </div>
+  </div>
+</div>

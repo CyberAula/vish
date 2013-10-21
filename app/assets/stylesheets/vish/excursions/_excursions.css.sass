@@ -8,39 +8,19 @@ section
       line-height: 28px
       color: #555555
       text-shadow: 0 0 1px #000000
-      margin: 3px 0px 50px 0px
+      margin: 3px 0px 25px 0px
       font-family: arial, verdana
       outline: none
       padding: 14px 30px
       position: relative
       text-transform: uppercase
-      /*A little shadow for 3d effect*/
-      /*Finally another shadow to negate some aspects of the :after element to complete the effect. This drops a shrinked shadow over the :after element with the same color like that of the background. The shadow is shrinked by the same offset amount = 18. And it is moved down by twice the offset amount to cover the entire height of the :after element*/
-      &:before
-        content: ''
-        position: absolute
-        top: 18px
-        left: -2%
-        z-index: -1
-        width: 102.5%
-        /*We will be using the triangle logic - 2 sided borders and 0 height. That will create negative triangles on the left and right*/
-        height: 0
-        border: 28px solid rgba(138, 138, 138, 0.1)
-        border-left: 28px solid #f2f2f2
-        border-right: 28px solid #f2f2f2
-        /*Same color as the container which is the body in this case*/
       &:after
         content: ''
-        width: 100%
         height: 0
         position: absolute
         top: 100%
         left: 0
         z-index: -1
-        /*The height of the top border is same as width of the left/right borders for the smoothest effect. The height of the top border is also the same as the offset the :before element has from the top*/
-        border-top: 18px solid #E7E7E7
-        border-left: 18px solid transparent
-        border-right: 18px solid transparent
       /*Some cool multi-background - we will use a combination of 4 backgrounds to create a cool effect*/
       background-image: linear-gradient(transparent 8%, rgba(0, 0, 0, 0.1) 8%, rgba(0, 0, 0, 0.1) 14%, transparent 14%, transparent 86%, rgba(0, 0, 0, 0.1) 86%, rgba(0, 0, 0, 0.1) 92%, transparent 92%), linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)), linear-gradient(45deg, transparent 40%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.1) 60%, transparent 60%), linear-gradient(white, white)
       background-size: cover, cover, 4px 4px, cover
@@ -56,14 +36,6 @@ section
       box-sizing: border-box
       /*Fix to make the borders appear on the ribbon ends also*/
       background-origin: border-box
-      &:after
-        box-sizing: border-box
-        /*Fix to make the borders appear on the ribbon ends also*/
-        background-origin: border-box
-
-    /*The ribbon ends*/
-
-    /*The after pseudo element will negatve the bottom part of the ribbon completing the effect*/
 
 #editor_wrapper
   width: 100%

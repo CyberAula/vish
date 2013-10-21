@@ -1,0 +1,13 @@
+<div class="quick_search">
+  <div class="photo">
+    <%= link_to icon(audio), audio, :title => audio.file_file_name %>
+  </div>
+  <div class="data">
+    <div class="name">
+      <%= link_to audio.title, audio %>
+    </div>
+    <div class="author"> 
+      <%= link_to truncate_name(audio.author.name, length: 25), audio.author.subject %>
+    </div>
+  </div>
+</div>
