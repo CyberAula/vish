@@ -149,8 +149,7 @@
 
 #conversation
   @include percent-btn-primary
-  .cleditorMain
-    width: 150px !important
+
 
 #content
   .notification
@@ -166,11 +165,13 @@
         list-style: none
         input
           text-decoration: none !important
-          max-width: 389px
+          width: 100%
 
   .cleditorMain
-    width: 389px !important
+    width: 100%
     float: left
+    height: 110px !important
+    @include border-radius($baseBorderRadius)
     iframe
       height: 50px  !important
   .btn 
