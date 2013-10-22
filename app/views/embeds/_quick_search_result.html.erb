@@ -4,10 +4,10 @@
   </div>
   <div class="data">
     <div class="name">
-      <%= embed_to embed.title, embed %>
+      <%= link_to embed.title, embed %>
     </div>
     <div class="author"> 
-      <%= embed_to truncate_name(embed.author.name, length: 25), embed.author.subject %>
+      <%= link_to truncate_name(embed.author.name, length: 25), embed.author.subject %>
     </div>
   </div>
 </div>
