@@ -10,15 +10,22 @@
           <span class="caret"></span>
         </button>  
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          
           <li class="">
-            <%= link_to help_path do %>
-              <i class="icon-question-sign"> </i> <%=t('help_page')%>
+            <%= link_to faq_path do %>
+              <i class="icon-question-sign"> </i> <%=t('faq.title')%>
             <% end %>
           </li>
 
           <li class="">
             <%= link_to user_manual_path do %>
               <i class='icon-download'> </i> <%= t('help_manual')%>       
+            <% end %>
+          </li>
+
+          <li class="">
+            <%= link_to help_path do %>
+              <i class="icon-question-sign"> </i> <%=t('help_page')%>
             <% end %>
           </li>
         </ul>

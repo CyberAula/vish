@@ -252,6 +252,8 @@ es:
     unload_warning: "The excursion is not saved!"
     top: "paraMí"
   external: "externo"
+  faq:
+    title: "Preguntas frecuentes"
   filter: "filtrar"
   follow:
     add_favorite: "Añadir favorito"
