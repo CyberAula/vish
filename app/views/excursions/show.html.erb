@@ -135,7 +135,7 @@ var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
   </div>
   <div class="modal-body evaluation_body">
     <%if @excursion.tag_list.include? "ViSHCompetition2013"%>
-      <p><i class="icon-ok"></i>  <%=t("excursion.modal.competitions_body")%></p>
+      <p><i class="icon-ok"></i>  <%=raw t("excursion.modal.competitions_body")%></p>
     <%else%>
       <p><i class="icon-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
     <%end%>
