@@ -17811,7 +17811,7 @@ VISH.Editor.API = function(V, $, undefined) {
         var tags = [];
         if(tagsJSON.length > 0) {
           $.each(tagsJSON, function(index, tagJSON) {
-            tags.push(tagJSON.value)
+            tags.push(tagJSON.name)
           })
         }
         successCallback(tags)
