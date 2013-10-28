@@ -29,7 +29,7 @@ module ApplicationHelper
 			elsif item.object.class == Excursion
 				thumbs_array << excursion_raw_thumbail(item.object)
 			elsif item.object.class == Event && !item.object.poster.file_file_name.nil?
-				thumbs_array << item.object.poster
+				thumbs_array << item.object.poster.file.to_s
 			end
 		end
 		
