@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131001164017) do
+ActiveRecord::Schema.define(:version => 20131028095716) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -246,12 +246,12 @@ ActiveRecord::Schema.define(:version => 20131001164017) do
   end
 
   create_table "excursions", :force => true do |t|
-    t.datetime "created_at",                                                                :null => false
-    t.datetime "updated_at",                                                                :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "activity_object_id"
     t.text     "json"
     t.integer  "slide_count",        :default => 1
-    t.string   "thumbnail_url",      :default => "/assets/logos/original/excursion-00.png"
+    t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
     t.text     "offline_manifest"
     t.string   "excursion_type",     :default => "presentation"
