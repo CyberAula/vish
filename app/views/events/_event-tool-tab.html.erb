@@ -1,6 +1,8 @@
 <div class="btn-group">
 <!--delete-->
-  <%= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
+  <% if can? :delete, @event %>
+    <%= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
+  <%end%>
   
 <!--categoriess-->
   <%if user_signed_in?%>

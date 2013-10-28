@@ -19,7 +19,7 @@
 </div>
 </div>
 
-<div id="effect" class="newClass ui-corner-all">
+<div id="effect" class="anotherNewClass ui-corner-all">
   <dl class="dl-horizontal">
     <%# unless document.description.blank? %>
       <dt><%= t 'document.info.description' %></dt>
@@ -52,22 +52,4 @@
   </dl>
 </div>
 
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
 
-<script>
-$(function() {
-  $("#showMore").click(function(){
-    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
-    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
-    if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<%=t("excursion.actions.show_fewer")%>');
-      $("#showMore").attr("status", "showFewer");
-    }
-    else{
-      $("#showMore").html('<%=t("excursion.actions.show_more")%>');
-      $("#showMore").attr("status", "showMore");
-    }
-    return false;
-  });
-});
-</script>
