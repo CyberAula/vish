@@ -1,8 +1,108 @@
+<%= content_for :javascript do %> 
+//to close the popovers
+$(':not(#anything_not_present)').on('click', function (e) {
+  $('.popover-link').each(function () {
+  //the 'is' for buttons that trigger popups
+  //the 'has' for icons and other elements within a button that triggers a popup
+  if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+  $(this).popover('hide');
+  return;
+  }
+  });
+});
+
+
+//apply events when opening the embed popover
+$('.embed').on('shown.bs.popover', function () {
+  $('button#btn_copy_embed').zclip({
+  path:'/assets/ZeroClipboard.swf',
+  copy:function(){
+  return $('#textarea_for_iframe').text();
+  },
+  afterCopy: function(){}
+});
+
+$("#textarea_for_iframe").mouseup(function(e){
+  // fixes safari/chrome problem
+  e.preventDefault();
+  }).focus(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  }).click(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  });
+
+});
+
+$('.share').on('shown.bs.popover', function () {
+  $('button#btn_copy_share').zclip({
+  path:'/assets/ZeroClipboard.swf',
+  copy:function(){
+  return $('#input_with_shorturl').val();
+  },
+  afterCopy: function(){}
+});
+
+$("#input_with_shorturl").mouseup(function(e){
+  // fixes safari/chrome problem
+  e.preventDefault();
+  }).focus(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  }).click(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  });
+
+});
+
+$('.delete').popover({ 
+  html : true,
+  content: function() {
+  return $('.contentdelete').html();
+  },
+  container: "body"
+});
+
+$(".spam_radio").click(function(e) {
+  $(".textarea_spam").hide("slow");
+  $(e.target).siblings("textarea").show("slow");
+
+});
+
+<%end%>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".with_tooltip").tooltip({ placement: 'bottom'});
+});
+</script>
+
 <div class="btn-group">
 <!--delete-->
   <% if can? :delete, @event %>
-    <%= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
+    <%#= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
   <%end%>
+
+  <!--si es tuya la puedes eliminar o editar-->
+  <% if user_signed_in? and (can? :update, @event) %>
+    <!-- <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_event_path(@event)%>'"><i class="icon-edit"></i></button> -->
+  <%end%>
+  <!--remove-->
+  <% if user_signed_in? and can?(:destroy, @event) %>
+    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+  <%end%>
+
+  <div class="contentdelete" style="display: none">
+    <p class="delete_p"><i class="icon-trash"></i>  <%=t('excursion.confirm_delete')%></p>
+    <div class="actions">
+      <a class="btn btn_cancel"><%=t('cancel')%></a>
+      <%= link_to t('excursion.actions.delete'),  @event, :method => :delete, :class => 'btn btn-primary' %>
+    </div>
+  </div>
   
 <!--categoriess-->
   <%if user_signed_in?%>

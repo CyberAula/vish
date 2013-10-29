@@ -29,7 +29,7 @@
     <div class="recomended">
       <div class="recomended-items">
         <ul class="small-box clearfix">
-          <% popular_resources(6).each do |resource| %>
+          <% popular_resources(16).each do |resource| %>
             <%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
           <% end %>
         </ul>
