@@ -64,6 +64,7 @@ Vish::Application.routes.draw do
   match 'user_manual' => 'help#download_user_manual'
 
   resources :competitions
+  resource :contest
 
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"
