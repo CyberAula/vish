@@ -106,13 +106,21 @@
 					</a>
 					<p class="toolbar_prseentation_title" i18n-key="i.Preview">Preview</p>
 				</div>
-				<div id="toolbar_themes_help" class="toolbar_presentation_wrapper lasticonborder ">
+				<div id="toolbar_themes_help" class="toolbar_presentation_wrapper ">
 					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-adjust"></i>
 						</button>
 					</a>
 					<p class="toolbar_prseentation_title" i18n-key="i.Style">Style</p>
+				</div>
+				<div id="toolbar_animation_help" class="toolbar_presentation_wrapper lasticonborder">
+					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-magic"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title" i18n-key="i.Style">Animation</p>
 				</div>
 				<div id="toolbar_background_help" class="toolbar_presentation_wrapper bgtoolpos">
 					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
@@ -839,6 +847,51 @@
 		</div>
 	</div>
 
+	<!-- Select animation fancybox -->
+	<a id="hidden_button_to_launch_animation_fancybox" href="#animation_fancybox" style="display:none"></a>
+	<div style='display:none'>
+		<div id="animation_fancybox" class="animation_fancybox_class">
+		<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle.png"/>
+			<div id='select_animation1' class="slidethumb" animation="animation1">
+				<div class="anim_text">
+					<h3>Horizontal</h3>
+				</div>
+			</div>
+			<div id='select_animation2' class="slidethumb" animation="animation2">
+				<div class="anim_text"><h3>Vertical</h3></div>
+			</div>
+			<div id='select_animation3' class="slidethumb" animation="animation3">
+				<div class="anim_text"><h3>Opacity</h3></div>
+			</div>
+			<div id='select_animation4' class="slidethumb" animation="animation4">
+				<div class="anim_text"><h3>Elements</h3></div>
+			</div>
+			<div id='select_animation5' class="slidethumb" animation="animation5">
+				<div class="anim_text"><h3>Rotate</h3></div>
+			</div>
+			<div id='select_animation6' class="slidethumb" animation="animation6">
+				<div class="anim_text"><h3>Diagonal #1</h3></div>
+			</div>
+			<div id='select_animation7' class="slidethumb" animation="animation7">
+				<div class="anim_text"><h3>Diagonal #2</h3></div>
+			</div>
+			<div id='select_animation8' class="slidethumb" animation="animation8">
+				<div class="anim_text"><h3>Inside</h3></div>
+			</div>
+			<div id='select_animation9' class="slidethumb" animation="animation9">
+				<div class="anim_text"><h3>Zoom</h3></div>
+			</div>
+			<div id='select_animation10' class="slidethumb" animation="animation10">
+				<div class="anim_text"><h3>Flip #1</h3></div>
+			</div>
+			<div id='select_animation11' class="slidethumb" animation="animation11">
+				<div class="anim_text"><h3>Flip #2</h3></div>
+			</div>
+			<div id='select_animation12' class="slidethumb" animation="animation12">
+				<div class="anim_text"><h3>3D</h3></div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Objects -->
 	<div style='display:none'>
@@ -1495,6 +1548,18 @@
 			<p i18n-key="i.walkSettings5_2">A theme defines the visual appearance of the presentation. ViSH Editor offers different themes among them you can choose.</p>
 			<p i18n-key="i.walkSettings5_3">To pick one theme, just click on the icon you like in this gallery.</p>
 			<p i18n-key="i.walkThemes_4">Remember that you can change the theme of the presentation at any time by accesing to this screen or by clicking on the 'Settings' option in the menu.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help in Animation templates -->
+	<ol id="animation_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" class="tut_themes tut_width500_center tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
+			<h2 i18n-key="i.walkAnimations_1">ViSH Editor Animations</h2>
+			<p i18n-key="i.walkAnimations_2">An Animation defines the visual transition between the slides of the presentation. ViSH Editor offers different animations among them you can choose.</p>
+			<p i18n-key="i.walkAnimations_3">To pick one animation, just pass through the icons to previsualize the animation you like in this gallery.</p>
+			<p i18n-key="i.walkAnimations_4">Remember that you can change the animation between the slides of the presentation at any time by accesing to this screen.</p>
+			<p class="tut_space">&nbsp;</p>
 			<p class="tut_space">&nbsp;</p>
 		</li>
 	</ol>

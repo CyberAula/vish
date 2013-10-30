@@ -40,6 +40,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.walkPresSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Excursiones Virtuales encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkInsertingViSHSmart_1":"A\u00f1adiendo Smartcards", "i.walkInsertingViSHSmart_2":"Aqu\u00ed puedes buscar Smartcards en la plataforma ViSH para a\u00f1adirlas a tu presentaci\u00f3n.", "i.walkInsertingViSHSmart_3":"Haz click en cualquiera de las Smartcards para seleccionarla. Despu\u00e9s, se mostrar\u00e1 un nuevo bot\u00f3n 'Vista Previa'. Cuando pulses este bot\u00f3n, aparecer\u00e1 una nueva ventana para que puedas ver la Smartcard antes de insertarla en tu presentaci\u00f3n.", 
 "i.walkSmartSearch2":"y pulsa la tecla 'intro' para comenzar la b\u00fasqueda. Cuando termine la b\u00fasqueda, las Smartcards encontradas ser\u00e1n mostradas en esta pantalla.", "i.walkLearnMoreSmartcards":"Pulsa aqu\u00ed para aprender m\u00e1s sobre las Smartcards.", "i.walkInsertJSONfile_1":"A\u00f1adir una presentaci\u00f3n de ViSH Editor de un fichero JSON", "i.walkInsertJSONfile_2":"Selecciona el archivo en formato JSON (.json) en el cual est\u00e1 guardada la presentaci\u00f3n que quieres insertar. A continuaci\u00f3n, pulsa sobre el bot\u00f3n 'Vista Previa'. Aparecer\u00e1 una nueva pantalla para que elijas las diapositivas a importar.", 
 "i.walkInsertJSONfile_3":"Puedes salvar tu presentaci\u00f3n en formato JSON haciendo click en 'Men\u00fa -> Exportar -> a JSON'. Se descargar\u00e1 a tu dispositivo un fichero JSON conteniendo tu presentaci\u00f3n. De esta forma puedes compartir tu presentaci\u00f3n mediante un archivo (por ejemplo envi\u00e1ndolo por email) y almacenarla donde quieras.", "i.walkThemes_1":"Temas de ViSH Editor", "i.walkThemes_4":"Recuerda que puedes cambiar el tema de la presentaci\u00f3n en cualquier momento accediendo a esta pantalla o seleccionando la opci\u00f3n 'Ajustes' en el menu.", 
+"i.walkAnimations_1":"Animaciones de Vish Editor", "i.walkAnimations_2":"Una animaci\u00f3n define las transiciones visuales entre las slides de la presentaci\u00f3n.Vish Editor ofrece diferentes animaciones entre las cuales puedes escojer.", "i.walkAnimations_3":"Para escojer una animaci\u00f3n, solamente debes pasar con el cursor por encima de los iconos para previsualizar la animaci\u00f3n que te gustar\u00eda a\u00f1adir dentro de esta galer\u00eda.", "i.walkAnimations_4":"Recuerda que puedes cambiar la animaci\u00f3n entre las slides en cualquier momento accediendo a esta pantalla desde el icono superior.", 
 "i.CreatingFlashcards":"Creando Flashcards", "i.walkFlashcard_1":"Para empezar a crear una Flashcard debes hacer click en el bot\u00f3n 'A\u00f1adir' situado a la izquierda (el bot\u00f3n utilizado para a\u00f1adir nuevas diapositivas), y a continuaci\u00f3n debes pulsar sobre el icono de Flashcard en el panel 'Smartcards'. Despu\u00e9s de esto, se mostrar\u00e1 una Flashcard vacia en la pantalla.", "i.FlashcardIcon":"Icono de Flashcard", "i.walkFlashcard_2":"Para seleccionar la imagen de fondo de la Flashcard debes pulsar sobre el siguiente bot\u00f3n", 
 "i.walkFlashcard_3":"Puedes cambiar el fondo seleccionado en cualquier momento haciendo click en el bot\u00f3n 'Fondo' de la barra de herramientas.", "i.walkContinueWalkthrough":"Haz click en 'Siguiente' para continuar con este tutorial.", "i.walkFlashcard_4":"Cuando est\u00e1s creando una Flashcard, se muestra un nuevo panel en la parte inferior de la pantalla. Nos referiremos a este panel como el 'panel de Flashcard'.", "i.walkFlashcard_5":"Para a\u00f1adir una nueva diapositiva a la Flashcard pulsa sobre el bot\u00f3n 'A\u00f1adir' situado en el 'panel de Flashcard' y contin\u00faa con el procedimiento habitual para a\u00f1adir una diapositiva. Despu\u00e9s de a\u00f1adirla, la miniatura de la nueva diapositiva aparecer\u00e1 en el panel y se mostrar\u00e1 la diapositiva en la pantalla.", 
 "i.walkFlashcard_6":"Cuando la diapositiva est\u00e1 seleccionada, se muestra en la pantalla y puedes editarla y borrarla de la misma forma que las diapositivas normales. Para seleccionar una diapositiva simplemente pulsa sobre ella en el 'panel de Flashcard'. Si quieres seleccionar la Flashcard nuevamente para editarla, debes hacer click en el icono de Flashcard situado a la izquierda del 'panel de Flashcard'.", "i.walkFlashcard_7":"Las diapositivas tienen flechas arrastrables en su parte superior. Puedes arrastrar cualquiera de ellas a la imagen de fondo de la Flashcard para crear una nueva 'zona caliente'. De este modo, cuando los usuarios hagan click sobre una flecha ver\u00e1n la diapositiva asociada. ", 
@@ -150,6 +151,8 @@ VISH.Constant.Clipboard.Slide = "slide";
 VISH.Constant.Clipboard.LocalStorageStack = "VishEditorClipboardStack";
 VISH.Constant.Themes = {};
 VISH.Constant.Themes.Default = "theme1";
+VISH.Constant.Animations = {};
+VISH.Constant.Animations.Default = "animation1";
 VISH.Constant.Event = {};
 VISH.Constant.Event.onMessage = "onMessage";
 VISH.Constant.Event.onGoToSlide = "onGoToSlide";
@@ -12678,6 +12681,7 @@ VISH.Editor = function(V, $, undefined) {
     V.Utils.Loader.loadLanguageCSS();
     V.Editor.Dummies.init();
     V.EventsNotifier.init();
+    V.Editor.Animations.init();
     V.Editor.Themes.init();
     V.Flashcard.init();
     V.VirtualTour.init();
@@ -15644,7 +15648,7 @@ VISH.Editor.Slideset.Repository = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Samples = function(V, undefined) {
   var basic_samples = {"id":"1", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "author":"ViSH Editor Team", "language":"en", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00f1ana", "Lynx"], "age_range":"4 - 20", "subject":["Biology"], "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", "VEVersion":"0.2", "type":"presentation", 
-  "theme":"theme1", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpg", "style":"position: relative; width:117.0886075949367%; height:109.47368421052632%; top:-4.7368421052631575%; left:-2.5316455696202533%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>'}, 
+  "theme":"theme1", "animation":"animation8", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpg", "style":"position: relative; width:117.0886075949367%; height:109.47368421052632%; top:-4.7368421052631575%; left:-2.5316455696202533%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; "><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><b><i><br></i></b></span></div><div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;"><span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>'}, 
   {"id":"article1_zone3", "areaid":"subheader"}]}, {"id":"article2", "type":"standard", "template":"t8", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6 vish-parent-fontundefined" style="font-weight: normal; "><span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;"> Lynx &nbsp; &nbsp; &nbsp;</span><span class="vish-fontundefined vish-fontHelvetica" style="color:#5ea099;undefined;">Description and habitat</span></div>'}, 
   {"id":"article2_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/73.jpeg", "style":"position: relative; width:130.4%; height:106.6%; top:0.5%; left:-25.2%;"}, {"id":"article2_zone3", "type":"text", "areaid":"center", "body":'In most respects, the Iberian Lynx resembles other species of lynx, with a short tail,tufted ears and a ruff of fur beneath the chin. ...<div class="vish-parent-font7" style="font-weight: normal; "><span class="vish-font7 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
   {"id":"article2_zone4", "type":"image", "areaid":"right", "body":"http://vishub.org/pictures/313.png", "style":"position: relative; width:119.5%; height:88.6%; top:3.4%; left:-2.6%;"}]}, {"id":"article3", "type":"standard", "template":"t3", "elements":[{"id":"article3_zone1", "type":"text", "areaid":"header", "body":'<span class="vish-font6 vish-fontHelvetica" style="color: rgb(219, 150, 0); font-weight: normal; ">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">Lynx</span><div class="vish-parent-font4"><span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;"></span></div>'}, 
@@ -16986,6 +16990,9 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var selectTheme = function() {
     $("#hidden_button_to_launch_theme_fancybox").trigger("click")
   };
+  var selectAnimation = function() {
+    $("#hidden_button_to_launch_animation_fancybox").trigger("click")
+  };
   var changeBackground = function() {
     $("#hidden_button_to_change_slide_background").trigger("click")
   };
@@ -17134,8 +17141,8 @@ VISH.Editor.Tools = function(V, $, undefined) {
     $(area).removeAttr("hyperlink");
     $.fancybox.close()
   };
-  return{init:init, loadToolsForSlide:loadToolsForSlide, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, addLink:addLink, addUrl:addUrl, removeUrl:removeUrl, resizeMore:resizeMore, resizeLess:resizeLess, zoomMore:zoomMore, zoomLess:zoomLess, save:save, publish:publish, preview:preview, selectTheme:selectTheme, changeBackground:changeBackground, addTooltipsToSlide:addTooltipsToSlide, 
-  addTooltipToZone:addTooltipToZone, showZoneToolTip:showZoneToolTip, hideZoneToolTip:hideZoneToolTip, setAllTooltipMargins:setAllTooltipMargins}
+  return{init:init, loadToolsForSlide:loadToolsForSlide, loadToolsForZone:loadToolsForZone, loadToolbarForObject:loadToolbarForObject, cleanZoneTools:cleanZoneTools, cleanToolbar:cleanToolbar, enableToolbar:enableToolbar, disableToolbar:disableToolbar, addLink:addLink, addUrl:addUrl, removeUrl:removeUrl, resizeMore:resizeMore, resizeLess:resizeLess, zoomMore:zoomMore, zoomLess:zoomLess, save:save, publish:publish, preview:preview, selectTheme:selectTheme, selectAnimation:selectAnimation, changeBackground:changeBackground, 
+  addTooltipsToSlide:addTooltipsToSlide, addTooltipToZone:addTooltipToZone, showZoneToolTip:showZoneToolTip, hideZoneToolTip:hideZoneToolTip, setAllTooltipMargins:setAllTooltipMargins}
 }(VISH, jQuery);
 VISH.Addons = function(V, undefined) {
   var init = function(addons) {
@@ -17377,6 +17384,27 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
     window.parent.postMessage(VEMessage, "*")
   };
   return{init:init}
+}(VISH, jQuery);
+VISH.Animations = function(V, $, undefined) {
+  var loadAnimation = function(animation, callback) {
+    if(!animation) {
+      animation = V.Constant.Animations.Default
+    }
+    _unloadAllAnimations();
+    V.Utils.Loader.loadCSS("animations/" + animation + ".css", callback)
+  };
+  var _unloadAllAnimations = function() {
+    var animation_pattern = "(^" + V.StylesheetsPath + "animations/)";
+    $("head").find("link[type='text/css']").each(function(index, link) {
+      var href = $(link).attr("href");
+      if(href) {
+        if(href.match(animation_pattern) !== null) {
+          $(link).remove()
+        }
+      }
+    })
+  };
+  return{loadAnimation:loadAnimation}
 }(VISH, jQuery);
 VISH.AppletPlayer = function() {
   var loadApplet = function(element) {
@@ -17875,6 +17903,54 @@ VISH.Editor.API = function(V, $, undefined) {
   };
   return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, 
   requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, downloadTmpJSON:downloadTmpJSON}
+}(VISH, jQuery);
+VISH.Editor.Animations = function(V, $, undefined) {
+  var initialized = false;
+  var currentAnimation;
+  var animation = {};
+  var init = function() {
+    if(!initialized) {
+      animation["animation1"] = {number:"1", filename:"animation1"};
+      animation["animation2"] = {number:"2", filename:"animation2"};
+      animation["animation3"] = {number:"3", filename:"animation3"};
+      animation["animation4"] = {number:"4", filename:"animation4"};
+      animation["animation5"] = {number:"5", filename:"animation5"};
+      animation["animation6"] = {number:"6", filename:"animation6"};
+      animation["animation7"] = {number:"7", filename:"animation7"};
+      animation["animation8"] = {number:"8", filename:"animation8"};
+      animation["animation9"] = {number:"9", filename:"animation9"};
+      animation["animation10"] = {number:"10", filename:"animation10"};
+      animation["animation11"] = {number:"11", filename:"animation11"};
+      animation["animation12"] = {number:"12", filename:"animation12"}
+    }
+  };
+  var onAnimationSelected = function(event) {
+    event.preventDefault();
+    var animationNumber = $(event.currentTarget).attr("animation");
+    selectAnimation(animationNumber);
+    V.Editor.Settings.selectAnimation(animation[animationNumber].number)
+  };
+  var selectAnimation = function(animation) {
+    var draftPresentation = V.Editor.getPresentation();
+    if(!draftPresentation) {
+      draftPresentation = {}
+    }
+    draftPresentation.animation = animation;
+    V.Editor.setPresentation(draftPresentation);
+    currentAnimation = animation
+  };
+  var getCurrentAnimation = function() {
+    if(currentAnimation) {
+      return animation[currentAnimation]
+    }else {
+      return animation[VISH.Constant.Animations.Default]
+    }
+  };
+  var setCurrentAnimation = function(the_animation) {
+    currentAnimation = the_animation;
+    V.Editor.Settings.selectAnimation(animation[the_animation].number)
+  };
+  return{init:init, onAnimationSelected:onAnimationSelected, selectAnimation:selectAnimation, getCurrentAnimation:getCurrentAnimation, setCurrentAnimation:setCurrentAnimation}
 }(VISH, jQuery);
 VISH.Editor.Carrousel = function(V, $, undefined) {
   var createCarrousel = function(containerId, options) {
@@ -18439,6 +18515,7 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).on("click", ':not(".selectable")', V.Editor.onNoSelectableClicked);
       $(document).on("click", ".delete_content", V.Editor.onDeleteItemClicked);
       $(document).on("click", ".delete_slide", V.Editor.onDeleteSlideClicked);
+      $(document).on("click", "#animation_fancybox div[animation]", V.Editor.Animations.onAnimationSelected);
       $(document).on("click", "#theme_fancybox img[theme]", V.Editor.Themes.onThemeSelected);
       $(document).on("click", ".change_bg_button", V.Editor.Tools.changeBackground);
       $(document).on("click", ".comp_checkbox input", V.Editor.Competitions.specialTagSelected);
@@ -18471,6 +18548,7 @@ VISH.Editor.Events = function(V, $, undefined) {
         V.Editor.setContentAddMode(V.Constant.NONE)
       }});
       $("#hidden_button_to_launch_theme_fancybox").fancybox({"autoDimensions":false, "width":600, "scrolling":"no", "height":400, "padding":0});
+      $("#hidden_button_to_launch_animation_fancybox").fancybox({"autoDimensions":false, "width":600, "scrolling":"no", "height":400, "padding":0});
       $("#fancyLoad").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":true, "width":"100%", "height":"100%", "padding":0, "margin":0, "overlayOpacity":0, "overlayColor":"#fff", "showCloseButton":false, "onComplete":function(data) {
         $("#fancybox-outer").css("background", "rgba(255,255,255,0.9)");
         $("#fancybox-wrap").css("margin-top", "20px");
@@ -18543,6 +18621,9 @@ VISH.Editor.Events = function(V, $, undefined) {
     });
     $(document).on("click", "#help_themes_selection", function() {
       V.Tour.startTourWithId("themes_help", "bottom")
+    });
+    $(document).on("click", "#help_animation_selection", function() {
+      V.Tour.startTourWithId("animation_help", "bottom")
     });
     $(document).on("click", "#help_in_settings", function() {
       V.Tour.startTourWithId("help_in_settings_help", "bottom")
@@ -20760,6 +20841,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
   var slides = null;
   var init = function(presentation) {
     V.Editor.Themes.selectTheme(presentation.theme);
+    V.Editor.Animations.setCurrentAnimation(presentation.animation);
     if(presentation.type === V.Constant.PRESENTATION) {
       renderPresentation(presentation)
     }else {
@@ -21091,7 +21173,13 @@ VISH.Editor.Settings = function(V, $, undefined) {
   };
   var selectTheme = function(themeNumber) {
     $(".theme_selected_in_scrollbar").removeClass("theme_selected_in_scrollbar");
-    var themeDOM = $("#scrollbar_themes_list img.image_barbutton[themenumber='" + themeNumber + "']").addClass("theme_selected_in_scrollbar")
+    var themeDOM = $("#scrollbar_themes_list img.image_barbutton[themenumber='" + themeNumber + "']").addClass("theme_selected_in_scrollbar");
+    $(".theme_selected_in_fancybox").removeClass("theme_selected_in_fancybox");
+    var themeDOM2 = $("#theme_fancybox div#select_theme" + themeNumber + " img").addClass("theme_selected_in_fancybox")
+  };
+  var selectAnimation = function(animationNumber) {
+    $(".animation_selected_in_fancybox").removeClass("animation_selected_in_fancybox");
+    var themeDOM3 = $("#animation_fancybox div#select_animation" + animationNumber).addClass("animation_selected_in_fancybox")
   };
   var _onInitialTagsReceived = function(data) {
     tagsLoaded = true;
@@ -21237,6 +21325,12 @@ VISH.Editor.Settings = function(V, $, undefined) {
     }else {
       draftPresentation.theme = V.Constant.Themes.Default
     }
+    var animationSelection = V.Editor.Animations.getCurrentAnimation().filename;
+    if(typeof animationSelection == "string") {
+      draftPresentation.animation = animationSelection
+    }else {
+      draftPresentation.animation = V.Constant.Animations.Default
+    }
     var language = $("#language_tag").val();
     if(typeof language == "string") {
       draftPresentation.language = language
@@ -21330,7 +21424,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
     $("#presentation_details_fields").slideDown()
   };
   return{init:init, displaySettings:displaySettings, loadPresentationSettings:loadPresentationSettings, onChangeThumbnailClicked:onChangeThumbnailClicked, onThumbnailSelected:onThumbnailSelected, selectTheme:selectTheme, onKeyUpOnTitle:onKeyUpOnTitle, onKeyUpOnPreviewTitle:onKeyUpOnPreviewTitle, onTLTchange:onTLTchange, checkMandatoryFields:checkMandatoryFields, onSavePresentationDetailsButtonClicked:onSavePresentationDetailsButtonClicked, getTags:getTags, saveSettings:saveSettings, onPedagogicalButtonClicked:onPedagogicalButtonClicked, 
-  onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked}
+  onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, selectAnimation:selectAnimation}
 }(VISH, jQuery);
 VISH.Editor.Slides = function(V, $, undefined) {
   var showSlides = function() {
@@ -21639,11 +21733,12 @@ VISH.Editor.Themes = function(V, $, undefined) {
   };
   var onThemeSelected = function(event) {
     event.preventDefault();
-    var themeNumber = $(event.target).attr("theme");
+    var themeNumber = $(event.currentTarget).attr("theme");
     if($(event.target).hasClass("waitCursor")) {
       return
     }
-    selectTheme(themeNumber)
+    selectTheme(themeNumber);
+    V.Editor.Settings.selectTheme(themes[themeNumber].number)
   };
   var selectTheme = function(theme) {
     currentTheme = theme;
@@ -25597,6 +25692,7 @@ VISH.Viewer = function(V, $, undefined) {
     V.EventsNotifier.init();
     V.VideoPlayer.init();
     V.Themes.loadTheme(presentation.theme);
+    V.Animations.loadAnimation(presentation.animation);
     V.Presentation.init(presentation.slides);
     V.Quiz.init();
     if(options.addons) {
