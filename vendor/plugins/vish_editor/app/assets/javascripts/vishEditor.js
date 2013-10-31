@@ -15909,7 +15909,7 @@ VISH.Slides = function(V, $, undefined) {
         $(el).removeClass(SLIDE_CLASSES[i])
       }
     }
-    if($(el).attr("type") == VISH.Constant.FLASHCARD) {
+    if($(el).attr("type") === VISH.Constant.FLASHCARD || $(el).attr("type") === VISH.Constant.VTOUR) {
       var arr = $(el).find("article");
       for(var i = 0;i < arr.length;i++) {
         $(arr[i]).addClass("hide_in_smartcard")
@@ -16085,22 +16085,6 @@ VISH.Slides = function(V, $, undefined) {
   var lastSlide = function() {
     goToSlide(slideEls.length)
   };
-  var openSubslideFromPosition = function(poi, triggeredByUser) {
-    triggeredByUser = !(triggeredByUser === false);
-    if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
-      var params = new Object;
-      params.slideNumber = poi.slide_id;
-      V.Messenger.notifyEventByMessage(V.Constant.Event.onFlashcardPointClicked, params);
-      return
-    }
-    _onOpenSubslide(poi.slide_id);
-    $("#" + poi.slide_id).removeClass("hide_in_smartcard");
-    $("#" + poi.slide_id).addClass("show_in_smartcard");
-    triggerEnterEventById(poi.slide_id);
-    var params = new Object;
-    params.slideNumber = poi.slide_id;
-    V.EventsNotifier.notifyEvent(V.Constant.Event.onFlashcardPointClicked, params, triggeredByUser)
-  };
   var openSubslide = function(slide_id, triggeredByUser) {
     triggeredByUser = !(triggeredByUser === false);
     if(triggeredByUser && V.Status.isPreventDefaultMode() && V.Messenger) {
@@ -16159,7 +16143,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   return{init:init, updateSlides:updateSlides, getSlides:getSlides, setSlides:setSlides, getCurrentSlide:getCurrentSlide, getCurrentSubSlide:getCurrentSubSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, moveSlides:moveSlides, forwardOneSlide:forwardOneSlide, 
-  backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, openSubslideFromPosition:openSubslideFromPosition, closeSubslide:closeSubslide, isSlideset:isSlideset, triggerEnterEvent:triggerEnterEvent, triggerEnterEventById:triggerEnterEventById, triggerLeaveEvent:triggerLeaveEvent, triggerLeaveEventById:triggerLeaveEventById}
+  backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, isSlideset:isSlideset, triggerEnterEvent:triggerEnterEvent, triggerEnterEventById:triggerEnterEventById, triggerLeaveEvent:triggerLeaveEvent, triggerLeaveEventById:triggerLeaveEventById}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var eMobile;
@@ -16299,7 +16283,7 @@ VISH.Events = function(V, $, undefined) {
   var onFlashcardPoiClicked = function(poiId) {
     var poi = V.Flashcard.getPoiData(poiId);
     if(poi !== null) {
-      V.Slides.openSubslideFromPosition(poi, true)
+      V.Slides.openSubslide(poi.slide_id, true)
     }
   };
   var onFlashcardCloseSlideClicked = function(event) {
