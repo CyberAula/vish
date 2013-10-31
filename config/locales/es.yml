@@ -191,8 +191,12 @@ es:
       end_time: "Hora de finalización"
       start_time: "Hora de inicio"
       title: "Título"
+      type: "Tipo"
     main_title: "Crea un nuevo evento"
     title_input: "Dale un nombre a tu evento"
+    type:
+      streaming: "Streaming"
+      videoconference: "Videoconferencia"
   excursion:
     actions:
       add: "Añadir excursion"

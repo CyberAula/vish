@@ -105,9 +105,14 @@ $(document).ready(function(){
     <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
     <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
   <%end%>
-<!--mashme-->
-  <%= render :partial => 'events/button-mashme'%>
-  <%#= render :partial => 'events/button-new-mashme'%>
+
+  <% if @event.streaming %>
+    <!-- STREAMING CODE  -->
+  <% else %>
+    <!--mashme-->
+    <%= render :partial => 'events/button-mashme'%>
+    <%#= render :partial => 'events/button-new-mashme'%>
+  <% end %>
 </div>
 
 <div class="tabbable">

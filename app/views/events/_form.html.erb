@@ -22,6 +22,28 @@
       <label><%= t('event.leyend.description')%></label>
       <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
 
+      <!--TYPE-->
+      <label><%= t('event.leyend.type')%></label>
+      <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
+      <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
+
+      <!--EMBED-->
+      <label><%= t('document.options.embed')%></label>
+      <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
+      <script type="text/javascript">
+        $("#event_streaming_false").on("click", function() {
+          $("#event_embed").attr("disabled", true);
+        });
+        $("#event_streaming_true").on("click", function() {
+          $("#event_embed").attr("disabled", false);
+        });
+        $(document).ready(function(){
+          if ($("#event_streaming_true").is(':checked')) {
+            $("#event_embed").attr("disabled", false);
+          }
+        });
+      </script>
+
       <!--DATE-->
       <label><%= t('event.leyend.fecha')%></label>
         <div id="date" class="input-append">
