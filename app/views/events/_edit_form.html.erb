@@ -16,7 +16,7 @@
   <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
 
   <!--DATE-->
-  <legend><%= t('event.leyend.fecha')%></legend>
+  <legend><%= t('event.leyend.date')%></legend>
     <div id="editdate" class="input-append">
       <input data-format="yyyy-MM-dd" type="text" name="event_day"></input>
       <span class="add-on">
@@ -25,7 +25,7 @@
       </span>
     </div>
   <!--HORA INICIO-->
-  <legend><%= t('event.leyend.Hora de Inicio')%></legend>
+  <legend><%= t('event.leyend.start_time')%></legend>
     <div id="edithourinit" class="input-append">
       <input data-format="hh:mm:ss" type="text" name="event_start_time"></input>
       <span class="add-on">
@@ -34,7 +34,7 @@
       </span>
     </div>
   <!--HORA FINALIZACION-->
-  <legend><%= t('event.leyend.Hora de Finalizacion')%></legend>
+  <legend><%= t('event.leyend.end_time')%></legend>
     <div id="edithourfinish" class="input-append">
       <input data-format="hh:mm:ss" type="text" name="event_end_time"></input>
       <span class="add-on">

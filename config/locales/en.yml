@@ -184,6 +184,7 @@ en:
       add: "Add event"
     description_input: "Description for this event"
     leyend:
+      date: "Date"
       date_and_time: "Date, time and duration"
       description: "Description"
       end_time: "End time"

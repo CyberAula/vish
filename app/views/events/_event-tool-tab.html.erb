@@ -82,15 +82,6 @@ $(document).ready(function(){
 </script>
 
 <div class="btn-group">
-<!--delete-->
-  <% if can? :delete, @event %>
-    <%#= link_to(raw("<i class='icon-trash'></i>") , @event, :method => :delete, :remote => false, :confirm => "Are you sure?", :class =>"action btn" )%>
-  <%end%>
-
-  <!--si es tuya la puedes eliminar o editar-->
-  <% if user_signed_in? and (can? :update, @event) %>
-    <!-- <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_event_path(@event)%>'"><i class="icon-edit"></i></button> -->
-  <%end%>
   <!--remove-->
   <% if user_signed_in? and can?(:destroy, @event) %>
     <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
@@ -123,7 +114,13 @@ $(document).ready(function(){
   <ul class="nav nav-tabs">
     <li class="<%= document_details_tab_class document, :info %>">
       <%= link_to (raw("<i class='icon-align-left'></i> <span class='hidden-tablet hidden-phone'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
-    </li>
+    </li> 
+<!--edit info-->
+     <% if user_signed_in? and (can? :update, @event) %>
+      <li class="<%= document_details_tab_class document, :edit %>">
+        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+      </li>
+    <% end %>
     <li>
       <a href="#tab3" data-toggle="tab">
         <i class="icon-share"></i>
@@ -131,16 +128,7 @@ $(document).ready(function(){
           <%=t('excursion.actions.share')%>
         </span>
       </a>
-    </li>  
-<!--edit info-->
-  <!--
-    <% if can? :update, document %>
-      <li class="<%= document_details_tab_class document, :edit %>">
-
-        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
-      </li>
-    <% end %>
--->
+    </li> 
     <li>
       <a href="#tab5" data-toggle="tab">
         <i class="icon-flag"></i> 
@@ -173,12 +161,14 @@ $(document).ready(function(){
       <%= render partial: "events/info", locals: { document: document } %>
     </div>
   </div>
-  <% if can? :update, document %>
+  <!-- tab2 / editar -->
+  <% if can? :update, @event %>
   <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
-    <%#= render partial: 'events/edit_form', locals: { event: @event } %>
+    <div class="contentedit">
+      <%= render partial: 'events/edit_form', locals: { event: @event } %>
+    </div>
   </div>
   <% end %>
-
   <!-- tab3 / share -->
   <div class="tab-pane" id="tab3">
     <div class="contentShare">
