@@ -1,0 +1,36 @@
+#contest
+
+
+  .competition_banner
+    display: block
+  .info_all
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    float: left
+    .info_competition
+      @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+
+      .info_competition_element
+        @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+
+        h4
+          color: $grayDark
+          i 
+            margin-right: 10px
+        p
+          font-size: 10px
+          width: 90%
+          display: block
+          margin: auto
+    .awards_competition
+      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+      h3
+        color: $gray
+        i 
+          margin-right: 10px

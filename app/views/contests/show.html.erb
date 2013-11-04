@@ -1,3 +1,129 @@
 <section id="contest">
-hola hola
+  <div class="competition_banner">
+  <%= image_tag("competition/BANNER-02.png",  :class=> "" ) %>
+  </div>
+  <div class="info_all">
+
+    <div class="info_competition">
+
+    <!--candidates-->
+      <div class="info_competition_element">
+        <h4><i class="icon-group"></i>Candidates</h4>
+        <p>
+          We admit individuals or institutions. The competition forbest eExcursions is open to any registered ViSH user.
+          <!--We encourage especially teachers, scientists and scientific organisations to create excursions. But, if you are not a professional, your contribution is welcome, sometimes amateurs perform better that professionals, let’s try! -->
+          Only full eExcursions will enter the competition. 
+        </p>
+      </div>
+
+    <!--Categories-->
+      <div class="info_competition_element">
+        <h4><i class="icon-book"></i>Categories</h4>
+        <p>
+          Maths,
+          Physics,
+          Chemistry,
+          Biology,
+          Geography,
+          EnvironmentalStudies,
+          Engineering,
+          Humanities,
+          NaturalScience,
+          ComputerScience.
+        </p>
+      </div>
+
+    <!--Languages-->
+      <div class="info_competition_element">
+        <h4><i class="icon-flag"></i>Languages</h4>
+        <p>
+          eExcursions can be submitted in the following languages:
+          </br>
+          English,
+          German,
+          French,
+          Spanish,
+          Dutch,
+          Hungarian,
+          Romanian,
+          Greek,
+          Italian
+
+        </p>
+      </div>
+
+<!--how to-->
+      <div class="info_competition_element">
+        <h4><i class="icon-user"></i>How to register for the competition</h4>
+        <p>
+          You must tag your eExcursion with the tag:
+          </br>
+          ViSHCompetition2013
+          </br>
+          and with the tag of the category you would like to compete
+          </br>
+          An eExcursion can be send to more than one category.
+        </p>
+      </div>
+
+<!--time-->
+      <div class="info_competition_element">
+        <h4><i class="icon-time"></i>Competition timeline</h4>
+        <p>
+        <strong>20 October 2013</strong> Opening of competition 
+        <br>
+        <strong>20 November 2013</strong> Deadline for entries
+        <br>
+        <strong>20 December 2013</strong> Selection process closed and announcement of winners
+        </p>
+      </div>
+
+<!--criteria-->
+      <div class="info_competition_element">
+        <h4><i class="icon-ok"></i>Selection criteria</h4>
+        <p>
+          The eExcursions will be ranked according to the number of favourites voted by the user community on ViSH. The
+          first 10 ranked excursions will then be judged according to the following criteria
+        </p>
+      </div>
+
+    <div class="btn-group">
+      <button class="btn">more info</button>
+      <button class="btn">faq</button>
+    </div>
+
+    </div>
+
+    <div class="awards_competition">
+
+      <h3><i class="icon-trophy"></i>Prizes</h4>
+      <p>
+        The winners will receive prizes in the form of Amazon vouchers *
+        For each of the categories there is a chance to win a 1st and 2nd prize
+        </br>
+        1st prize 400€ voucher 
+        </br>
+        2st prize 200€ voucher 
+        </br>
+        The overall winners will receive extra prizes
+        </br>
+        1st prize 400€ voucher 
+        </br>
+        2st prize 300€ voucher 
+        </br>
+        3st prize 200€ voucher 
+        </br>
+        In addition, the 3 winners will be invited to join our confe-rence in Brussels, scheduled for January 2014
+        </br>
+        * <strong>The Amazon </strong> voucher is a promotional code for the online store Amazon that will allow you to buy whatever you may considerinteresting for your work: books, little technological equipment..
+      </p>
+    </div>
+
+  </div> 
+  <div class="filter"></div>
+  <!--filtro por categoria -->
+  </div>
+  <div id="excursions">
+    <%= render partial: 'frontpage/excursions' %>
+  </div>
 </section>
