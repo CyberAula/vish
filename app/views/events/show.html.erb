@@ -3,26 +3,27 @@
   <div class="event">
     <div class="box-show">
       <!--visor-->
-      <div class="container-visor">
-        <!--div class="elemento-visor"></div-->
-        <div class="caja-elementos">
-
-          <div class="icon-box" id="event-<%=@event.id%>">
-            <% if @event.poster.new_record? %>
-              <i class="icon-facetime-video"></i>
-              <%= link_to(image_tag('items/rec2.jpg'),:class=> "event-img"); %>
-            <% else %>
-              <%= image_tag(@event.poster.file) %>
-              <script>
-                $("#event-<%=@event.id%>").addClass("high")
-              </script>
-            <% end %>
-            <% if (can?(:update, @event) && @event.poster.new_record?) %>
-
-                <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
-
-            <% end %>
-          </div>  
+        <div class="container-visor">
+          <!--div class="elemento-visor"></div-->
+          <div class="caja-elementos">
+        <% if @event.streaming && ((Time.now <=> @event.start_at) > -1)%>
+          <%= raw @event.embed %>
+        <% else %>
+            <div class="icon-box" id="event-<%=@event.id%>">
+              <% if @event.poster.new_record? %>
+                <i class="icon-facetime-video"></i>
+                <%= link_to(image_tag('items/rec2.jpg'),:class=> "event-img"); %>
+              <% else %>
+                <%= image_tag(@event.poster.file) %>
+                <script>
+                  $("#event-<%=@event.id%>").addClass("high")
+                </script>
+              <% end %>
+              <% if (can?(:update, @event) && @event.poster.new_record?) %>
+                  <%= link_to t('event.poster.update'), edit_event_path(@event, :poster => true), :remote => true ,:class=> "btn btn-primary" %>
+              <% end %>
+            </div>  
+         <% end %>
         </div>
       </div>
     </div>
@@ -36,20 +37,20 @@
       </div>
     </div>
 
-  <div class="description-activity">
-    <div class="box_description">
-      <!--tool-->
-      <div class="excursion_tool">
-        <%= render :partial => 'events/event-tool-tab', :locals => { :document => @event } %>
-      </div>     
+    <div class="description-activity">
+      <div class="box_description">
+        <!--tool-->
+        <div class="excursion_tool">
+          <%= render :partial => 'events/event-tool-tab', :locals => { :document => @event } %>
+        </div>     
+      </div>
+      
+      <!--activity-->
+      <div class="activity-box">
+        <%= render :partial => 'common_documents/activity', :locals => { :document => @event } %>
+      </div>
     </div>
-    
-    <!--activity-->
-    <div class="activity-box">
-      <%= render :partial => 'common_documents/activity', :locals => { :document => @event } %>
-    </div>
-  </div>
 
-</div>
+  </div>
 
 </section>

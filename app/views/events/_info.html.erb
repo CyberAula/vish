@@ -27,11 +27,16 @@
     <%# end%>
 
       <dt>Empieza el: </dt>
-      <dd><%= @event.start_at %></dd>
+      <dd id="start"><%= @event.start_at %></dd>
 
       <dt>Termina el: </dt>
-      <dd><%= @event.end_at %></dd>
-      
+      <dd id="end"><%= @event.end_at %></dd>
+
+      <script>
+        $("#start").text(new Date(Date.parse("<%=@event.start_at%>")).toLocaleString());
+        $("#end").text(new Date(Date.parse("<%=@event.end_at%>")).toLocaleString());
+      </script>
+
       <!--div class="day">
         <%= @event.start_at.day %>
       </div>
