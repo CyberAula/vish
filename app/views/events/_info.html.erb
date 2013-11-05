@@ -21,10 +21,10 @@
 
 <div id="effect" class="anotherNewClass ui-corner-all">
   <dl class="dl-horizontal">
-    <%# unless document.description.blank? %>
+    <% unless @event.description.blank? %>
       <dt><%= t 'document.info.description' %></dt>
       <dd><%= @event.description %></dd>
-    <%# end%>
+    <% end%>
 
       <dt>Empieza el: </dt>
       <dd id="start"><%= @event.start_at %></dd>
@@ -33,8 +33,8 @@
       <dd id="end"><%= @event.end_at %></dd>
 
       <script>
-        $("#start").text(new Date(Date.parse("<%=@event.start_at%>")).toLocaleString());
-        $("#end").text(new Date(Date.parse("<%=@event.end_at%>")).toLocaleString());
+        $("#start").text(new Date(Date.parse("<%=@event.start_at.iso8601%>")).toLocaleString());
+        $("#end").text(new Date(Date.parse("<%=@event.end_at.iso8601%>")).toLocaleString());
       </script>
 
       <!--div class="day">
