@@ -21,10 +21,10 @@
 
 <div id="effect" class="anotherNewClass ui-corner-all">
   <dl class="dl-horizontal">
-    <%# unless document.description.blank? %>
+    <% unless @event.description.blank? %>
       <dt><%= t 'document.info.description' %></dt>
       <dd><%= @event.description %></dd>
-    <%# end%>
+    <% end%>
 
       <dt>Empieza el: </dt>
       <dd id="start"><%= @event.start_at %></dd>
