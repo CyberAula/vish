@@ -16,12 +16,12 @@
   <%= f.text_area :description, :rows => 5, :placeholder => t('event.description_input') %>
 
   <!--TYPE-->
-  <label><%= t('event.leyend.type')%></label>
+  <legend><%= t('event.leyend.type')%></legend>
   <%= f.radio_button :streaming, false, checked: true %> <%= t('event.type.videoconference') %>
   <%= f.radio_button :streaming, true %> <%= t('event.type.streaming') %>
 
   <!--EMBED-->
-  <label><%= t('document.options.embed')%></label>
+  <legend><%= t('document.options.embed')%></legend>
   <%= f.text_area :embed, :rows => 5, :placeholder => t('embed.input'), :disabled => true %>
   <script type="text/javascript">
     $("#document-edit #event_streaming_false").on("click", function() {
@@ -84,16 +84,13 @@
           pickTime: false
         });
       });
-      //$("#start").text(new Date(Date.parse("<%=@event.start_at%>")).toLocaleString());
-      //var picker = $('#datetimepicker'l).data('datetimepicker');
+      $("#event input[name='event_day']").val("<%=Time.at(@event.start_at).getutc.strftime('%Y-%m-%d')%>");
+      $("#event input[name='event_start_time']").val("<%=Time.at(@event.start_at).getutc.strftime('%H:%M:%S')%>");
+      $("#event input[name='event_end_time']").val("<%=Time.at(@event.end_at).getutc.strftime('%H:%M:%S')%>");
       // $('#editdate').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at%>")));
       // $('#edithourinit').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at%>")));
       // $('#edithourfinish').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.end_at%>")));
 
-
-      $("#event input[name='event_day']").val("<%=Time.at(@event.start_at).getutc.strftime('%Y-%m-%d')%>");
-      $("#event input[name='event_start_time']").val("<%=Time.at(@event.start_at).getutc.strftime('%H:%M:%S')%>");
-      $("#event input[name='event_end_time']").val("<%=Time.at(@event.end_at).getutc.strftime('%H:%M:%S')%>");
       var saveEventButton = $("#event input[type='submit']");
       var eventButton = $("#event input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
       $(eventButton).click(function(event) {

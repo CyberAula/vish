@@ -173,6 +173,13 @@ $(document).ready(function(){
       <%= render partial: 'events/edit_form', locals: { event: @event } %>
     </div>
   </div>
+  <script>
+    $('a[href="#document-edit"]').on('shown', function (e) {
+      $('#editdate').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at%>")));
+      $('#edithourinit').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at%>")));
+      $('#edithourfinish').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.end_at%>")));
+    });
+  </script>
   <% end %>
   <!-- tab3 / share -->
   <div class="tab-pane" id="tab3">
