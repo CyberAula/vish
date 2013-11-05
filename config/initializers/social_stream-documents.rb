@@ -31,7 +31,7 @@ SocialStream::Documents.setup do |config|
 
 #  Configure video thumbnails
   
-   @@video_styles = {
+   config.video_styles = {
      :webm => { :format => 'webm' },
      :flv  => { :format => 'flv',
                 :convert_options => { :output => {:ar =>'22050'}}

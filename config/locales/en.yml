@@ -110,7 +110,7 @@ en:
     main_title: "Upload pictures, videos and other resources"
     new: "Add resource"
     options:
-      documents: "Documents"
+      documents: "Documents/Videos/Audios"
       embed: "Embed (HTML code)"
       links: "Links (URLs)"
       browse: "Browse"

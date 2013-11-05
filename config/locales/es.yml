@@ -111,7 +111,7 @@ es:
     main_title: "Sube videos, imágenes y otros recursos"
     new: "Añadir recurso" 
     options:
-      documents: "Documentos"
+      documents: "Documentos/Videos/Audios"
       embed: "Embed (Código HTML)"
       links: "Enlaces (URLs)"
       browse: "Buscar"

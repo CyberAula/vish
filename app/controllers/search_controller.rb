@@ -25,7 +25,7 @@ class SearchController < ApplicationController
           end
         end
       }
-
+      
       format.json {
         json_obj = (
           params[:type].present? ?
