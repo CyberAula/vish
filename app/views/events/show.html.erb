@@ -3,10 +3,11 @@
   <div class="event">
     <div class="box-show">
       <!--visor-->
-        <div class="container-visor">
-          <!--div class="elemento-visor"></div-->
-          <div class="caja-elementos">
-        <% if @event.streaming && ((Time.now <=> @event.start_at) > -1)%>
+      <div class="container-visor">
+        <!--div class="elemento-visor"></div-->
+        <div class="caja-elementos">
+          <!-- Streming from 10 minutes before until 2 hours later -->
+          <% if @event.streaming && ((Time.now <=> (@event.start_at - (60 * 10))) > -1) && ((Time.now <=> (@event.end_at + (60 * 60 * 2))) < 1) %>
           <%= raw @event.embed %>
         <% else %>
             <div class="icon-box" id="event-<%=@event.id%>">

@@ -175,9 +175,9 @@ $(document).ready(function(){
   </div>
   <script>
     $('a[href="#document-edit"]').on('shown', function (e) {
-      $('#editdate').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at%>")));
-      $('#edithourinit').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at%>")));
-      $('#edithourfinish').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.end_at%>")));
+      $('#editdate').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
+      $('#edithourinit').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
+      $('#edithourfinish').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.end_at.iso8601%>")));
     });
   </script>
   <% end %>
