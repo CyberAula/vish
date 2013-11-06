@@ -18,7 +18,7 @@ module ApplicationHelper
 	end
 
 	def excursions_with_tag(tag)
-		ActivityObject.tagged_with(tag).map(&:object).select{|a| a.class==Excursion}
+		ActivityObject.tagged_with(tag).sort{ |x,y| y.like_count <=> x.like_count }.map(&:object).select{|a| a.class==Excursion}
 	end
 
 	def popular_resources(number=10)
