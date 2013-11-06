@@ -17,6 +17,10 @@ module ApplicationHelper
     	Excursion.joins(:activity_object).where("draft is false").order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(number)
 	end
 
+	def excursions_with_tag(tag)
+		ActivityObject.tagged_with(tag).map(&:object).select{|a| a.class==Excursion}
+	end
+
 	def popular_resources(number=10)
 		ActivityObject.where(:object_type => [Document, Embed, Link].map{|t| t.to_s}).first(number).map{|ao| ao.object}
 	end
