@@ -127,14 +127,44 @@
   </div> 
 
 
-<div class="tabexcursions">
-<h3>Excursions participating:</h3></div>
+  <div class="tabexcursions">
+    <h3>Excursions participating:</h3>
 
-  <div class="filter">
-  <!--filtro por categoria -->
+    <div class="filter">
+    <!--filtro por categoria -->
+    Filter:
+      <select id="tags_selector" name="tags">
+        <option value="All">All</option>
+        <option value="Maths">Maths</option>
+        <option value="Physics">Physics</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Biology">Biology</option>
+        <option value="Geography">Geography</option>
+        <option value="EnvironmentalStudies">EnvironmentalStudies</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Humanities">Humanities</option>
+        <option value="NaturalScience">NaturalScience</option>
+        <option value="ComputerScience">ComputerScience</option>
+      </select>
+    </div>
   </div>
-  <div id="excursions">
+  <div id="excursions" class="contest_excursions">
     <%= render partial: 'contests/excursions' %>
   </div>
 
 </section>
+
+<script type="text/javascript">
+  $("#tags_selector").change(function() {
+    if(this.value=="All"){
+      $(".excursion-item").show();
+    }
+    else{
+      $(".excursion-item").hide();
+      $(".one_tag:contains("+this.value+")").parents(".excursion-item").show();
+    }
+  });
+
+
+
+</script>

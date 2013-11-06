@@ -19,6 +19,15 @@
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
   <div class="info">
+    <!--Tags - not shown now, but used for filtering search results. maybe shown in next version on hover-->
+    <!-- if modified to show them, careful because they are used in the filters, check that they work-->
+    <div class="exc_tags" style="display:none">
+      <% excursion.tag_list.each do |tag| %>
+          <span class="one_tag">
+            <%=tag%>
+          </span>
+      <% end %>
+    </div>
 <!--Title -->
     <div class="name">
       <%= link_to excursion.title, excursion %>

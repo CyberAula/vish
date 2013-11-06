@@ -1,9 +1,17 @@
+.contest_excursions
+  min-height: 250px
+
 #contest
   .competition_banner
     display: block
     img
       width: 100%
   .tabexcursions
+    .filter
+      position: absolute
+      right: 0
+      bottom: 0
+    position: relative
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
     display: block
     float: left
