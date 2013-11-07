@@ -305,7 +305,8 @@ en:
     competitions_answer5: "It is a promotional code for the online store Amazon that will allow you to buy whatever you may consider interesting for your work: books, little technological equipment… "
     competitions_question6: "What does the trip to Brussels award include?"
     competitions_answer6: "We’ll pay you (one person) the travel expenses (economy class train or flight ticket, hotel room, subsistence) from you city to Brussels. We kindly invite you to join the Global Excursion Final Conference with other stakeholders and experts from the European e-learning environment. "
-
+    competitions_question7: "Where can I see all the participating excursions?"
+    competitions_answer7: "<a href='http://vishub.org/contest'>Click here</a> to see the competitions page. Share that page with your contacts and friends."
 
   filter: "filter"
   follow:
