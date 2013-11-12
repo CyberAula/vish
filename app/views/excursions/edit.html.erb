@@ -28,7 +28,12 @@
   function onConnect(origin){
     // console.log("Communication stablished with " + origin);
     VEconnected = true;
-  } 
+    VISH.IframeAPI.registerCallback("onVEFocusChange",function(focus,origin){
+        if((focus===true)&&($('[data-toggle="dropdown"]').length>0)&&($('[data-toggle="dropdown"]').parent().hasClass('open'))){
+          $('[data-toggle="dropdown"]').parent().removeClass('open');
+        }
+    });
+  }
 </script>
 
 
