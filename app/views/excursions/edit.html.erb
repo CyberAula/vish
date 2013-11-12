@@ -1,28 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <div id="editor_wrapper">
-
-        <button class="discard_draft with_tooltip delete btn btn-primary popover-link" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"  data-placement="left"><i class="icon-trash"></i></button>
-
-  <div id="editor_and_bar">
-    <div id="">
-      <iframe class="vishEditorIframe" id="presentation_editor_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; ></iframe>
+    <iframe class="vishEditorIframe" id="presentation_editor_iframe" src="<%=edit_excursion_path(@excursion, :format => :full)%>" width="1200" height="750" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder=0;></iframe>
+    <div id="editor_tools_wrapper">
+      <%= render :partial => 'excursions/excursion-tool-tab' %>
     </div>
-    <div>
-
-
-        <div class="contentdelete" style="display: none">
-          <p class="delete_p"><i class="icon-trash"></i> <%=t('excursion.confirm_delete')%></p>
-          <div class="actions">
-            <a class="btn btn_cancel"><%=t('cancel')%></a>
-            <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>
-          </div>
-        </div> 
-    </div>
-  </div>
 </div>
-  
-
+ 
 <%=javascript_include_tag "VISH.IframeAPI" %>
 
 <% content_for :javascript do %>
@@ -33,42 +17,18 @@
         
     location.href = "#presentation_iframe";
     setFavicon();
-
-    $(window).bind("beforeunload", function(e){
-      if(false) {
-        return I18n.t("excursion.unload_warning");
-      }
-    });
-
-    $(".with_tooltip").tooltip({ placement: 'bottom'});
-    
-    $('.delete').popover({ 
-      html : true,
-      content: function() {
-      return $('.contentdelete').html();
-      },
-      container: "body"
-    });
-
-    $('.delete').on('shown.bs.popover', function () {
-      //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
-      $('.btn_cancel').on("click",function(){
-        $('.delete').popover('hide');
-      });
-     });
-
-    //to close the popovers
-    $(':not(#anything_not_present)').on('click', function (e) {
-      $('.popover-link').each(function () {
-        //the 'is' for buttons that trigger popups
-        //the 'has' for icons and other elements within a button that triggers a popup
-        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-        $(this).popover('hide');
-        return;
-        }
-      });
-    });
-
 <%end%>
+
+
+<script type="text/javascript">
+  var VEconnected = false;
+  window.onload = function(){
+    VISH.IframeAPI.init({callback: onConnect});
+  };
+  function onConnect(origin){
+    // console.log("Communication stablished with " + origin);
+    VEconnected = true;
+  } 
+</script>
 
 
