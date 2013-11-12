@@ -32,6 +32,7 @@ SocialStream::Documents.setup do |config|
 #  Configure video thumbnails
   
    config.video_styles = {
+     :wmv => { :format => 'wmv'},
      :mov => { :format => 'mov'},
      :webm => { :format => 'webm' },
      :flv  => { :format => 'flv',
@@ -66,5 +67,5 @@ SocialStream::Documents.setup do |config|
   }
 
   config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf, :pdf]
-  config.subtype_classes_mime_types[:video] = [ :flv, :webm, :mp4, :mpeg, :mov ]
+  config.subtype_classes_mime_types[:video] = [ :flv, :webm, :mp4, :mpeg, :mov, :wmv ]
 end

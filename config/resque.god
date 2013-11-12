@@ -7,12 +7,13 @@ num_workers.times do |num|
     w.dir      = "#{rails_root}"
     w.name     = "resque-worker-#{num}"
     w.group    = 'resque'
+    w.log      = '/tmp/god.log'
     w.interval = 5.minutes
     w.env      = {"QUEUE"=>"*", "RAILS_ENV"=>rails_env}
     w.start    = "bundle exec rake -f #{rails_root}/Rakefile environment resque:work"
 
-    w.uid = 'www-data'
-    w.gid = 'www-data'
+    #w.uid = 'www-data'
+    #w.gid = 'www-data'
 
     # restart if memory gets too high
     w.transition(:up, :restart) do |on|
