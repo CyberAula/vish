@@ -20,3 +20,15 @@
 <%end%>
 
 
+<script type="text/javascript">
+  var VEconnected = false;
+  window.onload = function(){
+    VISH.IframeAPI.init({callback: onConnect});
+  };
+  function onConnect(origin){
+    // console.log("Communication stablished with " + origin);
+    VEconnected = true;
+  } 
+</script>
+
+

@@ -1,3 +1,5 @@
+<% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
+
 <%= content_for :javascript do %> 
 //to close the popovers
 $(':not(#anything_not_present)').on('click', function (e) {
@@ -65,7 +67,7 @@ $('.clone').popover({
   container: "body"
 });
 
-$('.clone').on('shown.bs.popover', function () {
+$('.clone').on('shown.bs.popover', function (){
   $('.btn_cancel').on("click",function(){
     //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
     $('.clone').popover('hide');
@@ -74,14 +76,27 @@ $('.clone').on('shown.bs.popover', function () {
 
 $('.delete').popover({ 
   html : true,
+  <% if editingToolbar %>
+    placement: "left", 
+  <% end %>
   content: function() {
-  return $('.contentdelete').html();
+    return $('.contentdelete').html();
   },
   container: "body"
 });
 
-$('.delete').on('shown.bs.popover', function () {
+$('.delete').on('shown.bs.popover', function(){
   //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+
+  <% if editingToolbar %>
+    //Prevent double confirmation before exit
+    $("a.btn[data-method='delete']").on("click",function(){
+      if((typeof VISH != "undefined")&&(typeof VISH.IframeAPI != "undefined")&&(typeof VISH.IframeAPI.allowExitWithoutConfirmation == "function")&&(VEconnected===true)){
+        VISH.IframeAPI.allowExitWithoutConfirmation();
+      }
+    });
+  <% end %>
+
   $('.btn_cancel').on("click",function(){
     $('.delete').popover('hide');
   });
@@ -95,14 +110,11 @@ $(".spam_radio").click(function(e) {
 
 <%end%>
 
-
 <script type="text/javascript">
 $(document).ready(function(){
   $(".with_tooltip").tooltip({ placement: 'bottom'});
 });
 </script>
-
-<% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
 <% unless editingToolbar %>
   <%= content_for :javascript do %> 
