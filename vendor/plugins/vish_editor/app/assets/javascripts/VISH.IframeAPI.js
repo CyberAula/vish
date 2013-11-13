@@ -19,6 +19,8 @@ VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
 VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
+VISH.Constant.Event.onVEFocusChange = "onVEFocusChange";
+
 //Constant added by IframeAPI addon
 VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
 
@@ -243,6 +245,11 @@ VISH.IframeAPI = (function(V,undefined){
 				if(VEMessageObject.params){
 					callback(VEMessageObject.params.slideNumber,
 							 VEMessageObject.origin);
+				}
+				break;
+			case VISH.Constant.Event.onVEFocusChange:
+				if(VEMessageObject.params){
+					callback(VEMessageObject.params.focus,VEMessageObject.origin);
 				}
 				break;
 			case VISH.Constant.Event.onIframeMessengerHello:

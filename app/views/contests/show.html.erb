@@ -8,47 +8,28 @@
 
     <!--candidates-->
       <div class="info_competition_element">
-        <h4><i class="icon-group"></i>Candidates</h4>
-        <p>
-          We admit individuals or institutions. The competition forbest eExcursions is open to any registered ViSH user.
-          <!--We encourage especially teachers, scientists and scientific organisations to create excursions. But, if you are not a professional, your contribution is welcome, sometimes amateurs perform better that professionals, let’s try! -->
-          Only full eExcursions will enter the competition. 
-        </p>
+        <h4>
+          <i class="icon-group"></i>
+          <%=t('contest.candidates')%>
+        </h4>
+        <p><%=t('contest.intro')%></p>
       </div>
 
     <!--Categories-->
       <div class="info_competition_element">
-        <h4><i class="icon-book"></i>Categories</h4>
+        <h4><i class="icon-book"></i><%=t('contest.categories')%></h4>
         <p>
-          Maths,
-          Physics,
-          Chemistry,
-          Biology,
-          Geography,
-          EnvironmentalStudies,
-          Engineering,
-          Humanities,
-          NaturalScience,
-          ComputerScience.
+          <%=t('contest.categories2')%>
         </p>
       </div>
 
     <!--Languages-->
       <div class="info_competition_element">
-        <h4><i class="icon-flag"></i>Languages</h4>
+        <h4><i class="icon-flag"></i><%=t('contest.languajes_intro')%></h4>
         <p>
-          eExcursions can be submitted in the following languages:
+          <%=t('contest.languajes')%>
           </br>
-          English,
-          German,
-          French,
-          Spanish,
-          Dutch,
-          Hungarian,
-          Romanian,
-          Greek,
-          Italian
-
+          <%=t('contest.languajes2')%>
         </p>
       </div>
 
@@ -57,36 +38,35 @@
       <div class="info_competition">
 <!--how to-->
       <div class="info_competition_element">
-        <h4><i class="icon-user"></i>How to register for the competition</h4>
+        <h4><i class="icon-user"></i><%=t('contest.register')%></h4>
         <p>
-          You must tag your eExcursion with the tag:
+          <%=t('contest.register2')%>
           </br>
-          ViSHCompetition2013
+          <%=t('contest.register3')%>
           </br>
-          and with the tag of the category you would like to compete
+          <%=t('contest.register4')%>
           </br>
-          An eExcursion can be send to more than one category.
+          <%=t('contest.register5')%>
         </p>
       </div>
 
 <!--time-->
       <div class="info_competition_element">
-        <h4><i class="icon-time"></i>Competition timeline</h4>
+        <h4><i class="icon-time"></i><%=t('contest.timeline')%></h4>
         <p>
-        <strong>20 October 2013</strong> Opening of competition 
+        <strong><%=t('contest.timeline_date')%></strong><%=t('contest.timeline2')%> 
         <br>
-        <strong>20 November 2013</strong> Deadline for entries
+        <strong><%=t('contest.timeline_date')%></strong><%=t('contest.timeline3')%>
         <br>
-        <strong>20 December 2013</strong> Selection process closed and announcement of winners
+        <strong><%=t('contest.timeline_date')%></strong><%=t('contest.timeline4')%>
         </p>
       </div>
 
 <!--criteria-->
       <div class="info_competition_element">
-        <h4><i class="icon-ok"></i>Selection criteria</h4>
-        <p>
-          The eExcursions will be ranked according to the number of favourites voted by the user community on ViSH. The
-          first 10 ranked excursions will then be judged according to the following criteria
+        <h4><i class="icon-ok"></i><%=t('contest.criteria')%></h4>
+        <p><%=t('contest.criteria2')%>
+          
         </p>
       </div>
 
@@ -94,30 +74,21 @@
 
     <div class="info_competition">
       <div class="info_competition_element">
-      <h4><i class="icon-trophy"></i>Prizes</h4>
-      <p>
-        The winners will receive prizes in the form of Amazon vouchers *
-        For each of the categories there is a chance to win a 1st and 2nd prize
+      <h4><i class="icon-trophy"></i><%=t('contest.prizes')%></h4>
+      <p><%=t('contest.prizes2')%>
+        </br><%=t('contest.prizes_first')%>
+        </br><%=t('contest.prizes_second')%>
+        </br><%=t('contest.prizes3')%>
+        </br><%=t('contest.prizes_first')%>
+        </br><%=t('contest.prizes_second')%>
+        </br><%=t('contest.prizes_third')%>
+        </br><%=t('contest.prizes4')%>
         </br>
-        1st prize 400€ voucher 
-        </br>
-        2st prize 200€ voucher 
-        </br>
-        The overall winners will receive extra prizes
-        </br>
-        1st prize 400€ voucher 
-        </br>
-        2st prize 300€ voucher 
-        </br>
-        3st prize 200€ voucher 
-        </br>
-        In addition, the 3 winners will be invited to join our confe-rence in Brussels, scheduled for January 2014
-        </br>
-        * <strong>The Amazon </strong> voucher is a promotional code for the online store Amazon that will allow you to buy whatever you may considerinteresting for your work: books, little technological equipment..
+        <strong><%=t('contest.amazon')%></strong><%=t('contest.prizes5')%>
       </p>
-            <div class="btn-group">
-      <a href="http://vishub.org/competitions"><button class="btn">more info</button></a>
-      <a href="http://vishub.org/faq#faq_competitions_1a"><button class="btn">faq</button></a>
+      <div class="btn-group">
+      <a href="http://vishub.org/competitions"><button class="btn"><%=t('contest.moreinfo')%></button></a>
+      <a href="http://vishub.org/faq#faq_competitions_1a"><button class="btn"><%=t('contest.faq')%></button></a>
     </div>
     </div>
 
@@ -128,23 +99,23 @@
 
 
   <div class="tabexcursions">
-    <h3>Excursions participating:</h3>
+    <h3><%=t('contest.ex_part')%></h3>
 
     <div class="filter">
     <!--filtro por categoria -->
-    Filter:
+    <%=t('contest.filter')%>
       <select id="tags_selector" name="tags">
-        <option value="All">All</option>
-        <option value="Maths">Maths</option>
-        <option value="Physics">Physics</option>
-        <option value="Chemistry">Chemistry</option>
-        <option value="Biology">Biology</option>
-        <option value="Geography">Geography</option>
-        <option value="EnvironmentalStudies">EnvironmentalStudies</option>
-        <option value="Engineering">Engineering</option>
-        <option value="Humanities">Humanities</option>
-        <option value="NaturalScience">NaturalScience</option>
-        <option value="ComputerScience">ComputerScience</option>
+        <option value="All"> <%=t('contest.All')%> </option>
+        <option value="Maths"> <%=t('contest.Maths')%> </option>
+        <option value="Physics"> <%=t('contest.Physics')%> </option>
+        <option value="Chemistry"> <%=t('contest.Chemistry')%> </option>
+        <option value="Biology"> <%=t('contest.Biology')%> </option>
+        <option value="Geography"> <%=t('contest.Geography')%> </option>
+        <option value="EnvironmentalStudies"> <%=t('contest.EnvironmentalStudies')%> </option>
+        <option value="Engineering"> <%=t('contest.Engineering')%> </option>
+        <option value="Humanities"> <%=t('contest.Humanities')%> </option>
+        <option value="NaturalScience"> <%=t('contest.NaturalScience')%> </option>
+        <option value="ComputerScience"> <%=t('contest.ComputerScience')%> s</option>
       </select>
     </div>
   </div>

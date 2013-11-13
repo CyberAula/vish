@@ -165,6 +165,7 @@ VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
 VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
+VISH.Constant.Event.onVEFocusChange = "onVEFocusChange";
 VISH.Constant.Storage = {};
 VISH.Constant.Storage.Device = "Device";
 VISH.Constant.VTour = {};
@@ -11742,9 +11743,11 @@ VISH.Status = function(V, $, undefined) {
   var _isOnline;
   var _isSlave;
   var _isPreventDefault;
+  var _isVEfocused;
   var init = function(callback) {
     _checkIframe();
     _checkDomain();
+    _isVEfocused = false;
     V.Status.Device.init(function(returnedDevice) {
       _device = returnedDevice;
       _checkOnline();
@@ -11842,7 +11845,19 @@ VISH.Status = function(V, $, undefined) {
       }
     }
   };
-  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode}
+  var setVEFocus = function(focus) {
+    if(typeof focus == "boolean" && focus != _isVEfocused) {
+      _isVEfocused = focus;
+      var params = new Object;
+      params.focus = focus;
+      params.blur = !focus;
+      V.EventsNotifier.notifyEvent(V.Constant.Event.onVEFocusChange, params)
+    }
+  };
+  var isVEFocused = function() {
+    return _isVEfocused
+  };
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setVEFocus:setVEFocus, isVEFocused:isVEFocused}
 }(VISH, jQuery);
 VISH.Status.Device = function(V, $, undefined) {
   var init = function(callback) {
@@ -16194,7 +16209,7 @@ VISH.Events = function(V, $, undefined) {
     $(document).on("click", "#forward_arrow", function(event) {
       V.Slides.forwardOneSlide()
     });
-    $(document).on("click", ".close_subslide", onFlashcardCloseSlideClicked);
+    $(document).on("click", ".close_subslide", onCloseSubslideClicked);
     if(typeof applicationCache !== "undefined") {
       applicationCache.addEventListener("cached", function() {
         V.Storage.addPresentation(presentation)
@@ -16203,6 +16218,11 @@ VISH.Events = function(V, $, undefined) {
         V.Storage.addPresentation(presentation)
       }, false)
     }
+    $(window).focus(function() {
+      V.Status.setVEFocus(true)
+    }).blur(function() {
+      V.Status.setVEFocus(false)
+    });
     var multipleOnResize = undefined;
     window.onresize = function() {
       if(typeof multipleOnResize === "undefined") {
@@ -16246,7 +16266,7 @@ VISH.Events = function(V, $, undefined) {
     $(document).off("click", "#back_arrow", V.Slides.backwardOneSlide);
     $(document).off("click", "#forward_arrow", V.Slides.forwardOneSlide);
     $(document).off("click", "#closeButton");
-    $(document).off("click", ".close_subslide", onFlashcardCloseSlideClicked);
+    $(document).off("click", ".close_subslide", onCloseSubslideClicked);
     if(typeof applicationCache !== "undefined") {
       applicationCache.removeEventListener("cached", function() {
         V.Storage.addPresentation(presentation)
@@ -16286,11 +16306,11 @@ VISH.Events = function(V, $, undefined) {
       V.Slides.openSubslide(poi.slide_id, true)
     }
   };
-  var onFlashcardCloseSlideClicked = function(event) {
+  var onCloseSubslideClicked = function(event) {
     var close_slide_id = event.target.id.substring(5);
     V.Slides.closeSubslide(close_slide_id, true)
   };
-  return{init:init, bindViewerEventListeners:bindViewerEventListeners, unbindViewerEventListeners:unbindViewerEventListeners, onFlashcardPoiClicked:onFlashcardPoiClicked, onFlashcardCloseSlideClicked:onFlashcardCloseSlideClicked}
+  return{init:init, bindViewerEventListeners:bindViewerEventListeners, unbindViewerEventListeners:unbindViewerEventListeners, onFlashcardPoiClicked:onFlashcardPoiClicked, onCloseSubslideClicked:onCloseSubslideClicked}
 }(VISH, jQuery);
 VISH.Flashcard = function(V, $, undefined) {
   var flashcards;
@@ -17273,6 +17293,9 @@ VISH.Messenger = function(V, undefined) {
     });
     V.EventsNotifier.registerCallback(V.Constant.Event.onFlashcardSlideClosed, function(params) {
       notifyEventByMessage(V.Constant.Event.onFlashcardSlideClosed, params)
+    });
+    V.EventsNotifier.registerCallback(V.Constant.Event.onVEFocusChange, function(params) {
+      notifyEventByMessage(V.Constant.Event.onVEFocusChange, params)
     })
   };
   var notifyEventByMessage = function(event, params) {
@@ -18536,6 +18559,11 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).bind("keyup", handleBodyKeyUp);
       $("article").live("slideenter", V.Editor.onSlideEnterEditor);
       $("article").live("slideleave", V.Editor.onSlideLeaveEditor);
+      $(window).focus(function() {
+        V.Status.setVEFocus(true)
+      }).blur(function() {
+        V.Status.setVEFocus(false)
+      });
       _addTutorialEvents();
       $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":600, "padding":0, "onStart":function(data) {
         var slidesAddMode = V.Editor.getContentAddMode();
@@ -22911,7 +22939,7 @@ VISH.Events.Mobile = function(V, $, undefined) {
     }else {
       if($(event.target).hasClass("close_subslide")) {
         event.preventDefault();
-        V.Events.onFlashcardCloseSlideClicked(event)
+        V.Events.onCloseSubslideClicked(event)
       }
     }
     return true
@@ -23178,6 +23206,7 @@ VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
 VISH.Constant.Event.onSelectedSlides = "onSelectedSlides";
+VISH.Constant.Event.onVEFocusChange = "onVEFocusChange";
 VISH.Constant.Event.onIframeMessengerHello = "onIframeMessengerHello";
 VISH.IframeAPI = function(V, undefined) {
   var helloAttempts;
@@ -23359,6 +23388,11 @@ VISH.IframeAPI = function(V, undefined) {
       case VISH.Constant.Event.onFlashcardSlideClosed:
         if(VEMessageObject.params) {
           callback(VEMessageObject.params.slideNumber, VEMessageObject.origin)
+        }
+        break;
+      case VISH.Constant.Event.onVEFocusChange:
+        if(VEMessageObject.params) {
+          callback(VEMessageObject.params.focus, VEMessageObject.origin)
         }
         break;
       case VISH.Constant.Event.onIframeMessengerHello:
