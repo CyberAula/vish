@@ -68,4 +68,5 @@ SocialStream::Documents.setup do |config|
 
   config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf, :pdf]
   config.subtype_classes_mime_types[:video] = [ :flv, :webm, :mp4, :mpeg, :mov, :wmv ]
+  config.subtype_classes_mime_types[:swf] = [:swf]
 end
