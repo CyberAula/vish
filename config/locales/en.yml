@@ -57,17 +57,16 @@ en:
     selected: "categories"
     success: "Categories saved succesfully"
   close: "Close"
-  competitions: 
-    home: "<a href='http://vishub.org/contest'>ViSH competition</a> period is open now! You can participate easily creating new excursions. Get the <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
   conditions:
     check_message: "By clicking Accept, you agree to our "  
     check_message_1: "Terms and Conditions."
     other: "terms of use"
   contact:
     footer: "contact"
-    pending:
-      other: "Following you"
+  pending:
+    other: "Following you"
   competitions:
+    poster:       "<a href='http://vishub.org/contest'>ViSH competition</a> period is open now! You can participate easily creating new excursions. Get the <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> or read the <a href='http://vishub.org/faq#faq_competitions_1a'>faq</a>"
     introduction: "Introduction"
     introduction1: "GLOBAL excursion (Extended Curriculum for Science Infrastructure Online) is a support action funded by the European Commission under the Seventh Framework Programme --"
     introduction2: " and attributed to "
