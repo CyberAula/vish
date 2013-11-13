@@ -130,6 +130,8 @@ VISH.Constant.MEDIA.YOUTUBE_VIDEO = "youtube";
 VISH.Constant.MEDIA.HTML5_VIDEO = "HTML5";
 VISH.Constant.MEDIA.WEB = "web";
 VISH.Constant.MEDIA.JSON = "json";
+VISH.Constant.MEDIA.DOC = "doc";
+VISH.Constant.MEDIA.PPT = "ppt";
 VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
 VISH.Constant.WRAPPER.OBJECT = "OBJECT";
@@ -11743,11 +11745,15 @@ VISH.Status = function(V, $, undefined) {
   var _isOnline;
   var _isSlave;
   var _isPreventDefault;
-  var _isVEfocused;
+  var _isVEFocused;
+  var _isWindowFocused;
+  var _isCKEditorInstanceFocused;
   var init = function(callback) {
     _checkIframe();
     _checkDomain();
-    _isVEfocused = false;
+    _isVEFocused = false;
+    _isWindowFocused = false;
+    _isCKEditorInstanceFocused = false;
     V.Status.Device.init(function(returnedDevice) {
       _device = returnedDevice;
       _checkOnline();
@@ -11845,19 +11851,37 @@ VISH.Status = function(V, $, undefined) {
       }
     }
   };
-  var setVEFocus = function(focus) {
-    if(typeof focus == "boolean" && focus != _isVEfocused) {
-      _isVEfocused = focus;
+  var setWindowFocus = function(focus) {
+    if(typeof focus == "boolean") {
+      _isWindowFocused = focus;
+      _updateFocus(!focus)
+    }
+  };
+  var setCKEditorInstanceFocused = function(focus) {
+    if(typeof focus == "boolean") {
+      _isCKEditorInstanceFocused = focus;
+      _updateFocus(!focus)
+    }
+  };
+  var _updateFocus = function(delayUpdate) {
+    if(delayUpdate === true) {
+      setTimeout(function() {
+        _updateFocus()
+      }, 100);
+      return
+    }
+    var updatedFocus = _isWindowFocused || _isCKEditorInstanceFocused;
+    if(updatedFocus != _isVEFocused) {
+      _isVEFocused = updatedFocus;
       var params = new Object;
-      params.focus = focus;
-      params.blur = !focus;
+      params.focus = updatedFocus;
       V.EventsNotifier.notifyEvent(V.Constant.Event.onVEFocusChange, params)
     }
   };
   var isVEFocused = function() {
-    return _isVEfocused
+    return _isVEFocused
   };
-  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setVEFocus:setVEFocus, isVEFocused:isVEFocused}
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setWindowFocus:setWindowFocus, setCKEditorInstanceFocused:setCKEditorInstanceFocused, isVEFocused:isVEFocused}
 }(VISH, jQuery);
 VISH.Status.Device = function(V, $, undefined) {
   var init = function(callback) {
@@ -13797,6 +13821,7 @@ VISH.Editor.Text = function(V, $, undefined) {
     ckeditor.on("resize", function(event) {
     });
     ckeditor.on("focus", function(event) {
+      V.Status.setCKEditorInstanceFocused(true);
       if(options && options.placeholder === true) {
         var a = $(initial_text).text().replace(/\s+/g, "");
         var b = $(event.editor.getData()).text().replace(/\s+/g, "");
@@ -13811,6 +13836,7 @@ VISH.Editor.Text = function(V, $, undefined) {
       V.Editor.selectArea(area)
     });
     ckeditor.on("blur", function(event) {
+      V.Status.setCKEditorInstanceFocused(false)
     });
     ckeditor.getPlainText = _getPlainText;
     if(isTemplateArea) {
@@ -13901,7 +13927,7 @@ VISH.Editor.Video = function(V, $, undefined) {
     var urlInput = $("#" + urlDivId).find("input");
     $("#tab_video_from_url_content .previewButton").click(function(event) {
       if(V.Police.validateObject($(urlInput).val())[0]) {
-        contentToAdd = V.Editor.Utils.autocompleteUrls($("#" + urlInputId).val());
+        contentToAdd = V.Editor.Utils.autocompleteUrls($(urlInput).val());
         V.Editor.Object.drawPreview("tab_video_from_url_content", contentToAdd)
       }else {
         contentToAdd = null
@@ -14122,7 +14148,7 @@ VISH.Editor.Object = function(V, $, undefined) {
     V.Editor.Object.Repository.init();
     V.Editor.Object.Live.init();
     V.Editor.Object.Web.init();
-    V.Editor.Object.PDF.init();
+    V.Editor.Object.GoogleDOC.init();
     V.Editor.Object.Snapshot.init();
     var urlInput = $("#" + urlDivId).find("input");
     $("#" + urlDivId + " .previewButton").click(function(event) {
@@ -14331,7 +14357,11 @@ VISH.Editor.Object = function(V, $, undefined) {
             return"<embed class='objectPreview' src='" + object + "' wmode='opaque' ></embed>";
             break;
           case V.Constant.MEDIA.PDF:
-            return V.Editor.Object.PDF.generatePreviewWrapperForPdf(object);
+          ;
+          case V.Constant.MEDIA.DOC:
+          ;
+          case V.Constant.MEDIA.PPT:
+            return V.Editor.Object.GoogleDOC.generatePreviewWrapper(object);
             break;
           case V.Constant.MEDIA.YOUTUBE_VIDEO:
             return V.Editor.Video.Youtube.generatePreviewWrapperForYoutubeVideoUrl(object);
@@ -14402,7 +14432,11 @@ VISH.Editor.Object = function(V, $, undefined) {
             V.Editor.Object.Flash.drawFlashObjectWithSource(object, object_style);
             break;
           case V.Constant.MEDIA.PDF:
-            V.Editor.Object.drawObject(V.Editor.Object.PDF.generateWrapperForPdf(object));
+          ;
+          case V.Constant.MEDIA.DOC:
+          ;
+          case V.Constant.MEDIA.PPT:
+            V.Editor.Object.drawObject(V.Editor.Object.GoogleDOC.generateWrapper(object));
             break;
           case V.Constant.MEDIA.YOUTUBE_VIDEO:
             V.Editor.Object.drawObject(V.Editor.Video.Youtube.generateWrapperForYoutubeVideoUrl(object));
@@ -16219,9 +16253,9 @@ VISH.Events = function(V, $, undefined) {
       }, false)
     }
     $(window).focus(function() {
-      V.Status.setVEFocus(true)
+      V.Status.setWindowFocus(true)
     }).blur(function() {
-      V.Status.setVEFocus(false)
+      V.Status.setWindowFocus(false)
     });
     var multipleOnResize = undefined;
     window.onresize = function() {
@@ -18560,9 +18594,9 @@ VISH.Editor.Events = function(V, $, undefined) {
       $("article").live("slideenter", V.Editor.onSlideEnterEditor);
       $("article").live("slideleave", V.Editor.onSlideLeaveEditor);
       $(window).focus(function() {
-        V.Status.setVEFocus(true)
+        V.Status.setWindowFocus(true)
       }).blur(function() {
-        V.Status.setVEFocus(false)
+        V.Status.setWindowFocus(false)
       });
       _addTutorialEvents();
       $("a#addSlideFancybox").fancybox({"autoDimensions":false, "scrolling":"no", "width":800, "height":600, "padding":0, "onStart":function(data) {
@@ -19571,6 +19605,17 @@ VISH.Editor.Object.Flash = function(V, $, undefined) {
   };
   return{drawFlashObjectWithSource:drawFlashObjectWithSource}
 }(VISH, jQuery);
+VISH.Editor.Object.GoogleDOC = function(V, $, undefined) {
+  var init = function() {
+  };
+  var generateWrapper = function(url) {
+    return"<iframe src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
+  };
+  var generatePreviewWrapper = function(url) {
+    return"<iframe class='objectPreview' src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
+  };
+  return{init:init, generatePreviewWrapper:generatePreviewWrapper, generateWrapper:generateWrapper}
+}(VISH, jQuery);
 VISH.Editor.Object.LRE = function(V, $, undefined) {
   var containerDivId = "tab_object_lre_content";
   var carrouselDivId = "tab_object_lre_content_carrousel";
@@ -19904,17 +19949,6 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
     }
   };
   return{init:init, beforeLoadTab:beforeLoadTab, onLoadTab:onLoadTab, addSelectedObject:addSelectedObject}
-}(VISH, jQuery);
-VISH.Editor.Object.PDF = function(V, $, undefined) {
-  var init = function() {
-  };
-  var generateWrapperForPdf = function(url) {
-    return"<iframe src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
-  };
-  var generatePreviewWrapperForPdf = function(url) {
-    return"<iframe class='objectPreview' src='http://docs.google.com/viewer?url=" + url + "&embedded=true'></iframe>"
-  };
-  return{init:init, generatePreviewWrapperForPdf:generatePreviewWrapperForPdf, generateWrapperForPdf:generateWrapperForPdf}
 }(VISH, jQuery);
 VISH.Editor.Object.Repository = function(V, $, undefined) {
   var containerDivId = "tab_object_repo_content";
@@ -23688,13 +23722,19 @@ VISH.Object = function(V, $, undefined) {
     if(extension == "json") {
       return V.Constant.MEDIA.JSON
     }
+    if(extension == "doc") {
+      return V.Constant.MEDIA.DOC
+    }
+    if(extension == "ppt") {
+      return V.Constant.MEDIA.PPT
+    }
     if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
       return V.Constant.MEDIA.WEB
     }
     return extension
   };
   var getExtensionFromSrc = function(source) {
-    return source.split(".").pop().toLowerCase()
+    return source.split(".").pop().split("&")[0].toLowerCase()
   };
   return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
 }(VISH, jQuery);

@@ -4890,6 +4890,8 @@ VISH.Constant.MEDIA.YOUTUBE_VIDEO = "youtube";
 VISH.Constant.MEDIA.HTML5_VIDEO = "HTML5";
 VISH.Constant.MEDIA.WEB = "web";
 VISH.Constant.MEDIA.JSON = "json";
+VISH.Constant.MEDIA.DOC = "doc";
+VISH.Constant.MEDIA.PPT = "ppt";
 VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
 VISH.Constant.WRAPPER.OBJECT = "OBJECT";
@@ -9179,13 +9181,19 @@ VISH.Object = function(V, $, undefined) {
     if(extension == "json") {
       return V.Constant.MEDIA.JSON
     }
+    if(extension == "doc") {
+      return V.Constant.MEDIA.DOC
+    }
+    if(extension == "ppt") {
+      return V.Constant.MEDIA.PPT
+    }
     if(source.match(http_urls_pattern) != null || source.match(www_urls_pattern) != null) {
       return V.Constant.MEDIA.WEB
     }
     return extension
   };
   var getExtensionFromSrc = function(source) {
-    return source.split(".").pop().toLowerCase()
+    return source.split(".").pop().split("&")[0].toLowerCase()
   };
   return{init:init, getExtensionFromSrc:getExtensionFromSrc, getObjectInfo:getObjectInfo}
 }(VISH, jQuery);
@@ -11457,11 +11465,15 @@ VISH.Status = function(V, $, undefined) {
   var _isOnline;
   var _isSlave;
   var _isPreventDefault;
-  var _isVEfocused;
+  var _isVEFocused;
+  var _isWindowFocused;
+  var _isCKEditorInstanceFocused;
   var init = function(callback) {
     _checkIframe();
     _checkDomain();
-    _isVEfocused = false;
+    _isVEFocused = false;
+    _isWindowFocused = false;
+    _isCKEditorInstanceFocused = false;
     V.Status.Device.init(function(returnedDevice) {
       _device = returnedDevice;
       _checkOnline();
@@ -11559,19 +11571,37 @@ VISH.Status = function(V, $, undefined) {
       }
     }
   };
-  var setVEFocus = function(focus) {
-    if(typeof focus == "boolean" && focus != _isVEfocused) {
-      _isVEfocused = focus;
+  var setWindowFocus = function(focus) {
+    if(typeof focus == "boolean") {
+      _isWindowFocused = focus;
+      _updateFocus(!focus)
+    }
+  };
+  var setCKEditorInstanceFocused = function(focus) {
+    if(typeof focus == "boolean") {
+      _isCKEditorInstanceFocused = focus;
+      _updateFocus(!focus)
+    }
+  };
+  var _updateFocus = function(delayUpdate) {
+    if(delayUpdate === true) {
+      setTimeout(function() {
+        _updateFocus()
+      }, 100);
+      return
+    }
+    var updatedFocus = _isWindowFocused || _isCKEditorInstanceFocused;
+    if(updatedFocus != _isVEFocused) {
+      _isVEFocused = updatedFocus;
       var params = new Object;
-      params.focus = focus;
-      params.blur = !focus;
+      params.focus = updatedFocus;
       V.EventsNotifier.notifyEvent(V.Constant.Event.onVEFocusChange, params)
     }
   };
   var isVEFocused = function() {
-    return _isVEfocused
+    return _isVEFocused
   };
-  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setVEFocus:setVEFocus, isVEFocused:isVEFocused}
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setWindowFocus:setWindowFocus, setCKEditorInstanceFocused:setCKEditorInstanceFocused, isVEFocused:isVEFocused}
 }(VISH, jQuery);
 VISH.Status.Device = function(V, $, undefined) {
   var init = function(callback) {
@@ -13091,9 +13121,9 @@ VISH.Events = function(V, $, undefined) {
       }, false)
     }
     $(window).focus(function() {
-      V.Status.setVEFocus(true)
+      V.Status.setWindowFocus(true)
     }).blur(function() {
-      V.Status.setVEFocus(false)
+      V.Status.setWindowFocus(false)
     });
     var multipleOnResize = undefined;
     window.onresize = function() {
