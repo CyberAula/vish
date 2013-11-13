@@ -67,7 +67,7 @@ es:
   pending:
     other: "Te siguen"
   competitions:
-    poster: "<a href='http://vishub.org/contest'>¡Concurso de ViSH!</a>Puedes participar facilmente con una eExcursión. Descarga el <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> o lee el<a href='http://vishub.org/faq#faq_competitions_1a'>FAQ</a>"
+    poster: "<a href='http://vishub.org/contest'>¡Concurso de ViSH!</a> Puedes participar facilmente con una Excursión. Descarga el <a href='http://vishub.org/VISH_competitions.pdf'>flyer</a> o lee el<a href='http://vishub.org/faq#faq_competitions_1a'>FAQ</a>"
     introduction: "Introducción"
     introduction1: "GLOBAL excursion (Curriculum extendido para la Ciencia Infraestructura Online) es un proyecto financiado por la comisión europea enmarcado en el programa --."
     introduction2: " y atribuido"
