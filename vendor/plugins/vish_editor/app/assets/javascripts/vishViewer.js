@@ -9245,6 +9245,9 @@ VISH.Renderer = function(V, $, undefined) {
   var _renderStandardSlide = function(slide, extra_classes, extra_buttons) {
     var content = "";
     var classes = "";
+    if(typeof extra_classes == "undefined" || extra_classes === null) {
+      extra_classes = ""
+    }
     for(el in slide.elements) {
       if(!V.Renderer.Filter.allowElement(slide.elements[el])) {
         content += V.Renderer.Filter.renderContentFiltered(slide.elements[el], slide.template)
@@ -9290,7 +9293,7 @@ VISH.Renderer = function(V, $, undefined) {
     var all_slides = "";
     for(index in slide.slides) {
       var subslide = slide.slides[index];
-      all_slides += _renderStandardSlide(subslide, null, "<div class='close_subslide' id='close" + subslide.id + "'></div>")
+      all_slides += _renderStandardSlide(subslide, "hide_in_smartcard", "<div class='close_subslide' id='close" + subslide.id + "'></div>")
     }
     return $("<article class='" + extra_classes + "' slidenumber='" + slidenumber + "' type='" + V.Constant.FLASHCARD + "' avatar='" + slide.background + "' id='" + slide.id + "'>" + extra_buttons + all_slides + "</article>")
   };
@@ -9298,7 +9301,7 @@ VISH.Renderer = function(V, $, undefined) {
     var all_slides = "";
     for(index in slide.slides) {
       var subslide = slide.slides[index];
-      all_slides += _renderStandardSlide(subslide, null, "<div class='close_subslide' id='close" + subslide.id + "'></div>")
+      all_slides += _renderStandardSlide(subslide, "hide_in_smartcard", "<div class='close_subslide' id='close" + subslide.id + "'></div>")
     }
     return $("<article class='" + extra_classes + "' slidenumber='" + slidenumber + "' type='" + V.Constant.VTOUR + "' id='" + slide.id + "'>" + extra_buttons + all_slides + "</article>")
   };
@@ -10614,7 +10617,12 @@ VISH.Viewer = function(V, $, undefined) {
     return current_presentation
   };
   var getPresentationType = function() {
-    return getCurrentPresentation().type
+    var cPresentation = getCurrentPresentation();
+    if(typeof cPresentation == "object") {
+      return cPresentation.type
+    }else {
+      return undefined
+    }
   };
   return{init:init, toggleFullScreen:toggleFullScreen, getOptions:getOptions, updateSlideCounter:updateSlideCounter, getCurrentPresentation:getCurrentPresentation, getPresentationType:getPresentationType, onSlideEnterViewer:onSlideEnterViewer, onSlideLeaveViewer:onSlideLeaveViewer}
 }(VISH, jQuery);
@@ -12016,16 +12024,22 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     V.Text.init()
   };
   var decideIfPageSwitcher = function() {
-    if(V.Slides.getCurrentSubSlide() !== null) {
-      $("#forward_arrow").hide();
-      $("#back_arrow").hide()
-    }else {
-      if(V.Slides.isCurrentFirstSlide()) {
+    if(V.Viewer.getPresentationType() === V.Constant.PRESENTATION) {
+      if(V.Slides.getCurrentSubSlide() !== null) {
+        $("#forward_arrow").hide();
         $("#back_arrow").hide()
       }else {
-        $("#back_arrow").show()
+        if(V.Slides.isCurrentFirstSlide()) {
+          $("#back_arrow").hide()
+        }else {
+          $("#back_arrow").show()
+        }
+        $("#forward_arrow").show()
       }
-      $("#forward_arrow").show()
+    }else {
+      if(V.Viewer.getPresentationType() === V.Constant.QUIZ_SIMPLE) {
+        $("#forward_arrow").hide()
+      }
     }
     if(V.Slides.isCurrentFirstSlide()) {
       $("#page-switcher-start").addClass("disabledarrow")
@@ -12834,12 +12848,6 @@ VISH.Slides = function(V, $, undefined) {
         $(el).removeClass(SLIDE_CLASSES[i])
       }
     }
-    if($(el).attr("type") === VISH.Constant.FLASHCARD || $(el).attr("type") === VISH.Constant.VTOUR) {
-      var arr = $(el).find("article");
-      for(var i = 0;i < arr.length;i++) {
-        $(arr[i]).addClass("hide_in_smartcard")
-      }
-    }
   };
   var _getcurSlideIndexFromHash = function() {
     if(V.Editing) {
@@ -12965,7 +12973,7 @@ VISH.Slides = function(V, $, undefined) {
     moveSlides(-1)
   };
   var moveSlides = function(n) {
-    if(n > 0 && !V.Editing && isCurrentLastSlide() && V.Status.getDevice().desktop) {
+    if(n > 0 && !V.Editing && isCurrentLastSlide() && V.Status.getDevice().desktop && V.Viewer.getPresentationType() === V.Constant.PRESENTATION) {
       V.Recommendations.showFancybox();
       return
     }
