@@ -1,5 +1,4 @@
 en:
-  aa: " hola pepe "
   activerecord:
     attributes:
       user:
