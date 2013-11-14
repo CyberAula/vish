@@ -32,8 +32,6 @@ SocialStream::Documents.setup do |config|
 #  Configure video thumbnails
   
    config.video_styles = {
-     :wmv => { :format => 'wmv'},
-     :mov => { :format => 'mov'},
      :webm => { :format => 'webm' },
      :flv  => { :format => 'flv',
                 :convert_options => { :output => {:ar =>'22050'}}
