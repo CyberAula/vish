@@ -13583,6 +13583,7 @@ VISH.Quiz = function(V, $, undefined) {
       default:
         break
     }
+    return false
   };
   var _loadQuizSession = function() {
     _cleanResults();
