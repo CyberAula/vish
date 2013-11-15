@@ -1,0 +1,44 @@
+<% content_for :title do %>
+<%= t('search.name')%> <%= params[:q].present? ? ": #{params[:q]}" : "" %>
+<% end %>
+
+<% toolbar :search %>
+
+
+  <section name="Search" class="Search-container">
+    <div class="error" id="too_short_error" <%#= 'style=display:block;' if too_short_query? %>><%#= t('search.at_least') %></div>
+
+    <div class="search tabbable">
+      <ul class="nav nav-tabs tabs-search-search" id="tab">
+        <li class="<%= 'active' if params[:type].blank? %>">
+          <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
+        </li>
+        <% SocialStream::Search.keys(:extended).each do |key| %>
+          <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
+        <% end %>
+      </ul>
+      <form action="<%=search_path%>" method="get" id="main_search_form" data-remote="true" class="search_box">
+        <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
+        <%= hidden_field_tag :page, '1', :id => 'main_search_form_page' %>
+        <%= hidden_field_tag :type, '', :id => 'main_search_form_type' %>
+        <%= hidden_field_tag :time, '', :id => 'main_search_form_time' %>
+        <%= hidden_field_tag :class, '', :id => 'main_search_form_class' %>
+        <%= hidden_field_tag :sort, '', :id => 'main_search_form_sort' %>
+        <%= hidden_field_tag :slides, '', :id => 'main_search_form_slides' %>
+        <%= hidden_field_tag :quiz, '', :id => 'main_search_form_quiz' %>
+      </form>
+      <div class="clearfloat"></div>
+      <div class="tab-content ">
+        <%= render :partial => 'extended_content' %>
+      </div>
+    </div>
+  </section>
+
+
+<%= javascript_tag do %>
+  $(function() {
+    Vish.Search.index({
+      indexPath: '<%= j request.fullpath %>'
+    });
+  });
+<% end %>

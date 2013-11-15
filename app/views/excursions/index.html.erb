@@ -1,57 +1,49 @@
-<% unless profile_or_current_subject.blank? %>
-<div class="excursion tabbable">
-  <ul class="nav nav-tabs view-all-excursions">
-    <% params[:scope]='me' unless params[:scope].present?  %>
-    <li class="<%= params[:scope]=='net'  ? "active" : ""  %>"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
-    <li class="<%= params[:scope]=='me'   ? "active" : ""  %>"><a data-toggle="tab" href="#ex-2"><%=t('excursion.my') %></a></li>
-    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#ex-3"><%= image_tag "icons/star-MENU-active.png", :class => "star" %></a></li>
+<section class="clearfix" id="excursions">
+  <ul class="">
+    <div class="competitions_ad"><p><%=raw t("competitions.poster")%></p></div>
+    <%= render partial: 'excursions/excursion-add' %>
+    <%if current_subject && current_subject.following_actor_ids && current_subject.following_actor_ids.size < 4
+        scope = :more
+      else
+        scope = :net
+      end%>
+    <%= render partial: 'excursions/excursions', :locals => { :scope => scope, :page => params[:page] || 1 } %>
   </ul>
-  <div class="tittle-tabs">
-    <%= t('excursion.title.other')%>
-  </div>
-
-<% unless params[:no_layout].present? %>
-  <%= render :partial => "common_documents/headers" %>
-<% end %>
-  <div class="tab-content">
-    <div id="ex-1" class="tab-pane <%= params[:scope]=='net'  ? "active" : ""  %>">
-      <div class="box-excursion-view-all">
-        <div id="excursion_filter_net  " >
-          <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-net"} %>
-        </div>
-        <div id="repo-excursions-net" >
-          <% subject_excursions(profile_or_current_subject, {:scope => :net, :limit => 0}).each do |excursion| %>
-            <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
-          <% end %>
-        </div>
+  <div id="loader_pagination">
+    <div id="pageless-loader" style="text-align:center;width:100%;">
+      <div class="msg" style="font-size:2em">
+        <%=t('search.loading')%>
       </div>
-    </div>
-    <div id="ex-2" class="tab-pane <%= params[:scope]=='me'  ? "active" : ""  %>">
-      <div class="box-excursion-view-all">    
-        <div id="excursion_filter_me">
-          <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-me"} %>
-        </div>
-        <div id="repo-excursions-me" >
-          <% subject_excursions(profile_or_current_subject, {:scope => :me, :limit => 0}).each do |excursion| %>
-            <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div id="ex-3" class="tab-pane <%= params[:scope]=='like'  ? "active" : ""  %>">
-      <div class="box-excursion-view-all">    
-        <div id="excursion_filter_fav">
-          <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-fav"} %>
-        </div>
-
-        <div id="repo-excursions-fav" class="">
-          <% subject_excursions(profile_or_current_subject, {:scope => :like, :limit => 0}).each do |excursion| %>
-            <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
-          <% end %>
-        </div>
-      </div>
+      <img src="assets/load.gif" alt="loading more results" style="margin:10px auto" />
     </div>
   </div>
-</div>
-<% end %>
+  <div id="last_content_shown" style="display:none"><%=t('search.end')%></div>
 
+</section>
+<!--
+<section id="excursions">
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li><h1><%= t("excursion.other")%></h1></li>
+      <li class="active"><a href="#tab1" data-toggle="tab"><%= t("excursion.all")%></a></li>
+      <li><a href="#tab2" data-toggle="tab"><%= t("excursion.other")%></a></li>
+      <li><a href="#tab3" data-toggle="tab">examples</a></li>
+    </ul>
+    <div class="tab-content">
+        
+      <div class="tab-pane active" id="tab1">
+        <%#= render partial: 'excursions/excursions', :locals => { :scope => :net } %>
+      </div>
+
+      <div class="tab-pane" id="tab2">
+        <%#= render partial: 'excursions/excursions', :locals => { :scope => :net } %>
+      </div>
+
+      <div class="tab-pane" id="tab3">
+        <%#= render partial: 'excursions/show' %>
+      </div>
+    </ul>
+  </div>
+</section>
+-->
+  

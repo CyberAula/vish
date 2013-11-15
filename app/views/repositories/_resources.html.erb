@@ -1,0 +1,26 @@
+<ul class="repository-item">
+  <% if profile_subject_is_current? %>
+	 <%= render partial: 'repositories/resource-add' %>
+  <% end %> 
+  <% all_resources = subject_resources(profile_or_current_subject, {:scope => scope, :limit => 0})%>
+  <% all_resources.each do |resource| %>
+    	<%= render :partial => 'repositories/resource', :locals => { :resource => resource } %>
+  <% end %> 
+</ul>
+
+<script>
+	function re_apply_resources_backstrech(){
+		<% all_resources.each do |resource| %>
+    		<%if resource.respond_to?(:type) && resource.type =="Picture"%>
+    			$("#document-<%=resource.id%>").backstretch("<%=resource.file%>?style=500");  
+    		<%end%>
+  		<% end %> 
+	}
+
+</script>
+
+<%= content_for :javascript do %>
+  $('a[href="#tab3"]').on('shown', function (e) {
+    $(".resource").fitText(0.4);
+  });
+<% end %>

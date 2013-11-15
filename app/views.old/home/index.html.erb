@@ -1,0 +1,30 @@
+<section id="home">
+  <section id="left-home" >
+
+  <!-- EXCURSION -->
+    <%= render :partial => "home/excursions" %>
+    <div class="row"></div>
+  <!--REPOSITORY-->
+    <%= render :partial => "home/repository" %>
+    <div class="row"></div>
+  <!--FOLLOWER-->
+    <%= render :partial => "home/followers" %>
+    <div class="row"></div>
+
+  </section>
+
+  </section>
+
+  <!--TIME-LINE-->
+  <section id="right-home">
+  <%= render partial: 'activities/wall',
+             locals: {
+               activities: current_subject.wall(:home).page(params[:page_net])
+             } %>
+  </section>
+</section>
+<%= javascript_tag do %>
+  $('.filtered-tabs a[data-toggle="tab"]').on('shown', function(e) {
+    $('#' + e.target.href.split('#')[1]).find('input[name=filter]').keyup();
+  });
+<% end %>

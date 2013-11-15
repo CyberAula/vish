@@ -32,7 +32,7 @@ class Pdfex < ActiveRecord::Base
 		# Site.current.config[:documents_hostname] = "http://localhost:3000/"
 		# Site.current.save!
 		# On production 
-		# Site.current.config[:documents_hostname] == "http://vishub.org/"
+		# Site.current.config[:documents_hostname] = "http://vishub.org/"
 
 		imgs
 	end

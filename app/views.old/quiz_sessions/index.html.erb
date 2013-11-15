@@ -1,0 +1,63 @@
+<% if current_user %>
+  <article class="home quiz_sessions" id="main" >
+
+    <p> My Quizs </p>
+
+    <p>&nbsp;</p>
+    <p> Open Quizs </p>
+    <table border="1" class='activeSessions'>
+      <tr>
+        <td>Created at</td>
+        <td>Name</td>
+        <td>Close Quiz</td>
+        <td>View results</td>
+        <td>Delete</td>
+      </tr>
+      <% @quiz_active_sessions.each do |q| %>
+      <tr>
+          <td><%=q.created_at%></td>
+        <% if q.name %>
+          <td><%=q.name%></td>
+        <% else %>
+          <td></td>
+        <% end %>
+          <td><a href="<%=q.close_url%>">Close</a></td>
+          <td><a href="<%=q.results_url%>">Results</a></td>
+          <td><a href="<%=q.delete_url%>">delete</a></td>
+      </tr>
+      <% end %>
+    </table>
+
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p> Closed Quizs </p>
+    <table border="1" class='activeSessions'>
+      <tr>
+        <td>Created at</td>
+        <td>Name</td>
+        <td>Closed at</td>
+        <td>View results</td>
+        <td>Delete</td>
+      </tr>
+      <% @quiz_inactive_sessions.each do |q| %>
+      <tr>
+          <td><%=q.created_at%></td>
+        <% if q.name %>
+          <td><%=q.name%></td>
+        <% else %>
+          <td></td>
+        <% end %>
+        <% if q.closed_at %>
+          <td><%=q.closed_at%></td>
+        <% else %>
+          <td></td>
+        <% end %>
+          <td><a href="<%=q.results_url%>">Results</a></td>
+          <td><a href="<%=q.delete_url%>">delete</a></td>
+      </tr>
+      <% end %>
+    </table>
+
+
+  </article>
+<% end %>

@@ -1,0 +1,49 @@
+<%= render :partial => 'vish_editor.full' %>
+
+<script>	
+	options = {};
+	var configuration = {};
+
+	configuration["ImagesPath"] = "/assets/";
+	configuration["StylesheetsPath"] = "/assets/";
+	configuration["uploadImagePath"] = "<%= documents_path :format=> "json"%>";
+	configuration["uploadObjectPath"] = "<%= documents_path :format=> "json"%>";
+	configuration["uploadPresentationPath"] = "<%= excursion_path @excursion, :format=> "json" %>";
+
+	configuration["presentationSettings"] = true;
+	configuration["presentationTags"] = true;
+	configuration["presentationThumbnails"] = true;
+
+	configuration["VishLives"] = true;
+	configuration["VishRepo"] = true;
+
+	configuration["Flickr"] = true;
+	configuration["Youtube"] = true;
+	configuration["Vimeo"] = false;
+
+	configuration["Upload"] = true;
+
+	configuration["mode"] = "vish";
+	options["configuration"] = configuration;
+	options["developping"] = false;
+
+	options["username"] = "<%= current_user.name %>";
+	options["userId"] = "<%= Actor.normalize_id(current_user) %>";
+	options["token"] = "<%= form_authenticity_token %>";
+
+	options["draft"] = <%= @excursion.draft.to_s %>;
+
+	options["lang"] = "<%= I18n.locale.to_s%>";
+
+	options.addons = [];
+
+	var addon = new Object();
+	addon.target = "Both";
+	addon.id = "IframeMessenger";
+	addon.config = {enable: true};
+	options.addons.push(addon);
+
+	function start(){
+		VISH.Editor.init(options, <%= raw @excursion.to_json%> );
+	}
+</script>

@@ -1,0 +1,82 @@
+#settings
+  #toolbar
+    display: none
+  .settings
+    width: 50%
+    margin: 0 25%
+    h2
+      margin-top: 0
+      width: 100%
+      line-height: 50px
+      .colorfont
+        color: #e2e2e2
+      .colorfont-overlay
+        color: #ccc
+    .accordion
+      margin: 0 auto 0
+      width: 440px
+      .settings_content
+        padding: 0px 15px 0px
+        .accordion-toggle
+          @include ellipsis
+        form
+          margin-bottom: 0px
+          margin-top: 12px
+        input
+          &[type="submit"]
+            @include btn-primary
+            float: right
+            margin-bottom: 12px
+        .options
+          margin: 7px 0px
+          padding: 4px 4px 0px 2px
+          &[type="radio"]
+            margin: -3px 0px 0 20px
+        .btn_notifications
+          float: right
+
+      .form_label,
+      label
+        display: inline
+        width: auto
+      .form_field 
+        display: inline-block
+        
+        #user_password
+          width: 271px
+        #user_password_confirmation
+          width: 221px
+        #user_current_password
+          width: 273px
+        #user_email
+          width: 353px
+
+      #password_form,
+      #email_form
+        input
+          &[type="submit"]
+            margin-top: 10px
+
+      #chat_settings
+        input
+          &[type="checkbox"]
+            display: inline
+        label
+          display: inline-block
+      #api_key_settings
+        .settings_block
+          margin-top: 12px
+          .form_sub_row
+            @include btn-primary
+            
+            margin-top: 10px
+            width: 40%
+            float: left
+            margin-bottom: 10px
+            a
+              color: $white
+
+      
+
+#notify_by_email_never
+  margin-left: 10px

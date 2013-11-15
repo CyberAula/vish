@@ -1,0 +1,78 @@
+<!-- Button to trigger modal --> 
+<!-- Modal Categories-->
+<div id="<%=div_id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddCategoryLabel" aria-hidden="true">
+
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="AddCategoryLabel"><%= t('categories.main_title')%></h3>
+  </div>
+
+  <div class="modal-body">
+    <%= form_for Category.new(:owner_id => Actor.normalize_id(current_user)), :html => {:'data-type' => :json}, :remote => remote do |f| %>
+      <%= f.hidden_field :owner_id %>
+      <!--TITULO-->
+      <label><%= t('categories.leyend.title')%></label>
+      <%= f.text_field :title, :placeholder => t('categories.title_input') %>
+      
+      <!--DESCRIPCION-->
+      <label><%= t('categories.leyend.description')%></label>
+      <%= f.text_field :description, :placeholder => t('categories.description_input') %>
+    </div>
+
+     <div class="modal-footer">      
+      <input type="button" class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
+
+      <div class="contentHelpCategories" style="display: none">
+        <div>
+          <%= t('document.help.info1_html')%>  <br/>
+          <%= t('document.help.info8_html')%>
+        </div>
+      </div>
+
+      <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
+      <!--<b id="foo" rel="popover">Ayuda </b>-->
+      <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
+      <%= f.submit t('categories.save'), :class => "hidden", :id => "saveCategory" %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.helpCategories').popover({ 
+      html : true,
+      content: function() {
+        return $('.contentHelpCategories').html();
+      }
+    });
+  });
+
+  $('#AddCategoryHeader .new_category').bind('ajax:success', function(evt, data, status, xhr){
+    $('#AddCategoryHeader').modal('hide');
+    window.location.href = "/categories/" + data.id;
+  });
+
+  $('#<%=div_id%> .new_category').bind('ajax:error', function(evt, data, status, xhr){
+    $("#<%=div_id%> .errors").remove();
+    var errors = "There was an unexpected error on the server. Please contact the technical support so they can solve it.";
+    if(data.responseJSON!=undefined){
+      errors = data.responseJSON.errors;
+    }
+    if (errors.indexOf("duplicated") != -1) {
+      $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.errors.duplicated')%></div>");
+    } else {
+      $("#<%=div_id%> .new_category").after("<div class='errors'>" + errors + "</div>");
+    }
+  });
+
+  var saveCategoryButton = $("#<%=div_id%> input[type='submit']");
+  var categoryButton = $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
+  $(categoryButton).click(function(event) {
+    if ($("#<%=div_id%> input[name='category[title]']").val() == "") {
+      $("#<%=div_id%> .errors").remove();
+      $("#<%=div_id%> .new_category").after("<div class='errors'><%= t('categories.title_input')%></div>");
+    } else {
+      $(saveCategoryButton).click();
+    }
+  });
+</script>

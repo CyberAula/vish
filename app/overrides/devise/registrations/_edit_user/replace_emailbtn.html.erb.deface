@@ -1,0 +1,20 @@
+<!-- replace_contents '#email_form_content' -->
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
+      <div class="form_label">
+        <%= f.label :email %>
+      </div>
+      <div class="form_field">
+        <%= f.email_field :email, :class => "required form_tag" %>
+      </div>
+
+      <div class="form_label">
+        <%= f.label :current_password %>
+      </div>
+      <div class="form_field">
+        <%= f.password_field :current_password, :class => "required form_tag" %>
+      </div>
+
+      <%= f.submit t('button.update'), :class => "btn btn-primary" %>
+
+    <% end%>

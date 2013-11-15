@@ -25,9 +25,9 @@ class ExcursionsController < ApplicationController
   before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
   after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
 
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
   include SocialStream::Controllers::Objects
-  include HomeHelper
+  #include HomeHelper
 
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = '*'
@@ -58,12 +58,24 @@ class ExcursionsController < ApplicationController
     original = Excursion.find_by_id(params[:id])
     if original.blank?
       flash[:error] = t('excursion.clone.not_found')
-      redirect_to home_path if original.blank? # Bad parameter
+      redirect_to excursions_path if original.blank? # Bad parameter
     else
       # Do clone
       excursion = original.clone_for current_subject.actor
       flash[:success] = t('excursion.clone.ok')
       redirect_to excursion_path(excursion)
+    end
+  end
+
+  def index
+    index! do |format|
+      format.html{
+        if !params[:page]
+          render "index"
+        else
+          render :partial => "excursions/excursions", :locals => {:scope => :net, :limit => 0, :page=> params[:page]}, :layout => false
+        end
+      }
     end
   end
 
@@ -88,7 +100,8 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.save!
-    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
+    #render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)) }
+    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)) }
   end
 
   def update
@@ -100,12 +113,12 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.update_attributes!(params[:excursion])
-    render :json => { :url => (@excursion.draft ? excursions_path : excursion_path(resource)) }
+    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)) }
   end
 
   def destroy
     destroy! do |format|
-      format.all { redirect_to home_path }
+      format.all { redirect_to excursions_path }
     end
   end
 
@@ -119,6 +132,9 @@ class ExcursionsController < ApplicationController
     show! do |format|
       format.html {
         @evaluations = @excursion.averageEvaluation
+        @numberOfEvaluations = @excursion.numberOfEvaluations
+        @learningEvaluations = @excursion.averageLearningEvaluation
+        @numberOfLearningEvaluations = @excursion.numberOfLearningEvaluations
         if @excursion.draft and (can? :edit, @excursion)
           redirect_to edit_excursion_path(@excursion)
         else
@@ -170,9 +186,9 @@ class ExcursionsController < ApplicationController
      
       format.json {
         results = Hash.new
-        results["excursions"] = [];
+        results["excursions"] = []
         @found_excursions.each do |excursion|
-          results["excursions"].push(JSON(excursion.json));
+          results["excursions"].push(JSON(excursion.json))
         end
         render :json => results
       }
@@ -191,14 +207,32 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def learning_evaluate
+    @excursion_learning_evaluation = ExcursionLearningEvaluation.new(:excursion => Excursion.find_by_id(params[:id]))
+    @excursion_learning_evaluation.ip = request.remote_ip
+    6.times do |ind|
+      @excursion_learning_evaluation.send("answer_#{ind}=", params[("excursion_evaluation_#{ind}").to_sym])
+    end
+    @excursion_learning_evaluation.save!
+    respond_to do |format|   
+      format.js {render :text => "Thank you", :status => 200}
+    end
+  end
+
   def recommended
     render :partial => "excursions/filter_results", :locals => {:excursions => current_subject.excursion_suggestions(4) }
   end
 
   def last_slide
     excursions = []
-    current_subject.excursion_suggestions(20).each do |ex|
-      excursions.push ex.reduced_json(self)
+    if user_signed_in?
+      current_subject.excursion_suggestions(20).each do |ex|
+        excursions.push ex.reduced_json(self)
+      end
+    else
+      Excursion.joins(:activity_object).order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(20).each do |ex|
+        excursions.push ex.reduced_json(self)
+      end
     end
     respond_to do |format|
       format.json { render :json => excursions.sample(6) }
@@ -278,7 +312,13 @@ class ExcursionsController < ApplicationController
       if index<10
         tnumber = "0" + tnumber
       end
-      thumbnail["src"] = Site.current.config[:documents_hostname] + "assets/logos/original/excursion-"+tnumber+".png"
+      my_site = ""
+      if !Site.current.config[:documents_hostname]
+        my_site = "http://vishub.org/"
+      else
+        my_site = Site.current.config[:documents_hostname]
+      end
+      thumbnail["src"] = my_site + "assets/logos/original/excursion-"+tnumber+".png"
       thumbnails["pictures"].push(thumbnail)
     end
 
@@ -298,7 +338,7 @@ class ExcursionsController < ApplicationController
       params[:type] = "flashcard|virtualTour"
     end
 
-    # Allow  me to search only (e.g.) Flashcards
+    # Allow me to search only one type (e.g.) Flashcards
     opts.deep_merge!({
       :conditions => { :excursion_type => params[:type] }
     }) unless params[:type].blank?

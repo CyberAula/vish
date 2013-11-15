@@ -10,8 +10,6 @@ nl:
     new_user: "Welkom bij ViSH! Post en deel uw gedachten, links, video’s met uw volgers."
     newmessage: "Dit is uw tijdlijn. U kunt afbeeldingen, video’s, links en meer uploaden en delen."
     timeline: "tijdlijn"
-    title:
-      other: "activiteit"
     verb:
        make-friend:
         User:
@@ -168,6 +166,8 @@ nl:
     go: "Ga naar link"
   translate:
     change: "Wijzig taal"
+  mailboxer:
+    new_message_for: "Nieuwe boodschap voor"
   message:
     send: "Verzend bericht"
     new: "Nieuw bericht"
@@ -300,6 +300,10 @@ nl:
   share: "Posten"
   sign_up: "Aanmelden"
   site:
+    current:
+      description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
+      keywords: "VisHub,virtual,excursion"
+      title: "Virtual Science Hub"
     name: "Virtual Science Hub"
   swf:
     confirm_delete: "SWF verwijderen?"

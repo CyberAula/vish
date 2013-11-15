@@ -1,0 +1,182 @@
+@import "jquery.cleditor"
+
+
+#messages-toolbar
+  .tabbable
+    @include header-tabbable
+    
+    i
+      display: block
+      float: left
+      padding-right: 5px
+      padding-top: 3px
+    a
+      display: block
+      float: left
+      width: 100%
+      margin-right: 15px
+
+#conversations
+  .conversations
+    margin-top: 20px
+    .conversation
+      height: 50px !important
+      margin-bottom: 15px !important
+      @include border-radius($baseBorderRadius)
+      @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+      @include selection-1
+      padding: 5px
+      .content_left
+        header
+          h5 
+            a
+              @include ellipsis
+          .date
+            font-size: 11px
+            color: #888
+
+      .content_right
+        color: $gray
+        width: 77.6% !important
+        .subject
+          font-weight: normal
+          font-size: 14px
+          a
+            @include ellipsis
+            font-size: 15px
+            font-weight: bold
+            &:hover
+              text-decoration: none
+        .action
+          font-size: 18px
+          opacity: 0
+          padding-top: 15px
+  
+
+                  
+        .briefing
+          @include ellipsis
+          color: $gray
+        .date
+          color: $gray
+          font-size: 11px
+
+      &:hover
+        .action
+          opacity: 1
+    
+
+
+.conversations
+  .unread
+    opacity: 1 !important
+  .conversation
+    @include opacity (50)
+
+
+.conversation_full
+  h3
+    @include ellipsis
+  .action
+    h4
+      font-family: $firstFontFamily
+  .participants
+    @include border-radius($baseBorderRadius)
+    background-color: #f1f1f1
+    border: 1px solid #f1f1f1
+    img
+      @include border-radius ($baseBorderRadius)
+  .soften
+    border-color: $white
+
+  .cont_conversation
+    .answer
+      font-size: 16px
+      color: $gray
+    .cleditorMain
+      @include cleditorMain-box
+      height: 150px !important
+    .actions
+      @mixin full-btn-primary
+      .btn
+        background-image: none
+        float: right
+
+
+
+  .message
+    border-bottom: 1px solid #f1f1f1
+    background-color: $white
+    @include border-radius($baseBorderRadius)
+    .media
+      .pull-left
+        img
+          @include border-radius ($baseBorderRadius)
+      .date
+        color: #999
+        font-size: 13px
+
+  #conversation
+    form.new_message
+      margin-top: 30px
+      input
+        &[type="submit"]
+          float: right 
+          margin-top: 10px
+
+        &[type="text"]
+          //width: 100%  
+
+  #subject
+    //width: 96.8% !important
+
+#conversations,
+#conversation,
+#new_message
+  #toolbar
+    @include border-radius($baseBorderRadius)
+    nav.toolbar_menu
+      //background-color: $white
+      @include border-radius($baseBorderRadius)
+      ul
+        li
+          .active
+            background-position: -9px -10px
+          
+          a
+            &:hover
+              background-color: transparent
+
+#conversation
+  @include percent-btn-primary
+
+
+#content
+  .notification
+    color: $gray
+
+//messages profile
+
+#new_message_profile
+  .select2-container
+    ul
+      margin: 0 0 9px 1px
+      li
+        list-style: none
+        input
+          text-decoration: none !important
+          width: 100%
+
+  .cleditorMain
+    width: 100%
+    float: left
+    height: 110px !important
+    @include border-radius($baseBorderRadius)
+    iframe
+      height: 50px  !important
+  .btn 
+    margin-right: 28px !important
+    width: 28% !important
+
+  
+

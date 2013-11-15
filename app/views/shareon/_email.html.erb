@@ -1,5 +1,5 @@
-<div class="btn-gray">
-  <a href="mailto:?subject=<%= t('excursion.invite.email.subject', :title => CGI::escape(title || "")) %>&amp;body=<%= t('excursion.invite.email.body', { :url => url, :name => CGI::escape(name) }) %>">
-    <%= image_tag('icons/icon-message.png',:class=> "email_toolbar") + ' ' + t('excursion.invite.email.link') %>
+
+  <a href="mailto:?subject=<%= t('excursion.invite.email.subject', :title => CGI::escape(title || "")) %>&amp;body=<%= t('excursion.invite.email.body', { :url => url, :name => CGI::escape(name) }) %>">   
+	  <div class="btn-gray icon-envelope"></div>
   </a>
-</div>
+

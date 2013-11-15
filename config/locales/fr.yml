@@ -10,8 +10,6 @@ fr:
     new_user: "Bienvenue sur la plateforme ViSH ! Publiez et partagez vos points de vue, vos liens et vos vidéos avec vos abonnés."
     newmessage: "Ceci est votre ligne du temps. Vous pouvez publier et partager des photos, des vidéos, des liens et bien plus encore."
     timeline: "ligne du temps"
-    title:
-      other: "activité"
     verb:
        make-friend:
         User:
@@ -22,7 +20,7 @@ fr:
       other: "activité"
   activity_action:
     follow: "+ Suivre"
-    unfollow: "Se désabonner"
+    unfollow: "Arreter de suivre"
   all: "toutes"
   announce: 
     title: "Annonce"
@@ -168,6 +166,8 @@ fr:
     go: "Accéder au lien"
   translate:
     change: "Modifier la langue"
+  mailboxer:
+    new_message_for: "Nouveau message pour"
   message:
     send: "Envoyer un message"
     new: "Nouveau message"
@@ -300,6 +300,10 @@ fr:
   share: "Publier"
   sign_up: "Inscription"
   site:
+    current:
+      description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
+      keywords: "VisHub,virtual,excursion"
+      title: "Virtual Science Hub"
     name: "Plateforme des sciences virtuelles"
   swf:
     confirm_delete: "Supprimer SWF?"

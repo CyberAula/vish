@@ -1,0 +1,82 @@
+<ul class="nav">
+<!--SEARCH-->
+  <li class="search-mobile">
+    <%= render partial: 'layouts/search_mobile' %>
+  </li>
+<!--login-->
+
+  <li class="sign_in_mobile dropdown open">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-signin"></i>
+      <%=t("sign_in")%>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+
+      <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
+        <%= f.email_field :email, :id => "username" %>
+        <%= f.password_field :password, :id => "password"  %>
+        <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+
+          <label class="checkbox">
+            <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
+          </label>
+          <%= link_to t('devise.links.forgot_password'), new_password_path(:user), :class => ' forgot' %>
+      <% end %>
+      <%= javascript_tag do %>
+      $(function() {
+      if ("placeholder" in document.createElement("input")) {
+      $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+      } else {
+      $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+      }
+      $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+      });
+      <% end %>
+    </ul>
+
+
+  </li>
+<!--sign_up-->
+  <li class="sign_up_mobile">
+    <a href="<%=new_user_registration_path%>"class="signin">
+      <i class="icon-edit-sign"></i>
+      <%=t("sign_up")%>
+    </a>
+  </li>
+<!--lang-->
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <i class="icon-flag-checkered"></i>
+      <%= t('lang.title') %>
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <% for locale in (I18n.available_locales) -%> 
+       <li class="">
+          <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+
+
+<!--legal_notice-->
+  <li>
+    <a href="/legal_notice">
+      <i class="icon-legal"></i>
+      <%= t('conditions.other') %>
+    </a>     
+  </li>
+<!--manual-->
+
+      <li>
+        <%= link_to help_path do %>
+          <i class="icon-question-sign"> </i> <%=t('help_page')%>
+        <% end %>
+      </li>
+
+
+</ul>
+
+

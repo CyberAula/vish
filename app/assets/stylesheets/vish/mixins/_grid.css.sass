@@ -1,0 +1,29 @@
+@mixin grid
+//box excursions
+
+
+@mixin grid-add
+  @include border-radius($baseBorderRadius)
+  width: 165px
+  float: left
+  margin: 15px 11.5px
+  list-style: none
+  min-height: 227px
+  border: 2px dashed $gray
+  background-color: $white
+  .grid-item-add
+    padding: 129px 145px
+  .grid-item-myroom
+    padding: 128px 76px
+  &:first-child
+    margin-left: 0
+
+  .action-name
+    padding: 37px 10px 0
+    text-align: center
+    font-size: 1.3em
+    margin: 107px auto 20px
+    color: $grayLight
+    display: none
+
+

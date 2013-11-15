@@ -1,0 +1,61 @@
+<head>
+  <meta charset="utf-8">
+  <title><%= yield(:title).empty? ? t('site.name') : yield(:title) %></title>
+  <meta name="keywords" content="<%= yield(:keywords).empty? ? t('profile.tags.default') : yield(:keywords) %>">
+  <meta name="description" content="<%= yield(:description).empty? ? "Home" : yield(:description) %>">
+  <meta name="generator" content="SocialStream" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+  <meta property="og:site_name" content="ViSH">
+  <meta property="og:title" content="<%= yield(:title) %>">
+  <meta property="og:type" content="<%= yield(:og_type) %>">
+  <meta property="og:url" content="<%= yield(:og_url) %>">
+  <meta property="og:image" content="<%= yield(:og_image) %>">
+  <meta property="og:description" content="<%= yield(:description) %>">
+
+  <%= favicon_link_tag "icons/favicon.ico" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+
+  <!--[if gte IE 8]>
+    <%= stylesheet_link_tag "vish/browser/ie" %>
+  <![endif]-->
+
+  <script type="text/javascript"> 
+      if (/*@cc_on!@*/false) { 
+        //for IE10 that ignores conditional coments
+        var fileref=document.createElement("link");
+        fileref.setAttribute("rel", "stylesheet");
+        fileref.setAttribute("type", "text/css");
+        fileref.setAttribute("href", "/assets/vish/browser/ie.css");
+        document.getElementsByTagName("head")[0].appendChild(fileref);        
+      } 
+  </script>
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+
+  <% if protect_against_forgery? %>
+    <%= csrf_meta_tag %>
+  <% end %>
+
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".flash_close").on("click", function(event){
+        $(event.target).parent(".alert").hide("slow");
+      });
+      
+      <%= yield :javascript%>
+    });
+  </script>
+  <%= yield :headers %>
+  <%= render :partial => 'layouts/google_analytics' %>
+  <%= render :partial => 'layouts/uservoice' %>
+    
+</head>

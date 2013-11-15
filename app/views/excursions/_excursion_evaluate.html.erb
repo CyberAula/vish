@@ -1,6 +1,6 @@
-          <div id="myModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div id="myTeachingModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <%= content_for :javascript do%>
-              $('input.star').rating({
+              $('#myTeachingModal input.star').rating({
                 focus: function(value, link){
                   var tip = $(this).siblings(".eval_tip");
                   tip[0].data = tip[0].data || tip.html();
@@ -13,12 +13,12 @@
               });
             <%end%>
             <%= javascript_tag do %>              
-              $(document).on("click",".evaluation_form_button",function() {
+              $(document).on("click","#myTeachingModal .evaluation_form_button",function() {
                 var is_ok = true;
                 //validate empty radio buttons
-                $(':radio').each(function() { // loop through each radio button
+                $(':radio.star').each(function() { // loop through each radio button
                     nam = $(this).attr('name'); // get the name of its set
-                    if (!$(':radio[name="'+nam+'"]:checked').length) { 
+                    if (!$(':radio.star[name="'+nam+'"]:checked').length) { 
                         // see if any button in the set is checked
                         alert('<%=t("evaluation.alert")%>');
                         is_ok = false;
@@ -32,7 +32,7 @@
                     type: "post",
                     url: "/excursions/<%=@excursion.id%>/evaluate",
                     dataType: "text",
-                    data: $("#myModal .evaluation_form").serialize(), // serializes the form's elements.
+                    data: $("#myTeachingModal .evaluation_form").serialize(), // serializes the form's elements.
                     success: function(data){
                       $(".btn-modal-footer").html("<h3><%=t('evaluation.success')%></h3>");
                       setTimeout(function(){$(".modal-header button").click();},1000);                      

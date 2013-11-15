@@ -1,0 +1,44 @@
+<div class="clearfloat"></div>
+<%= div_for link, :class => 'timeline-object ' do %>
+  <%= javascript_tag do %>
+    <%= modal_for(link) %>
+  <% end %>
+
+  <div class="item-object-wall">
+    <ul class="thumbnails">
+      <li class="img-object">
+      <% if link.callback_url %>
+        <a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%> modal-trigger">
+      <% else %>
+        <a href="<%= link.url %>" target="_blank" class="container">
+      <% end %>
+      <% if link.image && link.image!="" %>
+        <%= image_tag(link.image, :size =>"75x75") %><% else %><i class='icon_repository75-75_link'></i> 
+      <% end %>
+      </a>
+      </li>
+      <li class="info-object-timeline">
+        <div class="title-object">
+          <% if link.callback_url %>
+            <a data-toggle="modal" href="#link-modal-<%= link.id.to_s%>" class="link-modal-button-<%= link.id.to_s%> modal-trigger"><% else %><a href="<%= link.url %>" target="_blank"></a>
+          <% end %>
+          <%= (link.title.blank? ? link.url : link.title) %>
+        </div>
+        <p><%= truncate_name(link.description, :length => 120) %></p>
+        <p class="details"><%= link_to t('details.msg'), link, :class => "attachment_text_link" %></p>
+      </li>
+    </ul>
+  </div>
+<% end %>
+
+<%= javascript_tag do %>
+  var p=$('.vdescription p');
+  var divh= $('.vdescription').height();
+  while ($(p).outerHeight()>divh) {
+    $(p).text(function (index, text) {
+        return text.replace(/\W*\s(\S)*$/, '...');
+    });
+  }
+<% end %>
+
+

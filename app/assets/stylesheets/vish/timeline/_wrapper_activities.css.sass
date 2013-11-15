@@ -1,0 +1,25 @@
+#time-line
+  .activities
+    header
+      h2
+        text-align: center
+    .wall_input
+      @include white-box-style
+      border-bottom-right-radius: 0px
+      form
+        label
+          text-align: center
+        textarea
+          background-color: $grayLighter
+          resize: none
+      .wall_input-actions
+        input
+          &[type="submit"]
+            @include btn-primary
+            @include border-top-radius(0px)
+            @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
+        .btn
+          background-image: none
+          @include border-top-radius(0px)
+        .new_document
+

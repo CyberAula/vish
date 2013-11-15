@@ -121,6 +121,8 @@ class Excursion < ActiveRecord::Base
     end
   end
 
+  # Metadata based on LOM (Learning Object Metadata) standard
+  # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
   def generate_scorm_manifest
     ejson = JSON(self.json)
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -145,15 +147,34 @@ class Excursion < ActiveRecord::Base
             myxml.title do
               myxml.langstring(self.title);
             end
-            myxml.language(ejson["language"]);
+            if ejson["language"]
+              myxml.language(ejson["language"]);
+            end
             myxml.description do
               myxml.langstring(self.title + ". A Virtual Excursion provided by http://vishub.org.");
             end
-            self.tags.each do |tag|
-              myxml.keyword do
-                myxml.langstring(tag.name.to_s);
+            if self.tags && self.tags.kind_of?(Array)
+              self.tags.each do |tag|
+                myxml.keyword do
+                  myxml.langstring(tag.name.to_s);
+                end
               end
             end
+            #Add subjects as additional keywords
+            if ejson["subject"]
+              if ejson["subject"].kind_of?(Array)
+                ejson["subject"].each do |subject|
+                  myxml.keyword do
+                    myxml.langstring(subject);
+                  end 
+                end
+              elsif ejson["subject"].kind_of?(String)
+                myxml.keyword do
+                    myxml.langstring(ejson["subject"]);
+                end
+              end
+            end
+
             myxml.structure do
               myxml.source do
                 myxml.langstring("LOMv1.0");
@@ -261,27 +282,49 @@ class Excursion < ActiveRecord::Base
                 myxml.langstring("learner")
               end
             end
-            myxml.typicalagerange do
-              myxml.langstring(self.age_min.to_s + "-" + self.age_max.to_s)
-            end
-            myxml.difficulty do
-              myxml.source do
-                myxml.langstring("LOMv1.0")
+            if ejson["context"]
+              myxml.context do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring(ejson["context"])
+                end
               end
-              myxml.value do
-                myxml.langstring("medium")
+            end
+            if self.age_min
+              myxml.typicalagerange do
+                myxml.langstring(self.age_min.to_s + "-" + self.age_max.to_s)
               end
             end
-            myxml.typicallearningtime do
-              #Inferred
-              # 1 min per slide
-              inferredTPL = (self.slide_count * 1).to_s
-              myxml.duration("PT"+inferredTPL+"M0S")
+            if ejson["difficulty"]
+              myxml.difficulty do
+                myxml.source do
+                  myxml.langstring("LOMv1.0")
+                end
+                myxml.value do
+                  myxml.langstring(ejson["difficulty"])
+                end
+              end
             end
-            myxml.description do
-              myxml.langstring(ejson["educational_objectives"])
+            myxml.typicalLearningTime do
+              if ejson["TLT"]
+                myxml.duration(ejson["TLT"])
+              else
+                 #Inferred
+                # 1 min per slide
+                inferredTPL = (self.slide_count * 1).to_s
+                myxml.duration("PT"+inferredTPL+"M0S")
+              end
             end
-            myxml.language(ejson["language"])
+            if ejson["educational_objectives"]
+              myxml.description do
+                  myxml.langstring(ejson["educational_objectives"])
+              end
+            end
+            if ejson["language"]
+              myxml.language(ejson["language"]);
+            end
           end
         end
       end
@@ -452,13 +495,19 @@ class Excursion < ActiveRecord::Base
 
   #method used to return json objects to the recommendation in the last slide
   def reduced_json(controller)
+      if !Site.current.config[:documents_hostname]
+        my_site = "http://vishub.org/"
+      else
+        my_site = Site.current.config[:documents_hostname]
+      end
+
       excursion_url = controller.excursion_url(:id => self.id)
       { :id => id,
         :url => excursion_url,
         :title => title,
         :author => author.name,
         :description => description,
-        :image => thumbnail_url ? thumbnail_url : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png",
+        :image => thumbnail_url ? thumbnail_url : my_site + "assets/logos/original/excursion-00.png",
         :views => visit_count,
         :favourites => like_count,
         :number_of_slides => slide_count
@@ -470,24 +519,47 @@ class Excursion < ActiveRecord::Base
   end
 
   def averageEvaluation
-    evaluations = []
+    evaluations_array = []
     if self.evaluations.length > 0
       6.times do |ind|
-        evaluations.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
+        evaluations_array.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
       end
     else
-      evaluations = [0,0,0,0,0,0];
+      evaluations_array = [0,0,0,0,0,0];
     end
-    evaluations
+    evaluations_array
   end
 
+  def numberOfEvaluations
+    ExcursionEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
+  end
+
+  def learningEvaluations
+    ExcursionLearningEvaluation.where(:excursion_id => self.id)
+  end
+
+  def averageLearningEvaluation
+    evaluations_array = []
+    if self.learningEvaluations.length > 0
+      6.times do |ind|
+        evaluations_array.push(ExcursionLearningEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
+      end
+    else
+      evaluations_array = [0,0,0,0,0,0];
+    end
+    evaluations_array
+  end
+
+  def numberOfLearningEvaluations
+    ExcursionLearningEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
+  end
 
   private
 
   def parse_for_meta
     parsed_json = JSON(json)
-    activity_object.title = parsed_json["title"]
-    activity_object.description = parsed_json["description"]
+    activity_object.title = parsed_json["title"] ? parsed_json["title"] : "Title"
+    activity_object.description = parsed_json["description"] 
     activity_object.tag_list = parsed_json["tags"]
     begin
       ageRange = parsed_json["age_range"]
@@ -503,7 +575,7 @@ class Excursion < ActiveRecord::Base
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
-    self.update_column :thumbnail_url, parsed_json["avatar"]
+    self.update_column :thumbnail_url, parsed_json["avatar"] ? parsed_json["avatar"] : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png"
   end
 
   def fix_relation_ids_drafts

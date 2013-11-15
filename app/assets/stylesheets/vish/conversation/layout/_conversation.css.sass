@@ -1,0 +1,174 @@
+@import "jquery.cleditor"
+
+#conversations
+  .conversations
+    width: 100%
+    .conversation
+      height: 65px
+      margin-bottom: 5px
+      clear: both
+      .content_left        
+        float: left
+        .avatar
+          float: left
+          padding-right: 10px
+          img
+            border-radius: $baseBorderRadius
+            
+        header
+          //width: 103px
+          width: 150px
+          float: left
+          h5
+            margin-top: 0
+            margin-bottom: 0  
+            a
+              //display: inline
+      .content_right
+        display: inline-block
+        margin-bottom: 15px
+        float: left
+        margin-left: 14px
+        width: auto
+        .subject
+          font-size: 14px
+          display: inline
+          a
+            width: 89
+
+        .briefing
+          width: 85%
+        .date
+          display: inline
+          margin: 0 13px 0 4px
+
+        .action
+          float: right
+          display: inline-block
+          a:link
+            color: grey
+          a:hover
+            color: #e90055
+            text-decoration: none
+
+       
+
+form.new_message
+  .btn
+    margin-top: 20px
+    float: right
+
+  
+.conversations
+  @include makeColumnoMargin(10, 0)
+
+#conversation
+  @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  h2
+    font-size: 1.8em
+    color: $secondColor
+  .conversation_full
+    width: 100%
+    float: left
+    .participants
+      padding: 7px 10px 9px 10px
+      img
+        padding: 4px 1px 2px 2px
+        width: 40px
+    .action
+      display: inline-block
+      float: right
+      margin-top: 18px
+    .soften
+      margin: 0px
+
+    .cont_conversation
+      .cleditorMain
+        @include cleditorMain-box
+
+  .message
+    padding: 15px 0 10px
+    .media
+      margin-left: 20px
+
+      .media-body
+        margin-top: 4px
+      .name
+        display: inline
+      .date
+        display: inline-block
+
+#new_message
+  #conversation
+    width: 100%
+    float: left
+    h2
+      @extend .hidden-phone
+      @extend .hidden-tablet
+    .select2-container
+      width: 101%
+    input
+      &[type="text"]
+        width: 99%
+    #ck_editor    
+      .cleditorMain
+        @include cleditorMain-box
+        @include border-radius($baseBorderRadius)
+        .cleditorToolbar
+          @include border-radius($baseBorderRadius)
+
+
+
+#conversations,
+#conversation,
+#new_message
+  @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  #toolbar
+    width: auto
+    float: left
+    margin-right: 20px
+    margin-top: 20px
+    background-color: $white
+    @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+    //padding: 2px 1px
+    nav
+      padding-bottom: 1px
+      padding-top: 1px
+      //padding-right: 10px
+      //padding-left: 10px
+      ul
+        li
+          //@include border-radius($baseBorderRadius)
+          float: left
+          display: block
+          padding: 10px 
+          a
+            font-family: $secondFontFamily
+            font-size: 14px
+            color: $gray
+            .hidden-phone
+              display: inline-block
+            i
+              padding-right: 3px
+          &:hover
+            border-bottom: 3px solid $firstColor
+            margin-top: -3px
+            a
+              color: $firstColor  
+        li.active
+          border-bottom: 3px solid $firstColor
+          margin-top: -3px
+          a
+            color: $firstColor  
+#content
+#content
+  .read_all
+    float: right
+    margin-top: -20px
+  .notifications
+    margin-top: 35px
+
+    .notification
+      margin-bottom: 20px
+
+

@@ -1,63 +1,46 @@
-<% if current_user %>
-  <article class="home quiz_sessions" id="main" >
-
-    <p> My Quizs </p>
-
-    <p>&nbsp;</p>
-    <p> Open Quizs </p>
-    <table border="1" class='activeSessions'>
-      <tr>
-        <td>Created at</td>
-        <td>Name</td>
-        <td>Close Quiz</td>
-        <td>View results</td>
-        <td>Delete</td>
-      </tr>
-      <% @quiz_active_sessions.each do |q| %>
-      <tr>
-          <td><%=q.created_at%></td>
-        <% if q.name %>
-          <td><%=q.name%></td>
-        <% else %>
-          <td></td>
+<section id="quiz">
+  <div class="whiteframe">
+    <legend><%=t('quiz.live')%></legend>
+    <div class="textrow">
+      <h4><%=t('quiz.open')%></h4>
+      <ul id="sortable1" class="connectedSortable">
+        <% @quiz_active_sessions.each do |q| %>
+          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.js"%>>
+            <% if q.name %>
+              <%= q.name %>
+            <% else %>
+              <%=t('quiz.untitled')%>
+            <% end %>
+            <button id="close" class="btn" onclick="eliminaitem">x</button>
+            <p class="creation_date">
+              <%=t('quiz.createdAt')%> <%= q.created_at %>
+            </p>
+          </li>
         <% end %>
-          <td><a href="<%=q.close_url%>">Close</a></td>
-          <td><a href="<%=q.results_url%>">Results</a></td>
-          <td><a href="<%=q.delete_url%>">delete</a></td>
-      </tr>
-      <% end %>
-    </table>
-
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <p> Closed Quizs </p>
-    <table border="1" class='activeSessions'>
-      <tr>
-        <td>Created at</td>
-        <td>Name</td>
-        <td>Closed at</td>
-        <td>View results</td>
-        <td>Delete</td>
-      </tr>
-      <% @quiz_inactive_sessions.each do |q| %>
-      <tr>
-          <td><%=q.created_at%></td>
-        <% if q.name %>
-          <td><%=q.name%></td>
-        <% else %>
-          <td></td>
+      </ul>
+    </div> 
+    <div class="textrow"> 
+      <h4><%=t('quiz.close')%></h4>
+      <ul id="sortable2" class="connectedSortable">
+        <% @quiz_inactive_sessions.each do |q| %>
+          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.js"%>>
+            <%= q.name %>
+            <button class="btn">x</button>
+            <p class="creation_date">
+              <%=t('quiz.openPeriod')%> <%= q.created_at %> - <%= q.closed_at %>
+            </p>
+          </li>
         <% end %>
-        <% if q.closed_at %>
-          <td><%=q.closed_at%></td>
-        <% else %>
-          <td></td>
-        <% end %>
-          <td><a href="<%=q.results_url%>">Results</a></td>
-          <td><a href="<%=q.delete_url%>">delete</a></td>
-      </tr>
-      <% end %>
-    </table>
+      </ul>      
+    </div>
+  </div>
+</section>
 
+<%= render partial: 'quiz_sessions/form' %>
 
-  </article>
+<%= content_for :javascript do %> 
+$('#QuizAnalitycs').on('hidden', function () {
+  $(this).removeData('modal');
+});
 <% end %>
+

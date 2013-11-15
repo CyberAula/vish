@@ -1,0 +1,25 @@
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid {
+  padding-right: 10%;
+  padding-left: 10%;
+  @include clearfix();
+}
+//tabs
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+  margin-top: 20px;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: transparent;
+}
+
+//clear
+.clearfloat{
+  clear: both;
+}
+
+dt{
+  font-weight: normal;
+  font-family: $thirdFontFamily;
+}

@@ -1,0 +1,152 @@
+//
+// Responsive: Landscape phone to desktop/tablet
+// --------------------------------------------------
+
+
+@media (max-width: 767px)
+  #show_items,
+  #document,
+  #picture,
+  #embed,
+  #audio,
+  #event,
+  #video,
+  #officedoc
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .box-show
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+      .container-visor
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .description-activity
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+
+
+
+    .recomended
+      @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: none
+      float: left
+
+    .activity-box
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+
+
+
+
+// UP TO LANDSCAPE PHONE
+// ---------------------
+
+@media (max-width: 480px)
+  #show_items,
+  #document,
+  #picture,
+  #embed,
+  #audio,
+  #event,
+  #video,
+  #officedoc
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    .box-show
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+      .container-visor
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        display: block
+        float: left
+    .description-activity
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left
+      .box_description
+        .tabbable
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+        .btn-group
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          float: left
+        h2
+          margin-top: 0px
+          padding-left: 5px
+          font-family: $secondFontFamily
+          color: $grayDark
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          font-size: 20px
+          float: left
+          display: inline-block
+        .left-info
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          display: inline-block
+        .author
+          width: 60% !important
+          .avatar
+            display: block
+            float: left
+            @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            a
+              img
+                width: 80% !important
+
+          .right-name
+            display: block
+            float: left
+            @include grid-fluid-span(9, $fluidGridColumnWidth, $fluidGridGutterWidth)
+            p
+              font-size: 1.2em
+              margin-bottom: 5px
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
+              display: block
+              float: left
+              color: $gray
+            .add
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              margin-top: -2px
+              display: block
+              float: left
+              @include follow-profile
+              text-align: left
+              input
+                float: left
+
+        .viewsAndConunt
+          width: 100px !important
+          margin-left: none
+          float: right !important
+          display: block
+          margin-top: 5px
+          text-align: right
+
+
+
+
+
+        #effect
+          @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          display: inline-block
+          .dl-horizontal
+            margin-left: 0
+
+
+        #showMore
+
+    .recomended
+      display: none
+
+
+    .activity-box
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      display: block
+      float: left

@@ -1,0 +1,69 @@
+<!-- ESPACIO PARA QUE @HOLACAROL JUEGUE CON SUS BOTONES -->
+
+<% if user_signed_in? %>
+  <button class="mashme-button" id="mashme-button-excursion">
+    <i class="icon"></i>
+    <span class="text"><%=t('mashme.launch')%></span>
+  </button>
+<% end %>
+
+<%= content_for :javascript do %>
+  var launchIframe = function(src) {
+    var darkener = document.createElement('div');
+    darkener.setAttribute('class', 'mashme-darkener');
+
+    var iframeDiv = document.createElement('div');
+    darkener.appendChild(iframeDiv);
+
+    var closeIframeDiv = document.createElement('div');
+    closeIframeDiv.setAttribute('class', 'close-iframe');
+    darkener.appendChild(closeIframeDiv);
+    closeIframeDiv.onclick = function(){
+      darkener.parentNode.removeChild(darkener);
+    };
+
+    var iframe = document.createElement('iframe');
+    iframe.setAttribute('src', src);
+    iframeDiv.appendChild(iframe);
+
+    var resizeCallback = function() {
+      iframeDiv.style.height = '100%';
+      iframe.style.height = '100%';
+      var height = iframe.offsetHeight;
+      iframe.style.height = (height - 50) + 'px';
+      iframeDiv.style.height = '';
+    }
+    window.onresize = resizeCallback;
+    document.body.appendChild(darkener);
+    resizeCallback();
+  }
+
+  $('.mashme-invites .btn').on("click", function(){
+    $(this).toggleClass("btn-info");
+  });
+
+  $('#mashme-button-excursion').on("click", function(){
+    <% if request.env['HTTP_HOST'] =~ /^localhost/ or request.env['HTTP_HOST'] =~ /^0.0.0.0/ %>
+    var target_url = encodeURI("http://FUUUUUUU" + "<%= request.path %>" + "|||" + $('#mashme-room-id').val());
+    <% else %>
+    var target_url = encodeURI("<%= request.url %>" + "|||" + $('#mashme-room-id').val());
+    <% end %>
+    var target_title = encodeURI("<%= @event.title.split(' ').map {|w| w.capitalize }.join('') unless @event.title.blank? %>");
+    name="<%= if user_signed_in?; then CGI::escapeHTML(current_user.name); else ""; end %>"
+    $.ajax({
+      url: "http://www.mashme.tv/api/buttons",
+      type: "POST",
+      data: {
+        url: target_url,
+        title: target_title,
+        theme: "vish",
+      },
+      success: function(data) {
+        launchIframe("http://www.mashme.tv/M/" + data + "?name=" + name + "&delay=9000&app=meeting_mode");
+      }
+    });
+  });
+
+  $('.collapse').collapse({parent: "#excursion-share"});
+
+<% end %>

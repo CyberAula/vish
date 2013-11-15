@@ -1,28 +1,22 @@
-<% content_for :title do%>
-  <%= t('welcome', :site => t('site.name')) %>
+<%= content_for :javascript do %>
+  $('#desktop_carousel').carousel({
+    interval: 8000
+  });
+  $('#mobile_carousel').carousel({
+    interval: 8000
+  });
+
+  $("footer#footer").addClass("fixed-bottom");
 <%end%>
-<section name="main">
-  <div class="logo-frontpage"></div>
-  <p class="name-frontpage"><%=t('site.name')%></p>
-  <div class="search-frontpage">
-    <%= render :partial => 'layouts/search' ,:locals => { :sizeFieldSearch => "input-frontpage" } %>
+
+
+
+<section id="frontpage">
+  <!--<#%= render :partial => "frontpage/info" %>-->
+  <div class="competition">
+  <%= link_to image_tag("competition/BANNER-01-01.png",  :class=> "" ), "http://vishub.org/contest" %>
   </div>
-
-  <div id="cloud_tags">
-
-    <div class="repositories-tags">
-      <%= link_to(t('resource.title.other'),search_path(:type => "resource"),) %>
-    </div>
-    <div class="excursion-tags">
-      <%= link_to(t('excursion.other'),search_path(:type => "excursion"),) %>
-    </div>
-
-    <div class="users-tags">
-      <%= link_to(t('user.other'),search_path(:type => "user"),) %>
-    </div>
-    <div class="organization-tags">
-      <%= link_to(t('organization.other'),search_path(:type => "organization"),) %>
-    </div>
+  <div id="excursions">
+    <%= render partial: 'frontpage/excursions' %>
   </div>
 </section>
-

@@ -1,0 +1,15 @@
+<!-- HTML5 DOCTYPE -->
+<!DOCTYPE html>
+<html lang="<%= I18n.locale.to_s %>">
+	<%= render :partial => 'layouts/head' %>
+	<body data-spy="scroll" data-target=".bs-docs-sidebar" data-offset="50" class="visible-phone">
+	  <section class="content">
+	  	<header>
+	    	<%= render :partial => "layouts/header" %>
+	  	</header>
+	  	<article id="main">
+	    	<%= yield %>
+	    </article>
+	  </section>
+	</body>
+</html>

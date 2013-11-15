@@ -1,0 +1,57 @@
+<% unless profile_or_current_subject.blank? %>
+<div class="excursion tabbable">
+  <ul class="nav nav-tabs view-all-excursions">
+    <% params[:scope]='me' unless params[:scope].present?  %>
+    <li class="<%= params[:scope]=='net'  ? "active" : ""  %>"><a data-toggle="tab" href="#ex-1"><%= t('excursion.net') %></a></li>
+    <li class="<%= params[:scope]=='me'   ? "active" : ""  %>"><a data-toggle="tab" href="#ex-2"><%=t('excursion.my') %></a></li>
+    <li class="<%= params[:scope]=='like' ? "active" : ""  %>"><a data-toggle="tab" href="#ex-3"><%= image_tag "icons/star-MENU-active.png", :class => "star" %></a></li>
+  </ul>
+  <div class="tittle-tabs">
+    <%= t('excursion.title.other')%>
+  </div>
+
+<% unless params[:no_layout].present? %>
+  <%= render :partial => "common_documents/headers" %>
+<% end %>
+  <div class="tab-content">
+    <div id="ex-1" class="tab-pane <%= params[:scope]=='net'  ? "active" : ""  %>">
+      <div class="box-excursion-view-all">
+        <div id="excursion_filter_net  " >
+          <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-net"} %>
+        </div>
+        <div id="repo-excursions-net" >
+          <% subject_excursions(profile_or_current_subject, {:scope => :net, :limit => 0}).each do |excursion| %>
+            <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="ex-2" class="tab-pane <%= params[:scope]=='me'  ? "active" : ""  %>">
+      <div class="box-excursion-view-all">    
+        <div id="excursion_filter_me">
+          <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-me"} %>
+        </div>
+        <div id="repo-excursions-me" >
+          <% subject_excursions(profile_or_current_subject, {:scope => :me, :limit => 0}).each do |excursion| %>
+            <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="ex-3" class="tab-pane <%= params[:scope]=='like'  ? "active" : ""  %>">
+      <div class="box-excursion-view-all">    
+        <div id="excursion_filter_fav">
+          <%= render :partial => "excursions/filter", :locals => { :filter_id => "repo-excursion-filter-fav"} %>
+        </div>
+
+        <div id="repo-excursions-fav" class="">
+          <% subject_excursions(profile_or_current_subject, {:scope => :like, :limit => 0}).each do |excursion| %>
+            <%= render :partial => 'excursions/home', :locals => { :excursion => excursion } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+

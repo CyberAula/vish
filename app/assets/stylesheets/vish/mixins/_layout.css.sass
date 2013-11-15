@@ -1,0 +1,200 @@
+@mixin menuHorizontal 
+  padding: 0
+  text-align: center
+  ul
+    list-style-type: none
+    display: inline
+    li
+      display: inline
+      padding: 0 2%
+
+@mixin makeColumnoMargin($columns:1, $offset: 0) 
+  float: left
+  margin-left: 0px
+  width: ($gridColumnWidth * $columns) + ($gridGutterWidth * ($columns - 1))
+
+@mixin centered
+  margin-left: auto
+  margin-right: auto
+
+@mixin ellipsis
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+  display: inline-block
+  width: 97%
+
+@mixin hidden-phone
+  @extend .hidden-phone  
+
+@mixin hidden-tablet
+  @extend .hidden-tablet
+
+@mixin hidden-desktop
+  @extend .hidden-desktop
+
+@mixin check-box
+  display: block
+  input
+    &[type="checkbox"]
+      display: inline
+      margin-top: 3px
+      width: 17px
+  label
+    display: inline-block
+    font-size: 10px
+
+@mixin help
+  margin-top: 4%
+  //margin-right: 3%
+  //margin-left: 3%
+  margin-bottom: 10%
+  .whiteframe
+    padding-top: 5%
+    padding-right: 5%
+    padding-left: 5%
+    padding-bottom: 10%
+    background-color: $white
+    border-radius: $baseBorderRadius
+    float: left
+    width: 90%
+    min-height: 500px
+    @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+    min-height: 350px
+    legend
+      margin-bottom: 0px
+
+
+@mixin header-tabbable
+  clear: both
+  margin-top: 10px
+  .tab-content
+    overflow: visible
+  ul.nav,
+  ul.nav-tabs 
+    border-bottom: 1px solid $grayLight
+    @include tab_title
+    li   
+      &:hover,
+      &:focus
+        background-color: none !important
+        border: none
+        border-bottom: 3px solid $secondColor      
+      a             
+        border-left: none
+        border-right: none
+        border-top: none
+        padding: 6px 10px 6px 10px
+        margin-top: 5px
+
+      
+      h1
+        line-height: 38px
+        margin: 1px 10px 0 0 
+        font-size: 33.5px
+    li.active
+      background-color: none !important
+      border: none
+      border-bottom: 3px solid $firstColor
+      a
+        border-left: none
+        border-right: none
+        border-top: none
+        margin-top: 5px
+        padding: 6px 10px 6px 10px
+
+@mixin header-tabbable-show
+  clear: both
+  margin-top: 10px
+  .tab-content
+    overflow: visible
+  ul.nav,
+  ul.nav-tabs 
+    border-bottom: 1px solid $grayLight
+    @include tab_title_show
+    li   
+      &:hover,
+      &:focus
+        background-color: none !important
+        border: none
+        border-bottom: 3px solid $secondColor      
+      a             
+        border-left: none
+        border-right: none
+        border-top: none
+        padding: 6px 10px 6px 10px
+        margin-top: 5px
+        span
+          color: $gray
+      
+      h1
+        line-height: 38px
+        margin: 1px 10px 0 0 
+        font-size: 33.5px
+
+    li.active
+      background-color: none !important
+      border: none
+      border-bottom: 3px solid $firstColor
+      a
+        border-left: none
+        border-right: none
+        border-top: none
+        margin-top: 5px
+        padding: 6px 10px 6px 10px
+        span
+          color: $gray
+          font-size: 14px
+      
+
+@mixin header-tabbable-search
+  @include header-tabbable
+  ul.nav
+    float: left
+    width: 100%
+  input
+    &[type="text"]
+      width: 20%
+      margin-top: 11px
+      float: left
+      margin-left: 20px
+  .tab-content
+    clear: left
+
+    width: 100%
+    padding-bottom: 85px
+
+@mixin contact-layout
+  margin: 4px 0
+  width: 100%
+  min-height: 76px
+  float: left
+  .avatar
+    width: 50px
+    float: left
+    img
+      @include border-radius($baseBorderRadius)
+  .data
+    display: inline-block
+    margin: 5px 0 0 8px
+    float: left
+    width: 65%
+    .name
+      font-size: 17px
+    .info
+      font-size: 14px
+      z-index: 1
+    a
+      display: inline
+  .x
+    a
+      float: right
+      display: inline-block
+      margin-right: 16px
+      margin-top: -98px
+  .info
+    z-index: 1
+  .add
+    margin-top: 2px
+    width: auto
+

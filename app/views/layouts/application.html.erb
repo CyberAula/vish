@@ -1,80 +1,68 @@
 <!-- HTML5 DOCTYPE -->
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
-<%= render :partial => 'layouts/head' %>
-<body data-offset= "50" data-spy="scroll" data-target="#left" data-twttr-rendered="true" >
-  <div class="wrapper">
-    <div class="row"> 
-      <section class="container">
-        <header class="header">
-          <%= render :partial => "layouts/header" %>
-        </header>
-        <article id="main" class="content-page">
-          <section id="left" class="left-content-application">
-            <%= yield :toolbar %>
-          </section>
-          <section id="main" class="center-content-application">
-            <%= yield %>
-          </section>
-          <section id="right" class="right-content-application">
-            <%= yield :sidebar %>
-            <footer class="footer-right">
-              <%= render :partial => "layouts/footer-right" %>
-            </footer>
-          </section>
-        </article>
-      <div class="push"></div> 
-    </div>      
-  </div>  
+<head>
+  <meta charset="utf-8">
+  <title><%= yield(:title).empty? ? t('site.current.title') : yield(:title) %></title>
+  <meta name="keywords" content="<%= yield(:keywords).empty? ? t('site.current.keywords') : yield(:keywords) %>">
+  <meta name="description" content="<%= yield(:description).empty? ? t('site.current.description') : yield(:description) %>">
+  <meta name="generator" content="SocialStream" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+  <meta property="og:site_name" content="ViSH">
+  <meta property="og:title" content="<%= yield(:title) %>">
+  <meta property="og:type" content="<%= yield(:og_type) %>">
+  <meta property="og:url" content="<%= yield(:og_url) %>">
+  <meta property="og:image" content="<%= yield(:og_image) %>">
+  <meta property="og:description" content="<%= yield(:description) %>">
+
+  <%= favicon_link_tag "icons/favicon.ico" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+
+  <% if protect_against_forgery? %>
+  <%= csrf_meta_tag %>
+  <% end %>
+
   <script type="text/javascript">
-setTimeout(function(){var a=document.createElement("script");
-var b=document.getElementsByTagName("script")[0];
-a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0014/0195.js?"+Math.floor(new Date().getTime()/3600000);
-a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-</script>
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {  
+      <%= yield :javascript%>
+    });
+  </script>
+  <%= yield :headers %>
+  <%= render :partial => 'layouts/google_analytics' %>
+  <%= render :partial => 'layouts/uservoice' %>
+
+</head>
+<body>
+  <div id="wrap">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=629612437058744";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <%= render :partial => "layouts/header" %>
+    <div class="wrapper">      
+      <%= flashy %>
+      <%= yield %>
+    </div>  
+    <div class="push">  </div>   
+  </div>
+  <%= render :partial => "layouts/footer" %>
+  <%= render :partial => "layouts/crazyegg" %>
 
 </body>
 </html>
-
-<%= javascript_tag do %>
-var $win = $(window)
-, $nav = $('.right')
-, $nav2 = $('#left')
-, $nav3 = $('#main')
-, $nav4 = $('.footer')
-, navTop = $('.right').length && $('.right').offset().top - 40
-, navTop2 = $('#left').length && $('#left').offset().top - 40
-, isFixed = 0
-processScroll()
-
-// hack sad times - holdover until rewrite for 2.1
-
-$nav.on('click', function () {
-  if (!isFixed) setTimeout(function () { $win.scrollTop($win.scrollTop() - 47) }, 10)
-})
-
-$nav2.on('click', function () {
-  if (!isFixed) setTimeout(function () { $win.scrollTop($win.scrollTop() - 47) }, 10)
-})
-
-
-$win.on('scroll', processScroll)
-
-function processScroll() {
-  var i, scrollTop = $win.scrollTop()
-  if (scrollTop >= navTop && !isFixed) {
-    isFixed = 1
-    $nav.addClass('right-fixed')
-    $nav2.addClass('left-fixed')
-    $nav3.addClass('main-fixed')
-    $nav4.addClass('footer-fixed')
-  } else if (scrollTop <= navTop && isFixed) {
-    isFixed = 0
-    $nav.removeClass('right-fixed')
-    $nav2.removeClass('left-fixed')
-    $nav3.removeClass('main-fixed')
-    $nav4.removeClass('footer-fixed')
-  }
-
-}
-<% end %>

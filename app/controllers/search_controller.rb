@@ -1,18 +1,15 @@
 class SearchController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
-  include SearchHelper
 
-  RESULTS_SEARCH_PER_PAGE=12
-  MIN_QUERY=2
+  RESULTS_SEARCH_PER_PAGE=24
+
   def index
-    headers['Last-Modified'] = Time.now.httpdate
-
     @search_result =
       if params[:q].blank?
         search :extended # TODO: this should have :match_mode => :fullscan for efficiency
-      elsif params[:q].strip.size < MIN_QUERY
-        []
-      elsif params[:mode].eql? "header_search"
+      elsif params[:q].strip.size < SocialStream::Search::MIN_QUERY
+        Kaminari.paginate_array([])
+      elsif params[:mode] == "quick"
         search :quick
       else
         search :extended
@@ -20,11 +17,15 @@ class SearchController < ApplicationController
 
     respond_to do |format|
       format.html {
-        if params[:mode] == "header_search"
-          render :partial => "header_search"
+        if request.xhr?
+          if params[:mode] == "quick"
+            render partial: "quick"
+          else
+            render partial: 'results'            
+          end
         end
       }
-
+      
       format.json {
         json_obj = (
           params[:type].present? ?
@@ -32,7 +33,7 @@ class SearchController < ApplicationController
           @search_result
         )
 
-        render :json => json_obj
+        render :json => json_obj.to_json(helper: self)
       }
 
       format.js
@@ -41,9 +42,16 @@ class SearchController < ApplicationController
 
   private
 
-  def search mode="extended"
-    results = ThinkingSphinx.search params[:q], vish_search_options(mode, params[:type], RESULTS_SEARCH_PER_PAGE, params[:page])
-    results = Kaminari.paginate_array(results).page(1).per(7) if mode.to_s.eql? "quick"
-    results
+  def search mode
+    page =  ( mode == :quick ? 1 : params[:page] )
+    limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
+
+    SocialStream::Search.search(params[:q],
+                                current_subject,
+                                mode:  mode,
+                                key:   params[:type],
+                                page:  page,
+                                limit: limit)
+
   end
 end

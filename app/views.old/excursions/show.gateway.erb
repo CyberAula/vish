@@ -1,0 +1,64 @@
+<script>
+	var loadIframeMessenger=true;
+	var gateway = "<%=@gateway%>";
+	switch(gateway){
+		case "mashme":
+			var disableFullscreen = true;
+			var MASHME_API_SCRIPT_URL = "https://mashme.tv/static/js/iframe/MashMe.API.iFrame.js";
+			$.getScript(MASHME_API_SCRIPT_URL).done(function(script, textStatus) {  		
+  				MASHME.API.iFrame.init("myappkey","myappsecret", _onMessage);
+	  		});
+			break;
+		default:
+			break;
+	}
+
+	//_onMessage listen to all messages, both from Vish Editor and Web Application. 
+	var _onMessage = function(message){
+			// console.log("_onMessage:" + message.data + " from:" + message.origin);
+			try {
+				var VEMessage = message.data.substring(message.data.indexOf(":")+1);
+				var VEMessageObject = JSON.parse(VEMessage);
+				if(typeof VEMessageObject.sent === "boolean"){
+					//Received message from Web App
+					// console.log("Received message from Web App: iframeAPI send message");
+					VISH.IframeAPI.sendMessage(VEMessage,"*");
+				}
+			} catch(e){
+				// console.log("Exception _onMessage");
+				// console.log(e)
+			}
+	};
+</script>
+
+<iframe class="vishEditorIframe" id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="99%" style="border:0; height: 99% !important;" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0;></iframe>
+
+
+<script>
+	window.onload = function(){
+		if(!gateway){
+			return;
+		}
+		document.body.style.height="100%";
+		VISH.IframeAPI.init({preventDefault: true, callback: onConnect});
+		VISH.IframeAPI.registerCallback("onMessage",function(VEMessage,origin){
+			var VEMessageObject = JSON.parse(VEMessage);
+			if(typeof VEMessageObject.sent !== "boolean"){
+				VEMessageObject.sent = true;
+				VEMessage = JSON.stringify(VEMessageObject);
+				switch(gateway){
+					case "mashme":
+						if(MASHME){
+							MASHME.API.iFrame.broadcast("MashMeAPIMessage:"+VEMessage);
+						}
+						break;
+					default:
+					break;
+				}
+			}
+		});
+	};
+	function onConnect(origin){
+		// console.log("Communication stablished with " + origin);
+	}
+</script>

@@ -1,0 +1,14 @@
+<!-- Place this tag where you want the button. -->
+<div class="mashme-button" data-username="<%=current_user.name%>" data-customurl="<%=request.url%>" data-roomtitle="<%= @event.title.split(' ').map {|w| w.capitalize }.join('')%>" data-roomtheme="original" data-roomapp="meeting_mode" data-buttontext="<%=t('mashme.launch')%>" data-maximized="true" data-webrtc="false"></div>
+
+<!-- Place this tag after the last button tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement("script");
+    po.type = "text/javascript";
+    po.async = true;
+    po.src = "http://www.mashme.tv/static/js/button/mashme-buttons.js";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(po, s);
+  })();
+</script>

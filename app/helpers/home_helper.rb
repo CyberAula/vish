@@ -1,4 +1,6 @@
 module HomeHelper
+  PER_PAGE_IN_HOME = 16
+
   def current_subject_excursions(options = {})
     subject_excursions current_subject, options
   end
@@ -35,13 +37,30 @@ module HomeHelper
     subject_content subject, [Document, Embed, Link], options
   end
 
+  def current_subject_categories(options = {})
+    subject_categories current_subject, options
+  end
+
+  def subject_categories(subject, options = {})
+    subject_content subject, Category, options
+  end
+
+  def current_subject_events(options = {})
+    subject_events current_subject, options
+  end
+
+  def subject_events(subject, options = {})
+    subject_content subject, Event, options
+  end
+
   def subject_content(subject, klass, options = {})
     options[:limit] ||= 4
     options[:scope] ||= :net
     options[:offset] ||= 0
+    options[:page] ||= 0 #page 0 means without pagination
 
     following_ids = subject.following_actor_ids
-    #following_ids |= [ subject.actor_id ]
+    following_ids |= [ subject.actor_id ]
 
     query = klass
     if klass.is_a?(Array)
@@ -84,7 +103,16 @@ module HomeHelper
               query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}]) 
             end
 
+    # pagination, 0 means without pagination
+    if options[:page] != 0
+      query = query.page(options[:page]).per(PER_PAGE_IN_HOME)
+    end
+
     return query.map{|ao| ao.object} if klass.is_a?(Array)
     query
   end
+
+  
+
+
 end

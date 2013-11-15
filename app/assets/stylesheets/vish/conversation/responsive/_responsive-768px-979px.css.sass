@@ -1,0 +1,77 @@
+//
+// Responsive: Tablet to desktop
+// --------------------------------------------------
+
+
+@media (min-width: 768px) and (max-width: 979px)
+
+  #conversation
+    h2
+    input
+      &[type="submit"]
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+
+  #conversations,
+  #conversation,
+  #new_message
+    @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    margin-left: 0px
+    float: none
+    #toolbar
+      @include border-radius(5px)
+      display: block !important
+      width: 290px   
+      .toolbar_menu
+        margin-left: 0px
+      ul
+        height: 70px
+        margin: 0 0 0 6%
+        li
+          @include grid-core-span(2, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: inline
+          margin-bottom: 0px
+          float: left
+          margin-top: 12px
+          a
+            width: auto
+            text-align: center
+            i
+              display: block
+              margin-left: auto
+              margin-right: auto
+              padding: 0 !important
+    form.new_message
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-left: 0
+    .conversations
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      margin-top: 26px
+      .conversation
+        @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .content_left
+          width: 60px
+          margin-right: 13px
+          margin-left: 0px
+          header
+            width: 54px
+          .date
+            @extend .hidden-phone
+        .content_right
+          width: 77%
+          .action
+            float: right
+            margin: 0
+    
+  #conversation 
+    .conversation_full
+      @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      
+  #new_message
+    label
+      margin-bottom: 0px
+      margin-top: 6px
+    .select2-container
+      width: 100%
+    #conversation
+      width: 100%

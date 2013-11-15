@@ -1,0 +1,29 @@
+<div class="quick_search">
+  <div class="photo">
+    <%= link_to(event) do %>
+    <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element resource-center">
+        <div class="img-box resource-center" id="event-<%=event.id%>">
+          <div class="event">
+            <i class='icon-facetime-video'></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <script>
+    $("#event-<%=event.id%>").backstretch("<%=event_raw_thumbail(event)%>");  
+  </script>   
+
+  </div>
+  <div class="data">
+    <div class="name">
+      <%= link_to event.title, event %>
+    </div>
+    <div class="author"> 
+      <%= link_to event.author.name, event.author.subject %>
+      <%#= Link_to truncate_name(event.author.name, length: 25), event.author.subject %>
+    </div>
+  </div>
+</div>

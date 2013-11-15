@@ -5,13 +5,18 @@ class Swf < Document
   
   define_index do
     activity_object_index
-
     indexes file_file_name, :as => :file_name
   end 
               
   # Thumbnail file
   def thumb(size, helper)
       "#{ size.to_s }/audio.png"
+  end
+
+  def as_json(options)
+    super.merge!({
+      :src => options[:helper].polymorphic_url(self, format: format)
+    })
   end
   
 end

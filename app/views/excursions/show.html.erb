@@ -1,142 +1,145 @@
 <%= content_for :title do %><%= @excursion.title %> - <%= @excursion.author.slug %><% end %>
 <%= content_for :description do %><%= @excursion.description %><% end %>
 <%= content_for :keywords do %><%= @excursion.tag_list %><% end %>
-<%= content_for :og_type do %>excursion<% end %>
+<%= content_for :og_type do %>website<% end %>
 <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + excursion_path(@excursion) ) %>
 <%= content_for :og_url do %><%= shortURL %><% end %>
-<%= content_for :og_image do %><%= @excursion.thumbnail_url || "http://" + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
+<%= content_for :og_image do %><%=  "http://" + request.env['HTTP_HOST'] + @excursion.thumbnail_url || "/assets/logos/original/excursion-vish.png" %><% end %>
 
-<%= javascript_include_tag "http://www.mashme.tv/static/js/button/button.js" %>
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "jquery.rating" %>
+<%=javascript_include_tag "jquery.zclip.min" %>
+
 
 <%= content_for :javascript do %> 
-  //Get the context of the canvas element we want to select
-  var ctx = document.getElementById("evalChart").getContext("2d");
+    if(window.location.search.indexOf("recent") !=-1){
+      $("#congratulations-button").click();
+    }
 
-  var data = {
-    labels : ["<%=t('evaluation.label0')%>","<%=t('evaluation.label1')%>","<%=t('evaluation.label2')%>","<%=t('evaluation.label3')%>","<%=t('evaluation.label4')%>","<%=t('evaluation.label5')%>"],
-    datasets : [
-      {
-        fillColor : "rgba(151,187,205,0.5)",
-        strokeColor : "rgba(151,187,205,1)",
-        pointColor : "rgba(151,187,205,1)",
-        pointStrokeColor : "#fff",
-        data : <%=@evaluations%>
-      }
-    ]
-  };
+//Get the context of the canvas element we want to select
+var ctx = document.getElementById("evalChart").getContext("2d");
 
-  var options = { 
-    scaleOverlay : false,
-    scaleOverride : true,
-  
-    //** Required if scaleOverride is true **
-    //Number - The number of steps in a hard coded scale
-    scaleSteps : 4,
-    //Number - The value jump in the hard coded scale
-    scaleStepWidth : 1,
-    //Number - The centre starting value
-    scaleStartValue : 1,
-    
-    //Boolean - Whether to show lines for each scale point
-    scaleShowLine : true,
+var data = {
+labels : ["<%=t('evaluation.label0')%>","<%=t('evaluation.label1')%>","<%=t('evaluation.label2')%>","<%=t('evaluation.label3')%>","<%=t('evaluation.label4')%>","<%=t('evaluation.label5')%>"],
+datasets : [
+{
+  fillColor : "rgba(151,187,205,0.5)",
+  strokeColor : "rgba(151,187,205,1)",
+  pointColor : "rgba(151,187,205,1)",
+  pointStrokeColor : "#fff",
+  data : <%=@evaluations%>
+}
+]
+};
 
-    //String - Colour of the scale line 
-    scaleLineColor : "rgba(0,0,0,.1)",
-    pointDotRadius : 5,
-    pointLabelFontSize : 14
+var options = { 
+scaleOverlay : false,
+scaleOverride : true,
 
-  };
+//** Required if scaleOverride is true **
+//Number - The number of steps in a hard coded scale
+scaleSteps : 4,
+//Number - The value jump in the hard coded scale
+scaleStepWidth : 1,
+//Number - The centre starting value
+scaleStartValue : 1,
 
-  var myNewChart = new Chart(ctx).Radar(data,options);
+//Boolean - Whether to show lines for each scale point
+scaleShowLine : true,
 
-  triggerEvaluation = function(){
-    $("#evaluation-button-id").trigger("click");
-  };
+//String - Colour of the scale line 
+scaleLineColor : "rgba(0,0,0,.1)",
+pointDotRadius : 5,
+pointLabelFontSize : 14
+
+};
+
+var myNewChart = new Chart(ctx).Radar(data,options);
+
+triggerEvaluation = function(){
+$("#evaluation-button-id").trigger("click");
+};
+
+/*
+//LEARNING EVALUATION
+//Get the context of the canvas element we want to select
+var learning_ctx = document.getElementById("evalLearningChart").getContext("2d");
+
+var learning_data = {
+labels : ["<%=t('evaluation.qlabel0')%>","<%=t('evaluation.qlabel1')%>","<%=t('evaluation.qlabel2')%>","<%=t('evaluation.qlabel3')%>","<%=t('evaluation.qlabel4')%>","<%=t('evaluation.qlabel5')%>"],
+datasets : [
+{
+  fillColor : "rgba(151,187,205,0.5)",
+  strokeColor : "rgba(151,187,205,1)",
+  pointColor : "rgba(151,187,205,1)",
+  pointStrokeColor : "#fff",
+  data : <%=@learningEvaluations%>
+}
+]
+};
+
+var myLearningChart = new Chart(learning_ctx).Radar(learning_data,options);
+*/
 <%end%>
 
-<div class="tabbable">
-  <ul class="nav nav-tabs tabs-excursion-show">
-    <li class="active">
-      <a data-toggle="tab" href="#ex-1">
-        <%= @excursion.title %>
-      </a>
-    </li>
-  </ul>
+<%= render :partial => 'objects/show',
+:locals  => { :object => @excursion } %>
 
-  <div class="tab-content">
-    <div id="ex-1" class="tab-pane active ">
-     <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="910" height="680" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
-      </iframe>
-    </div>
-      <%= render :partial => 'toolbar_excursion', :locals => { :excursion =>  @excursion, :shortURL => shortURL} %>
-  </div>
-</div>
+<!--div class="page-header"><%= @excursion.title %></div-->
+<section id="show_items">
 
-
-<% unless @excursion.draft %>
-
-<section id="left" class="comments-show">
-  <div id="" class="tabbable comments-show">
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a data-toggle="tab" href="#comment-1">
-          <%= t('comment.title.other') %>
-        </a>
-      </li>
-
-<!--tab pegagogical-->
-      <li class="">
-        <a data-toggle="tab" href="#evaluation">
-          <%= t('evaluation.teaching') %>
-        </a>
-      </li>
-<!---->
-    </ul>
-      
-    <div class="tab-content">
-        <div id="comment-1" class="tab-pane active activity_content comment-excursion">
-        <% unless @excursion.post_activity.blank? %>
-          <%= render :partial => 'activities/comments', :locals => { :activity =>  @excursion.post_activity, :logo_size => ':contact' } %>
-          <%= render :partial => 'comments/new', :locals => { :activity =>  @excursion.post_activity  } %>
-          <%= javascript_tag do %>
-            SocialStream.Comments.initNew();
-          <%end%>
-        <% else %>
-          <% unless user_signed_in? %>
-            <%= link_to(t('session.session_start'),new_user_registration_path) + " " + t('disjunction.or') + " " + link_to(t('sign_up').downcase, new_user_registration_path) + " " +  t('comment.input') %>
-          <%end%>
-         <%end%>
-        </div>
-        
-<!--tab pegagogical-->
-        <div id="evaluation" class="tab-pane ">
-          <div class="btn-evalue">
-            <%= t('evaluation.contribute') %>
-            <!-- Button to trigger modal -->
-            <a id="evaluation-button-id" href="#myModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.evaluation') %></a>
-          </div>
-
-          <div class="excursion-eval-results">
-            <canvas id="evalChart" width="600" height="500"></canvas>
-          </div>
-          
-          
-          </div>
-          <!---->
-
-          <!-- Modal -->
-          <%= render :partial => "excursions/excursion_evaluate" %>
-
+  <div class="box-show">
+    <!--visor-->
+    <div class="container-visor">
+      <div class="elemento-visor"></div>
+      <div class="caja-visor">
+        <%if @excursion.id==161%>
+          <div class="badge-excursion-active"></div>
+        <%end%>
+        <iframe id="presentation_iframe" src="<%=excursion_path(@excursion, :format => :full)%>" width="100%" height="100%" style="border:0" iframeborder="0" frameborder="0" iframeElement.frameBorder = 0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true">
+        </iframe>
       </div>
     </div>
-  </section>
-  <section id="right" class="info-excursion">
-      <%= render :partial => "excursions/excursion_info", :locals => {:excursion =>  @excursion } %>
-  </section>
+  </div>
+  <!--recomended-->
+  <div class="recomended">
+    <div class="recomended-items">
+      <ul class="small-box clearfix">
+        <% popular_excursions(16).each do |excursion| %>
+          <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <!--owner-profile-->
+  <div class="description-activity">
+    <div class="box_description">
+      <!--tool-->
+      <div class="excursion_tool">
+        <%= render :partial => 'excursions/excursion-tool-tab', :locals => { :shortURL => shortURL} %>
+      </div>     
+    </div>
+    
+    <!--activity-->
+    <div class="activity-box">
+      <%= render :partial => 'excursions/evaluate-activity'%>
+    </div>
+  </div>
+</section>
+
+<a id="congratulations-button" href="#CongratModal" role="button" class="" style="display:none" data-toggle="modal"></a>
+<div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myCongratLabel"><%= t('excursion.modal.title') %></h3>
+  </div>
+  <div class="modal-body evaluation_body">
+    <%if @excursion.tag_list.include? "ViSHCompetition2013"%>
+      <p><i class="icon-ok"></i>  <%=raw t("excursion.modal.competitions_body")%></p>
+    <%else%>
+      <p><i class="icon-ok"></i>  <%=t("excursion.modal.normal_body")%></p>
+    <%end%>
+    <p><%=raw t("excursion.modal.survey")%></p>
+    <p class="thank"><i class="icon-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
+  </div>
 </div>
-<% end %>
-
-
-

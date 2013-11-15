@@ -1,27 +1,28 @@
 Vish::Application.routes.draw do
-  get "rec_sys/los"
 
-  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
+  devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks', registrations: 'registrations'}
 
-  # Blatant redirections
-  match '/users/:id/links' => redirect('/users/%{id}/documents')
-  match '/users/:id/embeds' => redirect('/users/%{id}/documents')
-  match '/users/:id/contacts' => redirect('/users/%{id}/followings')
+  resource :session_locale
+  resource :spam_report
 
-  # Explore
-  match '/explore' => 'frontpage#explore'
-
-  # Live Session
-  resource :live_session
-
-  # Offline
-  match '/offline' => 'frontpage#offline'
-  match '/offline/manifest' => 'frontpage#manifest'
+  resources :quiz_sessions do
+    get "results", :on => :member
+  end
+  match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
+  match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
+  match 'qs/:id' => 'quiz_sessions#show'
+  match 'help' => 'help#index'
+  match 'faq' => 'faq#index'
+  match 'legal_notice' => 'legal_notice#index'
+  #get 'excursions' => 'excursions#index', :as => :home
+  
+  match 'users/:user_id/resources' => 'users#resources'
 
   # Match the filter before the individual resources
   match 'excursions/search' => 'excursions#search'
   match 'excursions/recommended' => 'excursions#recommended'
 
+  #resources :excursions
   match 'excursions/last_slide' => 'excursions#last_slide'
 
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
@@ -31,85 +32,42 @@ Vish::Application.routes.draw do
 
   match 'excursions/preview' => 'excursions#preview'
 
+
   match 'excursions/:id/clone' => 'excursions#clone'
 
-  match '/excursions/:id/manifest' => 'excursions#manifest'
-
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
+  match '/excursions/:id/learning_evaluate' => 'excursions#learning_evaluate'
 
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
   match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
+
 
   #Download JSON
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
+  match '/categories/add_items' => 'categories#add_items', :via => :post
+
   match 'lre/search' => 'lre#search_lre'
 
-  resources :excursions
-  resources :slides
-  resources :embeds
-  resources :swfs
-  resources :officedocs
-  SocialStream.subjects.each do |actor|
-    resources actor.to_s.pluralize do
-      resources :swfs
-      resources :officedocs
-    end
-  end
+  #redirect /home.json to the original path
+  #This way, ViSH Mobile login continue working
+  match '/home.json' => 'home#index', :format => :json
 
-  match 'embeds/:id/modal' => 'modals#embed'
-  match 'links/:id/modal' => 'modals#link'
-  match 'officedocs/:id/modal' => 'modals#officedoc'
-  match 'audios/:id/modal' => 'modals#audio'
-  match 'videos/:id/modal' => 'modals#video'
-  match 'documents/:id/modal' => 'modals#document'
-  match 'pictures/:id/modal' => 'modals#picture'
-  match 'swfs/:id/modal' => 'modals#swf'
+  #redirect /home to /excursions
+  match '/home' => 'excursions#index'
 
-  resources :quiz_sessions do
-    get "results", :on => :member
-  end
-  match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
-  match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
-  match 'qs/:id' => 'quiz_sessions#show'
-
-  match 'resources/search' => 'resources#search'
-  match 'resources/recommended' => 'resources#recommended'
-
-  match 'followers/search' => 'followers#search_followers'
-  match 'followings/search' => 'followers#search_followings'
-
-  SocialStream.subjects.each do |actor|
-    resources actor.to_s.pluralize do
-      match 'followings' => 'followers#index', :as => :followings, :defaults => { :direction => 'sent' }
-      match 'followers' => 'followers#index', :as => :followers, :defaults => { :direction => 'received' }
-      match 'modal' => 'modals#actor'
-      match 'live' => 'live_sessions#actor'
-    end
-  end
-
-  resource :session_locale
-
-  match 'legal_notice' => 'legal_notice#index'
-
-  match 'mashme_invite' => 'mashme_invites#invite'
-
-  match 'help' => 'help#index'
-
-  # Add this at the end so other URLs take prio
-  match '/s/:id' => "shortener/shortened_urls#show"
-
-  # Get the recommended Learning Objects (LOs) for current user
-  match 'recSys/data' => 'rec_sys#data'
-  match 'recSys/timestamp' => 'rec_sys#timestamp'
-  match 'recSys/onSocialContextGenerated' => 'rec_sys#onSocialContextGenerated'
+  #PDF to Excursion
+  resources :pdfexes
 
   #Download the user manual and count the number of downloads
   match 'user_manual' => 'help#download_user_manual'
 
-  #PDF to Excursion
-  resources :pdfexes
+  resources :competitions
+  resource :contest
+
+  # Add this at the end so other URLs take prio
+  match '/s/:id' => "shortener/shortened_urls#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -166,5 +124,5 @@ Vish::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id))(.:format)'
 end

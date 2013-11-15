@@ -1,0 +1,82 @@
+var success_so_dont_reset = false;  //used to reset the drop down when clicking outside, except when it has been sent
+var categories_selection_array = <%= get_initial_categories(item).to_json %>;
+
+
+$("#category_id").multiselect({
+      header: false,
+      classes: "categorize_select with_tooltip",
+      height: 190,
+      minWidth: "auto",
+      menuWidth: 200,
+      noneSelectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
+      selectedText: '<i class="icon-th-large"></i><b class="caret"></b>',
+      click: function(event, ui){
+          success_so_dont_reset = false;
+          $("#apply_category").show();
+          $("#add_category").hide();
+        },
+      close: function(){
+        if(success_so_dont_reset==false){
+          $(".ui-multiselect-checkboxes input").each(function(index, elem){
+            if(categories_selection_array.indexOf(parseInt($(elem).attr("value")))>=0){
+              $(elem).prop('checked', true);
+            }
+            else{
+              $(elem).prop('checked', false);
+            }
+          });
+          $("#apply_category").hide();
+          $("#add_category").show();
+        }
+      },
+      beforeopen: function(event, ui){
+        if($(".ui-multiselect-menu.categorize_select").children(".separator_line").length==0){
+          var piece = '<div class="categories_loading" style="display:none"><img src="/assets/load.gif"/></div><div class="separator_line"></div><li class=" "><button id="apply_category" title="" style="display:none" class="ui-corner-all ui-state-hover btn btn-primary"><span><%=t('categories.actions.apply')%></span></button><button id="add_category" title="" class="ui-corner-all ui-state-hover btn btn-primary"><span><%=t('categories.actions.add')%></span></button></li>';
+          
+          $(".ui-multiselect-menu.categorize_select").append(piece);
+          $("#add_category").click(function(){
+            $("#category_id").multiselect("close");
+            $('#AddCategory').modal();
+          });
+          $("#apply_category").click(function(){            
+            var cat_array = [];
+            $(".ui-multiselect-checkboxes li input[aria-selected='true']").each(function(index, elem){
+              cat_array.push(parseInt(elem.value));
+            });
+            $(".ui-multiselect-checkboxes").hide();
+            $(".categories_loading").show();
+            $("#apply_category").hide();
+            
+            $.ajax({
+              url: '/categories/add_items',
+              type: 'POST',
+              dataType: "json",
+              data: { item_type:"<%=item.class.to_s%>", item_id:"<%=item.id.to_s%>", categories_array: JSON.stringify(cat_array) },
+              success: function(data){                
+                $("#category_success").fadeIn('slow', function () {
+                  $(this).delay(6000).fadeOut('slow');
+                });
+                $(".ui-multiselect-checkboxes").show();
+                $(".categories_loading").hide();                
+                $("#add_category").show();
+                categories_selection_array = cat_array;
+              }
+            });
+            success_so_dont_reset = true;
+            $("#category_id").multiselect("close");
+          });
+        }
+      }
+      });
+
+      $('#AddCategory .new_category').bind('ajax:success', function(evt, data, status, xhr){
+        $('#AddCategory').modal('hide');
+        //add the new entry to categories
+        opt = $('<option />', {
+          value: data.id,
+          text: data.title
+        });               
+        opt.appendTo($("#category_id"));
+        $("#category_id").multiselect("refresh");
+        $("#category_id").multiselect("open");
+      });

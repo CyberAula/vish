@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611110802) do
+ActiveRecord::Schema.define(:version => 20131031172400) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
     t.integer "activity_object_id"
     t.integer "property_id"
     t.string  "type"
+    t.boolean "main"
   end
 
   add_index "activity_object_properties", ["activity_object_id"], :name => "index_activity_object_properties_on_activity_object_id"
@@ -102,13 +103,18 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.string   "email",              :default => "",   :null => false
+    t.string   "email",                 :default => "",   :null => false
     t.string   "slug"
     t.string   "subject_type"
-    t.boolean  "notify_by_email",    :default => true
+    t.boolean  "notify_by_email",       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "activity_object_id"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "notification_settings"
   end
 
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
@@ -133,16 +139,11 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
 
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
-  create_table "avatars", :force => true do |t|
-    t.integer  "actor_id"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.boolean  "active",            :default => true
+  create_table "categories", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
-
-  add_index "avatars", ["actor_id"], :name => "index_avatars_on_actor_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "activity_object_id"
@@ -196,12 +197,11 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
 
   create_table "events", :force => true do |t|
     t.integer  "activity_object_id"
-    t.string   "title"
     t.datetime "start_at"
     t.datetime "end_at"
     t.boolean  "all_day"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "room_id"
     t.date     "start_date"
     t.date     "end_date"
@@ -209,8 +209,11 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
     t.integer  "interval"
     t.integer  "days",               :default => 0
     t.integer  "interval_flag",      :default => 0
+    t.boolean  "streaming",          :default => false
+    t.text     "embed"
   end
 
+  add_index "events", ["activity_object_id"], :name => "events_on_activity_object_id"
   add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "excursion_contributors", :force => true do |t|
@@ -231,13 +234,26 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
     t.integer  "answer_5"
   end
 
+  create_table "excursion_learning_evaluations", :force => true do |t|
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "excursion_id"
+    t.string   "ip"
+    t.integer  "answer_0"
+    t.integer  "answer_1"
+    t.integer  "answer_2"
+    t.integer  "answer_3"
+    t.integer  "answer_4"
+    t.integer  "answer_5"
+  end
+
   create_table "excursions", :force => true do |t|
-    t.datetime "created_at",                                                                :null => false
-    t.datetime "updated_at",                                                                :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "activity_object_id"
     t.text     "json"
     t.integer  "slide_count",        :default => 1
-    t.string   "thumbnail_url",      :default => "/assets/logos/original/excursion-00.png"
+    t.text     "thumbnail_url"
     t.boolean  "draft",              :default => false
     t.text     "offline_manifest"
     t.string   "excursion_type",     :default => "presentation"
@@ -287,6 +303,8 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
     t.string   "notified_object_type"
     t.string   "notification_code"
     t.string   "attachment"
+    t.boolean  "global",               :default => false
+    t.datetime "expires"
   end
 
   add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
@@ -360,7 +378,7 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
     t.integer  "receiver_id"
     t.string   "receiver_type"
     t.integer  "notification_id",                                  :null => false
-    t.boolean  "read",                          :default => false
+    t.boolean  "is_read",                       :default => false
     t.boolean  "trashed",                       :default => false
     t.boolean  "deleted",                       :default => false
     t.string   "mailbox_type",    :limit => 25
@@ -427,17 +445,39 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
   add_index "shortened_urls", ["unique_key"], :name => "index_shortened_urls_on_unique_key", :unique => true
   add_index "shortened_urls", ["url"], :name => "index_shortened_urls_on_url"
 
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
+
   create_table "sites", :force => true do |t|
     t.text     "config"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "type"
+    t.integer  "actor_id"
   end
+
+  add_index "sites", ["actor_id"], :name => "index_sites_on_actor_id"
 
   create_table "slides", :force => true do |t|
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "activity_object_id"
     t.text     "json"
+  end
+
+  create_table "spam_reports", :force => true do |t|
+    t.integer  "activity_object_id"
+    t.integer  "reporter_user_id"
+    t.string   "issue"
+    t.integer  "report_value"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "stats", :force => true do |t|
@@ -520,8 +560,6 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
 
   add_foreign_key "authentications", "users", :name => "authentications_on_user_id"
 
-  add_foreign_key "avatars", "actors", :name => "avatars_on_actor_id"
-
   add_foreign_key "comments", "activity_objects", :name => "comments_on_activity_object_id"
 
   add_foreign_key "contacts", "actors", :name => "contacts_on_receiver_id", :column => "receiver_id"
@@ -529,6 +567,7 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
 
   add_foreign_key "documents", "activity_objects", :name => "documents_on_activity_object_id"
 
+  add_foreign_key "events", "activity_objects", :name => "events_on_activity_object_id"
   add_foreign_key "events", "rooms", :name => "index_events_on_room_id"
 
   add_foreign_key "groups", "actors", :name => "groups_on_actor_id"
@@ -550,7 +589,7 @@ ActiveRecord::Schema.define(:version => 20130611110802) do
 
   add_foreign_key "remote_subjects", "actors", :name => "remote_subjects_on_actor_id"
 
-  add_foreign_key "rooms", "actors", :name => "index_rooms_on_actor_id"
+  add_foreign_key "sites", "actors", :name => "index_sites_on_actor_id"
 
   add_foreign_key "ties", "contacts", :name => "ties_on_contact_id"
   add_foreign_key "ties", "relations", :name => "ties_on_relation_id"

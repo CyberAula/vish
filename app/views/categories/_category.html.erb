@@ -1,0 +1,49 @@
+<li class="box-item excursion-item">
+
+  <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element">
+
+        <div class="img-box">
+        <!--IMG categories-->
+          <%= link_to(category) do %>
+            <div class="category">
+              <%=category_thumbnail(category)%>            
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+  </div>
+    
+<!--INFO excursuion-->
+  <div class="info">
+<!--Title -->
+    <div class="name">
+      <%= link_to category.title, category %>
+    </div>
+<!--Autor -->
+    <div class="author"> 
+      <span class="by"><%=t('by')%></span>
+      <%= link_to category.author.name, category.author.subject %>
+    </div>
+    <!--____________________ -->
+    <div class="info-bottom">
+      <hr class="soften">
+      <!--like -->
+      <div class="like">  
+        <%=category.property_objects.count.to_s%>
+        <%=t('categories.item_inside')%>
+    </div>
+
+  </div>
+</li>
+
+
+
+
+
+
+
+
+

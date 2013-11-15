@@ -1,131 +1,14 @@
-//ALL
-.content-page
-  @include makeColumn (12,0)
-
-// HOME
-.home
-  @include makeColumn (12,0)
-
-// 12
-.twelve
-  @include makeColumn (12,0)
-  @include nomargin-left
-
-//3x9
-.left-content-3x9
-  @include makeColumn (2,0)
-  @include nomargin-left
-
-.right-content-3x9
-  @include makeColumn (10,0)
- 
-//aplication
-
-.left-content-application
-  @include makeColumn (2,0)
-  @include nomargin-left
-
-
-.center-content-application
-  @include makeColumn (6,0)
-
-.right-content-application
-  @include makeColumn (3,0)
-  margin-left: 80px
-
-
-
-
 
 #flash
   float: right
   clear: both
-
-
-
-
-
-
-
 /**************footer*************/
 * 
   margin: 0
-
-html, body 
-  height: 100%
-
-.wrapper
-  min-height: 100%
-  height: auto
-  //height: 100%
-  margin: 0 auto -40px
-
-.footer
-  display: block
-  height: 40px
-
-  .menu_h
-    text-align: center
-    @include menuHorizontal
-    
-    ul
-      .site_name
-        color: $linkgray
-
-      li
-
-        .btn-group
-          
-
-        .btn-group,
-        .open 
-        
-          background-color: transparent
-
-        .btn
-          background-color: transparent
-          background-image: none
-          box-shadow: none
-          margin-left: 40px
-          color: $linkgray
-
-          .caret
-            color: $linkgray
-
-
-.push 
-  padding-top: 25px
-  height: 40px
-
-
-/**************footer-right*************/
-
-.footer-right
-  @include makeColumn (3,0)
-  margin-left: 0px
-  .menu_v
-    @include menuVertical
-    ul
-      margin-left: 8px
-      color: $grayLight
-      margin-top: 10px
-
-      .site_name
-        color: $grayLight
-      li
-        font-size: 12px
-        .btn-group,
-        .open 
-          background-color: transparent
-        .btn
-          background-color: transparent
-          background-image: none
-          box-shadow: none
-          margin-top: 1px
-          padding: 0px
-          color: $grayLight
-          .caret
-            color: $grayLight
+  text-decoration: none !important
+a,
+li
+  text-decoration: none !important
 
 
 .social-img
@@ -141,4 +24,8 @@ html, body
     display: inline-block
   img:hover
     opacity: 1
+
+.tab-pane
+  ul
+    margin: 0
 

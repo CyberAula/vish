@@ -1,0 +1,207 @@
+#time-line
+  .timeline
+    @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    margin: 0 auto
+    .root:hover,
+    .media:hover
+      .media-heading
+        .x
+          display: block
+          float: right
+          margin-top: 5px
+          a
+            color: $gray
+    .root,
+    .media
+      border-bottom: 1px solid $white
+      overflow: visible
+      display: block
+      float: left
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      .avatar
+        width: 30px
+        height: 30px
+        display: block
+        float: left
+        img
+          @include border-radius($baseBorderRadius)
+      .media-heading
+        display: block
+        text-align: left
+        @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        margin-bottom: 0px
+        float: left
+        clear: right
+        h3
+          margin: 0px
+          font-size: 18px
+          padding-left: 10px
+          display: block
+          float: left
+          a
+            color: $gray
+            &:hover
+              text-decoration: none
+        .x
+          display: none
+      .media-body
+        clear: both
+        display: block
+        overflow: visible
+        width: 100%
+        float: left
+        hr
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          margin: 0px auto 5px
+          clear: both
+        .objects
+          margin-bottom: 5px
+          .post
+            @include border-radius($baseBorderRadius)
+            //border-top: 1px solid #F2F2F2
+            background-color: rgba(255,255,255,0.55)
+            @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
+            text-align: center
+            padding: 10px
+        .recomended
+          .recomended-items
+            ul
+              @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              clear: both
+              display: block
+              margin: 5px auto 10px
+              height: 90px
+              p.info_action
+                @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                text-align: left
+                margin: 0px auto 
+              hr
+                margin: 0 auto
+                li.box-item
+                  margin-bottom: 10px
+        .actions
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          display: block
+          margin: 10px auto 10px
+          .post_time_ago
+            float: left
+            color: $grayLight
+            font-style: italic
+          .to_comment
+            float: right
+            margin-right: 20px
+            a
+              color: $gray
+          .to_like
+            float: right
+            a
+              color: lighten($firstColor, 20%)
+    .more
+      display: block
+      width: 100px
+      text-align: center
+      @include btn-primary
+      height: 20px
+      margin: 0 auto
+      float: none
+      clear: both
+      a
+        color: $white
+        &:hover
+          text-decoration: none
+
+
+.comments
+  @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  display: block
+  margin: 10px auto 
+  padding-top: 10px
+  clear: both
+  .activity
+    .avatar
+      display: block
+      float: left
+      margin: 0px
+      width: 20px !important
+      height: 20px !important
+
+    .media-heading
+      display: block
+      float: left
+      text-align: left !important
+      margin-top: 10px
+      width: 90% !important
+      margin-left: 10px
+      clear: right !important
+      h6
+        margin: 0
+        line-height: 0
+        font-size: 14px
+        a
+          color: $grayDarker
+    .media-body
+      clear: both
+      display: block
+      margin: 0px auto 
+      overflow: visible
+      width: 100%
+      float: left
+      .objects
+        .comment
+          font-size: 12px
+          font-style: italic
+      .actions
+        margin-top: -10px !important
+        width: 100% !important
+        font-size: 10px
+
+
+.new_comment
+  @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  display: block
+  margin: 10px auto 10px
+  clear: both
+  .avatar
+    display: none !important
+    margin: 10px auto
+  form#new_comment
+    @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+    display: block
+    margin: 10px auto 
+
+    textarea
+      width: 96%
+      padding: 4px 2%
+      margin-bottom: 0px
+    input
+      &[type="submit"]
+        display: block
+        margin: 0px auto
+        width: 130px
+        @include btn-primary
+        @include border-top-radius(0px)
+        @include box-shadow(inset 0px 2spx 3px 0px rgba(85,85,85,0.5))
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

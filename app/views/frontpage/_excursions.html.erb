@@ -1,0 +1,5 @@
+<ul>
+  <% popular_excursions(12).each do |excursion| %>
+    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+  <% end %>
+</ul>

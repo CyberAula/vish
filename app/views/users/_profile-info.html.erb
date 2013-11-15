@@ -1,0 +1,119 @@
+<%= content_for :javascript do %>
+   /*
+   $.ajax({
+          type : "GET",
+          url : "<%= user_url(profile_subject) %>"+"/resources",
+          success : function(html) {      
+            $("#resources").append(html);
+          },
+          error: function(){
+            console.log("error");
+         }
+        });
+        */
+  $("#resources_tab").click(function(){
+    re_apply_resources_backstrech();
+  });
+
+  $("#events_tab").click(function(){
+    re_apply_events_backstrech();
+  });
+
+<%end%>
+
+<section class="info-profile">
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+<!--excursions-->
+      <li class="active">
+        <a href="#tab1" data-toggle="tab">
+          <i class="icon-book"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('excursion.other')%></span>
+        </a>
+      </li>
+<!--events-->
+      <li>
+        <a id="events_tab" href="#tab2" data-toggle="tab">
+          <i class="icon-facetime-video"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('event.other')%></span>
+        </a>
+      </li>
+<!--resources-->      
+      <li>
+        <a id="resources_tab" href="#tab3" data-toggle="tab">
+          <i class="icon-file"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('resource.other')%></span>
+        </a>
+      </li>
+
+      <li>
+        <a href="#tab4" data-toggle="tab">
+          <i class="icon-th-large"></i>
+          <span class=" hidden-phone hidden-tablet"><%=t('categories.other')%></span>
+        </a>
+      </li>
+
+      <li class="follow-tab">
+        <a href="#tab5" data-toggle="tab">
+
+          <span><%= profile_subject.followers.count.to_s %></span>
+          <i class="icon-group "></i>
+          <span class=" hidden-phone hidden-tablet"><%= t('follow.followers') %></span>
+        </a>
+      </li>
+      <li class="follow-tab">
+        <a href="#tab6" data-toggle="tab">
+          <span><%= profile_subject.following_actor_objects.includes(:actor).count.to_s %></span>
+          <i class="icon-group green"></i>
+          <span class=" hidden-phone hidden-tablet"><%= t('follow.followings') %></span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div class="tab-pane active" id="tab1">
+        <div id="excursions">
+        <ul class="">
+          <% if profile_subject_is_current? %>
+            <%= render partial: 'excursions/excursion-add' %>
+          <% end %>
+          <%= render partial: 'excursions/excursions', :locals => { :scope => :me, :page => 0 } %>
+        </ul>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab2">
+        <div id="events">
+          <%= render partial: 'events/events', :locals => { :scope => :me } %>
+        </div>
+      </div>
+
+
+      <div class="tab-pane" id="tab3">
+        <div id="resources">
+        <%= render partial: 'repositories/resources', :locals => { :scope => :me } %>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab4">
+        <div id="categories">
+          <%= render partial: 'categories/categories', :locals => { :scope => :me } %>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="tab5">
+        <ul>
+          <%= render partial: 'users/user', collection: profile_subject.followers %>
+        </ul>
+      </div>
+
+      <div class="tab-pane" id="tab6">
+        <ul>
+          <%= render partial: 'users/user', collection: profile_subject.followings.where(object_type: 'Actor').includes(:actor).map(&:actor) %>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>

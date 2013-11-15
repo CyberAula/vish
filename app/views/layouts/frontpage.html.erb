@@ -1,47 +1,75 @@
 <!-- HTML5 DOCTYPE -->
 <!DOCTYPE html>
 <html lang="<%= I18n.locale.to_s %>">
-<%= render :partial => 'layouts/head' %>
-<body>
-  <div class="wrapper">
+  <head>
+    <meta charset="utf-8">
+    <title><%= yield(:title).empty? ? t('site.current.title') : yield(:title) %></title>
+    <meta name="keywords" content="<%= yield(:keywords).empty? ? t('site.current.keywords') : yield(:keywords) %>">
+    <meta name="description" content="<%= yield(:description).empty? ? t('site.current.description') : yield(:description) %>">
+    <meta name="generator" content="SocialStream" />
+    <!--meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" /-->
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta property="og:site_name" content="ViSH">
+    <meta property="og:title" content="<%= yield(:title) %>">
+    <meta property="og:type" content="<%= yield(:og_type) %>">
+    <meta property="og:url" content="<%= yield(:og_url) %>">
+    <meta property="og:image" content="<%= yield(:og_image) %>">
+    <meta property="og:description" content="<%= yield(:description) %>">
 
-      <section class="container">
-        <header class="header">
-          <%= render :partial => "layouts/header_frontpage" %>
-        </header>        
-        <article class="agrupation-search-frontpage">
-          <%= yield %>
-        </article>
-    </section>
+    <%= favicon_link_tag "icons/favicon.ico" %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+
+    <% if protect_against_forgery? %>
+      <%= csrf_meta_tag %>
+    <% end %>
+
+    <script type="text/javascript">
+      I18n.defaultLocale = "<%= I18n.default_locale %>";
+      I18n.locale = "<%= I18n.locale %>";
+    </script>
     
-    <section id="top" class="white"> 
-      <div class="container">
-        <div class="top-10">
-          <%=t('top10')%>
-        </div>
-          <% self.class.send :include, FrontpageHelper  %>
-          <% for excursion in current_top_actor_excursions %>
-          <%= render :partial => "excursions/top10",:locals => { :excursion => excursion} %>
-          <% end %>
+    <script type="text/javascript">
+      $(document).ready(function() {  
+        <%= yield :javascript%>
+      });
+    </script>
+    <%= yield :headers %>
+    <%= render :partial => 'layouts/google_analytics' %>
+    <%= render :partial => 'layouts/uservoice' %>
+      
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=629612437058744";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+   
+      <%= render :partial => "layouts/header" %>
+      <%= flashy %>
+
+      <div class="container_carousel">
+          <%= render :partial => "frontpage/explanation" %>
       </div>
-    </section> 
-
-    <section class="container" style="display:none"> 
-      <%= render :partial => "news/index" , :locals => {extra_class: "frontpage_announce"} %>
-    </section> 
-
-    <div class="push"></div> 
+          
+      <div class="wrapper container-fluid">
+        <%= yield %>
   
-  </div>
-  <footer class="footer">
-    <%= render :partial => "layouts/footer" %>
-  </footer> 
-  <script type="text/javascript">
-setTimeout(function(){var a=document.createElement("script");
-var b=document.getElementsByTagName("script")[0];
-a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0014/0195.js?"+Math.floor(new Date().getTime()/3600000);
-a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-</script>
-
-</body>
+      </div>  
+    </div>
+    <div id="footer">
+      <%= render :partial => "layouts/footer" %>
+    </div>
+    <%= render :partial => "layouts/crazyegg" %>
+  </body>
 </html>

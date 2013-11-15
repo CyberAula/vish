@@ -1,0 +1,275 @@
+<!-- Button to trigger modal -->
+
+
+<!-- Modal -->
+<div id="AddResource" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AddResourceLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <h3 id="AddResourceLabel"><%= t('document.main_title')%></h3>
+  </div>
+
+  <div class="modal-body">
+  <div class="layoutform">
+    <!-- Tags preloaded -->
+    <%@tags = ActivityObject.tag_counts(:limit => 100, :order => "count desc")%>
+    <ul id="resourcePreloadTagList" style="display:none">
+      <%@tags.each do |tag| %>
+        <li><%=tag.name%></li>
+      <%end%>
+    </ul>
+
+    <p><%= t('document.body.title1')%></p>
+    
+    <div class="accordion" id="accordion2">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#document">
+            <i class="icon-folder-open"></i> <%= t('document.options.documents')%>
+          </a>
+        </div>
+        <div id="document" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            <% d = Document.new %>
+            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= f.hidden_field :owner_id %>
+              <%= f.file_field :file %>
+              <%= f.hidden_field :title%>
+              <%= f.hidden_field :description%>
+              <%= f.hidden_field :tag_list, :multiple => true %>
+              <%= f.hidden_field :language, :value => "" %>
+              <%= f.hidden_field :age_min, :value => "4" %>
+              <%= f.hidden_field :age_max, :value => "20" %>
+              <%= f.submit t('button.save'), :class => "document hide"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#link">
+            <i class="icon-link"></i> <%= t('document.options.links')%> 
+          </a>
+        </div>
+        <div id="link" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <% d = Link.new %>
+            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= f.hidden_field :owner_id %>
+              <%= f.hidden_field :callback_url %>
+              <%= f.hidden_field :loaded %>
+              <%#= f.hidden_field :image %>
+              <%= f.text_field :url %>
+              <%= f.hidden_field :title%>
+              <%= f.hidden_field :description%>
+              <%= f.hidden_field :tag_list, :multiple => true %>
+              <%= f.hidden_field :language, :value => "" %>
+              <%= f.hidden_field :age_min, :value => "4" %>
+              <%= f.hidden_field :age_max, :value => "20" %>
+              <%= f.submit t('button.save'), :class => "link hide"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#embed">
+            <i class="icon-code"></i> <%= t('document.options.embed')%> 
+          </a>
+        </div>
+        <div id="embed" class="accordion-body collapse">
+          <div class="accordion-inner">
+            <% d = Embed.new %>
+            <% d.owner_id = Actor.normalize_id(current_user) %>
+            <%= form_for d, :namespace => 'new_file_only', :remote => false do |f| %>
+              <%= f.hidden_field :owner_id %>
+              <%#= f.hidden_field :image %>
+              <%= f.text_field :fulltext %>
+              <%= f.hidden_field :title%>
+              <%= f.hidden_field :description%>
+              <%= f.hidden_field :tag_list, :multiple => true %>
+              <%= f.hidden_field :language, :value => "" %>
+              <%= f.hidden_field :age_min, :value => "4" %>
+              <%= f.hidden_field :age_max, :value => "20" %>
+              <%= f.submit t('button.save'), :class => "embed hide"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    </div>
+    
+    <div class="layoutform">
+    <p><%= t('document.body.title2')%></p>
+    <!--TITULO-->
+    <label><%= t('document.leyend.title')%></label>
+    <input type="text" class="title" placeholder="<%= t('document.title_input')%>">
+    
+    <!--DESCRIPCION-->
+    <label><%= t('document.leyend.description')%></label>
+    <input type="text" class="description" placeholder="<%= t('document.input')%>">
+
+    <!--TAGS-->
+    <label><%= t('document.leyend.tags')%></label>
+
+    <div class="tagBoxDocument">
+       <ul class="resourceTagList"></ul>
+    </div>
+<!--_______________________________-->
+    <div class="clearfloat"></div>
+    
+    <!--LANGUAGE-->
+    <label><%= t('document.leyend.language')%></label>
+    <select class="language">
+      <option value="" selected="1">(<%= t('lang.independent') %>)</option>
+      <option value="de">Deutsch</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="it">Italiano</option>
+      <option value="pt">Português</option>
+      <option value="ru">Русский</option>
+      <option value="ot"><%= t('lang.others') %></option>
+    </select>
+    
+    <!--AGE SLIDER-->
+    <label><%= t('document.leyend.recommended_age')%></label>
+    <div class="limits">
+      <div class="limit1">4</div>
+      <div class="limit2">20</div>
+    </div>
+    <input type="text" class="age-slider" value="" data-slider-min="0" data-slider-max="30" data-slider-step="1" data-slider-value="[4,20]" data-slider-orientation="horizontal" data-slider-tooltip="hide"/>
+    <br>
+    </div>
+  </div><!-- CIERRA BODY-->
+
+
+  <!-- FOOTER -->
+  <div class="modal-footer">
+    <input type="button" class='helpResources btn' data-placement='top' aria-hidden="true" data-original-title="¿Como subo un recurso?" href='#' value="?"/>
+
+    <div class="contentHelpResources" style="display: none">
+      <div>
+        <%= t('document.help.info1_html')%>  <br/>
+        <%= t('document.help.info2_html')%>  <br/>
+        <%= t('document.help.info3_html')%>  <br/>
+        <%= t('document.help.info4_html')%>  <br/>
+        <%= t('document.help.info5_html')%>  <br/>
+        <%= t('document.help.info6_html')%>  <br/>
+        <%= t('document.help.info7_html')%>  <br/>
+        <%= t('document.help.info8_html')%>
+      </div>
+    </div>
+
+    <input type="button" class="btn btn-primary" value="<%= t('document.upload')%>"/>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script>
+$(document).ready(function(){
+  $('.helpResources').popover({ 
+    html : true,
+    content: function() {
+      return $('.contentHelpResources').html();
+    }
+  });
+});
+</script>
+
+<script>
+  $("#AddResource").on('shown', function() {
+    //SLIDER
+    var min = 0;
+    var max = 30;
+    var step = 1;
+    var diff = max - min;
+
+    var positionLimits = function() {
+      var value1 = $('.age-slider').data('slider').getValue()[0];
+      var value2 = $('.age-slider').data('slider').getValue()[1];
+      $('.limit1').text(value1);
+      $('.limit2').text(value2);
+
+      var percentage =[
+        (value1-min)*100/diff,
+        (value2-min)*100/diff,
+        step*100/diff
+      ];
+      $(".limit1").css("left", function(ev) {
+        return $('.slider').width() * percentage[0]/100 - $(".limit1").width()/2 + 'px';
+      });
+      $(".limit2").css("left", function(ev) {
+        return $('.slider').width() * percentage[1]/100 - $(".limit2").width()/2 + 'px';
+      });
+    };
+
+    $(".age-slider").slider()
+      .on('slide', function(ev){
+        positionLimits();
+      });
+
+    $(".age-slider").before($(".limits"));
+    positionLimits();
+
+  });
+</script>
+
+<script>
+//COMMON FIELDS
+  var uploadButton = $("input[value=<%= t('document.upload')%>][type='button'][class='btn btn-primary']");
+  $(uploadButton).click(function(event) {
+    var resource_type = $(".accordion-body.collapse.in").attr('id');
+
+    if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == "") {
+      alert("<%= t('document.body.title3')%>");
+    } else if (resource_type == "link" && $("#AddResource input[name='"+resource_type+"[url]']").val() == "") {
+      alert("<%= t('link.title3')%>");
+    } else if (resource_type == "embed" && $("#AddResource input[name='"+resource_type+"[fulltext]']").val() == "") {
+      alert("<%= t('embed.title3')%>");
+    } else if($(".title").val() == "") {
+      alert("<%= t('document.title_alert')%>");
+    } else {
+      //TITLE
+      $("#AddResource input[name='"+resource_type+"[title]']").val($(".title").val());
+      //DESCRIPTION
+      $("#AddResource input[name='"+resource_type+"[description]']").val($(".description").val());
+      //TAGS
+      var tagList = $("#AddResource .resourceTagList");
+      $("#AddResource input[name='"+resource_type+"[tag_list][]']").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
+      //LANGUAGE
+      $("#AddResource input[name='"+resource_type+"[language]']").val($(".language").val());
+      //AGE
+      var value1 = $('.age-slider').data('slider').getValue()[0];
+      var value2 = $('.age-slider').data('slider').getValue()[1];
+      $('input[name="'+resource_type+'[age_min]"]').val(value1);
+      $('input[name="'+resource_type+'[age_max]"]').val(value2);
+      //SUBMIT
+      $("input[value=<%= t('button.save') %>][type='submit'][name='commit'][class='"+resource_type+" hide']").click();
+    }
+  });
+</script>
+
+<script>
+  var resourceTagList = $(".resourceTagList");
+  var resourceTags = [];
+  
+  //Load tags
+  $.each($("#resourcePreloadTagList li"), function(index, element) {
+     resourceTags.push($(element).html());
+  });
+          
+  if ($(resourceTagList).children().length == 0){
+    // $.each($("#resourcePreloadUserTagList li"), function(index, element) {
+    //    $(tagList).append("<li>" + $(element).html() + "</li>")
+    // });
+
+    $(resourceTagList).tagit({tagSource:resourceTags, sortable:true, maxLength:15, maxTags:8 , 
+      watermarkAllowMessage: '<%=t('document.tags.addMessage')%>', watermarkDenyMessage: '<%=t('document.tags.limitMessage')%>' });
+  } 
+</script>
+

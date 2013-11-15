@@ -1,0 +1,69 @@
+<header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+<!--logo-->
+      <div class="brand">
+        <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
+      </div>
+<!--BROWSE-->
+      <div class="browse">
+        <%= render partial: 'layouts/browse_header'%>
+      </div>
+<!--______________________________desktop-->
+      <div class=" hidden-phone hidden-tablet">
+<!--login-->
+        <li class=" dropdown log">
+          <a class="login dropdown-toggle" data-toggle="dropdown" href="#">
+            <%=t("sign_in")%>
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+            <%= form_for User.new, :as => :user, :url => user_session_path do |f| %>
+              <%= f.email_field :email, :id => "username" %>
+              <%= f.password_field :password, :id => "password"  %>
+              <%= f.submit t(:sign_in), :class => ' btn btn-primary'%>
+              <label class="checkbox">
+                <input type="checkbox"> <%=t("activerecord.attributes.user.remember_me")%>
+              </label>
+              <%= link_to t('devise.links.forgot_password'), new_password_path(:user) %>
+            <% end %>
+            <%= javascript_tag do %>
+            $(function() {
+            if ("placeholder" in document.createElement("input")) {
+            $("#username").attr('placeholder', I18n.t('activerecord.attributes.user.email'));
+            } else {
+            $("#username").watermark(I18n.t('activerecord.attributes.user.email'),"#666");
+            }
+            $("#password").watermark(I18n.t('activerecord.attributes.user.password'),"#666");
+            });
+            <% end %>
+          </ul>
+        </li>
+<!--sign_up-->
+        <a class=" sign_up btn" href="<%=new_user_registration_path%>">
+
+            <%=t("sign_up")%>
+
+        </a>
+<!--search-->
+        <li class="search-ui ">
+          <%= render partial: 'layouts/uisearch_header' %>
+        </li>
+      </div>
+
+
+<!--________________________mobile/tablet-->
+      <div class="nav-collapse navbar-responsive-collapse collapse hidden-desktop  MOBILE ">
+        <%= render partial: 'layouts/header_signed_out_mobile' %>
+      </div>
+
+      
+    </div>
+  </div>
+</header>

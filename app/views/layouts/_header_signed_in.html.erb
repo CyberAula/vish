@@ -1,0 +1,118 @@
+<header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <!--logo-->
+      <div class="brand">
+        <%= link_to(image_tag('logo/brand.png', :alt => t('site.name')), '/', :class => "logo"); %>
+      </div>
+      <!--BROWSE-->
+      <div class="browse">
+        <%= render partial: 'layouts/browse_header'%>
+      </div>
+      <div class=" hidden-phone hidden-tablet">
+          <ul class="nav user-tool">
+<!--search-->
+            <li class="search-ui ">
+              <%= render partial: 'layouts/uisearch_header' %>
+            </li>
+<!--navegation-->
+            <li class="navegation ">
+              <%= render partial: 'layouts/basic_navegation' %>
+            </li>
+<!--add-->
+            <li class="add_nav">
+              <div class="btn-group">
+                <a class="btn dropdown-toggle tooltip-header" data-original-title="<%=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
+                  <i class="icon-plus"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- dropdown menu links -->
+                  <li>
+                    <%= link_to new_excursion_path do %>
+                    <i class="icon-list-alt"></i> <%= t('excursion.actions.add') %>
+                    <% end %>
+                  </li>
+                  <li><a href="#AddEvent" data-toggle="modal"><i class="icon-facetime-video"></i> <%=t('event.actions.add')%></a></li>
+                  <li><a href="#AddCategoryHeader" data-toggle="modal"><i class="icon-th-large"></i> <%=t('categories.actions.add')%></a></li>
+                  <li><a href="#AddResource" data-toggle="modal"><i class="icon-file"></i> <%=t('resource.actions.add')%></a></li>
+                </ul>
+              </div>
+            </li>
+            
+          <!-- 
+            <li> 
+              <%#= render partial: 'layouts/header_dropdown_menu' %>
+            </li>
+          -->
+<!--user-->
+            <li class ="user-settings">
+              <%= link_to current_subject do %>
+              
+              <a data-toggle="dropdown" href="#" class="logo-small">
+                <%= image_tag current_subject.logo.url(:small) %>
+                <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i></span>
+              </a>
+
+              <ul class="dropdown-menu">
+                <!-- dropdown menu links -->
+                <li class="settings-menu">
+                  <%= link_to current_subject do %>
+                  <i class="icon-user"></i>
+                  <%= t('profile.one') %>
+                  <% end %>
+                </li>
+                <li class="settings-menu">
+                  <%= link_to settings_path do %>
+                  <i class="icon-cog"></i>
+                  <%= t('dropdown.settings') %>
+                  <% end %>
+                </li>
+                <li class="settings-menu">
+                  <%= link_to quiz_sessions_path do %>
+                  <i class="icon-puzzle-piece"></i>
+                  <%= t('quiz.live') %>
+                  <% end %>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to destroy_user_session_path, :method => :delete do %>
+                  <i class="icon-signout"></i>
+                  <%= t('sign_out') %>
+                  <% end %>
+                </li>
+              </ul>
+              <% end %>
+            </li>
+
+
+            <!-- carga de modales -->
+            <%= render partial: 'events/form' %>
+            <%= render partial: 'repositories/form' %>
+            <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
+          </ul>
+
+        </div>
+
+  <!--________________________mobile/tablet-->
+        <div class="nav-collapse navbar-responsive-collapse collapse hidden-desktop  MOBILE ">
+          <%= render partial: 'layouts/header_signed_in_mobile' %>
+        </div>
+
+
+
+      </div>
+    </div>
+  </header>
+
+  <script type="text/javascript">
+      $(document).ready(function() {          
+         $('.tooltip-header').tooltip({ placement: 'bottom'});
+      });
+  </script>
+

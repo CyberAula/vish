@@ -1,0 +1,46 @@
+footer.container-fluid
+  background-color: #D5D5D5
+  z-index: 100 //maximum zindex
+  opacity: 0.95
+  &:hover
+    //opacity: 1
+  nav.footercontent
+    ul
+      li
+
+        color: #555
+        a
+          color: #555
+      li.btn-group
+        .dropdown-menu
+          width: 250px
+          li
+            width: 248px
+            margin: 2px 2px
+            display: block
+            padding-left: 0px
+            a
+              float: left
+              display: inline-block
+              font-family: $baseFontFamily
+              width: 236px
+
+            i
+              float: left
+              display: inline-block
+              margin-top: -3px
+
+        button
+          background-color: transparent
+          border: none
+        .open 
+          background-color: none
+
+        button.btn
+          background-color: transparent !important
+          background-image: none
+          box-shadow: none
+#main 
+  overflow:auto
+  padding-bottom: 150px  /* must be same height as the footer */
+

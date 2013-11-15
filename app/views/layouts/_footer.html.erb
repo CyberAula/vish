@@ -1,51 +1,58 @@
-<div class="container">
-  <nav class="menu_h">
+<footer id="footer" class="container-fluid hidden-phone hidden-tablet">
+  <nav class="footercontent">
     <ul>
-      <li class="site_name">
-        <%= t('site.name') %> &nbsp;©&nbsp;<%= Date.today.year %>
-      </li>
       <li>
-        <%= link_to t('conditions.other'), '/legal_notice', :target=>'_blank' %>
+        <a href="/legal_notice"><%= t('conditions.other') %></a>     
       </li>
-      <li>
-        <div class="btn-group dropup ">
-          <button data-toggle="dropdown" class="btn dropdown-toggle">
-            <span class="idioma"><%=t('help')%></span>
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">            
-              <li class="">
-                <%= link_to t('help_page'), '/help' %>
-              </li>
-              <li class="">
-                <%= link_to t('help_manual'), '/user_manual' %>
-              </li>
-          </ul>
-        </div>  
+      <li class="btn-group dropup">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="idioma"><%= t('help') %></span>
+          <span class="caret"></span>
+        </button>  
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          
+          <li class="">
+            <%= link_to faq_path do %>
+              <i class="icon-question-sign"> </i> <%=t('faq.title')%>
+            <% end %>
+          </li>
+
+          <li class="">
+            <%= link_to user_manual_path do %>
+              <i class='icon-download'> </i> <%= t('help_manual')%>       
+            <% end %>
+          </li>
+
+          <li class="">
+            <%= link_to help_path do %>
+              <i class="icon-question-sign"> </i> <%=t('help_page')%>
+            <% end %>
+          </li>
+        </ul>
       </li>
-      <li>
-        <div class="btn-group dropup ">
-          <button data-toggle="dropdown" class="btn dropdown-toggle">
-            <span class="idioma"><%=t('lang.title')%></span>
-            <span class="caret"></span>
-          </button>     
+      <li class="btn-group dropup">
+        <button data-toggle="dropdown" class="btn dropdown-toggle">
+          <span class="idioma"><%= t('lang.title') %></span>
+          <span class="caret"></span>
+        </button>   
           <ul class="dropdown-menu">
-            <% for locale in (I18n.available_locales) -%>              
-              <li class="">
+            <% for locale in (I18n.available_locales) -%> 
+             <li class="">
                 <%= link_to image_tag("flags/" + locale.to_s + ".png", :title=>locale.to_s, :class=> "") + " " + t(:language_name, :locale => locale.to_s), session_locale_path(:new_locale => locale.to_s), :method => :post, :remote => false %>
               </li>
-            <% end -%>
+            <% end %>
           </ul>
-
-        </div>
       </li>
-      <li><%= link_to image_tag("icons/global.png",  :class=> "imgnoradio" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
+      <li>
+         <%=mail_to('virtual.science.hub@gmail.com', t('contact.footer'), :encode => :javascript) %>
       </li>
       <li class="social-img">
-        <%= link_to image_tag("corporative/facebook-logo.png",  :class=> "social-img" ), "https://www.facebook.com/VirtualScienceHub", :target=> "_blank" %>
-        <%= link_to image_tag("corporative/twitter.png",  :class=> "social-img " ), "https://twitter.com/ViSH_portal", :target=> "_blank" %>
+        <%= link_to image_tag("footer/facebook-logo.png",  :class=> "social-img" ), "https://www.facebook.com/VirtualScienceHub", :target=> "_blank" %>
+        <%= link_to image_tag("footer/twitter-logo.png",  :class=> "social-img " ), "https://twitter.com/ViSH_portal", :target=> "_blank" %>
+      </li>
+      <li>
+        <%= link_to image_tag("footer/global.png",  :class=> "imgnoradio" ), "http://www.globalexcursion-project.eu", :target=> "_blank"  %>
       </li>
     </ul>
   </nav>
-</div>
-<%= render :partial => 'layouts/init_modals' %>
+</footer>

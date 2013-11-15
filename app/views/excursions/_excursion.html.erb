@@ -1,24 +1,61 @@
-<!--time line-->
+<li class="box-item excursion-item">
+  <%if excursion.id==161%>
+    <div class="badge-excursion-active"></div>
+  <%end%>
+  <%= link_to(excursion) do %>
+  <div class="container-img">
+      <div class="dummy"></div>
+      <div class="element">
 
-<div class="clearfloat"></div>
-<%= div_for excursion, :class => 'timeline-object' do %>
+        <div class="img-box" id="excursion-<%=excursion.id%>"></div>
 
-  <div class="item-object-wall">
-    <ul class="thumbnails">
-      <li class="img-excursion">
-        <%= link_to excursion_thumb_for(excursion, 130), excursion, :class => "img-timeline" %>
-        <div class='number_pages'>
-          <%= excursion.slide_count %>
-        </div>
-      </li>
-      <div class="info-object-timeline">
-        <div class="title-object">
-          <%= link_to excursion.title, excursion %>
-        </div>
-        <p><%= auto_link truncate_name(excursion.description, :length => 120) %></p>
-        <p class="details"><%= link_to t('details.msg'), excursion, :class => "" %></p>
       </div>
-    </ul>
   </div>
+    
 <% end %>
+  <script>
+    $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+  </script>
+<%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
+<!--INFO excursuion-->
+  <div class="info">
+    <!--Tags - not shown now, but used for filtering search results. maybe shown in next version on hover-->
+    <!-- if modified to show them, careful because they are used in the filters, check that they work-->
+    <div class="exc_tags" style="display:none">
+      <% excursion.tag_list.each do |tag| %>
+          <span class="one_tag">
+            <%=tag%>
+          </span>
+      <% end %>
+    </div>
+<!--Title -->
+    <div class="name">
+      <%= link_to excursion.title, excursion %>
+    </div>
+<!--Autor -->
+    <div class="author"> 
+      <span class="by"><%=t('by')%></span>
+      <%= link_to excursion.author.name, excursion.author.subject %>
+    </div>
+    <!--____________________ -->
+    <div class="info-bottom">
+      <hr class="soften">
+      <!--like -->
+      <div class="like">        
+         <% if excursion.post_activity%>
+          <div class="count"><%=excursion.post_activity.likes.count.to_s%></div>
+          <%= link_like(excursion.post_activity, :title =>t('excursion.actions.favorite'))%>
+        <%else%>
+          <div class="count">0</div>
+        <%end%>
+      </div>
+      <!--views -->
+      <div class="views">
+        <%=excursion.visit_count.to_s%>
+        <%=t('follow.views')%>
+      </div>
+    </div>
+
+  </div>
+</li>
 

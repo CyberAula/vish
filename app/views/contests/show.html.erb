@@ -1,0 +1,141 @@
+<section id="contest">
+  <div class="competition_banner">
+  <%= image_tag("competition/BANNER-02.png",  :class=> "" ) %>
+  </div>
+  <div class="info_all">
+
+    <div class="info_competition">
+
+    <!--candidates-->
+      <div class="info_competition_element">
+        <h4>
+          <i class="icon-group"></i>
+          <%=t('contest.candidates')%>
+        </h4>
+        <p><%=t('contest.intro')%></p>
+      </div>
+
+    <!--Categories-->
+      <div class="info_competition_element">
+        <h4><i class="icon-book"></i><%=t('contest.categories')%></h4>
+        <p>
+          <%=t('contest.categories2')%>
+        </p>
+      </div>
+
+    <!--Languages-->
+      <div class="info_competition_element">
+        <h4><i class="icon-flag"></i><%=t('competitions.languages')%></h4>
+        <p>
+          <%=t('contest.languages1')%>
+          </br>
+          <%=t('contest.languages2')%>
+        </p>
+      </div>
+
+      </div>
+
+      <div class="info_competition">
+<!--how to-->
+      <div class="info_competition_element">
+        <h4><i class="icon-user"></i><%=t('contest.register')%></h4>
+        <p>
+          <%=t('contest.register2')%>
+          </br>
+          <%=t('contest.register3')%>
+          </br>
+          <%=t('contest.register4')%>
+          </br>
+          <%=t('contest.register5')%>
+        </p>
+      </div>
+
+<!--time-->
+      <div class="info_competition_element">
+        <h4><i class="icon-time"></i><%=t('contest.timeline')%></h4>
+        <p>
+        <strong><%=t('contest.timeline_date')%></strong><%=t('contest.timeline2')%> 
+        <br>
+        <strong><%=t('contest.timeline_date2')%></strong><%=t('contest.timeline3')%>
+        <br>
+        <strong><%=t('contest.timeline_date3')%></strong><%=t('contest.timeline4')%>
+        </p>
+      </div>
+
+<!--criteria-->
+      <div class="info_competition_element">
+        <h4><i class="icon-ok"></i><%=t('contest.criteria')%></h4>
+        <p><%=t('contest.criteria2')%>
+          
+        </p>
+      </div>
+
+    </div>
+
+    <div class="info_competition">
+      <div class="info_competition_element">
+      <h4><i class="icon-trophy"></i><%=t('contest.prizes')%></h4>
+      <p><%=t('contest.prizes2')%>
+        </br><%=t('contest.prizes_first')%>
+        </br><%=t('contest.prizes_second')%>
+        </br><%=t('contest.prizes3')%>
+        </br><%=t('contest.prizes_first')%>
+        </br><%=t('contest.prizes_second')%>
+        </br><%=t('contest.prizes_third')%>
+        </br><%=t('contest.prizes4')%>
+        </br>
+        <strong><%=t('contest.amazon')%></strong><%=t('contest.prizes5')%>
+      </p>
+      <div class="btn-group">
+      <a href="http://vishub.org/competitions"><button class="btn"><%=t('contest.moreinfo')%></button></a>
+      <a href="http://vishub.org/faq#faq_competitions_1a"><button class="btn"><%=t('contest.faq')%></button></a>
+    </div>
+    </div>
+
+    </div>
+
+
+  </div> 
+
+
+  <div class="tabexcursions">
+    <h3><%=t('contest.ex_part')%></h3>
+
+    <div class="filter">
+    <!--filtro por categoria -->
+    <%=t('contest.filter')%>
+      <select id="tags_selector" name="tags">
+        <option value="All"> <%=t('contest.All')%> </option>
+        <option value="Maths"> <%=t('contest.Maths')%> </option>
+        <option value="Physics"> <%=t('contest.Physics')%> </option>
+        <option value="Chemistry"> <%=t('contest.Chemistry')%> </option>
+        <option value="Biology"> <%=t('contest.Biology')%> </option>
+        <option value="Geography"> <%=t('contest.Geography')%> </option>
+        <option value="EnvironmentalStudies"> <%=t('contest.EnvironmentalStudies')%> </option>
+        <option value="Engineering"> <%=t('contest.Engineering')%> </option>
+        <option value="Humanities"> <%=t('contest.Humanities')%> </option>
+        <option value="NaturalScience"> <%=t('contest.NaturalScience')%> </option>
+        <option value="ComputerScience"> <%=t('contest.ComputerScience')%></option>
+      </select>
+    </div>
+  </div>
+  <div id="excursions" class="contest_excursions">
+    <%= render partial: 'contests/excursions' %>
+  </div>
+
+</section>
+
+<script type="text/javascript">
+  $("#tags_selector").change(function() {
+    if(this.value=="All"){
+      $(".excursion-item").show();
+    }
+    else{
+      $(".excursion-item").hide();
+      $(".one_tag:contains("+this.value+")").parents(".excursion-item").show();
+    }
+  });
+
+
+
+</script>

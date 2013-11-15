@@ -1,0 +1,15 @@
+<div class="quick_search">
+  <div class="photo">
+    <%= link_to(excursion) do %>
+      <%= excursion_thumb_for(excursion) %>
+    <% end %>
+  </div>
+  <div class="data">
+    <div class="name">
+      <%= link_to excursion.title, excursion %>
+    </div>
+    <div class="author"> 
+      <%= link_to excursion.author.name, excursion.author.subject %>
+    </div>
+  </div>
+</div>

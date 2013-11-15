@@ -1,0 +1,88 @@
+<div class="left-info">
+<div class="author">
+
+  <div class="avatar">
+    <%= link_to document.author.subject do %>
+    <%= image_tag document.author.logo.url(:small) %>
+    <% end %>
+  </div>
+  <div class="right-name">
+    <p><%= truncate_name(document.author.name, :length => 50) %></p>
+    <div class="add">
+      <% if user_signed_in?%>
+        <%= contact_button(current_subject.contact_to!(document.author)) %>
+      <%else%>
+        <%= contact_button(document.author) %>
+      <%end%>
+    </div>
+  </div>
+</div>
+  <div class="viewsAndConunt">
+  <%#= render partial: 'objects/counters', locals: { object: document } %>
+  <div class="views">
+    <%=document.visit_count.to_s%> 
+    <span>
+      <%=t('follow.views')%>
+    </span>   
+  </div>
+  <div class="like">    
+    <div class="count"><%=document.post_activity.likes.count.to_s%></div>
+    <%= link_like(document.post_activity)%>
+  </div>
+</div>
+
+</div>
+<div id="effect" class="newClass ui-corner-all">
+
+
+
+  <dl class="dl-horizontal">
+    <% unless document.description.blank? %>
+      <dt><%= t 'document.info.description' %></dt>
+      <dd><%= document.description %></dd>
+    <%end%>
+    
+    <% unless document.tag_list.blank? %>
+      <dt><%= t 'document.info.tags' %></dt>
+     <dd><%= tag_list document %></dd>
+    <%end%>
+
+    <dt><%= t('document.info.date.created_at') %></dt>
+    <dd><%= I18n.localize document.created_at, :format => :long %></dd>
+    
+    <dt><%= t('document.info.date.updated_at') %></dt>
+    <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
+    <%if resource.class==Embed%>
+      
+    <%else%>
+      <% unless document.file_file_size.blank? %>
+        <dt><%= t('document.info.size') %></dt>
+        <dd><%= number_to_human_size document.file_file_size %></dd>
+      <%end%>
+    <%end%>
+
+
+
+
+  </dl>
+</div>
+
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
+
+<script>
+$(function() {
+  $("#showMore").click(function(){
+    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+    if($("#showMore").attr("status")=== "showMore"){
+      $("#showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showMore").attr("status", "showFewer");
+    }
+    else{
+      $("#showMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showMore").attr("status", "showMore");
+    }
+    return false;
+  });
+});
+</script>

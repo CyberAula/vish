@@ -54,9 +54,16 @@ module SearchHelper
     options
   end
 
+  def get_search_query_words
+    search_query = ""
+    bare_query = strip_tags(params[:q]) unless bare_query.html_safe?
+    return bare_query.strip.split
+  end
+
   def search_results?(key)
-    bare_query = strip_tags(params[:q]) || ""
-    ThinkingSphinx.count(bare_query.strip, vish_search_options(:extended, key)) > 0
+    SocialStream::Search.count(params[:q],
+                               current_subject,
+                               :key => key) > 0
   end
 
   private

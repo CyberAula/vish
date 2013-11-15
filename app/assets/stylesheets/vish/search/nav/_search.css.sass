@@ -1,0 +1,274 @@
+.box-search-sign-out
+  display: block
+  float: right
+
+  margin-right: 20px
+.box-search
+  display: block
+  position: relative
+  float: left
+  margin-top: 5px
+  margin-left: 10px
+  .search-nav
+    .navbar-search 
+      float: none
+      margin-bottom: 0
+      margin-top: 0
+      position: relative
+      .search-query
+        @include border-radius (5px)
+
+    .mat
+      z-index: 10
+      position: absolute
+      margin-left: 8px
+      margin-top: 35px
+      width: 250px
+      @include border-bottom-radius (5px)
+      .query_too_short
+
+        @include border-left-radius (5px)
+        color: $white
+        background-color: $gray
+        margin-top: -28px
+        position: absolute
+        margin-left: -181px
+        text-align: right
+        padding: 3px
+        text-align: right
+        font-size: 12px
+        width: 165px
+        padding-right: 10px
+
+      .no_results
+        display: block
+        @include border-left-radius (5px)
+        color: $white
+        background-color: $firstColor
+        margin-top: -28px
+        position: absolute
+        margin-left: -181px
+        text-align: right
+        padding: 3px
+        text-align: right
+        font-size: 12px
+        width: 165px
+        padding-right: 10px
+      .results
+        background: rgba(255, 255, 255, 0.98)
+        width: 95%
+        ul
+          margin: 0
+          @include box-shadow (0 1px 3px rgba(20, 20, 20, 0.4))
+          @include border-bottom-radius ($inputBorderRadius)
+          li
+            list-style: none
+            height: 57px
+            padding-left: 7px
+            padding-right: 7px
+            border-bottom: 1px solid #F0F0F0
+            &:first-child
+              margin-top: 2px
+            &:last-child
+              border: none
+            &:hover
+              background: #E9E9E9
+              .author
+                a
+                  color: #888 !important
+            .picture,
+            .document,
+            .contact,
+            .video,
+            .quick_search
+
+              margin-top: 5px
+              float: left
+              margin-bottom: 5px
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
+              .avatar,
+              .photo,
+              .video,
+              .thumb
+                @include grid-fluid-span(3, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                display: block
+                float: left
+                padding: 0
+                text-align: center
+                img
+                  border: 1px solid $white
+                a
+                  
+                  font-size: 45px
+                  i
+                    padding-top: 10px
+                    &:hover
+                      text-decoration: none
+
+              .photo,
+              .video,
+              .thumb
+                img
+                  @include size (45px, 45px)
+                  @include border-radius (5px)
+              .data,
+              .brifing
+                @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                display: block
+                float: left
+                text-align: left
+                padding-left: 10px
+                color: $gray
+                .name,
+                h5
+                  @include ellipsis
+                  a
+                    text-decoration: none
+                    color: $gray
+                    font-family: $secondFontFamily
+                h5
+                  margin: 0
+                .counters
+                  display: none
+                .info,
+                .author
+                  @include text-overflow
+                  a
+                    color: $grayLight
+
+          .more
+            display: block
+            clear: both
+            text-align: center
+            height: 20px
+            padding-bottom: 3px
+            padding-top: 2px
+            a
+              color: $gray
+              font-family: $secondFontFamily
+              text-decoration: none
+            &:hover
+              background: #C7C7C7
+              a
+                color: $white
+
+        
+input#search
+  margin-top: 5px
+  padding-left: 5px
+  border: 1px solid #EEEEEE
+.sb-search
+  min-width: 250px
+  min-height: 40px
+  float: left
+  overflow: hidden
+  -webkit-transition: width 1s
+  -moz-transition: width 1s
+  transition: width 1s
+  -webkit-backface-visibility: hidden
+
+section#search
+  overflow: hidden
+  .search
+    .tabbable
+      li.disabled
+        a
+          @include opacity (20)
+          &:hover
+            border-color: $grayLight
+.sb-search-input 
+  position: absolute
+  top: 0
+  right: 0
+  border: none
+  outline: none
+  background: $white
+  width: 90%
+  height: 60px
+  margin: 0
+  z-index: 10
+  padding: 20px 65px 20px 20px
+  font-family: inherit
+  font-size: 20px
+  color: #2c3e50
+  margin-top: -5px
+  @include border-radius (5px)
+
+
+.sb-icon-search,
+.sb-search-submit  
+
+  display: block
+  position: absolute
+  right: 0
+  top: 0
+  padding: 0
+  margin: 0
+  line-height: 36px
+  text-align: center
+  cursor: pointer
+
+.sb-search-submit 
+  background: #fff /* IE needs this */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)" /* IE 8 */
+  filter: alpha(opacity=0) /* IE 5-7 */
+  opacity: 0
+  color: transparent
+  border: none
+  outline: none
+  z-index: -1
+
+//button
+.sb-icon-search 
+  color: #C8C8C8
+  background: $white
+  z-index: 90
+  font-size: 20px
+  speak: none
+  font-style: normal
+  font-weight: normal
+  font-variant: normal
+  text-transform: none
+  -webkit-font-smoothing: antialiased
+
+
+  i
+    color: #c8c8c8
+    font-size: 20px
+    text-decoration: none
+    padding: 8px
+    margin: 0px 3px 0px 0px
+    display: block
+    float: left
+  i:hover
+    color: $firstColor
+    text-decoration: none
+    border-color: $firstColor
+  
+
+
+// Open state
+
+.sb-search.sb-search-open, .no-js .sb-search
+  width: 250px
+  padding-left: 20px
+
+
+.sb-search.sb-search-open .sb-icon-search, .no-js .sb-search .sb-icon-search
+
+  color: #fff
+  z-index: 11
+
+.sb-search.sb-search-open .sb-search-submit, .no-js .sb-search .sb-search-submit
+  z-index: 90
+
+.sb-search-open
+  .mat
+    display: block !important
+
+
+  //placeholder
+.sb-search-input
+  &::-webkit-input-placeholder, &:-moz-placeholder, &::-moz-placeholder, &:-ms-input-placeholder
+    color: #555

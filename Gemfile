@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.0'
+#gem 'rails', '~> 3.2.0'
+gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,7 +14,7 @@ gem 'mysql2'
 # in production environments by default.
 gem 'sass-rails', '~> 3.2.4'
 gem 'bootstrap-sass'
-gem 'coffee-rails', '~> 3.2.2'
+gem 'coffee-rails'
 gem 'uglifier', '>= 1.2.3'
 
 gem 'jquery-rails', '>=2.0.2'
@@ -21,13 +22,16 @@ gem 'json', '1.7.4'
 gem 'sinatra', '1.3.2'
 gem 'selenium-webdriver', '=2.30.0'
 
-gem 'social_stream-base', '~> 1.1.11'
-gem 'social_stream-documents', '~> 1.1.4'
-gem 'social_stream-linkser', '~> 1.1.2'
-gem 'social_stream-ostatus', '~> 1.1.1'
+git 'git://github.com/ging/social_stream.git', branch: "master" do
+  gem 'social_stream-base'
+  gem 'social_stream-documents'
+  gem 'social_stream-linkser'
+  gem 'social_stream-ostatus'
+  gem 'social_stream-events'
+end
 
 # Force the first version of avatars_for_rails that does not collide with bootstrap
-gem 'avatars_for_rails', '=0.2.8'
+gem 'avatars_for_rails', '~> 1.1.0'
 
 # Composite keys for vish-recsys
 gem 'composite_primary_keys'
@@ -84,4 +88,7 @@ end
 gem 'pry-rails'
 
 gem 'rest-client'
+
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git'
 

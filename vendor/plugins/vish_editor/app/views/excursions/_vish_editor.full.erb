@@ -1,326 +1,455 @@
-  	<!-- Copy HTML from here -->
-  	
-	<section class="slides layout-regular template-default" id="slides_panel">
-		
-    <div id="flashcard-background" style="display:none">
-		<div id="flashcard_help_button"><img id="help_flashcard" src="/assets/icons/helptutorial_circle.png"/>
-		</div>
-		<div id="fc_change_bg_big" class="change_bg_button_class"></div>
-    </div>
-    <div id="vtour-background" style="display:none">
-		<div id="vtour_help_button"><img id="help_vtour" src="/assets/icons/helptutorial_circle.png"/></div>
-		<div id="vt_canvas"></div>
-		<div id="vt_search">
-			<input id="vt_search_input" type="text" placeholder="Search places"></input>
-			<button id="vt_search_button">
-				<img id="vt_search_button_img" src="/assets/vtour/gsearch.png"/>
-			</button>
-		</div>
-    </div>
-    <div id="menubarbg" class="menubarcolor"></div>
-    <div id="menubar_helpsection"><img src="/assets/menubar_helpsection.png"/></div>
-    <div id="menubar_helpsection2"><img src="/assets/menubar_helpsection2.png"/></div>
-		<div id="joyride_help_button"><img id="help_right" src="/assets/icons/helptutorial_circle.png"/></div>
-        <div id="preview"><img id="preview_circle" src="/assets/icons/preview_circle.png"/></div>        
-		<div id='menubar'>
-			<div id="menubar_background"><img src="/assets/menubar.png"/></div>
-			<div id="menubarButtons">
-				<a id="edit_presentation_details" href="#presentationdetails">
-					<div id="config_div" class='barbuttonaddsave noSelectableElement' title="Edit details"></div>
-				</a>
-				<a id="save">
-					<div id="save_div" class='barbuttonaddsave' i18n-key="i.SaveSlides" title="Save slides"></div>
-				</a>
-			</div>	
-			<div id="menubarCarrousel">
-			<div id="slides_carrousel"></div>   
-			</div>
-		</div>
-		
-		<div id="menubar-viewer" style="display:none">
-			<button id="page-fullscreen" class="fullscreen" type="submit" style="border: none; background-color: transparent" tabindex="2"></button>
-	    <div id="viewbar" class="viewbar">
-		  <button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
-	      <div id="slide-counter"></div>
-	  	  <button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
-		</div>
-		</div>
-		
-		
+	<!-- Copy HTML from here -->
+
+	<section id="slides_panel" class="slides slides_editor layout-regular template-default">
+
 		<!-- Toolbar -->
 		<div id="toolbar_wrapper">
 			<div id="toolbar_menu">
-
 				<!-- MENU -->
 				<ul id="menu" style="display:none">
 					<li class="current">
 						<a class="menu_option_main" href="#">
-							<img class="toolbar_icon" id="menuButton" src="/assets/toolbar/menu_button.png"/>
+							<img id="menuButton" src="/assets/toolbar/menu_button.png"/>
 						</a>
 						<ul class="menu_option_main">
+<!-- 							<li>
+								<a class="menu_option menu_action" action="onSaveButtonClicked" i18n-key="i.Save"><i class="icon-button icon-save"></i> Save</a>
+							</li> -->
 							<li>
-								<a class="menu_option menu_action menu_all" action="onSaveButtonClicked" i18n-key="i.Save">Save</a>
+								<a class="menu_option menu_action" action="onPublishButtonClicked">
+									<i class="icon-button icon-rotate-270 icon-download-alt"></i> 
+									<span i18n-key="i.Publish">Publish</span>
+								</a>
 							</li>
 							<li>
-								<a class="menu_option menu_all" href="#" i18n-key="i.Insert">Insert</a>
+								<a class="menu_option menu_action" action="insertSlide">
+									<i class="icon-button icon-plus"></i> 
+									<span i18n-key="i.AddSlide">Add Slide</span>
+								</a>
+							</li>
+							<li>
+								<a class="menu_option" href="#">
+									<i class="icon-button icon-rotate-180 icon-download-alt"></i>
+									<span i18n-key="i.Import">Import</span>
+								</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSlide" i18n-key="i.NewSlide">New Slide</a>
+										<a class="menu_option menu_action" action="insertPDFex" i18n-key="i.PDFSlideshow">PDF Slideshow</a>
 									</li>
 									<li>
-										<a style="display:none" class="menu_option menu_action" i18n-key="i.File">File</a>
+										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
 									</li>
 									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertSmartcard" i18n-key="i.Smartcard">Smartcard</a>
+										<a class="menu_option menu_action" action="insertSmartcard" i18n-key="i.Smartcard">Smartcard</a>
 									</li>
 									<li class="liInsertJson">
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertJSON">JSON</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_presentation menu_standard_presentation" action="insertPDFex">PDF Slideshow</a>
+										<a class="menu_option menu_action" action="insertJSON">JSON</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option menu_all" href="#" i18n-key="i.Export">Export</a>
+								<a class="menu_option" href="#">
+									<i class="icon-button icon-rotate-360 icon-download-alt"></i>
+									<span i18n-key="i.Export">Export</span>
+								</a>
 								<ul>
 									<li>
-										<a class="menu_option menu_action menu_all" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
-									</li>
-								</ul>
-							</li>							
-							<li>
-								<a class="menu_option menu_all" i18n-key="i.ConvertTo">Convert to</a>
-								<ul>
-									<li>
-										<a class="menu_option menu_action menu_flashcard menu_game menu_vtour" action="switchToPresentation" i18n-key="i.Presentation">Presentation</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_standard_presentation menu_game menu_vtour" action="switchToFlashcard" i18n-key="i.Flashcard">Flashcard</a>
-									</li>
-									<li>
-										<a style="display:none" class="menu_option menu_action" action="switchToGame" i18n-key="i.Game">Game</a>
-									</li>
-									<li>
-										<a class="menu_option menu_action menu_standard_presentation menu_flashcard menu_game" action="switchToVirtualTour" i18n-key="i.VirtualTour">Virtual Tour</a>
+										<a class="menu_option menu_action" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
 									</li>
 								</ul>
 							</li>
 							<li>
-								<a class="menu_option menu_action menu_all" action="preview" i18n-key="i.preview">Preview</a>
+								<a class="menu_option menu_action" action="preview">
+									<i class="icon-button icon-eye-open"></i>
+									<span i18n-key="i.Preview">Preview</span>
+								</a>
 							</li>
 							<li>
-								<a class="menu_option menu_action menu_all" action="displaySettings" i18n-key="i.Settings">Settings</a>
+								<a class="menu_option menu_action" action="displaySettings">
+									<i class="icon-button icon-edit"></i>
+									<span i18n-key="i.Settings">Settings</span>
+								</a>
 							</li>
 							<li>
-								<a class="menu_option menu_action menu_all" action="help" i18n-key="i.Help">Help</a>
-							</li
+								<a class="menu_option menu_action" action="help">
+									<i class="icon-button icon-question"></i>
+									<span i18n-key="i.Help">Help</span>
+								</a>
+							</li>
+							<li>
+								<a class="menu_option menu_action" action="about">
+									<i class="icon-button icon-info"></i>
+									<span i18n-key="i.About">About</span>
+								</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
-
 			</div>
+
 			<div id="toolbar_presentation">
-				<img id="toolbarborder" class="toolbar_icon toolbar_presentation" style="display:none" 
-				action="selectTheme" src="/assets/toolbar/flashcard_background.png" title="Select theme"/>
-				<img id="change_background_fc" class="toolbar_icon toolbar_flashcard" style="display:none" 
-				action="changeFlashcardBackground" src="/assets/toolbar/flashcard_background.png" title="Change background"/>
+<!-- 				<div class="toolbar_presentation_wrapper">
+					<a id="toolbar_save" class="tool_action" action="save" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-save"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title" i18n-key="i.Save"> Save </p>
+				</div> -->
+				<div id="toolbar_publish_help" class="toolbar_presentation_wrapper">
+					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title" i18n-key="i.Publish">Publish</p>
+				</div>
+				<div id="toolbar_preview_help" class="toolbar_presentation_wrapper">
+					<a id="toolbar_preview" class="tool_action" action="preview" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-eye-open"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title" i18n-key="i.Preview">Preview</p>
+				</div>
+				<div id="toolbar_themes_help" class="toolbar_presentation_wrapper ">
+					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-adjust"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title" i18n-key="i.Style">Style</p>
+				</div>
+				<div id="toolbar_animation_help" class="toolbar_presentation_wrapper lasticonborder">
+					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-magic"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title" i18n-key="i.Animations">Animation</p>
+				</div>
+				<div id="toolbar_background_help" class="toolbar_presentation_wrapper bgtoolpos">
+					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-picture"></i>
+						</button>
+					</a>
+					<p class="toolbar_prseentation_title" i18n-key="i.Background"> Background</p>
+				</div>
 			</div>
 			<div id="toolbar_element">
 				<img class="toolbar_icon toolbar_image" style="display:none" action="addLink" 
 				src="/assets/toolbar/addLink.png"/>
-				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot"  style="display:none" action="resizeMore" 
-				src="/assets/toolbar/resizeMore.png"/>
 				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot" style="display:none" action="resizeLess" 
 				src="/assets/toolbar/resizeLess.png"/>
-				<img class="toolbar_icon toolbar_web"  style="display:none" action="zoomMore" 
-				src="/assets/toolbar/zoomMore.png"/>
+				<img class="toolbar_icon toolbar_web toolbar_image toolbar_video toolbar_object toolbar_snapshot"  style="display:none" action="resizeMore" 
+				src="/assets/toolbar/resizeMore.png"/>
 				<img class="toolbar_icon toolbar_web" style="display:none" action="zoomLess" 
 				src="/assets/toolbar/zoomLess.png"/>
+				<img class="toolbar_icon toolbar_web"  style="display:none" action="zoomMore" 
+				src="/assets/toolbar/zoomMore.png"/>
 				<div id="toolbar_text">
 				</div>
 			</div>
 		</div>
 		
-    </section>
+		<div id="leftside">
+			<div id="slides_list_actions">
+				<a id="addSlideButton" href="#">
+					<button type="button" class="btn btn-small slidesScrollbarButton">
+						<i class="icon-plus"></i>
+						<span i18n-key="i.AddSlideMin">Add Slide</span>
+					</button>
+				</a>
+				<a id="importButton" href="#">
+					<button type="button" class="btn btn-small slidesScrollbarButton">
+						<i class="icon-rotate-180 icon-download-alt"></i>
+						<span i18n-key="i.Import">Import</span>
+					</button>
+				</a>
+			</div>
+			<div id="slides_list"></div>
+		</div>
 
-    <!-- Hidden link to open fancybox when adding a slide -->
-    <a id="addSlideFancybox" href="#thumbcontent" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when adding a quiz inside a slide -->
-    <a id="addQuizFancybox" href="#quizcontent" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when adding a json  -->
-    <a id="addJSONFancybox" href="#json_fancybox" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when adding a pdf slideshow as excursion  -->
-    <a id="addPDFexFancybox" href="#pdfex_fancybox" style="display: none;"></a>
-    <!-- Hidden link to open fancybox when creating a new presentation -->
-    <a id="launch_presentation_details" href="#presentationdetails" style="display: none;"></a>
-    <!-- Hidden link for loading fancybox -->
-    <a id="fancyLoad" href="#loading_fancy" style="display: none;"></a>
+		<div id="bottomside" style="display:none">
+			<div id="subslide_selected">
+				<img id="subslide_selected_img" class="image_barbutton" src="/assets/templatesthumbs/t2.png">
+			</div>
+			<div id="subslides_wrapper">
+				<div id="subslides_list_actions">
+					<a id="addSlideButtonOnSubslides" href="#">
+						<button type="button" class="btn btn-small slidesScrollbarButton">
+							<i class="icon-plus"></i>  
+							<span i18n-key="i.AddSlideMin">Add Slide</span>
+						</button>
+					</a>
+					<a id="importButtonOnSubslides" href="#">
+						<button type="button" class="btn btn-small slidesScrollbarButton downimport">
+							<i class="icon-rotate-180 icon-download-alt"></i>
+							<span i18n-key="i.Import">Import</span>
+						</button>
+					</a>
+				</div>
+				<div id="subslides_list"></div>
+			</div>
+		</div>
 
+		<div id="menubar-viewer" style="display:none">
+			<div id="viewbar" class="viewbar">
+				<button id="page-switcher-start" class="page-switcher" tabindex="2"></button>
+				<div id="slide-counter"></div>
+				<button id="page-switcher-end" class="page-switcher" tabindex="2" ></button>
+			</div>
+		</div>
 
+	</section>
 
-    <!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
-    <div style='display:none'>    
-      <form id='presentationdetails'>         
-        <div id="presentation_details_fields">
-        	<div id="titlepres">
-        		<p class="titlepresp">Welcome</p>
-        	</div>
-          <label for="presentation_title">
-            <div id="tutorialstart" class="textintro1 textintromargin1"><span i18n-key="i.Title">Title</span></div>
-          </label>
-          <input id='presentation_title' class="title1 formsizefancy3" type="text" name="presentation_title" placeholder="Excursion title" i18n-key="i.presTitle"> <img id="start_tutorial" src="/assets/tutorial/tutorialimage_blank.png"/>
-          <label for="presentation_description">
-            <div class="textintro1 textintromargin2"><span i18n-key="i.Description">Description</span></div>
-          </label>
-          <textarea id='presentation_description' class="description1 formsizefancy4" name="presentation_description" placeholder="Please describe in a few words what your excursion is about..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
-          
-          <div id="attachment_and_tag">
-	          <div class="tagBoxIntro">
-	            <ul id="tagindex" class="tagList"></ul>
-	          </div>
-	          
-      	  </div>
-	        <div id="thumbnails_in_presentation_details">
-	          <label for="presentation_avatar">
-	            <div class="textintro1 textintromargin3"><span i18n-key="i.Thumbnail">Thumbnail</span></div>
-	          </label>
-	          <div id="avatars_carrousel"></div>
-	          <input type="hidden" id="presentation_avatar" value="">
-	        </div>
-        
-          <button id='pedagogical_clasification_button' submit='disable' class='button buttonpedagogical' i18n-key="i.pedagogicalClasification">Pedagogical Aspects</button>
-          <button id='save_presentation_details' submit='disable' class='button buttonintro' i18n-key="i.continue">Continue</button>
-          <p id="presentation_details_error" class="error_intro" style='display:none' i18n-key="i.enterTitle">Please, enter a title</p>
-        </div>
+	<div id="hidden_links" style="display: none;">
+		<!-- Hidden link to open help -->
+		<a id="help_right"></a>
+		<!-- Hidden link to open preview -->
+		<a id="preview_action"></a>
+		<!-- Hidden link to open fancybox when adding a slide -->
+		<a id="addSlideFancybox" href="#thumbcontent"></a>
+		<!-- Hidden link to open presentation settings -->
+		<a id="edit_presentation_details" href="#presentationdetails"></a>
+		<!-- Hidden link for loading fancybox -->
+		<a id="fancyLoad" href="#loading_fancy"></a>
+		<!-- Hidden link to open notification template -->
+		<a id="link_to_notification_template" href="#notification_template_cloned"></a>
+	</div>
 
-         <div id="pedagogical_options_fields" style="display:none">
-         	<img id='help_pedagogical_selection' src="/assets/icons/helptutorial_circle.png"/>
-            <div id="titlepres2">
-        		<p class="titlepresp2">Pedagogical Aspects*</p>
-        	</div>
-          <div id="pedagogical_first_row" class="pedagogical_tab_element">
-	         
-	         <div id="age_range_box">
-				    <label for="age_range">
-				    	<div id="age_range_text" class="textintro1 textmarginbottom"><span i18n-key="i.age_range">Age range:</span></div>
-				    </label>
-				    <input type="text" id="age_range" style="border: 0; color: #005580; font-weight: bold;" />
-	 
-				<div id="slider-range"></div>
+	<!-- Initial screen to input the basic exursion data (Title, Description, etc.) -->
+	<div style='display:none'>    
+		<form id='presentationdetails'>
+
+			<div id="presentation_details_fields">
+				<img class='help_in_settings' id='help_in_settings' src="/assets/vicons/helptutorial_circle_blank.png"/>
+				<div id="presentation_details_fields_row1">
+
+					<div id="presentation_details_fields_row1_column1">
+						<img id='presentation_details_logo' src="/assets/icons/logo.png"/>
+						<p id="presentation_details_preview_title" class="presentation_details_column_title" i18n-key="i.Preview">Preview</p>
+						<div id="presentation_details_preview">
+							<div id="presentation_details_preview_thumbnail">
+								<div title="Click to add an avatar. You should select an avatar to identify your excursion" id="presentation_details_preview_thumbnail_img_wrapper">
+									<img id='presentation_details_preview_thumbnail_img' class="addThumbnailPlus" src="/assets/icons/addThumbnail.png"/>
+								</div>
+								<p class="addthumbtitle" i18n-key="i.Addanavatar">Add an avatar *</p>
+								<div id="editthumb">
+									<p i18n-key="i.edit">edit</p>
+								</div>
+							</div>
+							<div id="presentation_details_preview_addtitle">
+								<input id="presentation_details_preview_addtitle_input" type="text" maxLength="120" placeholder="add a title" i18n-key="i.addatitle"></input>
+							</div>
+							<div id="presentation_details_preview_author">
+								<span i18n-key="i.by">by</span> <span id="author_span_in_preview"></span>
+							</div>
+						</div>
+					</div>
+
+					<div id="presentation_details_fields_row1_column2">
+
+						<p i18n-key="i.ExcursionDetails" class="presentation_details_column_title"> Excursion Details </p>
+
+						<div id="presentation_details_title">
+							<span class="presentation_details_text" title='Title is a mandatory field' i18n-key="i.Title">Title *</span>
+							<input id="presentation_details_input_title" class="presentation_details_input" type="text" placeholder="Excursion title" i18n-key="i.presTitle" maxLength="120"></input>
+						</div>
+
+						<div id="presentation_details_description">
+							<span class="presentation_details_text" i18n-key="i.Description">Description</span>
+							<textarea id='presentation_details_textarea' placeholder="Please describe in a few words what your excursion is about..." i18n-key="i.presDescriptionPlaceHolder"></textarea>
+						</div>			
+
+						<div id="competitions_in_presentation_details">
+							<span class="presentation_details_text" i18n-key="i.Competitions">Competitions </span>
+							<img class='help_in_competitions' id='help_in_competitions' src='/assets/vicons/helptutorial_circle_blank.png'/>
+						</div>
+
+						<div id="tags_in_presentation_details">
+							<span class="presentation_details_text" i18n-key="i.Tags">Tags</span>
+							<div id="tagBoxIntro">
+								<ul id="tagindex" class="tagList"></ul>
+							</div>
+						</div>
+					</div>
+
+					<div id="presentation_details_fields_row1_column3">
+						<p id="selectthemeshelp" class="presentation_details_column_title" i18n-key="i.SelectTheme"> Select Theme </p>
+						<div id="scrollbar_themes_list"></div>
+					</div>
+				</div>
+
+				<div id="presentation_details_fields_row2">
+					<button id='pedagogical_clasification_button' submit='disable' class='button' i18n-key="i.PedagogicalAspects">Pedagogical Aspects</button>
+					<button id='fill_details_later_button' submit='disable' class='button' i18n-key="i.Filllater">Fill later</button>
+					<button id='save_presentation_details' disabled="true" submit='disable' class='button buttonDisabledOnSettings' title="Write a title and choose an avatar to continue" i18n-key="i.Continue">Continue</button>
+				</div>
 			</div>
 
-	          <div id="subject_tag_box">		  
-		          <label for="subject_tag">
-		            <div id="subject_text" class="textintro1 textmarginbottom"><span i18n-key="i.Subject">Subject</span></div>
-		          </label>
-		          <select id="subject_tag" class="" size="4" multiple="multiple">
-				    <option value="Unspecified" selected="1">Unespecified</option>
-				    <option value="Art">Art</option>
-				    <option value="Astronomy">Astronomy</option>
-				    <option value="Biology">Biology</option>
-		   		    <option value="Chemistry">Chemistry</option>
-		   		    <option value="Citizenship">Citizenship</option>
-				    <option value="Classical Languages">Classical Languages</option>
-				    <option value="Cross Curricular education">Cross Curricular education</option>
-				    <option value="Culture">Culture</option>
-		   		    <option value="Economics">Economics</option>
-		   		    <option value="Educational administration">Educational administration</option>
-				    <option value="Environmental Education">Environmental Education</option>
-				    <option value="Ethics">Ethics</option>
-				    <option value="European Studies">European Studies</option>
-		   		    <option value="Foreign Languages">Foreign Languages</option>
-		   		    <option value="Geography">Geography</option>
-				    <option value="Geology">Geology</option>
-				    <option value="Health education">Health education</option>
-				    <option value="History">History</option>
-		   		    <option value="Home economics">Home economics</option>
-		   		    <option value="Informatics">Informatics</option>
-				    <option value="Language and literature">Language and literature</option>
-				    <option value="Law">Law</option>
-				    <option value="Mathematics">Mathematics</option>
-		   		    <option value="Media Education">Media Education</option>
-		   		    <option value="Music">Music</option>
-				    <option value="Natural Sciences">Natural Sciences</option>
-				    <option value="Philosophy">Philosophy</option>
-				    <option value="Physical Education">Physical Education</option>
-		   		    <option value="Physics">Physics</option>
-		   		    <option value="Politics">Politics</option>
-				    <option value="Pre-school Subjects">Pre-school Subjects</option>
-				    <option value="Primary School Subjects">Primary School Subjects</option>
-				    <option value="Psychology">Psychology</option>
-		   		    <option value="Religion">Religion</option>
-		   		    <option value="School-community relationship">School-community relationship</option>
-				    <option value="Social sciences">Social sciences</option>
-				    <option value="Special (needs) Education">Special (needs) Education</option>
-				    <option value="Technology">Technology</option>
-				  </select>
-			  </div>
+
+			<div id="pedagogical_options_fields" style="display:none">
+				<img class='help_in_settings' id='help_pedagogical_selection' src="/assets/vicons/helptutorial_circle_blank.png"/>
+				<div>
+					<p class="pedagogical_title" i18n-key="i.PedagogicalAspects">Pedagogical Aspects</p>
+				</div>
+
+				<div id="pedagogical_options_fields_row1">
+					
+					<div id="pedagogical_options_fields_row1_column1">
+
+						<div id="language_tag_box">
+							<div id="language_tag_box_text">
+								<span i18n-key="i.Language">Language</span>
+							</div>
+							<select id="language_tag" class="ped_box_fields2">
+								<option value="independent" selected="1" i18n-key="i.Languageindependent">Language independent</option>
+								<option value="de">Deutsch</option>
+								<option value="en">English</option>
+								<option value="es">Español</option>
+								<option value="fr">Français</option>
+								<option value="it">Italiano</option>
+								<option value="pt">Português</option>
+								<option value="ru">Русский</option>
+								<option value="ot" i18n-key="i.Other">Other</option>
+							</select>
+						</div>
+
+						<div id="context_tag_box" class="content_tag_box_class margin_for_new_field_settings">
+							<div id="context_tag_box_text">
+								<span i18n-key="i.Context">Context</span>
+							</div>
+							<select id="context_tag" class="ped_box_fields">
+								<option value="unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
+								<option value="preschool" i18n-key="i.Preschool">Preschool</option>
+								<option value="school" i18n-key="i.School">School</option>
+								<option value="higher education" i18n-key="i.HigherEducation">Higher Education</option>
+								<option value="university" i18n-key="i.University">University</option>
+								<option value="training" i18n-key="i.Training">Training</option>
+								<option value="other" i18n-key="i.Other">Other</option>
+							</select>
+						</div>
+
+					</div>
+
+					<div id="pedagogical_options_fields_row1_column2">
+						
+						<div id="age_range_wrapper">
+							<div class="range_text"><span i18n-key="i.Age_range">Age range</span>:</div>
+							<div class="slider_wrapper">
+								<input type="text" id="age_range" class="slider_range_input"/>
+								<div id="slider-age" class="slider_bar"></div>
+							</div>
+						</div>
+
+						<div id="difficulty_wrapper" class="margin_for_new_field_settings">
+							<div class="range_text"><span i18n-key="i.Difficulty">Difficulty</span>:</div>
+							<div class="slider_wrapper">
+								<input type="text" id="difficulty_range" class="slider_range_input"/>
+								<div id="slider-difficulty" class="slider_bar"></div>
+							</div>
+						</div>
+
+						<div id="tlt_wrapper" class="margin_for_new_field_settings">
+							<div class="range_text"><span i18n-key="i.Typicallearningtime">Typical learning time</span>:</div>
+							<input type="text" id="tlt_current_value" class="slider_range_input"/>
+							<div class="tlt_inputs_wrapper">
+								<div class="tlt_input_wrapper">
+									<p class="tlt_input_title" i18n-key="i.Hours">Hours</p>
+									<input type="number" value="0" min="0" max="23" id="tlt_hours" class="tlt_input"/>
+								</div>
+								<div class="tlt_input_wrapper">
+									<p class="tlt_input_title" i18n-key="i.Minutes">Minutes</p>
+									<input type="number" value="0" min="0" max="59" id="tlt_minutes" class="tlt_input"/>
+								</div>
+								<div class="tlt_input_wrapper">
+									<p class="tlt_input_title" i18n-key="i.Seconds">Seconds</p>
+									<input type="number" value="0" min="0" max="59" step="5" id="tlt_seconds" class="tlt_input"/>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="pedagogical_options_fields_row1_column3">
+						<div id="subject_tag_box">		  
+							<div id="subject_tag_box_text">
+								<span i18n-key="i.Subject">Subject</span>
+							</div>
+							<select id="subject_tag" size="4" multiple="multiple">
+								<option value="Unspecified" selected="1" i18n-key="i.Unspecified">Unspecified</option>
+								<option value="Art" i18n-key="i.Art">Art</option>
+								<option value="Astronomy" i18n-key="i.Astronomy">Astronomy</option>
+								<option value="Biology" i18n-key="i.Biology">Biology</option>
+								<option value="Chemistry" i18n-key="i.Chemistry">Chemistry</option>
+								<option value="Citizenship" i18n-key="i.Citizenship">Citizenship</option>
+								<option value="Classical Languages" i18n-key="i.ClassicalLanguages">Classical Languages</option>
+								<option value="Cross Curricular Education" i18n-key="i.CrossCurricularEducation">Cross Curricular Education</option>
+								<option value="Computer Science" i18n-key="i.ComputerScience">Computer Science</option>
+								<option value="General Culture" i18n-key="i.GeneralCulture">General Culture</option>
+								<option value="Economics" i18n-key="i.Economics">Economics</option>
+								<option value="Education" i18n-key="i.Education">Education</option>
+								<option value="Electronics" i18n-key="i.Electronics">Electronics</option>
+								<option value="Environmental Education" i18n-key="i.EnvironmentalEducation">Environmental Education</option>
+								<option value="Ethics" i18n-key="i.Ethics">Ethics</option>
+								<option value="Foreign Languages" i18n-key="i.ForeignLanguages">Foreign Languages</option>
+								<option value="Geography" i18n-key="i.Geography">Geography</option>
+								<option value="Geology" i18n-key="i.Geology">Geology</option>
+								<option value="Health Education" i18n-key="i.HealthEducation">Health Education</option>
+								<option value="History" i18n-key="i.History">History</option>
+								<option value="Home Economics" i18n-key="i.HomeEconomics">Home Economics</option>
+								<option value="Literature" i18n-key="i.Literature">Literature</option>
+								<option value="Law" i18n-key="i.Law">Law</option>
+								<option value="Mathematics" i18n-key="i.Mathematics">Mathematics</option>
+								<option value="Music" i18n-key="i.Music">Music</option>
+								<option value="Natural Sciences" i18n-key="i.NaturalSciences">Natural Sciences</option>
+								<option value="Philosophy" i18n-key="i.Philosophy">Philosophy</option>
+								<option value="Physical Education" i18n-key="i.PhysicalEducation">Physical Education</option>
+								<option value="Physics" i18n-key="i.Physics">Physics</option>
+								<option value="Politics" i18n-key="i.Politics">Politics</option>
+								<option value="Psychology" i18n-key="i.Psychology">Psychology</option>
+								<option value="Religion" i18n-key="i.Religion">Religion</option>
+								<option value="Social Sciences" i18n-key="i.SocialSciences">Social Sciences</option>
+								<option value="Software Engineering" i18n-key="i.SoftwareEngineering">Software Engineering</option>
+								<option value="Technology" i18n-key="i.Technology">Technology</option>
+								<option value="Telecommunications" i18n-key="i.Telecommunications">Telecommunications</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="pedagogical_options_fields_row2">
+					<div>
+						<div id="educational_objectives_title">
+							<span i18n-key="i.EducationalObjectives">Educational Objectives</span>
+						</div>
+						<textarea id='educational_objectives_textarea' name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalObjectivesPlaceholder"></textarea>
+					</div>
+				</div>
+
+				<div id="pedagogical_options_fields_row3">
+					<button id='done_in_pedagogical' submit='disable' class='button' i18n-key="i.Done">Done</button>
+				</div>
+
+			</div>
+
+		</form>
+	</div>
 
 
-			  <div id="language_tag_box">
-		          <label for="language_tag">
-		            <div id="language_text" class="textintro1 textmarginbottom"><span i18n-key="i.language">Language</span></div>
-		          </label>
-				  <select id="language_tag" class="">
-      	              <option value="independent" selected="1">(Language independent)</option>
-      	              <option value="de">Deutsch</option>
-      	              <option value="en">English</option>
-      	              <option value="es">Español</option>
-      	              <option value="fr">Français</option>
-      	              <option value="it">Italiano</option>
-      	              <option value="pt">Português</option>
-      	              <option value="ru">Русский</option>
-      				  <option value="ot">Others</option>
-      	            </select>
-			  </div>
-		  </div>
-
-		  <div id="educational_objectives_tag_box" class="pedagogical_new_row">
-		    <label for="educational_objectives_tag">
-              <div class="textintro1 pedagogical_tab_element"><span i18n-key="i.Educational">Educational Objectives</span></div>
-            </label>
-            <textarea id='educational_objectives_tag' class="description1 formsizefancy4 pedagogical_tab_element" name="educational_objectives" placeholder="Please describe the educational objectives you aim to fulfil by using this excursion..." i18n-key="i.EducationalPlaceholder"></textarea>
-		  </div>
-          
-		  <div id="acquired_competencies_tag_box" class="pedagogical_new_row">
-	          <label for="acquired_competencies_tag ">
-	            <div class="textintro1 pedagogical_tab_element"><span i18n-key="i.Competencies">Skills & competencies</span></div>
-	          </label>
-	          <textarea id='acquired_competencies_tag' class="description1 formsizefancy4 pedagogical_tab_element fixbottom" name="acquired_competencies" placeholder="Skills & competencies that students will acquire and develop by using this excursion..." i18n-key="i.CompetenciesPlaceholder"></textarea>
-	      </div>
-
-	      <i id="based_on_lom" class="" i18n-key="i.basedOnLOM">*based on LOM standard</i>
-		  <button id='done_in_pedagogical' submit='disable' class='button buttonintro' i18n-key="i.done">Done</button>
-        </div>
-      </form>
-    </div>  
-      
-      <!--
-	  <div class="attachmentIntro">
-      	<span id="attachmentIntroSpan" i18n-key="i.TeachingGuidelines">Teaching guidelines</span>
-      	<form  id="attachment_intro_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-                  <input type="file" name="document[file]" class="upload_file_input">
-                  <input type="hidden" name="document[title]">
-                  <input type="hidden" name="document[description]">
-                  <input type="hidden" name="document[owner_id]">
-                  <input type="hidden" name="authenticity_token">					  
-                  <input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-        </form>
-      </div>
-      -->
-      
-    <!-- Thumbnails fancybox -->
+	<!-- Import and Add slide fancybox -->
 	<div style='display:none'>
 		<div id='thumbcontent'>
 			
 			<div class='fancy_tabs' id='thumcontent_tabs'>
 				<ul>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_templates')" id="tab_templates" class="fancy_tab tabbable" i18n-key="i.Templates">Templates</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_slides')" id="tab_slides" class="fancy_tab tabbable" i18n-key="i.Slides">Slides</a>
+					</li>
+					<li>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex')" id="tab_pdfex" class="fancy_tab">PDF</a>
 					</li>
 					<li>
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo')" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursions">Excursions</a>
@@ -328,64 +457,104 @@
 					<li>
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_smartcards_repo')" id="tab_smartcards_repo" class="fancy_tab tabbable" i18n-key="i.Smartcards">Smartcards</a>
 					</li>
+					<li>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file')" id="tab_json_file" class="fancy_tab">JSON</a>
+					</li>
 				</ul>
 			</div> 
 
-			<div id='tab_templates_content' class="fancy_tab_content" style='display:none' > 
-				<img id='help_template_selection' src='/assets/icons/helptutorial_circle_blank.png'/>
-				<div class="tab_templates_content">
-				<div class='templatethumb' template='1'>
-					<img src='/assets/templatesthumbs/t1.png' />
-				</div>
-				<div class='templatethumb' template='2'>
-					<img src='/assets/templatesthumbs/t2.png' />
-				</div>
-				<div class='templatethumb' template='3'>
-					<img src='/assets/templatesthumbs/t3.png' />
-				</div>
-				<div class='templatethumb' template='4'>
-					<img src='/assets/templatesthumbs/t4.png' />
-				</div>
-				<div class='templatethumb' template='5'>
-					<img src='/assets/templatesthumbs/t5.png' />
-				</div>
-				<div class='templatethumb' template='6'>
-					<img src='/assets/templatesthumbs/t6.png' />
-				</div>
-				<div class='templatethumb' template='7'>
-					<img src='/assets/templatesthumbs/t7.png' />
-				</div>
-				<div class='templatethumb' template='8'>
-					<img src='/assets/templatesthumbs/t8.png' />
-				</div>
-				<div class='templatethumb' template='9'>
-					<img src='/assets/templatesthumbs/t9.png' />
-				</div>
-				<div class='templatethumb' template='10'>
-					<img src='/assets/templatesthumbs/t10.png' />
-				</div>
-				<div class='templatethumb' template='11'>
-					<img src='/assets/templatesthumbs/t11.png' />
-				</div>
-				<div class='templatethumb' template='12'>
-					<img src='/assets/templatesthumbs/t12.png' />
-				</div>
-				<div class='templatethumb' template='13'>
-					<img src='/assets/templatesthumbs/t13.png' />
-				</div>
-				<div class='templatethumb' template='14'>
-					<img src='/assets/templatesthumbs/t14.png' />
-				</div>
-				<div class='templatethumb' template='15'>
-					<img src='/assets/templatesthumbs/t15.png' />
+			<div id='tab_slides_content' class="fancy_tab_content" style='display:none' > 
+				<img class='help_in_fancybox' id='tab_slides_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<div class="tab_slides_content">
+					<div class="tab_slides_templates">
+						<p class="select_text" i18n-key="i.Templates">Templates</p>
+						<div class="templateselectlist">
+							<div class='slidethumb templatethumb' template='1'>
+								<img src='/assets/templatesthumbs/t1.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='2'>
+								<img src='/assets/templatesthumbs/t2.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='3'>
+								<img src='/assets/templatesthumbs/t3.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='4'>
+								<img src='/assets/templatesthumbs/t4.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='5'>
+								<img src='/assets/templatesthumbs/t5.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='6'>
+								<img src='/assets/templatesthumbs/t6.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='7'>
+								<img src='/assets/templatesthumbs/t7.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='8'>
+								<img src='/assets/templatesthumbs/t8.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='9'>
+								<img src='/assets/templatesthumbs/t9.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='10'>
+								<img src='/assets/templatesthumbs/t10.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='11'>
+								<img src='/assets/templatesthumbs/t11.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='12'>
+								<img src='/assets/templatesthumbs/t12.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='13'>
+								<img src='/assets/templatesthumbs/t13.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='14'>
+								<img src='/assets/templatesthumbs/t14.png' />
+							</div>
+							<div class='slidethumb templatethumb' template='15'>
+								<img src='/assets/templatesthumbs/t15.png' />
+							</div>
+						</div>
+					</div>
+					<div class="tab_slides_smartcards">
+						<p class="select_text" i18n-key="i.Smartcards">Smartcards</p>
+						<div class="templateselectlist2">
+						<div class='slidethumb fcthumb' type='flashcard'>
+							<img src='/assets/templatesthumbs/flashcard_template.png' />
+						</div>
+						<div class='slidethumb vtthumb' type='VirtualTour'>
+							<img src='/assets/templatesthumbs/tVTour.png' />
+						</div>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			<div id='tab_pdfex_content' class="fancy_tab_content" style='display:none'>
+				<img class='help_in_fancybox' id='tab_pdfex_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<div class="box1 box1fancy3">
+					<p class="textfancy" i18n-key="i.AddslideshowPDF">Add slideshow from PDF file</p></br>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+
+					<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
+						<input id="upload_file_input" type="file" name="pdfex[attach]" class="upload_file_input">
+						<input type="hidden" name="document[owner_id]">
+						<input type="hidden" name="authenticity_token">
+						<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+					</form>
+
+					<div class="upload_progress_bar_wrapper">
+						<div class="upload_progress_bar"></div >
+						<div class="upload_progress_bar_percent">0%</div >
+					</div>
+
+				</div>
 			</div>
 
 			<div id='tab_presentations_repo_content' class="fancy_tab_content" style='display:none'> 
-				<img id='help_excursion_selection' src='/assets/icons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_presentations_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="excursions_repo_content">
-					<img src="/assets/repositoryimg.png" class="imagelogotab"/>  
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>  
 					<div class="search_container">
 						<input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
 					</div>
@@ -394,16 +563,16 @@
 						<div class="content_preview_data"></div>
 						<div class="content_preview_metadata"></div>
 						<div class="content_preview_foot">
-							<button i18n-key="i.Preview" style="display:none" type="button" class="okButton2 previewbutton2">Preview</button>
+							<button i18n-key="i.Preview" style="display:none" type="button" class="okButton2">Preview</button>
 						</div>
 					</div> 	
 				</div>	
 			</div>
 
-			<div id='tab_smartcards_repo_content' class="fancy_tab_content" style='display:none'> 
-			<img id='help_smartcard_selection' src='/assets/icons/helptutorial_circle_blank.png'/>
+			<div id='tab_smartcards_repo_content' class="fancy_tab_content" style='display:none'>
+				<img class='help_in_fancybox' id='tab_smartcards_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<div class="excursions_repo_content">
-					<img src="/assets/repositoryimg.png" class="imagelogotab"/>  
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>  
 					<div class="search_container">
 						<input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
 					</div>
@@ -412,46 +581,53 @@
 						<div class="content_preview_data"></div>
 						<div class="content_preview_metadata"></div>
 						<div class="content_preview_foot">
-							<button i18n-key="i.Preview" style="display:none" type="button" class="okButton2 previewbutton2">Preview</button>
+							<button i18n-key="i.Preview" style="display:none" type="button" class="okButton2">Preview</button>
 						</div>
 					</div> 	
 				</div>	
 			</div>
 
+			<div id='tab_json_file_content' class="fancy_tab_content" style='display:none'>
+				<img class='help_in_fancybox' id='tab_json_file_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<div class="box1 box1fancy3">
+					<p class="textfancy" i18n-key="i.AddFromJSONfile">Add ViSH Editor Presentation from JSON file</p></br>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<input id="json_file_input" type="file" id="files" name="files[]" multiple />
+					<button id="json_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+				</div>
+			</div>
+
 		</div>
 	</div>
 
+
 	<!-- Quizes fancybox -->
 	<div style='display:none'>
-		<div id='quizcontent'>
+		<div id='quiz_fancybox'>
 
-			<div class='fancy_tabs' id='quizcontent_tabs'>
+			<div class='fancy_tabs' id='quiz_fancybox_tabs'>
 				<ul>
 					<li>
-						<a href="#" id="tab_quizes" class="fancy_tab">Quiz</a>
+						<a href="#" id="tab_quizzes" class="fancy_tab">Quiz</a>
 					</li>
 				</ul>
-				<img id='tab_quizes_help' class='help_in_fancybox' src='/assets/icons/helptutorial_circle_blank.png'/>
+				<img id='tab_quizzes_help' class='help_in_fancybox' src='/assets/vicons/helptutorial_circle_blank.png'/>
 			</div> 
 
-			<div id='tab_quizes_content' class="fancy_tab_content" style='display:none' > 
-				
-				<div style="display:none" class='quizFancythumb'>
-					<img src='/assets/templatesthumbs/tquiz1.png' />
+			<div id='tab_quizzes_content' class="fancy_tab_content">
+				<div class='quizFancythumb'>
+					<img src='/assets/templatesthumbs/tquiz2.png' onclick='VISH.Editor.Quiz.add("multiplechoice");'/>
+					<p><span i18n-key="i.walkQuiz_MC1">Multiple choice</span></p>
 				</div>
 				<div class='quizFancythumb'>
-					<img src='/assets/templatesthumbs/tquiz2.png' onclick='VISH.Editor.Quiz.add("multiplechoice");' />
-				</div>
-				<div class='quizFancythumb'>
-					<img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.add("truefalse");' />
+					<img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.add("truefalse");'/>
+					<p><span i18n-key="i.walkQuiz_TF1">True / False</span></p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
-  	  <div style='display:none'>
-	  	
+	<div style='display:none'>
 		<div id='menuselect' class="menuselect_hide">
 			<a class='all' href="#">
 				<div class='thumbicon textthumb' i18n-key="i.Text" title="Text"></div>
@@ -465,95 +641,43 @@
 			<a class="addvideo medium large" href="#video_fancybox">
 				<div class='thumbicon videothumb' i18n-key="i.Video" title="Video"></div>
 			</a>
-			<a class="addLive medium large" href="#live_fancybox">
-				<div class='thumbicon livethumb' i18n-key="i.Live" title="Live"></div>
-			</a>
 			<a class="addQuiz large" href="#quiz_fancybox" id="add_quiz_thumb">
 				<div class='thumbicon quizthumb' i18n-key="i.Quiz" title="Quiz"></div>
 			</a>
+<!-- 			<a class="addLive medium large" href="#live_fancybox">
+				<div class='thumbicon livethumb' i18n-key="i.LiveResources" title="Live"></div>
+			</a> -->
 		</div>
-	    
-	  </div>
-	  	
-
-    <!-- JSON fancybox -->
-	  <div style='display:none'>
-	    <div id="json_fancybox" class="outer_box">
-				<div class="fancy_tabs" id="json_fancy_tabs_id">  
-				  <ul>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file')" id="tab_json_file" class="fancy_tab">file</a></li>
-				  </ul>
-				  <img class='help_in_fancybox' id='tab_json_file_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				</div>
-				<div id='tab_json_file_content' class="fancy_tab_content">
-					<div class="box1 box1fancy3">
-						<p class="textfancy">Add Excursion or Smartcard from JSON file</p></br>
-						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-						<input id="json_file_input" type="file" id="files" name="files[]" multiple />
-						<button id="json_preview_button" type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
-					</div>
-				</div> 
-	    </div>
-	  </div>
-
-	  <!-- PDFex fancybox -->
-	  <div style='display:none'>
-	    <div id="pdfex_fancybox" class="outer_box">
-				<div class="fancy_tabs" id="pdfex_fancy_tabs_id">
-				  <ul>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex')" id="tab_pdfex" class="fancy_tab">file</a></li>
-				  </ul>
-				  <img class='help_in_fancybox' id='tab_pdfex_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				</div>
-
-				<div id='tab_pdfex_content' class="fancy_tab_content">
-					<div class="box1 box1fancy3">
-						<p class="textfancy">Add slideshow from PDF file</p></br>
-						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-
-						<form class="documentsForm" action="pdfex.json" method="post" enctype="multipart/form-data">
-							<input id="upload_file_input" type="file" name="pdfex[attach]" class="upload_file_input">
-							<input type="hidden" name="document[owner_id]">
-							<input type="hidden" name="authenticity_token">
-							<input id="upload_pdfex_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-						</form>
-
-						<div class="upload_progress_bar_wrapper">
-							<div class="upload_progress_bar"></div >
-							<div class="upload_progress_bar_percent">0%</div >
-						</div>
-
-					</div>
-				</div>
-	    </div>
-	  </div>
-
-
-					
-
-
-
-
-
-	  <!-- PROMPT USER IF SHE IS SURE TO DELETE ITEM -->
-	  <div style='display:none'>
-	  	<input type="hidden" id="prompt_answer" value="false"></input>
-	  	<div id='prompt_form'>	  		
-	  		<img id="image_template_prompt" class="delete_img" src="/assets/templatesthumbs/default.png"/>
-	  		<img id="delimg" class="delimg" src="/assets/icons/ve_delete_border.png">
-	  		<span i18n-key="i.sure" class="deltext">are you sure?</span>
-	  		<div class="buttons_together">
-	  			<a href="#" onclick="$('#prompt_answer').val('true'); $.fancybox.close();" class="button" i18n-key="i.delete">delete</a>
-	  			<a href="#" onclick="$('#prompt_answer').val('false'); $.fancybox.close();" class="button" i18n-key="i.no">no</a>
-	  		</div>
-	  	</div>
-	  </div>
+	</div>
   
-	 <!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
+	<!-- FANCYBOX ADD A LINK TO A ELEMENT (IMAGE,etc) -->
+	<div style='display:none'>
+		<div id='tools_addUrl'>	  		
+			<div class="box1 box1fancy1">
+				<p class="textfancy">Url</p></br>
+				<img class="image_add_link" src="/assets/icons/url_img.png"/>
+				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
+				<div class="addUrlButtons">
+					<button type="button" class="addUrlButton" i18n-key="i.Add" 
+					onclick="VISH.Editor.Tools.addUrl()">Add</button>
+					<button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
+					onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- NOTIFICATIONS -->
+
+	<!-- NOTIFICATION TEMPLATE -->
+	<div id="notification_template_wrapper" style='display:none'></div>
+
+	<!-- NOTIFY USER WHEN NOT MET MINIMUM REQUIREMENTS -->
 	<div style='display:none'>
 		<div id='requirements_form_wrapper'>
-			<div id='requirements_form' class='fancy_msg_advert'>      
-				<span i18n-key="i.browserrequirements" class="adverttext">Your browser does not meet the minimum requirements to init Vish Editor, please update your browser.</span> 
+			<div id='requirements_form'>      
+				<span i18n-key="i.browserrequirements" class="adverttext">Your browser does not meet the minimum requirements to init ViSH Editor, please update your browser.</span>
 				<div id="recomended_browsers">
 					<div class="recomended_browser">
 						<span class="browserTitle">Google Chrome</span>
@@ -567,1110 +691,1344 @@
 						<span class="browserTitle">Internet Explorer 9</span>
 						<a target="_blank" href="http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie-9/worldwide-languages"><img class="browser_img" src="/assets/browsers/internetexplorer.png"/></a>
 					</div>
-					<div class="recomended_browser">
+<!-- 					<div class="recomended_browser">
 						<span class="browserTitle">Opera</span>
 						<a target="_blank" href="http://www.opera.com/download"><img class="browser_img" src="/assets/browsers/opera.png"/></a>
-					</div>
+					</div> -->
 				</div>
 				<div class="button_advert_wrapper">
-				<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
+					<a href="#" onclick="$.fancybox.close();" class="button button_advert" i18n-key="i.OK">OK</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- NOTIFY USER WHEN PRESENTATION IS NOT VALID -->
-	<div style='display:none'>
-		<div id='presentation_not_valid_wrapper'>
-			<div id='presentation_not_valid' class='fancy_msg_advert'>      
-				<span i18n-key="i.pNotValid" class="adverttext">
-				This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.
-				</span> 
-				<div class="button_advert_wrapper">
-					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
-				</div>
-				</div>
-		</div>
-	</div>
-  
-  	<!-- NOTIFY USER WHEN A PDF FILE COULDN'T BE TRANSFORMED TO A PRESENTATION -->
-	<div style='display:none'>
-		<div id='pdf2p_not_valid_wrapper'>
-			<div id='pdf2p_not_valid' class='fancy_msg_advert'>      
-				<span i18n-key="i.PDFNotValid" class="adverttext">
-					An error has occurred. Ensure that the PDF file is valid.
-				</span>
-				<div class="button_advert_wrapper">
-					<a href="#" onclick="$.fancybox.close();" class="button_advert" i18n-key="i.OK">OK</a>
-				</div>
-				</div>
-		</div>
-	</div>
+	<!-- IMAGE -->
+	<a id="hidden_button_to_change_slide_background" href="#picture_fancybox" style="display:none"></a>
+	<a id="hidden_button_to_uploadThumbnail" href="#picture_fancybox" style="display:none"></a>
 
-  	  <!-- PROMPT USER IF SHE IS SURE TO SAVE THE SLIDE -->
-	  <div style='display:none'>
-	  	<input type="hidden" id="save_answer" value="cancel"></input>
-	  	<div id='save_form'>
-	  		<img id="saveimg" class="delete_img" src="/assets/icons/save_document.png">
-	  		<span i18n-key="i.sure" class="deltext">are you sure?</span> 		
-	  		<div class="buttons_together">
-	  			<a save-option-id="save" href="#" onclick="$('#save_answer').val('save'); $.fancybox.close();" class=" button" i18n-key="i.save">Save</a>
-	  			<a save-option-id="publish" href="#" onclick="$('#save_answer').val('publish'); $.fancybox.close();" class=" button" i18n-key="i.publish">Publish</a>
-	  			<a save-option-id="draft" href="#" onclick="$('#save_answer').val('draft'); $.fancybox.close();" class="button" i18n-key="i.draft">Draft</a>
-	  			<a save-option-id="cancel" i18n-key="i.cancel" href="#" onclick="$('#save_answer').val('cancel'); $.fancybox.close();" class="button">cancel</a>
-	  		</div>
-	  	</div>
-	  </div>
-	  
-	  <!-- NOTIFY WHEN THERE IS NO SLIDES AND TRY TO SAVE -->
-	  <div style='display:none'>
-	  	<div id='message1_form'>
-	  		<div class="text_in_fancybox">
-	  			<img id="message1img" src="/assets/zonethumbs/content_fail.png">
-	  			<span class="deltext" i18n-key="i.oneSlideAlert">Create at least one slide before saving.</span>
-	  		</div> 		
-	  		<div id="button_accept_when_fail">
-	  			<a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
-	  		</div>
-	  	</div>
-	  </div>
-	  
-	<!-- PROMPT TO ADD A LINK TO A ELEMENT (IMAGE,etc) -->
-	<div style='display:none' isFancyBoxContainer="true">
-	  	<div id='tools_addUrl'>	  		
-			<div class="box1 box1fancy1">
-				<p class="textfancy">Url</p></br>
-				<img class="image_add_link" src="/assets/icons/url_img.png"/>
-				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
-				<div class="addUrlButtons">
-					<button type="button" class="addUrlButton" i18n-key="i.Add" 
-					onclick="VISH.Editor.Tools.addUrl()">Add</button>
-					<button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
-					onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
-				</div>
-
+	<div style='display:none'>
+		<div id="picture_fancybox" class="outer_box">
+			<div class="fancy_tabs" id="images_fancy_tabs_id">	   
+				<ul>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails')" id="tab_pic_thumbnails" class="fancy_tab tabbable" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre')" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
+				</ul>
+				<img class='help_in_fancybox' id='tab_pic_thumbnails' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_pic_upload_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_pic_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_pic_flikr_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_pic_lre_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 			</div>
-	  	</div>
-	</div>
 
-	  <!-- NOTIFY WHEN CLICK ON ADD SLIDE IN FLASHCARD MODE -->
-	  <div style='display:none'>
-	  	<div id='message2_form'>
-	  		<div class="text_in_fancybox">
-	  			<img id="message2img" src="/assets/zonethumbs/content_fail.png">
-	  			<span class="deltext">Transform to standard presentation to add a new slide.</span>
-	  		</div> 		
-	  		<div id="button_accept_when_fail">
-	  			<a href="#" i18n-key="i.accept" onclick="$.fancybox.close();" class="buttonfail">accept</a>
-	  		</div>
-	  	</div>
-	  </div>
+			<div id='tab_pic_thumbnails_content' class="fancy_tab_content">
+				<div id="tab_pic_thumbnails_carrousel"></div>
+			</div>
 
-	  <!-- NOTIFY WHEN TRY TO SAVE AND THERE IS NO POIS IN THE FLASHCARD-->
-	  <div style='display:none'>
-	  	<div id='message3_form'>
-	  		<div class="text_in_fancybox">
-	  			<img id="message3img" src="/assets/zonethumbs/content_fail.png">
-	  			<span class="deltext">Please drag and drop at least one arrow in the flashcard.</span>
-	  		</div> 		
-	  		<div id="button_accept_when_fail">
-	  			<a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
-	  		</div>
-	  	</div>
-	  </div>
-
-	  <!-- NOTIFY WHEN TRY TO SAVE AND BACKGROUND IS NOT SET-->
-	  <div style='display:none'>
-	  	<div id='message4_form'>
-	  		<div class="text_in_fancybox">
-	  			<img id="message4img" src="/assets/zonethumbs/content_fail.png">
-	  			<span class="deltext">Please change the flashcard background before saving.</span>
-	  		</div> 		
-	  		<div id="button_accept_when_fail">
-	  			<a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
-	  		</div>
-	  	</div>
-	  </div>
-
-	<!-- NOTIFY WHEN TRY TO CHANGE TO FLASHCARD AND THERE IS NO SLIDES-->
-    <div style='display:none'>
-      <div id='message5_form'>
-        <div class="text_in_fancybox">
-          <img id="message5img" src="/assets/zonethumbs/content_fail.png">
-          <span class="deltext">Please create at least one slide before changing mode.</span>
-        </div>    
-        <div id="button_accept_when_fail">
-          <a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
-        </div>
-      </div>
-    </div>
-
-      <!-- NOTIFY WHEN TRY TO SAVE AND THERE IS NO POIS IN THE Virtual Tour-->
-	  <div style='display:none'>
-	  	<div id='message6_form'>
-	  		<div class="text_in_fancybox">
-	  			<img id="message6img" src="/assets/zonethumbs/content_fail.png">
-	  			<span class="deltext">Please drag and drop at least one point of interest in the map.</span>
-	  		</div> 		
-	  		<div id="button_accept_when_fail">
-	  			<a href="#" onclick="$.fancybox.close();" class="buttonfail">accept</a>
-	  		</div>
-	  	</div>
-	  </div>
-  
-  	<!-- IMAGE -->
-  	  <a id="hidden_button_to_launch_picture_fancybox_for_flashcard" href="#picture_fancybox" style="display:none" i18n-key="i.changeBackground">Change background</a>
-  	  <a id="hidden_button_to_uploadThumbnail" href="#picture_fancybox" style="display:none">Upload Thumbnail</a>
-
-	  <div style='display:none'>
-	    <div id="picture_fancybox" class="outer_box">
-				<div class="fancy_tabs" id="images_fancy_tabs_id">	   
-				  <ul>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre')" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
-				  </ul>
-				  <img class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				  <img class='help_in_fancybox' id='tab_pic_upload_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				  <img class='help_in_fancybox' id='tab_pic_repo_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				  <img class='help_in_fancybox' id='tab_pic_flikr_help' src='/assets/icons/helptutorial_circle_blank.png'/>
+			<div id='tab_pic_from_url_content' class="fancy_tab_content">
+				<div class="box1 box1fancy1">
+					<p i18n-key="i.addpicurl" class="textfancy">add image url</p></br>
+					<img class="image_add_url" src="/assets/icons/url_img.png"/>
+					<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
+					<button id="picture_url_previewButton" type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
 				</div>
-				<div id='tab_pic_from_url_content' class="fancy_tab_content">
-            			<div class="box1 box1fancy1">
-					    			<p i18n-key="i.pic.add" class="textfancy">add image url</p></br>
-	                  <img class="image_add_url" src="/assets/icons/url_img.png"/>
-					    			<input id="picture_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="text" size="25" value="">
-					    			<button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
-              		</div>
-            			<div class="box2">
-            				<div id="picture_preview" class="previewimgbox">
-                				<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
-                			</div>
-            			</div>
-				</div> 
-
-
-				<div id='tab_pic_upload_content' class="fancy_tab_content">
-					<div class="box1 box1fancy3">
-						<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
-						<img class="image_add_url" src="/assets/icons/url_upl.png"/>
-
-						<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-							<input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
-							<input type="hidden" name="document[title]">
-							<input type="hidden" name="document[description]">
-							<input type="hidden" name="document[owner_id]">
-							<input type="hidden" name="authenticity_token">
-							<input type="hidden" name="document[tag_list]">
-							<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-						</form>
-
-						<div class="upload_progress_bar_wrapper">
-							<div class="upload_progress_bar"></div >
-							<div class="upload_progress_bar_percent">0%</div >
-						</div>
-
-						<div class="tagBoxUpload">
-							<ul class="tagList"></ul>
-						</div>
-					</div>
-
-					<div class="box2 box2_upload">
-						<div class="previewimgbox">
+				<div class="box2">
+					<div id="picture_preview" class="previewimgbox">
 						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
-						</div>
 					</div>
-				</div>  
-
-
-				<div id='tab_pic_repo_content' class="fancy_tab_content">
-					<div class="box1 box1fancy2">
-						<img src="/assets/repositoryimg.png" class="imagelogotab"/>				  		  
-						<div class="search_container">
-							<input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-						</div>
-
-						<div id="tab_pic_repo_content_carrousel"></div>
-
-						<div id="tab_pic_repo_content_preview">
-							<div id="tab_pic_repo_content_preview_image"></div>
-						</div>
-					</div>	
 				</div>
-				<div id='tab_pic_flikr_content' class="fancy_tab_content">
-                	  <div class="box1 box1fancy2">
-                      <img src="/assets/logos/flickrlogo.png" class="imagelogotab">
-				      	<div class="search_container">
-				  	   		<input id="search_flickr_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-    				     </div>	
-						<div id="tab_flikr_content_carrousel"></div>
-                	  </div>
-			    </div>
-			    <div id='tab_pic_lre_content' class="fancy_tab_content">
-                	  <div class="box1 box1fancy2">
-                      <img id="lrelogo_in_tab" src="/assets/logos/lrelogo.gif" class="imagelogotab">
-				      	<div class="search_container">
-				  	   		<input id="search_lre_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-    				     </div>	
-						<div id="tab_lre_content_carrousel"></div>
-                	  </div>
-			    </div>
-	    </div>
-	  </div>
-  
+			</div> 
 
+			<div id='tab_pic_upload_content' class="fancy_tab_content">
+				<div id="upload_file_inputbox" class="box1 box1fancy3">
+					<p class="textfancy" i18n-key="i.selectPicture">Select picture to upload</p></br>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+
+					<form class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+						<input id="upload_file_input" type="file" name="document[file]" class="upload_file_input">
+						<input type="hidden" name="document[title]">
+						<input type="hidden" name="document[description]">
+						<input type="hidden" name="document[owner_id]">
+						<input type="hidden" name="authenticity_token">
+						<input type="hidden" name="document[tag_list]">
+						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+					</form>
+
+					<div class="upload_progress_bar_wrapper">
+						<div class="upload_progress_bar"></div>
+						<div class="upload_progress_bar_percent">0%</div>
+					</div>
+
+					<div class="tagBoxUpload">
+						<ul class="tagList"></ul>
+					</div>
+				</div>
+
+				<div class="box2 box2_upload">
+					<div class="previewimgbox">
+					<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Image.addContent()">Add Content</button>
+					</div>
+				</div>
+			</div>  
+
+			<div id='tab_pic_repo_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>				  		  
+					<div class="search_container">
+						<input id="search_picture" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>
+					<div id="tab_pic_repo_content_carrousel"></div>
+				</div>	
+			</div>
+
+			<div id='tab_pic_flikr_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
+					<img src="/assets/logos/flickrlogo.png" class="imagelogotab">
+					<div class="search_container">
+						<input id="search_flickr_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>	
+					<div id="tab_pic_flikr_content_carrousel"></div>
+				</div>
+			</div>
+
+			<div id='tab_pic_lre_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
+					<img id="lrelogo_in_tab" src="/assets/logos/lrelogo.gif" class="imagelogotab">
+					<div class="search_container">
+							<input id="search_lre_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>	
+					<div id="tab_pic_lre_content_carrousel"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+  
 	<!-- Select theme fancybox -->
-  	<a id="hidden_button_to_launch_theme_fancybox" href="#theme_fancybox" style="display:none" i18n-key="i.selectTheme">Select theme</a>
-  	<div style='display:none'>
-	    <div id="theme_fancybox" class="theme_fancybox_class">
-	    	<img id="help_themes_selection" src="/assets/icons/helptutorial_circle.png"/>
-	    	<div id='select_theme1'>
-		      <img src='/assets/themes/theme1/select.png' class="templathumb quizFancythumb" onclick="VISH.Editor.Themes.selectTheme('theme1')"/>
-	      </div>
-	      <div id='select_theme2'>
-		      <img src='/assets/themes/theme2/select.png' class="templathumb quizFancythumb " onclick="VISH.Editor.Themes.selectTheme('theme2')"/>
-	      </div>
-	      <div id='select_theme3'>
-		      <img src='/assets/themes/theme3/select.png' class="templathumb quizFancythumb" 
-		      onclick="VISH.Editor.Themes.selectTheme('theme3')"/>
-	      </div>
-	      <div id='select_theme4'>
-		      <img src='/assets/themes/theme4/select.png' class="templathumb quizFancythumb" 
-		      onclick="VISH.Editor.Themes.selectTheme('theme4')"/>
-	      </div>
-	      <div id='select_theme5'>
-		      <img src='/assets/themes/theme5/select.png' class="templathumb quizFancythumb" 
-		      onclick="VISH.Editor.Themes.selectTheme('theme5')"/>
-	      </div>
-	      <div id='select_theme6'>
-		      <img src='/assets/themes/theme6/select.png' class="templathumb quizFancythumb" 
-		      onclick="VISH.Editor.Themes.selectTheme('theme6')"/>
-	      </div>
-	      <div id='select_theme7'>
-		      <img src='/assets/themes/theme7/select.png' class="templathumb quizFancythumb" 
-		      onclick="VISH.Editor.Themes.selectTheme('theme7')"/>
-	      </div>
-	      <div id='select_theme8'>
-		      <img src='/assets/themes/theme8/select.png' class="templathumb quizFancythumb" 
-		      onclick="VISH.Editor.Themes.selectTheme('theme8')"/>
-	      </div>
-	      <div id='select_theme9'>
-		      <img src='/assets/themes/theme9/select.png' class="templathumb quizFancythumb" 
-		      onclick="VISH.Editor.Themes.selectTheme('theme9')"/>
-	      </div>
-	      <div id='select_theme10'>
-		      <img src='/assets/themes/theme10/select.png' class="templathumb quizFancythumb" onclick="VISH.Editor.Themes.selectTheme('theme10')"/>
-	      </div>
-	      <div id='select_theme11'>
-		      <img src='/assets/themes/theme11/select.png' class="templathumb quizFancythumb" onclick="VISH.Editor.Themes.selectTheme('theme11')"/>
-	      </div>
-	      <div id='select_theme12'>
-		      <img src='/assets/themes/theme12/select.gif' class="templathumb quizFancythumb" onclick="VISH.Editor.Themes.selectTheme('theme12')"/>
-	      </div>
-	    </div>
+	<a id="hidden_button_to_launch_theme_fancybox" href="#theme_fancybox" style="display:none"></a>
+	<div style='display:none'>
+		<div id="theme_fancybox" class="theme_fancybox_class">
+			<img id="help_themes_selection" src="/assets/vicons/helptutorial_circle.png"/>
+			<div id='select_theme1' class="slidethumb">
+				<img src='/assets/themes/theme1/select.png' class="themethumb" theme="theme1"/>
+			</div>
+			<div id='select_theme2' class="slidethumb">
+				<img src='/assets/themes/theme2/select.png' class="themethumb" theme="theme2"/>
+			</div>
+			<div id='select_theme3' class="slidethumb">
+				<img src='/assets/themes/theme3/select.png' class="themethumb" theme="theme3"/>
+			</div>
+			<div id='select_theme4' class="slidethumb">
+				<img src='/assets/themes/theme4/select.png' class="themethumb" theme="theme4"/>
+			</div>
+			<div id='select_theme5' class="slidethumb">
+				<img src='/assets/themes/theme5/select.png' class="themethumb" theme="theme5"/>
+			</div>
+			<div id='select_theme6' class="slidethumb">
+				<img src='/assets/themes/theme6/select.png' class="themethumb" theme="theme6"/>
+			</div>
+			<div id='select_theme7' class="slidethumb">
+				<img src='/assets/themes/theme7/select.png' class="themethumb" theme="theme7"/>
+			</div>
+			<div id='select_theme8' class="slidethumb">
+				<img src='/assets/themes/theme8/select.png' class="themethumb" theme="theme8"/>
+			</div>
+			<div id='select_theme9' class="slidethumb">
+				<img src='/assets/themes/theme9/select.png' class="themethumb" theme="theme9"/>
+			</div>
+			<div id='select_theme10' class="slidethumb">
+				<img src='/assets/themes/theme10/select.png' class="themethumb" theme="theme10"/>
+			</div>
+			<div id='select_theme11' class="slidethumb">
+				<img src='/assets/themes/theme11/select.png' class="themethumb" theme="theme11"/>
+			</div>
+			<div id='select_theme12' class="slidethumb">
+				<img src='/assets/themes/theme12/select.gif' class="themethumb" theme="theme12"/>
+			</div>
+		</div>
 	</div>
 
-
-
-
-  	<!-- Objects -->
-	  <div style='display:none'>
-	    <div id="object_fancybox" class="outer_box">
-				<div class="fancy_tabs" id="object_fancy_tabs_id">	   
-				  <ul>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_url')" id="tab_object_from_url" class="fancy_tab">embed</a></li>
-						<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_web')" id="tab_object_from_web" class="fancy_tab">web</a></li>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-				    <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
-						<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
-						<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre')" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
-				  </ul>
-				  <img class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-					<img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				  <img class='help_in_fancybox' id='tab_object_upload_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				  <img class='help_in_fancybox' id='tab_object_repo_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-					<img class='help_in_fancybox' id='tab_object_snapshot_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				</div>
-				<div id='tab_object_from_url_content' class="fancy_tab_content">
-          <div class="box1 box1fancy1">
-            <p class="textfancy" i18n-key="i.embedObject">embed object</p></br>
-            <img class="image_add_url" src="/assets/icons/url_img.png"/>
-				  	<input id="object_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-					  <button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
-          </div>
-                <div class="box2">
-                				<div id="picture_preview" class="previewimgbox">
-                    				<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
-                    			</div>
-                			</div>
-				</div>
-				
-				<div id='tab_object_from_web_content' class="fancy_tab_content">
-          <div class="box1 box1fancy1">
-            <p class="textfancy" i18n-key="i.embedWebsites">embed websites</p></br>
-            <img class="image_add_url" src="/assets/icons/url_img.png"/>
-            <input id="object_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-            <button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
-          </div>
-                <div class="box2">
-                        <div id="picture_preview" class="previewimgbox">
-                            <button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.Web.drawPreviewElement()">Add Content</button>
-                          </div>
-                      </div>
-        </div>
-				
-				<div id='tab_object_upload_content' class="fancy_tab_content">
-              <div class="box1 box1fancy3">
-                <p class="textfancy" i18n-key="i.selectObject">Select SWF file to upload</p><br>
-                <img class="image_add_url" src="/assets/icons/url_upl.png"/>
-                
-                  <form  id="object_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
-                      <input type="file" name="document[file]" class="upload_file_input">
-                      <input type="hidden" name="document[title]">
-                      <input type="hidden" name="document[description]">
-                      <input type="hidden" name="document[owner_id]">
-                      <input type="hidden" name="authenticity_token">
-					  <input type="hidden" name="document[tag_list]">
-                      <input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
-                  </form>
-                  
-                  <div class="upload_progress_bar_wrapper">
-                      <div class="upload_progress_bar"></div >
-                      <div class="upload_progress_bar_percent">0%</div >
-                  </div>
-                  
-									<div class="tagBoxUpload">
-                    <ul class="tagList"></ul>
-                  </div>
-									
-              </div>
-              <div class="box2 box2_upload">
-                      <div class="previewimgbox">
-                          <button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
-                      </div>
-              </div>
-        </div> 
-				
-		<div id='tab_object_repo_content' class="fancy_tab_content">	
-			<div class="box1 box1fancy2">
-				<img src="/assets/repositoryimg.png" class="imagelogotab"/>				  
-				<div class="search_container">
-				<input id="search_object" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-				</div>
-
-				<div id="tab_object_repo_content_carrousel"></div>
-				<div id="tab_object_repo_content_preview" class="content_preview">
-					<div id="tab_object_repo_content_preview_object" class="content_preview_data"></div>
-					<div id="tab_object_repo_content_preview_metadata" class="content_preview_metadata"></div>
-					<div id="tab_object_repo_content_preview_foot" class="content_preview_foot">
-						<button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
-					</div>
-				</div>				
+	<!-- Select animation fancybox -->
+	<a id="hidden_button_to_launch_animation_fancybox" href="#animation_fancybox" style="display:none"></a>
+	<div style='display:none'>
+		<div id="animation_fancybox" class="animation_fancybox_class">
+		<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle.png"/>
+			<div id='select_animation1' class="slidethumb" animation="animation1">
+				<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
+			<div id='select_animation2' class="slidethumb" animation="animation2">
+				<div class="anim_text"><h3 i18n-key="i.Vertical">Vertical</h3></div>
 			</div>
-		</div>	
-				
-		<div id='tab_object_snapshot_content' class="fancy_tab_content">
-          <div class="box1 box1fancy1">
-            <p class="textfancy">Web Snapshot</p></br>
-            <img class="image_add_url" src="/assets/icons/url_img.png"/>
-            <input id="object_snapshot_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
-            <button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
-          </div>
-          <div class="box2">
-                  <div class="previewimgbox">
-                      <button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.Snapshot.drawPreviewElement()">Add Content</button>
-                  </div>
-          </div>
-        </div>
-			
-		<div id='tab_object_lre_content' class="fancy_tab_content">	
-			<div class="box1 box1fancy2">
-				<img id="lrelogo_in_tab" src="/assets/logos/lrelogo.gif" class="imagelogotab">			  
-				<div class="search_container">
-				<input id="search_object_lre" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-				</div>
+			<div id='select_animation3' class="slidethumb" animation="animation3">
+				<div class="anim_text"><h3 i18n-key="i.Opacity">Opacity</h3></div>
+			</div>
+			<div id='select_animation4' class="slidethumb" animation="animation4">
+				<div class="anim_text"><h3 i18n-key="i.Elements">Elements</h3></div>
+			</div>
+			<div id='select_animation5' class="slidethumb" animation="animation5">
+				<div class="anim_text"><h3 i18n-key="i.Rotate">Rotate</h3></div>
+			</div>
+			<div id='select_animation6' class="slidethumb" animation="animation6">
+				<div class="anim_text"><h3 i18n-key="i.Diagonal1">Diagonal #1</h3></div>
+			</div>
+			<div id='select_animation7' class="slidethumb" animation="animation7">
+				<div class="anim_text"><h3 i18n-key="i.Diagonal2">Diagonal #2</h3></div>
+			</div>
+			<div id='select_animation8' class="slidethumb" animation="animation8">
+				<div class="anim_text"><h3 i18n-key="i.Inside">Inside</h3></div>
+			</div>
+			<div id='select_animation9' class="slidethumb" animation="animation9">
+				<div class="anim_text"><h3 i18n-key="i.Zoom">Zoom</h3></div>
+			</div>
+			<div id='select_animation10' class="slidethumb" animation="animation10">
+				<div class="anim_text"><h3 i18n-key="i.Flip1">Flip #1</h3></div>
+			</div>
+			<div id='select_animation11' class="slidethumb" animation="animation11">
+				<div class="anim_text"><h3 i18n-key="i.Flip2">Flip #2</h3></div>
+			</div>
+			<div id='select_animation12' class="slidethumb" animation="animation12">
+				<div class="anim_text"><h3 i18n-key="i.3D">3D</h3></div>
+			</div>
+		</div>
+	</div>
 
-				<div id="tab_object_lre_content_carrousel"></div>
-				<div id="tab_object_lre_content_preview" class="content_preview">
-					<div id="tab_object_lre_content_preview_object" class="content_preview_data"></div>
-					<div id="tab_object_lre_content_preview_metadata" class="content_preview_metadata"></div>
-					<div id="tab_object_lre_content_preview_foot" class="content_preview_foot">
-						<button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.LRE.addSelectedObject()">Add</button>
+	<!-- Objects -->
+	<div style='display:none'>
+		<div id="object_fancybox" class="outer_box">
+
+			<div class="fancy_tabs" id="object_fancy_tabs_id">	   
+				<ul>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_web')" id="tab_object_from_web" class="fancy_tab">web</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_url')" id="tab_object_from_url" class="fancy_tab">embed</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre')" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
+				</ul>
+				<img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_object_snapshot_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_object_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_object_upload_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_object_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_object_lre_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+
+			</div>
+
+			<div id='tab_object_from_url_content' class="fancy_tab_content">
+				<div class="box1 box1fancy1">
+					<p class="textfancy" i18n-key="i.addembeddedobject">add embedded object</p></br>
+					<img class="image_add_url" src="/assets/icons/url_img.png"/>
+					<input id="object_embed_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+				</div>
+				<div class="box2">
+					<div id="picture_preview" class="previewimgbox">
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
 					</div>
-				</div>				
-			</div>			
-		</div>	
-
-	    </div>
-	  </div>
-  
-  
-  	<!-- VIDEO -->
-	  <div style='display:none'>
-	    <div id="video_fancybox" class="outer_box">
-				<div class="fancy_tabs" id="video_fancy_tabs_id">	   
-				    <ul>
-				      <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
-				      <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
-				      <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
-				      <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo')" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
-				    </ul>
-				    <img class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				    <img class='help_in_fancybox' id='tab_video_repo_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				    <img class='help_in_fancybox' id='tab_video_youtube_help' src='/assets/icons/helptutorial_circle_blank.png'/>
-				    <img class='help_in_fancybox' id='tab_video_vimeo_help' src='/assets/icons/helptutorial_circle_blank.png'/>
 				</div>
-				<div id='tab_video_from_url_content' class="fancy_tab_content">
-	        	<div id="box1" class="box1 box1fancy1">
-	             <p i18n-key="i.AddVideoUrl" class="textfancy">add video url</p></br>
-	             <img id="image_add_url" class="image_add_url" src="/assets/icons/url_img.png"/>
-	    	       <input id="video_url" class="input_text_fancy formsizefancy1 marginsfancy1" type="video_url">
-			        <button type="button" class="button buttonfancy previewButton" i18n-key="i.preview">Preview</button>
-	          </div>
-	          <div id="box2" class="box2">
-	        		<div id="previewimgbox" class="previewimgbox">
-	            	<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Video.drawPreviewElement()">Add Content</button>
-	            </div>
-	          </div>
-       </div>
-				<div id='tab_video_repo_content' class="fancy_tab_content">		
-            <div class="box1 box1fancy2">	
-	            <img src="/assets/repositoryimg.png" class="imagelogotab"/>	  
-							<div class="search_container">
-							  <input id="search_video" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-							</div>
-							
-							<div id="tab_video_repo_content_carrousel"></div>
-							<div id="tab_video_repo_content_preview" class="content_preview">
-								<div id="tab_video_repo_content_preview_video" class="content_preview_data">
-									
-								</div>
-								<div id="tab_video_repo_content_preview_metadata" class="content_preview_metadata"></div>
-								<div id="tab_video_repo_content_preview_foot" class="content_preview_foot">
-									<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.Repository.addSelectedVideo()">Add</button>
-								</div>
-							</div>
-            </div>
-				</div>  
-				
-				<div id='tab_video_youtube_content' class="fancy_tab_content">
-                  <div class="box1 box1fancy2">
+			</div>
+
+			<div id='tab_object_from_web_content' class="fancy_tab_content">
+				<div class="box1 box1fancy1">
+					<p class="textfancy" i18n-key="i.embedwebsite">embed website</p></br>
+					<img class="image_add_url" src="/assets/icons/url_img.png"/>
+					<input id="object_embedWeb_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+				</div>
+				<div class="box2">
+					<div id="picture_preview" class="previewimgbox">
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.Web.drawPreviewElement()">Add Content</button>
+					</div>
+				</div>
+			</div>
+
+			<div id='tab_object_upload_content' class="fancy_tab_content">
+				<div class="box1 box1fancy3">
+					<p class="textfancy"><span i18n-key="i.selectObjectUpload">Select a file to upload</span>. <span i18n-key="i.selectObjectUpload2">Supported formats: SWF (flash), PDF</span>.</p><br>
+					<img class="image_add_url" src="/assets/icons/url_upl.png"/>
+					<form  id="object_file_input" class="documentsForm" action="documents.json" method="post" enctype="multipart/form-data">
+						<input type="file" name="document[file]" class="upload_file_input">
+						<input type="hidden" name="document[title]">
+						<input type="hidden" name="document[description]">
+						<input type="hidden" name="document[owner_id]">
+						<input type="hidden" name="authenticity_token">
+						<input type="hidden" name="document[tag_list]">
+						<input id="upload_document_submit" type="submit" class="button" i18n-key="i.Upload" value="Upload">
+					</form>
+
+					<div class="upload_progress_bar_wrapper">
+						<div class="upload_progress_bar"></div >
+						<div class="upload_progress_bar_percent">0%</div >
+					</div>
+
+					<div class="tagBoxUpload">
+						<ul class="tagList"></ul>
+					</div>
+				</div>
+
+				<div class="box2 box2_upload">
+					<div class="previewimgbox">
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.drawPreviewElement()">Add Content</button>
+					</div>
+				</div>
+			</div> 
+
+			<div id='tab_object_repo_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>
+					<div class="search_container">
+						<input id="search_object" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>
+					<div id="tab_object_repo_content_carrousel"></div>
+					<div id="tab_object_repo_content_preview" class="content_preview">
+						<div id="tab_object_repo_content_preview_object" class="content_preview_data"></div>
+						<div id="tab_object_repo_content_preview_metadata" class="content_preview_metadata"></div>
+						<div id="tab_object_repo_content_preview_foot" class="content_preview_foot">
+							<button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.Repository.addSelectedObject()">Add</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+
+			<div id='tab_object_snapshot_content' class="fancy_tab_content">
+				<div class="box1 box1fancy1">
+					<p class="textfancy" i18n-key="i.embedWebSnapshot">embed Web Snapshot</p></br>
+					<img class="image_add_url" src="/assets/icons/url_img.png"/>
+					<input id="object_snapshot_code" type="text" class="input_text_fancy formsizefancy1 marginsfancy1">
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+				</div>
+				<div class="box2">
+					<div class="previewimgbox">
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Object.Snapshot.drawPreviewElement()">Add Content</button>
+					</div>
+				</div>
+			</div>
+
+			<div id='tab_object_lre_content' class="fancy_tab_content">	
+				<div class="box1 box1fancy2">
+					<img id="lrelogo_in_tab" src="/assets/logos/lrelogo.gif" class="imagelogotab">			  
+					<div class="search_container">
+						<input id="search_object_lre" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>
+
+					<div id="tab_object_lre_content_carrousel"></div>
+
+					<div id="tab_object_lre_content_preview" class="content_preview">
+						<div id="tab_object_lre_content_preview_object" class="content_preview_data"></div>
+						<div id="tab_object_lre_content_preview_metadata" class="content_preview_metadata"></div>
+						<div id="tab_object_lre_content_preview_foot" class="content_preview_foot">
+							<button i18n-key="i.Add" type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.LRE.addSelectedObject()">Add</button>
+						</div>
+					</div>				
+				</div>			
+			</div>
+
+		</div>
+	</div>
+
+	<!-- VIDEO -->
+	<div style='display:none'>
+		<div id="video_fancybox" class="outer_box">
+
+			<div class="fancy_tabs" id="video_fancy_tabs_id">	   
+				<ul>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo')" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
+				</ul>
+				<img class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_video_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_video_youtube_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+				<img class='help_in_fancybox' id='tab_video_vimeo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
+			</div>
+
+			<div id='tab_video_from_url_content' class="fancy_tab_content">
+				<div id="box1" class="box1 box1fancy1">
+					<p class="textfancy"><span i18n-key="i.addvideourl">add video url (YouTube, HTML5)</span>.</p></br>
+					<img id="image_add_url" class="image_add_url" src="/assets/icons/url_img.png"/>
+					<input class="input_text_fancy formsizefancy1 marginsfancy1">
+					<button type="button" class="button buttonfancy previewButton" i18n-key="i.Preview">Preview</button>
+				</div>
+				<div id="box2" class="box2">
+					<div id="previewimgbox" class="previewimgbox">
+						<button i18n-key="i.AddContent" type="button" class="button button_addContent" onclick="VISH.Editor.Video.drawPreviewElement()">Add Content</button>
+					</div>
+				</div>
+			</div>
+
+			<div id='tab_video_repo_content' class="fancy_tab_content">		
+				<div class="box1 box1fancy2">	
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>	  
+					<div class="search_container">
+						<input id="search_video" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>
+
+					<div id="tab_video_repo_content_carrousel"></div>
+					<div id="tab_video_repo_content_preview" class="content_preview">
+						<div id="tab_video_repo_content_preview_video" class="content_preview_data"></div>
+						<div id="tab_video_repo_content_preview_metadata" class="content_preview_metadata"></div>
+						<div id="tab_video_repo_content_preview_foot" class="content_preview_foot">
+							<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.Repository.addSelectedVideo()">Add</button>
+						</div>
+					</div>
+				</div>
+			</div>  
+
+			<div id='tab_video_youtube_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
 					<img src="/assets/logos/youtubelogo.png" class="imagelogotab">
 					<div class="search_container" id="youtube_search_container">
-					  <input id="search_youtube_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="youtube_text_to_search"> </input>
+						<input id="search_youtube_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="youtube_text_to_search"> </input>
 					</div>
-				 
-				
 					<div id="tab_video_youtube_content_carrousel"></div>
 					<div id="tab_video_youtube_content_preview" class="content_preview">
-						<div id="tab_video_youtube_content_preview_video" class="content_preview_data">
-							
-						</div>
+						<div id="tab_video_youtube_content_preview_video" class="content_preview_data"></div>
 						<div id="tab_video_youtube_content_preview_metadata" class="content_preview_metadata"></div>
 						<div id="tab_video_youtube_content_preview_foot" class="content_preview_foot">
 							<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.Youtube.addSelectedVideo()">Add</button>
 						</div>
 					</div>
-					
-				  </div>
-                </div>
-                <div id='tab_video_vimeo_content' class="fancy_tab_content">
-                  <div class="box1 box1fancy2">
+				</div>
+			</div>
+
+			<div id='tab_video_vimeo_content' class="fancy_tab_content">
+				<div class="box1 box1fancy2">
 					<img src="/assets/logos/vimeologo.png" class="imagelogotab">
 					<div class="search_container" id="vimeo_search_container">
-					  <input id="search_vimeo_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="vimeo_text_to_search"> </input>
+						<input id="search_vimeo_fancy" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" id="vimeo_text_to_search"> </input>
 					</div>
-				 
-				
 					<div id="tab_video_vimeo_content_carrousel"></div>
 					<div id="tab_video_vimeo_content_preview" class="content_preview">
-						<div id="tab_video_vimeo_content_preview_video" class="content_preview_data">
-							
-						</div>
+						<div id="tab_video_vimeo_content_preview_video" class="content_preview_data"></div>
 						<div id="tab_video_vimeo_content_preview_metadata" class="content_preview_metadata"></div>
 						<div id="tab_video_vimeo_content_preview_foot" class="content_preview_foot">
 							<button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Video.vimeo.addSelectedVideo()">Add</button>
 						</div>
 					</div>
-					
-				  </div>
-                </div>
-          </div>
-	    </div>
-	    
-			  
-    <!-- LIVE -->
-    <div style='display:none'>
-      <div id="live_fancybox" class="outer_box">
-        <div class="fancy_tabs" id="live_fancy_tabs_id">    
-          <ul>
-            <li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_webcam')" id="tab_live_webcam" class="fancy_tab">Webcams</a></li>
-            <li><a style='display:none' href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_micro')" id="tab_live_micro" class="fancy_tab" i18n-key="i.Microscopes">Microscopes</a></li>
-          </ul>
-          <img class='help_in_fancybox' id='tab_live_webcam_help' src='/assets/icons/helptutorial_circle_blank.png'/> 
-        </div>
-        
-        <div id='tab_live_webcam_content' class="fancy_tab_content"> 
-          <div class="box1 box1fancy2">
-            <img src="/assets/repositoryimg.png" class="imagelogotab"/>         
-            <div class="search_container">
-              <input id="search_webcam" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
-            </div>
-            
-            <div id="tab_live_webcam_content_carrousel"></div>
-            <div id="tab_live_webcam_content_preview" class="content_preview">
-              <div id="tab_live_webcam_content_preview_live" class="content_preview_data"></div>
-              <div id="tab_live_webcam_content_preview_metadata" class="content_preview_metadata"></div>
-              <div id="tab_live_webcam_content_preview_foot" class="content_preview_foot">
-                <button type="button" class="okButton okButtonCarrousel" onclick="VISH.Editor.Object.Live.addSelectedObject()">Add</button>
-              </div>
-            </div>        
-          </div>
-        </div>
-				<div id='tab_live_micro_content' class="fancy_tab_content">
-        </div>  
-      </div>
-    </div>
+				</div>
+			</div>
 
-    
-	
-	<!-- WALKTHROUGH HELP SECTION -->
-		<!-- help for initial screen -->
-		 <ol id="initial_screen_help" class="joyRideTipContent">
-		   <li data-id="tutorialstart" data-text="Next" i18n-key="i.Next" data-options="tipLocation:none;" class="tut_welcome Next tut_without_arrow">
-		 <h2 i18n-key="i.welcomeVishEditor">Welcome to ViSH editor!</h2>
-		 <p>
-		  <span i18n-key="i.walk1">Using the "Walk through icon"</span>
-		<img src="/assets/icons/helptutorial_circle.png"/>
-		<span i18n-key="i.walk2">around the application, will show you how to use the ViSH editor in several easy steps. All the features related to it will be shown to you, as well as the way to publish the final result generated. Click on "Next" to start the Walk through.</span>
-		</p>
-		</li>
-		<li data-id="presentation_title" data-text="Next" i18n-key="i.Next" data-options="tipLocation:bottom;" class="Next">
-		 <h2 i18n-key="i.writeTitle">Let´s write a title (Mandatory)</h2>
-		 <p i18n-key="i.walk3">This black space will allow you to write a title to name your excursions. The title in the excursion is obligatory because it is used to find your excursions inside the ViSH platform. Click on "Next" to continue. </p>
-		</li>
-		<li data-id="presentation_description" data-options="tipLocation:bottom;" i18n-key="i.Next" data-text="Next">
-		 <h2 i18n-key="i.WriteDescription">Write a description (optional)</h2>
-		   <p i18n-key="i.walk4">Here you can explain in a little more detail what the excursion is about. Click on "Next" to continue.</p>
-		</li>
-		   <li data-id="tagindex" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;">
-		 <h2 i18n-key="i.AddTags">Add tags to your excursion</h2>
-		   <p i18n-key="i.walk5">In this zone you can add topics that will represent your excursion when users search in the ViSH platform. Click on "Next" to continue.</p>
-		</li>
-		   <li data-id="avatars_carrousel" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="Next">
-		 <h2 i18n-key="i.thumbnailsChoosing">Choose or add an image that represents your excursion</h2>
-		   <p i18n-key="i.walk6">In this zone you can choose an image that represents your excursion. Try the arrows on the sides or the circles at the bottom to check all the images and choose one.If you want, you can add your own thumbnail by pressing the plus icon at the left of the carrousel.Then click "Next" to continue.</p>
-		</li>
-		   <li data-id="save_presentation_details" class="tut_savedetails tut_with_arrow" data-options="tipLocation:none" data-text="Close" i18n-key="i.Close">
-		 <h2 i18n-key="i.SavePresentationDetails">Save your excursion details</h2>
-		   <p i18n-key="i.walk7">Finally click on continue to save your excursion details, and start adding content to your excursion.</p>
-		</li>
-		</ol>
+		</div>
+	</div>
 
-		<ol id="menubar_help" class="joyRideTipContent">
-		   <li data-id="menubar" data-text="Next" i18n-key="i.Next" class="tut_welcome_exc tut_without_arrow Next" data-options="tipLocation:none">
-		 <h2 i18n-key="i.thisIsVishEditor">This is ViSH editor!</h2>
-		 <p i18n-key="i.walk8">Welcome, this is the application where you can create your excursions. Click on "Next" to continue.</p>
-		</li>
-		   <li data-id="menubar" data-text="Next" i18n-key="i.Next" class="tut_menubar tut_with_arrow Next" data-options="tipLocation:none">
-		 <h2 i18n-key="i.thisIsToolsMenu">This is the tools menu</h2>
-		 <p i18n-key="i.walk9">In this bar you can see all the options provided to create and manage a new virtual excursion in ViSH. Click on "Next" to continue. </p>
-		</li>
-		<li data-id="config_div" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top">
-		 <h2 i18n-key="i.configButton">Configuration Button</h2>
-		   <p i18n-key="i.walk10">This button will get you to the first screen where you added the title and the description to your excursion. Click on "Next" to continue.</p>
-		</li>
-		<li data-id="help_right" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top">
-		 <h2 i18n-key="i.previewButton">Tutorial buttons</h2>
-		   <p i18n-key="i.walk66">Clicking these buttons,<img src="/assets/icons/helptutorial_circle.png"/> will get you to every tutorial around the VisH Editor interface</p>
-		</li>
-		   <li data-id="menubar" data-text="Next" i18n-key="i.Next" class="tut_menubar tut_with_arrow Next" data-options="tipLocation:none">
-		 <h2 i18n-key="i.slidesmenu">This is the slides menu</h2>
-		 <p i18n-key="i.walk11">In this zone the slides that you have created will appear. If you click on them you will be moved to that slide and you will be able to edit it. Click on "Next" to continue. </p>
-		   </li>
-		   <li data-id="save_presentation_details" class="tut_savepresentation tut_with_arrow" data-options="tipLocation:none;" data-text="Next" i18n-key="i.Next">
-		 <h2 i18n-key="i.SaveButton">Save Button</h2>
-		   <p i18n-key="i.walk12">This button will able you to save your excursion.Click on "Next" to continue.</p>
-		</li>
-		<li data-id="preview_circle" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top">
-		 <h2 i18n-key="i.previewButton">Preview</h2>
-		   <p i18n-key="i.walk62">This button will get you to preview your excursion as if you were watching it already published</p>
-		</li>
-		<li data-id="menuButton" class="tut_menubuttonpresentation tut_with_arrow" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
-		 <h2 i18n-key="i.menuButton">Vish Editor Menu</h2>
-		   <p i18n-key="i.walk63">This button will allow you to choose some options for the excursion:</p>
-		   <img class="imagetut" src="/assets/tutorial/menutut.png"/>
-		   <p i18n-key="i.walk64">Using this menu you can save your excursion, convert your presentation visualization to a flashcard, preview your excursion before you publish it, change your excursion details and settings and start this tutorial every time that you want to.</p>
-		   <p i18n-key="i.walk65">Most of these options are on Vish Editor space, but you can always have them here for an easier use.</p>
-		</li>
-		<li data-id="toolbar_presentation" class="tut_menubuttonpresentation tut_with_arrow" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
-		 <h2 i18n-key="i.themesButton">Vish Editor Themes</h2>
-		   <p i18n-key="i.walk67">This button will able you to choose some Visual themes for your presentation, you can change the theme of your excursion every time without saving it.</p>
-		</li>
 
-		<li data-id="toolbar_element" class="tut_toolbarpresentation tut_with_arrow" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
-		 <h2 i18n-key="i.toolbarButton">Toolbar Options</h2>
-		   <p i18n-key="i.walk68">This space will contain the options to edit your content on the slides:</p>
-		   <ul>
-		  <li><h1 i18n-key="i.link">Link Image to Url</h1></li> <img class="tutaddlink" src="/assets/toolbar/addLink.png"/>
-		  <li><h1 i18n-key="i.resize">Resize content</h1></li> <img class="tutresize" src="/assets/toolbar/zoomLess.png"/> <img class="tutresize2" src="/assets/toolbar/zoomMore.png"/>
-		  <li><h1 i18n-key="i.text">Text Editor</h1></li> <img class="tuttext" src="/assets/textedimg.png"/>
-		  <li><h1 i18n-key="i.flashcardbg">Flashcard Background</h1></li> <img class="tutflashbg" src="/assets/toolbar/flashcard_background.png"/>
-		</ul>
-		<p i18n-key="i.walk69"> Every time that you add or select content in your excursion this toolbar will provide you tools to interact with that content.</p>
-		</li>
-
-		   <li data-id="addslidebutton" class="tut_addslide tut_with_arrow" data-text="Close" i18n-key="i.Close">
-		 <h2 i18n-key="i.AddSlide">Add new slide button</h2>
-		   <p i18n-key="i.walk13">This icon will get you to the templates selection screen to add your slide to your excursion. As you add the slides they will appear at the time-line as an icon providing you with the pagination of it inside the presentation. Click on "Close" to finish this walk through and start adding content to your excursion.</p>
-		</li>
-		</ol>
-
-		<!--help for flashcard -->
-		<ol id="fc_help" class="joyRideTipContent">
-			<li data-id="change_background_fc" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
-				<h2>Flashcards</h2>
-				<p i18n-key="i.walk56">
-					A flashcard, is an application that will help you represent your excursion as an infographic, using an image to represent the concept of the excursion and mark zones of the image for the user to interact with them in order to see the pages of the excursion.
-				</p>
-				<p i18n-key="i.walk57">First, use these icons to add a background to the slide.</p>
-				<img class="imagetutflash" src="/assets/tutorial/icons_flashcard_tut.png"/>
-				<p i18n-key="i.walk58">You can add images by:</p>
+	<!-- LIVE -->
+	<div style='display:none'>
+		<div id="live_fancybox" class="outer_box">
+			<div class="fancy_tabs" id="live_fancy_tabs_id">
 				<ul>
-					<li>
-						<h1 i18n-key="i.Url">Url</h1>
-					</li>
-					<img class="imagetutflash2" src="/assets/tutorial/icons_flashcard_tut3.png"/>
-					<li><h1 i18n-key="i.OwnImages">Upload your own images</h1></li>
-					<li><h1 i18n-key="i.SearchImagesVish">From the vish repository</h1></li>
-					<li><h1 i18n-key="i.SearchImagesFlickr">From Flickr</h1></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_resource')" i18n-key="i.LiveResources" id="tab_live_resource" class="fancy_tab">Live Resources</a></li>
 				</ul>
-				<p i18n-key="i.walk59">Once, you finish this step, you can "drag and drop" the arrows in the lower zone of the editor (on top of the slides) into the flashcard background image to mark the zones that you want the user to interact with.</p>
-				<img src="/assets/tutorial/icons_flashcard_tut2.png"/>
-				<p><span i18n-key="i.walk60">You can click on the "preview button" to test the flashcard before you save it.</span><img src="/assets/icons/preview_circle.png"/></p>
-				<p i18n-key="i.walk61">If you save your presentation as a flashcard, it will be shown on the Vish web page as a flashcard, but you can always edit your excursion back and save it as a presentation.</p>
-			</li>
-		</ol>
+				<img class='help_in_fancybox' id='tab_live_resource_help' src='/assets/vicons/helptutorial_circle_blank.png'/> 
+			</div>
 
-		<!--help for vtours -->
-		<ol id="vt_help" class="joyRideTipContent">
-			<li data-id="change_background_fc" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
-				<h2>Virtual Tours</h2>
-				<p i18n-key="i.walk79">A virtual tour is a represententation of your excursion as a map.</p>
-				<p i18n-key="i.walk80">Just "drag and drop" the arrows in the lower zone of the editor (on top of the slides) into the map.</p>
-				<img src="/assets/tutorial/icons_flashcard_tut2.png"/>
-				<p i18n-key="i.walk81">The arrows will be converted into a pin, which you can moved across the map.</p>
-				<p i18n-key="i.walk82">To remove a pin from the map, just click the desired pin.</p>
-				<p i18n-key="i.walk83">You can click on the "preview button" to show the resulting virtual tour before you save it.<img src="/assets/icons/preview_circle.png"/>
-				</p>
-			</li>
-		</ol>
+			<div id='tab_live_resource_content' class="fancy_tab_content"> 
+				<div class="box1 box1fancy2">
+					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>
+					<div class="search_container">
+						<input id="search_live_resource" type="search" class="input_text_fancy formsizefancy2 marginsfancy2" > </input>
+					</div>
+					<div id="tab_live_resource_content_carrousel"></div>
+					<div id="tab_live_resource_content_preview" class="content_preview">
+						<div id="tab_live_resource_content_preview_live" class="content_preview_data"></div>
+						<div id="tab_live_resource_content_preview_metadata" class="content_preview_metadata"></div>
+						<div id="tab_live_resource_content_preview_foot" class="content_preview_foot">
+							<button type="button" class="okButton okButtonCarrousel"  i18n-key="i.Add" onclick="VISH.Editor.Object.Live.addSelectedObject()">Add</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<!--help for themes-->
-		<ol id="themes_help" class="joyRideTipContent">>
-		<li data-id="select_theme3" class="custom tut_themes tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
-		 <h2 i18n-key="i.themesTitle">Vish Editor Themes</h2>
-		   <p i18n-key="i.walk70">Choose between the different options a theme that fit your excursion, first line of themes are gradients and powerful colours, second line of themes are colourful textures, and the last line of themes are forms that imitates real life objects and one animated theme that will move slowly behind your presentation giving your excursion an special appeal. Have fun!</p>
+
+	<!-- WALKTHROUGH HELP SECTION -->
+
+	<!-- Menu Help -->
+	<ol id="menubar_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkWelcome1_1">Welcome to ViSH Editor!</h2>
+			<p i18n-key="i.walkWelcome1_2">ViSH Editor is an innovative web application that allows you to create amazing web slideshows and novel educational resources such as Virtual Excursions.</p>
+			<p><span i18n-key="i.walkMenuHelp1a">To learn how to use ViSH Editor you can watch several video tutorials in our</span> <a i18n-key="i.YouTubeChannel" class="tut_tutlink" href="http://www.youtube.com/channel/UCo-73n6eZBWNBs2gvKLyBhQ?feature=watch" target="_blank">YouTube Channel</a>. <span i18n-key="i.walkMenuHelp1b">These tutorials cover from basic usage for beginners to advanced features.</span></p>
+			<p i18n-key="i.walkMenuHelp2">The following video tutorial will teach you how to getting started with ViSH Editor in a few minutes.</p>
+			<p i18n-key="i.vtTitle_GStarted" class="tut_video_title">Getting Started with ViSH Editor</p>
+			<iframe class="tut_iframe_yt" width="625" height="400" src="//www.youtube.com/embed/fBSNZxs8m0I" frameborder="0" allowfullscreen></iframe>
+			<p class="tut_space">&nbsp;</p>
+			<p><span class="tut_tutlink" onClick="VISH.Tour.startTourWithId('getting_started_help', 'top');" i18n-key="i.walkMenuHelp3">If you prefer you can click here to see a text tutorial which will teach you quickly the basics to get started.</span></p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		</ol>
+	</ol>
 
-		<!--help for addslides-->
-		<ol id="help_addslides_selection_help" class="joyRideTipContent">>
-		<li data-id="select_theme3" class="custom tut_themes tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
-		 <h2 i18n-key="i.themesTitle">Vish Editor Themes</h2>
-		   <p i18n-key="i.walk70">Choose between the different options a theme that fit your excursion, first line of themes are gradients and powerful colours, second line of themes are colourful textures, and the last line of themes are forms that imitates real life objects and one animated theme that will move slowly behind your presentation giving your excursion an special appeal. Have fun!</p>
+	<!-- Getting started tutorial -->
+	<ol id="getting_started_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_width500_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkWelcome1_1">Welcome to ViSH Editor!</h2>
+			<p i18n-key="i.walkWelcome1_2">ViSH Editor is an innovative web application that allows you to create amazing web slideshows and novel educational resources such as Virtual Excursions.</p>
+			<p i18n-key="i.walkWelcome1_3">In this walkthrough you will learn how to get started with this tool.</p>
 		</li>
-		</ol>
 
+		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_width500 tut_menubar tut_with_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkWelcome2_1">Slides Panel</h2>
+			<p i18n-key="i.walkWelcome2_2">In this panel appears the current slides of your presentation. If you click on one of them you will see the selected slide and you will be able to edit and remove it.</p>
+		</li>
 
-		<!--help for template-->
-		<ol id="template_help" class="joyRideTipContent">
-		<li data-id="toolbar_wrapper" data-text="Close" i18n-key="i.Close" class="custom tut_template tut_without_arrow" data-options="tipLocation:none">
-		<h2 i18n-key="i.AddSlideContent">Adding content to a slide</h2>
-		<p>
-		<span i18n-key="i.walk15">To fill the slide you chosen with content, you can click the grey spaces in the template.If you click on one of them the content icons will appear:</span>
-		<ul>
-			<li>
-			<h1 i18n-key="i.Text">Text</h1>
-			<img id="textimagetut" src="/assets/zonethumbs/text_small.png"/>
-			</li>
-
-			<li>
-			<h1 i18n-key="i.Images">Images</h1>
-			<img id="imageimagetut" src="/assets/zonethumbs/image_small.png"/>
-			</li>
-
-			<li>
-			<h1 i18n-key="i.objectContent">Object</h1>
-			<img id="objectimagetut" src="/assets/zonethumbs/object_small.png"/>
-			</li>
-
-			<li class="l11">
-			<h1 i18n-key="i.Videos">Videos</h1>
-			<img id="videoimagetut" src="/assets/zonethumbs/video_small.png"/>
-			</li>
-
-			<li class="l22">
-			<h1 i18n-key="i.Live">Live</h1>
-			<img id="liveimagetut" src="/assets/zonethumbs/live_small.png"/>
-			</li>
-			
-			<li class="l33">
-			<h1 i18n-key="i.Quiz">Quiz</h1>
-			<img id="quizimagetut" src="/assets/zonethumbs/quiz_small.png"/>
-			</li>
-		</ul>
-		<span i18n-key="i.walk16">
-		If you click one of these icons (depending on which content do you choose to fill the grey space) another
-		window will pop-up to help you, with the exception of the text icon, which will make appear a text toolbar at
-		the top of the application that will help you defining the style for your text.
-		</span>
-		</p>
-		<p>
-		<img id="textedimagetut" src="/assets/textedimg.png">
-		</p>
-		<p>
-			<span i18n-key="i.walk17">Once, you fill the grey space with content, you can edit whenever you want just by clicking on it again, and in case you want to delete the content you can use the icon at the right bottom corner on your space, and if you want to delete a slide you can use the close icon to do the task at the right upper corner:</span>
-			</br>
+		<li data-id="addSlideButton" class="tut_width500 tut_addslide tut_with_arrow" data-text="Next" i18n-key="i.Next">
+			<h2 i18n-key="i.walkWelcome3_1">Add a new slide</h2>
+			<p i18n-key="i.walkWelcome3_2">You can add a new slide to your presentation by clicking on this button.</p>
+			<p i18n-key="i.walkWelcome3_3">After clicking, a new screen will pop up for you to choose the template of the new slide.</p>
+		</li>
+		<li data-id="importButton" class="tut_width500 tut_addslide tut_with_arrow" data-text="Next" i18n-key="i.Next">
+			<h2 i18n-key="i.walkWelcome4_1">Import content</h2>
+			<p i18n-key="i.walkWelcome4_2">This icon will bring up the import screen that allows you to import slides from different sources.</p>
 			<ul>
 				<li>
-					<h1 i18n-key="i.deleteContent">Delete Content</h1>
-					<img id="deleteimagetut" src="/assets/icons/del_content_small.png"/>
+					<p i18n-key="i.walkWelcome4_3">Import slides from a PDF presentation.</p>
 				</li>
 				<li>
-					<h1 i18n-key="i.closeOrDelete">Close or Delete</h1>
-					<img id="delimagetut" src="/assets/icons/ve_delete.png"/>
+					<p i18n-key="i.walkWelcome4_4">Import slides from other ViSH Editor presentations.</p>
 				</li>
 			</ul>
-		</p>
-		<p>
-			<span i18n-key="i.walk19">If you need any help with any of the content you can always use the help icons in their respective windows.</span>
-		</p>
-		</li>
-		</ol>
-		 
-		  <!--help for template selection fancybox-->
-		<ol id="help_template_selection_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="custom tut_templatesel tut_without_arrow" data-options="tipLocation:none">
-		 <h2 i18n-key="i.selectSlide">Adding a Slide</h2>
-		 <p i18n-key="i.walk14">This window offers you a variety of templates to create your excursion. You just have to click on one of the image to add it in order to fill it with your content. Click on "Close" to finish this walkthrough.</p>
-		</li>
-		</ol>
-
-		  <!--help for excursion selection fancybox-->
-		<ol id="help_excursion_selection_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="custom tut_templatesel tut_without_arrow" data-options="tipLocation:none">
-		 <h2 i18n-key="i.selectSlide">Adding Slides from another excursion</h2>
-		 <p i18n-key="i.walk77">This window offers you to search excursions in the Vish platform in order to add them (or add selected slides from them) into your excursion in just two steps. You just have to click on one of the excusions, click on preview (which will lead you to the next screen) ,choose the slides, and click on "add slides" in order to fill them to your content. Click on "Close" to finish this walkthrough.</p>
-		</li>
-		</ol>
-
-		<!--Pedagogical options fancybox-->
-		<ol id="help_pedagogical_selection_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="custom tut_templatesel tut_without_arrow" data-options="tipLocation:none">
-		 <h2 i18n-key="i.selectSlide">Peadgogical Aspects</h2>
-		 <p i18n-key="i.walk76">This window offers you to define your excursion in matters of <i>"age range, subject, languaje, objectives and competencies"</i>.<br> If you fill these fields you will show other users and viewers the information they need to use this excursion correctly.<br> Click on "Close" to finish this walkthrough.</p>
-		</li>
-		</ol>
-
-				  <!--help for smartcard selection fancybox-->
-		<ol id="help_smartcard_selection_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="custom tut_templatesel tut_without_arrow" data-options="tipLocation:none">
-		 <h2 i18n-key="i.selectSlide">Adding Flashcards or Virtual Tours</h2>
-		 <p i18n-key="i.walk78">This window offers you to search Flashcards or Virtual Tours in the Vish platform in order to add them into your excursion in just two steps. You just have to click on the smartcard you choose, click on preview (which will lead you to the next screen) and click on "add slides" in order to insert it to your content. Click on "Close" to finish this walkthrough.</p>
-		</li>
-		</ol>
-
-		<!--help for quiz selection fancybox-->
-		<ol id="quiz_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="custom tut_templatesel tut_without_arrow" data-options="tipLocation:none">
-
-		 <h2 i18n-key="i.selectquiz">Selecting a Quiz</h2>
-		 <p i18n-key="i.walk14">This window offers you a variety of Quizzes to create your excursion. You just have to click on one of the images in order to add it to the area you selected. Click on "Close" to finish this walkthrough.</p>
-		</li>
-		</ol>
-
-
-		 
-		  <!--help for fancybox of images-->
-		<ol id="images_fancy_tabs_id_help" class="joyRideTipContent">
-		 <li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="custom tut_fancy_index tut_without_arrow" data-options="tipLocation:none">
-		  <h2 i18n-key="i.AddImagesContent">Adding Images</h2>
-		  <p i18n-key="i.walk20">This window will help you in order to add images to the slide. As you can see in the top zone of this window there are a few choices:</p>
-		     <ul>
-		      <li data-options="tipLocation:top;">
-		      <h1 i18n-key="i.Url">Url</h1>
-		<span i18n-key="i.walk21">(add image by pasting a url)</span>
-		</li>
-		      <li>
-		      <h1 i18n-key="i.Upload">Upload</h1>
-		<span i18n-key="i.walk22">(add image by upload it from your computer)</span>
-		</li>
-		      <li>
-		      <h1>Vish</h1>
-		<span i18n-key="i.walk23">(add an image by choosing one from the ViSH repository)</span>
-		</li>
-		      <li>
-		      <h1>Flickr</h1>
-		<span i18n-key="i.walk24">(add an image by choosing one from Flickr)</span>
-		</li>
-		     </ul>
-		     <p i18n-key="i.walk25">Now, you are on the url section, Click on "Next" to continue</p>.
-		 </li>
-		    <li data-id="picture_url" data-text="Next" i18n-key="i.Next">
-		  <h2 i18n-key="i.AddImagesContentUrl">Adding images by url</h2>
-		  <p i18n-key="i.walk26">This box is used for pasting or writing on it, a url that contains an image, for example:</p>
-		     <h1>http://www.####.com/example.jpg</h1>
-		     <p i18n-key="i.walk27">This supports almost every image format files (jpg,tiff,png,gif...). Click on "Next" to continue. </p>
-		 </li>
-		    <li data-id="picture_preview" data-text="Close" i18n-key="i.Close" class="custom tut_preview tut_without_arrow" data-options="tipLocation:none">
-		  <h2 i18n-key="i.SeeImageBefore">See the image before you add it</h2>
-		  <p i18n-key="i.walk28">This zone will show you (once you added a link and clicked on "preview") the image you are going to add. Once you are ready to add the image, you just have to click and the button in the right of this zone called "Add content"(this button will appear when the image is on preview). Click on "Close" to finish this Walkthrough.</p>
-		 </li>
-		</ol>
-
-		<ol id="upload_picture_form_help" class="joyRideTipContent">
-		<li data-id="upload_file_input" data-text="Next" i18n-key="i.Next" class="custom" data-options="tipLocation:bottom">
-		 <h2 i18n-key="i.AddImagesContentUpload">Adding images by upload</h2>
-		 <p i18n-key="i.walk29">By clicking on the "Browse" button you will access to a browser window that will allow you to choose an image from your device. Once you do that, you can click the "upload" button in order to preview the image in the zone below. This supports almost every image format files (jpg,tiff,png,gif...). Click on "Next" to continue </p>
-		</li>
-		   <li data-id="picture_preview" data-text="Close" i18n-key="i.Close" class="custom tut_preview tut_without_arrow" data-options="tipLocation:none">
-		 <h2 i18n-key="i.SeeImageBefore">See the image before you add it</h2>
-		 <p i18n-key="i.walk28">This zone will show you (once you uploaded a file and clicked on "upload") the image you are going to add. Once you are ready to add the image, you just have to click and the button in the right of this zone called "Add content"(this button will appear when the image is on preview). Click on "Close" to finish this Walkthrough. </p>
-		</li>
-		</ol>
-
-		<ol id="search_picture_help" class="joyRideTipContent">
-		<li data-id="search_picture" data-text="Close" i18n-key="i.Close" class="custom tut_search tut_with_arrow_up" data-options="tipLocation:none">
-		 <h2 i18n-key="i.SearchImagesVish">Search images in Vish repository</h2>
-		 <p i18n-key="i.walk30">This box will allow you to search for images in the vish repository.
-		     Just write inside a word and a gallery will appear to show you the results. If you want to add an image from the results you just have to click on it.
-		     Click on "Close" to finish this walkthrough.
-		</p>
-		</li>
-		</ol>
-
-		<ol id="search_flickr_fancy_help" class="joyRideTipContent">
-		<li data-id="search_flickr_fancy" data-text="Close" i18n-key="i.Close" class="custom tut_search tut_with_arrow_up" data-options="tipLocation:none">
-		 <h2 i18n-key="i.SearchImagesFlickr">Search images in Flickr</h2>
-		 <p i18n-key="i.walk31">This box will allow you to search for images in Flickr.
-		     Just write inside a word and a gallery will appear to show you the results, If you want to add an image from the results you just have to click on it.
-		     Click on "Close" to finish this walkthrough.
-		</p>
-		</li>
-		</ol>
-
-
-		<!--help for fancybox of object-->
-		<ol id="object_fancy_tabs_id_help" class="joyRideTipContent">
-		<li data-id="object_fancy_tabs_id" data-text="Next" i18n-key="i.Next" class="custom tut_fancy_index tut_without_arrow" data-options="tipLocation:none">
-		    <h2 i18n-key="i.AddObjectContent">Adding Object content</h2>
-		  <p>
-		<span i18n-key="i.walk32">This window will help you in order to add objects (Flash and webs) to the slide. As you can see in the top zone of this window there are few choices:</span>
-		</p>
-		     <ul>
-		     <li data-options="tipLocation:bottom">
-		      <h1>Embed</h1>
-		<span i18n-key="i.walk33">(add flash content by pasting a url)</span>
-		</li>
-		<li>
-		      <h1>Web</h1>
-		<span i18n-key="i.walk71"> (add web page by pasting a url)</span>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
 
-		     <li>
-		      <h1 i18n-key="i.Upload">Upload</h1>
-		<span i18n-key="i.walk34">(add flash content by upload it from your computer)</span>
+
+		<li data-id="toolbar_presentation" data-text="Next" i18n-key="i.Next" class="tut_width500 tut_menubar tut_with_arrow" data-options="tipLocation:bottom">
+			<h2 i18n-key="i.walkWelcome5_1">ViSH Editor Toolbar</h2>
+			<p i18n-key="i.walkWelcome5_2">This toolbar offers different features to manage and compose your presentation.</p>
+			<p i18n-key="i.walkWelcome5_3">Click next to see an explanation of the different elements of the toolbar.</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		     <li>
-		      <h1>Vish</h1>
-		<span i18n-key="i.walk35"> (add flash content by choosing one from the ViSH repository)</span>
+
+<!-- 		<li data-id="toolbar_save_help" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next">
+			<h2 i18n-key="i.Save">Save</h2>
+			<p i18n-key="i.walkWelcome6_1">This button allow you to save your excursion as a draft.</p>
+		</li> -->
+
+		<li data-id="toolbar_publish_help" data-options="tipLocation:top" data-text="Next" i18n-key="i.Next" class="tut_width350 tut_with_arrow">
+			<h2 i18n-key="i.Publish">Publish</h2>
+			<p i18n-key="i.walkWelcome7_1">This button allows you to publish your presentation in the ViSH platform. If your presentation is not complete, you can also save it as a draft to keep it private and finish it later.</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		<li>
-		      <h1>Web Snapshot</h1>
-		<span i18n-key="i.walk72"> (add a portion of a web by pasting a url)</span>
+
+		<li data-id="toolbar_preview_help" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top" class="tut_width350 tut_with_arrow">
+			<h2 i18n-key="i.Preview">Preview</h2>
+			<p i18n-key="i.walkWelcome8_1">This button allows you to preview your presentation. You will be able to see the presentation in the same way that users will see it after its publication.</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		     </ul>
-		     <span i18n-key="i.walk36">Now, you are on the url section, Click on "Next" to continue.</span>
+
+		<li data-id="toolbar_themes_help" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+			<h2 i18n-key="i.Style">Style</h2>
+			<p i18n-key="i.walkWelcome9_1">This button allows you to choose a visual theme for your presentation.</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		   <li data-id="object_embed_code" data-text="Next" i18n-key="i.Next">
-		 <h2 i18n-key="i.AddObjectContentUrl">Adding Flash content by url</h2>
-		 <p>
-		<span i18n-key="i.walk37"> This box is used for pasting or writing on it, a url that contains a flash content, for example:</span>
-		     <h1>http://www.####.com/example.swf</h1>
-		     <span i18n-key="i.walk38">This supports Flash content (like swf files). Click on "Next" to continue.</span>
-		    </p>
+
+		<li data-id="toolbar_background_help" class="tut_with_arrow tut_width350" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+			<h2 i18n-key="i.Background">Background</h2>
+			<p i18n-key="i.walkWelcome10_1">Define a custom background for the current slide.</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		   <li data-id="picture_preview" data-text="Close" i18n-key="i.Close" class="custom tut_preview tut_without_arrow" data-options="tipLocation:none;">
-		 <h2 i18n-key="i.SeeContentBefore">See the content before you add it</h2>
-		 <p i18n-key="i.walk28">This zone will show you (once you added a link and clicked on "preview") the content that you are going to add.
-		      Once you are ready to add the content, you just have to click and the button in the right of this zone called
-		      "Add content"(this button will appear when the content is on preview).
-		      Click on "Close" to finish this Walkthrough.
-		    </p>
+
+		<li data-id="toolbar_element" class="tut_toolbar_tools tut_with_arrow" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+			<h2 i18n-key="i.walkWelcome11_1">Elements Tools</h2>
+			<p i18n-key="i.walkWelcome11_2">This zone contains tools to edit the contents or elements of the slides. The displayed tools will vary depending on the type of the selected element (image, web, ...).</p>
+			<p i18n-key="i.walkWelcome11_3">Each time you add or select an element in the presentation this zone of the toolbar will show you the available tools to interact with that element.</p>
+			<p><span i18n-key="i.walkWelcome11_4">Below are listed all the existing tools</span>:</p>
+			<table>
+				<tr>
+					<td><img src="/assets/toolbar/addLink.png"/></td>
+					<td><p i18n-key="i.walkWelcome11_a_1">Link element to a URL</p></td>
+				</tr>
+				<tr>
+					<td>
+						<img src="/assets/toolbar/resizeLess.png"/> 
+						<img src="/assets/toolbar/resizeMore.png"/>
+					</td>
+					<td><p i18n-key="i.walkWelcome11_a_2">Resize an element</p></td>
+				</tr>
+				<tr>
+					<td>
+						<img src="/assets/toolbar/zoomLess.png"/> 
+						<img src="/assets/toolbar/zoomMore.png"/>
+					</td>
+					<td><p i18n-key="i.walkWelcome11_a_3">Zoom</p></td>
+				</tr>
+				<tr>
+					<td>
+						<img src="/assets/tutorial/tut_textedimg.png"/>
+					</td>
+					<td><p i18n-key="i.walkWelcome11_a_4">Text Toolbar</p></td>
+				</tr>
+			</table>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		</ol>
+
+		<li data-id="menuButton" class="tut_menubuttonpresentation tut_with_arrow" data-options="tipLocation:bottom;" data-text="Next" i18n-key="i.Next">
+			<h2 i18n-key="i.walkWelcome12_1">ViSH Editor Menu</h2>
+			<p i18n-key="i.walkWelcome12_2">This button displays the ViSH Editor menu, where you can find all the functionalities of the application.</p>
+			<img id="tutMenuImage" i18n-key="i.img.tut_menu" src="/assets/tutorial/tut_menu.png"/>
+			<p i18n-key="i.walkWelcome12_3">Many of these options are also available on the ViSH Editor toolbar, but you always can access to any of them through this menu.</p>
+			<p i18n-key="i.walkWelcome12_4">Using this menu you can save and publish your presentation as well as export it to a external file, you can also preview the presentation before publish or export it, add new slides, import new contents, change the information of the presentation through the 'Settings' option, and start again this tutorial every time you want with the 'Help' option.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_contextualhelp tut_width500_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkWelcome13_1">Contextual Help</h2>
+			<table>
+				<tr>
+					<td><p i18n-key="i.walkWelcome13_2">If you have any doubt, you can always click on any of these "contextual help icons" to see additional help and instructions relative to the screen on which you are or to the element on which the icon is placed.</p></td>
+					<td class="tut_contextualhelp_icon">
+						<img src="/assets/vicons/helptutorial_circle.png"/>
+						<p class="tut_withouttopspace"><span i18n-key="i.walkWelcome13_3">Contextual Help Icon</span></p>
+					</td>
+				</tr>
+			</table>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
 
 
-		<ol id="object_fancy_tabs_web_help" class="joyRideTipContent">
-		   <li data-id="object_embedWeb_code" data-text="Next" i18n-key="i.Next">
-		 <h2 i18n-key="i.walk73">Adding Web content by url</h2>
-		 <p>
-		<span i18n-key="i.walk37"> This box is used for pasting or writing on it a url, for example:</span>
-		     <h1>http://www.####.com/</h1>
-		     <span i18n-key="i.walk38">This supports any website url. Click on "Next" to continue.</span>
-		    </p>
-		</li>
-		<li data-id="picture_preview" data-text="Close" i18n-key="i.Close" class="custom tut_preview tut_without_arrow" data-options="tipLocation:none;">
-		 <h2 i18n-key="i.SeeContentBefore">See the content before you add it</h2>
-		 <p i18n-key="i.walk28">This zone will show you (once you added a link and clicked on "preview") the content that you are going to add.
-		      Once you are ready to add the content, you just have to click and the button in the right of this zone called
-		      "add content"(this button will appear when the content is on preview).
-		      Click on "Close" to finish this Walkthrough.
-		    </p>
-		</li>
-		</ol>
+	<!-- Help in Settings -->
+	 <ol id="help_in_settings_help" class="joyRideTipContent">
 
-		<ol id="upload_object_form_help" class="joyRideTipContent">
-		<li data-id="object_file_input" data-text="Next" i18n-key="i.Next" class="custom" data-options="tipLocation:bottom;">
-		 <h2 i18n-key="i.AddObjectContentUpload">Adding Object content by upload</h2>
-		 <p>
-		  <span i18n-key="i.walk39">By clicking on the "Browse" button you will access to a browser windows that will allow you to choose a file from your device. Once you do that, you can click the "upload" button in order to preview the content in zone below. This supports any swf file. Click on "Next" to continue </span>
-		</p>
+		<li data-id="help_in_settings" data-text="Next" i18n-key="i.Next" data-options="tipLocation:none;" class="tut_settings tut_without_arrow">
+			<h2 i18n-key="i.walkSettings1_1">Welcome to the Settings screen</h2>
+			<p><span i18n-key="i.walkSettings1_2">Here you can specify information about your Virtual Excursion.</span></p>
+			<p><span i18n-key="i.walkSettings1_3">The title and avatar (an image to identify your excursion in the ViSH platform) are mandatory fields, so you should fill them before publish your excursion.</span></p>
+			<p><span i18n-key="i.walkSettings1_4">At the left side, you can see a preview of how your excursion will be presented in the ViSH Platform.</span></p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		   <li data-id="picture_preview" data-text="Close" i18n-key="i.Close" class="custom tut_preview tut_without_arrow" data-options="tipLocation:none;">
-		 <h2 i18n-key="i.SeeContentBefore">See the content before you add it</h2>
-		 <p i18n-key="i.walk28">This zone will show you (once you uploaded a file and clicked on "upload") the content you are going to add.
-		      Once you are ready to add it to the slide, you just have to click and the button in the right of this zone called
-		      "add content"(this button will appear when the content is on preview).
-		      Click on "Close" to finish this Walkthrough.
-		    </p>
-		</li>
-		</ol>
 
-		<ol id="search_object_help" class="joyRideTipContent">
-		<li data-id="search_object" data-text="Close" i18n-key="i.Close" class="custom tut_search tut_with_arrow_up" data-options="tipLocation:none">
-		 <h2 i18n-key="i.SearchObjectContent">Search Object content</h2>
-		 <p i18n-key="i.walk40">This box will allow you to search for flash content in the ViSH repository.
-		     Just write inside a word and a gallery will appear to show you the results, If you want to add one from the results you just have to click on it, then, the content will appear below and you will be able to add it to your slide by clicking the "add button".
-		     Click on "Close" to finish this walkthrough.
-		</p>
+		<li data-id="presentation_details_title" data-text="Next" i18n-key="i.Next" data-options="tipLocation:bottom;" class="tut_width350 tut_with_arrow">
+			<h2 i18n-key="i.walkSettings2_1">Write a title (Mandatory)</h2>
+			<p i18n-key="i.walkSettings2_2">Type the title of your excursion in this input. The title is important because it is the one that will appear in the ViSH Platform and the one that other users of the platform will see.</p>
 		</li>
-		</ol>
 
+		<li data-id="presentation_details_preview_thumbnail_img" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width350 tut_with_arrow">
+			<h2 i18n-key="i.walkSettings3_1">Add an avatar for your excursion (Mandatory)</h2>
+			<p i18n-key="i.walkSettings3_2">Click on this button to choose an image to represent your excursion. This image will be the avatar of the excursion and is important because it will be shown in the ViSH Platform, allowing users to identify the excursion.</p>
+		</li>
 
-		<ol id="object_fancy_tabs_websnapshot_help" class="joyRideTipContent">
-		   <li data-id="object_snapshot_code" data-text="Next" i18n-key="i.Next">
-		 <h2 i18n-key="i.walk74">Adding Web Snapshot by url</h2>
-		 <p>
-		<span i18n-key="i.walk37"> This box is used for pasting or writing on it a url, for example:</span>
-		     <h1>http://www.####.com/</h1>
-		     <span i18n-key="i.walk38">This supports any website url and it will create a live window to the website.Click on "Next" to continue.</span>
-		    </p>
+		<li data-id="presentation_details_description" data-options="tipLocation:bottom;" i18n-key="i.Next" data-text="Next" class="tut_width350 tut_with_arrow">
+		<h2 i18n-key="i.walkSettings4_1">Write a description</h2>
+		<p i18n-key="i.walkSettings4_2">Here you can explain in detail what the excursion is about.</p>
+		<p i18n-key="i.walkSettings4_3">This description will be shown in the ViSH Platform in the page of this excursion. Therefore, all users that access this excursion will be able to read it.</p>
 		</li>
-		<li data-id="picture_preview" data-text="Close" i18n-key="i.Close" class="custom tut_preview tut_without_arrow" data-options="tipLocation:none;">
-		 <h2 i18n-key="i.SeeContentBefore">See the content before you add it</h2>
-		 <p i18n-key="i.walk28">This zone will show you (once you added a link and clicked on "preview") the content that you are going to add.
-		      Once you are ready to add the content, you just have to click and the button in the right of this zone called
-		      "add content"(this button will appear when the content is on preview).
-		      Click on "Close" to finish this Walkthrough.
-		    </p>
+
+		<li data-id="presentation_details_fields_row1_column3" data-text="Next" i18n-key="i.Next" data-options="tipLocation:right;" class="theme_tut_in_settings tut_with_arrow">
+			<h2 i18n-key="i.walkSettings5_1">Select your presentation theme</h2>
+			<p i18n-key="i.walkSettings5_2">A theme defines the visual appearance of the presentation. ViSH Editor offers different themes among them you can choose.</p>
+			<p i18n-key="i.walkSettings5_3">To pick one theme, just click on the icon you like in this gallery.</p>
+			<p i18n-key="i.walkSettings5_4">Remember that you can change the theme of the presentation at any time by accesing to this screen or by clicking on the 'Style' button in the toolbar.</p>
 		</li>
-		</ol>
+
+		<li data-id="tags_in_presentation_details" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
+			<h2 i18n-key="i.walkSettings6_1">Add tags to your excursion</h2>
+			<p i18n-key="i.walkSettings6_2">Here you can add tags (or keywords) to your excursion.</p>
+			<p i18n-key="i.walkSettings6_3">These keywords are very useful to categorize the excursion. Also, they are used as index terms in the ViSH platform (as well as in other repositories), and therefore add keywords to an excursion facilitates its searching and retrieval.</p>
+			<p><span i18n-key="i.walkSettings6_4">Tag examples</span>: <i i18n-key="i.nanoscience">nanoscience</i>, <i i18n-key="i.math">math</i> <span i18n-key="i.or">or</span> <i i18n-key="i.biology">biology</i></p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="pedagogical_clasification_button" data-text="Next" i18n-key="i.Next" data-options="tipLocation:top;" class="tut_width500 tut_with_arrow">
+			<h2 i18n-key="i.walkSettings7_1">Pedagogical Aspects</h2>
+			<p i18n-key="i.walkSettings7_2">Clicking on this button will bring up the Pedagogical Aspects screen.</p>
+			<p i18n-key="i.walkSettings7_3">In this screen you can specify more pedagogy related information about your excursion.</p>
+			<p><span i18n-key="i.walkSettings7_4">Details about the information that can be specified are explained in the   contextual help of the Pedagogical Aspects screen.</p>
+		</li>
+
+		<li class="tut_width500 tut_with_arrow" data-id="save_presentation_details" class="tut_with_arrow" data-options="tipLocation:top" data-text="Finish" i18n-key="i.Finish">
+			<h2 i18n-key="i.walkSettings8_1">Start using ViSH Editor</h2>
+			<p i18n-key="i.walkSettings8_2">Once you have fulfilled the information of your excursion, at least the title and avatar, you can start to create your excursion with ViSH Editor by clicking on the 'Continue' button.</p>
+			<p i18n-key="i.walkSettings8_3">If you do not want to fulfill all the information now, you can also start using ViSH Editor by clicking on the “Fill later” button, but in this case remember that you should come back to the Settings screen and complete all the mandatory fields before publish the excursion.</p>
+			<p class="tut_space_big">&nbsp;</p>
+		</li>
+	</ol>
 
 
-		<!--help for fancybox of videos-->
-		<ol id="video_fancy_tabs_id_help" class="joyRideTipContent">
-		<li data-id="video_fancy_tabs_id" data-text="Next" i18n-key="i.Next" class="custom tut_fancy_index tut_without_arrow" data-options="tipLocation:none">
-		 <h2 i18n-key="i.AddVideoContent">Adding Video</h2>
-		 <p>
-		  <span i18n-key="i.walk41">This window will help you in order to add videos to the slide. As you can see in the top zone of this window there are few choices: </span>
-		     <ul>
-		     <li data-options="tipLocation:bottom">
-		      <h1 i18n-key="i.Url">Url</h1>
-		<span i18n-key="i.walk42"> (add video by pasting a url)</span>
-		</li>
-		     <li>
-		      <h1>Vish</h1>
-		<span i18n-key="i.walk43">(add video from the ViSH repository)</span>
-		</li>
-		     <li>
-		      <h1>Youtube</h1>
-		<span i18n-key="i.walk44">(add video by choosing one from Youtube)</span>
-		</li>
-		     </ul>
-		     <span i18n-key="i.walk46">Now, you are on the url section, Click on "Next" to continue.</span>
-		    </p>
-		</li>
-		    <li data-id="video_url" data-text="Next" i18n-key="i.Next" class="custom">
-		  <h2 i18n-key="i.AddVideoContentUrl">Adding video by url</h2>
-		  <p>
-		  <span i18n-key="i.walk47">This box is used for pasting or writing on it, a url that contains a video, for example:</span>
-		      <h1>http://www.####.com/example.avi</h1>
-		      <span i18n-key="i.walk48">This supports almost every image format files (avi,mpg,flv...) Click on "Next" to continue.</span>
-		     </p>
-		 </li>
-		    <li data-id="picture_preview" data-text="Close" i18n-key="i.Close" class="custom tut_preview tut_without_arrow" data-options="tipLocation:none">
-		  <h2 i18n-key="i.SeeVideoBefore">See the video before you add it</h2>
-		  <p i18n-key="i.walk28">This zone will show you (once you added a link and clicked on "preview") the video you are going to add.
-		      Once you are ready to add the ideo, you just have to click and the button in the right of this zone called
-		      "add content"(this button will appear when the video is on preview).
-		      Click on "Close" to finish this Walkthrough.
-		     </p>
-		 </li>
-		</ol>
+	<!-- Help in Competitions -->
+	 <ol id="help_in_competitions_help" class="joyRideTipContent">
 
-		<ol id="search_video_help" class="joyRideTipContent">
-		<li data-id="search_video" data-text="Close" i18n-key="i.Close" class="custom tut_search tut_with_arrow_up" data-options="tipLocation:none">
-		    <h2 i18n-key="i.SearchVideosVish">Search videos in ViSH repository</h2>
-		 <p i18n-key="i.walk49">Just write inside a word (press Enter) and a gallery will appear to show you the results. If you want to add one from the results you just have to click on it, then, the video will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
+		<li data-id="help_in_competitions" data-text="Finish" i18n-key="i.Finish" data-options="tipLocation:none;" class="tut_pedagogical tut_without_arrow">
+			<h2 i18n-key="i.walkCompetitions1_1">We are organizing a competition</h2>
+			<p><span i18n-key="i.walkCompetitions1_2">If you want to participate you only have to add your excursion the tag ViSHCompetition2013 and one or more of the following tags:</span></p>
+			<p><span i18n-key="i.walkCompetitions1_3">Maths, Physics, Chemistry, Biology, EnvironmentalStudies, Geography, Engineering, Humanities, NaturalScience or ComputerScience.</span></p>
+			<p><span i18n-key="i.walkCompetitions1_4">For more information go to</span> <a i18n-key="i.walkCompetitions1_5" href='http://vishub.org/competitions' target='_blank'>the info page</a> <span i18n-key="i.walkCompetitions1_6">or the</span> <a i18n-key="i.walkCompetitions1_7" href='http://vishub.org/faq#faq_competitions_1a' target='_blank'>faq</a>.</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		</ol>
+	</ol>
 
-		<ol id="search_youtube_fancy_help" class="joyRideTipContent">
-		<li data-id="search_youtube_fancy" data-text="Close" i18n-key="i.Close" class="custom tut_search tut_with_arrow_up" data-options="tipLocation:none">
-		    <h2 i18n-key="i.SearchVideosYoutube">Search videos in Youtube</h2>
-		 <p i18n-key="i.walk50">Just write inside a word (press Enter) and a gallery will appear to show you the results. If you want to add one from the results you just have to click on it, then, the video will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
+	<!-- Help in pedagogical options settings -->
+	<ol id="help_pedagogical_selection_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Finish" i18n-key="i.Finish" class="tut_pedagogical tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkPedagogical1_1">Welcome to the Pedagogical Aspects screen</h2>
+			<p><span i18n-key="i.walkPedagogical1_2_1">In this screen you can specify more pedagogy related information (or metadata) about your excursion. These metadata are grounded on and are compliant with the Learning Object Metadata (LOM) standard. The last specification of this standard, which explains in a detailed way all fields of this screen, can be found</span> <a href="http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf" target="_blank"><span i18n-key="i.walkPedagogical1_2_2">here</span></a>.</p>
+			<p class="tut_space">&nbsp;</p>
+			<p i18n-key="i.walkPedagogical1_3">Below is given a brief explanation of each of the fields that can be specified here.</p>
+			<p class="tut_space_small">&nbsp;</p>
+			<p> <i i18n-key="i.Language">Language</i>: <span i18n-key="i.walkPedagogical1_4">The language of your excursion.</span></p>
+			<p> <i i18n-key="i.Context">Context</i>: <span i18n-key="i.walkPedagogical1_5">The principal environment within which the learning and use of this learning object (i.e. the excursion) is intended to take place.</span></p>
+			<p> <i i18n-key="i.Age range">Age range</i>: <span i18n-key="i.walkPedagogical1_6">Age of the typical intended user.</span></p>
+			<p> <i i18n-key="i.Difficulty">Difficulty</i>: <span i18n-key="i.walkPedagogical1_7">How hard it is to work with or through this learning object.</span></p>
+			<p> <i i18n-key="i.TypicalLearningTime">Typical Learning Time</i>: <span i18n-key="i.walkPedagogical1_8">Approximate or typical time it takes to work with this learning object.</span></p>
+			<p> <i i18n-key="i.Subject">Subject</i>: <span i18n-key="i.walkPedagogical1_9">The topic (or topics) of the excursion.</span></p>
+			<p> <i i18n-key="i.EducationalObjectives">Educational Objectives</i>: <span i18n-key="i.walkPedagogical1_10">Comments on how this learning object is to be used.</span></p>
+			<p class="tut_space_big">&nbsp;</p>
 		</li>
-		</ol>
+	</ol>
 
-		<ol id="search_vimeo_fancy_help" class="joyRideTipContent">
-		<li data-id="search_vimeo_fancy" data-text="Close" i18n-key="i.Close" class="custom tut_search tut_with_arrow_up" data-options="tipLocation:none">
-		    <h2 i18n-key="i.SearchVideosVimeo">Search videos in Vimeo</h2>
-		 <p i18n-key="i.walk51">Just write inside a word (press Enter) and a gallery will appear to show you the results. If you want to add one from the results you just have to click on it, then, the video will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
+
+	<!-- Help in standard slide -->
+	<ol id="sslide_help" class="joyRideTipContent">
+		<li data-id="toolbar_wrapper" data-text="Close" i18n-key="i.Close" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkSlide1_1">Adding content to a slide</h2>
+			<p><span i18n-key="i.walkSlide1_2">To add content to a slide, first click on any of the available editable areas of the slide. These areas have a dotted border and a text that says</span> "<i i18n-key="i.ZoneTooltip">Click here to add content</i>". <span i18n-key="i.walkSlide1_3">Once you have selected one of these areas, several icons will appear inside.</span> <span i18n-key="i.walkSlide1_4">Each of these icons allows you to add a different type of content.</span></p>
+			
+			<table class="contentIconsWalkthrough">
+				<tr>
+					<td>
+						<img src="/assets/zonethumbs/text.png"/>
+						<h1 i18n-key="i.Text">Text</h1>
+					</td>
+					<td>
+						<img src="/assets/zonethumbs/video.png"/>
+						<h1 i18n-key="i.Videos">Videos</h1>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="/assets/zonethumbs/image.png"/>
+						<h1 i18n-key="i.Images">Images</h1>
+					</td>
+					<td>
+						<img src="/assets/zonethumbs/quiz.png"/>
+						<h1 i18n-key="i.Quizzes">Quizzes</h1>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img src="/assets/zonethumbs/object.png"/>
+						<h1 i18n-key="i.Objects">Objects</h1>
+					</td>
+					<td>
+						<!-- <img src="/assets/zonethumbs/live.png"/>
+						<h1 i18n-key="i.LiveResources">Live</h1> -->
+					</td>
+				</tr>
+			</table>
+
+			<p class="tut_withlittlebottomspace">
+				<span i18n-key="i.walkSlide1_5">If you select the text icon, a text toolbar will appear on the top, allowing you to define among others the typeface, text style, alignment and size.</span>
+			</p>
+			<img src="/assets/tutorial/tut_textedimg.png"/>
+
+			<p>
+				<span i18n-key="i.walkSlide1_6">If you select the quizzes icon, a new screen will pop up for you to choose the type of quiz (multiple choice, true/false, ...) to add.</span>
+			</p>
+
+			<p>
+				<span i18n-key="i.walkSlide1_7">In any other case (images, videos, ...), a new screen will pop up for you to choose the content to add. You can add a resource via its URL, uploading a file or by searching in external content providers such as Flickr or YouTube.</span>
+			</p>
+
+			<p>
+				<span i18n-key="i.walkSlide1_8">Once you have add content to an area, you can delete it by using the "deleting content" icon</span>: <img id="deletecontenttut" src="/assets/icons/delete_content.png"/>
+			</p>
+
+			<p>
+				<span i18n-key="i.walkSlide1_9">Finally, if you want to remove the entire slide, you can do it using the "delete slide" icon</span>: <img id="deleteslidetut" src="/assets/icons/ve_delete.png"/>
+			</p>
+
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
 		</li>
-		</ol>
+	</ol>
+
+	<!-- Help in slide templates selection -->
+	<ol id="help_template_selection_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkAddSlide_1">Adding Slides</h2>
+			<p i18n-key="i.walkAddSlide_2">
+				Here you can add a new empty slide with a specific template to your presentation. To do that, just select the template you want from the available ones in the 'Templates' panel. Notice that the template defines the position and size of the zones in which you will be able to add contents in the new slide.
+			</p>
+			<p>
+				<p class="tut_withoutbottomspace" i18n-key="i.walkAddSlide_3">Besides common slides, you can also insert more interactive elements called 'Smartcards' to your presentation. To insert any of these elements, just click on the desired one in the 'Smartcards' panel. Once you insert a Smartcard, you will be able to customize it with the content you want.</p>
+				<p class="tut_withouttopspace"><span i18n-key="i.walkAddSlide_4" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('help_smartcards_help', 'top');">Click here to see more information about the available type of Smartcards and to learn how to create them.</span></p>
+			</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Smartcards Help -->
+	<ol id="help_smartcards_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.Smartcards">Smartcards</h2>
+			<p i18n-key="i.walkSmartcards_1">
+				Smartcards are interactive elements that can be inserted in the presentation in the same way that common slides do.
+			</p>
+			<p><span i18n-key="i.walkSmartcards_2">The following type of Smartcards are available</span>:</p>
+			<table class="tut_table_imagewithsubtitle">
+				<tr>
+					<td><img src="/assets/templatesthumbs/flashcard_template.png"/><p i18n-key="i.Flashcard">Flashcard</p></td>
+					<td><p><span i18n-key="i.flashcardDef">Flashcards are resources presented as an image background with 'hot zones' identified by arrows on which the user can click to see additional contents that had been previously tagged.</span> <span i18n-key="i.flashcardLearHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('fc_help', 'top');">Click here to learn how to create a Flashcard.</span></p></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/templatesthumbs/tVTour.png"/><p i18n-key="i.VirtualTour">Virtual Tour</p></td>
+					<td><p><span i18n-key="i.vtDef">Virtual Tours are similar to Flashcards, but instead of being presented as static background images, they are presented as interactive maps where the 'hot zones' are places identified by map pins. This way, when users click on a map pin (a tagged location), they will see additional contents.</span> <span i18n-key="i.vtLearHow" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('vt_help', 'top');">Click here to learn how to create a Virtual Tour.</span></p></td>
+				</tr>
+			</table>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help uploading PDF -->
+	<ol id="help_pdfex_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkPdf2ex_1">Insert a PDF slideshow</h2>
+			<p i18n-key="i.walkPdf2ex_2">Select a slideshow in PDF format and upload the file. Only files with PDF format are allowed. If you want to insert a slideshow in other format such as PowerPoint (.ppt), you should convert the file to PDF first.</p>
+			<p i18n-key="i.walkPdf2ex_3">Once the upload of the PDF file is complete, a new screen will pop up for you to select the slides of the uploaded slideshow that you want to insert.</p>
+			<p i18n-key="i.walkPdf2ex_4" class="tut_withoutbottomspace">This functionality will convert the PDF slideshow to a ViSH Editor presentation, this means that each of the selected slides of the PDF slideshow will be inserted in the current presentation as a new slide.</p>
+			
+			<table class="tut_table_image">
+				<tr>
+					<td><span i18n-key="i.walkPdf2ex_5">If what you want is to insert a whole PDF document in the same slide to be readed as a book, you should upload the PDF file from the 'Objects' panel.</span></td>
+					<td><img src="/assets/zonethumbs/object.png"></td>
+				</tr>
+			</table>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help searching presentations in ViSH to insert -->
+	<ol id="help_excursion_selection_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkInsertingViSHPres_1">Adding Slides from Virtual Excursions</h2>
+			<p i18n-key="i.walkInsertingViSHPres_2">Here you can search Virtual Excursions on the ViSH platform in order to add them (or add selected slides from them) to your presentation.</p>
+			<p>
+				<span i18n-key="i.walkSearch1">Write the name you want to search inside the text box, for example</span> <i><span i18n-key="i.nature">nature</span></i>, <span i18n-key="i.walkPresSearch2">and press the 'enter' key to start the search. When the search has finished, the found Virtual Excursions will be shown in this screen.</span>
+			</p>
+			<p i18n-key="i.walkInsertingViSHPres_3">Click on any of the Virtual Excursions to select it. After that, a new button "Preview" will be displayed.	Once you click on this button, a new screen will pop up for you to select the slides  that you want to insert in your presentation.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help searching smartcards in ViSH to insert -->
+	<ol id="help_smartcard_selection_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkInsertingViSHSmart_1">Adding Smartcards</h2>
+			<p><span i18n-key="i.walkSmartcards_1">Smartcards are interactive elements that can be inserted in the presentation in the same way that common slides do.</span> <span i18n-key="i.walkLearnMoreSmartcards" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('help_smartcards_help', 'top');">Click here to learn more about Smartcards.</span></p>
+			<p i18n-key="i.walkInsertingViSHSmart_2">Here you can search Smartcards on the ViSH platform in order to add them to your presentation.</p>
+			<p>
+				<span i18n-key="i.walkSearch1">Write the name you want to search inside the text box, for example</span> <i><span i18n-key="i.nature">nature</span></i>, <span i18n-key="i.walkSmartSearch2">and press the 'enter' key to start the search. When the search has finished, the found Smartcards will be shown in this screen.</span>
+			</p>
+			<p i18n-key="i.walkInsertingViSHSmart_3">Click on any of the Smartcards to select it. After that, a new button "preview" will be displayed. Once you click on this button, a new screen will pop up for you to preview the Smartcard before added it to your presentation.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help importing JSON -->
+	<ol id="help_iJSON_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkInsertJSONfile_1">Add a ViSH Editor Presentation from a JSON file</h2>
+			<p i18n-key="i.walkInsertJSONfile_2">Pick the file in JSON format (.json) in which the presentation you want to insert is saved. Then, click on the preview button. A new screen will appear for you to select the slides to import.</p>
+			<p i18n-key="i.walkInsertJSONfile_3">You can save your presentation in JSON format by clicking on 'Menu -> Export -> toJSON'. A JSON file containing your presentation will be downloaded to your device. This  way you can share your presentation through a file (for instance sending it by email) and store it where you want.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help in themes templates -->
+	<ol id="themes_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" class="tut_themes tut_width500_center tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
+			<h2 i18n-key="i.walkThemes_1">ViSH Editor Themes</h2>
+			<p i18n-key="i.walkSettings5_2">A theme defines the visual appearance of the presentation. ViSH Editor offers different themes among them you can choose.</p>
+			<p i18n-key="i.walkSettings5_3">To pick one theme, just click on the icon you like in this gallery.</p>
+			<p i18n-key="i.walkThemes_4">Remember that you can change the theme of the presentation at any time by accesing to this screen or by clicking on the 'Settings' option in the menu.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help in Animation templates -->
+	<ol id="animation_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" class="tut_themes tut_width500_center tut_without_arrow" data-options="tipLocation:none;" data-text="Close" i18n-key="i.Close">
+			<h2 i18n-key="i.walkAnimations_1">ViSH Editor Animations</h2>
+			<p i18n-key="i.walkAnimations_2">An Animation defines the visual transition between the slides of the presentation. ViSH Editor offers different animations among them you can choose.</p>
+			<p i18n-key="i.walkAnimations_3">To pick one animation, just pass through the icons to previsualize the animation you like in this gallery.</p>
+			<p i18n-key="i.walkAnimations_4">Remember that you can change the animation between the slides of the presentation at any time by accesing to this screen.</p>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help in Flashcards -->
+	<ol id="fc_help" class="joyRideTipContent">
+		<li data-id="toolbar_wrapper" data-text="Finish" i18n-key="i.Finish" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.CreatingFlashcards">Creating Flashcards</h2>
+			<p i18n-key="i.flashcardDef" class="tut_withoutbottomspace">Flashcards are resources presented as an image background with 'hot zones' identified by arrows on which the user can click to see additional contents that had been previously tagged.</p>
+
+			<table class="tut_table_imagewithsubtitle_row2">
+				<tr>
+					<td>
+						<p i18n-key="i.walkFlashcard_1">To start creating a Flashcard click on the 'Add slide' button at the left and then click on the Flashcard icon in the 'Smartcards' panel. After that, an empty Flashcard will be shown in the screen.</p>
+					</td>
+					<td>
+						<img src="/assets/templatesthumbs/flashcard_template.png"/><p i18n-key="i.FlashcardIcon">Flashcard Icon</p>
+					</td>
+				</tr>
+			</table>
+
+			<p class="tut_withmediumbottomspace"><span i18n-key="i.walkFlashcard_2">To select the image background of the Flashcard you should click on the following button</span>:</p>
+			<img class="tut_image" src="/assets/icons/flashcard_add_img_button.png"/>
+
+			<p class="tut_withmediumbottomspace" i18n-key="i.walkFlashcard_3">You can change the selected background at any time by clicking on the 'Background' button of the toolbar.</p>
+			<button type="button" class="btn btn-primary btn-small">
+				<i class="icon-button icon-picture"></i>
+			</button>
+
+			<p i18n-key="i.walkFlashcard_4">When you are creating a Flashcard, a new panel is displayed at the bottom of the screen. We will refer to this panel as the 'Flashcard panel'.</p>
+			<img src="/assets/tutorial/tut_flashcard1.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkFlashcard_5">To add a new slide to the Flashcard click on the 'Add slide' button placed in the 'Flashcard panel' and continue with the usual process. After add it, the thumbnail of the new slide will appear in the panel and the slide will be displayed in the screen.</p>
+			<img src="/assets/tutorial/tut_flashcard2.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkFlashcard_6">When a slide is selected, is displayed in the screen and you can edit and remove it the same way as you do with common slides. To select a slide just click on it in the 'Flashcard panel'. If you want to select the Flashcard again to edit it, you have to click on the Flascard icon placed at the left of the 'Flashcard panel'. </p>
+
+			<table class="tut_table_imagewithsubtitle_row2">
+				<tr>
+					<td>
+						<p i18n-key="i.walkFlashcard_7">The slides have draggable arrows on their top. You can drag any of them to the Flashcard background to create a new 'hot zone'. This way, when users click on an arrow they will see the associated slide. </p>
+					</td>
+					<td>
+						<img src="/assets/tutorial/tut_pois_flashcard.png"/>
+					</td>
+				</tr>
+			</table>
+
+			<p><span i18n-key="i.walkRememberPreview">Remember that you can preview the object you are creating at any time by clicking on the 'Preview' button placed in the toolbar</span> <button type="button" class="btn btn-primary btn-small"><i class="icon-button icon-eye-open"></i></button> .</p>
+			<p class="tut_space">&nbsp;</p>
+			
+		</li>
+
+	</ol>
+
+	<!-- Help in Virtual Tours -->
+	<ol id="vt_help" class="joyRideTipContent">
+		<li data-id="toolbar_wrapper" data-text="Finish" i18n-key="i.Finish" class="tut_template_editorfull tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.CreatingVirtualTours">Creating Virtual Tours</h2>
+			<p i18n-key="i.vtDef" class="tut_withoutbottomspace">Virtual Tours are similar to Flashcards, but instead of being presented as static background images, they are presented as interactive maps where the 'hot zones' are places identified by map pins. This way, when users click on a map pin (a tagged location), they will see additional contents.</p>
+
+			<table class="tut_table_imagewithsubtitle_row2">
+				<tr>
+					<td>
+						<p i18n-key="i.walkVirtualTour_1">To start creating a Virtual Tour click on the 'Add slide' button at the left and then click on the Virtual Tour icon in the 'Smartcards' panel. After that, an empty Virtual Tour will be shown in the screen.</p>
+					</td>
+					<td>
+						<img src="/assets/templatesthumbs/tVTour.png"/><p i18n-key="i.VirtualTourIcon">Virtual Tour Icon</p>
+					</td>
+				</tr>
+			</table>
+
+			<p><span i18n-key="i.walkVirtualTour_2a">When you are creating a Virtual Tour, an interactive map is displayed with a search box on its top. You can use this box to look for places and locations. Type the location you want to search, for example</span> <i>Madrid</i>. <span i18n-key="i.walkVirtualTour_2b">A list of results will be shown at the bottom of the search box. You can pick any of them or just press the 'enter' key to automatically select the first one. After this, the map will show the selected location.</span></p>
+
+			<p i18n-key="i.walkVirtualTour_3">When you are creating a Virtual Tour, a new panel is displayed at the bottom of the screen. We will refer to this panel as the 'Virtual Tour panel'.</p>
+			<img src="/assets/tutorial/tut_vt1.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkVirtualTour_4">To add a new slide to the Virtual Tour click on the 'Add slide' button placed in the 'Virtual Tour panel' and continue with the usual process. After add it, the thumbnail of the new slide will appear in the panel and the slide will be displayed in the screen.</p>
+			<img src="/assets/tutorial/tut_vt2.png"/>
+			<p class="tut_space">&nbsp;</p>
+
+			<p i18n-key="i.walkVirtualTour_5">When a slide is selected, is displayed in the screen and you can edit and remove it the same way as you do with common slides. To select a slide just click on it in the 'Virtual Tour panel'. If you want to select the Virtual Tour again to edit it, you have to click on the Virtual Tour icon placed at the left of the 'Virtual Tour panel'.</p>
+
+			<table class="tut_table_imagewithsubtitle_row2">
+				<tr>
+					<td>
+						<p i18n-key="i.walkVirtualTour_6">The slides have draggable arrows on their top. You can drag any of them into the map to create a new location. Once you dragged an arrow into the map, a new map pin will appear in the selected location. This way, when users click on this map pin they will see the associated slide. The map pins are also draggables, so you can drag them across the map. To remove a map pin, just click on it.</p>
+					</td>
+					<td>
+						<img src="/assets/tutorial/tut_pois_vt.png"/>
+					</td>
+				</tr>
+			</table>
+
+			<p><span i18n-key="i.walkRememberPreview">Remember that you can preview the object you are creating at any time by clicking on the 'Preview' button placed in the toolbar</span> <button type="button" class="btn btn-primary btn-small"><i class="icon-button icon-eye-open"></i></button> .</p>
+
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+	</ol>
+
+	<!-- Help inserting images [URL, Upload, ViSH, Flickr, LRE] -->
+	<ol id="images_fancy_tabs_id_help" class="joyRideTipContent">
+
+		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkImagesMain_1">Adding images</h2>
+			<p i18n-key="i.walkImagesMain_2">This screen allows you to add images to the slide. You can select the image to be added from different sources:</p>
+
+			<table>
+				<tr>
+					<td><p i18n-key="i.Url">Url</p></td>
+					<td><p i18n-key="i.walkImagesMain_Url">add an image by pasting a url</p></td>
+				</tr>
+				<tr>
+					<td><p i18n-key="i.Upload">Upload</p></td>
+					<td><p i18n-key="i.walkImagesMain_Upload">upload an own image from your computer</p></td>
+				</tr>
+				<tr>
+					<td><p>ViSH</p></td>
+					<td><p i18n-key="i.walkImagesMain_ViSH">search images on the ViSH repository</p></td>
+				</tr>
+				<tr>
+					<td><p>Flickr</p></td>
+					<td><p i18n-key="i.walkImagesMain_Flickr">search images on Flickr</p></td>
+				</tr>
+				<tr>
+					<td><p>LRE</p></td>
+					<td><p i18n-key="i.walkImagesMain_LRE">search images on the LRE repository</p></td>
+				</tr>
+			</table>
+
+			<p i18n-key="i.walkImagesUrl1_1">Now you are in the url tab, click on "Next" to continue.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="picture_url" data-text="Next" i18n-key="i.Next" class="tut_width500 tut_with_arrow">
+			<h2 i18n-key="i.walkImagesUrl2_1">Adding images by url</h2>
+			<p i18n-key="i.walkImagesUrl2_2">If you want to add an image through its url, you should type or paste the url of the image in this input, for example:</p>
+			<h6>http://www.example.com/example.jpg</h6>
+			<p i18n-key="i.walkImagesUrl2_3">Almost every image format (jpg, png, gif, tiff, bmp, ...) is supported.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="picture_url_previewButton" data-text="Close" i18n-key="i.Close" data-options="tipLocation:bottom" class="tut_preview tut_width500 tut_with_arrow">
+			<h2 i18n-key="i.walkImagesUrl3_1">Preview the image before add it</h2>
+			<p i18n-key="i.walkImagesUrl3_2">After type or paste the url of the desired image you should click on this "Preview" button. After that, a preview of the image will be shown and a new button "Add Content" will appear. To finish and add the image to the slide, you should click on the "Add Content" button.</p>
+		</li>
+	</ol>
+
+	<ol id="upload_picture_form_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkImagesMain_1">Adding images</h2>
+			<p i18n-key="i.walkImagesMain_2">This screen allows you to add images to the slide. You can select the image to be added from different sources:</p>
+
+			<table>
+				<tr>
+					<td><p i18n-key="i.Url">Url</p></td>
+					<td><p i18n-key="i.walkImagesMain_Url">add an image by pasting a url</p></td>
+				</tr>
+				<tr>
+					<td><p i18n-key="i.Upload">Upload</p></td>
+					<td><p i18n-key="i.walkImagesMain_Upload">upload an own image from your computer</p></td>
+				</tr>
+				<tr>
+					<td><p>ViSH</p></td>
+					<td><p i18n-key="i.walkImagesMain_ViSH">search images on the ViSH repository</p></td>
+				</tr>
+				<tr>
+					<td><p>Flickr</p></td>
+					<td><p i18n-key="i.walkImagesMain_Flickr">search images on Flickr</p></td>
+				</tr>
+				<tr>
+					<td><p>LRE</p></td>
+					<td><p i18n-key="i.walkImagesMain_LRE">search images on the LRE repository</p></td>
+				</tr>
+			</table>
+
+			<p i18n-key="i.walkImagesUpload1_1">Now you are in the upload tab, click on "Next" to continue.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="upload_file_inputbox" data-text="Close" i18n-key="i.Close" data-options="tipLocation:bottom" class="tut_width600 tut_with_arrow">
+			<h2 i18n-key="i.walkImagesUpload2_1">Uploading images</h2>
+			<p i18n-key="i.walkImagesUpload2_2">Here you can add an own image from your device. To do that, first you should select the desired image using the file picker. Optionally, you can type tags to classify the selected image. After that, you should click on the "upload" button in order to upload the image to the ViSH platform. When the upload has finished, a preview of the image will be shown at the bottom. Finally, to add the image to the slide you should click on the "Add Content" button.</p>
+			<p i18n-key="i.walkImagesUrl2_3">Almost every image format (jpg, png, gif, tiff, bmp, ...) is supported.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<ol id="search_picture_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkImagesMain_1">Adding images</h2>
+			<p i18n-key="i.walkImagesMain_2">This screen allows you to add images to the slide. You can select the image to be added from different sources:</p>
+
+			<table>
+				<tr>
+					<td><p i18n-key="i.Url">Url</p></td>
+					<td><p i18n-key="i.walkImagesMain_Url">add an image by pasting a url</p></td>
+				</tr>
+				<tr>
+					<td><p i18n-key="i.Upload">Upload</p></td>
+					<td><p i18n-key="i.walkImagesMain_Upload">upload an own image from your computer</p></td>
+				</tr>
+				<tr>
+					<td><p>ViSH</p></td>
+					<td><p i18n-key="i.walkImagesMain_ViSH">search images on the ViSH repository</p></td>
+				</tr>
+				<tr>
+					<td><p>Flickr</p></td>
+					<td><p i18n-key="i.walkImagesMain_Flickr">search images on Flickr</p></td>
+				</tr>
+				<tr>
+					<td><p>LRE</p></td>
+					<td><p i18n-key="i.walkImagesMain_LRE">search images on the LRE repository</p></td>
+				</tr>
+			</table>
+
+			<p i18n-key="i.walkImagesViSH1_1">Now you are in the ViSH tab, click on "Next" to continue.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="search_picture" data-text="Close" i18n-key="i.Close" class="tut_width500 tut_with_arrow" data-options="tipLocation:bottom">
+			<h2 i18n-key="i.walkImagesViSH2_1">Search images on the ViSH repository</h2>
+			<p i18n-key="i.walkImagesViSH2_2">This screen allows you to search images on the ViSH repository (http://vishub.org).</p>
+			<p>
+				<span i18n-key="i.walkSearch1">Write the name you want to search inside the text box, for example</span> <i><span i18n-key="i.nature">nature</span></i>, <span i18n-key="i.walkImagesSearch2">and press the 'enter' key to start the search. When the search has finished, the found images will be shown in this screen. To add any of them to the slide, you should just click on the desired one.</span>
+			</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<ol id="search_flickr_fancy_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkImagesMain_1">Adding images</h2>
+			<p i18n-key="i.walkImagesMain_2">This screen allows you to add images to the slide. You can select the image to be added from different sources:</p>
+
+			<table>
+				<tr>
+					<td><p i18n-key="i.Url">Url</p></td>
+					<td><p i18n-key="i.walkImagesMain_Url">add an image by pasting a url</p></td>
+				</tr>
+				<tr>
+					<td><p i18n-key="i.Upload">Upload</p></td>
+					<td><p i18n-key="i.walkImagesMain_Upload">upload an own image from your computer</p></td>
+				</tr>
+				<tr>
+					<td><p>ViSH</p></td>
+					<td><p i18n-key="i.walkImagesMain_ViSH">search images on the ViSH repository</p></td>
+				</tr>
+				<tr>
+					<td><p>Flickr</p></td>
+					<td><p i18n-key="i.walkImagesMain_Flickr">search images on Flickr</p></td>
+				</tr>
+				<tr>
+					<td><p>LRE</p></td>
+					<td><p i18n-key="i.walkImagesMain_LRE">search images on the LRE repository</p></td>
+				</tr>
+			</table>
+
+			<p i18n-key="i.walkImagesFlickr1_1">Now you are in the Flickr tab, click on "Next" to continue.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="search_flickr_fancy" data-text="Close" i18n-key="i.Close" class="tut_width500 tut_with_arrow" data-options="tipLocation:bottom">
+			<h2 i18n-key="i.walkImagesFlickr2_1">Search images on Flickr</h2>
+			<p i18n-key="i.walkImagesFlickr2_2">This screen allows you to search images on Flickr.</p>
+			<p>
+				<span i18n-key="i.walkSearch1">Write the name you want to search inside the text box, for example</span> <i><span i18n-key="i.nature">nature</span></i>, <span i18n-key="i.walkImagesSearch2">and press the 'enter' key to start the search. When the search has finished, the found images will be shown in this screen. To add any of them to the slide, you should just click on the desired one.</span>
+			</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<ol id="search_lre_fancy_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkImagesMain_1">Adding images</h2>
+			<p i18n-key="i.walkImagesMain_2">This screen allows you to add images to the slide. You can select the image to be added from different sources:</p>
+
+			<table>
+				<tr>
+					<td><p i18n-key="i.Url">Url</p></td>
+					<td><p i18n-key="i.walkImagesMain_Url">add an image by pasting a url</p></td>
+				</tr>
+				<tr>
+					<td><p i18n-key="i.Upload">Upload</p></td>
+					<td><p i18n-key="i.walkImagesMain_Upload">upload an own image from your computer</p></td>
+				</tr>
+				<tr>
+					<td><p>ViSH</p></td>
+					<td><p i18n-key="i.walkImagesMain_ViSH">search images on the ViSH repository</p></td>
+				</tr>
+				<tr>
+					<td><p>Flickr</p></td>
+					<td><p i18n-key="i.walkImagesMain_Flickr">search images on Flickr</p></td>
+				</tr>
+				<tr>
+					<td><p>LRE</p></td>
+					<td><p i18n-key="i.walkImagesMain_LRE">search images on the LRE repository</p></td>
+				</tr>
+			</table>
+
+			<p i18n-key="i.walkImagesLRE1_1">Now you are in the LRE tab, click on "Next" to continue.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+
+		<li data-id="search_lre_fancy" data-text="Close" i18n-key="i.Close" class="tut_width500 tut_with_arrow" data-options="tipLocation:bottom">
+			<h2 i18n-key="i.walkImagesLRE2_1">Search images on the LRE repository</h2>
+			<p i18n-key="i.walkImagesLRE2_2">This screen allows you to search images on the LRE repository.</p>
+			<p>
+				<span i18n-key="i.walkSearch1">Write the name you want to search inside the text box, for example</span> <i><span i18n-key="i.nature">nature</span></i>, <span i18n-key="i.walkImagesSearch2">and press the 'enter' key to start the search. When the search has finished, the found images will be shown in this screen. To add any of them to the slide, you should just click on the desired one.</span>
+			</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+
+	<!-- Help inserting objects [URL, Upload, Repository, Snapshot] -->
+	<ol id="object_fancy_tabs_main_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkObjectsMain_1">Adding objects</h2>
+			<p i18n-key="i.walkObjectsMain_2">This screen allows you to add different types of objects to the slides. You can select an object to be added from different sources:</p>
+
+			<table>
+				<tr>
+					<td><p>Web</p></td>
+					<td><p i18n-key="i.walkObjectsMain_Web">add a web by pasting its url</p></td>
+				</tr>
+				<tr>
+					<td><p>Web Snapshot</p></td>
+					<td><p i18n-key="i.walkObjectsMain_WebSnapshot">a "web snapshot" is a fragment of a website. This fragment will appear without scrollbars and allows you to insert a specific area or zone of a website instead of the full page</p></td>
+				</tr>
+				<tr>
+					<td><p>Embed</p></td>
+					<td><p i18n-key="i.walkObjectsMain_Embed">add an embedded object. You can type or paste either the HTML code of the object or its url</p></td>
+				</tr>
+				<tr>
+					<td><p i18n-key="i.Upload">Upload</p></td>
+					<td><p i18n-key="i.walkObjectsMain_Upload">upload your own PDF or SWF (flash) file from your computer</p></td>
+				</tr>
+				<tr>
+					<td><p>ViSH</p></td>
+					<td><p i18n-key="i.walkObjectsMain_ViSH">search objects on the ViSH repository</p></td>
+				</tr>
+				<tr>
+					<td><p>LRE</p></td>
+					<td><p i18n-key="i.walkObjectsMain_LRE">search objects on the LRE repository</p></td>
+				</tr>
+			</table>
+
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help inserting videos [URL, ViSH, YouTube] -->
+	<ol id="video_fancy_tabs_main_help" class="joyRideTipContent">
+
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkVideosMain_1">Adding videos</h2>
+			<p i18n-key="i.walkVideosMain_2">This screen allows you to add videos to the slides. You can select a video to be added from different sources:</p>
+			<table>
+				<tr>
+					<td><p i18n-key="i.Url">Url</p></td>
+					<td><p i18n-key="i.walkVideosMain_Url">add a video by pasting a url. Only HTML5 and YouTube videos are allowed</p></td>
+				</tr>
+				<tr>
+					<td><p>ViSH</p></td>
+					<td><p i18n-key="i.walkVideosMain_ViSH">search HTML5 videos on the ViSH repository</p></td>
+				</tr>
+				<tr>
+					<td><p>YouTube</p></td>
+					<td><p i18n-key="i.walkVideosMain_YouTube">search videos on YouTube</p></td>
+				</tr>
+				<tr>
+					<td><p i18n-key="i.Upload">Upload</p></td>
+					<td>
+						<p>
+							<span i18n-key="i.walkVideosMain_Upload" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('video_fancy_tabs_upload_help', 'top');">Click here to learn how to upload videos</span>
+						</p>
+					</td>
+				</tr>
+			</table>
+
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<ol id="video_fancy_tabs_upload_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.walkVideosUpload_1">Uploading videos</h2>
+
+			<p>
+				<span i18n-key="i.walkVideosUpload_2">You can upload your own video from your computer. To do that, go to</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a> <span i18n-key="i.walkVideosUpload_3">and upload your video file to the ViSH repository. Several video formats (mp4, flv, mpg, avi, ...) are allowed. When you finish uploading the video onto ViSH your video will be converted to an HTML5 compatible format. Note that this process could take several minutes. Once the process finish, you have two ways of adding the video</span>:
+				<ul>
+					<li><span i18n-key="i.walkVideosUpload_4">Search your video on the ViSH repository in the ViSH tab. In this case you will have to wait several hours for the ViSH search engine to index the new video. This is the recommended way to insert the videos, because thereby the videos will be available in several formats and will work in nearly all devices. </span></li>
+					<li class="tut_li_decnone">&nbsp;</li>
+					<li><span i18n-key="i.walkVideosUpload_5">Another way is to go to the page of the video in ViSH, for example, http://vishub.org/videos/325, and add the extension you want (webm, mp4) to the url, for example, http://vishub.org/videos/325.webm. In this page you will be able to see the video in your web browser. Finally, you just have to go to the 'url' tab and paste this url to insert the video immediately.</span></li>
+				</ul>
+			</p>
+
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
+
+	<!-- Help inserting Quizzes -->
+	<ol id="quiz_help" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+		<h2 i18n-key="i.walkQuiz_1">Adding Quizzes</h2>
+		<p><span i18n-key="i.walkQuiz_2">You can add different type of quizzes to your presentation. The current available quizzes are showed below</span>:</p>
+			<table class="tut_table_imagewithsubtitle">
+				<tr>
+					<td><img src="/assets/templatesthumbs/tquiz2.png"/><p i18n-key="i.walkQuiz_MC1">Multiple choice</p></td>
+					<td><p i18n-key="i.walkQuiz_MC2">Multiple choice quizzes are a form of assessment in which respondents are asked to select the best possible answer (or answers) out of the choices from a list.</p></td>
+				</tr>
+				<tr>
+					<td><img src="/assets/templatesthumbs/tquiz3.png"/><p i18n-key="i.walkQuiz_TF1">True / False</p></td>
+					<td><p i18n-key="i.walkQuiz_TF2">A true/false quiz is a a form of assessment in which respondents are asked to select, for each statement, if it is true or false.</p></td>
+				</tr>
+			</table>
+			<p i18n-key="i.walkQuiz_3">In addition to the content, you also can define the correct answers of the quiz, allowing this way self-assessment and the auto tracking of students progress in Learning Management Systems like Moodle.</p>
+			<p class="tut_space">&nbsp;</p>
+		</li>
+	</ol>
 		   
-		  <!--help for fancybox of live-->
-		  <ol id="tab_live_webcam_id" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Next" i18n-key="i.Next" class="custom tut_fancy_index tut_without_arrow" data-options="tipLocation:none">
-		 <h2 i18n-key="i.AddLiveContent">Adding Live Content</h2>
-		 <p i18n-key="i.walk52">This window will help you in order to add Live content to a slide. As you can see in the top zone of this window there just one choice for now:</p>
-		    <ul>
-		    <li data-options="tipLocation:none;">
-		    <h1>Webcam</h1><span i18n-key="i.walk53">(add video from a live webcam)<span>
+	<!-- Help inserting live objects -->
+	<ol id="tab_live_resource_id" class="joyRideTipContent">
+		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width600_center tut_without_arrow" data-options="tipLocation:none">
+		<h2 i18n-key="i.walkLive_1">Adding Live Content</h2>
+		<p i18n-key="i.walkLive_2">ViSH (Virtual Science Hub) offers special resources such as live webcams, microscopes or virtual laboratories provided by selected e-Infrastructures.</p>
+		<p i18n-key="i.walkLive_3">In this screen you will be able to search this type of resources on the ViSH repository.</p>
+		<p><span i18n-key="i.walkLive_4">If you want to discover more e-Infrastructure resources or attend to live scientific events you can visit</span> <a class="tut_tutlink" href="http://vishub.org" target="_blank">http://vishub.org</a>.</p>
+
+		<p class="tut_space">&nbsp;</p>
+	</ol>
+
+	<!-- Walkthrough end -->
+
+	<!-- About screen -->
+	<ol id="about_screen" class="joyRideTipContent">
+		<li data-id="thumbcontent" class="about_fancybox tut_without_arrow" data-options="tipLocation:none">
+			<h2 i18n-key="i.About1">ViSH Editor</h2>
+			<p><span class="aboutfield" i18n-key="i.Version">Version</span>: <span id="VEversion"></span></p>
+			<p class="tut_withoutbottomspace"><span class="aboutfield" i18n-key="i.License">License</span>: <span i18n-key="i.OpenSource">Open source</span></p>
+			<p class="tut_withouttopspace"><span i18n-key="i.About2">Code available at</span> <a class="tut_tutlink" href="https://github.com/ging/vish_editor" target="_blank">https://github.com/ging/vish_editor</a>.</p>
+			<p><span class="aboutfield" i18n-key="i.Documentation">Documentation</span>: <a i18n-key="i.About3" class="tut_tutlink" href="http://www.youtube.com/channel/UCo-73n6eZBWNBs2gvKLyBhQ?feature=watch" target="_blank">visit our YouTube Channel</a></p>
+			<p><span class="aboutfield" i18n-key="i.About4">Developed by</span> <span>UPM (Universidad Politécnica de Madrid)</span></p>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+			<p class="tut_space">&nbsp;</p>
+			<h2 i18n-key="i.VESurvey1">Help us to improve ViSH Editor</h2>
+			<p class="tut_withoutbottomspace"><span i18n-key="i.VESurvey2">Please fill</span> <a i18n-key-href="i.VESurveyURL" class="tut_tutlink" i18n-key="i.VESurvey3" href="https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform" target="_blank">this survey</a>.</p>
+			<p class="tut_withouttopspace"><span i18n-key="i.VESurvey4">Thank you for your collaboration</span>!</p>
 		</li>
-		<li data-options="tipLocation:none;">
-		    <h1>Microscope</h1><span i18n-key="i.walk53">(add video from a live microscope stream)<span>
-		</li>
-		    </ul>
-		    <p i18n-key="i.walk54">Now, you are on the webcam section, Click on "Next" to continue</p>.
-		   </li>
-		   <li data-id="search_webcam" data-text="Close" i18n-key="i.Close" class="custom tut_search tut_with_arrow_up" data-options="tipLocation:none">
-		    <h2 i18n-key="i.SearchLiveContent">Search Live Content</h2>
-		 <p i18n-key="i.walk55">Just write inside a word (press Enter)and a gallery will appear to show you the results, If you want to add one from the results you just have to click on it, then, the content will appear below and you will be able to add it to your slide by clicking the "add button". Click on "Close" to finish this walkthrough.</p>
-		</li>
-	</ol> 
+	</ol>
 
 	<iframe id="hiddenIframeForAjaxDownloads" style="border:0" iframeborder="0" frameborder="0" iframeelement.frameborder="0;"></iframe>
 
 	<!-- Loading fancybox -->
-    <div id='loading_fancy_wrapper' style='display:none'>
-        <div id='loading_fancy'>
-        	<img class="loading_fancy_img" src='/assets/lightbox-ico-loading.gif'></img>
-        </div>
-    </div>
+	<div id='loading_fancy_wrapper' style='display:none'>
+		<div id='loading_fancy'>
+			<img class="loading_fancy_img" src='/assets/lightbox-ico-loading.gif'></img>
+		</div>
+	</div>
 
 	<!-- Copy HTML until here -->

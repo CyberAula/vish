@@ -1,0 +1,52 @@
+footer.container-fluid
+  display: block
+  float: left
+  padding: 0
+  width: 100%
+  //@include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  height: 38px  
+  nav.footercontent
+    @include page_footer
+    
+    ul
+      margin-top: 5px
+      margin-right: 0px
+      margin-left: 0px
+      margin-bottom: 0px
+      padding: 0
+      text-align: center
+      li
+        display: inline
+        padding-left: 2%
+        padding-right: 2%
+      li.social-img     
+        img
+          width: 30px
+      li.dropup
+        .dropdown-menu
+          border-radius: $baseBorderRadius
+          li
+            a
+              &:hover
+                background: $secondColor
+                color: $white
+                //align-self: center
+
+          li.languaje
+            display: block
+            padding: 0
+      
+            &:last-child
+              margin-bottom: 0
+            img   
+              width: 25px
+              margin-right: 5px
+              height: 20px
+              background-color: $firstColor
+          
+footer.fixed-bottom
+  position: fixed
+  left: 0
+  bottom: 0
+  width: 100%
+  padding: 0

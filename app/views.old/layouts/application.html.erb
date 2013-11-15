@@ -1,0 +1,80 @@
+<!-- HTML5 DOCTYPE -->
+<!DOCTYPE html>
+<html lang="<%= I18n.locale.to_s %>">
+<%= render :partial => 'layouts/head' %>
+<body data-offset= "50" data-spy="scroll" data-target="#left" data-twttr-rendered="true" >
+  <div class="wrapper">
+    <div class="row"> 
+      <section class="container">
+        <header class="header">
+          <%= render :partial => "layouts/header" %>
+        </header>
+        <article id="main" class="content-page">
+          <section id="left" class="left-content-application">
+            <%= yield :toolbar %>
+          </section>
+          <section id="main" class="center-content-application">
+            <%= yield %>
+          </section>
+          <section id="right" class="right-content-application">
+            <%= yield :sidebar %>
+            <footer class="footer-right">
+              <%= render :partial => "layouts/footer-right" %>
+            </footer>
+          </section>
+        </article>
+      <div class="push"></div> 
+    </div>      
+  </div>  
+  <script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0014/0195.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+</body>
+</html>
+
+<%= javascript_tag do %>
+var $win = $(window)
+, $nav = $('.right')
+, $nav2 = $('#left')
+, $nav3 = $('#main')
+, $nav4 = $('.footer')
+, navTop = $('.right').length && $('.right').offset().top - 40
+, navTop2 = $('#left').length && $('#left').offset().top - 40
+, isFixed = 0
+processScroll()
+
+// hack sad times - holdover until rewrite for 2.1
+
+$nav.on('click', function () {
+  if (!isFixed) setTimeout(function () { $win.scrollTop($win.scrollTop() - 47) }, 10)
+})
+
+$nav2.on('click', function () {
+  if (!isFixed) setTimeout(function () { $win.scrollTop($win.scrollTop() - 47) }, 10)
+})
+
+
+$win.on('scroll', processScroll)
+
+function processScroll() {
+  var i, scrollTop = $win.scrollTop()
+  if (scrollTop >= navTop && !isFixed) {
+    isFixed = 1
+    $nav.addClass('right-fixed')
+    $nav2.addClass('left-fixed')
+    $nav3.addClass('main-fixed')
+    $nav4.addClass('footer-fixed')
+  } else if (scrollTop <= navTop && isFixed) {
+    isFixed = 0
+    $nav.removeClass('right-fixed')
+    $nav2.removeClass('left-fixed')
+    $nav3.removeClass('main-fixed')
+    $nav4.removeClass('footer-fixed')
+  }
+
+}
+<% end %>

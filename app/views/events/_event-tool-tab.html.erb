@@ -1,0 +1,230 @@
+<%= content_for :javascript do %> 
+//to close the popovers
+$(':not(#anything_not_present)').on('click', function (e) {
+  $('.popover-link').each(function () {
+  //the 'is' for buttons that trigger popups
+  //the 'has' for icons and other elements within a button that triggers a popup
+  if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+  $(this).popover('hide');
+  return;
+  }
+  });
+});
+
+
+//apply events when opening the embed popover
+$('.embed').on('shown.bs.popover', function () {
+  $('button#btn_copy_embed').zclip({
+  path:'/assets/ZeroClipboard.swf',
+  copy:function(){
+  return $('#textarea_for_iframe').text();
+  },
+  afterCopy: function(){}
+});
+
+$("#textarea_for_iframe").mouseup(function(e){
+  // fixes safari/chrome problem
+  e.preventDefault();
+  }).focus(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  }).click(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  });
+
+});
+
+$('.share').on('shown.bs.popover', function () {
+  $('button#btn_copy_share').zclip({
+  path:'/assets/ZeroClipboard.swf',
+  copy:function(){
+  return $('#input_with_shorturl').val();
+  },
+  afterCopy: function(){}
+});
+
+$("#input_with_shorturl").mouseup(function(e){
+  // fixes safari/chrome problem
+  e.preventDefault();
+  }).focus(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  }).click(function(e){
+  mytxt = $(this).text();
+  $(this).select();
+  });
+
+});
+
+$('.delete').popover({ 
+  html : true,
+  content: function() {
+  return $('.contentdelete').html();
+  },
+  container: "body"
+});
+
+$(".spam_radio").click(function(e) {
+  $(".textarea_spam").hide("slow");
+  $(e.target).siblings("textarea").show("slow");
+
+});
+
+<%end%>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".with_tooltip").tooltip({ placement: 'bottom'});
+});
+</script>
+
+<div class="btn-group">
+  <!--remove-->
+  <% if user_signed_in? and can?(:destroy, @event) %>
+    <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
+  <%end%>
+
+  <div class="contentdelete" style="display: none">
+    <p class="delete_p"><i class="icon-trash"></i>  <%=t('excursion.confirm_delete')%></p>
+    <div class="actions">
+      <a class="btn btn_cancel"><%=t('cancel')%></a>
+      <%= link_to t('excursion.actions.delete'),  @event, :method => :delete, :class => 'btn btn-primary' %>
+    </div>
+  </div>
+  
+<!--categoriess-->
+  <%if user_signed_in?%>
+    <%= content_for :javascript do %> 
+      <%= render partial: 'shared/multiselect', :locals => {:item => @event} %>
+    <% end %>
+
+    <%=categories_select(:category_id, @event)%>
+    <%= render partial: 'categories/form', :locals => {:div_id => "AddCategory", :remote => true}, rel: "tooltip" %>
+    <%= render partial: 'categories/success_message', :locals => {:message => t('categories.success')} %>
+  <%end%>
+
+  <% if @event.streaming %>
+    <!-- STREAMING CODE  -->
+  <% else %>
+    <!--mashme-->
+    <%= render :partial => 'events/button-mashme'%>
+    <%#= render :partial => 'events/button-new-mashme'%>
+  <% end %>
+</div>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="<%= document_details_tab_class document, :info %>">
+      <%= link_to (raw("<i class='icon-align-left'></i> <span class='hidden-tablet hidden-phone'>")) +  t('document.details.info') + raw("</span>"), '#document-info', 'data-toggle' => 'tab' %>
+    </li> 
+<!--edit info-->
+     <% if user_signed_in? and (can? :update, @event) %>
+      <li class="<%= document_details_tab_class document, :edit %>">
+        <%= link_to (raw("<i class='icon-edit'></i> <span class='hidden-tablet hidden-phone'>")) + t('document.actions.edit')+ raw("</span>"), '#document-edit', 'data-toggle' => 'tab' %>
+      </li>
+    <% end %>
+    <li>
+      <a href="#tab3" data-toggle="tab">
+        <i class="icon-share"></i>
+        <span class=" hidden-tablet hidden-phone">
+          <%=t('excursion.actions.share')%>
+        </span>
+      </a>
+    </li> 
+    <li>
+      <a href="#tab5" data-toggle="tab">
+        <i class="icon-flag"></i> 
+      </a>
+    </li>  
+  </ul>
+</div>
+<!--vistas-->
+<!--div class="viewsAndConunt">
+  <%#= render partial: 'objects/counters', locals: { object: @event } %>
+  <div class="views">
+    <%= @event.visit_count.to_s%> 
+    <span>
+      <%#=t('follow.views')%>
+    </span>   
+  </div>
+  <div class="like">    
+    <div class="count"><%= @event.post_activity.likes.count.to_s%></div>
+    <%= link_like(@event.post_activity)%>
+  </div>
+</div-->
+
+<h2>
+  <%= @event.title %>
+</h2>
+
+<div class="tab-content">
+  <div class="tab-pane <%= document_details_tab_class document, :info %>" id="document-info">
+    <div class="toggler">
+      <%= render partial: "events/info", locals: { document: document } %>
+    </div>
+  </div>
+  <!-- tab2 / editar -->
+  <% if can? :update, @event %>
+  <div class="tab-pane <%= document_details_tab_class document, :edit %>" id="document-edit">
+    <div class="contentedit">
+      <%= render partial: 'events/edit_form', locals: { event: @event } %>
+    </div>
+  </div>
+  <script>
+    $('a[href="#document-edit"]').on('shown', function (e) {
+      $('#editdate').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
+      $('#edithourinit').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.start_at.iso8601%>")));
+      $('#edithourfinish').data('datetimepicker').setLocalDate(new Date(Date.parse("<%=@event.end_at.iso8601%>")));
+    });
+  </script>
+  <% end %>
+  <!-- tab3 / share -->
+  <div class="tab-pane" id="tab3">
+    <div class="contentShare">
+      <div class="input-append url-input">
+        <% shortURL = short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) ) %>
+        <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+        <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button-->
+      </div>
+      <div class="social_toolbar_excursion">
+        <div class="twitter_toolbar_excursion">
+          <%= render :partial=>'shareon/twitter', :locals=>{:url=>shortURL, :counturl=>('http://' + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + event_path(@event) )} %>
+        </div>
+        <div class="facebook_toolbar_excursion">
+          <%= render :partial=>'shareon/facebook', :locals=>{:url=>shortURL} %>
+        </div>
+        <div class="gplus_toolbar_excursion ">
+          <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
+        </div>
+        <button class="email_toolbar_excursion">
+          <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @event.title, :name => (user_signed_in? ? current_subject.name : '')} %>
+        </button>
+      </div>
+    </div>
+  </div> 
+
+    <!-- tab5 / spam -->
+  <div class="tab-pane" id="tab5">
+    <div class="contentReport">
+      <dt><%=t('spam.report_excursion')%></dt>
+
+      <%= form_tag spam_report_path, method: 'post', class: "" do %>
+        <%=hidden_field_tag "activity_object_id", @event.activity_object_id%>
+        <div class="radio">
+          <%=radio_button_tag 'option', "0", false, class: "spam_radio"%><%=t('spam.spam_content')%>
+          <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
+        </div>
+        <div class="radio">
+          <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
+          <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
+        </div>
+        <button class="report btn btn-primary"> <%=t('send.send')%></button>
+      <% end %>
+          
+      
+    </div> 
+  </div>
+</div>

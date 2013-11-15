@@ -1,0 +1,127 @@
+<div class="left-info">
+  <!--author-->
+  <%= render :partial => 'excursions/items-owner-profile' %>
+  <!--tittle-->
+  <div class="viewsAndConunt">        
+    <div class="views">
+      <%=@excursion.visit_count.to_s%> 
+      <span>
+        <%=t('follow.views')%>
+      </span>   
+    </div>
+    <div class="like">    
+      <div class="count"><%=@excursion.post_activity.likes.count.to_s%></div>
+      <%= link_like(@excursion.post_activity)%>
+    </div>
+  </div>  
+</div>
+ <div id="effect" class="newClass ui-corner-all">
+
+    <%= javascript_tag do %>
+    <%#= modal_for(@excursion.author.subject) %>
+    <% @excursion.contributors.each do |c| %>
+    <%#= modal_for(c.subject) %>
+    <% end%>
+    <% end %>
+    <dl class="dl-horizontal">
+
+      <% unless @excursion.contributors.blank? %>
+        <!--contributors-->
+        <dt><%= t('excursion.contributors.name').capitalize %></dt>
+        <dd>
+          <% isFirst = true %>
+          <% @excursion.contributors.uniq.each do |c| %>
+            <% if !isFirst %>
+              ,
+            <% else %>
+              <%isFirst = false%>
+            <% end %>
+            <a data-toggle="modal" href="#user-modal-<%= c.slug %>" class="user-modal-button-<%= c.slug %> modal-no-trigger">
+              <%= truncate_name(c.name, :length => 50) %>
+            </a> 
+          <%end%>
+        </dd>
+      <%end%>
+
+      <% unless @excursion.description.blank? %>
+      <!--description-->
+      <dt><%= t('info.description') %></dt>
+      <dd><%= truncate(@excursion.description, :length => 200) %></dd>
+      <% end %>
+      <% unless @excursion.tag_list.blank? %>
+      <!--tags-->
+      <dt><%= t('info.tags') %></dt>
+      <dd>
+        <ul class="tagit-suggestions">
+          <% @excursion.tag_list.each do |tag| %>
+          <li class="tagit-choice">
+            <%= link_to tag, search_path(:q => tag) %>
+          </li>
+          <% end %>
+        </ul>
+      </dd>
+      <% end %>
+      <% unless @excursion.language.blank? %>
+      <!--language-->
+      <dt><%= t('lang.title').capitalize %></dt>
+      <dd>
+        <%= case @excursion.language
+        when '';
+          t('lang.independent')
+        when 'de';
+          'Deutsch'
+        when 'en';
+          'English'
+        when 'es';
+          'Español'
+        when 'fr';
+          'Français'
+        when 'it';
+          'Italiano'
+        when 'pt';
+          'Português'
+        when 'ru';
+          'Русский'
+        else
+          ; t('lang.others')
+          end %>
+        </dd>
+        <% end %>
+        <% if @excursion.respond_to? :age_min and @excursion.respond_to? :age_max %>
+        <!--recomended age-->
+        <dt><%= t('document.recommended_age') %></dt>
+        <dd><%= t('document.recommended_age_detail', :min => @excursion.age_min, :max => @excursion.age_max) %></dd>
+        <% end %>
+<!--date-create
+      <div class="tittle-notebook">
+      <%= t('document.info.date.created_at') %>
+      </div>
+      <div class="text-notebook">
+      <%= I18n.localize @excursion.created_at, :format => :long %>
+      </div>
+    -->
+    <!--date-upload-->
+    <dt><%= t('document.info.date.updated_at') %></dt>
+    <dd><%= I18n.localize @excursion.updated_at, :format => :long %></dd>
+  </dl>
+</div>
+
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
+
+<script>
+$(function() {
+  $("#showMore").click(function(){
+    $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
+    $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
+    if($("#showMore").attr("status")=== "showMore"){
+      $("#showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showMore").attr("status", "showFewer");
+    }
+    else{
+      $("#showMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showMore").attr("status", "showMore");
+    }
+    return false;
+  });
+});
+</script>

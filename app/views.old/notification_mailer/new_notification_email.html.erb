@@ -1,0 +1,114 @@
+<% self.class.send :include, SubjectsHelper, NotificationsHelper, ActionView::Helpers::TextHelper %>
+<% locale_as @receiver.subject %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+
+<body>
+<div class="box" 
+  style="
+    border: 0px solid #FFFFFF;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #F9F9F9;
+    position: static;
+    margin: 10px;
+    min-height: 300px;
+    width: 650px;
+    display: block;
+    -webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    7px 7px 5px rgba(50, 50, 50, 0.5);
+    box-shadow:         7px 7px 5px rgba(50, 50, 50, 0.5);
+">
+  <div class="header" 
+    style="
+      float: left;
+      width: 650px;
+      height: 150px;
+      display: block;
+      background-image: url(<%= root_url + asset_path('/assets/heard_mail.png') %>);
+      background-repeat: no-repeat;
+    ">
+    <div class="hello"
+      style="
+        color: #6e6e6e;
+        font-size: 26px;
+        padding-left: 40px;
+        padding-top: 86px;
+    ">
+      <%= t('notification.hello', :receiver => @receiver.name) %>
+    </div>
+  </div>
+  <div class="box2"
+  style="
+    float: left;
+    display: block;
+    padding-left: 40px;
+    width: 610px;
+  ">
+<!--photo-->
+    <div class="photo"
+    style="
+      float: left;
+      margin-right: 20px;
+      height: 119px;
+      width: 119px;
+      display: inline-block;
+    ">
+      <img class="border-radius"
+      style="
+        border: 0px solid #FFFFFF;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        background-color: #FFFFFF;
+        height: 119px;
+        width: 119px;
+        display: inline-block;
+        "
+       src="<%= root_url + @notification.notified_object.sender.logo.url(:profile) %>" alt="<%= @notification.notified_object.sender.name %>">
+    </div>
+<!--notification-->
+    <div class="boxtext"
+      style="
+        width: 400px;
+        height: auto;
+        padding-left: 40px;
+        display: inline-block;
+      ">
+      <div class="name"
+      style="
+        font-size: 18px;
+        color: #3366FF;
+      ">
+        <%= @notification.notified_object.sender.name %>
+        <% if @notification.notified_object.sender.profile.organization? %>
+          <br/>
+      <span style="color: #3366FF; opacity: 0.6; font-weight: normal;">
+      <%= @notification.notified_object.sender.profile.organization %>
+      </span>
+        <% end %>
+      </div>
+      <div class="text-notification"
+        style="
+          padding-top: 25px;
+          font-size: 15px;
+          color: #666666;
+        ">
+        <%= render :partial => "notifications/activities/#{ @notification.notified_object.verb }",
+                   :locals => {:activity => @notification.notified_object} %>
+      </div>
+    </div>
+  </div>
+</div>
+<!--settings-->
+<span style="color: #3366FF; opacity: 0.6; font-weight: normal; padding-left: 40px;">
+  <%= raw t('notification.config_html', :url => 'http://vishub.org/settings') %>
+</span>
+</body>
+</html>
+

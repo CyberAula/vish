@@ -1,0 +1,38 @@
+<li class="box-item category-favorit">
+
+<!--IMG categories-->
+  <div class="category">
+    <%= link_to "<i class='icon-start'></i>".html_safe, category, :title => category.title %>
+  </div>
+<!--INFO categories-->
+  <div class="info">
+<!--Title -->
+    <div class="name">
+      Favorits
+    </div>
+<!--____________________ -->
+    <div class="info-bottom">
+      <hr class="soften">
+<!--like -->
+      <div class="like">    
+        <div class="count"><%=category.post_activity.likes.count.to_s%></div>
+        <%= link_like(category.post_activity)%>
+      </div>
+<!--views -->
+      <div class="views">
+        <%=category.visit_count.to_s%>
+        <%=t('follow.views')%>
+      </div>
+    </div>
+  </div>
+</li>
+
+
+
+
+
+
+
+
+
+

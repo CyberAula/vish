@@ -1,0 +1,68 @@
+.user,
+#excursions,
+#events,
+#categories,
+#repository,
+  #toolbar
+    display: none
+  .tabbable
+    @include header-tabbable
+
+
+
+li.events-item,
+li.categories-item,
+li.repositories-item
+  @include grid
+  
+
+#quiz,
+#help,
+#legal_notice
+  @include help
+  .textrow
+    margin: 5px 
+    padding: 0 0 2.5em
+    float: left 
+    margin-right: 10px     
+    width: 45%
+    min-height: 300px
+    h4
+      margin-bottom: 20px
+      color: $secondColor
+      font-size: 14px
+  .connectedSortable  
+    list-style-type: none
+  .connectedSortable li
+    @include box-shadow(0 -1px 10px rgba(50,51,51,0.10))
+    margin: 0 5px 5px 5px  
+    font-size: 1.1em 
+    color: $black
+    font-family: $secondFontFamily
+    //width: 140px 
+    border-width: 1px
+    border-color: $firstColor
+    border-style: solid
+    height: 35px
+    @include border-radius($baseBorderRadius)
+    padding: 10px
+    background-color: $white
+    .creation_date
+      font-size: 0.9em 
+      color: $grayLight
+    button
+      font-family: $thirdFontFamily
+      float: right
+      display: block
+      margin-top: 4px
+      margin-left: 2px
+
+    &:hover
+      background-color: $firstColor
+      .creation_date
+        color: $white  
+
+
+ 
+    
+

@@ -1,0 +1,88 @@
+<%= render :partial => 'excursions/vish_viewer.full' %>
+
+
+<script>	
+	options = {};
+	var configuration = {};
+
+	configuration["ImagesPath"] = "/assets/";
+	configuration["StylesheetsPath"] = "/assets/";
+	configuration["mode"] = "vish";
+	options["configuration"] = configuration;
+	options["full"] = true;
+	options["developping"] = false;
+
+	<% if @excursion %>
+		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
+		options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
+        options["watermarkURL"] = "<%=excursion_path(@excursion)%>";
+	<% end %>
+
+    //Look for URL param
+    <% if @orgUrl %>
+      var orgUrl = "<%=@orgUrl%>";
+      options["comeBackUrl"] = orgUrl;
+      options["exitFullscreen"] = orgUrl;
+    <% else %>
+      <% if request && request.referrer %>
+        options["comeBackUrl"] = "<%=request.referrer%>";
+      <% end %>
+    <% end %>
+ 
+	options["lang"] = "<%= I18n.locale.to_s%>";
+    options["token"] = "<%= form_authenticity_token %>";
+
+	<% if user_signed_in? %>
+        options['userId'] = "<%= current_user.id %>";
+	    options["username"] = "<%= current_user.name %>";
+	<% end %>
+
+    <% if @quiz_session %>
+        options["quizSessionId"] = "<%= @quiz_session.id %>";
+        options["forceHideViewbar"] = true;
+    <% end %>
+
+    //URL to get the recommendations to show in the last slide
+    options["urlToGetRecommendations"] = "/excursions/last_slide.json"
+
+    options.addons = [];
+
+	var addon = new Object();
+	addon.target = "Both";
+	addon.id = "IframeMessenger";
+	addon.url = "";
+	addon.config = {enable: true};
+	options.addons.push(addon);
+
+
+	function start(){
+
+		var isPreview = false;
+        try {
+            isPreview = window.parent.VISH && 
+            			window.parent.VISH.Editor && 
+            			(typeof window.parent.VISH.Editor.Preview.getPreview == "function") && 
+            			(typeof window.parent.VISH.Editor.Preview.getPreview() != 'undefined') &&
+            			(window.parent.VISH.Editor.Preview.getPreview() != null);
+        } catch(exception) {
+            isPreview = false;
+        }
+        
+		var myexcursion;
+
+		if(isPreview){
+			options["preview"] = true;
+        	myexcursion =  window.parent.VISH.Editor.Preview.getPreview();
+      	} else {
+      		<% if @excursion %>
+      			myexcursion = <%= raw @excursion.json %>;
+          <% elsif @quiz_session %>
+                myexcursion = <%= raw @quiz_session.quizJSON %>;
+      		<% else %>
+      			myexcursion = null;
+      		<% end %>
+      	}
+          	
+    		VISH.SlideManager.init(options , myexcursion);
+    	}
+</script>

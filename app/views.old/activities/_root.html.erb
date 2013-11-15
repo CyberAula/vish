@@ -1,0 +1,35 @@
+<%= div_for activity, :class => 'root' do %>
+  <div class="avatar">
+    <%= link_to image_tag(activity.sender_subject.logo.url(:contact),
+        :alt => activity.sender_subject.name), activity.sender_subject %>
+  </div>
+  <header>
+    <h5>
+      <%= activity.title(self) %>
+    </h5>
+    <% if activity.direct_object && can?(:destroy, activity.direct_object) %>
+    <div class="x"> 
+      <%= link_to ('X'), activity.direct_object , :confirm => t('confirm_delete', 
+                    :scope => activity.direct_object.class.to_s.underscore), :method => :delete,  
+                    :remote => true %> 
+    </div>
+    <% end %>
+  </header>
+
+
+  <section class="objects">
+    <%= render activity.activity_objects %>
+  </section>
+
+  <%= render :partial => 'activities/actions',
+             :locals => { :activity => activity } %>
+
+  <%= render :partial => 'activities/likes',
+             :locals => { :activity => activity } %>
+
+  <%= render :partial => 'activities/comments',
+             :locals => { :activity => activity } %>
+
+  <%= render :partial => 'comments/new',
+             :locals => { :activity => activity } %>
+<% end %>

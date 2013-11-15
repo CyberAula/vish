@@ -1,1 +1,134 @@
-<%= render :partial => 'show' %>
+<section class="user">
+  <header>
+<!--box info-->
+    <div id="profile-info">
+<!--avatar-->
+      <div class="avatar">
+        <%= link_to(image_tag(profile_subject.logo.url, :size => "150x150", :alt => profile_subject.name, :class => "avatar_img"), profile_subject, :class => "avatar_img") %>
+        <%if profile_subject.id==89%>
+          <div class="badge-teacher-active"></div>
+        <%end%>
+      </div>
+
+
+<!--box personal info-->
+      <section class="information">
+        <div class="briefing">
+
+<!--__Tags -->
+          <div class="tags-profile">
+            <ul class="tagList">
+              <%= @user.profile.subject.tag_list%>
+            </ul>
+          </div>
+
+
+<!--__name-->
+          <div class="name">
+            <h2><%= @user.name %></h2>
+          </div>
+
+<!--__description-->
+          <div class="description">
+            <% if @user.profile.description? %>
+              <%= @user.profile.description%>
+            <% else %>
+              <%= "#{ @user.name } #{ t('profile.is_on') } #{  t('site.name') }" %>
+            <% end %>
+          </div>
+
+
+
+<!--__Occupation -->
+          <div class="ocupation">
+            <% if profile_subject_is_current? && profile_subject.occupation_sym == :select %>          
+              <h3 class="select">
+                <%= link_to t('profile.occupation.select'), '#', :id => "select_occupation_link" %> 
+              </h3>
+              <% elsif profile_subject.occupation_sym != :select %>
+              <h3 class="name-roll">
+                <%= t('profile.occupation.label') %></h3>
+                <span><%= profile_subject.occupation_t %></span>
+              
+            <% end %>
+          </div>
+
+
+
+<div id="effect" class="newClass ui-corner-all">
+
+  <!--__Organization -->
+  <div class="organization">
+    <h3><%= t('profile.organization') %></h3>
+    <span><%= @user.profile.organization %></span>
+  </div>
+
+
+  <!--__Website -->
+  <div class="website">
+    <h3><%= t('profile.website') %></h3>
+    <span><%= link_to @user.profile.website %></span>
+  </div>
+
+
+  <!--__birthday -->
+  <div class="birthday">
+    <h3><%= t('profile.' + current_subject.class.to_s.downcase + '.birthday') %></h3>
+    <span><%= @user.profile.birthday %></span>
+  </div>
+
+
+  <!--__city -->
+  <div class="city">
+  <h3><%= t('profile.city') %></h3>
+  <span><%= @user.profile.city %></span>
+  </div>
+
+
+  <!--__Country -->
+  <div class="county">
+    <h3><%= t('profile.country') %></h3>
+    <span><%= @user.profile.country %></span>
+  </div>
+
+</div>
+
+
+
+
+          <div class="toolbar-profile">
+            <%= render :partial => 'users/toolbar_user' %>
+          </div>
+
+        </div>
+
+        <%= render :partial => 'users/form_update_profile' %>
+      </section>
+    </div>
+    
+  </header>
+
+<%= render partial: 'users/profile-info' %>
+
+<%= javascript_tag do %>
+$(function() {
+  SocialStream.Profile.show({
+  section: "<%= params[:section ] %>"
+  });
+});
+
+$("#select_occupation_link").click(function(){
+  $("#edit_icon_link").click();
+});
+
+<% end %>
+
+
+</section>
+
+
+
+
+
+
+
