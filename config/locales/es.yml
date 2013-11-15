@@ -198,7 +198,7 @@ es:
     Engineering: "Ingeniería"
     Humanities: "Humanidades"
     NaturalScience: "Ciencias Naturales"
-    ComputerScience: "informática"
+    ComputerScience: "Informática"
   copy_to_clip: "Copiar al portapapeles"
   devise:
     email: "Email"
@@ -498,24 +498,15 @@ es:
   project: "Excursión Global"      
   published: "Publicados"
   quiz:
-    answer:
-      title:
-        other: "Cuestionarios"
-    from_excursion: "De la excursión"
+    close: "Respondidos"
+    createdAt: "Creado el"
+    open: "Lanzados (todavía se pueden responder)"
+    openPeriod: "Periodo"
     live: "Cuestionarios"
     modal:
       main_title: "Los alumnos piensan que... (porcentajes respuestas)"
-    no: "No"
-    no_answers: "No answers yet!"
-    no_title: "<Sin título>"
-    one: "cuestionario"
-    ongoing: "abiertos"
-    open: "open"
     other: "cuestionarios"
-    page_title: "MIS CUESTIONARIOS"
-    past: "cerrados"
-    possible_answers: "Posibles respuestas"
-    yes: "Si"
+    untitled: "Sin título"
   recommended: "recomendados"
   recsys:
     recommended:

@@ -547,24 +547,15 @@ en:
   project: "Global Excursion"      
   published: "Published"
   quiz:
-    answer:
-      title:
-        other: "Quiz answers"
-    from_excursion: "From excursion"
+    close: "Answered"
+    createdAt: "Created at"
     live: "Live Quizzes"
     modal:
       main_title: "Pupils think... (answers percents)"
-    no: "No"
-    no_answers: "No answers yet!"
-    no_title: "<Untitled>"
-    one: "quiz"
-    ongoing: "ongoing"
-    open: "open"
+    open: "Open (they still can be answered)"
+    openPeriod: "Period"
     other: "quizzes"
-    page_title: "MY QUIZ SESSIONS"
-    past: "past"
-    possible_answers: "Possible answers"
-    yes: "Yes"
+    untitled: "Untitled"
   recommended: "recommended"
   recsys:
     recommended:
