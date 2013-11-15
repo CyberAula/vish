@@ -503,8 +503,6 @@ es:
     open: "Lanzados (todavía se pueden responder)"
     openPeriod: "Periodo"
     live: "Cuestionarios"
-    modal:
-      main_title: "Los alumnos piensan que... (porcentajes respuestas)"
     other: "cuestionarios"
     untitled: "Sin título"
   recommended: "recomendados"

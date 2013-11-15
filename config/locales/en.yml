@@ -550,8 +550,6 @@ en:
     close: "Answered"
     createdAt: "Created at"
     live: "Live Quizzes"
-    modal:
-      main_title: "Pupils think... (answers percents)"
     open: "Open (they still can be answered)"
     openPeriod: "Period"
     other: "quizzes"

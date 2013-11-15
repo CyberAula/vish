@@ -1,15 +1,18 @@
 <%=javascript_include_tag "RegaddiChart" %>
 <%=javascript_include_tag "VISH.QuizCharts" %>
 
-<legend>Quiz (verdadero / Falso)</legend>
+<%quiz = (raw @quiz) %>
+<%quizJSON = JSON(quiz) %>
+<%quizTitle = quizJSON["title"] || t('quiz.untitled') %>
+<legend><%=quizTitle%></legend>
 
-<article class="home quiz_sessions" id="main" >
-	<canvas id="quiz_chart" width="300" height="300"></canvas>
+<article class="quiz_sessions">
+	<canvas id="quiz_chart" width="500" height="500"></canvas>
 
 	<script type="text/javascript">
 	 $(document).ready(function(){
 	 	var canvas = $("#quiz_chart");
-	 	var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quiz %>);
+	 	var quizParams = VISH.QuizCharts.getQuizParams(<%= quiz %>);
 	 	var quizType = quizParams.quizType;
 	 	var nAnswers = quizParams.nAnswers;
 

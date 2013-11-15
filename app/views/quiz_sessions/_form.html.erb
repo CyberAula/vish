@@ -2,7 +2,9 @@
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3 id="QuizLabel"><%= t('quiz.modal.main_title')%></h3>
+    <h3 id="QuizLabel">
+      <!-- @quiz is not accesible here -->
+    </h3>
   </div>
 
   <div class="modal-body">
@@ -10,10 +12,10 @@
   </div>
 
   <div class="modal-footer">
-    <button class="btn" id="help2" type="button" rel="popover" data-placement="top" data-original-title="¿Que son todos estos datos?" aria-hidden="true"> ? </button>
+<!--     <button class="btn" id="help2" type="button" rel="popover" data-placement="top" data-original-title="¿Que son todos estos datos?" aria-hidden="true"> ? </button>
     <div id="popover" style="display: none">
-      <div><%= t('document.helpquiz.info1_html')%></div>
-    </div>
+      <div>Text here</div>
+    </div> -->
   </div>
 </div>
 
