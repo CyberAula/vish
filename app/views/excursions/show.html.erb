@@ -12,7 +12,7 @@
 
 
 <%= content_for :javascript do %> 
-    if(window.location.search != ""){
+    if(window.location.search.indexOf("recent") !=-1){
       $("#congratulations-button").click();
     }
 
