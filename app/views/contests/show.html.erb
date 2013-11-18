@@ -133,6 +133,7 @@
     else{
       $(".excursion-item").hide();
       $(".one_tag:contains("+this.value+")").parents(".excursion-item").show();
+      $(".one_tag:contains("+this.value.toLowerCase()+")").parents(".excursion-item").show();
     }
   });
 
