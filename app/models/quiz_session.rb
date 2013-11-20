@@ -27,6 +27,30 @@ class QuizSession < ActiveRecord::Base
   	self.quiz_answers
   end
 
+  def getQuizParams
+    qparams = Hash.new
+    qparams["quiz"] = self.quizJSON
+
+    begin
+      presentation = JSON(self.quizJSON)
+      slide = presentation["slides"][0]
+      els = slide["elements"]
+      els.each do |el|
+        if el["type"]=="quiz"
+          #quiz founded
+          qparams["question"] = el["question"]["value"];
+          qparams["quizType"] = el["quizType"];
+          qparams["nAnswers"] = el["choices"].length;
+          qparams["choices"] = el["choices"];
+          return qparams
+        end
+      end
+    rescue
+      #empty params
+      return qparams
+    end
+  end
+
   def results_url
   	return "/quiz_sessions/" + self.id.to_s() + "/results/"
   end

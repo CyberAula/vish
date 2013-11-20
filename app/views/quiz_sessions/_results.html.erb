@@ -1,0 +1,47 @@
+<%=javascript_include_tag "RegaddiChart" %>
+<%=javascript_include_tag "VISH.QuizCharts" %>
+
+<% answersLength = JSON(@answers).length %>
+
+<article class="quiz_sessions">
+	<p id=""><%=@quizParams["question"]%></p>
+
+	<% if @quizParams["choices"] %>
+		<% @quizParams["choices"].each_with_index do |choice,index|%>
+			<% if choice["value"] %>
+				<p><%=(index+97).chr%>) <%=choice["value"]%></p>
+			<% end %>
+		<% end %>
+	<% end %>
+
+	<% if answersLength == 0%>
+		<p><%=t('quiz.noAnswers')%></p>
+	<% end %>
+
+	<canvas id="quiz_chart" width="700" height="400"></canvas>
+</article>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+ 	<% if @quiz_session.name %>
+ 		var qName = '<%=@quiz_session.name%>';
+ 	<% else %>
+ 		var qName = '<%=t("quiz.untitled")%>';
+ 	<% end %>
+ 	
+ 	$('#QuizAnalitycs').find(".modal-header").find("p").html(qName);
+
+ 	<% if answersLength > 0 %>
+	 	//Draw quiz results
+	 	var canvas = $("#quiz_chart");
+		var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quizParams["quiz"] %>);
+	 	var quizType = quizParams.quizType;
+	 	var nAnswers = quizParams.nAnswers;
+	 	var answersList = <%= raw @answers %>;
+	 	var options = {
+	 		"first": true
+	 	}
+	 	VISH.QuizCharts.drawQuizChart(canvas,quizType,nAnswers,answersList,options);
+ 	<% end %>
+ });
+</script>

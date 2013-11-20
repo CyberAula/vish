@@ -547,10 +547,12 @@ en:
   project: "Global Excursion"      
   published: "Published"
   quiz:
+    answers: "answers"
     close: "Answered"
     closeAlert: "Sorry, this quiz is closed."
     createdAt: "Created at"
     live: "Live Quizzes"
+    noAnswers: "There are no answers for this quiz"
     open: "Open (they still can be answered)"
     openPeriod: "Period"
     other: "quizzes"

@@ -5,13 +5,18 @@
       <h4><%=t('quiz.open')%></h4>
       <ul id="sortable1" class="connectedSortable">
         <% @quiz_active_sessions.each do |q| %>
-          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.js"%>>
+          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.full"%>>
             <% if q.name %>
               <%= q.name %>
             <% else %>
               <%=t('quiz.untitled')%>
             <% end %>
-            <button id="close" class="btn" onclick="eliminaitem">x</button>
+            <a class="quiz_session_action with_tooltip delete btn popover-link" title="Close" href=<%="#{q.close_url}"%>>
+              x
+            </a>
+            <a class="quiz_session_action with_tooltip delete btn popover-link" title="Remove" href=<%="#{q.delete_url}"%>>
+              <i class="icon-trash"></i>
+            </a>
             <p class="creation_date">
               <%=t('quiz.createdAt')%> <%= q.created_at %>
             </p>
@@ -23,9 +28,15 @@
       <h4><%=t('quiz.close')%></h4>
       <ul id="sortable2" class="connectedSortable">
         <% @quiz_inactive_sessions.each do |q| %>
-          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.js"%>>
-            <%= q.name %>
-            <button class="btn">x</button>
+          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.full"%>>
+            <% if q.name %>
+              <%= q.name %>
+            <% else %>
+              <%=t('quiz.untitled')%>
+            <% end %>
+            <a class="quiz_session_action with_tooltip delete btn popover-link" title="Remove" href=<%="#{q.delete_url}"%>>
+              <i class="icon-trash"></i>
+            </a>
             <p class="creation_date">
               <%=t('quiz.openPeriod')%> <%= q.created_at %> - <%= q.closed_at %>
             </p>
@@ -36,11 +47,38 @@
   </div>
 </section>
 
-<%= render partial: 'quiz_sessions/form' %>
+<div id="QuizAnalitycs" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <p></p>
+  </div>
+  <div class="modal-body">
+    <!-- This body is replaced with show_results.html.erb every time the modal is called -->
+  </div>
+  <div class="modal-footer"> </div>
+</div>
+
 
 <%= content_for :javascript do %>
-$('#QuizAnalitycs').on('hidden', function () {
-  $(this).removeData('modal');
-});
+  $('#QuizAnalitycs').on('hidden', function() {
+    $(this).removeData('modal');
+  });
+  $(".quiz_session_action").click(function(event){
+    event.stopPropagation();
+  });
 <% end %>
 
+
+<!--     <button class="btn" id="help2" type="button" rel="popover" data-placement="top" data-original-title="¿Que son todos estos datos?" aria-hidden="true"> ? </button>
+  <div id="popover" style="display: none">
+    <div>Text here</div>
+  </div> -->
+
+<!--   $(document).ready(function(){
+    $('#help2').popover({
+      html : true,
+      content: function() {
+        return $('#popover').html();
+      }
+    });
+  }); -->

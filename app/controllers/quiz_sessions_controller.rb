@@ -76,19 +76,20 @@ class QuizSessionsController < ApplicationController
   def results 
     @quiz_session = QuizSession.find(params[:id])
     @results = @quiz_session.results
+
     respond_to do |format|
-      format.json { 
+      format.json {
         render :json => @results
       }
       format.html {
-        @results = @results.to_json
-        @quiz = @quiz_session.quizJSON
+        @answers = @results.to_json
+        @quizParams = @quiz_session.getQuizParams
         render :show_results
       }
-      format.js {
-        @results = @results.to_json
-        @quiz = @quiz_session.quizJSON
-        render :statistics
+      format.full {
+        @answers = @results.to_json
+        @quizParams = @quiz_session.getQuizParams
+        render :show_results, :layout => false
       }
     end
   end
