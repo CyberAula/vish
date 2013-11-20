@@ -499,6 +499,7 @@ es:
   published: "Publicados"
   quiz:
     close: "Respondidos"
+    closeAlert: "Lo sentimos, este cuestionario no admite más respuestas."
     createdAt: "Creado el"
     open: "Lanzados (todavía se pueden responder)"
     openPeriod: "Periodo"

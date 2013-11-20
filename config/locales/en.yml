@@ -548,6 +548,7 @@ en:
   published: "Published"
   quiz:
     close: "Answered"
+    closeAlert: "Sorry, this quiz is closed."
     createdAt: "Created at"
     live: "Live Quizzes"
     open: "Open (they still can be answered)"
