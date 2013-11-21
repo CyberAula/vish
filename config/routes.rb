@@ -10,6 +10,8 @@ Vish::Application.routes.draw do
   end
   match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
   match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
+  match 'quiz_sessions/:id/answer' => 'quiz_sessions#updateAnswers'
+
   match 'qs/:id' => 'quiz_sessions#show'
   match 'help' => 'help#index'
   match 'faq' => 'faq#index'

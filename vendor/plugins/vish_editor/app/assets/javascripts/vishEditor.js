@@ -16677,7 +16677,13 @@ VISH.Quiz = function(V, $, undefined) {
     })
   };
   var _deleteQuizSession = function() {
-    _closeQuizSession()
+    V.Quiz.API.deleteQuizSession(currentQuizSession.id);
+    $.fancybox.close();
+    $(".quizSession_button_no").removeClass("quizStartButtonLoading");
+    $(".quizSession_button_yes").removeClass("quizStartButtonLoading");
+    _enableLaunchButton(currentQuiz);
+    currentQuiz = null;
+    currentQuizSession = null
   };
   var render = function(slide, template) {
     var quizModule = _getQuizModule(slide.quiztype);
@@ -23911,11 +23917,87 @@ VISH.Quiz.API = function(V, $, undefined) {
       }
     }
   };
+  var closeQuizSession = function(quizSessionId, name, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
+      var send_type = "GET";
+      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
+      if(typeof name == "string" && name.trim() != "") {
+        params["name"] = name
+      }
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/close", data:params, success:function(data) {
+        if(typeof successCallback == "function") {
+          successCallback(data)
+        }
+      }, error:function(error) {
+        if(typeof failCallback == "function") {
+          failCallback(error)
+        }
+      }})
+    }else {
+      if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+        var data = {"processed":"true"};
+        if(typeof successCallback == "function") {
+          setTimeout(function() {
+            successCallback(data)
+          }, 1E3)
+        }
+      }
+    }
+  };
+  var deleteQuizSession = function(quizSessionId, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
+      var send_type = "GET";
+      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/delete", data:params, success:function(data) {
+        if(typeof successCallback == "function") {
+          successCallback(data)
+        }
+      }, error:function(error) {
+        if(typeof failCallback == "function") {
+          failCallback(error)
+        }
+      }})
+    }else {
+      if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+        var data = {"processed":"true"};
+        if(typeof successCallback == "function") {
+          setTimeout(function() {
+            successCallback(data)
+          }, 1E3)
+        }
+      }
+    }
+  };
+  var getResults = function(quizSessionId, successCallback, failCallback) {
+    if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
+      var send_type = "GET";
+      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/results.json", data:params, success:function(data) {
+        if(typeof successCallback == "function") {
+          successCallback(data)
+        }
+      }, error:function(error) {
+        if(typeof failCallback == "function") {
+          failCallback(error)
+        }
+      }})
+    }else {
+      if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
+        var data = [{"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:23Z", "id":30, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"false"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:37Z", "id":31, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"true"},{"no":"3","answer":"false"},{"no":"4","answer":"false"}]', 
+        "created_at":"2013-05-13T13:10:52Z", "id":32, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:09Z", "id":33, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:41Z", "id":34, "quiz_session_id":19}];
+        if(typeof successCallback == "function") {
+          setTimeout(function() {
+            successCallback(data)
+          }, 1E3)
+        }
+      }
+    }
+  };
   var sendAnwers = function(answers, quizSessionId, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
-      var send_type = "PUT";
-      var params = {"id":quizSessionId, "answers":JSON.stringify(answers), "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId, data:params, success:function(data) {
+      var send_type = "POST";
+      var params = {"id":quizSessionId, "answers":JSON.stringify(answers)};
+      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/answer", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -23933,59 +24015,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }
     }
   };
-  var getResults = function(quizSessionId, successCallback, failCallback) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
-      var send_type = "GET";
-      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/results.json", data:params, success:function(data) {
-        if(typeof successCallback == "function") {
-          successCallback(data)
-        }
-      }, error:function(error) {
-        if(typeof failCallback == "function") {
-          failCallback(error)
-        }
-      }})
-    }else {
-      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        var data = [{"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:23Z", "id":30, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"false"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:37Z", "id":31, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"true"},{"no":"3","answer":"false"},{"no":"4","answer":"false"}]', 
-        "created_at":"2013-05-13T13:10:52Z", "id":32, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:09Z", "id":33, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:41Z", "id":34, "quiz_session_id":19}];
-        if(typeof successCallback == "function") {
-          setTimeout(function() {
-            successCallback(data)
-          }, 1E3)
-        }
-      }
-    }
-  };
-  var closeQuizSession = function(quizSessionId, name, successCallback, failCallback) {
-    if(V.Configuration.getConfiguration()["mode"] == "vish") {
-      var send_type = "GET";
-      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
-      if(typeof name == "string" && name.trim() != "") {
-        params["name"] = name
-      }
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/close", data:params, success:function(data) {
-        if(typeof successCallback == "function") {
-          successCallback(data)
-        }
-      }, error:function(error) {
-        if(typeof failCallback == "function") {
-          failCallback(error)
-        }
-      }})
-    }else {
-      if(V.Configuration.getConfiguration()["mode"] == "noserver") {
-        var data = {"processed":"true"};
-        if(typeof successCallback == "function") {
-          setTimeout(function() {
-            successCallback(data)
-          }, 1E3)
-        }
-      }
-    }
-  };
-  return{init:init, startQuizSession:startQuizSession, closeQuizSession:closeQuizSession, sendAnwers:sendAnwers, getResults:getResults}
+  return{init:init, startQuizSession:startQuizSession, closeQuizSession:closeQuizSession, deleteQuizSession:deleteQuizSession, getResults:getResults, sendAnwers:sendAnwers}
 }(VISH, jQuery);
 VISH.Quiz.MC = function(V, $, undefined) {
   var choices = {};

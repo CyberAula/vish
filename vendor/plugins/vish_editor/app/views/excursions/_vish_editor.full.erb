@@ -446,19 +446,19 @@
 			<div class='fancy_tabs' id='thumcontent_tabs'>
 				<ul>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_slides')" id="tab_slides" class="fancy_tab tabbable" i18n-key="i.Slides">Slides</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_slides'); return false;" id="tab_slides" class="fancy_tab tabbable" i18n-key="i.Slides">Slides</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex')" id="tab_pdfex" class="fancy_tab">PDF</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pdfex'); return false;" id="tab_pdfex" class="fancy_tab">PDF</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo')" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursions">Excursions</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursions">Excursions</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_smartcards_repo')" id="tab_smartcards_repo" class="fancy_tab tabbable" i18n-key="i.Smartcards">Smartcards</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_smartcards_repo'); return false;" id="tab_smartcards_repo" class="fancy_tab tabbable" i18n-key="i.Smartcards">Smartcards</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file')" id="tab_json_file" class="fancy_tab">JSON</a>
+						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file'); return false;" id="tab_json_file" class="fancy_tab">JSON</a>
 					</li>
 				</ul>
 			</div> 
@@ -616,11 +616,11 @@
 
 			<div id='tab_quizzes_content' class="fancy_tab_content">
 				<div class='quizFancythumb'>
-					<img src='/assets/templatesthumbs/tquiz2.png' onclick='VISH.Editor.Quiz.add("multiplechoice");'/>
+					<img src='/assets/templatesthumbs/tquiz2.png' onclick='VISH.Editor.Quiz.add("multiplechoice"); return false;'/>
 					<p><span i18n-key="i.walkQuiz_MC1">Multiple choice</span></p>
 				</div>
 				<div class='quizFancythumb'>
-					<img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.add("truefalse");'/>
+					<img src='/assets/templatesthumbs/tquiz3.png' onclick='VISH.Editor.Quiz.add("truefalse"); return false;'/>
 					<p><span i18n-key="i.walkQuiz_TF1">True / False</span></p>
 				</div>
 			</div>
@@ -659,9 +659,9 @@
 				<input class="input_text_fancy formsizefancy1 marginsfancy1 tools_input_addUrl" type="text" size="25" value="">
 				<div class="addUrlButtons">
 					<button type="button" class="addUrlButton" i18n-key="i.Add" 
-					onclick="VISH.Editor.Tools.addUrl()">Add</button>
+					onclick="VISH.Editor.Tools.addUrl(); return false;">Add</button>
 					<button type="button" class="removeUrlButton" style="display:none" i18n-key="i.Remove" 
-					onclick="VISH.Editor.Tools.removeUrl()">Remove</button>
+					onclick="VISH.Editor.Tools.removeUrl(); return false;">Remove</button>
 				</div>
 
 			</div>
@@ -711,12 +711,12 @@
 		<div id="picture_fancybox" class="outer_box">
 			<div class="fancy_tabs" id="images_fancy_tabs_id">	   
 				<ul>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails')" id="tab_pic_thumbnails" class="fancy_tab tabbable" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url')" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload')" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo')" id="tab_pic_repo" class="fancy_tab">vish</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr')" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre')" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_thumbnails'); return false;" id="tab_pic_thumbnails" class="fancy_tab tabbable" style="display:none" i18n-key="i.thumbnails">thumbnails</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_from_url'); return false;" id="tab_pic_from_url" class="fancy_tab tabbable" i18n-key="i.url">url</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_upload'); return false;" id="tab_pic_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_repo'); return false;" id="tab_pic_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_flikr'); return false;" id="tab_pic_flikr" class="fancy_tab"><img src='/assets/logos/flickrlogo2.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_pic_lre'); return false;" id="tab_pic_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
 				<img class='help_in_fancybox' id='tab_pic_thumbnails' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<img class='help_in_fancybox' id='tab_pic_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
@@ -901,12 +901,12 @@
 
 			<div class="fancy_tabs" id="object_fancy_tabs_id">	   
 				<ul>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_web')" id="tab_object_from_web" class="fancy_tab">web</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot')" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_url')" id="tab_object_from_url" class="fancy_tab">embed</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload')" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo')" id="tab_object_repo" class="fancy_tab">vish</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre')" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_web'); return false;" id="tab_object_from_web" class="fancy_tab">web</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_snapshot'); return false;" id="tab_object_snapshot" class="fancy_tab">web snapshot</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_from_url'); return false;" id="tab_object_from_url" class="fancy_tab">embed</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_upload'); return false;" id="tab_object_upload" class="fancy_tab" i18n-key="i.upload">upload</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_repo'); return false;" id="tab_object_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_object_lre'); return false;" id="tab_object_lre" class="fancy_tab"><img src='/assets/logos/lrelogo.gif'/></a></li>
 				</ul>
 				<img class='help_in_fancybox' id='tab_object_from_web_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<img class='help_in_fancybox' id='tab_object_snapshot_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
@@ -1035,10 +1035,10 @@
 
 			<div class="fancy_tabs" id="video_fancy_tabs_id">	   
 				<ul>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url')" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo')" id="tab_video_repo" class="fancy_tab">vish</a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube')" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo')" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_from_url'); return false;" id="tab_video_from_url" class="fancy_tab" i18n-key="i.url">url</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_repo'); return false;" id="tab_video_repo" class="fancy_tab">vish</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_youtube'); return false;" id="tab_video_youtube" class="fancy_tab"><img src='/assets/logos/youtube.png'/></a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_video_vimeo'); return false;" id="tab_video_vimeo" class="fancy_tab"><img src='/assets/logos/vimeo.png'/></a></li>
 				</ul>
 				<img class='help_in_fancybox' id='tab_video_from_url_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
 				<img class='help_in_fancybox' id='tab_video_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
@@ -1121,7 +1121,7 @@
 		<div id="live_fancybox" class="outer_box">
 			<div class="fancy_tabs" id="live_fancy_tabs_id">
 				<ul>
-					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_resource')" i18n-key="i.LiveResources" id="tab_live_resource" class="fancy_tab">Live Resources</a></li>
+					<li><a href="#" onclick="VISH.Editor.Utils.loadTab('tab_live_resource'); return false;" i18n-key="i.LiveResources" id="tab_live_resource" class="fancy_tab">Live Resources</a></li>
 				</ul>
 				<img class='help_in_fancybox' id='tab_live_resource_help' src='/assets/vicons/helptutorial_circle_blank.png'/> 
 			</div>
