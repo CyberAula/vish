@@ -15,10 +15,10 @@
 	<% end %>
 
 	<% if answersLength == 0%>
-		<p><%=t('quiz.noAnswers')%></p>
+		<p class="quizWithoutAnswers"><%=t('quiz.noAnswers')%></p>
+	<% else %>
+		<canvas id="quiz_chart" width="700" height="400"></canvas>
 	<% end %>
-
-	<canvas id="quiz_chart" width="700" height="400"></canvas>
 </article>
 
 <script type="text/javascript">

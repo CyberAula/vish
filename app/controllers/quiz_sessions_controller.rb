@@ -86,7 +86,7 @@ class QuizSessionsController < ApplicationController
         @quizParams = @quiz_session.getQuizParams
         render :show_results
       }
-      format.full {
+      format.partial {
         @answers = @results.to_json
         @quizParams = @quiz_session.getQuizParams
         render :show_results, :layout => false

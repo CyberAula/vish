@@ -547,9 +547,14 @@ en:
   project: "Global Excursion"      
   published: "Published"
   quiz:
+    actions:
+      close:  "close"
+      delete: "delete"
     answers: "answers"
     close: "Answered"
     closeAlert: "Sorry, this quiz is closed."
+    confirm_close: "Close live quiz? No more answers could be sent after this."
+    confirm_delete: "Delete live quiz? You will lose all the stored answers."
     createdAt: "Created at"
     live: "Live Quizzes"
     noAnswers: "There are no answers for this quiz"

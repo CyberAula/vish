@@ -5,18 +5,18 @@
       <h4><%=t('quiz.open')%></h4>
       <ul id="sortable1" class="connectedSortable">
         <% @quiz_active_sessions.each do |q| %>
-          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.full"%>>
+          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
             <% if q.name %>
               <%= q.name %>
             <% else %>
               <%=t('quiz.untitled')%>
             <% end %>
-            <a class="quiz_session_action with_tooltip delete btn popover-link" title="Close" href=<%="#{q.close_url}"%>>
-              x
-            </a>
-            <a class="quiz_session_action with_tooltip delete btn popover-link" title="Remove" href=<%="#{q.delete_url}"%>>
+            <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
               <i class="icon-trash"></i>
-            </a>
+            </button>
+            <button class="with_tooltip closeqb btn popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
+              x
+            </button>
             <p class="creation_date">
               <%=t('quiz.createdAt')%> <%= q.created_at %>
             </p>
@@ -28,15 +28,15 @@
       <h4><%=t('quiz.close')%></h4>
       <ul id="sortable2" class="connectedSortable">
         <% @quiz_inactive_sessions.each do |q| %>
-          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.full"%>>
+          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
             <% if q.name %>
               <%= q.name %>
             <% else %>
               <%=t('quiz.untitled')%>
             <% end %>
-            <a class="quiz_session_action with_tooltip delete btn popover-link" title="Remove" href=<%="#{q.delete_url}"%>>
+            <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
               <i class="icon-trash"></i>
-            </a>
+            </button>
             <p class="creation_date">
               <%=t('quiz.openPeriod')%> <%= q.created_at %> - <%= q.closed_at %>
             </p>
@@ -45,6 +45,26 @@
       </ul>      
     </div>
   </div>
+
+
+  <!-- Quiz session close confirmation-->
+  <div class="contentclose" style="display: none">
+    <p class="delete_p"><%=t('quiz.confirm_close')%></p>
+    <div class="actions">
+      <a class="btn btn_cancel"><%=t('cancel')%></a>
+      <a class="btn btn-primary quiz_actions_close"><%=t('quiz.actions.close')%></a>
+    </div>
+  </div>
+
+  <!-- Quiz session delete confirmation-->
+  <div class="contentdelete" style="display: none">
+    <p class="delete_p"><i class="icon-trash"></i>  <%=t('quiz.confirm_delete')%></p>
+    <div class="actions">
+      <a class="btn btn_cancel"><%=t('cancel')%></a>
+      <a class="btn btn-primary quiz_actions_delete"><%=t('quiz.actions.delete')%></a>
+    </div>
+  </div>
+
 </section>
 
 <div id="QuizAnalitycs" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
@@ -63,22 +83,46 @@
   $('#QuizAnalitycs').on('hidden', function() {
     $(this).removeData('modal');
   });
-  $(".quiz_session_action").click(function(event){
-    event.stopPropagation();
+
+  $(".ui-state-default").click(function(event){
+    //Prevent new window to appear when a button is clicked
+    if(($(event.target).hasClass("popover-link"))||($($(event.target).parent()).hasClass("popover-link"))){
+      event.stopPropagation();
+    }
   });
-<% end %>
 
+  $('.closeqb').popover({
+    html : true,
+    content: function() {
+      return $('.contentclose').html();
+    },
+    placement: "bottom",
+    container: "body"
+  });
 
-<!--     <button class="btn" id="help2" type="button" rel="popover" data-placement="top" data-original-title="¿Que son todos estos datos?" aria-hidden="true"> ? </button>
-  <div id="popover" style="display: none">
-    <div>Text here</div>
-  </div> -->
-
-<!--   $(document).ready(function(){
-    $('#help2').popover({
-      html : true,
-      content: function() {
-        return $('#popover').html();
-      }
+  $('.closeqb').on('shown.bs.popover', function(){
+    //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+    $('.btn_cancel').on("click",function(){
+      $('.closeqb').popover('hide');
     });
-  }); -->
+    $("a.quiz_actions_close").attr("href",$(this).attr("urlToCloseQuiz"));
+  });
+
+  $('.delete').popover({
+    html : true,
+    content: function() {
+      return $('.contentdelete').html();
+    },
+    placement: "bottom",
+    container: "body"
+  });
+
+  $('.delete').on('shown.bs.popover', function(){
+    //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+    $('.btn_cancel').on("click",function(){
+      $('.delete').popover('hide');
+    });
+    $("a.quiz_actions_delete").attr("href",$(this).attr("urlToRemoveQuiz"));
+  });
+
+<% end %>

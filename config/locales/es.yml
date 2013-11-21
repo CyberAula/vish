@@ -498,9 +498,14 @@ es:
   project: "Excursión Global"      
   published: "Publicados"
   quiz:
+    actions:
+      close:  "cerrar"
+      delete: "borrar"
     answers: "respuestas"
     close: "Respondidos"
     closeAlert: "Lo sentimos, este cuestionario no admite más respuestas."
+    confirm_close: "¿Cerrar cuestionario en vivo? No se podrán enviar más respuestas después de esto."
+    confirm_delete: "¿Borrar cuestionario en vivo? Perderás todas las respuestas almacenadas."
     createdAt: "Creado el"
     open: "Lanzados (todavía se pueden responder)"
     openPeriod: "Periodo"
