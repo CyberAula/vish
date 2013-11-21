@@ -14,6 +14,9 @@
             <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
               <i class="icon-trash"></i>
             </button>
+            <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
+              <i class="icon-edit"></i>
+            </button>
             <button class="with_tooltip closeqb btn popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
               x
             </button>
@@ -36,6 +39,9 @@
             <% end %>
             <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
               <i class="icon-trash"></i>
+            </button>
+            <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
+              <i class="icon-edit"></i>
             </button>
             <p class="creation_date">
               <%=t('quiz.openPeriod')%> <%= q.created_at %> - <%= q.closed_at %>
@@ -78,9 +84,24 @@
   <div class="modal-footer"> </div>
 </div>
 
+<div id="QuizEdit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="QuizLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+    <p></p>
+  </div>
+  <div class="modal-body">
+    <!-- This body is replaced with edit.html.erb every time the modal is called -->
+  </div>
+  <div class="modal-footer"> </div>
+</div>
+
 
 <%= content_for :javascript do %>
-  $('#QuizAnalitycs').on('hidden', function() {
+  $('#QuizAnalitycs').on('hidden', function(){
+    $(this).removeData('modal');
+  });
+
+  $('#QuizEdit').on('hidden', function(){
     $(this).removeData('modal');
   });
 

@@ -32,10 +32,10 @@ class QuizSessionsController < ApplicationController
     qs.save!
 
     #Now generate the URL
-    #We need to save the quiz twice, one to generate the id and the other to save the URL
-
+    #We need to get the URL after save the quiz
     # qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
-    qs.url = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/qs/#{qs.id.to_s}"
+    # qs.url = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/qs/#{qs.id.to_s}"
+    qs.url = qs.answer_url
 
     results = Hash.new
     results["id"] = qs.id;
@@ -44,15 +44,27 @@ class QuizSessionsController < ApplicationController
     render :json => results
   end
 
+  def edit
+    @quiz_session = QuizSession.find(params[:id])
+    respond_to do |format|
+      format.html {
+        render :edit
+      }
+      format.partial {
+        render :edit, :layout => false
+      }
+    end
+  end
+
   # Update quiz session
   # Change quiz session name
   # POST /quiz_sessions/x
   def update
     qs = QuizSession.find(params[:id])
-    if params[:name]
-      qs.name = params[:name]
+    if params[:quiz_session]
+      qs.update_attributes(params[:quiz_session])
     end
-    qs.save!
+    redirect_to "/quiz_sessions/"
   end
 
   # GET /quiz_sessions/X/close

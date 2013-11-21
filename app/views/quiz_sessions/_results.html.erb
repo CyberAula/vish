@@ -4,7 +4,25 @@
 <% answersLength = JSON(@answers).length %>
 
 <article class="quiz_sessions">
-	<p id=""><%=@quizParams["question"]%></p>
+	<p>
+		<%=t('quiz.createdAt')%> <%=@quiz_session.created_at%>
+		<%if @quizParams["presentationName"] %>
+			(<%=t('quiz.launchIn')%> "<%= @quizParams["presentationName"]%>") 
+		<% end %>
+		<% if !@quiz_session.active %>
+			<%=t('quiz.closedAtS')%> <%=@quiz_session.closed_at%>
+		<% end %>
+		.
+	</p>
+
+	<% if @quiz_session.active %>
+		<%quizURL=@quiz_session.answer_url%>
+		<p class="quizAnswerURLTitle"><%=t('quiz.answer_url')%>: <a href='<%=quizURL%>' target="_blank"> <%=quizURL%> </a></p>
+	<% end %>
+
+	<br/>
+
+	<p class="quizQuestionTitle"><%=@quizParams["question"]%></p>
 
 	<% if @quizParams["choices"] %>
 		<% @quizParams["choices"].each_with_index do |choice,index|%>

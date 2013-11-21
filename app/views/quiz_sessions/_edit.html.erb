@@ -1,0 +1,22 @@
+<% if @quiz_session.name %>
+	<%qName = @quiz_session.name%>
+<% else %>
+	<%qName = t("quiz.untitled")%>
+<% end %>
+
+<article class="quiz_sessions">
+	<%= form_for @quiz_session do |f| %>
+	  <legend><%= t('quiz.legend.name')%></legend>
+  	  <%= f.text_field :name, :placeholder => t('quiz.untitled') %>
+  	  <% status = [['Open', 'true'], ['Closed', 'false']] %>
+  	  <%= f.select :active, status %>
+  	  <%= f.submit t('save'), :class => "updateQuizButton" %>
+	<% end %>
+</article>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+ 	var qName = '<%=qName%>';
+ 	$('#QuizEdit').find(".modal-header").find("p").html(qName);
+ });
+</script>

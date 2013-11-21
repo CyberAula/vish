@@ -550,17 +550,25 @@ en:
     actions:
       close:  "close"
       delete: "delete"
+      edit: "edit"
+    answer_url: "Answer this quiz on this URL"
     answers: "answers"
-    close: "Answered"
+    close: "Closed"
     closeAlert: "Sorry, this quiz is closed."
     confirm_close: "Close live quiz? No more answers could be sent after this."
     confirm_delete: "Delete live quiz? You will lose all the stored answers."
     createdAt: "Created at"
+    closedAtS: "and closed at"
+    launchIn: "launched in the Virtual Excursion: "
+    legend:
+      name: "Live Quiz Name"
     live: "Live Quizzes"
     noAnswers: "There are no answers for this quiz"
     open: "Open (they still can be answered)"
     openPeriod: "Period"
     other: "quizzes"
+    placeholder:
+      name: "Write a new name"
     untitled: "Untitled"
   recommended: "recommended"
   recsys:

@@ -33,6 +33,7 @@ class QuizSession < ActiveRecord::Base
 
     begin
       presentation = JSON(self.quizJSON)
+      qparams["presentationName"] = presentation["title"]
       slide = presentation["slides"][0]
       els = slide["elements"]
       els.each do |el|
@@ -51,16 +52,36 @@ class QuizSession < ActiveRecord::Base
     end
   end
 
-  def results_url
-  	return "/quiz_sessions/" + self.id.to_s() + "/results/"
-  end
-
   def close_url
-  	return "/quiz_sessions/" + self.id.to_s() + "/close/"
+    if Site.current.config[:documents_hostname]
+      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/" + self.id.to_s() + "/close/"
+    else
+      return "/quiz_sessions/" + self.id.to_s() + "/close/"
+    end
   end
 
   def delete_url
-  	return "/quiz_sessions/" + self.id.to_s() + "/delete/"
+    if Site.current.config[:documents_hostname]
+      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/" + self.id.to_s() + "/delete/"
+    else
+      return "/quiz_sessions/" + self.id.to_s() + "/delete/"
+    end
+  end
+
+  def answer_url
+    if Site.current.config[:documents_hostname]
+      return Site.current.config[:documents_hostname].to_s + "qs/" + self.id.to_s()
+    else
+      return "/qs/" + self.id.to_s()
+    end
+  end
+
+  def results_url
+    if Site.current.config[:documents_hostname]
+      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/" + self.id.to_s() + "/results/"
+    else
+      return "/quiz_sessions/" + self.id.to_s() + "/results/"
+    end
   end
 
 end

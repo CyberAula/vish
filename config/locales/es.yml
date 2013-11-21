@@ -501,17 +501,25 @@ es:
     actions:
       close:  "cerrar"
       delete: "borrar"
+      edit: "edit"
+    answer_url: "Responde a este cuestionario en este enlace"
     answers: "respuestas"
-    close: "Respondidos"
+    close: "Cerrados"
     closeAlert: "Lo sentimos, este cuestionario no admite más respuestas."
     confirm_close: "¿Cerrar cuestionario en vivo? No se podrán enviar más respuestas después de esto."
     confirm_delete: "¿Borrar cuestionario en vivo? Perderás todas las respuestas almacenadas."
     createdAt: "Creado el"
-    open: "Lanzados (todavía se pueden responder)"
-    openPeriod: "Periodo"
+    closedAtS: "y cerrado el"
+    launchIn: "lanzado en la Excursión Virtual: "
+    legend:
+      name: "Nombre del cuestionario en vivo"
     live: "Cuestionarios"
     noAnswers: "No hay respuestas para este cuestionario"
+    open: "Lanzados (todavía se pueden responder)"
+    openPeriod: "Periodo"
     other: "cuestionarios"
+    placeholder:
+      name: "Escribe un nuevo nombre"
     untitled: "Sin título"
   recommended: "recomendados"
   recsys:
