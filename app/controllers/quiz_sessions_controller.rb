@@ -1,8 +1,15 @@
 class QuizSessionsController < ApplicationController
   include Shortener::ShortenerHelper
 
-  before_filter :authenticate_user!, :only => [ :create, :close ]
+  before_filter :authenticate_user!, :only => [ :index, :create, :close, :delete, :results ]
 
+  # GET /quiz_sessions/
+  # List all sessions
+  def index
+    @quiz_sessions = QuizSession.where(:owner_id => Actor.normalize_id(current_user));
+    @quiz_active_sessions = @quiz_sessions.where(:active => true).order('created_at DESC')
+    @quiz_inactive_sessions = @quiz_sessions.where(:active => false).order('created_at DESC')
+  end
 
   # POST /quiz_sessions 
   # Open a quiz to collect answers
@@ -37,64 +44,18 @@ class QuizSessionsController < ApplicationController
     render :json => results
   end
 
-
-  # GET /quiz_sessions/X 
-  # Page to answer the quiz 
-  def show
-    @quiz_session = QuizSession.find(params[:id])
-    if @quiz_session.active
-      render :template => 'excursions/show', :formats => [:full], :layout => 'iframe'
-    else
-      # Quiz is closed!!!
-      render 'quiz_sessions/closed' 
+  # Update quiz session
+  # Change quiz session name
+  # POST /quiz_sessions/x
+  def update
+    qs = QuizSession.find(params[:id])
+    if params[:name]
+      qs.name = params[:name]
     end
+    qs.save!
   end
 
-
-  # PUT /quiz_sessions/X
-  # Route to send the quiz answers
-  def update 
-    @quiz_session = QuizSession.find(params[:id])
-
-    response = Hash.new
-
-    if @quiz_session
-      qa = QuizAnswer.new
-      qa.quiz_session_id = @quiz_session.id
-      qa.created_at = Time.now
-      qa.answer = JSON(params[:answers]).to_json
-      qa.save!
-      response["processed"] = true;
-    else
-      response["processed"] = false;
-    end
-
-    render :json => response
-  end
-
-  # GET /quiz_sessions/X/results
-  def results 
-    @quiz_session = QuizSession.find(params[:id])
-    @results = @quiz_session.results
-
-    respond_to do |format|
-      format.json {
-        render :json => @results
-      }
-      format.html {
-        @answers = @results.to_json
-        @quizParams = @quiz_session.getQuizParams
-        render :show_results
-      }
-      format.partial {
-        @answers = @results.to_json
-        @quizParams = @quiz_session.getQuizParams
-        render :show_results, :layout => false
-      }
-    end
-  end
-
-  # /quiz_sessions/X/close
+  # GET /quiz_sessions/X/close
   def close 
     @quiz_session = QuizSession.find(params[:id])
 
@@ -135,12 +96,59 @@ class QuizSessionsController < ApplicationController
     end
   end
 
-  # /quiz_sessions/
-  # List all sessions
-  def index
-    @quiz_sessions = QuizSession.where(:owner_id => Actor.normalize_id(current_user));
-    @quiz_active_sessions = @quiz_sessions.where(:active => true).order('created_at DESC')
-    @quiz_inactive_sessions = @quiz_sessions.where(:active => false).order('created_at DESC')
+  # GET /quiz_sessions/X/results
+  def results 
+    @quiz_session = QuizSession.find(params[:id])
+    @results = @quiz_session.results
+
+    respond_to do |format|
+      format.json {
+        render :json => @results
+      }
+      format.html {
+        @answers = @results.to_json
+        @quizParams = @quiz_session.getQuizParams
+        render :show_results
+      }
+      format.partial {
+        @answers = @results.to_json
+        @quizParams = @quiz_session.getQuizParams
+        render :show_results, :layout => false
+      }
+    end
+  end
+
+  # GET /quiz_sessions/X 
+  # Page to answer the quiz 
+  def show
+    @quiz_session = QuizSession.find(params[:id])
+    if @quiz_session.active
+      render :template => 'excursions/show', :formats => [:full], :layout => 'iframe'
+    else
+      # Quiz is closed!!!
+      render 'quiz_sessions/closed' 
+    end
+  end
+
+  # POST /quiz_sessions/X
+  # Route to send the quiz answers
+  def updateAnswers 
+    @quiz_session = QuizSession.find(params[:id])
+
+    response = Hash.new
+
+    if @quiz_session
+      qa = QuizAnswer.new
+      qa.quiz_session_id = @quiz_session.id
+      qa.created_at = Time.now
+      qa.answer = JSON(params[:answers]).to_json
+      qa.save!
+      response["processed"] = true;
+    else
+      response["processed"] = false;
+    end
+
+    render :json => response
   end
 
 end
