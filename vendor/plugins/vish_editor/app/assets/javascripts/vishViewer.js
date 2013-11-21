@@ -13995,7 +13995,10 @@ VISH.Quiz.API = function(V, $, undefined) {
   var getResults = function(quizSessionId, successCallback, failCallback) {
     if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
       var send_type = "GET";
-      var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
+      var params = {"id":quizSessionId};
+      if(V.User.isLogged()) {
+        params["authenticity_token"] = V.User.getToken()
+      }
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/results.json", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
@@ -14021,6 +14024,9 @@ VISH.Quiz.API = function(V, $, undefined) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
       var params = {"id":quizSessionId, "answers":JSON.stringify(answers)};
+      if(V.User.isLogged()) {
+        params["authenticity_token"] = V.User.getToken()
+      }
       $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/answer", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)

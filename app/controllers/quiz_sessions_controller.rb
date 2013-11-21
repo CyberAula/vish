@@ -1,7 +1,7 @@
 class QuizSessionsController < ApplicationController
   include Shortener::ShortenerHelper
 
-  before_filter :authenticate_user!, :only => [ :index, :create, :close, :delete, :results ]
+  before_filter :authenticate_user!, :only => [ :index, :create, :close, :delete ]
 
   # GET /quiz_sessions/
   # List all sessions
@@ -16,7 +16,7 @@ class QuizSessionsController < ApplicationController
   # Respond with the quiz session id
   def create
     qs = QuizSession.new
-    qs.owner_id=current_user.id
+    qs.owner_id = current_user.id
 
     if params[:name]
       qs.name = params[:name]
@@ -63,7 +63,7 @@ class QuizSessionsController < ApplicationController
       render :text => "You are not the owner of this quiz"
     end
 
-    @quiz_session.active=false
+    @quiz_session.active = false
     @quiz_session.name = params[:name] unless params[:name].blank?
     @quiz_session.closed_at = Time.now
     @quiz_session.save!
@@ -132,7 +132,7 @@ class QuizSessionsController < ApplicationController
 
   # POST /quiz_sessions/X
   # Route to send the quiz answers
-  def updateAnswers 
+  def updateAnswers
     @quiz_session = QuizSession.find(params[:id])
 
     response = Hash.new
