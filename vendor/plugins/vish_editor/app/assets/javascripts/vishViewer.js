@@ -4901,6 +4901,7 @@ VISH.Constant.WRAPPER.IFRAME = "IFRAME";
 VISH.Constant.QZ_TYPE = {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.Constant.QZ_MODE = {};
 VISH.Constant.QZ_MODE.SELFA = "selfA";
@@ -4999,9 +5000,9 @@ VISH.Constant = VISH.Constant || {};
 VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.QuizCharts = function(V, $, undefined) {
-  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
   var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
   var pieLetterColor = ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"];
   var choices = {};
@@ -5014,6 +5015,9 @@ VISH.QuizCharts = function(V, $, undefined) {
         break;
       case V.Constant.QZ_TYPE.MCHOICE:
         _drawMcChoiceQuizChart(canvas, nAnswers, answersList, options);
+        break;
+      case V.Constant.QZ_TYPE.MCHOICE_MANSWER:
+        _drawMcChoiceMAnswerQuizChart(canvas, nAnswers, answersList, options);
         break;
       case V.Constant.QZ_TYPE.TF:
         _drawTFQuizChart(canvas, nAnswers, answersList, options);
@@ -5029,7 +5033,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     for(var i = 0;i < nAnswers;i++) {
       pieFragments[i] = {};
       pieFragments[i].value = 0;
-      pieFragments[i].label = choicesLetters[i];
+      pieFragments[i].label = String.fromCharCode(96 + i + 1);
       pieFragments[i].color = pieBackgroundColor[i];
       pieFragments[i].labelColor = pieLetterColor[i];
       pieFragments[i].labelFontSize = "16"
@@ -5041,7 +5045,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
         var index = answer.no - 1;
-        if(answer.answer === "true") {
+        if(answer.answer === "true" && pieFragments[index]) {
           pieFragments[index].value++
         }
       }
@@ -5057,6 +5061,44 @@ VISH.QuizCharts = function(V, $, undefined) {
     var options = {showTooltips:false, animation:animation};
     var myNewChart = (new Chart(ctx)).Pie(data, options)
   };
+  var _drawMcChoiceMAnswerQuizChart = function(canvas, nAnswers, answersList, options) {
+    var labels = [];
+    var data = [];
+    var maxValue = 0;
+    var scaleSteps = 10;
+    for(var i = 0;i < nAnswers;i++) {
+      labels[i] = String.fromCharCode(96 + i + 1);
+      data[i] = 0
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          data[index]++
+        }
+      }
+    }
+    for(var l = 0;l < nAnswers;l++) {
+      if(data[l] > maxValue) {
+        maxValue = data[l]
+      }
+    }
+    if(maxValue < 10) {
+      scaleSteps = Math.max(1, maxValue)
+    }
+    var ctx = $(canvas).get(0).getContext("2d");
+    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:data}]};
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
+    }
+    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
+    var myNewChart = (new Chart(ctx)).Bar(data, options)
+  };
   var _drawTFQuizChart = function(canvas, nAnswers, answersList, options) {
     var labels = [];
     var dataTrue = [];
@@ -5064,7 +5106,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     var maxValue = 0;
     var scaleSteps = 10;
     for(var i = 0;i < nAnswers;i++) {
-      labels[i] = "V       " + choicesLetters[i] + "       F";
+      labels[i] = "V       " + String.fromCharCode(96 + i + 1) + "       F";
       dataTrue[i] = 0;
       dataFalse[i] = 0
     }
@@ -5113,7 +5155,13 @@ VISH.QuizCharts = function(V, $, undefined) {
   var getQuizParams = function(quiz) {
     var params = {};
     try {
-      params.quizType = quiz["slides"][0]["elements"][0]["quiztype"];
+      var quizEl = quiz["slides"][0]["elements"][0];
+      params.quizType = quizEl["quiztype"];
+      if(params.quizType == V.Constant.QZ_TYPE.MCHOICE) {
+        if(quizEl.extras && quizEl.extras.multipleAnswer == true) {
+          params.quizType = V.Constant.QZ_TYPE.MCHOICE_MANSWER
+        }
+      }
       params.nAnswers = quiz["slides"][0]["elements"][0]["choices"].length
     }catch(e) {
     }
@@ -13723,7 +13771,8 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var inputType = "radio";
     if(slide.extras && slide.extras.multipleAnswer === true) {
       multipleAnswer = true;
-      inputType = "checkbox"
+      inputType = "checkbox";
+      $(container).attr("multipleAnswer", true)
     }
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
     $(questionWrapper).html(slide.question.wysiwygValue);
@@ -13801,7 +13850,13 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var drawResults = function(quiz, results, options) {
     var canvas = $("#quiz_chart");
     var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.MCHOICE, nAnswers, results, options)
+    var quizType;
+    if($(quiz).attr("multipleAnswer") === "true") {
+      quizType = V.Constant.QZ_TYPE.MCHOICE_MANSWER
+    }else {
+      quizType = V.Constant.QZ_TYPE.MCHOICE
+    }
+    V.QuizCharts.drawQuizChart(canvas, quizType, nAnswers, results, options)
   };
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
 }(VISH, jQuery);
@@ -14011,8 +14066,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-        var data = [{"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:23Z", "id":30, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"false"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:37Z", "id":31, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"true"},{"no":"3","answer":"false"},{"no":"4","answer":"false"}]', 
-        "created_at":"2013-05-13T13:10:52Z", "id":32, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:09Z", "id":33, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:41Z", "id":34, "quiz_session_id":19}];
+        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:03Z", "id":33, "quiz_session_id":26}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-22T11:59:19Z", "id":34, "quiz_session_id":26}, {"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:28Z", "id":35, "quiz_session_id":26}, {"answer":'[{"no":"4","answer":"true"}]', "created_at":"2013-11-22T11:59:43Z", "id":36, "quiz_session_id":26}];
         if(typeof successCallback == "function") {
           setTimeout(function() {
             successCallback(data)

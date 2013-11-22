@@ -141,6 +141,7 @@ VISH.Constant.WRAPPER.IFRAME = "IFRAME";
 VISH.Constant.QZ_TYPE = {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.Constant.QZ_MODE = {};
 VISH.Constant.QZ_MODE.SELFA = "selfA";
@@ -15800,29 +15801,18 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Forest Fires. Planet Earth is calling...S.O.S.", "description":"During August 2007our prefecture, Ilia, faced the most horrific fire in our history. Moscow fires,during summer 2010, caused similar disaster. So there is a need for a common approach in terms of Environmental Education\nworldwide.\nThe aim of this excursion is to make people think about environment more seriously.", "avatar":"http://vishub.org/pictures/1620.jpeg", "author":"Papandreou Christos", 
-  "tags":["ViSHCompetition2013", "EnvironmentalStudies"], "theme":"theme11", "animation":"animation1", "language":"en", "context":"school", "age_range":"10 - 15", "difficulty":"easy", "TLT":"PT4H", "subject":["Education", "Environmental Education", "Geology", "Physics"], "educational_objectives":"After our activities, pupils will:\n    Understand through experiment the way roots support the plants.\n    Understand through experiment soil\u2019s additional and auxiliary role on plant\u2019s support and the interactive relation between roots and soil.\n    Conclude and rate from the above, forest\u2019s importance on soil\u2019s support and protection from flood.\n    Acquire awareness of the danger our planet is going through and realize that every living object deserves our respect and protection.\n    Learn to work in groups and understand that team work is more effective as they develop communication skills and sociability.\n    Improve their I.C.T. skills and performance.", 
-  "slides":[{"id":"article2", "type":"standard", "template":"t13", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><u><span style="color:#ffff00;"><span style="font-size: 26px;"><span style="font-family: comic sans ms,cursive;">Forest fires. Planet Earth is calling... S.O.S.</span></span></span></u></p>\n'}, {"id":"article2_zone2", "type":"image", 
-  "areaid":"circle", "body":"http://vishub.org/pictures/1620.jpeg", "style":"position: relative; width:100%; height:73.828125%; top:13.28125%; left:0.05501221508869637%;"}, {"id":"article2_zone3", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:14px;"><span autocolor="true" style="color: rgb(255, 255, 255);">&shy;</span></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:14px;"><span style="color: rgb(255, 255, 0);"><span style="font-family: comic sans ms,cursive;">We know that it is not the most pleasant way to start an excursion, but the facts made us to do so.</span></span></span></p>\n<p>\n\t<span style="font-size:14px;"><span style="font-family: comic sans ms,cursive;"><span style="color: rgb(255, 255, 0);">During </span><a class="webshrinker_post_hover webshrinker_post_hover " href="http://en.wikipedia.org/wiki/2007_Greek_forest_fires" target="_blank"><span style="color: rgb(255, 255, 0);">August 2007</span></a><span style="color: rgb(255, 255, 0);">our prefecture, Ilia, faced the most horrific fire in our history. </span><a class="webshrinker_post_hover webshrinker_post_hover " href="http://en.wikipedia.org/wiki/2010_Russian_wildfires" target="_blank"><span style="color: rgb(255, 255, 0);">Moscow fires,</span></a><span style="color: rgb(255, 255, 0);">during summer 2010, caused similar disaster. So there is a need for a common approach in terms of Environmental Education worldwide.</span></span></span></p>\n<p>\n\t<span style="font-size:14px;"><span style="color: rgb(255, 255, 0);"><span style="font-family: comic sans ms,cursive;">The aim of this excursion is to make people think about environment more seriously.</span></span></span></p>\n<p>\n\t<span style="color:#ffff00;"><span style="font-size: 14px;"><span style="font-family: comic sans ms,cursive;">Follow the next screen and watch our small presentation. It is the incentive to start working with our project. Good luck!</span></span></span></p>\n'}, 
-  {"id":"article2_zone4", "areaid":"right"}]}, {"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t2_object" id="resizableunicID36" src="http://www.slideshare.net/slideshow/embed_code/28318534" marginwidth="0" marginheight="0" allowfullscreen="" frameborder="0" height="486" scrolling="no" width="597"> </iframe>', "style":"position: relative; width:95.28619528619528%; height:95.18987341772151%; top:0%; left:0.8417508417508418%;"}]}, 
-  {"id":"article11", "type":"standard", "template":"t8", "elements":[{"id":"article11_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span style="font-size: 26px;"><span style="font-family: comic sans ms,cursive;">It&#39;s time for investigation...</span></span></span></p>\n'}, {"id":"article11_zone2", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:14px;"><span style="color: rgb(255, 255, 0);"><span style="font-family: comic sans ms,cursive;"><span autocolor="true">&shy;</span>Try to find out what is going on.</span></span></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:14px;"><span style="color: rgb(255, 255, 0);"><span style="font-family: comic sans ms,cursive;">Read the instructions carefully and follow the steps. They will guide you to the solution of the difficult situation.</span></span></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:14px;"><span style="color: rgb(255, 255, 0);"><span style="font-family: comic sans ms,cursive;">You can also download the booklets for help. Good luck!</span></span></span></p>\n'}, 
-  {"id":"article11_zone3", "type":"object", "areaid":"center", "body":'<iframe wmode="opaque" class="t8_object" id="resizableunicID37" src="http://docs.google.com/viewer?url=http://dim-karat.ilei.sch.gr/forest/data/plants_blank.pdf&amp;embedded=true"></iframe>', "style":"position: relative; width:95.29702970297029%; height:95.13513513513513%; top:0%; left:0%;"}, {"id":"article11_zone4", "type":"text", "areaid":"right", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span></p>\n<p style="text-align: center;">\n\t<span style="font-family:comic sans ms,cursive;"><span style="color: rgb(255, 255, 0);"><span style="font-size: 22px;"><span autocolor="true">Booklets</span></span></span></span></p>\n<p style="text-align:left;">\n\t<span style="font-family:comic sans ms,cursive;"><span style="color: rgb(255, 0, 0);"><a href="http://dim-karat.ilei.sch.gr/forest/data/plants_blank.pdf" target="_blank"><span autocolor="true"><span style="font-size: 18px;">blank</span></span></a></span></span></p>\n<p style="text-align:left;">\n\t<span style="font-family:comic sans ms,cursive;"><span style="color: rgb(255, 0, 0);"><a href="http://dim-karat.ilei.sch.gr/forest/data/plants_complete.pdf" target="_blank"><span autocolor="true"><span style="font-size: 18px;">complete</span></span></a></span></span></p>\n<p style="text-align:left;">\n\t<span style="font-family:comic sans ms,cursive;"><a href="http://users.sch.gr/papandre/woods/fyta_gr.pdf" target="_blank"><span style="color: rgb(255, 0, 0);"><span autocolor="true"><span style="font-size: 18px;">in Greek</span></span></span></a></span></p>\n'}]}, 
-  {"id":"article4", "type":"standard", "template":"t3", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span style="font-size: 28px;"><span style="font-family: comic sans ms,cursive;">The evidence...</span></span></span></p>\n'}, {"id":"article4_zone2", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t3_object" id="resizableunicID38" src="http://www.youtube.com/embed/oogV9jhVYVs?wmode=opaque" frameborder="0"></iframe>', 
-  "style":"position: relative; width:71.83544303797468%; height:95.23809523809524%; top:-0.8403361344537815%; left:14.39873417721519%;"}]}, {"id":"article5", "type":"standard", "template":"t3", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span style="font-size: 24px;"><span style="font-family: comic sans ms,cursive;">Another variant. 2nd experiment.</span></span></span></p>\n'}, 
-  {"id":"article5_zone2", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t3_object" id="resizableunicID40" src="http://www.youtube.com/embed/D-oKBmeZ-YE?wmode=opaque" frameborder="0"></iframe>', "style":"position: relative; width:68.35443037974683%; height:90.75630252100841%; top:0.8403361344537815%; left:15.822784810126583%;"}]}, {"id":"article3", "type":"standard", "template":"t7", "elements":[{"id":"article3_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span style="color:#ffff00;"><span style="font-size: 24px;"><span style="font-family: comic sans ms,cursive;"><span autocolor="true">Outside the laboratory or the school class...</span></span></span></span></p>\n'}, 
-  {"id":"article3_zone2", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:26px;">&shy;</span></span></p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="color: rgb(255, 255, 0);"><span style="font-family: comic sans ms,cursive;"><span id="result_box" lang="en"><span class="hps">&Tau;he negative</span> <span class="hps">consequences of the</span> <span class="hps">lack</span> <span class="hps">of trees</span> <span class="hps">confront us</span> <span class="hps">with</span> <span class="hps">terrible</span> <span class="hps">flooding,</span> <span class="hps">because</span> <span class="hps">roots</span> which could <span class="hps">hold back</span> <span class="hps">the waters and</span> <span class="hps">muds</span> <span class="hps">are missing...</span></span></span></span></span></p>\n'}, 
-  {"id":"article3_zone3", "type":"object", "areaid":"center", "body":'<iframe wmode="opaque" class="t7_object" id="resizableunicID41" src="http://www.youtube.com/embed/Q1QHgCvaZ6k?wmode=opaque" frameborder="0"></iframe>', "style":"position: relative; width:90.7035175879397%; height:87.94788273615636%; top:3.257328990228013%; left:2.2613065326633164%;"}, {"id":"article3_zone4", "areaid":"subheader"}]}, {"id":"article10", "type":"standard", "template":"t9", "elements":[{"id":"article10_zone1", "type":"text", 
-  "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span autocolor="true"><span style="font-size: 18px;"><span style="font-size: 26px;"><span style="font-family: comic sans ms,cursive;">Smog and economic crisis...</span></span></span></span></span></p>\n'}, {"id":"article10_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/1764.jpeg", "style":"position: relative; width:68.62244897959184%; height:100%; top:0%; left:18.112244897959183%;"}, 
-  {"id":"article10_zone3", "type":"text", "areaid":"center", "body":'<p>\n\t<span style="font-size:16px;"><span style="font-family: comic sans ms,cursive;">&shy;<span style="font-size:18px;"><span style="color: rgb(255, 255, 0);">Using a fireplace in a town area is not a trend... Of course, fuel like petrol or gas is more expensive, but as you can see in the picture below, smog levels in Athens (2013) reached over the limit, because people prefer using coal or wood, which is cheaper.&nbsp; </span></span></span></span></p>\n<p>\n\t<span style="color:#ffd700;"><span style="font-size: 18px;"><span style="font-family: comic sans ms,cursive;"><u><em>What about atmosphere and forests? What shall we deliver to the next generations</em></u>?</span></span></span></p>\n'}, 
-  {"id":"article10_zone4", "type":"image", "areaid":"right", "body":"http://vishub.org/pictures/1765.jpeg", "style":"position: relative; width:85.96938775510205%; height:100%; top:0%; left:8.673469387755102%;"}]}, {"id":"article6", "type":"standard", "template":"t3", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span style="color:#ffff00;"><span style="font-size: 24px;"><span style="font-family: comic sans ms,cursive;">Time for practice!</span></span></span></p>\n'}, 
-  {"id":"article6_zone2", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t3_object" id="resizableunicID44" src="http://dim-karat.ilei.sch.gr/forest/data/main/exercise/cross.htm?wmode=transparent"></iframe>', "style":"position: relative; width:95.25316455696202%; height:95.23809523809524%; top:0.2801120448179272%; left:1.1075949367088607%;"}]}, {"id":"article7", "type":"standard", "template":"t3", "elements":[{"id":"article7_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span style="font-size: 26px;"><span style="font-family: comic sans ms,cursive;">...a bit more exercise?</span></span></span></p>\n'}, 
-  {"id":"article7_zone2", "type":"object", "areaid":"left", "body":'<iframe wmode="opaque" class="t3_object" id="resizableunicID46" src="http://dim-karat.ilei.sch.gr/forest/data/main/exercise/cloze.htm?wmode=transparent"></iframe>', "style":"position: relative; width:95.25316455696202%; height:95.23809523809524%; top:0.8403361344537815%; left:0.9493670886075949%;"}]}, {"id":"article12", "type":"standard", "template":"t3", "elements":[{"id":"article12_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span style="font-size: 26px;"><span style="font-family: comic sans ms,cursive;">Pupils&#39; message!</span></span></span></p>\n'}, 
-  {"id":"article12_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/1766.jpeg", "style":"position: relative; width:81.0126582278481%; height:100%; top:0%; left:10.443037974683545%;"}]}, {"id":"article15", "type":"standard", "template":"t10", "elements":[{"id":"article15_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/1768.jpeg", "style":"position: relative; width:82.8101644245142%; height:100%; top:0.6329113924050633%; left:11.061285500747385%;"}]}, 
-  {"id":"article13", "type":"standard", "template":"t8", "elements":[{"id":"article13_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span style="font-size: 24px;"><span style="font-family: comic sans ms,cursive;">Our planet&#39;s message.</span></span></span></p>\n'}, {"id":"article13_zone2", "type":"text", "areaid":"left", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="font-size:22px;"><span style="color: rgb(255, 255, 0);"><span autocolor="true"><span style="font-family: comic sans ms,cursive;">And now relax and watch our planet&#39;s message. From now on think wisely!!!</span></span></span></span></p>\n'}, 
-  {"id":"article13_zone3", "type":"object", "areaid":"center", "body":'<iframe wmode="opaque" class="t8_object" id="resizableunicID49" src="http://www.youtube.com/embed/SL5tgi6Q2yM?wmode=opaque" frameborder="0"></iframe>', "style":"position: relative; width:95.29702970297029%; height:77.83783783783784%; top:7.837837837837838%; left:-0.49504950495049505%;"}, {"id":"article13_zone4", "type":"image", "areaid":"right", "body":"http://vishub.org/pictures/1767.jpeg", "style":"position: relative; width:126.79425837320574%; height:171.95767195767195%; top:-11.640211640211641%; left:0%;"}]}, 
-  {"id":"article9", "type":"standard", "template":"t13", "elements":[{"id":"article9_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align: center;">\n\t<span autocolor="true" style="color:#fff"><span style="font-size:18px;">&shy;</span></span><span style="color:#ffff00;"><span style="font-size: 28px;"><span style="font-family: comic sans ms,cursive;">More info!</span></span></span></p>\n'}, {"id":"article9_zone2", "type":"image", "areaid":"circle", "body":"http://vishub.org/pictures/1634.jpeg", 
-  "style":"position: relative; width:100%; height:73.828125%; top:15.625005960464478%; left:-1.2651197981126239%;"}, {"id":"article9_zone3", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="color:#ffff00;"><span style="font-family: comic sans ms,cursive;"><span style="font-size: 18px;"><span autocolor="true">&shy;</span>If you found our excursion amusing, interesting and educational, you can visit our Web 2.0 place and see more details of our wider environmental project.</span></span></span></p>\n<p style="text-align:left;">\n\t<span style="color:#ffff00;"><span style="font-family: comic sans ms,cursive;"><span style="font-size: 18px;">You can also send us your comments or upload your ideas about experiments and the environment. </span></span></span></p>\n<p style="text-align:left;">\n\t<span style="color:#ffff00;"><span style="font-family: comic sans ms,cursive;"><span style="font-size: 18px;">You are always welcome!</span></span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="color: rgb(255, 255, 0);"><span style="font-family: comic sans ms,cursive;">Click </span></span><a href="http://users.sch.gr/papandre/woods" target="_blank"><span style="color:#ff0000;"><span style="font-family: comic sans ms,cursive;">here</span></span></a></span></p>\n'}, 
-  {"id":"article9_zone4", "areaid":"right"}]}], "id":"7857"};
+  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Excursion MC Multiple Answer Test", "description":"Excursion MC Multiple Answer Test", "avatar":"http://farm6.staticflickr.com/5254/5471377987_d3125cc9b6.jpg", "author":"<Demo>", "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"4 - 20", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "areaid":"left"}, {"id":"article1_zone2", "areaid":"header"}, {"id":"article1_zone3", 
+  "areaid":"subheader"}]}, {"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"Marca las que quieras", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000"><span style="font-size: 38px;">Marca las que quieras</span></font></p>\n'}, "choices":[{"id":"1", "value":"\u00adMe gusta el color rojo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Me gusta el color rojo</span></span></p>\n', 
+  "answer":true}, {"id":"2", "value":"\u200bMe gusta la pizza\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Me gusta la pizza&shy;</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u200b\u00adSoy un gnomo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy un gnomo</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adSoy designer", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy designer</span></span></p>\n', "answer":true}], "extras":{"multipleAnswer":true}, "quiz_simple_json":{"title":"Excursion MC Multiple Answer Test", "description":"Excursion MC Multiple Answer Test", "author":"&lt;Demo&gt;", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", 
+  "quiztype":"multiplechoice", "selfA":true, "question":{"value":"Marca las que quieras", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000"><span style="font-size: 38px;">Marca las que quieras</span></font></p>\n'}, "choices":[{"id":"1", "value":"\u00adMe gusta el color rojo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Me gusta el color rojo</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u200bMe gusta la pizza\u00ad", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Me gusta la pizza&shy;</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u200b\u00adSoy un gnomo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy un gnomo</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adSoy designer", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy designer</span></span></p>\n', 
+  "answer":true}], "extras":{"multipleAnswer":true}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":false, "question":{"value":"Quiz no autoevaluable, \u00bfQue piensas del mineralismo?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Quiz no autoevaluable, &iquest;Que piensas del mineralismo?&shy;</span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"\u200bEs algo bueno\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Es algo bueno&shy;</span></span></p>\n', "answer":"?"}, {"id":"2", "value":"\u200b\u00adEs algo malo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es algo malo</span></span></p>\n', "answer":"?"}, {"id":"3", "value":"\u200bEl mineralismo va a llegar\u00ad", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">El mineralismo va a llegar&shy;</span></span></p>\n', "answer":"?"}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Excursion MC Multiple Answer Test", "description":"Excursion MC Multiple Answer Test", "author":"&lt;Demo&gt;", "type":"quiz_simple", "slides":[{"id":"article3", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", 
+  "areaid":"left", "quiztype":"multiplechoice", "selfA":false, "question":{"value":"Quiz no autoevaluable, \u00bfQue piensas del mineralismo?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Quiz no autoevaluable, &iquest;Que piensas del mineralismo?&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"\u200bEs algo bueno\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Es algo bueno&shy;</span></span></p>\n', 
+  "answer":"?"}, {"id":"2", "value":"\u200b\u00adEs algo malo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es algo malo</span></span></p>\n', "answer":"?"}, {"id":"3", "value":"\u200bEl mineralismo va a llegar\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">El mineralismo va a llegar&shy;</span></span></p>\n', "answer":"?"}], "extras":{"multipleAnswer":false}}], 
+  "containsQuiz":true}]}}], "containsQuiz":true}], "id":"621"};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -23987,8 +23977,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-        var data = [{"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:23Z", "id":30, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"false"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:10:37Z", "id":31, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"true"},{"no":"3","answer":"false"},{"no":"4","answer":"false"}]', 
-        "created_at":"2013-05-13T13:10:52Z", "id":32, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:09Z", "id":33, "quiz_session_id":19}, {"answer":'[{"no":"1","answer":"true"},{"no":"2","answer":"false"},{"no":"3","answer":"true"},{"no":"4","answer":"true"}]', "created_at":"2013-05-13T13:11:41Z", "id":34, "quiz_session_id":19}];
+        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:03Z", "id":33, "quiz_session_id":26}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-22T11:59:19Z", "id":34, "quiz_session_id":26}, {"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:28Z", "id":35, "quiz_session_id":26}, {"answer":'[{"no":"4","answer":"true"}]', "created_at":"2013-11-22T11:59:43Z", "id":36, "quiz_session_id":26}];
         if(typeof successCallback == "function") {
           setTimeout(function() {
             successCallback(data)
@@ -24038,7 +24027,8 @@ VISH.Quiz.MC = function(V, $, undefined) {
     var inputType = "radio";
     if(slide.extras && slide.extras.multipleAnswer === true) {
       multipleAnswer = true;
-      inputType = "checkbox"
+      inputType = "checkbox";
+      $(container).attr("multipleAnswer", true)
     }
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
     $(questionWrapper).html(slide.question.wysiwygValue);
@@ -24116,7 +24106,13 @@ VISH.Quiz.MC = function(V, $, undefined) {
   var drawResults = function(quiz, results, options) {
     var canvas = $("#quiz_chart");
     var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.MCHOICE, nAnswers, results, options)
+    var quizType;
+    if($(quiz).attr("multipleAnswer") === "true") {
+      quizType = V.Constant.QZ_TYPE.MCHOICE_MANSWER
+    }else {
+      quizType = V.Constant.QZ_TYPE.MCHOICE
+    }
+    V.QuizCharts.drawQuizChart(canvas, quizType, nAnswers, results, options)
   };
   return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
 }(VISH, jQuery);
@@ -24229,9 +24225,9 @@ VISH.Constant = VISH.Constant || {};
 VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
+VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.QuizCharts = function(V, $, undefined) {
-  var choicesLetters = ["a)", "b)", "c)", "d)", "e)", "f)", "g)", "h)", "i)", "j)", "k)", "l)", "m)", "n)", "o)", "p)", "q)", "r)", "s)"];
   var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
   var pieLetterColor = ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"];
   var choices = {};
@@ -24244,6 +24240,9 @@ VISH.QuizCharts = function(V, $, undefined) {
         break;
       case V.Constant.QZ_TYPE.MCHOICE:
         _drawMcChoiceQuizChart(canvas, nAnswers, answersList, options);
+        break;
+      case V.Constant.QZ_TYPE.MCHOICE_MANSWER:
+        _drawMcChoiceMAnswerQuizChart(canvas, nAnswers, answersList, options);
         break;
       case V.Constant.QZ_TYPE.TF:
         _drawTFQuizChart(canvas, nAnswers, answersList, options);
@@ -24259,7 +24258,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     for(var i = 0;i < nAnswers;i++) {
       pieFragments[i] = {};
       pieFragments[i].value = 0;
-      pieFragments[i].label = choicesLetters[i];
+      pieFragments[i].label = String.fromCharCode(96 + i + 1);
       pieFragments[i].color = pieBackgroundColor[i];
       pieFragments[i].labelColor = pieLetterColor[i];
       pieFragments[i].labelFontSize = "16"
@@ -24271,7 +24270,7 @@ VISH.QuizCharts = function(V, $, undefined) {
       for(var k = 0;k < aL;k++) {
         var answer = answers[k];
         var index = answer.no - 1;
-        if(answer.answer === "true") {
+        if(answer.answer === "true" && pieFragments[index]) {
           pieFragments[index].value++
         }
       }
@@ -24287,6 +24286,44 @@ VISH.QuizCharts = function(V, $, undefined) {
     var options = {showTooltips:false, animation:animation};
     var myNewChart = (new Chart(ctx)).Pie(data, options)
   };
+  var _drawMcChoiceMAnswerQuizChart = function(canvas, nAnswers, answersList, options) {
+    var labels = [];
+    var data = [];
+    var maxValue = 0;
+    var scaleSteps = 10;
+    for(var i = 0;i < nAnswers;i++) {
+      labels[i] = String.fromCharCode(96 + i + 1);
+      data[i] = 0
+    }
+    var alL = answersList.length;
+    for(var j = 0;j < alL;j++) {
+      var answers = answersList[j];
+      var aL = answers.length;
+      for(var k = 0;k < aL;k++) {
+        var answer = answers[k];
+        var index = answer.no - 1;
+        if(answer.answer === "true") {
+          data[index]++
+        }
+      }
+    }
+    for(var l = 0;l < nAnswers;l++) {
+      if(data[l] > maxValue) {
+        maxValue = data[l]
+      }
+    }
+    if(maxValue < 10) {
+      scaleSteps = Math.max(1, maxValue)
+    }
+    var ctx = $(canvas).get(0).getContext("2d");
+    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:data}]};
+    var animation = false;
+    if(options && options.first === true) {
+      animation = true
+    }
+    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
+    var myNewChart = (new Chart(ctx)).Bar(data, options)
+  };
   var _drawTFQuizChart = function(canvas, nAnswers, answersList, options) {
     var labels = [];
     var dataTrue = [];
@@ -24294,7 +24331,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     var maxValue = 0;
     var scaleSteps = 10;
     for(var i = 0;i < nAnswers;i++) {
-      labels[i] = "V       " + choicesLetters[i] + "       F";
+      labels[i] = "V       " + String.fromCharCode(96 + i + 1) + "       F";
       dataTrue[i] = 0;
       dataFalse[i] = 0
     }
@@ -24343,7 +24380,13 @@ VISH.QuizCharts = function(V, $, undefined) {
   var getQuizParams = function(quiz) {
     var params = {};
     try {
-      params.quizType = quiz["slides"][0]["elements"][0]["quiztype"];
+      var quizEl = quiz["slides"][0]["elements"][0];
+      params.quizType = quizEl["quiztype"];
+      if(params.quizType == V.Constant.QZ_TYPE.MCHOICE) {
+        if(quizEl.extras && quizEl.extras.multipleAnswer == true) {
+          params.quizType = V.Constant.QZ_TYPE.MCHOICE_MANSWER
+        }
+      }
       params.nAnswers = quiz["slides"][0]["elements"][0]["choices"].length
     }catch(e) {
     }

@@ -89,7 +89,7 @@ class QuizSession < ActiveRecord::Base
           end
           
         when "truefalse"
-          #
+
           qparams["choices"].each do |choice|
             choiceResult = Hash.new
             choiceResult["T"] = 0;
