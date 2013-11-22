@@ -1,6 +1,10 @@
 <section id="contest">
   <div class="competition_banner">
-  <%= image_tag("competition/BANNER-02.png",  :class=> "" ) %>
+  <%if I18n.locale==:es%>
+       <%= image_tag("competition/BANNER-02_esp.png",  :class=> "" ) %>
+    <%else%>
+       <%= image_tag("competition/BANNER-02.png",  :class=> "" ) %>
+    <%end%>  
   </div>
   <div class="info_all">
 
