@@ -35,11 +35,11 @@ class QuizSessionsController < ApplicationController
     #We need to get the URL after save the quiz
     # qs.url=short_url ( request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/quiz_sessions/#{qs.id.to_s}" )
     # qs.url = "http://" + request.env['HTTP_HOST'].sub(/^(m|www)\./, '') + "/qs/#{qs.id.to_s}"
-    qs.url = qs.answer_url
+    # qs.url = qs.answer_url
 
     results = Hash.new
     results["id"] = qs.id;
-    results["url"] = qs.url;
+    results["url"] = qs.answer_url;
 
     render :json => results
   end
@@ -138,7 +138,7 @@ class QuizSessionsController < ApplicationController
       render :template => 'excursions/show', :formats => [:full], :layout => 'iframe'
     else
       # Quiz is closed!!!
-      render 'quiz_sessions/closed' 
+      render 'quiz_sessions/closed'
     end
   end
 

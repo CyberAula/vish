@@ -28,18 +28,23 @@
 	  <% end %>
 	<% end %>
  
-	options["lang"] = "<%= I18n.locale.to_s%>";
-	options["token"] = "<%= form_authenticity_token %>";
-
 	<% if user_signed_in? %>
 		options['userId'] = "<%= current_user.id %>";
 		options["username"] = "<%= current_user.name %>";
 	<% end %>
 
+	options["lang"] = "<%= I18n.locale.to_s%>";
+	options["token"] = "<%= form_authenticity_token %>";
+
 	<% if @quiz_session %>
 		options["quizSessionId"] = "<%= @quiz_session.id %>";
 		options["forceHideViewbar"] = true;
 	<% end %>
+
+	//URL to access to the Quiz Session API
+	options["quizSessionAPI"] = {
+		rootURL: '<%=QuizSession.root_url%>'
+	};
 
 	//URL to get the recommendations to show in the last slide
 	options["urlToGetRecommendations"] = "/excursions/last_slide.json"

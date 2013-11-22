@@ -52,36 +52,28 @@ class QuizSession < ActiveRecord::Base
     end
   end
 
-  def close_url
+  def self.root_url
     if Site.current.config[:documents_hostname]
-      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/" + self.id.to_s() + "/close/"
-    else
-      return "/quiz_sessions/" + self.id.to_s() + "/close/"
+      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/"
     end
   end
 
+  def close_url
+    return QuizSession.root_url + self.id.to_s() + "/close/"
+  end
+
   def delete_url
-    if Site.current.config[:documents_hostname]
-      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/" + self.id.to_s() + "/delete/"
-    else
-      return "/quiz_sessions/" + self.id.to_s() + "/delete/"
-    end
+    return QuizSession.root_url + self.id.to_s() + "/delete/"
   end
 
   def answer_url
     if Site.current.config[:documents_hostname]
       return Site.current.config[:documents_hostname].to_s + "qs/" + self.id.to_s()
-    else
-      return "/qs/" + self.id.to_s()
     end
   end
 
   def results_url
-    if Site.current.config[:documents_hostname]
-      return Site.current.config[:documents_hostname].to_s + "quiz_sessions/" + self.id.to_s() + "/results/"
-    else
-      return "/quiz_sessions/" + self.id.to_s() + "/results/"
-    end
+    return QuizSession.root_url + self.id.to_s() + "/results/"
   end
 
 end

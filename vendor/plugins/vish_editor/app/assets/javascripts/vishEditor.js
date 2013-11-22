@@ -16457,7 +16457,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var init = function() {
     $("#quizSessionNameInput").watermark(V.I18n.getTrans("i.QuizSessionName"));
-    V.Quiz.API.init();
+    V.Quiz.API.init(V.Utils.getOptions().quizSessionAPI);
     V.Quiz.MC.init();
     V.Quiz.TF.init();
     _loadEvents()
@@ -16766,9 +16766,6 @@ VISH.Quiz = function(V, $, undefined) {
     _cleanResults();
     if(!currentQuizSession) {
       return
-    }
-    if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-      currentQuizSession.url = "http://vishub.org/quiz_sessions/4567"
     }
     var myA = $("#tab_quiz_session_url_link");
     $(myA).attr("href", currentQuizSession.url);
@@ -23889,13 +23886,17 @@ VISH.Presentation = function(V, undefined) {
   return{init:init}
 }(VISH);
 VISH.Quiz.API = function(V, $, undefined) {
-  var init = function() {
+  var quizSessionAPIrootURL;
+  var init = function(quizSessionAPI) {
+    if(typeof quizSessionAPI == "object" && typeof quizSessionAPI.rootURL == "string") {
+      quizSessionAPIrootURL = quizSessionAPI.rootURL
+    }
   };
   var startQuizSession = function(quiz, quizJSON, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
       var params = {"quiz":JSON.stringify(quizJSON), "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions", data:params, success:function(data) {
+      $.ajax({type:send_type, url:quizSessionAPIrootURL, data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(quiz, data)
         }
@@ -23907,7 +23908,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
         var quizSessionId = Math.ceil(1E4 * (1 + Math.random())).toString();
-        var url = "http://" + window.location.host + "/quiz_sessions/" + quizSessionId;
+        var url = quizSessionAPIrootURL + quizSessionId;
         var quiz_session = {id:quizSessionId, url:url};
         if(typeof successCallback == "function") {
           setTimeout(function() {
@@ -23924,7 +23925,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(typeof name == "string" && name.trim() != "") {
         params["name"] = name
       }
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/close", data:params, success:function(data) {
+      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/close", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -23948,7 +23949,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     if(V.Configuration.getConfiguration()["mode"] == V.Constant.VISH) {
       var send_type = "GET";
       var params = {"id":quizSessionId, "authenticity_token":V.User.getToken()};
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/delete", data:params, success:function(data) {
+      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/delete", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -23975,7 +23976,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/results.json", data:params, success:function(data) {
+      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/results.json", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
@@ -24003,7 +24004,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       if(V.User.isLogged()) {
         params["authenticity_token"] = V.User.getToken()
       }
-      $.ajax({type:send_type, url:"http://" + window.location.host + "/quiz_sessions/" + quizSessionId + "/answer", data:params, success:function(data) {
+      $.ajax({type:send_type, url:quizSessionAPIrootURL + quizSessionId + "/answer", data:params, success:function(data) {
         if(typeof successCallback == "function") {
           successCallback(data)
         }
