@@ -24,12 +24,56 @@
 
 	<p class="quizQuestionTitle"><%=@processedQS["question"]%></p>
 
-	<% if @processedQS["choices"] %>
-		<% @processedQS["choices"].each_with_index do |choice,index|%>
-			<% if choice["value"] %>
-				<p><%=(index+97).chr%>) <%=choice["value"]%></p>
+	<% case @processedQS["quizType"] %>
+		<% when "multiplechoice" %>
+
+			<% if @processedQS["choices"] %>
+				<table class="quizResultsTable" border="0">
+				<% @processedQS["choices"].each_with_index do |choice,index|%>
+					<% if choice["value"] %>
+						<tr>
+						<td><%=(index+97).chr%>)</td>
+						<td><%=choice["value"]%></td>
+						<% if @processedQS["processedResults"] %>
+							<td class="tdaRight"><%=@processedQS["processedResults"][index]["n"]%></td>
+							<% if !(@processedQS["extras"] && @processedQS["extras"]["multipleAnswer"]==true) %>
+								<td class="tdaRight"><%=@processedQS["processedResults"][index]["percentage"]%> %</td>
+							<% end %>
+						<% end %>
+						</tr>
+					<% end %>
+				<% end %>
+				<% if @processedQS["totalAnswers"] %>
+				<tr class="trLast">
+					<td colspan="2"><%=t('quiz.total')%></td>
+					<td><%=@processedQS["totalAnswers"]%></td>
+				</tr>
+				<% end %>
+				</table>
 			<% end %>
-		<% end %>
+		<% when  "truefalse" %>
+			<table class="quizResultsTable" border="0">
+			<% if @processedQS["processedResults"] %>
+				<tr>
+					<td></td><td></td><td><%=t('quiz.trueC')%></td><td><%=t('quiz.falseC')%></td>
+				</tr>
+			<% end %>
+			<% @processedQS["choices"].each_with_index do |choice,index|%>
+				<% if choice["value"] %>
+					<tr>
+					<td><%=(index+97).chr%>)</td>
+					<td><%=choice["value"]%></td>
+					<% if @processedQS["processedResults"] %>
+					<!--
+						<td class="tdaRight">@processedQS["processedResults"][index]["v"]%></td>
+						<td class="tdaRight">@processedQS["processedResults"][index]["f"]%></td>
+					-->
+					<% end %>
+					</tr>
+				<% end %>
+			<% end %>
+			</table>
+		<% else %>
 	<% end %>
 
 	<% if answersLength == 0%>
@@ -37,6 +81,7 @@
 	<% else %>
 		<canvas id="quiz_chart" width="700" height="400"></canvas>
 	<% end %>
+
 </article>
 
 <script type="text/javascript">

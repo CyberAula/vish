@@ -510,6 +510,7 @@ es:
     confirm_delete: "¿Borrar cuestionario en vivo? Perderás todas las respuestas almacenadas."
     createdAt: "Creado el"
     closedAtS: "y cerrado el"
+    falseC: "F"
     launchIn: "lanzado en la Excursión Virtual: "
     legend:
       name: "Nombre del cuestionario en vivo"
@@ -522,6 +523,8 @@ es:
     other: "cuestionarios"
     placeholder:
       name: "Escribe un nuevo nombre"
+    total: "Total"
+    trueC: "V"
     untitled: "Sin título"
   recommended: "recomendados"
   recsys:

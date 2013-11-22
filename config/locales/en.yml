@@ -559,6 +559,7 @@ en:
     confirm_delete: "Delete live quiz? You will lose all the stored answers."
     createdAt: "Created at"
     closedAtS: "and closed at"
+    falseC: "F"
     launchIn: "launched in the Virtual Excursion: "
     legend:
       name: "Live Quiz Name"
@@ -571,6 +572,8 @@ en:
     other: "quizzes"
     placeholder:
       name: "Write a new name"
+    total: "Total"
+    trueC: "T"
     untitled: "Untitled"
   recommended: "recommended"
   recsys:
