@@ -9,7 +9,7 @@ module ExcursionsHelper
   end
 
   def excursion_raw_thumbail(excursion)
-    return "/assets/icons/draft.jpg" if excursion.draft
+    #return "/assets/icons/draft.jpg" if excursion.draft
     excursion.thumbnail_url || "/assets/logos/original/excursion-00.png"
   end
 
