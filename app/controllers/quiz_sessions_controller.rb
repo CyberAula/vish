@@ -119,12 +119,12 @@ class QuizSessionsController < ApplicationController
       }
       format.html {
         @answers = @results.to_json
-        @quizParams = @quiz_session.getQuizParams
+        @processedQS = @quiz_session.getProcessedQS
         render :show_results
       }
       format.partial {
         @answers = @results.to_json
-        @quizParams = @quiz_session.getQuizParams
+        @processedQS = @quiz_session.getProcessedQS
         render :show_results, :layout => false
       }
     end

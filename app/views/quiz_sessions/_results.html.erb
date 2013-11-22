@@ -6,8 +6,8 @@
 <article class="quiz_sessions">
 	<p>
 		<%=t('quiz.createdAt')%> <%=@quiz_session.created_at%>
-		<%if @quizParams["presentationName"] %>
-			(<%=t('quiz.launchIn')%> "<%= @quizParams["presentationName"]%>") 
+		<%if @processedQS["presentationName"] %>
+			(<%=t('quiz.launchIn')%> "<%= @processedQS["presentationName"]%>") 
 		<% end %>
 		<% if !@quiz_session.active %>
 			<%=t('quiz.closedAtS')%> <%=@quiz_session.closed_at%>
@@ -22,10 +22,10 @@
 
 	<br/>
 
-	<p class="quizQuestionTitle"><%=@quizParams["question"]%></p>
+	<p class="quizQuestionTitle"><%=@processedQS["question"]%></p>
 
-	<% if @quizParams["choices"] %>
-		<% @quizParams["choices"].each_with_index do |choice,index|%>
+	<% if @processedQS["choices"] %>
+		<% @processedQS["choices"].each_with_index do |choice,index|%>
 			<% if choice["value"] %>
 				<p><%=(index+97).chr%>) <%=choice["value"]%></p>
 			<% end %>
@@ -52,7 +52,7 @@
  	<% if answersLength > 0 %>
 	 	//Draw quiz results
 	 	var canvas = $("#quiz_chart");
-		var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quizParams["quiz"] %>);
+		var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quiz_session.quizJSON %>);
 	 	var quizType = quizParams.quizType;
 	 	var nAnswers = quizParams.nAnswers;
 	 	var answersList = <%= raw @answers %>;

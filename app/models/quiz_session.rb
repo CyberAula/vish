@@ -27,31 +27,6 @@ class QuizSession < ActiveRecord::Base
   	self.quiz_answers
   end
 
-  def getQuizParams
-    qparams = Hash.new
-    qparams["quiz"] = self.quizJSON
-
-    begin
-      presentation = JSON(self.quizJSON)
-      qparams["presentationName"] = presentation["title"]
-      slide = presentation["slides"][0]
-      els = slide["elements"]
-      els.each do |el|
-        if el["type"]=="quiz"
-          #quiz founded
-          qparams["question"] = el["question"]["value"];
-          qparams["quizType"] = el["quizType"];
-          qparams["nAnswers"] = el["choices"].length;
-          qparams["choices"] = el["choices"];
-          return qparams
-        end
-      end
-    rescue
-      #empty params
-      return qparams
-    end
-  end
-
   def self.root_url
     if Site.current.config[:documents_hostname]
       return Site.current.config[:documents_hostname].to_s + "quiz_sessions/"
@@ -74,6 +49,78 @@ class QuizSession < ActiveRecord::Base
 
   def results_url
     return QuizSession.root_url + self.id.to_s() + "/results/"
+  end
+
+  def getProcessedQS
+    begin
+      qparams = self.getQuizParams
+      qparams["processedResults"] = [];
+
+      case qparams["quizType"]
+
+        when "multiplechoice"
+          qparams["totalAnswers"] = self.results.length
+
+          qparams["choices"].each do |choice|
+            choiceResult = Hash.new
+            choiceResult["n"] = 0;
+            qparams["processedResults"].push(choiceResult)
+          end
+
+          self.results.each do |result|
+            result = JSON(result["answer"])
+
+            #Result is an array of responses
+            result.each do |response|
+              if response["answer"]=="true"
+                qparams["processedResults"][response["no"].to_i-1]["n"] = qparams["processedResults"][response["no"].to_i-1]["n"].to_i + 1
+              end
+            end
+          end
+
+          if qparams["extras"] && qparams["extras"]["multipleAnswer"]==true
+            #Multiple choice with multiple answers
+          else
+            #Multiple choice with single answer
+            #Calculate percentage
+            qparams["processedResults"].each do |result|
+              result["percentage"] = ((result["n"]*100)/qparams["totalAnswers"])
+            end
+          end
+          
+        when "truefalse"
+          #
+
+        else
+          # Unrecognized quiz type
+      end
+
+      return qparams
+
+    rescue
+      return Hash.new
+    end
+  end
+
+  def getQuizParams
+    qparams = Hash.new
+    presentation = JSON(self.quizJSON)
+    qparams["presentationName"] = presentation["title"]
+    slide = presentation["slides"][0]
+    els = slide["elements"]
+    els.each do |el|
+      if el["type"]=="quiz"
+        #quiz founded
+        qparams["question"] = el["question"]["value"];
+        qparams["quizType"] = el["quiztype"];
+        qparams["nAnswers"] = el["choices"].length;
+        qparams["choices"] = el["choices"];
+        if el["extras"]
+          qparams["extras"] = el["extras"];
+        end
+        return qparams
+      end
+    end
   end
 
 end
