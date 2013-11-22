@@ -90,6 +90,32 @@ class QuizSession < ActiveRecord::Base
           
         when "truefalse"
           #
+          qparams["choices"].each do |choice|
+            choiceResult = Hash.new
+            choiceResult["T"] = 0;
+            choiceResult["F"] = 0;
+            choiceResult["Tpercentage"] = 0;
+            choiceResult["Fpercentage"] = 0;
+            qparams["processedResults"].push(choiceResult)
+          end
+
+          self.results.each do |result|
+            result = JSON(result["answer"])
+            #Result is an array of responses
+            result.each do |response|
+              if response["answer"]=="true"
+                qparams["processedResults"][response["no"].to_i-1]["T"] = qparams["processedResults"][response["no"].to_i-1]["T"].to_i + 1
+              elsif response["answer"]=="false"
+                qparams["processedResults"][response["no"].to_i-1]["F"] = qparams["processedResults"][response["no"].to_i-1]["F"].to_i + 1
+              end
+            end
+          end
+
+          #Calculate percentages
+          qparams["processedResults"].each do |choiceResult|
+            choiceResult["Tpercentage"] = (choiceResult["T"]*100)/(choiceResult["T"]+choiceResult["F"]);
+            choiceResult["Fpercentage"] = (choiceResult["F"]*100)/(choiceResult["T"]+choiceResult["F"]);
+          end
 
         else
           # Unrecognized quiz type

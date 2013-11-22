@@ -55,7 +55,7 @@
 			<table class="quizResultsTable" border="0">
 			<% if @processedQS["processedResults"] %>
 				<tr>
-					<td></td><td></td><td><%=t('quiz.trueC')%></td><td><%=t('quiz.falseC')%></td>
+					<td></td><td></td><td colspan="2"></i><%=t('quiz.trueC')%></td><td colspan="2"><%=t('quiz.falseC')%></td>
 				</tr>
 			<% end %>
 			<% @processedQS["choices"].each_with_index do |choice,index|%>
@@ -64,10 +64,10 @@
 					<td><%=(index+97).chr%>)</td>
 					<td><%=choice["value"]%></td>
 					<% if @processedQS["processedResults"] %>
-					<!--
-						<td class="tdaRight">@processedQS["processedResults"][index]["v"]%></td>
-						<td class="tdaRight">@processedQS["processedResults"][index]["f"]%></td>
-					-->
+						<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["T"]%></td>
+						<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Tpercentage"]%>%)</td>
+						<td class="tdaRight tdbeforeTFPercentage"><%=@processedQS["processedResults"][index]["F"]%></td>
+						<td class="tdTFPercentage">(<%=@processedQS["processedResults"][index]["Fpercentage"]%>%)</td>
 					<% end %>
 					</tr>
 				<% end %>
