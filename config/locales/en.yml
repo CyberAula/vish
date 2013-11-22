@@ -564,6 +564,8 @@ en:
       name: "Live Quiz Name"
     live: "Live Quizzes"
     noAnswers: "There are no answers for this quiz"
+    noClosedQuizzes: "You don't have any closed quiz"
+    noOpenQuizzes: "You don't have any open quiz"
     open: "Open (they still can be answered)"
     openPeriod: "Period"
     other: "quizzes"

@@ -3,52 +3,60 @@
     <legend><%=t('quiz.live')%></legend>
     <div class="textrow">
       <h4><%=t('quiz.open')%></h4>
-      <ul id="sortable1" class="connectedSortable">
-        <% @quiz_active_sessions.each do |q| %>
-          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
-            <% if q.name %>
-              <%= q.name %>
-            <% else %>
-              <%=t('quiz.untitled')%>
-            <% end %>
-            <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
-              <i class="icon-trash"></i>
-            </button>
-            <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
-              <i class="icon-edit"></i>
-            </button>
-            <button class="with_tooltip closeqb btn popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
-              x
-            </button>
-            <p class="creation_date">
-              <%=t('quiz.createdAt')%> <%= q.created_at %>
-            </p>
-          </li>
+      <% if @quiz_active_sessions.length > 0 %>
+        <ul id="sortable1" class="connectedSortable">
+          <% @quiz_active_sessions.each do |q| %>
+            <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
+              <% if q.name && !q.name.empty? %>
+                <%= q.name %>
+              <% else %>
+                <%=t('quiz.untitled')%>
+              <% end %>
+              <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+                <i class="icon-trash"></i>
+              </button>
+              <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
+                <i class="icon-edit"></i>
+              </button>
+              <button class="with_tooltip closeqb btn popover-link" urlToCloseQuiz=<%="#{q.close_url}"%> data-container="body" title="<%=t('quiz.actions.close')%>" aria-hidden="true">
+                x
+              </button>
+              <p class="creation_date">
+                <%=t('quiz.createdAt')%> <%= q.created_at %>
+              </p>
+            </li>
+          <% end %>
+        </ul>
+        <% else %>
+          <p><%=t('quiz.noOpenQuizzes')%>.</p>
         <% end %>
-      </ul>
     </div> 
     <div class="textrow"> 
       <h4><%=t('quiz.close')%></h4>
-      <ul id="sortable2" class="connectedSortable">
-        <% @quiz_inactive_sessions.each do |q| %>
-          <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
-            <% if q.name %>
-              <%= q.name %>
-            <% else %>
-              <%=t('quiz.untitled')%>
-            <% end %>
-            <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
-              <i class="icon-trash"></i>
-            </button>
-            <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
-              <i class="icon-edit"></i>
-            </button>
-            <p class="creation_date">
-              <%=t('quiz.openPeriod')%> <%= q.created_at %> - <%= q.closed_at %>
-            </p>
-          </li>
-        <% end %>
-      </ul>      
+      <% if @quiz_inactive_sessions.length > 0 %>
+        <ul id="sortable2" class="connectedSortable">
+          <% @quiz_inactive_sessions.each do |q| %>
+            <li class="ui-state-default" data-target="#QuizAnalitycs" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/results.partial"%>>
+              <% if q.name && !q.name.empty? %>
+                <%= q.name %>
+              <% else %>
+                <%=t('quiz.untitled')%>
+              <% end %>
+              <button class="with_tooltip delete btn popover-link" urlToRemoveQuiz=<%="#{q.delete_url}"%> data-container="body" title="<%=t('quiz.actions.delete')%>" aria-hidden="true">
+                <i class="icon-trash"></i>
+              </button>
+              <button class="with_tooltip btn" title="" data-target="#QuizEdit" data-toggle="modal" data-remote=<%="/quiz_sessions/#{q.id}/edit.partial"%> title="<%=t('quiz.actions.edit')%>">
+                <i class="icon-edit"></i>
+              </button>
+              <p class="creation_date">
+                <%=t('quiz.openPeriod')%> <%= q.created_at %> - <%= q.closed_at %>
+              </p>
+            </li>
+          <% end %>
+        </ul>   
+      <% else %>
+        <p><%=t('quiz.noClosedQuizzes')%>.</p>
+      <% end %>   
     </div>
   </div>
 

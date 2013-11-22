@@ -515,6 +515,8 @@ es:
       name: "Nombre del cuestionario en vivo"
     live: "Cuestionarios"
     noAnswers: "No hay respuestas para este cuestionario"
+    noClosedQuizzes: "No tienes ningún cuestionario cerrado"
+    noOpenQuizzes: "No tienes ningún cuestionario abierto"
     open: "Lanzados (todavía se pueden responder)"
     openPeriod: "Periodo"
     other: "cuestionarios"

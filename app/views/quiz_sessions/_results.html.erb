@@ -41,7 +41,7 @@
 
 <script type="text/javascript">
  $(document).ready(function(){
- 	<% if @quiz_session.name %>
+ 	<% if @quiz_session.name && !@quiz_session.name.empty? %>
  		var qName = '<%=@quiz_session.name%>';
  	<% else %>
  		var qName = '<%=t("quiz.untitled")%>';
