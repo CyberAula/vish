@@ -6,8 +6,17 @@
   <div class="container-img">
       <div class="dummy"></div>
       <div class="element">
-
+        
+        
         <div class="img-box" id="excursion-<%=excursion.id%>"></div>
+        <%if excursion.draft%>
+        <div class="excursion-draft">
+          <h2 class="draftstyle">
+            <i class="icon-edit"></i>
+            Draft
+          </h2>
+        </div>
+        <%end%>
 
       </div>
   </div>
