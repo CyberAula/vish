@@ -359,6 +359,7 @@ es:
     contributors:
       name: "Con contenido de"
     created: "creadas"
+    draft: "Borrador"
     favorites: "Favoritos"
     go:
         repository: "ir a repositorio"
@@ -499,12 +500,13 @@ es:
   published: "Publicados"
   quiz:
     actions:
-      close:  "cerrar"
-      delete: "borrar"
-      edit: "edit"
+      close:  "Cerrar"
+      delete: "Borrar"
+      edit: "Editar"
     answer_url: "Responde a este cuestionario en este enlace"
     answers: "respuestas"
-    close: "Cerrados"
+    closed: "Cerrado"
+    closedL: "Cerrados"
     closeAlert: "Lo sentimos, este cuestionario no admite más respuestas."
     confirm_close: "¿Cerrar cuestionario en vivo? No se podrán enviar más respuestas después de esto."
     confirm_delete: "¿Borrar cuestionario en vivo? Perderás todas las respuestas almacenadas."
@@ -518,7 +520,8 @@ es:
     noAnswers: "No hay respuestas para este cuestionario"
     noClosedQuizzes: "No tienes ningún cuestionario cerrado"
     noOpenQuizzes: "No tienes ningún cuestionario abierto"
-    open: "Lanzados (todavía se pueden responder)"
+    opened: "Abierto"
+    openedL: "Abiertos (todavía se pueden responder)"
     openPeriod: "Periodo"
     other: "cuestionarios"
     placeholder:

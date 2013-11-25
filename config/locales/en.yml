@@ -357,6 +357,7 @@ en:
     contributors:
       name: "With content from"
     created: "created"
+    draft: "Draft"
     favorites: "Favorites"    
     how: "How to create an excursion"
     invite:
@@ -548,12 +549,13 @@ en:
   published: "Published"
   quiz:
     actions:
-      close:  "close"
-      delete: "delete"
-      edit: "edit"
+      close:  "Close"
+      delete: "Delete"
+      edit: "Edit"
     answer_url: "Answer this quiz on this URL"
     answers: "answers"
-    close: "Closed"
+    closed: "Closed"
+    closedL: "Closed"
     closeAlert: "Sorry, this quiz is closed."
     confirm_close: "Close live quiz? No more answers could be sent after this."
     confirm_delete: "Delete live quiz? You will lose all the stored answers."
@@ -567,7 +569,8 @@ en:
     noAnswers: "There are no answers for this quiz"
     noClosedQuizzes: "You don't have any closed quiz"
     noOpenQuizzes: "You don't have any open quiz"
-    open: "Open (they still can be answered)"
+    opened: "Open"
+    openedL: "Open (they still can be answered)"
     openPeriod: "Period"
     other: "quizzes"
     placeholder:

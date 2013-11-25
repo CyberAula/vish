@@ -2,7 +2,7 @@
   <div class="whiteframe">
     <legend><%=t('quiz.live')%></legend>
     <div class="textrow">
-      <h4><%=t('quiz.open')%></h4>
+      <h4><%=t('quiz.openedL')%></h4>
       <% if @quiz_active_sessions.length > 0 %>
         <ul id="sortable1" class="connectedSortable">
           <% @quiz_active_sessions.each do |q| %>
@@ -32,7 +32,7 @@
         <% end %>
     </div> 
     <div class="textrow"> 
-      <h4><%=t('quiz.close')%></h4>
+      <h4><%=t('quiz.closedL')%></h4>
       <% if @quiz_inactive_sessions.length > 0 %>
         <ul id="sortable2" class="connectedSortable">
           <% @quiz_inactive_sessions.each do |q| %>
