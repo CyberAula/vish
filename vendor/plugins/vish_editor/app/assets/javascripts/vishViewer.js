@@ -68,17 +68,18 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.Object":"Objeto", 
 "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un video HTML5 o de YouTube", "i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Asegurese de que el fichero PDF es v\u00e1lido.", "i.PDFNotValid":"Se ha producido un error. Aseg\u00farese de que el fichero PDF seleccionado es correcto.", 
 "i.PDFSlideshow":"Presentaci\u00f3n PDF", "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
-"i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", 
-"i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", 
-"i.save":"guardar", "i.Save":"Guardar", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", 
-"i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.Training":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.UnselectAll":"Deseleccionar Todas", 
-"i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", 
-"i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.delete":"delete", 
-"i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", 
-"i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", 
-"i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", 
-"i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.publish":"publish", "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", 
-"i.QuizResults":"Results", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", 
+"i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", 
+"i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", 
+"i.readJSONfileError":"Error al leer el fichero JSON", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", 
+"i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", 
+"i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.Training":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", 
+"i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", 
+"i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", 
+"i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", 
+"i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", 
+"i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", 
+"i.publish":"publish", "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", 
+"i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", 
 "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, 
 "default":{"i.save":"Standalone"}}};
 (function(a, b) {
@@ -5004,9 +5005,36 @@ VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.QuizCharts = function(V, $, undefined) {
   var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
-  var pieLetterColor = ["#000", "#000", "#000", "#000", "#000", "#000", "#000", "#000"];
+  var pieLetterColor = ["#000"];
   var choices = {};
-  var init = function() {
+  var language = "en";
+  var i18n = {"es":{"i.T":"V", "i.F":"F"}, "default":{"i.T":"T", "i.F":"F"}};
+  var translations = i18n["default"];
+  var init = function(options) {
+    if(options && options.lang) {
+      language = options.lang
+    }
+    if(i18n[language]) {
+      translations = i18n[language]
+    }
+  };
+  var _getTrans = function(s, params) {
+    if(translations[s]) {
+      return _getTransWithParams(translations[s], params)
+    }
+    return _getTransWithParams(i18n["default"][s], params)
+  };
+  var _getTransWithParams = function(trans, params) {
+    if(typeof params != "object") {
+      return trans
+    }
+    for(var key in params) {
+      var stringToReplace = "#{" + key + "}";
+      if(trans.indexOf(stringToReplace) != -1) {
+        trans = trans.replaceAll(stringToReplace, params[key])
+      }
+    }
+    return trans
   };
   var drawQuizChart = function(canvas, quizType, nAnswers, results, options) {
     var answersList = _getAnswers(results);
@@ -5034,8 +5062,8 @@ VISH.QuizCharts = function(V, $, undefined) {
       pieFragments[i] = {};
       pieFragments[i].value = 0;
       pieFragments[i].label = String.fromCharCode(96 + i + 1);
-      pieFragments[i].color = pieBackgroundColor[i];
-      pieFragments[i].labelColor = pieLetterColor[i];
+      pieFragments[i].color = pieBackgroundColor[i % pieBackgroundColor.length];
+      pieFragments[i].labelColor = pieLetterColor[i % pieLetterColor];
       pieFragments[i].labelFontSize = "16"
     }
     var alL = answersList.length;
@@ -5106,7 +5134,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     var maxValue = 0;
     var scaleSteps = 10;
     for(var i = 0;i < nAnswers;i++) {
-      labels[i] = "V       " + String.fromCharCode(96 + i + 1) + "       F";
+      labels[i] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
       dataTrue[i] = 0;
       dataFalse[i] = 0
     }
@@ -9450,9 +9478,6 @@ VISH.Renderer = function(V, $, undefined) {
   var _renderApplet = function(element, template) {
     return"<div id='" + element["id"] + "' class='appletelement " + template + "_" + element["areaid"] + "' code='" + element["code"] + "' width='" + element["width"] + "' height='" + element["height"] + "' archive='" + element["archive"] + "' params='" + element["params"] + "' ></div>"
   };
-  var _renderFlashcard = function(element, template) {
-    return"<div id='" + element["id"] + "' class='template_flashcard'><canvas id='" + element["canvasid"] + "'>Your browser does not support canvas</canvas></div>"
-  };
   return{init:init, renderVideo:renderVideo, renderSlide:renderSlide}
 }(VISH, jQuery);
 VISH.Renderer.Filter = function(V, $, undefined) {
@@ -9715,8 +9740,8 @@ VISH.Text = function(V, $, undefined) {
       return
     }
     _adaptPs($("article > div.VEtextArea > p"));
-    _adaptPs($("article > div.quizzContainer > div > p"));
-    _adaptPs($("article > div.quizzContainer").find("td > p"));
+    _adaptPs($("article div.quizContainer > div > p"));
+    _adaptPs($("article div.quizContainer").find("td > p"));
     $("article > div.VEtextArea > table").each(function(index, table) {
       _adaptSpans($(table).find("caption").find("span"));
       $(table).find("td").each(function(index, td) {
@@ -13318,10 +13343,10 @@ VISH.EventsNotifier = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
-  var quizSessionId;
-  var currentQuiz;
+  var currentQuizDOM;
   var currentQuizSession;
   var currentPolling;
+  var quizSessionId;
   var initBeforeRender = function(presentation) {
     if(presentation.type === V.Constant.QUIZ_SIMPLE) {
       quizMode = V.Constant.QZ_MODE.RT;
@@ -13337,6 +13362,7 @@ VISH.Quiz = function(V, $, undefined) {
     V.Quiz.API.init(V.Utils.getOptions().quizSessionAPI);
     V.Quiz.MC.init();
     V.Quiz.TF.init();
+    V.QuizCharts.init(V.Utils.getOptions());
     _loadEvents()
   };
   var _loadEvents = function() {
@@ -13360,18 +13386,23 @@ VISH.Quiz = function(V, $, undefined) {
     }})
   };
   var _onAnswerQuiz = function(event) {
-    var quiz = $("div.quizzContainer").has(event.target);
-    var quizModule = _getQuizModule($(quiz).attr("type"));
+    var quizDOM = $("div.quizContainer").has(event.target);
+    var quizModule = _getQuizModule($(quizDOM).attr("type"));
     if(quizModule) {
       if(quizMode === V.Constant.QZ_MODE.SELFA) {
-        quizModule.onAnswerQuiz(quiz)
+        var quizStatus = $(quizDOM).find(".quizAnswerButton").attr("quizstatus");
+        if(quizStatus === "retry") {
+          quizModule.onRetryQuiz(quizDOM)
+        }else {
+          quizModule.onAnswerQuiz(quizDOM)
+        }
       }else {
-        var report = quizModule.getReport(quiz);
-        _answerRTQuiz(quiz, quizModule, report)
+        var report = quizModule.getReport(quizDOM);
+        _answerRTQuiz(quizDOM, quizModule, report)
       }
     }
   };
-  var _answerRTQuiz = function(quiz, quizModule, report) {
+  var _answerRTQuiz = function(quizDOM, quizModule, report) {
     if(!quizSessionId) {
       return
     }
@@ -13388,11 +13419,11 @@ VISH.Quiz = function(V, $, undefined) {
       V.Utils.showDialog(options);
       return
     }
-    quizModule.disableQuiz(quiz);
-    _loadingAnswerButton(quiz);
+    quizModule.disableQuiz(quizDOM);
+    _loadingAnswerButton(quizDOM);
     var answers = report.answers;
     V.Quiz.API.sendAnwers(answers, quizSessionId, function(data) {
-      disableAnswerButton(quiz);
+      disableAnswerButton(quizDOM);
       var options = {};
       options.width = "80%";
       options.text = V.I18n.getTrans("i.QuizSubmittedAlert");
@@ -13404,7 +13435,7 @@ VISH.Quiz = function(V, $, undefined) {
       options.buttons = [button1];
       V.Utils.showDialog(options)
     }, function(error) {
-      disableAnswerButton(quiz);
+      disableAnswerButton(quizDOM);
       var options = {};
       options.width = "80%";
       options.text = V.I18n.getTrans("i.QuizNotSubmittedAlert");
@@ -13419,7 +13450,7 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _onStartQuiz = function(event) {
     var startButton = $(event.target);
-    var quiz = $("div.quizzContainer").has(startButton);
+    var quizDOM = $("div.quizContainer").has(startButton);
     switch($(startButton).attr("quizStatus")) {
       case "running":
         $("#fancybox-close").hide();
@@ -13430,11 +13461,11 @@ VISH.Quiz = function(V, $, undefined) {
       case "stop":
       ;
       default:
-        _startNewQuizSession(quiz);
+        _startNewQuizSession(quizDOM);
         break
     }
   };
-  var _startNewQuizSession = function(quiz) {
+  var _startNewQuizSession = function(quizDOM) {
     if(currentQuizSession) {
       var options = {};
       options.width = "80%";
@@ -13448,25 +13479,36 @@ VISH.Quiz = function(V, $, undefined) {
       V.Utils.showDialog(options);
       return
     }
-    _loadingLaunchButton(quiz);
-    var quizJSON = _getQuizJSONFromQuiz(quiz);
-    V.Quiz.API.startQuizSession(quiz, quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
+    _loadingLaunchButton(quizDOM);
+    var quizJSON = _getQuizJSONFromQuiz(quizDOM);
+    V.Quiz.API.startQuizSession(quizDOM, quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
   };
   var _onQuizSessionReceived = function(quiz, quizSession) {
-    currentQuiz = quiz;
+    currentQuizDOM = quiz;
     currentQuizSession = quizSession;
     _runningLaunchButton(quiz);
     $("a#addQuizSessionFancybox").trigger("click")
   };
-  var _onQuizSessionReceivedError = function(quiz, error) {
-    _enableLaunchButton(quiz)
+  var _onQuizSessionReceivedError = function(quizDOM, error) {
+    _enableLaunchButton(quizDOM);
+    var options = {};
+    options.width = "80%";
+    options.text = V.I18n.getTrans("i.QuizCreateSessionError");
+    var button1 = {};
+    button1.text = V.I18n.getTrans("i.Ok");
+    button1.callback = function() {
+      $.fancybox.close()
+    };
+    options.buttons = [button1];
+    V.Utils.showDialog(options);
+    return
   };
-  var _getQuizJSONFromQuiz = function(quiz) {
-    var slide = $("article").has(quiz);
-    return _getQuizJSONFromSlide(slide)
+  var _getQuizJSONFromQuiz = function(quizDOM) {
+    var slideDOM = $("article").has(quizDOM);
+    return _getQuizJSONFromSlide(slideDOM)
   };
-  var _getQuizJSONFromSlide = function(slide) {
-    var slideId = $(slide).attr("id");
+  var _getQuizJSONFromSlide = function(slideDOM) {
+    var slideId = $(slideDOM).attr("id");
     var presentation = V.Viewer.getCurrentPresentation();
     if(slideId && presentation) {
       var slides = presentation.slides;
@@ -13493,21 +13535,21 @@ VISH.Quiz = function(V, $, undefined) {
     button1.text = V.I18n.getTrans("i.cancel");
     button1.extraclass = "quizSession_button_cancel";
     button1.callback = function() {
-      V.Quiz.onCloseQuizSession("cancel")
+      _onCloseQuizSession("cancel")
     };
     options.buttons.push(button1);
     var button2 = {};
     button2.text = V.I18n.getTrans("i.No");
     button2.extraclass = "quizSession_button_no";
     button2.callback = function() {
-      V.Quiz.onCloseQuizSession("no")
+      _onCloseQuizSession("no")
     };
     options.buttons.push(button2);
     var button3 = {};
     button3.text = V.I18n.getTrans("i.Yes");
     button3.extraclass = "quizSession_button_yes";
     button3.callback = function() {
-      V.Quiz.onCloseQuizSession("yes")
+      _onCloseQuizSession("yes")
     };
     options.buttons.push(button3);
     var input = document.createElement("input");
@@ -13520,7 +13562,7 @@ VISH.Quiz = function(V, $, undefined) {
     options.buttonsWrapperClass = "forceCenter";
     V.Utils.showDialog(options)
   };
-  var onCloseQuizSession = function(saving) {
+  var _onCloseQuizSession = function(saving) {
     var name = undefined;
     switch(saving) {
       case "yes":
@@ -13545,27 +13587,28 @@ VISH.Quiz = function(V, $, undefined) {
   };
   var _closeQuizSession = function(name) {
     V.Quiz.API.closeQuizSession(currentQuizSession.id, name, function(data) {
-      $.fancybox.close();
-      $(".quizSession_button_no").removeClass("quizStartButtonLoading");
-      $(".quizSession_button_yes").removeClass("quizStartButtonLoading");
-      _enableLaunchButton(currentQuiz);
-      currentQuiz = null;
-      currentQuizSession = null
+      _afterCloseQuizSession()
+    }, function() {
+      _afterCloseQuizSession()
     })
   };
-  var _deleteQuizSession = function() {
-    V.Quiz.API.deleteQuizSession(currentQuizSession.id);
+  var _afterCloseQuizSession = function() {
     $.fancybox.close();
     $(".quizSession_button_no").removeClass("quizStartButtonLoading");
     $(".quizSession_button_yes").removeClass("quizStartButtonLoading");
-    _enableLaunchButton(currentQuiz);
-    currentQuiz = null;
+    _enableLaunchButton(currentQuizDOM);
+    currentQuizDOM = null;
     currentQuizSession = null
   };
-  var render = function(slide, template) {
-    var quizModule = _getQuizModule(slide.quiztype);
+  var _deleteQuizSession = function() {
+    V.Quiz.API.deleteQuizSession(currentQuizSession.id);
+    _afterCloseQuizSession()
+  };
+  var render = function(elJSON, template) {
+    var quizModule = _getQuizModule(elJSON.quiztype);
     if(quizModule) {
-      return quizModule.render(slide, template)
+      var quizDOM = quizModule.render(elJSON, template);
+      return"<div id='" + elJSON["id"] + "' class='quizWrapper " + template + "_" + elJSON["areaid"] + " " + template + "_quiz" + "'>" + quizDOM + "</div>"
     }
   };
   var renderButtons = function(selfA) {
@@ -13580,11 +13623,19 @@ VISH.Quiz = function(V, $, undefined) {
     }
     return quizButtons
   };
-  var _enableAnswerButton = function(quiz) {
+  var enableAnswerButton = function(quiz) {
     var answerButton = $(quiz).find("input.quizAnswerButton");
     $(answerButton).removeAttr("disabled");
     $(answerButton).removeClass("quizStartButtonLoading");
-    $(answerButton).removeAttr("quizStatus")
+    $(answerButton).removeAttr("quizStatus");
+    $(answerButton).attr("value", V.I18n.getTrans("i.QuizButtonAnswer"))
+  };
+  var retryAnswerButton = function(quiz) {
+    var answerButton = $(quiz).find("input.quizAnswerButton");
+    $(answerButton).removeAttr("disabled");
+    $(answerButton).removeClass("quizStartButtonLoading");
+    $(answerButton).attr("quizStatus", "retry");
+    $(answerButton).attr("value", V.I18n.getTrans("i.QuizRetry"))
   };
   var _loadingAnswerButton = function(quiz) {
     var answerButton = $(quiz).find("input.quizAnswerButton");
@@ -13606,8 +13657,8 @@ VISH.Quiz = function(V, $, undefined) {
     $(startButton).removeAttr("quizStatus");
     $(startButton).attr("value", V.I18n.getTrans("i.QuizLaunch"))
   };
-  var _loadingLaunchButton = function(quiz) {
-    var startButton = $(quiz).find("input.quizStartButton");
+  var _loadingLaunchButton = function(quizDOM) {
+    var startButton = $(quizDOM).find("input.quizStartButton");
     $(startButton).attr("disabled", "disabled");
     $(startButton).addClass("quizStartButtonLoading");
     $(startButton).attr("quizStatus", "loading");
@@ -13647,7 +13698,7 @@ VISH.Quiz = function(V, $, undefined) {
     var myA = $("#tab_quiz_session_url_link");
     $(myA).attr("href", currentQuizSession.url);
     $(myA).html("<p id='tab_quiz_session_url'>" + currentQuizSession.url + "</p>");
-    var sharingText = $(currentQuiz).find(".mc_question_wrapper_viewer").text().trim();
+    var sharingText = $(currentQuizDOM).find(".mc_question_wrapper_viewer").text().trim();
     var twitter = $("#tab_quiz_session_share_twitter");
     $(twitter).attr("href", "https://twitter.com/share?url=" + currentQuizSession.url + "&text=" + sharingText + "");
     var facebook = $("#tab_quiz_session_share_facebook");
@@ -13662,10 +13713,36 @@ VISH.Quiz = function(V, $, undefined) {
     }
     var container = $(".quizQr");
     $(container).html("");
+    $("#tab_quiz_session_content").addClass("temp_shown");
+    $(container).addClass("temp_shown");
     var height = $(container).height();
+    $(container).removeClass("temp_shown");
+    $("#tab_quiz_session_content").removeClass("temp_shown");
     var width = height;
     var qrOptions = {render:"canvas", width:width, height:height, color:"#000", bgColor:"#fff", text:url.toString()};
-    $(container).qrcode(qrOptions)
+    $(container).qrcode(qrOptions);
+    var overlayHeight = $("#qr_overlay").height();
+    var qrOptions = {render:"canvas", width:overlayHeight, height:overlayHeight, color:"#000", bgColor:"#fff", text:url.toString()};
+    $("#qr_overlay").qrcode(qrOptions);
+    var qrDOMFancybox = $(container).find("canvas");
+    $(qrDOMFancybox).click(function() {
+      $("#qr_overlay").show()
+    });
+    $("#qr_overlay").click(function() {
+      $("#qr_overlay").hide()
+    })
+  };
+  var _openQrOverlay = function(qr) {
+    $("#qr_overlay").show()
+  };
+  var _updateQrSizeOnOverlay = function() {
+    var qr = $("#qr_overlay").find("canvas");
+    var qrSize = Math.min($("#qr_overlay").width(), $("#qr_overlay").height());
+    $(qr).width(qrSize);
+    $(qr).height(qrSize)
+  };
+  var _closeQrOverlay = function() {
+    $("#qr_overlay").hide()
   };
   var _loadStats = function() {
     _cleanResults();
@@ -13699,10 +13776,10 @@ VISH.Quiz = function(V, $, undefined) {
     $(canvas).height(desiredHeight);
     $(canvas).attr("width", desiredWidth);
     $(canvas).attr("height", desiredHeight);
-    var quizModule = _getQuizModule($(currentQuiz).attr("type"));
+    var quizModule = _getQuizModule($(currentQuizDOM).attr("type"));
     if(quizModule) {
       $("#quiz_chart").show();
-      quizModule.drawResults(currentQuiz, results, options)
+      quizModule.drawResults(currentQuizDOM, results, options)
     }
   };
   var _cleanResults = function() {
@@ -13751,11 +13828,12 @@ VISH.Quiz = function(V, $, undefined) {
   var aftersetupSize = function(increase) {
     setTimeout(function() {
       if(currentQuizSession && currentQuizSession.url) {
-        _loadQr(currentQuizSession.url)
+        _loadQr(currentQuizSession.url);
+        _updateQrSizeOnOverlay()
       }
     }, 500)
   };
-  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, disableAnswerButton:disableAnswerButton, loadTab:loadTab, onCloseQuizSession:onCloseQuizSession, aftersetupSize:aftersetupSize}
+  return{initBeforeRender:initBeforeRender, init:init, render:render, renderButtons:renderButtons, updateCheckbox:updateCheckbox, enableAnswerButton:enableAnswerButton, retryAnswerButton:retryAnswerButton, disableAnswerButton:disableAnswerButton, loadTab:loadTab, aftersetupSize:aftersetupSize}
 }(VISH, jQuery);
 VISH.Quiz.MC = function(V, $, undefined) {
   var choices = {};
@@ -13766,7 +13844,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
   };
   var render = function(slide, template) {
     var quizId = V.Utils.getId();
-    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + V.Constant.QZ_TYPE.MCHOICE + "'></div>");
+    var container = $("<div id='" + quizId + "' class='quizContainer mcContainer' type='" + V.Constant.QZ_TYPE.MCHOICE + "'></div>");
     var multipleAnswer = false;
     var inputType = "radio";
     if(slide.extras && slide.extras.multipleAnswer === true) {
@@ -13832,6 +13910,12 @@ VISH.Quiz.MC = function(V, $, undefined) {
     }
     disableQuiz(quiz)
   };
+  var onRetryQuiz = function(quizDOM) {
+    $(quizDOM).find("tr").removeClass("mc_correct_choice");
+    $(quizDOM).find("tr").removeClass("mc_wrong_choice");
+    $(quizDOM).find("input[name='mc_option']").removeAttr("checked");
+    V.Quiz.enableAnswerButton(quizDOM)
+  };
   var getReport = function(quiz) {
     var report = {};
     report.answers = [];
@@ -13858,7 +13942,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
     }
     V.QuizCharts.drawQuizChart(canvas, quizType, nAnswers, results, options)
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
 }(VISH, jQuery);
 VISH.Quiz.TF = function(V, $, undefined) {
   var choices = {};
@@ -13869,7 +13953,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
   };
   var render = function(slide, template) {
     var quizId = V.Utils.getId();
-    var container = $("<div id='" + quizId + "' class='quizzContainer mcContainer' type='" + V.Constant.QZ_TYPE.TF + "'></div>");
+    var container = $("<div id='" + quizId + "' class='quizContainer mcContainer' type='" + V.Constant.QZ_TYPE.TF + "'></div>");
     var questionWrapper = $("<div class='mc_question_wrapper, mc_question_wrapper_viewer'></div>");
     $(questionWrapper).html(slide.question.wysiwygValue);
     $(container).append(questionWrapper);
@@ -13932,6 +14016,12 @@ VISH.Quiz.TF = function(V, $, undefined) {
     });
     disableQuiz(quiz)
   };
+  var onRetryQuiz = function(quizDOM) {
+    $(quizDOM).find("tr").removeClass("mc_correct_choice");
+    $(quizDOM).find("tr").removeClass("mc_wrong_choice");
+    $(quizDOM).find("input[type='radio']").removeAttr("checked");
+    V.Quiz.enableAnswerButton(quizDOM)
+  };
   var getReport = function(quiz) {
     var report = {};
     report.answers = [];
@@ -13962,7 +14052,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
     V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.TF, nAnswers, results, options)
   };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var quizSessionAPIrootURL;
@@ -13971,17 +14061,17 @@ VISH.Quiz.API = function(V, $, undefined) {
       quizSessionAPIrootURL = quizSessionAPI.rootURL
     }
   };
-  var startQuizSession = function(quiz, quizJSON, successCallback, failCallback) {
+  var startQuizSession = function(quizDOM, quizJSON, successCallback, failCallback) {
     if(V.Configuration.getConfiguration().mode === V.Constant.VISH) {
       var send_type = "POST";
       var params = {"quiz":JSON.stringify(quizJSON), "authenticity_token":V.User.getToken()};
       $.ajax({type:send_type, url:quizSessionAPIrootURL, data:params, success:function(data) {
         if(typeof successCallback == "function") {
-          successCallback(quiz, data)
+          successCallback(quizDOM, data)
         }
       }, error:function(error) {
         if(typeof failCallback == "function") {
-          failCallback(error)
+          failCallback(quizDOM, error)
         }
       }})
     }else {
@@ -13989,9 +14079,9 @@ VISH.Quiz.API = function(V, $, undefined) {
         var quizSessionId = Math.ceil(1E4 * (1 + Math.random())).toString();
         var url = quizSessionAPIrootURL + quizSessionId;
         var quiz_session = {id:quizSessionId, url:url};
-        if(typeof successCallback == "function") {
+        if(typeof successCallback == "function" && typeof failCallback == "function") {
           setTimeout(function() {
-            successCallback(quiz, quiz_session)
+            successCallback(quizDOM, quiz_session)
           }, 1E3)
         }
       }
@@ -14016,7 +14106,7 @@ VISH.Quiz.API = function(V, $, undefined) {
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
         var data = {"processed":"true"};
-        if(typeof successCallback == "function") {
+        if(typeof successCallback == "function" && typeof failCallback == "function") {
           setTimeout(function() {
             successCallback(data)
           }, 1E3)
