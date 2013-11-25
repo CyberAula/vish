@@ -512,6 +512,7 @@ es:
     confirm_delete: "¿Borrar cuestionario en vivo? Perderás todas las respuestas almacenadas."
     createdAt: "Creado el"
     closedAtS: "y cerrado el"
+    error: "Lo sentimos, ha ocurrido un error procesando este cuestionario"
     falseC: "F"
     launchIn: "lanzado en la Excursión Virtual: "
     legend:

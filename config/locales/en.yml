@@ -561,6 +561,7 @@ en:
     confirm_delete: "Delete live quiz? You will lose all the stored answers."
     createdAt: "Created at"
     closedAtS: "and closed at"
+    error: "Sorry, an error has occurred processing this quiz"
     falseC: "F"
     launchIn: "launched in the Virtual Excursion: "
     legend:
