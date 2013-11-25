@@ -8,7 +8,7 @@
 	<%= form_for @quiz_session do |f| %>
 	  <legend><%= t('quiz.legend.name')%></legend>
   	  <%= f.text_field :name, :placeholder => t('quiz.untitled') %>
-  	  <% status = [['Open', 'true'], ['Closed', 'false']] %>
+  	  <% status = [[t('quiz.opened'), 'true'], [t('quiz.closed'), 'false']] %>
   	  <%= f.select :active, status %>
   	  <%= f.submit t('save'), :class => "updateQuizButton" %>
 	<% end %>
