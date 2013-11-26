@@ -100,20 +100,27 @@ class ExcursionsController < ApplicationController
       @excursion.draft = false
     end
     @excursion.save!
-    #render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)) }
-    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)) }
+    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)),
+                      :uploadPath => excursion_path(@excursion, :format=> "json")
+                    }
   end
 
   def update
     params[:excursion].permit!
     @excursion = Excursion.find(params[:id])
-    if(@excursion.draft and params[:draft] and params[:draft] == "true")
-      @excursion.draft = true
-    else
-      @excursion.draft = false
+
+    if(params[:draft])
+      if(params[:draft] == "true")
+        @excursion.draft = true
+      elsif (params[:draft] == "false")
+        @excursion.draft = false
+      end
     end
+
     @excursion.update_attributes!(params[:excursion])
-    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)) }
+    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)), 
+                      :uploadPath => excursion_path(@excursion, :format=> "json")
+                    }
   end
 
   def destroy

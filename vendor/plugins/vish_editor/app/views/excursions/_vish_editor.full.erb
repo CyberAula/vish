@@ -12,11 +12,14 @@
 							<img id="menuButton" src="/assets/toolbar/menu_button.png"/>
 						</a>
 						<ul class="menu_option_main">
-<!-- 							<li>
-								<a class="menu_option menu_action" action="onSaveButtonClicked" i18n-key="i.Save"><i class="icon-button icon-save"></i> Save</a>
-							</li> -->
+ 							<li>
+								<a class="menu_option menu_action" action="onSaveButtonClicked">
+									<i class="icon-button icon-save"></i>
+									<span i18n-key="i.Save">Save</span>
+								</a>
+							</li>
 							<li>
-								<a class="menu_option menu_action" action="onPublishButtonClicked">
+								<a class="menu_option menu_action publishMenuOption" action="onPublishButtonClicked">
 									<i class="icon-button icon-rotate-270 icon-download-alt"></i> 
 									<span i18n-key="i.Publish">Publish</span>
 								</a>
@@ -88,21 +91,21 @@
 			</div>
 
 			<div id="toolbar_presentation">
-<!-- 				<div class="toolbar_presentation_wrapper">
+				<div class="toolbar_presentation_wrapper">
 					<a id="toolbar_save" class="tool_action" action="save" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-save"></i>
 						</button>
 					</a>
-					<p class="toolbar_prseentation_title" i18n-key="i.Save"> Save </p>
-				</div> -->
+					<p class="toolbar_presentation_title" i18n-key="i.Save">Save</p>
+				</div>
 				<div id="toolbar_publish_help" class="toolbar_presentation_wrapper">
 					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
 						</button>
 					</a>
-					<p class="toolbar_prseentation_title" i18n-key="i.Publish">Publish</p>
+					<p class="toolbar_presentation_title" i18n-key="i.Publish">Publish</p>
 				</div>
 				<div id="toolbar_preview_help" class="toolbar_presentation_wrapper">
 					<a id="toolbar_preview" class="tool_action" action="preview" href="#">
@@ -110,7 +113,7 @@
 							<i class="icon-button icon-eye-open"></i>
 						</button>
 					</a>
-					<p class="toolbar_prseentation_title" i18n-key="i.Preview">Preview</p>
+					<p class="toolbar_presentation_title" i18n-key="i.Preview">Preview</p>
 				</div>
 				<div id="toolbar_themes_help" class="toolbar_presentation_wrapper ">
 					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
@@ -118,7 +121,7 @@
 							<i class="icon-button icon-adjust"></i>
 						</button>
 					</a>
-					<p class="toolbar_prseentation_title" i18n-key="i.Style">Style</p>
+					<p class="toolbar_presentation_title" i18n-key="i.Style">Style</p>
 				</div>
 				<div id="toolbar_animation_help" class="toolbar_presentation_wrapper lasticonborder">
 					<a id="toolbar_animation" class="tool_action" action="selectAnimation" href="#">
@@ -126,15 +129,15 @@
 							<i class="icon-button icon-magic"></i>
 						</button>
 					</a>
-					<p class="toolbar_prseentation_title" i18n-key="i.Animations">Animation</p>
+					<p class="toolbar_presentation_title" i18n-key="i.Animations">Animation</p>
 				</div>
-				<div id="toolbar_background_help" class="toolbar_presentation_wrapper bgtoolpos">
+				<div id="toolbar_background_help" class="toolbar_presentation_wrapper toolbar_presentation_wrapper_slideTools bgtoolpos">
 					<a id="toolbar_background" class="tool_action" action="changeBackground" href="#">
 						<button type="button" class="btn btn-primary btn-small">
 							<i class="icon-button icon-picture"></i>
 						</button>
 					</a>
-					<p class="toolbar_prseentation_title" i18n-key="i.Background"> Background</p>
+					<p class="toolbar_presentation_title" i18n-key="i.Background"> Background</p>
 				</div>
 			</div>
 			<div id="toolbar_element">
