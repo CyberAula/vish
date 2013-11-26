@@ -1773,6 +1773,7 @@ window.Chart = function(context, options) {
       }
       for(var i = 0;i < data.length;i++) {
         var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
+        segmentAngle = Math.min(Math.PI * 1.99999, segmentAngle);
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
         ctx.lineTo(width / 2, height / 2);
@@ -24020,7 +24021,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:03Z", "id":33, "quiz_session_id":26}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-22T11:59:19Z", "id":34, "quiz_session_id":26}, {"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:28Z", "id":35, "quiz_session_id":26}, {"answer":'[{"no":"4","answer":"true"}]', "created_at":"2013-11-22T11:59:43Z", "id":36, "quiz_session_id":26}];
+        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}];
         if(typeof successCallback == "function") {
           setTimeout(function() {
             successCallback(data)

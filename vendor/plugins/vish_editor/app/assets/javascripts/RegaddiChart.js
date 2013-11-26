@@ -976,6 +976,7 @@ window.Chart = function(context, options){
 
 			for (var i=0; i<data.length; i++){
 				var segmentAngle = rotateAnimation * ((data[i].value/segmentTotal) * (Math.PI*2));
+				segmentAngle=Math.min(Math.PI*1.99999,segmentAngle);
 				ctx.beginPath();
 				ctx.arc(width/2,height/2,scaleAnimation * pieRadius,cumulativeAngle,cumulativeAngle + segmentAngle);
 				ctx.lineTo(width/2,height/2);
