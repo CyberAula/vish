@@ -3,7 +3,6 @@ VISH.Constant = VISH.Constant || {};
 VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
-VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 
 
@@ -69,19 +68,21 @@ VISH.QuizCharts = (function(V,$,undefined){
 
 	/* Draw Methods */
 
-	var drawQuizChart = function(canvas,quizType,nAnswers,results,options){
+	var drawQuizChart = function(canvas,quizJSON,results,options){
+		var quizParams = _getQuizParams(quizJSON);
 		var answersList = _getAnswers(results);
-		switch (quizType) {
+		switch (quizParams.quizType) {
 			case V.Constant.QZ_TYPE.OPEN:
 			break;
 		case V.Constant.QZ_TYPE.MCHOICE:
-			_drawMcChoiceQuizChart(canvas,nAnswers,answersList,options);
-			break;
-		case V.Constant.QZ_TYPE.MCHOICE_MANSWER:
-			_drawMcChoiceMAnswerQuizChart(canvas,nAnswers,answersList,options);
+			if(quizParams.extras.multipleAnswer==true){
+				_drawMcChoiceMAnswerQuizChart(canvas,quizParams,answersList,options);
+			} else {
+				_drawMcChoiceQuizChart(canvas,quizParams,answersList,options);
+			}
 			break;
 		case V.Constant.QZ_TYPE.TF:
-			_drawTFQuizChart(canvas,nAnswers,answersList,options);
+			_drawTFQuizChart(canvas,quizParams,answersList,options);
 			break;
 		default:
 			return null; 
@@ -89,17 +90,22 @@ VISH.QuizCharts = (function(V,$,undefined){
 		}
 	}
 
-	var _drawMcChoiceQuizChart = function(canvas,nAnswers,answersList,options){
+	var _drawMcChoiceQuizChart = function(canvas,quizParams,answersList,options){
 		var pieFragments = [];
 		var data = [];
+		var choicesQuantity = quizParams.choices.length;
 
-		for(var i=0; i<nAnswers; i++){
+		var pBCL = pieBackgroundColor.length;
+		var pLCL = pieLetterColor.length;
+
+		for(var i=0; i<choicesQuantity; i++){
 			pieFragments[i] = {};
 			pieFragments[i].value = 0;
 			pieFragments[i].label = String.fromCharCode(96+i+1);
-			pieFragments[i].color = pieBackgroundColor[i%pieBackgroundColor.length];
-			pieFragments[i].labelColor = pieLetterColor[i%pieLetterColor];
+			pieFragments[i].color = pieBackgroundColor[i%pBCL];
+			pieFragments[i].labelColor = pieLetterColor[i%pLCL];
 			pieFragments[i].labelFontSize = '16';
+			pieFragments[i].tooltipLabel = _purgeString(quizParams.choices[i].value);
 		}
 
 		var alL = answersList.length;
@@ -118,33 +124,45 @@ VISH.QuizCharts = (function(V,$,undefined){
 			}
 		}
 
-		for(var i=0; i<nAnswers; i++){
+		for(var i=0; i<choicesQuantity; i++){
 			data.push(pieFragments[i]);
 		}
 
 		var ctx = $(canvas).get(0).getContext("2d");
 
-		var animation = false;
-		if((options)&&(options.first===true)){
-			animation = true;
+		var chartOptions = {
+			showTooltips: true,
+			animation: false
 		}
 
-		var options = {
-			showTooltips: false,
-			animation: animation
+		if((options)&&(options.animation===true)){
+			//Include animation
+			chartOptions.animation = true;
+			chartOptions.onAnimationComplete = function(){
+				if(typeof options.callback == "function"){
+					options.callback();
+				}
+			}
 		}
 
-		var myNewChart = new Chart(ctx).Pie(data,options);
+		var myNewChart = new Chart(ctx).Pie(data,chartOptions);
+
+		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
+			options.callback();
+		}
 	}
 
-	var _drawMcChoiceMAnswerQuizChart = function(canvas,nAnswers,answersList,options){
+	var _drawMcChoiceMAnswerQuizChart = function(canvas,quizParams,answersList,options){
 		var labels = [];
+		var tooltipLabels = [];
 		var data = [];
+		var choicesQuantity = quizParams.choices.length;
 		var maxValue = 0;
 		var scaleSteps = 10;
 
-		for(var i=0; i<nAnswers; i++){
+		for(var i=0; i<choicesQuantity; i++){
 			labels[i] = String.fromCharCode(96+i+1);
+			tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
 			data[i] = 0;
 		}
 
@@ -163,7 +181,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 			} 
 		}
 
-		for(var l=0; l<nAnswers; l++){
+		for(var l=0; l<choicesQuantity; l++){
 			if(data[l] > maxValue){
 				maxValue = data[l];
 			}
@@ -176,6 +194,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		var ctx = $(canvas).get(0).getContext("2d");
 		var data = {
 			labels : labels,
+			tooltipLabels: tooltipLabels,
 			datasets : [
 				{
 				fillColor : "#E2FFE3",
@@ -185,31 +204,44 @@ VISH.QuizCharts = (function(V,$,undefined){
 			]
 		};
 
-		var animation = false;
-		if((options)&&(options.first===true)){
-			animation = true;
-		}
-
-		var options = {
-			animation: animation,
+		var chartOptions = {
+			showTooltips: true,
+			animation: false,
 			scaleOverride: true,
 			scaleStepWidth: Math.max(1,Math.ceil(maxValue/10)),
-			scaleSteps: scaleSteps,
-			showTooltips: false
+			scaleSteps: scaleSteps
 		}
-		var myNewChart = new Chart(ctx).Bar(data,options);
+
+		if((options)&&(options.animation===true)){
+			//Include animation
+			chartOptions.animation = true;
+			chartOptions.onAnimationComplete = function(){
+				if(typeof options.callback == "function"){
+					options.callback();
+				}
+			}
+		}
+
+		var myNewChart = new Chart(ctx).Bar(data,chartOptions);
+
+		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
+			options.callback();
+		}
 	}
 
 
-	var _drawTFQuizChart = function(canvas,nAnswers,answersList,options){
+	var _drawTFQuizChart = function(canvas,quizParams,answersList,options){
 		var labels = [];
+		var tooltipLabels = [];
 		var dataTrue = [];
 		var dataFalse = [];
+		var choicesQuantity = quizParams.choices.length;
 		var maxValue = 0;
 		var scaleSteps = 10;
 
-		for(var i=0; i<nAnswers; i++){
+		for(var i=0; i<choicesQuantity; i++){
 			labels[i] = _getTrans("i.T") + "       " + String.fromCharCode(96+i+1) + "       " + _getTrans("i.F");
+			tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
 			dataTrue[i] = 0;
 			dataFalse[i] = 0;
 		}
@@ -231,7 +263,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 			}
 		}
 
-		for(var l=0; l<nAnswers; l++){
+		for(var l=0; l<choicesQuantity; l++){
 			if(dataTrue[l] > maxValue){
 				maxValue = dataTrue[l];
 			}
@@ -247,6 +279,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		var ctx = $(canvas).get(0).getContext("2d");
 		var data = {
 			labels : labels,
+			tooltipLabels: tooltipLabels,
 			datasets : [
 			{
 				fillColor : "#E2FFE3",
@@ -261,19 +294,29 @@ VISH.QuizCharts = (function(V,$,undefined){
 			]
 		};
 
-		var animation = false;
-		if((options)&&(options.first===true)){
-			animation = true;
-		}
-
-		var options = {
-			animation: animation,
+		var chartOptions = {
+			showTooltips: true,
+			animation: false,
 			scaleOverride: true,
 			scaleStepWidth: Math.max(1,Math.ceil(maxValue/10)),
-			scaleSteps: scaleSteps,
-			showTooltips: false
+			scaleSteps: scaleSteps
 		}
-		var myNewChart = new Chart(ctx).Bar(data,options);
+
+		if((options)&&(options.animation===true)){
+			//Include animation
+			chartOptions.animation = true;
+			chartOptions.onAnimationComplete = function(){
+				if(typeof options.callback == "function"){
+					options.callback();
+				}
+			}
+		}
+
+		var myNewChart = new Chart(ctx).Bar(data,chartOptions);
+
+		if((options)&&(options.animation!=true)&&(typeof options.callback == "function")){
+			options.callback();
+		}
 	}
 
 	/**
@@ -288,26 +331,34 @@ VISH.QuizCharts = (function(V,$,undefined){
 		return answers;
 	}
 
-	var getQuizParams = function(quiz){
+	var _getQuizParams = function(quiz){
 		var params = {};
+		params.extras = {};
 		try {
 			var quizEl = quiz["slides"][0]["elements"][0];
 			params.quizType = quizEl["quiztype"];
 			if(params.quizType==V.Constant.QZ_TYPE.MCHOICE){
 				//Check for multiple answer
 				if ((quizEl.extras) && (quizEl.extras.multipleAnswer==true)){
-					params.quizType = V.Constant.QZ_TYPE.MCHOICE_MANSWER;
+					params.extras.multipleAnswer = true;
 				}
 			}
-			params.nAnswers = quiz["slides"][0]["elements"][0]["choices"].length;
+			params.choices = quiz["slides"][0]["elements"][0]["choices"];
+			params.nAnswers = params.choices.length;
 		} catch (e){}
 		return params;
 	}
 
+	var _purgeString = function(str){
+		if(typeof str != "string"){
+			return str;
+		}
+		return str.replace(/Â/g, '');
+	}
+
 	return {
 		init                : init,
-		drawQuizChart       : drawQuizChart,
-		getQuizParams       : getQuizParams
+		drawQuizChart       : drawQuizChart
 	};
 	
 }) (VISH, jQuery);
