@@ -70,18 +70,18 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.PDFSlideshow":"Presentaci\u00f3n PDF", "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
 "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", 
 "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", 
-"i.readJSONfileError":"Error al leer el fichero JSON", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", 
-"i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", 
-"i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.Training":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", 
-"i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", 
-"i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", 
-"i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", 
-"i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", 
-"i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", 
-"i.publish":"publish", "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", 
-"i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", 
-"i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, 
-"default":{"i.save":"Standalone"}}};
+"i.readJSONfileError":"Error al leer el fichero JSON", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", "i.save":"guardar", "i.Save":"Guardar", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.SelectAll":"Seleccionar Todas", 
+"i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", 
+"i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.Training":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", 
+"i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", 
+"i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", 
+"i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", 
+"i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", 
+"i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", "i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", 
+"i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.publish":"publish", "i.Publish":"Publish", "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", 
+"i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", 
+"i.Save":"Save", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", 
+"i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 (function(a, b) {
   function cy(a) {
     return f.isWindow(a) ? a : a.nodeType === 9 ? a.defaultView || a.parentWindow : !1
@@ -3906,22 +3906,9 @@ window.Chart = function(context, options) {
       }
     }
   }
-  if(window.Touch) {
-    context.canvas.ontouchstart = function(e) {
-      e.clientX = e.targetTouches[0].clientX;
-      e.clientY = e.targetTouches[0].clientY;
-      tooltipEventHandler(e)
-    };
-    context.canvas.ontouchmove = function(e) {
-      e.clientX = e.targetTouches[0].clientX;
-      e.clientY = e.targetTouches[0].clientY;
-      tooltipEventHandler(e)
-    }
-  }else {
-    context.canvas.onmousemove = function(e) {
-      tooltipEventHandler(e)
-    }
-  }
+  context.canvas.onmousemove = function(e) {
+    tooltipEventHandler(e)
+  };
   context.canvas.onmouseout = function(e) {
     if(chart.savedState != null) {
       context.putImageData(chart.savedState, 0, 0)
@@ -4044,7 +4031,7 @@ window.Chart = function(context, options) {
           for(var p = 0;p <= pAmount;p++) {
             points.push({x:width / 2 + radius * Math.cos(startAngle + p / pAmount * rotateAnimation * angleStep), y:height / 2 + radius * Math.sin(startAngle + p / pAmount * rotateAnimation * angleStep)})
           }
-          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "PolarArea")
+          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].tooltipLabel, value:data[i].tooltipLabel}, "PolarArea")
         }
         if(config.segmentShowStroke) {
           ctx.strokeStyle = config.segmentStrokeColor;
@@ -4247,7 +4234,7 @@ window.Chart = function(context, options) {
       }
       for(var i = 0;i < data.length;i++) {
         var segmentAngle = rotateAnimation * data[i].value / segmentTotal * Math.PI * 2;
-        segmentAngle = Math.min(Math.PI * 1.999999, segmentAngle);
+        segmentAngle = Math.min(Math.PI * 1.99999, segmentAngle);
         ctx.beginPath();
         ctx.arc(width / 2, height / 2, scaleAnimation * pieRadius, cumulativeAngle, cumulativeAngle + segmentAngle);
         ctx.lineTo(width / 2, height / 2);
@@ -4306,7 +4293,7 @@ window.Chart = function(context, options) {
           for(var p = 0;p <= pAmount;p++) {
             points.push({x:width / 2 + pieRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + pieRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
           }
-          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Pie")
+          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].tooltipLabel, value:data[i].value}, "Pie")
         }
         if(config.segmentShowStroke) {
           ctx.lineWidth = config.segmentStrokeWidth;
@@ -4353,7 +4340,7 @@ window.Chart = function(context, options) {
           for(var p = pAmount;p >= 0;p--) {
             points.push({x:width / 2 + cutoutRadius * Math.cos(cumulativeAngle + p / pAmount * segmentAngle), y:height / 2 + cutoutRadius * Math.sin(cumulativeAngle + p / pAmount * segmentAngle)})
           }
-          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].label, value:data[i].value}, "Doughnut")
+          registerTooltip(ctx, {type:"shape", points:points}, {label:data[i].tooltipLabel, value:data[i].value}, "Doughnut")
         }
         if(config.segmentShowStroke) {
           ctx.lineWidth = config.segmentStrokeWidth;
@@ -4394,7 +4381,7 @@ window.Chart = function(context, options) {
         var pointRadius = config.pointDot ? config.pointDotRadius + config.pointDotStrokeWidth : 10;
         for(var j = 0;j < data.datasets[i].data.length;j++) {
           if(animPc >= 1 && config.showTooltips) {
-            registerTooltip(ctx, {type:"circle", x:xPos(j), y:yPos(i, j), r:pointRadius}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Line")
+            registerTooltip(ctx, {type:"circle", x:xPos(j), y:yPos(i, j), r:pointRadius}, {label:data.tooltipLabels[j], value:data.datasets[i].data[j]}, "Line")
           }
         }
         ctx.stroke();
@@ -4575,7 +4562,7 @@ window.Chart = function(context, options) {
           ctx.fill();
           if(animPc >= 1 && config.showTooltips) {
             var x = barOffset, height = calculateOffset(data.datasets[i].data[j], calculatedScale, scaleHop), y = xAxisPosY - height, width = barWidth;
-            registerTooltip(ctx, {type:"rect", x:x, y:y, width:width, height:height}, {label:data.labels[j], value:data.datasets[i].data[j]}, "Bar")
+            registerTooltip(ctx, {type:"rect", x:x, y:y, width:width, height:height}, {label:data.tooltipLabels[j], value:data.datasets[i].data[j]}, "Bar")
           }
         }
       }
@@ -4766,13 +4753,6 @@ window.Chart = function(context, options) {
       }
     }
   }
-  function populateLabels(labelTemplateString, labels, numberOfSteps, graphMin, stepValue) {
-    if(labelTemplateString) {
-      for(var i = 1;i < numberOfSteps + 1;i++) {
-        labels.push(tmpl(labelTemplateString, {value:(graphMin + stepValue * i).toFixed(getDecimalPlaces(stepValue))}))
-      }
-    }
-  }
   function Max(array) {
     return Math.max.apply(Math, array)
   }
@@ -4902,7 +4882,6 @@ VISH.Constant.WRAPPER.IFRAME = "IFRAME";
 VISH.Constant.QZ_TYPE = {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
-VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.Constant.QZ_MODE = {};
 VISH.Constant.QZ_MODE.SELFA = "selfA";
@@ -5001,7 +4980,6 @@ VISH.Constant = VISH.Constant || {};
 VISH.Constant.QZ_TYPE = VISH.Constant.QZ_TYPE || {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
-VISH.Constant.QZ_TYPE.MCHOICE_MANSWER = "multiplechoiceMultipleAnswer";
 VISH.Constant.QZ_TYPE.TF = "truefalse";
 VISH.QuizCharts = function(V, $, undefined) {
   var pieBackgroundColor = ["#F38630", "#E0E4CC", "#69D2E7", "#FFF82A", "#FF0FB4", "#2A31FF", "#FF6075", "#00D043"];
@@ -5036,35 +5014,41 @@ VISH.QuizCharts = function(V, $, undefined) {
     }
     return trans
   };
-  var drawQuizChart = function(canvas, quizType, nAnswers, results, options) {
+  var drawQuizChart = function(canvas, quizJSON, results, options) {
+    var quizParams = _getQuizParams(quizJSON);
     var answersList = _getAnswers(results);
-    switch(quizType) {
+    switch(quizParams.quizType) {
       case V.Constant.QZ_TYPE.OPEN:
         break;
       case V.Constant.QZ_TYPE.MCHOICE:
-        _drawMcChoiceQuizChart(canvas, nAnswers, answersList, options);
-        break;
-      case V.Constant.QZ_TYPE.MCHOICE_MANSWER:
-        _drawMcChoiceMAnswerQuizChart(canvas, nAnswers, answersList, options);
+        if(quizParams.extras.multipleAnswer == true) {
+          _drawMcChoiceMAnswerQuizChart(canvas, quizParams, answersList, options)
+        }else {
+          _drawMcChoiceQuizChart(canvas, quizParams, answersList, options)
+        }
         break;
       case V.Constant.QZ_TYPE.TF:
-        _drawTFQuizChart(canvas, nAnswers, answersList, options);
+        _drawTFQuizChart(canvas, quizParams, answersList, options);
         break;
       default:
         return null;
         break
     }
   };
-  var _drawMcChoiceQuizChart = function(canvas, nAnswers, answersList, options) {
+  var _drawMcChoiceQuizChart = function(canvas, quizParams, answersList, options) {
     var pieFragments = [];
     var data = [];
-    for(var i = 0;i < nAnswers;i++) {
+    var choicesQuantity = quizParams.choices.length;
+    var pBCL = pieBackgroundColor.length;
+    var pLCL = pieLetterColor.length;
+    for(var i = 0;i < choicesQuantity;i++) {
       pieFragments[i] = {};
       pieFragments[i].value = 0;
       pieFragments[i].label = String.fromCharCode(96 + i + 1);
-      pieFragments[i].color = pieBackgroundColor[i % pieBackgroundColor.length];
-      pieFragments[i].labelColor = pieLetterColor[i % pieLetterColor];
-      pieFragments[i].labelFontSize = "16"
+      pieFragments[i].color = pieBackgroundColor[i % pBCL];
+      pieFragments[i].labelColor = pieLetterColor[i % pLCL];
+      pieFragments[i].labelFontSize = "16";
+      pieFragments[i].tooltipLabel = _purgeString(quizParams.choices[i].value)
     }
     var alL = answersList.length;
     for(var j = 0;j < alL;j++) {
@@ -5078,24 +5062,34 @@ VISH.QuizCharts = function(V, $, undefined) {
         }
       }
     }
-    for(var i = 0;i < nAnswers;i++) {
+    for(var i = 0;i < choicesQuantity;i++) {
       data.push(pieFragments[i])
     }
     var ctx = $(canvas).get(0).getContext("2d");
-    var animation = false;
-    if(options && options.first === true) {
-      animation = true
+    var chartOptions = {showTooltips:true, animation:false};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
     }
-    var options = {showTooltips:false, animation:animation};
-    var myNewChart = (new Chart(ctx)).Pie(data, options)
+    var myNewChart = (new Chart(ctx)).Pie(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
   };
-  var _drawMcChoiceMAnswerQuizChart = function(canvas, nAnswers, answersList, options) {
+  var _drawMcChoiceMAnswerQuizChart = function(canvas, quizParams, answersList, options) {
     var labels = [];
+    var tooltipLabels = [];
     var data = [];
+    var choicesQuantity = quizParams.choices.length;
     var maxValue = 0;
     var scaleSteps = 10;
-    for(var i = 0;i < nAnswers;i++) {
+    for(var i = 0;i < choicesQuantity;i++) {
       labels[i] = String.fromCharCode(96 + i + 1);
+      tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
       data[i] = 0
     }
     var alL = answersList.length;
@@ -5110,7 +5104,7 @@ VISH.QuizCharts = function(V, $, undefined) {
         }
       }
     }
-    for(var l = 0;l < nAnswers;l++) {
+    for(var l = 0;l < choicesQuantity;l++) {
       if(data[l] > maxValue) {
         maxValue = data[l]
       }
@@ -5119,22 +5113,32 @@ VISH.QuizCharts = function(V, $, undefined) {
       scaleSteps = Math.max(1, maxValue)
     }
     var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:data}]};
-    var animation = false;
-    if(options && options.first === true) {
-      animation = true
+    var data = {labels:labels, tooltipLabels:tooltipLabels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:data}]};
+    var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
     }
-    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
-    var myNewChart = (new Chart(ctx)).Bar(data, options)
+    var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
   };
-  var _drawTFQuizChart = function(canvas, nAnswers, answersList, options) {
+  var _drawTFQuizChart = function(canvas, quizParams, answersList, options) {
     var labels = [];
+    var tooltipLabels = [];
     var dataTrue = [];
     var dataFalse = [];
+    var choicesQuantity = quizParams.choices.length;
     var maxValue = 0;
     var scaleSteps = 10;
-    for(var i = 0;i < nAnswers;i++) {
+    for(var i = 0;i < choicesQuantity;i++) {
       labels[i] = _getTrans("i.T") + "       " + String.fromCharCode(96 + i + 1) + "       " + _getTrans("i.F");
+      tooltipLabels[i] = _purgeString(quizParams.choices[i].value);
       dataTrue[i] = 0;
       dataFalse[i] = 0
     }
@@ -5152,7 +5156,7 @@ VISH.QuizCharts = function(V, $, undefined) {
         }
       }
     }
-    for(var l = 0;l < nAnswers;l++) {
+    for(var l = 0;l < choicesQuantity;l++) {
       if(dataTrue[l] > maxValue) {
         maxValue = dataTrue[l]
       }
@@ -5164,13 +5168,20 @@ VISH.QuizCharts = function(V, $, undefined) {
       scaleSteps = Math.max(1, maxValue)
     }
     var ctx = $(canvas).get(0).getContext("2d");
-    var data = {labels:labels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
-    var animation = false;
-    if(options && options.first === true) {
-      animation = true
+    var data = {labels:labels, tooltipLabels:tooltipLabels, datasets:[{fillColor:"#E2FFE3", strokeColor:"rgba(220,220,220,1)", data:dataTrue}, {fillColor:"#FFE2E2", strokeColor:"rgba(220,220,220,1)", data:dataFalse}]};
+    var chartOptions = {showTooltips:true, animation:false, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps};
+    if(options && options.animation === true) {
+      chartOptions.animation = true;
+      chartOptions.onAnimationComplete = function() {
+        if(typeof options.callback == "function") {
+          options.callback()
+        }
+      }
     }
-    var options = {animation:animation, scaleOverride:true, scaleStepWidth:Math.max(1, Math.ceil(maxValue / 10)), scaleSteps:scaleSteps, showTooltips:false};
-    var myNewChart = (new Chart(ctx)).Bar(data, options)
+    var myNewChart = (new Chart(ctx)).Bar(data, chartOptions);
+    if(options && options.animation != true && typeof options.callback == "function") {
+      options.callback()
+    }
   };
   var _getAnswers = function(results) {
     var answers = [];
@@ -5180,22 +5191,30 @@ VISH.QuizCharts = function(V, $, undefined) {
     }
     return answers
   };
-  var getQuizParams = function(quiz) {
+  var _getQuizParams = function(quiz) {
     var params = {};
+    params.extras = {};
     try {
       var quizEl = quiz["slides"][0]["elements"][0];
       params.quizType = quizEl["quiztype"];
       if(params.quizType == V.Constant.QZ_TYPE.MCHOICE) {
         if(quizEl.extras && quizEl.extras.multipleAnswer == true) {
-          params.quizType = V.Constant.QZ_TYPE.MCHOICE_MANSWER
+          params.extras.multipleAnswer = true
         }
       }
-      params.nAnswers = quiz["slides"][0]["elements"][0]["choices"].length
+      params.choices = quiz["slides"][0]["elements"][0]["choices"];
+      params.nAnswers = params.choices.length
     }catch(e) {
     }
     return params
   };
-  return{init:init, drawQuizChart:drawQuizChart, getQuizParams:getQuizParams}
+  var _purgeString = function(str) {
+    if(typeof str != "string") {
+      return str
+    }
+    return str.replace(/\u00c2/g, "")
+  };
+  return{init:init, drawQuizChart:drawQuizChart}
 }(VISH, jQuery);
 var VISH = VISH || {};
 VISH.Constant = VISH.Constant || {};
@@ -13381,8 +13400,7 @@ VISH.Quiz = function(V, $, undefined) {
         }
       }, 300)
     }, "onClosed":function() {
-      _stopPolling();
-      _cleanResults()
+      _stopPolling()
     }})
   };
   var _onAnswerQuiz = function(event) {
@@ -13483,10 +13501,10 @@ VISH.Quiz = function(V, $, undefined) {
     var quizJSON = _getQuizJSONFromQuiz(quizDOM);
     V.Quiz.API.startQuizSession(quizDOM, quizJSON, _onQuizSessionReceived, _onQuizSessionReceivedError)
   };
-  var _onQuizSessionReceived = function(quiz, quizSession) {
-    currentQuizDOM = quiz;
+  var _onQuizSessionReceived = function(quizDOM, quizSession) {
+    currentQuizDOM = quizDOM;
     currentQuizSession = quizSession;
-    _runningLaunchButton(quiz);
+    _runningLaunchButton(quizDOM);
     $("a#addQuizSessionFancybox").trigger("click")
   };
   var _onQuizSessionReceivedError = function(quizDOM, error) {
@@ -13598,7 +13616,8 @@ VISH.Quiz = function(V, $, undefined) {
     $(".quizSession_button_yes").removeClass("quizStartButtonLoading");
     _enableLaunchButton(currentQuizDOM);
     currentQuizDOM = null;
-    currentQuizSession = null
+    currentQuizSession = null;
+    _cleanResults()
   };
   var _deleteQuizSession = function() {
     V.Quiz.API.deleteQuizSession(currentQuizSession.id);
@@ -13691,7 +13710,6 @@ VISH.Quiz = function(V, $, undefined) {
     return false
   };
   var _loadQuizSession = function() {
-    _cleanResults();
     if(!currentQuizSession) {
       return
     }
@@ -13706,6 +13724,12 @@ VISH.Quiz = function(V, $, undefined) {
     $(facebook).attr("href", facebookUrl);
     var gPlus = $("#tab_quiz_session_share_gPlus");
     $(gPlus).attr("href", "https://plus.google.com/share?url=" + currentQuizSession.url)
+  };
+  var _loadStats = function() {
+    V.Quiz.API.getResults(currentQuizSession.id, function(results) {
+      _drawResults(results);
+      _startPolling()
+    })
   };
   var _loadQr = function(url) {
     if(typeof url != "string") {
@@ -13744,13 +13768,6 @@ VISH.Quiz = function(V, $, undefined) {
   var _closeQrOverlay = function() {
     $("#qr_overlay").hide()
   };
-  var _loadStats = function() {
-    _cleanResults();
-    V.Quiz.API.getResults(currentQuizSession.id, function(results) {
-      _drawResults(results, {"first":true});
-      _startPolling()
-    })
-  };
   var _startPolling = function() {
     _stopPolling();
     currentPolling = setInterval(function() {
@@ -13759,16 +13776,38 @@ VISH.Quiz = function(V, $, undefined) {
         return
       }
       V.Quiz.API.getResults(currentQuizSession.id, function(results) {
-        _drawResults(results, {"first":false})
+        _drawResults(results)
       })
-    }, 2E3)
+    }, 2500)
   };
   var _stopPolling = function() {
     if(currentPolling) {
       clearInterval(currentPolling)
     }
   };
-  var _drawResults = function(results, options) {
+  var _drawResults = function(results) {
+    if(currentQuizSession) {
+      if(typeof currentQuizSession.lastDrawedResults != "undefined" && results.length === currentQuizSession.lastDrawedResults.length) {
+        return
+      }else {
+        currentQuizSession.lastDrawedResults = results
+      }
+    }else {
+      return
+    }
+    var options = {};
+    if(typeof currentQuizSession.firstDrawed == "undefined") {
+      currentQuizSession.firstDrawed = false;
+      options.animation = true;
+      options.callback = function() {
+        currentQuizSession.firstDrawed = true
+      }
+    }else {
+      if(currentQuizSession.firstDrawed == false) {
+        return
+      }
+    }
+    _cleanResults();
     var canvas = $("#quiz_chart");
     var desiredWidth = $("#fancybox-content").width();
     var desiredHeight = $("#fancybox-content").height() * 0.8;
@@ -13776,11 +13815,9 @@ VISH.Quiz = function(V, $, undefined) {
     $(canvas).height(desiredHeight);
     $(canvas).attr("width", desiredWidth);
     $(canvas).attr("height", desiredHeight);
-    var quizModule = _getQuizModule($(currentQuizDOM).attr("type"));
-    if(quizModule) {
-      $("#quiz_chart").show();
-      quizModule.drawResults(currentQuizDOM, results, options)
-    }
+    $(canvas).show();
+    var quizJSON = _getQuizJSONFromQuiz(currentQuizDOM);
+    V.QuizCharts.drawQuizChart(canvas, quizJSON, results, options)
   };
   var _cleanResults = function() {
     var canvas = $("#quiz_chart");
@@ -13931,18 +13968,7 @@ VISH.Quiz.MC = function(V, $, undefined) {
     $(quiz).find("input[name='mc_option']").attr("disabled", "disabled");
     V.Quiz.disableAnswerButton(quiz)
   };
-  var drawResults = function(quiz, results, options) {
-    var canvas = $("#quiz_chart");
-    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    var quizType;
-    if($(quiz).attr("multipleAnswer") === "true") {
-      quizType = V.Constant.QZ_TYPE.MCHOICE_MANSWER
-    }else {
-      quizType = V.Constant.QZ_TYPE.MCHOICE
-    }
-    V.QuizCharts.drawQuizChart(canvas, quizType, nAnswers, results, options)
-  };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
 VISH.Quiz.TF = function(V, $, undefined) {
   var choices = {};
@@ -14047,12 +14073,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
     $(quiz).find("input[type='radio']").attr("disabled", "disabled");
     V.Quiz.disableAnswerButton(quiz)
   };
-  var drawResults = function(quiz, results, options) {
-    var canvas = $("#quiz_chart");
-    var nAnswers = $(quiz).find("tr.mc_option[nChoice]").length;
-    V.QuizCharts.drawQuizChart(canvas, V.Constant.QZ_TYPE.TF, nAnswers, results, options)
-  };
-  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz, drawResults:drawResults}
+  return{init:init, render:render, onAnswerQuiz:onAnswerQuiz, onRetryQuiz:onRetryQuiz, getReport:getReport, disableQuiz:disableQuiz}
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var quizSessionAPIrootURL;
@@ -14156,7 +14177,7 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:03Z", "id":33, "quiz_session_id":26}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-22T11:59:19Z", "id":34, "quiz_session_id":26}, {"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-22T11:59:28Z", "id":35, "quiz_session_id":26}, {"answer":'[{"no":"4","answer":"true"}]', "created_at":"2013-11-22T11:59:43Z", "id":36, "quiz_session_id":26}];
+        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}];
         if(typeof successCallback == "function") {
           setTimeout(function() {
             successCallback(data)

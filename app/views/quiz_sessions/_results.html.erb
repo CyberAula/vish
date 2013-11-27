@@ -102,16 +102,14 @@
 
  	<% if answersLength > 0 %>
 	 	//Draw quiz results
+	 	VISH.QuizCharts.init({ "lang": "<%= I18n.locale.to_s%>"});
 	 	var canvas = $("#quiz_chart");
-	 	var canvasB = $("#quiz_chart_b");
-		var quizParams = VISH.QuizCharts.getQuizParams(<%= raw @quiz_session.quizJSON %>);
-	 	var quizType = quizParams.quizType;
-	 	var nAnswers = quizParams.nAnswers;
+		var quizJSON = <%= raw @quiz_session.quizJSON %>;
 	 	var answersList = <%= raw @answers %>;
 	 	var options = {
-	 		"first": true
+	 		"animation": true,
 	 	}
-	 	VISH.QuizCharts.drawQuizChart(canvas,quizType,nAnswers,answersList,options);
+	 	VISH.QuizCharts.drawQuizChart(canvas,quizJSON,answersList,options);
  	<% end %>
  });
 </script>

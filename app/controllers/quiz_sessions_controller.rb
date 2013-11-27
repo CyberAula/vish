@@ -95,7 +95,8 @@ class QuizSessionsController < ApplicationController
   # /quiz_sessions/X/delete
   def delete
     @quiz_session = QuizSession.find(params[:id])
-    @quiz_session.delete
+    #With .delete the dependency "has_many :quiz_answers, :dependent => :destroy" dont works
+    @quiz_session.destroy
     respond_to do |format|
       format.json { 
         response = Hash.new
