@@ -36,8 +36,7 @@
             <% else %>
               <%isFirst = false%>
             <% end %>
-            <a data-toggle="modal" href="#user-modal-<%= c.slug %>" class="user-modal-button-<%= c.slug %> modal-no-trigger">
-              <%= truncate_name(c.name, :length => 50) %>
+            <%= link_to c.name, c.subject %>            
             </a> 
           <%end%>
         </dd>
