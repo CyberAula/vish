@@ -22313,10 +22313,8 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     V.Editor.Tools.changeSaveButtonStatus("loading");
     var presentation = V.Editor.savePresentation();
     V.Editor.sendPresentation(presentation, "save", function() {
-      V.Debugging.log("onSave succesfully");
       V.Editor.Tools.changeSaveButtonStatus("disabled")
     }, function() {
-      V.Debugging.log("onSave failure");
       V.Editor.Tools.changeSaveButtonStatus("enabled")
     })
   };
@@ -22404,8 +22402,6 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
             window.top.location.href = data.url;
             break;
           case V.Constant.NOSERVER:
-            V.Debugging.log("Saved presentation");
-            V.Debugging.log(presentation);
             V.Editor.Preview.preview();
             V.Editor.Tools.changePublishButtonStatus("unpublish");
             break;
@@ -22487,8 +22483,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
         var presentation = V.Editor.savePresentation();
         V.Editor.sendPresentation(presentation, "save", function() {
           V.Editor.Tools.changeSaveButtonStatus("disabled");
-          _exitFromVE();
-          $("#waiting_overlay").hide()
+          _exitFromVE()
         }, function() {
           V.Editor.Tools.changeSaveButtonStatus("enabled");
           $("#waiting_overlay").hide()
