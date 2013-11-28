@@ -22,8 +22,4 @@ module ExcursionsHelper
     value=1 + (10)
   end
 
-  def force_new_excursion_path
-    return 'excursions/force_new'
-  end
-
 end

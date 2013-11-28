@@ -24,7 +24,6 @@ Vish::Application.routes.draw do
   match 'excursions/recommended' => 'excursions#recommended'
 
   #resources :excursions
-  match 'excursions/force_new' => 'excursions#force_new'
   
   match 'excursions/last_slide' => 'excursions#last_slide'
 
