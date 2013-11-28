@@ -72,6 +72,11 @@ class QuizSessionsController < ApplicationController
       return;
     end
 
+    if qs.active and params[:quiz_session][:active]=="false"
+      #Close Quiz
+      qs.closed_at = Time.now
+    end
+
     if params[:quiz_session]
       qs.update_attributes(params[:quiz_session])
     end
@@ -80,7 +85,7 @@ class QuizSessionsController < ApplicationController
   end
 
   # GET /quiz_sessions/X/close
-  def close 
+  def close
     qs = QuizSession.find(params[:id])
 
     if !verify_owner(qs)
@@ -178,7 +183,6 @@ class QuizSessionsController < ApplicationController
     if @quiz_session
       qa = QuizAnswer.new
       qa.quiz_session_id = @quiz_session.id
-      qa.created_at = Time.now
       qa.answer = JSON(params[:answers]).to_json
       qa.save!
       response["processed"] = true;
