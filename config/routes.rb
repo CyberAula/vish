@@ -11,12 +11,11 @@ Vish::Application.routes.draw do
   match 'quiz_sessions/:id/close' => 'quiz_sessions#close'
   match 'quiz_sessions/:id/delete' => 'quiz_sessions#delete'
   match 'quiz_sessions/:id/answer' => 'quiz_sessions#updateAnswers'
-
   match 'qs/:id' => 'quiz_sessions#show'
+
   match 'help' => 'help#index'
   match 'faq' => 'faq#index'
   match 'legal_notice' => 'legal_notice#index'
-  #get 'excursions' => 'excursions#index', :as => :home
   
   match 'users/:user_id/resources' => 'users#resources'
 
@@ -25,6 +24,8 @@ Vish::Application.routes.draw do
   match 'excursions/recommended' => 'excursions#recommended'
 
   #resources :excursions
+  match 'excursions/force_new' => 'excursions#force_new'
+  
   match 'excursions/last_slide' => 'excursions#last_slide'
 
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
@@ -33,16 +34,14 @@ Vish::Application.routes.draw do
   match '/apis/iframe_api' => 'excursions#iframe_api'
 
   match 'excursions/preview' => 'excursions#preview'
-
-
+ 
   match 'excursions/:id/clone' => 'excursions#clone'
-
+  
   match '/excursions/:id/evaluate' => 'excursions#evaluate'
   match '/excursions/:id/learning_evaluate' => 'excursions#learning_evaluate'
-
+  
   match '/excursions/:id.mashme' => 'excursions#show', :defaults => { :format => "gateway", :gateway => 'mashme' }
   match '/excursions/:id.embed' => 'excursions#show', :defaults => { :format => "full" }
-
 
   #Download JSON
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post

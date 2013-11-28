@@ -29,7 +29,7 @@
 	<% end %>
  
 	<% if user_signed_in? %>
-		options['userId'] = "<%= current_user.id %>";
+		options['userId'] = "<%= Actor.normalize_id(current_user) %>";
 		options["username"] = "<%= current_user.name %>";
 	<% end %>
 
