@@ -4825,7 +4825,7 @@ window.Chart = function(context, options) {
   }
 };
 var VISH = VISH || {};
-VISH.VERSION = "0.7";
+VISH.VERSION = "0.8";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -11979,6 +11979,11 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
     features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
+    if(features.history && typeof history.pushState == "function") {
+      features.historypushState = true
+    }else {
+      features.historypushState = false
+    }
     if(window.File && window.FileReader && window.FileList && window.Blob) {
       features.reader = true
     }else {

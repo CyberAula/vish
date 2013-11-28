@@ -85,7 +85,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
 "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.7";
+VISH.VERSION = "0.8";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -13150,7 +13150,12 @@ VISH.Editor = function(V, $, undefined) {
           if(order != "unpublish") {
             lastStoredPresentationStringify = jsonPresentation;
             if(createNewPresentation && typeof data != "undefined" && data.uploadPath) {
-              V.UploadPresentationPath = data.uploadPath
+              V.UploadPresentationPath = data.uploadPath;
+              if(V.Status.getDevice().features.historypushState) {
+                if(data.editPath) {
+                  window.top.history.replaceState("", "", data.editPath)
+                }
+              }
             }
           }
           if(typeof successCallback == "function") {
@@ -25152,6 +25157,11 @@ VISH.Status.Device.Features = function(V, $, undefined) {
     features.touchScreen = !!("ontouchstart" in window);
     features.localStorage = V.Storage.checkLocalStorageSupport();
     features.history = typeof history === "object" && typeof history.back === "function" && typeof history.go === "function";
+    if(features.history && typeof history.pushState == "function") {
+      features.historypushState = true
+    }else {
+      features.historypushState = false
+    }
     if(window.File && window.FileReader && window.FileList && window.Blob) {
       features.reader = true
     }else {
