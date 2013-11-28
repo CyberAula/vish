@@ -1,6 +1,5 @@
 class QuizSessionsController < ApplicationController
   include Shortener::ShortenerHelper
-
   before_filter :authenticate_user!, :only => [ :index, :create, :close, :delete ]
 
   # GET /quiz_sessions/
@@ -46,6 +45,12 @@ class QuizSessionsController < ApplicationController
 
   def edit
     @quiz_session = QuizSession.find(params[:id])
+
+    if !verify_owner(@quiz_session)
+      render :text => "You are not the owner of this quiz"
+      return;
+    end
+
     respond_to do |format|
       format.html {
         render :edit
@@ -61,24 +66,32 @@ class QuizSessionsController < ApplicationController
   # POST /quiz_sessions/x
   def update
     qs = QuizSession.find(params[:id])
+
+    if !verify_owner(qs)
+      render :text => "You are not the owner of this quiz"
+      return;
+    end
+
     if params[:quiz_session]
       qs.update_attributes(params[:quiz_session])
     end
+
     redirect_to "/quiz_sessions/"
   end
 
   # GET /quiz_sessions/X/close
   def close 
-    @quiz_session = QuizSession.find(params[:id])
+    qs = QuizSession.find(params[:id])
 
-    if @quiz_session.owner != current_user
+    if !verify_owner(qs)
       render :text => "You are not the owner of this quiz"
+      return;
     end
 
-    @quiz_session.active = false
-    @quiz_session.name = params[:name] unless params[:name].blank?
-    @quiz_session.closed_at = Time.now
-    @quiz_session.save!
+    qs.active = false
+    qs.name = params[:name] unless params[:name].blank?
+    qs.closed_at = Time.now
+    qs.save!
 
     respond_to do |format|
       format.json { 
@@ -94,9 +107,15 @@ class QuizSessionsController < ApplicationController
 
   # /quiz_sessions/X/delete
   def delete
-    @quiz_session = QuizSession.find(params[:id])
+    qs = QuizSession.find(params[:id])
+
+    if !verify_owner(qs)
+      render :text => "You are not the owner of this quiz"
+      return;
+    end
+
     #With .delete the dependency "has_many :quiz_answers, :dependent => :destroy" dont works
-    @quiz_session.destroy
+    qs.destroy
     respond_to do |format|
       format.json { 
         response = Hash.new
@@ -112,6 +131,12 @@ class QuizSessionsController < ApplicationController
   # GET /quiz_sessions/X/results
   def results 
     @quiz_session = QuizSession.find(params[:id])
+
+    if !verify_owner(@quiz_session)
+      render :text => "You are not the owner of this quiz"
+      return;
+    end
+
     @results = @quiz_session.results
 
     respond_to do |format|
@@ -162,6 +187,13 @@ class QuizSessionsController < ApplicationController
     end
 
     render :json => response
+  end
+
+
+  private
+
+  def verify_owner(qs)
+    return qs.owner == current_user
   end
 
 end

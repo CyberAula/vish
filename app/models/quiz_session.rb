@@ -28,6 +28,10 @@ class QuizSession < ActiveRecord::Base
   	self.quiz_answers
   end
 
+  def owner
+    return Actor.find_by_id(self.owner_id).user
+  end
+
   def self.root_url
     if Site.current.config[:documents_hostname]
       return Site.current.config[:documents_hostname].to_s + "quiz_sessions/"
@@ -79,13 +83,15 @@ class QuizSession < ActiveRecord::Base
             end
           end
 
-          if qparams["extras"] && qparams["extras"]["multipleAnswer"]==true
-            #Multiple choice with multiple answers
-          else
-            #Multiple choice with single answer
-            #Calculate percentage
-            qparams["processedResults"].each do |result|
-              result["percentage"] = ((result["n"]*100)/qparams["totalAnswers"])
+          if qparams["totalAnswers"] > 0
+            if qparams["extras"] && qparams["extras"]["multipleAnswer"]==true
+              #Multiple choice with multiple answers
+            else
+              #Multiple choice with single answer
+              #Calculate percentage
+              qparams["processedResults"].each do |result|
+                result["percentage"] = ((result["n"]*100)/qparams["totalAnswers"])
+              end
             end
           end
           
@@ -114,8 +120,14 @@ class QuizSession < ActiveRecord::Base
 
           #Calculate percentages
           qparams["processedResults"].each do |choiceResult|
-            choiceResult["Tpercentage"] = (choiceResult["T"]*100)/(choiceResult["T"]+choiceResult["F"]);
-            choiceResult["Fpercentage"] = (choiceResult["F"]*100)/(choiceResult["T"]+choiceResult["F"]);
+            total = choiceResult["T"]+choiceResult["F"];
+            if total > 0
+              choiceResult["Tpercentage"] = (choiceResult["T"]*100)/(total);
+              choiceResult["Fpercentage"] = (choiceResult["F"]*100)/(total);
+            else
+              choiceResult["Tpercentage"] = 0;
+              choiceResult["Fpercentage"] = 0;
+            end
           end
 
         else
