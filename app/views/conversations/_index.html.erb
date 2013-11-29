@@ -1,0 +1,16 @@
+<div class="conversations">
+
+  <% if @box=="sentbox" %>
+  	<!-- Filter conversations -->
+  	<% @conversations = @conversations.select { |conversation| conversation.originator.user == current_user } %>
+  <% end %>
+
+  <%= render @conversations %>
+
+  <%= render partial: 'layouts/more',
+             locals: {
+               path: conversations_path,
+               per_page: 9,
+               total: @conversations.length
+            } %>
+</div>
