@@ -1,0 +1,74 @@
+<h3>
+  <%= conversation.subject %>
+</h3>
+
+<div class="action">
+  <% unless @box.eql?'trash' %>
+    <%= link_to(image_tag('cancel.png', :alt => t('mailboxer.delete'), :title => t('mailboxer.delete')),
+      conversation_path(conversation, :location => 'conversation', :box => @box),
+           :confirm => t('mailboxer.delete_confirm', :object => conversation.subject),
+           :method => :delete, :remote => true) %>
+  <% end %>
+</div>
+
+<h4>
+  <%= t("message.participants") %>:
+</h4>
+<div class="participants">
+  <% conversation.recipients.each do |recp| %>
+    <%= link_to image_tag(recp.logo.url(:small), :title=>recp.name, :alt => recp.name), recp.subject %>
+  <% end %>
+</div>
+<hr class="soften">
+<div class="messages">
+  <% @receipts.each do |receipt| %>
+    <%= render receipt.message %>
+  <% end %>
+
+  <% unless @box.eql?'trash' %>
+  <br>
+  <%= form_tag conversation_path(conversation), :method => :put, :class => "cont_conversation" do %>
+  <% if @receipt and @receipt.errors.any? %>
+    <div class="error">
+      <h2>
+        <%= pluralize(@receipt.errors.count, "error") %> prohibited this message from being sent:
+      </h2>
+      <ul>
+        <% @receipt.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="editor">
+    <%= text_area_tag :body, nil,:rows =>6, :cols=> 53, :class => "required form_tag" %>
+  </div>
+  <div class="actions">
+    <%= submit_tag t('mailboxer.reply'), :name => :reply_all,:class => "btn" %>
+  </div>
+  <% end %>
+  <%end %>
+</div>
+
+<%= javascript_tag do %>
+$(document).ready(function(){  
+  $(".message .body img").each(function(){
+    var link = '<a href=\"' + $(this).attr('src') + '\" class=\"img_link\"><img src=\"' + $(this).attr('src') + '\"></a>';
+    $(this).after(link);
+    $(this).remove();
+    $(".message .body img").aeImageResize({ height: 490, width: 490 });
+    $(".message .body a.img_link").lightBox({
+      maxHeight: 920,
+      maxWidth: 920,
+      imageLoading: '../assets/lightbox-ico-loading.gif',
+      imageBtnClose: '../assets/lightbox-btn-close.gif',
+      imageBtnPrev: '../assets/lightbox-btn-prev.gif',
+      imageBtnNext: '../assets/lightbox-btn-next.gif',
+      imageBlank: '../assets/lightbox-blank.gif'
+    });
+  })  
+});
+<% end %>

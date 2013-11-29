@@ -1,0 +1,50 @@
+
+<!-- Show first sender instead of last senders... and the number of replies -->
+<!-- Fix delete -->
+
+<%= div_for(conversation, :class =>"#{ 'unread ' if conversation.is_unread?(@actor) }") do %>
+
+  <div class="content_left">
+    <div class="avatar">
+      <%= link_to image_tag(conversation.last_sender.logo.url(:small),
+                            :title => conversation.last_sender.name,
+                            :alt => conversation.last_sender.name),
+                  conversation.last_sender.subject %>
+    </div>
+
+    <header>
+      <h5>
+        <%= link_to truncate_name(conversation.last_sender.name), conversation.last_sender.subject %>
+      </h5>
+      <div class="date">
+        <%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
+      </div>
+    </header>
+
+  </div>
+
+  <div class="content_right">
+
+    <div class="subject">
+      <%= link_to(truncate(conversation.subject, :length => 55), conversation_path(conversation.id,:box => @box,:page => params[:page])) %>
+    </div>
+
+    <% unless @box.eql?'trash' %>
+      <div class="action">
+      
+        <%= link_to(image_tag('cancel.png', :alt => t('mailboxer.delete'), :title => t('mailboxer.delete')),
+                    conversation_path(conversation, :location => @box,
+                                                    :box => @box,
+                                                    :page => params[:page]),
+                                                    :confirm => t('mailboxer.delete_confirm',
+                                                                  :object => conversation.subject),
+                                                    :method => :delete,
+                                                    :remote => true) %>
+      </div>
+    <% end %>
+
+    <div class="briefing">
+      <%= raw(truncate(strip_tags(conversation.last_message.body), :length => 50)) %>
+    </div>
+  </div>
+<% end %>
