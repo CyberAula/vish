@@ -87,6 +87,11 @@ $(function() {
            SSMInitiated = true;
         }
       })
+       $('#new_messages_profile').on('hidden', function () {
+        $("#mesage-profile").removeAttr("href");
+        $("#mesage-profile").removeAttr("data-toggle");
+        $("#mesage-profile").removeAttr("data-remote");
+      })
     });
 });
 </script>
