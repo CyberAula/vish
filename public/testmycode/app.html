@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8" /><title>Ejemplos</title>
+<script type="text/javascript" src="zepto.min.js" ></script>
+<link href="estilo.css" rel="stylesheet" type="text/css">
+<script>
+$(function(){ 
+   var editor = $("#editor");
+
+   function mostrar(ejemplo){
+    editor.val(ejemplo);
+    ejecutar(ejemplo);
+   };
+
+
+   function ejecutar(ejemplo){
+    var iframe = document.getElementById('iframe');
+           
+    if(iframe.contentDocument) doc = iframe.contentDocument;
+    else if(iframe.contentWindow) doc = iframe.contentWindow.document;
+    else doc = iframe.document;
+     
+    doc.open();
+    doc.writeln(ejemplo);
+    doc.close();
+   }
+
+  $("nav a").on("click", function(){
+      $.get($(this).attr("title"), "text", mostrar);
+      $("nav a").removeClass("active");
+      $(this).addClass("active");
+  });
+
+  $("#actualizar").on("click", function(){
+    ejecutar(editor.val());
+  });
+
+  $.get("date.htm", "text", function(ejemplo){
+    mostrar(ejemplo);
+  });  
+});
+</script>
+</head> 
+<body><div id="page-wrap">
+  <header class="main" id="h1">
+    <h1>Editor Interactivo de Ejemplos</h1>
+    <p>Aquí puedes probar el código de los diferentes ejemplos. Además puedes cambiarlo y ejecutarlo con el botón play que está justo encima.</p>
+  </header>
+
+  <nav class="main" id="nav1">
+    <ul>
+      <li><a href="javascript:void(0);" title="date.htm" class="active">date </a></li>
+      <li><a href="javascript:void(0);" title="vars.htm">vars </a></li>
+      <li><a href="javascript:void(0);" title="strings.htm">strings </a></li>
+      <li><a href="javascript:void(0);" title="obj.htm">obj </a></li>
+      <li><a href="javascript:void(0);" title="prop_d.htm">prop_d </a></li>
+      <li><a href="javascript:void(0);" title="for_in.htm">for_in </a></li>
+      <li><a href="javascript:void(0);" title="if_else.htm">if_else </a></li>
+      <li><a href="javascript:void(0);" title="window.htm">window </a></li>
+      <li><a href="javascript:void(0);" title="date_id.htm">date_id </a></li>
+      <li><a href="javascript:void(0);" title="screen.htm">screen </a></li>
+    </ul>
+  </nav>
+  <div class="clear"> </div>
+
+  <div class="caja">
+    <p id="texto_ejemplo">Ejemplo:</p>
+    <div id="actualizar"><img id="play" src="play.png" width="26" height="26" alt="actualizar"></div>
+    <div class="area">
+      <textarea id="editor"></textarea>
+    </div>
+  </div>
+  <div class="caja_visor">
+    <p id="texto_resultado">Resultado:</p>
+    <iframe id="iframe" class="" frameborder="0"></iframe>
+  </div>
+  <div class="clear"> </div>
+</div>
+</body> 
+</html>
