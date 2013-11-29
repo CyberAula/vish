@@ -16,7 +16,6 @@
       <div class="add">
         <%= contact_button(profile_subject) %>
       </div>
-      
     </section>
 <!-- <button>
   <%#= contact_to(profile_subject) %>
@@ -27,7 +26,7 @@
 <!--BTN MESSAGE-->
 
 <% if !profile_subject_is_current? && user_signed_in?%>
-<button href="#new_messages_profile" id="mesage-profile" role="button" class="btn" data-toggle="modal">
+<button href="#new_messages_profile" id="mesage-profile" role="button" class="btn" data-toggle="modal" data-remote="false">
   <%= link_to new_message_path(receiver: profile_subject.slug) do %>
     <i class="icon-envelope-alt"></i>
     <%= t 'mailboxer.send' %>
@@ -55,21 +54,6 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     <input type="button" class="btn btn-primary" value="<%=t('mailboxer.send')%>"/>
   </div>
-  <%= javascript_tag do %>
-    $(function() {
-      var sendMessage = $("input[name='send_message']");
-      var send = $("input[type='button'][value='<%=t('mailboxer.send')%>']");
-      $(sendMessage).addClass("hidden");
-      $(send).click(function(event) {
-        $(sendMessage).click();
-      });
-      $('#new_messages_profile').on('shown', function () {
-      SocialStream.Message.new_();
-      })
-    });
-  <% end %>
-
-
 </div>
 
 
@@ -88,5 +72,21 @@ $(function() {
     }
     return false;
   });
+
+  $(function() {
+      var sendMessage = $("input[name='send_message']");
+      var send = $("input[type='button'][value='<%=t('mailboxer.send')%>']");
+      $(sendMessage).addClass("hidden");
+      $(send).click(function(event) {
+        $(sendMessage).click();
+      });
+      var SSMInitiated = false;
+      $('#new_messages_profile').on('shown', function () {
+        if(!SSMInitiated){
+           SocialStream.Message.new_();
+           SSMInitiated = true;
+        }
+      })
+    });
 });
 </script>
