@@ -1,4 +1,3 @@
-
 <section id="messages-toolbar">
   <div class="tabbable">
     <ul class="nav nav-tabs">   
@@ -13,23 +12,19 @@
 
       <li class=" <%= 'active' if params[:box] == 'inbox' %>">
         <%= link_to conversations_path(box: :inbox) do %>
-
             <i class='icon-inbox'></i> 
             <div class="hidden-phone hidden-tablet">
               <%= t('message.inbox') %> (<%= current_subject.unread_messages_count %>)
             </div>
-
         <% end %>
       </li>
       
       <li class="<%= 'active' if params[:box] == 'sentbox' %>">
         <%= link_to conversations_path(box: :sentbox) do %>
-
             <i class='icon-signout icon-rotate-270 '></i> 
             <div class="hidden-phone hidden-tablet">
               <%= t('message.sentbox') %>
             </div>
-
         <% end %>
       </li>
 

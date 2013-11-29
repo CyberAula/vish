@@ -3,7 +3,13 @@
   <% if @box=="sentbox" %>
   	<!-- Filter conversations -->
   	<% @conversations = @conversations.select { |conversation| conversation.originator == current_user.actor } %>
+  <% elsif @box=="inbox" %>
+    <!-- Untrashed conversations -->
+    <% @conversations = current_user.mailbox.conversations.select { |conversation| conversation.is_trashed?(current_user.actor) == false} %>
+    <!-- Remove messages from the sentbox -->
+    <% @conversations = @conversations.reject { |conversation| conversation.originator == current_user.actor && conversation.participants.length == 1} %>
   <% end %>
+
 
   <%= render @conversations %>
 
