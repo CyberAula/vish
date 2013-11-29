@@ -462,3 +462,6 @@ hu:
       truncate: "..."
   view_all: "mindent mutat"
   yesterday: "Tegnap"
+  mailboxer:
+    new_message_for: "New message for"
+    delete_confirm: "Do you want to move '%{csubject}' to trash?"

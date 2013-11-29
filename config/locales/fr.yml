@@ -168,6 +168,7 @@ fr:
     change: "Modifier la langue"
   mailboxer:
     new_message_for: "Nouveau message pour"
+    delete_confirm: "Souhaitez-vous placer '%{csubject}' dans la corbeille?"
   message:
     send: "Envoyer un message"
     new: "Nouveau message"

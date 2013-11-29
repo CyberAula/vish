@@ -168,6 +168,7 @@ nl:
     change: "Wijzig taal"
   mailboxer:
     new_message_for: "Nieuwe boodschap voor"
+    delete_confirm: "Wilt u '%{csubject}' naar de prullenbak verplaatsen?"
   message:
     send: "Verzend bericht"
     new: "Nieuw bericht"

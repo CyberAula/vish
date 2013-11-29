@@ -35,12 +35,10 @@
 
       <li class="<%= 'active' if params[:box] == 'trash' %>">
         <%= link_to conversations_path(box: :trash) do %>
-
             <i class='icon-trash '></i> 
             <div class="hidden-phone hidden-tablet">
               <%= t('message.trash') %>
             </div>
-
         <% end %>
       </li>
 

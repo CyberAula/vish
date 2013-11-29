@@ -3,12 +3,12 @@
 </h3>
 
 <div class="action">
-  <% unless @box.eql?'trash' %>
-    <%= link_to(image_tag('cancel.png', :alt => t('mailboxer.delete'), :title => t('mailboxer.delete')),
+    <% unless @box.eql?'trash' %>
+      <%= link_to(raw("<i class='icon-trash'></i>"),
       conversation_path(conversation, :location => 'conversation', :box => @box),
-           :confirm => t('mailboxer.delete_confirm', :object => conversation.subject),
-           :method => :delete, :remote => true) %>
-  <% end %>
+      :confirm => t('mailboxer.delete_confirm', :csubject => conversation.subject),
+      :method => :delete, :remote => true) %>
+    <% end %>
 </div>
 
 <h4>

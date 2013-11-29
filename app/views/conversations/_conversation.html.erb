@@ -1,6 +1,5 @@
 
 <!-- Show first sender instead of last senders... and the number of replies -->
-<!-- Fix delete -->
 
 <%= div_for(conversation, :class =>"#{ 'unread ' if conversation.is_unread?(@actor) }") do %>
 
@@ -31,15 +30,13 @@
 
     <% unless @box.eql?'trash' %>
       <div class="action">
-      
-        <%= link_to(image_tag('cancel.png', :alt => t('mailboxer.delete'), :title => t('mailboxer.delete')),
-                    conversation_path(conversation, :location => @box,
-                                                    :box => @box,
-                                                    :page => params[:page]),
-                                                    :confirm => t('mailboxer.delete_confirm',
-                                                                  :object => conversation.subject),
-                                                    :method => :delete,
-                                                    :remote => true) %>
+        <%= link_to(raw("<i class='icon-trash'></i> "),
+          conversation_path(conversation, :location => @box, :box => @box, :page => params[:page]),
+          :alt => t('mailboxer.delete'), 
+          :title => t('mailboxer.delete'),
+          :confirm => t('mailboxer.delete_confirm', :csubject => conversation.subject),
+          :method => :delete,
+          :remote => true) %>
       </div>
     <% end %>
 

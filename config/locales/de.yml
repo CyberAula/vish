@@ -462,4 +462,7 @@ de:
       truncate: "..."
   view_all: "Alle ansehen"
   yesterday: "Gestern"
+  mailboxer:
+    new_message_for: "New message for"
+    delete_confirm: "Möchtest du '%{csubject}' in den Papierkorb verschieben?"
 

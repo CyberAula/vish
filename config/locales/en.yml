@@ -485,6 +485,7 @@ en:
     change: "Change language"
   mailboxer:
     new_message_for: "New message for"
+    delete_confirm: "Do you want to move '%{csubject}' to trash?"
   message:
     send: "Send mesage"
     new: "New message"

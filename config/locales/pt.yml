@@ -57,6 +57,7 @@ pt:
     change: ""
   mailboxer:
     new_message_for: "Nova mensagem para"
+    delete_confirm: "Você quer mover '%{csubject}' para o lixo?"
   message:
     new: ""
   more: "mais"
