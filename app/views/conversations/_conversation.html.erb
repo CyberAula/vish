@@ -1,19 +1,22 @@
-
-<!-- Show first sender instead of last senders... and the number of replies -->
-
 <%= div_for(conversation, :class =>"#{ 'unread ' if conversation.is_unread?(@actor) }") do %>
 
   <div class="content_left">
     <div class="avatar">
-      <%= link_to image_tag(conversation.last_sender.logo.url(:small),
-                            :title => conversation.last_sender.name,
-                            :alt => conversation.last_sender.name),
-                  conversation.last_sender.subject %>
+      <%= link_to image_tag(conversation.originator.logo.url(:small),
+                            :title => conversation.originator.name,
+                            :alt => conversation.originator.name),
+                  conversation.originator.subject %>
     </div>
 
     <header>
       <h5>
-        <%= link_to truncate_name(conversation.last_sender.name), conversation.last_sender.subject %>
+        <% if conversation.messages.length > 1 %>
+          <% addMsgCount = " (" + conversation.messages.length.to_s + ")" %>
+        <% else %>
+          <% addMsgCount = "" %>
+        <% end %>
+
+        <%= link_to truncate_name(conversation.originator.name) + addMsgCount, conversation.originator.subject %>
       </h5>
       <div class="date">
         <%= t('time.ago', :time => time_ago_in_words(conversation.updated_at)) %>
@@ -41,7 +44,7 @@
     <% end %>
 
     <div class="briefing">
-      <%= raw(truncate(strip_tags(conversation.last_message.body), :length => 50)) %>
+      <%= raw(truncate(strip_tags(conversation.original_message.body), :length => 50)) %>
     </div>
   </div>
 <% end %>
