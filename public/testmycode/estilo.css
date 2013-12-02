@@ -4,6 +4,49 @@
     font-family: 'fira';
     src: url('FiraSans-Regular.woff');
 }
+@media (max-width: 600px) {
+  nav.main ul {
+    display: none;
+  }
+  nav.main select{
+  	display:block;
+  }
+  #page-wrap .caja_visor {
+  	margin-left: 0.2em;
+	padding-right: 4px;
+	padding-left: 4px;
+  }
+  #page-wrap .caja {
+	padding-right: 0.2em;
+	padding-bottom: 0.2em;
+	padding-left: 0.2em;
+  }
+  #page-wrap .caja .area #editor {
+	width: 96%;
+  }
+}
+@media (min-width: 600px) {
+  nav.main ul {
+    display: block;
+  }
+  nav.main select{
+  	display: none;
+  }
+  #page-wrap .caja_visor {
+  	margin-left: 0.5em;
+	padding-right: 8px;
+	padding-left: 8px;
+  }
+  #page-wrap .caja {
+	padding-right: 0.5em;
+	padding-bottom: 0.5em;
+	padding-left: 0.5em;
+  }
+  #page-wrap .caja .area #editor {
+    width: 100%;
+  }
+}
+
 .clear {
 	clear: both;
 }
@@ -28,13 +71,17 @@ body{
 	padding-bottom: 0.2em;
 }
 
+.main p{
+	font-size: small;
+}
+
 #page-wrap #nav1 ul {
 	list-style-type: none;
 	margin: 0px;
 	padding-top: 0px;
 	padding-right: 0px;
 	padding-bottom: 0px;
-	padding-left: 1em;
+	padding-left: 0.5em;
 }
 #page-wrap #nav1 ul li {
 	display: inline;
@@ -46,9 +93,10 @@ body{
 	padding: 0.4em;
 	color: #FFF;
 	text-decoration: none;
-	margin-right: 0.5em;
+	margin-right: 0.4em;
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px;
+	font-size: small;
 }
 #page-wrap #nav1 ul li a:hover {
 	color: #4C4C4C;
@@ -64,13 +112,10 @@ body{
 #page-wrap .caja {
 	float: left;
 	background-color: #4c4c4c;
-	padding-right: 0.5em;
-	padding-bottom: 0.5em;
-	padding-left: 0.5em;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	width: 58%;
-	height: 82%;
+	height: 76%;
 }
 .caja #actualizar {
 	height: 26px;
@@ -85,24 +130,24 @@ body{
 .caja #texto_ejemplo{
 	float: left;
 	color: white;
+	margin: 2% 0 1% 2%;
+	font-size: small;
 }
 .caja_visor #texto_resultado{
 	float:left;
 	color: white;
+	margin: 2% 0 3% 2%;
+	font-size: small;
 }
 #page-wrap .caja .area {
 	clear: both;
 	height: 93%;
 }
 #page-wrap .caja .area #editor {
-	width: 100%;
 	height: 96%;
 }
 #page-wrap .caja_visor {
 	float: left;
-	margin-left: 0.5em;
-	padding-right: 8px;
-	padding-left: 8px;
 	background-color: #4C4C4C;
 	background-image: url(dit.png);
 	background-repeat: no-repeat;
@@ -111,13 +156,13 @@ body{
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px;
 	width: 32%;
-	height: 78%;
+	height: 72%;
 }
 #page-wrap #iframe {
 	background-color: #FFF;
 	width: 93%;
 	height: 87%;
-	padding: 10px;
+	padding: 5px;
 }
 #descripcion {
 	margin-top: 1em;

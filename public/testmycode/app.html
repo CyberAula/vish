@@ -30,6 +30,11 @@ $(function(){
       $(this).addClass("active");
   });
 
+  $("nav select").change(function() {
+      $.get($(this).val(), "text", mostrar);      
+  });
+
+
   $("#actualizar").on("click", function(){
     ejecutar(editor.val());
   });
@@ -42,8 +47,8 @@ $(function(){
 </head> 
 <body><div id="page-wrap">
   <header class="main" id="h1">
-    <h1>Editor Interactivo de Ejemplos</h1>
-    <p>Aquí puedes probar el código de los diferentes ejemplos. Además puedes cambiarlo y ejecutarlo con el botón play que está justo encima.</p>
+    <h1>Editor interactivo de los ejemplos JavaScript de la semana 3 de @HTML5MOOC</h1>
+    <p>Los ejemplos se pueden cambiar y ejecutar (visualizar) con los cambios introducidos pulsando el botón play, que está justo encima.</p>
   </header>
 
   <nav class="main" id="nav1">
@@ -59,6 +64,19 @@ $(function(){
       <li><a href="javascript:void(0);" title="date_id.htm">date_id </a></li>
       <li><a href="javascript:void(0);" title="screen.htm">screen </a></li>
     </ul>
+
+    <select>
+      <option value="date.htm">date</option>
+      <option value="vars.htm">vars</option>
+      <option value="strings.htm">strings</option>
+      <option value="obj.htm">obj</option>
+      <option value="prop_d.htm">prop_d</option>
+      <option value="for_in.htm">for_in</option>
+      <option value="if_else.htm">if_else</option>
+      <option value="window.htm">window</option>
+      <option value="date_id.htm">date_id</option>
+      <option value="screen.htm">screen</option>
+    </select>
   </nav>
   <div class="clear"> </div>
 
