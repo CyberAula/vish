@@ -5197,15 +5197,21 @@ VISH.QuizCharts = function(V, $, undefined) {
     var params = {};
     params.extras = {};
     try {
-      var quizEl = quiz["slides"][0]["elements"][0];
-      params.quizType = quizEl["quiztype"];
-      if(params.quizType == V.Constant.QZ_TYPE.MCHOICE) {
-        if(quizEl.extras && quizEl.extras.multipleAnswer == true) {
-          params.extras.multipleAnswer = true
+      var quizEls = quiz["slides"][0]["elements"];
+      var quizElsL = quizEls.length;
+      for(var i = 0;i < quizElsL;i++) {
+        if(quizEls[i]["type"] === "quiz") {
+          var quizEl = quizEls[i];
+          params.quizType = quizEl["quiztype"];
+          if(params.quizType == V.Constant.QZ_TYPE.MCHOICE) {
+            if(quizEl.extras && quizEl.extras.multipleAnswer == true) {
+              params.extras.multipleAnswer = true
+            }
+          }
+          params.choices = quizEl["choices"];
+          params.nAnswers = params.choices.length
         }
       }
-      params.choices = quiz["slides"][0]["elements"][0]["choices"];
-      params.nAnswers = params.choices.length
     }catch(e) {
     }
     return params
@@ -5214,6 +5220,7 @@ VISH.QuizCharts = function(V, $, undefined) {
     if(typeof str != "string") {
       return str
     }
+    str = str.replace(/\u00e2\u20ac\u2039/g, "");
     return str.replace(/\u00c2/g, "")
   };
   return{init:init, drawQuizChart:drawQuizChart}
@@ -12195,6 +12202,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var width = _lastWidth;
     var finalW = 800;
     var finalH = 600;
+    var finalWidthMargin;
     var aspectRatio = (width - min_margin_width) / (height - min_margin_height);
     var slidesRatio = 4 / 3;
     if(aspectRatio > slidesRatio) {
@@ -12202,18 +12210,23 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       finalW = finalH * slidesRatio;
       var widthMargin = width - finalW;
       if(widthMargin < min_margin_width) {
+        finalWidthMargin = min_margin_width;
         var marginWidthToAdd = min_margin_width - widthMargin;
         finalW = finalW - marginWidthToAdd
+      }else {
+        finalWidthMargin = widthMargin
       }
     }else {
       finalW = width - min_margin_width;
       finalH = finalW / slidesRatio;
+      finalWidthMargin = min_margin_width;
       var heightMargin = height - finalH;
       if(heightMargin < min_margin_height) {
         var marginHeightToAdd = min_margin_height - heightMargin;
         finalH = finalH - marginHeightToAdd
       }
     }
+    $(".vish_arrow").width(finalWidthMargin / 2 * 0.9);
     if(!is_preview_insertMode) {
       $("#viewbar").height(reserved_px_for_menubar)
     }
@@ -14084,6 +14097,7 @@ VISH.Quiz.TF = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Quiz.API = function(V, $, undefined) {
   var quizSessionAPIrootURL;
+  var getResultsCount = 0;
   var init = function(quizSessionAPI) {
     if(typeof quizSessionAPI == "object" && typeof quizSessionAPI.rootURL == "string") {
       quizSessionAPIrootURL = quizSessionAPI.rootURL
@@ -14184,7 +14198,18 @@ VISH.Quiz.API = function(V, $, undefined) {
       }})
     }else {
       if(V.Configuration.getConfiguration()["mode"] == V.Constant.NOSERVER) {
-        var data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-26T12:49:34Z", "id":47, "quiz_session_id":31}];
+        var data;
+        if(getResultsCount < 1) {
+          data = []
+        }else {
+          if(getResultsCount < 3) {
+            data = [{"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-30T12:35:05Z", "id":82, "quiz_session_id":59}]
+          }else {
+            data = [{"answer":'[{"no":"3","answer":"true"}]', "created_at":"2013-11-29T17:49:59Z", "id":74, "quiz_session_id":56}, {"answer":'[{"no":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:03Z", "id":75, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:07Z", "id":76, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:12Z", "id":77, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', 
+            "created_at":"2013-11-29T17:50:15Z", "id":78, "quiz_session_id":56}, {"answer":'[{"no":"1","answer":"true"}]', "created_at":"2013-11-29T17:50:19Z", "id":79, "quiz_session_id":56}, {"answer":'[{"no":"2","answer":"true"}]', "created_at":"2013-11-29T17:50:23Z", "id":80, "quiz_session_id":56}]
+          }
+        }
+        getResultsCount++;
         if(typeof successCallback == "function") {
           setTimeout(function() {
             successCallback(data)

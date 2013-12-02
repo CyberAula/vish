@@ -71,6 +71,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 	var drawQuizChart = function(canvas,quizJSON,results,options){
 		var quizParams = _getQuizParams(quizJSON);
 		var answersList = _getAnswers(results);
+
 		switch (quizParams.quizType) {
 			case V.Constant.QZ_TYPE.OPEN:
 			break;
@@ -335,16 +336,22 @@ VISH.QuizCharts = (function(V,$,undefined){
 		var params = {};
 		params.extras = {};
 		try {
-			var quizEl = quiz["slides"][0]["elements"][0];
-			params.quizType = quizEl["quiztype"];
-			if(params.quizType==V.Constant.QZ_TYPE.MCHOICE){
-				//Check for multiple answer
-				if ((quizEl.extras) && (quizEl.extras.multipleAnswer==true)){
-					params.extras.multipleAnswer = true;
+			var quizEls = quiz["slides"][0]["elements"];
+			var quizElsL = quizEls.length;
+			for(var i=0; i<quizElsL; i++){
+				if (quizEls[i]["type"]==="quiz"){
+					var quizEl = quizEls[i];
+					params.quizType = quizEl["quiztype"];
+					if(params.quizType==V.Constant.QZ_TYPE.MCHOICE){
+						//Check for multiple answer
+						if ((quizEl.extras) && (quizEl.extras.multipleAnswer==true)){
+							params.extras.multipleAnswer = true;
+						}
+					}
+					params.choices = quizEl["choices"];
+					params.nAnswers = params.choices.length;
 				}
 			}
-			params.choices = quiz["slides"][0]["elements"][0]["choices"];
-			params.nAnswers = params.choices.length;
 		} catch (e){}
 		return params;
 	}
@@ -353,6 +360,7 @@ VISH.QuizCharts = (function(V,$,undefined){
 		if(typeof str != "string"){
 			return str;
 		}
+		str = str.replace(/â€‹/g, '');
 		return str.replace(/Â/g, '');
 	}
 
