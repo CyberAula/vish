@@ -85,7 +85,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", 
 "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.8";
+VISH.VERSION = "0.8.1";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -12666,8 +12666,24 @@ VISH.Utils = function(V, undefined) {
     $(notificationTemplate).append(row2);
     $(notificationWrapper).append(notificationTemplate)
   };
+  var isObseleteVersion = function(version) {
+    return _getVersionValue(V.VERSION) > _getVersionValue(version)
+  };
+  var _getVersionValue = function(version) {
+    var vValue = 0;
+    var coef = [100, 10, 1];
+    try {
+      var digits = version.split(".");
+      for(var i = 0;i < digits.length;i++) {
+        vValue += parseFloat(digits[i]) * coef[i]
+      }
+    }catch(e) {
+      return 0
+    }
+    return vValue
+  };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
@@ -16885,8 +16901,9 @@ VISH.Quiz = function(V, $, undefined) {
     if(currentQuizSession) {
       if(typeof currentQuizSession.lastDrawedResults != "undefined" && results.length === currentQuizSession.lastDrawedResults.length) {
         return
-      }else {
-        currentQuizSession.lastDrawedResults = results
+      }
+      if(results.length === 0) {
+        return
       }
     }else {
       return
@@ -16903,6 +16920,7 @@ VISH.Quiz = function(V, $, undefined) {
         return
       }
     }
+    currentQuizSession.lastDrawedResults = results;
     _cleanResults();
     var canvas = $("#quiz_chart");
     var desiredWidth = $("#fancybox-content").width();
@@ -17709,6 +17727,9 @@ VISH.Addons.IframeMessenger = function(V, undefined) {
 }(VISH, jQuery);
 VISH.Animations = function(V, $, undefined) {
   var loadAnimation = function(animation, callback) {
+    if(V.Status.getDevice().mobile) {
+      animation = V.Constant.Animations.Default
+    }
     if(!animation) {
       animation = V.Constant.Animations.Default
     }
@@ -18197,7 +18218,7 @@ VISH.Editor.API = function(V, $, undefined) {
       if(typeof failCallback == "function") {
         setTimeout(function() {
           failCallback()
-        }, 2E3)
+        }, 800)
       }
       return
     }
@@ -20603,10 +20624,10 @@ VISH.Editor.PDFex = function(V, $, undefined) {
       if(V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
         return
       }
-      setTimeout(function() {
+      V.Utils.Loader.stopLoading(function() {
         V.Utils.Loader.onCloseLoading();
         _showErrorDialog()
-      }, 800)
+      })
     }})
   };
   var onLoadTab = function() {
@@ -22550,12 +22571,13 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
     return false
   };
   var exportToJSON = function() {
+    var t1 = Date.now();
     V.Utils.Loader.startLoading();
     V.Editor.Presentation.File.exportToJSON(function() {
       V.Utils.Loader.stopLoading()
     }, function() {
+      var diff = t1 - Date.now();
       setTimeout(function() {
-        V.Utils.Loader.onCloseLoading();
         var options = {};
         options.width = 600;
         options.height = 185;
@@ -22566,8 +22588,9 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
           $.fancybox.close()
         };
         options.buttons = [button1];
+        V.Utils.Loader.onCloseLoading();
         V.Utils.showDialog(options)
-      }, 500)
+      }, Math.max(1250 - diff, 0))
     })
   };
   var displaySettings = function() {
@@ -24173,17 +24196,15 @@ VISH.Police = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Presentation = function(V, undefined) {
   var mySlides = null;
-  var init = function(slides) {
+  var init = function(slides, callback) {
     mySlides = slides;
     V.Renderer.init();
     for(var i = 0;i < slides.length;i++) {
       V.Renderer.renderSlide(slides[i])
     }
-    _finishRenderer()
-  };
-  var _finishRenderer = function() {
-    V.VideoPlayer.HTML5.setVideoEvents();
-    V.Slides.updateSlides()
+    if(typeof callback == "function") {
+      callback()
+    }
   };
   return{init:init}
 }(VISH);
@@ -25183,7 +25204,7 @@ VISH.Status.Device.Features = function(V, $, undefined) {
   };
   var fillFeatures = function() {
     var features = {};
-    var elem = document.getElementById("page-fullscreen");
+    var elem = document.createElement("div");
     if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
       features.fullscreen = true
     }else {
@@ -25247,9 +25268,7 @@ VISH.Storage = function(V, $, undefined) {
         myObject = JSON.parse(myObject);
         if(myObject && myObject.value) {
           if(!myObject.persistent && myObject.version) {
-            var cVersion = parseFloat(V.VERSION);
-            var valueVersion = parseFloat(myObject.version);
-            if(cVersion > valueVersion) {
+            if(V.Utils.isObseleteVersion(myObject.version)) {
               return undefined
             }
           }
@@ -25729,6 +25748,9 @@ VISH.Utils.Loader = function(V, undefined) {
       link.onload = function() {
         callback()
       };
+      link.onerror = function() {
+        callback()
+      };
       var loadFunction = function() {
         if(this.readyState == "complete" || this.readyState == "loaded") {
           callback()
@@ -25778,18 +25800,22 @@ VISH.Utils.Loader = function(V, undefined) {
   };
   var stopLoading = function(callback) {
     var diff = Date.now() - t1Loading;
-    if(diff < 800) {
+    if(diff < 1250) {
       setTimeout(function() {
         stopLoading(callback)
-      }, 800)
+      }, Math.min(1250 - diff, 1250))
     }else {
       var closed = false;
+      var tWClose = 0;
       if(_isFullLoadingActive()) {
         $.fancybox.close();
-        closed = true
+        closed = true;
+        tWClose = 800
       }
       if(typeof callback == "function") {
-        callback(closed)
+        setTimeout(function() {
+          callback(closed)
+        }, tWClose)
       }
     }
   };
@@ -26293,9 +26319,23 @@ VISH.Viewer = function(V, $, undefined) {
     V.Events.init();
     V.EventsNotifier.init();
     V.VideoPlayer.init();
-    V.Themes.loadTheme(presentation.theme);
-    V.Animations.loadAnimation(presentation.animation);
-    V.Presentation.init(presentation.slides);
+    V.Themes.loadTheme(presentation.theme, function() {
+      _initAferThemeLoaded(options, presentation)
+    })
+  };
+  var _initAferThemeLoaded = function(options, presentation) {
+    V.Presentation.init(presentation.slides, function() {
+      _initAferRenderPresentation(options, presentation)
+    })
+  };
+  var _initAferRenderPresentation = function(options, presentation) {
+    V.VideoPlayer.HTML5.setVideoEvents();
+    V.Animations.loadAnimation(presentation.animation, function() {
+      _initAferAnimationLoaded(options, presentation)
+    })
+  };
+  var _initAferAnimationLoaded = function(options, presentation) {
+    V.Slides.updateSlides();
     V.Quiz.init();
     if(options.addons) {
       V.Addons.init(options.addons)

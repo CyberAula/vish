@@ -4825,7 +4825,7 @@ window.Chart = function(context, options) {
   }
 };
 var VISH = VISH || {};
-VISH.VERSION = "0.8";
+VISH.VERSION = "0.8.1";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -9624,17 +9624,15 @@ VISH.Debugging = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Presentation = function(V, undefined) {
   var mySlides = null;
-  var init = function(slides) {
+  var init = function(slides, callback) {
     mySlides = slides;
     V.Renderer.init();
     for(var i = 0;i < slides.length;i++) {
       V.Renderer.renderSlide(slides[i])
     }
-    _finishRenderer()
-  };
-  var _finishRenderer = function() {
-    V.VideoPlayer.HTML5.setVideoEvents();
-    V.Slides.updateSlides()
+    if(typeof callback == "function") {
+      callback()
+    }
   };
   return{init:init}
 }(VISH);
@@ -10593,9 +10591,23 @@ VISH.Viewer = function(V, $, undefined) {
     V.Events.init();
     V.EventsNotifier.init();
     V.VideoPlayer.init();
-    V.Themes.loadTheme(presentation.theme);
-    V.Animations.loadAnimation(presentation.animation);
-    V.Presentation.init(presentation.slides);
+    V.Themes.loadTheme(presentation.theme, function() {
+      _initAferThemeLoaded(options, presentation)
+    })
+  };
+  var _initAferThemeLoaded = function(options, presentation) {
+    V.Presentation.init(presentation.slides, function() {
+      _initAferRenderPresentation(options, presentation)
+    })
+  };
+  var _initAferRenderPresentation = function(options, presentation) {
+    V.VideoPlayer.HTML5.setVideoEvents();
+    V.Animations.loadAnimation(presentation.animation, function() {
+      _initAferAnimationLoaded(options, presentation)
+    })
+  };
+  var _initAferAnimationLoaded = function(options, presentation) {
+    V.Slides.updateSlides();
     V.Quiz.init();
     if(options.addons) {
       V.Addons.init(options.addons)
@@ -11365,8 +11377,24 @@ VISH.Utils = function(V, undefined) {
     $(notificationTemplate).append(row2);
     $(notificationWrapper).append(notificationTemplate)
   };
+  var isObseleteVersion = function(version) {
+    return _getVersionValue(V.VERSION) > _getVersionValue(version)
+  };
+  var _getVersionValue = function(version) {
+    var vValue = 0;
+    var coef = [100, 10, 1];
+    try {
+      var digits = version.split(".");
+      for(var i = 0;i < digits.length;i++) {
+        vValue += parseFloat(digits[i]) * coef[i]
+      }
+    }catch(e) {
+      return 0
+    }
+    return vValue
+  };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;
@@ -11492,6 +11520,9 @@ VISH.Utils.Loader = function(V, undefined) {
       link.onload = function() {
         callback()
       };
+      link.onerror = function() {
+        callback()
+      };
       var loadFunction = function() {
         if(this.readyState == "complete" || this.readyState == "loaded") {
           callback()
@@ -11541,18 +11572,22 @@ VISH.Utils.Loader = function(V, undefined) {
   };
   var stopLoading = function(callback) {
     var diff = Date.now() - t1Loading;
-    if(diff < 800) {
+    if(diff < 1250) {
       setTimeout(function() {
         stopLoading(callback)
-      }, 800)
+      }, Math.min(1250 - diff, 1250))
     }else {
       var closed = false;
+      var tWClose = 0;
       if(_isFullLoadingActive()) {
         $.fancybox.close();
-        closed = true
+        closed = true;
+        tWClose = 800
       }
       if(typeof callback == "function") {
-        callback(closed)
+        setTimeout(function() {
+          callback(closed)
+        }, tWClose)
       }
     }
   };
@@ -11977,7 +12012,7 @@ VISH.Status.Device.Features = function(V, $, undefined) {
   };
   var fillFeatures = function() {
     var features = {};
-    var elem = document.getElementById("page-fullscreen");
+    var elem = document.createElement("div");
     if(elem && (elem.requestFullScreen || elem.mozRequestFullScreen || elem.webkitRequestFullScreen)) {
       features.fullscreen = true
     }else {
@@ -12554,6 +12589,9 @@ VISH.Themes = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.Animations = function(V, $, undefined) {
   var loadAnimation = function(animation, callback) {
+    if(V.Status.getDevice().mobile) {
+      animation = V.Constant.Animations.Default
+    }
     if(!animation) {
       animation = V.Constant.Animations.Default
     }
@@ -12844,9 +12882,7 @@ VISH.Storage = function(V, $, undefined) {
         myObject = JSON.parse(myObject);
         if(myObject && myObject.value) {
           if(!myObject.persistent && myObject.version) {
-            var cVersion = parseFloat(V.VERSION);
-            var valueVersion = parseFloat(myObject.version);
-            if(cVersion > valueVersion) {
+            if(V.Utils.isObseleteVersion(myObject.version)) {
               return undefined
             }
           }
@@ -13809,8 +13845,9 @@ VISH.Quiz = function(V, $, undefined) {
     if(currentQuizSession) {
       if(typeof currentQuizSession.lastDrawedResults != "undefined" && results.length === currentQuizSession.lastDrawedResults.length) {
         return
-      }else {
-        currentQuizSession.lastDrawedResults = results
+      }
+      if(results.length === 0) {
+        return
       }
     }else {
       return
@@ -13827,6 +13864,7 @@ VISH.Quiz = function(V, $, undefined) {
         return
       }
     }
+    currentQuizSession.lastDrawedResults = results;
     _cleanResults();
     var canvas = $("#quiz_chart");
     var desiredWidth = $("#fancybox-content").width();
