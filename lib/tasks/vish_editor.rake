@@ -24,7 +24,8 @@ CSS_VIEWER = ['customPlayer.css','pack1templates.css','quiz.css','styles.css'];
 COMPILER_JAR_PATH = "lib/tasks/compile"
 JSCOMPILER_JAR_FILE = COMPILER_JAR_PATH + "/compiler.jar"
 CSSCOMPILER_JAR_FILE = COMPILER_JAR_PATH + "/yuicompressor-2.4.2.jar"
-JSCOMPILER_DOWNLOAD_URI = 'http://closure-compiler.googlecode.com/files/compiler-latest.zip'
+# JSCOMPILER_DOWNLOAD_URI = 'http://closure-compiler.googlecode.com/files/compiler-latest.zip'
+JSCOMPILER_DOWNLOAD_URI =  'http://closure-compiler.googlecode.com/files/compiler-20130823.zip'
 CSSCOMPILER_DOWNLOAD_URI = 'http://yui.zenfs.com/releases/builder/builder_1.0.0b1.zip'
 
 
