@@ -8,20 +8,22 @@ class Pdfex < ActiveRecord::Base
 		fileName = getFileName
 
 		require 'RMagick'
-		pdf = Magick::ImageList.new(self.attach.path)
+		pdf = Magick::ImageList.new(self.attach.path){ self.density = 200 }
 		pdf.write(rootFolder + fileName + ".jpg")
-		# imgLength = pdf.length
+		imgLength = pdf.length
 
-		getImgArray
+		getImgArray(imgLength)
 	end
 
-	def getImgArray
+	def getImgArray(imgLength)
 		rootFolder = getRootFolder
 		rootUrl = getRootUrl
 		fileName = getFileName
 
-		imgLength = %x(ls -l #{rootFolder}/*.jpg | wc -l).to_i
-
+		if imgLength.nil?
+			imgLength = %x(ls -l #{rootFolder}/*.jpg | wc -l).to_i
+		end
+		
 		imgs = Hash.new
 		imgs["urls"] = []
 		imgLength.times do |index|
