@@ -17,7 +17,7 @@
 
 
 
-      <form action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
+      <form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
         <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
       </form>
 
@@ -101,6 +101,9 @@
                             else if (active_tab.hasClass("resource") && hidden_elem.hasClass("resource-item")){
                               hidden_elem.fadeIn();
                             }
+                            else if (active_tab.hasClass("event") && hidden_elem.hasClass("event-item")){
+                              hidden_elem.fadeIn();
+                            }
                             else if (active_tab.hasClass("user") && hidden_elem.hasClass("contact")){
                               hidden_elem.fadeIn();
                             }
@@ -138,6 +141,12 @@
         $("#search .excursion").not(".disabled").click(function(){
           $("#search-all > ul").children(".excursion-item").show();
           $("#search-all > ul").children().not(".excursion-item").hide();
+          //call for more results
+          $('#search-all ul').trigger("scroll.pageless");
+        });
+        $("#search .event").not(".disabled").click(function(){
+          $("#search-all > ul").children(".event-item").show();
+          $("#search-all > ul").children().not(".event-item").hide();
           //call for more results
           $('#search-all ul').trigger("scroll.pageless");
         });
