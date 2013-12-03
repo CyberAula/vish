@@ -51,7 +51,8 @@ class SearchController < ApplicationController
                                 mode:  mode,
                                 key:   params[:type],
                                 page:  page,
-                                limit: limit)
+                                limit: limit,
+                                order: 'popularity DESC')
 
   end
 end
