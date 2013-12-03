@@ -1,4 +1,4 @@
-<li id="advanced_all_time"><%= t('search.time_constraint')%>
+<li id="advanced_all_time"><p class="time"><%= t('search.time_constraint')%></p>
   <ol>
     <li><a href="#" class="gray<%= ' active' if not params[:time].present? %>"><%= t('search.always') %></a></li>
     <li><a href="#day" class="gray<%= ' active' if params[:time].present? and params[:time] == "day" %>"><%= t('search.last_day') %></a></li>
