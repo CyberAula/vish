@@ -1,5 +1,6 @@
-
-  <a href="mailto:?subject=<%= t('excursion.invite.email.subject', :title => CGI::escape(title || "")) %>&amp;body=<%= t('excursion.invite.email.body', { :url => url, :name => CGI::escape(name) }) %>">   
-	  <div class="btn-gray icon-envelope"></div>
+  <a href="mailto:?subject=<%= t('excursion.invite.email.subject', :title => CGI::escape(title || "")) %>&amp;body=<%= t('excursion.invite.email.body', { :url => url, :name => CGI::escape(name) }) %>"> 
+  	<button class="with_tooltip btn share_email_button" title="<%=t('sharing.email')%>">  
+	  <i class="icon-envelope"></i>
+	</button>
   </a>
 
