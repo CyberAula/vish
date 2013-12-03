@@ -5,7 +5,7 @@ ActivityObject.class_eval do
   #method to recalculate the popularity of an object
   #depending on the type of object the algorithm will be different
   def recalculate_popularity
-  	if object_type == "Actor"
+  	if object_type == "Actor" && self.actor.id
   		#first calculate the popularity of his/her excursions
   		sum_popularity = 0
   		subject_excursions(self.actor.user,{:scope=> :me, :limit =>0}).each do |ex|
