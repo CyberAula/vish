@@ -1,119 +1,128 @@
 <% editingToolbar = (@excursion.draft or controller.action_name=="edit") %>
 
-<%= content_for :javascript do %> 
-//to close the popovers
-$(':not(#anything_not_present)').on('click', function (e) {
-  $('.popover-link').each(function () {
-  //the 'is' for buttons that trigger popups
-  //the 'has' for icons and other elements within a button that triggers a popup
-  if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-  $(this).popover('hide');
-  return;
-  }
-  });
-});
-
-
-//apply events when opening the embed popover
-$('.embed').on('shown.bs.popover', function () {
-  $('button#btn_copy_embed').zclip({
-  path:'/assets/ZeroClipboard.swf',
-  copy:function(){
-  return $('#textarea_for_iframe').text();
-  },
-  afterCopy: function(){}
-});
-
-$("#textarea_for_iframe").mouseup(function(e){
-  // fixes safari/chrome problem
-  e.preventDefault();
-  }).focus(function(e){
-  mytxt = $(this).text();
-  $(this).select();
-  }).click(function(e){
-  mytxt = $(this).text();
-  $(this).select();
-  });
-
-});
-
-$('.share').on('shown.bs.popover', function () {
-  $('button#btn_copy_share').zclip({
-  path:'/assets/ZeroClipboard.swf',
-  copy:function(){
-  return $('#input_with_shorturl').val();
-  },
-  afterCopy: function(){}
-});
-
-$("#input_with_shorturl").mouseup(function(e){
-  // fixes safari/chrome problem
-  e.preventDefault();
-  }).focus(function(e){
-  mytxt = $(this).text();
-  $(this).select();
-  }).click(function(e){
-  mytxt = $(this).text();
-  $(this).select();
-  });
-
-});
-
-$('.clone').popover({ 
-  html : true,
-  content: function() {
-  return $('.contentclone').html();
-  },
-  container: "body"
-});
-
-$('.clone').on('shown.bs.popover', function (){
-  $('.btn_cancel').on("click",function(){
-    //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
-    $('.clone').popover('hide');
-  });
-});
-
-$('.delete').popover({ 
-  html : true,
-  <% if editingToolbar %>
-    placement: "left", 
-  <% end %>
-  content: function() {
-    return $('.contentdelete').html();
-  },
-  container: "body"
-});
-
-$('.delete').on('shown.bs.popover', function(){
-  //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
-
-  <% if editingToolbar %>
-    //Prevent double confirmation before exit
-    $("a.btn[data-method='delete']").on("click",function(){
-      if((typeof VISH != "undefined")&&(typeof VISH.IframeAPI != "undefined")&&(typeof VISH.IframeAPI.allowExitWithoutConfirmation == "function")&&(VEconnected===true)){
-        VISH.IframeAPI.allowExitWithoutConfirmation();
-      }
-    });
-  <% end %>
-
-  $('.btn_cancel').on("click",function(){
-    $('.delete').popover('hide');
-  });
-});
-
-$(".spam_radio").click(function(e) {
-  $(".textarea_spam").hide("slow");
-  $(e.target).siblings("textarea").show("slow");
-
-});
-
-<%end%>
-
 <script type="text/javascript">
-$(document).ready(function(){
-  $(".with_tooltip").tooltip({ placement: 'bottom'});
-});
+  $(document).ready(function(){
+
+    //to close the popovers
+    $(':not(#anything_not_present)').on('click', function (e) {
+      $('.popover-link').each(function () {
+      //the 'is' for buttons that trigger popups
+      //the 'has' for icons and other elements within a button that triggers a popup
+      if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+        $(this).popover('hide');
+        return;
+      }
+      });
+    });
+
+    var embedEvents = false;
+    var shareEvents = false;
+
+    $('a[data-toggle="tab"]').on('shown', function (e) {
+      // e.target // activated tab
+      // e.relatedTarget // previous tab
+      var loadedTab = $(e.target).attr("tabTitle");
+      switch (loadedTab){
+        case "embed": 
+          if(!embedEvents){
+            embedEvents = true;
+            $('button#btn_copy_embed').zclip({
+              path:'/assets/ZeroClipboard.swf',
+              copy:function(){
+                return $('#textarea_for_iframe').text();
+              },
+              afterCopy: function(){}
+            });
+            $("#textarea_for_iframe").mouseup(function(e){
+              // fixes safari/chrome problem
+              e.preventDefault();
+            }).focus(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            }).click(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            });
+          }
+          break;
+        case "share": 
+          if(!shareEvents){
+            shareEvents = true;
+            $('button#btn_copy_share').zclip({
+              path:'/assets/ZeroClipboard.swf',
+              copy:function(){
+                return $('#input_with_shorturl').val();
+              },
+              afterCopy: function(){}
+            });
+            $("#input_with_shorturl").mouseup(function(e){
+              // fixes safari/chrome problem
+              e.preventDefault();
+            }).focus(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            }).click(function(e){
+              mytxt = $(this).text();
+              $(this).select();
+            });
+          }
+          break;
+        default:
+          break;
+      }
+    })
+    
+
+    $('.clone').popover({ 
+      html : true,
+      content: function() {
+      return $('.contentclone').html();
+      },
+      container: "body"
+    });
+
+    $('.clone').on('shown.bs.popover', function (){
+      $('.btn_cancel').on("click",function(){
+        //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+        $('.clone').popover('hide');
+      });
+    });
+
+    $('.delete').popover({ 
+      html : true,
+      <% if editingToolbar %>
+        placement: "left", 
+      <% end %>
+      content: function() {
+        return $('.contentdelete').html();
+      },
+      container: "body"
+    });
+
+    $('.delete').on('shown.bs.popover', function(){
+      //done this way because next three lines in document.ready did not fire with popovers as they generate dinamically
+
+      <% if editingToolbar %>
+        //Prevent double confirmation before exit
+        $("a.btn[data-method='delete']").on("click",function(){
+          if((typeof VISH != "undefined")&&(typeof VISH.IframeAPI != "undefined")&&(typeof VISH.IframeAPI.allowExitWithoutConfirmation == "function")&&(VEconnected===true)){
+            VISH.IframeAPI.allowExitWithoutConfirmation();
+          }
+        });
+      <% end %>
+
+      $('.btn_cancel').on("click",function(){
+        $('.delete').popover('hide');
+      });
+    });
+
+    $(".spam_radio").click(function(e) {
+      $(".textarea_spam").hide("slow");
+      $(e.target).siblings("textarea").show("slow");
+    });
+
+    $(".with_tooltip").tooltip({ placement: 'bottom'});
+  });
 </script>
 
 <% unless editingToolbar %>
@@ -137,7 +146,6 @@ $(document).ready(function(){
       </div>
     </div>  
   <%end%>
-
 
   <!--si es tuya la puedes eliminar o editar-->
   <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
@@ -175,7 +183,7 @@ $(document).ready(function(){
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active">
-        <a href="#tab1" data-toggle="tab">
+        <a href="#tab1" tabTitle='description' data-toggle="tab">
           <i class="icon-align-left"></i> 
           <span class=" hidden-tablet hidden-phone">
             <%=t('excursion.description')%>
@@ -183,7 +191,7 @@ $(document).ready(function(){
         </a>
       </li>
       <li>
-        <a href="#tab2" data-toggle="tab">
+        <a href="#tab2" tabTitle='embed' data-toggle="tab">
           <i class="icon-code"></i> 
           <span class=" hidden-tablet hidden-phone">
             <%=t('excursion.actions.embed') %>
@@ -191,7 +199,7 @@ $(document).ready(function(){
         </a>
       </li>
       <li>
-        <a href="#tab3" data-toggle="tab">
+        <a href="#tab3" tabTitle='share' data-toggle="tab">
           <i class="icon-share"></i>
           <span class=" hidden-tablet hidden-phone">
             <%=t('excursion.actions.share')%>
@@ -199,7 +207,7 @@ $(document).ready(function(){
         </a>
       </li>    
       <li>
-        <a href="#tab4" data-toggle="tab">
+        <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="icon-download"></i> 
           <span class=" hidden-tablet hidden-phone">
             <%=t('excursion.actions.scorm')%>
@@ -207,7 +215,7 @@ $(document).ready(function(){
         </a>
       </li>  
       <li>
-        <a href="#tab5" data-toggle="tab">
+        <a href="#tab5" tabTitle='flag' data-toggle="tab">
           <i class="icon-flag"></i> 
           <!--span class=" hidden-tablet hidden-phone">
             <%#=t('excursion.actions.scorm')%>
@@ -230,16 +238,20 @@ $(document).ready(function(){
     <!-- tab2 / embed -->
     <div class="tab-pane" id="tab2">
       <div class="contentembed">
-        <textarea class="shortUrl" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
-        <!--button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy large"></i></button-->
+        <textarea class="shortUrl" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
+        <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+          <i class="icon-copy large"></i>
+        </button>
       </div>
     </div>
     <!-- tab3 / share -->
     <div class="tab-pane" id="tab3">
       <div class="contentShare">
         <div class="input-append url-input">
-          <input class="shortUrl" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
-          <!--button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>"><i class="icon-copy "></i></button-->
+          <input class="shortUrl" readonly="true" id="input_with_shorturl" type="text" value="<%=shortURL%>"></input>
+            <button class="btn copy_btn" id="btn_copy_share" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
+              <i class="icon-copy "></i>
+            </button>
         </div>
         <div class="social_toolbar_excursion">
           <div class="twitter_toolbar_excursion">
