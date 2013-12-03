@@ -22,7 +22,7 @@
       </form>
 
 
-      <button id="showLeft">advanced options </button>
+      <button id="showTop">Show/Hide Top Slide Menu</button>
 
 
       <div class="tab-content">
@@ -176,24 +176,28 @@
 
 
   <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-  <script>
-    var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
 
-    body = document.body;
+    <script>
+      var 
 
-    showLeft.onclick = function() {
-      classie.toggle( this, 'active' );
-      classie.toggle( menuLeft, 'cbp-spmenu-open' );
-      disableOther( 'showLeft' );
-    };
+        menuTop = document.getElementById( 'cbp-spmenu-s3' ),
+
+        body = document.body;
 
 
-    function disableOther( button ) {
-      if( button !== 'showLeft' ) {
-        classie.toggle( showLeft, 'disabled' );
+      showTop.onclick = function() {
+        classie.toggle( this, 'active' );
+        classie.toggle( menuTop, 'cbp-spmenu-open' );
+        disableOther( 'showTop' );
+      };
+      
+
+      function disableOther( button ) {
+
+        if( button !== 'showTop' ) {
+          classie.toggle( showTop, 'disabled' );
+        }
       }
-
-    }
-  </script>
+    </script>
 </section>
 
