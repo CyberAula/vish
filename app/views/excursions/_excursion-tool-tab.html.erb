@@ -251,9 +251,9 @@ $(document).ready(function(){
           <div class="gplus_toolbar_excursion ">
             <%= render :partial=>'shareon/gplus', :locals=>{:url=>shortURL} %>
           </div>
-          <button class="email_toolbar_excursion">
+          <div class="email_toolbar_excursion">
             <%= render :partial=>'shareon/email', :locals=>{:url=>shortURL, :title => @excursion.title, :name => (user_signed_in? ? current_subject.name : '')} %>
-          </button>
+          </div>
         </div>
       </div>
     </div> 

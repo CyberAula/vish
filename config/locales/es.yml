@@ -596,6 +596,8 @@ es:
   send:
     send: "Enviar"    
   share: "Enviar"
+  sharing:
+    email: "Compartir por email"
   sign_up: "Registrar"
   simple_captcha:
     placeholder: "Introduce el valor de la imagen"

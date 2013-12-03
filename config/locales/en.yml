@@ -645,6 +645,8 @@ en:
   send:
     send: "Send"
   share: "Post"
+  sharing:
+    email: "Share by email"
   sign_up: "Register"
   simple_captcha:
     placeholder: "Enter the image value"

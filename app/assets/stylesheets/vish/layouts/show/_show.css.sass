@@ -150,20 +150,16 @@
             @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
             display: block
             float: left
-
             .twitter_toolbar_excursion,
             .facebook_toolbar_excursion,
             .gplus_toolbar_excursion,
             .email_toolbar_excursion
               float: left
               display: inline-block
-             
             .twitter_toolbar_excursion
               width: 85px
-
             .facebook_toolbar_excursion
               width: 85px
-
             .gplus_toolbar_excursion
               width: 70px
           span
@@ -177,13 +173,14 @@
             float: left
           .actions-clone,
           a
-
             display: block
             float: left
             margin-right: 20px
         .contentscorm
           p
             width: 80%
+          .btn-primary
+            margin-top: 5px !important
         .excursion-social
           float: left
           display: inline-block
@@ -357,3 +354,11 @@
       padding: 3px 12px
       @include border-radius($baseBorderRadius)
 
+#input_with_shorturl
+  width: 90% !important
+
+.share_email_button
+  color: #007cc8
+  height: 22px
+  width: 30px
+  padding: 0px !important
