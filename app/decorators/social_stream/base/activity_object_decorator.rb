@@ -1,6 +1,5 @@
 ActivityObject.class_eval do
   include HomeHelper
-  attr_accessible :popularity
   before_save :recalculate_popularity
 
   #method to recalculate the popularity of an object
