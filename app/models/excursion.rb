@@ -26,6 +26,7 @@ class Excursion < ActiveRecord::Base
   before_save :fix_relation_ids_drafts
   after_destroy :remove_scorm
   after_destroy :remove_pdf
+  after_save :fix_post_activity_nil
 
   define_index do
     activity_object_index
@@ -554,6 +555,23 @@ class Excursion < ActiveRecord::Base
     ExcursionLearningEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
   end
 
+  #we don't know what happens or how it happens but sometimes in social_stream
+  # the activity inside the activity_object is nil, so we fix it here
+  def fix_post_activity_nil      
+    if self.post_activity == nil
+      a = Activity.new :verb         => "post",
+                       :author_id    => self.activity_object.author_id,
+                       :user_author  => self.activity_object.user_author,
+                       :owner        => self.activity_object.owner,
+                       :relation_ids => self.activity_object.relation_ids,
+                       :parent_id    => self.activity_object._activity_parent_id
+
+      a.activity_objects << self.activity_object
+
+      a.save!
+    end
+  end
+
   private
 
   def parse_for_meta
@@ -585,5 +603,5 @@ class Excursion < ActiveRecord::Base
       activity_object.relation_ids=[Relation::Public.instance.id]
     end
   end
-
+  
 end
