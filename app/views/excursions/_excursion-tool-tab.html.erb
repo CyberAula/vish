@@ -238,7 +238,7 @@
     <!-- tab2 / embed -->
     <div class="tab-pane" id="tab2">
       <div class="contentembed">
-        <textarea class="shortUrl" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='http://<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
+        <textarea class="shortUrl" readonly="true" id="textarea_for_iframe" type="text">&lt;iframe id='presentation_iframe' src='//<%= request.env["HTTP_HOST"] + excursion_path(@excursion, :format => :full)%>' width='910' height='680' style='border:0' iframeborder='0' frameborder='0' iframeElement.frameBorder = 0;&gt;&lt;/iframe&gt</textarea>
         <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
           <i class="icon-copy large"></i>
         </button>
