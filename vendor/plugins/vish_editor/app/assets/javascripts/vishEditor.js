@@ -11811,7 +11811,6 @@ VISH.Editor = function(V, $, undefined) {
     V.Editor.Object.init();
     V.Editor.PDFex.init();
     V.Editor.Presentation.Repository.init();
-    V.Editor.Slideset.Repository.init();
     V.Editor.Thumbnails.init();
     V.Editor.Quiz.init();
     V.Editor.Preview.init();
@@ -11839,7 +11838,13 @@ VISH.Editor = function(V, $, undefined) {
     $("#waiting_overlay").hide()
   };
   var onSlideThumbClicked = function(event) {
-    var type = $(event.currentTarget).attr("type");
+    var slideThumb;
+    if(event.currentTarget.tagName === "P") {
+      slideThumb = $(event.currentTarget).parent().find(".stthumb")
+    }else {
+      slideThumb = event.currentTarget
+    }
+    var type = $(slideThumb).attr("type");
     if(!type) {
       type = V.Constant.STANDARD
     }
@@ -11847,7 +11852,7 @@ VISH.Editor = function(V, $, undefined) {
     if(slideMode === V.Constant.STANDARD) {
       var options = {};
       if(type === V.Constant.STANDARD) {
-        options.template = $(event.currentTarget).attr("template")
+        options.template = $(slideThumb).attr("template")
       }
       options.slideNumber = V.Slides.getSlidesQuantity() + 1;
       var slide = V.Editor.Dummies.getDummy(type, options);
@@ -11858,7 +11863,7 @@ VISH.Editor = function(V, $, undefined) {
         if(type === V.Constant.STANDARD && V.Editor.Slideset.isSlideset(slideset)) {
           var options = {};
           options.subslide = true;
-          options.template = $(event.currentTarget).attr("template");
+          options.template = $(slideThumb).attr("template");
           options.slideset = slideset;
           var subslide = V.Editor.Dummies.getDummy(type, options);
           V.Editor.Slides.addSubslide(slideset, subslide)
@@ -12635,9 +12640,6 @@ VISH.Editor.Utils = function(V, $, undefined) {
       case "tab_presentations_repo":
         V.Editor.Presentation.Repository.beforeLoadTab();
         break;
-      case "tab_smartcards_repo":
-        V.Editor.Slideset.Repository.beforeLoadTab();
-        break;
       case "tab_pic_thumbnails":
         V.Editor.Image.Thumbnails.beforeLoadTab();
         break;
@@ -12678,9 +12680,6 @@ VISH.Editor.Utils = function(V, $, undefined) {
         break;
       case "tab_presentations_repo":
         V.Editor.Presentation.Repository.onLoadTab();
-        break;
-      case "tab_smartcards_repo":
-        V.Editor.Slideset.Repository.onLoadTab();
         break;
       case "tab_pic_thumbnails":
         V.Editor.Image.Thumbnails.onLoadTab();
@@ -13211,7 +13210,20 @@ VISH.Editor.Image = function(V, $, undefined) {
     return contentAddMode
   };
   var setAddContentMode = function(mode) {
+    _cleanTabs();
+    switch(mode) {
+      case V.Constant.NONE:
+        break;
+      case V.Constant.THUMBNAIL:
+        $("#tab_pic_thumbnails").show();
+        break;
+      case V.Constant.FLASHCARD:
+        break
+    }
     contentAddMode = mode
+  };
+  var _cleanTabs = function() {
+    $("#tab_pic_thumbnails").hide()
   };
   return{init:init, onLoadTab:onLoadTab, drawImage:drawImage, addContent:addContent, getAddContentMode:getAddContentMode, setAddContentMode:setAddContentMode}
 }(VISH, jQuery);
@@ -14619,164 +14631,6 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
   var postCopyActions = function(fcJSON, fcDOM) {
   };
   return{init:init, getDummy:getDummy, draw:draw, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, loadSlideset:loadSlideset, unloadSlideset:unloadSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, getSlideHeader:getSlideHeader, onBackgroundSelected:onBackgroundSelected, getThumbnailURL:getThumbnailURL, getDefaultThumbnailURL:getDefaultThumbnailURL, onThumbnailLoadFail:onThumbnailLoadFail, preCopyActions:preCopyActions, postCopyActions:postCopyActions}
-}(VISH, jQuery);
-VISH.Editor.Slideset.Repository = function(V, $, undefined) {
-  var containerDivId = "tab_smartcards_repo_content";
-  var carrouselDivId = "tab_smartcards_repo_content_carrousel";
-  var previewDivId = "tab_smartcards_repo_content_preview";
-  var previewButton;
-  var myInput;
-  var timestampLastSearch;
-  var currentPresentations = new Array;
-  var selectedPres = null;
-  var init = function() {
-    myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
-    $(myInput).keydown(function(event) {
-      if(event.keyCode == 13) {
-        _requestData($(myInput).val());
-        $(myInput).blur()
-      }
-    });
-    previewButton = $("#" + previewDivId).find("button.okButton2");
-    $(previewButton).click(function() {
-      if(selectedPres) {
-        V.Editor.Presentation.previewPresentation(selectedPres)
-      }
-    })
-  };
-  var beforeLoadTab = function() {
-    _cleanSearch()
-  };
-  var onLoadTab = function() {
-  };
-  var _requestData = function(text) {
-    _prepareRequest();
-    V.Editor.API.requestSmartcards(text, _onDataReceived, _onAPIError)
-  };
-  var _prepareRequest = function() {
-    _cleanCarrousel();
-    _cleanObjectMetadata();
-    V.Utils.Loader.startLoadingInContainer($("#" + carrouselDivId), {style:"loading_presentation_carrousel"});
-    $(myInput).attr("disabled", "true");
-    timestampLastSearch = Date.now()
-  };
-  var _cleanSearch = function() {
-    timestampLastSearch = undefined;
-    $(myInput).val("");
-    $(myInput).removeAttr("disabled");
-    _cleanObjectMetadata();
-    _cleanCarrousel()
-  };
-  var _cleanCarrousel = function() {
-    $("#" + carrouselDivId).hide();
-    V.Editor.Carrousel.cleanCarrousel(carrouselDivId)
-  };
-  var _onDataReceived = function(data) {
-    if(!_isValidResult()) {
-      return
-    }
-    if(!data || !data.excursions || data.excursions.length == 0) {
-      _onSearchFinished();
-      _drawData(true);
-      return
-    }
-    var carrouselImages = [];
-    currentExcursions = new Array;
-    $.each(data.excursions, function(index, pres) {
-      if(!pres.id) {
-        pres.id = V.Utils.getId("tmp")
-      }
-      if(!pres.avatar) {
-        pres.avatar = V.ImagesPath + "icons/defaultAvatar.png"
-      }
-      var myImg = $("<img excursionId ='" + pres.id + "'' src=" + pres.avatar + " />");
-      carrouselImages.push(myImg);
-      currentExcursions[pres.id] = pres
-    });
-    var options = {};
-    options.callback = _onImagesLoaded;
-    V.Utils.Loader.loadImagesOnContainer(carrouselImages, carrouselDivId, options)
-  };
-  var _onImagesLoaded = function() {
-    _onSearchFinished();
-    _drawData()
-  };
-  var _onSearchFinished = function() {
-    V.Utils.Loader.stopLoadingInContainer($("#" + carrouselDivId));
-    $(myInput).removeAttr("disabled")
-  };
-  var _drawData = function(noResults) {
-    $("#" + carrouselDivId).show();
-    if(!_isValidResult()) {
-      _cleanCarrousel();
-      return
-    }
-    V.Editor.Utils.addTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)]);
-    if(noResults === true) {
-      $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.Noresultsfound") + "</p>");
-      V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
-    }else {
-      if(noResults === false) {
-        $("#" + carrouselDivId).html("<p class='carrouselNoResults'>" + V.I18n.getTrans("i.errorViSHConnection") + "</p>");
-        V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
-      }else {
-        var options = new Array;
-        options.rows = 1;
-        options.callback = _onClickCarrouselElement;
-        options.rowItems = 5;
-        options.scrollItems = 5;
-        options.width = 800;
-        options.styleClass = "presentation_repository";
-        options.afterCreateCarruselFunction = function() {
-          setTimeout(function() {
-            V.Editor.Utils.removeTmpShown([$("#" + containerDivId), $("#" + carrouselDivId)])
-          }, 100)
-        };
-        V.Editor.Carrousel.createCarrousel(carrouselDivId, options)
-      }
-    }
-  };
-  var _onAPIError = function() {
-    if(_isValidResult()) {
-      _onSearchFinished();
-      _drawData(false)
-    }
-  };
-  var _onClickCarrouselElement = function(event) {
-    var excursionId = $(event.target).attr("excursionId");
-    if(excursionId) {
-      $(".excursionSelectedInCarrousel").removeClass("excursionSelectedInCarrousel");
-      $(event.target).addClass("excursionSelectedInCarrousel");
-      selectedPres = currentExcursions[excursionId];
-      _renderObjectMetadata(selectedPres)
-    }
-  };
-  var _isValidResult = function() {
-    if(typeof timestampLastSearch == "undefined") {
-      return false
-    }
-    var isVisible = $("#" + carrouselDivId).is(":visible");
-    if(!isVisible) {
-      return false
-    }
-    return true
-  };
-  var _renderObjectMetadata = function(object) {
-    var metadataArea = $("#" + previewDivId).find("div.content_preview_metadata");
-    $(metadataArea).html("");
-    if(object) {
-      var table = V.Editor.Utils.generateTable({title:object.title, author:object.author, description:object.description, tableClass:"metadata metadata_presentation"});
-      $(metadataArea).html(table);
-      $(previewButton).show()
-    }
-  };
-  var _cleanObjectMetadata = function() {
-    var metadataArea = $("#" + previewDivId).find("div.content_preview_metadata");
-    $(metadataArea).html("");
-    $(previewButton).hide()
-  };
-  return{init:init, beforeLoadTab:beforeLoadTab, onLoadTab:onLoadTab}
 }(VISH, jQuery);
 VISH.Samples = function(V, undefined) {
   var basic_samples = {"id":"1", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "author":"ViSH Editor Team", "language":"en", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "tags":["Do\u00f1ana", "Lynx"], "age_range":"4 - 20", "subject":["Biology"], "educational_objectives":"Know about Iberian Lynx", "adquired_competencies":"Pupils will be smarter", "VEVersion":"0.2", "type":"presentation", 
@@ -17129,36 +16983,12 @@ VISH.Editor.API = function(V, $, undefined) {
     }
     _requestByType("excursion", "", successCallback, failCallback)
   };
-  var requestSmartcards = function(text, successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.smartcardList;
-        setTimeout(function() {
-          successCallback(result)
-        }, 2E3)
-      }
-      return
-    }
-    _requestByType("smartcard", text, successCallback, failCallback)
-  };
-  var requestRecomendedSmartcards = function(successCallback, failCallback) {
-    if(V.Utils.getOptions().configuration.mode == V.Constant.NOSERVER) {
-      if(typeof successCallback == "function") {
-        var result = V.Samples.API.smartcardList;
-        setTimeout(function() {
-          successCallback(result)
-        }, 2E3)
-      }
-      return
-    }
-    _requestByType("smartcard", "", successCallback, failCallback)
-  };
   var _requestByType = function(type, query, successCallback, failCallback) {
     if(type === "live" || type === "object") {
       _requestResourceType(type, query, successCallback, failCallback);
       return
     }else {
-      if(type === "excursion" || type === "smartcard") {
+      if(type === "excursion") {
         _requestExcursionType(type, query, successCallback, failCallback);
         return
       }
@@ -17277,8 +17107,8 @@ VISH.Editor.API = function(V, $, undefined) {
     var iframe = $("#hiddenIframeForAjaxDownloads");
     $(iframe).attr("src", "/excursions/tmpJson.json?fileId=" + fileId + "&filename=" + filename)
   };
-  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestSmartcards:requestSmartcards, requestRecomendedSmartcards:requestRecomendedSmartcards, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, 
-  requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, downloadTmpJSON:downloadTmpJSON}
+  return{init:init, requestExcursions:requestExcursions, requestRecomendedExcursions:requestRecomendedExcursions, requestVideos:requestVideos, requestRecomendedVideos:requestRecomendedVideos, requestImages:requestImages, requestRecomendedImages:requestRecomendedImages, requestObjects:requestObjects, requestRecomendedObjects:requestRecomendedObjects, requestLives:requestLives, requestRecomendedLives:requestRecomendedLives, requestTags:requestTags, requestThumbnails:requestThumbnails, uploadTmpJSON:uploadTmpJSON, 
+  downloadTmpJSON:downloadTmpJSON}
 }(VISH, jQuery);
 VISH.Editor.Animations = function(V, $, undefined) {
   var initialized = false;
@@ -17882,6 +17712,8 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).on("change", "#tlt_seconds", V.Editor.Settings.onTLTchange);
       $(document).on("click", "#save_presentation_details", V.Editor.Settings.onSavePresentationDetailsButtonClicked);
       $(document).on("click", "div.slidethumb", V.Editor.onSlideThumbClicked);
+      $(document).on("click", "div.stthumb", V.Editor.onSlideThumbClicked);
+      $(document).on("click", ".stthumb_wrapper p", V.Editor.onSlideThumbClicked);
       $(document).on("click", ".editable", V.Editor.onEditableClicked);
       $(document).on("click", ".selectable", V.Editor.onSelectableClicked);
       $(document).on("click", ':not(".selectable")', V.Editor.onNoSelectableClicked);
@@ -17913,7 +17745,6 @@ VISH.Editor.Events = function(V, $, undefined) {
         if(slidesAddMode === V.Constant.SLIDESET) {
           $("#tab_pdfex").parent().hide();
           $("#tab_presentations_repo").parent().hide();
-          $("#tab_smartcards_repo").parent().hide();
           $("#tab_json_file").parent().hide();
           $(".tab_slides_smartcards").hide()
         }
@@ -17924,7 +17755,6 @@ VISH.Editor.Events = function(V, $, undefined) {
         $(".tab_slides_smartcards").show();
         $("#tab_pdfex").parent().show();
         $("#tab_presentations_repo").parent().show();
-        $("#tab_smartcards_repo").parent().show();
         $("#tab_json_file").parent().show();
         V.Editor.setContentAddMode(V.Constant.NONE)
       }});
@@ -17945,10 +17775,8 @@ VISH.Editor.Events = function(V, $, undefined) {
       }});
       $("#hidden_button_to_uploadThumbnail").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
         V.Editor.Image.setAddContentMode(V.Constant.THUMBNAIL);
-        $("#tab_pic_thumbnails").show();
         V.Editor.Utils.loadTab("tab_pic_thumbnails")
       }, "onClosed":function(data) {
-        $("#tab_pic_thumbnails").hide();
         if(V.Editor.Image.getAddContentMode() === V.Constant.THUMBNAIL) {
           setTimeout(function() {
             V.Editor.Settings.displaySettings()
@@ -17996,9 +17824,6 @@ VISH.Editor.Events = function(V, $, undefined) {
     });
     $(document).on("click", "#tab_presentations_repo_help", function() {
       V.Tour.startTourWithId("help_excursion_selection_help", "bottom")
-    });
-    $(document).on("click", "#tab_smartcards_repo_help", function() {
-      V.Tour.startTourWithId("help_smartcard_selection_help", "bottom")
     });
     $(document).on("click", "#help_themes_selection", function() {
       V.Tour.startTourWithId("themes_help", "bottom")
