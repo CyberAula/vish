@@ -7467,6 +7467,7 @@ VISH.IframeAPI = function(V, undefined) {
     $("<img />").attr({"id":"fancybox-img", "src":imgPreloader.src, "alt":selectedOpts.title}).appendTo(tmp);
     _show()
   }, _show = function() {
+    $("#fancybox-outer").css("background", "white");
     $(".joyride-close-tip").click();
     var pos, equal;
     loading.hide();
@@ -11591,24 +11592,33 @@ VISH.Utils.Loader = function(V, undefined) {
       }
     }
   };
-  var onCloseLoading = function() {
-    $("#fancybox-outer").css("background", "white")
+  var prepareFancyboxForFullLoading = function() {
+    $("#fancybox-outer").css("background", "rgba(255,255,255,0.9)");
+    $("#fancybox-wrap").css("margin-top", "20px");
+    $("#fancybox-wrap").css("margin-left", "20px")
   };
   var _isFullLoadingActive = function() {
     return $("#loading_fancy").is(":visible")
   };
   var startLoadingInContainer = function(container, options) {
-    $(container).html($("#loading_fancy_wrapper").html());
-    $(container).addClass("loadingtmpShown");
+    var loadImg = document.createElement("img");
+    $(loadImg).addClass("loading_fancy_img");
+    $(loadImg).attr("src", V.ImagesPath + "lightbox-ico-loading.gif");
     if(options && options.style) {
-      $(container).find(".loading_fancy_img").addClass(options.style)
+      $(loadImg).addClass(options.style)
     }
+    var loadingBody = document.createElement("div");
+    $(loadingBody).addClass("loading_fancy");
+    $(loadingBody).append(loadImg);
+    $(container).html("");
+    $(container).append(loadingBody);
+    $(container).addClass("loadingtmpShown")
   };
   var stopLoadingInContainer = function(container) {
     $(container).find(".loading_fancy_img").parent().remove();
     $(container).removeClass("loadingtmpShown")
   };
-  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, loadLanguageCSS:loadLanguageCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
+  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, loadLanguageCSS:loadLanguageCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, prepareFancyboxForFullLoading:prepareFancyboxForFullLoading, startLoading:startLoading, stopLoading:stopLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.Status = function(V, $, undefined) {
   var _device;

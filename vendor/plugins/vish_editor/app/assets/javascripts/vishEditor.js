@@ -6723,6 +6723,7 @@ jQuery.cookie = function(key, value, options) {
     $("<img />").attr({"id":"fancybox-img", "src":imgPreloader.src, "alt":selectedOpts.title}).appendTo(tmp);
     _show()
   }, _show = function() {
+    $("#fancybox-outer").css("background", "white");
     $(".joyride-close-tip").click();
     var pos, equal;
     loading.hide();
@@ -11872,6 +11873,9 @@ VISH.Editor = function(V, $, undefined) {
     }
     $.fancybox.close()
   };
+  var onAnimationThumbClicked = function() {
+    $.fancybox.close()
+  };
   var onEditableClicked = function(event) {
     $(this).removeClass("editable");
     setCurrentArea($(this));
@@ -12334,7 +12338,7 @@ VISH.Editor = function(V, $, undefined) {
     }
   };
   return{init:init, getOptions:getOptions, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getLastArea:getLastArea, getPresentationType:getPresentationType, getDraftPresentation:getDraftPresentation, isPresentationDraft:isPresentationDraft, getContentAddMode:getContentAddMode, setContentAddMode:setContentAddMode, hasInitialPresentation:hasInitialPresentation, isZoneEmpty:isZoneEmpty, savePresentation:savePresentation, sendPresentation:sendPresentation, setCurrentArea:setCurrentArea, selectArea:selectArea, 
-  onSlideEnterEditor:onSlideEnterEditor, onSlideLeaveEditor:onSlideLeaveEditor, onSlideThumbClicked:onSlideThumbClicked, onEditableClicked:onEditableClicked, onSelectableClicked:onSelectableClicked, onNoSelectableClicked:onNoSelectableClicked, onDeleteItemClicked:onDeleteItemClicked, onDeleteSlideClicked:onDeleteSlideClicked, addDeleteButton:addDeleteButton, hasPresentationChanged:hasPresentationChanged}
+  onSlideEnterEditor:onSlideEnterEditor, onSlideLeaveEditor:onSlideLeaveEditor, onSlideThumbClicked:onSlideThumbClicked, onAnimationThumbClicked:onAnimationThumbClicked, onEditableClicked:onEditableClicked, onSelectableClicked:onSelectableClicked, onNoSelectableClicked:onNoSelectableClicked, onDeleteItemClicked:onDeleteItemClicked, onDeleteSlideClicked:onDeleteSlideClicked, addDeleteButton:addDeleteButton, hasPresentationChanged:hasPresentationChanged}
 }(VISH, jQuery);
 VISH.Editor.Utils = function(V, $, undefined) {
   var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
@@ -17711,8 +17715,9 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).on("change", "#tlt_minutes", V.Editor.Settings.onTLTchange);
       $(document).on("change", "#tlt_seconds", V.Editor.Settings.onTLTchange);
       $(document).on("click", "#save_presentation_details", V.Editor.Settings.onSavePresentationDetailsButtonClicked);
-      $(document).on("click", "div.slidethumb", V.Editor.onSlideThumbClicked);
+      $(document).on("click", "div.templatethumb", V.Editor.onSlideThumbClicked);
       $(document).on("click", "div.stthumb", V.Editor.onSlideThumbClicked);
+      $(document).on("click", "#animation_fancybox div.slidethumb", V.Editor.onAnimationThumbClicked);
       $(document).on("click", ".stthumb_wrapper p", V.Editor.onSlideThumbClicked);
       $(document).on("click", ".editable", V.Editor.onEditableClicked);
       $(document).on("click", ".selectable", V.Editor.onSelectableClicked);
@@ -17761,11 +17766,8 @@ VISH.Editor.Events = function(V, $, undefined) {
       $("#hidden_button_to_launch_theme_fancybox").fancybox({"autoDimensions":false, "width":600, "scrolling":"no", "height":400, "padding":0});
       $("#hidden_button_to_launch_animation_fancybox").fancybox({"autoDimensions":false, "width":600, "scrolling":"no", "height":400, "padding":0});
       $("#fancyLoad").fancybox({"type":"inline", "autoDimensions":false, "scrolling":"no", "autoScale":true, "width":"100%", "height":"100%", "padding":0, "margin":0, "overlayOpacity":0, "overlayColor":"#fff", "showCloseButton":false, "onComplete":function(data) {
-        $("#fancybox-outer").css("background", "rgba(255,255,255,0.9)");
-        $("#fancybox-wrap").css("margin-top", "20px");
-        $("#fancybox-wrap").css("margin-left", "20px")
+        V.Utils.Loader.prepareFancyboxForFullLoading()
       }, "onClosed":function(data) {
-        $("#fancybox-outer").css("background", "white")
       }});
       $("#hidden_button_to_change_slide_background").fancybox({"autoDimensions":false, "width":800, "scrolling":"no", "height":600, "padding":0, "onStart":function(data) {
         V.Editor.Image.setAddContentMode(V.Constant.FLASHCARD);
@@ -19483,7 +19485,6 @@ VISH.Editor.PDFex = function(V, $, undefined) {
         return
       }
       V.Utils.Loader.stopLoading(function() {
-        V.Utils.Loader.onCloseLoading();
         _showErrorDialog()
       })
     }})
@@ -19516,8 +19517,7 @@ VISH.Editor.PDFex = function(V, $, undefined) {
   var processResponse = function(jsonResponse) {
     try {
       var presentation = generatePresentationWithImgArray(jsonResponse.urls);
-      V.Editor.Presentation.previewPresentation(presentation);
-      V.Utils.Loader.onCloseLoading()
+      V.Editor.Presentation.previewPresentation(presentation)
     }catch(e) {
       V.Utils.Loader.stopLoading()
     }
@@ -21455,7 +21455,6 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
           $.fancybox.close()
         };
         options.buttons = [button1];
-        V.Utils.Loader.onCloseLoading();
         V.Utils.showDialog(options)
       }, Math.max(1250 - diff, 0))
     })
@@ -24686,24 +24685,33 @@ VISH.Utils.Loader = function(V, undefined) {
       }
     }
   };
-  var onCloseLoading = function() {
-    $("#fancybox-outer").css("background", "white")
+  var prepareFancyboxForFullLoading = function() {
+    $("#fancybox-outer").css("background", "rgba(255,255,255,0.9)");
+    $("#fancybox-wrap").css("margin-top", "20px");
+    $("#fancybox-wrap").css("margin-left", "20px")
   };
   var _isFullLoadingActive = function() {
     return $("#loading_fancy").is(":visible")
   };
   var startLoadingInContainer = function(container, options) {
-    $(container).html($("#loading_fancy_wrapper").html());
-    $(container).addClass("loadingtmpShown");
+    var loadImg = document.createElement("img");
+    $(loadImg).addClass("loading_fancy_img");
+    $(loadImg).attr("src", V.ImagesPath + "lightbox-ico-loading.gif");
     if(options && options.style) {
-      $(container).find(".loading_fancy_img").addClass(options.style)
+      $(loadImg).addClass(options.style)
     }
+    var loadingBody = document.createElement("div");
+    $(loadingBody).addClass("loading_fancy");
+    $(loadingBody).append(loadImg);
+    $(container).html("");
+    $(container).append(loadingBody);
+    $(container).addClass("loadingtmpShown")
   };
   var stopLoadingInContainer = function(container) {
     $(container).find(".loading_fancy_img").parent().remove();
     $(container).removeClass("loadingtmpShown")
   };
-  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, loadLanguageCSS:loadLanguageCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, startLoading:startLoading, stopLoading:stopLoading, onCloseLoading:onCloseLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
+  return{loadImagesOnContainer:loadImagesOnContainer, loadScript:loadScript, loadGoogleLibrary:loadGoogleLibrary, loadCSS:loadCSS, loadDeviceCSS:loadDeviceCSS, loadLanguageCSS:loadLanguageCSS, onGoogleLibraryLoaded:onGoogleLibraryLoaded, prepareFancyboxForFullLoading:prepareFancyboxForFullLoading, startLoading:startLoading, stopLoading:stopLoading, startLoadingInContainer:startLoadingInContainer, stopLoadingInContainer:stopLoadingInContainer}
 }(VISH);
 VISH.VideoPlayer.CustomPlayer = function(V, $, undefined) {
   var progressBarTimer;
