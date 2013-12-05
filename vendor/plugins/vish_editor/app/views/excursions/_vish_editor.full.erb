@@ -19,6 +19,12 @@
 								</a>
 							</li>
 							<li>
+								<a class="menu_option menu_action" action="preview">
+									<i class="icon-button icon-eye-open"></i>
+									<span i18n-key="i.Preview">Preview</span>
+								</a>
+							</li>
+							<li>
 								<a class="menu_option menu_action publishMenuOption" action="onPublishButtonClicked">
 									<i class="icon-button icon-rotate-270 icon-download-alt"></i> 
 									<span i18n-key="i.Publish">Publish</span>
@@ -42,9 +48,6 @@
 									<li>
 										<a class="menu_option menu_action" action="insertPresentation" i18n-key="i.Presentation">Excursion</a>
 									</li>
-									<li>
-										<a class="menu_option menu_action" action="insertSmartcard" i18n-key="i.Smartcard">Smartcard</a>
-									</li>
 									<li class="liInsertJson">
 										<a class="menu_option menu_action" action="insertJSON">JSON</a>
 									</li>
@@ -60,12 +63,6 @@
 										<a class="menu_option menu_action" action="exportToJSON" i18n-key="i.toJSON">to JSON</a>
 									</li>
 								</ul>
-							</li>
-							<li>
-								<a class="menu_option menu_action" action="preview">
-									<i class="icon-button icon-eye-open"></i>
-									<span i18n-key="i.Preview">Preview</span>
-								</a>
 							</li>
 							<li>
 								<a class="menu_option menu_action" action="displaySettings">
@@ -105,14 +102,6 @@
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Save">Save</p>
 				</div>
-				<div id="toolbar_publish_help" class="toolbar_presentation_wrapper">
-					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
-						<button type="button" class="btn btn-primary btn-small">
-							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
-						</button>
-					</a>
-					<p class="toolbar_presentation_title" i18n-key="i.Publish">Publish</p>
-				</div>
 				<div id="toolbar_preview_help" class="toolbar_presentation_wrapper">
 					<a id="toolbar_preview" class="tool_action" action="preview" href="#">
 						<button type="button" class="btn btn-primary btn-small">
@@ -120,6 +109,14 @@
 						</button>
 					</a>
 					<p class="toolbar_presentation_title" i18n-key="i.Preview">Preview</p>
+				</div>
+				<div id="toolbar_publish_help" class="toolbar_presentation_wrapper">
+					<a id="toolbar_publish" class="tool_action" action="publish" href="#">
+						<button type="button" class="btn btn-primary btn-small">
+							<i class="icon-button icon-rotate-270 icon-download-alt"></i>
+						</button>
+					</a>
+					<p class="toolbar_presentation_title" i18n-key="i.Publish">Publish</p>
 				</div>
 				<div id="toolbar_themes_help" class="toolbar_presentation_wrapper ">
 					<a id="toolbar_theme" class="tool_action" action="selectTheme" href="#">
@@ -464,9 +461,6 @@
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_presentations_repo'); return false;" id="tab_presentations_repo" class="fancy_tab tabbable" i18n-key="i.Excursions">Excursions</a>
 					</li>
 					<li>
-						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_smartcards_repo'); return false;" id="tab_smartcards_repo" class="fancy_tab tabbable" i18n-key="i.Smartcards">Smartcards</a>
-					</li>
-					<li>
 						<a href="#" onclick="VISH.Editor.Utils.loadTab('tab_json_file'); return false;" id="tab_json_file" class="fancy_tab">JSON</a>
 					</li>
 				</ul>
@@ -528,12 +522,18 @@
 					<div class="tab_slides_smartcards">
 						<p class="select_text" i18n-key="i.Smartcards">Smartcards</p>
 						<div class="templateselectlist2">
-						<div class='slidethumb fcthumb' type='flashcard'>
-							<img src='/assets/templatesthumbs/flashcard_template.png' />
-						</div>
-						<div class='slidethumb vtthumb' type='VirtualTour'>
-							<img src='/assets/templatesthumbs/tVTour.png' />
-						</div>
+							<div class='stthumb_wrapper'>
+								<div class='stthumb fcthumb' type='flashcard'>
+									<img src='/assets/templatesthumbs/flashcard_template.png'/>
+								</div>
+								<p i18n-key="i.Flashcard">Flashcard</p>
+							</div>
+							<div class='stthumb_wrapper'>
+								<div class='stthumb vtthumb' type='VirtualTour'>
+									<img src='/assets/templatesthumbs/tVTour.png'/>
+								</div>
+								<p i18n-key="i.VirtualTour">Virtual Tour</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -569,24 +569,6 @@
 					</div>
 					<div id="tab_presentations_repo_content_carrousel"></div>
 					<div id="tab_presentations_repo_content_preview" class="content_preview_presentation">
-						<div class="content_preview_data"></div>
-						<div class="content_preview_metadata"></div>
-						<div class="content_preview_foot">
-							<button i18n-key="i.Preview" style="display:none" type="button" class="okButton2">Preview</button>
-						</div>
-					</div> 	
-				</div>	
-			</div>
-
-			<div id='tab_smartcards_repo_content' class="fancy_tab_content" style='display:none'>
-				<img class='help_in_fancybox' id='tab_smartcards_repo_help' src='/assets/vicons/helptutorial_circle_blank.png'/>
-				<div class="excursions_repo_content">
-					<img src="/assets/logos/repositoryimg.png" class="imagelogotab"/>  
-					<div class="search_container">
-						<input type="search" class="input_text_fancy input_text_excursions formsizefancy2 marginsfancy3" > </input>
-					</div>
-					<div id="tab_smartcards_repo_content_carrousel"></div>
-					<div id="tab_smartcards_repo_content_preview" class="content_preview_presentation">
 						<div class="content_preview_data"></div>
 						<div class="content_preview_metadata"></div>
 						<div class="content_preview_foot">
@@ -865,7 +847,7 @@
 	<a id="hidden_button_to_launch_animation_fancybox" href="#animation_fancybox" style="display:none"></a>
 	<div style='display:none'>
 		<div id="animation_fancybox" class="animation_fancybox_class">
-		<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle.png"/>
+			<img id="help_animation_selection" src="/assets/vicons/helptutorial_circle.png"/>
 			<div id='select_animation1' class="slidethumb" animation="animation1">
 				<div class="anim_text"><h3 i18n-key="i.Horizontal">Horizontal</h3></div></div>
 			<div id='select_animation2' class="slidethumb" animation="animation2">
@@ -1528,20 +1510,6 @@
 		</li>
 	</ol>
 
-	<!-- Help searching smartcards in ViSH to insert -->
-	<ol id="help_smartcard_selection_help" class="joyRideTipContent">
-		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
-			<h2 i18n-key="i.walkInsertingViSHSmart_1">Adding Smartcards</h2>
-			<p><span i18n-key="i.walkSmartcards_1">Smartcards are interactive elements that can be inserted in the presentation in the same way that common slides do.</span> <span i18n-key="i.walkLearnMoreSmartcards" class="tut_tutlink" onClick="VISH.Tour.startTourWithId('help_smartcards_help', 'top');">Click here to learn more about Smartcards.</span></p>
-			<p i18n-key="i.walkInsertingViSHSmart_2">Here you can search Smartcards on the ViSH platform in order to add them to your presentation.</p>
-			<p>
-				<span i18n-key="i.walkSearch1">Write the name you want to search inside the text box, for example</span> <i><span i18n-key="i.nature">nature</span></i>, <span i18n-key="i.walkSmartSearch2">and press the 'enter' key to start the search. When the search has finished, the found Smartcards will be shown in this screen.</span>
-			</p>
-			<p i18n-key="i.walkInsertingViSHSmart_3">Click on any of the Smartcards to select it. After that, a new button "preview" will be displayed. Once you click on this button, a new screen will pop up for you to preview the Smartcard before added it to your presentation.</p>
-			<p class="tut_space">&nbsp;</p>
-		</li>
-	</ol>
-
 	<!-- Help importing JSON -->
 	<ol id="help_iJSON_help" class="joyRideTipContent">
 		<li data-id="thumbcontent" data-text="Close" i18n-key="i.Close" class="tut_add_resources_fancybox tut_width700_center tut_without_arrow" data-options="tipLocation:none">
@@ -2035,7 +2003,7 @@
 
 	<!-- Loading fancybox -->
 	<div id='loading_fancy_wrapper' style='display:none'>
-		<div id='loading_fancy'>
+		<div id='loading_fancy' class="loading_fancy">
 			<img class="loading_fancy_img" src='/assets/lightbox-ico-loading.gif'></img>
 		</div>
 	</div>
