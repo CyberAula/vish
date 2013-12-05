@@ -1,41 +1,4 @@
 
-<!--h4>
-<%= label_tag 'q', t('search.name') + ':  ', :class => '' %>
-</h4-->
-<div id="menuv">
-
-  <h4>
-    <span class="title_search">
-      advanced options
-    </span>
-  </h4>
-<!--fecha-->
-  <ul>
-    <li>
-    <p class="time"><%= t('search.time_constraint')%></p>
-      <select>
-        <option><%= t('search.always') %></option>
-        <option><%= t('search.newest') %></option>
-        <option><%= t('search.last_day') %></option>
-        <option><%= t('search.last_week') %></option>
-        <option><%= t('search.last_year') %></option>
-      </select>
-    </li>
-  </ul>
-<!--fecha-->
-  <ul>
-    <li>
-    <p class="time"><%= t('search.orderby')%></p>
-      <select>
-        <option><%= t('search.relevance') %></option>
-        <option><%= t('search.newest') %></option>
-        <option><%= t('search.mostviewed') %></option>
-        <option><%= t('search.mostfav') %></option>
-        <option><%= t('search.mostslides') %></option>
-      </select>
-    </li>
-  </ul>
-  
 
 
 
@@ -45,5 +8,22 @@
     <%= render :partial => "toolbar/search_#{ params[:type] }"%>
     <% end %>
   </ul-->
-</div>
+
+
+
+<ul class="info_as">
+	<i class="icon-search "></i>
+  <h2>advanced search</h2>
+
+</ul>
+<%= render :partial => 'toolbar/advanced_search_order_by' %>
+
+<%= render :partial => 'toolbar/advanced_search_creation' %>
+<%= render :partial => 'toolbar/advanced_search_tags' %>
+<%= render :partial => 'toolbar/advanced_search_language' %>
+<%= render :partial => 'toolbar/advanced_search_all' %>
+
+
+
+
 

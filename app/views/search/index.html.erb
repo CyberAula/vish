@@ -9,6 +9,8 @@
         <li class="all_results <%= 'active' if params[:type].blank? %>">
           <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
         </li>
+
+
         <% SocialStream::Search.keys(:extended).each do |key| %>
           <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
         <% end %>
@@ -17,13 +19,12 @@
 
 
 
-      <form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
+      <!--form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
         <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
-      </form>
+      </form-->
 
 
-      <button style="display:none" id="showTop">Show/Hide Top Slide Menu</button>
-
+      <button style="display: none"class="advanced" id="showTop">Advanced Search</button>
 
 
 
@@ -183,32 +184,30 @@
   </div>
 
 
+<script src="js/classie.js"></script>
+<script>
+  var 
+    menuTop = document.getElementById( 'cbp-spmenu-s3' ),
+    showTop = document.getElementById( 'showTop' ),
+    body = document.body;
+  showTop.onclick = function() {
+    classie.toggle( this, 'active' );
+    classie.toggle( menuTop, 'cbp-spmenu-open' );
+    disableOther( 'showTop' );
+  };
+  function disableOther( button ) {   
+    if( button !== 'showTop' ) {
+      classie.toggle( showTop, 'disabled' );
+    }   
+  }
+</script>
 
-
-
-  <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
-
-    <script>
-      var 
-
-        menuTop = document.getElementById( 'cbp-spmenu-s3' ),
-
-        body = document.body;
-
-
-      showTop.onclick = function() {
-        classie.toggle( this, 'active' );
-        classie.toggle( menuTop, 'cbp-spmenu-open' );
-        disableOther( 'showTop' );
-      };
-      
-
-      function disableOther( button ) {
-
-        if( button !== 'showTop' ) {
-          classie.toggle( showTop, 'disabled' );
-        }
-      }
-    </script>
+<!--scroll-->    
+<script>
+  $(function()
+  {
+    $('.scroll-pane').jScrollPane();
+  });
+</script>
 </section>
 

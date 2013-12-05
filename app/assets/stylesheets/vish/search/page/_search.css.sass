@@ -2,137 +2,173 @@
   @include header-tabbable-search
 
 /* General styles for all menus*/
-
+/* General styles for all menus */
 .cbp-spmenu
-  background: #47a3da
+  background: #017CC8
   position: fixed
-  h3
-    color: #afdefa
-    font-size: 1.9em
-    padding: 20px
-    margin: 0
-    font-weight: 300
-    background: #0d77b6
-  a
+
+.info_as
+  font-weight: lighter
+  background: #0153C2
+  i
+
+    font-size: 50px
+    width: 100%
+    text-align: center
+    margin-top: 50px
+    color: #017CC8
+  h2
+    text-align: center
+    width: 60%
+    margin: 0 auto
+    display: block
+    font-family: $secondFontFamily
+    color: #017CC8
+    margin-top: 10px
+
+.cbp-spmenu 
+  li 
     display: block
     color: #fff
-    font-size: 1.1em
+    font-size: 12px
     font-weight: 300
-    &:hover
-      background: #258ecd
+    cursor: pointer
+    &:hover 
+      background: #0153C2
     &:active
       background: #afdefa
       color: #47a3da
 
 /* Orientation-dependent styles for the content of the menu*/
 
-.cbp-spmenu-vertical
-  width: 240px
-  height: 100%
-  top: 0
-  z-index: 1000
-  a
-    border-bottom: 1px solid #258ecd
-    padding: 1em
 
-.cbp-spmenu-horizontal
+.cbp-spmenu-horizontal 
   width: 100%
-  height: 200px
-  left: 50px
+  height: 225px
+  left: 0
   z-index: 1000
   overflow: hidden
-  h3
-    height: 100%
-    width: 20%
+  li 
     float: left
-  a
-    float: left
-    width: 20%
-    padding: 0.8em
-    border-left: 1px solid #258ecd
+    clear: left
+    padding: 0
+    margin-top: 1px
+  h4 
+    margin: 10px 0px 5px 10px
+    color: $white
+
+
 
 /* Vertical menu that slides from the left or right*/
 
-.cbp-spmenu-left
-  left: -240px
 
-.cbp-spmenu-right
-  right: -240px
-
-.cbp-spmenu-left.cbp-spmenu-open
-  left: 0px
-
-.cbp-spmenu-right.cbp-spmenu-open
-  right: 0px
 
 /* Horizontal menu that slides from the top or bottom*/
 
 .cbp-spmenu-top
-  top: -150px
-
-.cbp-spmenu-bottom
-  bottom: -150px
+  top: -225px
 
 .cbp-spmenu-top.cbp-spmenu-open
-  top: 0px
+  top: 50px
+  i 
+    display: block
 
-.cbp-spmenu-bottom.cbp-spmenu-open
-  bottom: 0px
+/* menus */
+.cbp-spmenu 
+  ul 
+    display: block
+    color: #fff
+    width: 16%
+    float: left
+    border-left: 1px solid #0153C2
+    height: 225px
+    margin: 0
 
-/* Push classes applied to the body*/
 
-.cbp-spmenu-push
-  overflow-x: hidden
-  position: relative
-  left: 0
+.Tags_list_as
+  overflow: auto
+  display: block
+  width: 16%
+  color:white
+  height: 225px
+  float: left
+  border-left: 1px solid #0153C2
+  label
+    margin-bottom: 0px
+    font-size: 12px
 
-.cbp-spmenu-push-toright
-  left: 240px
+.Tags_list_as li ,
+.Language_as li
+  width: 95%
+  padding-left: 5%
+  font-size: 12px
 
-.cbp-spmenu-push-toleft
-  left: -240px
 
-/* Transitions*/
+.order_as li,
+.creation_as li
 
-.cbp-spmenu, .cbp-spmenu-push
+  width: 90%
+  padding-left: 10%
+  font-size: 12px
+
+
+.Language_as 
+  img
+    width: 22px
+    height: 17px
+    margin-right: 5px
+
+
+/* Transitions */
+
+.cbp-spmenu,
+.cbp-spmenu-push 
   -webkit-transition: all 0.3s ease
   -moz-transition: all 0.3s ease
   transition: all 0.3s ease
 
-/* Example media queries*/
+
+/* Example media queries */
 
 @media screen and (max-width: 55.1875em)
-  .cbp-spmenu-horizontal
+
+  .cbp-spmenu-horizontal 
     font-size: 75%
     height: 110px
-  .cbp-spmenu-top
+  .cbp-spmenu-top 
     top: -110px
-  .cbp-spmenu-bottom
+  .cbp-spmenu-bottom 
     bottom: -110px
 
 @media screen and (max-height: 26.375em)
-  .cbp-spmenu-vertical
+
+  .cbp-spmenu-vertical 
     font-size: 90%
     width: 190px
-  .cbp-spmenu-left, .cbp-spmenu-push-toleft
+  .cbp-spmenu-left,
+  .cbp-spmenu-push-toleft 
     left: -190px
   .cbp-spmenu-right
     right: -190px
-  .cbp-spmenu-push-toright
+  .cbp-spmenu-push-toright 
     left: 190px
+.cbp-spmenu
+  input[type="checkbox"] 
+    display: none
 
+  input[type="checkbox"] + label span
+    color: #f2f2f2
+    font-family: Arial, sans-serif
+    font-size: 14px
 
+  input[type="checkbox"] + label span 
+    display: inline-block
+    width: 19px !important
+    height: 19px !important
+    margin: -1px 4px 0 0
+    vertical-align: middle
+    background: url(icons/check_radio_sheet.png) left top no-repeat
+    cursor: pointer
 
-
-.cbp-spmenu-left
-  #menuv
-    margin-top: 60px
-    .title_search
-      font-weight: bold
-      color: $white
-      padding-left: 20px
-
-    .advanced
-      .advanced_all_time
-        .time
-          color: $white
+  input[type="checkbox"]:checked + label span 
+    background: url(icons/check_radio_sheet.png) -19px top no-repeat
