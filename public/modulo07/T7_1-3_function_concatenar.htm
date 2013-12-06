@@ -1,0 +1,24 @@
+<!DOCTYPE html><html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<h3>Parámetros</h3>
+<pre>
+<script 
+   type="text/javascript">
+
+function concatenar() {
+     var i, resultado = "";
+     for (i=0; i < arguments.length; ++i) {
+           resultado += " " + arguments[i];
+     }
+     return resultado;
+};
+
+document.write("concatenar('Hola,','que','tal!')\n          ");
+document.write("            => " + concatenar('Hola,','que','tal!'));
+</script>
+</pre>
+</body>
+</html>

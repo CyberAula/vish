@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><title>Pregunta</title><meta charset="UTF-8">
+<script type="text/javascript">
+
+  function res() {
+    var respuesta = document.getElementById('respuesta');
+    var resultado = document.getElementById('resultado');
+
+    if (respuesta.value === "Cristobal Colón")
+          resultado.innerHTML = "Correcto";
+    else  resultado.innerHTML = "No es correcto";
+  }
+</script>
+</head>
+<body>
+  <h4> Pregunta </h4>
+  <p> ¿Quien descubrió América? </p> 
+
+  <input type="text" id="respuesta" value="responda aquí">
+
+  <button type="button" onclick="res()">consultar</button>
+
+  <p><div id="resultado" /></p>
+  
+</body>
+</html>
