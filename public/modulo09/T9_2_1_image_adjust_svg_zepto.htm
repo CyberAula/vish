@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head><title>Ejemplo SVG</title>
+<script type="text/javascript" 
+        src="zepto.min.js" > </script>
+<script type="text/javascript">
+$(function(){
+  var img  = $('#img');
+
+  $('#incr').on('click', function(){ 
+  	img.width(img.width()*1.1);
+  	img.height(img.height()*1.1);
+  });
+
+  $('#decr').on('click', function(){ 
+  	img.width(img.width()/1.1);
+  	img.height(img.height()/1.1);
+  });
+});
+</script>
+</head>
+<body>
+<h4> Ejemplo SVG </h4>
+<button  type="button"  id="decr">-</button>
+<button  type="button"  id="incr">+</button><p>
+
+<img src="smiley.svg" id="img"  
+         width="70"  height="70" />
+</body>
+</html>
