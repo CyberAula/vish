@@ -89,6 +89,8 @@ gem 'pry-rails'
 
 gem 'rest-client'
 
+gem 'pdf-reader'
+
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git'
 
