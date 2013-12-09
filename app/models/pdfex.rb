@@ -1,19 +1,26 @@
 class Pdfex < ActiveRecord::Base
+	before_destroy :remove_files #This callback need to be before has_attached_file, to be executed before paperclip callbacks
 	has_attached_file :attach
-	validates_attachment_content_type :attach, :content_type =>['application/pdf'], :message => '#PDFexAPIError:1'
-    validates_attachment_size :attach, :in => 0.megabytes..8.megabytes, :message => '#PDFexAPIError:2'
+	validates_attachment_content_type :attach, :content_type =>['application/pdf'], :message => '#PDFexAPIError:1 File format is invalid'
+    validates_attachment_size :attach, :in => 0.megabytes..8.megabytes, :message => '#PDFexAPIError:2 File size is too big'
 
 	def to_img(controller)
 		rootFolder = getRootFolder
 		fileName = getFileName
 
+		require 'pdf/reader'
+		pdfRead = PDF::Reader.new(self.attach.path)
+		if pdfRead.page_count > 90
+			raise "#PDFexAPIError:3 PDF file have too many pages"
+		end
+
 		require 'RMagick'
 		pdf = Magick::ImageList.new(self.attach.path){ self.density = 200 }
 		pdf.write(rootFolder + fileName + ".jpg")
-		imgLength = pdf.length
+		#imgLength = pdf.length = pdfRead.page_count
 
-		getImgArray(imgLength)
-	end
+		getImgArray(pdf.length)
+	end  
 
 	def getImgArray(imgLength)
 		rootFolder = getRootFolder
@@ -40,6 +47,8 @@ class Pdfex < ActiveRecord::Base
 	end
 
 
+	private
+
 	def getRootFolder
 		splitPath = self.attach.path.split("/")
 		splitPath.pop()
@@ -56,6 +65,11 @@ class Pdfex < ActiveRecord::Base
 		splitName = self.attach.original_filename.split(".")
 		splitName.pop()
 		fileName = splitName.join(".")
+	end
+
+	def remove_files
+		#Remove Image files
+		system "rm #{getRootFolder}/*.jpg"
 	end
 
 end
