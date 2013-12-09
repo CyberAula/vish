@@ -16,7 +16,11 @@ class EmbedsController < ApplicationController
   end
 
   def destroy
-    destroy!
+    destroy! do |format|
+      format.html {
+        redirect_to user_path(current_user)
+       }
+    end
   end
 
   private
