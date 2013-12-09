@@ -11,7 +11,7 @@ DocumentsController.class_eval do
       format.all {
         if resource.new_record?
           render action: :new
-        else
+        else          
           redirect_to resource
         end
       }
