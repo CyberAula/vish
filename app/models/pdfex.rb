@@ -1,7 +1,7 @@
 class Pdfex < ActiveRecord::Base
 	has_attached_file :attach
-	validates_attachment_content_type :attach, :content_type =>['application/pdf'],
-                                              :message => 'Only PDF is allowed.'
+	validates_attachment_content_type :attach, :content_type =>['application/pdf'], :message => '#PDFexAPIError:1'
+    validates_attachment_size :attach, :in => 0.megabytes..8.megabytes, :message => '#PDFexAPIError:2'
 
 	def to_img(controller)
 		rootFolder = getRootFolder
