@@ -16,8 +16,8 @@ es:
           title: "%{subject} y %{contact} están siguiéndose"
           message: "%{name} también te está siguiendo."
   activity2:
-    one: "activity"
-    other: "activities"
+    one: "actividad"
+    other: "actividades"
     title:
       other: "actividad"
   activity_action:
@@ -51,7 +51,7 @@ es:
       description: "Descripción"
       items: "Elementos en esta categoría"
     main_title: "Crea nuevas categorías y organiza tus visitas virtuales"  
-    other: "categories"
+    other: "categorías"
     title_input: "Dale un nombre a tu categoría"
     save: "Guardar"    
     selected: "categorias"
@@ -73,7 +73,7 @@ es:
     introduction3: " DG Connect – Excellence in Science – Digital Science."
     introduction4: " Los objetivos de GLOBAL excursion son básicamente dos: por un lado, enriquecer la enseñanza de ciencias en las escuelas europeas, y por otro lado, ofrecer a los investigadores y sus instituciones un canal de promoción a un público escolar."
     introduction5: "A través del portal web llamado "
-    introduction6: "Virtual Science Hub – “ViSH”"
+    introduction6: "Eje de ciencia virtual – “ViSH”"
     introduction7: " ofrecemos a científicos, profesores y alumnos paquetes de actividades, materiales y herramientas para permitir la integración de las infraestructuras electrónicas en los programas escolares. ViSH admite un conjunto de recursos que se pueden subir a la plataforma y se ponen a disposición de todos los usuarios: imágenes, vídeos, webcams o microscopios proporcionados por las infraestructuras electrónicas."
     introduction8: "A medida que el proyecto se encamina a su conclusión, el consorcio ha decidido organizar un concurso que contribuirá a una mayor difusión de ViSH a sus distintos grupos de interés así como para premiar a varios profesores y científicos que han sido particularmente activos en relación con la creación de eExcursions."
     categories: "Categorías"
@@ -189,16 +189,16 @@ es:
     ex_part: "Excursiones inscritas:"
     filter: "Filtro:"
     All: "Todas"
-    Maths: "Maths"
-    Physics: "Physics"
-    Chemistry: "Chemistry"
-    Biology: "Biology"
-    Geography: "Geography"
-    EnvironmentalStudies: "EnvironmentalStudies"
-    Engineering: "Engineering"
-    Humanities: "Humanities"
-    NaturalScience: "NaturalScience"
-    ComputerScience: "ComputerScience"
+    Maths: "Matemáticas"
+    Physics: "Física"
+    Chemistry: "Química"
+    Biology: "Biología"
+    Geography: "Geografía"
+    EnvironmentalStudies: "Estudios Ambientales"
+    Engineering: "Ingeniería"
+    Humanities: "Humanidades"
+    NaturalScience: "Ciencias Naturales"
+    ComputerScience: "Informática"
   copy_to_clip: "Copiar al portapapeles"
   devise:
     email: "Email"
@@ -208,7 +208,7 @@ es:
     invalid_login: "Por favor introduce tu email y contraseña para continuar"
     tags: "etiquetas"
   disjunction:
-    or: "or"
+    or: "o"
   document:
     body:
       title1: "Selecciona el tipo de contenido que subirás"
@@ -216,7 +216,7 @@ es:
       title3: "Elige el archivo que deseas subir"
     close: "Cerrar"
     details:
-      info: "Info"
+      info: "Información"
     download_explanation: "Descargate este recurso a tu dispositivo"
     document: "documento"
     help:
@@ -229,6 +229,8 @@ es:
       info6_html: "6. Asigne un rango de <b>edad</b>. Esta información será usada por el sistema de recomendación.<br>"
       info7_html: "7. Si desea subir el embed de un video en vivo, haga click en la opción <b>Live</b>.<br>"
       info8_html: "8. Finalmente, haga click en el botón <b> guardar </b>para actualizar su recurso."
+    helpquiz:
+      info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"
     info:
       age: "Edad"
@@ -264,9 +266,9 @@ es:
   embed:
     confirm_delete: "¿Borrar recurso?"
     content: "Contenido en directo"
-    embed: "embed"
+    embed: "insertar"
     input: "Pega aquí el recurso a insertar"
-    name: "embed"
+    name: "insertar"
     title3: "Escribe el recurso a insertar"
   evaluation:
     teaching: "Experiencia de enseñanza"
@@ -282,24 +284,24 @@ es:
     phrase3: "¿Contribuye la excursión a la participación de los estudiantes y a su aprendizaje?"
     phrase4: "¿Incluye actividades interdisciplinarias y en caso afirmativo, fueron útiles?"
     phrase5: "¿Recurrirías de nuevo a esta excursión para tus clases?"
-    question0: "quest 0"
-    question1: "quest 1"
-    question2: "quest 2"
-    question3: "quest 3"
-    question4: "quest 4"
-    question5: "quest 5"
+    question0: "búsqueda 0"
+    question1: "búsqueda 1"
+    question2: "búsqueda 2"
+    question3: "búsqueda 3"
+    question4: "búsqueda 4"
+    question5: "búsqueda 5"
     label0: "Contenido"
     label1: "Diseño"
     label2: "Motivación"
     label3: "Participación"
     label4: "Interdisciplinario"
     label5: "Reutilización"    
-    qlabel0: "label 0"
-    qlabel1: "label 1"
-    qlabel2: "label 2"
-    qlabel3: "label 3"
-    qlabel4: "label 4"
-    qlabel5: "label 5"
+    qlabel0: "etiqueta 0"
+    qlabel1: "etiqueta 1"
+    qlabel2: "etiqueta 2"
+    qlabel3: "etiqueta 3"
+    qlabel4: "etiqueta 4"
+    qlabel5: "etiqueta 5"
     learning: "Experiencia de aprendizaje"
     strong_disagree_b: "Muy en desacuerdo"
     disagree_b: "En desacuerdo"
@@ -338,7 +340,7 @@ es:
       delete: "Borrar"
       download: "descargar"
       edit: "Editar"
-      embed: "embed"
+      embed: "insertar"
       favorite: "favorita"
       my_room: "mi sala"
       show: "Visualizar"
@@ -367,7 +369,7 @@ es:
     invite:
       email:
         body: "Hola,%0A%0ATe%20recomiendo%20esta%20excursión%20en%20ViSH:%0A%0A%{url}%0A%0A¡Espero%20que%20te%20guste!%0A%0A%{name}"
-        link: "e-mail"
+        link: "email"
         subject: "Mira%20esta%20excursión%20en%20http://vishub.org%20:%20%{title}"
     is_draft: "[BORRADOR]"
     modal: 
@@ -393,12 +395,59 @@ es:
     session_start: "inicia sesión"
     title:
       other: "excursiones"
-    upcomming: "upcomming"
+    upcomming: "próxima"
     unload_warning: "¡La excursión no está salvada!"
     top: "paraMí"
   external: "externo"
   faq:
     title: "Preguntas frecuentes"
+
+    question1: "¿Qué es Vish?"
+    answer1: "El eje virtual de ciencias  es un punto de encuentro entre científicos y profesores, se basa en la idea de Excursiones Virtuales, el análogo en línea a una visita in situ durante el cual los alumnos descubren la ciencia en los principales centros científicos de Europa. Disponen de varios medios, tales como tarjetas, videoconferencias y experimentos virtuales que ayudan a sentir la ciencia en lugar de sólo estudiarla. Vish usará Social Stream como biblioteca de las redes sociales que está entrando en su fase de desarrollo. Puede encontrar el código en la página de GitHub GING."
+    question2: "¿Qué es Global Excursion?"
+    answer2: "Se trata de un proyecto europeo FP7, financiado por la Comisión Europea dentro del 7 º Programa Marco. Está coordinado por ZSI y el consorcio está formado por UPM, AGORA SYSTEMS, EUN, SZTAKI, UCAM y UNIZAR. Marque esta <a href='http://www.globalexcursion-project.eu' target='_blank'>http://www.globalexcursion-project.eu</a>"
+    question3: "¿Qué es eScience?"
+    answer3: "La eScience significa la ciencia “mejorada”, en el sentido de la transdisciplinariedad, los equipos globales que aborden los desafíos a gran escala, gracias a la utilización de nuevas herramientas y recursos TIC. Incluye temas como la computación de alto rendimiento, gran almacenamiento de datos, redes complejas de sensores, comunicaciones de banda ancha, repositorios abiertos, nueva instrumentación, herramientas de visualización ..."
+    
+    editor_question1: "¿Qué es ViSH Editor?"
+    editor_answer1: "Vish Editor i es una aplicación HTML5 para crear presentaciones web de una manera sencilla y agradable. Está integrado en Vish y se puede utilizar para crear sus eExcursions. Si estás registrado, puede probarlo en: <a target='_blank' href='http://vishub.org/excursions/new'>http://vishub.org/excursions/new</a>"
+    editor_question2: "¿Qué es una eExcursion?"
+    editor_answer2: "Es una forma de presentación creada con un material didáctico multimedia que permite una mejor comprensión de una infraestructura científica. eExcursions son unidades didácticas utilizadas para la enseñanza de las ciencias, ya sea mostrado en clase o visitado por estudiantes libremente.  Vea este video (Inglés solamente) <a target='_blank' href='http://www.youtube.com/watch?v=tZ8qirSTIIs'>http://www.youtube.com/watch?v=tZ8qirSTIIs</a>"
+    editor_question3: "¿Es difícil crear una nueva eExcursion?"
+    editor_answer3: "Es muy fácil y sencillo. Encontrará que es muy familiar e intuitivo! Prepara el contenido a incluir y organizarlo de una manera didáctica y comprensible, despues seleccione la forma de las diapositivas. Ver un tutorial en <a target='_blank' href='http://www.youtube.com/watch?v=fBSNZxs8m0I&list=PLve_ezrFIJJxujiqCZid6KcgxPh4ksSp2&index=2'>Youtube ViSH channel</a>"
+    
+
+    events_question1: "¿Qué es una eVisit?"
+    events_answer1: "Es una visita virtual o videoconferencia a cualquier dirección de Infraestructura o centro científico, realizado entre científicos, investigadores, profesores y alumnos. Utilizan dentro Vish una herramienta de videoconferencia llamado <a href='http://mashme.tv' target='_blank'>MashMe.tv</a>"
+    events_question2: "¿Cómo puedo organizar una eVisit?"
+    events_answer2: "La creación de un eVisit en Vish es muy fácil. Puede hacerse desde cualquier página pulsando el botón + que está en la cabecera, desplegando un listado del cual seleccionaras eventos. Después de crear el evento tendrá que invitar al resto de las personas que participarán."
+    events_question3: "¿Puedo utilizar los eventos con mis alumnos o con otras personas?"
+    events_answer3: "Por supuesto. Puede crear un evento en Vish e invitar a quien quieras."
+    
+
+    resources_question1: "¿Qué es un recurso?"
+    resources_answer1: "Es cualquier tipo de material digital que se pueda cargar en Vish para ser utilizado en las eExcursions. Por ejemplo, sitios web, cámaras web en directo, códigos embed, enlaces, objetos flash, imágenes, videos, audios, archivos pdf, etc"
+    resources_question2: "¿Cómo puedo subir un nuevo recurso?"
+    resources_answer2: "Se puede hacer muy fácilmente. En el botón + en la cabecera puede seleccionar 'agregar recursos 'Y aparecerá un interface donde podrá elegir el metodo de carga del recurso."
+    resources_question3: "¿Cómo puedo integrar un recurso en mi eExcursion?"
+    resources_answer3: "En el Editor de Vish, al crear un eExcursion puede agregar cualquier recurso de los paneles que aparecen. La pestaña se llama Vish y tiene un campo de búsqueda para buscar en el repositorio Vish."
+    
+
+    competitions_question1: "¿Tengo que registrarme en Vishub?"
+    competitions_answer1: "Sí, si desea crear un nuevo eExcursion y participar en la competición. Si lo que desea es pasar el rato, o ver lo que otros han creado, puede ver todos los contenidos sin registrarse."
+    competitions_question2: "¿Puedo participar en más de una categoría?"
+    competitions_answer2: "¡Claro! cuanto más, mejor. Puede hacer uso de su red, sus contenidos, sus ideas ... para tener más posibilidades de ganar. Pero sólo se puede ganar en una sola categoría, por lo que si usted es seleccionado inicialmente como ganador en dos categorías, se le pedirá que elija la que prefiera."
+    competitions_question3: "Yo no soy un profesional, ¿tengo alguna posibilidad?"
+    competitions_answer3: "Sí, definitivamente. Creemos en el poder de la ciencia abierta. Todas las contribuciones son bienvenidas, a veces los aficionados se desempeñan mejor que los profesionales, probemos!"
+    competitions_question4: "¿Puedo usar mi idioma?"
+    competitions_answer4: "Lo sentimos, a pesar de que entendemos el valor de las acciones locales y el conocimiento regional, es demasiado complicado para que evaluemos en idiomas que no somos expertos. Los idiomas cubiertos son Inglés, alemán, holandés, francés, español, húngaro, rumano, griego e italiano."
+    competitions_question5: "Qué es un cupón Amazon?"
+    competitions_answer5: "Se trata de un código promocional a la tienda en línea Amazon que le permitirá comprar lo que usted puede considerar interesante para su trabajo: libros, equipamiento tecnológico ..."
+    competitions_question6: "¿Qué incluye el viaje a Bruselas?"
+    competitions_answer6: Nosotros pagaremos a una persona los gastos de viaje (tren en clase turista o los billetes de avión) y la  (habitacion de hotel con subsistencia) en la ciudad de Bruselas. Le invitamos a unirse a la Conferencia final de Global Excursion con otras partes interesadas y expertos de la entorno europeo e-learning. "
+    competitions_question7: "¿Dónde puedo ver todas las excursiones que participan?"
+    competitions_answer7: "<a href='http://vishub.org/contest'>Click here</a> para ver la página de competiciones. Comparte la página con tus contactos y amigos."
+
   filter: "filtrar"
   follow:
     add_favorite: "Añadir favorito"
@@ -411,9 +460,11 @@ es:
     views: "visitas"
   frontpage:
     nanotechnology: "nanotecnología"
-    gridComputing: "grid computing"
+    gridComputing: "computación distribuida"
     lifesciences: "ciencias naturales"
     biotechnology: "biotecnología"
+  go:
+    repository: "ir a repositorio"
   header:
     tooltip: 
       add_button: "Crea excursiones, recursos, etc."
@@ -433,6 +484,10 @@ es:
     confirm_delete: "¿Borrar enlace?"
     go: "Ir al enlace"
     title3: "Escribe el enlace que quieres subir"
+  lre:
+    data_error: "Se produjo un error y el servidor de datos responde con un código de %{code}"
+    json_error: "Hubo un error con el contenido devueltos, pruebe con otros términos de búsqueda"
+    search_error: "Se produjo un error y el servidor de búsqueda respondió con un código %{code}"
   translate:
     change: "Cambiar idioma"
   mailboxer:
@@ -442,7 +497,7 @@ es:
     send: "Enviar mensaje"
     new: "Mensaje nuevo"
     unread: " sin leer"
-  more: "more"
+  more: "mas"
   mashme:
     header_html: "Ver en <a href='http://mashme.tv/' target='_blank'>MashMe.TV</a>" 
     invite_header: "Invita a tus contactos"
@@ -468,7 +523,7 @@ es:
     title: "Documentos"
     mine: "Mis documentos"
     name: "documento"
-    not_mine: "Documents"
+    not_mine: "Documentos"
     one: "un documento"
     title:
       one: "Documento"
@@ -635,9 +690,13 @@ es:
     carousel_title: "ViSH: Virtual Science Hub"
     carousel_title2: "ViSHEditor: Crea y comparte excursiones virtuales"
     carousel_title3: "ViSHEvents: Reuniones en MashMe"
+    carousel_title4: "Competiciones"
     description: "ViSH es una red social colaborativa en HTML5 para crear y compartir recursos con contenido educacional. ViSH conecta los recursos directamente con tus clases, ya sean físicas o virtuales."
     description2: "Las excursiones virtuales son recursos visuales diseñados para su proyección en el aula. Integran contenido multimedia traído en tiempo real desde el repositorio local o desde internet y están fundamentadas en HTML5 y JSON."
     description3: "ViSH te permite organizar y anunciar reuniones en MashMe para mostrar excursiones virtuales en tiempo real a participantes remotos."
+    description4: "Período de competición Vish está abierto ahora! Usted puede participar fácilmente creando nuevas excursiones."
+    description41: "Obtener el <a href='http://vishub.org/VISH_competitions.pdf'>folleto</a> o consulta la <a href='http://vishub.org/faq#faq_competitions_1a'>ayuda</a>"
+
     sentence1: "Crea tu cuenta con ViSH"
     sentence2: "ViSH es una plataforma social de ciencia"
     team: "El equipo de ViSH"
