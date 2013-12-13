@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    session[:user_return_to] || root_path
+    request.env['omniauth.origin'] || session[:user_return_to] || root_path
   end
   
   def store_location
@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 	      request.fullpath != "/users/sign_up" &&
 	      request.fullpath != "/users/sign_out" &&
 	      request.fullpath != "/users/password" &&
+	      request.fullpath != "/users" &&
 	      request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
 	      !request.fullpath.end_with?(".full") &&   #do not save .full because we have saved the vish excursion page instead
 	      !request.xhr?) # don't store ajax calls
