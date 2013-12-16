@@ -40,7 +40,7 @@ module ExcursionsHelper
       metadata["Difficulty"] = parsed_json["difficulty"]
     end
     if parsed_json["TLT"] 
-      metadata["Tipical Learning Time"] = parsed_json["TLT"]
+      metadata["Tipical Learning Time"] = parsed_json["TLT"][2..-1] #remove the PT in the beginning
     end
     if parsed_json["subject"] 
       metadata["Subject"] = parsed_json["subject"].inspect[1..-2] #remove the first and last characters that are "[" and "]"
