@@ -31,7 +31,7 @@
   height: 225px
   left: 0
   z-index: 1000
-  overflow: hidden
+
   li 
     float: left
     clear: left
@@ -43,7 +43,7 @@
 
 /* Horizontal menu that slides from the top or bottom*/
 .cbp-spmenu-top
-  top: -225px
+  top: -173px
 
 .cbp-spmenu-top.cbp-spmenu-open
   top: 50px
@@ -121,35 +121,12 @@
 .cbp-spmenu,
 .cbp-spmenu-push
 
-  -webkit-transition: all 0.3s ease
-  -moz-transition: all 0.3s ease
-  transition: all 0.3s ease
+  -webkit-transition: all 1s ease
+  -moz-transition: all 1s ease
+  transition: all 1s ease
 
 
-/* Example media queries */
 
-@media screen and (max-width: 55.1875em)
-
-  .cbp-spmenu-horizontal 
-    font-size: 75%
-    height: 110px
-  .cbp-spmenu-top 
-    top: -110px
-  .cbp-spmenu-bottom 
-    bottom: -110px
-
-@media screen and (max-height: 26.375em)
-
-  .cbp-spmenu-vertical 
-    font-size: 90%
-    width: 190px
-  .cbp-spmenu-left,
-  .cbp-spmenu-push-toleft 
-    left: -190px
-  .cbp-spmenu-right
-    right: -190px
-  .cbp-spmenu-push-toright 
-    left: 190px
 
 
 /* check tags */
@@ -175,8 +152,13 @@
     background: url(icons/check_radio_sheet.png) -19px top no-repeat
 
 /* button */
-.advanced
-  top: 0px
+#showTop
+  display: block
+  margin-right: 5%
+  float: right
+#showTop.active
+
+  
 
 
 
