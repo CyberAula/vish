@@ -86,11 +86,7 @@
           end %>
         </dd>
         <% end %>
-        <% if @excursion.respond_to? :age_min and @excursion.respond_to? :age_max %>
-        <!--recomended age-->
-        <dt><%= t('document.recommended_age') %></dt>
-        <dd><%= t('document.recommended_age_detail', :min => @excursion.age_min, :max => @excursion.age_max) %></dd>
-        <% end %>
+        
 <!--date-create
       <div class="tittle-notebook">
       <%= t('document.info.date.created_at') %>
@@ -105,7 +101,22 @@
   </dl>
 </div>
 
+<button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_meta')%>
 <button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
+
+<div id="MetadataModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myMetadataLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myMetadataLabel"><%= t('excursion.modal.metadata_title') %></h3>
+  </div>
+  <div class="modal-body">
+    <ul>
+    <% metadata(@excursion).each do |key, value| %>
+      <li><span><%=key%>:</span><span><%=value%></span></li>
+    <%end%>
+  </ul>
+  </div>
+</div>
 
 <script>
 $(function() {

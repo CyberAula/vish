@@ -22,4 +22,34 @@ module ExcursionsHelper
     value=1 + (10)
   end
 
+  def metadata(excursion)
+    parsed_json = JSON(excursion.json)
+    metadata = {}
+    #metadata are in the json in the fields:
+    #language context age-range difficulty TLT subject educational_objectives
+    if parsed_json["language"] != "independent"
+      metadata["Language"] = parsed_json["language"]
+    end
+    if parsed_json["context"] 
+      metadata["Context"] = parsed_json["context"]
+    end
+    if parsed_json["age-range"] 
+      metadata["Age Range"] = parsed_json["age-range"]
+    end
+    if parsed_json["difficulty"] 
+      metadata["Difficulty"] = parsed_json["difficulty"]
+    end
+    if parsed_json["TLT"] 
+      metadata["Tipical Learning Time"] = parsed_json["TLT"]
+    end
+    if parsed_json["subject"] 
+      metadata["Subject"] = parsed_json["subject"].inspect[1..-2] #remove the first and last characters that are "[" and "]"
+    end
+    if parsed_json["educational_objectives"] 
+      metadata["Educational objectives"] = parsed_json["educational_objectives"]
+    end
+    return metadata
+  end
+
+
 end
