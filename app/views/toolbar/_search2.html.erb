@@ -1,0 +1,36 @@
+<script>
+$(function() {
+$( "#button-as" ).click(function(){
+$( ".newClass-as" ).switchClass( "newClass-as", "anotherNewClass-as", 1000 );
+$( ".anotherNewClass-as" ).switchClass( "anotherNewClass-as", "newClass-as", 1000 );
+return false;
+});
+});
+</script>
+
+
+
+<div class="toggler-as">
+<div id="effect-as" class="newClass-as ui-corner-all">
+
+
+
+
+
+
+<ul class="info_as">
+	<i class="icon-search "></i>
+  <h2>advanced search</h2>
+
+</ul>
+<%= render :partial => 'toolbar/advanced_search_order_by' %>
+
+<%= render :partial => 'toolbar/advanced_search_creation' %>
+<%= render :partial => 'toolbar/advanced_search_tags' %>
+<%= render :partial => 'toolbar/advanced_search_language' %>
+<%= render :partial => 'toolbar/advanced_search_all' %>
+
+
+</div>
+</div>
+<a href="#" id="button-as" class="ui-state-default ui-corner-all">Run Effect</a>

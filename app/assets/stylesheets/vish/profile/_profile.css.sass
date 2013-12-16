@@ -233,29 +233,6 @@
       color: $black
       font-size: 12px
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //FORMULARIO
 .update
   background-color: $white
@@ -378,7 +355,79 @@
 
       .name
         text-align: center
+  .tab-content
+    margin-top: 30px
 
+
+
+.toggler-or
+  width: 100%
+  left: 0
+  z-index: 1000
+  overflow: hidden
+  position: relative
+  background: $secondColor
+  ul 
+    display: block
+    color: #fff
+    float: left
+    border-left: 1px solid darken($secondColor, 10%) 
+    margin: 0
+    width: 100%
+    li 
+      display: inline
+      float: left
+      color: #fff
+      font-size: 12px
+      font-weight: 300
+      cursor: pointer
+      width: 20%
+      text-align: center
+      padding-top: 3px
+      padding-bottom: 3px 
+
+      &:hover 
+        background: $secondColor
+        text-decoration: none
+      &:active
+        background: $secondColor
+        color: #47a3da
+      a
+        color: $white
+        &:hover 
+        text-decoration: none
+  h4 
+    margin: 10px 0px 5px 10px
+    color: $white
+
+
+#button-or
+
+  text-decoration: none
+  float: right
+  background-color: $secondColor
+  height: 20px
+  @include border-bottom-radius($borderRadiusSmall)
+  color: $white
+  padding: 3px
+  padding-left: 6px
+  padding-right: 6px
+
+
+#effect-or
+  position: relative
+
+.newClass-or
+  width: 100%
+  background: darken($secondColor, 10%)
+  height: 0px
+  overflow: hidden
+.anotherNewClass-or
+  width: 100%
+  background: lighten($secondColor, 5%) 
+  height: 26px
+  overflow: hidden
+  @include border-bottom-radius($borderRadiusSmall)
 
 
 

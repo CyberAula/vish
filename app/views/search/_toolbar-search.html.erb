@@ -1,6 +1,18 @@
+<script>
+$(function() {
+$( "#button-as" ).click(function(){
+$( ".newClass-as" ).switchClass( "newClass-as", "anotherNewClass-as", 1000 );
+$( ".anotherNewClass-as" ).switchClass( "anotherNewClass-as", "newClass-as", 1000 );
+return false;
+});
+});
+</script>
 
-<nav class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-top" id="cbp-spmenu-s3">
- <%= render partial: 'toolbar/search' %>
-<button  style=""class="advanced" id="showTop">Advanced Search</button>
-</nav>
 
+
+<div class="toggler-as">
+<div id="effect-as" class="newClass-as ui-corner-all">
+<%= render partial: 'toolbar/search' %>
+</div>
+</div>
+<a href="#" id="button-as" style="display:none"class="ui-state-default ui-corner-all"><i class="icon-search "></i> Advanced Search</a>

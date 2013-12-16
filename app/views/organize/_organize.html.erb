@@ -1,0 +1,24 @@
+<script>
+$(function() {
+$( "#button-or" ).click(function(){
+$( ".newClass-or" ).switchClass( "newClass-or", "anotherNewClass-or", 1000 );
+$( ".anotherNewClass-or" ).switchClass( "anotherNewClass-or", "newClass-or", 1000 );
+return false;
+});
+});
+</script>
+
+
+
+<div class="toggler-or">
+<div id="effect-or" class="newClass-or ui-corner-all">
+<ul>
+<li><a href="#">Name</a></li>
+<li><a href="#">Modification</a></li>
+<li><a href="#">Creation</a></li>
+<li><a href="#">Visits</a></li>
+<li><a href="#">Favourite</a></li>
+</ul>
+</div>
+</div>
+<a href="#" id="button-or" style=""class="ui-state-default ui-corner-all"></i>Organize</a>
