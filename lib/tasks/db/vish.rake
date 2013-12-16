@@ -111,6 +111,11 @@ namespace :db do
           owner  = author
           user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
+	if user_author == nil
+
+user_author = author
+end
+
           e = Excursion.create! :json => {  :title => "kike#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
                                             :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
                                             :author => author.name,
@@ -133,6 +138,9 @@ namespace :db do
           owner  = author
           user_author =  ( author.subject_type == "User" ? author : author.user_author )
 
+	if user_author ==nil
+user_author = author
+end
           e = Excursion.create! :json => {  :title => "#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
                                             :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
                                             :author => author.name,
