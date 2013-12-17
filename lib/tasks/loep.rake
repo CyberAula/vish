@@ -6,6 +6,9 @@ require 'base64'
 
 namespace :loep do
 
+  #Usage
+  #Development:   bundle exec rake loep:bringLOs
+  #In production: bundle exec rake loep:bringLOs RAILS_ENV=production
   task :bringLOs => :environment do
 
     puts "#####################################"
@@ -15,7 +18,8 @@ namespace :loep do
     puts "#####################################"
 
     #excursions = Excursion.all
-    excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
+    #excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
+    excursions = [Excursion.find(514),Excursion.find(517)]
     nExcursions = excursions.length
     index = 0
 
@@ -30,7 +34,7 @@ def recursiveBringLO(excursions,nExcursions,index)
     bringLO(cExcursion){ |response,code|
       # After Bring "LO"
       index = index + 1
-      if index < nExcursions-1
+      if index < nExcursions
         recursiveBringLO(excursions,nExcursions,index)
       else
         finish
@@ -87,7 +91,7 @@ def bringLO(lo)
   # params["authentication"] = 'Basic ' + Base64.encode64("name" + ':' + "password")
   # params["authenticity_token"] = '';
   params["name"] = "ViSH"
-  params["auth_token"] = "twCDn123Me84GH4sCDxkMg"
+  params["auth_token"] = "NvMcQ-4iqEz6FyNfeMNYTw"
 
   #Testing
   #e = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}.first
@@ -115,7 +119,7 @@ def bringLO(lo)
   #Need to be transformed to params["lo"]["language_id"]
   # params["lo"]["lanCode"] =  "en"
 
-  if !loJSON["language"].nil?
+  if !loJSON["language"].nil? and loJSON["language"]!="independent"
     params["lo"]["lanCode"] =  loJSON["language"]
   else
     #English by default
@@ -140,8 +144,9 @@ def bringLO(lo)
   params["lo"]["hasVirtualTours"] = elemTypes.include?("VirtualTour") ? "1" : "0"
   params["lo"]["hasEnrichedVideos"] = "0"
 
-  #http://loep.global.dit.upm.es/api/v1/addLo/
-  invokeApiMethod('http://localhost:3000/api/v1/addLo/',params){ |response,code|
+  productionURL = 'http://loep.global.dit.upm.es/api/v1/addLo/'
+  developmentURL = 'http://localhost:3000/api/v1/addLo/'
+  invokeApiMethod(productionURL,params){ |response,code|
     if(code >= 400 and code <=500)
       puts "Error. " + "Response code: " + code.to_s
     else
@@ -166,8 +171,8 @@ def getElementTypesOfExcursion(loJSON)
     types.uniq!
     types = types.reject { |type| type.nil? }
   rescue => e
-    # puts "Exception"
-    # puts e.message
+    puts "Exception"
+    puts e.message
   end
   types
 end
@@ -188,10 +193,6 @@ def getElType(el)
 
     if elBody.include?("http://docs.google.com")
       return "document"
-    end
-
-    if elBody.include?("www.youtube.com")
-      return "video"
     end
 
     if elBody.include?("www.youtube.com")
