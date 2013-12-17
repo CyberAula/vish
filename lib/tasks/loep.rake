@@ -17,29 +17,49 @@ namespace :loep do
     puts "#####################################"
     puts "#####################################"
 
-    #excursions = Excursion.all
-    #excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
-    excursions = [Excursion.find(514),Excursion.find(517)]
-    nExcursions = excursions.length
-    index = 0
+    # excursions = Excursion.all
+    excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
+    #excursions = [Excursion.find(539)]
 
-    recursiveBringLO(excursions,nExcursions,index)
+    excursionChunks = excursions.each_slice(25).to_a
+    recursiveBringChunk(excursionChunks,excursionChunks.length,0){
+      finish
+    }
   end
 
+end
+
+def recursiveBringChunk(chunks,nChunks,index)
+    cChunk = chunks[index]
+    bringChunk(cChunk){
+      # After Bring "Chunk"
+      index = index + 1
+      if index < nChunks
+        recursiveBringChunk(chunks,nChunks,index){ yield "Finish" }
+      else
+        yield "Finish"
+      end
+    }
+end
+
+def bringChunk(excursions)
+  recursiveBringLO(excursions,excursions.length,0){
+    yield "Finish"
+  }
 end
 
 
 def recursiveBringLO(excursions,nExcursions,index)
   cExcursion = excursions[index]
-    bringLO(cExcursion){ |response,code|
-      # After Bring "LO"
-      index = index + 1
-      if index < nExcursions
-        recursiveBringLO(excursions,nExcursions,index)
-      else
-        finish
-      end
-    }
+  bringLO(cExcursion){ |response,code|
+    # After Bring "LO"
+    index = index + 1
+    if index < nExcursions
+      recursiveBringLO(excursions,nExcursions,index){ yield "Finish" }
+    else
+      yield response, code
+    end
+  }
 end
 
 def finish
@@ -118,8 +138,7 @@ def bringLO(lo)
 
   #Need to be transformed to params["lo"]["language_id"]
   # params["lo"]["lanCode"] =  "en"
-
-  if !loJSON["language"].nil? and loJSON["language"]!="independent"
+  if !loJSON["language"].nil? and loJSON["language"]!="independent" and loJSON["language"]!="ot"
     params["lo"]["lanCode"] =  loJSON["language"]
   else
     #English by default
@@ -156,7 +175,6 @@ def bringLO(lo)
 
     yield response, code
   }
-
 end
 
 def getElementTypesOfExcursion(loJSON)
@@ -166,7 +184,9 @@ def getElementTypesOfExcursion(loJSON)
     types = types + slides.map { |s| s["type"] }
     slides.each do |slide|
       els = slide["elements"]
-      types = types + els.map {|el| getElType(el)}
+      if !els.nil?
+        types = types + els.map {|el| getElType(el)}
+      end
     end
     types.uniq!
     types = types.reject { |type| type.nil? }
@@ -187,6 +207,7 @@ def getElType(el)
   else
     #Look in body param
     elBody = el["body"]
+
     if elBody.nil? or !elBody.is_a? String
       return elType
     end
@@ -201,7 +222,9 @@ def getElType(el)
 
     if elBody.include?(".swf") and elBody.include?("embed")
       return "flash"
-    end 
+    end
+
+    return "web"
 
   end
 end
