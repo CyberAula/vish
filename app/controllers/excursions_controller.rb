@@ -121,7 +121,7 @@ class ExcursionsController < ApplicationController
     end
 
     @excursion.update_attributes!(params[:excursion])
-    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)),
+    render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource, :recent => :true)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
                       :editPath => edit_excursion_path(@excursion)
                     }
