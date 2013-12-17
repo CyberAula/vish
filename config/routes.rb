@@ -65,6 +65,7 @@ Vish::Application.routes.draw do
 
   resources :competitions
   resource :contest
+  resources :about
   resource :catalogue
 
   # Add this at the end so other URLs take prio
