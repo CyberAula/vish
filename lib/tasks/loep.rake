@@ -19,7 +19,7 @@ namespace :loep do
 
     # excursions = Excursion.all
     excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
-    #excursions = [Excursion.find(539)]
+    #excursions = [Excursion.find(462)]
 
     excursionChunks = excursions.each_slice(25).to_a
     recursiveBringChunk(excursionChunks,excursionChunks.length,0){
@@ -138,7 +138,8 @@ def bringLO(lo)
 
   #Need to be transformed to params["lo"]["language_id"]
   # params["lo"]["lanCode"] =  "en"
-  if !loJSON["language"].nil? and loJSON["language"]!="independent" and loJSON["language"]!="ot"
+  loep_langs = ["en", "es", "de", "nl", "hu", "fr"]
+  if !loJSON["language"].nil? and loJSON["language"]!="independent" and loJSON["language"]!="ot" and loep_langs.include? loJSON["language"]
     params["lo"]["lanCode"] =  loJSON["language"]
   else
     #English by default
