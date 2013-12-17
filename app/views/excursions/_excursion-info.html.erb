@@ -113,7 +113,10 @@
   <div class="modal-body">
     <ul class="metadatalist">
     <% metadata(@excursion).each do |key, value| %>
-      <li><span class="metadatalistkey"><%=key%>:</span><span class="metadatalistkey2"><%=value%></span></li>
+      <li>
+        <span class="metadatalistkey"><%=key%>:</span>
+        <span class="metadatalistkey2"><%=value%></span>
+      </li>
     <%end%>
   </ul>
   </div>
