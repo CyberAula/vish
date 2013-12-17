@@ -3,3 +3,71 @@
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %>
 </ul>
+
+<section id="winners">
+  <div class="boxwinners1">
+    <div id="excursions">
+      <ul>
+        <li id="winner1">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(1) } %>
+        </li>
+        <li id="winner2">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(2) } %>
+        </li>
+        <li id="winner3">
+            <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(3) } %>
+        </li>
+      </ul>
+    </div>
+  <div>
+    </section>
+
+    Maths
+  <div class="boxwinners2">
+      <section id="show_items">
+        <div class="recomended">
+          <div class="recomended-items">
+             <ul class="small-box">
+              <li>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+              </li>
+              <li>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(5) } %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  </div>
+  <div class="boxwinners2">
+      <section id="show_items">
+        <div class="recomended">
+          <div class="recomended-items">
+             <ul class="small-box">
+              <li>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(6) } %>
+              </li>
+              <li>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(7) } %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  </div>
+  <div class="boxwinners2">
+      <section id="show_items">
+        <div class="recomended">
+          <div class="recomended-items">
+             <ul class="small-box">
+              <li>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(6) } %>
+              </li>
+              <li>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(7) } %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  </div>
