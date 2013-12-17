@@ -67,7 +67,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.Languageindependent":"Independiente del idioma", "i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", "i.Minutes":"Minutos", 
 "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", "i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
 "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un video HTML5 o de YouTube", 
-"i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
+"i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
 "i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
 "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", 
 "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", 
@@ -80,8 +80,8 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", 
 "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
 "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", 
-"i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", 
-"i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
+"i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid", 
+"i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
 "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", 
 "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", 
 "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", 
@@ -17468,122 +17468,6 @@ VISH.Editor.Clipboard = function(V, $, undefined) {
   };
   return{init:init, copy:copy, paste:paste}
 }(VISH, jQuery);
-VISH.Editor.Competitions = function(V, $, undefined) {
-  var competitionTag = "ViSHCompetition2013";
-  var competitionCategories = ["Maths", "Physics", "Chemistry", "Biology", "EnvironmentalStudies", "Geography", "Engineering", "Humanities", "NaturalScience", "ComputerScience"];
-  var misleadingTags = ["ViSHCompetitions2013"];
-  var vishCompetitionTagAdded = false;
-  var init = function() {
-  };
-  var addCompetitionTags = function(tagsArray) {
-    if(typeof tagsArray == "object") {
-      tagsArray = _purgeTags(tagsArray);
-      var competitionTags = _getAllTags();
-      $(competitionTags).each(function(index, value) {
-        if(tagsArray.indexOf(value) == -1) {
-          tagsArray.unshift(value)
-        }
-      })
-    }
-    return tagsArray
-  };
-  var _purgeTags = function(tagsArray) {
-    var tagsToRemove = [];
-    $(tagsArray).each(function(index, value) {
-      if(_isSimilarToACompetitionTag(value, true)) {
-        tagsToRemove.push(value)
-      }
-    });
-    $(tagsToRemove).each(function(index, value) {
-      tagsArray.splice(tagsArray.indexOf(value), 1)
-    });
-    return tagsArray
-  };
-  var _getAllTags = function() {
-    var allTags = jQuery.extend([], competitionCategories);
-    allTags.push(competitionTag);
-    return allTags
-  };
-  var _isSimilarToACompetitionTag = function(tag, includeEquals) {
-    if(typeof tag != "string") {
-      return false
-    }
-    var competitionTags = _getAllTags();
-    var cL = competitionTags.length;
-    for(var i = 0;i < cL;i++) {
-      if(_areSimilarTags(tag, competitionTags[i], includeEquals)) {
-        return true
-      }
-    }
-    var mL = misleadingTags.length;
-    for(var j = 0;j < mL;j++) {
-      if(_areSimilarTags(tag, misleadingTags[j], true)) {
-        return true
-      }
-    }
-    return false
-  };
-  var _areSimilarTags = function(tag1, tag2, includeEquals) {
-    if(tag1 == tag2) {
-      if(includeEquals === true) {
-        return true
-      }else {
-        return false
-      }
-    }
-    var myTag1 = new String(tag1);
-    var myTag2 = new String(tag2);
-    myTag1 = myTag1.toLowerCase();
-    myTag2 = myTag2.toLowerCase();
-    if(myTag1 == myTag2) {
-      return true
-    }
-    return false
-  };
-  var isValidCandidate = function() {
-    var tags = V.Editor.Settings.getTags();
-    if(!tags || tags.length < 1) {
-      return false
-    }
-    if(tags.indexOf(competitionTag) != -1) {
-      var ccL = competitionCategories.length;
-      for(var i = 0;i < ccL;i++) {
-        if(tags.indexOf(competitionCategories[i]) != -1) {
-          return true
-        }
-      }
-    }else {
-      return false
-    }
-    return false
-  };
-  var generateForm = function() {
-    var result = "<hr class='hrcomp'><div class='comp_first_row'>" + V.I18n.getTrans("i.NoCompetitions2") + "</div>";
-    result += "<div class='comp_second_row'>" + V.I18n.getTrans("i.NoCompetitions3") + "</div>";
-    result += "<div class='check_boxer'>";
-    for(var i = 0;i <= competitionCategories.length - 1;i++) {
-      result += "<div class='comp_checkbox'><input type='checkbox' name='" + competitionCategories[i] + "' value='" + competitionCategories[i] + "'  />" + competitionCategories[i] + "</div>"
-    }
-    result += "</div>";
-    return result
-  };
-  var specialTagSelected = function(event) {
-    var tagList = $("#tagBoxIntro .tagList");
-    if($(event.target).is(":checked")) {
-      if(!vishCompetitionTagAdded) {
-        $(tagList).tagit("add", "ViSHCompetition2013")
-      }
-      $(tagList).tagit("add", $(event.target).val());
-      $(".notification_row2 a[buttonnumber=1]").removeClass("competi_disabled")
-    }else {
-      $(tagList).tagit("remove", $(event.target).val());
-      if($(".comp_checkbox input:checked").size() == 0) {
-        $(".notification_row2 a[buttonnumber=1]").addClass("competi_disabled")
-      }
-    }
-  };
-  return{init:init, addCompetitionTags:addCompetitionTags, generateForm:generateForm, isValidCandidate:isValidCandidate, specialTagSelected:specialTagSelected}
-}(VISH, jQuery);
 VISH.Editor.Dummies = function(V, undefined) {
   var dummies = [];
   var init = function() {
@@ -17729,7 +17613,6 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).on("click", "#animation_fancybox div[animation]", V.Editor.Animations.onAnimationSelected);
       $(document).on("click", "#theme_fancybox img[theme]", V.Editor.Themes.onThemeSelected);
       $(document).on("click", ".change_bg_button", V.Editor.Tools.changeBackground);
-      $(document).on("click", ".comp_checkbox input", V.Editor.Competitions.specialTagSelected);
       $(document).bind("keydown", handleBodyKeyDown);
       $(document).bind("keyup", handleBodyKeyUp);
       $("article").live("slideenter", V.Editor.onSlideEnterEditor);
@@ -17837,9 +17720,6 @@ VISH.Editor.Events = function(V, $, undefined) {
     });
     $(document).on("click", "#help_in_settings", function() {
       V.Tour.startTourWithId("help_in_settings_help", "bottom")
-    });
-    $(document).on("click", "#help_in_competitions", function() {
-      V.Tour.startTourWithId("help_in_competitions_help", "bottom")
     });
     $(document).on("click", "#help_pedagogical_selection", function() {
       V.Tour.startTourWithId("help_pedagogical_selection_help", "bottom")
@@ -20400,7 +20280,6 @@ VISH.Editor.Settings = function(V, $, undefined) {
   };
   var _onInitialTagsReceived = function(data) {
     tagsLoaded = true;
-    data = V.Editor.Competitions.addCompetitionTags(data);
     V.Utils.Loader.stopLoadingInContainer($("#tagBoxIntro"));
     $("#tagBoxIntro").html($("#tagBoxIntro").attr("HTMLcontent"));
     var tagList = $("#tagBoxIntro .tagList");
@@ -21181,7 +21060,6 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
 VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var _initialized = false;
   var _hoverMenu = false;
-  var _competitionsModalShown = false;
   var init = function() {
     if(!_initialized) {
       if(!V.Status.getDevice().desktop) {
@@ -21270,36 +21148,6 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
         $.fancybox.close()
       };
       options.buttons = [button1];
-      V.Utils.showDialog(options);
-      return
-    }
-    if(!V.Editor.Competitions.isValidCandidate() && !_competitionsModalShown) {
-      _competitionsModalShown = true;
-      var options = {};
-      options.width = 650;
-      options.height = 190;
-      options.text = V.I18n.getTrans("i.NoCompetitions1");
-      options.textWrapperClass = "competitions_paragraph";
-      options.onClosedCallback = function() {
-        setTimeout(function() {
-          V.Editor.Tools.Menu.onPublishButtonClicked()
-        }, 500)
-      };
-      options.notificationIconSrc = V.ImagesPath + "zonethumbs/content_fail.png";
-      options.middlerow = V.Editor.Competitions.generateForm();
-      options.middlerowExtraClass = "competitions_options";
-      var button1 = {};
-      button1.text = V.I18n.getTrans("i.Done");
-      button1.extraclass = "competi_disabled";
-      button1.callback = function() {
-        $.fancybox.close()
-      };
-      var button2 = {};
-      button2.text = V.I18n.getTrans("i.NoThanks");
-      button2.callback = function() {
-        $.fancybox.close()
-      };
-      options.buttons = [button1, button2];
       V.Utils.showDialog(options);
       return
     }
