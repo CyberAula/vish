@@ -155,6 +155,8 @@ es:
     spread: "¿Quieres ayudarnos a expandir el proyecto?"
     spread2: "Descarga, imprime y comparte el flyer: "
   contest:
+    winnersbycategory: "Ganadores por categorias"
+    viewalltag: "Ver todas las excursiones de la competición #ViSHCompetition2013"
     moreinfo: "Saber más"
     faq: "Ayuda"
     candidates: "Candidatos"
@@ -188,7 +190,7 @@ es:
     prizes_second: "2º premio 300€ Cupón Amazon "
     prizes_third: "3º premio 200€ Cupón Amazon "
     amazon: "* El Cupón de Amazon "
-    ex_part: "Excursiones inscritas:"
+    ex_part: "Todas las excursiones de #ViSHCompetition2013"
     filter: "Filtro:"
     All: "Todas"
     Maths: "Matemáticas"

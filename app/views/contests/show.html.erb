@@ -50,14 +50,14 @@
 
   <div class="tabexcursions">
 
-    <h3><b class="caret caret1"></b>Winners by Category<b class="caret caret2"></b></h3>
+    <h3><b class="caret caret1"></b><%=t('contest.winnersbycategory')%><b class="caret caret2"></b></h3>
   </div>
 
   <div id="subjectwinners">
     <div class="subrow">
     <img class="bd1" src="assets/competition/bd1.png"/>
     <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Maths</h3>
+      <h3><%=t('contest.Maths')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -76,7 +76,7 @@
     <div class="subrow2">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Physics</h3>
+      <h3><%=t('contest.Physics')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -95,7 +95,7 @@
     <div class="subrow">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Chemistry</h3>
+      <h3><%=t('contest.Chemistry')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -114,7 +114,7 @@
     <div class="subrow2">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Biology</h3>
+      <h3><%=t('contest.Biology')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -133,7 +133,7 @@
     <div class="subrow">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Geography</h3>
+      <h3><%=t('contest.Geography')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -152,7 +152,7 @@
     <div class="subrow2">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Enviromental Studies</h3>
+      <h3><%=t('contest.EnvironmentalStudies')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -171,7 +171,7 @@
     <div class="subrow">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Engineering</h3>
+      <h3><%=t('contest.Engineering')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -190,7 +190,7 @@
     <div class="subrow2">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Humanities</h3>
+      <h3><%=t('contest.Humanities')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -209,7 +209,7 @@
     <div class="subrow">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Natural Science</h3>
+      <h3><%=t('contest.NaturalScience')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -228,7 +228,7 @@
     <div class="subrow2">
       <img class="bd1" src="assets/competition/bd1.png"/>
       <img class="bd2" src="assets/competition/bd2.png"/>
-      <h3>Computer Science</h3>
+      <h3><%=t('contest.ComputerScience')%></h3>
       <section id="show_items">
         <div class="recomended">
           <div class="recomended-items">
@@ -246,7 +246,11 @@
     </div>
   </div>
 
-  <div id="participants"></div>
+  <div id="participants">
+      <div class="tabexcursions">
+          <a class="sign_up btn" href="/contest_all"><%=t('contest.viewalltag')%></a>
+     </div>
+  </div>
 
 </div>
 

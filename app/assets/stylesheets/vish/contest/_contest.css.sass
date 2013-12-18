@@ -1,6 +1,8 @@
 #winners
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
   .tabexcursions
+    padding-top: 1%
+    padding-bottom: 1%
     position: relative
     width: 100%
     display: block
@@ -227,9 +229,38 @@
         margin-top: 9.9%
         margin-left: 1.5%
   #participants
+    margin-top: -5%
     float: left
     position: relative
     @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
-    height: 300px
-    background-color: green
-    margin-top: 4%
+    .sign_up
+      font-family: $secondFontFamily
+      font-size: 17px !important
+      padding: 1% !important
+      border: 1px solid #EEEEEE
+      @include border-radius($baseBorderRadius)
+      @include btn-primary
+      background-color: $secondColor
+      margin-right: 10px
+      background-image: none
+      margin-left: 10px
+      a 
+        color: $white
+        &:hover,&:active,&:focus
+          text-decoration: none 
+          outline: none    
+      &:hover
+        background-color: lighten($secondColor, 10%) 
+
+#contest
+  .tabexcursions
+    position: relative
+    width: 100%
+    display: block
+    float: left
+    margin-bottom: 3%
+    border-bottom: 1px solid #ccc
+    border-top: 1px solid #ccc
+    .filter
+      float: right
+      margin-top: -3%

@@ -1,5 +1,5 @@
 <ul>
-  <% excursions_with_tag("ViSHCompetition2013").each do |excursion| %>
+  <% Excursion.first(15).each do |excursion| %>
     <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
   <% end %>
 </ul>
