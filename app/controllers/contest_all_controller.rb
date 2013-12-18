@@ -1,0 +1,2 @@
+class ContestAllController < ApplicationController
+end

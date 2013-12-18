@@ -65,6 +65,7 @@ Vish::Application.routes.draw do
 
   resources :competitions
   resource :contest
+  resources :contest_all
   resources :about
   resource :catalogue
 

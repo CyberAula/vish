@@ -1,0 +1,42 @@
+<section id="contest">
+  
+  <div class="tabexcursions">
+    <h3><%=t('contest.ex_part')%></h3>
+
+    <div class="filter">
+    <!--filtro por categoria -->
+    <%=t('contest.filter')%>
+      <select id="tags_selector" name="tags">
+        <option value="All"> <%=t('contest.All')%> </option>
+        <option value="Maths"> <%=t('contest.Maths')%> </option>
+        <option value="Physics"> <%=t('contest.Physics')%> </option>
+        <option value="Chemistry"> <%=t('contest.Chemistry')%> </option>
+        <option value="Biology"> <%=t('contest.Biology')%> </option>
+        <option value="Geography"> <%=t('contest.Geography')%> </option>
+        <option value="EnvironmentalStudies"> <%=t('contest.EnvironmentalStudies')%> </option>
+        <option value="Engineering"> <%=t('contest.Engineering')%> </option>
+        <option value="Humanities"> <%=t('contest.Humanities')%> </option>
+        <option value="NaturalScience"> <%=t('contest.NaturalScience')%> </option>
+        <option value="ComputerScience"> <%=t('contest.ComputerScience')%></option>
+      </select>
+    </div>
+  </div>
+  <div id="excursions" class="contest_excursions">
+    <%= render partial: 'contests/excursions' %>
+  </div>
+
+</section>
+
+<script type="text/javascript">
+  $("#tags_selector").change(function() {
+    if(this.value=="All"){
+      $(".excursion-item").show();
+    }
+    else{
+      $(".excursion-item").hide();
+      $(".one_tag:contains("+this.value+")").parents(".excursion-item").show();
+      $(".one_tag:contains("+this.value.toLowerCase()+")").parents(".excursion-item").show();
+    }
+  });
+
+</script>
