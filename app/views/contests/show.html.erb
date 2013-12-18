@@ -1,5 +1,11 @@
 <div id="winners">
-  <div id="banner"></div>
+  <div id="banner">
+    <%if I18n.locale==:es%>
+      <%= link_to image_tag("competition/ban_winner_01_esp.png",  :class=> "" ), "/contest" %>
+    <%else%>
+      <%= link_to image_tag("competition/ban_winner_01.png",  :class=> "" ), "/contest" %>
+    <%end%>
+  </div>
 
   <div id="podium">
     <div class="podiuminside">
