@@ -29,14 +29,12 @@ namespace :competition do
        prizes[c]["second"] = nil
     end
 
-    #More vars
-    awardedUsers = []
+    #[1] Get excursions
+    excursions = []
 
     #Test ids
     test_ids = Excursion.order("RAND(id)").map { |e| e.id.to_s }
-
     loepItems = JSON(File.read("rankedIndex.json"))
-
     loepItems.each_with_index do |item,index|
       if item["vishId"]
         #Just for testing
@@ -45,7 +43,6 @@ namespace :competition do
         end
         item["vishId"] = test_ids[index]
         #Testing end
-
         begin
           e = Excursion.find(item["vishId"].to_i)
         rescue
@@ -53,12 +50,6 @@ namespace :competition do
           puts "WARNING: The following item includes an invalid ViSH ID, check the LOEP platform for details"
           puts item
           puts "#####################################"
-          next
-        end
-
-        eUserId = e.author.user.id
-        if awardedUsers.include? eUserId
-          #This user is already a winner
           next
         end
 
@@ -71,17 +62,50 @@ namespace :competition do
           next
         end
 
-        #Check award for excursion
+        puts e.id
+        excursions.push(e)
+      else
+        puts "#####################################"
+        puts "WARNING: The following item does not include a ViSH ID, check the LOEP platform for details"
+        puts item
+        puts "#####################################"
+      end
+    end
 
+    awardedUsers = []
 
-        if prizes["first"].nil?
-          prizes["first"] = e
-        elsif prizes["second"].nil?
-          prizes["second"] = e
-        elsif prizes["third"].nil?
-          prizes["third"] = e
-        end
+    #First three prizes
+    excursions.each do |e|
+      #Check award for excursion
+      if prizes["first"].nil?
+        prizes["first"] = e
+      elsif prizes["second"].nil?
+        prizes["second"] = e
+      elsif prizes["third"].nil?
+        prizes["third"] = e
+      end
 
+      prize = getAwardedPrizeForExcursion(eCategories,prizes)
+      if prize != "NOPRIZE"
+        prize = e
+        awardedUsers.push(eUserId)
+      end
+
+      #Check finish
+      if prizes["first"].nil and prizes["second"].nil and prizes["third"].nil
+        return true
+      end
+    end
+    excursions = excursions.reject { |e| awardedUsers.include? e.author.user.id }
+    awardedUsers = []
+
+    #2. Excursion - Awards matching
+
+    while !isFinish(prizes,excursions)
+
+      #3 Look for repeated users
+
+      excursions.each do |e|
         prize = getAwardedPrizeForExcursion(eCategories,prizes)
         if prize != "NOPRIZE"
           prize = e
@@ -89,15 +113,9 @@ namespace :competition do
         end
 
         #Check finish
-        unless hasPrizes(prizes)
+        if isFinish(prizes,excursions)
           break;
         end
-
-      else
-        puts "#####################################"
-        puts "WARNING: The following item does not include a ViSH ID, check the LOEP platform for details"
-        puts item
-        puts "#####################################"
       end
     end
 
@@ -209,6 +227,13 @@ namespace :competition do
       end
     end
     return false
+  end
+
+  def isFinish(prizes,excursions)
+    if excursions.length == 0
+      return true
+    end
+    return !hasPrizes(prizes)
   end
 
   def printExcursion(e)
