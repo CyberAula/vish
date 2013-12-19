@@ -157,7 +157,7 @@
     .subrow
       @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
       margin-left: 3%
-      margin-right: 2%
+      margin-right: 4%
       float: left
       margin-top: 2%
       padding: 2%
@@ -178,20 +178,28 @@
       border-radius: 5px
       h3
         border-bottom: 1px solid #D8D8D8
-      .recomended
-        width: 68%
-        margin-right: 10%
-      .bd1
-        position: absolute
-        width: 5%
-        margin-top: 4.4%
-        margin-left: 1.5%
-        border-bottom: 1px solid #ccc
-      .bd2
-        position: absolute
-        width: 5%
-        margin-top: 9.9%
-        margin-left: 1.5%
+      section
+        position: relative
+        float: right
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .badimg
+          @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          position: relative
+          float: left
+          .bd1
+            width: 100%
+            margin-top: 45%
+            clear: both
+            float: left
+          .bd2
+            width: 100%
+            margin-top: 45%
+            clear: both
+            float: left
+        .recomended
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: right
+          position: relative
     .subrow2
       @include grid-fluid-span(5, $fluidGridColumnWidth, $fluidGridGutterWidth)
       margin-left: 3%
@@ -215,20 +223,28 @@
       border-radius: 5px
       h3
         border-bottom: 1px solid #D8D8D8
-      .recomended
-        width: 68%
-        margin-right: 10%
-      .bd1
-        position: absolute
-        width: 5%
-        margin-top: 4.4%
-        margin-left: 1.5%
-        border-bottom: 1px solid #ccc
-      .bd2
-        position: absolute
-        width: 5%
-        margin-top: 9.9%
-        margin-left: 1.5%
+      section
+        position: relative
+        float: right
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        .badimg
+          @include grid-fluid-span(1, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          position: relative
+          float: left
+          .bd1
+            width: 100%
+            margin-top: 45%
+            clear: both
+            float: left
+          .bd2
+            width: 100%
+            margin-top: 45%
+            clear: both
+            float: left
+        .recomended
+          @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          position: relative
   #participants
     margin-top: -5%
     float: left
@@ -252,7 +268,6 @@
           outline: none    
       &:hover
         background-color: lighten($secondColor, 10%) 
-
 #contest
   .tabexcursions
     position: relative
