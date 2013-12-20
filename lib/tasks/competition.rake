@@ -33,16 +33,25 @@ namespace :competition do
     excursions = []
 
     #Test ids
-    test_ids = Excursion.order("RAND(id)").map { |e| e.id.to_s }
+    # test_ids = Excursion.order("RAND(id)").map { |e| e.id.to_s }
+    test_ids = [3,7,15,11,19,23,27,31,35,39,43,47,51,55,59,63,67,71,75,79,83,87,91,95,99,103,107,283,287,291,295,299,
+303,307,311,315,319,323,327,331,335,339,343,347,351,355,359,363,367,371,375,379,383,387,391,395,399,403,407,411,415,
+419,423,427,431,435,439,443,447,451,455,459,463,467,471,475,479,483,487,491,495,499,503,507]
+    # e.tag_list = ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
+    test_categories = [["Maths","Physics"],["Maths"],["Geography"],["Geography"],["Geography"],["Geography","EnvironmentalStudies"]];
+
+
     loepItems = JSON(File.read("rankedIndex.json"))
     loepItems.each_with_index do |item,index|
       if item["vishId"]
+
         #Just for testing
         if index >= test_ids.length
           break
         end
         item["vishId"] = test_ids[index]
         #Testing end
+
         begin
           e = Excursion.find(item["vishId"].to_i)
         rescue
@@ -53,6 +62,13 @@ namespace :competition do
           next
         end
 
+        #Test. Add categories
+        # e.tag_list = ["Maths","Physics","Chemistry","Geography","Biology","ComputerScience","EnvironmentalStudies","Engineering","Humanities","NaturalScience"].sample(2).join(",")
+        if index < test_categories.length
+          e.tag_list = test_categories[index]
+        end
+        #Test end
+
         eCategories = getExcursionCategories(e)
         if eCategories.blank?
           puts "#####################################"
@@ -62,7 +78,7 @@ namespace :competition do
           next
         end
 
-        puts e.id
+        # puts e.id
         excursions.push(e)
       else
         puts "#####################################"
@@ -76,6 +92,13 @@ namespace :competition do
 
     #First three prizes
     excursions.each do |e|
+
+      eUserId = e.author.user.id
+      if awardedUsers.include? eUserId
+        #This user is already a winner
+        next
+      end
+
       #Check award for excursion
       if prizes["first"].nil?
         prizes["first"] = e
@@ -85,31 +108,58 @@ namespace :competition do
         prizes["third"] = e
       end
 
+      eCategories = getExcursionCategories(e)
       prize = getAwardedPrizeForExcursion(eCategories,prizes)
       if prize != "NOPRIZE"
-        prize = e
+        prizes[prize[0]][prize[1]] = e
         awardedUsers.push(eUserId)
       end
 
       #Check finish
-      if prizes["first"].nil and prizes["second"].nil and prizes["third"].nil
-        return true
+      if !prizes["first"].nil? and !prizes["second"].nil? and !prizes["third"].nil?
+        break
       end
     end
     excursions = excursions.reject { |e| awardedUsers.include? e.author.user.id }
-    awardedUsers = []
 
     #2. Excursion - Awards matching
 
     while !isFinish(prizes,excursions)
 
       #3 Look for repeated users
+      if awardedUsers != awardedUsers.uniq
+        #One user with more than one prize...
+        #Keep the better prize, remove the others
+        awardedUsers.each do |userId|
+          if awardedUsers.count(userId) > 1
+            #repeated user
+
+            #3.1 Select best user prize
+            userPrize = getBestAwardedPrizeForUser(categories,userId,prizes)
+            #3.2 Clean other prizes
+            categories.each do |c|
+              if !prizes[c]["first"].nil? and prizes[c]["first"].author.user.id == userId and (c != userPrize[0] and userPrize[1] != "first")
+                prizes[c]["first"] = nil
+              end
+              if !prizes[c]["second"].nil? and prizes[c]["second"].author.user.id == userId and (c != userPrize[0] and userPrize[1] != "second")
+                prizes[c]["second"] = nil
+              end
+            end
+            #Clean LOs
+            excursions = excursions.reject { |e| e.author.user.id ==  userId }
+          end
+        end
+      end
+
+      awardedUsersInNextRound = []
 
       excursions.each do |e|
+        eCategories = getExcursionCategories(e)
         prize = getAwardedPrizeForExcursion(eCategories,prizes)
         if prize != "NOPRIZE"
-          prize = e
-          awardedUsers.push(eUserId)
+          prizes[prize[0]][prize[1]] = e
+          awardedUsers.push(e.author.user.id)
+          awardedUsersInNextRound.push(e.author.user.id)
         end
 
         #Check finish
@@ -117,6 +167,11 @@ namespace :competition do
           break;
         end
       end
+
+      if awardedUsersInNextRound.length === 0
+        break
+      end
+
     end
 
 
@@ -128,7 +183,9 @@ namespace :competition do
     if !prizes["first"].nil?
       fFirstPrize["AuthorName"] = prizes["first"].author.user.name
       fFirstPrize["AuthorEmail"] = prizes["first"].author.user.email
+      fFirstPrize["AuthorID"] = prizes["first"].author.user.id
       fFirstPrize["ExcursionName"] = prizes["first"].title
+      fFirstPrize["id"] = prizes["first"].id
     end
     fPrizes.push(fFirstPrize)
 
@@ -137,7 +194,9 @@ namespace :competition do
     if !prizes["second"].nil?
       fSecondPrize["AuthorName"] = prizes["second"].author.user.name
       fSecondPrize["AuthorEmail"] = prizes["second"].author.user.email
+      fSecondPrize["AuthorID"] = prizes["second"].author.user.id
       fSecondPrize["ExcursionName"] = prizes["second"].title
+      fSecondPrize["id"] = prizes["second"].id
     end
     fPrizes.push(fSecondPrize)
 
@@ -146,7 +205,9 @@ namespace :competition do
     if !prizes["third"].nil?
       fThirdPrize["AuthorName"] = prizes["third"].author.user.name
       fThirdPrize["AuthorEmail"] = prizes["third"].author.user.email
+      fThirdPrize["AuthorID"] = prizes["third"].author.user.id
       fThirdPrize["ExcursionName"] = prizes["third"].title
+      fThirdPrize["id"] = prizes["third"].id
     end
     fPrizes.push(fThirdPrize)
 
@@ -156,16 +217,20 @@ namespace :competition do
       if !prizes[c]["first"].nil?
         fC1Prize["AuthorName"] = prizes[c]["first"].author.user.name
         fC1Prize["AuthorEmail"] = prizes[c]["first"].author.user.email
+        fC1Prize["AuthorID"] = prizes[c]["first"].author.user.id
         fC1Prize["ExcursionName"] = prizes[c]["first"].title
+        fC1Prize["id"] = prizes[c]["first"].id
       end
       fPrizes.push(fC1Prize)
 
       fC2Prize = Hash.new
       fC2Prize["Prize"] = "Second best excursion. Category: " + c
-      if !prizes[c]["first"].nil?
+      if !prizes[c]["second"].nil?
         fC2Prize["AuthorName"] = prizes[c]["second"].author.user.name
         fC2Prize["AuthorEmail"] = prizes[c]["second"].author.user.email
+        fC2Prize["AuthorID"] = prizes[c]["second"].author.user.id
         fC2Prize["ExcursionName"] = prizes[c]["second"].title
+        fC2Prize["id"] = prizes[c]["second"].id
       end
       fPrizes.push(fC2Prize)
      
@@ -207,14 +272,40 @@ namespace :competition do
     end
 
     if !first.blank?
-      return prizes[first.sample]["first"]
+      return[first.sample,"first"]
     end
     if !second.blank?
-      return prizes[second.sample]["second"]
+      return[second.sample,"second"]
     end
 
     #Sorry, no prize for this excursion
     return "NOPRIZE"
+  end
+
+  def getBestAwardedPrizeForUser(categories,userId,prizes)
+    first = []
+    second = []
+
+    categories.each do |c|
+      if !prizes[c]["first"].nil? and prizes[c]["first"].author.user.id == userId
+        first.push(c)
+        next
+      end
+      if !prizes[c]["second"].nil? and prizes[c]["second"].author.user.id == userId
+        second.push(c)
+        next
+      end
+    end
+
+    if !first.blank?
+      return[first.sample,"first"]
+    end
+    if !second.blank?
+      return[second.sample,"second"]
+    end
+
+    #Sorry, no prize for this user
+    return "NOPRIZE?"
   end
 
   def hasPrizes(prizes)
@@ -257,7 +348,9 @@ namespace :competition do
     if !prize["ExcursionName"].nil?
       puts "Author name: " + prize["AuthorName"]
       puts "Author email: " + prize["AuthorEmail"]
-      puts "Excursion Title:" + prize["ExcursionName"]
+      puts "Author ID: " + prize["AuthorID"].to_s
+      puts "Excursion Title: " + prize["ExcursionName"]
+      puts "Excursion ID: " + prize["id"].to_s
     end
 
     printSeparator
