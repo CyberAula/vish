@@ -7,13 +7,42 @@
     <%end%>
   </div>
 
+<div class="info_competition">
+      <div class="info_competition_element">
+      <a id="congratulations-button" href="#CongratModal" class="sign_up btn" role="button" data-toggle="modal"><h4><i class="icon-trophy"></i><%=t('contest.prizes')%></h4></a>
+    </div>
+</div>
+<div id="CongratModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myCongratLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myCongratLabel"><%= t('contest.prizes') %></h3>
+  </div>
+  <div class="modal-body evaluation_body">
+    <p><%=t('contest.prizes2')%>
+        </br><%=t('contest.prizes_first_a')%>
+        </br><%=t('contest.prizes_second_a')%>
+        </br><%=t('contest.prizes3')%>
+        </br><%=t('contest.prizes_first')%>
+        </br><%=t('contest.prizes_second')%>
+        </br><%=t('contest.prizes_third')%>
+        </br><%=t('contest.prizes4')%>
+        </br>
+        <strong><%=t('contest.amazon')%></strong><%=t('contest.prizes5')%>
+      </p>
+
+
+    <p class="thank"><i class="icon-smile"></i>  <%=raw t("excursion.modal.thank")%></p>
+  </div>
+</div>
+
+
   <div id="podium">
     <div class="podiuminside">
       <div class="podiuminside1">
         <div id="excursions">
           <ul>
             <li id="winner1">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(1) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } %>
             </li>
           </ul>
         </div>
@@ -27,7 +56,7 @@
         <div id="excursions">
           <ul>
             <li id="winner2">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(2) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } %>
             </li>
           </ul>
         </div>
@@ -41,7 +70,7 @@
         <div id="excursions">
           <ul>
             <li id="winner3">
-              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+              <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } %>
             </li>
           </ul>
         </div>
@@ -71,7 +100,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(564) } %>
               </li>
             </ul>
           </div>
@@ -85,7 +114,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(675) } %>
               </li>
             </ul>
           </div>
@@ -104,7 +133,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(560) } %>
               </li>
             </ul>
           </div>
@@ -118,7 +147,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(613) } %>
               </li>
             </ul>
           </div>
@@ -136,7 +165,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(620) } %>
               </li>
             </ul>
           </div>
@@ -150,7 +179,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(465) } %>
               </li>
             </ul>
           </div>
@@ -168,7 +197,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(450) } %>
               </li>
             </ul>
           </div>
@@ -182,7 +211,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(634) } %>
               </li>
             </ul>
           </div>
@@ -200,7 +229,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(656) } %>
               </li>
             </ul>
           </div>
@@ -214,7 +243,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(646) } %>
               </li>
             </ul>
           </div>
@@ -232,7 +261,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(515) } %>
               </li>
             </ul>
           </div>
@@ -246,7 +275,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(512) } %>
               </li>
             </ul>
           </div>
@@ -264,7 +293,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(592) } %>
               </li>
             </ul>
           </div>
@@ -278,7 +307,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(474) } %>
               </li>
             </ul>
           </div>
@@ -296,7 +325,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(632) } %>
               </li>
             </ul>
           </div>
@@ -310,7 +339,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(520) } %>
               </li>
             </ul>
           </div>
@@ -328,7 +357,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(667) } %>
               </li>
             </ul>
           </div>
@@ -342,7 +371,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(669) } %>
               </li>
             </ul>
           </div>
@@ -360,7 +389,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(659) } %>
               </li>
             </ul>
           </div>
@@ -374,7 +403,7 @@
           <div class="recomended-items">
              <ul class="small-box">
               <li>
-                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(4) } %>
+                  <%= render :partial => 'excursions/excursion', :locals => { :excursion => Excursion.find(522) } %>
               </li>
             </ul>
           </div>
@@ -395,4 +424,14 @@
 
 
 
-  
+ <script>
+
+    $(".subrow2 #excursion-560").backstretch("http://vishub.org/pictures/2731.jpeg");
+
+    $(".subrow2 #excursion-515").backstretch("http://vishub.org/pictures/1730.jpeg");
+
+    $(".subrow2 #excursion-659").backstretch("http://vishub.org/pictures/1730.jpeg");
+
+
+</script>
+ 
