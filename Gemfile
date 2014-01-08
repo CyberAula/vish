@@ -48,7 +48,7 @@ gem 'composite_primary_keys'
 # Deploy with Capistrano
 group :development do
   gem 'capistrano'
-  gem 'rvm-capistrano'
+  #gem 'rvm-capistrano'
 end
 
 # Use god for its own purpose
