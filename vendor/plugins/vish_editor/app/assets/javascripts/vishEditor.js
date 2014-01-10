@@ -63,31 +63,31 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.draft":"borrador", "i.easy":"f\u00e1cil", "i.Economics":"Econom\u00eda", "i.edit":"editar", "i.Education":"Educaci\u00f3n", "i.EducationalObjectives":"Objetivos educativos", "i.EducationalObjectivesPlaceholder":"Describa los objetivos educativos que pretende cumplir con esta excursi\u00f3n...", "i.Electronics":"Electr\u00f3nica", "i.embedwebsite":"embeber web", "i.embedWebSnapshot":"embeber Web Snapshot", "i.EnvironmentalEducation":"Educaci\u00f3n Ambiental", "i.errorFlickrConnection":"Error conectando con Flickr", 
 "i.errorLREConnection":"Error al conectarse con el repositorio del LRE", "i.errorViSHConnection":"Error al conectarse con el servidor de ViSH", "i.errorYoutubeConnection":"Error conectando con YouTube", "i.Ethics":"\u00c9tica", "i.ExcursionDetails":"Informaci\u00f3n de la Excursi\u00f3n", "i.Excursions":"Excursiones", "i.Exit":"Salir", "i.exitConfirmation":"Vas a abandonar ViSH Editor. Se perder\u00e1n todos los cambios que no hayas salvado.", "i.exitConfirmation2":"\u00bfSeguro que quieres abandonar esta p\u00e1gina?", 
 "i.exitConfirmationMenu":"La Excursi\u00f3n Virtual se ha modificado. Si la cierra sin guardar perder\u00e1 todos los cambios. \u00bfQu\u00e9 desea hacer?", "i.ExitWSaving":"salir sin guardar", "i.Export":"Exportar", "i.exportPresToJSONerrorNotification":"Ha ocurrido un error. No es posible exportar la presentaci\u00f3n a un fichero JSON.", "i.Filllater":"Rellenar despu\u00e9s", "i.Finish":"Terminar", "i.Flashcard":"Flashcard", "i.Flashcards":"Flashcards", "i.ForeignLanguages":"Idiomas", "i.Game":"Juego", 
-"i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Secundaria", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Import":"Importar", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.Language":"Idioma", 
+"i.GeneralCulture":"Cultura General", "i.Geography":"Geograf\u00eda", "i.Geology":"Geolog\u00eda", "i.GotoSettings":"Ir a Ajustes", "i.HealthEducation":"Educaci\u00f3n para la Salud", "i.Help":"Ayuda", "i.HigherEducation":"Educaci\u00f3n Superior", "i.History":"Histor\u00eda", "i.HomeEconomics":"Econom\u00eda Dom\u00e9stica", "i.Hours":"Horas", "i.Image":"Imagen", "i.Images":"Im\u00e1genes", "i.Import":"Importar", "i.Insert":"Insertar", "i.invalidvalue":"valor inv\u00e1lido", "i.Language":"Idioma", 
 "i.Languageindependent":"Independiente del idioma", "i.Law":"Derecho", "i.License":"Licencia", "i.limitReached":"limite alcanzado", "i.link":"enlace", "i.Literature":"Literatura", "i.LiveQuiz":"Cuestionario en Vivo", "i.LiveResources":"Contenidos en directo", "i.MandatoryFieldsNotification":"Tienes que escribir un t\u00edtulo y escoger un avatar para la excursi\u00f3n antes de publicarla.", "i.math":"matem\u00e1ticas", "i.Mathematics":"Matem\u00e1ticas", "i.medium":"medio", "i.Minutes":"Minutos", 
 "i.Music":"M\u00fasica", "i.nanoscience":"nanociencia", "i.NaturalSciences":"Ciencias Naturales", "i.next":"siguiente", "i.Next":"Siguiente", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"\u00bfQuieres participar en la competici\u00f3n? Puedes ganar un gran premio. Lee la guia de c\u00f3mo hacerlo <a href='http://vishub.org/competitions' target='_blank'>aqu\u00ed</a>", "i.NoCompetitions2":"A\u00f1ade una o m\u00e1s de las siguientes tags para participar:", "i.NoCompetitions3":"Se a\u00f1adir\u00e1n a las tags de la excursi\u00f3n. Las puedes revisar o cambiar en la p\u00e1gina de ajustes", 
 "i.NoJSONFileError":"Tienes que seleccionar un archivo para importar en formato JSON", "i.Noresultsfound":"No se encontraron resultados", "i.NoSlidesOnSaveNotification":"Antes de guardar tienes que crear por lo menos una diapositiva.", "i.NoThanks":"No gracias", "i.Object":"Objeto", "i.Objects":"Objetos", "i.Ok":"Ok", "i.OK":"OK", "i.or":"o", "i.Other":"Otro", "i.Others":"Otros", "i.pasteEmbedObject":"pega la URL de un archivo SWF o PDF", "i.pasteImageURL":"pega la URL de una imagen", "i.pasteVideoURL":"pega la URL de un video HTML5 o de YouTube", 
-"i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
-"i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
+"i.pasteWeb":"pega la URL de una p\u00e1gina web", "i.pdfErrorNotification":"Ha ocurrido un error. Aseg\u00farese de que el fichero PDF es v\u00e1lido.", "i.pdfErrorNotificationFormat":"Ha ocurrido un error. El formato del fichero no es v\u00e1lido.", "i.pdfErrorNotificationSize":"Ha ocurrido un error. El fichero PDF debe tener un tama\u00f1o inferior a 8 Mb.", "i.pdfErrorNotificationPages":"Ha ocurrido un error. El fichero PDF tiene demasiadas p\u00e1ginas.", "i.PDFSlideshow":"Presentaci\u00f3n PDF", 
+"i.PedagogicalAspects":"Aspectos Pedag\u00f3gicos", "i.pEducation":"Educaci\u00f3n Primaria", "i.Philosophy":"Filosof\u00eda", "i.PhysicalEducation":"Educaci\u00f3n F\u00edsica", "i.Physics":"F\u00edsica", "i.pNotValid":"Este recurso no puede ser abierto porque est\u00e1 da\u00f1ado o no es compatible con la versi\u00f3n actual de ViSH Editor.", "i.Politics":"Ciencias Pol\u00edticas", "i.Preschool":"Educaci\u00f3n Preescolar", "i.Presentation":"Presentaci\u00f3n", "i.presDescriptionPlaceHolder":"Describa brevemente sobre qu\u00e9 trata la excursi\u00f3n", 
 "i.presTitle":"T\u00edtulo de la excursi\u00f3n", "i.Preview":"Vista previa", "i.Psychology":"Psicolog\u00eda", "i.publish":"publicar", "i.Publish":"Publicar", "i.publishing":"Publicando", "i.Publishing":"Publicando", "i.Publish_confirmation":"Vas a guardar y publicar esta Excursi\u00f3n Virtual en la plataforma ViSH. Despu\u00e9s de esto, la excursi\u00f3n ser\u00e1 p\u00fablica y cualquiera podr\u00e1 acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.Quiz":"Quiz", "i.QuizButtonAnswer":"Responder", 
 "i.QuizButtonLaunch":"Lanzar", "i.QuizButtonOptions":"Opciones", "i.QuizButtonRetry":"Reintentar", "i.QuizCreateSessionError":"Lo sentimos, ha ocurrido un error al crear un nuevo cuestionario en vivo", "i.QuizEmptyAnswerAlert":"Por favor, responde el cuestionario antes de enviar tu respuesta", "i.QuizLaunch":"Lanzar", "i.QuizMultipleLaunchAlert":"Por favor, det\u00e9n todos los cuestionarios en vivo antes de lanzar uno nuevo", "i.QuizNotSubmittedAlert":"Lo sentimos, tu respuesta no ha podido ser enviada", 
 "i.QuizResults":"Resultados", "i.QuizRetry":"Reintentar", "i.QuizSaveConfirmation":"\u00bfQuieres guardar los resultados del cuestionario?", "i.QuizSessionName":"Nombre del Cuestionario en Vivo", "i.QuizStop":"Detener", "i.QuizSubmittedAlert":"Tu respuesta ha sido enviada", "i.Quizzes":"Quizzes (Cuestionarios)", "i.readJSONfileError":"Error al leer el fichero JSON", "i.Religion":"Religi\u00f3n", "i.Remove":"Borrar", "i.resourceNonCompatibleNotification":"El recurso no puede ser abierto porque est\u00e1 corrupto o no es compatible con la versi\u00f3n actual de ViSH Editor", 
-"i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", "i.SelectTheme":"Seleccionar Tema", 
-"i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.Training":"Formaci\u00f3n Laboral", "i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", 
-"i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", "i.unspecified":"sin especificar", 
-"i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", "i.img.tut_unselects":"tutorial/tut_unselects_es.png", 
-"i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", "i.delete":"delete", "i.Description":"Description", 
-"i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", 
+"i.save":"guardar", "i.Save":"Guardar", "i.SaveAndExit":"guardar y salir", "i.Saved":"Guardado", "i.Saving":"Guardando", "i.School":"Colegio", "i.SearchContent":"Buscar contenido", "i.Searchplaces":"Buscar lugares", "i.Seconds":"Segundos", "i.sEducation":"Educaci\u00f3n Secundaria", "i.SelectAll":"Seleccionar Todas", "i.selectObjectUpload":"Selecciona un archivo para subir", "i.selectObjectUpload2":"Formatos soportados: SWF (flash), PDF", "i.selectPicture":"Seleccionar imagen para subir", "i.SelectSlide":"Seleccionar Diapositiva", 
+"i.SelectTheme":"Seleccionar Tema", "i.Settings":"Ajustes", "i.Slides":"Diapositivas", "i.Smartcards":"Smartcards", "i.SocialSciences":"Ciencias Sociales", "i.SoftwareEngineering":"Ingenier\u00eda del Software", "i.Style":"Estilo", "i.Subject":"Tema", "i.Tags":"Etiquetas", "i.Technology":"Tecnolog\u00eda", "i.Templates":"Plantillas", "i.text":"texto", "i.Text":"Texto", "i.Telecommunications":"Telecomunicaciones", "i.Title":"T\u00edtulo *", "i.toJSON":"a JSON", "i.PTraining":"Formaci\u00f3n Laboral", 
+"i.Typicallearningtime":"Tiempo de aprendizaje t\u00edpico", "i.University":"Universidad", "i.unpublish":"retirar publicaci\u00f3n", "i.Unpublish":"Retirar", "i.unpublishing":"retirando", "i.Unpublishing":"Retirando", "i.Unpublish_confirmation":"Vas a retirar la publicaci\u00f3n de esta Excursi\u00f3n Virtual de la plataforma ViSH.  Despu\u00e9s de esto la excursi\u00f3n ser\u00e1 privada y solo t\u00fa podras acceder a ella. \u00bfQu\u00e9 deseas hacer?", "i.UnselectAll":"Deseleccionar Todas", "i.UnselectSlide":"Deseleccionar Diapositiva", 
+"i.unspecified":"sin especificar", "i.Unspecified":"Sin especificar", "i.upload":"subir", "i.Upload":"Subir", "i.url":"enlace", "i.Url":"Enlace", "i.Version":"Versi\u00f3n", "i.veryeasy":"muy f\u00e1cil", "i.verydifficult":"muy dif\u00edcil", "i.video":"v\u00eddeo", "i.videos":"v\u00eddeos", "i.VirtualTour":"Tour Virtual", "i.yes":"si", "i.Yes":"Si", "i.ZoneTooltip":"Haz click aqu\u00ed para a\u00f1adir contenido", "i.img.tut_menu":"tutorial/tut_menu_es.png", "i.img.tut_selects":"tutorial/tut_selects_es.png", 
+"i.img.tut_unselects":"tutorial/tut_unselects_es.png", "i.img.tut_selectAll":"tutorial/tut_selectall_es.png", "i.img.tut_unselectAll":"tutorial/tut_unselectall_es.png", "i.tooltip.QSInput":"Introduce un nombre para el cuestionario en vivo", "i.last":"\u00faltimo"}, "default":{"i.add":"add", "i.Add":"Add", "i.AddTags":"Add tags", "i.areyousureNotification":"are you sure?", "i.Author":"Author", "i.cancel":"cancel", "i.Cancel":"Cancel", "i.close":"close", "i.Close":"Close", "i.CloseWSaving":"close without saving", 
+"i.delete":"delete", "i.Description":"Description", "i.difficult":"difficult", "i.Done":"Done", "i.draft":"draft", "i.easy":"easy", "i.errorFlickrConnection":"Error connecting to Flickr", "i.errorLREConnection":"Error connecting to the LRE repository", "i.errorViSHConnection":"Error connecting to ViSH server", "i.errorYoutubeConnection":"Error connecting to YouTube", "i.Exit":"Exit", "i.exitConfirmation":"You are about to leave ViSH Editor. You will lose any changes you have not saved.", "i.exitConfirmation2":"Are you sure you want to leave this page?", 
 "i.exitConfirmationMenu":"The Virtual Excursion has been modified. If you close without saving you will lose all changes. What would you like to do?", "i.ExitWSaving":"exit without saving", "i.exportPresToJSONerrorNotification":"An error has ocurred. Is not possible to export the presentation to a JSON file.", "i.GotoSettings":"Go to Settings", "i.invalidvalue":"invalid value", "i.limitReached":"limit reached", "i.MandatoryFieldsNotification":"You need to write a title for the excursion and select an avatar before publish the excursion", 
 "i.medium":"medium", "i.no":"no", "i.No":"No", "i.NoCompetitions1":"Do you want to participate in the competition? You can win great prizes. Read the guide about how participate <a href='http://vishub.org/competitions' target='_blank'>here</a>", "i.NoCompetitions2":"Add one or more of the following tags to participate:", "i.NoCompetitions3":"They will be added to the tags of the excursion. You can review them in the settings page", "i.NoJSONFileError":"You have to select a file to import in JSON format", 
-"i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid", 
-"i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
+"i.Noresultsfound":"No results found", "i.NoSlidesOnSaveNotification":"Create at least one slide before saving.", "i.NoThanks":"No thanks", "i.Ok":"Ok", "i.OK":"OK", "i.pasteEmbedObject":"paste SWF or PDF file URL", "i.pasteImageURL":"paste image URL", "i.pasteVideoURL":"paste HTML5 or YouTube video URL", "i.pasteWeb":"paste website URL", "i.pdfErrorNotification":"An error has occurred. Ensure that the PDF file is valid.", "i.pdfErrorNotificationFormat":"An error has occurred. The file format is not valid.", 
+"i.pdfErrorNotificationSize":"An error has occurred. The size of the PDF file must be smaller than 8 Mb.", "i.pdfErrorNotificationPages":"An error has occurred. The PDF file have too many pages.", "i.publish":"publish", "i.Publish":"Publish", "i.publishing":"publishing", "i.Publishing":"Publishing", "i.Publish_confirmation":"You are going to save and publish this Virtual Excursion on the ViSH Platform. After this, the excursion will be public and anyone will be able to access it. What would you like to do?", 
 "i.QuizButtonAnswer":"Answer", "i.QuizButtonLaunch":"Launch", "i.QuizButtonOptions":"Options", "i.QuizButtonRetry":"Retry", "i.QuizCreateSessionError":"Sorry, an error occurred while creating the new Live Quiz", "i.QuizEmptyAnswerAlert":"Please, answer the quiz before send", "i.QuizLaunch":"Launch", "i.QuizMultipleLaunchAlert":"Please stop all live quizzes before launch another one", "i.QuizNotSubmittedAlert":"Sorry, your answer couldn't be sent", "i.QuizResults":"Results", "i.QuizRetry":"Retry", 
 "i.QuizSaveConfirmation":"Do you want to save the quiz results?", "i.QuizSessionName":"Live Quiz Name", "i.QuizStop":"Stop", "i.QuizSubmittedAlert":"Your answer has been submitted", "i.readJSONfileError":"Error reading JSON file", "i.resourceNonCompatibleNotification":"This resource is corrupt or is not compatible with the current version of ViSH Editor and cannot be opened.", "i.save":"save", "i.Save":"Save", "i.SaveAndExit":"save and exit", "i.Saved":"Saved", "i.Saving":"Saving", "i.SearchContent":"Search Content", 
 "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", 
 "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.8.1";
+VISH.VERSION = "0.8.2";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -10764,6 +10764,9 @@ VISH.Status = function(V, $, undefined) {
   var _isInIframe;
   var _isAnotherDomain;
   var _isOnline;
+  var _scorm;
+  var _isInExternalSite;
+  var _isInVishSite;
   var _isSlave;
   var _isPreventDefault;
   var _isVEFocused;
@@ -10772,6 +10775,7 @@ VISH.Status = function(V, $, undefined) {
   var init = function(callback) {
     _checkIframe();
     _checkDomain();
+    _checkSite();
     _isVEFocused = false;
     _isWindowFocused = false;
     _isCKEditorInstanceFocused = false;
@@ -10809,6 +10813,16 @@ VISH.Status = function(V, $, undefined) {
     }
     return _isAnotherDomain
   };
+  var _checkSite = function() {
+    var options = V.Utils.getOptions();
+    if(typeof options["scorm"] == "boolean") {
+      _scorm = options["scorm"]
+    }else {
+      _scorm = false
+    }
+    _isInExternalSite = _isAnotherDomain || _scorm;
+    _isInVishSite = !_isInExternalSite && V.Configuration.getConfiguration()["mode"] === V.Constant.VISH
+  };
   var _checkOnline = function() {
     $.ajax({async:true, cache:false, error:function(req, status, ex) {
       V.Debugging.log("Error: " + ex);
@@ -10835,6 +10849,15 @@ VISH.Status = function(V, $, undefined) {
   };
   var isOnline = function() {
     return _isOnline
+  };
+  var getIsScorm = function() {
+    return _scorm
+  };
+  var getIsInExternalSite = function() {
+    return _isInExternalSite
+  };
+  var getIsInVishSite = function() {
+    return _isInVishSite
   };
   var isSlaveMode = function() {
     if(typeof _isSlave !== "undefined") {
@@ -10902,7 +10925,7 @@ VISH.Status = function(V, $, undefined) {
   var isVEFocused = function() {
     return _isVEFocused
   };
-  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setWindowFocus:setWindowFocus, setCKEditorInstanceFocused:setCKEditorInstanceFocused, isVEFocused:isVEFocused}
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, getIsScorm:getIsScorm, getIsInExternalSite:getIsInExternalSite, getIsInVishSite:getIsInVishSite, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setWindowFocus:setWindowFocus, setCKEditorInstanceFocused:setCKEditorInstanceFocused, isVEFocused:isVEFocused}
 }(VISH, jQuery);
 VISH.Status.Device = function(V, $, undefined) {
   var init = function(callback) {
@@ -11126,7 +11149,7 @@ VISH.Utils = function(V, undefined) {
       presentation.VEVersion = "0.1"
     }
     presentation = _fixTypes(presentation);
-    if(V.Slides.isSlideset(presentation.type)) {
+    if(V.Slides.isSlidesetType(presentation.type)) {
       presentation.type = V.Constant.PRESENTATION
     }
     if(!_checkIds(presentation)) {
@@ -11718,8 +11741,57 @@ VISH.Utils = function(V, undefined) {
     }
     return vValue
   };
+  var updateHash = function() {
+    var location = _getLocationForHash();
+    location.hash = "#" + V.Slides.getCurrentSlideNumber() + location.hash.substr(2, location.hash.length)
+  };
+  var getSlideNumberFromHash = function() {
+    try {
+      var location = _getLocationForHash();
+      if(typeof location == "undefined") {
+        return
+      }
+      var sNumber = Math.max(1, Math.min(V.Slides.getSlidesQuantity(), parseInt(location.hash.substr(1, 1))));
+      if(isNaN(sNumber)) {
+        return undefined
+      }else {
+        return sNumber
+      }
+    }catch(err) {
+      return undefined
+    }
+  };
+  var getHashParams = function() {
+    var params = {};
+    var hash = window.location.hash;
+    var splitHash = hash.split("?");
+    if(splitHash.length > 1) {
+      var hashParams = splitHash[1];
+      var splitParams = hashParams.split("&");
+      var sPL = splitParams.length;
+      for(var i = 0;i < sPL;i++) {
+        var paramInHash = splitParams[i];
+        var splitParamInHash = paramInHash.split("=");
+        if(splitParamInHash.length === 2) {
+          params[splitParamInHash[0]] = splitParamInHash[1]
+        }
+      }
+    }
+    return params
+  };
+  var _getLocationForHash = function() {
+    if(!V.Status.getIsInIframe()) {
+      return window.location
+    }else {
+      if(V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
+        return window.top.location
+      }else {
+        return undefined
+      }
+    }
+  };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
@@ -11803,7 +11875,14 @@ VISH.Editor = function(V, $, undefined) {
   var _initAferPresentationLoaded = function(options, presentation) {
     V.Slides.updateSlides();
     V.Editor.Thumbnails.redrawThumbnails(function() {
-      V.Editor.Thumbnails.selectThumbnail(V.Slides.getCurrentSlideNumber())
+      var slideNo = V.Utils.getSlideNumberFromHash();
+      if(slideNo) {
+        V.Slides.goToSlide(slideNo);
+        V.Editor.Thumbnails.selectThumbnail(slideNo);
+        V.Editor.Thumbnails.moveThumbnailsToSlide(slideNo)
+      }else {
+        V.Editor.Thumbnails.selectThumbnail(V.Slides.getCurrentSlideNumber())
+      }
     });
     if(initialPresentation) {
       $(".object_wrapper").hide()
@@ -11837,6 +11916,7 @@ VISH.Editor = function(V, $, undefined) {
       V.Editor.Settings.displaySettings()
     }
     $("#VEversion").html(V.VERSION);
+    V.Editor.Slides.updateCurrentSlideFromHash();
     window.focus();
     $("#waiting_overlay").hide()
   };
@@ -11928,6 +12008,7 @@ VISH.Editor = function(V, $, undefined) {
       area.addClass("editable");
       V.Editor.Tools.addTooltipToZone(area);
       selectArea(null);
+      V.Editor.Slides.updateThumbnail(V.Slides.getTargetSlide());
       $.fancybox.close()
     };
     options.buttons = [button1, button2];
@@ -11965,11 +12046,13 @@ VISH.Editor = function(V, $, undefined) {
     event.preventDefault()
   };
   var onNoSelectableClicked = function(event) {
-    if(!$(event.target).hasClass("noSelectableElement")) {
+    var target = $(event.target);
+    var targetParent = $(target).parent();
+    if(!$(target).hasClass("noSelectableElement")) {
       if($("#fancybox-content").is(":visible")) {
         return
       }
-      if($(event.target).parent().hasClass("selectable")) {
+      if($(targetParent).hasClass("selectable") || $(targetParent).hasClass("preventNoselectable")) {
         return
       }
       if(jQuery.contains($("#toolbar_wrapper")[0], event.target)) {
@@ -11989,6 +12072,9 @@ VISH.Editor = function(V, $, undefined) {
         return
       }
     }
+    cleanArea()
+  };
+  var cleanArea = function() {
     V.Editor.Tools.cleanZoneTools(getCurrentArea());
     setCurrentArea(null);
     _removeSelectableProperties()
@@ -12020,6 +12106,8 @@ VISH.Editor = function(V, $, undefined) {
         $(slide).find(".object_wrapper").show()
       }, 500)
     }
+    V.Editor.Thumbnails.selectThumbnail(V.Slides.getCurrentSlideNumber());
+    cleanArea();
     V.Editor.Tools.loadToolsForSlide(slide)
   };
   var onSlideLeaveEditor = function(e) {
@@ -12339,8 +12427,8 @@ VISH.Editor = function(V, $, undefined) {
       return true
     }
   };
-  return{init:init, getOptions:getOptions, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getLastArea:getLastArea, getPresentationType:getPresentationType, getDraftPresentation:getDraftPresentation, isPresentationDraft:isPresentationDraft, getContentAddMode:getContentAddMode, setContentAddMode:setContentAddMode, hasInitialPresentation:hasInitialPresentation, isZoneEmpty:isZoneEmpty, savePresentation:savePresentation, sendPresentation:sendPresentation, setCurrentArea:setCurrentArea, selectArea:selectArea, 
-  onSlideEnterEditor:onSlideEnterEditor, onSlideLeaveEditor:onSlideLeaveEditor, onSlideThumbClicked:onSlideThumbClicked, onAnimationThumbClicked:onAnimationThumbClicked, onEditableClicked:onEditableClicked, onSelectableClicked:onSelectableClicked, onNoSelectableClicked:onNoSelectableClicked, onDeleteItemClicked:onDeleteItemClicked, onDeleteSlideClicked:onDeleteSlideClicked, addDeleteButton:addDeleteButton, hasPresentationChanged:hasPresentationChanged}
+  return{init:init, getOptions:getOptions, getTemplate:getTemplate, getCurrentArea:getCurrentArea, getLastArea:getLastArea, cleanArea:cleanArea, getPresentationType:getPresentationType, getDraftPresentation:getDraftPresentation, isPresentationDraft:isPresentationDraft, getContentAddMode:getContentAddMode, setContentAddMode:setContentAddMode, hasInitialPresentation:hasInitialPresentation, isZoneEmpty:isZoneEmpty, savePresentation:savePresentation, sendPresentation:sendPresentation, setCurrentArea:setCurrentArea, 
+  selectArea:selectArea, onSlideEnterEditor:onSlideEnterEditor, onSlideLeaveEditor:onSlideLeaveEditor, onSlideThumbClicked:onSlideThumbClicked, onAnimationThumbClicked:onAnimationThumbClicked, onEditableClicked:onEditableClicked, onSelectableClicked:onSelectableClicked, onNoSelectableClicked:onNoSelectableClicked, onDeleteItemClicked:onDeleteItemClicked, onDeleteSlideClicked:onDeleteSlideClicked, addDeleteButton:addDeleteButton, hasPresentationChanged:hasPresentationChanged}
 }(VISH, jQuery);
 VISH.Editor.Utils = function(V, $, undefined) {
   var dimentionToDraw = function(w_zone, h_zone, w_content, h_content) {
@@ -13167,12 +13255,11 @@ VISH.Editor.Image = function(V, $, undefined) {
     contentAddMode = V.Constant.NONE
   };
   var drawImage = function(image_url, area, style, hyperlink) {
-    _drawImageInArea(image_url, area, style, hyperlink)
-  };
-  var _drawImageInArea = function(image_url, area, style, hyperlink) {
     var current_area;
+    var renderOnInit = false;
     if(area) {
-      current_area = area
+      current_area = area;
+      renderOnInit = true
     }else {
       current_area = V.Editor.getCurrentArea()
     }
@@ -13210,7 +13297,10 @@ VISH.Editor.Image = function(V, $, undefined) {
     V.Editor.addDeleteButton(current_area);
     $("#" + idToDragAndResize).draggable({cursor:"move", stop:function() {
       $(this).parent().click()
-    }})
+    }});
+    if(renderOnInit === false) {
+      V.Editor.Slides.updateThumbnail(V.Slides.getTargetSlide())
+    }
   };
   var getAddContentMode = function() {
     return contentAddMode
@@ -13863,7 +13953,7 @@ VISH.Editor.Slideset = function(V, $, undefined) {
   };
   var isSlideset = function(obj) {
     type = _getTypeIfPresent(obj);
-    return V.Slides.isSlideset(type)
+    return V.Slides.isSlidesetType(type)
   };
   var _getTypeIfPresent = function(obj) {
     if(typeof obj == "string") {
@@ -13881,8 +13971,11 @@ VISH.Editor.Slideset = function(V, $, undefined) {
   var setCurrentSubslide = function(newSubslide) {
     currentSubslide = newSubslide
   };
+  var getSubslidesQuantity = function(slideset) {
+    return $(slideset).children("article").length
+  };
   var onEnterSlideset = function(slideset) {
-    updateThumbnails(slideset);
+    V.Editor.Slides.updateThumbnail(slideset);
     $("#bottomside").show();
     var slidesetCreator = getCreatorModule($(slideset).attr("type"));
     var slidesetId = $(slideset).attr("id");
@@ -13901,7 +13994,7 @@ VISH.Editor.Slideset = function(V, $, undefined) {
       closeSubslide(currentSubslide)
     }
     $("#bottomside").hide();
-    $("#subslide_selected > img").attr("src", "");
+    $("#slideset_selected > img").attr("src", "");
     var slidesetCreator = getCreatorModule($(slideset).attr("type"));
     if(typeof slidesetCreator.onLeaveSlideset == "function") {
       slidesetCreator.onLeaveSlideset(slideset)
@@ -13909,7 +14002,7 @@ VISH.Editor.Slideset = function(V, $, undefined) {
   };
   var openSlideset = function(slideset) {
     _showSlideButtons(slideset);
-    $("#subslide_selected_img").addClass("selectedSlidesetThumbnail");
+    $("#slideset_selected_img").addClass("selectedSlidesetThumbnail");
     var currentSubslide = getCurrentSubslide();
     if(currentSubslide) {
       closeSubslide(currentSubslide)
@@ -13922,7 +14015,7 @@ VISH.Editor.Slideset = function(V, $, undefined) {
   };
   var closeSlideset = function(slideset) {
     _hideSlideButtons(slideset);
-    $("#subslide_selected_img").removeClass("selectedSlidesetThumbnail");
+    $("#slideset_selected_img").removeClass("selectedSlidesetThumbnail");
     var slidesetCreator = getCreatorModule($(slideset).attr("type"));
     if(typeof slidesetCreator.unloadSlideset == "function") {
       slidesetCreator.unloadSlideset(slideset)
@@ -13996,18 +14089,12 @@ VISH.Editor.Slideset = function(V, $, undefined) {
     $(slide).find("div.delete_slide:first").hide();
     $(slide).find("img.help_in_slide:first").hide()
   };
-  var updateThumbnails = function(slideset) {
-    var thumbnailURL = V.Editor.Thumbnails.getThumbnailURL(slideset);
-    $("#subslide_selected > img").attr("src", thumbnailURL);
-    var slideThumbnail = V.Editor.Thumbnails.getThumbnailForSlide(slideset);
-    $(slideThumbnail).attr("src", thumbnailURL)
-  };
   var onClickOpenSlideset = function() {
     var slideset = V.Slides.getCurrentSlide();
     openSlideset(slideset)
   };
   return{init:init, isSlideset:isSlideset, getCreatorModule:getCreatorModule, getDummy:getDummy, onEnterSlideset:onEnterSlideset, onLeaveSlideset:onLeaveSlideset, openSlideset:openSlideset, closeSlideset:closeSlideset, beforeCreateSlidesetThumbnails:beforeCreateSlidesetThumbnails, beforeRemoveSlideset:beforeRemoveSlideset, beforeRemoveSubslide:beforeRemoveSubslide, getCurrentSubslide:getCurrentSubslide, openSubslideWithNumber:openSubslideWithNumber, openSubslide:openSubslide, closeSubslideWithNumber:closeSubslideWithNumber, 
-  closeSubslide:closeSubslide, updateThumbnails:updateThumbnails, onClickOpenSlideset:onClickOpenSlideset}
+  closeSubslide:closeSubslide, onClickOpenSlideset:onClickOpenSlideset, getSubslidesQuantity:getSubslidesQuantity}
 }(VISH, jQuery);
 VISH.Editor.VirtualTour = function(V, $, undefined) {
   var initialized = false;
@@ -14587,7 +14674,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
       $(fc).css("background-image", "url(" + contentToAdd + ")");
       $(fc).attr("avatar", "url('" + contentToAdd + "')");
       $(fc).find("div.change_bg_button").hide();
-      V.Editor.Slideset.updateThumbnails(fc)
+      V.Editor.Slides.updateThumbnail(fc)
     }
     $.fancybox.close()
   };
@@ -14609,7 +14696,7 @@ VISH.Editor.Flashcard = function(V, $, undefined) {
     $(fc).attr("avatar", "url('" + thumbnailURL + "')");
     $(fc).find("div.change_bg_button").show();
     if(V.Slides.getCurrentSlide() == fc) {
-      $("#subslide_selected > img").attr("src", thumbnailURL)
+      $("#slideset_selected > img").attr("src", thumbnailURL)
     }
     var slideThumbnail = V.Editor.Thumbnails.getThumbnailForSlide(fc);
     $(slideThumbnail).attr("src", thumbnailURL)
@@ -14737,18 +14824,29 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"VEVersion":"0.7", "type":"presentation", "title":"Excursion MC Multiple Answer Test", "description":"Excursion MC Multiple Answer Test", "avatar":"http://farm6.staticflickr.com/5254/5471377987_d3125cc9b6.jpg", "author":"<Demo>", "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"4 - 20", "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "areaid":"left"}, {"id":"article1_zone2", "areaid":"header"}, {"id":"article1_zone3", 
-  "areaid":"subheader"}]}, {"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"Marca las que quieras", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000"><span style="font-size: 38px;">Marca las que quieras</span></font></p>\n'}, "choices":[{"id":"1", "value":"\u00adMe gusta el color rojo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Me gusta el color rojo</span></span></p>\n', 
-  "answer":true}, {"id":"2", "value":"\u200bMe gusta la pizza\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Me gusta la pizza&shy;</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u200b\u00adSoy un gnomo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy un gnomo</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adSoy designer", 
-  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy designer</span></span></p>\n', "answer":true}], "extras":{"multipleAnswer":true}, "quiz_simple_json":{"title":"Excursion MC Multiple Answer Test", "description":"Excursion MC Multiple Answer Test", "author":"&lt;Demo&gt;", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", 
-  "quiztype":"multiplechoice", "selfA":true, "question":{"value":"Marca las que quieras", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000"><span style="font-size: 38px;">Marca las que quieras</span></font></p>\n'}, "choices":[{"id":"1", "value":"\u00adMe gusta el color rojo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Me gusta el color rojo</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u200bMe gusta la pizza\u00ad", 
-  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Me gusta la pizza&shy;</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u200b\u00adSoy un gnomo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy un gnomo</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adSoy designer", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Soy designer</span></span></p>\n', 
-  "answer":true}], "extras":{"multipleAnswer":true}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":false, "question":{"value":"Quiz no autoevaluable, \u00bfQue piensas del mineralismo?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Quiz no autoevaluable, &iquest;Que piensas del mineralismo?&shy;</span></span></p>\n'}, 
-  "choices":[{"id":"1", "value":"\u200bEs algo bueno\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Es algo bueno&shy;</span></span></p>\n', "answer":"?"}, {"id":"2", "value":"\u200b\u00adEs algo malo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es algo malo</span></span></p>\n', "answer":"?"}, {"id":"3", "value":"\u200bEl mineralismo va a llegar\u00ad", 
-  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">El mineralismo va a llegar&shy;</span></span></p>\n', "answer":"?"}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Excursion MC Multiple Answer Test", "description":"Excursion MC Multiple Answer Test", "author":"&lt;Demo&gt;", "type":"quiz_simple", "slides":[{"id":"article3", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", 
-  "areaid":"left", "quiztype":"multiplechoice", "selfA":false, "question":{"value":"Quiz no autoevaluable, \u00bfQue piensas del mineralismo?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">Quiz no autoevaluable, &iquest;Que piensas del mineralismo?&shy;</span></span></p>\n'}, "choices":[{"id":"1", "value":"\u200bEs algo bueno\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Es algo bueno&shy;</span></span></p>\n', 
-  "answer":"?"}, {"id":"2", "value":"\u200b\u00adEs algo malo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Es algo malo</span></span></p>\n', "answer":"?"}, {"id":"3", "value":"\u200bEl mineralismo va a llegar\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">El mineralismo va a llegar&shy;</span></span></p>\n', "answer":"?"}], "extras":{"multipleAnswer":false}}], 
-  "containsQuiz":true}]}}], "containsQuiz":true}], "id":"621"};
+  var test = {"VEVersion":"0.8.1", "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "author":"ebarra", "theme":"theme1", "animation":"animation1", "language":"independent", "context":"sEducation", "age_range":"4 - 20", "slides":[{"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', 
+  "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", 
+  "description":"Quiz example", "author":"ebarra", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", 
+  "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', 
+  "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", 
+  "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', 
+  "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', 
+  "answer":true}], "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"ebarra", "type":"quiz_simple", "slides":[{"id":"article1", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", 
+  "value":"Halberd", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Halberd</font></p>\n', "answer":true}, {"id":"4", "value":"Battleaxe", "wysiwygValue":'<p style="text-align:left;">\n\t<font color="#000000" size="5">Battleaxe</font></p>\n', "answer":true}]}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article3", "type":"standard", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, 
+  "question":{"value":"What are ancient weapons?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', 
+  "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', "answer":true}, {"id":"4", "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":true}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"ebarra", "type":"quiz_simple", "slides":[{"id":"article3", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article3_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What are ancient weapons?\u00ad", "wysiwygValue":'<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n<p style="text-align: center;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What are ancient weapons?&shy;</span></span></p>\n<p style="text-align: center;">\n\t&nbsp;</p>\n'}, 
+  "choices":[{"id":"1", "value":"\u00adFu", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Fu</span></span></p>\n', "answer":true}, {"id":"2", "value":"\u00adGun", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Gun</span></span></p>\n', "answer":false}, {"id":"3", "value":"Chu Ko Nuh\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Chu Ko Nuh&shy;</span></span></p>\n', 
+  "answer":true}, {"id":"4", "value":"\u00adNuclear bomb", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Nuclear bomb</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":true}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article4", "type":"standard", "template":"t8", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:18px;">Ejemplo de un Quiz enriquecido&shy;</span></span></p>\n'}, 
+  {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://farm8.staticflickr.com/7328/11049505694_7e90530bee.jpg", "style":"position: relative; width:110.9704641350211%; height:121.81818181818181%; top:-0.9090909090909091%; left:-3.7908755274261603%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What is the capital of Spain?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What is the capital of Spain?&shy;</span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"Barcelona\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Barcelona&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adMadrid", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Madrid</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adLugo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Lugo</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"ebarra", "type":"quiz_simple", "slides":[{"id":"article4", "type":"quiz_simple", "template":"t8", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:18px;">Ejemplo de un Quiz enriquecido&shy;</span></span></p>\n'}, {"id":"article4_zone2", 
+  "type":"image", "areaid":"left", "body":"http://farm8.staticflickr.com/7328/11049505694_7e90530bee.jpg", "style":"position: relative; width:110.9704641350211%; height:121.81818181818181%; top:-0.9090909090909091%; left:-3.7908755274261603%;"}, {"id":"article4_zone3", "type":"quiz", "areaid":"center", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"What is the capital of Spain?\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">What is the capital of Spain?&shy;</span></span></p>\n'}, 
+  "choices":[{"id":"1", "value":"Barcelona\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Barcelona&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adMadrid", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Madrid</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adLugo", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Lugo</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":false}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.440536437246962%; left:-9.27610759493671%;"}], "containsQuiz":true}]}}, {"id":"article4_zone4", "type":"image", "areaid":"right", "body":"http://farm6.staticflickr.com/5520/11018661665_67b642b119.jpg", "style":"position: relative; width:109.70464135021098%; height:140.8906882591093%; top:-17.440536437246962%; left:-9.27610759493671%;"}], 
+  "containsQuiz":true}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -14861,16 +14959,12 @@ VISH.Slides = function(V, $, undefined) {
   var SLIDE_CLASSES = ["far-past", "past", "current", "next", "far-next"];
   var curSubSlideId = null;
   var init = function() {
-    _getcurSlideIndexFromHash()
   };
   var updateSlides = function() {
     setSlides(document.querySelectorAll("section.slides > article"));
     _updateSlideClasses();
-    _updateHash()
-  };
-  var _updateHash = function() {
     if(!V.Editing) {
-      location.replace("#" + (curSlideIndex + 1))
+      V.Utils.updateHash()
     }
   };
   var _updateSlideClasses = function() {
@@ -14911,18 +15005,6 @@ VISH.Slides = function(V, $, undefined) {
       }
     }
   };
-  var _getcurSlideIndexFromHash = function() {
-    if(V.Editing) {
-      setCurrentSlideNumber(0)
-    }else {
-      var slideNo = parseInt(location.hash.substr(1));
-      if(slideNo) {
-        setCurrentSlideNumber(slideNo)
-      }else {
-        setCurrentSlideNumber(1)
-      }
-    }
-  };
   var getSlides = function() {
     return slideEls
   };
@@ -14935,15 +15017,48 @@ VISH.Slides = function(V, $, undefined) {
   var getCurrentSlide = function() {
     return slideEls[curSlideIndex]
   };
-  var getCurrentSubSlide = function() {
+  var getCurrentSubslide = function() {
+    if(V.Editing) {
+      return V.Editor.Slideset.getCurrentSubslide()
+    }
     if(curSubSlideId === null) {
       return null
     }else {
       return $("#" + curSubSlideId)
     }
   };
+  var getTargetSlide = function() {
+    var cSubslide = getCurrentSubslide();
+    if(typeof cSubslide == "undefined" || cSubslide === null) {
+      return getCurrentSlide()
+    }else {
+      return cSubslide
+    }
+  };
   var getCurrentSlideNumber = function() {
     return curSlideIndex + 1
+  };
+  var getCurrentSubslideNumber = function() {
+    var cSubslide = getCurrentSubslide();
+    if(typeof cSubslide == "undefined" || cSubslide === null) {
+      return undefined
+    }
+    var cSubslideNumber = $(cSubslide).attr("slidenumber");
+    if(typeof cSubslideNumber == "string") {
+      try {
+        return parseInt(cSubslideNumber)
+      }catch(err) {
+        return undefined
+      }
+    }
+  };
+  var getTargetSlideNumber = function() {
+    var cSubslide = getCurrentSubslide();
+    if(typeof cSubslide == "undefined" || cSubslide === null) {
+      return getCurrentSubslideNumber()
+    }else {
+      return getCurrentSlideNumber()
+    }
   };
   var setCurrentSlideNumber = function(currentSlideNumber) {
     _setCurrentSlideIndex(currentSlideNumber - 1)
@@ -14958,6 +15073,9 @@ VISH.Slides = function(V, $, undefined) {
     }else {
       return slideEls[no]
     }
+  };
+  var getSubslideWithNumber = function(slideset, subslideNumber) {
+    return $(slideset).children("article[slidenumber='" + subslideNumber + "']")
   };
   var getNumberOfSlide = function(slide) {
     if(slideEls) {
@@ -14974,12 +15092,7 @@ VISH.Slides = function(V, $, undefined) {
     }
   };
   var getSlidesQuantity = function() {
-    var slides = getSlides();
-    if(typeof slides != "undefined" && slides.length) {
-      return slides.length
-    }else {
-      return 0
-    }
+    return document.querySelectorAll("section.slides > article").length
   };
   var getSlideType = function(slideEl) {
     if(slideEl && slideEl.tagName === "ARTICLE") {
@@ -15001,6 +15114,14 @@ VISH.Slides = function(V, $, undefined) {
   };
   var isCurrentLastSlide = function() {
     return curSlideIndex === slideEls.length - 1
+  };
+  var updateCurrentSlideFromHash = function() {
+    var slideNo = V.Utils.getSlideNumberFromHash();
+    if(slideNo) {
+      setCurrentSlideNumber(slideNo)
+    }else {
+      setCurrentSlideNumber(1)
+    }
   };
   var triggerEnterEvent = function(slideNumber) {
     var el = getSlideWithNumber(slideNumber);
@@ -15058,10 +15179,7 @@ VISH.Slides = function(V, $, undefined) {
       $.fancybox.close()
     }
     _goToSlide(no);
-    if(V.Editing) {
-      V.Editor.Tools.cleanZoneTools();
-      V.Editor.Thumbnails.selectThumbnail(no)
-    }else {
+    if(!V.Editing) {
       V.Viewer.updateSlideCounter()
     }
     var params = new Object;
@@ -15127,7 +15245,7 @@ VISH.Slides = function(V, $, undefined) {
       V.ViewerAdapter.decideIfPageSwitcher()
     }
   };
-  var isSlideset = function(type) {
+  var isSlidesetType = function(type) {
     switch(type) {
       case V.Constant.FLASHCARD:
       ;
@@ -15137,8 +15255,9 @@ VISH.Slides = function(V, $, undefined) {
         return false
     }
   };
-  return{init:init, updateSlides:updateSlides, getSlides:getSlides, setSlides:setSlides, getCurrentSlide:getCurrentSlide, getCurrentSubSlide:getCurrentSubSlide, getCurrentSlideNumber:getCurrentSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, moveSlides:moveSlides, forwardOneSlide:forwardOneSlide, 
-  backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, isSlideset:isSlideset, triggerEnterEvent:triggerEnterEvent, triggerEnterEventById:triggerEnterEventById, triggerLeaveEvent:triggerLeaveEvent, triggerLeaveEventById:triggerLeaveEventById}
+  return{init:init, updateSlides:updateSlides, updateCurrentSlideFromHash:updateCurrentSlideFromHash, getSlides:getSlides, setSlides:setSlides, getCurrentSlide:getCurrentSlide, getCurrentSubslide:getCurrentSubslide, getTargetSlide:getTargetSlide, getCurrentSlideNumber:getCurrentSlideNumber, getCurrentSubslideNumber:getCurrentSubslideNumber, getTargetSlideNumber:getTargetSlideNumber, setCurrentSlideNumber:setCurrentSlideNumber, getSlideWithNumber:getSlideWithNumber, getSubslideWithNumber:getSubslideWithNumber, 
+  getNumberOfSlide:getNumberOfSlide, getSlidesQuantity:getSlidesQuantity, getSlideType:getSlideType, isCurrentFirstSlide:isCurrentFirstSlide, isCurrentLastSlide:isCurrentLastSlide, moveSlides:moveSlides, forwardOneSlide:forwardOneSlide, backwardOneSlide:backwardOneSlide, goToSlide:goToSlide, lastSlide:lastSlide, openSubslide:openSubslide, closeSubslide:closeSubslide, isSlidesetType:isSlidesetType, triggerEnterEvent:triggerEnterEvent, triggerEnterEventById:triggerEnterEventById, triggerLeaveEvent:triggerLeaveEvent, 
+  triggerLeaveEventById:triggerLeaveEventById}
 }(VISH, jQuery);
 VISH.Events = function(V, $, undefined) {
   var eMobile;
@@ -15884,7 +16003,6 @@ VISH.Editor.Tools = function(V, $, undefined) {
   var INCREASE_SIZE = 1.05;
   var init = function() {
     cleanToolbar();
-    cleanZoneTools();
     var presentationType = V.Editor.getPresentationType();
     if(presentationType !== V.Constant.PRESENTATION) {
       disableToolbar();
@@ -15907,8 +16025,10 @@ VISH.Editor.Tools = function(V, $, undefined) {
     V.Editor.Tools.Menu.init()
   };
   var cleanToolbar = function() {
-    loadToolsForSlide(V.Slides.getCurrentSlide());
-    _cleanElementToolbar()
+    var cSlide = V.Slides.getCurrentSlide();
+    if(typeof cSlide != "undefined") {
+      loadToolsForSlide(cSlide)
+    }
   };
   var enableToolbar = function() {
     $("#toolbar_wrapper").show()
@@ -15933,7 +16053,8 @@ VISH.Editor.Tools = function(V, $, undefined) {
     }
   };
   var _cleanPresentationToolbar = function() {
-    $(".toolbar_presentation_wrapper_slideTools").removeClass("toolbar_presentation_wrapper_disabled")
+    $(".toolbar_presentation_wrapper_slideTools").removeClass("toolbar_presentation_wrapper_disabled");
+    cleanZoneTools()
   };
   var changePublishButtonStatus = function(status) {
     switch(status) {
@@ -17576,7 +17697,7 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).on("click", "#addSlideButton", V.Editor.Tools.Menu.insertSlide);
       $(document).on("click", "#addSlideButtonOnSubslides", V.Editor.Tools.Menu.insertSubslide);
       $(document).on("click", "#importButton", V.Editor.Tools.Menu.insertPDFex);
-      $(document).on("click", "#subslide_selected_img", V.Editor.Slideset.onClickOpenSlideset);
+      $(document).on("click", "#slideset_selected_img", V.Editor.Slideset.onClickOpenSlideset);
       $(document).on("click", "#presentation_details_preview_thumbnail", V.Editor.Settings.onChangeThumbnailClicked);
       $(document).on("hover", "#presentation_details_preview_thumbnail", function(event) {
         var thumbnail = $("#presentation_details_preview_thumbnail_img");
@@ -17607,7 +17728,7 @@ VISH.Editor.Events = function(V, $, undefined) {
       $(document).on("click", ".stthumb_wrapper p", V.Editor.onSlideThumbClicked);
       $(document).on("click", ".editable", V.Editor.onEditableClicked);
       $(document).on("click", ".selectable", V.Editor.onSelectableClicked);
-      $(document).on("click", ':not(".selectable")', V.Editor.onNoSelectableClicked);
+      $(document).on("click", ':not(".selectable"):not(".preventNoselectable")', V.Editor.onNoSelectableClicked);
       $(document).on("click", ".delete_content", V.Editor.onDeleteItemClicked);
       $(document).on("click", ".delete_slide", V.Editor.onDeleteSlideClicked);
       $(document).on("click", "#animation_fancybox div[animation]", V.Editor.Animations.onAnimationSelected);
@@ -17807,7 +17928,13 @@ VISH.Editor.Events = function(V, $, undefined) {
   var handleBodyKeyDown = function(event) {
     switch(event.keyCode) {
       case 39:
-      ;
+        if(V.Editor.Slides.isSlideFocused()) {
+          if(V.Editor.Slideset.isSlideset(V.Slides.getCurrentSlide())) {
+            V.Editor.Slides.forwardOneSubslide()
+          }
+          event.preventDefault()
+        }
+        break;
       case 40:
         if(V.Editor.Slides.isSlideFocused()) {
           if(!ctrlDown) {
@@ -17819,7 +17946,13 @@ VISH.Editor.Events = function(V, $, undefined) {
         }
         break;
       case 37:
-      ;
+        if(V.Editor.Slides.isSlideFocused()) {
+          if(V.Editor.Slideset.isSlideset(V.Slides.getCurrentSlide())) {
+            V.Editor.Slides.backwardOneSubslide()
+          }
+          event.preventDefault()
+        }
+        break;
       case 38:
         if(V.Editor.Slides.isSlideFocused()) {
           if(!ctrlDown) {
@@ -20516,6 +20649,12 @@ VISH.Editor.Settings = function(V, $, undefined) {
   onDonePedagogicalButtonClicked:onDonePedagogicalButtonClicked, selectAnimation:selectAnimation}
 }(VISH, jQuery);
 VISH.Editor.Slides = function(V, $, undefined) {
+  var updateCurrentSlideFromHash = function() {
+    var slideNo = V.Utils.getSlideNumberFromHash();
+    if(slideNo) {
+      V.Slides.goToSlide(slideNo)
+    }
+  };
   var showSlides = function() {
     $(".slides > article").removeClass("temp_hidden")
   };
@@ -20536,6 +20675,35 @@ VISH.Editor.Slides = function(V, $, undefined) {
       return false
     }
     return true
+  };
+  var forwardOneSubslide = function(event) {
+    moveSubslides(1)
+  };
+  var backwardOneSubslide = function() {
+    moveSubslides(-1)
+  };
+  var moveSubslides = function(n) {
+    var cSlide = V.Slides.getCurrentSlide();
+    if(!V.Editor.Slideset.isSlideset(cSlide)) {
+      return
+    }
+    var cSubslideNumber = V.Slides.getCurrentSubslideNumber();
+    if(typeof cSubslideNumber == "undefined") {
+      cSubslideNumber = 0
+    }
+    var subslidesQuantity = V.Editor.Slideset.getSubslidesQuantity(cSlide);
+    var no = cSubslideNumber + n;
+    var cno = Math.min(Math.max(0, no), subslidesQuantity);
+    if(no === cno) {
+      goToSubslide(no)
+    }
+  };
+  var goToSubslide = function(no) {
+    if(no === 0) {
+      V.Editor.Slideset.onClickOpenSlideset()
+    }else {
+      V.Editor.Slideset.openSubslideWithNumber(no)
+    }
   };
   var moveSlideTo = function(orgPosition, destPosition) {
     var slide_to_move = V.Slides.getSlideWithNumber(orgPosition);
@@ -20803,7 +20971,22 @@ VISH.Editor.Slides = function(V, $, undefined) {
       removeSlide(V.Slides.getCurrentSlide())
     }
   };
-  return{showSlides:showSlides, hideSlides:hideSlides, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, copySlideWithNumber:copySlideWithNumber, appendSlide:appendSlide, addSlide:addSlide, removeSlide:removeSlide, addSubslide:addSubslide, appendSubslide:appendSubslide, removeSubslide:removeSubslide, removeSlideKeyboard:removeSlideKeyboard, isSubslide:isSubslide, copyTextAreasOfSlide:copyTextAreasOfSlide}
+  var updateThumbnail = function(slide) {
+    var slideThumbnail = V.Editor.Thumbnails.getThumbnailForSlide(slide);
+    var thumbnailURL = V.Editor.Thumbnails.getThumbnailURL(slide);
+    $(slideThumbnail).error(function(response) {
+      _updateThumbnail(slide, slideThumbnail, V.Editor.Thumbnails.getDefaultThumbnailURL(slide))
+    });
+    _updateThumbnail(slide, slideThumbnail, thumbnailURL)
+  };
+  var _updateThumbnail = function(slide, slideThumbnail, thumbnailURL) {
+    if(V.Editor.Slideset.isSlideset(slide)) {
+      $("#slideset_selected > img").attr("src", thumbnailURL)
+    }
+    $(slideThumbnail).attr("src", thumbnailURL)
+  };
+  return{updateCurrentSlideFromHash:updateCurrentSlideFromHash, showSlides:showSlides, hideSlides:hideSlides, isSlideFocused:isSlideFocused, moveSlideTo:moveSlideTo, copySlide:copySlide, copySlideWithNumber:copySlideWithNumber, appendSlide:appendSlide, addSlide:addSlide, removeSlide:removeSlide, addSubslide:addSubslide, appendSubslide:appendSubslide, removeSubslide:removeSubslide, removeSlideKeyboard:removeSlideKeyboard, isSubslide:isSubslide, updateThumbnail:updateThumbnail, copyTextAreasOfSlide:copyTextAreasOfSlide, 
+  forwardOneSubslide:forwardOneSubslide, backwardOneSubslide:backwardOneSubslide, moveSubslides:moveSubslides, goToSubslide:goToSubslide}
 }(VISH, jQuery);
 VISH.Editor.Themes = function(V, $, undefined) {
   var initialized = false;
@@ -20868,6 +21051,8 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
   var slidesetThumbnailsDivId = "subslides_list";
   var redrawThumbnailsCallback;
   var drawSlidesetThumbnailsCallback;
+  var lastSelectedSlideThumbnail = undefined;
+  var lastSelectedSubslideThumbnail = undefined;
   var init = function() {
   };
   var redrawThumbnails = function(successCallback) {
@@ -20909,6 +21094,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
     $("#" + thumbnailsDivId).find("img.image_barbutton").each(function(index, img) {
       var imgContainer = $(img).parent();
       $(imgContainer).addClass("wrapper_barbutton");
+      $(imgContainer).addClass("preventNoselectable");
       var p = $(imgContainer).find("p");
       $(p).addClass("ptext_barbutton");
       $(img).click(function(event) {
@@ -20957,17 +21143,34 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
   };
   var selectThumbnail = function(no) {
     $("#slides_list img.image_barbutton").removeClass("selectedSlideThumbnail");
-    $("#slides_list img.image_barbutton[slideNumber=" + no + "]").addClass("selectedSlideThumbnail")
+    $("#slides_list img.image_barbutton[slideNumber=" + no + "]").addClass("selectedSlideThumbnail");
+    var advance = lastSelectedSlideThumbnail === undefined || no > lastSelectedSlideThumbnail;
+    lastSelectedSlideThumbnail = no;
+    var slide = V.Slides.getSlideWithNumber(no);
+    if(!isThumbnailVisible(slide)) {
+      if(advance) {
+        moveThumbnailsToSlide(Math.max(no - 5, 1))
+      }else {
+        moveThumbnailsToSlide(no)
+      }
+    }
   };
   var moveThumbnailsToSlide = function(slideNumber) {
     var element = $("img.image_barbutton[slideNumber=" + slideNumber + "]");
     V.Editor.Scrollbar.goToElement(thumbnailsDivId, element)
   };
+  var moveThumbnailsToSubslide = function(slideNumber) {
+    var element = $("#subslides_list img.image_barbutton[slideNumber=" + slideNumber + "]").parent();
+    V.Editor.Scrollbar.goToElement(slidesetThumbnailsDivId, element)
+  };
   var getThumbnailForSlide = function(slide) {
+    if(V.Editor.Slides.isSubslide(slide)) {
+      return _getThumbnailForSubslide(slide)
+    }
     var slidenumber = $(slide).attr("slidenumber");
     return $("#slides_list img.image_barbutton[slideNumber=" + slidenumber + "]")
   };
-  var getThumbnailForSubslide = function(subslide) {
+  var _getThumbnailForSubslide = function(subslide) {
     var slidenumber = $(subslide).attr("slidenumber");
     return $("#subslides_list img.image_barbutton[slideNumber=" + slidenumber + "]")
   };
@@ -20979,8 +21182,15 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
       thumbnailURL = V.Editor.Slideset.getCreatorModule(slideType).getThumbnailURL(slide)
     }else {
       if(slideType == V.Constant.STANDARD) {
-        var template = $(slide).attr("template");
-        thumbnailURL = V.ImagesPath + "templatesthumbs/" + template + ".png"
+        var zone = $(slide).children("div.vezone");
+        if($(zone).length === 1 && !V.Editor.isZoneEmpty(zone) && $(zone).attr("type") == "image") {
+          var img = $(zone).find("img");
+          if($(img).length === 1 && typeof $(img).attr("src") == "string") {
+            thumbnailURL = $(img).attr("src")
+          }
+        }else {
+          thumbnailURL = _getDefaultThumbnailURLForStandardSlide(slide)
+        }
       }
     }
     return thumbnailURL
@@ -20988,7 +21198,7 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
   var getDefaultThumbnailURL = function(slide) {
     var slideType = $(slide).attr("type");
     if(slideType == V.Constant.STANDARD) {
-      return getThumbnailURL(slide)
+      return _getDefaultThumbnailURLForStandardSlide(slide)
     }else {
       if(V.Editor.Slideset.isSlideset(slideType)) {
         var creatorModule = V.Editor.Slideset.getCreatorModule(slideType);
@@ -20999,6 +21209,10 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         }
       }
     }
+  };
+  var _getDefaultThumbnailURLForStandardSlide = function(slide) {
+    var template = $(slide).attr("template");
+    return V.ImagesPath + "templatesthumbs/" + template + ".png"
   };
   var drawSlidesetThumbnails = function(subslides, successCallback) {
     drawSlidesetThumbnailsCallback = successCallback;
@@ -21012,16 +21226,17 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
         V.Debugging.log("Subslide must be of standard type");
         return true
       }
-      var template = $(s).attr("template");
-      var srcURL = V.ImagesPath + "templatesthumbs/" + template + ".png";
+      var srcURL = getThumbnailURL(s);
+      var defaultURL = getDefaultThumbnailURL(s);
       slideElements += 1;
-      imagesArray.push($("<img id='subslideThumbnail" + slideElements + "' class='image_barbutton' slideNumber='" + slideElements + "' src='" + srcURL + "' />"));
+      imagesArray.push($("<img id='subslideThumbnail" + slideElements + "' class='image_barbutton' slideNumber='" + slideElements + "' src='" + srcURL + "' defaultsrc='" + defaultURL + "'/>"));
       imagesArrayTitles.push(String.fromCharCode(64 + slideElements))
     });
     var options = {};
     options.order = true;
     options.titleArray = imagesArrayTitles;
     options.callback = _onSlidesetThumbnailsImagesLoaded;
+    options.defaultOnError = true;
     V.Utils.Loader.loadImagesOnContainer(imagesArray, slidesetThumbnailsDivId, options)
   };
   var _onSlidesetThumbnailsImagesLoaded = function() {
@@ -21053,9 +21268,36 @@ VISH.Editor.Thumbnails = function(V, $, undefined) {
   };
   var selectSubslideThumbnail = function(no) {
     $("#subslides_list img.image_barbutton").removeClass("selectedSubslideThumbnail");
-    $("#subslides_list img.image_barbutton[slideNumber=" + no + "]").addClass("selectedSubslideThumbnail")
+    if(no === null) {
+      return
+    }
+    $("#subslides_list img.image_barbutton[slideNumber=" + no + "]").addClass("selectedSubslideThumbnail");
+    var advance = lastSelectedSubslideThumbnail === undefined || no > lastSelectedSubslideThumbnail;
+    lastSelectedSubslideThumbnail = no;
+    var subslide = V.Slides.getSubslideWithNumber(V.Slides.getCurrentSlide(), no);
+    if(!isThumbnailVisible(subslide)) {
+      if(advance) {
+        moveThumbnailsToSubslide(Math.max(no - 7, 1))
+      }else {
+        moveThumbnailsToSubslide(no)
+      }
+    }
   };
-  return{init:init, redrawThumbnails:redrawThumbnails, selectThumbnail:selectThumbnail, moveThumbnailsToSlide:moveThumbnailsToSlide, drawSlidesetThumbnails:drawSlidesetThumbnails, selectSubslideThumbnail:selectSubslideThumbnail, getThumbnailURL:getThumbnailURL, getThumbnailForSlide:getThumbnailForSlide, getThumbnailForSubslide:getThumbnailForSubslide}
+  var isThumbnailVisible = function(slide) {
+    var slideThumbnail = getThumbnailForSlide(slide);
+    var offset = $(slideThumbnail).offset();
+    if(typeof offset == "undefined" || offset === null) {
+      return true
+    }
+    if(V.Editor.Slides.isSubslide(slide)) {
+      var offsetLeft = offset.left;
+      return offsetLeft > 466 && offsetLeft < 1119
+    }else {
+      var offsetTop = offset.top;
+      return offsetTop > 132 && offsetTop < 667
+    }
+  };
+  return{init:init, redrawThumbnails:redrawThumbnails, drawSlidesetThumbnails:drawSlidesetThumbnails, selectThumbnail:selectThumbnail, selectSubslideThumbnail:selectSubslideThumbnail, moveThumbnailsToSlide:moveThumbnailsToSlide, moveThumbnailsToSubslide:moveThumbnailsToSubslide, getThumbnailURL:getThumbnailURL, getDefaultThumbnailURL:getDefaultThumbnailURL, getThumbnailForSlide:getThumbnailForSlide, isThumbnailVisible:isThumbnailVisible}
 }(VISH, jQuery);
 VISH.Editor.Tools.Menu = function(V, $, undefined) {
   var _initialized = false;
@@ -22090,7 +22332,7 @@ VISH.Events.Mobile = function(V, $, undefined) {
       if(zoom > MINIMUM_ZOOM_TO_ENABLE_SCROLL) {
         return
       }
-      var subslide = V.Slides.getCurrentSubSlide();
+      var subslide = V.Slides.getCurrentSubslide();
       if(subslide !== null) {
         V.Slides.closeSubslide($(subslide).attr("id"))
       }
@@ -24442,13 +24684,22 @@ VISH.Utils.Loader = function(V, undefined) {
       var script = document.createElement("script");
       script.setAttribute("src", scriptSrc);
       script.setAttribute("type", "text/javascript");
+      var callbackCalled = false;
+      var callCallback = function() {
+        if(!callbackCalled) {
+          if(typeof callback == "function") {
+            callbackCalled = true;
+            callback()
+          }
+        }
+      };
       var loadFunction = function() {
         if(this.readyState == "complete" || this.readyState == "loaded") {
-          callback()
+          callCallback()
         }
       };
       script.onreadystatechange = loadFunction;
-      script.onload = callback;
+      script.onload = callCallback;
       head.appendChild(script)
     }
   };
@@ -24476,15 +24727,18 @@ VISH.Utils.Loader = function(V, undefined) {
     link.rel = "stylesheet";
     link.href = url;
     if(typeof callback == "function") {
-      link.onload = function() {
-        callback()
+      var callbackCalled = false;
+      var callCallback = function() {
+        if(!callbackCalled) {
+          callbackCalled = true;
+          callback()
+        }
       };
-      link.onerror = function() {
-        callback()
-      };
+      link.onload = callCallback;
+      link.onerror = callCallback;
       var loadFunction = function() {
         if(this.readyState == "complete" || this.readyState == "loaded") {
-          callback()
+          callCallback()
         }
       };
       link.onreadystatechange = loadFunction
@@ -25075,6 +25329,7 @@ VISH.Viewer = function(V, $, undefined) {
     })
   };
   var _initAferAnimationLoaded = function(options, presentation) {
+    V.Slides.updateCurrentSlideFromHash();
     V.Slides.updateSlides();
     V.Quiz.init();
     if(options.addons) {
@@ -25107,7 +25362,12 @@ VISH.Viewer = function(V, $, undefined) {
           myElem.mozRequestFullScreen()
         }else {
           if(myDoc.documentElement.webkitRequestFullScreen) {
-            myElem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
+            myElem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            setTimeout(function() {
+              if(!myDoc.webkitCurrentFullScreenElement) {
+                myElem.webkitRequestFullScreen()
+              }
+            }, 250)
           }
         }
       }
@@ -25217,8 +25477,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var embed;
   var scorm;
   var showViewbar;
-  var isInexternalSite;
+  var isInExternalSite;
   var isInVishSite;
+  var uniqMode;
   var enter_fs_button;
   var enter_fs_url;
   var exit_fs_button;
@@ -25237,15 +25498,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
     embed = V.Status.getIsEmbed();
     showViewbar = _defaultViewbar();
+    scorm = V.Status.getIsScorm();
+    isInExternalSite = V.Status.getIsInExternalSite();
+    isInVishSite = V.Status.getIsInVishSite();
     if(options) {
       if(typeof render_full != "boolean") {
         render_full = options["full"] === true && !V.Status.getIsInIframe() || options["forcefull"] === true
       }
       if(typeof options["preview"] == "boolean") {
         is_preview = options["preview"]
-      }
-      if(typeof options["scorm"] == "boolean") {
-        scorm = options["scorm"]
       }
       close_button = V.Status.getDevice().mobile && !V.Status.getIsInIframe() && options["comeBackUrl"];
       can_use_nativeFs = V.Status.getDevice().features.fullscreen;
@@ -25268,17 +25529,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       enter_fs_button = false;
       exit_fs_button = false;
       fs_button = false;
-      can_use_nativeFs = false;
-      scorm = false
+      can_use_nativeFs = false
     }
-    isInexternalSite = embed || scorm;
-    isInVishSite = !isInexternalSite && V.Configuration.getConfiguration()["mode"] === V.Constant.VISH;
     is_preview_insertMode = false;
     if(is_preview) {
       var presentation = V.Viewer.getCurrentPresentation();
       if(presentation.insertMode === true) {
         is_preview_insertMode = true
       }
+    }
+    var hashParams = V.Utils.getHashParams();
+    if(hashParams["uniq"] === "true") {
+      uniqMode = true
+    }else {
+      uniqMode = false
     }
     if(V.Status.getDevice().mobile) {
       render_full = true;
@@ -25289,6 +25553,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }else {
         close_button = false
       }
+    }
+    if(uniqMode) {
+      showViewbar = false
     }
     if(V.Status.getDevice().desktop) {
       $("#back_arrow").html("");
@@ -25313,7 +25580,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("#viewbar").css("border-bottom", "none");
       V.SlidesSelector.init()
     }
-    if(isInexternalSite) {
+    if(isInExternalSite) {
       if(options && typeof options.watermarkURL == "string") {
         $("#embedWatermark").parent().attr("href", options.watermarkURL);
         $("#embedWatermark").show()
@@ -25338,7 +25605,7 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   };
   var decideIfPageSwitcher = function() {
     if(V.Viewer.getPresentationType() === V.Constant.PRESENTATION) {
-      if(V.Slides.getCurrentSubSlide() !== null) {
+      if(V.Slides.getCurrentSubslide() !== null) {
         $("#forward_arrow").hide();
         $("#back_arrow").hide()
       }else {
