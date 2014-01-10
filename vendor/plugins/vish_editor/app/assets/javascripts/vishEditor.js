@@ -11360,10 +11360,46 @@ VISH.Utils = function(V, undefined) {
   var sendParentToURL = function(the_url) {
     window.top.location = the_url
   };
+  var removeParamFromUrl = function(url, paramName) {
+    if(typeof url !== "string" || typeof paramName !== "string") {
+      return url
+    }
+    var splitHash = url.split("#");
+    url = splitHash[0];
+    var splitParams = url.split("?");
+    if(splitParams.length === 2) {
+      url = splitParams[0];
+      var params = splitParams[1];
+      var validParams = [];
+      var splitParams = params.split("&");
+      var sPL = splitParams.length;
+      for(var i = 0;i < sPL;i++) {
+        var splitParam = splitParams[i].split("=");
+        if(splitParam[0] != paramName) {
+          validParams.push({key:splitParam[0], value:splitParam[1]})
+        }
+      }
+      var vPL = validParams.length;
+      for(var j = 0;j < vPL;j++) {
+        var param = validParams[j];
+        if(j === 0) {
+          url = url + "?"
+        }else {
+          url = url + "&"
+        }
+        url = url + param.key + "=" + param.value
+      }
+    }
+    if(splitHash.length > 1) {
+      url = url + "#" + splitHash[1]
+    }
+    return url
+  };
   var addParamToUrl = function(url, paramName, paramValue) {
     if(typeof url !== "string" || typeof paramName !== "string" || typeof paramValue !== "string") {
       return url
     }
+    url = removeParamFromUrl(url, paramName);
     var splitHash = url.split("#");
     url = splitHash[0];
     var param = paramName + "=" + paramValue;
@@ -11791,7 +11827,7 @@ VISH.Utils = function(V, undefined) {
     }
   };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash}
 }(VISH);
 VISH.Editor = function(V, $, undefined) {
   var initOptions;
@@ -13539,7 +13575,8 @@ VISH.Editor.Object = function(V, $, undefined) {
             return"<img class='imagePreview' src='" + object + "'></img>";
             break;
           case V.Constant.MEDIA.FLASH:
-            return"<embed class='objectPreview' src='" + object + "' wmode='opaque' ></embed>";
+            object = V.Utils.addParamToUrl(object, "wmode", "opaque");
+            return"<embed class='objectPreview' src='" + object + "'></embed>";
             break;
           case V.Constant.MEDIA.PDF:
           ;
@@ -18730,6 +18767,7 @@ VISH.Editor.Object.Flash = function(V, $, undefined) {
     var embedTag = document.createElement("embed");
     embedTag.setAttribute("id", idToResize);
     embedTag.setAttribute("class", template + "_object");
+    src = V.Utils.addParamToUrl(src, "wmode", "opaque");
     embedTag.setAttribute("src", src);
     embedTag.setAttribute("wmode", "opaque");
     $(embedDiv).append(embedTag);
@@ -19310,8 +19348,9 @@ VISH.Editor.Object.Snapshot = function(V, $, undefined) {
   };
   var _wrapperSnapShot = function(content) {
     var objectInfo = V.Object.getObjectInfo(content);
+    content = V.Utils.addParamToUrl(content, "wmode", "opaque");
     if(objectInfo.wrapper === null) {
-      return"<iframe src='" + content + "'></iframe>"
+      return"<iframe src='" + content + "' wmode='opaque'></iframe>"
     }else {
       return content
     }
@@ -19419,10 +19458,12 @@ VISH.Editor.Object.Web = function(V, $, undefined) {
     V.Editor.Object.drawPreviewObject(contentToAdd)
   };
   var generateWrapperForWeb = function(url) {
-    return"<iframe src='" + url + "?wmode=transparent'></iframe>"
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe src='" + url + "' wmode='opaque'></iframe>"
   };
   var generatePreviewWrapperForWeb = function(url) {
-    return"<iframe class='objectPreview' src='" + url + "'></iframe>"
+    url = V.Utils.addParamToUrl(url, "wmode", "opaque");
+    return"<iframe class='objectPreview' src='" + url + "' wmode='opaque'></iframe>"
   };
   return{init:init, onLoadTab:onLoadTab, drawPreviewElement:drawPreviewElement, generatePreviewWrapperForWeb:generatePreviewWrapperForWeb, generateWrapperForWeb:generateWrapperForWeb}
 }(VISH, jQuery);
