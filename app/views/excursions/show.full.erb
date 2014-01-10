@@ -52,6 +52,13 @@
 	//URL to search in the LRE
 	options["urlToSearchLRE"] = "/lre/search"
 
+	//Extra options from parent
+	try {
+		if(typeof window.parent.options != "undefined"){
+			options["readHashFromParent"] = window.parent.options["readHashFromParent"];
+		}
+	} catch(err){}
+
 	options.addons = [];
 
 	var addon = new Object();

@@ -11804,18 +11804,13 @@ VISH.Utils = function(V, undefined) {
     }
     return vValue
   };
-  var updateHash = function() {
-    var location = _getLocationForHash();
-    var newHash = "#" + V.Slides.getCurrentSlideNumber();
-    var splitedHash = location.hash.split("?");
-    if(splitedHash.length > 1) {
-      newHash = newHash + "?" + splitedHash[1]
-    }
-    location.hash = newHash
-  };
   var getSlideNumberFromHash = function() {
     try {
-      var location = _getLocationForHash();
+      if(getOptions()["readHashFromParent"] === true) {
+        var location = window.parent.location
+      }else {
+        var location = window.location
+      }
       if(typeof location == "undefined") {
         return
       }
@@ -11828,6 +11823,17 @@ VISH.Utils = function(V, undefined) {
     }catch(err) {
       return undefined
     }
+  };
+  var updateHash = function() {
+    var newHash = "#" + V.Slides.getCurrentSlideNumber();
+    if(getOptions()["readHashFromParent"] === true) {
+      window.parent.location.hash = newHash
+    }
+    var splitedHash = location.hash.split("?");
+    if(splitedHash.length > 1) {
+      newHash = newHash + "?" + splitedHash[1]
+    }
+    window.location.hash = newHash
   };
   var getHashParams = function() {
     var params = {};
@@ -11846,17 +11852,6 @@ VISH.Utils = function(V, undefined) {
       }
     }
     return params
-  };
-  var _getLocationForHash = function() {
-    if(!V.Status.getIsInIframe() || V.Status.getIsPreview()) {
-      return window.location
-    }else {
-      if(V.Status.getIsInVishSite() || V.Configuration.getConfiguration()["mode"] === V.Constant.NOSERVER) {
-        return window.parent.location
-      }else {
-        return undefined
-      }
-    }
   };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
   sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash}
@@ -12366,6 +12361,10 @@ VISH.Editor = function(V, $, undefined) {
                   window.top.history.replaceState("", "", data.editPath)
                 }
               }
+            }
+          }else {
+            if(typeof data != "undefined" && data.exitPath) {
+              V.exitPath = data.exitPath
             }
           }
           if(typeof successCallback == "function") {
@@ -21406,6 +21405,8 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
       var options = V.Utils.getOptions();
       if(typeof options.exitURL != "string") {
         $(".menu_option.menu_action[action='exit']").parent().hide()
+      }else {
+        V.exitPath = options.exitURL
       }
       _initialized = true
     }
@@ -21584,7 +21585,7 @@ VISH.Editor.Tools.Menu = function(V, $, undefined) {
   };
   var _exitFromVE = function() {
     V.Editor.Events.allowExitWithoutConfirmation();
-    window.top.location.href = V.Utils.getOptions().exitURL
+    window.top.location.href = V.exitPath
   };
   var insertSmartcard = function() {
     $("#addSlideFancybox").trigger("click");
