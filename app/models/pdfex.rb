@@ -16,7 +16,7 @@ class Pdfex < ActiveRecord::Base
 
 		require 'RMagick'
 		pdf = Magick::ImageList.new(self.attach.path){ self.density = 200 }
-		pdf.write(rootFolder + fileName + ".jpg")
+		pdf.write(rootFolder + fileName + (pdf.length===1 ? "-0" : "") + ".jpg")
 		#imgLength = pdf.length = pdfRead.page_count
 
 		getImgArray(pdf.length)
@@ -36,6 +36,9 @@ class Pdfex < ActiveRecord::Base
 		imgLength.times do |index|
 			imgs["urls"].push(Site.current.config[:documents_hostname].to_s + rootUrl + fileName + "-" + index.to_s + ".jpg")
 		end
+
+		#Add PDFEx Id
+		imgs["pdfexID"] = self.id
 
 		# Development
 		# Site.current.config[:documents_hostname] = "http://localhost:3000/"

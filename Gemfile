@@ -43,7 +43,10 @@ gem 'composite_primary_keys'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+group :development do
+  #Usage bundle exec unicorn -p 3000 -c config/unicorn.rb
+  gem 'unicorn'
+end
 
 # Deploy with Capistrano
 group :development do
