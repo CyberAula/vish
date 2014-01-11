@@ -23,11 +23,11 @@ class Pdfex < ActiveRecord::Base
 	end  
 
 	def getImgArray(imgLength)
-		rootFolder = getRootFolder
 		rootUrl = getRootUrl
 		fileName = getFileName
 
 		if imgLength.nil?
+			rootFolder = getRootFolder
 			imgLength = %x(ls -l #{rootFolder}/*.jpg | wc -l).to_i
 		end
 		
@@ -61,7 +61,7 @@ class Pdfex < ActiveRecord::Base
 	def getRootUrl
 		splitUrl = self.attach.url.split("/")
 		splitUrl.pop()
-		rootUrl = splitUrl.join("/")+"/"
+		rootUrl = (splitUrl.join("/")+"/")[1..-1]
 	end
 
 	def getFileName
