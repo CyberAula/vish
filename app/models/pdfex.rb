@@ -38,7 +38,7 @@ class Pdfex < ActiveRecord::Base
 		end
 
 		#Add PDFEx Id
-		imgs["pdfexID"] = self.id
+		imgs["pdfexId"] = self.id
 
 		# Development
 		# Site.current.config[:documents_hostname] = "http://localhost:3000/"

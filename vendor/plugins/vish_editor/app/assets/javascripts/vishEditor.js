@@ -13315,7 +13315,7 @@ VISH.Editor.Image = function(V, $, undefined) {
     }
     contentAddMode = V.Constant.NONE
   };
-  var drawImage = function(image_url, area, style, hyperlink) {
+  var drawImage = function(image_url, area, style, hyperlink, options) {
     var current_area;
     var renderOnInit = false;
     if(area) {
@@ -13331,12 +13331,17 @@ VISH.Editor.Image = function(V, $, undefined) {
       var image_width = $(current_area).width();
       newStyle = "width:" + image_width + "px;"
     }
-    var template = V.Editor.getTemplate();
+    var template = V.Editor.getTemplate(current_area);
     var nextImageId = V.Utils.getId();
     var idToDragAndResize = "draggable" + nextImageId;
     current_area.attr("type", "image");
     if(hyperlink) {
       current_area.attr("hyperlink", hyperlink)
+    }
+    if(typeof options != "undefined") {
+      if(typeof options["vishubPdfexId"] != "undefined") {
+        current_area.attr("vishubpdfexid", options["vishubPdfexId"])
+      }
     }
     current_area.html("<img class='" + template + "_image' id='" + idToDragAndResize + "' draggable='true' title='Click to drag' src='" + image_url + "' style='" + newStyle + "'/>");
     if(!style) {
@@ -18783,7 +18788,7 @@ VISH.Editor.MenuTablet = function(V, $, undefined) {
 VISH.Editor.Object.Flash = function(V, $, undefined) {
   var drawFlashObjectWithSource = function(src) {
     var current_area = V.Editor.getCurrentArea();
-    var template = V.Editor.getTemplate();
+    var template = V.Editor.getTemplate(current_area);
     var nextFlashId = V.Utils.getId();
     var idToDrag = "draggable" + nextFlashId;
     var idToResize = "resizable" + nextFlashId;
@@ -19554,6 +19559,7 @@ VISH.Editor.PDFex = function(V, $, undefined) {
             for(var v = 0;v < 13;v++) {
               responseTest.urls.push("http://localhost/vishEditor/examples/contents/pdf2p/Presentacion_INTED2013_VishViewer-" + v + ".jpg")
             }
+            responseTest.pdfexId = 365;
             processResponse(responseTest)
           }, 1E4);
           break;
@@ -19615,13 +19621,13 @@ VISH.Editor.PDFex = function(V, $, undefined) {
   };
   var processResponse = function(jsonResponse) {
     try {
-      var presentation = generatePresentationWithImgArray(jsonResponse.urls);
+      var presentation = _generatePresentationWithImgArray(jsonResponse.urls, jsonResponse.pdfexId);
       V.Editor.Presentation.previewPresentation(presentation)
     }catch(e) {
       V.Utils.Loader.stopLoading()
     }
   };
-  var generatePresentationWithImgArray = function(imgs) {
+  var _generatePresentationWithImgArray = function(imgs, pdfexId) {
     var presentation = {};
     presentation.VEVersion = V.VERSION;
     presentation.type = V.Constant.PRESENTATION;
@@ -19629,11 +19635,11 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     presentation.slides = [];
     for(var i = 0;i < imgs.length;i++) {
       var imageUrl = imgs[i];
-      presentation.slides.push(_generateSlideWithImg(i, imageUrl))
+      presentation.slides.push(_generateSlideWithImg(i, imageUrl, pdfexId))
     }
     return presentation
   };
-  var _generateSlideWithImg = function(index, imgUrl) {
+  var _generateSlideWithImg = function(index, imgUrl, pdfexId) {
     var slide = {};
     slide.id = "article" + index;
     slide.type = V.Constant.STANDARD;
@@ -19644,6 +19650,10 @@ VISH.Editor.PDFex = function(V, $, undefined) {
     element.body = imgUrl;
     element.id = slide.id + "_zone1";
     element.type = V.Constant.IMAGE;
+    if(typeof pdfexId != "undefined") {
+      element.options = {};
+      element.options["vishubPdfexId"] = pdfexId
+    }
     slide.elements.push(element);
     return slide
   };
@@ -20184,7 +20194,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
         V.Editor.Text.launchTextEditor({}, area, slide.elements[el].body)
       }else {
         if(slide.elements[el].type === V.Constant.IMAGE) {
-          V.Editor.Image.drawImage(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].hyperlink)
+          V.Editor.Image.drawImage(slide.elements[el].body, area, slide.elements[el].style, slide.elements[el].hyperlink, slide.elements[el].options)
         }else {
           if(slide.elements[el].type === V.Constant.VIDEO) {
             var options = [];
