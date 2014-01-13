@@ -11,6 +11,11 @@ footer.container-fluid
         color: #555
         a
           color: #555
+          &:hover
+            color: #000
+        img
+          &:hover
+            border-bottom: 1px solid #666
       li.btn-group
         .dropdown-menu
           width: 250px
@@ -24,7 +29,9 @@ footer.container-fluid
               display: inline-block
               font-family: $baseFontFamily
               width: 236px
-
+              &:hover
+                color: #000
+                font-family: $baseFontFamily
             i
               float: left
               display: inline-block
@@ -40,6 +47,8 @@ footer.container-fluid
           background-color: transparent !important
           background-image: none
           box-shadow: none
+          &:hover
+            color: #000
 #main 
   overflow:auto
   padding-bottom: 150px  /* must be same height as the footer */
