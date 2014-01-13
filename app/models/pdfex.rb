@@ -16,18 +16,18 @@ class Pdfex < ActiveRecord::Base
 
 		require 'RMagick'
 		pdf = Magick::ImageList.new(self.attach.path){ self.density = 200 }
-		pdf.write(rootFolder + fileName + ".jpg")
+		pdf.write(rootFolder + fileName + (pdf.length===1 ? "-0" : "") + ".jpg")
 		#imgLength = pdf.length = pdfRead.page_count
 
 		getImgArray(pdf.length)
 	end  
 
 	def getImgArray(imgLength)
-		rootFolder = getRootFolder
 		rootUrl = getRootUrl
 		fileName = getFileName
 
 		if imgLength.nil?
+			rootFolder = getRootFolder
 			imgLength = %x(ls -l #{rootFolder}/*.jpg | wc -l).to_i
 		end
 		
@@ -36,6 +36,9 @@ class Pdfex < ActiveRecord::Base
 		imgLength.times do |index|
 			imgs["urls"].push(Site.current.config[:documents_hostname].to_s + rootUrl + fileName + "-" + index.to_s + ".jpg")
 		end
+
+		#Add PDFEx Id
+		imgs["pdfexId"] = self.id
 
 		# Development
 		# Site.current.config[:documents_hostname] = "http://localhost:3000/"
@@ -58,7 +61,7 @@ class Pdfex < ActiveRecord::Base
 	def getRootUrl
 		splitUrl = self.attach.url.split("/")
 		splitUrl.pop()
-		rootUrl = splitUrl.join("/")+"/"
+		rootUrl = (splitUrl.join("/")+"/")[1..-1]
 	end
 
 	def getFileName

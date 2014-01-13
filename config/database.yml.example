@@ -17,6 +17,18 @@ recsys_development:
   socket: /var/run/mysqld/mysqld.sock
 
 
+## PostgreSQL setup
+
+#development:
+#  adapter: postgresql
+#  encoding: unicode
+#  host: localhost
+#  username: postgres
+#  password: #{password}
+#  database: vish_development
+#  pool: 5
+
+
 # Warning: The database defined as 'test' will be erased and
 # re-generated from your development database when you run 'rake'.
 # Do not set this db to the same as development or production.
