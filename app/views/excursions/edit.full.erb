@@ -39,7 +39,11 @@
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
 	<% if current_subject %>
-		options["exitURL"]  = "<%= user_path(current_subject) %>";
+		<% if @excursion.draft.to_s == "false" %>
+			options["exitURL"]  = "<%= excursion_path(@excursion) %>";
+		<% else %>
+			options["exitURL"]  = "<%= user_path(current_subject) %>";
+		<% end %>
 	<% end %>
 
 	options.addons = [];
