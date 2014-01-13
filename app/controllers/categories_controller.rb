@@ -4,6 +4,12 @@ class CategoriesController < ApplicationController
   #before_filter :add_item_to_categories, :only => [:create, :update]
   skip_load_and_authorize_resource :only => [:add_items]
   
+  def show_favorites
+    render "favorites"
+  end
+
+
+
   def create
     create! do |success, failure|
       success.json { render :json => {"title"=>@category.title, "id"=>@category.id}, :status => 200 }
