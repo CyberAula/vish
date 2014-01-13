@@ -6,6 +6,8 @@ class Ability
     #   can :manage, Object
     # end
 
+    can :show_favorites, Category
+
     super
   end
 end

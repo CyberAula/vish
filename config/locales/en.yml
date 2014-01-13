@@ -43,6 +43,9 @@ en:
     description_input: "Description for this category"
     errors:
       duplicated: "You already have a category with this title. Please, give it another title."
+    favorites:
+      title: My favorites
+      description: This category shows your favorite things in the ViSH
     info: "Add it to one of your categories"
     input: "Add a description"
     item_inside: "items inside"
