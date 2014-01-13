@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140113094037) do
+ActiveRecord::Schema.define(:version => 20140113110128) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -318,6 +318,7 @@ ActiveRecord::Schema.define(:version => 20140113094037) do
     t.integer  "attach_file_size"
     t.datetime "attach_updated_at"
     t.boolean  "permanent",           :default => false
+    t.integer  "pcount"
   end
 
   create_table "permissions", :force => true do |t|

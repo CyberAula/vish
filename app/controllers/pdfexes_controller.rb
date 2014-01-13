@@ -1,12 +1,11 @@
 class PdfexesController < ApplicationController
 
-	def show
+	def new
 		unless user_signed_in?
 			raise "#PDFexAPIError:4 Unauthorized"
 		end
-
-		@pdfex = Pdfex.find(params[:id])
-		render :json => @pdfex.getImgArray
+		
+		@pdfex = Pdfex.new
 	end
 
 	def create
@@ -25,12 +24,13 @@ class PdfexesController < ApplicationController
 		end
 	end
 
-	def new
+	def show
 		unless user_signed_in?
 			raise "#PDFexAPIError:4 Unauthorized"
 		end
-		
-		@pdfex = Pdfex.new
+
+		@pdfex = Pdfex.find(params[:id])
+		render :json => @pdfex.getImgArray
 	end
 
 end
