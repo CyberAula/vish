@@ -16,8 +16,6 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class ExcursionsController < ApplicationController
-  include HomeHelper
-
   # Quick hack for bypassing social stream's auth
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
@@ -240,8 +238,8 @@ class ExcursionsController < ApplicationController
   def last_slide
     excursions = []
 
-    if params[:loId]
-      current_excursion =  Excursion.find(params[:loId]) rescue nil
+    if params[:excursion_id]
+      current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
     end
 
     #Add excursions based on the current excursion
@@ -251,14 +249,14 @@ class ExcursionsController < ApplicationController
         searchTerms = current_excursion.tag_list
       end
       searchTerms = searchTerms.join(",")
-      relatedExcursions = (Excursion.search searchTerms, search_options)
+      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false}
       excursions.concat(relatedExcursions)
 
       if !current_excursion.author.nil?
-        authorExcursions = (subject_excursions current_excursion.author.user).reject{ |ex| ex.id == current_excursion.id}
+        authorExcursions = ActivityObject.where(:object_type=>"Excursion").select{ |e| e.author_id == current_excursion.author.id }.map { |ao| ao.excursion }.select{|e| e.id != current_excursion.id and e.draft == false}
         #Limit the number of authorExcursions
         authorExcursions = authorExcursions.sample(2)
-        excursions.concat(authorExcursions)
+        excursions = excursions.concat(authorExcursions)
       end
 
       #Remove drafts and current excursion

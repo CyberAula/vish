@@ -585,10 +585,9 @@ class Excursion < ActiveRecord::Base
       activity_object.age_max = ageRange.split("-")[1].delete(' ')
     rescue
     end
-    
     activity_object.save!
 
-    parsed_json["id"] = activity_object.id.to_s
+    parsed_json["id"] = self.id.to_s
     parsed_json["author"] = author.name
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
