@@ -43,6 +43,9 @@ es:
     description_input: "Descripción para esta categoría"
     errors:
       duplicated: "Ya tienes una categoría con ese título. Por favor, escribe uno diferente."
+    favorites:
+      title: Mis favoritos
+      description: Esta categoría muestra tus cosas favoritas en el ViSH
     info: "Añádelo a una de tus categorías"
     input: "Añade una descripción"
     item_inside: "elementos"

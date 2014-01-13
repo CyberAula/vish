@@ -45,7 +45,7 @@
       <% unless @excursion.description.blank? %>
       <!--description-->
       <dt><%= t('info.description') %></dt>
-      <dd><%= truncate(@excursion.description, :length => 200) %></dd>
+      <dd><%= truncate(@excursion.description, :length => 400) %></dd>
       <% end %>
       <% unless @excursion.tag_list.blank? %>
       <!--tags-->
