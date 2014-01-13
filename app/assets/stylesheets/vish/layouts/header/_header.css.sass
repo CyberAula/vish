@@ -26,14 +26,15 @@ header.navbar,
         margin-top: 5px
         display: block
         padding: 5px
-
-
         img
           float: left
           display: block
           max-width: 135px
           clear: both
           width: 100%
+          opacity: 0.7
+          &:hover
+            opacity: 1
         .vish-name
           display: block
           margin-left: auto
@@ -52,6 +53,7 @@ header.navbar,
         border-left: 1px solid rgb(214, 214, 214)
         .dropdown
           list-style: none
+          margin-left: 20px
           a
             padding-left: 10px
           .dropdown-menu
@@ -76,6 +78,7 @@ header.navbar,
         float: right
         .add_nav
           float: left
+          margin-right: 5px
           .btn-primary
 
           .btn
@@ -120,8 +123,8 @@ header.navbar,
             float: left
             img
               @include border-radius($baseBorderRadius)
-              height: 40px
-              width: 40px
+              height: 39px
+              width: 39px
               float: left
             .name
               margin-left: 5px
@@ -141,14 +144,14 @@ header.navbar,
 
         .navegation
           float: left
-          margin-right: 3px
+          margin-right: 7px
           .headernav            
             a
               i
                 color: #c8c8c8
                 font-size: 20px
                 text-decoration: none
-                padding: 8px
+                padding: 9px
                 margin: 5px 3px
                 display: block
                 float: left
