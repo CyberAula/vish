@@ -26,11 +26,11 @@ Vish::Application.routes.draw do
   #resources :excursions
   
   match 'excursions/last_slide' => 'excursions#last_slide'
+  match '/apis/iframe_api' => 'excursions#iframe_api'
+  match '/apis/excursion_search' => 'excursions#cross_search'
 
   match '/excursions/thumbnails' => 'excursions#excursion_thumbnails'
   match '/excursion_thumbnails' => 'excursions#excursion_thumbnails'
-
-  match '/apis/iframe_api' => 'excursions#iframe_api'
 
   match 'excursions/preview' => 'excursions#preview'
  

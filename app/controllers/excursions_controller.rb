@@ -16,16 +16,18 @@
 # along with ViSH.  If not, see <http://www.gnu.org/licenses/>.
 
 class ExcursionsController < ApplicationController
+  include HomeHelper
+
   # Quick hack for bypassing social stream's auth
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone, :uploadTmpJSON ]
   before_filter :profile_subject!, :only => :index
   before_filter :hack_auth, :only => [ :new, :create]
 
-  # Enable CORS for last_slide method (http://www.tsheffler.com/blog/?p=428)
-  before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api]
-  after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api]
+  # Enable CORS for last_slide method (http://www.tsheffler.com/blog/?p=428), and iframe_api and cross_search
+  before_filter :cors_preflight_check, :only => [ :last_slide, :iframe_api, :cross_search]
+  after_filter :cors_set_access_control_headers, :only => [ :last_slide, :iframe_api, :cross_search]
 
-  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON]
+  skip_load_and_authorize_resource :only => [ :excursion_thumbnails, :iframe_api, :preview, :clone, :manifest, :recommended, :evaluate, :learning_evaluate, :last_slide, :downloadTmpJSON, :uploadTmpJSON, :cross_search]
   include SocialStream::Controllers::Objects
   #include HomeHelper
 
@@ -237,17 +239,51 @@ class ExcursionsController < ApplicationController
 
   def last_slide
     excursions = []
-    if user_signed_in?
-      current_subject.excursion_suggestions(20).each do |ex|
-        excursions.push ex.reduced_json(self)
-      end
-    else
-      Excursion.joins(:activity_object).order("activity_objects.visit_count + (10 * activity_objects.like_count) DESC").first(20).each do |ex|
-        excursions.push ex.reduced_json(self)
-      end
+
+    if params[:loId]
+      current_excursion =  Excursion.find(params[:loId]) rescue nil
     end
+
+    #Add excursions based on the current excursion
+    if !current_excursion.nil?
+      searchTerms = []
+      if !current_excursion.tag_list.empty?
+        searchTerms = current_excursion.tag_list
+      end
+      searchTerms = searchTerms.join(",")
+      relatedExcursions = (Excursion.search searchTerms, search_options)
+      excursions.concat(relatedExcursions)
+
+      if !current_excursion.author.nil?
+        authorExcursions = (subject_excursions current_excursion.author.user).reject{ |ex| ex.id == current_excursion.id}
+        #Limit the number of authorExcursions
+        authorExcursions = authorExcursions.sample(2)
+        excursions.concat(authorExcursions)
+      end
+
+      #Remove drafts and current excursion
+      excursions.uniq!
+      excursions = excursions.select{|ex| ex.draft == false}.reject{ |ex| ex.id == current_excursion.id }
+    end
+
+    #Fill excursions (until 6), with popular excursions
+    holes = [0,6-excursions.length].max
+    if holes > 0
+      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").select{|ex| ex.draft == false}.reject{ |ex| excursions.map{ |fex| fex.id }.include? ex.id || (!current_excursion.nil? and ex.id == current_excursion.id) }
+      popularExcursions.in_groups_of(80){ |group|
+        popularExcursions = group
+        break
+      }
+      excursions.concat(popularExcursions.sample(holes))
+    end
+    excursions = excursions.sample(6)
+
     respond_to do |format|
-      format.json { render :json => excursions.sample(6) }
+      format.json { 
+        results = []
+        excursions.map { |ex| results.push(ex.reduced_json(self)) }
+        render :json => results
+      }
     end
   end
 
@@ -261,14 +297,40 @@ class ExcursionsController < ApplicationController
     end
   end
 
+  def cross_search
+    limit = [Integer(params[:l]),200].min rescue 20
+    @found_excursions = (Excursion.search params[:q], search_options).sample(limit)
+    
+    holes = [0,limit-@found_excursions.length].max
+    if holes > 0
+      popularExcursions = Excursion.joins(:activity_object).order("activity_objects.popularity DESC").reject{ |ex| @found_excursions.map{ |fex| fex.id }.include? ex.id }
+      popularExcursions.in_groups_of(100+holes){ |group|
+        popularExcursions = group
+        break
+      }
+      @found_excursions.concat(popularExcursions.sample(holes))
+    end
+
+    respond_to do |format|    
+      format.json {
+        results = Hash.new
+        results["excursions"] = []
+        @found_excursions.each do |excursion|
+          results["excursions"].push(excursion.reduced_json(self))
+        end
+        render :json => results
+      }
+    end
+  end
+
   def uploadTmpJSON
     respond_to do |format|  
       format.json {
         results = Hash.new
 
         if params["json"] == nil
-          results["url"] = "";
-          results["fileId"] = "";
+          results["url"] = ""
+          results["fileId"] = ""
           render :json => results
           return
         else
@@ -281,8 +343,8 @@ class ExcursionsController < ApplicationController
         t.write json
         t.close
 
-        results["url"] = "/excursions/tmpJson";
-        results["fileId"] = count.to_s;
+        results["url"] = "/excursions/tmpJson"
+        results["fileId"] = count.to_s
         render :json => results
       }
     end
@@ -313,7 +375,7 @@ class ExcursionsController < ApplicationController
 
   def excursion_thumbnails
     thumbnails = Hash.new
-    thumbnails["pictures"] = [];
+    thumbnails["pictures"] = []
 
     81.times do |index|
       index = index+1
@@ -336,6 +398,7 @@ class ExcursionsController < ApplicationController
 
     render :json => thumbnails
   end
+
 
   private
 
