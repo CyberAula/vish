@@ -17273,7 +17273,7 @@ VISH.Editor.API = function(V, $, undefined) {
       }
       return
     }
-    $.ajax({async:false, type:"GET", url:"/excursion_thumbnails.json", dataType:"json", success:function(data) {
+    $.ajax({type:"GET", url:"/excursion_thumbnails.json", dataType:"json", success:function(data) {
       if(typeof successCallback == "function") {
         successCallback(data)
       }
@@ -17288,11 +17288,11 @@ VISH.Editor.API = function(V, $, undefined) {
       if(typeof failCallback == "function") {
         setTimeout(function() {
           failCallback()
-        }, 800)
+        }, 100)
       }
       return
     }
-    $.ajax({async:false, type:"POST", url:"/excursions/tmpJson.json", dataType:"json", data:{"authenticity_token":V.User.getToken(), "json":JSON.stringify(json), "responseFormat":"json"}, success:function(data) {
+    $.ajax({type:"POST", url:"/excursions/tmpJson.json", dataType:"json", data:{"authenticity_token":V.User.getToken(), "json":JSON.stringify(json), "responseFormat":"json"}, success:function(data) {
       if(data && data.url) {
         _downloadFile(data.url);
         if(typeof successCallback == "function") {
@@ -24923,10 +24923,10 @@ VISH.Utils.Loader = function(V, undefined) {
   };
   var stopLoading = function(callback) {
     var diff = Date.now() - t1Loading;
-    if(diff < 1350) {
+    if(diff < 1250) {
       setTimeout(function() {
         stopLoading(callback)
-      }, Math.max(0, Math.min(1350 - diff, 1350)))
+      }, Math.max(0, Math.min(1250 - diff, 1250)))
     }else {
       var closed = false;
       var tWClose = 0;
