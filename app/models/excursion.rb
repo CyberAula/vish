@@ -30,7 +30,6 @@ class Excursion < ActiveRecord::Base
 
   define_index do
     activity_object_index
-
     indexes excursion_type
     has slide_count
     has draft
@@ -38,48 +37,56 @@ class Excursion < ActiveRecord::Base
     has activity_object.visit_count, :as => :visit_count
   end
 
+
+  ####################
+  ## JSON Management
+  ####################
+
   def to_json(options=nil)
     json
   end
 
-  def to_scorm(controller)
-    if self.scorm_needs_generate
-      require 'zip/zip'
-      require 'zip/zipfilesystem'  
-      t = File.open("#{Rails.root}/public/scorm/excursions/#{self.id}.zip", 'w')
 
-      #Generate Manifest and HTML file
-      Zip::ZipOutputStream.open(t.path) do |zos|
-        xml_manifest = self.generate_scorm_manifest
-        zos.put_next_entry("imsmanifest.xml")
-        zos.print xml_manifest.target!()
+  ####################
+  ## SCORM Management
+  ####################
 
-        zos.put_next_entry("excursion.html")
-        zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>self}, :layout => false  
-      end
-      
-      #Copy SCORM assets (image, javascript and css files)
-      dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
-      zip_folder(t.path,dir,nil)
+  def self.createSCORM(filePath,fileName,json,excursion,controller)
+    require 'zip/zip'
+    require 'zip/zipfilesystem'
 
-      #Add theme
-      themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
-      theme = "theme1" #Default theme
-      if JSON(self.json)["theme"] and File.exists?(themesPath + JSON(self.json)["theme"])
-        theme = JSON(self.json)["theme"]
-      end
-      #Copy excursion theme
-      zip_folder(t.path,"#{Rails.root}/vendor/plugins/vish_editor/app/assets",themesPath + theme)
+    # filePath = "#{Rails.root}/public/scorm/excursions/"
+    # fileName = self.id
+    # json = JSON(self.json)
+    t = File.open("#{filePath}#{fileName}.zip", 'w')
 
-      t.close
-      self.update_column(:scorm_timestamp, Time.now)
+    #Generate Manifest and HTML file
+    Zip::ZipOutputStream.open(t.path) do |zos|
+      xml_manifest = Excursion.generate_scorm_manifest(json,excursion)
+      zos.put_next_entry("imsmanifest.xml")
+      zos.print xml_manifest.target!()
+
+      zos.put_next_entry("excursion.html")
+      zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>excursion, :presentation => json}, :layout => false  
     end
 
+    #Copy SCORM assets (image, javascript and css files)
+    dir = "#{Rails.root}/vendor/plugins/vish_editor/app/scorm"
+    zip_folder(t.path,dir,nil)
+
+    #Add theme
+    themesPath = "#{Rails.root}/vendor/plugins/vish_editor/app/assets/images/themes/"
+    theme = "theme1" #Default theme
+    if json["theme"] and File.exists?(themesPath + json["theme"])
+      theme = json["theme"]
+    end
+    #Copy excursion theme
+    zip_folder(t.path,"#{Rails.root}/vendor/plugins/vish_editor/app/assets",themesPath + theme)
+
+    t.close
   end
 
-
-  def zip_folder(zipFilePath,root,dir)
-
+  def self.zip_folder(zipFilePath,root,dir)
     unless dir 
       dir = root
     end
@@ -94,42 +101,31 @@ class Excursion < ActiveRecord::Base
 
     #Look for files
     Zip::ZipFile.open(zipFilePath, Zip::ZipFile::CREATE) { |zipfile|
-
       Dir.foreach(dir) do |item|
         item_path = "#{dir}/#{item}"
         if File.file?item_path
           rpath = String.new(item_path)
           rpath.slice! root + "/"
-          # puts "###########################"
-          # puts "Full Path"
-          # puts item_path
-          # puts "root"
-          # puts root
-          # puts "relative path"
-          # puts rpath
-          # puts "###########################"
           zipfile.add(rpath,item_path)
         end
       end
     }
   end
 
-  def scorm_needs_generate
-    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
-      return true;
-    else
-      return false;
-    end
-  end
-
   # Metadata based on LOM (Learning Object Metadata) standard
   # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
-  def generate_scorm_manifest
-    ejson = JSON(self.json)
+  def self.generate_scorm_manifest(ejson,excursion)
+    if excursion
+      identifier = excursion.id.to_s
+    else
+      userId = user_signed_in? ? current_user.id : 0
+      identifier = "User" + userId.to_s + "tmp" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+    end
+
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
     myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + self.id.to_s,
-      "version"=>"1.0", 
+    myxml.manifest("identifier"=>"VISH_VIRTUAL_EXCURSION_" + identifier,
+      "version"=>"1.0",
       "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3.xsd http://www.imsglobal.org/xsd/imsss_v1p0.xsd http://ltsc.ieee.org/xsd/LOM/lom.xsd",
       "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
       "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
@@ -137,27 +133,26 @@ class Excursion < ActiveRecord::Base
       "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
       "xmlns:lom"=>"http://ltsc.ieee.org/xsd/LOM/lom.xsd" ) do
 
-
       myxml.metadata() do
-        myxml.schema("ADL SCORM");
-        myxml.schemaversion("CAM 1.3");
+        myxml.schema("ADL SCORM")
+        myxml.schemaversion("CAM 1.3")
 
         myxml.lom do
           myxml.general do
-            myxml.identifier("VISH_VIRTUAL_EXCURSION_"+ self.id.to_s);
+            myxml.identifier("VISH_VIRTUAL_EXCURSION_"+ identifier)
             myxml.title do
-              myxml.langstring(self.title);
+              myxml.langstring(ejson["title"])
             end
             if ejson["language"]
-              myxml.language(ejson["language"]);
+              myxml.language(ejson["language"])
             end
             myxml.description do
-              myxml.langstring(self.title + ". A Virtual Excursion provided by http://vishub.org.");
+              myxml.langstring(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.")
             end
-            if self.tags && self.tags.kind_of?(Array)
-              self.tags.each do |tag|
+            if ejson["tags"] && ejson["tags"].kind_of?(Array)
+              ejson["tags"].each do |tag|
                 myxml.keyword do
-                  myxml.langstring(tag.name.to_s);
+                  myxml.langstring(tag.name.to_s)
                 end
               end
             end
@@ -166,67 +161,73 @@ class Excursion < ActiveRecord::Base
               if ejson["subject"].kind_of?(Array)
                 ejson["subject"].each do |subject|
                   myxml.keyword do
-                    myxml.langstring(subject);
+                    myxml.langstring(subject)
                   end 
                 end
               elsif ejson["subject"].kind_of?(String)
                 myxml.keyword do
-                    myxml.langstring(ejson["subject"]);
+                    myxml.langstring(ejson["subject"])
                 end
               end
             end
 
             myxml.structure do
               myxml.source do
-                myxml.langstring("LOMv1.0");
+                myxml.langstring("LOMv1.0")
               end
               myxml.value do
-                myxml.langstring("hierarchical");
+                myxml.langstring("hierarchical")
               end
             end
             myxml.aggregationlevel do
               myxml.source do
-                myxml.langstring("LOMv1.0");
+                myxml.langstring("LOMv1.0")
               end
               myxml.value do
-                myxml.langstring("4");
+                myxml.langstring("4")
               end
             end
           end
 
           myxml.lifecycle do
             myxml.version do
-              myxml.langstring("1.0");
+              myxml.langstring("1.0")
             end
             myxml.status do
               myxml.source do
-                myxml.langstring("LOMv1.0");
+                myxml.langstring("LOMv1.0")
               end
               myxml.value do
-                myxml.langstring("final");
+                myxml.langstring("final")
               end
             end
             myxml.contribute do
               myxml.role do
                 myxml.source do
-                  myxml.langstring("LOMv1.0");
+                  myxml.langstring("LOMv1.0")
                 end
                 myxml.value do
-                  myxml.langstring("author");
+                  myxml.langstring("author")
                 end
               end
               myxml.centity do
-                myxml.vcard("begin:vcard\n n:"+self.author.name+"\n fn:\n end:vcard");
+                myxml.vcard("begin:vcard\n n:"+ejson["author"]+"\n fn:\n end:vcard")
               end
               myxml.date do
-                myxml.datetime(self.updated_at.strftime("%d/%m/%y"));
+                if excursion
+                  myxml.datetime(excursion.updated_at.strftime("%d/%m/%y"))
+                else
+                  myxml.datetime(Date.now.strftime("%d/%m/%y"))
+                end
               end
             end
           end
 
           myxml.technical do
             myxml.format("text/html")
-            myxml.location("http://vishub.org/excursions/"+self.id.to_s);
+            if excursion
+              myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
+            end
             myxml.requirement do
               myxml.type do
                 myxml.source do
@@ -293,9 +294,9 @@ class Excursion < ActiveRecord::Base
                 end
               end
             end
-            if self.age_min
+            if ejson["age_range"]
               myxml.typicalagerange do
-                myxml.langstring(self.age_min.to_s + "-" + self.age_max.to_s)
+                myxml.langstring(ejson["age_range"])
               end
             end
             if ejson["difficulty"]
@@ -312,9 +313,10 @@ class Excursion < ActiveRecord::Base
               if ejson["TLT"]
                 myxml.duration(ejson["TLT"])
               else
-                 #Inferred
+                #Inferred
                 # 1 min per slide
-                inferredTPL = (self.slide_count * 1).to_s
+                # inferredTPL = (self.slide_count * 1).to_s
+                inferredTPL = (ejson["slides"].length * 1).to_s
                 myxml.duration("PT"+inferredTPL+"M0S")
               end
             end
@@ -324,40 +326,38 @@ class Excursion < ActiveRecord::Base
               end
             end
             if ejson["language"]
-              myxml.language(ejson["language"]);
+              myxml.language(ejson["language"])
             end
           end
         end
       end
 
-
       myxml.organizations('default'=>"ViSH",'structure'=>"hierarchical") do
         myxml.organization('identifier'=>"ViSH") do
-          myxml.title("Virtual Science Hub");
+          myxml.title("Virtual Science Hub")
           myxml.metadata() do
-            myxml.schema("ADL SCORM");
-            myxml.schemaversion("CAM 1.3");
+            myxml.schema("ADL SCORM")
+            myxml.schemaversion("CAM 1.3")
             myxml.lom do
               myxml.general do
-                myxml.identifier("ViSH");
+                myxml.identifier("ViSH")
                 myxml.title do
-                  myxml.langstring("Virtual Science Hub");
+                  myxml.langstring("Virtual Science Hub")
                 end
                 myxml.description do
-                  myxml.langstring("Virtual Science Hub. http://vishub.org.");
+                  myxml.langstring("Virtual Science Hub. http://vishub.org.")
                 end
               end
             end
           end
-          myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + self.id.to_s,'identifierref'=>"VIRTUAL_EXCURSION_" + self.id.to_s + "_RESOURCE") do
-            myxml.title(self.title);
+          myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + identifier,'identifierref'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE") do
+            myxml.title(ejson["title"])
           end
         end
       end
 
-
       myxml.resources do         
-        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + self.id.to_s + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
+        myxml.resource('identifier'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE", 'type'=>"webcontent", 'href'=>"excursion.html", 'adlcp:scormtype'=>"sco") do
           myxml.file('href'=> "excursion.html")
         end
       end
@@ -367,11 +367,34 @@ class Excursion < ActiveRecord::Base
     return myxml
   end
 
+  def to_scorm(controller)
+    if self.scorm_needs_generate
+      filePath = "#{Rails.root}/public/scorm/excursions/"
+      fileName = self.id
+      json = JSON(self.json)
+      Excursion.createSCORM(filePath,fileName,json,self,controller)
+      self.update_column(:scorm_timestamp, Time.now)
+    end
+  end
+
+  def scorm_needs_generate
+    if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
+      return true
+    else
+      return false
+    end
+  end
+
   def remove_scorm
     if File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
       File.delete("#{Rails.root}/public/scorm/excursions/#{self.id}.zip") 
     end
   end
+
+
+  ####################
+  ## PDF Management
+  #################### 
 
   def to_pdf(controller)
     if self.pdf_needs_generate
@@ -385,7 +408,7 @@ class Excursion < ActiveRecord::Base
         require 'RMagick'
         images = []
         slidesQuantity.times do |num|
-          images.push(pdfFolder + "/#{self.id}_#{num+1}.png");
+          images.push(pdfFolder + "/#{self.id}_#{num+1}.png")
         end
         pdf_image_list = ::Magick::ImageList.new
         pdf_image_list.read(*images)
@@ -410,13 +433,13 @@ class Excursion < ActiveRecord::Base
       # Testing
       # excursion_url = 'http://vishub.org/excursions/55.full'
       
-      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :format => 'full', :id=>self.id);
+      excursion_url = controller.url_for( :controller => 'excursions', :action => 'show', :format => 'full', :id=>self.id)
       # driver.navigate.to excursion_url
       driver.get excursion_url
 
       #Specify screenshots dimensions
-      width = 775;
-      height = 1042;
+      width = 775
+      height = 1042
       driver.execute_script %Q{ window.resizeTo(#{width}, #{height}); }
 
       #Hide fullscreen button
@@ -444,7 +467,7 @@ class Excursion < ActiveRecord::Base
           driver.execute_script("return true")
         }
         #Wait a constant period
-        sleep 1.5;
+        sleep 1.5
 
         #Remove alert (if is present)
         driver.switch_to.alert.accept rescue Selenium::WebDriver::Error::NoAlertOpenError
@@ -461,15 +484,15 @@ class Excursion < ActiveRecord::Base
       rescue
       end
       puts e.message
-      return -1;
+      return -1
     end
   end
 
   def pdf_needs_generate
     if self.pdf_timestamp.nil? or self.updated_at > self.pdf_timestamp or !File.exist?("#{Rails.root}/public/pdf/excursions/#{self.id}/#{self.id}.pdf")
-      return true;
+      return true
     else
-      return false;
+      return false
     end
   end
 
@@ -478,6 +501,55 @@ class Excursion < ActiveRecord::Base
       FileUtils.rm_rf("#{Rails.root}/public/pdf/excursions/#{self.id}") 
     end
   end
+
+  ####################
+  ## Evaluations
+  #################### 
+
+  def evaluations
+    ExcursionEvaluation.where(:excursion_id => self.id)
+  end
+
+  def averageEvaluation
+    evaluations_array = []
+    if self.evaluations.length > 0
+      6.times do |ind|
+        evaluations_array.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
+      end
+    else
+      evaluations_array = [0,0,0,0,0,0]
+    end
+    evaluations_array
+  end
+
+  def numberOfEvaluations
+    ExcursionEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
+  end
+
+  def learningEvaluations
+    ExcursionLearningEvaluation.where(:excursion_id => self.id)
+  end
+
+  def averageLearningEvaluation
+    evaluations_array = []
+    if self.learningEvaluations.length > 0
+      6.times do |ind|
+        evaluations_array.push(ExcursionLearningEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
+      end
+    else
+      evaluations_array = [0,0,0,0,0,0]
+    end
+    evaluations_array
+  end
+
+  def numberOfLearningEvaluations
+    ExcursionLearningEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
+  end
+
+
+  ####################
+  ## Other Methods
+  #################### 
 
   def clone_for sbj
     return nil if sbj.blank?
@@ -513,46 +585,6 @@ class Excursion < ActiveRecord::Base
         :favourites => like_count,
         :number_of_slides => slide_count
       }
-  end
-
-  def evaluations
-    ExcursionEvaluation.where(:excursion_id => self.id)
-  end
-
-  def averageEvaluation
-    evaluations_array = []
-    if self.evaluations.length > 0
-      6.times do |ind|
-        evaluations_array.push(ExcursionEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
-      end
-    else
-      evaluations_array = [0,0,0,0,0,0];
-    end
-    evaluations_array
-  end
-
-  def numberOfEvaluations
-    ExcursionEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
-  end
-
-  def learningEvaluations
-    ExcursionLearningEvaluation.where(:excursion_id => self.id)
-  end
-
-  def averageLearningEvaluation
-    evaluations_array = []
-    if self.learningEvaluations.length > 0
-      6.times do |ind|
-        evaluations_array.push(ExcursionLearningEvaluation.average("answer_"+ind.to_s, :conditions=>["excursion_id=?", self.id]).to_f.round(2))
-      end
-    else
-      evaluations_array = [0,0,0,0,0,0];
-    end
-    evaluations_array
-  end
-
-  def numberOfLearningEvaluations
-    ExcursionLearningEvaluation.count("answer_1", :conditions=>["excursion_id=?", self.id])
   end
 
   #we don't know what happens or how it happens but sometimes in social_stream
