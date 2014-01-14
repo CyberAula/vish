@@ -327,22 +327,38 @@ class ExcursionsController < ApplicationController
         results = Hash.new
 
         if params["json"] == nil
-          results["url"] = ""
-          results["fileId"] = ""
           render :json => results
           return
         else
           json = params["json"]
         end
 
-        count = %x(ls -l #{Rails.root}/public/tmp/json/ | wc -l).to_i
-        filePath = "#{Rails.root}/public/tmp/json//#{count}.json"
-        t = File.open(filePath, 'w')
-        t.write json
-        t.close
+        responseFormat = "json" #Default
+        if params["responseFormat"]
+          if params["responseFormat"] == "scorm"
+            responseFormat = "scorm"
+          end
+        end
 
-        results["url"] = "/excursions/tmpJson"
-        results["fileId"] = count.to_s
+        count = Site.current.config["tmpJSONcount"].nil? ? 1 : Site.current.config["tmpJSONcount"]
+        Site.current.config["tmpJSONcount"] = count +1
+        Site.current.save!
+
+        if responseFormat == "json"
+          #Generate JSON file
+          filePath = "#{Rails.root}/public/tmp/json/#{count}.json"
+          t = File.open(filePath, 'w')
+          t.write json
+          t.close
+
+          results["url"] = "#{Site.current.config["documents_hostname"]}/excursions/tmpJson.json?fileId=#{count.to_s}"
+        
+        elsif responseFormat == "scorm"
+          #Generate SCORM package
+          #TODO...
+
+        end
+        
         render :json => results
       }
     end
@@ -366,7 +382,11 @@ class ExcursionsController < ApplicationController
         end
 
         filePath = "#{Rails.root}/public/tmp/json/#{fileId}.json"
-        send_file "#{filePath}", :type => 'application/json', :disposition => 'attachment', :filename => "#{filename}.json"
+        if File.exist? filePath
+          send_file "#{filePath}", :type => 'application/json', :disposition => 'attachment', :filename => "#{filename}.json"
+        else 
+          render :json => results
+        end
       }
     end
   end
