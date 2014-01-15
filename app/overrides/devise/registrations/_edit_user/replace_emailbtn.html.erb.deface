@@ -15,6 +15,12 @@
         <%= f.password_field :current_password, :class => "required form_tag" %>
       </div>
 
-      <%= f.submit t('button.update'), :class => "btn btn-primary" %>
+      <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
 
     <% end%>
+
+<script>
+  $("#email_form .edit_user [type='submit']").click(function(event) {
+    $(this).button('loading');
+  });
+</script>
