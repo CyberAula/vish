@@ -1,5 +1,9 @@
-<ul>
-  <% popular_excursions(12).each do |excursion| %>
-    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
-  <% end %>
-</ul>
+<div class="container-visor_front">
+	<div class="elemento-visor_front"></div>
+	<ul class="excursions_front">
+	  <% popular_excursions(16).each do |excursion| %>
+	    <%= render :partial => 'excursions/excursion', :locals => { :excursion => excursion } %>
+	  <% end %>
+
+	</ul>
+</div>

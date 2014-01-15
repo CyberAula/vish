@@ -249,7 +249,7 @@ class ExcursionsController < ApplicationController
         searchTerms = current_excursion.tag_list
       end
       searchTerms = searchTerms.join(",")
-      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false}
+      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false} rescue []
       excursions.concat(relatedExcursions)
 
       if !current_excursion.author.nil?
@@ -351,12 +351,14 @@ class ExcursionsController < ApplicationController
           t.write json
           t.close
 
-          results["url"] = "#{Site.current.config["documents_hostname"]}/excursions/tmpJson.json?fileId=#{count.to_s}"
+          results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
         
         elsif responseFormat == "scorm"
           #Generate SCORM package
-          #TODO...
-
+          filePath = "#{Rails.root}/public/tmp/scorm/"
+          fileName = "scorm-tmp#{count}"
+          Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
+          results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/scorm/#{fileName}.zip"
         end
         
         render :json => results
