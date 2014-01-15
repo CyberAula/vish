@@ -263,6 +263,7 @@ en:
     title_input: "Name for this resource"
     title_alert: "Write the title for this resource"
     upload: "Upload"
+    uploading: "Uploading..."
   email:
     regards: "Kind regards,<br/>"
     welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"

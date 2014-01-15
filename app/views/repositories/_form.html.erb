@@ -165,7 +165,7 @@
       </div>
     </div>
 
-    <input type="button" class="btn btn-primary" value="<%= t('document.upload')%>"/>
+    <input type="button" class="btn btn-primary" data-loading-text="<%= t('document.uploading')%>" value="<%= t('document.upload')%>"/>
   </div>
 </div>
 
@@ -225,6 +225,8 @@ $(document).ready(function(){
   $(uploadButton).click(function(event) {
     var resource_type = $(".accordion-body.collapse.in").attr('id');
 
+    $(this).button('loading');
+    
     if(resource_type == "document" && $("#AddResource input[name='"+resource_type+"[file]']").val() == "") {
       alert("<%= t('document.body.title3')%>");
     } else if (resource_type == "link" && $("#AddResource input[name='"+resource_type+"[url]']").val() == "") {
