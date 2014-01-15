@@ -11,7 +11,7 @@
 
 	<%= render :partial => 'excursions/vish_viewer_scorm.full' %>
 
-    <script>
+	<script>
 		options = {};
 
 		var configuration = {};
@@ -29,7 +29,14 @@
 			options["watermarkURL"] = "<%=excursion_url(excursion)%>";
 			var presentation = <%= raw excursion.json %>;
 		<% elsif json %>
-			options["watermarkURL"] = "<%=Site.current.config[:documents_hostname]%>";
+			<% presId = Integer(json["id"]) rescue nil %>
+			<% excursion = !presId.nil? ? (Excursion.find_by_id(presId) rescue nil) : nil %>
+			<% if !presId.nil? and json["draft"]=="false" and !excursion.nil? and excursion.draft == false %>
+				options["watermarkURL"] = "<%=excursion_url(excursion)%>";
+			<% else %>
+				options["watermarkURL"] = "<%=Site.current.config[:documents_hostname]%>";
+			<% end %>
+			
 			var presentation = <%= raw json.to_json %>;
 		<% end %>
 
