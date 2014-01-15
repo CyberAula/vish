@@ -69,6 +69,7 @@ namespace(:deploy) do
     run "/bin/chmod -R g+w #{ release_path }/tmp"
     sudo "/bin/chgrp -R www-data #{ release_path }/tmp"
     run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/json"
+    run "#{try_sudo} /bin/chmod -R 777 #{ release_path }/public/tmp/scorm"
     
     # config.ru
     sudo "/bin/chown www-data #{ release_path }/config.ru"
