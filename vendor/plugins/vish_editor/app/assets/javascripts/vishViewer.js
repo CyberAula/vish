@@ -14675,16 +14675,19 @@ VISH.Events.Mobile = function(V, $, undefined) {
 VISH.Recommendations = function(V, $, undefined) {
   var url_to_get_recommendations;
   var user_id;
-  var presentation_id;
+  var vishub_pres_id;
   var _requesting;
   var _generated;
   var _isRecVisible;
   var init = function(options) {
-    user_id = V.User.getId();
-    presentation_id = V.Viewer.getCurrentPresentation().id;
     _isRecVisible = false;
     _requesting = false;
     _generated = false;
+    user_id = V.User.getId();
+    var presentation = V.Viewer.getCurrentPresentation();
+    if(presentation["vishMetadata"] && presentation["vishMetadata"]["id"]) {
+      vishub_pres_id = presentation["vishMetadata"]["id"]
+    }
     if(options) {
       if(typeof options["urlToGetRecommendations"] == "string") {
         url_to_get_recommendations = options["urlToGetRecommendations"]
@@ -14724,7 +14727,7 @@ VISH.Recommendations = function(V, $, undefined) {
           _requesting = true
         }
         if(url_to_get_recommendations !== undefined) {
-          var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:6};
+          var params_to_send = {user_id:user_id, excursion_id:vishub_pres_id, quantity:6};
           $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
             _fillFancyboxWithData(data)
           }, error:function(error) {

@@ -11861,6 +11861,7 @@ VISH.Editor = function(V, $, undefined) {
   var initOptions;
   var initialPresentation = false;
   var draftPresentation;
+  var _isDraft;
   var lastStoredPresentationStringify;
   var currentZone;
   var lastZone;
@@ -11879,6 +11880,15 @@ VISH.Editor = function(V, $, undefined) {
     }else {
       initOptions = {}
     }
+    if(V.Debugging.isDevelopping()) {
+      if(options.configuration.mode == V.Constant.NOSERVER && V.Debugging.getActionInit() == "loadSamples" && !presentation) {
+        presentation = V.Debugging.getPresentationSamples()
+      }
+    }
+    if(presentation) {
+      initialPresentation = true
+    }
+    _isDraft = _initPresentationDraft();
     V.Utils.init();
     V.Status.init(function() {
       _initAferStatusLoaded(options, presentation)
@@ -11907,12 +11917,7 @@ VISH.Editor = function(V, $, undefined) {
     V.User.init(options);
     V.Editor.LRE.init(options.lang);
     V.Editor.Settings.init();
-    if(V.Debugging.isDevelopping()) {
-      if(options.configuration.mode == V.Constant.NOSERVER && V.Debugging.getActionInit() == "loadSamples" && !presentation) {
-        presentation = V.Debugging.getPresentationSamples()
-      }
-    }
-    if(presentation) {
+    if(initialPresentation) {
       presentation = V.Utils.fixPresentation(presentation);
       if(presentation === null) {
         $("#waiting_overlay").hide();
@@ -12190,6 +12195,7 @@ VISH.Editor = function(V, $, undefined) {
   var savePresentation = function() {
     var presentation = {};
     presentation = V.Editor.Settings.saveSettings();
+    presentation = _saveLORData(presentation);
     presentation.slides = [];
     V.Editor.Utils.Loader.loadAllObjects();
     $(".object_wrapper, .snapshot_wrapper").show();
@@ -12209,6 +12215,24 @@ VISH.Editor = function(V, $, undefined) {
     });
     V.Editor.Utils.Loader.unloadAllObjects();
     V.Editor.Utils.Loader.loadObjectsInEditorSlide(V.Slides.getCurrentSlide());
+    return presentation
+  };
+  var _saveLORData = function(presentation) {
+    switch(V.Configuration.getConfiguration().mode) {
+      case V.Constant.VISH:
+      ;
+      case V.Constant.NOSERVER:
+        var LORPresentation = getDraftPresentation();
+        var LORMetadata;
+        if(LORPresentation && LORPresentation["vishMetadata"]) {
+          LORMetadata = LORPresentation["vishMetadata"]
+        }else {
+          LORMetadata = {}
+        }
+        LORMetadata["draft"] = isPresentationDraft().toString();
+        presentation["vishMetadata"] = LORMetadata;
+        break
+    }
     return presentation
   };
   var _saveStandardSlide = function(slideDOM, presentation, isSubslide) {
@@ -12370,7 +12394,11 @@ VISH.Editor = function(V, $, undefined) {
                 }
               }
             }
+            if(order == "publish") {
+              _isDraft = false
+            }
           }else {
+            _isDraft = true;
             if(typeof data != "undefined" && data.exitPath) {
               V.exitPath = data.exitPath
             }
@@ -12387,7 +12415,12 @@ VISH.Editor = function(V, $, undefined) {
       case V.Constant.NOSERVER:
         if(V.Debugging && V.Debugging.isDevelopping()) {
           if(order != "unpublish") {
-            lastStoredPresentationStringify = JSON.stringify(presentation)
+            lastStoredPresentationStringify = JSON.stringify(presentation);
+            if(order == "publish") {
+              _isDraft = false
+            }
+          }else {
+            _isDraft = true
           }
           setTimeout(function() {
             successCallback()
@@ -12468,11 +12501,14 @@ VISH.Editor = function(V, $, undefined) {
     return draftPresentation.type
   };
   var isPresentationDraft = function() {
+    return _isDraft
+  };
+  var _initPresentationDraft = function() {
     if(initialPresentation) {
       if(initOptions.draft && typeof initOptions.draft === "boolean") {
         return initOptions.draft
       }else {
-        return false
+        return true
       }
     }else {
       return true
@@ -14857,10 +14893,10 @@ VISH.Samples = function(V, undefined) {
   {"id":"article14_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "hyperlink":"http://www.google.es", "style":"position: relative; width:380.95238095238096%; height:218.69565217391303%; top:-36.231884541718856%; left:-58.201090494791664%;"}, {"id":"article14_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:357.14285714285717%; height:205.2173913043478%; top:-45.41062894074813%; left:-193.12174479166666%;"}, 
   {"id":"article14_article3_zone5", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; "><span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>'}]}, 
   {"id":"article14_article4", "type":"standard", "template":"t2", "elements":[{"id":"article14_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID_7" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:99.9390243902439%; height:99.6774193548387%; top:2.225806451612903%; left:2.3536585365853657%;"}]}]}]};
-  var quiz_samples = {"VEVersion":"0.7", "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "author":"agordillo", "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"4 - 20", "slides":[{"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", 
-  "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', 
-  "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", 
-  "description":"Quiz example", "author":"agordillo", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, 
+  var quiz_samples = {"VEVersion":"0.7", "vishMetadata":{"url":"http://vishub.org", "draft":"true", "id":"500"}, "type":"presentation", "title":"Quiz samples", "description":"Quiz example", "avatar":"http://vishub.org/assets/logos/original/excursion-15.png", "author":"agordillo", "theme":"theme1", "animation":"animation1", "language":"independent", "age_range":"4 - 20", "slides":[{"id":"article2", "type":"standard", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", 
+  "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, 
+  {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', 
+  "answer":false}], "extras":{"multipleAnswer":false}, "quiz_simple_json":{"title":"Quiz samples", "description":"Quiz example", "author":"agordillo", "type":"quiz_simple", "slides":[{"id":"article2", "type":"quiz_simple", "template":"t2", "elements":[{"id":"article2_zone1", "type":"quiz", "areaid":"left", "quiztype":"multiplechoice", "selfA":true, "question":{"value":"\u00adWhat is the oldest ancient weapon?", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:38px;">&shy;What is the oldest ancient weapon?</span></span></p>\n'}, 
   "choices":[{"id":"1", "value":"Fu\u00ad", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">Fu&shy;</span></span></p>\n', "answer":false}, {"id":"2", "value":"\u00adBow", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Bow</span></span></p>\n', "answer":true}, {"id":"3", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;Chu Ko Nuh</span></span></p>\n', 
   "answer":false}, {"id":"4", "value":"\u00adWar Galley", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;War Galley</span></span></p>\n', "answer":false}], "extras":{"multipleAnswer":false}}], "containsQuiz":true}]}}], "containsQuiz":true}, {"id":"article1", "type":"standard", "template":"t2", "elements":[{"id":"article1_zone1", "type":"quiz", "areaid":"left", "quiztype":"truefalse", "selfA":true, "question":{"value":"\u00adWhat of the followings are ancient weapons?", 
   "wysiwygValue":'<p style="text-align:left;">\n\t<span style="color:#ff0000;"><span style="font-size:10px;"><span autocolor="true">&shy;</span><span autocolor="true"><span style="font-size:24px;">What of the followings are ancient weapons?</span></span></span></span></p>\n'}, "choices":[{"id":"1", "value":"\u00adChu Ko Nuh", "wysiwygValue":'<p style="text-align:left;">\n\t<span autocolor="true" style="color:#000"><span style="font-size:24px;">&shy;</span></span><span style="color: rgb(0, 0, 0); font-size: 24.44444465637207px;">Chu Ko Nuh</span></p>\n', 
@@ -23884,16 +23920,19 @@ VISH.QuizCharts = function(V, $, undefined) {
 VISH.Recommendations = function(V, $, undefined) {
   var url_to_get_recommendations;
   var user_id;
-  var presentation_id;
+  var vishub_pres_id;
   var _requesting;
   var _generated;
   var _isRecVisible;
   var init = function(options) {
-    user_id = V.User.getId();
-    presentation_id = V.Viewer.getCurrentPresentation().id;
     _isRecVisible = false;
     _requesting = false;
     _generated = false;
+    user_id = V.User.getId();
+    var presentation = V.Viewer.getCurrentPresentation();
+    if(presentation["vishMetadata"] && presentation["vishMetadata"]["id"]) {
+      vishub_pres_id = presentation["vishMetadata"]["id"]
+    }
     if(options) {
       if(typeof options["urlToGetRecommendations"] == "string") {
         url_to_get_recommendations = options["urlToGetRecommendations"]
@@ -23933,7 +23972,7 @@ VISH.Recommendations = function(V, $, undefined) {
           _requesting = true
         }
         if(url_to_get_recommendations !== undefined) {
-          var params_to_send = {user_id:user_id, excursion_id:presentation_id, quantity:6};
+          var params_to_send = {user_id:user_id, excursion_id:vishub_pres_id, quantity:6};
           $.ajax({type:"GET", url:url_to_get_recommendations, data:params_to_send, success:function(data) {
             _fillFancyboxWithData(data)
           }, error:function(error) {

@@ -249,7 +249,7 @@ class ExcursionsController < ApplicationController
         searchTerms = current_excursion.tag_list
       end
       searchTerms = searchTerms.join(",")
-      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false}
+      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false} rescue []
       excursions.concat(relatedExcursions)
 
       if !current_excursion.author.nil?
