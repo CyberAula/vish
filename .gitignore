@@ -42,6 +42,7 @@ public/scorm/excursions/*
 
 #tmp files
 public/tmp/json/*
+public/tmp/scorm/*
 
 # pdf files
 public/pdf/excursions/*

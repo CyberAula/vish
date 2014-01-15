@@ -11,23 +11,36 @@
 
 	<%= render :partial => 'excursions/vish_viewer_scorm.full' %>
 
-    <script>
+	<script>
 		options = {};
-		var configuration = {};
 
+		var configuration = {};
 		configuration["ImagesPath"] = "images/";
 		configuration["StylesheetsPath"] = "stylesheets/";
 		configuration["mode"] = "vish";
 		options["configuration"] = configuration;
+
 		options["full"] = true;
 		options["developping"] = false;
 		options["scorm"] = true;
-		options["watermarkURL"] = "<%=excursion_url(@excursion)%>";
-		// options["urlToGetRecommendations"] = "<%=excursion_url(:id => 'last_slide', :format=>'json')%>";
 		// options["urlToGetRecommendations"] = "<%=Site.current.config[:documents_hostname]%>" + "excursions/last_slide.json"
 
+		<% if excursion %>
+			options["watermarkURL"] = "<%=excursion_url(excursion)%>";
+			var presentation = <%= raw excursion.json %>;
+		<% elsif json %>
+			<% presId = Integer(json["id"]) rescue nil %>
+			<% excursion = !presId.nil? ? (Excursion.find_by_id(presId) rescue nil) : nil %>
+			<% if !presId.nil? and json["draft"]=="false" and !excursion.nil? and excursion.draft == false %>
+				options["watermarkURL"] = "<%=excursion_url(excursion)%>";
+			<% else %>
+				options["watermarkURL"] = "<%=Site.current.config[:documents_hostname]%>";
+			<% end %>
+			
+			var presentation = <%= raw json.to_json %>;
+		<% end %>
+
 		function start(){
-			var presentation = <%= raw @excursion.json %>;
 			VISH.Viewer.init(options , presentation);
 		}
 	</script>

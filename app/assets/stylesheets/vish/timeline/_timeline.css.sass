@@ -14,10 +14,13 @@
             color: $gray
     .root,
     .media
-      border-bottom: 1px solid $white
+      border: 1px solid #ddd
       overflow: visible
       display: block
       float: left
+      background: rgba(255, 255, 255, 0.5)
+      padding: 2%
+      width: 96% !important
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .avatar
         width: 30px
@@ -59,12 +62,7 @@
         .objects
           margin-bottom: 5px
           .post
-            @include border-radius($baseBorderRadius)
-            //border-top: 1px solid #F2F2F2
-            background-color: rgba(255,255,255,0.55)
-            @include box-shadow(0 -1px 5px rgba(50,51,51,0.10))
-            text-align: center
-            padding: 10px
+            padding-left: 8%
         .recomended
           .recomended-items
             ul
@@ -85,6 +83,7 @@
           @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
           display: block
           margin: 10px auto 10px
+          margin-top: 3% !important
           .post_time_ago
             float: left
             color: $grayLight
@@ -94,11 +93,16 @@
             margin-right: 20px
             a
               color: $gray
+              &:hover
+                font-family: $thirdFontFamily
           .to_like
-            float: right
+            float: left
+            visibility: hidden
             a
               color: lighten($firstColor, 20%)
     .more
+      margin-top: 2% !important
+      margin-bottom: 2% !important
       display: block
       width: 100px
       text-align: center
@@ -111,8 +115,6 @@
         color: $white
         &:hover
           text-decoration: none
-
-
 .comments
   @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
   display: block
@@ -120,18 +122,19 @@
   padding-top: 10px
   clear: both
   .activity
+    .child
+      border-top: 1px solid #ddd
     .avatar
       display: block
       float: left
       margin: 0px
       width: 20px !important
       height: 20px !important
-
     .media-heading
       display: block
       float: left
       text-align: left !important
-      margin-top: 10px
+      margin-top: 1%
       width: 90% !important
       margin-left: 10px
       clear: right !important
@@ -152,6 +155,8 @@
         .comment
           font-size: 12px
           font-style: italic
+          margin-top: 1%
+          margin-left: 2%
       .actions
         margin-top: -10px !important
         width: 100% !important

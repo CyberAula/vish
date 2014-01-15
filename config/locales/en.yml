@@ -352,6 +352,7 @@ en:
       show_more: "Show more"
       share: "share"
       scorm: "scorm"
+      spam: "spam"
     all: "all"
     description: "description"
     download_scorm: "A SCORM package is a collection of files which are packaged according to an agreed standard for learning objects. SCORM packages are zip files that can be integrated in any LMS (Learning Management System) that supports the standard (Moodle, Blackboard, …) and that can be used for presenting multimedia content and as assessment tools. Thus, you can integrate your Virtual Excursion in Moodle and other LMSs by downloading it as SCORM."

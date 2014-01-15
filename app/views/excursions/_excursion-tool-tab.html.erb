@@ -135,11 +135,17 @@
 <!--BTN ACTIONS-->
 <div class="btn-group">
 
-  <% if user_signed_in? && @excursion.author != current_subject.actor && !editingToolbar %>
+  <!-- Edit -->
+  <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
+    <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
+  <%end%>
+
+  <!-- Clone -->
+  <% if user_signed_in? && !editingToolbar %>
     <button class="with_tooltip clone btn popover-link" title="<%=t('excursion.actions.clone')%>" ><i class="icon-copy"></i></button>
     
     <div class="contentclone" style="display: none">
-      <p class=""><i class="icon-copy"></i>  <%=t('excursion clone')%></p>
+      <p class=""><i class="icon-copy"></i>  <%=t('excursion.clone.confirm')%></p>
       <div class="actions">
         <a class="btn btn_cancel"><%=t('cancel')%></a>
         <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/clone'%>'"><%=t('excursion.actions.clone')%></a>
@@ -147,11 +153,7 @@
     </div>  
   <%end%>
 
-  <!--si es tuya la puedes eliminar o editar-->
-  <% if user_signed_in? and (can? :update, @excursion) and !editingToolbar %>
-    <button class="with_tooltip btn" title="<%=t('excursion.actions.edit')%>" onclick="location.href='<%=edit_excursion_path(@excursion)%>'"><i class="icon-edit"></i></button>
-  <%end%>
-  <!--remove-->
+  <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
     <button class="with_tooltip delete btn popover-link" data-container="body" title="<%=t('excursion.actions.delete')%>" aria-hidden="true"><i class="icon-trash"></i></button>
   <%end%>
@@ -217,6 +219,8 @@
       <li>
         <a href="#tab5" tabTitle='flag' data-toggle="tab">
           <i class="icon-flag"></i> 
+          <span class=" hidden-tablet hidden-phone">
+          <%=t('excursion.actions.spam')%>
           <!--span class=" hidden-tablet hidden-phone">
             <%#=t('excursion.actions.scorm')%>
           </span-->
