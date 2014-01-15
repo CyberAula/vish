@@ -351,12 +351,14 @@ class ExcursionsController < ApplicationController
           t.write json
           t.close
 
-          results["url"] = "#{Site.current.config["documents_hostname"]}/excursions/tmpJson.json?fileId=#{count.to_s}"
+          results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
         
         elsif responseFormat == "scorm"
           #Generate SCORM package
-          #TODO...
-
+          filePath = "#{Rails.root}/public/tmp/scorm/"
+          fileName = "scorm-tmp#{count}"
+          Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
+          results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/scorm/#{fileName}.zip"
         end
         
         render :json => results

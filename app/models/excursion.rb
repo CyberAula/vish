@@ -67,7 +67,7 @@ class Excursion < ActiveRecord::Base
       zos.print xml_manifest.target!()
 
       zos.put_next_entry("excursion.html")
-      zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>excursion, :presentation => json}, :layout => false  
+      zos.print controller.render_to_string "show.scorm.erb", :locals => {:excursion=>excursion, :json => json}, :layout => false  
     end
 
     #Copy SCORM assets (image, javascript and css files)
@@ -115,11 +115,12 @@ class Excursion < ActiveRecord::Base
   # Metadata based on LOM (Learning Object Metadata) standard
   # LOM final draft: http://ltsc.ieee.org/wg12/files/LOM_1484_12_1_v1_Final_Draft.pdf
   def self.generate_scorm_manifest(ejson,excursion)
-    if excursion
+    if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
+    elsif ejson["id"]
+      identifier = ejson["id"].to_s
     else
-      userId = user_signed_in? ? current_user.id : 0
-      identifier = "User" + userId.to_s + "tmp" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
+      identifier = "TmpSCORM_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
     end
 
     myxml = ::Builder::XmlMarkup.new(:indent => 2)
@@ -141,18 +142,28 @@ class Excursion < ActiveRecord::Base
           myxml.general do
             myxml.identifier("VISH_VIRTUAL_EXCURSION_"+ identifier)
             myxml.title do
-              myxml.langstring(ejson["title"])
+              if ejson["title"]
+                myxml.langstring(ejson["title"])
+              else
+                myxml.langstring("Untitled")
+              end
             end
             if ejson["language"]
               myxml.language(ejson["language"])
             end
             myxml.description do
-              myxml.langstring(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.")
+              if ejson["description"]
+                myxml.langstring(ejson["description"])
+              elsif ejson["title"]
+                myxml.langstring(ejson["title"] + ". A Virtual Excursion provided by http://vishub.org.")
+              else
+                myxml.langstring("Virtual Excursion provided by http://vishub.org.")
+              end
             end
             if ejson["tags"] && ejson["tags"].kind_of?(Array)
               ejson["tags"].each do |tag|
                 myxml.keyword do
-                  myxml.langstring(tag.name.to_s)
+                  myxml.langstring(tag.to_s)
                 end
               end
             end
@@ -201,23 +212,30 @@ class Excursion < ActiveRecord::Base
                 myxml.langstring("final")
               end
             end
-            myxml.contribute do
-              myxml.role do
-                myxml.source do
-                  myxml.langstring("LOMv1.0")
+
+            if ejson["author"] or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
+              myxml.contribute do
+                myxml.role do
+                  myxml.source do
+                    myxml.langstring("LOMv1.0")
+                  end
+                  myxml.value do
+                    myxml.langstring("author")
+                  end
                 end
-                myxml.value do
-                  myxml.langstring("author")
+                myxml.centity do
+                  if ejson["author"]
+                    myxml.vcard("begin:vcard\n n:"+ejson["author"]+"\n fn:\n end:vcard")
+                  else
+                    myxml.vcard("begin:vcard\n n:"+excursion.author.name+"\n fn:\n end:vcard")
+                  end
                 end
-              end
-              myxml.centity do
-                myxml.vcard("begin:vcard\n n:"+ejson["author"]+"\n fn:\n end:vcard")
-              end
-              myxml.date do
-                if excursion
-                  myxml.datetime(excursion.updated_at.strftime("%d/%m/%y"))
-                else
-                  myxml.datetime(Date.now.strftime("%d/%m/%y"))
+                myxml.date do
+                  if excursion and !excursion.updated_at.nil?
+                    myxml.datetime(excursion.updated_at.strftime("%d/%m/%y"))
+                  else
+                    myxml.datetime(Time.now.strftime("%d/%m/%y"))
+                  end
                 end
               end
             end
@@ -225,8 +243,10 @@ class Excursion < ActiveRecord::Base
 
           myxml.technical do
             myxml.format("text/html")
-            if excursion
+            if excursion and excursion.draft == false
               myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
+            elsif ejson["id"] and ejson["draft"] == false
+              myxml.location("http://vishub.org/excursions/"+ejson["id"].to_s)
             end
             myxml.requirement do
               myxml.type do
@@ -290,7 +310,7 @@ class Excursion < ActiveRecord::Base
                   myxml.langstring("LOMv1.0")
                 end
                 myxml.value do
-                  myxml.langstring(ejson["context"])
+                  myxml.langstring(readableContext(ejson["context"]))
                 end
               end
             end
@@ -309,15 +329,17 @@ class Excursion < ActiveRecord::Base
                 end
               end
             end
-            myxml.typicalLearningTime do
-              if ejson["TLT"]
-                myxml.duration(ejson["TLT"])
-              else
-                #Inferred
-                # 1 min per slide
-                # inferredTPL = (self.slide_count * 1).to_s
-                inferredTPL = (ejson["slides"].length * 1).to_s
-                myxml.duration("PT"+inferredTPL+"M0S")
+            if ejson["TLT"] or ejson["slides"]
+              myxml.typicalLearningTime do
+                if ejson["TLT"]
+                  myxml.duration(ejson["TLT"])
+                else
+                  #Inferred
+                  # 1 min per slide
+                  # inferredTPL = (excursion.slide_count * 1).to_s
+                  inferredTPL = (ejson["slides"].length * 1).to_s
+                  myxml.duration("PT"+inferredTPL+"M0S")
+                end
               end
             end
             if ejson["educational_objectives"]
@@ -351,7 +373,11 @@ class Excursion < ActiveRecord::Base
             end
           end
           myxml.item('identifier'=>"VIRTUAL_EXCURSION_" + identifier,'identifierref'=>"VIRTUAL_EXCURSION_" + identifier + "_RESOURCE") do
-            myxml.title(ejson["title"])
+            if ejson["title"]
+              myxml.title(ejson["title"])
+            else
+              myxml.title("Untitled")
+            end
           end
         end
       end
@@ -367,6 +393,27 @@ class Excursion < ActiveRecord::Base
     return myxml
   end
 
+  def self.readableContext(context)
+    case context
+    when "unspecified"
+      return "Unspecified"
+    when "preschool"
+      return "Preschool Education"
+    when "pEducation"
+      return "Primary Education"
+    when "sEducation"
+      return "Secondary Education"
+    when "higher education"
+      return "Higher Education"
+    when "training"
+      return "Professional Training"
+    when "other"
+      return "Other"
+    else
+      return context
+    end
+  end
+
   def to_scorm(controller)
     if self.scorm_needs_generate
       filePath = "#{Rails.root}/public/scorm/excursions/"
@@ -378,6 +425,7 @@ class Excursion < ActiveRecord::Base
   end
 
   def scorm_needs_generate
+    # return true; #REMOVE OR COMMENT THIS LINE! JUST FOR TESTING! binding.pry
     if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
       return true
     else
