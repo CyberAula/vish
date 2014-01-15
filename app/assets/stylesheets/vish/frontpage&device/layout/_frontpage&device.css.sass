@@ -1,12 +1,92 @@
 /*FRONTPAGE*/
 #frontpage
   @include grid-core-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  .competition
 
-    
+    img
+      width: 100%
 
-ul.excursions
-  clear: both
-  padding-top: 10px
-  margin: 0 auto
-  overflow-y: hidden
+
+  #excursions
+    display: block
+
+//visor
+.container-visor_front
+  display: inline-block
+  position: relative
   @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+  float: left
+  background-color: $grayLighter
+  overflow-y: hidden
+  max-height: 550px
+  margin-bottom: 60px
+  .elemento-visor_front
+
+  //excursions
+  .excursions_front
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+
+/*8*/
+@media (min-width: 1751px)
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 33%
+
+/*7*/
+@media (min-width: 1500px) and (max-width: 1750px)
+
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 33%
+
+/*6*/
+@media (min-width: 1250px) and (max-width: 1500px)
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 38% !important
+/*5*/
+@media (min-width: 1000px) and (max-width: 1250px)
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 38% !important
+
+
+/*4*/
+@media (min-width: 750px) and (max-width: 1000px)
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 33%
+
+
+/*3*/
+@media (min-width: 500px) and (max-width: 750px)
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 33%
+
+
+/*2*/
+@media (min-width: 320px) and (max-width: 500px)
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 33%
+
+
+/*1*/
+@media (max-width: 320px)
+
+  .container-visor_front
+    .elemento-visor_front
+      padding-top: 33%
+
