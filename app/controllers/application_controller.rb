@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
 	      request.fullpath != "/users/sign_up" &&
 	      request.fullpath != "/users/sign_out" &&
 	      request.fullpath != "/users/password" &&
+	      request.fullpath != "/users/password/new" &&
 	      request.fullpath != "/users" &&
 	      request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
 	      !request.fullpath.end_with?(".full") &&   #do not save .full because we have saved the vish excursion page instead
