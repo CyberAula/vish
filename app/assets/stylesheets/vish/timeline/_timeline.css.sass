@@ -89,10 +89,12 @@
             color: $grayLight
             font-style: italic
           .to_comment
-            float: left
-            margin-left: 20px
+            float: right
+            margin-right: 20px
             a
               color: $gray
+              &:hover
+                font-family: $thirdFontFamily
           .to_like
             float: left
             visibility: hidden
@@ -113,8 +115,6 @@
         color: $white
         &:hover
           text-decoration: none
-
-
 .comments
   @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
   display: block
