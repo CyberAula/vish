@@ -425,7 +425,6 @@ class Excursion < ActiveRecord::Base
   end
 
   def scorm_needs_generate
-    # return true; #REMOVE OR COMMENT THIS LINE! JUST FOR TESTING! binding.pry
     if self.scorm_timestamp.nil? or self.updated_at > self.scorm_timestamp or !File.exist?("#{Rails.root}/public/scorm/excursions/#{self.id}.zip")
       return true
     else
@@ -667,8 +666,13 @@ class Excursion < ActiveRecord::Base
     end
     activity_object.save!
 
-    parsed_json["id"] = self.id.to_s
+    if !parsed_json["vishMetadata"]
+      parsed_json["vishMetadata"] = {}
+    end
+    parsed_json["vishMetadata"]["id"] = self.id.to_s
+    parsed_json["vishMetadata"]["draft"] = self.draft.to_s
     parsed_json["author"] = author.name
+
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
     self.update_column :slide_count, parsed_json["slides"].size
