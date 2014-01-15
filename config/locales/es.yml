@@ -31,6 +31,8 @@ es:
   browse:
     title: "explorar"
     popular: "contenido popular"
+  button:
+    sending: "Enviando..."
   by: "por"
   cancel: "Cancelar"
   category:
@@ -267,6 +269,7 @@ es:
     title_input: "Ponle título al recurso"
     title_alert: "Escribe el título del recurso"
     upload: "Subir"
+    uploading: "Subiendo..."
   email:
     regards: "Un cordial saludo,<br/>"
     welcome: "Bienvenido y gracias por registrarte en Virtual Science Hub.<br/>Te invitamos a <a href=\"%{{profile}}\"> configurar tu perfil</a> para disfrutar de un mejor servicio.<br/>"

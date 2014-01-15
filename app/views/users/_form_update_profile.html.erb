@@ -61,7 +61,7 @@
           </p-->
 
           <div class="actions">
-          <%= f.submit t('button.update') %>
+          <%= f.submit t('button.update'), "data-loading-text" => t('button.sending') %>
           <%=link_to t('hide'), "#", :id=>"hide_profile_form", :class=>"btn btn-primary"%>
           </div>
         <% end %>
@@ -113,6 +113,10 @@
             //Fill tag_list hidden input before send
              var button = $("input[type='submit'][name='commit']");
               $(button).click(function(event) {
+
+               $(this).button('loading');
+               $("#hide_profile_form").hide();
+
                var tagList = $(".tagList");
                $("#input_tag_list").val(Vish.Utils.convertToTagsArray($(tagList).tagit("tags")));
                return true;
