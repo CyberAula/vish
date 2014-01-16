@@ -1,0 +1,48 @@
+<article id="new_file">
+  <%= form_for(document) do |f| %>
+    <%= f.hidden_field :owner_id %>
+
+    <div class="error">
+      <ul>
+        <h4>
+          <% document.errors.full_messages.each do |msg| %>
+        </h4>
+        <li>
+          <h5>
+            <%= msg %>
+          </h5>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <section class="upload">
+      <%= f.label :file, t('document.info.file') %>
+      <%= f.file_field :file %>
+    </section>
+    <section class="title">
+      <%= f.label :title, t('document.info.title') %>
+      <%= f.text_field :title %>
+    </section>
+    <section class="description">
+      <%= f.label :description, t('document.info.description') %>
+      <%= f.text_area :description %>
+    </section>
+    <section class="tags">
+      <%= f.label :tag_list, t('document.info.tags') %>
+      <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
+    </section>
+
+    <%= f.submit :class => "btn", "data-loading-text" => t('button.sending') %>
+  <% end %>
+
+  <%= javascript_tag do %>
+    $(function() {
+      SocialStream.Document.edit();
+    });
+
+    $("#new_file input[type='submit']").click(function(event) {
+      $(this).button('loading');
+    });
+  <% end %>
+</article>
