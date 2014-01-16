@@ -596,7 +596,6 @@ nl:
     download_scorm: "Een SCORM-pakket is een verzameling bestanden die zijn ingepakt volgens een afgesproken standaard voor leerobjecten. SCORM-pakketten zijn zipfiles die kunnen worden geïntegreerd in ieder LMS (Learning Management System) dat de standaard (Moodle, Blackboard, …)ondersteunt en dat kan worden gebruikt voor het presenteren van multimediale inhoud en als beoordelingsgereedschap. Zo kunt u uw Virtuele Excursie integreren in Moodle en andere LMS-sen door deze als SCORM te downloaden."
     modal:
       title: "Proficiat"
-      competitions_body: "Proficiat. U hebt met succes deze excursie gemaakt en geregistreerd zodat die kan meedoen aan de competities. De winnaars worden op 23 december bekendgemaakt op ViSH, onze <a href='https://www.facebook.com/VirtualScienceHub' target='_blank'>Facebook-pagina</a> en we laten het iedereen weten via email."
       normal_body: "Proficiat. U hebt met succes deze excursie gemaakt."
       survey: "Nu kunt u een snelle enquête invullen om ons te helpen dit gereedschap te verbeteren. Het kost u maar ongeveer 3 minuten. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Fill in the survey</a>"
       thank: "Dank u zeer voor uw tijd en moeite"

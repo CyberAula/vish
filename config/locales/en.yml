@@ -380,7 +380,6 @@ en:
     is_draft: "[DRAFT]"
     modal: 
       title: "Congratulations"
-      competitions_body: "Congratulations. You have succesfully created this excursion and registered it to participate in the competitions. Winners will be announced on the 23rd of December on ViSH, our <a href='https://www.facebook.com/VirtualScienceHub' target='_blank'>Facebook page</a> and we will tell them by email."
       metadata_title: "Metadata"
       normal_body: "Congratulations. You have succesfully created this excursion."
       survey: "Now you can fill in a quick survey to help us improve this tool. It will only take you about 3 minutes. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Fill in the survey</a>"

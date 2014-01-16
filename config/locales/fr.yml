@@ -595,7 +595,6 @@ fr:
     download_scorm: "Un package SCORM est un ensemble de fichiers empaquetés conformément à une norme convenue pour les objets d'apprentissage. Les packages SCORM sont des fichiers zip qui peuvent être intégrés dans tout système de gestion de l'apprentissage prenant en charge la norme (Moodle, Blackboard, etc.), qui peuvent être utilisés pour présenter du contenu multimédia et qui peuvent servir d'outil d'évaluation. Ainsi, vous pouvez intégrer votre excursion virtuelle dans Moodle et d'autres systèmes de gestion de l'apprentissage en la téléchargeant au format SCORM."
     modal:
       title: "Félicitations"
-      competitions_body: "Félicitations. Vous avez créé cette excursion avec succès et l'avez inscrite au concours. Les lauréats seront annoncés le 23 décembre sur la plateforme ViSH et sur notre page <a href='https://www.facebook.com/VirtualScienceHub' target='_blank'>Facebook</a> et seront informés par courrier électronique."
       normal_body: "Félicitations. Vous avez créé cette excursion avec succès."
       survey: "Nous vous invitons à présent à répondre à un bref questionnaire pour nous aider à améliorer cet outil. Cela ne vous prendra que quelques minutes. <a href='https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform' target='_blank'>Répondez au questionnaire</a>."
       thank: "Nous vous remercions d'avoir pris le temps de répondre au questionnaire et d'avoir participé à ce concours."

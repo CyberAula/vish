@@ -385,7 +385,6 @@ es:
     is_draft: "[BORRADOR]"
     modal: 
       title: "Enhorabuena"
-      competitions_body: "Enhorabuena. Has creado esta excursión y está registrada correctamente en la competición. Los ganadores se anunciarán el 23 de diciembre en ViSH, nuestra <a href='https://www.facebook.com/VirtualScienceHub' target='_blank'>página de Facebook</a> y se lo comunicaremos por email."
       normal_body: "Enhorabuena. Has creado esta excursión."
       survey: "Ahora puedes rellenar una encuesta rápida para ayudarnos a mejorar esta herramienta. Sólo te llevará 3 minutos. <a href='https://docs.google.com/forms/d/1b_Ml2iua0oDNKkJqc7eT1W2CDlRhIZR__w2AlicfwjA/viewform' target='_blank'>Rellenar la encuesta</a>"
       thank: "Muchas gracias por tu tiempo y esfuerzo"
