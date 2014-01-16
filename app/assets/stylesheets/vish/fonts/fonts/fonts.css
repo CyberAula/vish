@@ -2,21 +2,30 @@
 
 @font-face{
   font-family:"OpenSans";
-  font-style: normal;
   src: url(vish/fonts/opensans/OpenSans-Regular.ttf);
-  font-weight: 400;
+  src: url('vish/fonts/opensans/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+       url('vish/fonts/opensans/OpenSans-Regular.woff') format('woff'),
+       url('vish/fonts/opensans/OpenSans-Regular.svg#OpenSansLightItalic') format('svg');
+  font-style: normal;
+  font-weight: normal;
 }
 
 @font-face{
   font-family:"OpenSansSemibold";
-  font-style: normal;
   src: url(vish/fonts/opensans/OpenSans-Semibold.ttf);
-  font-weight: 600;
+  src: url('vish/fonts/opensans/OpenSans-OpenSans-Semibold.eot?#iefix') format('embedded-opentype'),
+         url('vish/fonts/opensans/OpenSans-OpenSans-Semibold.woff') format('woff'),
+         url('vish/fonts/opensans/OpenSans-OpenSans-Semibold.svg#OpenSansLightItalic') format('svg');
+  font-style: normal;
+  font-weight: normal;
 }
 
 @font-face{
   font-family:"OpenSansLight";
-  font-style: normal;
   src: url(vish/fonts/opensans/OpenSans-Light.ttf);
-  font-weight: 100;
+  src: url('vish/fonts/opensans/OpenSans-Light.eot?#iefix') format('embedded-opentype'),
+       url('vish/fonts/opensans/OpenSans-Light.woff') format('woff'),
+       url('vish/fonts/opensans/OpenSans-Light.svg#OpenSansLightItalic') format('svg');
+  font-style: normal;
+  font-weight: normal;
 }
