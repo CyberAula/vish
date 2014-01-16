@@ -117,8 +117,8 @@ class Excursion < ActiveRecord::Base
   def self.generate_scorm_manifest(ejson,excursion)
     if excursion and !excursion.id.nil?
       identifier = excursion.id.to_s
-    elsif ejson["id"]
-      identifier = ejson["id"].to_s
+    elsif (ejson["vishMetadata"] and ejson["vishMetadata"]["id"])
+      identifier = ejson["vishMetadata"]["id"].to_s
     else
       identifier = "TmpSCORM_" + (Site.current.config["tmpJSONcount"].nil? ? "1" : Site.current.config["tmpJSONcount"].to_s)
     end
@@ -245,8 +245,8 @@ class Excursion < ActiveRecord::Base
             myxml.format("text/html")
             if excursion and excursion.draft == false
               myxml.location("http://vishub.org/excursions/"+excursion.id.to_s)
-            elsif ejson["id"] and ejson["draft"] == false
-              myxml.location("http://vishub.org/excursions/"+ejson["id"].to_s)
+            elsif ejson["vishMetadata"] and ejson["vishMetadata"]["id"] and (ejson["vishMetadata"]["draft"] == false or ejson["vishMetadata"]["draft"] == "false")
+              myxml.location("http://vishub.org/excursions/"+ejson["vishMetadata"]["id"].to_s)
             end
             myxml.requirement do
               myxml.type do
