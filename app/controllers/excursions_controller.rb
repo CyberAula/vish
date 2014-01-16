@@ -242,6 +242,12 @@ class ExcursionsController < ApplicationController
       current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
     end
 
+    if params[:q]
+       searchTerms = params[:q]
+    else
+      searchTerms = []
+    end
+
     #Add excursions based on the current excursion
     if !current_excursion.nil?
       searchTerms = []
@@ -249,7 +255,7 @@ class ExcursionsController < ApplicationController
         searchTerms = current_excursion.tag_list
       end
       searchTerms = searchTerms.join(",")
-      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false} rescue []
+      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false}
       excursions.concat(relatedExcursions)
 
       if !current_excursion.author.nil?
@@ -351,14 +357,14 @@ class ExcursionsController < ApplicationController
           t.write json
           t.close
 
-          results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
+          results["url"] = "#{Site.current.config["documents_hostname"]}/excursions/tmpJson.json?fileId=#{count.to_s}"
         
         elsif responseFormat == "scorm"
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"
-          fileName = "scorm-tmp#{count}"
+          fileName = "#{count}"
           Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
-          results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/scorm/#{fileName}.zip"
+          results["url"] = "#{Site.current.config["documents_hostname"]}/tmp/scorm/"#{count}""
         end
         
         render :json => results
