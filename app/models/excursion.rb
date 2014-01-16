@@ -615,19 +615,13 @@ class Excursion < ActiveRecord::Base
 
   #method used to return json objects to the recommendation in the last slide
   def reduced_json(controller)
-      if !Site.current.config[:documents_hostname]
-        my_site = "http://vishub.org/"
-      else
-        my_site = Site.current.config[:documents_hostname]
-      end
-
       excursion_url = controller.excursion_url(:id => self.id)
       { :id => id,
         :url => excursion_url,
         :title => title,
         :author => author.name,
         :description => description,
-        :image => thumbnail_url ? thumbnail_url : my_site + "assets/logos/original/excursion-00.png",
+        :image => thumbnail_url ? thumbnail_url : Site.current.config[:documents_hostname] + "assets/logos/original/excursion-00.png",
         :views => visit_count,
         :favourites => like_count,
         :number_of_slides => slide_count
