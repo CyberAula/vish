@@ -294,10 +294,22 @@
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: right
         display: block
-        
         .dl-horizontal
           margin-top: 0
           margin-bottom: 0
+          top: -20px !important
+          dd
+            clear: both
+            position: relative
+            float: left
+            margin-left: 180px
+            margin-top: -20px
+            margin-bottom: 7px
+          .tagit-suggestions
+            margin-left: 0px
+            li
+              float: left
+              margin-right: 20px
 
       .newClass
         height: 0px
@@ -307,8 +319,7 @@
         overflow: auto
 
       #showMore
-        margin-top: 5px
-        margin-bottom: 5px
+        margin-top: 15px
         width: 120px
         text-align: center
         background-color: $grayLighter
@@ -321,8 +332,7 @@
           padding-top: 3px
       #showMeta
         margin-right: 2%
-        margin-top: 5px
-        margin-bottom: 5px
+        margin-top: 15px
         width: 120px
         text-align: center
         background-color: $grayLighter
