@@ -237,38 +237,43 @@ class ExcursionsController < ApplicationController
 
   def last_slide
     excursions = []
+    cExcursionId = nil
 
     if params[:excursion_id]
       current_excursion =  Excursion.find(params[:excursion_id]) rescue nil
+      cExcursionId = current_excursion.id rescue nil
     end
 
     if params[:q]
-       searchTerms = params[:q]
+      searchTerms = params[:q].split(",")
     else
       searchTerms = []
     end
 
     #Add excursions based on the current excursion
     if !current_excursion.nil?
-      searchTerms = []
+
       if !current_excursion.tag_list.empty?
-        searchTerms = current_excursion.tag_list
+        searchTerms.concat(current_excursion.tag_list)
       end
-      searchTerms = searchTerms.join(",")
-      relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != current_excursion.id and e.draft == false}
-      excursions.concat(relatedExcursions)
 
       if !current_excursion.author.nil?
         authorExcursions = ActivityObject.where(:object_type=>"Excursion").select{ |e| e.author_id == current_excursion.author.id }.map { |ao| ao.excursion }.select{|e| e.id != current_excursion.id and e.draft == false}
         #Limit the number of authorExcursions
         authorExcursions = authorExcursions.sample(2)
-        excursions = excursions.concat(authorExcursions)
+        excursions.concat(authorExcursions)
       end
 
-      #Remove drafts and current excursion
-      excursions.uniq!
-      excursions = excursions.select{|ex| ex.draft == false}.reject{ |ex| ex.id == current_excursion.id }
     end
+
+    searchTerms.uniq!
+    searchTerms = searchTerms.join(",")
+    relatedExcursions = (Excursion.search searchTerms, search_options).map {|e| e}.select{|e| e.id != cExcursionId and e.draft == false} rescue []
+    excursions.concat(relatedExcursions)
+
+    #Remove drafts and current excursion
+    excursions.uniq!
+    excursions = excursions.select{|ex| ex.draft == false}.reject{ |ex| ex.id == cExcursionId }
 
     #Fill excursions (until 6), with popular excursions
     holes = [0,6-excursions.length].max
@@ -356,15 +361,13 @@ class ExcursionsController < ApplicationController
           t = File.open(filePath, 'w')
           t.write json
           t.close
-
-          results["url"] = "#{Site.current.config["documents_hostname"]}/excursions/tmpJson.json?fileId=#{count.to_s}"
-        
+          results["url"] = "#{Site.current.config[:documents_hostname]}/excursions/tmpJson.json?fileId=#{count.to_s}"
         elsif responseFormat == "scorm"
           #Generate SCORM package
           filePath = "#{Rails.root}/public/tmp/scorm/"
-          fileName = "#{count}"
+          fileName = "scorm-tmp-#{count}"
           Excursion.createSCORM(filePath,fileName,JSON(json),nil,self)
-          results["url"] = "#{Site.current.config["documents_hostname"]}/tmp/scorm/"#{count}""
+          results["url"] = "#{Site.current.config[:documents_hostname]}/tmp/scorm/#{fileName}.zip"
         end
         
         render :json => results

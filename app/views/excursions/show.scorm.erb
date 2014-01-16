@@ -23,7 +23,11 @@
 		options["full"] = true;
 		options["developping"] = false;
 		options["scorm"] = true;
-		// options["urlToGetRecommendations"] = "<%=Site.current.config[:documents_hostname]%>" + "excursions/last_slide.json"
+
+		//URL to access to the Recommendation API
+		options["recommendationsAPI"] = {
+			rootURL: "<%=Site.current.config[:documents_hostname]%>" + "excursions/last_slide.json"
+		};
 
 		<% if excursion %>
 			options["watermarkURL"] = "<%=excursion_url(excursion)%>";
