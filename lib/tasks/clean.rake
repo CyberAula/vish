@@ -11,7 +11,6 @@ namespace :clean do
     puts "Cleaning PDFExes (PDF conversions)"
     puts "#####################################"
 
-    #Prizes
     usedPdfexes = Hash.new
     # usedPdfexes["pdfexID"] = [1,2,3,8,#slideused]
 
