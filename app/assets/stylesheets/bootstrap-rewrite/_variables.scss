@@ -78,9 +78,9 @@ $sansFontFamily:        "OpenSans", Arial, Helvetica Neue, Helvetica, sans-serif
 $serifFontFamily:       Georgia, "Times New Roman", Times, serif !default;
 $monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace !default;
 
-$firstFontFamily:       "OpenSansLight";
-$secondFontFamily:      "OpenSans";
-$thirdFontFamily:       "OpenSansBold";
+$firstFontFamily:       "OpenSansLight", sans-serif;
+$secondFontFamily:      "OpenSans", sans-serif;
+$thirdFontFamily:       "OpenSansBold", sans-serif;
 
 $baseFontSize:          14px !default;
 $baseFontFamily:        $sansFontFamily !default;
