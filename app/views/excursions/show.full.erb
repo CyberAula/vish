@@ -29,12 +29,14 @@
 	<% end %>
  
 	<% if user_signed_in? %>
-		options['userId'] = "<%= Actor.normalize_id(current_user) %>";
-		options["username"] = "<%= current_user.name %>";
+		options["user"] = {
+			name: "<%= current_user.name %>",
+			id: "<%= Actor.normalize_id(current_user) %>",
+			token: "<%= form_authenticity_token %>"
+		}
 	<% end %>
 
 	options["lang"] = "<%= I18n.locale.to_s%>";
-	options["token"] = "<%= form_authenticity_token %>";
 
 	<% if @quiz_session %>
 		options["quizSessionId"] = "<%= @quiz_session.id %>";

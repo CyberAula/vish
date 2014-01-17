@@ -30,9 +30,11 @@
 	options["configuration"] = configuration;
 	options["developping"] = false;
 
-	options["username"] = "<%= current_user.name %>";
-	options["userId"] = "<%= Actor.normalize_id(current_user) %>";
-	options["token"] = "<%= form_authenticity_token %>";
+	options["user"] = {
+		name: "<%= current_user.name %>",
+		id: "<%= Actor.normalize_id(current_user) %>",
+		token: "<%= form_authenticity_token %>"
+	}
 
 	options["draft"] = <%= @excursion.draft.to_s %>;
 

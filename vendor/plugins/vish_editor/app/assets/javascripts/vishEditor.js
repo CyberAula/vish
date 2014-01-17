@@ -20460,18 +20460,13 @@ VISH.Editor.Settings = function(V, $, undefined) {
       $("#presentation_details_preview_addtitle_input").val(presentation.title);
       $("#presentation_details_input_title").val(presentation.title)
     }
-    var author;
-    var options = V.Utils.getOptions();
-    if(options && options.username) {
-      author = options.username
-    }else {
-      if(presentation.author) {
-        author = presentation.author
-      }
-    }
+    var author = _getAuthor(presentation);
     if(author) {
-      var authorDOM = $("#author_span_in_preview");
-      $(authorDOM).html(author)
+      var authorName = author.name;
+      if(typeof authorName == "string") {
+        var authorDOM = $("#author_span_in_preview");
+        $(authorDOM).html(authorName)
+      }
     }
     if(presentation.description) {
       var descriptionDOM = $("#presentation_details_textarea");
@@ -20666,6 +20661,7 @@ VISH.Editor.Settings = function(V, $, undefined) {
     var settings = {};
     settings.VEVersion = V.VERSION;
     settings.type = V.Constant.PRESENTATION;
+    var draftPresentation = V.Editor.getDraftPresentation();
     var title = $("#presentation_details_input_title").val();
     if(typeof title == "string" && title.trim() != "") {
       settings.title = title
@@ -20677,10 +20673,16 @@ VISH.Editor.Settings = function(V, $, undefined) {
     if(presentationThumbnail) {
       settings.avatar = presentationThumbnail
     }
-    var author = $("#author_span_in_preview").html();
-    if(typeof author == "string" && author.trim() != "") {
-      settings.author = author
+    var author = _getAuthor(draftPresentation);
+    var authorName = $("#author_span_in_preview").html();
+    if(typeof authorName == "string" && authorName.trim() != "") {
+      author.name = authorName
+    }else {
+      if(typeof author == "object") {
+        delete author["name"]
+      }
     }
+    settings.author = author;
     var tags = getTags();
     if(tags && tags.length > 0) {
       settings.tags = tags
@@ -20781,6 +20783,27 @@ VISH.Editor.Settings = function(V, $, undefined) {
         return draftPresentation.tags
       }
     }
+  };
+  var _getAuthor = function(presentation) {
+    var author;
+    if(presentation && typeof presentation.author == "object") {
+      author = presentation.author
+    }else {
+      author = {}
+    }
+    if(V.User.isUser()) {
+      var user = V.User.getUser();
+      if(V.User.getName()) {
+        author.name = V.User.getName()
+      }
+      if(V.Configuration.getConfiguration().mode == V.Constant.VISH || V.Configuration.getConfiguration().mode == V.Constant.NOSERVER) {
+        author.vishMetadata = {};
+        if(V.User.getId()) {
+          author.vishMetadata.id = V.User.getId()
+        }
+      }
+    }
+    return author
   };
   var onPedagogicalButtonClicked = function(event) {
     event.preventDefault();
@@ -24820,55 +24843,52 @@ VISH.Tour = function(V, $, undefined) {
   return{startTourWithId:startTourWithId, getCurrentTour:getCurrentTour}
 }(VISH, jQuery);
 VISH.User = function(V, $, undefined) {
-  var user;
+  var _user;
   var init = function(options) {
-    user = {};
-    if(options["username"]) {
-      user.username = options["username"]
-    }
-    if(options["userId"]) {
-      user.id = options["userId"]
-    }
-    if(options["token"]) {
-      user.token = options["token"]
+    _user = {};
+    if(typeof options["user"] == "object") {
+      _user = options["user"]
     }
   };
+  var isUser = function() {
+    return!(JSON.stringify(_user) == "{}")
+  };
   var isLogged = function() {
-    if(user && typeof user.token == "string" && user.id) {
+    if(_user && typeof _user.token == "string" && _user.id) {
       return true
     }else {
       return false
     }
   };
   var getUser = function() {
-    if(user) {
-      return user
+    if(_user) {
+      return _user
     }else {
       return null
     }
   };
   var getName = function() {
-    if(user && user.username) {
-      return user.username
+    if(_user && _user.name) {
+      return _user.name
     }else {
       return null
     }
   };
   var getId = function() {
-    if(user && user.id) {
-      return user.id
+    if(_user && _user.id) {
+      return _user.id
     }else {
       return null
     }
   };
   var getToken = function() {
-    if(user && user.token) {
-      return user.token
+    if(_user && _user.token) {
+      return _user.token
     }else {
       return null
     }
   };
-  return{init:init, isLogged:isLogged, getUser:getUser, getName:getName, getId:getId, getToken:getToken}
+  return{init:init, isUser:isUser, isLogged:isLogged, getUser:getUser, getName:getName, getId:getId, getToken:getToken}
 }(VISH, jQuery);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;

@@ -604,7 +604,15 @@ class Excursion < ActiveRecord::Base
     e.author=sbj
     e.owner=sbj
     e.user_author=sbj.user.actor
-    e.json = self.json
+
+    eJson = JSON(self.json)
+    eJson["author"] = {name: sbj.name, vishMetadata:{ id: sbj.id}}
+    if eJson["contributors"].nil?
+      eJson["contributors"] = []
+    end
+    eJson["contributors"].push({name: self.author.name, vishMetadata:{ id: self.author.id}})
+    e.json = eJson.to_json
+
     e.contributors=self.contributors.push(self.author)
     e.contributors.uniq!
     e.contributors.delete(sbj)
@@ -649,6 +657,7 @@ class Excursion < ActiveRecord::Base
 
   def parse_for_meta
     parsed_json = JSON(json)
+
     activity_object.title = parsed_json["title"] ? parsed_json["title"] : "Title"
     activity_object.description = parsed_json["description"] 
     activity_object.tag_list = parsed_json["tags"]
@@ -665,7 +674,8 @@ class Excursion < ActiveRecord::Base
     end
     parsed_json["vishMetadata"]["id"] = self.id.to_s
     parsed_json["vishMetadata"]["draft"] = self.draft.to_s
-    parsed_json["author"] = author.name
+
+    parsed_json["author"] = {name: author.name, vishMetadata:{ id: author.id}}
 
     self.update_column :json, parsed_json.to_json
     self.update_column :excursion_type, parsed_json["type"]
