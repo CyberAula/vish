@@ -8,26 +8,9 @@
 	configuration["StylesheetsPath"] = "/assets/";
 	configuration["mode"] = "vish";
 	options["configuration"] = configuration;
-	options["full"] = true;
 	options["developping"] = false;
 
-	<% if @excursion %>
-		options["fullscreen"] = "<%=excursion_path(@excursion, :format => :full)%>";
-		options["exitFullscreen"] = "<%=excursion_path(@excursion)%>";
-		options["watermarkURL"] = "<%=excursion_path(@excursion)%>";
-	<% end %>
-
-	//Look for URL param
-	<% if @orgUrl %>
-	  var orgUrl = "<%=@orgUrl%>";
-	  options["comeBackUrl"] = orgUrl;
-	  options["exitFullscreen"] = orgUrl;
-	<% else %>
-	  <% if request && request.referrer %>
-		options["comeBackUrl"] = "<%=request.referrer%>";
-	  <% end %>
-	<% end %>
- 
+	//User data
 	<% if user_signed_in? %>
 		options["user"] = {
 			name: "<%= current_user.name %>",
@@ -38,9 +21,28 @@
 
 	options["lang"] = "<%= I18n.locale.to_s%>";
 
-	<% if @quiz_session %>
-		options["quizSessionId"] = "<%= @quiz_session.id %>";
-		options["forceHideViewbar"] = true;
+	//Watermark
+	<% if @excursion %>
+		options["watermarkURL"] = "<%=excursion_path(@excursion)%>";
+	<% end %>
+
+	//FullScreen
+	<% if @excursion %>
+		options["fullScreenFallback"] = {
+			enterFullscreenURL: "<%=excursion_path(@excursion, :format => :full)%>"
+		};
+		<% if @orgUrl %>
+			options["fullScreenFallback"].exitFullscreenURL = "<%=@orgUrl%>"
+		<% end %>
+	<% end %>
+
+	//comeBackUrl for Mobile Devices
+	<% if @orgUrl %>
+	  options["comeBackUrl"] = "<%=@orgUrl%>";
+	<% else %>
+	  <% if request && request.referrer %>
+		options["comeBackUrl"] = "<%=request.referrer%>";
+	  <% end %>
 	<% end %>
 
 	//URL to access to the Quiz Session API
@@ -48,13 +50,14 @@
 		rootURL: '<%=QuizSession.root_url%>'
 	};
 
+	<% if @quiz_session %>
+		options["quizSessionId"] = "<%= @quiz_session.id %>";
+	<% end %>
+
 	//URL to access to the Recommendation API
 	options["recommendationsAPI"] = {
 		rootURL: "<%=Site.current.config[:documents_hostname]%>" + "excursions/last_slide.json"
 	};
-	
-	//URL to search in the LRE
-	options["urlToSearchLRE"] = "<%=Site.current.config[:documents_hostname]%>" + "lre/search"
 	
 	//Extra options from parent
 	try {
@@ -62,6 +65,7 @@
 			options["readHashFromParent"] = window.parent.options["readHashFromParent"];
 		}
 	} catch(err){}
+
 
 	options.addons = [];
 
