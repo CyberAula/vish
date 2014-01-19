@@ -11429,6 +11429,23 @@ VISH.Utils = function(V, undefined) {
     }
     window.location.hash = newHash
   };
+  var cleanHash = function() {
+    window.location.hash = "";
+    if(getOptions()["readHashFromParent"] === true) {
+      window.parent.location.hash = ""
+    }
+    if(V.Status.getDevice().features.historypushState) {
+      var locationWithoutHash = removeHashFromUrlString(document.location.href);
+      window.history.replaceState("", "", locationWithoutHash);
+      if(getOptions()["readHashFromParent"] === true) {
+        var locationWithoutHash = removeHashFromUrlString(window.parent.document.location.href);
+        window.parent.history.replaceState("", "", locationWithoutHash)
+      }
+    }
+  };
+  var removeHashFromUrlString = function(url) {
+    return url.split("#")[0]
+  };
   var getHashParams = function() {
     var params = {};
     var hash = window.location.hash;
@@ -11448,7 +11465,7 @@ VISH.Utils = function(V, undefined) {
     return params
   };
   return{init:init, getOptions:getOptions, getId:getId, registerId:registerId, getOuterHTML:getOuterHTML, getSrcFromCSS:getSrcFromCSS, checkMiniumRequirements:checkMiniumRequirements, addFontSizeToStyle:addFontSizeToStyle, removeFontSizeInStyle:removeFontSizeInStyle, getFontSizeFromStyle:getFontSizeFromStyle, getZoomFromStyle:getZoomFromStyle, getZoomInStyle:getZoomInStyle, getWidthFromStyle:getWidthFromStyle, getHeightFromStyle:getHeightFromStyle, getPixelDimensionsFromStyle:getPixelDimensionsFromStyle, 
-  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash}
+  sendParentToURL:sendParentToURL, addParamToUrl:addParamToUrl, removeParamFromUrl:removeParamFromUrl, getParamsFromUrl:getParamsFromUrl, fixPresentation:fixPresentation, showDialog:showDialog, showPNotValidDialog:showPNotValidDialog, isObseleteVersion:isObseleteVersion, updateHash:updateHash, cleanHash:cleanHash, removeHashFromUrlString:removeHashFromUrlString, getHashParams:getHashParams, getSlideNumberFromHash:getSlideNumberFromHash}
 }(VISH);
 VISH.Utils.Loader = function(V, undefined) {
   var _loadGoogleLibraryCallback = undefined;
@@ -11696,6 +11713,7 @@ VISH.Status = function(V, $, undefined) {
   var _isInExternalSite;
   var _isInVishSite;
   var _isLocalFile;
+  var _uniqMode;
   var _isSlave;
   var _isPreventDefault;
   var _isVEFocused;
@@ -11706,6 +11724,7 @@ VISH.Status = function(V, $, undefined) {
     _checkDomain();
     _checkSite();
     _checkPreview();
+    _checkUniqMode();
     _isVEFocused = false;
     _isWindowFocused = false;
     _isCKEditorInstanceFocused = false;
@@ -11773,6 +11792,14 @@ VISH.Status = function(V, $, undefined) {
       }
     }
   };
+  var _checkUniqMode = function() {
+    var hashParams = V.Utils.getHashParams();
+    if(hashParams["uniq"] === "true") {
+      _uniqMode = true
+    }else {
+      _uniqMode = false
+    }
+  };
   var _checkOnline = function() {
     if(_isLocalFile) {
       var img = $("<img style='display:none' src='" + V.ImagesPath + "blank.gif" + "' />");
@@ -11829,6 +11856,9 @@ VISH.Status = function(V, $, undefined) {
   };
   var getIsPreviewInsertMode = function() {
     return _is_preview_insertMode
+  };
+  var getIsUniqMode = function() {
+    return _uniqMode
   };
   var isSlaveMode = function() {
     if(typeof _isSlave !== "undefined") {
@@ -11896,8 +11926,8 @@ VISH.Status = function(V, $, undefined) {
   var isVEFocused = function() {
     return _isVEFocused
   };
-  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, getIsScorm:getIsScorm, getIsInExternalSite:getIsInExternalSite, getIsInVishSite:getIsInVishSite, getIsPreview:getIsPreview, getIsPreviewInsertMode:getIsPreviewInsertMode, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setWindowFocus:setWindowFocus, setCKEditorInstanceFocused:setCKEditorInstanceFocused, 
-  isVEFocused:isVEFocused}
+  return{init:init, getDevice:getDevice, getIsEmbed:getIsEmbed, getIsInIframe:getIsInIframe, getIframe:getIframe, getIsScorm:getIsScorm, getIsInExternalSite:getIsInExternalSite, getIsInVishSite:getIsInVishSite, getIsPreview:getIsPreview, getIsPreviewInsertMode:getIsPreviewInsertMode, getIsUniqMode:getIsUniqMode, isOnline:isOnline, isSlaveMode:isSlaveMode, setSlaveMode:setSlaveMode, isPreventDefaultMode:isPreventDefaultMode, setPreventDefaultMode:setPreventDefaultMode, setWindowFocus:setWindowFocus, 
+  setCKEditorInstanceFocused:setCKEditorInstanceFocused, isVEFocused:isVEFocused}
 }(VISH, jQuery);
 VISH.Status.Device = function(V, $, undefined) {
   var init = function(callback) {
@@ -12176,9 +12206,9 @@ VISH.Status.Device.Features = function(V, $, undefined) {
 }(VISH, jQuery);
 VISH.ViewerAdapter = function(V, $, undefined) {
   var _showViewbar;
+  var _showArrows;
   var _fsButton;
   var _closeButton;
-  var _uniqMode;
   var _initialized = false;
   var _lastWidth;
   var _lastHeight;
@@ -12190,22 +12220,18 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     _lastWidth = -1;
     _lastHeight = -1;
     _showViewbar = _defaultViewbar();
+    _showArrows = true;
     _fsButton = V.FullScreen.canFullScreen();
     _closeButton = V.Status.getDevice().mobile && (!V.Status.getIsInIframe() && (options && options["comeBackUrl"]));
-    var hashParams = V.Utils.getHashParams();
-    if(hashParams["uniq"] === "true") {
-      _uniqMode = true
-    }else {
-      _uniqMode = false
-    }
     _fsButton = _fsButton && !V.Status.getIsPreview();
     if(V.Status.getDevice().mobile) {
       _showViewbar = false
     }
-    if(_uniqMode) {
-      _showViewbar = false
+    if(V.Status.getIsUniqMode()) {
+      _showViewbar = false;
+      _showArrows = false
     }
-    if(V.Status.getDevice().desktop) {
+    if(V.Status.getDevice().desktop && _showArrows) {
       $("#back_arrow").html("");
       $("#forward_arrow").html("")
     }
@@ -12214,6 +12240,10 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       $("#viewbar").show()
     }else {
       $("#viewbar").hide()
+    }
+    if(!_showArrows) {
+      $("#back_arrow").hide();
+      $("#forward_arrow").hide()
     }
     if(V.Status.getIsPreview()) {
       $("div#viewerpreview").show()
@@ -12249,21 +12279,23 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     V.Text.init()
   };
   var decideIfPageSwitcher = function() {
-    if(V.Viewer.getPresentationType() === V.Constant.PRESENTATION) {
-      if(V.Slides.getCurrentSubslide() !== null) {
-        $("#forward_arrow").hide();
-        $("#back_arrow").hide()
-      }else {
-        if(V.Slides.isCurrentFirstSlide()) {
+    if(_showArrows) {
+      if(V.Viewer.getPresentationType() === V.Constant.PRESENTATION) {
+        if(V.Slides.getCurrentSubslide() !== null) {
+          $("#forward_arrow").hide();
           $("#back_arrow").hide()
         }else {
-          $("#back_arrow").show()
+          if(V.Slides.isCurrentFirstSlide()) {
+            $("#back_arrow").hide()
+          }else {
+            $("#back_arrow").show()
+          }
+          $("#forward_arrow").show()
         }
-        $("#forward_arrow").show()
-      }
-    }else {
-      if(V.Viewer.getPresentationType() === V.Constant.QUIZ_SIMPLE) {
-        $("#forward_arrow").hide()
+      }else {
+        if(V.Viewer.getPresentationType() === V.Constant.QUIZ_SIMPLE) {
+          $("#forward_arrow").hide()
+        }
       }
     }
     if(V.Slides.isCurrentFirstSlide()) {
@@ -12297,9 +12329,9 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     }
     _lastWidth = cWidth;
     _lastHeight = cHeight;
-    _setupSize(V.FullScreen.isFullScreen())
+    _setupSize()
   };
-  var _setupSize = function(fullscreen) {
+  var _setupSize = function() {
     var reserved_px_for_menubar = _getDesiredVieweBarHeight(_lastHeight);
     var min_margin_height = 25;
     var min_margin_width = 60;
@@ -12311,11 +12343,6 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       if(V.Status.getIsPreviewInsertMode()) {
         reserved_px_for_menubar = 120
       }
-    }
-    if(fullscreen) {
-      V.FullScreen.onFullscreenEvent(true)
-    }else {
-      V.FullScreen.onFullscreenEvent(false)
     }
     var height = _lastHeight - reserved_px_for_menubar;
     var width = _lastWidth;
@@ -12963,10 +12990,14 @@ VISH.Slides = function(V, $, undefined) {
     setSlides(document.querySelectorAll("section.slides > article"));
     _updateSlideClasses();
     if(!V.Editing) {
-      V.Utils.updateHash()
     }
   };
   var _updateSlideClasses = function() {
+    if(V.Status.getIsUniqMode()) {
+      $("section.slides > article").removeClass("current");
+      updateSlideClass(curSlideIndex + 1, "current");
+      return
+    }
     for(var i = 0;i < slideEls.length;i++) {
       switch(i) {
         case curSlideIndex - 2:
@@ -14806,6 +14837,7 @@ VISH.FullScreen = function(V, $, undefined) {
         }
       }
     }
+    _updateFsButtons()
   };
   var canFullScreen = function() {
     return _canUseNativeFs() || _fallbackFs
@@ -14825,31 +14857,20 @@ VISH.FullScreen = function(V, $, undefined) {
       $(document).on("webkitfullscreenchange mozfullscreenchange fullscreenchange", function(event) {
         setTimeout(function() {
           _pageIsFullScreen = !_pageIsFullScreen;
+          _updateFsButtons();
           V.ViewerAdapter.updateInterface()
         }, 400)
       })
     }else {
       if(_fallbackFs) {
         if(_pageIsFullScreen && _exitFsButton) {
-          $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'vicons/fullscreen.png")');
-          $("#page-fullscreen").css("background-position", "0px 0px");
           $(document).on("click", "#page-fullscreen", function() {
-            if(_exitFsUrl && !V.Status.getIsEmbed()) {
-              window.location = _exitFsUrl
-            }else {
-              if(V.Status.getDevice().features.history) {
-                history.back()
-              }
-            }
+            window.location = V.Utils.removeHashFromUrlString(_exitFsUrl) + "#" + V.Slides.getCurrentSlideNumber()
           })
         }else {
           if(!_pageIsFullScreen && _enterFsButton) {
             $(document).on("click", "#page-fullscreen", function() {
-              if(typeof window.parent.location.href !== "undefined") {
-                V.Utils.sendParentToURL(_enterFsUrl + "?orgUrl=" + window.parent.location.href)
-              }else {
-                V.Utils.sendParentToURL(_enterFsUrl + "?embed=true")
-              }
+              V.Utils.sendParentToURL(V.Utils.removeHashFromUrlString(_enterFsUrl) + "?orgUrl=" + V.Utils.removeHashFromUrlString(window.parent.location.href) + "#" + V.Slides.getCurrentSlideNumber())
             })
           }
         }
@@ -14868,17 +14889,14 @@ VISH.FullScreen = function(V, $, undefined) {
       _cancelFullscreen(myDoc)
     }
   };
-  var onFullscreenEvent = function(fullscreen) {
-    if(typeof fullscreen != "boolean") {
-      fullscreen = _pageIsFullScreen
-    }
-    if(fullscreen) {
-      _onEnterFullScreen()
+  var _updateFsButtons = function() {
+    if(_pageIsFullScreen) {
+      _enableFsEnterButon()
     }else {
-      _onLeaveFullScreen()
+      _enableFsLeaveButon()
     }
   };
-  var _onEnterFullScreen = function() {
+  var _enableFsEnterButon = function() {
     $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'vicons/fullscreenback.png")');
     $("#page-fullscreen").css("background-position", "0px 0px");
     $("#page-fullscreen").hover(function() {
@@ -14887,7 +14905,7 @@ VISH.FullScreen = function(V, $, undefined) {
       $("#page-fullscreen").css("background-position", "0px 0px")
     })
   };
-  var _onLeaveFullScreen = function() {
+  var _enableFsLeaveButon = function() {
     $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'vicons/fullscreen.png")');
     $("#page-fullscreen").css("background-position", "0px 0px");
     $("#page-fullscreen").hover(function() {
@@ -14965,6 +14983,6 @@ VISH.FullScreen = function(V, $, undefined) {
       return false
     }
   };
-  return{init:init, isFullScreenSupported:isFullScreenSupported, canFullScreen:canFullScreen, enableFullScreen:enableFullScreen, isFullScreen:isFullScreen, onFullscreenEvent:onFullscreenEvent}
+  return{init:init, isFullScreenSupported:isFullScreenSupported, canFullScreen:canFullScreen, enableFullScreen:enableFullScreen, isFullScreen:isFullScreen}
 }(VISH, jQuery);
 
