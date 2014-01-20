@@ -98,12 +98,15 @@
     <!--date-upload-->
     <dt><%= t('document.info.date.updated_at') %></dt>
     <dd><%= I18n.localize @excursion.updated_at, :format => :long %></dd>
+    <dt></dt>
+    <dd><button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all">
+      <%=t('excursion.actions.show_meta')%></button></dd>
   </dl>
 </div>
 
 
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
-<button href="#MetadataModal" id="showMeta" data-toggle="modal" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_meta')%></button>
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><p><%=t('excursion.actions.show_more')%></p></button>
+
 
 <div id="MetadataModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myMetadataLabel" aria-hidden="true">
   <div class="modal-header">
@@ -128,11 +131,11 @@ $(function() {
     $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
     $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
     if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showMore").html('<p><%=t("excursion.actions.show_fewer")%></p>');
       $("#showMore").attr("status", "showFewer");
     }
     else{
-      $("#showMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showMore").html('<p><%=t("excursion.actions.show_more")%></p>');
       $("#showMore").attr("status", "showMore");
     }
     return false;

@@ -319,27 +319,39 @@
         overflow: auto
 
       #showMore
-        margin-top: 15px
-        width: 120px
+        margin-top: 2.5%
+        width: 43%
+        margin-right: 4%
+        background-color: #fff
         text-align: center
-        background-color: $grayLighter
         border: none
-        border-bottom: 1px solid $grayLight
-        @include border-radius($baseBorderRadius)
         float: right
         clear: right
-        a
-          padding-top: 3px
+        border-bottom: 1px solid #ccc
+        p
+          position: absolute
+          margin-top: -1% !important
+          padding-left: 1%
+          padding-right: 1%
+          margin-left: 16%
+          background-color: white
+          &:hover
+            background-color: #ebebeb
+            border: 1px solid #ddd
+
       #showMeta
         margin-right: 2%
-        margin-top: 15px
-        width: 120px
+        margin-top: 25%
+        width: 100px
         text-align: center
         background-color: $grayLighter
         border: none
         border-bottom: 1px solid $grayLight
         @include border-radius($baseBorderRadius)
         float: right
+        &:hover
+          background-color: #ddd
+          border-bottom: 1px solid #000
         a
           padding-top: 3px
 
