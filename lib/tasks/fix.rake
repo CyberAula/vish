@@ -7,9 +7,7 @@ namespace :fix do
   #In production: bundle exec rake fix:pictures RAILS_ENV=production
   task :pictures => :environment do
 
-    puts "#####################################"
-    puts "Fixing pictures"
-    puts "#####################################"
+    printTitle("Fixing pictures")
 
     #Get all excursions
     excursions = Excursion.all
@@ -48,9 +46,7 @@ namespace :fix do
       end
     end
 
-    puts "#####################################"
-    puts "Task Finished"
-    puts "#####################################"
+    printTitle("Task Finished")
   end
 
   def _isWrongImagePath(imagePath)
@@ -63,23 +59,64 @@ namespace :fix do
   #In production: bundle exec rake fix:resetScormTimestamp RAILS_ENV=production
   task :resetScormTimestamp => :environment do
 
-    puts "#####################################"
-    puts "Reset scorm timestamp"
-    puts "#####################################"
+    printTitle("Reset scorm timestamp")
 
     Excursion.all.map { |ex| 
       ex.scorm_timestamp = nil; 
       ex.update_column :scorm_timestamp, nil
     }
 
-    puts "#####################################"
-    puts "Task Finished"
-    puts "#####################################"
+    printTitle("Task Finished")
   end
+
+  #Usage
+  #Development:   bundle exec rake fix:authors
+  #In production: bundle exec rake fix:authors RAILS_ENV=production
+  task :authors => :environment do
+
+    printTitle("Fix authors and contributors")
+
+    Excursion.all.map { |ex|
+      eJson = JSON(ex.json)
+
+      #Fix author
+      eJson["author"] = {name: ex.author.name, vishMetadata:{ id: ex.author.id}}
+
+      #Fix contributors
+      if ex.contributors
+        ex.contributors.uniq!
+        ex.contributors.delete(ex.author)
+        Excursion.record_timestamps=false
+        ex.save!
+        Excursion.record_timestamps=true
+      end
+
+      if ex.contributors and ex.contributors.length > 0
+        eJson["contributors"] = [];
+      end
+
+      ex.contributors.each do |contributor|
+        eJson["contributors"].push({name: contributor.name, vishMetadata:{ id: contributor.id}});
+      end
+
+      ex.update_column :json, eJson.to_json;
+    }
+
+    printTitle("Task Finished")
+  end
+
 
   ####################
   #Task Utils
   ####################
+
+  def printTitle(title)
+    if !title.nil?
+      puts "#####################################"
+      puts title
+      puts "#####################################"
+    end
+  end
 
   def printSeparator
     puts ""
