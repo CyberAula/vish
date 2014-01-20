@@ -105,7 +105,7 @@
 </div>
 
 
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><p><%=t('excursion.actions.show_more')%></p></button>
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
 
 
 <div id="MetadataModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myMetadataLabel" aria-hidden="true">
@@ -131,11 +131,11 @@ $(function() {
     $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
     $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
     if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<p><%=t("excursion.actions.show_fewer")%></p>');
+      $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
       $("#showMore").attr("status", "showFewer");
     }
     else{
-      $("#showMore").html('<p><%=t("excursion.actions.show_more")%></p>');
+      $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
       $("#showMore").attr("status", "showMore");
     }
     return false;
