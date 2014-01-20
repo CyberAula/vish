@@ -15,17 +15,18 @@
       <div class="browse">
         <%= render partial: 'layouts/browse_header'%>
       </div>
-      <div class=" hidden-phone hidden-tablet">
-          <ul class="nav user-tool">
-<!--search-->
+
+      <div class="hidden-phone hidden-tablet">
+        <ul class="nav user-tool">
+          <!--search-->
             <li class="search-ui ">
               <%= render partial: 'layouts/uisearch_header' %>
             </li>
-<!--navegation-->
+          <!--navegation-->
             <li class="navegation ">
               <%= render partial: 'layouts/basic_navegation' %>
             </li>
-<!--add-->
+          <!--add-->
             <li class="add_nav">
               <div class="btn-group">
                 <a class="btn dropdown-toggle tooltip-header" data-original-title="<%=t('header.tooltip.add_button')%>" data-toggle="dropdown" href="#" >
@@ -44,13 +45,12 @@
                 </ul>
               </div>
             </li>
-            
           <!-- 
             <li> 
               <%#= render partial: 'layouts/header_dropdown_menu' %>
             </li>
           -->
-<!--user-->
+          <!--user-->
             <li class ="user-settings">
               <%= link_to current_subject do %>
               
@@ -96,25 +96,43 @@
               <% end %>
             </li>
 
-
             <!-- carga de modales -->
             <%= render partial: 'events/form' %>
             <%= render partial: 'repositories/form' %>
             <%= render partial: 'categories/form', :locals => { :div_id => "AddCategoryHeader", :remote => true} %>
-          </ul>
-
-        </div>
-
-  <!--________________________mobile/tablet-->
-        <div class="nav-collapse navbar-responsive-collapse collapse hidden-desktop  MOBILE ">
-          <%= render partial: 'layouts/header_signed_in_mobile' %>
-        </div>
-
-
+        </ul>
 
       </div>
+
+      <!--mobile/tablet-->
+      <div class="hidden-desktop MOBILE">
+        <ul class="nav user-tool">
+          <!--add-->
+          <li class="add_nav">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle tooltip-header" data-toggle="dropdown" href="#">
+                <i class="icon-plus"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- dropdown menu links -->
+                <li>
+                  <a href="<%=new_document_path%>">
+                    <i class="icon-file"></i>
+                    <%=t('resource.actions.add')%>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-collapse navbar-responsive-collapse collapse hidden-desktop MOBILE">
+        <%= render partial: 'layouts/header_signed_in_mobile' %>
+      </div>
+
     </div>
-  </header>
+  </div>
+</header>
 
   <script type="text/javascript">
       $(document).ready(function() {          
