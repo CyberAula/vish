@@ -290,7 +290,7 @@
         
       #effect
         position: relative
-        min-height: 46px
+        min-height: 64px
         @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
         float: right
         display: block
@@ -319,7 +319,7 @@
         overflow: auto
 
       #showMore
-        margin-top: 2.5%
+        margin-top: 0.5%
         width: 45%
         margin-right: 2%
         background-color: #fff
@@ -328,15 +328,19 @@
         float: right
         clear: right
         border-bottom: 1px solid #ccc
-        p
+        padding: 1%
+        a
+          text-decoration: none
+          color: #000
           position: absolute
-          margin-top: -1% !important
+          margin-top: -0.1% !important
           padding-left: 1%
           padding-right: 1%
-          margin-left: 18%
+          margin-left: -3%
           background-color: white
           &:hover
             background-color: #ebebeb
+            text-decoration: none
             border: 1px solid #ddd
 
       #showMeta

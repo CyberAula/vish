@@ -124,7 +124,14 @@
   <div class="modal-footer">
       <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
       <!--<b id="foo" rel="popover">Ayuda </b>-->
-      <input type="button" class="btn btn-primary" value="<%= t('categories.save')%>"/>
+       <input type="button" class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
+
+      <div class="contentHelpCategories" style="display: none">
+        <div>
+          <!-- FOOTER -->
+        </div>
+      </div>
+      <input type="button" class=" btn-primary" value="<%= t('categories.save')%>"/>
       <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
     <% end %>
   </div>
