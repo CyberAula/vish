@@ -9682,245 +9682,114 @@ jQuery.cookie = function(key, value, options) {
     e.call(f)
   }
 })(jQuery);
-(function(a, h, y) {
-  var w = "function", v = "password", j = "maxLength", n = "type", b = "", c = true, u = "placeholder", i = false, t = "watermark", g = t, f = "watermarkClass", q = "watermarkFocus", l = "watermarkSubmit", o = "watermarkMaxLength", e = "watermarkPassword", d = "watermarkText", k = /\r/g, s = "input:data(" + g + "),textarea:data(" + g + ")", m = "input:text,input:password,input[type=search],input:not([type]),textarea", p = ["Page_ClientValidate"], r = i, x = u in document.createElement("input");
-  a.watermark = a.watermark || {version:"3.1.3", runOnce:c, options:{className:t, useNative:c, hideBeforeUnload:c}, hide:function(b) {
-    a(b).filter(s).each(function() {
-      a.watermark._hide(a(this))
+(function(n, t, i) {
+  var g = "TEXTAREA", d = "function", nt = "password", c = "maxLength", v = "type", r = "", u = !0, rt = "placeholder", h = !1, tt = "watermark", s = tt, o = "watermarkClass", w = "watermarkFocus", a = "watermarkSubmit", b = "watermarkMaxLength", e = "watermarkPassword", f = "watermarkText", l = /\r/g, ft = /^(button|checkbox|hidden|image|radio|range|reset|submit)$/i, it = "input:data(" + s + "),textarea:data(" + s + ")", p = ":watermarkable", k = ["Page_ClientValidate"], y = h, ut = rt in document.createElement("input");
+  n.watermark = n.watermark || {version:"3.1.4", runOnce:u, options:{className:tt, useNative:u, hideBeforeUnload:u}, hide:function(t) {
+    n(t).filter(it).each(function() {
+      n.watermark._hide(n(this))
     })
-  }, _hide:function(a, r) {
-    var p = a[0], q = (p.value || b).replace(k, b), l = a.data(d) || b, m = a.data(o) || 0, i = a.data(f);
-    if(l.length && q == l) {
-      p.value = b;
-      if(a.data(e)) {
-        if((a.attr(n) || b) === "text") {
-          var g = a.data(e) || [], c = a.parent() || [];
-          if(g.length && c.length) {
-            c[0].removeChild(a[0]);
-            c[0].appendChild(g[0]);
-            a = g
-          }
-        }
-      }
-      if(m) {
-        a.attr(j, m);
-        a.removeData(o)
-      }
-      if(r) {
-        a.attr("autocomplete", "off");
-        h.setTimeout(function() {
-          a.select()
-        }, 1)
-      }
-    }
-    i && a.removeClass(i)
-  }, show:function(b) {
-    a(b).filter(s).each(function() {
-      a.watermark._show(a(this))
+  }, _hide:function(n, i) {
+    var a = n[0], w = (a.value || r).replace(l, r), h = n.data(f) || r, p = n.data(b) || 0, y = n.data(o), s, u;
+    h.length && (w == h && (a.value = r, n.data(e) && ((n.attr(v) || r) === "text" && (s = n.data(e) || [], u = n.parent() || [], s.length && (u.length && (u[0].removeChild(n[0]), u[0].appendChild(s[0]), n = s)))), p && (n.attr(c, p), n.removeData(b)), i && (n.attr("autocomplete", "off"), t.setTimeout(function() {
+      n.select()
+    }, 1)))), y && n.removeClass(y)
+  }, show:function(t) {
+    n(t).filter(it).each(function() {
+      n.watermark._show(n(this))
     })
-  }, _show:function(g) {
-    var p = g[0], u = (p.value || b).replace(k, b), h = g.data(d) || b, s = g.attr(n) || b, t = g.data(f);
-    if((u.length == 0 || u == h) && !g.data(q)) {
-      r = c;
-      if(g.data(e)) {
-        if(s === v) {
-          var m = g.data(e) || [], l = g.parent() || [];
-          if(m.length && l.length) {
-            l[0].removeChild(g[0]);
-            l[0].appendChild(m[0]);
-            g = m;
-            g.attr(j, h.length);
-            p = g[0]
-          }
-        }
-      }
-      if(s === "text" || s === "search") {
-        var i = g.attr(j) || 0;
-        if(i > 0 && h.length > i) {
-          g.data(o, i);
-          g.attr(j, h.length)
-        }
-      }
-      t && g.addClass(t);
-      p.value = h
-    }else {
-      a.watermark._hide(g)
-    }
+  }, _show:function(t) {
+    var p = t[0], g = (p.value || r).replace(l, r), i = t.data(f) || r, k = t.attr(v) || r, d = t.data(o), h, s, a;
+    g.length != 0 && g != i || t.data(w) ? n.watermark._hide(t) : (y = u, t.data(e) && (k === nt && (h = t.data(e) || [], s = t.parent() || [], h.length && (s.length && (s[0].removeChild(t[0]), s[0].appendChild(h[0]), t = h, t.attr(c, i.length), p = t[0])))), (k === "text" || k === "search") && (a = t.attr(c) || 0, a > 0 && (i.length > a && (t.data(b, a), t.attr(c, i.length)))), d && t.addClass(d), p.value = i)
   }, hideAll:function() {
-    if(r) {
-      a.watermark.hide(m);
-      r = i
-    }
+    y && (n.watermark.hide(p), y = h)
   }, showAll:function() {
-    a.watermark.show(m)
-  }};
-  a.fn.watermark = a.fn.watermark || function(p, o) {
-    var t = "string";
+    n.watermark.show(p)
+  }}, n.fn.watermark = n.fn.watermark || function(i, y) {
+    var tt = "string";
     if(!this.length) {
       return this
     }
-    var s = i, r = typeof p === t;
-    if(r) {
-      p = p.replace(k, b)
-    }
-    if(typeof o === "object") {
-      s = typeof o.className === t;
-      o = a.extend({}, a.watermark.options, o)
-    }else {
-      if(typeof o === t) {
-        s = c;
-        o = a.extend({}, a.watermark.options, {className:o})
-      }else {
-        o = a.watermark.options
-      }
-    }
-    if(typeof o.useNative !== w) {
-      o.useNative = o.useNative ? function() {
-        return c
-      } : function() {
-        return i
-      }
-    }
-    return this.each(function() {
-      var B = "dragleave", A = "dragenter", z = this, i = a(z);
-      if(!i.is(m)) {
-        return
-      }
-      if(i.data(g)) {
-        if(r || s) {
-          a.watermark._hide(i);
-          r && i.data(d, p);
-          s && i.data(f, o.className)
-        }
-      }else {
-        if(x && (o.useNative.call(z, i) && (i.attr("tagName") || b) !== "TEXTAREA")) {
-          r && i.attr(u, p);
-          return
-        }
-        i.data(d, r ? p : b);
-        i.data(f, o.className);
-        i.data(g, 1);
-        if((i.attr(n) || b) === v) {
-          var C = i.wrap("<span>").parent(), t = a(C.html().replace(/type=["']?password["']?/i, 'type="text"'));
-          t.data(d, i.data(d));
-          t.data(f, i.data(f));
-          t.data(g, 1);
-          t.attr(j, p.length);
-          t.focus(function() {
-            a.watermark._hide(t, c)
-          }).bind(A, function() {
-            a.watermark._hide(t)
-          }).bind("dragend", function() {
-            h.setTimeout(function() {
-              t.blur()
-            }, 1)
-          });
-          i.blur(function() {
-            a.watermark._show(i)
-          }).bind(B, function() {
-            a.watermark._show(i)
-          });
-          t.data(e, i);
-          i.data(e, t)
+    var k = h, b = typeof i == tt;
+    return b && (i = i.replace(l, r)), typeof y == "object" ? (k = typeof y.className == tt, y = n.extend({}, n.watermark.options, y)) : typeof y == tt ? (k = u, y = n.extend({}, n.watermark.options, {className:y})) : y = n.watermark.options, typeof y.useNative != d && (y.useNative = y.useNative ? function() {
+      return u
+    } : function() {
+      return h
+    }), this.each(function() {
+      var et = "dragleave", ot = "dragenter", ft = this, h = n(ft), st, d, tt, it;
+      if(h.is(p)) {
+        if(h.data(s)) {
+          (b || k) && (n.watermark._hide(h), b && h.data(f, i), k && h.data(o, y.className))
         }else {
-          i.focus(function() {
-            i.data(q, 1);
-            a.watermark._hide(i, c)
+          if(ut && (y.useNative.call(ft, h) && (h.attr("tagName") || r) !== g)) {
+            b && h.attr(rt, i);
+            return
+          }
+          h.data(f, b ? i : r), h.data(o, y.className), h.data(s, 1), (h.attr(v) || r) === nt ? (st = h.wrap("<span>").parent(), d = n(st.html().replace(/type=["']?password["']?/i, 'type="text"')), d.data(f, h.data(f)), d.data(o, h.data(o)), d.data(s, 1), d.attr(c, i.length), d.focus(function() {
+            n.watermark._hide(d, u)
+          }).bind(ot, function() {
+            n.watermark._hide(d)
+          }).bind("dragend", function() {
+            t.setTimeout(function() {
+              d.blur()
+            }, 1)
+          }), h.blur(function() {
+            n.watermark._show(h)
+          }).bind(et, function() {
+            n.watermark._show(h)
+          }), d.data(e, h), h.data(e, d)) : h.focus(function() {
+            h.data(w, 1), n.watermark._hide(h, u)
           }).blur(function() {
-            i.data(q, 0);
-            a.watermark._show(i)
-          }).bind(A, function() {
-            a.watermark._hide(i)
-          }).bind(B, function() {
-            a.watermark._show(i)
+            h.data(w, 0), n.watermark._show(h)
+          }).bind(ot, function() {
+            n.watermark._hide(h)
+          }).bind(et, function() {
+            n.watermark._show(h)
           }).bind("dragend", function() {
-            h.setTimeout(function() {
-              a.watermark._show(i)
+            t.setTimeout(function() {
+              n.watermark._show(h)
             }, 1)
-          }).bind("drop", function(e) {
-            var c = i[0], a = e.originalEvent.dataTransfer.getData("Text");
-            if((c.value || b).replace(k, b).replace(a, b) === i.data(d)) {
-              c.value = a
-            }
-            i.focus()
-          })
-        }
-        if(z.form) {
-          var w = z.form, y = a(w);
-          if(!y.data(l)) {
-            y.submit(a.watermark.hideAll);
-            if(w.submit) {
-              y.data(l, w.submit);
-              w.submit = function(c, b) {
-                return function() {
-                  var d = b.data(l);
-                  a.watermark.hideAll();
-                  if(d.apply) {
-                    d.apply(c, Array.prototype.slice.call(arguments))
-                  }else {
-                    d()
-                  }
-                }
-              }(w, y)
-            }else {
-              y.data(l, 1);
-              w.submit = function(b) {
-                return function() {
-                  a.watermark.hideAll();
-                  delete b.submit;
-                  b.submit()
-                }
-              }(w)
-            }
-          }
-        }
-      }
-      a.watermark._show(i)
-    })
-  };
-  if(a.watermark.runOnce) {
-    a.watermark.runOnce = i;
-    a.extend(a.expr[":"], {data:function(c, d, b) {
-      return!!a.data(c, b[3])
-    }});
-    (function(c) {
-      a.fn.val = function() {
-        var e = this;
-        if(!e.length) {
-          return arguments.length ? e : y
-        }
-        if(!arguments.length) {
-          if(e.data(g)) {
-            var f = (e[0].value || b).replace(k, b);
-            return f === (e.data(d) || b) ? b : f
-          }else {
-            return c.apply(e, arguments)
-          }
-        }else {
-          c.apply(e, arguments);
-          a.watermark.show(e);
-          return e
-        }
-      }
-    })(a.fn.val);
-    p.length && a(function() {
-      for(var b, c, d = p.length - 1;d >= 0;d--) {
-        b = p[d];
-        c = h[b];
-        if(typeof c === w) {
-          h[b] = function(b) {
+          }).bind("drop", function(n) {
+            var i = h[0], t = n.originalEvent.dataTransfer.getData("Text");
+            (i.value || r).replace(l, r).replace(t, r) === h.data(f) && (i.value = t), h.focus()
+          }), ft.form && (tt = ft.form, it = n(tt), it.data(a) || (it.submit(n.watermark.hideAll), tt.submit ? (it.data(a, tt.submit), tt.submit = function(t, i) {
             return function() {
-              a.watermark.hideAll();
-              return b.apply(null, Array.prototype.slice.call(arguments))
+              var r = i.data(a);
+              n.watermark.hideAll(), r.apply ? r.apply(t, Array.prototype.slice.call(arguments)) : r()
             }
-          }(c)
+          }(tt, it)) : (it.data(a, 1), tt.submit = function(t) {
+            return function() {
+              n.watermark.hideAll(), delete t.submit, t.submit()
+            }
+          }(tt))))
         }
+        n.watermark._show(h)
       }
-    });
-    a(h).bind("beforeunload", function() {
-      a.watermark.options.hideBeforeUnload && a.watermark.hideAll()
     })
-  }
+  }, n.watermark.runOnce && (n.watermark.runOnce = h, n.extend(n.expr[":"], {data:n.expr.createPseudo ? n.expr.createPseudo(function(t) {
+    return function(i) {
+      return!!n.data(i, t)
+    }
+  }) : function(t, i, r) {
+    return!!n.data(t, r[3])
+  }, watermarkable:function(n) {
+    var t, i = n.nodeName;
+    return i === g ? u : i !== "INPUT" ? h : (t = n.getAttribute(v), !t || !ft.test(t))
+  }}), function(t) {
+    n.fn.val = function() {
+      var u = this, e = Array.prototype.slice.call(arguments), o;
+      return u.length ? e.length ? (t.apply(u, e), n.watermark.show(u), u) : u.data(s) ? (o = (u[0].value || r).replace(l, r), o === (u.data(f) || r) ? r : o) : t.apply(u) : e.length ? u : i
+    }
+  }(n.fn.val), k.length && n(function() {
+    for(var u, r, i = k.length - 1;i >= 0;i--) {
+      u = k[i], r = t[u], typeof r == d && (t[u] = function(t) {
+        return function() {
+          return n.watermark.hideAll(), t.apply(null, Array.prototype.slice.call(arguments))
+        }
+      }(r))
+    }
+  }), n(t).bind("beforeunload", function() {
+    n.watermark.options.hideBeforeUnload && n.watermark.hideAll()
+  }))
 })(jQuery, window);
 window.Modernizr = function(a, b, c) {
   function x(a) {
@@ -10246,8 +10115,8 @@ window.Modernizr = function(a, b, c) {
     }
     this.element.html('<li class="tagit-new"><input class="tagit-input" type="text" /></li>');
     this.input = this.element.find(".tagit-input");
-    if(typeof $().watermark == "function") {
-      this.input.watermark(this.options.watermarkAllowMessage)
+    if(typeof $().vewatermark == "function") {
+      this.input.vewatermark(this.options.watermarkAllowMessage)
     }
     $(this.element).click(function(e) {
       if($(e.target).hasClass("tagit-close")) {
@@ -10368,8 +10237,8 @@ window.Modernizr = function(a, b, c) {
     }else {
       this.tagsArray.splice(tag.index, 1)
     }
-    if(typeof $().watermark == "function") {
-      this.input.watermark(this.options.watermarkAllowMessage)
+    if(typeof $().vewatermark == "function") {
+      this.input.vewatermark(this.options.watermarkAllowMessage)
     }
     for(var ind in this.tagsArray) {
       this.tagsArray[ind].index = ind
@@ -10404,8 +10273,8 @@ window.Modernizr = function(a, b, c) {
       return false
     }
     if(this.tagsArray.length == this.options.maxTags - 1) {
-      if(typeof $().watermark == "function") {
-        this.input.watermark(this.options.watermarkDenyMessage)
+      if(typeof $().vewatermark == "function") {
+        this.input.vewatermark(this.options.watermarkDenyMessage)
       }
       $(this.input).blur()
     }
@@ -10532,8 +10401,8 @@ window.Modernizr = function(a, b, c) {
     if(this.options.tagsChanged) {
       this.options.tagsChanged(null, "reset", null)
     }
-    if(typeof $().watermark == "function") {
-      this.input.watermark(this.options.watermarkAllowMessage)
+    if(typeof $().vewatermark == "function") {
+      this.input.vewatermark(this.options.watermarkAllowMessage)
     }
   }, fill:function(tags) {
     if(tags !== undefined) {
@@ -11167,6 +11036,13 @@ VISH.Utils = function(V, undefined) {
     String.prototype.replaceAll = function(find, replace) {
       var str = this;
       return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"), "g"), replace)
+    };
+    jQuery.fn.vewatermark = function(text) {
+      if(V.Status.getDevice().browser.name != V.Constant.IE) {
+        $(this).watermark(text)
+      }else {
+        $(this).attr("placeholder", text)
+      }
     }
   };
   var getOptions = function() {
@@ -13939,7 +13815,7 @@ VISH.Editor.Presentation.Repository = function(V, $, undefined) {
   var selectedPres = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -15680,7 +15556,7 @@ VISH.Quiz = function(V, $, undefined) {
     }
   };
   var init = function() {
-    $("#quizSessionNameInput").watermark(V.I18n.getTrans("i.QuizSessionName"));
+    $("#quizSessionNameInput").vewatermark(V.I18n.getTrans("i.QuizSessionName"));
     V.Quiz.API.init(V.Utils.getOptions().quizSessionAPI);
     V.Quiz.MC.init();
     V.Quiz.TF.init();
@@ -15877,7 +15753,7 @@ VISH.Quiz = function(V, $, undefined) {
     $(input).attr("id", "quizSessionNameInput");
     $(input).attr("title", V.I18n.getTrans("i.tooltip.QSInput"));
     $(input).addClass("quizSessionNameInput");
-    $(input).watermark(V.I18n.getTrans("i.QuizSessionName"));
+    $(input).vewatermark(V.I18n.getTrans("i.QuizSessionName"));
     options.middlerow = $(input);
     options.middlerowExtraClass = "mr_quizSession";
     options.buttonsWrapperClass = "forceCenter";
@@ -18226,7 +18102,7 @@ VISH.Editor.Image.Flikr = function(V, $, undefined) {
   var timestampLastSearch;
   var init = function() {
     myInput = $("#tab_pic_flikr_content").find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -18351,7 +18227,7 @@ VISH.Editor.Image.LRE = function(V, $, undefined) {
   var timestampLastSearch;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -18475,7 +18351,7 @@ VISH.Editor.Image.Repository = function(V, $, undefined) {
   var timestampLastSearch;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -18939,7 +18815,7 @@ VISH.Editor.Object.LRE = function(V, $, undefined) {
   var selectedObject = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -19097,7 +18973,7 @@ VISH.Editor.Object.Live = function(V, $, undefined) {
   var selectedObject = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -19274,7 +19150,7 @@ VISH.Editor.Object.Repository = function(V, $, undefined) {
   var selectedObject = null;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -22035,7 +21911,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
   var selectedVideo = null;
   var init = function() {
     myInput = $("#tab_video_repo_content").find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -22216,7 +22092,7 @@ VISH.Editor.Video.Youtube = function(V, $, undefined) {
   var MAX_VIDEOS = 20;
   var init = function() {
     myInput = $("#" + containerDivId).find("input[type='search']");
-    $(myInput).watermark(V.I18n.getTrans("i.SearchContent"));
+    $(myInput).vewatermark(V.I18n.getTrans("i.SearchContent"));
     $(myInput).keydown(function(event) {
       if(event.keyCode == 13) {
         _requestData($(myInput).val());
@@ -24690,6 +24566,14 @@ VISH.Status.Device.Browser = function(V, $, undefined) {
       var re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})");
       if(re.exec(ua) != null) {
         rv = parseFloat(RegExp.$1)
+      }
+    }else {
+      if(navigator.appName === V.Constant.UA_NETSCAPE) {
+        var ua = navigator.userAgent;
+        var re = new RegExp("Trident/.*rv:([0-9]{1,}[.0-9]{0,})");
+        if(re.exec(ua) != null) {
+          rv = parseFloat(RegExp.$1)
+        }
       }
     }
     return rv
