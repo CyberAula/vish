@@ -19,7 +19,19 @@
     <section class="upload">
       <%= f.label :file, t('document.info.file') %>
       <%= f.file_field :file %>
+      <!-- <input id="document_file" name="document[file]" type="file"> -->
     </section>
+
+    <section class="hidden-desktop hidden-phone hidden-tablet">
+      <%= f.label :file, "Image" %>
+      <input name="document[file]" type="file" accept="image/*" capture="camera">
+      <!-- <input name="document[file]" type="file" accept="image/*" capture> -->
+      <%= f.label :file, "Video" %>
+      <input name="document[file]" type="file" accept="video/*" capture="camcorder">
+      <%= f.label :file, "Audio" %>
+      <input name="document[file]" type="file" accept="audio/*" capture="microphone">
+    </section>
+
     <section class="title">
       <%= f.label :title, t('document.info.title') %>
       <%= f.text_field :title %>
