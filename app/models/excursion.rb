@@ -213,7 +213,7 @@ class Excursion < ActiveRecord::Base
               end
             end
 
-            if ejson["author"] or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
+            if (ejson["author"] and ejson["author"]["name"]) or (!excursion.nil? and !excursion.author.nil? and !excursion.author.name.nil?)
               myxml.contribute do
                 myxml.role do
                   myxml.source do
@@ -224,8 +224,8 @@ class Excursion < ActiveRecord::Base
                   end
                 end
                 myxml.centity do
-                  if ejson["author"]
-                    myxml.vcard("begin:vcard\n n:"+ejson["author"]+"\n fn:\n end:vcard")
+                  if ejson["author"] and ejson["author"]["name"]
+                    myxml.vcard("begin:vcard\n n:"+ejson["author"]["name"]+"\n fn:\n end:vcard")
                   else
                     myxml.vcard("begin:vcard\n n:"+excursion.author.name+"\n fn:\n end:vcard")
                   end
