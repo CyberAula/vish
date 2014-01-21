@@ -62,15 +62,15 @@
               <ul class="dropdown-menu dropdown-ie-fix">
                 <!-- dropdown menu links -->
                 <li class="settings-menu">
-                  <%= link_to home_path do %>
-                  <i class="icon-home"></i>
-                  <%= t('navigation.home') %>
-                  <% end %>
-                </li>
-                <li class="settings-menu">
                   <%= link_to current_subject do %>
                   <i class="icon-user"></i>
                   <%= t('profile.one') %>
+                  <% end %>
+                </li>
+                <li class="settings-menu">
+                  <%= link_to activities_path do %>
+                  <i class="icon-globe"></i>
+                  <%= t('activity.other') %>
                   <% end %>
                 </li>
                 <li class="settings-menu">
