@@ -74,12 +74,7 @@
   ul.nav-tabs 
     border-bottom: 1px solid $grayLight
     @include tab_title
-    li   
-      &:hover,
-      &:focus
-        background-color: none !important
-        border: none
-        border-bottom: 3px solid $secondColor      
+    li     
       a             
         border-left: none
         border-right: none
@@ -87,12 +82,22 @@
         border-bottom: none
         padding: 6px 10px 6px 10px
         margin-top: 5px
-
-      
+        &:hover,
+        &:focus
+          background-color: none !important
+          border: none
+          border-bottom: 3px solid $secondColor  
       h1
         line-height: 38px
-        margin: 1px 10px 0 0 
+        margin: -4px 100px 0 0 
         font-size: 33.5px
+        &:hover
+        border-bottom: 0px !important
+        cursor: default
+        i
+          margin-right: 5px
+          font-size: 26px
+          color: #BEBEBE
     li.active
       background-color: none !important
       border: none
@@ -104,6 +109,9 @@
         margin-top: 5px
         padding: 6px 10px 6px 10px
         border-bottom: none !important
+    li.helpheader
+      float: right
+      right: 0%  
 
 @mixin header-tabbable-show
   clear: both
