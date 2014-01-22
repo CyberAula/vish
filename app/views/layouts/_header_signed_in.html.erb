@@ -61,18 +61,24 @@
 
               <ul class="dropdown-menu dropdown-ie-fix">
                 <!-- dropdown menu links -->
+                 <li class="settings-menu">
+                   <%= link_to home_path do %>
+                   <i class="icon-home"></i>
+                   <%= t('navigation.home') %>
+                   <% end %>
+                 </li>
                 <li class="settings-menu">
                   <%= link_to current_subject do %>
                   <i class="icon-user"></i>
                   <%= t('profile.one') %>
                   <% end %>
                 </li>
-                <li class="settings-menu">
+                <!--<li class="settings-menu">
                   <%= link_to activities_path do %>
                   <i class="icon-globe"></i>
                   <%= t('activity.other') %>
                   <% end %>
-                </li>
+                </li>-->
                 <li class="settings-menu">
                   <%= link_to settings_path do %>
                   <i class="icon-cog"></i>
@@ -120,44 +126,44 @@
   </script>
   <!--
   <script type="text/javascript">
-  (function ($, window, delay) {
-  var theTimer = 0;
-  var theElement = null;
-    var theLastPosition = {x:0,y:0};
-  $('[data-toggle]')
-    .closest('li')
-    .on('mouseenter', function (inEvent) {
-    if (theElement) theElement.removeClass('open');
-    window.clearTimeout(theTimer);
-    theElement = $(this);
+    (function ($, window, delay) {
+    var theTimer = 0;
+    var theElement = null;
+      var theLastPosition = {x:0,y:0};
+    $('[data-toggle]')
+      .closest('li')
+      .on('mouseenter', function (inEvent) {
+      if (theElement) theElement.removeClass('open');
+      window.clearTimeout(theTimer);
+      theElement = $(this);
 
-    theTimer = window.setTimeout(function () {
-      theElement.addClass('open');
-    }, delay);
-  })
-    .on('mousemove', function (inEvent) {
-        if(Math.abs(theLastPosition.x - inEvent.ScreenX) > 4 || 
-           Math.abs(theLastPosition.y - inEvent.ScreenY) > 4)
-        {
-            theLastPosition.x = inEvent.ScreenX;
-            theLastPosition.y = inEvent.ScreenY;
-            return;
-        }
-        
-    if (theElement.hasClass('open')) return;
-    window.clearTimeout(theTimer);
-    theTimer = window.setTimeout(function () {
-      theElement.addClass('open');
-    }, delay);
-  })
-    .on('mouseleave', function (inEvent) {
-    window.clearTimeout(theTimer);
-    theElement = $(this);
-    theTimer = window.setTimeout(function () {
-      theElement.removeClass('open');
-    }, delay);
-  });
-    })(jQuery, window, 200); // 200 is the delay in milliseconds
-    </script>
-    Dropdown hover Script-->
+      theTimer = window.setTimeout(function () {
+        theElement.addClass('open');
+      }, delay);
+    })
+      .on('mousemove', function (inEvent) {
+          if(Math.abs(theLastPosition.x - inEvent.ScreenX) > 4 || 
+             Math.abs(theLastPosition.y - inEvent.ScreenY) > 4)
+          {
+              theLastPosition.x = inEvent.ScreenX;
+              theLastPosition.y = inEvent.ScreenY;
+              return;
+          }
+          
+      if (theElement.hasClass('open')) return;
+      window.clearTimeout(theTimer);
+      theTimer = window.setTimeout(function () {
+        theElement.addClass('open');
+      }, delay);
+    })
+      .on('mouseleave', function (inEvent) {
+      window.clearTimeout(theTimer);
+      theElement = $(this);
+      theTimer = window.setTimeout(function () {
+        theElement.removeClass('open');
+      }, delay);
+    });
+  })(jQuery, window, 200); // 200 is the delay in milliseconds
+  </script>
+  Dropdown hover Script-->
 
