@@ -15,8 +15,11 @@ input[type="tel"],
 input[type="color"], 
 .uneditable-input {
   @include border-radius($baseBorderRadius);
+}
 
-
+textarea[readonly] {
+  cursor: text;
+  background-color: $inputDisabledBackground;
 }
 
 select{
