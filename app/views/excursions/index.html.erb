@@ -1,15 +1,15 @@
   <div class="tabbable" id="search">
     <ul class="nav nav-tabs">
       <li><h1><i class="icon-home"></i><%= t("home")%></h1></li>
-      <li class="helpheader">   
-      <input type="button" class='helpCategories btn' data-placement='left' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
+              <li class="helpheader">   
+          <input type="button" class='helphome btn' data-placement='left' aria-hidden="true" data-original-title="<%= t('home')%>" href='#' value="?"/>
 
-      <div class="contentHelpCategories" style="display: none">
-        <div>
-          <%= t('document.help.info1_html')%>  <br/>
-          <%= t('document.help.info8_html')%>
-        </div>
-      </div>
+            <div class="contenthome" style="display: none">
+              <div>
+                <%= t('document.help.home1_html')%>
+              </div>
+            </div>
+     </li>
      </li>
     </ul>
   </div>
@@ -60,4 +60,14 @@
   </div>
 </section>
 -->
-  
+
+<script>
+$(document).ready(function(){
+  $('.helphome').popover({ 
+    html : true,
+    content: function() {
+      return $('.contenthome').html();
+    }
+  });
+});
+</script>
