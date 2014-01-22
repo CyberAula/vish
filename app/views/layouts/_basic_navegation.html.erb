@@ -1,11 +1,6 @@
 <nav class="headernav clearfix">
-  <%#= link_to(raw("<i class='icon-home icon-border'></i> "), excursions_path, :class => "btn-header tooltip-header", :title =>  t('navigation.home'), :rel => 'tooltip') %>
+  <%= link_to(raw("<i class='icon-home icon-border'></i>"), home_path, :class => "btn-header tooltip-header clearfix", :title =>  t('navigation.home'), :rel => 'tooltip') %>
   <%= link_to(raw("<i class=' icon-border" + (current_subject.unread_messages_count > 0 ? " icon-envelope notification" : " icon-envelope-alt") + "'></i> "), messages_path, :class => "btn-header tooltip-header clearfix", :title => current_subject.unread_messages_count.to_s + t('message.unread'), :data => {:toggle=>"tooltip"}) %>
-  <%= link_to(raw("<i class='icon-globe icon-border'></i> "),
-                  activities_path,
-                  :class => "btn-header tooltip-header clearfix",
-                  :title => t('activity.other'),
-                  :data => {:toggle=>"tooltip"}) %>
   <%#= link_to(raw("<i class='icon-facetime-video icon-border'></i> "), excursions_path, :class => "btn-header tooltip-header", :title => t('navigation.home'), :rel => 'tooltip') %>
   <%# unless QuizSession.where(:owner_id => Actor.normalize_id(current_user)).blank? %>
   <%#= link_to(raw("<i class='icon_navbar-quiz'></i> "), quiz_sessions_path, :class => "btn-header tooltip-header", :title => t('quiz.other'), :rel => 'tooltip') %>

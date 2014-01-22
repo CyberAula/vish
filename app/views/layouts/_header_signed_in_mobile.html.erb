@@ -1,14 +1,24 @@
 <ul class="nav">
+
 <!--search-->
   <li class="search-mobile">
     <%= render partial: 'layouts/search_mobile' %>
   </li>
+
+
 <!--user-->
   <li class="user">
     <%= link_to current_subject do %>
       <%= image_tag current_subject.logo.url(:small) %>
       <%= truncate_name(current_subject.name, length: 22) %>
     <% end %>
+  </li>
+    <!-- dropdown menu links -->
+    <li>
+    <a href="<%=new_document_path%>">
+      <i class="icon-plus"></i>
+      <%=t('resource.actions.add')%>
+    </a>
   </li>
 <!--message-->
   <li class="">

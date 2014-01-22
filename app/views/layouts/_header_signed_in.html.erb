@@ -54,23 +54,23 @@
             <li class ="user-settings">
               <%= link_to current_subject do %>
               
-              <a data-toggle="dropdown" href="#" class="logo-small">
+              <a data-toggle="dropdown" href="#" class="logo-small ">
                 <%= image_tag current_subject.logo.url(:small) %>
                 <span class="name hidden-phone"><%= truncate_name(current_subject.name, length: 15) %><i class="icon-angle-down"></i></span>
               </a>
 
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu dropdown-ie-fix">
                 <!-- dropdown menu links -->
-                <li class="settings-menu">
-                  <%= link_to home_path do %>
-                  <i class="icon-home"></i>
-                  <%= t('navigation.home') %>
-                  <% end %>
-                </li>
                 <li class="settings-menu">
                   <%= link_to current_subject do %>
                   <i class="icon-user"></i>
                   <%= t('profile.one') %>
+                  <% end %>
+                </li>
+                <li class="settings-menu">
+                  <%= link_to activities_path do %>
+                  <i class="icon-globe"></i>
+                  <%= t('activity.other') %>
                   <% end %>
                 </li>
                 <li class="settings-menu">
@@ -104,28 +104,7 @@
 
       </div>
 
-      <!--mobile/tablet-->
-      <div class="hidden-desktop MOBILE">
-        <ul class="nav user-tool">
-          <!--add-->
-          <li class="add_nav">
-            <div class="btn-group">
-              <a class="btn dropdown-toggle tooltip-header" data-toggle="dropdown" href="#">
-                <i class="icon-plus"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- dropdown menu links -->
-                <li>
-                  <a href="<%=new_document_path%>">
-                    <i class="icon-file"></i>
-                    <%=t('resource.actions.add')%>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
+
       <div class="nav-collapse navbar-responsive-collapse collapse hidden-desktop MOBILE">
         <%= render partial: 'layouts/header_signed_in_mobile' %>
       </div>
@@ -139,4 +118,46 @@
          $('.tooltip-header').tooltip({ placement: 'bottom'});
       });
   </script>
+  <!--
+  <script type="text/javascript">
+  (function ($, window, delay) {
+  var theTimer = 0;
+  var theElement = null;
+    var theLastPosition = {x:0,y:0};
+  $('[data-toggle]')
+    .closest('li')
+    .on('mouseenter', function (inEvent) {
+    if (theElement) theElement.removeClass('open');
+    window.clearTimeout(theTimer);
+    theElement = $(this);
+
+    theTimer = window.setTimeout(function () {
+      theElement.addClass('open');
+    }, delay);
+  })
+    .on('mousemove', function (inEvent) {
+        if(Math.abs(theLastPosition.x - inEvent.ScreenX) > 4 || 
+           Math.abs(theLastPosition.y - inEvent.ScreenY) > 4)
+        {
+            theLastPosition.x = inEvent.ScreenX;
+            theLastPosition.y = inEvent.ScreenY;
+            return;
+        }
+        
+    if (theElement.hasClass('open')) return;
+    window.clearTimeout(theTimer);
+    theTimer = window.setTimeout(function () {
+      theElement.addClass('open');
+    }, delay);
+  })
+    .on('mouseleave', function (inEvent) {
+    window.clearTimeout(theTimer);
+    theElement = $(this);
+    theTimer = window.setTimeout(function () {
+      theElement.removeClass('open');
+    }, delay);
+  });
+    })(jQuery, window, 200); // 200 is the delay in milliseconds
+    </script>
+    Dropdown hover Script-->
 
