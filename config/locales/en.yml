@@ -224,6 +224,7 @@ en:
       info: "Info"
     document: "document"
     download_explanation: "Download this resource to your device"
+    embed_explanation: "You can use this code to insert this video in the excursion creator tool or in other website:"
     help:
       title: "Uploading resources"
       info1_html: "1. Click on <b>documents</b> or <b>links</b> / <b>embed</b> option.<br>"

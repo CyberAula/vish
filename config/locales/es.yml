@@ -228,6 +228,7 @@ es:
       info: "Información"
     download_explanation: "Descargate este recurso a tu dispositivo"
     document: "documento"
+    embed_explanation: "Este código te servirá para incrustar este video directamente en el creador de excursiones o en otro sitio web"
     help:
       title: "Subir recursos"
       info1_html: "1. Haga click en la opción <b>documentos</b> o <b>enlaces</b> / <b>embed</b>.<br>"
