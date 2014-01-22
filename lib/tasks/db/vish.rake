@@ -117,7 +117,7 @@ user_author = author
 end
 
           e = Excursion.create! :json => {  :title => "kike#{Forgery::LoremIpsum.words(1+rand(4),:random => true)}",
-                                            :description => "Description: #{Forgery::LoremIpsum.paragraph(:random => true)}",
+                                            :description => "#{Forgery::LoremIpsum.paragraph(:random => true)}",
                                             :author => author.name,
                                             :avatar => @sample_images[rand(@sample_images.size)],
                                             :slides => Array.new(1+rand(9)).map{ generate_slide }
