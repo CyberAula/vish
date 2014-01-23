@@ -4697,7 +4697,7 @@ window.Chart = function(context, options) {
   }
 };
 var VISH = VISH || {};
-VISH.VERSION = "0.8.3";
+VISH.VERSION = "0.8.4";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -4753,6 +4753,7 @@ VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
 VISH.Constant.WRAPPER.OBJECT = "OBJECT";
 VISH.Constant.WRAPPER.IFRAME = "IFRAME";
+VISH.Constant.WRAPPER.VIDEO = "VIDEO";
 VISH.Constant.QZ_TYPE = {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
@@ -9113,16 +9114,23 @@ VISH.Object = function(V, $, undefined) {
       var wrapper = element.tagName
     }
     var source = _getSourceFromObject(object, wrapper);
-    var type = _getTypeFromSource(source);
+    var type;
+    switch(wrapper) {
+      case "VIDEO":
+        type = V.Constant.MEDIA.HTML5_VIDEO;
+        break;
+      default:
+        type = _getTypeFromSource(source)
+    }
     return new objectInfo(wrapper, source, type)
   };
   var _getSourceFromObject = function(object, wrapper) {
     switch(wrapper) {
       case null:
         return object;
-      case "EMBED":
+      case V.Constant.WRAPPER.EMBED:
         return $(object).attr("src");
-      case "OBJECT":
+      case V.Constant.WRAPPER.OBJECT:
         if(typeof $(object).attr("src") != "undefined") {
           return $(object).attr("src")
         }
@@ -9130,8 +9138,10 @@ VISH.Object = function(V, $, undefined) {
           return $(object).attr("data")
         }
         return"source not founded";
-      case "IFRAME":
+      case V.Constant.WRAPPER.IFRAME:
         return $(object).attr("src");
+      case V.Constant.WRAPPER.VIDEO:
+        return V.VideoPlayer.HTML5.getSources(object);
       default:
         V.Debugging.log("Unrecognized object wrapper: " + wrapper);
         return null;
@@ -9139,6 +9149,9 @@ VISH.Object = function(V, $, undefined) {
     }
   };
   var _getTypeFromSource = function(source) {
+    if(typeof source == "object" && (typeof source.length == "number" && source.length > 0)) {
+      source = source[0]
+    }
     var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
     var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
     var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
@@ -9293,7 +9306,7 @@ VISH.Renderer = function(V, $, undefined) {
         $("#" + slide.id).css("background-image", slide.background);
         for(index in slide.pois) {
           var poi = slide.pois[index];
-          V.Flashcard.addArrow(slide.id, poi, true)
+          V.Flashcard.addArrow(slide.id, poi)
         }
         break;
       case V.Constant.VTOUR:
@@ -10155,7 +10168,21 @@ VISH.VideoPlayer.HTML5 = function(V, $, undefined) {
       }
     })
   };
-  return{init:init, setVideoEvents:setVideoEvents, playVideos:playVideos, stopVideos:stopVideos, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, showControls:showControls}
+  var getSources = function(video) {
+    try {
+      return $(video).find("source").map(function() {
+        return{"src":this.src, "mimeType":getVideoMimeType(this.src)}
+      })
+    }catch(e) {
+      return[]
+    }
+    return[]
+  };
+  var getVideoMimeType = function(url) {
+    var source = V.Object.getObjectInfo(url).source;
+    return"video/" + source.split(".").pop()
+  };
+  return{init:init, setVideoEvents:setVideoEvents, playVideos:playVideos, stopVideos:stopVideos, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, showControls:showControls, getSources:getSources, getVideoMimeType:getVideoMimeType}
 }(VISH, jQuery);
 var youtubePlayers = {};
 var YT = YT || {};
@@ -12225,19 +12252,21 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     _setupSize()
   };
   var _setupSize = function() {
-    var reserved_px_for_menubar = _getDesiredVieweBarHeight(_lastHeight);
+    var viewbarHeight;
     var min_margin_height = 25;
     var min_margin_width = 60;
     if(!_showViewbar) {
-      reserved_px_for_menubar = 0;
+      viewbarHeight = 0;
       min_margin_height = 0;
       min_margin_width = 0
     }else {
       if(V.Status.getIsPreviewInsertMode()) {
-        reserved_px_for_menubar = 120
+        viewbarHeight = 120
+      }else {
+        viewbarHeight = _getDesiredVieweBarHeight(_lastHeight)
       }
     }
-    var height = _lastHeight - reserved_px_for_menubar;
+    var height = _lastHeight - viewbarHeight;
     var width = _lastWidth;
     var finalW = 800;
     var finalH = 600;
@@ -12266,15 +12295,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
     }
     $(".vish_arrow").width(finalWidthMargin / 2 * 0.9);
-    if(!V.Status.getIsPreviewInsertMode()) {
-      $("#viewbar").height(reserved_px_for_menubar)
+    if(_showViewbar && !V.Status.getIsPreviewInsertMode()) {
+      $("#viewbar").height(viewbarHeight)
     }
     var topSlides = $(".slides > article");
     var subSlides = $(".slides > article > article");
     var allSlides = $(".slides article");
     $(allSlides).css("height", finalH);
     $(allSlides).css("width", finalW);
-    var marginTop = finalH / 2 + reserved_px_for_menubar / 2;
+    var marginTop = finalH / 2 + viewbarHeight / 2;
     var marginLeft = finalW / 2;
     $(topSlides).css("margin-top", "-" + marginTop + "px");
     $(subSlides).css("margin-top", "-" + finalH / 2 + "px");
@@ -12289,10 +12318,32 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     $(allSlides).css("padding-right", paddingLeftAndRight);
     $(allSlides).css("padding-top", paddingTopAndBottom);
     $(allSlides).css("padding-bottom", paddingTopAndBottom);
-    $(".fc_poi img").css("width", 50 * increase + "px");
-    $(".fc_poi img").css("height", 50 * increase + "px");
+    var _closeButtonDimension = 23;
+    if(increase <= 1) {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.7)
+    }else {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.2)
+    }
+    $("div.close_subslide").css("width", _closeButtonDimension + "px");
+    $("div.close_subslide").css("height", _closeButtonDimension + "px");
+    if(_showViewbar) {
+      $("#page-switcher-start").width($("#page-switcher-start").height());
+      $("#page-switcher-end").width($("#page-switcher-end").height());
+      $("#page-fullscreen").width($("#page-fullscreen").height());
+      if(V.Status.getIsPreviewInsertMode()) {
+        viewbarHeight = $("#viewbar").height()
+      }
+      var menubarIncreaseFactor = viewbarHeight / 40;
+      var slideCounterFontSize = 14 * getPonderatedIncrease(menubarIncreaseFactor, 0.5);
+      $("#slide-counter-span, #slide-counter-input").css("font-size", slideCounterFontSize + "px");
+      $("#slide-counter-input").width(24 * getPonderatedIncrease(menubarIncreaseFactor, 1));
+      var slideCounterMarginTop = (viewbarHeight - $("#slide-counter-div").height()) / 2;
+      $("#slide-counter-div").css("margin-top", slideCounterMarginTop + "px");
+      $("#embedWatermark").width($("#embedWatermark").height() * 2.7)
+    }
+    V.Flashcard.aftersetupSize(increase, increaseW);
     decideIfPageSwitcher();
-    updateFancyboxAfterSetupSize();
+    updateFancyboxAfterSetupSize(increase, increaseW);
     V.Text.aftersetupSize(increase, increaseW);
     V.SnapshotPlayer.aftersetupSize(increase, increaseW);
     V.ObjectPlayer.aftersetupSize(increase, increaseW);
@@ -12301,16 +12352,18 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     V.Recommendations.aftersetupSize(increase, increaseW)
   };
   var _getDesiredVieweBarHeight = function(windowHeight) {
-    var minimumViewBarHeight = 20;
+    var minimumViewBarHeight = 26;
     var maxViewBarHeight = 40;
-    var viewBarHeight = 40;
+    var estimatedIncrease = windowHeight / 600;
+    var viewBarHeight = 40 * getPonderatedIncrease(estimatedIncrease, 0.7);
     return Math.min(Math.max(viewBarHeight, minimumViewBarHeight), maxViewBarHeight)
   };
-  var updateFancyboxAfterSetupSize = function() {
+  var updateFancyboxAfterSetupSize = function(increase, increaseW) {
     var fOverlay = $("#fancybox-overlay");
     if($(fOverlay).length < 1 || !$(fOverlay).is(":visible")) {
       return
     }
+    increase = typeof increase == "number" ? increase : V.ViewerAdapter.getLastIncrease()[0];
     var fwrap = $("#fancybox-wrap");
     var fcontent = $("#fancybox-content");
     var fccontentDivs = $("#" + $(fcontent).attr("id") + " > div");
@@ -12318,8 +12371,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var paddingTop = $(currentSlide).cssNumber("padding-top");
     var paddingLeft = $(currentSlide).cssNumber("padding-left");
     var offset = $(currentSlide).offset();
+    var _closeButtonDimension = 23;
+    if(increase <= 1) {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.7)
+    }else {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.2)
+    }
     var fcClose = $("#fancybox-close");
-    $(fcClose).height("22px");
+    $(fcClose).width(_closeButtonDimension + "px");
+    $(fcClose).height(_closeButtonDimension + "px");
     $(fcClose).css("padding", "10px");
     $(fcClose).css("padding-left", "4px");
     $(fwrap).css("margin-top", "0px");
@@ -12340,18 +12400,20 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var getLastIncrease = function() {
     return[_lastIncrease, _lastIncreaseW]
   };
-  return{init:init, updateInterface:updateInterface, decideIfPageSwitcher:decideIfPageSwitcher, decideIfCloseButton:decideIfCloseButton, updateFancyboxAfterSetupSize:updateFancyboxAfterSetupSize, getLastIncrease:getLastIncrease}
+  var getPonderatedIncrease = function(increase, pFactor) {
+    var diff = (increase - 1) * pFactor;
+    return 1 + diff
+  };
+  return{init:init, updateInterface:updateInterface, decideIfPageSwitcher:decideIfPageSwitcher, decideIfCloseButton:decideIfCloseButton, updateFancyboxAfterSetupSize:updateFancyboxAfterSetupSize, getPonderatedIncrease:getPonderatedIncrease, getLastIncrease:getLastIncrease}
 }(VISH, jQuery);
 VISH.Flashcard = function(V, $, undefined) {
   var flashcards;
   var pois;
-  var FPS = 25;
-  var TOTAL_FRAMES = 20;
-  var FRAME_WIDTH = 50;
+  var FPS = 20;
   var init = function(presentation) {
     if(!flashcards) {
-      flashcards = new Array;
-      pois = new Array
+      flashcards = {};
+      pois = {}
     }
   };
   var startAnimation = function(slideId) {
@@ -12367,7 +12429,7 @@ VISH.Flashcard = function(V, $, undefined) {
       flashcards[slideId].timer = undefined
     }
   };
-  var addArrow = function(fcId, poi, sync) {
+  var addArrow = function(fcId, poi) {
     if(!poi || (!poi.x || (!poi.y || (poi.x > 100 || poi.y > 100)))) {
       return
     }
@@ -12381,12 +12443,6 @@ VISH.Flashcard = function(V, $, undefined) {
     }
     var arrow = new Object;
     arrow.id = poiId;
-    if(sync) {
-      arrow.position = 0
-    }else {
-      var rand_pos = Math.floor(Math.random() * TOTAL_FRAMES + 1) * FRAME_WIDTH;
-      arrow.position = rand_pos
-    }
     arrow.slide_id = poi.slide_id;
     arrow.x = poi.x;
     arrow.y = poi.y;
@@ -12401,10 +12457,12 @@ VISH.Flashcard = function(V, $, undefined) {
       return
     }
     $(flashcards[slideId].arrows).each(function(index, value) {
-      var new_pos = (value.position + FRAME_WIDTH) % (TOTAL_FRAMES * FRAME_WIDTH);
-      var arrow_dom_el = $("#" + value.id);
-      $(arrow_dom_el).css("background-position", new_pos + "px" + " 0px");
-      flashcards[slideId].arrows[index].position = new_pos
+      var arrowDOM = $("#" + value.id);
+      var backgroundPosX = $(arrowDOM).cssNumber("background-position-x") + 5;
+      if(backgroundPosX > 95) {
+        backgroundPosX = 0
+      }
+      $(arrowDOM).css("background-position", backgroundPosX + "%" + " center")
     })
   };
   var getPoiData = function(poiId) {
@@ -12413,7 +12471,35 @@ VISH.Flashcard = function(V, $, undefined) {
     }
     return null
   };
-  return{init:init, addArrow:addArrow, startAnimation:startAnimation, stopAnimation:stopAnimation, animateArrows:animateArrows, getPoiData:getPoiData}
+  var aftersetupSize = function(increase, increaseW) {
+    var fcArrowIncrease;
+    if(increase >= 1) {
+      fcArrowIncrease = V.ViewerAdapter.getPonderatedIncrease(increase, 0.1)
+    }else {
+      fcArrowIncrease = V.ViewerAdapter.getPonderatedIncrease(increase, 0.8)
+    }
+    for(var fckey in flashcards) {
+      var fc = flashcards[fckey];
+      var arrows = fc.arrows;
+      $(arrows).each(function(index, arrow) {
+        var orgX = arrow.x * 8;
+        var newWidth = 50 * fcArrowIncrease;
+        var newLeft = increase * orgX + 25 * (increase - fcArrowIncrease);
+        var orgY = arrow.y * 6;
+        var newHeight = 40 * fcArrowIncrease;
+        var newTop = increase * orgY + 40 * 0.8 * (increase - fcArrowIncrease);
+        var arrowDom = $("#" + arrow.id);
+        $(arrowDom).css("left", newLeft + "px");
+        $(arrowDom).width(newWidth + "px");
+        $(arrowDom).css("top", newTop + "px");
+        $(arrowDom).height(newHeight + "px")
+      })
+    }
+  };
+  var getFlashcards = function() {
+    return flashcards
+  };
+  return{init:init, addArrow:addArrow, startAnimation:startAnimation, stopAnimation:stopAnimation, animateArrows:animateArrows, getPoiData:getPoiData, aftersetupSize:aftersetupSize, getFlashcards:getFlashcards}
 }(VISH, jQuery);
 VISH.VirtualTour = function(V, $, undefined) {
   var virtualTours;
@@ -13215,7 +13301,8 @@ VISH.Events = function(V, $, undefined) {
     });
     $(document).on("keypress", "#slide-counter-input", function(e) {
       if(e.which == 13) {
-        V.Slides.goToSlide($("#slide-counter-input").val())
+        V.Slides.goToSlide($("#slide-counter-input").val());
+        $("#slide-counter-input").blur()
       }
     });
     $(document).on("click", "#closeButton", function(event) {
@@ -14825,22 +14912,10 @@ VISH.FullScreen = function(V, $, undefined) {
     }
   };
   var _enableFsEnterButon = function() {
-    $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'vicons/fullscreenback.png")');
-    $("#page-fullscreen").css("background-position", "0px 0px");
-    $("#page-fullscreen").hover(function() {
-      $("#page-fullscreen").css("background-position", "-30px -40px")
-    }, function() {
-      $("#page-fullscreen").css("background-position", "0px 0px")
-    })
+    $("#page-fullscreen").removeClass("fsoff").addClass("fson")
   };
   var _enableFsLeaveButon = function() {
-    $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'vicons/fullscreen.png")');
-    $("#page-fullscreen").css("background-position", "0px 0px");
-    $("#page-fullscreen").hover(function() {
-      $("#page-fullscreen").css("background-position", "-40px -40px")
-    }, function() {
-      $("#page-fullscreen").css("background-position", "0px 0px")
-    })
+    $("#page-fullscreen").removeClass("fson").addClass("fsoff")
   };
   var _isDocInFullScreen = function(myDoc) {
     if(typeof myDoc.mozFullScreen == "boolean") {

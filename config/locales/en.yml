@@ -235,6 +235,7 @@ en:
       info6_html: "6. Select an <b>age </b>range. This information will be used for recommendation purposes.<br>"
       info7_html: "7. If you want to embed a live streaming video, click on <b>Live</b> option.<br>"
       info8_html: "8. Finally, click on <b> save </b> button to upload your resource."
+      home1_html: "This zone show the excursions created by people you are <a href=\"%{{profile}}\">following.</a>"
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"  
     how: "How to share a resource"
@@ -623,6 +624,8 @@ en:
     upload: "upload"
   save: "Save"
   search:
+    explore: "explore"
+    search: "search"
     110slides: "1-10 slides"
     1020slides: "10-20 slides"
     20slides: "20+ slides"

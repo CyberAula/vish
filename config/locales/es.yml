@@ -239,6 +239,7 @@ es:
       info6_html: "6. Asigne un rango de <b>edad</b>. Esta información será usada por el sistema de recomendación.<br>"
       info7_html: "7. Si desea subir el embed de un video en vivo, haga click en la opción <b>Live</b>.<br>"
       info8_html: "8. Finalmente, haga click en el botón <b> guardar </b>para actualizar su recurso."
+      home1_html: "Esta zona muestra las excursiones creadas por los usuarios a los que <a href='http://vishub.org/search?type=user'>sigues.</a>"
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"

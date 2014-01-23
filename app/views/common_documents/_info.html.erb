@@ -53,21 +53,19 @@
     <dt><%= t('document.info.date.updated_at') %></dt>
     <dd><%= I18n.localize document.updated_at, :format => :long %></dd>
     <%if resource.class==Embed%>
-      
+    
+    <%elsif resource.class==Link%>
+
     <%else%>
       <% unless document.file_file_size.blank? %>
         <dt><%= t('document.info.size') %></dt>
         <dd><%= number_to_human_size document.file_file_size %></dd>
       <%end%>
     <%end%>
-
-
-
-
   </dl>
 </div>
 
-<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><%=t('excursion.actions.show_more')%></button>
+<button href="#" id="showMore" status="showMore" class="ui-state-default ui-corner-all"><a><%=t('excursion.actions.show_more')%></a></button>
 
 <script>
 $(function() {
@@ -75,11 +73,11 @@ $(function() {
     $(".newClass").switchClass( "newClass", "anotherNewClass", 1000 );
     $(".anotherNewClass").switchClass( "anotherNewClass", "newClass", 1000 );
     if($("#showMore").attr("status")=== "showMore"){
-      $("#showMore").html('<%=t("excursion.actions.show_fewer")%>');
+      $("#showMore").html('<a><%=t("excursion.actions.show_fewer")%></a>');
       $("#showMore").attr("status", "showFewer");
     }
     else{
-      $("#showMore").html('<%=t("excursion.actions.show_more")%>');
+      $("#showMore").html('<a><%=t("excursion.actions.show_more")%></a>');
       $("#showMore").attr("status", "showMore");
     }
     return false;

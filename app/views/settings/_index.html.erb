@@ -1,0 +1,29 @@
+<section class="settings">
+  <h2 class="colorfont">
+    <%= t('settings.for')%> <%= current_subject.name %>
+  </h2>
+
+  <div class="accordion" id="settings-accordion">
+    <% if current_subject == current_user %>
+      <%= render partial: "devise/registrations/edit_user",
+                 locals: { resource: current_user,
+                           resource_name: :user } %>
+
+      <%= render partial: "settings/language" %>
+    <% end %>
+
+    <%= render partial: "settings/notifications" %>
+
+    <% if current_subject.respond_to? :authentication_token %>
+      <%= render partial: 'settings/api_key' %>
+    <% end %>
+
+    <% if current_subject == current_user %>
+      <%= render partial: "devise/registrations/delete_account",
+                 locals: { resource: current_user,
+                           resource_name: :user } %>
+    <% else %>
+      <%= render partial: 'destroy' %>
+    <% end %>
+  </div>
+</section>

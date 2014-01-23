@@ -87,7 +87,7 @@ var i18n = {"vish":{"es":{"i.walkMenuHelp1a":"Para aprender a utilizar ViSH Edit
 "i.Searchplaces":"Search places", "i.SelectSlide":"Select Slide", "i.Title":"Title *", "i.unpublish":"unpublish", "i.Unpublish":"Unpublish", "i.unpublishing":"unpublishing", "i.Unpublishing":"Unpublishing", "i.Unpublish_confirmation":"You are going to unpublish this Virtual Excursion from the ViSH Platform. After this, the excursion will be private and only you will be able to access it. What would you like to do?", "i.UnselectSlide":"Unselect Slide", "i.unspecified":"unspecified", "i.Unspecified":"Unspecified", 
 "i.verydifficult":"very difficult", "i.veryeasy":"very easy", "i.yes":"yes", "i.Yes":"Yes", "i.ZoneTooltip":"Click here to add content", "i.VESurveyURL":"https://docs.google.com/forms/d/1jqgQsQ84sBsETRt0qY-vAz7dWk9hT3ouWH1dN0vGzQA/viewform", "i.tooltip.QSInput":"Enter a name for the live quiz", "i.last":"last"}}, "standalone":{"es":{"i.save":"Standalone"}, "default":{"i.save":"Standalone"}}};
 var VISH = VISH || {};
-VISH.VERSION = "0.8.3";
+VISH.VERSION = "0.8.4";
 VISH.AUTHORS = "GING";
 VISH.URL = "http://github.com/ging/vish_editor";
 VISH.Constant = VISH.Constant || {};
@@ -143,6 +143,7 @@ VISH.Constant.WRAPPER = {};
 VISH.Constant.WRAPPER.EMBED = "EMBED";
 VISH.Constant.WRAPPER.OBJECT = "OBJECT";
 VISH.Constant.WRAPPER.IFRAME = "IFRAME";
+VISH.Constant.WRAPPER.VIDEO = "VIDEO";
 VISH.Constant.QZ_TYPE = {};
 VISH.Constant.QZ_TYPE.OPEN = "open";
 VISH.Constant.QZ_TYPE.MCHOICE = "multiplechoice";
@@ -10544,7 +10545,7 @@ if(!YT.Player) {
         $("#" + slide.id).css("background-image", slide.background);
         for(index in slide.pois) {
           var poi = slide.pois[index];
-          V.Flashcard.addArrow(slide.id, poi, true)
+          V.Flashcard.addArrow(slide.id, poi)
         }
         break;
       case V.Constant.VTOUR:
@@ -13596,7 +13597,7 @@ VISH.Editor.Object = function(V, $, undefined) {
             return V.Editor.Video.Youtube.generatePreviewWrapperForYoutubeVideoUrl(object);
             break;
           case V.Constant.MEDIA.HTML5_VIDEO:
-            return V.Editor.Video.HTML5.renderVideoFromSources([object]);
+            return V.Editor.Video.HTML5.renderVideoWithURL(object);
             break;
           case V.Constant.MEDIA.WEB:
             return V.Editor.Object.Web.generatePreviewWrapperForWeb(object);
@@ -13614,6 +13615,9 @@ VISH.Editor.Object = function(V, $, undefined) {
         break;
       case V.Constant.WRAPPER.IFRAME:
         return _genericWrapperPreview(object);
+        break;
+      case V.Constant.WRAPPER.VIDEO:
+        return V.Editor.Video.HTML5.renderVideoFromWrapper(object);
         break;
       default:
         V.Debugging.log("Unrecognized object wrapper: " + objectInfo.wrapper);
@@ -13692,6 +13696,9 @@ VISH.Editor.Object = function(V, $, undefined) {
         break;
       case V.Constant.WRAPPER.IFRAME:
         drawObjectWithWrapper(object, current_area, object_style, zoomInStyle);
+        break;
+      case V.Constant.WRAPPER.VIDEO:
+        V.Editor.Video.HTML5.drawVideoWithWrapper(object);
         break;
       default:
         V.Debugging.log("Unrecognized object wrapper: " + objectInfo.wrapper);
@@ -14869,8 +14876,9 @@ VISH.Samples = function(V, undefined) {
   {"id":"article4", "type":"standard", "template":"t1", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;"><a href="http://delanada" target="_blank">http://delanada</a>&shy;</span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n'}, {"id":"article4_zone2", "areaid":"header"}, {"id":"article4_zone3", "type":"text", "areaid":"subheader", "body":'<p style="text-align:left;">\n\t<span style="font-size:18px;">&shy;asdadsad</span></p>\n'}]}, 
   {"id":"article5", "type":"standard", "template":"t2", "elements":[{"id":"article5_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t<span style="font-size:36px;">exponentes<sup>2</sup></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<span style="font-size:22px;"><span style="font-size:36px;">exponentesb<sub>345</sub>asdadsadasd</span></span></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<u><span style="font-size:22px;"><span style="font-size:36px;">Subrayado</span></span></u></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<em><span style="font-size:22px;"><span style="font-size:36px;">Cursiva</span></span></em></p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t<strong><span style="font-size:22px;"><span style="font-size:36px;">Negrita</span></span></strong></p>\n'}]}, 
   {"id":"article6", "type":"standard", "template":"t2", "elements":[{"id":"article6_zone1", "type":"text", "areaid":"left", "body":'<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<p style="text-align:left;">\n\t&nbsp;</p>\n<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px;" summary="Fin de ejemplo de tabla">\n\t<caption>\n\t\t<span style="font-size:24px;">Ejemplo de Tabla</span></caption>\n\t<tbody>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="color:#ffff00;"><span style="font-size:36px;"><span style="font-family:comic sans ms,cursive;"><span style="background-color:#000000;">Esto es un</span></span></span></span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">ejemplo de&nbsp;</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">una tabla</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">con el</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">nuevo</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">wysiwyg</span></td>\n\t\t</tr>\n\t\t<tr>\n\t\t\t<td>\n\t\t\t\t<font size="5">a ver si</font></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">redimensiona</span></td>\n\t\t\t<td>\n\t\t\t\t<span style="font-size:24px;">bien</span></td>\n\t\t</tr>\n\t</tbody>\n</table>\n<p style="text-align:left;">\n\t<span style="font-size:36px;">&shy;</span></p>\n'}]}]};
-  var test = {"VEVersion":"0.8.2", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "author":"ebarra", "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "animation":"animation1", "language":"en", "age_range":"4 - 20", "difficulty":"easy", "TLT":"PT6H30M15S", "subject":["Art", "Astronomy", "Biology"], "educational_objectives":"Know about the Iberian Lynx", 
-  "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:117.00819672131148%; height:109.5959595959596%; top:-4.734848484848484%; left:-2.3213370901639343%;"}, {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; ">\n\t&nbsp;</div>\n<div class="initTextDiv vish-parent-font4" style="text-align: right;">\n\t&nbsp;</div>\n<div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;">\n\t<span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>\n'}, 
+  var test = {"VEVersion":"0.8.4", "type":"presentation", "title":"The Iberian Lynx", "description":"The Iberian Lynx.\nAmazing presentation with images, videos and objects, generated by ViSH Editor.", "avatar":"http://vishub.org/assets/logos/original/excursion-10.png", "author":{"name":"agordillo", "vishMetadata":{"id":"24"}}, "contributors":[{"name":"Fred Griffin", "vishMetadata":{"id":5}}], "tags":["Do\u00f1ana", "Lynx", "Biology"], "theme":"theme1", "animation":"animation1", "language":"en", 
+  "age_range":"4 - 20", "difficulty":"easy", "TLT":"PT6H30M15S", "subject":["Art", "Astronomy", "Biology"], "educational_objectives":"Know about the Iberian Lynx", "vishMetadata":{"draft":"false"}, "slides":[{"id":"article1", "type":"standard", "template":"t1", "elements":[{"id":"article1_zone1", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:117.00819672131148%; height:109.5959595959596%; top:-4.734848484848484%; left:-2.3213370901639343%;"}, 
+  {"id":"article1_zone2", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font4" style="text-align: right; font-weight: normal; ">\n\t&nbsp;</div>\n<div class="initTextDiv vish-parent-font4" style="text-align: right;">\n\t&nbsp;</div>\n<div class="initTextDiv vish-parent-font4 vish-parent-fontundefined" style="text-align: right;">\n\t<span class="vish-font4 vish-fonthelvetica" style="color:undefined;undefined;"><i>by <b><span class="vish-fontundefined vish-fontHelvetica" style="color:#cb6120;undefined;">Vish</span> Editor</b> Team<b>&nbsp;</b></i></span></div>\n'}, 
   {"id":"article1_zone3", "areaid":"subheader"}]}, {"id":"article2", "type":"standard", "template":"t8", "elements":[{"id":"article2_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6 vish-parent-fontundefined" style="font-weight: normal; ">\n\t<span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;"> Lynx &nbsp; &nbsp; &nbsp;</span><span class="vish-fontundefined vish-fontHelvetica" style="color:#5ea099;undefined;">Description and habitat</span></div>\n'}, 
   {"id":"article2_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/73.jpeg", "style":"position: relative; width:130.37974683544303%; height:106.81818181818181%; top:0%; left:-25.2043776371308%;"}, {"id":"article2_zone3", "type":"text", "areaid":"center", "body":'<p>\n\tIn most respects, the Iberian Lynx resembles other species of lynx, with a short tail,tufted ears and a ruff of fur beneath the chin. ...</p>\n<div class="vish-parent-font7" style="font-weight: normal; ">\n\t&nbsp;</div>\n'}, 
   {"id":"article2_zone4", "type":"image", "areaid":"right", "body":"http://vishub.org/pictures/313.png", "style":"position: relative; width:119.40928270042194%; height:88.66396761133603%; top:2.9542004048582995%; left:-2.6041666666666665%;"}]}, {"id":"article12", "type":"standard", "template":"t3", "elements":[{"id":"article12_zone1", "type":"text", "areaid":"header", "body":"<p>\n\tExperimento virtual</p>\n"}, {"id":"article12_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" id="resizableunicID8" class="t3_object" wmode="opaque">', 
@@ -14882,19 +14890,20 @@ VISH.Samples = function(V, undefined) {
   "style":"position: relative; width:85.79387186629526%; height:100%; top:0%; left:6.445856545961003%;"}]}, {"id":"article4", "type":"standard", "template":"t6", "elements":[{"id":"article4_zone1", "type":"text", "areaid":"header", "body":'<div class="initTextDiv vish-parent-font6" style="font-weight: normal; ">\n\t<span class="vish-font6 vish-fontHelvetica" style="color:#db9600;font-weight: bold;  ;">Iberian</span><span class="vish-font6 vish-fontHelvetica" style="color:undefined;font-weight: bold; ;">&nbsp;Lynx</span></div>\n'}, 
   {"id":"article4_zone2", "type":"image", "areaid":"left", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.54260089686096%; height:217.9591836734694%; top:-34.92984693877551%; left:-42.04736547085202%;"}, {"id":"article4_zone3", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/314.jpeg", "style":"position: relative; width:373.09417040358744%; height:217.75510204081633%; top:-46.64540816326531%; left:-198.69674887892376%;"}, {"id":"article4_zone4", 
   "type":"text", "areaid":"right", "body":'<div class="vish-parent-font4 vish-parent-fontundefined" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font4 vish-fontHelvetica" style="color:undefined;undefined;">During the mating season the female leaves her territory...</span></div>\n'}]}, {"id":"article5", "type":"standard", "template":"t10", "elements":[{"id":"article5_zone1", "type":"object", "areaid":"center", "body":'<iframe src="http://en.wikipedia.org/wiki/Do%C3%B1ana_National_Park?wmode=transparent" id="resizableunicID20" class="t10_object" wmode="opaque"></iframe>', 
-  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article7", "type":"flashcard", "background":"url(http://vishub.org/pictures/320.jpeg)", "pois":[{"x":"15.62890625", "y":"8.5", "slide_id":"article7_article1"}, {"x":"77.75", "y":"11.5", "slide_id":"article7_article2"}, {"x":"17.125", "y":"58.828125", "slide_id":"article7_article3"}], "slides":[{"id":"article7_article1", "type":"standard", "template":"t10", "elements":[{"id":"article7_article1_zone1", "type":"image", 
-  "areaid":"center", "body":"http://vishub.org/pictures/321.jpeg", "style":"position: relative; width:49.62406015037594%; height:66.22073578595318%; top:15.719063545150501%; left:24.183505639097746%;"}]}, {"id":"article7_article2", "type":"standard", "template":"t10", "elements":[{"id":"article7_article2_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/322.jpeg", "style":"position: relative; width:60.526315789473685%; height:67.3913043478261%; top:15.719063545150501%; left:20.173480576441104%;"}]}, 
+  "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article7", "type":"flashcard", "background":"url(http://vishub.org/pictures/320.jpeg)", "pois":[{"id":"article7_poi1", "x":"15.63", "y":"8.5", "slide_id":"article7_article1"}, {"id":"article7_poi2", "x":"77.75", "y":"11.5", "slide_id":"article7_article2"}, {"id":"article7_poi3", "x":"17.125", "y":"58.83", "slide_id":"article7_article3"}], "slides":[{"id":"article7_article1", "type":"standard", "template":"t10", "elements":[{"id":"article7_article1_zone1", 
+  "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/321.jpeg", "style":"position: relative; width:49.62406015037594%; height:66.22073578595318%; top:15.719063545150501%; left:24.183505639097746%;"}]}, {"id":"article7_article2", "type":"standard", "template":"t10", "elements":[{"id":"article7_article2_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/322.jpeg", "style":"position: relative; width:60.526315789473685%; height:67.3913043478261%; top:15.719063545150501%; left:20.173480576441104%;"}]}, 
   {"id":"article7_article3", "type":"standard", "template":"t10", "elements":[{"id":"article7_article3_zone1", "type":"image", "areaid":"center", "body":"http://vishub.org/pictures/323.jpeg", "style":"position: relative; width:115.91478696741855%; height:116.05351170568562%; top:-2.842809364548495%; left:-0.749921679197995%;"}]}]}, {"id":"article6", "type":"standard", "template":"t12", "elements":[{"id":"article6_zone1", "areaid":"left1"}, {"id":"article6_zone2", "areaid":"right1"}, {"id":"article6_zone3", 
   "areaid":"left2"}, {"id":"article6_zone4", "type":"image", "areaid":"right2", "body":"http://vishub.org/pictures/312.jpeg", "style":"position: relative; width:114.4927536231884%; height:114.01515151515152%; top:0%; left:0%;"}]}, {"id":"article13", "type":"standard", "template":"t2", "elements":[{"id":"article13_zone1", "type":"snapshot", "areaid":"left", "body":'<iframe src="http://en.wikipedia.org" id="resizableunicID25" class="snapshot_content" scrolling="no" wmode="opaque"></iframe>', "style":"position: relative; width:61.420612813370475%; height:61.09090909090909%; top:40.15056818181818%; left:-15.757747214484679%;", 
-  "scrollTop":"417", "scrollLeft":"129"}]}, {"id":"article14", "type":"VirtualTour", "map_service":"Google Maps", "center":{"lat":"41.23", "lng":"-6.300000000000011"}, "zoom":"5", "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"lat":"40.24", "lng":"-3.6000000000000227", "slide_id":"article14_article1"}, {"lat":"41.2", "lng":"2.1000000000000227", "slide_id":"article14_article2"}, {"lat":"37.26", "lng":"-5.970000000000027", "slide_id":"article14_article3"}, {"lat":"43.26", "lng":"-5.970000000000027", 
-  "slide_id":"article14_article4"}], "slides":[{"id":"article14_article1", "type":"standard", "template":"t1", "elements":[{"id":"article14_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.74590163934427%; height:80.05050505050505%; top:0%; left:0%;"}, {"id":"article14_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span></span></div>\n'}, 
+  "scrollTop":"417", "scrollLeft":"129"}]}, {"id":"article14", "type":"VirtualTour", "map_service":"Google Maps", "center":{"lat":"49.48391393681142", "lng":"-22.076367187500004"}, "zoom":"5", "mapType":"roadmap", "width":"100%", "height":"100%", "pois":[{"lat":"40.24", "lng":"-3.6000000000000227", "slide_id":"article14_article1"}, {"lat":"41.2", "lng":"2.1000000000000227", "slide_id":"article14_article2"}, {"lat":"37.26", "lng":"-5.970000000000027", "slide_id":"article14_article3"}, {"lat":"43.26", 
+  "lng":"-5.970000000000027", "slide_id":"article14_article4"}], "slides":[{"id":"article14_article1", "type":"standard", "template":"t1", "elements":[{"id":"article14_article1_zone1", "type":"image", "areaid":"left", "body":"http://blogs.20minutos.es/cronicaverde/files/parque_nacional_donana_lince_iberico.jpg", "style":"position: relative; width:97.74590163934427%; height:80.05050505050505%; top:0%; left:0%;"}, {"id":"article14_article1_zone2", "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font3 vish-fontarial"><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="font-family: helvetica;"><span style="font-weight: bold;">Chess</span>: The Art of Learning</span></span></span></div>\n'}, 
   {"id":"article14_article1_zone3", "type":"text", "areaid":"subheader", "body":'<div class="vish-parent-font3 vish-parent-font4" style="text-align: right; font-weight: normal; ">\n\t<span class="vish-font3 vish-fontarial"><span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="font-style: italic; font-family: helvetica;">by Aldo Gordillo&nbsp; </span></span></span></div>\n'}]}, {"id":"article14_article2", "type":"standard", "template":"t3", "elements":[{"id":"article14_article2_zone1", 
   "type":"text", "areaid":"header", "body":"<p>\n\tExperimento virtual1</p>\n"}, {"id":"article14_article2_zone2", "type":"object", "areaid":"left", "body":'<embed width="99%" height="99%" src="examples/contents/swf/virtualexperiment.swf" type="application/x-shockwave-flash" id="resizableunicID30" class="t3_object" wmode="opaque">', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}, {"id":"article14_article3", "type":"standard", "template":"t6", "elements":[{"id":"article14_article3_zone1", 
   "type":"text", "areaid":"header", "body":'<div class="vish-parent-font3 vish-parent-font6 vish-parent-font4" style="font-weight: normal; ">\n\t<span class="vish-font3 vish-fontHelvetica" style=""><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(219, 150, 0);">Iberian</span></span><span class="vish-font6 vish-fontHelvetica" style="undefined;"> </span><span class="vish-font6 vish-fontHelvetica" style="undefined;"><span style="color: rgb(32, 24, 21);">Lynx</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="vish-font4 vish-fontHelvetica" style="undefined;"><span style="color: rgb(113, 113, 117);">Reproduction</span></span></span></div>\n'}, 
   {"id":"article14_article3_zone2", "type":"image", "areaid":"left", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:381.1659192825112%; height:218.77551020408163%; top:-36.192602040816325%; left:-58.085762331838566%;", "hyperlink":"http://www.google.es"}, {"id":"article14_article3_zone4", "type":"image", "areaid":"center", "body":"http://i13.photobucket.com/albums/a288/inkslinger0611/drawings/Iberian.jpg", "style":"position: relative; width:356.9506726457399%; height:205.30612244897958%; top:-45.36352040816327%; left:-192.75504484304932%;"}, 
   {"id":"article14_article3_zone5", "type":"text", "areaid":"right", "body":'<div class="vish-parent-font2" style="text-align: center; font-weight: normal; ">\n\t<span class="vish-font2 vish-fontHelvetica" style="">During the mating season the female leaves her territory in search of a male. The typical gestation period is about two months; the cubs are born between March and September, with a peak of births in March and April. A litter consists of two or three (rarely one, four or five) kittens weighing between 200 and 250 grams (7.1 and 8.8 oz).The kittens become independent at seven to 10 months old, but remain with the mother until around 20 months old. Survival of the young depends heavily on the availability of prey species. In the wild, both males and females reach sexual maturity at one year old, though in practice they rarely breed until a territory becomes vacant; one female was known not to breed until five years old when its mother died.</span></div>\n'}]}, 
-  {"id":"article14_article4", "type":"standard", "template":"t2", "elements":[{"id":"article14_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID35" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:99.63636363636364%; top:2.2244318181818183%; left:2.3524547353760448%;"}]}]}, {"id":"article10", "type":"standard", "template":"t10", "elements":[{"id":"article10_zone1", 
-  "type":"object", "areaid":"center", "body":'<iframe src="http://serbal.pntic.mec.es/ealg0027/espacostas2e.htm?wmode=opaque" wmode="opaque" id="resizableunicID36" class="t10_object"></iframe>', "style":"position: relative; width:100%; height:100%; top:0%; left:0%;"}]}]};
+  {"id":"article14_article4", "type":"standard", "template":"t2", "elements":[{"id":"article14_article4_zone1", "type":"object", "areaid":"left", "body":'<iframe src="http://www.youtube.com/embed/VAEp2gT-2a8?wmode=opaque" frameborder="0" id="resizableunicID35" class="t2_object" wmode="opaque"></iframe>', "style":"position: relative; width:100%; height:99.63636363636364%; top:2.2244318181818183%; left:2.3524547353760448%;"}]}]}, {"id":"article10", "type":"standard", "template":"t2", "elements":[{"id":"article10_zone1", 
+  "type":"video", "areaid":"left", "poster":"http://vishub.org/videos/325.png?style=170x127%23", "style":"position: relative; width:100%; height:100%; top:0%; left:0.6963788300835655%;", "sources":'[{ "type": "video/webm", "src": "http://vishub.org/videos/325.webm"},{ "type": "video/mp4", "src": "http://vishub.org/videos/325.mp4"},{ "type": "video/flv", "src": "http://vishub.org/videos/325.flv"}]'}]}, {"id":"article11", "type":"standard", "template":"t2", "elements":[{"id":"article11_zone1", "type":"video", 
+  "areaid":"left", "poster":"http://4.bp.blogspot.com/-CfZKEdXcXtg/TijG57sIFWI/AAAAAAAAARQ/O8FP1OQ0a0w/s1600/delfines-saltando.jpg", "style":"position: relative; width:100%; height:100%; top:-0.36363636363636365%; left:1.532033426183844%;", "sources":'[{ "type": "video/webm", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_720p.webm"},{ "type": "video/mp4", "src": "http://media.jilion.com/videos/demo/midnight_sun_sv1_360p.mp4"}]'}]}]};
   return{basic_samples:basic_samples, samplesv01:samplesv01, fc_sample:fc_sample, samples_vtour:samples_vtour, full_samples:full_samples, quiz_samples:quiz_samples, magnetic_gifs:magnetic_gifs, new_wysiwyg:new_wysiwyg, test:test}
 }(VISH);
 VISH.Samples.API = function(V, undefined) {
@@ -15339,7 +15348,8 @@ VISH.Events = function(V, $, undefined) {
     });
     $(document).on("keypress", "#slide-counter-input", function(e) {
       if(e.which == 13) {
-        V.Slides.goToSlide($("#slide-counter-input").val())
+        V.Slides.goToSlide($("#slide-counter-input").val());
+        $("#slide-counter-input").blur()
       }
     });
     $(document).on("click", "#closeButton", function(event) {
@@ -15469,13 +15479,11 @@ VISH.Events = function(V, $, undefined) {
 VISH.Flashcard = function(V, $, undefined) {
   var flashcards;
   var pois;
-  var FPS = 25;
-  var TOTAL_FRAMES = 20;
-  var FRAME_WIDTH = 50;
+  var FPS = 20;
   var init = function(presentation) {
     if(!flashcards) {
-      flashcards = new Array;
-      pois = new Array
+      flashcards = {};
+      pois = {}
     }
   };
   var startAnimation = function(slideId) {
@@ -15491,7 +15499,7 @@ VISH.Flashcard = function(V, $, undefined) {
       flashcards[slideId].timer = undefined
     }
   };
-  var addArrow = function(fcId, poi, sync) {
+  var addArrow = function(fcId, poi) {
     if(!poi || (!poi.x || (!poi.y || (poi.x > 100 || poi.y > 100)))) {
       return
     }
@@ -15505,12 +15513,6 @@ VISH.Flashcard = function(V, $, undefined) {
     }
     var arrow = new Object;
     arrow.id = poiId;
-    if(sync) {
-      arrow.position = 0
-    }else {
-      var rand_pos = Math.floor(Math.random() * TOTAL_FRAMES + 1) * FRAME_WIDTH;
-      arrow.position = rand_pos
-    }
     arrow.slide_id = poi.slide_id;
     arrow.x = poi.x;
     arrow.y = poi.y;
@@ -15525,10 +15527,12 @@ VISH.Flashcard = function(V, $, undefined) {
       return
     }
     $(flashcards[slideId].arrows).each(function(index, value) {
-      var new_pos = (value.position + FRAME_WIDTH) % (TOTAL_FRAMES * FRAME_WIDTH);
-      var arrow_dom_el = $("#" + value.id);
-      $(arrow_dom_el).css("background-position", new_pos + "px" + " 0px");
-      flashcards[slideId].arrows[index].position = new_pos
+      var arrowDOM = $("#" + value.id);
+      var backgroundPosX = $(arrowDOM).cssNumber("background-position-x") + 5;
+      if(backgroundPosX > 95) {
+        backgroundPosX = 0
+      }
+      $(arrowDOM).css("background-position", backgroundPosX + "%" + " center")
     })
   };
   var getPoiData = function(poiId) {
@@ -15537,7 +15541,35 @@ VISH.Flashcard = function(V, $, undefined) {
     }
     return null
   };
-  return{init:init, addArrow:addArrow, startAnimation:startAnimation, stopAnimation:stopAnimation, animateArrows:animateArrows, getPoiData:getPoiData}
+  var aftersetupSize = function(increase, increaseW) {
+    var fcArrowIncrease;
+    if(increase >= 1) {
+      fcArrowIncrease = V.ViewerAdapter.getPonderatedIncrease(increase, 0.1)
+    }else {
+      fcArrowIncrease = V.ViewerAdapter.getPonderatedIncrease(increase, 0.8)
+    }
+    for(var fckey in flashcards) {
+      var fc = flashcards[fckey];
+      var arrows = fc.arrows;
+      $(arrows).each(function(index, arrow) {
+        var orgX = arrow.x * 8;
+        var newWidth = 50 * fcArrowIncrease;
+        var newLeft = increase * orgX + 25 * (increase - fcArrowIncrease);
+        var orgY = arrow.y * 6;
+        var newHeight = 40 * fcArrowIncrease;
+        var newTop = increase * orgY + 40 * 0.8 * (increase - fcArrowIncrease);
+        var arrowDom = $("#" + arrow.id);
+        $(arrowDom).css("left", newLeft + "px");
+        $(arrowDom).width(newWidth + "px");
+        $(arrowDom).css("top", newTop + "px");
+        $(arrowDom).height(newHeight + "px")
+      })
+    }
+  };
+  var getFlashcards = function() {
+    return flashcards
+  };
+  return{init:init, addArrow:addArrow, startAnimation:startAnimation, stopAnimation:stopAnimation, animateArrows:animateArrows, getPoiData:getPoiData, aftersetupSize:aftersetupSize, getFlashcards:getFlashcards}
 }(VISH, jQuery);
 VISH.Quiz = function(V, $, undefined) {
   var quizMode;
@@ -20186,7 +20218,7 @@ VISH.Editor.Renderer = function(V, $, undefined) {
             options["autoplay"] = slide.elements[el].autoplay;
             var sourcesArray = [];
             $.each(JSON.parse(slide.elements[el].sources), function(index, source) {
-              sourcesArray.push([source.src, source.type])
+              sourcesArray.push({"src":source.src, "mimeType":source.type})
             });
             V.Editor.Video.HTML5.drawVideo(sourcesArray, options, area)
           }else {
@@ -21833,12 +21865,19 @@ VISH.Editor.Utils.iso8601Parser = function(V, $, undefined) {
 VISH.Editor.Video.HTML5 = function(V, $, undefined) {
   var init = function() {
   };
-  var drawVideoWithUrl = function(url) {
-    drawVideo([[url, _getVideoType(url)]])
+  var drawVideoWithWrapper = function(videoTag) {
+    var sources = V.VideoPlayer.HTML5.getSources(videoTag);
+    if(sources.length > 0) {
+      var options = {};
+      var video = $(videoTag);
+      if($(video).attr("poster")) {
+        options.poster = $(video).attr("poster")
+      }
+      drawVideo(sources, options)
+    }
   };
-  var _getVideoType = function(url) {
-    var source = V.Object.getObjectInfo(url).source;
-    return"video/" + source.split(".").pop()
+  var drawVideoWithUrl = function(url) {
+    drawVideo([{src:url}])
   };
   var drawVideo = function(sources, options, area, style) {
     var current_area;
@@ -21875,9 +21914,11 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     }
     $(sources).each(function(index, source) {
       var videoSource = document.createElement("source");
-      videoSource.setAttribute("src", source[0]);
-      if(source[1]) {
-        videoSource.setAttribute("type", source[1])
+      videoSource.setAttribute("src", source.src);
+      if(source.mimeType) {
+        videoSource.setAttribute("type", source.mimeType)
+      }else {
+        videoSource.setAttribute("type", V.VideoPlayer.HTML5.getVideoMimeType(source.src))
       }
       $(videoTag).append(videoSource)
     });
@@ -21890,16 +21931,25 @@ VISH.Editor.Video.HTML5 = function(V, $, undefined) {
     $("#" + idToDragAndResize).draggable({cursor:"move"});
     V.Editor.Tools.loadToolsForZone(current_area)
   };
+  var renderVideoFromWrapper = function(videoTag) {
+    var sources = V.VideoPlayer.HTML5.getSources(videoTag);
+    if(sources.length > 0) {
+      return renderVideoFromSources(sources)
+    }
+  };
+  var renderVideoWithURL = function(url) {
+    return renderVideoFromSources([{src:url}])
+  };
   var renderVideoFromSources = function(sources) {
     var posterUrl = V.ImagesPath + "icons/example_poster_image.jpg";
     var rendered = "<video class='objectPreview' preload='metadata' controls='controls' poster='" + posterUrl + "' >";
     $.each(sources, function(index, source) {
-      rendered = rendered + "<source src='" + source + "' " + _getVideoType(source) + ">"
+      rendered = rendered + "<source src='" + source.src + "' " + (typeof source.mimeType == "string" ? source.mimeType : V.VideoPlayer.HTML5.getVideoMimeType(source.src)) + ">"
     });
     rendered = rendered + "</video>";
     return rendered
   };
-  return{init:init, drawVideoWithUrl:drawVideoWithUrl, drawVideo:drawVideo, renderVideoFromSources:renderVideoFromSources}
+  return{init:init, drawVideoWithUrl:drawVideoWithUrl, drawVideo:drawVideo, drawVideoWithWrapper:drawVideoWithWrapper, renderVideoFromWrapper:renderVideoFromWrapper, renderVideoWithURL:renderVideoWithURL, renderVideoFromSources:renderVideoFromSources}
 }(VISH, jQuery);
 VISH.Editor.Video.Repository = function(V, $, undefined) {
   var containerDivId = "tab_video_repo_content";
@@ -22057,7 +22107,7 @@ VISH.Editor.Video.Repository = function(V, $, undefined) {
         sources = JSON.parse(sources)
       }
       $.each(sources, function(index, source) {
-        sourcesArray.push([source.src, source.type])
+        sourcesArray.push({"src":source.src, "mimeType":source.type})
       });
       V.Editor.Video.HTML5.drawVideo(sourcesArray, options);
       $.fancybox.close()
@@ -22629,22 +22679,10 @@ VISH.FullScreen = function(V, $, undefined) {
     }
   };
   var _enableFsEnterButon = function() {
-    $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'vicons/fullscreenback.png")');
-    $("#page-fullscreen").css("background-position", "0px 0px");
-    $("#page-fullscreen").hover(function() {
-      $("#page-fullscreen").css("background-position", "-30px -40px")
-    }, function() {
-      $("#page-fullscreen").css("background-position", "0px 0px")
-    })
+    $("#page-fullscreen").removeClass("fsoff").addClass("fson")
   };
   var _enableFsLeaveButon = function() {
-    $("#page-fullscreen").css("background-image", 'url("' + V.ImagesPath + 'vicons/fullscreen.png")');
-    $("#page-fullscreen").css("background-position", "0px 0px");
-    $("#page-fullscreen").hover(function() {
-      $("#page-fullscreen").css("background-position", "-40px -40px")
-    }, function() {
-      $("#page-fullscreen").css("background-position", "0px 0px")
-    })
+    $("#page-fullscreen").removeClass("fson").addClass("fsoff")
   };
   var _isDocInFullScreen = function(myDoc) {
     if(typeof myDoc.mozFullScreen == "boolean") {
@@ -23302,16 +23340,23 @@ VISH.Object = function(V, $, undefined) {
       var wrapper = element.tagName
     }
     var source = _getSourceFromObject(object, wrapper);
-    var type = _getTypeFromSource(source);
+    var type;
+    switch(wrapper) {
+      case "VIDEO":
+        type = V.Constant.MEDIA.HTML5_VIDEO;
+        break;
+      default:
+        type = _getTypeFromSource(source)
+    }
     return new objectInfo(wrapper, source, type)
   };
   var _getSourceFromObject = function(object, wrapper) {
     switch(wrapper) {
       case null:
         return object;
-      case "EMBED":
+      case V.Constant.WRAPPER.EMBED:
         return $(object).attr("src");
-      case "OBJECT":
+      case V.Constant.WRAPPER.OBJECT:
         if(typeof $(object).attr("src") != "undefined") {
           return $(object).attr("src")
         }
@@ -23319,8 +23364,10 @@ VISH.Object = function(V, $, undefined) {
           return $(object).attr("data")
         }
         return"source not founded";
-      case "IFRAME":
+      case V.Constant.WRAPPER.IFRAME:
         return $(object).attr("src");
+      case V.Constant.WRAPPER.VIDEO:
+        return V.VideoPlayer.HTML5.getSources(object);
       default:
         V.Debugging.log("Unrecognized object wrapper: " + wrapper);
         return null;
@@ -23328,6 +23375,9 @@ VISH.Object = function(V, $, undefined) {
     }
   };
   var _getTypeFromSource = function(source) {
+    if(typeof source == "object" && (typeof source.length == "number" && source.length > 0)) {
+      source = source[0]
+    }
     var http_urls_pattern = /(http(s)?:\/\/)([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
     var www_urls_pattern = /(www[.])([aA-zZ0-9%=_&+?])+([./-][aA-zZ0-9%=_&+?]+)*[/]?/g;
     var youtube_video_pattern = /(http(s)?:\/\/)?(((youtu.be\/)([aA-zZ0-9-]+))|((www.youtube.com\/((watch\?v=)|(embed\/)|(v\/)))([aA-z0-9-Z&=.])+))/g;
@@ -23429,8 +23479,18 @@ VISH.Police = function(V, $, undefined) {
     if(!objectInfo.source || !objectInfo.type) {
       return[false, "Can't recognize object source"]
     }
-    if(objectInfo.source.trim() == "") {
-      return[false, "Object source is an empty string"]
+    if(typeof objectInfo.source == "string") {
+      if(objectInfo.source.trim() == "") {
+        return[false, "Object source is an empty string"]
+      }
+    }else {
+      if(typeof objectInfo.source == "object") {
+        if(objectInfo.source.length < 1) {
+          return[false, "Object source is an empty object"]
+        }
+      }else {
+        return[false, "Invalid object source"]
+      }
     }
     if(typeof callback == "function") {
       _validateUrl(objectInfo.source, callback)
@@ -25527,7 +25587,21 @@ VISH.VideoPlayer.HTML5 = function(V, $, undefined) {
       }
     })
   };
-  return{init:init, setVideoEvents:setVideoEvents, playVideos:playVideos, stopVideos:stopVideos, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, showControls:showControls}
+  var getSources = function(video) {
+    try {
+      return $(video).find("source").map(function() {
+        return{"src":this.src, "mimeType":getVideoMimeType(this.src)}
+      })
+    }catch(e) {
+      return[]
+    }
+    return[]
+  };
+  var getVideoMimeType = function(url) {
+    var source = V.Object.getObjectInfo(url).source;
+    return"video/" + source.split(".").pop()
+  };
+  return{init:init, setVideoEvents:setVideoEvents, playVideos:playVideos, stopVideos:stopVideos, playVideo:playVideo, pauseVideo:pauseVideo, seekVideo:seekVideo, showControls:showControls, getSources:getSources, getVideoMimeType:getVideoMimeType}
 }(VISH, jQuery);
 var youtubePlayers = {};
 var YT = YT || {};
@@ -25988,19 +26062,21 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     _setupSize()
   };
   var _setupSize = function() {
-    var reserved_px_for_menubar = _getDesiredVieweBarHeight(_lastHeight);
+    var viewbarHeight;
     var min_margin_height = 25;
     var min_margin_width = 60;
     if(!_showViewbar) {
-      reserved_px_for_menubar = 0;
+      viewbarHeight = 0;
       min_margin_height = 0;
       min_margin_width = 0
     }else {
       if(V.Status.getIsPreviewInsertMode()) {
-        reserved_px_for_menubar = 120
+        viewbarHeight = 120
+      }else {
+        viewbarHeight = _getDesiredVieweBarHeight(_lastHeight)
       }
     }
-    var height = _lastHeight - reserved_px_for_menubar;
+    var height = _lastHeight - viewbarHeight;
     var width = _lastWidth;
     var finalW = 800;
     var finalH = 600;
@@ -26029,15 +26105,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
       }
     }
     $(".vish_arrow").width(finalWidthMargin / 2 * 0.9);
-    if(!V.Status.getIsPreviewInsertMode()) {
-      $("#viewbar").height(reserved_px_for_menubar)
+    if(_showViewbar && !V.Status.getIsPreviewInsertMode()) {
+      $("#viewbar").height(viewbarHeight)
     }
     var topSlides = $(".slides > article");
     var subSlides = $(".slides > article > article");
     var allSlides = $(".slides article");
     $(allSlides).css("height", finalH);
     $(allSlides).css("width", finalW);
-    var marginTop = finalH / 2 + reserved_px_for_menubar / 2;
+    var marginTop = finalH / 2 + viewbarHeight / 2;
     var marginLeft = finalW / 2;
     $(topSlides).css("margin-top", "-" + marginTop + "px");
     $(subSlides).css("margin-top", "-" + finalH / 2 + "px");
@@ -26052,10 +26128,32 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     $(allSlides).css("padding-right", paddingLeftAndRight);
     $(allSlides).css("padding-top", paddingTopAndBottom);
     $(allSlides).css("padding-bottom", paddingTopAndBottom);
-    $(".fc_poi img").css("width", 50 * increase + "px");
-    $(".fc_poi img").css("height", 50 * increase + "px");
+    var _closeButtonDimension = 23;
+    if(increase <= 1) {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.7)
+    }else {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.2)
+    }
+    $("div.close_subslide").css("width", _closeButtonDimension + "px");
+    $("div.close_subslide").css("height", _closeButtonDimension + "px");
+    if(_showViewbar) {
+      $("#page-switcher-start").width($("#page-switcher-start").height());
+      $("#page-switcher-end").width($("#page-switcher-end").height());
+      $("#page-fullscreen").width($("#page-fullscreen").height());
+      if(V.Status.getIsPreviewInsertMode()) {
+        viewbarHeight = $("#viewbar").height()
+      }
+      var menubarIncreaseFactor = viewbarHeight / 40;
+      var slideCounterFontSize = 14 * getPonderatedIncrease(menubarIncreaseFactor, 0.5);
+      $("#slide-counter-span, #slide-counter-input").css("font-size", slideCounterFontSize + "px");
+      $("#slide-counter-input").width(24 * getPonderatedIncrease(menubarIncreaseFactor, 1));
+      var slideCounterMarginTop = (viewbarHeight - $("#slide-counter-div").height()) / 2;
+      $("#slide-counter-div").css("margin-top", slideCounterMarginTop + "px");
+      $("#embedWatermark").width($("#embedWatermark").height() * 2.7)
+    }
+    V.Flashcard.aftersetupSize(increase, increaseW);
     decideIfPageSwitcher();
-    updateFancyboxAfterSetupSize();
+    updateFancyboxAfterSetupSize(increase, increaseW);
     V.Text.aftersetupSize(increase, increaseW);
     V.SnapshotPlayer.aftersetupSize(increase, increaseW);
     V.ObjectPlayer.aftersetupSize(increase, increaseW);
@@ -26064,16 +26162,18 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     V.Recommendations.aftersetupSize(increase, increaseW)
   };
   var _getDesiredVieweBarHeight = function(windowHeight) {
-    var minimumViewBarHeight = 20;
+    var minimumViewBarHeight = 26;
     var maxViewBarHeight = 40;
-    var viewBarHeight = 40;
+    var estimatedIncrease = windowHeight / 600;
+    var viewBarHeight = 40 * getPonderatedIncrease(estimatedIncrease, 0.7);
     return Math.min(Math.max(viewBarHeight, minimumViewBarHeight), maxViewBarHeight)
   };
-  var updateFancyboxAfterSetupSize = function() {
+  var updateFancyboxAfterSetupSize = function(increase, increaseW) {
     var fOverlay = $("#fancybox-overlay");
     if($(fOverlay).length < 1 || !$(fOverlay).is(":visible")) {
       return
     }
+    increase = typeof increase == "number" ? increase : V.ViewerAdapter.getLastIncrease()[0];
     var fwrap = $("#fancybox-wrap");
     var fcontent = $("#fancybox-content");
     var fccontentDivs = $("#" + $(fcontent).attr("id") + " > div");
@@ -26081,8 +26181,15 @@ VISH.ViewerAdapter = function(V, $, undefined) {
     var paddingTop = $(currentSlide).cssNumber("padding-top");
     var paddingLeft = $(currentSlide).cssNumber("padding-left");
     var offset = $(currentSlide).offset();
+    var _closeButtonDimension = 23;
+    if(increase <= 1) {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.7)
+    }else {
+      _closeButtonDimension = _closeButtonDimension * getPonderatedIncrease(increase, 0.2)
+    }
     var fcClose = $("#fancybox-close");
-    $(fcClose).height("22px");
+    $(fcClose).width(_closeButtonDimension + "px");
+    $(fcClose).height(_closeButtonDimension + "px");
     $(fcClose).css("padding", "10px");
     $(fcClose).css("padding-left", "4px");
     $(fwrap).css("margin-top", "0px");
@@ -26103,7 +26210,11 @@ VISH.ViewerAdapter = function(V, $, undefined) {
   var getLastIncrease = function() {
     return[_lastIncrease, _lastIncreaseW]
   };
-  return{init:init, updateInterface:updateInterface, decideIfPageSwitcher:decideIfPageSwitcher, decideIfCloseButton:decideIfCloseButton, updateFancyboxAfterSetupSize:updateFancyboxAfterSetupSize, getLastIncrease:getLastIncrease}
+  var getPonderatedIncrease = function(increase, pFactor) {
+    var diff = (increase - 1) * pFactor;
+    return 1 + diff
+  };
+  return{init:init, updateInterface:updateInterface, decideIfPageSwitcher:decideIfPageSwitcher, decideIfCloseButton:decideIfCloseButton, updateFancyboxAfterSetupSize:updateFancyboxAfterSetupSize, getPonderatedIncrease:getPonderatedIncrease, getLastIncrease:getLastIncrease}
 }(VISH, jQuery);
 VISH.VirtualTour = function(V, $, undefined) {
   var virtualTours;
