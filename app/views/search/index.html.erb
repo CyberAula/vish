@@ -3,6 +3,9 @@
     <div class="tabbable">
       <ul class="nav nav-tabs">
         <%if params[:browse]%>
+          <%content_for :title do%>
+            <%= t("browse.title")%>
+          <%end%>
           <li><h1><i class="icon-browse"></i><%= t("browse.title")%></h1></li>          
         <%else%>
           <li><h1><i class="icon-search"></i><%= t("search.search")%></h1></li>
