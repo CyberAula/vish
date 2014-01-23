@@ -241,7 +241,12 @@ es:
       info8_html: "8. Finalmente, haga click en el botón <b> guardar </b>para actualizar su recurso."
       home1_html: "Esta zona muestra las excursiones creadas por los usuarios a los que <a href='http://vishub.org/search?type=user'>sigues.</a>"
       cat1_html: "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
-      cat2_html: "2. Después, haga click en el botón <b> guardar </b>para crear su nueva categoría."
+      cat2_html: "2. Después, haga click en el botón <b> guardar </b>para crear su nueva categoría.<br>"
+      event1_html : "1. Escriba un <b>título</b> y una <b>descripción</b>.<br>"
+      event2_html : "2. Escoja entre el tipo de evento: Videoconferencia o Streaming.<i>Si escojes streaming deberas añadir el embed con el codigo que emita la señal de video</i><br>"
+      event3_html : "3. Seleccione la fecha en la que se va realizar el evento.<br>"
+      event4_html : "4. Seleccione la fecha de inicio y la finalización (puede ser aproximada)de este.<br>"
+      event5_html : "5. Finalmente, haga click en el botón <b> guardar </b>para publicar el evento."
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"
