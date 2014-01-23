@@ -8,6 +8,9 @@
           <%end%>
           <li><h1><i class="icon-browse"></i><%= t("browse.title")%></h1></li>          
         <%else%>
+          <%content_for :title do%>
+            <%= t("search.search")%>
+          <%end%>
           <li><h1><i class="icon-search"></i><%= t("search.search")%></h1></li>
         <%end%>
           <li class="all_results <%= 'active' if params[:type].blank? %>">        
