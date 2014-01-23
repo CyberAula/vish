@@ -240,8 +240,8 @@ en:
       cat2_html: "2. Then, click on <b> save </b> button to create your new category."
       event1_html : "1. Type a <b>title</b> and <b>description</b>.<br>"
       event2_html : "2. Choose the type of event: Videoconference or Streaming.<i>If your choice is streaming, you should add the embed code of the stream.</i><br>"
-      event3_html : "3. Pick a date for the event.<br>"
-      event4_html : "4. Define the start time and the end (approximately) of it.<br>"
+      event3_html : "3. Pick a date for the event by clicking in the calendar icon.<br>"
+      event4_html : "4. Define the start time and the end (approximately) of it by clicking the clock icons..<br>"
       event5_html : "5. Finally, click on <b> save </b> button to publish your event."
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"  
