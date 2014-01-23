@@ -681,8 +681,10 @@ en:
     name: "Virtual Science Hub"
   spam:
     error_content: "There is an error in the excursion"
+    error_content_resource: "There is an error in the resource"
     placeholder: "What is the issue?"
     report_excursion: "Report excursion"
+    report_resource: "Report resource"
     spam_content: "Spam or inappropriate content"
     success: "We have received your report. We will take a look at it very shortly. Thank you"
   swf:

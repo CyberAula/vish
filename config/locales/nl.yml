@@ -716,8 +716,10 @@ nl:
     name: "Virtual Science Hub"
   spam:
     error_content: "Er is een fout opgetreden in de excursie"
+    error_content_resource: "Er is een fout opgetreden in de Hulpbron"
     placeholder: "Wat is het punt?"
     report_excursion: "Excursie melden"
+    report_resource: "Hulpbron melden"
     spam_content: "Spam of ongepaste inhoud"
     success: "We hebben uw melding ontvangen. We zullen die zeer spoedig bekijken. Dank u"
   top10: "Top 10"

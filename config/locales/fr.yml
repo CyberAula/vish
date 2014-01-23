@@ -703,8 +703,10 @@ fr:
       title: "Plateforme virtuelle des sciences"
   spam:
     error_content: "Une erreur a été détectée dans l'excursion."
+    error_content_resource: "Une erreur a été détectée dans l'ressource."
     placeholder: "Quel est le problème ?"
     report_excursion: "Signaler l'excursion"
+    report_resource: "Rapport ressources"
     spam_content: "Courrier indésirable ou contenu inapproprié"
     success: "Nous avons reçu votre rapport. Nous l'examinerons très prochainement. Merci"
   top10: "Top 10"

@@ -88,6 +88,10 @@
     <li>
       <a href="#tab3" data-toggle="tab">
         <i class="icon-flag"></i> 
+          <span class=" hidden-tablet hidden-phone">
+            <%=t('excursion.actions.spam')%>
+          </span>
+
         <!--span class=" hidden-tablet hidden-phone">
           <%#=t('excursion.actions.scorm')%>
         </span-->
@@ -133,9 +137,9 @@
   <%end%>
 
     <!-- tab5 / scorm -->
-  <div class="tab-pane" id="tab5">
+  <div class="tab-pane" id="tab3">
     <div class="contentReport">
-      <dt><%=t('spam.report_excursion')%></dt>
+      <dt><%=t('spam.report_resource')%></dt>
 
       <%= form_tag spam_report_path, method: 'post', class: "" do %>
         <%=hidden_field_tag "activity_object_id", document.activity_object_id%>
@@ -144,7 +148,7 @@
           <%=text_area_tag 'comment_spam', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
         </div>
         <div class="radio">
-          <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content')%>
+          <%=radio_button_tag 'option', "1", false, class: "spam_radio"%><%=t('spam.error_content_resource')%>
           <%=text_area_tag 'comment_error', nil, rows: 2, style: "display:none", class: 'textarea_spam report', :placeholder => t('spam.placeholder')%>
         </div>
         <button class="report btn btn-primary"> <%=t('send.send')%></button>
