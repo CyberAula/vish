@@ -1,7 +1,0 @@
-  <% unless [Embed, Document, Link, Excursion].drop_while{ |i| !activity.direct_object.is_a? i }.empty? %>
-    <% unless activity.direct_object.is_a? Link %>
-      <span class="green"><%=activity.direct_object.visit_count.to_s%></span> <%= t("follow.views") %> / 
-    <% end %>
-    <span class="green like_count_<%= dom_id(activity) %>"><%= activity.likes.count.to_s %></span>
-    <div class="verb_like" id="like_<%= dom_id(activity) %>"><%= link_like(activity)%></div>
-  <% end %>

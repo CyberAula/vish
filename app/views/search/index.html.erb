@@ -2,11 +2,20 @@
   <div class="search">
     <div class="tabbable">
       <ul class="nav nav-tabs">
-        <!--li><h1>search</h1></li-->
-        <li><h1><i class="icon-search"></i><%= t("search.search")%></h1></li>
-        <li class="all_results <%= 'active' if params[:type].blank? %>">
-          <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
-        </li>
+        <%if params[:browse]%>
+          <%content_for :title do%>
+            <%= t("browse.title")%>
+          <%end%>
+          <li><h1><i class="icon-browse"></i><%= t("browse.title")%></h1></li>          
+        <%else%>
+          <%content_for :title do%>
+            <%= t("search.search")%>
+          <%end%>
+          <li><h1><i class="icon-search"></i><%= t("search.search")%></h1></li>
+        <%end%>
+          <li class="all_results <%= 'active' if params[:type].blank? %>">        
+            <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
+          </li>
         <% SocialStream::Search.keys(:extended).each do |key| %>
           <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
         <% end %>
