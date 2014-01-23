@@ -1,8 +1,0 @@
-<% unless @link.nil? %>
-  <% if @link.callback_url.blank? %>
-    window.location = <%= @link.url %>
-  <% else %>
-    SocialStream.Linkser.Wall.openCallback("link-modal-body-<%= @link.id.to_s %>", "<%= @link.callback_url %>", "<%= @link.width %>", "<%= @link.height %>");
-  <% end %>
-<% end %>
-

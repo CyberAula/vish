@@ -1,4 +1,0 @@
-<% @profile = subject.profile %>
-<% if (user_signed_in? and current_subject == subject) or (not is_personal_empty?) or (not is_contact_empty?) or (subject.tag_list.count > 0) %>
-  	<%= link_to(raw("<i class='icontool16-tool16_info'></i> ")+t('profile.one'), [subject, :profile],:class => "btn-gray toolbar-btn") %>
-<% end %>

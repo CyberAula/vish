@@ -1,9 +1,0 @@
-<% case params[:active_tab] %>
-<%  when 'net' then %>
-  $('#net_load_more_button').remove();
-  $('#wall').append("<%= escape_javascript render(:partial => 'activities/timeline', :locals => { :activities => @user.wall(:home).page(params[:page_net]), :is_active_wall => true }) %>");
-<%  when 'me' then %>
-  $('#me_load_more_button').remove();
-  $('#wall-me').append("<%= escape_javascript render(:partial => 'activities/timeline_me', :locals => { :activities => @user.wall(:profile, :for => @user).page(params[:page_me]), :is_active_wall => true }) %>");
-<% end %>
-

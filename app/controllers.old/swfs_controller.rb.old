@@ -1,2 +1,0 @@
-class SwfsController < DocumentsController
-end
