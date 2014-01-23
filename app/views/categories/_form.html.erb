@@ -22,12 +22,12 @@
      <div class="modal-footer">      
       <input type="button" class='helpCategories btn' data-placement='top' aria-hidden="false" data-original-title="¿Como creo una categoría?" href='#' value="?"/>
 
-      <div class="contentHelpCategories" style="display: none">
-        <div>
+    <div class="contenthelpCategories" style="display: none">
+      <div>
           <%= t('document.help.cat1_html')%>  <br/>
-          <%= t('document.help.cat2html')%>
-        </div>
+          <%= t('document.help.cat2_html')%>
       </div>
+    </div>
 
       <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
       <!--<b id="foo" rel="popover">Ayuda </b>-->
@@ -38,14 +38,7 @@
 </div>
 
 <script>
-  $(document).ready(function(){
-    $('.helpCategories').popover({ 
-      html : true,
-      content: function() {
-        return $('.contentHelpCategories').html();
-      }
-    });
-  });
+
 
   $('#AddCategoryHeader .new_category').bind('ajax:success', function(evt, data, status, xhr){
     $('#AddCategoryHeader').modal('hide');
@@ -75,4 +68,15 @@
       $(saveCategoryButton).click();
     }
   });
+</script>
+
+<script>
+$(document).ready(function(){
+  $('.helpCategories').popover({ 
+    html : true,
+    content: function() {
+      return $('.contenthelpCategories').html();
+    }
+  });
+});
 </script>
