@@ -121,7 +121,7 @@
       <p><%=t("document.embed_explanation")%></p>      
       <div class="contentembed">
           <textarea class="shortUrl" readonly="true" rows="5" id="textarea_for_iframe" type="text">
-            &lt;video preload="metadata" poster="<%=video_url(document, :format => :png, :style => '170x127#')%>"&gt;&lt;source src="<%= video_url(document, :format => :webm) %>" type="video/webm"&gt;&lt;source src="<%= video_url(document, :format => :mp4) %>" type="document/mp4"&gt;&lt;source src="<%= video_url(document, :format => :flv) %>" type="video/x-flv"&gt;&lt;p&gt;Your browser does not support HTML5 video.&lt;/p&gt;&lt;/video&gt;
+            &lt;video preload="metadata" poster="<%=video_url(document, :format => :png, :style => '170x127#')%>"&gt;&lt;source src="<%= video_url(document, :format => :webm) %>" type="video/webm"&gt;&lt;source src="<%= video_url(document, :format => :mp4) %>" type="video/mp4"&gt;&lt;source src="<%= video_url(document, :format => :flv) %>" type="video/x-flv"&gt;&lt;p&gt;Your browser does not support HTML5 video.&lt;/p&gt;&lt;/video&gt;
           </textarea>
 
           <button class="btn " id="btn_copy_embed" href="#" data-toggle="tooltip" data-placement="right" title="<%=t('copy_to_clip')%>">
