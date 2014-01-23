@@ -4,12 +4,12 @@
       <ul class="nav nav-tabs">
         <%if params[:browse]%>
           <%content_for :title do%>
-            <%= t("browse.title")%>
+            <%= t("site.current.browse")%>
           <%end%>
-          <li><h1><i class="icon-browse"></i><%= t("browse.title")%></h1></li>          
+          <li><h1><i class="icon-folder-open"></i><%= t("browse.title")%></h1></li>          
         <%else%>
           <%content_for :title do%>
-            <%= t("search.search")%>
+            <%= t("site.current.search")%>
           <%end%>
           <li><h1><i class="icon-search"></i><%= t("search.search")%></h1></li>
         <%end%>

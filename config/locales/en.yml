@@ -236,6 +236,8 @@ en:
       info7_html: "7. If you want to embed a live streaming video, click on <b>Live</b> option.<br>"
       info8_html: "8. Finally, click on <b> save </b> button to upload your resource."
       home1_html: "This zone show the excursions created by people you are <a href=\"%{{profile}}\">following.</a>"
+      cat1_html: "1. Type a <b>title</b> and <b>description</b>.<br>"
+      cat2_html: "2. Then, click on <b> save </b> button to create your new category."
     helpquiz:
       info1_html: "1. Help test 1 for the quiz<br>"  
     how: "How to share a resource"
@@ -678,6 +680,10 @@ en:
       description: "A meeting point for scientists and teachers based around the idea of virtual excursions"
       keywords: "VisHub,virtual,excursion"
       title: "Virtual Science Hub"
+      search: "Virtual Science Hub - Search"
+      browse: "Virtual Science Hub - Explore"
+      msg: "Virtual Science Hub - Messages"
+      activity: "Virtual Science Hub - Activities"
     name: "Virtual Science Hub"
   spam:
     error_content: "There is an error in the excursion"
