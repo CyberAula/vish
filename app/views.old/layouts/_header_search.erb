@@ -1,7 +1,0 @@
-<% if request.format == :mobile and controller.class == FrontpageController %>
-  <%= render :partial => 'layouts/header_mobile_frontpage' %>
-<% elsif user_signed_in? %>
-  <%= render :partial => 'layouts/header_signed_in' %>
-<% else %>
-  <%= render :partial => 'layouts/header_signed_out_search' %>
-<% end %> 

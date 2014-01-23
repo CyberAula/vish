@@ -1,8 +1,0 @@
-<% case params[:active_tab] %>
-<%  when 'net' then %>
-<%  when 'activities-me' then %>
-  $('#me_load_more_button').remove();
-  <% self.formats = [:mobile] %>
-  $('#wall-me').append("<%= escape_javascript render(:partial => 'activities/wall_me', :locals => { :activities => @user.wall(:profile, :for => @user).page(params[:page_me]), :is_active_wall => true }) %>");
-<% end %>
-
