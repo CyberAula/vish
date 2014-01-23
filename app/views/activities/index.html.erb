@@ -3,3 +3,7 @@
              :locals => { section: :home,
                           owner: current_subject } %>
 </div>
+
+          <%content_for :title do%>
+            <%= t("site.current.activity")%>
+          <%end%>
