@@ -36,7 +36,7 @@ SocialStream::Documents.setup do |config|
      :flv  => { :format => 'flv',
                 :convert_options => { :output => {:ar =>'22050'}}
               },
-     :mp4  => { :format => 'mp4' },
+     :mp4  => { :format => 'mp4', :streaming => true},
      :"170x127#" => { :geometry => "170x127#", :format => 'png', :time => 4 }
    }
 
@@ -66,5 +66,6 @@ SocialStream::Documents.setup do |config|
 
   config.subtype_classes_mime_types[:officedoc]= [:odt, :odp, :ods, :doc, :ppt, :xls, :rtf, :pdf]
   config.subtype_classes_mime_types[:video] = [ :flv, :webm, :mp4, :mpeg, :mov, :wmv, :m4v, :ogv, :gpp, :gpp2 ]
+  config.subtype_classes_mime_types[:audio] = [ :aac, :gppa, :gpa, :wav, :ogg, :webma, :mp3 ]
   config.subtype_classes_mime_types[:swf] = [:swf]
 end
