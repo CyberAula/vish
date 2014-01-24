@@ -247,6 +247,8 @@ es:
       event3_html : "3. Seleccione la fecha en la que se va realizar el evento haciendo click en el icono de calendario.<br>"
       event4_html : "4. Seleccione la fecha de inicio y la finalización (puede ser aproximada)de este haciendo click en los iconos de los relojes.<br>"
       event5_html : "5. Finalmente, haga click en el botón <b> guardar </b>para publicar el evento."
+      exse_html : "Esta zona permite acceder a todo el contenido de la plataforma de una manera concreta (<a href='http://vishub.org/search'>Busqueda</a>) o general (<a href='http://vishub.org/search?browse=true'>Explorar</a>)."
+      exseti_html : "Explorar / Buscar"
     helpquiz:
       info1_html: "1. Prueba de ayuda 1 para el cuestionario<br>" 
     how: "Cómo compartir un recurso"
