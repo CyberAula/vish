@@ -20,7 +20,7 @@
       display: block
       float: left
       background: rgba(255, 255, 255, 0.5)
-      padding: 2%
+      padding: 1.5%
       width: 96% !important
       @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
       .avatar
@@ -71,10 +71,10 @@
         .recomended
           .recomended-items
             ul
-              @include grid-fluid-span(10, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include grid-fluid-span(11, $fluidGridColumnWidth, $fluidGridGutterWidth)
               clear: both
               display: block
-              margin: 5px auto 10px
+              margin: 16px auto 10px
               height: 90px
               p.info_action
                 @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
@@ -90,9 +90,10 @@
           margin: 10px auto 10px
           margin-top: 3% !important
           .post_time_ago
-            float: left
+            float: right
             color: $grayLight
             font-style: italic
+            margin-bottom: -1%
           .to_comment
             float: right
             margin-right: 20px
@@ -131,6 +132,8 @@
   .media
     border: 1px solid #ddd
     overflow: visible
+    margin-top: 5px
+    margin-bottom: 10px
     display: block
     float: left
     background: rgba(255, 255, 255, 0.5)
@@ -170,12 +173,15 @@
         .comment
           font-size: 13px
           font-style: italic
-          margin-top: 1%
-          margin-left: 2%
+          margin-top: -1%
+          margin-left: 6%
+          margin-bottom: -3%
       .actions
         margin-top: -8px !important
         width: 100% !important
         font-size: 10px
+        .post_time_ago
+          float: right
         .to_like
           float: left
           visibility: hidden
