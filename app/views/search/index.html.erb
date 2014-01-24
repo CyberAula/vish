@@ -11,7 +11,7 @@
           <%content_for :title do%>
             <%= t("site.current.search")%>
           <%end%>
-          <li><h1><i class="icon-search"></i><%= t("search.search")%></h1></li>
+          <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
         <%end%>
           <li class="all_results <%= 'active' if params[:type].blank? %>">        
             <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
@@ -20,7 +20,7 @@
           <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
         <% end %>
               <li class="helpheader">   
-          <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.exseti_html')%>" href='#' value="?"/>
+          <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.exse2_html')%>" href='#' value="?"/>
 
             <div class="contenthome" style="display: none">
               <div>
@@ -128,16 +128,16 @@
       <%if params[:type]%>
         //if "popular" links used, the tabs are links to other "popular" searches
         $("#search .all_results").click(function(){
-          window.location.href = '<%=search_path(:browse=>true)%>';
+          window.location.href = '<%=search_path()%>';
         });
         $("#search .excursion").click(function(){
-          window.location.href = '<%=search_path(:type => "excursion", :browse=>true)%>';
+          window.location.href = '<%=search_path(:type => "excursion")%>';
         });
         $("#search .user").click(function(){
-          window.location.href = '<%=search_path(:type => "user", :browse=>true)%>';
+          window.location.href = '<%=search_path(:type => "user")%>';
         });
         $("#search .resource").click(function(){
-          window.location.href = '<%=search_path(:type => "resource", :browse=>true)%>';
+          window.location.href = '<%=search_path(:type => "resource")%>';
         });
       <%else%>
         //if search is manual, the tabs are like filters, so done with js
