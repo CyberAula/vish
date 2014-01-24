@@ -9,11 +9,16 @@ Disallow: /search
 Disallow: /excursions/new
 Disallow: /*/*/profile
 Disallow: /categories
+Disallow: /users/*/followings
+Disallow: /users/*/followers
 
 user-agent: AhrefsBot
 disallow: /excursions/new
 disallow: /search
 Disallow: /*/*/profile
+Disallow: /categories
+Disallow: /users/*/followings
+Disallow: /users/*/followers
 
 User-agent: Ezooms
 Disallow: /
