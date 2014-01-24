@@ -19,6 +19,15 @@
         <% SocialStream::Search.keys(:extended).each do |key| %>
           <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
         <% end %>
+              <li class="helpheader">   
+          <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.exseti_html')%>" href='#' value="?"/>
+
+            <div class="contenthome" style="display: none">
+              <div>
+                <%= t('document.help.exse_html')%>
+              </div>
+            </div>
+     </li>
       </ul>
       <!--form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
         <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
@@ -178,6 +187,16 @@
     <% end %>
   </div>
 
+<script>
+$(document).ready(function(){
+  $('.helphome').popover({ 
+    html : true,
+    content: function() {
+      return $('.contenthome').html();
+    }
+  });
+});
+</script>
 
 <script src="js/classie.js"></script>
 <script>
@@ -205,4 +224,6 @@
   });
 </script>
 </section>
+
+
 
