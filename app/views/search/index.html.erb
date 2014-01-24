@@ -119,16 +119,16 @@
       <%if params[:type]%>
         //if "popular" links used, the tabs are links to other "popular" searches
         $("#search .all_results").click(function(){
-          window.location.href = '<%=search_path()%>';
+          window.location.href = '<%=search_path(:browse=>true)%>';
         });
         $("#search .excursion").click(function(){
-          window.location.href = '<%=search_path(:type => "excursion")%>';
+          window.location.href = '<%=search_path(:type => "excursion", :browse=>true)%>';
         });
         $("#search .user").click(function(){
-          window.location.href = '<%=search_path(:type => "user")%>';
+          window.location.href = '<%=search_path(:type => "user", :browse=>true)%>';
         });
         $("#search .resource").click(function(){
-          window.location.href = '<%=search_path(:type => "resource")%>';
+          window.location.href = '<%=search_path(:type => "resource", :browse=>true)%>';
         });
       <%else%>
         //if search is manual, the tabs are like filters, so done with js
