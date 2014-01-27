@@ -1,288 +1,500 @@
 
-#excursions,
-#resources,
-#categories,
-#events,
-#new,
-#activity,
-#search-all,
-.info-profile
-  ul
-    margin: 0
-    li.box-item:hover
-      text-decoration: none
-      box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
-      transform: scale(1.05)
-      -ms-transform: scale(1.05)
-      -webkit-transform: scale(1.05)
-      transition: all 0.2s ease 0s
-      -ms-transition: all 0.2s ease 0s
-      -webkit-transition: all 0.2s ease 0s
+@media (min-width: 501px) 
+  #excursions,
+  #resources,
+  #categories,
+  #events,
+  #new,
+  #activity,
+  #search-all,
+  .info-profile
+    ul
+      margin: 0
+      li.box-item:hover
+        text-decoration: none
+        box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
+        transform: scale(1.05)
+        -ms-transform: scale(1.05)
+        -webkit-transform: scale(1.05)
+        transition: all 0.2s ease 0s
+        -ms-transition: all 0.2s ease 0s
+        -webkit-transition: all 0.2s ease 0s
 
-    li.box-item
-      //animation: 0.8s ease-out 0s normal none 1 zemslideup, 1s ease-out 0s normal none 1 zemfadein
-      position: relative
-      float: left
-      overflow: inherit
-      list-style: none
-      background-color: $white
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
-      @include border-radius($baseBorderRadius)
-      //BAGDE EXCURSION
-      .badge-excursion-active
-        position: absolute
-        top: 15px
-        left: -15px
-        z-index: 10
-        background-image: url(" badges/excursionofthemonth.png" )
-        height: 110px
-        width: 75px
-        pointer-events: none
-
-      // IMG BOX
-      .container-img
-        display: inline-block
+      li.box-item
+        //animation: 0.8s ease-out 0s normal none 1 zemslideup, 1s ease-out 0s normal none 1 zemfadein
         position: relative
-        width: 100%
-        .dummy
-          padding-top: 75% /* 4:3 aspect ratio */
-        .element
+        float: left
+        overflow: inherit
+        list-style: none
+        background-color: $white
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
+        @include border-radius($baseBorderRadius)
+        //BAGDE EXCURSION
+        .badge-excursion-active
           position: absolute
-          top: 0
-          bottom: 0
-          left: 0
-          right: 0
-          overflow: hidden
-          text-align: center
-          width: 100%
-          @include border-top-radius($baseBorderRadius)
-          .img-box
-            width: 100%
-            padding-bottom: 75%
-            float: left
-            img
-              float: left
-              width: 100%
-              height: 100%
-          i
-            font-size: 70px
-            color: $secondColor
-            &:hover
-              text-decoration: none
+          top: 15px
+          left: -15px
+          z-index: 10
+          background-image: url(" badges/excursionofthemonth.png" )
+          height: 110px
+          width: 75px
+          pointer-events: none
 
-        .resource-center
-          i
-            padding-top: 20% 
-            display: block
-          i.icon-picture,
-          i.icon-facetime-video
-            padding-top: 0
-            position: absolute
-            top: 5px
-            right: 10px
-            z-index: 2
-            color: $white
-            font-size: 20px
-            text-shadow: $black 0.1em 0.1em 0.2em
-
-      //RESOURCES
-      .event-img,
-      .vish_picture_thumbnail
-        width: 100%
-        height: 100%
-      .resource,
-      .category
-        img
-          margin-top: -25%
-          min-width: 125%
-          min-height: 250%
-        i
-          margin-top: 2%
-        .category_thumb_0
-          width: 47.5%
-          height: 66px
-          border: 2px solid #fff
-          display: block
-          float: left
-          position: static
-          overflow: hidden
-          background: #007cc8
-          -webkit-border-radius: 5px
-          -moz-border-radius: 5px
-          border-radius: 5px
-        .category_thumb_1
-          width: 47.5%
-          height: 66px
-          border: 2px solid #fff
-          display: block
-          float: left
-          position: static
-          overflow: hidden
-          background: #007cc8
-          -webkit-border-radius: 5px
-          -moz-border-radius: 5px
-          border-radius: 5px
-        .category_thumb_2
-          width: 47.5%
-          height: 66px
-          border: 2px solid #fff
-          display: block
-          float: left
-          position: static
-          overflow: hidden
-          background: #007cc8
-          -webkit-border-radius: 5px
-          -moz-border-radius: 5px
-          border-radius: 5px
-        .category_thumb_3
-          width: 47.5%
-          height: 66px
-          border: 2px solid #fff
-          display: block
-          float: left
-          position: static
-          overflow: hidden
-          background: #007cc8
-          -webkit-border-radius: 5px
-          -moz-border-radius: 5px
-          border-radius: 5px
+        // IMG BOX
         .container-img
-          padding-bottom: 0.3%
           display: inline-block
           position: relative
           width: 100%
-          padding: 10%
-          background-color: #007cc8
-          .info
-            height: 75px
+          .dummy
+            padding-top: 75% /* 4:3 aspect ratio */
+          .element
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            overflow: hidden
+            text-align: center
+            width: 100%
+            @include border-top-radius($baseBorderRadius)
+            .img-box
+              width: 100%
+              padding-bottom: 75%
+              float: left
+              img
+                float: left
+                width: 100%
+                height: 100%
+            i
+              font-size: 70px
+              color: $secondColor
+              &:hover
+                text-decoration: none
+
+          .resource-center
+            i
+              padding-top: 20% 
+              display: block
+            i.icon-picture,
+            i.icon-facetime-video
+              padding-top: 0
+              position: absolute
+              top: 5px
+              right: 10px
+              z-index: 2
+              color: $white
+              font-size: 20px
+              text-shadow: $black 0.1em 0.1em 0.2em
+
+        //RESOURCES
+        .event-img,
+        .vish_picture_thumbnail
+          width: 100%
+          height: 100%
+        .resource,
+        .category
+          img
+            margin-top: -25%
+            min-width: 125%
+            min-height: 250%
           i
-            color: #fff !important
-            font-size: 2.3em
-            margin-left: -21%
-      .event
-        width: 100%
+            margin-top: 2%
+          .category_thumb_0
+            width: 47.5%
+            height: 66px
+            border: 2px solid #fff
+            display: block
+            float: left
+            position: static
+            overflow: hidden
+            background: #007cc8
+            -webkit-border-radius: 5px
+            -moz-border-radius: 5px
+            border-radius: 5px
+          .category_thumb_1
+            width: 47.5%
+            height: 66px
+            border: 2px solid #fff
+            display: block
+            float: left
+            position: static
+            overflow: hidden
+            background: #007cc8
+            -webkit-border-radius: 5px
+            -moz-border-radius: 5px
+            border-radius: 5px
+          .category_thumb_2
+            width: 47.5%
+            height: 66px
+            border: 2px solid #fff
+            display: block
+            float: left
+            position: static
+            overflow: hidden
+            background: #007cc8
+            -webkit-border-radius: 5px
+            -moz-border-radius: 5px
+            border-radius: 5px
+          .category_thumb_3
+            width: 47.5%
+            height: 66px
+            border: 2px solid #fff
+            display: block
+            float: left
+            position: static
+            overflow: hidden
+            background: #007cc8
+            -webkit-border-radius: 5px
+            -moz-border-radius: 5px
+            border-radius: 5px
+          .container-img
+            padding-bottom: 0.3%
+            display: inline-block
+            position: relative
+            width: 100%
+            padding: 10%
+            background-color: #007cc8
+            .info
+              height: 75px
+            i
+              color: #fff !important
+              font-size: 2.3em
+              margin-left: -21%
+        .event
+          width: 100%
+          text-align: center
+          margin-top: 20%
+          float: left
+          a
+            text-decoration: none
+          i
+            font-size: 70px
+            color: $gray
+
+        // NAME
+        .info
+          font-family: $secondFontFamily
+          display: block
+          width: 94%
+          margin-left: auto
+          margin-right: auto
+          height: 69px
+          .name
+            @include box_title
+            margin: 0
+            height: 32px
+            line-height: 15px
+            overflow: hidden
+            width: 100%
+          @include author
+          .author
+            width: 100%
+            height: 20px
+            overflow: hidden
+            word-wrap: break-word
+            text-overflow: ellipsis
+            a
+              &:hover
+                color: #007cc8
+                font-family: $thirdFontFamily
+        // VIEWS AND COUNT
+        .info-bottom
+          @mixin footer_box_info       
+          clear: both
+          hr
+            margin: 0
+          .soften
+            margin-bottom: 1px
+          .views
+            float: right
+
+            text-align: right
+            cursor: default
+          .like
+            cursor: default
+            a
+              i
+                text-decoration: none
+                cursor: default
+          .number_elems
+            float: right
+            width: 100%
+            text-align: right
+
+      // ADD ITEM
+      .add-item
         text-align: center
-        margin-top: 20%
-        float: left
-        a
+        background-image: url('items/malla.png') !important
+        overflow: hidden
+        
+        &:hover
           text-decoration: none
         i
-          font-size: 70px
-          color: $gray
-
-      // NAME
-      .info
-        font-family: $secondFontFamily
-        display: block
-        width: 94%
-        margin-left: auto
-        margin-right: auto
-        height: 69px
-        .name
-          @include box_title
-          margin: 0
-          height: 32px
-          line-height: 15px
-          overflow: hidden
           width: 100%
-        @include author
-        .author
-          width: 100%
-          height: 20px
-          overflow: hidden
-          word-wrap: break-word
-          text-overflow: ellipsis
-          a
-            &:hover
-              color: #007cc8
-              font-family: $thirdFontFamily
-      // VIEWS AND COUNT
-      .info-bottom
-        @mixin footer_box_info       
-        clear: both
-        hr
-          margin: 0
-        .soften
-          margin-bottom: 1px
-        .views
-          float: right
+          display: block
+          padding-top: 60px
+          opacity: 1
+          font-size: 92px
+          display: block
+        .info
+          height: 75px !important
 
-          text-align: right
-          cursor: default
-        .like
-          cursor: default
-          a
-            i
+      // USERS
+      .contact
+        background-color: transparent !important
+        box-shadow: none !important
+
+        //BAGDE teacher
+        .badge-teacher-active
+          position: absolute
+          top: 50px
+          left: 33px
+          z-index: 10
+          background-image: url(" badges/teacherofthemonth.png" )
+          height: 80px
+          width: 55px
+          background-size: 54px
+          pointer-events: none
+
+        // IMG BOX
+        .container-img
+          .avatar
+            a
+              img
+                margin-top: 20%
+                @include center-block()
+                @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                @include border-radius($baseBorderRadius)
+
+        .info
+          height: 75px !important
+          .name
+            text-align: center
+            margin: 0
+            height: 30px
+            line-height: 15px
+            overflow: hidden
+            a
+              color: $black
+              font-family: $firstFontFamily
               text-decoration: none
-              cursor: default
-        .number_elems
-          float: right
-          width: 100%
-          text-align: right
+              &:hover
+                color: $firstColor
+          .add
+            @include follow
+        .info-bottom
+          hr
+            display: none
 
-    // ADD ITEM
-    .add-item
-      text-align: center
-      background-image: url('items/malla.png') !important
-      overflow: hidden
-      
-      &:hover
+
+@media (min-width: 0px) and (max-width: 501px)
+  #excursions,
+  #resources,
+  #categories,
+  #events,
+  #new,
+  #activity,
+  #search-all,
+  .info-profile
+    ul
+      margin: 0
+      margin-left: 20px
+      @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+      li.box-item:first-child
+        margin-top: 0px
+      li.box-item:hover
         text-decoration: none
-      i
-        width: 100%
-        display: block
-        padding-top: 60px
-        opacity: 1
-        font-size: 92px
-        display: block
-      .info
-        height: 75px !important
+        box-shadow: 0 5px 20px 3px rgba(0, 0, 0, 0.1)
+        transform: scale(1.05)
+        -ms-transform: scale(1.05)
+        -webkit-transform: scale(1.05)
+        transition: all 0.2s ease 0s
+        -ms-transition: all 0.2s ease 0s
+        -webkit-transition: all 0.2s ease 0s
 
-    // USERS
-    .contact
-      background-color: transparent !important
-      box-shadow: none !important
-
-      //BAGDE teacher
-      .badge-teacher-active
-        position: absolute
-        top: 50px
-        left: 33px
-        z-index: 10
-        background-image: url(" badges/teacherofthemonth.png" )
-        height: 80px
-        width: 55px
-        background-size: 54px
-        pointer-events: none
-
-      // IMG BOX
-      .container-img
-        .avatar
-          a
-            img
-              margin-top: 20%
-              @include center-block()
-              @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
-              @include border-radius($baseBorderRadius)
-
-      .info
-        height: 75px !important
-        .name
-          text-align: center
-          margin: 0
-          height: 30px
-          line-height: 15px
-          overflow: hidden
-          a
-            color: $black
-            font-family: $firstFontFamily
-            text-decoration: none
-            &:hover
-              color: $firstColor
-        .add
-          @include follow
-      .info-bottom
-        hr
+      li.box-item
+        @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16)
+        @include border-radius($baseBorderRadius)
+        overflow: inherit
+        float: left
+        list-style: none
+        margin-top: 10px
+        background-color: $white
+        position: relative
+        .badge-excursion-active
+          position: absolute
+          top: 5px
+          left: -9px
+          z-index: 10
           display: none
+          background-image: url(" badges/excursionofthemonth.png" )
+          background-size: 43px
+          width: 43px
+          height: 65px
 
 
+
+        // IMG BOX
+        .container-img
+          display: inline-block
+          position: relative
+          float: left
+          @include grid-fluid-span(4, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          .dummy
+            height: 70px
+          .element
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            overflow: hidden
+            text-align: center
+            width: 100%
+            @include border-left-radius($baseBorderRadius)
+            .img-box,
+            .resource,
+            .resource-center
+              float: left
+              height: 70px
+              display: block
+              @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+              @include border-left-radius($baseBorderRadius)
+              overflow: hidden
+              position: relative
+              .backstrech
+                @include border-left-radius($baseBorderRadius)
+                @include border-right-radius(0px)
+              img
+                float: left
+                width: 100%
+                height: 100%
+              .category
+                text-align: center
+                .category_thumb
+                  img
+                    margin-top: -25%
+                    min-width: 125%
+                    min-height: 500%
+                  .category_thumb_0
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                  .category_thumb_1
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                  .category_thumb_2
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                  .category_thumb_3
+                    width: 47%
+                    height: 30px
+                    border: 2px solid #fff
+                    display: block
+                    float: left
+                    position: static
+                    overflow: hidden
+                    background: rgba(0, 77, 124, 1)
+                    -webkit-border-radius: 5px
+                    -moz-border-radius: 5px
+                    border-radius: 5px
+                i
+                  display: block
+                  font-size: 34px
+                  margin-top: 20px
+
+
+          .resource-center
+            text-align: center
+            i
+              display: block
+              font-size: 34px
+              margin-top: 20px
+            i.icon-picture
+
+              padding-top: 0
+              position: absolute
+              top: 10px
+              right: 10px
+              z-index: 2
+              color: $white
+              font-size: 20px
+              text-shadow: $black 0.1em 0.1em 0.2em
+            i.icon-facetime-video
+              padding-top: 0
+              position: absolute
+              left: 45%
+              right: 50%
+              z-index: 2
+              font-size: 34px
+              text-align: center
+              //text-shadow: $black 0.1em 0.1em 0.2em
+        .info
+          @include grid-fluid-span(8, $fluidGridColumnWidth, $fluidGridGutterWidth)
+          float: left
+          //margin-top: 5px
+          .name
+            margin-left: 5px
+            height: 20px
+            @include ellipsis
+            @include box_title         
+            a
+              color: $grayDark
+          .author
+            .by  
+            padding-left: 5px
+          @include author
+          .author
+            width: 100%
+            height: 20px
+            overflow: hidden
+            word-wrap: break-word
+            text-overflow: ellipsis
+            a
+              &:hover
+                color: #007cc8
+                font-family: $thirdFontFamily
+        .info-bottom
+          margin-left: 5px
+          padding: 0px  
+          clear: both
+          hr
+            margin: 0
+            padding: 0
+          .soften
+            margin-bottom: 1px
+          .views
+            float: right
+            cursor: default
+          .like
+            cursor: default
+            a
+              i
+                text-decoration: none

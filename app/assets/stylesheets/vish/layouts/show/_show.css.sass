@@ -81,8 +81,6 @@
               margin-top: 10px
               margin-bottom: 10px
               color: $secondColor
-
-
         .icon-box
           position: relative
           z-index: 1
@@ -396,16 +394,18 @@
 
   .activity-box
     .activity
-
       .tabbable
         @include header-tabbable
         ul
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
+
         .tab-content
           overflow: hidden
           @include grid-fluid-span(12, $fluidGridColumnWidth, $fluidGridGutterWidth)
           .activity
             margin-bottom: 10px
+          .recomended2
+            width: 92%
           #evaluation1
             .btn-evalue
               text-align: center
