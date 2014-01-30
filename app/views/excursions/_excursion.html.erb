@@ -23,7 +23,11 @@
     
 <% end %>
   <script>
-    $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+    <%if defined?(container_id) %>
+      $("#<%=container_id%> #excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+    <%else%>
+      $("#excursion-<%=excursion.id%>").backstretch("<%=excursion_raw_thumbail(excursion)%>");  
+    <%end%>    
   </script>
 <%# link_to excursion_thumb_for(excursion), excursion, :class => "img-box" %>
 <!--INFO excursuion-->
