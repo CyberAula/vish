@@ -93,7 +93,7 @@
       <script>
         $(document).ready(function(){
           var saveEventButton = $("#AddEvent input[type='submit']");
-          var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
+          var eventButton = $("#AddEvent input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']");
           $(eventButton).click(function(event) {
             if ($("#AddEvent input[name='event[title]']").val() == "") {
               $("#AddEvent .errors").remove();
@@ -141,7 +141,7 @@
 
 
 
-      <input type="button" class=" btn-primary" value="<%= t('categories.save')%>"/>
+      <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
       <%= f.submit t('categories.save'), :id => "saveEvent", :class => "hidden" %>
     <% end %>
   </div>
