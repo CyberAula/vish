@@ -31,7 +31,7 @@
 
       <!--<a href="#" id="foo" role="button" class="btn btn-primary">Ayuda</a>-->
       <!--<b id="foo" rel="popover">Ayuda </b>-->
-      <input type="button" class=" btn-primary" value="<%= t('categories.save')%>"/>
+      <input type="button" class="btn-primary" value="<%= t('categories.save')%>"/>
       <%= f.submit t('categories.save'), :class => "hidden", :id => "saveCategory" %>
     <% end %>
   </div>
@@ -59,7 +59,7 @@
   });
 
   var saveCategoryButton = $("#<%=div_id%> input[type='submit']");
-  var categoryButton = $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn btn-primary']");
+  var categoryButton = $("#<%=div_id%> input[value=<%= t('categories.save')%>][type='button'][class='btn-primary']");
   $(categoryButton).click(function(event) {
     if ($("#<%=div_id%> input[name='category[title]']").val() == "") {
       $("#<%=div_id%> .errors").remove();
