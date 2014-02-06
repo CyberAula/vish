@@ -1,5 +1,9 @@
 #search
-  @include header-tabbable-search
+  .tabbable
+    @include header-tabbable-show-search
+    .helpheader
+      float: right
+
 /* menus */
 
 .toggler-as
@@ -34,9 +38,7 @@
     margin: 10px 0px 5px 10px
     color: $white
 
-
 #button-as
-
   text-decoration: none
   float: right
   margin-top: 50px

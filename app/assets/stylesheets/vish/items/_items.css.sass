@@ -536,7 +536,6 @@
           .avatar
             a
               img
-                
                 @include center-block()
                 @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 @include border-radius($baseBorderRadius)
@@ -555,17 +554,13 @@
               &:hover
                 color: $firstColor
           .add
-
             @include follow
             float: left
             margin-left: 0
             input,
             .following-button
-            
               float: left
-              margin-left: 0
-            .add
-              text-align: left           
+              margin-left: 0         
         .info-bottom
           hr
             display: none

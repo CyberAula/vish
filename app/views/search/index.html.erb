@@ -37,10 +37,7 @@
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
           </li>
 
-
-
-
-              <li class="helpheader">   
+      <li class="helpheader">   
           <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.exse2_html')%>" href='#' value="?"/>
 
             <div class="contenthome" style="display: none">
@@ -49,7 +46,11 @@
               </div>
             </div>
      </li>
+
+
+
       </ul>
+
       <!--form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">
         <%= text_field_tag :q, params[:q],:autocomplete => :off, :id => :main_search_input, :class => "" %>
       </form-->
