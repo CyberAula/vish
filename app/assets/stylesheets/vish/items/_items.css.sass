@@ -266,7 +266,6 @@
                 @include center-block()
                 @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
                 @include border-radius($baseBorderRadius)
-
         .info
           height: 75px !important
           .name
@@ -286,7 +285,6 @@
         .info-bottom
           hr
             display: none
-
 
 @media (min-width: 0px) and (max-width: 501px)
   #excursions,
@@ -333,9 +331,6 @@
           background-size: 43px
           width: 43px
           height: 65px
-
-
-
         // IMG BOX
         .container-img
           display: inline-block
@@ -499,3 +494,78 @@
             a
               i
                 text-decoration: none
+
+      // ADD ITEM
+      .add-item
+        text-align: center
+        background-image: url('items/malla.png') !important
+        overflow: hidden
+        margin-bottom: -2px !important
+
+        &:hover
+          text-decoration: none
+        i
+          width: 100%
+          display: block
+          padding-top: 60px
+          opacity: 1
+          font-size: 92px
+          display: block
+        .info
+          height: 75px !important
+
+      // USERS
+      .contact
+        background-color: transparent !important
+        box-shadow: none !important
+
+        //BAGDE teacher
+        .badge-teacher-active
+          position: absolute
+          top: 50px
+          left: 33px
+          z-index: 10
+          background-image: url(" badges/teacherofthemonth.png" )
+          height: 80px
+          width: 55px
+          background-size: 54px
+          pointer-events: none
+          
+        // IMG BOX
+        .container-img
+          .avatar
+            a
+              img
+                
+                @include center-block()
+                @include grid-fluid-span(6, $fluidGridColumnWidth, $fluidGridGutterWidth)
+                @include border-radius($baseBorderRadius)
+        .info
+          height: 75px !important
+          .name
+            text-align: left
+            margin: 0
+            height: 30px
+            line-height: 15px
+            overflow: hidden
+            a
+              color: $black
+              font-family: $firstFontFamily
+              text-decoration: none
+              &:hover
+                color: $firstColor
+          .add
+
+            @include follow
+            float: left
+            margin-left: 0
+            input,
+            .following-button
+            
+              float: left
+              margin-left: 0
+            .add
+              text-align: left           
+        .info-bottom
+          hr
+            display: none

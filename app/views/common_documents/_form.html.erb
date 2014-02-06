@@ -45,7 +45,7 @@
       <%= f.text_field :tag_list, 'data-path' => tags_path(format: 'json') %>
     </section>
 
-    <%= f.submit :class => "btn", "data-loading-text" => t('button.sending') %>
+    <%= f.submit :class => "btn-primary", "data-loading-text" => t('button.sending') %>
   <% end %>
 
   <%= javascript_tag do %>
