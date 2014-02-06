@@ -16,9 +16,30 @@
           <li class="all_results <%= 'active' if params[:type].blank? %>">        
             <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
           </li>
-        <% SocialStream::Search.keys(:extended).each do |key| %>
-          <%= render :partial => 'search/extended_tab', :locals => { :key => key } %>
-        <% end %>
+
+          <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
+            <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
+              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
+          </li>
+
+          <li class="user <%= " active" if params[:type] == "excursions" %><%= " disabled" unless search_results?("user") %>">
+            <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",
+              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
+          </li>
+
+          <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
+            <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
+              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
+          </li>
+
+          <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("excursion") %>">
+            <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
+              :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
+          </li>
+
+
+
+
               <li class="helpheader">   
           <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.exse2_html')%>" href='#' value="?"/>
 
@@ -208,24 +229,6 @@ $('body').on('click', function (e) {
         }
     });
 });
-</script>
-
-<script src="js/classie.js"></script>
-<script>
-  var 
-    menuTop = document.getElementById( 'cbp-spmenu-s3' ),
-    showTop = document.getElementById( 'showTop' ),
-    body = document.body;
-  showTop.onclick = function() {
-    classie.toggle( this, 'active' );
-    classie.toggle( menuTop, 'cbp-spmenu-open' );
-    disableOther( 'showTop' );
-  };
-  function disableOther( button ) {   
-    if( button !== 'showTop' ) {
-      classie.toggle( showTop, 'disabled' );
-    }   
-  }
 </script>
 
 <!--scroll-->    

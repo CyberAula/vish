@@ -18,12 +18,12 @@
 //= require social_stream-linkser
 //= require social_stream-documents
 //= require jquery.backstretch.min
-//= require classie
 //= require pageless
 //= require modernizr.custom
 //= require jquery.jscrollpane.min
 //= require jquery.mousewheel
 //= require uisearch
+//= require classie
 //= require bootstrap-slider/bootstrap-slider
 //= require tagit
 //= require jquery.multiselect

@@ -35,6 +35,8 @@ es:
     sending: "Enviando..."
   by: "por"
   cancel: "Cancelar"
+  catalogue:
+    title: "Catálogo"
   category:
     confirm_delete: "Borrar categoria?"
   categories:

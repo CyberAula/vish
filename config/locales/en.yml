@@ -35,6 +35,8 @@ en:
     sending: "Sending..."
   by: "by"
   cancel: "Cancel"
+  catalogue:
+    title: "Catalogue"
   category:
     confirm_delete: "Delete category?"
   categories:
@@ -235,7 +237,7 @@ en:
       info6_html: "6. Select an <b>age </b>range. This information will be used for recommendation purposes.<br>"
       info7_html: "7. If you want to embed a live streaming video, click on <b>Live</b> option.<br>"
       info8_html: "8. Finally, click on <b> save </b> button to upload your resource."
-      home1_html: "This zone show the excursions created by people you are <a href=\"%{{profile}}\">following.</a>"
+      home1_html: "This zone show the excursions created by people you are <a href=\"%{profile}\">following.</a>"
       cat1_html: "1. Type a <b>title</b> and <b>description</b>.<br>"
       cat2_html: "2. Then, click on <b> save </b> button to create your new category."
       cat: "Create a new category"
@@ -281,7 +283,7 @@ en:
     uploading: "Uploading..."
   email:
     regards: "Kind regards,<br/>"
-    welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{{profile}}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
+    welcome: "Welcome and thank you for registering in Virtual Science Hub.<br/>We would encourage you <a href=\"%{profile}\"> to set up your profile</a> in order to enjoy a better service.<br/>"
   embed:
     confirm_delete: "Delete embed?"
     content: "Live content"
