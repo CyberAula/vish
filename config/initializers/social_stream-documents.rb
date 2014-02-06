@@ -13,8 +13,17 @@ SocialStream::Documents.setup do |config|
   config.audio_styles = {
      webma: {
        format: 'webm',
-       processors: [ :ffmpeg ]
+       processors: [ :ffmpeg]
+     },
+     mp3: {
+      format: 'mp3',
+      processors: [ :ffmpeg]
+     },
+     wav: {
+      format: 'wav',
+      processors: [ :ffmpeg]
      }
+
      # You need to add the `paperclip_waveform` gem to your Gemfile
      # to get pngs with the audio wave form
      # waveform: {

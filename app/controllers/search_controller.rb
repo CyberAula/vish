@@ -46,7 +46,11 @@ class SearchController < ApplicationController
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
 
-    SocialStream::Search.search("kikedic | quam",
+    if(params[:q])
+      the_query = params[:q].gsub(" ", " | ")
+    end
+
+    SocialStream::Search.search(the_query,
                                 current_subject,
                                 mode:  mode,
                                 key:   params[:type],

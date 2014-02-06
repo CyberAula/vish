@@ -1,38 +1,53 @@
-<!--TAGS-->
-      <section class=" Tags_list_as scroll-pane">
-        <h4>Tags :</h4>
-        <li href="#"><input id="chk1" type="checkbox" name="chk1"/><label for="chk1"><span></span>Art</label></li>
-        <li href="#"><input id="chk2" type="checkbox" name="chk2"/><label for="chk2"><span></span>Astronomy</label></li>
-        <li href="#"><input id="chk3" type="checkbox" name="chk3"/><label for="chk3"><span></span>Biology</label></li>
-        <li href="#"><input id="chk4" type="checkbox" name="chk4"/><label for="chk4"><span></span>Chemistry</label></li>
-        <li href="#"><input id="chk5" type="checkbox" name="chk5"/><label for="chk5"><span></span>Citizenship</label></li>
-        <li href="#"><input id="chk6" type="checkbox" name="chk6"/><label for="chk6"><span></span>Clasical languages</label></li>
-        <li href="#"><input id="chk7" type="checkbox" name="chk7"/><label for="chk7"><span></span>Computer science</label></li>
-        <li href="#"><input id="chk8" type="checkbox" name="chk8"/><label for="chk8"><span></span>Cross Curricular education</label></li>
-        <li href="#"><input id="chk9" type="checkbox" name="chk9"/><label for="chk9"><span></span>General culture</label></li>
-        <li href="#"><input id="chk10" type="checkbox" name="chk10"/><label for="chk10"><span></span>Economics</label></li>
-        <li href="#"><input id="chk11" type="checkbox" name="chk11"/><label for="chk11"><span></span>Educational administration</label></li>
-        <li href="#"><input id="chk12" type="checkbox" name="chk12"/><label for="chk12"><span></span>Ethics</label></li>
-        <li href="#"><input id="chk13" type="checkbox" name="chk13"/><label for="chk13"><span></span>European Studies</label></li>
-        <li href="#"><input id="chk14" type="checkbox" name="chk14"/><label for="chk14"><span></span>Foreign Languages</label></li>
-        <li href="#"><input id="chk15" type="checkbox" name="chk15"/><label for="chk15"><span></span>Geography</label></li>
-        <li href="#"><input id="chk16" type="checkbox" name="chk16"/><label for="chk16"><span></span>Geology</label></li>
-        <li href="#"><input id="chk17" type="checkbox" name="chk17"/><label for="chk17"><span></span>Health education</label></li>
-        <li href="#"><input id="chk18" type="checkbox" name="chk18"/><label for="chk18"><span></span>History</label></li>
-        <li href="#"><input id="chk19" type="checkbox" name="chk19"/><label for="chk19"><span></span>Home economics</label></li>
-        <li href="#"><input id="chk20" type="checkbox" name="chk20"/><label for="chk20"><span></span>Law</label></li>
-        <li href="#"><input id="chk21" type="checkbox" name="chk21"/><label for="chk21"><span></span>Literature</label></li>
-        <li href="#"><input id="chk22" type="checkbox" name="chk22"/><label for="chk22"><span></span>Mathematics</label></li>
-        <li href="#"><input id="chk23" type="checkbox" name="chk23"/><label for="chk23"><span></span>Music</label></li>
-        <li href="#"><input id="chk24" type="checkbox" name="chk24"/><label for="chk24"><span></span>Natural Sciences</label></li>
-        <li href="#"><input id="chk25" type="checkbox" name="chk25"/><label for="chk25"><span></span>Philosophy</label></li>
-        <li href="#"><input id="chk26" type="checkbox" name="chk26"/><label for="chk26"><span></span>Physical education</label></li>
-        <li href="#"><input id="chk27" type="checkbox" name="chk27"/><label for="chk27"><span></span>Physics</label></li>
-        <li href="#"><input id="chk28" type="checkbox" name="chk28"/><label for="chk28"><span></span>Politics</label></li>
-        <li href="#"><input id="chk29" type="checkbox" name="chk29"/><label for="chk29"><span></span>Psychology</label></li>
-        <li href="#"><input id="chk30" type="checkbox" name="chk30"/><label for="chk30"><span></span>Religion</label></li>
-        <li href="#"><input id="chk31" type="checkbox" name="chk31"/><label for="chk31"><span></span>Social sciences</label></li>
-        <li href="#"><input id="chk32" type="checkbox" name="chk32"/><label for="chk32"><span></span>Technology</label></li>
-        <li href="#"><input id="chk33" type="checkbox" name="chk33"/><label for="chk33"><span></span>Telecommunications</label></li>
+<script type="text/javascript">
+    $(document).ready(function() {  
+        $(".Tags_list_as input[type='checkbox']").change(function(){
+            $(".Tags_list_as input[type='checkbox']:checked");
 
-      </section>
+            var tags = "";
+            $.each($(".Tags_list_as input[type='checkbox']:checked"), function(k,v){ 
+                tags += $(v).attr("name") + " "; 
+            });
+            tags = $.trim(tags).replace(" ", "+"); //remove last whitespace
+
+            window.location = "/search?q=" + tags;
+        });
+    });
+
+</script>
+  <section class="Tags_list_as scroll-pane">
+    <h4>Tags :</h4>
+    <li href="#"><input id="chk1" type="checkbox" name="Art"/><label for="chk1"><span></span>Art</label></li>
+    <li href="#"><input id="chk2" type="checkbox" name="Astronomy"/><label for="chk2"><span></span>Astronomy</label></li>
+    <li href="#"><input id="chk3" type="checkbox" name="Biology"/><label for="chk3"><span></span>Biology</label></li>
+    <li href="#"><input id="chk4" type="checkbox" name="Chemistry"/><label for="chk4"><span></span>Chemistry</label></li>
+    <li href="#"><input id="chk5" type="checkbox" name="Citizenship"/><label for="chk5"><span></span>Citizenship</label></li>
+    <li href="#"><input id="chk6" type="checkbox" name="Clasical languages"/><label for="chk6"><span></span>Clasical languages</label></li>
+    <li href="#"><input id="chk7" type="checkbox" name="Computer science"/><label for="chk7"><span></span>Computer science</label></li>
+    <li href="#"><input id="chk8" type="checkbox" name="Cross Curricular education"/><label for="chk8"><span></span>Cross Curricular education</label></li>
+    <li href="#"><input id="chk9" type="checkbox" name="General culture"/><label for="chk9"><span></span>General culture</label></li>
+    <li href="#"><input id="chk10" type="checkbox" name="Economics"/><label for="chk10"><span></span>Economics</label></li>
+    <li href="#"><input id="chk11" type="checkbox" name="Educational administration"/><label for="chk11"><span></span>Educational administration</label></li>
+    <li href="#"><input id="chk12" type="checkbox" name="Ethics"/><label for="chk12"><span></span>Ethics</label></li>
+    <li href="#"><input id="chk13" type="checkbox" name="European Studies"/><label for="chk13"><span></span>European Studies</label></li>
+    <li href="#"><input id="chk14" type="checkbox" name="Foreign Languages"/><label for="chk14"><span></span>Foreign Languages</label></li>
+    <li href="#"><input id="chk15" type="checkbox" name="Geography"/><label for="chk15"><span></span>Geography</label></li>
+    <li href="#"><input id="chk16" type="checkbox" name="Geology"/><label for="chk16"><span></span>Geology</label></li>
+    <li href="#"><input id="chk17" type="checkbox" name="Health education"/><label for="chk17"><span></span>Health education</label></li>
+    <li href="#"><input id="chk18" type="checkbox" name="History"/><label for="chk18"><span></span>History</label></li>
+    <li href="#"><input id="chk19" type="checkbox" name="Home economics"/><label for="chk19"><span></span>Home economics</label></li>
+    <li href="#"><input id="chk20" type="checkbox" name="Law"/><label for="chk20"><span></span>Law</label></li>
+    <li href="#"><input id="chk21" type="checkbox" name="Literature"/><label for="chk21"><span></span>Literature</label></li>
+    <li href="#"><input id="chk22" type="checkbox" name="Mathematics"/><label for="chk22"><span></span>Mathematics</label></li>
+    <li href="#"><input id="chk23" type="checkbox" name="Music"/><label for="chk23"><span></span>Music</label></li>
+    <li href="#"><input id="chk24" type="checkbox" name="Natural Sciences"/><label for="chk24"><span></span>Natural Sciences</label></li>
+    <li href="#"><input id="chk25" type="checkbox" name="Philosophy"/><label for="chk25"><span></span>Philosophy</label></li>
+    <li href="#"><input id="chk26" type="checkbox" name="Physical education"/><label for="chk26"><span></span>Physical education</label></li>
+    <li href="#"><input id="chk27" type="checkbox" name="Physics"/><label for="chk27"><span></span>Physics</label></li>
+    <li href="#"><input id="chk28" type="checkbox" name="Politics"/><label for="chk28"><span></span>Politics</label></li>
+    <li href="#"><input id="chk29" type="checkbox" name="Psychology"/><label for="chk29"><span></span>Psychology</label></li>
+    <li href="#"><input id="chk30" type="checkbox" name="Religion"/><label for="chk30"><span></span>Religion</label></li>
+    <li href="#"><input id="chk31" type="checkbox" name="Social sciences"/><label for="chk31"><span></span>Social sciences</label></li>
+    <li href="#"><input id="chk32" type="checkbox" name="Technology"/><label for="chk32"><span></span>Technology</label></li>
+    <li href="#"><input id="chk33" type="checkbox" name="Telecommunications"/><label for="chk33"><span></span>Telecommunications</label></li>
+
+  </section>
