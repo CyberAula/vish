@@ -18,22 +18,22 @@
           </li>
 
           <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
-            <%= link_to t("excursion.title.other").downcase, "#excursion",
+            <%= link_to raw('<i class="icon-book"></i><span class=" hidden-phone hidden-tablet">'+t("excursion.other")+'</span>'), "#excursion",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("excursion") }"} %>
           </li>
 
           <li class="user <%= " active" if params[:type] == "excursions" %><%= " disabled" unless search_results?("user") %>">
-            <%= link_to t("user.title.other").downcase, "#user",
+            <%= link_to raw('<i class="icon-group"></i><span class=" hidden-phone hidden-tablet">'+t("user.title.other")+'</span>'), "#user",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("user") }"} %>
           </li>
 
           <li class="event <%= " active" if params[:type] == "event" %><%= " disabled" unless search_results?("event") %>">
-            <%= link_to t("event.title.other").downcase, "#event",
+            <%= link_to raw('<i class="icon-facetime-video"></i><span class=" hidden-phone hidden-tablet">'+t("event.title.other")+'</span>'), "#event",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("event") }"} %>
           </li>
 
           <li class="resource <%= " active" if params[:type] == "resource" %><%= " disabled" unless search_results?("excursion") %>">
-            <%= link_to t("resource.title.other").downcase, "#resource",
+            <%= link_to raw('<i class="icon-file"></i><span class=" hidden-phone hidden-tablet">'+t("resource.title.other")+'</span>'), "#resource",
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
           </li>
 
