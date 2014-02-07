@@ -1,0 +1,11 @@
+
+<%=render :partial=> "catalogue/tags"%>
+
+<div class="" style="margin-top: 100px;">
+	<div class=""><%=@category%></div>
+
+	<%for excursion in @excursions%>
+		<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
+	<%end%>
+
+</div>

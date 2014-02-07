@@ -69,7 +69,9 @@ Vish::Application.routes.draw do
   resource :contest
   resources :contest_all
   resources :about
-  resource :catalogue
+
+  match '/catalogue' => 'catalogue#index'
+  match '/catalogue/:category' => 'catalogue#show'
 
   # Add this at the end so other URLs take prio
   match '/s/:id' => "shortener/shortened_urls#show"

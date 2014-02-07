@@ -1,0 +1,14 @@
+<%=render :partial=> "catalogue/tags"%>
+
+<div class="" style="margin-top: 100px;">
+<%@all_categories.each do |name, the_array| %>
+	<div class=""><%=name%></div>
+
+	<%for excursion in the_array%>
+		<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
+
+
+	<%end%>
+<%end%>
+	
+</div>

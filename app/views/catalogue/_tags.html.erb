@@ -1,3 +1,23 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+    	<%if @category%>
+    		var category_shown = "<%=@category%>";
+    	<%else%>
+    		var category_shown = null;
+    	<%end%>
+		
+		if(category_shown){
+			$(".Tags_list_as input[type='checkbox'][name='"+category_shown+"']").attr('checked','checked');
+		}        
+
+        $(".Tags_list_as input[type='checkbox']").change(function(){
+            var name = $(this).attr("name");
+            window.location = "/catalogue/" + name;
+        });
+    });
+
+</script>
+
 <div class="toggler-as">
 	<div id="effect-as" class="anotherNewClass-as ui-corner-all">
 		<section id="catalogue">
@@ -46,6 +66,3 @@
 		</section>
 	</div>
 </div>
-
-
-
