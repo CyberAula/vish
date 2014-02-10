@@ -1,14 +1,11 @@
 <%=render :partial=> "catalogue/tags"%>
-
-<div class="" style="margin-top: 100px;">
-<%@all_categories.each do |name, the_array| %>
-	<div class=""><%=name%></div>
-
-	<%for excursion in the_array%>
-		<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
-
-
+<div id="excursions_catalogue" style="margin-top: 175px;">
+	<%@all_categories.each do |name, the_array| %>
+		<h2><%=name%></h2>
+		<ul>
+			<%for excursion in the_array%>
+				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
+			<%end%>
+		</ul>
 	<%end%>
-<%end%>
-	
 </div>

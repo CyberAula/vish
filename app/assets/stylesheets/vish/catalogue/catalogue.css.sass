@@ -1,0 +1,164 @@
+#catalogue
+  width: 100%
+  left: 0
+  right: 0
+  position: fixed
+  height: 175px
+  background: $secondColor
+  top: 50px
+  z-index: 1
+  ul.info_catalogue
+    width: 10%
+    height: 175px
+    float: left
+    display: block
+    font-weight: lighter
+    background: darken($secondColor, 10%) 
+    margin: 0
+  i
+    font-size: 50px
+    width: 100%
+    text-align: center
+    margin-top: 50px
+    width: 50px
+    display: block
+    float: none
+    margin-left: auto
+    margin-right: auto
+    color: lighten($secondColor, 5%)
+  h3
+    text-align: center
+    width: auto
+    margin: 0 auto
+    display: block
+    font-family: #017CC8
+    color: lighten($secondColor, 5%) 
+    margin-top: 10px
+    //transform: rotate(90deg)
+    //-ms-transform: rotate(90deg) /* IE 9 */
+    //-webkit-transform: rotate(90deg) /* Safari and Chrome */
+  ul.Tags_list_as
+    width: 89%
+    height: 165px
+    float: left
+    display: block
+    margin: 0
+    margin-top: 10px
+    li
+      width: 19%
+      display: block
+      float: left
+      padding-left: 1%
+@media (min-width: 0px) and (max-width: 980px)
+  #catalogue
+    position: absolute
+@media (min-width: 701px) and (max-width: 1100px)
+  #catalogue
+    height: 200px
+    ul.info_catalogue
+      height: 200px
+    i
+      display: none
+    h3
+      margin: 100px auto 0
+      transform: rotate(270deg)
+      -ms-transform: rotate(270deg) /* IE 9 */
+      -webkit-transform: rotate(270deg) /* Safari and Chrome */
+    ul.Tags_list_as
+      height: 190px
+      li
+        width: 30%
+
+@media (min-width: 0px) and (max-width: 700px)
+  #catalogue
+    height: 150px
+    ul.info_catalogue
+      height: 150px
+    i
+      display: none
+    h3
+      margin: 84px auto 0
+      transform: rotate(270deg)
+      -ms-transform: rotate(270deg) /* IE 9 */
+      -webkit-transform: rotate(270deg) /* Safari and Chrome */
+    ul.Tags_list_as
+      height: 140px
+      li
+        width: 90%
+
+
+/*8*/
+@media (min-width: 1751px)
+  #excursions_catalogue
+    ul
+      .box-item  
+        display: none
+      .box-item:nth-of-type(-n+8) 
+        display: block
+
+
+/*7*/
+@media (min-width: 1500px) and (max-width: 1750px)
+  #excursions_catalogue
+    ul
+      .box-item  
+        display: none
+      .box-item:nth-of-type(-n+7) 
+        display: block
+
+
+/*6*/
+@media (min-width: 1250px) and (max-width: 1500px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+6) 
+      display: block
+
+/*5*/
+@media (min-width: 1000px) and (max-width: 1250px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+5) 
+      display: block
+
+
+
+/*4*/
+@media (min-width: 750px) and (max-width: 1000px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+4) 
+      display: block
+
+
+
+/*3*/
+@media (min-width: 500px) and (max-width: 750px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+3) 
+      display: block
+
+
+
+/*2*/
+@media (min-width: 320px) and (max-width: 500px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+2) 
+      display: block
+
+
+
+/*1*/
+@media (max-width: 320px)
+  #excursions_catalogue
+    .box-item  
+      display: none
+    .box-item:nth-of-type(-n+1) 
+      display: block
