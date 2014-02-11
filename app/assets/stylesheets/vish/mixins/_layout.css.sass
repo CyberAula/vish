@@ -143,44 +143,36 @@
           display: none
 
 
+@mixin header-tabbable-show
 
 
-
-
-
-@mixin header-tabbable
-  clear: both
-  margin-top: 10px
-  .tab-content
-    overflow: visible
   ul.nav,
   ul.nav-tabs 
     border-bottom: 1px solid $grayLight
     @include tab_title
     li     
-      a             
+      a
         border-left: none
         border-right: none
         border-top: none
         border-bottom: none
-        padding: 6px 10px 6px 10px
-        margin-top: 5px
+        padding: 6px 10px 2px 0
+        margin-top: 8px
         &:hover,
         &:focus
           background-color: none !important
           border: none
-          border-bottom: 3px solid $secondColor  
-      h1
-        line-height: 38px
-        margin: -9px 100px 5px 0 
-        font-size: 33.5px
-        &:hover
-        border-bottom: 0px !important
-        cursor: default
+          border-bottom: 3px solid $secondColor 
         i
-          margin-right: 5px
-          font-size: 26px
-          color: #BEBEBE
+          margin-right: 2px         
+          font-size: 12px
+
+        span
+          font-size: 11px
+          color: $gray
+          text-transform: capitalize
+    li:first-child
+      margin-left: 10px
     li.active
       background-color: none !important
       border: none
@@ -189,77 +181,19 @@
         border-left: none
         border-right: none
         border-top: none
-        margin-top: 5px
-        padding: 6px 10px 6px 10px
+        padding: 6px 10px 1px 0
+        margin-top: 8px
         border-bottom: none !important
-    li.helpheader
-      float: right
-      right: 0%  
-
-
-@mixin header-tabbable-show
-  clear: both
-  margin-top: 10px
-  .tab-content
-    overflow: visible
-  ul.nav,
-  ul.nav-tabs 
-    border-bottom: 1px solid $grayLight
-    @include tab_title_show
-    li   
-      &:hover,
-      &:focus
-        background-color: none !important
-        border: none
-        border-bottom: 3px solid $secondColor      
-      a             
-        border-left: none
-        border-right: none
-        border-top: none
-        padding: 6px 5px 6px 5px
-        margin-top: 5px
         span
           color: $gray
-      
-      h1
-        line-height: 38px
-        margin: 1px 10px 0 0 
-        font-size: 33.5px
+          font-size: 11px
 
-    li.active
-      background-color: none !important
-      border: none
-      border-bottom: 3px solid $firstColor
-      a
-        border-left: none
-        border-right: none
-        border-top: none
-        margin-top: 5px
-        padding: 6px 10px 6px 10px
-        span
-          color: $gray
-          font-size: 14px
+  @media (max-width: 990px)
+    .spam-name
+      display: none
+
       
 
-
-
-
-@mixin header-tabbable-search
-  @include header-tabbable
-  ul.nav
-    float: left
-    width: 100%
-  input
-    &[type="text"]
-      width: 20%
-      margin-top: 11px
-      float: left
-      margin-left: 20px
-  .tab-content
-    clear: left
-
-    width: 100%
-    padding-bottom: 85px
 
 @mixin contact-layout
   margin: 4px 0
@@ -295,62 +229,3 @@
     margin-top: 2px
     width: auto
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@mixin header-tabbable-show-search
-  clear: both
-  margin-top: 10px
-  .tab-content
-    overflow: visible
-  ul.nav,
-  ul.nav-tabs 
-    border-bottom: 1px solid $grayLight
-    @include tab_title_show
-    li   
-      &:hover,
-      &:focus
-        background-color: none !important
-        border: none
-        border-bottom: 3px solid $secondColor      
-      a             
-        border-left: none
-        border-right: none
-        border-top: none
-        padding: 6px 5px 6px 5px
-        margin-top: 5px
-        span
-          color: $gray
-          margin-left: 5px
-      
-      h1
-        line-height: 38px
-        margin: 1px 10px 0 0 
-        font-size: 33.5px
-
-    li.active
-      background-color: none !important
-      border: none
-      border-bottom: 3px solid $firstColor
-      a
-        border-left: none
-        border-right: none
-        border-top: none
-        margin-top: 5px
-        padding: 6px 10px 0px 10px
-        span
-          color: $gray
-          font-size: 14px

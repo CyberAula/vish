@@ -332,7 +332,7 @@
 //tabs
 .info-profile
   .follow-tab
-    @include tab_title
+    
     float: right
     a
       span
@@ -341,23 +341,7 @@
       i.green
         color: $green
   .tabbable 
-    ul.nav-tabs 
-      li
-        a 
-          span
-            color: $gray
-      li.active 
-        a 
-          span
-            color: $grayDark
-        
-    .contact
-      min-height: 170px
-
-      .name
-        text-align: center
-  .tab-content
-    margin-top: 30px
+    @include header-tabbable-new
 
 
 
