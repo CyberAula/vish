@@ -13,8 +13,8 @@
           <%end%>
           <li><h1><i class="icon-search"></i><%= t("search.title")%></h1></li>
         <%end%>
-          <li class="all_results <%= 'active' if params[:type].blank? %>">        
-            <%= link_to t('search.show_all').downcase,"#all", :data => {:toggle=>"tab"}%>
+          <li class="all_results <%= 'active' if params[:type].blank? %>">
+            <%= link_to raw('<i class="icon-asterisk"></i><span class=" hidden-phone hidden-tablet">'+t('search.show_all')+'</span>'),"#all", :data => {:toggle=>"tab"}%>
           </li>
 
           <li class="excursion <%= " active" if params[:type] == "excursion" %><%= " disabled" unless search_results?("excursion") %>">
@@ -37,18 +37,14 @@
               :data => {:toggle=>"tab#{ ' disabled' unless search_results?("resource") }"} %>
           </li>
 
-      <li class="helpheader">   
-          <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.exse2_html')%>" href='#' value="?"/>
-
-            <div class="contenthome" style="display: none">
-              <div>
-                <%= t('document.help.exse_html')%>
-              </div>
-            </div>
-     </li>
-
-
-
+          <li class="helpheader">   
+              <input type="button" class='helphome' data-placement='left' aria-hidden="true" data-original-title="<%= t('document.help.exse2_html')%>" href='#' value="?"/>
+                <div class="contenthome" style="display: none">
+                  <div>
+                    <%= t('document.help.exse_html')%>
+                  </div>
+                </div>
+         </li>
       </ul>
 
       <!--form style="display:none" action="<%=search_path%>" method="get" id="main_search_form" class="search_box">

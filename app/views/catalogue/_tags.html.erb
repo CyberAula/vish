@@ -5,7 +5,7 @@
     	<%else%>
     		var category_shown = null;
     	<%end%>
-		
+
 		if(category_shown){
 			$(".Tags_list_as input[type='checkbox'][name='"+category_shown+"']").attr('checked','checked');
 		}        
@@ -15,7 +15,6 @@
             window.location = "/catalogue/" + name;
         });
     });
-
 </script>
 
 
@@ -23,7 +22,6 @@
 		<ul class="info_catalogue">
 			<i class="icon-search "></i>
 		  <h3><%=t('catalogue.title')%></h3>
-
 		</ul>
 		<ul class="Tags_list_as scroll-pane">
 		    <li href="#"><input id="chk1" type="checkbox" name="Art"/><label for="chk1"><span></span>Art</label></li>
@@ -64,3 +62,10 @@
 
 		</section>
 
+<!--scroll-->    
+<script>
+  $(function()
+  {
+    $('.scroll-pane').jScrollPane();
+  });
+</script>
