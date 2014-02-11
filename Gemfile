@@ -88,7 +88,9 @@ group :development do
 
 end
 
-gem 'pry-rails'
+#gem 'pry-rails'
+
+gem 'pry-debugger'
 
 gem 'rest-client'
 
@@ -97,3 +99,4 @@ gem 'pdf-reader'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git'
 
+gem "oai_repository", "~> 0.9.0"
