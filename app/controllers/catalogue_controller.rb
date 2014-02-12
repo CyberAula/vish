@@ -32,8 +32,7 @@ class CatalogueController < ApplicationController
 		mode = :extended
     	key = "excursions"
 
-    	#TODO, XXX change "kike" for the_query
-		SocialStream::Search.search("kike",
+		SocialStream::Search.search(the_query,
 		                            current_subject,
 		                            mode:  mode,
 		                            key:   key,
