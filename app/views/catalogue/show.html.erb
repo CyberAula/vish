@@ -1,6 +1,7 @@
 <%=render :partial=> "catalogue/tags"%>
 
-<div id="open_catalogue" style="margin-top: 175px;">
+<div id="open_catalogue" >
+	<a class="back_catalogue" href="/catalogue"><i class  ="icon-circle-arrow-left" ></i></a>
 	<h2><%=@category%></h2>
 	<ul>
 		<%for excursion in @excursions%>

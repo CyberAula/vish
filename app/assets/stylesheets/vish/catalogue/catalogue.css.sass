@@ -1,15 +1,27 @@
+#excursions_catalogue,
+#open_catalogue
+  margin-top: 75px
+  .back_catalogue
+    display: inline-block
+    float: left
+    font-size: 20px
+    margin-right: 10px
+    margin-top: 11px
+    &:hover
+      text-decoration: none
+
 #catalogue
   width: 100%
   left: 0
   right: 0
-  position: fixed
-  height: 175px
+  position: absolute
+  height: auto
   background: $secondColor
   top: 50px
   z-index: 1
   ul.info_catalogue
     width: 10%
-    height: 175px
+    height: auto
     float: left
     display: block
     font-weight: lighter
@@ -26,6 +38,7 @@
     margin-left: auto
     margin-right: auto
     color: lighten($secondColor, 5%)
+    display: none
   h3
     text-align: center
     width: auto
@@ -33,58 +46,87 @@
     display: block
     font-family: #017CC8
     color: lighten($secondColor, 5%) 
-    margin-top: 10px
+    margin-top: 14px
+    height: 58px
     //transform: rotate(90deg)
     //-ms-transform: rotate(90deg) /* IE 9 */
     //-webkit-transform: rotate(90deg) /* Safari and Chrome */
   ul.Tags_list_as
     width: 89%
-    height: 165px
+    height: auto
     float: left
     display: block
     margin: 0
     margin-top: 10px
+    margin-bottom: 10px
     li
+      margin-top: 5px
       width: 19%
       display: block
       float: left
       padding-left: 1%
-@media (min-width: 0px) and (max-width: 980px)
-  #catalogue
-    position: absolute
-@media (min-width: 701px) and (max-width: 1100px)
-  #catalogue
-    height: 200px
-    ul.info_catalogue
-      height: 200px
-    i
-      display: none
-    h3
-      margin: 100px auto 0
-      transform: rotate(270deg)
-      -ms-transform: rotate(270deg) /* IE 9 */
-      -webkit-transform: rotate(270deg) /* Safari and Chrome */
-    ul.Tags_list_as
-      height: 190px
-      li
-        width: 30%
+      word-wrap: ellipsis
 
-@media (min-width: 0px) and (max-width: 700px)
+@media (min-width: 900px) and (max-width: 1060px)
   #catalogue
-    height: 150px
-    ul.info_catalogue
-      height: 150px
-    i
-      display: none
     h3
-      margin: 84px auto 0
+      font-size: 15px
+      height: 68px
+      margin-top: 28px
+
+    ul.Tags_list_as
+      li
+        width: 24%
+@media (min-width: 650px) and (max-width: 899px)
+  #catalogue
+    h3
+      font-size: 20px
+      margin-top: 20px
+      transform: rotate(270deg)
+      -ms-transform: rotate(270deg) /* IE 9 */
+      -webkit-transform: rotate(270deg) /* Safari and Chrome */
+      height: 100px
+      margin-left: 20px
+    ul.Tags_list_as
+      li
+        width: 32%
+  #excursions_catalogue,
+  #open_catalogue
+    margin-top: 100px
+
+@media (min-width: 450px) and (max-width: 649px)
+  #catalogue
+    h3
+      height: 71px
+      margin-top: 75px
       transform: rotate(270deg)
       -ms-transform: rotate(270deg) /* IE 9 */
       -webkit-transform: rotate(270deg) /* Safari and Chrome */
     ul.Tags_list_as
-      height: 140px
       li
-        width: 90%
+        width: 48%
+  #excursions_catalogue,
+  #open_catalogue
+    margin-top: 120px
+
+
+@media (min-width: 0px) and (max-width: 449px)
+  #catalogue
+
+    h3
+      height: 270px
+      transform: rotate(270deg)
+      -ms-transform: rotate(270deg) /* IE 9 */
+      -webkit-transform: rotate(270deg) /* Safari and Chrome */
+    ul.Tags_list_as
+
+      li
+        width: 99%
+  #excursions_catalogue,
+  #open_catalogue
+    margin-top: 250px
+
+
 
 
 /*8*/
