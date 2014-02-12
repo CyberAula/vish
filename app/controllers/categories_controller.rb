@@ -34,8 +34,8 @@ class CategoriesController < ApplicationController
           cat_array.delete(cat.id) #remove item because the category is already applied
           next
         end
-        the_cat = Category.find(cat.id)
-        the_cat.property_objects.delete(item)
+        #the_cat = Category.find(cat.id)
+        #the_cat.property_objects.delete(item)
       end
       #now apply the rest of categories, the new ones
       cat_array.each do |new_cat_id|
