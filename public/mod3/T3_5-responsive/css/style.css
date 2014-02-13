@@ -1,0 +1,16 @@
+*                    { margin: 0; padding: 0; }
+body                 { font: 16px Georgia, serif; }
+
+#page-wrap           { margin: 2% auto; color: white; }
+#page-wrap > .main   { border: 1px solid #999; padding: 1%; 
+	                         margin-bottom: 1px; color: black; }
+
+header, nav, section { background: #eee; }
+section #titulo      { text-align: center; }
+img#imagen           { display: block; 
+	                   margin: auto;
+	                   width: 90%;
+	                   max-height: 410px;
+	                   padding: 5%;}
+footer               { background: #eee; text-align: center;}
+nav li               { margin: 0px 10px 0px 0px;}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reloj SVG</title><meta charset="UTF-8">
+<script type="text/javascript" src="zepto.min.js" ></script>
+<script type="text/javascript">
+  function x2(n,i,x1,r) {return x1 + r*Math.sin(2*Math.PI*n/i);};
+  function y2(n,i,y1,r) {return y1 - r*Math.cos(2*Math.PI*n/i);};
+
+  $(function(){
+    function mostrar_hora( ) {
+      var d = new Date();
+      var h = d.getHours();
+      var m = d.getMinutes();
+      var s = d.getSeconds();
+      $('#tex').html(h + ":" + m + ":" + s);
+      $('#seg').attr('x2', x2(s,60,80,50)).attr('y2', y2(s,60,80,50));
+      $('#min').attr('x2', x2(m,60,80,40)).attr('y2', y2(m,60,80,40));
+      $('#hor').attr('x2', x2(h,12,80,30)).attr('y2', y2(h,12,80,30));
+    }
+    setInterval(function(){mostrar_hora();}, 1000);
+    mostrar_hora();
+  })
+</script>
+</head>
+<body>
+<h3>Reloj SVG</h3>
+<div id="tex">texto</div>
+<svg>
+  <circle id="myCircle" cx="80" cy="80" r="50"
+    fill="white" stroke="black" stroke-width="3"/>
+  <line id="hor" x1="80" y1="80" x2="110" y2="80"
+    style="stroke:grey;stroke-width:5"/>
+  <line id="min" x1="80" y1="80" x2="80" y2="40"
+    style="stroke:grey;stroke-width:3"/>
+  <line id="seg" x1="80" y1="80" x2="115" y2="45"
+    style="stroke:red;stroke-width:1"/>
+</svg></body></html>

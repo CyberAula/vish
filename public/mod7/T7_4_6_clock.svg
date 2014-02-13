@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" 
+            "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+
+  <circle id='myCircle'  cx='60' cy='60' r='50'
+          fill='white' stroke='black'  stroke-width='3' />
+
+  <line x1='60' y1='60' x2='90' y2='60'
+        style='stroke:grey;stroke-width:5'/>
+  <line x1='60' y1='60' x2='60' y2='20'
+        style='stroke:grey;stroke-width:3'/>
+  <line x1='60' y1='60' x2='95' y2='25'
+        style='stroke:red;stroke-width:1'/>
+</svg>

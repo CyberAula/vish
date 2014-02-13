@@ -1,0 +1,9 @@
+
+body { background: #999; }
+
+#page-wrap:after { content: "Wide Layout"; }
+
+nav       { float: left; width: 15%; height: 500px ;}
+nav span  { margin: 0px 100px 0px 0px;}
+section   { float: right; width: 80%; height: 500px;}
+footer    { clear: both;  display: block; }
