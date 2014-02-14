@@ -13,8 +13,8 @@ VISH.Constant.Event.onGoToSlide = "onGoToSlide";
 VISH.Constant.Event.onPlayVideo = "onPlayVideo";
 VISH.Constant.Event.onPauseVideo = "onPauseVideo";
 VISH.Constant.Event.onSeekVideo = "onSeekVideo";
-VISH.Constant.Event.onFlashcardPointClicked = "onFlashcardPointClicked";
-VISH.Constant.Event.onFlashcardSlideClosed = "onFlashcardSlideClosed";
+VISH.Constant.Event.onSubslideOpen = "onSubslideOpen";
+VISH.Constant.Event.onSubslideClosed = "onSubslideClosed";
 VISH.Constant.Event.onSetSlave = "onSetSlave";
 VISH.Constant.Event.onPreventDefault = "onPreventDefault";
 VISH.Constant.Event.allowExitWithoutConfirmation = "allowExitWithoutConfirmation";
@@ -234,15 +234,15 @@ VISH.IframeAPI = (function(V,undefined){
 							 VEMessageObject.origin);
 				}
 				break;
-			case VISH.Constant.Event.onFlashcardPointClicked:
+			case VISH.Constant.Event.onSubslideOpen:
 				if(VEMessageObject.params){
-					callback(VEMessageObject.params.slideNumber,
+					callback(VEMessageObject.params.slideId,
 							 VEMessageObject.origin);
 				}
 				break;
-			case VISH.Constant.Event.onFlashcardSlideClosed:
+			case VISH.Constant.Event.onSubslideClosed:
 				if(VEMessageObject.params){
-					callback(VEMessageObject.params.slideNumber,
+					callback(VEMessageObject.params.slideId,
 							 VEMessageObject.origin);
 				}
 				break;
@@ -299,19 +299,17 @@ VISH.IframeAPI = (function(V,undefined){
 		sendMessage(VEMessage,destination);
 	};
 
-	var openSlideInFlashcard = function(flashcardSlideNumber,slideNumber,destination){
+	var openSubslide = function(slideId,destination){
 		var params = {};
-		params.flashcardSlideNumber = flashcardSlideNumber;
-		params.slideNumber = slideNumber;
-		var VEMessage = _createMessage(VISH.Constant.Event.onFlashcardPointClicked,params,null,destination);
+		params.slideId = slideId;
+		var VEMessage = _createMessage(VISH.Constant.Event.onSubslideOpen,params,null,destination);
 		sendMessage(VEMessage,destination);
 	};
 
-	var closeSlideInFlashcard = function(flashcardSlideNumber,slideNumber,destination){
+	var closeSubslide = function(slideId,destination){
 		var params = {};
-		params.flashcardSlideNumber = flashcardSlideNumber;
-		params.slideNumber = slideNumber;
-		var VEMessage = _createMessage(VISH.Constant.Event.onFlashcardSlideClosed,params,null,destination);
+		params.slideId = slideId;
+		var VEMessage = _createMessage(VISH.Constant.Event.onSubslideClosed,params,null,destination);
 		sendMessage(VEMessage,destination);
 	};
 
@@ -373,8 +371,8 @@ VISH.IframeAPI = (function(V,undefined){
 			playVideo 			: playVideo,
 			pauseVideo 			: pauseVideo,
 			seekVideo 			: seekVideo,
-			openSlideInFlashcard	: openSlideInFlashcard,
-			closeSlideInFlashcard	: closeSlideInFlashcard
+			openSubslide		: openSubslide,
+			closeSubslide		: closeSubslide
 	};
 
 }) (VISH);
