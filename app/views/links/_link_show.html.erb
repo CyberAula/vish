@@ -1,10 +1,12 @@
+<%the_url = link.url.start_with?('http') ? link.url : "http://"+link.url%>
+
 <%= div_for link, :class => 'content_size' do %>
-<iframe class="link_show" src="<%= link.url %>"></iframe> 
+	<iframe class="link_show" src="<%= the_url %>"></iframe> 
 
-<div class="link_address">
-<%= link_to raw("<i class='icon-link'></i>") + link.url, link.url,:target => "_blank" %>
+	<div class="link_address">
+	<%= link_to raw("<i class='icon-link'></i>") + the_url, the_url,:target => "_blank" %>
 
-</div>
+	</div>
 
 
 <% end %>
