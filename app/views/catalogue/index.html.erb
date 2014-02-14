@@ -2,10 +2,10 @@
 <div id="excursions_catalogue" >
 	<%@all_categories.each do |name, the_array| %>
 		<h2><%=name%></h2>
-		<button class="show_more_catalogue"><%=t('actions.show_more')%></button>
-		<ul>
+		<button class="show_more_catalogue"><%=t('excursion.actions.show_more')%></button>
+		<ul id="container_<%=name%>">
 			<%for excursion in the_array%>
-				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion } %>
+				<%=render :partial=> "excursions/excursion", :locals => { :excursion => excursion, :container_id => "container_#{name}" } %>
 			<%end%>
 		</ul>
 	<%end%>
