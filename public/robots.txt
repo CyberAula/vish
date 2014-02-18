@@ -11,6 +11,7 @@ Disallow: /*/*/profile
 Disallow: /categories
 Disallow: /users/*/followings
 Disallow: /users/*/followers
+Disallow: /users/*/excursions*
 
 user-agent: AhrefsBot
 disallow: /excursions/new
@@ -19,6 +20,7 @@ Disallow: /*/*/profile
 Disallow: /categories
 Disallow: /users/*/followings
 Disallow: /users/*/followers
+Disallow: /users/*/excursions*
 
 User-agent: Ezooms
 Disallow: /

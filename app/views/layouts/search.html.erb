@@ -37,6 +37,8 @@
 
   <script type="text/javascript">
     $(document).ready(function() {  
+      $(".box-search input.search-query").val("<%=params[:q]%>");
+
       <%= yield :javascript%>
     });
   </script>

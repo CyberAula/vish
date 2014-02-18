@@ -45,18 +45,22 @@ class SearchController < ApplicationController
   def search mode
     page =  ( mode == :quick ? 1 : params[:page] )
     limit = ( mode == :quick ? 7 : RESULTS_SEARCH_PER_PAGE )
+    the_query = nil
+    order = 'popularity DESC'
 
     if(params[:q])
-      the_query = params[:q].gsub(" ", " | ")
+      the_query_or = Riddle.escape(params[:q]).gsub(" ", " | ")
+      the_query = "\"^" + params[:q] + "$\" | \"" + params[:q] + "\" | (" + the_query_or + ")"
+      order = nil #so it searches exact first
     end
 
-    SocialStream::Search.search(the_query,
-                                current_subject,
-                                mode:  mode,
-                                key:   params[:type],
-                                page:  page,
-                                limit: limit,
-                                order: 'popularity DESC')
+    SocialStream::Search.search(the_query, 
+      current_subject, 
+      mode: mode, 
+      key: params[:type],
+      page: page, 
+      limit: limit,
+      order: order)
 
   end
 end
