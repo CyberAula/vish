@@ -37,6 +37,8 @@
     
     <script type="text/javascript">
       $(document).ready(function() {  
+        setTimeout(function(){ $("#flash .alert").hide("slow") }, 5000);
+
         <%= yield :javascript%>
       });
     </script>
