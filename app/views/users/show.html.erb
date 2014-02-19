@@ -67,7 +67,7 @@
   <!--__Website -->
   <div class="website">
     <h3><%= t('profile.website') %></h3>
-    <span><%= link_to @user.profile.website %></span>
+    <span><%= link_to @user.profile.website,  @user.profile.website, :target=>'_blank' %></span>
   </div>
 
 
